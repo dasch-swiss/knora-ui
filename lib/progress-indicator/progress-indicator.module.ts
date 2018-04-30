@@ -32,4 +32,4 @@ import {MatButtonModule, MatIconModule} from '@angular/material';
     ProgressIndicatorComponent
   ]
 })
-export class KgProgressIndicatorModule { }
+export class KnoraProgressIndicatorModule { }

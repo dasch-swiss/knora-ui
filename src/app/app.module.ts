@@ -11,7 +11,7 @@ import {AppMaterialModule} from './app-material-module';
 import {ProgressIndicatorDemoComponent} from './demo/progress-indicator-demo/progress-indicator-demo.component';
 
 // knora gui modules
-import {KgProgressIndicatorModule} from '@knora/progress-indicator';
+import {KnoraProgressIndicatorModule} from '@knora/progress-indicator';
 
 
 @NgModule({
@@ -26,7 +26,7 @@ import {KgProgressIndicatorModule} from '@knora/progress-indicator';
     RouterModule,
     AppRoutingModule,
     AppMaterialModule,
-    KgProgressIndicatorModule
+    KnoraProgressIndicatorModule
 
   ],
   providers: [],

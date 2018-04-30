@@ -7,5 +7,5 @@ import {CommonModule} from '@angular/common';
   ],
   declarations: []
 })
-export class KnogCoreModule {
+export class KnoraCoreModule {
 }
