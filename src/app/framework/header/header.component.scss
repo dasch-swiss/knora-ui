@@ -1,0 +1,24 @@
+.app-header {
+
+  margin-bottom: 24px;
+
+  .app-header-row {
+    display: flex;
+    box-sizing: border-box;
+    height: 48px;
+    margin-bottom: 12px;
+
+    .app-header-action-button {
+      height: 48px;
+      width: 48px;
+    }
+  }
+}
+
+a {
+  color: #333333;
+
+  &:hover {
+    color: #000000
+  }
+}

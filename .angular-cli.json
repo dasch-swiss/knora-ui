@@ -19,6 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "kg",
       "styles": [
+        "assets/style/mat-teal-amber.scss",
+        "assets/style/main.scss",
         "styles.css"
       ],
       "scripts": [],
