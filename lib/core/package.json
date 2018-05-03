@@ -1,0 +1,24 @@
+{
+  "name": "@knora/core",
+  "version": "0.0.0",
+  "repository": "https://github.com/dhlab-basel/knora-gui.git",
+  "author": "Digital Humanities Lab Basel",
+  "license": "AGPL-3.0",
+  "private": false,
+  "peerDependencies": {
+    "@angular/animations": "^5.0.0",
+    "@angular/cdk": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/common": "^5.0.0",
+    "json2typescript": "^1.0.5"
+  },
+  "ngPackage": {
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "dist/core",
+    "workingDirectory": "../.ng_build",
+    "lib": {
+      "entryFile": "./index.ts"
+    },
+    "dest": "../../../dist/core"
+  }
+}
