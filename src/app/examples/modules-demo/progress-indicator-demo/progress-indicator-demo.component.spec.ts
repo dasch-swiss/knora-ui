@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {HeaderComponent} from '../../framework/header/header.component';
+import {HeaderComponent} from '../../../framework/header/header.component';
 
 import {ProgressIndicatorDemoComponent} from './progress-indicator-demo.component';
 import {KnoraProgressIndicatorModule} from '@knora/progress-indicator';
