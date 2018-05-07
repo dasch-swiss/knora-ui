@@ -34,7 +34,7 @@ jobs:
       # - run: yarn build:core
 
       # Build the demo apps (from library packages)
-      # - run: yarn build:app-dep
+      # - run: yarn build:app
 
       # Run unit tests!
       # - run: xvfb-run -a yarn ci:test
