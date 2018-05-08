@@ -1,11 +1,11 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
-// / start with landingpage
-import {MainIndexComponent} from './landing-page/main-index/main-index.component';
+// / start with introduction
+import {IntroductionComponent} from './landing-page/introduction/introduction.component';
 
 // /modules demo
-import {DemoIndexComponent} from './landing-page/demo-index/demo-index.component';
+import {ModuleIndexComponent} from './landing-page/partials/module-index/module-index.component';
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
 
 // examples: demo components
@@ -13,14 +13,15 @@ import {ProgressIndicatorDemoComponent} from './knora-gui-examples/progress-indi
 
 
 
+
 const appRoutes: Routes = [
   {
     path: '',
-    component: MainIndexComponent,
+    component: IntroductionComponent,
   },
   {
     path: 'modules',
-    component: DemoIndexComponent,
+    component: ModuleIndexComponent,
 
     children: [
       {

@@ -2,11 +2,14 @@
   <div class="app-header-row">
     <h2 class="fill-remaining-space">{{demo.label}}</h2>
   </div>
+
   <div class="app-header-row" *ngIf="demo.published">
     <a [href]="package" target="_blank">
       <img [src]="badge">
     </a>
+
     <span class="fill-remaining-space"></span>
+
     <a [href]="stackBlitzDemo" target="_blank">
       <button mat-button>
         Edit in Stackblitz

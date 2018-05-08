@@ -1,13 +1,8 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" opened>
+<mat-sidenav-container class="demo-container">
 
-    <div class="knora-logo">
-      <a href="/">
-        <img src="assets/images/knora-logo.png">
-      </a>
-    </div>
+  <mat-sidenav class="demo-nav-container" mode="side" opened>
 
-    <h3>Published modules</h3>
+    <h3 mat-card-title>Published modules</h3>
 
     <mat-list>
             <span *ngFor="let item of examples">
@@ -33,7 +28,7 @@
 
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content class="module-content">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 
