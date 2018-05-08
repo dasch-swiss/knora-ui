@@ -1,22 +1,20 @@
-import {TestBed, async} from '@angular/core/testing';
-import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatListModule, MatSidenavModule} from '@angular/material';
+import { TestBed, async } from '@angular/core/testing';
+import { AppComponent } from './app.component';
 import {RouterTestingModule} from '@angular/router/testing';
-
+import {MainHeaderComponent} from './landing-page/partials/main-header/main-header.component';
+import {MatIconModule, MatToolbarModule} from '@angular/material';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-
-      ],
       imports: [
-        BrowserAnimationsModule,
-        MatListModule,
-        MatSidenavModule,
-        RouterTestingModule
-      ]
+        RouterTestingModule,
+        MatToolbarModule,
+        MatIconModule
+      ],
+      declarations: [
+        AppComponent,
+        MainHeaderComponent
+      ],
     }).compileComponents();
   }));
   it('should create the app', async(() => {

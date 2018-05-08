@@ -1,0 +1,43 @@
+<app-module-header [demo]="module"></app-module-header>
+
+<strong>Classic loader</strong>
+<kg-progress-indicator></kg-progress-indicator>
+
+<hr>
+
+<strong>Submit-form-data loader</strong> as e.g. a list item type
+
+<mat-list>
+  <mat-list-item *ngFor="let item of examples">
+
+    <kg-progress-indicator mat-list-avatar [status]="item.status">
+    </kg-progress-indicator>
+
+    <p mat-line>
+      <strong>
+        <span>{{item.label}}</span>
+      </strong>
+    </p>
+    <p mat-line>
+      status: {{item.status}}
+    </p>
+  </mat-list-item>
+</mat-list>
+
+<hr>
+
+<strong>Dynamic example</strong>
+<mat-list>
+  <mat-list-item>
+    <kg-progress-indicator mat-list-avatar [status]="status"></kg-progress-indicator>
+    <p mat-line>
+      <strong>
+        <span *ngIf="status == -1">before submit (not ready)</span>
+        <span *ngIf="status == 0">submitting</span>
+        <span *ngIf="status == 1">after submit (done)</span>
+      </strong>
+
+      status: {{status}}
+    </p>
+  </mat-list-item>
+</mat-list>

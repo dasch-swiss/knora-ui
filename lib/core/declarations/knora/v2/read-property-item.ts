@@ -12,7 +12,7 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import {AppConfig} from "../../../../app.config";
+import {AppConfig} from "../../../../app-dep.config";
 import {ReadResource} from "./read-resource";
 import {escape} from "querystring";
 import {OntologyInformation} from "../../../services/ontologycache.service";

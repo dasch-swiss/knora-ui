@@ -6,7 +6,8 @@
   "commitMessage": "{{semanticPrefix}}update {{depName}} to version {{newVersion}}",
   "packageFiles": [
     "package.json",
-    "lib/src/core/package.json"
+    "lib/core/package.json",
+    "lib/progress-indicator/package.json"
   ],
   "packages": [
     {

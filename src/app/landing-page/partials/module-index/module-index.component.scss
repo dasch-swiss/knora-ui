@@ -1,0 +1,53 @@
+.demo-container {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.demo-nav-container {
+  padding: 24px;
+}
+
+.mat-sidenav-content {
+  padding: 48px;
+  height: calc(100vh - 96px - 64px);
+  overflow: auto;
+}
+
+.demo-nav-item {
+  width: 200px;
+  text-align: left;
+}
+
+.mat-icon {
+  position: absolute;
+  right: 0;
+  top: 6px;
+  display: none;
+}
+
+.active-link {
+  background: rgba(33,33,33,.1);
+
+  .mat-icon {
+    display: block;
+  }
+
+}
+
+h1 {
+  font-size: 1.4em;
+}
+h2 {
+  font-size: 1.2em;
+}
+
+
+mat-list-item {
+  span {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
