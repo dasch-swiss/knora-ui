@@ -1,8 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "baseUrl": "src",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -18,14 +18,11 @@
     ],
     "paths": {
       "@knora/core": [
-        "dist/lib/core"
+        "./lib/core"
       ],
       "@knora/progress-indicator": [
-        "dist/lib/progress-indicator"
+        "./lib/progress-indicator"
       ]
     }
-  },
-  "exclude": [
-    ".ng_build"
-  ]
+  }
 }
