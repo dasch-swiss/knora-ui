@@ -15,10 +15,16 @@ import {IntroductionComponent} from './landing-page/introduction/introduction.co
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
 // examples: demo components
 import {ProgressIndicatorDemoComponent} from './knora-gui-examples/progress-indicator-demo/progress-indicator-demo.component';
-import { CoreDemoComponent } from './knora-gui-examples/core-demo/core-demo.component';
-import {ApiService, KnoraCoreModule, ProjectsService} from '@knora/core';
+import {CoreDemoComponent} from './knora-gui-examples/core-demo/core-demo.component';
+import {CoreService, KnoraCoreConfig, KnoraCoreModule, ProjectsService} from '@knora/core';
 import {KnoraProgressIndicatorModule} from '@knora/progress-indicator';
+import {environment} from '../environments/environment';
 
+const AppConfig: KnoraCoreConfig = {
+  api: environment.api,
+  media: environment.media,
+  gui: environment.gui
+};
 
 @NgModule({
   declarations: [
@@ -35,12 +41,15 @@ import {KnoraProgressIndicatorModule} from '@knora/progress-indicator';
     BrowserModule,
     RouterModule,
     AppRoutingModule,
-    KnoraCoreModule,
+    KnoraCoreModule.forRoot(AppConfig),
     KnoraProgressIndicatorModule,
     MaterialModule,
     HttpClientModule
   ],
-  providers: [ApiService, ProjectsService],
+  providers: [
+    CoreService,
+    ProjectsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
-import {ApiService, ApiServiceError, ApiServiceResult, Project} from '../';
+import {ApiService, ApiServiceError, ApiServiceResult, ProjectsResponse} from '../';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs/internal/observable/throwError';
 
@@ -14,13 +14,13 @@ export class ProjectsService extends ApiService {
    * @returns {Observable<Project[]>}
    * @throws {ApiServiceError}
    */
-  getAllProjects(): Observable<Project[]> {
+  getAllProjects(): Observable<ProjectsResponse> {
 
     return this.httpGet('/admin/projects').pipe(
       map((result: ApiServiceResult) => {
         // Json2TypeScript Deserialize Project
         console.log(result);
-        return result.getBody(Project);
+        return result.getBody(ProjectsResponse);
       }),
       catchError((error: any) => {
         console.error(error);

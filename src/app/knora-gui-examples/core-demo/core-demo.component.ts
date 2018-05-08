@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppDemo} from '../../app.config';
-import {ApiServiceError, Project, ProjectsService} from '@knora/core';
+import {ApiServiceError, Project, ProjectsResponse, ProjectsService} from '@knora/core';
 
 @Component({
   selector: 'app-core-demo',
@@ -11,7 +11,7 @@ export class CoreDemoComponent implements OnInit {
 
   module = AppDemo.coreModule;
 
-  public allProjects: Project[];
+  public allProjects: ProjectsResponse;
 
   projectIri = 'http://rdfh.ch/projects/00FF';   // images project
 
@@ -27,8 +27,9 @@ export class CoreDemoComponent implements OnInit {
 
     this._projectsService.getAllProjects()
       .subscribe(
-        (result: Project[]) => {
+        (result: ProjectsResponse) => {
           this.allProjects = result;
+          console.log(this.allProjects);
           this.isLoading = false;
         },
         (error: ApiServiceError) => {

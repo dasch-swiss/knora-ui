@@ -7,7 +7,7 @@
 <p>getAllProjects</p>
 <div *ngIf="!isLoading">
   <ul>
-    <li *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
+    <li *ngFor="let p of allProjects.projects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
   </ul>
 </div>
 
