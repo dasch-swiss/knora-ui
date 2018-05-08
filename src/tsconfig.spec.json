@@ -9,10 +9,10 @@
     ],
     "paths": {
       "@knora/core": [
-        "../lib/core"
+        "./lib/core"
       ],
       "@knora/progress-indicator": [
-        "../lib/progress-indicator"
+        "./lib/progress-indicator"
       ]
     }
   },

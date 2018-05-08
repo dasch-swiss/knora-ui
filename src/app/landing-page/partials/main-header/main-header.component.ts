@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-main-header',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private iconRegistry: MatIconRegistry,
+              private sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'knora-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('../../../../assets/images/knora-icon.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'github-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('../../../../assets/images/github-icon.svg')
+    );
+  }
 
   ngOnInit() {
+
   }
 
 }
