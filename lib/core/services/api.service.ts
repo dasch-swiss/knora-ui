@@ -1,22 +1,44 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs/internal/Observable';
 
-import {ApiServiceResult, ApiServiceError, SalsahCoreConfig} from '../declarations';
-import {CoreService} from './core.service';
+import {ApiServiceResult, ApiServiceError, CoreService, KnoraCoreConfig} from '@knora/core';
 
 // TODO: update the following, deprecated angular classes; use the classes from @angular/common/http instead
 import {Http, RequestOptionsArgs, Response, Headers} from '@angular/http';
+import {catchError, map} from 'rxjs/operators';
+import {throwError} from 'rxjs/internal/observable/throwError';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 
 
 @Injectable()
 export class ApiService {
 
-    public environment: SalsahCoreConfig;
+    private apiUrl: string = "http://localhost:3333";
+
+    constructor(public http: HttpClient) {}
+
+    httpGet(url: string): Observable<any> {
+
+        return this.http.get(url, { observe: "response"}).pipe(
+          map((response: HttpResponse<any>) => {
+            console.log(response);
+            const result = new ApiServiceResult();
+            result.status = 0;
+            result.statusText = "";
+            result.url = url;
+            result.body = response.body;
+            return result;
+          }),
+          catchError((error: HttpErrorResponse) => {
+            console.error(error);
+            return throwError(error);
+          })
+        );
+    }
+
+    /*
+    public environment: KnoraCoreConfig;
 
     static handleError(error: any, url: string): ApiServiceError {
 
@@ -53,7 +75,7 @@ export class ApiService {
      * @param {string} url
      * @param {RequestOptionsArgs} options
      * @returns {Observable<ApiServiceResult>}
-     */
+     *
     httpGet(url: string, options?: HttpHeaders): Observable<ApiServiceResult> {
 
         this.environment = this._coreService.getConfig();
@@ -70,7 +92,7 @@ export class ApiService {
                 console.log(response);
                 return response;
             });
-*/
+*
 
 
         return this._http.get<ApiServiceResult>(url);
@@ -89,7 +111,7 @@ export class ApiService {
         }).catch((error: any) => {
             return Observable.throw(ApiService.handleError(error, url));
         });
-*/
+*
     }
 
 /*

@@ -22,6 +22,7 @@
                 <mat-list-item *ngIf="!item.published">
                     <button mat-button [routerLink]="item.name" routerLinkActive="active-link" class="demo-nav-item">
                         {{item.label}}
+                        <mat-icon>keyboard_arrow_right</mat-icon>
                     </button>
                 </mat-list-item>
             </span>

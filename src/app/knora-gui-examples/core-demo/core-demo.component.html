@@ -1,0 +1,18 @@
+<app-module-header [demo]="module"></app-module-header>
+
+<kg-progress-indicator *ngIf="isLoading"></kg-progress-indicator>
+
+<h3>Projects service</h3>
+
+<p>getAllProjects</p>
+<div *ngIf="!isLoading">
+  <ul>
+    <li *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
+  </ul>
+</div>
+
+<hr>
+<!--
+<p>getProjectByIri <i>{{projectIri}}</i></p>
+<p><strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>
+-->

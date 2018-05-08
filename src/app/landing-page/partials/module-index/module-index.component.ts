@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DemoModule} from '../../../app.interfaces';
 import {AppDemo} from '../../../app.config';
 
@@ -9,14 +9,10 @@ import {AppDemo} from '../../../app.config';
 })
 export class ModuleIndexComponent implements OnInit {
 
-  examples: DemoModule[] = [
-    AppDemo.progressIndicator
-//    AppDemo.adminImage,
-//    AppDemo.actionModule,
-//    AppDemo.coreModule
-  ];
+  examples: DemoModule[] = AppDemo.examples;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
