@@ -1,10 +1,10 @@
 import {DemoModule} from './app.interfaces';
 
 export class AppConfig {
-    public static prefix: string = 'knora';
-    public static stackblitz: string = 'https://stackblitz.com/edit/';
-    public static npm: string = 'https://www.npmjs.com/package/';
-    public static badge: string = 'https://img.shields.io/npm/v/';
+    public static prefix = 'knora';
+    public static stackblitz = 'https://stackblitz.com/edit/';
+    public static npm = 'https://www.npmjs.com/package/';
+    public static badge = 'https://img.shields.io/npm/v/';
 
 }
 
