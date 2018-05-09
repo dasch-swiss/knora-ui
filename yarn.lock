@@ -65,6 +65,15 @@
     webpack-sources "^1.1.0"
     webpack-subresource-integrity "^1.1.0-rc.4"
 
+"@angular-devkit/build-ng-packagr@~0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-ng-packagr/-/build-ng-packagr-0.6.0.tgz#8046dfc76d2ce016aa38a8746079effe842fa933"
+  dependencies:
+    "@angular-devkit/architect" "0.6.0"
+    "@angular-devkit/core" "0.6.0"
+    resolve "^1.5.0"
+    rxjs "^6.0.0"
+
 "@angular-devkit/build-optimizer@0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-optimizer/-/build-optimizer-0.6.0.tgz#150a76155b473dea17327a176d18245a2da1c13e"
@@ -232,8 +241,8 @@
     "@types/jasmine" "*"
 
 "@types/node@*":
-  version "10.0.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.4.tgz#130598ee56e9a1210a53f557d64935571f05390d"
+  version "10.0.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.6.tgz#c0bce8e539bf34c1b850c13ff46bead2fecc2e58"
 
 "@types/node@^6.0.46":
   version "6.0.108"
@@ -2507,11 +2516,7 @@ estraverse@^4.1.0, estraverse@^4.1.1:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
 
-estree-walker@^0.3.0:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.3.1.tgz#e6b1a51cf7292524e7237c312e5fe6660c1ce1aa"
-
-estree-walker@^0.5.1:
+estree-walker@^0.5.1, estree-walker@^0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.5.2.tgz#d3850be7529c9580d815600b53126515e146dd39"
 
@@ -4940,7 +4945,7 @@ next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
-ng-packagr@3.0.0-rc.3:
+ng-packagr@^3.0.0-rc.0:
   version "3.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-3.0.0-rc.3.tgz#5d1846a3f2a0977654b0d6564a0a0ad0b4f667a5"
   dependencies:
@@ -6317,11 +6322,12 @@ rollup-plugin-node-resolve@^3.0.0:
     resolve "^1.1.6"
 
 rollup-pluginutils@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.0.1.tgz#7ec95b3573f6543a46a6461bd9a7c544525d0fc0"
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.1.1.tgz#50289c94f8d7426647b14dc9fbb93643645a8d09"
   dependencies:
-    estree-walker "^0.3.0"
+    estree-walker "^0.5.2"
     micromatch "^2.3.11"
+    tosource "^1.0.0"
 
 rollup@^0.58.0:
   version "0.58.2"
@@ -7317,6 +7323,10 @@ toposort@^1.0.0:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/toposort/-/toposort-1.0.7.tgz#2e68442d9f64ec720b8cc89e6443ac6caa950029"
 
+tosource@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tosource/-/tosource-1.0.0.tgz#42d88dd116618bcf00d6106dd5446f3427902ff1"
+
 tough-cookie@~2.3.0, tough-cookie@~2.3.3:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.3.4.tgz#ec60cee38ac675063ffc97a5c18970578ee83655"
@@ -7361,6 +7371,15 @@ ts-node@~5.0.1:
     mkdirp "^0.5.1"
     source-map-support "^0.5.3"
     yn "^2.0.0"
+
+tsickle@>=0.25.5:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.28.0.tgz#6cd6fa004766c6ad9261b599c83866ee97cc7875"
+  dependencies:
+    minimist "^1.2.0"
+    mkdirp "^0.5.1"
+    source-map "^0.6.0"
+    source-map-support "^0.5.0"
 
 tsickle@^0.27.2:
   version "0.27.5"
@@ -7444,7 +7463,7 @@ uglify-es@^3.3.4:
     commander "~2.13.0"
     source-map "~0.6.1"
 
-uglify-js@3.3.x, uglify-js@^3.0.7:
+uglify-js@3.3.x:
   version "3.3.23"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.23.tgz#48ea43e638364d18be292a6fdc2b5b7c35f239ab"
   dependencies:
@@ -7459,6 +7478,13 @@ uglify-js@^2.6:
     yargs "~3.10.0"
   optionalDependencies:
     uglify-to-browserify "~1.0.0"
+
+uglify-js@^3.0.7:
+  version "3.3.24"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.24.tgz#abeae7690c602ebd006f4567387a0c0c333bdc0d"
+  dependencies:
+    commander "~2.15.0"
+    source-map "~0.6.1"
 
 uglify-to-browserify@~1.0.0:
   version "1.0.2"
