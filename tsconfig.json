@@ -17,9 +17,6 @@
       "dom"
     ],
     "paths": {
-      "@knora/core": [
-        "./lib/core"
-      ],
       "@knora/progress-indicator": [
         "./lib/progress-indicator"
       ],

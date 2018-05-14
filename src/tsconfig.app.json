@@ -4,14 +4,7 @@
     "outDir": "../out-tsc/app",
     "module": "es2015",
     "types": [],
-    "paths": {
-      "@knora/core": [
-        "./lib/core"
-      ],
-      "@knora/progress-indicator": [
-        "./lib/progress-indicator"
-      ]
-    }
+    "paths": { }
   },
   "exclude": [
     "src/test.ts",
