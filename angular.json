@@ -123,7 +123,7 @@
       "root": "projects/knora/core",
       "sourceRoot": "projects/knora/core/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "kg",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -151,6 +151,46 @@
             "tsConfig": [
               "projects/knora/core/tsconfig.lib.json",
               "projects/knora/core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@knora/progress-indicator": {
+      "root": "projects/knora/progress-indicator",
+      "sourceRoot": "projects/knora/progress-indicator/src",
+      "projectType": "library",
+      "prefix": "kg",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/knora/progress-indicator/tsconfig.lib.json",
+            "project": "projects/knora/progress-indicator/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/knora/progress-indicator/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/knora/progress-indicator/src/test.ts",
+            "tsConfig": "projects/knora/progress-indicator/tsconfig.spec.json",
+            "karmaConfig": "projects/knora/progress-indicator/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/knora/progress-indicator/tsconfig.lib.json",
+              "projects/knora/progress-indicator/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

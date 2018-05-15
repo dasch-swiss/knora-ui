@@ -5,9 +5,7 @@
   "semanticPrefix": "build:",
   "commitMessage": "{{semanticPrefix}}update {{depName}} to version {{newVersion}}",
   "packageFiles": [
-    "package.json",
-    "lib/core/package.json",
-    "lib/progress-indicator/package.json"
+    "package.json"
   ],
   "packages": [
     {

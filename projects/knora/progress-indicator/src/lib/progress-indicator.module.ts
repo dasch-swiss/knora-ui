@@ -12,11 +12,11 @@
  * License along with SALSAH modules.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ProgressIndicatorComponent } from './progress-indicator.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatIconModule} from '@angular/material';
+import {ProgressIndicatorComponent} from './progress-indicator.component';
 
 @NgModule({
   imports: [
@@ -32,4 +32,5 @@ import {MatButtonModule, MatIconModule} from '@angular/material';
     ProgressIndicatorComponent
   ]
 })
-export class KnoraProgressIndicatorModule { }
+export class ProgressIndicatorModule {
+}

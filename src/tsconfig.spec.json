@@ -7,7 +7,11 @@
       "jasmine",
       "node"
     ],
-    "paths": { }
+    "paths": {
+      "@knora/progress-indicator": [
+        "dist/@knora/progress-indicator"
+      ]
+    }
   },
   "files": [
     "test.ts",

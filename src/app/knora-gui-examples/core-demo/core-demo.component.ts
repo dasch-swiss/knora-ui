@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppDemo} from '../../app.config';
-import {ApiServiceError, Project, ProjectsResponse, ProjectsService} from '@knora/core';
+// import {ApiServiceError, Project, ProjectsResponse, ProjectsService} from '@knora/core';
 
 @Component({
   selector: 'app-core-demo',
@@ -11,20 +11,23 @@ export class CoreDemoComponent implements OnInit {
 
   module = AppDemo.coreModule;
 
-  public allProjects: ProjectsResponse;
+  // public allProjects: ProjectsResponse;
 
   projectIri = 'http://rdfh.ch/projects/00FF';   // images project
 
-  project: Project;
+  // project: Project;
 
 
   public isLoading = true;
 
-  constructor(private _projectsService: ProjectsService) {
+  // private _projectsService: ProjectsService
+
+  constructor() {
   }
 
   ngOnInit() {
 
+    /*
     this._projectsService.getAllProjects()
       .subscribe(
         (result: ProjectsResponse) => {
@@ -36,7 +39,7 @@ export class CoreDemoComponent implements OnInit {
           console.log(error);
         }
       );
-
+    */
     /*
     this._projectsService.getProjectByIri(this.projectIri)
       .subscribe(

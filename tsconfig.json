@@ -17,11 +17,11 @@
       "dom"
     ],
     "paths": {
-      "@knora/progress-indicator": [
-        "./lib/progress-indicator"
+      "@knora/core": [
+        "dist/@knora/core"
       ],
-      "core": [
-        "dist/core"
+      "@knora/progress-indicator": [
+        "dist/@knora/progress-indicator"
       ]
     }
   }
