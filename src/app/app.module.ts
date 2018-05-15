@@ -6,7 +6,6 @@ import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing-module';
 
 import {AppComponent} from './app.component';
-import {KnoraGuiModule} from './knora-gui-module';
 import {MaterialModule} from './material-module';
 // landing page framework components
 import {MainHeaderComponent} from './landing-page/partials/main-header/main-header.component';
@@ -16,7 +15,21 @@ import {IntroductionComponent} from './landing-page/introduction/introduction.co
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
 // examples: demo components
 import {ProgressIndicatorDemoComponent} from './knora-gui-examples/progress-indicator-demo/progress-indicator-demo.component';
+import {CoreDemoComponent} from './knora-gui-examples/core-demo/core-demo.component';
+import {ProgressIndicatorModule} from '@knora/progress-indicator';
 
+
+// import {CoreService, KnoraCoreConfig, KnoraCoreModule, ProjectsService} from '@knora/core';
+// import {KnoraProgressIndicatorModule} from '@knora/progress-indicator';
+
+
+/*
+const AppConfig: KnoraCoreConfig = {
+  api: environment.api,
+  media: environment.media,
+  gui: environment.gui
+};
+*/
 
 @NgModule({
   declarations: [
@@ -26,17 +39,22 @@ import {ProgressIndicatorDemoComponent} from './knora-gui-examples/progress-indi
     IntroductionComponent,
     ProgressIndicatorDemoComponent,
     DemoIntroComponent,
-    ModuleIndexComponent
+    ModuleIndexComponent,
+    CoreDemoComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
-    KnoraGuiModule,
+//    KnoraCoreModule.forRoot(AppConfig),
+    ProgressIndicatorModule,
     MaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+//    CoreService,
+//    ProjectsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

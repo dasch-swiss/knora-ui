@@ -10,6 +10,7 @@ import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component
 
 // examples: demo components
 import {ProgressIndicatorDemoComponent} from './knora-gui-examples/progress-indicator-demo/progress-indicator-demo.component';
+import {CoreDemoComponent} from './knora-gui-examples/core-demo/core-demo.component';
 
 
 
@@ -31,6 +32,10 @@ const appRoutes: Routes = [
       {
         path: 'progress-indicator',
         component: ProgressIndicatorDemoComponent
+      },
+      {
+        path: 'core',
+        component: CoreDemoComponent
       }
     ]
   },

@@ -7,4 +7,4 @@ export * from './core.service';
 /**
  * api specific services
  */
-export * from './projects.service';
+// export * from './projects.service';

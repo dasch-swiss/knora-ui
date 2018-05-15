@@ -7,7 +7,6 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ProgressIndicatorComponent implements OnInit {
 
-
   /**
    * status is a number
    * - not ready:    -1
