@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppDemo} from '../../app.config';
+import {ProjectsService} from '@knora/core';
 // import {ApiServiceError, Project, ProjectsResponse, ProjectsService} from '@knora/core';
 
 @Component({
@@ -20,9 +21,7 @@ export class CoreDemoComponent implements OnInit {
 
   public isLoading = true;
 
-  // private _projectsService: ProjectsService
-
-  constructor() {
+  constructor(private _projectsService: ProjectsService) {
   }
 
   ngOnInit() {
