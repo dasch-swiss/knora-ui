@@ -1,4 +1,4 @@
-# Salsah progress indicator / loader
+# Knora gui progress indicator / loader
 ![npm (scoped)](https://img.shields.io/npm/v/@knora/progress-indicator.svg)
 
 

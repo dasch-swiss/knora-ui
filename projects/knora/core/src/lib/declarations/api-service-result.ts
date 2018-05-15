@@ -34,11 +34,11 @@ export class ApiServiceResult {
      * @returns {any}
      * @throws
      */
-    /*
+
     getBody(classObject?: { new(): any }): any {
-        return ApiServiceResult.jsonConvert.deserializeObject(this.body, classObject);
+        console.log(this.body);
+        return ApiServiceResult.jsonConvert.deserialize(this.body, classObject);
     }
-    */
 
 
 }

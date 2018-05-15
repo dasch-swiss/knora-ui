@@ -55,8 +55,7 @@ const AppEnvironment: CoreConfig = {
     HttpClientModule
   ],
   providers: [
-//    CoreService,
-    ProjectsService
+//    CoreService
   ],
   bootstrap: [AppComponent]
 })

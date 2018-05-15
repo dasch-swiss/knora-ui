@@ -18,7 +18,7 @@
     ]
   },
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": false,    // just a workaround, found solution here: https://github.com/dherges/ng-packagr/issues/485 TODO: set it back to true later
+    "annotateForClosureCompiler": false,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,

@@ -3,19 +3,20 @@
 
 <p>core-demo works!</p>
 
-<!--
-<kg-progress-indicator *ngIf="isLoading"></kg-progress-indicator>
+<button (click)="getAllProjects()">Get all projects</button>
 
 <h3>Projects service</h3>
 
 <p>getAllProjects</p>
-<div *ngIf="!isLoading">
+<kg-progress-indicator *ngIf="projectsService.loading"></kg-progress-indicator>
+<div *ngIf="!projectsService.loading">
   <ul>
-    <li *ngFor="let p of allProjects.projects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
+    <li *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
   </ul>
 </div>
--->
+
 <hr>
+
 <!--
 <p>getProjectByIri <i>{{projectIri}}</i></p>
 <p><strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>

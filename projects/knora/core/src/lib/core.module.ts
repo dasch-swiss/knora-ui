@@ -1,25 +1,24 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {CoreComponent} from './core.component';
-import {ApiService} from './services/api.service';
-import {CoreConfig} from './declarations';
+import {KgCoreComponent} from './core.component';
+import {KgCoreConfig} from './declarations';
 
 @NgModule({
-  imports: [],
-  declarations: [
-    CoreComponent
-  ],
-  exports: [
-    CoreComponent
-  ]
+    imports: [],
+    declarations: [
+        KgCoreComponent
+    ],
+    exports: [
+        KgCoreComponent
+    ]
 })
 
-export class CoreModule {
-  static forRoot(config: CoreConfig): ModuleWithProviders {
-    // User config get logged here
-    console.log(config);
-    return {
-      ngModule: CoreModule,
-      providers: [ApiService, {provide: 'config', useValue: config}]
-    };
-  }
+export class KgCoreModule {
+    static forRoot(config: KgCoreConfig): ModuleWithProviders {
+        // User config get logged here
+        console.log(config);
+        return {
+            ngModule: KgCoreModule,
+            providers: [{provide: 'config', useValue: config}]
+        };
+    }
 }

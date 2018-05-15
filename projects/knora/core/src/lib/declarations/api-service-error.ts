@@ -17,6 +17,11 @@ export class ApiServiceError {
     /**
      * API url
      */
-    route = '';
+    url = '';
+
+    /**
+     * Additional error info
+     */
+    errorInfo = '';
 
 }

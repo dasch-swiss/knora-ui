@@ -32,5 +32,5 @@ import {ProgressIndicatorComponent} from './progress-indicator.component';
     ProgressIndicatorComponent
   ]
 })
-export class ProgressIndicatorModule {
+export class KgProgressIndicatorModule {
 }
