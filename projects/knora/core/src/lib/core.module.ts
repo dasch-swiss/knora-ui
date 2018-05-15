@@ -1,23 +1,19 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {KgCoreComponent} from './core.component';
-import {KgCoreConfig} from './declarations';
+import {KnoraCoreConfig} from './declarations';
 
 @NgModule({
     imports: [],
-    declarations: [
-        KgCoreComponent
-    ],
-    exports: [
-        KgCoreComponent
-    ]
+    declarations: [],
+    exports: []
 })
 
-export class KgCoreModule {
-    static forRoot(config: KgCoreConfig): ModuleWithProviders {
-        // User config get logged here
-        console.log(config);
+
+export class KnoraCoreModule {
+    static forRoot(config: KnoraCoreConfig): ModuleWithProviders {
+        // get the app environment configuration here
+        // console.log(config);
         return {
-            ngModule: KgCoreModule,
+            ngModule: KnoraCoreModule,
             providers: [{provide: 'config', useValue: config}]
         };
     }

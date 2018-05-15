@@ -3,13 +3,14 @@ import {Observable} from 'rxjs';
 
 import {ApiService} from './api.service';
 
-
 import {catchError, map} from 'rxjs/operators';
-import {throwError} from 'rxjs/internal/observable/throwError';
 
-import {ApiServiceError, ApiServiceResult, ProjectsResponse} from '../declarations';
+import {ApiServiceError, ApiServiceResult, Project, ProjectsResponse} from '../declarations';
+import {KnoraCoreModule} from '../core.module';
 
-@Injectable()
+@Injectable({
+    providedIn: KnoraCoreModule
+})
 export class ProjectsService extends ApiService {
 
     /**
@@ -24,5 +25,14 @@ export class ProjectsService extends ApiService {
             catchError(this.handleJsonError)
         );
     }
+
+    getProjectByIri(iri: string): Observable<Project> {
+        const url: string = '/admin/projects/' + encodeURIComponent(iri);
+        return this.httpGet(url).pipe(
+            map((result: ApiServiceResult) => result.getBody(Project)),
+            catchError(this.handleJsonError)
+        );
+    }
+
 
 }

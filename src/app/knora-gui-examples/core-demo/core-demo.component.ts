@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {AppDemo} from '../../app.config';
-import {ApiServiceError, Project, ProjectsResponse, ProjectsService} from '@knora/core';
 
-// import {ApiServiceError, Project, ProjectsResponse, ProjectsService} from '@knora/core';
+import {ApiServiceError, Project, ProjectsResponse, ProjectsService} from '@knora/core';
 
 @Component({
     selector: 'app-core-demo',
     templateUrl: './core-demo.component.html',
-    styleUrls: ['./core-demo.component.scss'],
-    providers: [ProjectsService]
+    styleUrls: ['./core-demo.component.scss']
 })
 export class CoreDemoComponent implements OnInit {
 
@@ -18,7 +16,7 @@ export class CoreDemoComponent implements OnInit {
 
     projectIri = 'http://rdfh.ch/projects/00FF';   // images project
 
-    // project: Project;
+    project: Project;
 
     constructor(public projectsService: ProjectsService) {
     }
@@ -32,12 +30,9 @@ export class CoreDemoComponent implements OnInit {
             .subscribe(
                 (result: ProjectsResponse) => {
                     this.allProjects = result.projects;
-                    console.log(this.allProjects);
-                    //this.isLoading = false;
                 },
                 (error: ApiServiceError) => {
                     console.error(error);
-                    //this.isLoading = false;
                 }
             );
         /*
@@ -55,6 +50,19 @@ export class CoreDemoComponent implements OnInit {
           );
           */
 
+    }
+
+    getProject(iri: string) {
+        this.projectsService.getProjectByIri(iri)
+            .subscribe(
+                (result: Project) => {
+                    console.log(result);
+                    this.project = result;
+                },
+                (error: ApiServiceError) => {
+                    console.error(error);
+                }
+            );
     }
 
 }

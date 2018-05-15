@@ -17,9 +17,10 @@ import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component
 import {ProgressIndicatorDemoComponent} from './knora-gui-examples/progress-indicator-demo/progress-indicator-demo.component';
 import {CoreDemoComponent} from './knora-gui-examples/core-demo/core-demo.component';
 
-import {ProgressIndicatorModule} from '@knora/progress-indicator';
-import {CoreConfig, CoreModule, ProjectsService} from '@knora/core';
+import {KgProgressIndicatorModule} from '@knora/progress-indicator';
+
 import {environment} from '../environments/environment';
+import {KnoraCoreConfig, KnoraCoreModule} from '@knora/core';
 
 
 
@@ -28,7 +29,7 @@ import {environment} from '../environments/environment';
 
 
 
-const AppEnvironment: CoreConfig = {
+const AppEnvironment: KnoraCoreConfig = {
   api: environment.api,
   media: environment.media,
   gui: environment.gui
@@ -49,8 +50,8 @@ const AppEnvironment: CoreConfig = {
     BrowserModule,
     RouterModule,
     AppRoutingModule,
-    CoreModule.forRoot(AppEnvironment),
-    ProgressIndicatorModule,
+    KnoraCoreModule.forRoot(AppEnvironment),
+    KgProgressIndicatorModule,
     MaterialModule,
     HttpClientModule
   ],

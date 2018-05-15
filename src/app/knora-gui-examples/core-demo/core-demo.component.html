@@ -11,13 +11,12 @@
 <kg-progress-indicator *ngIf="projectsService.loading"></kg-progress-indicator>
 <div *ngIf="!projectsService.loading">
   <ul>
-    <li *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
+    <li (click)="getProject(p.id)" *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
   </ul>
 </div>
 
 <hr>
 
-<!--
-<p>getProjectByIri <i>{{projectIri}}</i></p>
-<p><strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>
--->
+
+<p>getProjectByIri <i>{{project?.id}}</i></p>
+<p *ngIf="!projectsService.loading && project"><strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>

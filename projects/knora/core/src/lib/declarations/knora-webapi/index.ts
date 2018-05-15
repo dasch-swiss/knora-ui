@@ -15,7 +15,7 @@
 /**
  * Interfaces for Admin
  */
-export * from './admin/index';
+export * from './admin/';
 
 
 /**
