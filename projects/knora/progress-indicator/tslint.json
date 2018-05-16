@@ -4,13 +4,13 @@
         "directive-selector": [
             true,
             "attribute",
-            "kg",
+            "kui",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
-            "kg",
+            "kui",
             "kebab-case"
         ]
     }

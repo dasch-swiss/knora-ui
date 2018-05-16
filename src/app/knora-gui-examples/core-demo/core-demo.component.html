@@ -8,7 +8,7 @@
 <h3>Projects service</h3>
 
 <p>getAllProjects</p>
-<kg-progress-indicator *ngIf="projectsService.loading"></kg-progress-indicator>
+<kui-progress-indicator *ngIf="projectsService.loading"></kui-progress-indicator>
 <div *ngIf="!projectsService.loading">
   <ul>
     <li (click)="getProject(p.id)" *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>

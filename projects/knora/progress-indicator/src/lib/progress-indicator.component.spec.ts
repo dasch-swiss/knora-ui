@@ -1,29 +1,29 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ProgressIndicatorComponent} from './progress-indicator.component';
+import {KuiProgressIndicatorComponent} from './progress-indicator.component';
 import {MatIconModule} from '@angular/material';
 
-describe('ProgressIndicatorComponent', () => {
-  let component: ProgressIndicatorComponent;
-  let fixture: ComponentFixture<ProgressIndicatorComponent>;
+describe('KuiProgressIndicatorComponent', () => {
+    let component: KuiProgressIndicatorComponent;
+    let fixture: ComponentFixture<KuiProgressIndicatorComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        MatIconModule
-      ],
-      declarations: [ProgressIndicatorComponent]
-    })
-      .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                MatIconModule
+            ],
+            declarations: [KuiProgressIndicatorComponent]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProgressIndicatorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(KuiProgressIndicatorComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

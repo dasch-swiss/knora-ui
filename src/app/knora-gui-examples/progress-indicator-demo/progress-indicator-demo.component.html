@@ -1,7 +1,7 @@
 <app-module-header [demo]="module"></app-module-header>
 
 <strong>Classic loader</strong>
-<kg-progress-indicator></kg-progress-indicator>
+<kui-progress-indicator></kui-progress-indicator>
 
 <hr>
 
@@ -10,8 +10,8 @@
 <mat-list>
   <mat-list-item *ngFor="let item of examples">
 
-    <kg-progress-indicator mat-list-avatar [status]="item.status">
-    </kg-progress-indicator>
+    <kui-progress-indicator mat-list-avatar [status]="item.status">
+    </kui-progress-indicator>
 
     <p mat-line>
       <strong>
@@ -29,7 +29,7 @@
 <strong>Dynamic example</strong>
 <mat-list>
   <mat-list-item>
-    <kg-progress-indicator mat-list-avatar [status]="status"></kg-progress-indicator>
+    <kui-progress-indicator mat-list-avatar [status]="status"></kui-progress-indicator>
     <p mat-line>
       <strong>
         <span *ngIf="status == -1">before submit (not ready)</span>

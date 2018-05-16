@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatIconModule, MatListModule} from '@angular/material';
-import {ProgressIndicatorModule} from '@knora/progress-indicator';
+import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
 
 import {ModuleHeaderComponent} from '../../landing-page/partials/module-header/module-header.component';
 import {ProgressIndicatorDemoComponent} from './progress-indicator-demo.component';
@@ -13,7 +13,7 @@ describe('ProgressIndicatorDemoComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-              ProgressIndicatorModule,
+              KuiProgressIndicatorModule,
               MatListModule,
               MatIconModule
             ],

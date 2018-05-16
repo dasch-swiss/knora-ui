@@ -16,7 +16,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatIconModule} from '@angular/material';
-import {ProgressIndicatorComponent} from './progress-indicator.component';
+import {KuiProgressIndicatorComponent} from './progress-indicator.component';
 
 @NgModule({
   imports: [
@@ -26,11 +26,11 @@ import {ProgressIndicatorComponent} from './progress-indicator.component';
     MatIconModule
   ],
   declarations: [
-    ProgressIndicatorComponent
+    KuiProgressIndicatorComponent
   ],
   exports: [
-    ProgressIndicatorComponent
+      KuiProgressIndicatorComponent
   ]
 })
-export class KgProgressIndicatorModule {
+export class KuiProgressIndicatorModule {
 }
