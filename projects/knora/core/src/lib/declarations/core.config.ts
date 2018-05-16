@@ -7,7 +7,7 @@ import {JsonObject, JsonProperty} from 'json2typescript';
  *  - gui: URL of the app e.g. salsah: http://localhost:4200
  */
 @JsonObject
-export class KnoraCoreConfig {
+export class KuiCoreConfig {
 
     @JsonProperty('api', String)
     public api: string = undefined;

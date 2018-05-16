@@ -1,5 +1,5 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {KnoraCoreConfig} from './declarations';
+import {KuiCoreConfig} from './declarations';
 
 @NgModule({
     imports: [],
@@ -8,12 +8,12 @@ import {KnoraCoreConfig} from './declarations';
 })
 
 
-export class KnoraCoreModule {
-    static forRoot(config: KnoraCoreConfig): ModuleWithProviders {
+export class KuiCoreModule {
+    static forRoot(config: KuiCoreConfig): ModuleWithProviders {
         // get the app environment configuration here
         // console.log(config);
         return {
-            ngModule: KnoraCoreModule,
+            ngModule: KuiCoreModule,
             providers: [{provide: 'config', useValue: config}]
         };
     }

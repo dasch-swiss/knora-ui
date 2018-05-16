@@ -8,9 +8,14 @@ import {AppRoutingModule} from './app-routing-module';
 import {AppComponent} from './app.component';
 import {MaterialModule} from './material-module';
 
+// import the knora-gui modules
+import {KuiCoreConfig, KuiCoreModule} from '@knora/core';
+import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
+
 // set up the environment configuration
 import {environment} from '../environments/environment';
-const AppEnvironment: KnoraCoreConfig = {
+
+const AppEnvironment: KuiCoreConfig = {
     api: environment.api,
     media: environment.media,
     gui: environment.gui
@@ -25,38 +30,34 @@ import {IntroductionComponent} from './landing-page/introduction/introduction.co
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
 
 // examples: demo components
-import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
 import {ProgressIndicatorDemoComponent} from './knora-gui-examples/progress-indicator-demo/progress-indicator-demo.component';
-
 import {CoreDemoComponent} from './knora-gui-examples/core-demo/core-demo.component';
-import {KnoraCoreConfig, KnoraCoreModule} from '@knora/core';
-
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainHeaderComponent,
-    ModuleHeaderComponent,
-    IntroductionComponent,
-    ProgressIndicatorDemoComponent,
-    DemoIntroComponent,
-    ModuleIndexComponent,
-    CoreDemoComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    AppRoutingModule,
-    KnoraCoreModule.forRoot(AppEnvironment),
-    KuiProgressIndicatorModule,
-    MaterialModule,
-    HttpClientModule
-  ],
-  providers: [
+    declarations: [
+        AppComponent,
+        MainHeaderComponent,
+        ModuleHeaderComponent,
+        IntroductionComponent,
+        ProgressIndicatorDemoComponent,
+        DemoIntroComponent,
+        ModuleIndexComponent,
+        CoreDemoComponent
+    ],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        AppRoutingModule,
+        KuiCoreModule.forRoot(AppEnvironment),
+        KuiProgressIndicatorModule,
+        MaterialModule,
+        HttpClientModule
+    ],
+    providers: [
 //    CoreService
-  ],
-  bootstrap: [AppComponent]
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

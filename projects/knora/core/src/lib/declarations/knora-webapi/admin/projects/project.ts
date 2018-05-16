@@ -13,7 +13,7 @@
  * */
 
 import {JsonObject, JsonProperty} from 'json2typescript';
-import {StringLiteralV2} from '../../v2/shared/strings';
+import {StringLiteralV2} from '../../v2';
 
 @JsonObject
 export class Project {

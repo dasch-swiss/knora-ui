@@ -5,11 +5,11 @@ import {ApiService} from './api.service';
 
 import {catchError, map} from 'rxjs/operators';
 
-import {ApiServiceError, ApiServiceResult, Project, ProjectsResponse} from '../declarations';
-import {KnoraCoreModule} from '../core.module';
+import {ApiServiceResult, Project, ProjectResponse, ProjectsResponse} from '../declarations';
+import {KuiCoreModule} from '../core.module';
 
 @Injectable({
-    providedIn: KnoraCoreModule
+    providedIn: KuiCoreModule
 })
 export class ProjectsService extends ApiService {
 
@@ -17,7 +17,7 @@ export class ProjectsService extends ApiService {
      * returns a list of all projects
      *
      * @returns {Observable<ProjectsResponse>}
-     * @throws {ApiServiceError}
+     * @throws {KuiServiceResult}
      */
     getAllProjects(): Observable<ProjectsResponse> {
         return this.httpGet('/admin/projects').pipe(
@@ -26,10 +26,15 @@ export class ProjectsService extends ApiService {
         );
     }
 
-    getProjectByIri(iri: string): Observable<Project> {
+    /**
+     *
+     * @param {string} iri
+     * @returns {Observable<ProjectResponse>}
+     */
+    getProjectByIri(iri: string): Observable<ProjectResponse> {
         const url: string = '/admin/projects/' + encodeURIComponent(iri);
         return this.httpGet(url).pipe(
-            map((result: ApiServiceResult) => result.getBody(Project)),
+            map((result: ApiServiceResult) => result.getBody(ProjectResponse)),
             catchError(this.handleJsonError)
         );
     }

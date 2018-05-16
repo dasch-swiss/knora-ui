@@ -1,7 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
-
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs/internal/observable/throwError';
 import {ApiServiceError, ApiServiceResult} from '../declarations';
@@ -128,12 +127,12 @@ export abstract class ApiService {
   /*
             .map((response: Response) => {
             try {
-                const apiServiceResult: ApiServiceResult = new ApiServiceResult();
-                apiServiceResult.status = response.status;
-                apiServiceResult.statusText = response.statusText;
-                apiServiceResult.body = response.json();
-                apiServiceResult.url = url;
-                return apiServiceResult;
+                const ApiServiceResult: ApiServiceResult = new ApiServiceResult();
+                ApiServiceResult.status = response.status;
+                ApiServiceResult.statusText = response.statusText;
+                ApiServiceResult.body = response.json();
+                ApiServiceResult.url = url;
+                return ApiServiceResult;
             } catch (e) {
                 return ApiService.handleError(response, url);
             }
@@ -163,12 +162,12 @@ export abstract class ApiService {
 
         return this._http.post(this.environment.api + url, body, options).map((response: Response) => {
             try {
-                const apiServiceResult: ApiServiceResult = new ApiServiceResult();
-                apiServiceResult.status = response.status;
-                apiServiceResult.statusText = response.statusText;
-                apiServiceResult.body = response.json();
-                apiServiceResult.url = url;
-                return apiServiceResult;
+                const ApiServiceResult: ApiServiceResult = new ApiServiceResult();
+                ApiServiceResult.status = response.status;
+                ApiServiceResult.statusText = response.statusText;
+                ApiServiceResult.body = response.json();
+                ApiServiceResult.url = url;
+                return ApiServiceResult;
             } catch (e) {
                 return ApiService.handleError(response, url);
             }
@@ -197,12 +196,12 @@ export abstract class ApiService {
 
         return this._http.put(this.environment.api + url, body, options).map((response: Response) => {
             try {
-                const apiServiceResult: ApiServiceResult = new ApiServiceResult();
-                apiServiceResult.status = response.status;
-                apiServiceResult.statusText = response.statusText;
-                apiServiceResult.body = response.json();
-                apiServiceResult.url = url;
-                return apiServiceResult;
+                const ApiServiceResult: ApiServiceResult = new ApiServiceResult();
+                ApiServiceResult.status = response.status;
+                ApiServiceResult.statusText = response.statusText;
+                ApiServiceResult.body = response.json();
+                ApiServiceResult.url = url;
+                return ApiServiceResult;
             } catch (e) {
                 return ApiService.handleError(response, url);
             }
@@ -225,12 +224,12 @@ export abstract class ApiService {
 
         return this._http.delete(this.environment.api + url, options).map((response: Response) => {
             try {
-                const apiServiceResult: ApiServiceResult = new ApiServiceResult();
-                apiServiceResult.status = response.status;
-                apiServiceResult.statusText = response.statusText;
-                apiServiceResult.body = response.json();
-                apiServiceResult.url = url;
-                return apiServiceResult;
+                const ApiServiceResult: ApiServiceResult = new ApiServiceResult();
+                ApiServiceResult.status = response.status;
+                ApiServiceResult.statusText = response.statusText;
+                ApiServiceResult.body = response.json();
+                ApiServiceResult.url = url;
+                return ApiServiceResult;
             } catch (e) {
                 return ApiService.handleError(response, url);
             }
