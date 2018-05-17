@@ -26,35 +26,20 @@ export class CoreDemoComponent implements OnInit {
     getAllProjects() {
         this.projectsService.getAllProjects()
             .subscribe(
-                (result: ProjectsResponse) => {
-                    this.allProjects = result.projects;
+                (result: Project[]) => {
+                    this.allProjects = result;
                 },
                 (error: ApiServiceError) => {
                     console.error(error);
                 }
             );
-        /*
-        this._projectsService.getProjectByIri(this.projectIri)
-          .subscribe(
-            (result: Project) => {
-              this.project = result;
-              console.log(this.project);
-              this.isLoading = false;
-            },
-            (error: ApiServiceError) => {
-              console.log(error);
-            }
-
-          );
-          */
-
     }
 
     getProject(iri: string) {
         this.projectsService.getProjectByIri(iri)
             .subscribe(
-                (result: ProjectResponse) => {
-                    this.project = result.project;
+                (result: Project) => {
+                    this.project = result;
                 },
                 (error: ApiServiceError) => {
                     console.error(error);

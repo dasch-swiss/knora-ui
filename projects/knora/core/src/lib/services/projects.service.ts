@@ -16,25 +16,57 @@ export class ProjectsService extends ApiService {
     /**
      * returns a list of all projects
      *
-     * @returns {Observable<ProjectsResponse>}
-     * @throws {KuiServiceResult}
+     * @returns {Observable<Project[]>}
      */
-    getAllProjects(): Observable<ProjectsResponse> {
+    getAllProjects(): Observable<Project[]> {
         return this.httpGet('/admin/projects').pipe(
-            map((result: ApiServiceResult) => result.getBody(ProjectsResponse)),
+            map((result: ApiServiceResult) => result.getBody(ProjectsResponse).projects),
             catchError(this.handleJsonError)
         );
     }
 
     /**
+     * returns a project object
      *
      * @param {string} iri
-     * @returns {Observable<ProjectResponse>}
+     * @returns {Observable<Project>}
      */
-    getProjectByIri(iri: string): Observable<ProjectResponse> {
+    getProjectByIri(iri: string): Observable<Project> {
         const url: string = '/admin/projects/' + encodeURIComponent(iri);
+        return this.getProject(url);
+    }
+
+    /**
+     * returns a project object
+     *
+     * @param {string} shortname
+     * @returns {Observable<Project>}
+     */
+    getProjectByShortname(shortname: string): Observable<Project> {
+        const url = '/admin/projects/' + shortname + '?identifier=shortname';
+        return this.getProject(url);
+    }
+
+    /**
+     * returns a project object
+     *
+     * @param {string} shortcode
+     * @returns {Observable<Project>}
+     */
+    getProjectByShortcode(shortcode: string): Observable<Project> {
+        const url = '/admin/projects/' + shortcode + '?identifier=shortcode';
+        return this.getProject(url);
+    }
+
+    /**
+     * Helper method combining project retrieval
+     *
+     * @param {string} url
+     * @returns {Observable<Project>}
+     */
+    getProject(url: string): Observable<Project> {
         return this.httpGet(url).pipe(
-            map((result: ApiServiceResult) => result.getBody(ProjectResponse)),
+            map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),
             catchError(this.handleJsonError)
         );
     }
