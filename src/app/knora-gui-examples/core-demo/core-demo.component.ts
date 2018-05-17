@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppDemo} from '../../app.config';
 
-import {ApiServiceError, Project, ProjectResponse, ProjectsResponse, ProjectsService} from '@knora/core';
+import {ApiServiceError, Project, ProjectsService, User} from '@knora/core';
 
 @Component({
     selector: 'app-core-demo',
@@ -15,6 +15,8 @@ export class CoreDemoComponent implements OnInit {
     allProjects: Project[];
 
     project: Project;
+
+    projectMembers: User[];
 
     constructor(public projectsService: ProjectsService) {
     }
@@ -40,6 +42,19 @@ export class CoreDemoComponent implements OnInit {
             .subscribe(
                 (result: Project) => {
                     this.project = result;
+                    this.getProjectMembers(iri);
+                },
+                (error: ApiServiceError) => {
+                    console.error(error);
+                }
+            );
+    }
+
+    getProjectMembers(iri: string) {
+        this.projectsService.getProjectMembersByIri(iri)
+            .subscribe(
+                (result: User[]) => {
+                    this.projectMembers = result;
                 },
                 (error: ApiServiceError) => {
                     console.error(error);

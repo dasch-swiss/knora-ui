@@ -5,13 +5,17 @@ import {ApiService} from './api.service';
 
 import {catchError, map} from 'rxjs/operators';
 
-import {ApiServiceResult, Project, ProjectResponse, ProjectsResponse} from '../declarations';
+import {ApiServiceResult, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, User} from '../declarations';
 import {KuiCoreModule} from '../core.module';
 
 @Injectable({
     providedIn: KuiCoreModule
 })
 export class ProjectsService extends ApiService {
+
+    // ------------------------------------------------------------------------
+    // GET all projects
+    // ------------------------------------------------------------------------
 
     /**
      * returns a list of all projects
@@ -24,6 +28,11 @@ export class ProjectsService extends ApiService {
             catchError(this.handleJsonError)
         );
     }
+
+
+    // ------------------------------------------------------------------------
+    // GET single project
+    // ------------------------------------------------------------------------
 
     /**
      * returns a project object
@@ -64,9 +73,49 @@ export class ProjectsService extends ApiService {
      * @param {string} url
      * @returns {Observable<Project>}
      */
-    getProject(url: string): Observable<Project> {
+    protected getProject(url: string): Observable<Project> {
         return this.httpGet(url).pipe(
             map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),
+            catchError(this.handleJsonError)
+        );
+    }
+
+
+    // ------------------------------------------------------------------------
+    // GET project members
+    // ------------------------------------------------------------------------
+
+    /**
+     * returns all project members
+     *
+     * @param iri (= project iri)
+     * @returns {Observable<User[]>}
+     */
+    getProjectMembersByIri(iri: string): Observable<User[]> {
+        const url = '/admin/projects/members/' + encodeURIComponent(iri);
+        return this.getProjectMembers(url);
+    }
+
+    /**
+     * returns all project members
+     *
+     * @param shortname (= project shortname)
+     * @returns {Observable<User[]>}
+     */
+    getProjectMembersByShortname(shortname: string): Observable<User[]> {
+        const url = '/admin/projects/members/' + shortname + '?identifier=shortname';
+        return this.getProjectMembers(url);
+    }
+
+    /**
+     * Helper method combining project member retrieval
+     *
+     * @param url
+     * @returns {Observable<User[]>}
+     */
+    protected getProjectMembers(url: string): Observable<User[]> {
+        return this.httpGet(url).pipe(
+            map((result: ApiServiceResult) => result.getBody(ProjectMembersResponse).members),
             catchError(this.handleJsonError)
         );
     }

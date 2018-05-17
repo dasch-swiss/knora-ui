@@ -20,3 +20,7 @@
 
 <p>getProjectByIri <i>{{project?.id}}</i></p>
 <p *ngIf="!projectsService.loading && project"><strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>
+
+<ul>
+    <li *ngFor="let u of projectMembers">{{u.givenName}} <strong>{{u.familyName}}</strong> ({{u.email}})</li>
+</ul>
