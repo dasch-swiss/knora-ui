@@ -1,0 +1,31 @@
+<h3>List of projects</h3>
+
+<hr>
+
+<pre>
+    <code ngNonBindable [innerHtml]="tsExampleGetAllProjects">
+    </code>
+</pre>
+
+
+<button (click)="getAllProjects()">Get all projects</button>
+
+<h3>Projects service</h3>
+
+<p>getAllProjects</p>
+
+<div *ngIf="!projectsService.loading">
+    <ul>
+        <li (click)="getProject(p.id)" *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
+    </ul>
+</div>
+
+<hr>
+
+
+<p>getProjectByIri <i>{{project?.id}}</i></p>
+<p *ngIf="!projectsService.loading && project"><strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>
+
+<ul>
+    <li *ngFor="let u of projectMembers">{{u.givenName}} <strong>{{u.familyName}}</strong> ({{u.email}})</li>
+</ul>

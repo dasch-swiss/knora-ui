@@ -121,4 +121,17 @@ export class ProjectsService extends ApiService {
     }
 
 
+    // ------------------------------------------------------------------------
+    // POST project
+    // ------------------------------------------------------------------------
+
+    createProject(data: any): Observable<Project> {
+        const url: string = '/admin/projects';
+        return this.httpPost(url, data).pipe(
+            map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),
+            catchError(this.handleJsonError)
+        );
+    }
+
+
 }

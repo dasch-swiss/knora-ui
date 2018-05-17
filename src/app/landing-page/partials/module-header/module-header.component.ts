@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AppConfig} from '../../../app.config';
-import {DemoModule} from '../../../app.interfaces';
+import {DemoModule, Item} from '../../../app.interfaces';
 
 
 @Component({
@@ -12,6 +12,8 @@ export class ModuleHeaderComponent implements OnInit {
 
   @Input() demo: DemoModule = new DemoModule();
 
+  @Input() nav?: Item[];
+
   stackBlitzDemo: string;
   package: string;
   badge: string;
@@ -20,8 +22,6 @@ export class ModuleHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-
-//        const repositoryName: string = this.demo.name; // .replace(/ /g, '-').toLowerCase();
 
     this.stackBlitzDemo = AppConfig.stackblitz + AppConfig.prefix + '-' + this.demo.name;
 
@@ -36,5 +36,9 @@ export class ModuleHeaderComponent implements OnInit {
     }
 
   }
+
+    openModule(name: string) {
+
+    }
 
 }

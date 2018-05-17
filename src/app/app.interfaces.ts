@@ -1,7 +1,7 @@
 import {JsonObject, JsonProperty} from 'json2typescript';
 
 @JsonObject
-export class SortItem {
+export class Item {
 
   @JsonProperty('name', String)
   public name: string = undefined;

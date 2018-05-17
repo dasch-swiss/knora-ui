@@ -9,6 +9,11 @@ import {KuiCoreConfig} from './declarations';
 
 
 export class KuiCoreModule {
+    /**
+     *
+     * @param {KuiCoreConfig} config
+     * @returns {ModuleWithProviders}
+     */
     static forRoot(config: KuiCoreConfig): ModuleWithProviders {
         // get the app environment configuration here
         // console.log(config);

@@ -8,6 +8,7 @@ import {AppRoutingModule} from './app-routing-module';
 import {AppComponent} from './app.component';
 import {MaterialModule} from './material-module';
 
+
 // import the knora-gui modules
 import {KuiCoreConfig, KuiCoreModule} from '@knora/core';
 import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
@@ -22,6 +23,7 @@ const AppEnvironment: KuiCoreConfig = {
 };
 
 
+
 // landing page framework components
 import {MainHeaderComponent} from './landing-page/partials/main-header/main-header.component';
 import {ModuleHeaderComponent} from './landing-page/partials/module-header/module-header.component';
@@ -32,6 +34,8 @@ import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component
 // examples: demo components
 import {ProgressIndicatorDemoComponent} from './knora-gui-examples/progress-indicator-demo/progress-indicator-demo.component';
 import {CoreDemoComponent} from './knora-gui-examples/core-demo/core-demo.component';
+import { ProjectsComponent } from './knora-gui-examples/core-demo/projects/projects.component';
+
 
 
 @NgModule({
@@ -43,7 +47,8 @@ import {CoreDemoComponent} from './knora-gui-examples/core-demo/core-demo.compon
         ProgressIndicatorDemoComponent,
         DemoIntroComponent,
         ModuleIndexComponent,
-        CoreDemoComponent
+        CoreDemoComponent,
+        ProjectsComponent
     ],
     imports: [
         BrowserModule,

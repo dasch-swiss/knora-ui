@@ -24,7 +24,9 @@ export abstract class ApiService {
         return this.http.get(this.config.api + url, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
-                console.log(response);
+
+                // console.log(response);
+
                 const result = new ApiServiceResult();
                 result.status = response.status;
                 result.statusText = response.statusText;
@@ -34,7 +36,37 @@ export abstract class ApiService {
             }),
             catchError((error: HttpErrorResponse) => {
                 this.loading = false;
-                console.error(error);
+
+                // console.error(error);
+
+                return this.handleRequestError(error);
+            })
+        );
+
+    }
+
+    httpPost(url: string, body?: any): Observable<any> {
+
+        this.loading = true;
+
+        return this.http.post(this.config.api + url, body, {observe: 'response'}).pipe(
+            map((response: HttpResponse<any>): ApiServiceResult => {
+                this.loading = false;
+
+                // console.log(response);
+
+                const result = new ApiServiceResult();
+                result.status = response.status;
+                result.statusText = response.statusText;
+                result.url = url;
+                result.body = response.body;
+                return result;
+            }),
+            catchError((error: HttpErrorResponse) => {
+                this.loading = false;
+
+                // console.error(error);
+
                 return this.handleRequestError(error);
             })
         );
