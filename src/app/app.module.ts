@@ -9,7 +9,7 @@ import {AppComponent} from './app.component';
 import {MaterialModule} from './material-module';
 
 
-// import the knora-gui modules
+// import the knora-ui modules
 import {KuiCoreConfig, KuiCoreModule} from '@knora/core';
 import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
 
@@ -32,9 +32,9 @@ import {IntroductionComponent} from './landing-page/introduction/introduction.co
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
 
 // examples: demo components
-import {ProgressIndicatorDemoComponent} from './knora-gui-examples/progress-indicator-demo/progress-indicator-demo.component';
-import {CoreDemoComponent} from './knora-gui-examples/core-demo/core-demo.component';
-import { ProjectsComponent } from './knora-gui-examples/core-demo/projects/projects.component';
+import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indicator-demo/progress-indicator-demo.component';
+import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
+import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projects.component';
 
 
 

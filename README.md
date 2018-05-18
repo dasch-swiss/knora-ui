@@ -1,4 +1,4 @@
-# Knora-gui
+# Knora-ui
 
 This is the demo and developing environment for Knora gui modules, which will be published on [npm](https://www.npmjs.com/~knora).
 
@@ -19,12 +19,12 @@ We used [ng-packagr](https://github.com/dherges/ng-packagr) by following the [ng
 ### Install the demo app
 
 ```
-$ cd knora-gui
+$ cd knora-ui
 $ yarn install --prod=false
 & yarn build-lib
 ```
 
-The demo app runs on http://localhost:4200 and we use it on this repository's [Github page](https://dhlab-basel.github.io/Knora-gui)
+The demo app runs on http://localhost:4200 and we use it on this repository's [Github page](https://dhlab-basel.github.io/Knora-ui)
 
 
 ---

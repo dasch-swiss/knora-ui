@@ -6,4 +6,4 @@ export * from './api.service';
 /**
  * knora webapi specific services
  */
-export * from './projects.service';
+export * from './projects/projects.service';

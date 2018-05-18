@@ -6,9 +6,9 @@ import {IntroductionComponent} from './landing-page/introduction/introduction.co
 import {ModuleIndexComponent} from './landing-page/partials/module-index/module-index.component';
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
 // examples: demo components
-import {ProgressIndicatorDemoComponent} from './knora-gui-examples/progress-indicator-demo/progress-indicator-demo.component';
-import {CoreDemoComponent} from './knora-gui-examples/core-demo/core-demo.component';
-import {ProjectsComponent} from './knora-gui-examples/core-demo/projects/projects.component';
+import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indicator-demo/progress-indicator-demo.component';
+import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
+import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects.component';
 
 
 const appRoutes: Routes = [

@@ -1,7 +1,7 @@
 # Progress indicator / loader
 ![npm (scoped)](https://img.shields.io/npm/v/@knora/progress-indicator.svg)
 
-This module is part of [Knora-gui](https://github.com/dhlab-basel/Knora-gui) modules, developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
+This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
 
 ## Install
 You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project in the examples below.

@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
-import {ApiService} from './api.service';
+import {ApiService} from '../api.service';
 
 import {catchError, map} from 'rxjs/operators';
 
-import {ApiServiceResult, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, User} from '../declarations';
-import {KuiCoreModule} from '../core.module';
+import {ApiServiceResult, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, User} from '../../declarations/index';
+import {KuiCoreModule} from '../../core.module';
 
 @Injectable({
     providedIn: KuiCoreModule
@@ -88,7 +88,7 @@ export class ProjectsService extends ApiService {
     /**
      * returns all project members
      *
-     * @param iri (= project iri)
+     * @param {string} iri
      * @returns {Observable<User[]>}
      */
     getProjectMembersByIri(iri: string): Observable<User[]> {
@@ -99,7 +99,7 @@ export class ProjectsService extends ApiService {
     /**
      * returns all project members
      *
-     * @param shortname (= project shortname)
+     * @param {string} shortname
      * @returns {Observable<User[]>}
      */
     getProjectMembersByShortname(shortname: string): Observable<User[]> {
@@ -110,7 +110,7 @@ export class ProjectsService extends ApiService {
     /**
      * Helper method combining project member retrieval
      *
-     * @param url
+     * @param {string} url
      * @returns {Observable<User[]>}
      */
     protected getProjectMembers(url: string): Observable<User[]> {
