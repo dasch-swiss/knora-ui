@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
 import {ApiService} from '../api.service';
 
-import {catchError, map} from 'rxjs/operators';
+import {ApiServiceResult, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, User} from '../../declarations';
 
-import {ApiServiceResult, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, User} from '../../declarations/index';
 import {KuiCoreModule} from '../../core.module';
 
 @Injectable({
@@ -14,7 +14,7 @@ import {KuiCoreModule} from '../../core.module';
 export class ProjectsService extends ApiService {
 
     // ------------------------------------------------------------------------
-    // GET all projects
+    // GET
     // ------------------------------------------------------------------------
 
     /**
@@ -28,11 +28,6 @@ export class ProjectsService extends ApiService {
             catchError(this.handleJsonError)
         );
     }
-
-
-    // ------------------------------------------------------------------------
-    // GET single project
-    // ------------------------------------------------------------------------
 
     /**
      * returns a project object
@@ -80,11 +75,6 @@ export class ProjectsService extends ApiService {
         );
     }
 
-
-    // ------------------------------------------------------------------------
-    // GET project members
-    // ------------------------------------------------------------------------
-
     /**
      * returns all project members
      *
@@ -122,9 +112,15 @@ export class ProjectsService extends ApiService {
 
 
     // ------------------------------------------------------------------------
-    // POST project
+    // POST
     // ------------------------------------------------------------------------
 
+    /**
+     * create new project
+     *
+     * @param data
+     * @returns {Observable<Project>}
+     */
     createProject(data: any): Observable<Project> {
         const url: string = '/admin/projects';
         return this.httpPost(url, data).pipe(
@@ -133,5 +129,64 @@ export class ProjectsService extends ApiService {
         );
     }
 
+    // ------------------------------------------------------------------------
+    // PUT
+    // ------------------------------------------------------------------------
+
+    /**
+     * edit project data
+     *
+     * @param {string} iri
+     * @param data
+     * @returns {Observable<Project>}
+     */
+    updateProject(iri: string, data: any): Observable<Project> {
+        const url: string = '/admin/projects/' + encodeURIComponent(iri);
+
+        return this.httpPut(url, data).pipe(
+            map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),
+            catchError(this.handleJsonError)
+        );
+    }
+
+
+    /**
+     * activate project (if it was deleted)
+     *
+     * @param {string} iri
+     * @returns {Observable<Project>}
+     */
+    activateProject(iri: string): Observable<Project> {
+        const data: any = {
+            status: true
+        };
+
+        const url: string = '/admin/projects/' + encodeURIComponent(iri);
+
+        return this.httpPut(url, data).pipe(
+            map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),
+            catchError(this.handleJsonError)
+        );
+    }
+
+
+    // ------------------------------------------------------------------------
+    // DELETE
+    // ------------------------------------------------------------------------
+
+    /**
+     * Delete (set inactive) project
+     *
+     * @param {string} iri
+     * @returns {Observable<Project>}
+     */
+    deleteProject(iri: string): Observable<Project> {
+        const url: string = '/admin/projects/' + encodeURIComponent(iri);
+
+        return this.httpDelete(url).pipe(
+            map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),
+            catchError(this.handleJsonError)
+        );
+    }
 
 }

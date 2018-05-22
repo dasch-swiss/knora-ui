@@ -10,13 +10,21 @@ import {ApiServiceError, ApiServiceResult} from '../declarations';
 export abstract class ApiService {
 
     /**
-     *
+     *  if is loading, set it true;
+     *  it can be used in components
+     *  for progress loader element
      */
     loading = false;
 
     protected constructor(@Inject('config') private config: any, public http: HttpClient) {
     }
 
+    /**
+     * GET
+     *
+     * @param {string} url
+     * @returns {Observable<any>}
+     */
     httpGet(url: string): Observable<any> {
 
         this.loading = true;
@@ -45,6 +53,13 @@ export abstract class ApiService {
 
     }
 
+    /**
+     * POST
+     *
+     * @param {string} url
+     * @param body
+     * @returns {Observable<any>}
+     */
     httpPost(url: string, body?: any): Observable<any> {
 
         this.loading = true;
@@ -73,8 +88,84 @@ export abstract class ApiService {
 
     }
 
+    /**
+     * PUT
+     *
+     * @param {string} url
+     * @param body
+     * @returns {Observable<any>}
+     */
+    httpPut(url: string, body?: any): Observable<any> {
 
+        this.loading = true;
+
+        return this.http.put(this.config.api + url, body, {observe: 'response'}).pipe(
+            map((response: HttpResponse<any>): ApiServiceResult => {
+                this.loading = false;
+
+                // console.log(response);
+
+                const result = new ApiServiceResult();
+                result.status = response.status;
+                result.statusText = response.statusText;
+                result.url = url;
+                result.body = response.body;
+                return result;
+
+            }),
+            catchError((error: HttpErrorResponse) => {
+                this.loading = false;
+
+                // console.error(error);
+
+                return this.handleRequestError(error);
+            })
+        );
+    }
+
+    /**
+     * DELETE
+     *
+     * @param {string} url
+     * @returns {Observable<any>}
+     */
+    httpDelete(url: string): Observable<any> {
+
+        this.loading = true;
+
+        return this.http.delete(this.config.api + url, {observe: 'response'}).pipe(
+            map((response: HttpResponse<any>): ApiServiceResult => {
+                this.loading = false;
+
+                // console.log(response);
+
+                const result = new ApiServiceResult();
+                result.status = response.status;
+                result.statusText = response.statusText;
+                result.url = url;
+                result.body = response.body;
+                return result;
+
+            }),
+            catchError((error: HttpErrorResponse) => {
+                this.loading = false;
+
+                // console.error(error);
+
+                return this.handleRequestError(error);
+            })
+        );
+    }
+
+
+    /**
+     * handle request error in case of server error
+     *
+     * @param {HttpErrorResponse} error
+     * @returns {Observable<ApiServiceError>}
+     */
     protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
+        // console.error(error);
         const serviceError = new ApiServiceError();
         serviceError.status = error.status;
         serviceError.statusText = error.statusText;
@@ -83,6 +174,12 @@ export abstract class ApiService {
         return throwError(serviceError);
     }
 
+    /**
+     * handle json error in case of type error in json response (json2typescript)
+     *
+     * @param error
+     * @returns {Observable<ApiServiceError>}
+     */
     protected handleJsonError(error: any): Observable<ApiServiceError> {
 
         if (error instanceof ApiServiceError) return throwError(error);
@@ -95,218 +192,5 @@ export abstract class ApiService {
         return throwError(serviceError);
 
     }
-
-
-    /*
-    public environment: KnoraCoreConfig;
-
-    static handleError(error: any, url: string): ApiServiceError {
-
-        const response = new ApiServiceError();
-        if (error instanceof Response) {
-            // console.log(error);
-            response.status = error.status;
-            response.statusText = error.statusText;
-            if (!response.statusText) {
-                response.statusText = 'Connection to API endpoint failed';
-            }
-            response.route = url;
-        } else {
-            response.status = 0;
-            response.statusText = 'Connection to API endpoint failed';
-            response.route = url;
-        }
-
-        // in case of the authentication service:
-        // response.status === 401 --> Unauthorized; password is wrong
-
-        // response.status === 404 --> Not found; username is wrong
-
-        return response;
-
-    }
-
-    constructor(public _http: HttpClient,
-                public _coreService: CoreService) {
-    }
-
-    /**
-     *
-     * @param {string} url
-     * @param {RequestOptionsArgs} options
-     * @returns {Observable<ApiServiceResult>}
-     *
-    httpGet(url: string, options?: HttpHeaders): Observable<ApiServiceResult> {
-
-        this.environment = this._coreService.getConfig();
-
-  //        options = this.appendToOptions(options);
-
-        // if the url is an external one, we have to use this one
-        // otherwise we have to use the defined api url from the environment config file
-        url = (url.slice(0, 4) === 'http' ? url : this.environment.api + url);
-  /*
-        this._http.get(url)
-            .subscribe(response => {
-
-                console.log(response);
-                return response;
-            });
-  *
-
-
-        return this._http.get<ApiServiceResult>(url);
-  /*
-            .map((response: Response) => {
-            try {
-                const ApiServiceResult: ApiServiceResult = new ApiServiceResult();
-                ApiServiceResult.status = response.status;
-                ApiServiceResult.statusText = response.statusText;
-                ApiServiceResult.body = response.json();
-                ApiServiceResult.url = url;
-                return ApiServiceResult;
-            } catch (e) {
-                return ApiService.handleError(response, url);
-            }
-        }).catch((error: any) => {
-            return Observable.throw(ApiService.handleError(error, url));
-        });
-  *
-    }
-
-  /*
-    /**
-     * Performs a HTTP POST url to the Knora API.
-     * @param url
-     * @param body
-     * @param options
-     * @returns {Observable<ApiServiceResult>}
-     *
-    httpPost(url: string, body?: any, options?: RequestOptionsArgs): Observable<ApiServiceResult> {
-
-        this.environment = this._coreService.getConfig();
-
-        if (!body) {
-            body = {};
-        }
-
-        options = this.appendToOptions(options);
-
-        return this._http.post(this.environment.api + url, body, options).map((response: Response) => {
-            try {
-                const ApiServiceResult: ApiServiceResult = new ApiServiceResult();
-                ApiServiceResult.status = response.status;
-                ApiServiceResult.statusText = response.statusText;
-                ApiServiceResult.body = response.json();
-                ApiServiceResult.url = url;
-                return ApiServiceResult;
-            } catch (e) {
-                return ApiService.handleError(response, url);
-            }
-        }).catch((error: any) => {
-            return Observable.throw(ApiService.handleError(error, url));
-        });
-    }
-
-
-    /**
-     * Performs a HTTP PUT url to the Knora API.
-     * @param url
-     * @param body
-     * @param options
-     * @returns {Observable<ApiServiceResult>}
-     *
-    httpPut(url: string, body?: any, options?: RequestOptionsArgs): Observable<ApiServiceResult> {
-
-        this.environment = this._coreService.getConfig();
-
-        if (!body) {
-            body = {};
-        }
-
-        options = this.appendToOptions(options);
-
-        return this._http.put(this.environment.api + url, body, options).map((response: Response) => {
-            try {
-                const ApiServiceResult: ApiServiceResult = new ApiServiceResult();
-                ApiServiceResult.status = response.status;
-                ApiServiceResult.statusText = response.statusText;
-                ApiServiceResult.body = response.json();
-                ApiServiceResult.url = url;
-                return ApiServiceResult;
-            } catch (e) {
-                return ApiService.handleError(response, url);
-            }
-        }).catch((error: any) => {
-            return Observable.throw(ApiService.handleError(error, url));
-        });
-    }
-
-    /**
-     * Performs a HTTP DELETE url to the Knora API.
-     * @param url
-     * @param options
-     * @returns {Observable<ApiServiceResult>}
-     *
-    httpDelete(url: string, options?: RequestOptionsArgs): Observable<ApiServiceResult> {
-
-        this.environment = this._coreService.getConfig();
-
-        options = this.appendToOptions(options);
-
-        return this._http.delete(this.environment.api + url, options).map((response: Response) => {
-            try {
-                const ApiServiceResult: ApiServiceResult = new ApiServiceResult();
-                ApiServiceResult.status = response.status;
-                ApiServiceResult.statusText = response.statusText;
-                ApiServiceResult.body = response.json();
-                ApiServiceResult.url = url;
-                return ApiServiceResult;
-            } catch (e) {
-                return ApiService.handleError(response, url);
-            }
-        }).catch((error: any) => {
-            return Observable.throw(ApiService.handleError(error, url));
-        });
-    }
-
-    /**
-     * Appends to existing options if they exist.
-     * @param {RequestOptionsArgs} options
-     * @returns {RequestOptionsArgs}
-     *
-    private appendToOptions(options: HttpHeaders): HttpHeaders {
-        if (!options) {
-            // no options
-            options = {headers: this.appendAuthorizationHeader(), normalizedNames: {}}
-        } else {
-            // have options
-            if (!options.headers) {
-                // no headers set
-                options.headers = this.appendAuthorizationHeader();
-            } else {
-                // have headers, need to append to those
-                options.headers = this.appendAuthorizationHeader(options.headers);
-            }
-        }
-        return options;
-    }
-
-    /**
-     * Appends to existing headers if they exist.
-     * @param {Headers} headers
-     * @returns {Headers}
-     *
-    private appendAuthorizationHeader(headers?: HttpHeaders): HttpHeaders {
-        if (!headers) {
-            headers = new HttpHeaders();
-        }
-        if (JSON.parse(localStorage.getItem('currentUser'))) {
-            const token = JSON.parse(localStorage.getItem('currentUser')).token;
-            headers.append('Authorization', 'Bearer ' + token);
-        }
-        return headers;
-    }
-    */
 
 }
