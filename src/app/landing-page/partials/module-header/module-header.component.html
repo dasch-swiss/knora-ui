@@ -21,7 +21,7 @@
     <div class="panel-row" *ngIf="nav">
         <ul class="module-navbar">
             <li *ngFor="let item of nav">
-                <button mat-button [routerLink]="item.name" routerLinkActive="active-link">
+                <button mat-raised-button [routerLink]="item.name" routerLinkActive="active-link">
                     {{item.label}}
                 </button>
             </li>

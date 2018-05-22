@@ -1,31 +1,28 @@
-<h3>List of projects</h3>
+<h3>Projects service</h3>
 
-<hr>
+<h4>getAllProjects()</h4>
 
+<mat-card-subtitle>Typescript</mat-card-subtitle>
 <pre>
     <code ngNonBindable [innerHtml]="tsExampleGetAllProjects">
     </code>
 </pre>
 
-
-<button (click)="getAllProjects()">Get all projects</button>
-
-<h3>Projects service</h3>
-
-<p>getAllProjects</p>
-
+<mat-card-subtitle>Result</mat-card-subtitle>
 <div *ngIf="!projectsService.loading">
     <ul>
-        <li (click)="getProject(p.id)" *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
+        <li class="link" (click)="getProject(p.id)" *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
     </ul>
 </div>
 
-<hr>
+<div *ngIf="project">
+    <hr>
+    <h4>getProjectByIri(<i>{{project?.id}}</i>)</h4>
+    <p *ngIf="!projectsService.loading && project"><strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>
 
+    <h4>getProjectMembersByIri({{project?.id}})</h4>
+    <ul>
+        <li *ngFor="let u of projectMembers">{{u.givenName}} <strong>{{u.familyName}}</strong> ({{u.email}})</li>
+    </ul>
 
-<p>getProjectByIri <i>{{project?.id}}</i></p>
-<p *ngIf="!projectsService.loading && project"><strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>
-
-<ul>
-    <li *ngFor="let u of projectMembers">{{u.givenName}} <strong>{{u.familyName}}</strong> ({{u.email}})</li>
-</ul>
+</div>
