@@ -5,7 +5,14 @@ import {catchError, map, flatMap} from 'rxjs/operators';
 import {ApiService} from '../api.service';
 
 import {KuiCoreModule} from '../../core.module';
-import {ApiServiceResult, AuthenticationRequestPayload, AuthenticationResponse, PermissionData, User} from '../../declarations';
+import {
+    ApiServiceResult,
+    AuthenticationRequestPayload,
+    AuthenticationResponse,
+    PermissionData, Project,
+    ProjectsResponse,
+    User
+} from '../../declarations';
 import {UsersService} from '../users/users.service';
 import {HttpClient} from '@angular/common/http';
 
@@ -15,6 +22,39 @@ import {HttpClient} from '@angular/common/http';
 export class AuthenticationService extends ApiService {
 
     private token: string;
+
+    /**
+     * Checks if the user is logged in or not.
+     *
+     * @returns {Observable<boolean>}
+     */
+    authenticate(): Observable<boolean> {
+            return this.httpGet('/v2/authentication').pipe(
+                map((result: ApiServiceResult) => result.getBody(Boolean)),
+                catchError(this.handleJsonError)
+            );
+    }
+
+    /*
+        return this.httpGet('/v2/authentication')
+            .map(
+                (result: ApiServiceResult) => {
+
+                    if (result.status === 200) {
+                        // the stored credentials (token) is valid and a user is authenticated by the api server
+                        return true;
+                    } else {
+                        // the session is not valid!
+                        this.clearEverything();
+                        return false;
+                    }
+                },
+                (error: ApiServiceError) => {
+                    const errorMessage = <any>error;
+                    console.error('AuthenticationService - authenticate - error: ' + errorMessage);
+                    throw error;
+                });
+    }
 
     /*
 
@@ -28,6 +68,7 @@ export class AuthenticationService extends ApiService {
 
     */
 
+    /*
     constructor(_httpClient: HttpClient,
                 private _userService: UsersService) {
         super({}, _httpClient);
@@ -43,6 +84,9 @@ export class AuthenticationService extends ApiService {
             email: email,
             password: password
         };
+
+
+
 
         return this.doAuthentication(authRequest)
         // end of first observable. now we need to chain it with the second.
@@ -85,7 +129,7 @@ export class AuthenticationService extends ApiService {
      *
      * @param {AuthenticationRequestPayload} payload
      * @returns {Observable<string>}
-     */
+     *
     doAuthentication(payload: AuthenticationRequestPayload): Observable<any> {
 
         const url: string = '/admin/projects';
@@ -121,42 +165,17 @@ export class AuthenticationService extends ApiService {
                     throw error;
                 });
 
-                */
+                *
     }
 
-    /**
-     * Checks if the user is logged in or not.
-     *
-     * @returns {Observable<boolean>}
-     */
-    authenticate(): Observable<boolean> {
 
-        return this.httpGet('/v2/authentication')
-            .map(
-                (result: ApiServiceResult) => {
-
-                    if (result.status === 200) {
-                        // the stored credentials (token) is valid and a user is authenticated by the api server
-                        return true;
-                    } else {
-                        // the session is not valid!
-                        this.clearEverything();
-                        return false;
-                    }
-                },
-                (error: ApiServiceError) => {
-                    const errorMessage = <any>error;
-                    console.error('AuthenticationService - authenticate - error: ' + errorMessage);
-                    throw error;
-                });
-    }
 
     /**
      * Extracts email and token, and stores it in local storage under current user.
      *
      * @param {User} user
      * @param {string} token
-     */
+     *
     extractCurrentUser(user: User, token: string): void {
 
         // console.log('AuthenticationService - extractCurrentUser - user / token ', user, token);
@@ -186,7 +205,7 @@ export class AuthenticationService extends ApiService {
      *
      * @param {User} user
      * @returns {any}
-     */
+     *
     extractProjectPermissions(user: User): void {
 
         // console.log('AuthenticationService - extractProjectPermissions - user ', user);
@@ -229,7 +248,7 @@ export class AuthenticationService extends ApiService {
 
     /**
      * Sends a logout request to the server and removes any variables.
-     */
+     *
     logout(): void {
 
         this.httpDelete('/v2/authentication')
@@ -249,7 +268,7 @@ export class AuthenticationService extends ApiService {
 
     /**
      * Clears any variables set during authentication in local and session storage
-     */
+     *
     protected clearEverything(): void {
         // clear token remove user from local storage to log user out
         this.token = null;
@@ -257,5 +276,7 @@ export class AuthenticationService extends ApiService {
         localStorage.removeItem('lang');
         sessionStorage.clear();
     }
+
+    */
 
 }
