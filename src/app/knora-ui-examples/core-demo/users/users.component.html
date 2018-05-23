@@ -1,0 +1,41 @@
+<h3>Users service</h3>
+
+<h4>getAllUsers()</h4>
+
+<mat-card-subtitle>Typescript</mat-card-subtitle>
+<pre>
+    <code ngNonBindable [innerHtml]="tsExampleGetAllUsers"></code>
+</pre>
+
+<div *ngIf="allUsers && !usersService.loading">
+    <mat-card-subtitle>Result</mat-card-subtitle>
+
+    <ul>
+        <li class="link" *ngFor="let u of allUsers" (click)="getUser(u.email)" >
+            <strong>{{u.familyName}}: </strong>
+            {{u.givenName}} ({{u.email}})
+        </li>
+    </ul>
+
+    <mat-hint>Click on a project to get more information</mat-hint>
+</div>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<div *ngIf="user">
+    <hr>
+    <h4>getUserByEmail(<i>{{user?.email}}</i>)</h4>
+
+    <mat-card-subtitle>Typescript</mat-card-subtitle>
+    <pre>
+        <code ngNonBindable [innerHtml]="tsExampleGetProjectByEmail"></code>
+    </pre>
+
+    <mat-card-subtitle>Result</mat-card-subtitle>
+
+    <p *ngIf="!usersService.loading && user">
+        <strong>{{user.familyName}}: </strong>
+        {{user.givenName}} ({{user.email}})
+    </p>
+
+</div>

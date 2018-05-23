@@ -14,6 +14,13 @@
  */
 
 /**
+ * Interfaces for authentication
+ */
+export * from './authentication/authentication-request-payload';
+export * from './authentication/authentication-response';
+export * from './authentication/current-user';
+
+/**
  * Interfaces for groups
  */
 export * from './groups/group';

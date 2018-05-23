@@ -15,6 +15,10 @@ export class CoreDemoComponent implements OnInit {
         {
             label: 'Projects',
             name: 'projects'
+        },
+        {
+            label: 'Users',
+            name: 'users'
         }
     ];
 

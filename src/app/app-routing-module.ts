@@ -9,6 +9,7 @@ import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component
 import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indicator-demo/progress-indicator-demo.component';
 import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
 import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects.component';
+import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
 
 
 const appRoutes: Routes = [
@@ -37,6 +38,10 @@ const appRoutes: Routes = [
                     {
                         path: 'projects',
                         component: ProjectsComponent
+                    },
+                    {
+                        path: 'users',
+                        component: UsersComponent
                     }
 
                 ]

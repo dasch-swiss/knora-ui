@@ -35,6 +35,7 @@ import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component
 import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indicator-demo/progress-indicator-demo.component';
 import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
 import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projects.component';
+import { UsersComponent } from './knora-ui-examples/core-demo/users/users.component';
 
 
 
@@ -48,7 +49,8 @@ import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projec
         DemoIntroComponent,
         ModuleIndexComponent,
         CoreDemoComponent,
-        ProjectsComponent
+        ProjectsComponent,
+        UsersComponent
     ],
     imports: [
         BrowserModule,

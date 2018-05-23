@@ -4,21 +4,53 @@
 
 <mat-card-subtitle>Typescript</mat-card-subtitle>
 <pre>
-    <code ngNonBindable [innerHtml]="tsExampleGetAllProjects">
-    </code>
+    <code ngNonBindable [innerHtml]="tsExampleGetAllProjects"></code>
 </pre>
 
-<mat-card-subtitle>Result</mat-card-subtitle>
-<div *ngIf="!projectsService.loading">
+<div *ngIf="allProjects && !projectsService.loading">
+    <mat-card-subtitle>Result</mat-card-subtitle>
+
     <ul>
-        <li class="link" (click)="getProject(p.id)" *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong> {{p.longname}}</li>
+        <li class="link" (click)="getProject(p.id)" *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong>
+            {{p.longname}}
+        </li>
     </ul>
+
+    <mat-hint>Click on a project to get more information</mat-hint>
 </div>
+
+<!-- ---------------------------------------------------------------------- -->
+
 
 <div *ngIf="project">
     <hr>
     <h4>getProjectByIri(<i>{{project?.id}}</i>)</h4>
-    <p *ngIf="!projectsService.loading && project"><strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>
+
+    <mat-card-subtitle>Typescript</mat-card-subtitle>
+    <pre>
+        <code ngNonBindable [innerHtml]="tsExampleGetProjectByIri"></code>
+    </pre>
+
+    <mat-card-subtitle>Result</mat-card-subtitle>
+
+    <p *ngIf="!projectsService.loading && project">
+
+
+        <strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>
+
+
+
+
+    <h4>getProjectMembersByIri(<i>{{project?.id}}</i>)</h4>
+
+    <mat-card-subtitle>Typescript</mat-card-subtitle>
+    <pre>
+        <code ngNonBindable [innerHtml]="tsExampleGetProjectMembersByIri"></code>
+    </pre>
+
+    <mat-card-subtitle>Result</mat-card-subtitle>
+
+
 
     <h4>getProjectMembersByIri({{project?.id}})</h4>
     <ul>
