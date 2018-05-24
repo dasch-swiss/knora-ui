@@ -6,15 +6,15 @@ import {ApiService} from '../api.service';
 
 import {KuiCoreModule} from '../../core.module';
 import {
+    ApiServiceError,
     ApiServiceResult,
     AuthenticationRequestPayload,
-    AuthenticationResponse,
-    PermissionData, Project,
-    ProjectsResponse,
+    AuthenticationResponse, KuiCoreConfig,
     User
 } from '../../declarations';
-import {UsersService} from '../users/users.service';
+import {UsersService} from '..';
 import {HttpClient} from '@angular/common/http';
+import {UserResponse} from '../../declarations/knora-webapi/admin';
 
 @Injectable({
     providedIn: KuiCoreModule
@@ -34,6 +34,136 @@ export class AuthenticationService extends ApiService {
                 catchError(this.handleJsonError)
             );
     }
+
+    doAuthentication(payload: AuthenticationRequestPayload): Observable<any> {
+
+        const url: string = '/v2/authentication';
+        return this.httpPost(url, payload).pipe(
+            map((result: ApiServiceResult) => {
+                console.log('doAuthentication: ', result);
+                result.getBody(AuthenticationResponse);
+            }),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    login(email: string, password: string): Observable<boolean> {
+
+        let success: boolean = false;
+
+        this.doAuthentication({email, password})
+            .subscribe(
+                (token: string) => {
+                    console.log('login: ', token);
+
+                    return this.usersService.getUserByEmail(email)
+                        .subscribe(
+                            (result: User) => {
+                                console.log('login get user: ', result);
+                                success = true;
+                            },
+                            (error: ApiServiceError) => {
+                                console.error('login get user: ', error);
+                                success = false;
+                            }
+                        );
+                        /*
+                        .map(
+                            (user: User) => {
+
+                                // console.log("AuthenticationService - login - user: ", user);
+
+                                // extract user information and and write them to local storage
+                                this.extractCurrentUser(user, token);
+
+                                // get the project permissions and write them to session storage
+                                this.extractProjectPermissions(user);
+
+                                // return true to indicate successful login
+                                return true;
+                            },
+                            (error: ApiServiceError) => {
+                                console.log(error);
+                                console.error('AuthenticationService - login - getUserByEmail error: ' + error);
+
+                                // there was an error during login. remove anything from local storage
+                                localStorage.removeItem('currentUser');
+                                localStorage.removeItem('lang');
+
+                                // throw error
+                                throw error;
+                            });
+                            */
+                },
+                (error: ApiServiceError) => {
+                    console.error('login: ', error);
+                    success = false;
+                }
+            );
+    }
+
+    /*
+
+    login(email: string, password: string): Observable<any> {
+
+        // new login, so remove anything stale
+//        this.clearEverything();
+
+        const authRequest: AuthenticationRequestPayload = {
+            email: email,
+            password: password
+        };
+
+        /*
+        this.doAuthentication(authRequest)
+            .subscribe(
+                (result: any) => {
+                    console.log('login: ', result);
+                },
+                (error: ApiServiceError) => {
+                    console.error('login: ', error);
+                }
+            );
+            *
+    }
+
+
+/*
+
+        return this.doAuthentication(authRequest)
+        // end of first observable. now we need to chain it with the second.
+        // the flatMap has the return value of the first observable as the input parameter.
+            .flatMap(
+                (token: string) => {
+                    // get the user information
+                    return this._userService.getUserByEmail(email)
+                        .map(
+                            (user: User) => {
+
+                                // console.log("AuthenticationService - login - user: ", user);
+
+                                // extract user information and and write them to local storage
+                                this.extractCurrentUser(user, token);
+
+                                // get the project permissions and write them to session storage
+                                this.extractProjectPermissions(user);
+
+                                // return true to indicate successful login
+                                return true;
+                            },
+                            (error: ApiServiceError) => {
+                                console.log(error);
+                                console.error('AuthenticationService - login - getUserByEmail error: ' + error);
+
+                                // there was an error during login. remove anything from local storage
+                                localStorage.removeItem('currentUser');
+                                localStorage.removeItem('lang');
+
+                                // throw error
+                                throw error;
+                            });
+                });
+    };
 
     /*
         return this.httpGet('/v2/authentication')
@@ -75,53 +205,7 @@ export class AuthenticationService extends ApiService {
 
     }
 
-    login(email: string, password: string): Observable<boolean> {
 
-        // new login, so remove anything stale
-        this.clearEverything();
-
-        const authRequest: AuthenticationRequestPayload = {
-            email: email,
-            password: password
-        };
-
-
-
-
-        return this.doAuthentication(authRequest)
-        // end of first observable. now we need to chain it with the second.
-        // the flatMap has the return value of the first observable as the input parameter.
-            .flatMap(
-                (token: string) => {
-                    // get the user information
-                    return this._userService.getUserByEmail(email)
-                        .map(
-                            (user: User) => {
-
-                                // console.log("AuthenticationService - login - user: ", user);
-
-                                // extract user information and and write them to local storage
-                                this.extractCurrentUser(user, token);
-
-                                // get the project permissions and write them to session storage
-                                this.extractProjectPermissions(user);
-
-                                // return true to indicate successful login
-                                return true;
-                            },
-                            (error: ApiServiceError) => {
-                                console.log(error);
-                                console.error('AuthenticationService - login - getUserByEmail error: ' + error);
-
-                                // there was an error during login. remove anything from local storage
-                                localStorage.removeItem('currentUser');
-                                localStorage.removeItem('lang');
-
-                                // throw error
-                                throw error;
-                            });
-                });
-    };
 
 
     /**

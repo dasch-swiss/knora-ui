@@ -3,7 +3,8 @@ import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http'
 import {Observable} from 'rxjs/internal/Observable';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs/internal/observable/throwError';
-import {ApiServiceError, ApiServiceResult} from '../declarations';
+import {ApiServiceError, ApiServiceResult, KuiCoreConfig} from '../declarations';
+import {UsersService} from './users/users.service';
 
 
 @Injectable()
@@ -16,7 +17,7 @@ export abstract class ApiService {
      */
     loading = false;
 
-    protected constructor(@Inject('config') private config: any, public http: HttpClient) {
+    protected constructor(@Inject('config') public config: KuiCoreConfig, public http: HttpClient, public usersService: UsersService) {
     }
 
     /**
