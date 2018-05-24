@@ -10,7 +10,6 @@ import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indic
 import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
 import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects.component';
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
-import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
 
 
 const appRoutes: Routes = [
@@ -36,10 +35,6 @@ const appRoutes: Routes = [
                 component: CoreDemoComponent,
 
                 children: [
-                    {
-                        path: 'authentication',
-                        component: AuthenticationComponent
-                    },
                     {
                         path: 'projects',
                         component: ProjectsComponent

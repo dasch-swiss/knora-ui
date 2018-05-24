@@ -4,7 +4,6 @@ import {Observable} from 'rxjs/internal/Observable';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs/internal/observable/throwError';
 import {ApiServiceError, ApiServiceResult, KuiCoreConfig} from '../declarations';
-import {UsersService} from './users/users.service';
 
 
 @Injectable()
@@ -17,7 +16,7 @@ export abstract class ApiService {
      */
     loading = false;
 
-    protected constructor(@Inject('config') public config: KuiCoreConfig, public http: HttpClient, public usersService: UsersService) {
+    protected constructor(@Inject('config') public config: KuiCoreConfig, public http: HttpClient) {
     }
 
     /**
