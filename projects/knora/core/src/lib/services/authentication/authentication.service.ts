@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {catchError, map, flatMap} from 'rxjs/operators';
 
@@ -23,7 +23,13 @@ export class AuthenticationService extends ApiService {
 
     private token: string;
 
-    /**
+    protected constructor(public http: HttpClient,
+                          @Inject('config') public config: KuiCoreConfig,
+                          @Inject('usersService') public usersService: UsersService) {
+        super(http, config);
+    }
+
+                              /**
      * Checks if the user is logged in or not.
      *
      * @returns {Observable<boolean>}
@@ -47,11 +53,28 @@ export class AuthenticationService extends ApiService {
         );
     }
 
-    login(email: string, password: string): Observable<boolean> {
+    login(email: string, password: string): Observable<any> {
 
-        let success: boolean = false;
-
-        this.doAuthentication({email, password})
+        return this.doAuthentication({email, password}).pipe(
+            map( (token: string) => {
+                console.log(token);
+                /*
+                return this.usersService.getUserByEmail(email)
+                    .subscribe(
+                        (result: User) => {
+                            console.log('login get user: ', result);
+                            return result;
+                        },
+                        (error: ApiServiceError) => {
+                            console.error('login get user: ', error);
+                            throw error;
+                        }
+                    );
+                    */
+                }),
+            catchError(this.handleJsonError)
+        );
+        /*
             .subscribe(
                 (token: string) => {
                     console.log('login: ', token);
@@ -60,11 +83,11 @@ export class AuthenticationService extends ApiService {
                         .subscribe(
                             (result: User) => {
                                 console.log('login get user: ', result);
-                                success = true;
+                                return result;
                             },
                             (error: ApiServiceError) => {
                                 console.error('login get user: ', error);
-                                success = false;
+                                throw error;
                             }
                         );
                         /*
@@ -94,12 +117,6 @@ export class AuthenticationService extends ApiService {
                                 throw error;
                             });
                             */
-                },
-                (error: ApiServiceError) => {
-                    console.error('login: ', error);
-                    success = false;
-                }
-            );
     }
 
     /*

@@ -17,7 +17,8 @@ export abstract class ApiService {
      */
     loading = false;
 
-    protected constructor(@Inject('config') public config: KuiCoreConfig, public http: HttpClient, public usersService: UsersService) {
+    protected constructor(public http: HttpClient,
+                          @Inject('config') public config: KuiCoreConfig) {
     }
 
     /**

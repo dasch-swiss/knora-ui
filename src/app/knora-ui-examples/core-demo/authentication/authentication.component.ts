@@ -34,6 +34,7 @@ export class AuthenticationComponent implements OnInit {
     }
 
     simulateLogin(data: AuthenticationRequestPayload) {
+        /*
         this._authenticationService.login(data.email, data.password)
             .subscribe(
                 (result: any) => {
@@ -45,6 +46,7 @@ export class AuthenticationComponent implements OnInit {
                     console.error('simulateLogin: ', error);
                 }
             );
+            */
     }
 
 }
