@@ -19,3 +19,14 @@ export class KuiCoreConfig {
     public gui: string = undefined;
 }
 
+
+export class KnoraApiConfig {
+
+    public static KnoraOntologyPath: string = 'http://www.knora.org/ontology';
+    public static KnoraBase: string = KnoraApiConfig.KnoraOntologyPath + '/knora-base';
+
+    public static SystemProjectIRI: string = KnoraApiConfig.KnoraBase + '#SystemProject';
+    public static SystemAdminGroupIRI: string = KnoraApiConfig.KnoraBase + '#SystemAdmin';
+    public static ProjectAdminGroupIRI: string = KnoraApiConfig.KnoraBase + '#ProjectAdmin';
+    public static ProjectMemberGroupIRI: string = KnoraApiConfig.KnoraBase + '#ProjectMember';
+}

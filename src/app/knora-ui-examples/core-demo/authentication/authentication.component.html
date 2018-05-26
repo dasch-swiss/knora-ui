@@ -1,5 +1,11 @@
-<div *ngIf="errorMessage" class="error">
+<div *ngIf="errorMessage; else loggedIn" class="error">
     {{errorMessage.statusText}}
 </div>
+<ng-template #loggedIn>
+    <div class="success">
+        User is logged in
+    </div>
+</ng-template>
+
 
 <button (click)="simulateLogin(loginSimData)">Login</button>

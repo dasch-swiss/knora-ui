@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs/internal/observable/throwError';
@@ -25,13 +25,16 @@ export abstract class ApiService {
      * GET
      *
      * @param {string} url
+     * @param options
      * @returns {Observable<any>}
      */
-    httpGet(url: string): Observable<any> {
+    httpGet(url: string, options?: HttpHeaders): Observable<any> {
 
         this.loading = true;
 
-        return this.http.get(this.config.api + url, {observe: 'response'}).pipe(
+        options = this.appendToOptions(options);
+
+        return this.http.get(this.config.api + url, {options, observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -193,6 +196,44 @@ export abstract class ApiService {
         serviceError.url = '';
         return throwError(serviceError);
 
+    }
+
+    /**
+     * Appends to existing options if they exist.
+     * @param {HttpHeaders} options
+     * @returns {HttpHeaders}
+     */
+    protected appendToOptions(options: HttpHeaders): HttpHeaders {
+        if (!options) {
+            // no options
+            options = new HttpHeaders();
+        } else {
+            // have options
+            if (!options['headers']) {
+                // no headers set
+                options['headers'] = new HttpHeaders();
+            } else {
+                // have headers, need to append to those
+                options['headers'] = this.appendAuthorizationHeader(options['headers']);
+            }
+        }
+        return options;
+    }
+
+    /**
+     * Appends to existing headers if they exist.
+     * @param {Headers} headers
+     * @returns {Headers}
+     */
+    protected appendAuthorizationHeader(headers?: HttpHeaders): HttpHeaders {
+        if (!headers) {
+            headers = new HttpHeaders;
+        }
+        if (JSON.parse(localStorage.getItem('currentUser'))) {
+            const token = JSON.parse(localStorage.getItem('currentUser')).token;
+            headers.append('Authorization', 'Bearer ' + token);
+        }
+        return headers;
     }
 
 }

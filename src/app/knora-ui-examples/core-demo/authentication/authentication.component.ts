@@ -19,14 +19,16 @@ export class AuthenticationComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.simulateAuthenticate();
+    }
 
+    simulateAuthenticate() {
         this._authenticationService.authenticate()
             .subscribe(
                 (result: any) => {
                     console.log('authenticate: ', result);
                 },
                 (error: ApiServiceError) => {
-
                     this.errorMessage = error;
                     console.error('authenticate: ', error);
                 }
@@ -34,11 +36,12 @@ export class AuthenticationComponent implements OnInit {
     }
 
     simulateLogin(data: AuthenticationRequestPayload) {
-        /*
+
         this._authenticationService.login(data.email, data.password)
             .subscribe(
                 (result: any) => {
                     console.log('simulateLogin: ', result);
+                    this.simulateAuthenticate();
                 },
                 (error: ApiServiceError) => {
 
@@ -46,7 +49,6 @@ export class AuthenticationComponent implements OnInit {
                     console.error('simulateLogin: ', error);
                 }
             );
-            */
     }
 
 }
