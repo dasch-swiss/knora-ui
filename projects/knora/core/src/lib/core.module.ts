@@ -1,10 +1,20 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import {CommonModule} from '@angular/common';
 import {KuiCoreConfig} from './declarations';
 
 @NgModule({
-    imports: [],
+    imports: [
+        CommonModule,
+        HttpClientModule
+    ],
     declarations: [],
-    exports: []
+    exports: [
+        HttpClientModule
+    ],
+    providers: [
+        {provide: 'config', useValue: KuiCoreConfig}
+    ]
 })
 
 

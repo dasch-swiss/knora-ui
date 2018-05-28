@@ -1,7 +1,7 @@
 {
   "name": "@knora/progress-indicator",
-  "version": "1.0.0-rc.1",
-  "description": "Knora gui module",
+  "version": "1.0.0-rc.2",
+  "description": "Knora ui module",
   "repository": {
     "type": "git",
     "url": "https://github.com/dhlab-basel/Knora-ui.git"

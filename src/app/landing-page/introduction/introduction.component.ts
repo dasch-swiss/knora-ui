@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntroductionComponent implements OnInit {
 
-  title = 'test environment for the Knora gui modules';
+  title = 'test environment for the Knora ui modules';
 
   constructor() { }
 

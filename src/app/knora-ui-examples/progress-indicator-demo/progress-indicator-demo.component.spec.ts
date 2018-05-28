@@ -4,6 +4,7 @@ import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
 
 import {ModuleHeaderComponent} from '../../landing-page/partials/module-header/module-header.component';
 import {ProgressIndicatorDemoComponent} from './progress-indicator-demo.component';
+import {RouterTestingModule} from '@angular/router/testing';
 
 
 describe('ProgressIndicatorDemoComponent', () => {
@@ -13,9 +14,10 @@ describe('ProgressIndicatorDemoComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-              KuiProgressIndicatorModule,
-              MatListModule,
-              MatIconModule
+                KuiProgressIndicatorModule,
+                MatListModule,
+                MatIconModule,
+                RouterTestingModule
             ],
             declarations: [
                 ProgressIndicatorDemoComponent,

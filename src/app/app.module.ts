@@ -19,9 +19,8 @@ import {environment} from '../environments/environment';
 const AppEnvironment: KuiCoreConfig = {
     api: environment.api,
     media: environment.media,
-    gui: environment.gui
+    app: environment.app
 };
-
 
 
 // landing page framework components
@@ -34,10 +33,9 @@ import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component
 // examples: demo components
 import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indicator-demo/progress-indicator-demo.component';
 import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
-import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projects.component';
-import { UsersComponent } from './knora-ui-examples/core-demo/users/users.component';
-import { AuthenticationComponent } from './knora-ui-examples/core-demo/authentication/authentication.component';
-
+import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects.component';
+import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
+import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
 
 
 @NgModule({
