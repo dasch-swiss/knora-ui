@@ -26,13 +26,13 @@ For local usage (developer mode) define your environment.ts as follow:
 export const environment = {
   production: false,
   api: 'http://0.0.0.0:3333',
-  gui: 'http://localhost:4200',
+  app: 'http://localhost:4200',
   media: 'http://localhost:1024'
 };
 ```
 
 - api: set the url of the [Knora](https://www.knora.org) webapi server
-- gui: on which url is this app running?
+- app: on which url is this app running?
 - media: url of a specific media server. In our case it's [sipi](http://www.sipi.io)
 
 Send this configuration to the `@knora/core` module in your app.module.ts
@@ -43,7 +43,7 @@ import {environment} from '../environments/environment';
 const AppEnvironment: KuiCoreConfig = {
     api: environment.api,
     media: environment.media,
-    gui: environment.gui
+    app: environment.app
 };
 
 @NgModule({

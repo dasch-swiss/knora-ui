@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs/internal/observable/throwError';
@@ -16,7 +16,8 @@ export abstract class ApiService {
      */
     loading = false;
 
-    protected constructor(@Inject('config') public config: KuiCoreConfig, public http: HttpClient) {
+    protected constructor(public http: HttpClient,
+                          @Inject('config') public config: KuiCoreConfig) {
     }
 
     /**
@@ -29,11 +30,11 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        return this.http.get(this.config.api + url, {observe: 'response'}).pipe(
+        const headers = this.setHeaders();
+
+        return this.http.get(this.config.api + url, {headers: headers, observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
-
-                // console.log(response);
 
                 const result = new ApiServiceResult();
                 result.status = response.status;
@@ -44,8 +45,6 @@ export abstract class ApiService {
             }),
             catchError((error: HttpErrorResponse) => {
                 this.loading = false;
-
-                // console.error(error);
 
                 return this.handleRequestError(error);
             })
@@ -191,6 +190,73 @@ export abstract class ApiService {
         serviceError.url = '';
         return throwError(serviceError);
 
+    }
+
+    protected setHeaders(): HttpHeaders {
+
+        if (localStorage.getItem('currentUser') !== null) {
+            return new HttpHeaders({
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('currentUser')).token}`
+            });
+        } else {
+            return new HttpHeaders();
+        }
+
+
+    }
+
+    /**
+     * Appends to existing options if they exist.
+     * @param {HttpHeaders} options
+     * @returns {HttpHeaders}
+     */
+    protected appendToOptions(options: any): any {
+
+        let headers: HttpHeaders;
+
+        if (!options) {
+            headers = this.appendAuthorizationHeader();
+            console.log('2a) ', headers);
+            options = {
+                headers
+            };
+            console.log('2b) ', options);
+
+        } else {
+            // have options
+            if (!options['headers']) {
+                // no headers set
+                options['headers'] = new HttpHeaders();
+                console.log('3: ', options);
+            } else {
+                // have headers, need to append to those
+                options['headers'] = this.appendAuthorizationHeader(options['headers']);
+                console.log('4: ', options);
+            }
+        }
+        return options;
+    }
+
+    /**
+     * Appends to existing headers if they exist.
+     * @param {Headers} headers
+     * @returns {Headers}
+     */
+    protected appendAuthorizationHeader(headers?: HttpHeaders): HttpHeaders {
+
+
+        if (!headers) {
+            headers = new HttpHeaders();
+        }
+
+        if (JSON.parse(localStorage.getItem('currentUser'))) {
+            const token = JSON.parse(localStorage.getItem('currentUser')).token;
+
+//            headers.append('Authorization', 'Bearer ' + token);
+
+            headers['Authorization'] = `Bearer ${JSON.parse(localStorage.getItem('currentUser')).token}`;
+        }
+        return headers;
     }
 
 }

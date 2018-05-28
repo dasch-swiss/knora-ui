@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {catchError, map, flatMap} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 
 import {ApiService} from '../api.service';
 
@@ -9,12 +9,11 @@ import {
     ApiServiceError,
     ApiServiceResult,
     AuthenticationRequestPayload,
-    AuthenticationResponse, KuiCoreConfig,
+    AuthenticationResponse, KnoraApiConfig, KuiCoreConfig,
     User
 } from '../../declarations';
 import {UsersService} from '..';
 import {HttpClient} from '@angular/common/http';
-import {UserResponse} from '../../declarations/knora-webapi/admin';
 
 @Injectable({
     providedIn: KuiCoreModule
@@ -23,16 +22,25 @@ export class AuthenticationService extends ApiService {
 
     private token: string;
 
+    protected constructor(public http: HttpClient,
+                          @Inject('config') public config: KuiCoreConfig,
+                          private _usersService: UsersService) {
+        super(http, config);
+    }
+
     /**
      * Checks if the user is logged in or not.
      *
      * @returns {Observable<boolean>}
      */
     authenticate(): Observable<boolean> {
-            return this.httpGet('/v2/authentication').pipe(
-                map((result: ApiServiceResult) => result.getBody(Boolean)),
-                catchError(this.handleJsonError)
-            );
+        return this.httpGet('/v2/authentication').pipe(
+            map((result: ApiServiceResult) => {
+                // console.log('AuthenticationService - authenticate - result: : ', result);
+                // return true || false
+                return result.status === 200;
+            })
+        );
     }
 
     doAuthentication(payload: AuthenticationRequestPayload): Observable<any> {
@@ -40,67 +48,123 @@ export class AuthenticationService extends ApiService {
         const url: string = '/v2/authentication';
         return this.httpPost(url, payload).pipe(
             map((result: ApiServiceResult) => {
-                console.log('doAuthentication: ', result);
-                result.getBody(AuthenticationResponse);
+                const token = result.body && result.body.token;
+
+                // console.log('AuthenticationService - doAuthentication - result: ', result);
+
+                if (token) {
+                    // console.log('AuthenticationService - doAuthentication - token: : ', token);
+                    return token;
+                } else {
+                    // If login does fail, then we would gotten an error back. This case covers
+                    // a `positive` login outcome without a returned token. This is a bug in `webapi`
+                    throw new Error('Token not returned. Please report this as a possible bug.');
+                }
+//                result.getBody(AuthenticationResponse);
             }),
             catchError(this.handleJsonError)
         );
     }
 
-    login(email: string, password: string): Observable<boolean> {
+    login(email: string, password: string): Observable<any> {
 
-        let success: boolean = false;
+        // new login, so remove anything stale
+        this.clearEverything();
 
-        this.doAuthentication({email, password})
-            .subscribe(
-                (token: string) => {
-                    console.log('login: ', token);
+        return this.doAuthentication({email, password}).pipe(
+            map((token: string) => {
+                // console.log('AuthenticationService - login - token: : ', token);
+                return this._usersService.getUserByEmail(email)
+                    .subscribe(
+                        (user: User) => {
+                            // console.log('AuthenticationService - login - user: ', user);
+//                            return result;
+                            let isSysAdmin: boolean = false;
 
-                    return this.usersService.getUserByEmail(email)
-                        .subscribe(
-                            (result: User) => {
-                                console.log('login get user: ', result);
-                                success = true;
-                            },
-                            (error: ApiServiceError) => {
-                                console.error('login get user: ', error);
-                                success = false;
+                            const permissions = user.permissions;
+
+                            if (permissions.groupsPerProject[KnoraApiConfig.SystemProjectIRI]) {
+                                isSysAdmin = permissions.groupsPerProject[KnoraApiConfig.SystemProjectIRI]
+                                    .indexOf(KnoraApiConfig.SystemAdminGroupIRI) > -1;
                             }
-                        );
-                        /*
-                        .map(
-                            (user: User) => {
 
-                                // console.log("AuthenticationService - login - user: ", user);
+                            const currentUserObject: any = {
+                                email: user.email,
+                                token: token,
+                                sysAdmin: isSysAdmin,
+                                lang: user.lang
+                            };
 
-                                // extract user information and and write them to local storage
-                                this.extractCurrentUser(user, token);
+                            // store username and jwt token in local storage to keep user logged in between page refreshes
+                            // and set the system admin property to true or false
+                            localStorage.setItem('currentUser', JSON.stringify(currentUserObject));
 
-                                // get the project permissions and write them to session storage
-                                this.extractProjectPermissions(user);
-
-                                // return true to indicate successful login
-                                return true;
-                            },
-                            (error: ApiServiceError) => {
-                                console.log(error);
-                                console.error('AuthenticationService - login - getUserByEmail error: ' + error);
-
-                                // there was an error during login. remove anything from local storage
-                                localStorage.removeItem('currentUser');
-                                localStorage.removeItem('lang');
-
-                                // throw error
-                                throw error;
-                            });
-                            */
-                },
-                (error: ApiServiceError) => {
-                    console.error('login: ', error);
-                    success = false;
-                }
-            );
+                            return true;
+                        },
+                        (error: ApiServiceError) => {
+                            // console.error('AuthenticationService - login - error: ', error);
+                            throw error;
+                        }
+                    );
+            }),
+            catchError(this.handleJsonError)
+        );
     }
+
+    /**
+     * Sends a logout request to the server and removes any variables.
+     *
+     */
+    logout(): void {
+
+        this.httpDelete('/v2/authentication').pipe(
+            map((result: ApiServiceResult) => {
+                // console.log('AuthenticationService - logout - result:', result);
+            }),
+            catchError(this.handleJsonError)
+        );
+
+        // clear token remove user from local storage to log user out
+        this.clearEverything();
+    }
+
+    /**
+     * Clears any variables set during authentication in local and session storage
+     *
+     */
+    protected clearEverything(): void {
+        // clear token remove user from local storage to log user out
+        this.token = null;
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('lang');
+        sessionStorage.clear();
+    }
+
+    /*
+    protected extractCurrentUser(user: User, token: string): void {
+
+        // console.log('AuthenticationService - extractCurrentUser - user / token ', user, token);
+
+        let isSysAdmin: boolean = false;
+
+        const permissions = user.permissions;
+        if (permissions.groupsPerProject[AppConfig.SystemProject]) {
+            isSysAdmin = permissions.groupsPerProject[AppConfig.SystemProject].indexOf(AppConfig.SystemAdminGroup) > -1;
+        }
+
+        const currentUserObject: CurrentUser = {
+            email: user.email,
+            token: token,
+            sysAdmin: isSysAdmin
+        };
+
+        // store username and jwt token in local storage to keep user logged in between page refreshes
+        // and set the system admin property to true or false
+        localStorage.setItem('currentUser', JSON.stringify(currentUserObject));
+        localStorage.setItem('lang', user.lang);
+
+    }
+    */
 
     /*
 
@@ -330,36 +394,9 @@ export class AuthenticationService extends ApiService {
     }
 
 
-    /**
-     * Sends a logout request to the server and removes any variables.
-     *
-    logout(): void {
 
-        this.httpDelete('/v2/authentication')
-            .subscribe(
-                (result: ApiServiceResult) => {
-                    // console.log('AuthenticationService - logout - result:', result);
-                },
-                (error: ApiServiceError) => {
-                    const errorMessage = <any>error;
-                    console.error('AuthenticationService - logout - error: ' + errorMessage);
-                    throw error;
-                });
 
-        // clear token remove user from local storage to log user out
-        this.clearEverything();
-    }
 
-    /**
-     * Clears any variables set during authentication in local and session storage
-     *
-    protected clearEverything(): void {
-        // clear token remove user from local storage to log user out
-        this.token = null;
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('lang');
-        sessionStorage.clear();
-    }
 
     */
 

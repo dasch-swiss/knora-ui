@@ -8,3 +8,4 @@ export * from './api.service';
  */
 export * from './projects/projects.service';
 export * from './users/users.service';
+export * from './authentication/authentication.service';
