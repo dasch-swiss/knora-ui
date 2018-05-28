@@ -28,18 +28,19 @@ export class AuthenticationService extends ApiService {
         super(http, config);
     }
 
-                              /**
+    /**
      * Checks if the user is logged in or not.
      *
      * @returns {Observable<boolean>}
      */
     authenticate(): Observable<boolean> {
-            return this.httpGet('/v2/authentication').pipe(
-                map((result: ApiServiceResult) => {
-                    console.log('AuthenticationService - authenticate - result: : ', result);
-                    return result.status === 200;
-                })
-            );
+        return this.httpGet('/v2/authentication').pipe(
+            map((result: ApiServiceResult) => {
+                // console.log('AuthenticationService - authenticate - result: : ', result);
+                // return true || false
+                return result.status === 200;
+            })
+        );
     }
 
     doAuthentication(payload: AuthenticationRequestPayload): Observable<any> {
@@ -49,10 +50,10 @@ export class AuthenticationService extends ApiService {
             map((result: ApiServiceResult) => {
                 const token = result.body && result.body.token;
 
-                console.log('AuthenticationService - doAuthentication - result: ', result);
+                // console.log('AuthenticationService - doAuthentication - result: ', result);
 
                 if (token) {
-                    console.log('AuthenticationService - doAuthentication - token: : ', token);
+                    // console.log('AuthenticationService - doAuthentication - token: : ', token);
                     return token;
                 } else {
                     // If login does fail, then we would gotten an error back. This case covers
@@ -67,13 +68,16 @@ export class AuthenticationService extends ApiService {
 
     login(email: string, password: string): Observable<any> {
 
+        // new login, so remove anything stale
+        this.clearEverything();
+
         return this.doAuthentication({email, password}).pipe(
-            map( (token: string) => {
-                console.log('AuthenticationService - login - token: : ', token);
+            map((token: string) => {
+                // console.log('AuthenticationService - login - token: : ', token);
                 return this._usersService.getUserByEmail(email)
                     .subscribe(
                         (user: User) => {
-                            console.log('AuthenticationService - login - user: ', user);
+                            // console.log('AuthenticationService - login - user: ', user);
 //                            return result;
                             let isSysAdmin: boolean = false;
 
@@ -98,13 +102,42 @@ export class AuthenticationService extends ApiService {
                             return true;
                         },
                         (error: ApiServiceError) => {
-                            console.error('AuthenticationService - login - error: ', error);
+                            // console.error('AuthenticationService - login - error: ', error);
                             throw error;
                         }
                     );
-                }),
+            }),
             catchError(this.handleJsonError)
         );
+    }
+
+    /**
+     * Sends a logout request to the server and removes any variables.
+     *
+     */
+    logout(): void {
+
+        this.httpDelete('/v2/authentication').pipe(
+            map((result: ApiServiceResult) => {
+                // console.log('AuthenticationService - logout - result:', result);
+            }),
+            catchError(this.handleJsonError)
+        );
+
+        // clear token remove user from local storage to log user out
+        this.clearEverything();
+    }
+
+    /**
+     * Clears any variables set during authentication in local and session storage
+     *
+     */
+    protected clearEverything(): void {
+        // clear token remove user from local storage to log user out
+        this.token = null;
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('lang');
+        sessionStorage.clear();
     }
 
     /*
@@ -361,36 +394,9 @@ export class AuthenticationService extends ApiService {
     }
 
 
-    /**
-     * Sends a logout request to the server and removes any variables.
-     *
-    logout(): void {
 
-        this.httpDelete('/v2/authentication')
-            .subscribe(
-                (result: ApiServiceResult) => {
-                    // console.log('AuthenticationService - logout - result:', result);
-                },
-                (error: ApiServiceError) => {
-                    const errorMessage = <any>error;
-                    console.error('AuthenticationService - logout - error: ' + errorMessage);
-                    throw error;
-                });
 
-        // clear token remove user from local storage to log user out
-        this.clearEverything();
-    }
 
-    /**
-     * Clears any variables set during authentication in local and session storage
-     *
-    protected clearEverything(): void {
-        // clear token remove user from local storage to log user out
-        this.token = null;
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('lang');
-        sessionStorage.clear();
-    }
 
     */
 

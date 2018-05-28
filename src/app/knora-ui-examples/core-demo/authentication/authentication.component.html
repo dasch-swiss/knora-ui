@@ -1,11 +1,35 @@
-<div *ngIf="errorMessage; else loggedIn" class="error">
-    {{errorMessage.statusText}}
-</div>
-<ng-template #loggedIn>
-    <div class="success">
-        User is logged in
+<!-- if logged-in user == true -->
+<div *ngIf="isLoggedIn && !authenticationService.loading">
+    <span class="success">User is logged in</span>
+
+    <br><br>
+    <!-- show user profile --
+    <div class="user-profile">
+        <span></span>
     </div>
-</ng-template>
+    -->
+
+    <button mat-raised-button
+            [color]="'warn'"
+            (click)="logout()">
+        Logout
+    </button>
+</div>
 
 
-<button (click)="simulateLogin(loginSimData)">Login</button>
+<!-- else: not authorized user -->
+
+<div *ngIf="!isLoggedIn && !authenticationService.loading">
+    <span *ngIf="errorMessage" class="error">{{errorMessage.statusText}} (Status: {{errorMessage.status}})</span>
+
+    <br>
+
+    <button mat-raised-button
+            [color]="'primary'"
+            (click)="login(userSimData)">
+        Login
+    </button>
+</div>
+
+
+<kui-progress-indicator *ngIf="authenticationService.loading"></kui-progress-indicator>

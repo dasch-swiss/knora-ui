@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiServiceError, AuthenticationService, AuthenticationRequestPayload} from '@knora/core';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
     selector: 'app-authentication',
@@ -8,47 +9,69 @@ import {ApiServiceError, AuthenticationService, AuthenticationRequestPayload} fr
 })
 export class AuthenticationComponent implements OnInit {
 
-    loginSimData: AuthenticationRequestPayload = {
+    userSimData: AuthenticationRequestPayload = {
         email: 'root@example.com',
         password: 'test'
     };
+    isLoggedIn: boolean = false;
 
     errorMessage: ApiServiceError;
 
-    constructor(private _authenticationService: AuthenticationService) {
+    constructor(public authenticationService: AuthenticationService,
+                private _router: Router){
+        // override the route reuse strategy
+        this._router.routeReuseStrategy.shouldReuseRoute = function() {
+            return false;
+        };
+
+        this._router.events.subscribe((evt) => {
+            if (evt instanceof NavigationEnd) {
+                // trick the Router into believing it's last link wasn't previously loaded
+                this._router.navigated = false;
+                // if you need to scroll back to top, here is the right place
+                window.scrollTo(0, 0);
+            }
+        });
+
     }
 
     ngOnInit() {
-        this.simulateAuthenticate();
+        this.simulateAuthentication();
     }
 
-    simulateAuthenticate() {
-        this._authenticationService.authenticate()
+    simulateAuthentication() {
+        this.authenticationService.authenticate()
             .subscribe(
                 (result: any) => {
-                    console.log('authenticate: ', result);
+                    // if result == true: a user is logged-in,
+                    // in case of an error (ApiServiceError), the current user is not authorized to do something
+                    this.isLoggedIn = result;
                 },
                 (error: ApiServiceError) => {
+                    this.isLoggedIn = false;
                     this.errorMessage = error;
-                    console.error('authenticate: ', error);
                 }
             );
     }
 
-    simulateLogin(data: AuthenticationRequestPayload) {
+    login(data: AuthenticationRequestPayload) {
 
-        this._authenticationService.login(data.email, data.password)
+        this.authenticationService.login(data.email, data.password)
             .subscribe(
                 (result: any) => {
                     console.log('simulateLogin: ', result);
-                    this.simulateAuthenticate();
+                    window.location.reload();
                 },
                 (error: ApiServiceError) => {
-
-                    this.errorMessage = error;
                     console.error('simulateLogin: ', error);
+                    this.errorMessage = error;
                 }
             );
+    }
+
+    logout() {
+        this.authenticationService.logout();
+        this.simulateAuthentication();
     }
 
 }

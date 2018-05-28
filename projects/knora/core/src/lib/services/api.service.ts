@@ -5,6 +5,7 @@ import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs/internal/observable/throwError';
 import {ApiServiceError, ApiServiceResult, KuiCoreConfig} from '../declarations';
 import {UsersService} from './users/users.service';
+import {AuthInterceptor} from './http.interceptor';
 
 
 @Injectable()
@@ -25,20 +26,17 @@ export abstract class ApiService {
      * GET
      *
      * @param {string} url
-     * @param options
      * @returns {Observable<any>}
      */
-    httpGet(url: string, options?: HttpHeaders): Observable<any> {
+    httpGet(url: string): Observable<any> {
 
         this.loading = true;
 
-        options = this.appendToOptions(options);
+        const headers = this.setHeaders();
 
-        return this.http.get(this.config.api + url, {options, observe: 'response'}).pipe(
+        return this.http.get(this.config.api + url, {headers: headers, observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
-
-                // console.log(response);
 
                 const result = new ApiServiceResult();
                 result.status = response.status;
@@ -49,8 +47,6 @@ export abstract class ApiService {
             }),
             catchError((error: HttpErrorResponse) => {
                 this.loading = false;
-
-                // console.error(error);
 
                 return this.handleRequestError(error);
             })
@@ -198,23 +194,46 @@ export abstract class ApiService {
 
     }
 
+    protected setHeaders(): HttpHeaders {
+
+        if (localStorage.getItem('currentUser') !== null) {
+            return new HttpHeaders({
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('currentUser')).token}`
+            });
+        } else {
+            return new HttpHeaders();
+        }
+
+
+    }
+
     /**
      * Appends to existing options if they exist.
      * @param {HttpHeaders} options
      * @returns {HttpHeaders}
      */
-    protected appendToOptions(options: HttpHeaders): HttpHeaders {
+    protected appendToOptions(options: any): any {
+
+        let headers: HttpHeaders;
+
         if (!options) {
-            // no options
-            options = new HttpHeaders();
+            headers = this.appendAuthorizationHeader();
+            console.log('2a) ', headers);
+            options = {
+                headers
+            };
+            console.log('2b) ', options);
+
         } else {
             // have options
             if (!options['headers']) {
                 // no headers set
                 options['headers'] = new HttpHeaders();
+                console.log('3: ', options);
             } else {
                 // have headers, need to append to those
                 options['headers'] = this.appendAuthorizationHeader(options['headers']);
+                console.log('4: ', options);
             }
         }
         return options;
@@ -226,12 +245,19 @@ export abstract class ApiService {
      * @returns {Headers}
      */
     protected appendAuthorizationHeader(headers?: HttpHeaders): HttpHeaders {
+
+
+
         if (!headers) {
-            headers = new HttpHeaders;
+            headers = new HttpHeaders();
         }
+
         if (JSON.parse(localStorage.getItem('currentUser'))) {
             const token = JSON.parse(localStorage.getItem('currentUser')).token;
-            headers.append('Authorization', 'Bearer ' + token);
+
+//            headers.append('Authorization', 'Bearer ' + token);
+
+            headers['Authorization'] = `Bearer ${JSON.parse(localStorage.getItem('currentUser')).token}`;
         }
         return headers;
     }
