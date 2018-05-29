@@ -63,7 +63,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        return this.http.post(this.config.api + url, body, {observe: 'response'}).pipe(
+        const headers = this.setHeaders();
+
+        return this.http.post(this.config.api + url, body, {headers: headers, observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -98,7 +100,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        return this.http.put(this.config.api + url, body, {observe: 'response'}).pipe(
+        const headers = this.setHeaders();
+
+        return this.http.put(this.config.api + url, body, {headers: headers, observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -132,7 +136,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        return this.http.delete(this.config.api + url, {observe: 'response'}).pipe(
+        const headers = this.setHeaders();
+
+        return this.http.delete(this.config.api + url, {headers: headers, observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 

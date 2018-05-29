@@ -33,10 +33,17 @@
 
     <mat-card-subtitle>Result</mat-card-subtitle>
 
-    <p *ngIf="!projectsService.loading && project">
 
-
-        <strong>{{project?.shortname}}: </strong> {{project?.longname}}</p>
+    <div *ngIf="!projectsService.loading && project">
+        <p><strong>{{project.shortcode}} / {{project.shortname}}: </strong> {{project.longname}}</p>
+        <div *ngFor="let d of project.description">
+            <p>({{d.language}})</p>
+            <div [innerHtml]="d.value"></div>
+        </div>
+        <mat-chip-list>
+            <mat-chip class="tag" *ngFor="let k of project.keywords">{{k}}</mat-chip>
+        </mat-chip-list>
+    </div>
 
 
 
@@ -58,3 +65,9 @@
     </ul>
 
 </div>
+
+<mat-divider></mat-divider>
+
+<button mat-raised-button color="primary" (click)="createNewProject(projectSimData)">
+    Create new project
+</button>

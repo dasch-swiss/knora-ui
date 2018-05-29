@@ -13,6 +13,19 @@ export class ProjectsComponent implements OnInit {
 
     project: Project;
 
+    projectSimData: any = {
+        shortcode: '0010',
+        shortname: 'test',
+        longname: 'Test Project',
+        description: [{
+            'language': 'en',
+            'value': 'Knora-ui module: test project to create this new project'
+        }],
+        keywords: [],
+        status: true,
+        selfjoin: false
+    };
+
     projectMembers: User[];
 
     tsExampleGetAllProjects = `
@@ -116,6 +129,18 @@ export class ProjectsComponent implements OnInit {
                 },
                 (error: ApiServiceError) => {
                     console.error(error);
+                }
+            );
+    }
+
+    createNewProject(data: any) {
+        this.projectsService.createProject(data)
+            .subscribe(
+                (result: Project) => {
+                    console.log('createNewProject (result): ', result);
+                },
+                (error: ApiServiceError) => {
+                    console.error('createNewProject (error): ', error);
                 }
             );
     }

@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HttpClientModule} from '@angular/common/http';
-import {MatCardModule, MatInputModule} from '@angular/material';
+import {MatCardModule, MatChipsModule, MatDividerModule, MatInputModule} from '@angular/material';
 import {KuiCoreModule, KuiCoreConfig} from '@knora/core';
 
 import {ProjectsComponent} from './projects.component';
@@ -13,6 +13,8 @@ describe('ProjectsComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 MatCardModule,
+                MatChipsModule,
+                MatDividerModule,
                 MatInputModule,
                 KuiCoreModule,
                 HttpClientModule
