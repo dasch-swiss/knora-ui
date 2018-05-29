@@ -13,6 +13,10 @@ export class CoreDemoComponent implements OnInit {
 
     subModules: Item[] = [
         {
+            label: 'Authentication',
+            name: 'authentication'
+        },
+        {
             label: 'Projects',
             name: 'projects'
         },

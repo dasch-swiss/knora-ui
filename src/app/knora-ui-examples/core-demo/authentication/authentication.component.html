@@ -1,35 +1,36 @@
-<!-- if logged-in user == true -->
-<div *ngIf="isLoggedIn && !authenticationService.loading">
-    <span class="success">User is logged in</span>
+<div *ngIf="!authenticationService.loading">
+    <!-- if logged-in user == true -->
+    <div *ngIf="isLoggedIn">
+        <span class="success">User is logged in</span>
 
-    <br><br>
-    <!-- show user profile --
-    <div class="user-profile">
-        <span></span>
+        <br><br>
+        <!-- show user profile --
+        <div class="user-profile">
+            <span></span>
+        </div>
+        -->
+
+        <button mat-raised-button
+                color="warn"
+                (click)="logout()">
+            Logout
+        </button>
     </div>
-    -->
 
-    <button mat-raised-button
-            color="warn"
-            (click)="logout()">
-        Logout
-    </button>
+
+    <!-- else: not authorized user -->
+
+    <div *ngIf="!isLoggedIn">
+        <span *ngIf="errorMessage" class="error">{{errorMessage.statusText}} (Status: {{errorMessage.status}})</span>
+
+        <br>
+
+        <button mat-raised-button
+                color="primary"
+                (click)="login(userSimData)">
+            Login
+        </button>
+    </div>
 </div>
-
-
-<!-- else: not authorized user -->
-
-<div *ngIf="!isLoggedIn && !authenticationService.loading">
-    <span *ngIf="errorMessage" class="error">{{errorMessage.statusText}} (Status: {{errorMessage.status}})</span>
-
-    <br>
-
-    <button mat-raised-button
-            color="primary"
-            (click)="login(userSimData)">
-        Login
-    </button>
-</div>
-
 
 <kui-progress-indicator *ngIf="authenticationService.loading"></kui-progress-indicator>

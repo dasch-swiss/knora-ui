@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {ApiServiceError, AuthenticationService, AuthenticationRequestPayload} from '@knora/core';
 import {NavigationEnd, Router} from '@angular/router';
 
@@ -7,7 +7,7 @@ import {NavigationEnd, Router} from '@angular/router';
     templateUrl: './authentication.component.html',
     styleUrls: ['./authentication.component.scss']
 })
-export class AuthenticationComponent implements OnInit {
+export class AuthenticationComponent implements OnInit, OnChanges {
 
     userSimData: AuthenticationRequestPayload = {
         email: 'root@example.com',
@@ -17,25 +17,16 @@ export class AuthenticationComponent implements OnInit {
 
     errorMessage: ApiServiceError;
 
-    constructor(public authenticationService: AuthenticationService,
-                private _router: Router){
-        // override the route reuse strategy
-        this._router.routeReuseStrategy.shouldReuseRoute = function() {
-            return false;
-        };
+    constructor(public authenticationService: AuthenticationService) {
 
-        this._router.events.subscribe((evt) => {
-            if (evt instanceof NavigationEnd) {
-                // trick the Router into believing it's last link wasn't previously loaded
-                this._router.navigated = false;
-                // if you need to scroll back to top, here is the right place
-                window.scrollTo(0, 0);
-            }
-        });
 
     }
 
     ngOnInit() {
+        this.simulateAuthentication();
+    }
+
+    ngOnChanges() {
         this.simulateAuthentication();
     }
 
@@ -59,12 +50,12 @@ export class AuthenticationComponent implements OnInit {
         this.authenticationService.login(data.email, data.password)
             .subscribe(
                 (result: any) => {
+                    this.isLoggedIn = result;
                     console.log('simulateLogin: ', result);
-                    window.location.reload();
                 },
                 (error: ApiServiceError) => {
-                    console.error('simulateLogin: ', error);
                     this.errorMessage = error;
+                    console.error('simulateLogin: ', error);
                 }
             );
     }

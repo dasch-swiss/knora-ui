@@ -78,7 +78,6 @@ export class AuthenticationService extends ApiService {
                     .subscribe(
                         (user: User) => {
                             // console.log('AuthenticationService - login - user: ', user);
-//                            return result;
                             let isSysAdmin: boolean = false;
 
                             const permissions = user.permissions;
