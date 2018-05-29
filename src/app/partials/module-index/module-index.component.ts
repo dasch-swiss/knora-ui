@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {DemoModule} from '../../../app.interfaces';
-import {AppDemo} from '../../../app.config';
+import {DemoModule} from '../../app.interfaces';
+import {AppDemo} from '../../app.config';
 
 @Component({
   selector: 'app-module-index',

@@ -4,6 +4,11 @@
   bottom: 0;
   left: 0;
   right: 0;
+
+  .module-content {
+    max-width: 840px;
+    margin: 0 auto;
+  }
 }
 
 .demo-nav-container {

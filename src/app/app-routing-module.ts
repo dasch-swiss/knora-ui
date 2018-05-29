@@ -1,9 +1,9 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
-// / start with introduction
-import {IntroductionComponent} from './landing-page/introduction/introduction.component';
+// / start with main-intro
+import {MainIntroComponent} from './landing-page/main-intro/main-intro.component';
 // /modules demo
-import {ModuleIndexComponent} from './landing-page/partials/module-index/module-index.component';
+import {ModuleIndexComponent} from './partials/module-index/module-index.component';
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
 // examples: demo components
 import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indicator-demo/progress-indicator-demo.component';
@@ -11,12 +11,13 @@ import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.compone
 import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects.component';
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
 import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
+import {ExampleViewerComponent} from './partials/example-viewer/example-viewer.component';
 
 
 const appRoutes: Routes = [
     {
         path: '',
-        component: IntroductionComponent,
+        component: MainIntroComponent,
     },
     {
         path: 'modules',
@@ -53,20 +54,9 @@ const appRoutes: Routes = [
             }
         ]
     },
-
-
-    /*
     {
-        path: 'admin-image',
-        component: AdminImageDemoComponent
-    },
-    {
-        path: 'action',
-        component: ActionDemoComponent
-    },
-    {
-        path: 'core',
-        component: CoreDemoComponent
+        path: 'test',
+        component: ExampleViewerComponent
     }
     /*
         {

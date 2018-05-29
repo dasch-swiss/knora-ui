@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AppConfig} from '../../../app.config';
-import {DemoModule, Item} from '../../../app.interfaces';
+import {AppConfig} from '../../app.config';
+import {DemoModule, Item} from '../../app.interfaces';
 
 
 @Component({

@@ -27,7 +27,9 @@
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
     "json2typescript": "^1.0.5",
+    "ngx-showdown": "^4.0.2",
     "rxjs": "^6.0.0",
+    "showdown": "^1.8.6",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

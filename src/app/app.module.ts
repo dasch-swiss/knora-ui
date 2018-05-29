@@ -1,9 +1,10 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing-module';
+
+import {ShowdownModule} from 'ngx-showdown';
 
 import {AppComponent} from './app.component';
 import {MaterialModule} from './material-module';
@@ -24,10 +25,10 @@ const AppEnvironment: KuiCoreConfig = {
 
 
 // landing page framework components
-import {MainHeaderComponent} from './landing-page/partials/main-header/main-header.component';
-import {ModuleHeaderComponent} from './landing-page/partials/module-header/module-header.component';
-import {ModuleIndexComponent} from './landing-page/partials/module-index/module-index.component';
-import {IntroductionComponent} from './landing-page/introduction/introduction.component';
+import {MainHeaderComponent} from './partials/main-header/main-header.component';
+import {ModuleHeaderComponent} from './partials/module-header/module-header.component';
+import {ModuleIndexComponent} from './partials/module-index/module-index.component';
+import {MainIntroComponent} from './landing-page/main-intro/main-intro.component';
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
 
 // examples: demo components
@@ -36,6 +37,8 @@ import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.compone
 import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects.component';
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
 import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
+import { ExampleViewerComponent } from './partials/example-viewer/example-viewer.component';
+import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
 
 
 @NgModule({
@@ -43,14 +46,16 @@ import {AuthenticationComponent} from './knora-ui-examples/core-demo/authenticat
         AppComponent,
         MainHeaderComponent,
         ModuleHeaderComponent,
-        IntroductionComponent,
+        MainIntroComponent,
         ProgressIndicatorDemoComponent,
         DemoIntroComponent,
         ModuleIndexComponent,
         CoreDemoComponent,
         ProjectsComponent,
         UsersComponent,
-        AuthenticationComponent
+        AuthenticationComponent,
+        ExampleViewerComponent,
+        SanitizeHtmlPipe
     ],
     imports: [
         BrowserModule,
@@ -59,7 +64,8 @@ import {AuthenticationComponent} from './knora-ui-examples/core-demo/authenticat
         KuiCoreModule.forRoot(AppEnvironment),
         KuiProgressIndicatorModule,
         MaterialModule,
-        HttpClientModule
+        HttpClientModule,
+        ShowdownModule
     ],
     providers: [
 //    CoreService

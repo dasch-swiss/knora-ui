@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {RouterTestingModule} from '@angular/router/testing';
-import {MainHeaderComponent} from './landing-page/partials/main-header/main-header.component';
+import {MainHeaderComponent} from './partials/main-header/main-header.component';
 import {MatIconModule, MatToolbarModule} from '@angular/material';
 describe('AppComponent', () => {
   beforeEach(async(() => {
