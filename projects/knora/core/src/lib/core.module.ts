@@ -2,6 +2,7 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {KuiCoreConfig} from './declarations';
+import {UsersService} from './services';
 
 @NgModule({
     imports: [

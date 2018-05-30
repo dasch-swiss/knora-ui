@@ -19,7 +19,6 @@ export class KuiCoreConfig {
     public app: string = undefined;
 }
 
-
 export class KnoraApiConfig {
 
     public static KnoraOntologyPath: string = 'http://www.knora.org/ontology';

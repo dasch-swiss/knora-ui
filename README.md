@@ -16,6 +16,10 @@ Good news: Angular 6 has a built-in [library support](https://github.com/angular
 
 We used [ng-packagr](https://github.com/dherges/ng-packagr) by following the [ng-packaged](https://github.com/dherges/ng-packaged)-example and this tutorial: https://medium.com/@nikolasleblanc/building-an-angular-4-component-library-with-the-angular-cli-and-ng-packagr-53b2ade0701e
 
+Now we can create a library module quite easy. Please use the following command schema:
+
+`$ ng generate library @knora/[module-name] --prefix=kui`
+
 ### Install the demo app
 
 ```
