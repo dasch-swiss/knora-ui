@@ -1,6 +1,5 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import {ApiServiceError, AuthenticationService, AuthenticationRequestPayload} from '@knora/core';
-import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
     selector: 'app-authentication',

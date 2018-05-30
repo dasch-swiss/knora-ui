@@ -68,7 +68,6 @@ import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
         ShowdownModule
     ],
     providers: [
-//    CoreService
     ],
     bootstrap: [AppComponent]
 })

@@ -9,7 +9,8 @@ import {
     ApiServiceError,
     ApiServiceResult,
     AuthenticationRequestPayload,
-    AuthenticationResponse, KnoraApiConfig, KuiCoreConfig,
+    KnoraApiConfig,
+    KuiCoreConfig,
     User
 } from '../../declarations';
 import {UsersService} from '..';
@@ -22,11 +23,13 @@ export class AuthenticationService extends ApiService {
 
     private token: string;
 
-    protected constructor(public http: HttpClient,
-                          @Inject('config') public config: KuiCoreConfig,
+    /*
+    protected constructor(http: HttpClient,
+                          @Inject('config') config: KuiCoreConfig,
                           private _usersService: UsersService) {
         super(http, config);
     }
+    */
 
     /**
      * Checks if the user is logged in or not.
@@ -74,6 +77,7 @@ export class AuthenticationService extends ApiService {
         return this.doAuthentication({email, password}).pipe(
             map((token: string) => {
                 // console.log('AuthenticationService - login - token: : ', token);
+/*
                 return this._usersService.getUserByEmail(email)
                     .subscribe(
                         (user: User) => {
@@ -105,6 +109,7 @@ export class AuthenticationService extends ApiService {
                             throw error;
                         }
                     );
+*/
             }),
             catchError(this.handleJsonError)
         );

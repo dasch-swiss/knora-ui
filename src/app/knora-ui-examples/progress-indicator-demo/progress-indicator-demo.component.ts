@@ -41,7 +41,25 @@ export class ProgressIndicatorDemoComponent implements OnInit {
                     </p>
                   </mat-list-item>
                 </mat-list>`,
-            ts: `status = -1;
+            ts: `examples = [
+                    {
+                        status: -1,
+                        label: 'before submit (not ready)'
+                    },
+                    {
+                        status: 0,
+                        label: 'submitting'
+                    },
+                    {
+                        status: 1,
+                        label: 'after submit (done)'
+                    },
+                    {
+                        status: 400,
+                        label: 'in case of an error'
+                    }
+                ];
+                status = -1;
                 constructor() {
                 }
                 ngOnInit() {

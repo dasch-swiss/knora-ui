@@ -1,20 +1,6 @@
-/* Copyright © 2016 Lukas Rosenthaler, André Kilchenmann, Andreas Aeschlimann,
- * Sofia Georgakopoulou, Ivan Subotic, Benjamin Geer, Tobias Schweizer.
- * This file is part of SALSAH.
- * SALSAH is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * SALSAH is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * You should have received a copy of the GNU Affero General Public
- * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
- * */
-
-import {ReadResourcesSequence} from "./read-resources-sequence";
-import {ReadResource} from "./read-resource";
-import {ReadProperties} from "./read-properties";
+import {ReadResourcesSequence} from './read-resources-sequence';
+import {ReadResource} from './read-resource';
+import {ReadProperties} from './read-properties';
 import {
     ReadBooleanValue,
     ReadColorValue,
@@ -30,8 +16,8 @@ import {
     ReadTextValueAsXml, ReadUriValue,
     ReferredResourcesByStandoffLink
 } from './read-property-item';
-import {AppConfig} from "../../../../app.config";
-import {Utils} from "../../../../utils";
+import {AppConfig} from '../../../../app.config';
+import {Utils} from '../../../../utils';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 let jsonld = require('jsonld');
@@ -58,7 +44,7 @@ export module ConvertJSONLD {
             [],
             [],
             properties
-    );
+        );
     }
 
     /**
@@ -99,7 +85,7 @@ export module ConvertJSONLD {
                     textValue = new ReadTextValueAsXml(propValue['@id'], propIri, propValue[AppConfig.textValueAsXml], propValue[AppConfig.textValueHasMapping]);
                 } else {
                     // expected text value members not defined
-                    console.log("ERROR: Invalid text value: " + JSON.stringify(propValue))
+                    console.log('ERROR: Invalid text value: ' + JSON.stringify(propValue));
                 }
 
                 valueSpecificProp = textValue;
@@ -276,7 +262,7 @@ export module ConvertJSONLD {
 
             default:
                 // unsupported value type
-                console.log("ERROR: value type not implemented yet: " + propValue['@type']);
+                console.log('ERROR: value type not implemented yet: ' + propValue['@type']);
                 break;
         }
 
@@ -305,7 +291,7 @@ export module ConvertJSONLD {
             for (let standoffLinkJSONLD of standoffLinkValuesJSONLD) {
                 let standoffVal: ReadLinkValue = createValueSpecificProp(standoffLinkJSONLD, AppConfig.hasStandoffLinkToValue, []) as ReadLinkValue;
 
-                standoffLinkValues.push(standoffVal)
+                standoffLinkValues.push(standoffVal);
             }
         } else if (standoffLinkValuesJSONLD !== undefined) {
             let standoffVal = createValueSpecificProp(standoffLinkValuesJSONLD, AppConfig.hasStandoffLinkToValue, []) as ReadLinkValue;
@@ -461,7 +447,7 @@ export module ConvertJSONLD {
             // collect all resource classes
             for (let res of resourcesResponseJSONLD[AppConfig.schemaItemListElement]) {
                 // get class of the current resource
-                resourceClasses.push(res["@type"]);
+                resourceClasses.push(res['@type']);
 
                 // get the classes of referred resources
                 let referredResourceClasses = getReferredResourceClasses(res);
@@ -480,7 +466,7 @@ export module ConvertJSONLD {
             let res = resourcesResponseJSONLD[AppConfig.schemaItemListElement];
 
             // only one resource
-            resourceClasses.push(res["@type"]);
+            resourceClasses.push(res['@type']);
 
             // get the classes of referred resources
             let referredResourceClasses = getReferredResourceClasses(res);

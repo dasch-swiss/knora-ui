@@ -6,7 +6,7 @@ import {throwError} from 'rxjs/internal/observable/throwError';
 import {ApiServiceError, ApiServiceResult, KuiCoreConfig} from '../declarations';
 
 
-@Injectable()
+// @Injectable()
 export abstract class ApiService {
 
     /**

@@ -62,4 +62,6 @@ export class UsersService extends ApiService {
         );
     }
 
+
+    // TODO: create global changePassword method and use it in protected updateUser
 }

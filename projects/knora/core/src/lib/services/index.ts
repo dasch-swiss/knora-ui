@@ -1,10 +1,10 @@
 /**
- * main services
+ * main api services
  */
 export * from './api.service';
 
 /**
- * knora webapi specific services
+ * specific services for knora api
  */
 export * from './projects/projects.service';
 export * from './users/users.service';
