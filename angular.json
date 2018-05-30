@@ -123,7 +123,7 @@
       "root": "projects/knora/core",
       "sourceRoot": "projects/knora/core/src",
       "projectType": "library",
-      "prefix": "kg",
+      "prefix": "kui",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -163,7 +163,7 @@
       "root": "projects/knora/progress-indicator",
       "sourceRoot": "projects/knora/progress-indicator/src",
       "projectType": "library",
-      "prefix": "kg",
+      "prefix": "kui",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
