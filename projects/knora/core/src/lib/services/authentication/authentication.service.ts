@@ -23,11 +23,12 @@ export class AuthenticationService extends ApiService {
 
     private token: string;
 
-    protected constructor(http: HttpClient,
-                          @Inject('config') config: KuiCoreConfig,
+    protected constructor(public http: HttpClient,
+                          @Inject('config') public config: KuiCoreConfig,
                           private _usersService: UsersService) {
         super(http, config);
     }
+
 
     /**
      * Checks if the user is logged in or not.

@@ -37,8 +37,8 @@ import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.compone
 import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects.component';
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
 import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
-import { ExampleViewerComponent } from './partials/example-viewer/example-viewer.component';
-import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
+import {ExampleViewerComponent} from './partials/example-viewer/example-viewer.component';
+import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
 
 
 @NgModule({
@@ -67,8 +67,7 @@ import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
         HttpClientModule,
         ShowdownModule
     ],
-    providers: [
-    ],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {
