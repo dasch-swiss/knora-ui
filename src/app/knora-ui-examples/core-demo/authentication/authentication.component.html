@@ -1,4 +1,4 @@
-<div *ngIf="!authenticationService.loading">
+<div *ngIf="!usersService.loading">
     <!-- if logged-in user == true -->
     <div *ngIf="isLoggedIn">
         <span class="success">User is logged in</span>
@@ -33,4 +33,4 @@
     </div>
 </div>
 
-<kui-progress-indicator *ngIf="authenticationService.loading"></kui-progress-indicator>
+<kui-progress-indicator *ngIf="usersService.loading"></kui-progress-indicator>

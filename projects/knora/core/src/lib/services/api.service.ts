@@ -1,10 +1,9 @@
-import {Inject, Injectable, Optional} from '@angular/core';
+import {Inject} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs/internal/observable/throwError';
 import {ApiServiceError, ApiServiceResult, KuiCoreConfig} from '../declarations';
-import {UsersService} from './users/users.service';
 
 
 // @Injectable()

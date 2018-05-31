@@ -1,5 +1,5 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import {ApiServiceError, AuthenticationService, AuthenticationRequestPayload} from '@knora/core';
+import {ApiServiceError, AuthenticationRequestPayload, UsersService} from '@knora/core';
 
 @Component({
     selector: 'app-authentication',
@@ -10,13 +10,14 @@ export class AuthenticationComponent implements OnInit, OnChanges {
 
     userSimData: AuthenticationRequestPayload = {
         email: 'root@example.com',
-        password: 'test'
+        password: 'test1234'
     };
+
     isLoggedIn: boolean = false;
 
     errorMessage: ApiServiceError;
 
-    constructor(public authenticationService: AuthenticationService) {
+    constructor(public usersService: UsersService) {
 
 
     }
@@ -30,7 +31,7 @@ export class AuthenticationComponent implements OnInit, OnChanges {
     }
 
     simulateAuthentication() {
-        this.authenticationService.authenticate()
+        this.usersService.authenticate()
             .subscribe(
                 (result: any) => {
                     // if result == true: a user is logged-in,
@@ -46,21 +47,23 @@ export class AuthenticationComponent implements OnInit, OnChanges {
 
     login(data: AuthenticationRequestPayload) {
 
-        this.authenticationService.login(data.email, data.password)
+        console.log(data);
+
+        this.usersService.login(data.email, data.password)
             .subscribe(
                 (result: any) => {
                     this.isLoggedIn = result;
-                    console.log('simulateLogin: ', result);
+                    // console.log('simulateLogin: ', result);
                 },
                 (error: ApiServiceError) => {
                     this.errorMessage = error;
-                    console.error('simulateLogin: ', error);
+                    // console.error('simulateLogin: ', error);
                 }
             );
     }
 
     logout() {
-        this.authenticationService.logout();
+        this.usersService.logout();
         this.simulateAuthentication();
     }
 
