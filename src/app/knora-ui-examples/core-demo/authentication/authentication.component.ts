@@ -10,7 +10,7 @@ export class AuthenticationComponent implements OnInit, OnChanges {
 
     userSimData: AuthenticationRequestPayload = {
         email: 'root@example.com',
-        password: 'test1234'
+        password: 'test'
     };
 
     isLoggedIn: boolean = false;
