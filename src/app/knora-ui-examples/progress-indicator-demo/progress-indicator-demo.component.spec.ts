@@ -5,7 +5,6 @@ import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
 import {ModuleHeaderComponent} from '../../partials/module-header/module-header.component';
 import {ProgressIndicatorDemoComponent} from './progress-indicator-demo.component';
 import {RouterTestingModule} from '@angular/router/testing';
-import {ShowdownModule} from 'ngx-showdown';
 import {ExampleViewerComponent} from '../../partials/example-viewer/example-viewer.component';
 
 
@@ -21,8 +20,7 @@ describe('ProgressIndicatorDemoComponent', () => {
                 MatIconModule,
                 MatListModule,
                 MatTabsModule,
-                RouterTestingModule,
-                ShowdownModule
+                RouterTestingModule
             ],
             declarations: [
                 ExampleViewerComponent,

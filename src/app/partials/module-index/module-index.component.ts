@@ -1,20 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {DemoModule} from '../../app.interfaces';
+import {Component} from '@angular/core';
 import {AppDemo} from '../../app.config';
+import {DemoModule} from '../../app.interfaces';
+
 
 @Component({
-  selector: 'app-module-index',
-  templateUrl: './module-index.component.html',
-  styleUrls: ['./module-index.component.scss']
+    selector: 'app-module-index',
+    templateUrl: './module-index.component.html',
+    styleUrls: ['./module-index.component.scss']
 })
-export class ModuleIndexComponent implements OnInit {
+export class ModuleIndexComponent {
 
-  examples: DemoModule[] = AppDemo.examples;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+    examples: DemoModule[] = AppDemo.examples;
 
 }

@@ -24,8 +24,11 @@ Now we can create a library module quite easy. Please use the following command 
 
 ```
 $ cd knora-ui
+
+$ rm -rf dist/@knora
+$ yarn build-lib
+
 $ yarn install --prod=false
-& yarn build-lib
 ```
 
 The demo app runs on http://localhost:4200 and we use it on this repository's [Github page](https://dhlab-basel.github.io/Knora-ui)

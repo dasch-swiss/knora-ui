@@ -17,17 +17,6 @@
             </button>
         </a>
     </div>
-
-    <div class="panel-row" *ngIf="nav">
-        <ul class="module-navbar">
-            <li *ngFor="let item of nav">
-                <button mat-raised-button [routerLink]="item.name" routerLinkActive="active-link">
-                    {{item.label}}
-                </button>
-            </li>
-        </ul>
-    </div>
-
 </div>
 
 

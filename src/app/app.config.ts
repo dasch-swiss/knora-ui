@@ -38,6 +38,10 @@ export class AppDemo {
             {
                 name: 'users',
                 label: 'UsersService'
+            },
+            {
+                name: 'projects',
+                label: 'ProjectsService'
             }
         ]
     };

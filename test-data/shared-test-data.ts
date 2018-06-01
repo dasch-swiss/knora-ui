@@ -11,7 +11,7 @@ import {
     User,
     UserResponse,
     UsersResponse
-} from '../webapi/knora/admin';
+} from 'projects/knora/core/src/lib/declarations/';
 import {JsonConvert, OperationMode, ValueCheckingMode} from 'json2typescript';
 
 const jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);

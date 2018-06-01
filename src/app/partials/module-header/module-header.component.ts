@@ -12,8 +12,6 @@ export class ModuleHeaderComponent implements OnInit {
 
   @Input() demo: DemoModule = new DemoModule();
 
-  @Input() nav?: Item[];
-
   stackBlitzDemo: string;
   package: string;
   badge: string;
@@ -36,9 +34,5 @@ export class ModuleHeaderComponent implements OnInit {
     }
 
   }
-
-    openModule(name: string) {
-
-    }
 
 }

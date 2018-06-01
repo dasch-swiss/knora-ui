@@ -21,6 +21,17 @@
   overflow: auto;
 }
 
+.demo-nav {
+
+
+  .demo-nav-children {
+    width: 200px;
+    padding-left: 16px;
+    position: absolute;
+    top: 36px;
+  }
+}
+
 .demo-nav-item {
   width: 200px;
   text-align: left;

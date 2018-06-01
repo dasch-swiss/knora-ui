@@ -1,7 +1,7 @@
 import {async, inject, TestBed} from '@angular/core/testing';
 import {ApiService} from '../api.service';
 import {ProjectsService} from './projects.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import {ProjectResponse, ProjectsResponse} from '../../declarations';
 import {
     anythingProject,
@@ -16,9 +16,12 @@ import {JsonConvert, OperationMode, ValueCheckingMode} from 'json2typescript';
 
 
 
-fdescribe('ProjectsService', () => {
+describe('ProjectsService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [
+                HttpClientModule
+            ],
             providers: [
                 ApiService,
                 ProjectsService,
@@ -34,7 +37,7 @@ fdescribe('ProjectsService', () => {
     );
 
 
-    fit('should parse projects-response', () => {
+    it('should parse projects-response', () => {
 
         const jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
 

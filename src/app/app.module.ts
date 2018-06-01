@@ -1,10 +1,11 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing-module';
 
-import {ShowdownModule} from 'ngx-showdown';
+
+import {MarkdownModule} from 'ngx-markdown';
 
 import {AppComponent} from './app.component';
 import {MaterialModule} from './material-module';
@@ -65,7 +66,7 @@ import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
         KuiProgressIndicatorModule,
         MaterialModule,
         HttpClientModule,
-        ShowdownModule
+        MarkdownModule.forRoot({ loader: HttpClient })
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -6,6 +6,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 describe('ApiService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [
+                HttpClientModule
+            ],
             providers: [
                 ApiService,
                 HttpClient

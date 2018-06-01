@@ -1,41 +1,40 @@
 <h3>Users service</h3>
 
-<h4>getAllUsers()</h4>
+<markdown>
+    # Test
 
-<mat-card-subtitle>Typescript</mat-card-subtitle>
-<pre>
-    <code ngNonBindable [innerHtml]="tsExampleGetAllUsers"></code>
-</pre>
+    The `UsersService` in @knora/core offers the following methods:
+</markdown>
 
-<div *ngIf="allUsers && !usersService.loading">
-    <mat-card-subtitle>Result</mat-card-subtitle>
 
-    <ul>
-        <li class="link" *ngFor="let u of allUsers" (click)="getUser(u.email)" >
-            <strong>{{u.familyName}}: </strong>
-            {{u.givenName}} ({{u.email}})
-        </li>
-    </ul>
+<mat-card class="example-viewer">
 
-    <mat-hint>Click on a project to get more information</mat-hint>
-</div>
+    <app-example-viewer [example]="exampleGetAllUsers"></app-example-viewer>
 
-<!-- ---------------------------------------------------------------------- -->
+    <div class="demo">
+        <div *ngIf="allUsers && !usersService.loading">
+            <mat-card-subtitle>Result</mat-card-subtitle>
 
-<div *ngIf="user">
-    <hr>
-    <h4>getUserByEmail(<i>{{user?.email}}</i>)</h4>
+            <ul>
+                <li class="link" *ngFor="let u of allUsers" (click)="getUser(u.email)" >
+                    <strong>{{u.familyName}}: </strong>
+                    {{u.givenName}} ({{u.email}})
+                </li>
+            </ul>
+        </div>
+        <kui-progress-indicator *ngIf="usersService.loading"></kui-progress-indicator>
+    </div>
+</mat-card>
 
-    <mat-card-subtitle>Typescript</mat-card-subtitle>
-    <pre>
-        <code ngNonBindable [innerHtml]="tsExampleGetProjectByEmail"></code>
-    </pre>
 
-    <mat-card-subtitle>Result</mat-card-subtitle>
+<markdown>
+    ### getAllUsers()
+</markdown>
 
-    <p *ngIf="!usersService.loading && user">
-        <strong>{{user.familyName}}: </strong>
-        {{user.givenName}} ({{user.email}})
-    </p>
 
-</div>
+<mat-divider></mat-divider>
+
+<markdown [src]="'assets/docs/UsersService.md'">
+
+
+</markdown>
