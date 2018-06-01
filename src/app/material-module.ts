@@ -27,7 +27,8 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTreeModule
 //    StyleModule
 } from '@angular/material';
 
@@ -62,7 +63,8 @@ import {
         MatSortModule,
         MatTabsModule,
         MatToolbarModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatTreeModule
 //        CdkTableModule,
 //        StyleModule
     ],
@@ -96,6 +98,7 @@ import {
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
+        MatTreeModule
 //        CdkTableModule,
 //        StyleModule
     ]

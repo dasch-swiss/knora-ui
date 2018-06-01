@@ -71,8 +71,180 @@ export class UsersService extends ApiService {
     }
 
 
+
+    // ------------------------------------------------------------------------
+    // POST
+    // ------------------------------------------------------------------------
+
+    /**
+     *
+     * @param data
+     * @returns {Observable<User>}
+     */
+    createUser(data: any): Observable<User> {
+        const url: string = '/admin/users';
+        return this.httpPost(url, data).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    /**
+     *
+     * @param {string} userIri
+     * @param {string} projectIri
+     * @returns {Observable<User>}
+     */
+    addUserToProject(userIri: string, projectIri: string): Observable<User> {
+        const url: string = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        return this.httpPost(url).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    /**
+     *
+     * @param {string} userIri
+     * @param {string} projectIri
+     * @returns {Observable<User>}
+     */
+    addUserToProjectAdmin(userIri: string, projectIri: string): Observable<User> {
+        const url: string = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        return this.httpPost(url).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    /**
+     *
+     * @param {string} userIri
+     * @param {string} projectIri
+     * @returns {Observable<User>}
+     */
+    removeUserFromProjectAdmin(userIri: string, projectIri: string): Observable<User> {
+        const url: string = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        return this.httpDelete(url).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+    }
+
+
+
     // TODO: create global changePassword method and use it in protected updateUser
 
+
+
+
+    // ------------------------------------------------------------------------
+    // PUT
+    // ------------------------------------------------------------------------
+
+
+
+    /**
+     *
+     * @param {string} userIri
+     * @param data
+     * @returns {Observable<User>}
+     */
+    addUserToSystemAdmin(userIri: string, data: any): Observable<User> {
+        const url: string = '/admin/users/' + encodeURIComponent(userIri);
+        return this.httpPut(url, data).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    /**
+     *
+     * @param {string} userIri
+     * @returns {Observable<User>}
+     */
+    activateUser(userIri: string): Observable<User> {
+        const data: any = {
+            status: true
+        };
+        return this.updateUser(userIri, data);
+    }
+
+
+    /**
+     * Update own password
+     *
+     * @param {string} userIri
+     * @param {string} oldPassword
+     * @param {string} newPassword
+     * @returns {Observable<User>}
+     */
+    updateOwnPassword(userIri: string, oldPassword: string, newPassword: string): Observable<User> {
+        const data = {
+            newPassword: newPassword,
+            requesterPassword: oldPassword
+        };
+        return this.updateUser(userIri, data);
+    }
+
+
+    updateUsersPassword(userIri: string, requesterPassword: string, newPassword: string): Observable<User> {
+        // TODO do I need the requesterIri as well?
+        const data = {
+            newPassword: newPassword,
+            requesterPassword: requesterPassword
+        };
+        return this.updateUser(userIri, data);
+    }
+
+
+    /**
+     *
+     * @param {string} userIri
+     * @param data
+     * @returns {Observable<User>}
+     */
+    updateUser(userIri: string, data: any): Observable<User> {
+
+        const url: string = '/admin/users/' + encodeURIComponent(userIri);
+
+        return this.httpPut(url, data).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // DELETE
+    // ------------------------------------------------------------------------
+
+    /**
+     *
+     * @param {string} userIri
+     * @returns {Observable<User>}
+     */
+    deleteUser(userIri: string): Observable<User> {
+        const url: string = '/admin/users/' + encodeURIComponent(userIri);
+        return this.httpDelete(url).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+
+    }
+
+    /**
+     *
+     * @param {string} userIri
+     * @param {string} projectIri
+     * @returns {Observable<User>}
+     */
+    removeUserFromProject(userIri: string, projectIri: string): Observable<User> {
+        const url: string = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        return this.httpDelete(url).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+    }
 
     // ------------------------------------------------------------------------
     // AUTHENTICATION
@@ -98,7 +270,7 @@ export class UsersService extends ApiService {
      * @param {AuthenticationRequestPayload} payload
      * @returns {Observable<any>}
      */
-    doAuthentication(payload: AuthenticationRequestPayload): Observable<any> {
+    protected doAuthentication(payload: AuthenticationRequestPayload): Observable<any> {
 
         const url: string = '/v2/authentication';
         return this.httpPost(url, payload).pipe(

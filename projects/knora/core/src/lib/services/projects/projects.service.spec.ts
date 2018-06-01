@@ -1,8 +1,8 @@
 import {async, inject, TestBed} from '@angular/core/testing';
-import {ApiService} from './api.service';
+import {ApiService} from '../api.service';
 import {ProjectsService} from './projects.service';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {ApiServiceError, Project, ProjectResponse, ProjectsResponse} from '../declarations';
+import {HttpClient} from '@angular/common/http';
+import {ProjectResponse, ProjectsResponse} from '../../declarations';
 import {
     anythingProject,
     anythingProjectResponseJson,
@@ -11,11 +11,12 @@ import {
     incunabulaProjectResponseJson,
     projectsResponseJson,
     projectsTestData
-} from '../test-data/shared-test-data';
+} from 'test-data/shared-test-data';
 import {JsonConvert, OperationMode, ValueCheckingMode} from 'json2typescript';
 
 
-describe('ProjectsService', () => {
+
+fdescribe('ProjectsService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
@@ -33,11 +34,12 @@ describe('ProjectsService', () => {
     );
 
 
-    it('should parse projects-response', () => {
+    fit('should parse projects-response', () => {
 
         const jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
 
         const result: ProjectsResponse = jsonConvert.deserializeObject(projectsResponseJson, ProjectsResponse);
+        console.log(result);
 
         expect(result).toBeTruthy();
     });

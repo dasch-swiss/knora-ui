@@ -25,8 +25,11 @@ export class DemoModule {
     @JsonProperty('label', String)
     public label: string = undefined;
 
-    @JsonProperty('published', Boolean)
-    public published: boolean = undefined;
+    @JsonProperty('published', Boolean, true)
+    public published?: boolean = false;
+
+    @JsonProperty('children', [DemoModule], true)
+    public children?: DemoModule[] = [];
 }
 
 
