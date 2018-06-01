@@ -1,25 +1,23 @@
+## UsersService
+
+This module is part of [Knora-ui core module](https://www.npmjs.com/package/%40knora%2Fcore), developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
+
+### Usage
+Please follow the README of [Knora-ui core module](https://www.npmjs.com/package/%40knora%2Fcore) first!
+
+Then you can use the following methods from `UsersService`:
+
 #### getAllUsers() 
 
 returns a list of all users
 
 
-
-
-
-
 ##### Returns
-
 
 - `Observable.<Array.<User>>`  
 
 
-
 #### getUserByEmail(email) 
-
-
-
-
-
 
 ##### Parameters
 
@@ -27,21 +25,11 @@ returns a list of all users
 | ---- | ---- | ----------- | -------- |
 | email | `string`  |  | &nbsp; |
 
-
-
-
 ##### Returns
-
 
 - `Observable.<User>`  
 
-
-
 #### getUserByIri(iri) 
-
-
-
-
 
 
 ##### Parameters
@@ -50,22 +38,12 @@ returns a list of all users
 | ---- | ---- | ----------- | -------- |
 | iri | `string`  |  | &nbsp; |
 
-
-
-
 ##### Returns
-
 
 - `Observable.<User>`  
 
 
-
 #### createUser(data) 
-
-
-
-
-
 
 ##### Parameters
 
@@ -73,22 +51,13 @@ returns a list of all users
 | ---- | ---- | ----------- | -------- |
 | data |  |  | &nbsp; |
 
-
-
-
 ##### Returns
-
 
 - `Observable.<User>`  
 
 
 
 #### addUserToProject(userIri, projectIri) 
-
-
-
-
-
 
 ##### Parameters
 
@@ -97,11 +66,7 @@ returns a list of all users
 | userIri | `string`  |  | &nbsp; |
 | projectIri | `string`  |  | &nbsp; |
 
-
-
-
 ##### Returns
-
 
 - `Observable.<User>`  
 
@@ -352,7 +317,3 @@ Sends a logout request to the server and removes any variables.
 
 - `Void`
 
-
-
-
-*Documentation generated with [doxdox](https://github.com/neogeek/doxdox).*

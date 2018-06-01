@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiServiceError, Project, User, UsersService} from '@knora/core';
+import {ApiServiceError, User, UsersService} from '@knora/core';
 import {Example} from '../../../app.interfaces';
 
 @Component({
@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
 
             <ul>
                 <li class="link" *ngFor="let u of allUsers" (click)="getUser(u.email)" >
-                    <strong>{{u.familyName}}: </strong>
+                    <strong>{{u.familyName}}, </strong>
                     {{u.givenName}} ({{u.email}})
                 </li>
             </ul>
@@ -45,28 +45,6 @@ export class UsersComponent implements OnInit {
     allUsers: User[];
 
     user: User;
-
-    tsExampleGetAllUsers = `
-        this.usersService.getAllUsers()
-            .subscribe(
-                (result: User[]) => {
-                    this.allUsers = result;
-                },
-                (error: ApiServiceError) => {
-                    console.error(error);
-                }
-            );`;
-
-    tsExampleGetProjectByEmail = `
-        this.usersService.getUserByEmail(email)
-            .subscribe(
-                (result: User) => {
-                    this.user = result;
-                },
-                (error: ApiServiceError) => {
-                    console.error(error);
-                }
-            );`;
 
     constructor(public usersService: UsersService) {
     }
