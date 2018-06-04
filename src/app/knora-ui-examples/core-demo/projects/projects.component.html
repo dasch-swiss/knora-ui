@@ -1,73 +1,78 @@
-<h3>Projects service</h3>
+<h3>Demo</h3>
+<h2>ProjectsService</h2>
 
-<h4>getAllProjects()</h4>
+<!-- getAllProjects() -->
+<mat-card class="example-viewer">
+    <app-example-viewer [example]="exampleGetAllProjects"></app-example-viewer>
 
-<mat-card-subtitle>Typescript</mat-card-subtitle>
-<pre>
-    <code ngNonBindable [innerHtml]="tsExampleGetAllProjects"></code>
-</pre>
+    <div class="demo">
+        <div *ngIf="allProjects && !projectsService.loading">
+            <mat-card-subtitle>Result</mat-card-subtitle>
 
-<div *ngIf="allProjects && !projectsService.loading">
-    <mat-card-subtitle>Result</mat-card-subtitle>
-
-    <ul>
-        <li class="link" (click)="getProject(p.id)" *ngFor="let p of allProjects"><strong>{{p.shortname}}: </strong>
-            {{p.longname}}
-        </li>
-    </ul>
-
-    <mat-hint>Click on a project to get more information</mat-hint>
-</div>
-
-<!-- ---------------------------------------------------------------------- -->
-
-
-<div *ngIf="project">
-    <hr>
-    <h4>getProjectByIri(<i>{{project?.id}}</i>)</h4>
-
-    <mat-card-subtitle>Typescript</mat-card-subtitle>
-    <pre>
-        <code ngNonBindable [innerHtml]="tsExampleGetProjectByIri"></code>
-    </pre>
-
-    <mat-card-subtitle>Result</mat-card-subtitle>
-
-
-    <div *ngIf="!projectsService.loading && project">
-        <p><strong>{{project.shortcode}} / {{project.shortname}}: </strong> {{project.longname}}</p>
-        <div *ngFor="let d of project.description">
-            <p>({{d.language}})</p>
-            <div [innerHtml]="d.value"></div>
+            <ul>
+                <li *ngFor="let p of allProjects">
+                    <strong>{{p.shortname}}</strong>
+                    ({{p.shortcode}}):
+                    {{p.longname}}
+                </li>
+            </ul>
         </div>
-        <mat-chip-list>
-            <mat-chip class="tag" *ngFor="let k of project.keywords">{{k}}</mat-chip>
-        </mat-chip-list>
     </div>
 
+</mat-card>
+
+<!-- getProjectByShortname() -->
+<mat-card class="example-viewer">
+    <app-example-viewer [example]="exampleGetProjectByShortname"></app-example-viewer>
+
+    <div class="demo">
+        <div *ngIf="project && !projectsService.loading">
+            <mat-card-subtitle>Result</mat-card-subtitle>
+
+            <div *ngIf="project && !projectsService.loading">
+                <p class="mat-card-subtitle">Shortcode / Shortname: Longname</p>
+                <p><strong>{{project.shortcode}} / {{project.shortname}}: </strong> {{project.longname}}</p>
+                <br>
+                <div *ngFor="let d of project.description">
+                    <p class="mat-card-subtitle">Description <span *ngIf="d.language">in {{d.language}}</span></p>
+                    <div [innerHtml]="d.value"></div>
+                </div>
+                <br>
+                <p class="mat-card-subtitle">Keywords</p>
+                <mat-chip-list>
+                    <mat-chip class="tag" *ngFor="let k of project.keywords">{{k}}</mat-chip>
+                </mat-chip-list>
+            </div>
+            <br><br>
+            <p class="mat-card-subtitle">All members of the project</p>
+            <div *ngIf="projectMembers && !projectsService.loading">
+                <ul>
+                    <li *ngFor="let u of projectMembers">
+                        <strong>{{u.familyName}}, </strong>
+                        {{u.givenName}} ({{u.email}})
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</mat-card>
 
 
-
-    <h4>getProjectMembersByIri(<i>{{project?.id}}</i>)</h4>
-
-    <mat-card-subtitle>Typescript</mat-card-subtitle>
-    <pre>
-        <code ngNonBindable [innerHtml]="tsExampleGetProjectMembersByIri"></code>
-    </pre>
-
-    <mat-card-subtitle>Result</mat-card-subtitle>
-
-
-
-    <h4>getProjectMembersByIri({{project?.id}})</h4>
-    <ul>
-        <li *ngFor="let u of projectMembers">{{u.givenName}} <strong>{{u.familyName}}</strong> ({{u.email}})</li>
-    </ul>
-
-</div>
-
+<!--
 <mat-divider></mat-divider>
 
 <button mat-raised-button color="primary" (click)="createNewProject(projectSimData)">
     Create new project
 </button>
+
+-->
+
+
+
+<mat-divider></mat-divider>
+
+<h3>Documentation</h3>
+
+<markdown [src]="'/app/knora-ui-examples/core-demo/projects/README.md'"></markdown>
+
