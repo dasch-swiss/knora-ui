@@ -1,8 +1,13 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {UsersComponent} from './users.component';
-import {MatCardModule, MatInputModule} from '@angular/material';
+import {MatCardModule, MatDividerModule, MatIconModule, MatInputModule, MatTabsModule} from '@angular/material';
 import {KuiCoreModule} from '@knora/core';
+import {ExampleViewerComponent} from '../../../partials/example-viewer/example-viewer.component';
+import {MarkdownModule} from 'ngx-markdown';
+import {HttpClient} from '@angular/common/http';
+import {KuiProgressIndicatorModule} from '../../../../../projects/knora/progress-indicator/src/lib/progress-indicator.module';
+import {ModuleHeaderComponent} from '../../../partials/module-header/module-header.component';
 
 describe('UsersComponent', () => {
     let component: UsersComponent;
@@ -12,10 +17,19 @@ describe('UsersComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 MatCardModule,
+                MatDividerModule,
                 MatInputModule,
-                KuiCoreModule
+                MatIconModule,
+                MatTabsModule,
+                KuiCoreModule,
+                KuiProgressIndicatorModule,
+                MarkdownModule.forRoot({ loader: HttpClient })
             ],
-            declarations: [UsersComponent]
+            declarations: [
+                ExampleViewerComponent,
+                ModuleHeaderComponent,
+                UsersComponent
+            ]
         })
             .compileComponents();
     }));

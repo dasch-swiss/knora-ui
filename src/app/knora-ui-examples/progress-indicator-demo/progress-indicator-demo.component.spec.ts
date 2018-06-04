@@ -4,8 +4,9 @@ import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
 
 import {ModuleHeaderComponent} from '../../partials/module-header/module-header.component';
 import {ProgressIndicatorDemoComponent} from './progress-indicator-demo.component';
-import {RouterTestingModule} from '@angular/router/testing';
 import {ExampleViewerComponent} from '../../partials/example-viewer/example-viewer.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {MarkdownModule} from 'ngx-markdown';
 
 
 describe('ProgressIndicatorDemoComponent', () => {
@@ -15,12 +16,13 @@ describe('ProgressIndicatorDemoComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
+                HttpClientModule,
                 KuiProgressIndicatorModule,
                 MatCardModule,
                 MatIconModule,
                 MatListModule,
                 MatTabsModule,
-                RouterTestingModule
+                MarkdownModule.forRoot({loader: HttpClient})
             ],
             declarations: [
                 ExampleViewerComponent,
