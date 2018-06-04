@@ -132,12 +132,6 @@ export class UsersService extends ApiService {
     }
 
 
-
-    // TODO: create global changePassword method and use it in protected updateUser
-
-
-
-
     // ------------------------------------------------------------------------
     // PUT
     // ------------------------------------------------------------------------
@@ -189,7 +183,6 @@ export class UsersService extends ApiService {
 
 
     updateUsersPassword(userIri: string, requesterPassword: string, newPassword: string): Observable<User> {
-        // TODO do I need the requesterIri as well?
         const data = {
             newPassword: newPassword,
             requesterPassword: requesterPassword
