@@ -1,53 +1,61 @@
 import {DemoModule} from './app.interfaces';
 
 export class AppConfig {
-  public static prefix = 'knora';
-  public static stackblitz = 'https://stackblitz.com/edit/';
-  public static npm = 'https://www.npmjs.com/package/';
-  public static badge = 'https://img.shields.io/npm/v/';
+    public static prefix = 'knora';
+    public static stackblitz = 'https://stackblitz.com/edit/';
+    public static npm = 'https://www.npmjs.com/package/';
+    public static badge = 'https://img.shields.io/npm/v/';
 
 }
 
 export class AppDemo {
 
-  /**
-   * examples of modules, which have an own demo page
-   * @type {{name: string; published: boolean; label: string}}
-   */
-  public static progressIndicator: DemoModule = {
-    'name': 'progress-indicator',
-    'published': true,
-    'label': 'Progress indicator'
-  };
+    /**
+     * examples of modules, which have an own demo page
+     */
+    public static progressIndicator: DemoModule = {
+        name: 'progress-indicator',
+        published: true,
+        label: 'Progress indicator'
+    };
+    public static adminImage: DemoModule = {
+        name: 'admin-image',
+        published: true,
+        label: 'Admin image'
+    };
 
-  public static adminImage: DemoModule = {
-    'name': 'admin-image',
-    'published': true,
-    'label': 'Admin image'
-  };
+    public static actionModule: DemoModule = {
+        name: 'action',
+        published: true,
+        label: 'Action module'
+    };
 
-  public static actionModule: DemoModule = {
-    'name': 'action',
-    'published': true,
-    'label': 'Action module'
-  };
+    public static coreModule: DemoModule = {
+        name: 'core',
+        published: true,
+        label: 'Core module',
+        children: [
+            {
+                name: 'users',
+                label: 'UsersService'
+            },
+            {
+                name: 'projects',
+                label: 'ProjectsService'
+            }
+        ]
+    };
 
-  public static coreModule: DemoModule = {
-    'name': 'core',
-    'published': false,
-    'label': 'Core module'
-  };
+    /* ******************************************************************* */
 
-  /* ******************************************************************* */
+    /**
+     * the following list of modules will be used on the public documentation
+     * @type {DemoModule[]}
+     */
+    public static examples: DemoModule[] = [
+        AppDemo.progressIndicator,
+        AppDemo.coreModule
 
-  /**
-   * the following list of modules will be used on the public documentation
-   * @type {DemoModule[]}
-   */
-  public static examples: DemoModule[] = [
-    AppDemo.progressIndicator,
-    AppDemo.coreModule
-
-  ];
+    ];
 
 }

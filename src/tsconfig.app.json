@@ -5,6 +5,9 @@
     "module": "es2015",
     "types": [],
     "paths": {
+      "@knora/core": [
+        "dist/@knora/core"
+      ],
       "@knora/progress-indicator": [
         "dist/@knora/progress-indicator"
       ]

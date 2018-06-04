@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "knora-gui": {
+    "knora-ui": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,21 +13,28 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/knora-gui",
+            "outputPath": "dist/knora-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/app"
             ],
             "styles": [
+              "node_modules/prismjs/themes/prism-okaidia.css",
               "src/assets/style/mat-teal-amber.scss",
               "src/assets/style/main.scss",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/lib/marked.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-csharp.min.js",
+              "node_modules/prismjs/components/prism-css.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -52,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "knora-gui:build"
+            "browserTarget": "knora-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "knora-gui:build:production"
+              "browserTarget": "knora-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "knora-gui:build"
+            "browserTarget": "knora-ui:build"
           }
         },
         "test": {
@@ -97,7 +104,7 @@
         }
       }
     },
-    "knora-gui-e2e": {
+    "knora-ui-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -105,7 +112,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "knora-gui:serve"
+            "devServerTarget": "knora-ui:serve"
           }
         },
         "lint": {
@@ -200,5 +207,5 @@
       }
     }
   },
-  "defaultProject": "knora-gui"
+  "defaultProject": "knora-ui"
 }

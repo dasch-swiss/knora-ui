@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'kg-progress-indicator',
+  selector: 'kui-progress-indicator',
   templateUrl: './progress-indicator.component.html',
   styleUrls: ['./progress-indicator.component.scss']
 })
-export class ProgressIndicatorComponent implements OnInit {
+export class KuiProgressIndicatorComponent implements OnInit {
 
   /**
    * status is a number

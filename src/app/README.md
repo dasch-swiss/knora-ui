@@ -1,4 +1,4 @@
-# Demo app for Knora-gui modules
+# Demo app for Knora-ui modules
 
-This is a demo app with examples of the knora-gui modules.
+This is a demo app with examples of the knora-ui modules.
 

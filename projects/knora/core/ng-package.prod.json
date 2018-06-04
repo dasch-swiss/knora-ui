@@ -1,6 +1,6 @@
 {
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../../dist/knora/core",
+  "dest": "../../../dist/@knora/core",
   "lib": {
     "entryFile": "src/public_api.ts"
   }

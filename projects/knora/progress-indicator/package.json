@@ -1,15 +1,16 @@
 {
   "name": "@knora/progress-indicator",
-  "version": "1.0.0-rc.0",
-  "description": "Knora gui module",
+  "version": "1.0.0-rc.2",
+  "description": "Knora ui module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dhlab-basel/Knora-gui.git"
+    "url": "https://github.com/dhlab-basel/Knora-ui.git"
   },
   "keywords": [
+    "angular",
     "knora",
-    "salsah",
-    "digital humanities"
+    "digital humanities",
+    "dhlab basel"
   ],
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",

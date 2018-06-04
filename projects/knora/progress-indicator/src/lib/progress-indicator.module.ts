@@ -1,6 +1,6 @@
 /* Copyright © 2018 Digital Humanities Lab, University of Basel
  * in cooperation with the Data and Service Center for the Humanities (DaSCH)
- * This file is part of the Knora gui modules: https://www.npmjs.com/~knora
+ * This file is part of the Knora ui modules: https://www.npmjs.com/~knora
  * Knora is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
  * by the Free Software Foundation, either version 3 of the License, or
@@ -16,7 +16,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatIconModule} from '@angular/material';
-import {ProgressIndicatorComponent} from './progress-indicator.component';
+import {KuiProgressIndicatorComponent} from './progress-indicator.component';
 
 @NgModule({
   imports: [
@@ -26,11 +26,11 @@ import {ProgressIndicatorComponent} from './progress-indicator.component';
     MatIconModule
   ],
   declarations: [
-    ProgressIndicatorComponent
+    KuiProgressIndicatorComponent
   ],
   exports: [
-    ProgressIndicatorComponent
+      KuiProgressIndicatorComponent
   ]
 })
-export class ProgressIndicatorModule {
+export class KuiProgressIndicatorModule {
 }
