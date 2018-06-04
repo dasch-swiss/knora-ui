@@ -23,12 +23,17 @@
 
 .demo-nav {
 
+  .mat-list-item {
+    width: 220px;
+  }
 
   .demo-nav-children {
-    width: 200px;
-    padding-left: 16px;
-    position: absolute;
-    top: 36px;
+    padding-left: 24px;
+
+    .mat-list-item {
+      width: 196px;
+    }
+
   }
 }
 

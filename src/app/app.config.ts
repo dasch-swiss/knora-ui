@@ -32,7 +32,7 @@ export class AppDemo {
 
     public static coreModule: DemoModule = {
         name: 'core',
-        published: false,
+        published: true,
         label: 'Core module',
         children: [
             {
