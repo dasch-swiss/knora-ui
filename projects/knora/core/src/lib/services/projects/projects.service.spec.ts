@@ -1,5 +1,4 @@
 import {async, inject, TestBed} from '@angular/core/testing';
-import {ApiService} from '../api.service';
 import {ProjectsService} from './projects.service';
 import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import {ProjectResponse, ProjectsResponse} from '../../declarations';
@@ -13,6 +12,7 @@ import {
     projectsTestData
 } from 'test-data/shared-test-data';
 import {JsonConvert, OperationMode, ValueCheckingMode} from 'json2typescript';
+import {KuiCoreModule} from '../../core.module';
 
 
 
@@ -20,10 +20,10 @@ describe('ProjectsService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                HttpClientModule
+                HttpClientModule,
+                KuiCoreModule.forRoot({api: '', app: '', media: ''})
             ],
             providers: [
-                ApiService,
                 ProjectsService,
                 HttpClient
             ]

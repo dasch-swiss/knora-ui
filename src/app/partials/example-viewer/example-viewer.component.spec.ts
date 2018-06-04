@@ -29,7 +29,21 @@ describe('ExampleViewerComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it('should create the framework without content', () => {
+        component.example = {
+            title: 'Classic Loader',
+            subtitle: '',
+            name: 'classicLoader',
+            code: {
+                html: `<kui-progress-indicator></kui-progress-indicator>`,
+                ts: '',
+                scss: ''
+            }
+        };
+        expect(fixture.nativeElement.querySelector('mat-card-title').innerText).toEqual('');
+    });
+
+    it('should display original title after detectChanges()', () => {
         component.example = {
             title: 'Classic Loader',
             subtitle: '',
@@ -41,8 +55,8 @@ describe('ExampleViewerComponent', () => {
             }
         };
 
-        expect(component).toBeTruthy();
-//        expect(fixture.nativeElement.querySelector('mat-card-title').innerText).toEqual('');
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('mat-card-title').innerText).toEqual('Classic Loader');
 
     });
 });
