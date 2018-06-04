@@ -16,6 +16,7 @@ export class AppDemo {
     public static progressIndicator: DemoModule = {
         name: 'progress-indicator',
         published: true,
+        stackblitz: true,
         label: 'Progress indicator'
     };
     public static adminImage: DemoModule = {
@@ -33,6 +34,7 @@ export class AppDemo {
     public static coreModule: DemoModule = {
         name: 'core',
         published: true,
+        stackblitz: false,
         label: 'Core module',
         children: [
             {

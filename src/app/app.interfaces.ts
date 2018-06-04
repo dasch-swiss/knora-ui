@@ -28,6 +28,9 @@ export class DemoModule {
     @JsonProperty('published', Boolean, true)
     public published?: boolean = false;
 
+    @JsonProperty('stackblitz', Boolean, true)
+    public stackblitz?: boolean = false;
+
     @JsonProperty('children', [DemoModule], true)
     public children?: DemoModule[] = [];
 }
