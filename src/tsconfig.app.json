@@ -8,6 +8,9 @@
       "@knora/core": [
         "dist/@knora/core"
       ],
+      "@knora/login": [
+        "dist/@knora/login"
+      ],
       "@knora/progress-indicator": [
         "dist/@knora/progress-indicator"
       ]

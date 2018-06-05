@@ -12,6 +12,7 @@ import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
 import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
 import {ExampleViewerComponent} from './partials/example-viewer/example-viewer.component';
+import {LoginComponent} from './knora-ui-examples/login/login.component';
 
 
 const appRoutes: Routes = [
@@ -27,6 +28,10 @@ const appRoutes: Routes = [
             {
                 path: '',
                 component: DemoIntroComponent,
+            },
+            {
+                path: 'login',
+                component: LoginComponent
             },
             {
                 path: 'progress-indicator',

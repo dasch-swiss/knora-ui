@@ -22,7 +22,14 @@ export class AppDemo {
     public static adminImage: DemoModule = {
         name: 'admin-image',
         published: true,
+        stackblitz: false,
         label: 'Admin image'
+    };
+
+    public static loginModule: DemoModule = {
+        name: 'login',
+        published: false,
+        label: 'Login module'
     };
 
     public static actionModule: DemoModule = {
@@ -56,7 +63,8 @@ export class AppDemo {
      */
     public static examples: DemoModule[] = [
         AppDemo.progressIndicator,
-        AppDemo.coreModule
+        AppDemo.coreModule,
+        AppDemo.loginModule
 
     ];
 
