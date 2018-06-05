@@ -4,6 +4,12 @@
 #
 version: 2
 jobs:
+  general:
+    branches:
+      only:
+       - master # list of branches to build
+       - develop
+       - wip/* # or regexes
   build:
     docker:
       - image: angular/ngcontainer:latest
