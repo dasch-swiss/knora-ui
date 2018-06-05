@@ -6,10 +6,10 @@
     "types": [],
     "paths": {
       "@knora/core": [
-        "./lib/core"
+        "dist/@knora/core"
       ],
       "@knora/progress-indicator": [
-        "./lib/progress-indicator"
+        "dist/@knora/progress-indicator"
       ]
     }
   },

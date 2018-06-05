@@ -33,3 +33,25 @@ body {
 .fill-remaining-space {
   flex: 1 1 auto;
 }
+
+.link {
+  cursor: pointer;
+}
+
+.demo {
+  padding: 12px 0;
+}
+
+.example-viewer {
+  margin: 36px auto;
+}
+
+markdown {
+
+  h4 {
+    border-top: 1px solid #323232;
+    padding-top: 24px;
+  }
+
+
+}
