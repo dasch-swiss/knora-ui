@@ -37,7 +37,6 @@ import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indic
 import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
 import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects.component';
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
-import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
 import {ExampleViewerComponent} from './partials/example-viewer/example-viewer.component';
 import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
 
@@ -54,7 +53,6 @@ import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
         CoreDemoComponent,
         ProjectsComponent,
         UsersComponent,
-        AuthenticationComponent,
         ExampleViewerComponent,
         SanitizeHtmlPipe
     ],

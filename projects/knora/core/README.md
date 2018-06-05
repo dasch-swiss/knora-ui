@@ -40,19 +40,17 @@ Send this configuration to the `@knora/core` module in your app.module.ts
 ```
 import {environment} from '../environments/environment';
 
-const AppEnvironment: KuiCoreConfig = {
-    api: environment.api,
-    media: environment.media,
-    app: environment.app
-};
-
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
         BrowserModule,
-        KuiCoreModule.forRoot(AppEnvironment),      <--
+        KuiCoreModule.forRoot({
+            api: environment.api,
+            media: environment.media,
+            app: environment.app
+        }),
         HttpClientModule
     ],
     providers: [ ],
