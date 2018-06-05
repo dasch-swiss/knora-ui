@@ -47,7 +47,14 @@ export class ProjectsComponent implements OnInit {
         </div>`,
             ts: `
             allProjects: Project[];
+            
+            // the services from @knora/core should be public,
+            // if you want to use the loading status in the html template
+            // --> projectsService.loading = true | false
+            constructor(public projectsService: ProjectsService) { }
+
             [...]
+            
             this.projectsService.getAllProjects()
             .subscribe(
                 (result: Project[]) => {
@@ -99,7 +106,14 @@ export class ProjectsComponent implements OnInit {
             ts: `
             project: Project;
             projectMembers: User[];
+                        
+            // the services from @knora/core should be public,
+            // if you want to use the loading status in the html template
+            // --> projectsService.loading = true | false
+            constructor(public projectsService: ProjectsService) { }
+
             [...]
+            
             this.projectsService.getProjectByShortname('incunabula')
             .subscribe(
                 (result: Project) => {

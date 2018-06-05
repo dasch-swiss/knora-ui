@@ -69,7 +69,7 @@ export class Example {
     @JsonProperty('subtitle', String)
     public subtitle: string = undefined;
 
-    @JsonProperty('code', ExampleCode)
+    @JsonProperty('code', ExampleCode, true)
     public code: ExampleCode = undefined;
 
 }
