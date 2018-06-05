@@ -3,13 +3,13 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
-jobs:
-  general:
+general:
     branches:
       only:
        - master # list of branches to build
        - develop
        - wip/* # or regexes
+jobs:
   build:
     docker:
       - image: angular/ngcontainer:latest
