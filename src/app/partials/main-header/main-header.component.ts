@@ -13,11 +13,11 @@ export class MainHeaderComponent implements OnInit {
               private sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
       'knora-icon',
-      sanitizer.bypassSecurityTrustResourceUrl('../../../../assets/images/knora-icon.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/knora-icon.svg')
     );
     iconRegistry.addSvgIcon(
       'github-icon',
-      sanitizer.bypassSecurityTrustResourceUrl('../../../../assets/images/github-icon.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/github-icon.svg')
     );
   }
 
