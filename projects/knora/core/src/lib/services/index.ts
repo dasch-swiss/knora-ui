@@ -8,3 +8,5 @@ export * from './api.service';
  */
 export * from './projects/projects.service';
 export * from './users/users.service';
+export * from './groups/groups.service';
+export * from './lists/lists.service';

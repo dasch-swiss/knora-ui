@@ -21,6 +21,8 @@ import {KuiCoreModule} from '../../core.module';
 })
 export class UsersService extends ApiService {
 
+    private path: string = '/admin/users';
+
     // ------------------------------------------------------------------------
     // GET
     // ------------------------------------------------------------------------
@@ -31,7 +33,7 @@ export class UsersService extends ApiService {
      * @returns {Observable<User[]>}
      */
     getAllUsers(): Observable<User[]> {
-        return this.httpGet('/admin/users').pipe(
+        return this.httpGet(this.path).pipe(
             map((result: ApiServiceResult) => result.getBody(UsersResponse).users),
             catchError(this.handleJsonError)
         );
@@ -43,8 +45,8 @@ export class UsersService extends ApiService {
      * @returns {Observable<User>}
      */
     getUserByEmail(email: string): Observable<User> {
-        const url: string = '/admin/users/' + encodeURIComponent(email) + '?identifier=email';
-        return this.getUser(url);
+        this.path += '/' + encodeURIComponent(email) + '?identifier=email';
+        return this.getUser(this.path);
     }
 
     /**
@@ -53,23 +55,22 @@ export class UsersService extends ApiService {
      * @returns {Observable<User>}
      */
     getUserByIri(iri: string): Observable<User> {
-        const url: string = '/admin/users/' + iri;
-        return this.getUser(url);
+        this.path += '/admin/users/' + encodeURIComponent(iri);
+        return this.getUser(this.path);
     }
 
     /**
      * Helper method combining user retrieval
      *
-     * @param {string} url
+     * @param {string} path
      * @returns {Observable<User>}
      */
-    protected getUser(url: string): Observable<User> {
-        return this.httpGet(url).pipe(
+    protected getUser(path: string): Observable<User> {
+        return this.httpGet(path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
     }
-
 
 
     // ------------------------------------------------------------------------
@@ -82,8 +83,7 @@ export class UsersService extends ApiService {
      * @returns {Observable<User>}
      */
     createUser(data: any): Observable<User> {
-        const url: string = '/admin/users';
-        return this.httpPost(url, data).pipe(
+        return this.httpPost(this.path, data).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
@@ -96,8 +96,8 @@ export class UsersService extends ApiService {
      * @returns {Observable<User>}
      */
     addUserToProject(userIri: string, projectIri: string): Observable<User> {
-        const url: string = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
-        return this.httpPost(url).pipe(
+        this.path += '/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        return this.httpPost(this.path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
@@ -110,8 +110,8 @@ export class UsersService extends ApiService {
      * @returns {Observable<User>}
      */
     addUserToProjectAdmin(userIri: string, projectIri: string): Observable<User> {
-        const url: string = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
-        return this.httpPost(url).pipe(
+        this.path += '/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        return this.httpPost(this.path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
@@ -124,8 +124,8 @@ export class UsersService extends ApiService {
      * @returns {Observable<User>}
      */
     removeUserFromProjectAdmin(userIri: string, projectIri: string): Observable<User> {
-        const url: string = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
-        return this.httpDelete(url).pipe(
+        this.path += '/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        return this.httpDelete(this.path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
@@ -137,7 +137,6 @@ export class UsersService extends ApiService {
     // ------------------------------------------------------------------------
 
 
-
     /**
      *
      * @param {string} userIri
@@ -145,8 +144,8 @@ export class UsersService extends ApiService {
      * @returns {Observable<User>}
      */
     addUserToSystemAdmin(userIri: string, data: any): Observable<User> {
-        const url: string = '/admin/users/' + encodeURIComponent(userIri);
-        return this.httpPut(url, data).pipe(
+        this.path += '/' + encodeURIComponent(userIri);
+        return this.httpPut(this.path, data).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
@@ -199,9 +198,9 @@ export class UsersService extends ApiService {
      */
     updateUser(userIri: string, data: any): Observable<User> {
 
-        const url: string = '/admin/users/' + encodeURIComponent(userIri);
+        this.path += '/' + encodeURIComponent(userIri);
 
-        return this.httpPut(url, data).pipe(
+        return this.httpPut(this.path, data).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
@@ -217,8 +216,8 @@ export class UsersService extends ApiService {
      * @returns {Observable<User>}
      */
     deleteUser(userIri: string): Observable<User> {
-        const url: string = '/admin/users/' + encodeURIComponent(userIri);
-        return this.httpDelete(url).pipe(
+        this.path += '/' + encodeURIComponent(userIri);
+        return this.httpDelete(this.path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
@@ -232,8 +231,8 @@ export class UsersService extends ApiService {
      * @returns {Observable<User>}
      */
     removeUserFromProject(userIri: string, projectIri: string): Observable<User> {
-        const url: string = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
-        return this.httpDelete(url).pipe(
+        this.path += '/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        return this.httpDelete(this.path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );

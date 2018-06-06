@@ -10,14 +10,14 @@ import {KuiCoreModule} from '../../core.module';
 })
 export class GroupsService extends ApiService {
 
-    private url: string = '/admin/groups/';
+    private path: string = '/admin/groups/';
 
     /**
      *
      * @returns {Observable<Group[]>}
      */
     getAllGroups(): Observable<Group[]> {
-        return this.httpGet(this.url).pipe(
+        return this.httpGet(this.path).pipe(
             map((result: ApiServiceResult) => result.getBody(GroupsResponse).groups),
             catchError(this.handleJsonError)
         );
@@ -29,9 +29,9 @@ export class GroupsService extends ApiService {
      * @returns {Observable<Group>}
      */
     getGroupByIri(iri: string): Observable<Group> {
-        this.url += encodeURIComponent(iri);
+        this.path += encodeURIComponent(iri);
 
-        return this.httpGet(this.url).pipe(
+        return this.httpGet(this.path).pipe(
             map((result: ApiServiceResult) => result.getBody(GroupsResponse).group),
             catchError(this.handleJsonError)
         );

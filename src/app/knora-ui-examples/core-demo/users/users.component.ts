@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiServiceError, AuthenticationRequestPayload, User, UsersService } from '@knora/core';
-import { Example } from '../../../app.interfaces';
+import {Component, OnInit} from '@angular/core';
+import {ApiServiceError, AuthenticationRequestPayload, User, UsersService} from '@knora/core';
+import {Example} from '../../../app.interfaces';
 
 @Component({
     selector: 'app-users',
@@ -8,7 +8,7 @@ import { Example } from '../../../app.interfaces';
     styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-    
+
     exampleGetAllUsers: Example = {
         title: 'getAllUsers()',
         subtitle: 'returns a list of all users in Knora',
@@ -79,7 +79,7 @@ export class UsersComponent implements OnInit {
             );`,
             scss: ``
         }
-    }
+    };
 
     userSimData: AuthenticationRequestPayload = {
         email: 'root@example.com',
