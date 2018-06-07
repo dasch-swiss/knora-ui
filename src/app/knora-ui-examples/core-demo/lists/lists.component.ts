@@ -1,5 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiServiceError, Group, List, ListsService} from '@knora/core';
+import {FlatTreeControl} from '@angular/cdk/tree';
+
+class ListNode {
+    label: string;
+    children: ListNode[];
+    type: any;
+}
 
 @Component({
     selector: 'app-lists',
@@ -11,6 +18,8 @@ export class ListsComponent implements OnInit {
     projectIri: string = 'http://rdfh.ch/projects/00FF';
 
     projectLists: List[];
+
+    treeControl: FlatTreeControl<ListNode>;
 
     constructor(public listsService: ListsService) {
     }

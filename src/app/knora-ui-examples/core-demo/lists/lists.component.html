@@ -1,8 +1,11 @@
 <div *ngIf="projectLists && !listsService.loading">
     <h4>List of all lists from project ({{projectIri}})</h4>
 
+    <!-- here should be a tree with the content of the lists result -->
+    <!-- I'm testing it in material/tree -->
+    <!--
     <ul>
-        <li class="link" *ngFor="let l of projectLists"> <!--(click)="getGroupByIri(g.id)">-->
+        <li class="link" *ngFor="let l of projectLists"> <!--(click)="getGroupByIri(g.id)">--
             <strong>{{l.listinfo.labels}}</strong>
             <ul>
                 <li *ngFor="let child of l.children">
@@ -11,4 +14,5 @@
             </ul>
         </li>
     </ul>
+    -->
 </div>

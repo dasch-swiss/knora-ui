@@ -13,6 +13,7 @@ import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
 import {ListsComponent} from './knora-ui-examples/core-demo/lists/lists.component';
 import {GroupsComponent} from './knora-ui-examples/core-demo/groups/groups.component';
+import {TreeComponent} from './material/tree/tree.component';
 
 
 const appRoutes: Routes = [
@@ -61,7 +62,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'test',
-        component: ExampleViewerComponent
+        component: TreeComponent
     }
     /*
         {
