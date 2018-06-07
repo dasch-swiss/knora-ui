@@ -14,6 +14,7 @@ import {UsersComponent} from './knora-ui-examples/core-demo/users/users.componen
 import {ListsComponent} from './knora-ui-examples/core-demo/lists/lists.component';
 import {GroupsComponent} from './knora-ui-examples/core-demo/groups/groups.component';
 import {TreeComponent} from './material/tree/tree.component';
+import {ResourceComponent} from './knora-ui-examples/core-demo/resource/resource.component';
 
 
 const appRoutes: Routes = [
@@ -55,6 +56,10 @@ const appRoutes: Routes = [
                         path: 'lists',
                         component: ListsComponent
                     },
+                    {
+                        path: 'resource',
+                        component: ResourceComponent
+                    }
 
                 ]
             }

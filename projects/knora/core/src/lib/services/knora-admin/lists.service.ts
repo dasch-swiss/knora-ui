@@ -15,7 +15,7 @@ import {
     ListInfoUpdatePayload,
     ListNodeInfo,
     ListNodeInfoResponse
-} from '../../declarations';
+} from '../../declarations/index';
 import {catchError, map} from 'rxjs/operators';
 
 @Injectable({

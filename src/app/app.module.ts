@@ -42,6 +42,7 @@ import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
 import { GroupsComponent } from './knora-ui-examples/core-demo/groups/groups.component';
 import { ListsComponent } from './knora-ui-examples/core-demo/lists/lists.component';
 import { TreeComponent } from './material/tree/tree.component';
+import { ResourceComponent } from './knora-ui-examples/core-demo/resource/resource.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { TreeComponent } from './material/tree/tree.component';
         SanitizeHtmlPipe,
         GroupsComponent,
         ListsComponent,
-        TreeComponent
+        TreeComponent,
+        ResourceComponent
     ],
     imports: [
         BrowserModule,

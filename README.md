@@ -20,6 +20,12 @@ Now we can create a library module quite easy. Please use the following command 
 
 `$ ng generate library @knora/[module-name] --prefix=kui`
 
+If you want to add more components, services and so on to this library, you can do it with:
+
+`$ ng generate component [path/in/your/module/][name-of-component] --project @knora/[module-name]`
+
+It puts the component or the service into `lib/` directly. Otherwise you can define a path inside of `lib/`.
+
 ### Install the demo app
 
 ```

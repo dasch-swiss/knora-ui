@@ -1,7 +1,7 @@
 import {async, inject, TestBed} from '@angular/core/testing';
 import {ProjectsService} from './projects.service';
 import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
-import {ProjectResponse, ProjectsResponse} from '../../declarations';
+import {ProjectResponse, ProjectsResponse} from '../../declarations/index';
 import {
     anythingProject,
     anythingProjectResponseJson,

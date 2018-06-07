@@ -12,7 +12,7 @@ import {
     User,
     UserResponse,
     UsersResponse
-} from '../../declarations';
+} from '../../declarations/index';
 
 import {KuiCoreModule} from '../../core.module';
 

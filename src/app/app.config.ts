@@ -53,6 +53,10 @@ export class AppDemo {
                 name: 'lists',
                 label: 'ListsService'
             },
+            {
+                name: 'resource',
+                label: 'ResourceService'
+            }
         ]
     };
 
