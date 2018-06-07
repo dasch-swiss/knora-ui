@@ -1,3 +1,18 @@
-<p>
-  dashboard works!
-</p>
+<h2>Project dashboard</h2>
+
+<!-- get project by shortname -->
+<mat-card>
+    <div *ngIf="project">
+        <mat-card-title>
+            {{project.shortname}} 
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{project.longname}} ({{project.shortcode}})
+        </mat-card-subtitle>
+        <mat-card-content>
+            <div *ngFor="let description of project.description">
+                {{description.value}}
+            </div>
+        </mat-card-content>
+    </div>
+</mat-card>
