@@ -39,6 +39,8 @@ import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
 import {ExampleViewerComponent} from './partials/example-viewer/example-viewer.component';
 import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
+import { GroupsComponent } from './knora-ui-examples/core-demo/groups/groups.component';
+import { ListsComponent } from './knora-ui-examples/core-demo/lists/lists.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
         ProjectsComponent,
         UsersComponent,
         ExampleViewerComponent,
-        SanitizeHtmlPipe
+        SanitizeHtmlPipe,
+        GroupsComponent,
+        ListsComponent
     ],
     imports: [
         BrowserModule,

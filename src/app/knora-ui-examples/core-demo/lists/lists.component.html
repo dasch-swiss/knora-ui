@@ -1,0 +1,14 @@
+<div *ngIf="projectLists && !listsService.loading">
+    <h4>List of all lists from project ({{projectIri}})</h4>
+
+    <ul>
+        <li class="link" *ngFor="let l of projectLists"> <!--(click)="getGroupByIri(g.id)">-->
+            <strong>{{l.listinfo.labels}}</strong>
+            <ul>
+                <li *ngFor="let child of l.children">
+                    {{child.label}}
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

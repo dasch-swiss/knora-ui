@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {ApiService} from '../api.service';
-import {ApiServiceResult, Group, GroupsResponse} from '../../declarations';
+import {ApiServiceResult, Group, GroupResponse, GroupsResponse} from '../../declarations';
 import {KuiCoreModule} from '../../core.module';
 
 @Injectable({
@@ -10,7 +10,7 @@ import {KuiCoreModule} from '../../core.module';
 })
 export class GroupsService extends ApiService {
 
-    private path: string = '/admin/groups/';
+    private path: string = '/admin/groups';
 
     /**
      *
@@ -29,10 +29,10 @@ export class GroupsService extends ApiService {
      * @returns {Observable<Group>}
      */
     getGroupByIri(iri: string): Observable<Group> {
-        this.path += encodeURIComponent(iri);
+        this.path += '/' + encodeURIComponent(iri);
 
         return this.httpGet(this.path).pipe(
-            map((result: ApiServiceResult) => result.getBody(GroupsResponse).group),
+            map((result: ApiServiceResult) => result.getBody(GroupResponse).group),
             catchError(this.handleJsonError)
         );
     }

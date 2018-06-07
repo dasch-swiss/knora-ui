@@ -44,7 +44,15 @@ export class AppDemo {
             {
                 name: 'projects',
                 label: 'ProjectsService'
-            }
+            },
+            {
+                name: 'groups',
+                label: 'GroupsService'
+            },
+            {
+                name: 'lists',
+                label: 'ListsService'
+            },
         ]
     };
 
