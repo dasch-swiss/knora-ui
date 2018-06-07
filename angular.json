@@ -245,6 +245,46 @@
           }
         }
       }
+    },
+    "@knora/project": {
+      "root": "projects/knora/project",
+      "sourceRoot": "projects/knora/project/src",
+      "projectType": "library",
+      "prefix": "kui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/knora/project/tsconfig.lib.json",
+            "project": "projects/knora/project/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/knora/project/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/knora/project/src/test.ts",
+            "tsConfig": "projects/knora/project/tsconfig.spec.json",
+            "karmaConfig": "projects/knora/project/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/knora/project/tsconfig.lib.json",
+              "projects/knora/project/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "knora-ui"

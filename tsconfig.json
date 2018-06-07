@@ -25,6 +25,9 @@
       ],
       "@knora/login": [
         "dist/@knora/login"
+      ],
+      "@knora/project": [
+        "dist/@knora/project"
       ]
     }
   }
