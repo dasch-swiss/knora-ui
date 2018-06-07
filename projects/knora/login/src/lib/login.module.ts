@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
 import {LoginComponent} from './login.component';
+import {LogoutComponent} from './logout/logout.component';
 
 @NgModule({
     imports: [
@@ -17,10 +18,12 @@ import {LoginComponent} from './login.component';
         KuiProgressIndicatorModule
     ],
     declarations: [
-        LoginComponent
+        LoginComponent,
+        LogoutComponent
     ],
     exports: [
-        LoginComponent
+        LoginComponent,
+        LogoutComponent
     ]
 })
 export class KuiLoginModule {

@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
     errorMessage: any;
     isLoading = false;
+    isLoggin: boolean = false;
 
     loginErrorUser = false;
     loginErrorPw = false;
