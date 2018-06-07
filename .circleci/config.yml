@@ -4,11 +4,9 @@
 #
 version: 2
 general:
-    branches:
-      only:
-       - master # list of branches to build
-       - develop
-       - wip/* # or regexes
+  branches:
+    ignore:
+      - gh-pages
 jobs:
   build:
     docker:
