@@ -2,61 +2,12 @@ import {Injectable} from '@angular/core';
 import {KuiCoreModule} from '../../core.module';
 import {OntologyService} from './ontology.service';
 import {Observable} from 'rxjs';
-import {ApiServiceResult} from '../../declarations';
+import {ApiServiceResult, KnoraConstants, Utils} from '../../declarations';
+
+import {forkJoin} from 'rxjs';
 
 
-export class KnoraConstants {
-
-    public static api: string = 'http://api.knora.org/ontology/knora-api';
-    public static PathSeparator = '#';
-
-    public static KnoraApiV2WithValueObjectPath: string = KnoraConstants.api + '/v2' + KnoraConstants.PathSeparator;
-
-    public static SalsahGuiOntology = 'http://api.knora.org/ontology/salsah-gui/v2';
-    public static StandoffOntology = 'http://api.knora.org/ontology/standoff/v2';
-
-    public static RdfsLabel = 'http://www.w3.org/2000/01/rdf-schema#label';
-
-    public static Resource: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Resource';
-    public static TextValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'TextValue';
-    public static IntValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'IntValue';
-    public static BooleanValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'BooleanValue';
-    public static UriValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'UriValue';
-    public static DecimalValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'DecimalValue';
-    public static DateValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'DateValue';
-    public static ColorValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ColorValue';
-    public static GeomValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'GeomValue';
-    public static ListValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ListValue';
-    public static IntervalValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'IntervalValue';
-    public static LinkValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'LinkValue';
-    public static GeonameValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'GeonameValue';
-    public static FileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'FileValue';
-    public static AudioFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'AudioFileValue';
-    public static DDDFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'DDDFileValue';
-    public static DocumentFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'DocumentFileValue';
-    public static StillImageFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'StillImageFileValue';
-    public static MovingImageFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'MovingImageFileValue';
-    public static TextFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'TextFileValue';
-    public static IsResourceClass: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isResourceClass';
-    public static IsValueClass: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isValueClass';
-    public static ForbiddenResource: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ForbiddenResource';
-    public static XMLToStandoffMapping: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'XMLToStandoffMapping';
-    public static ListNode: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ListNode';
-    public static ObjectType = KnoraConstants.KnoraApiV2WithValueObjectPath + 'objectType';
-
-    public static owl: string = 'http://www.w3.org/2002/07/owl';
-
-    public static OwlClass: string = KnoraConstants.owl + '#Class';
-    public static OwlObjectProperty: string = KnoraConstants.owl + '#ObjectProperty';
-    public static OwlDatatypeProperty: string = KnoraConstants.owl + '#DatatypeProperty';
-    public static OwlAnnotationProperty: string = KnoraConstants.owl + '#AnnotationProperty';
-    public static OwlOnProperty: string = KnoraConstants.owl + '#onProperty';
-    public static OwlMaxCardinality: string = KnoraConstants.owl + '#maxCardinality';
-    public static OwlMinCardinality: string = KnoraConstants.owl + '#minCardinality';
-    public static OwlCardinality: string = KnoraConstants.owl + '#cardinality';
-    public static OwlRestriction = KnoraConstants.owl + '#Restriction';
-}
-
+const jsonld = require('jsonld');
 
 /**
  * Represents an error occurred in OntologyCacheService.
@@ -231,11 +182,14 @@ export class OntologyInformation {
 
     /**
      *
-     * @param {ResourceClassIrisForOntology} resourceClassesForOntology all resource class Iris for a given ontology. TODO: can this be removed?
+     * @param {ResourceClassIrisForOntology} resourceClassesForOntology all
+     * resource class Iris for a given ontology. TODO: can this be removed?
      * @param {ResourceClasses} resourceClasses resource class definitions.
      * @param {Properties} properties property definitions.
      */
-    constructor(private resourceClassesForOntology: ResourceClassIrisForOntology, private resourceClasses: ResourceClasses, private properties: Properties) {
+    constructor(private resourceClassesForOntology: ResourceClassIrisForOntology,
+                private resourceClasses: ResourceClasses,
+                private properties: Properties) {
     }
 
     /**
@@ -250,6 +204,7 @@ export class OntologyInformation {
         // update resourceClassIrisForOntology
         const newResourceClassesForOntology = ontologyInfo.getResourceClassForOntology();
 
+        // TODO: fix this error with 'for loop' --> (must be filtered with an if statement!?)
         for (const newResClassForOntology in newResourceClassesForOntology) {
             this.resourceClassesForOntology[newResClassForOntology] = newResourceClassesForOntology[newResClassForOntology];
         }
@@ -393,7 +348,11 @@ export class OntologyCacheService {
     private excludedProperties: Array<string> = [KnoraConstants.RdfsLabel];
 
     // class definitions that are not be treated as Knora resource classes
-    private nonResourceClasses: Array<string> = [KnoraConstants.ForbiddenResource, KnoraConstants.XMLToStandoffMapping, KnoraConstants.ListNode];
+    private nonResourceClasses: Array<string> = [
+        KnoraConstants.ForbiddenResource,
+        KnoraConstants.XMLToStandoffMapping,
+        KnoraConstants.ListNode
+    ];
 
     private cacheOntology: OntologyCache = new OntologyCache();
 
@@ -406,6 +365,7 @@ export class OntologyCacheService {
      @returns {Observable<any>} an Observable representing the required information.
      */
     private getOntologiesMetadataFromKnora(): Observable<object> {
+        // TODO: Property 'flatMap' does not exist on type 'Observable<ApiServiceResult>'
         const ontoResponse = this._ontologyService.getOntologiesMetadata().flatMap(
             // this would return an Observable of a PromiseObservable -> combine them into one Observable
             // http://reactivex.io/documentation/operators/flatmap.html
@@ -417,6 +377,7 @@ export class OntologyCacheService {
 
                 // convert promise to Observable and return it
                 // https://www.learnrxjs.io/operators/creation/frompromise.html
+                // TODO: Property 'fromPromise' does not exist on type 'typeof Observable'
                 return Observable.fromPromise(ontPromise);
             }
         );
@@ -430,7 +391,7 @@ export class OntologyCacheService {
      * @param ontologyIri the Iri of the requested ontology.
      */
     private getAllEntityDefinitionsForOntologyFromKnora(ontologyIri: string): Observable<object> {
-
+        // TODO: Property 'flatMap' does not exist on type 'Observable<ApiServiceResult>'
         return this._ontologyService.getAllEntityDefinitionsForOntologies(ontologyIri).flatMap(
             // this would return an Observable of a PromiseObservable -> combine them into one Observable
             // http://reactivex.io/documentation/operators/flatmap.html
@@ -442,6 +403,7 @@ export class OntologyCacheService {
 
                 // convert promise to Observable and return it
                 // https://www.learnrxjs.io/operators/creation/frompromise.html
+                // TODO: Property 'fromPromise' does not exist on type 'typeof Observable'
                 return Observable.fromPromise(ontPromise);
             }
         );
@@ -592,14 +554,29 @@ export class OntologyCacheService {
 
                         // get occurrence
                         if (curCard[KnoraConstants.OwlMinCardinality] !== undefined) {
-                            newCard = new Cardinality(CardinalityOccurrence.minCard, curCard[KnoraConstants.OwlMinCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
+                            newCard = new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                curCard[KnoraConstants.OwlMinCardinality],
+                                curCard[KnoraConstants.OwlOnProperty]['@id']
+                            );
                         } else if (curCard[KnoraConstants.OwlCardinality] !== undefined) {
-                            newCard = new Cardinality(CardinalityOccurrence.card, curCard[KnoraConstants.OwlCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
+                            newCard = new Cardinality(
+                                CardinalityOccurrence.card,
+                                curCard[KnoraConstants.OwlCardinality],
+                                curCard[KnoraConstants.OwlOnProperty]['@id']
+                            );
                         } else if (curCard[KnoraConstants.OwlMaxCardinality] !== undefined) {
-                            newCard = new Cardinality(CardinalityOccurrence.maxCard, curCard[KnoraConstants.OwlMaxCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
+                            newCard = new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                curCard[KnoraConstants.OwlMaxCardinality],
+                                curCard[KnoraConstants.OwlOnProperty]['@id']
+                            );
                         } else {
                             // no known occurrence found
-                            throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[KnoraConstants.OwlOnProperty]}`);
+                            throw new TypeError(
+                                `cardinality type invalid for ${resClass['@id']}
+                                ${curCard[KnoraConstants.OwlOnProperty]}`
+                            );
                         }
 
                         // add cardinality

@@ -14,11 +14,12 @@ export class ResourceService extends ApiService {
     getResource(iri): Observable<ApiServiceResult> {
 
         const path: string = '/v2/resources/' + encodeURIComponent(iri);
-
+/*
         return this.httpGet(path).pipe(
             map((result: ApiServiceResult) => result.getBody()),
             catchError(this.handleJsonError)
         );
-        // return this.httpGet('/resources/' + encodeURIComponent(iri));
+*/
+        return this.httpGet(path);
     }
 }
