@@ -81,7 +81,7 @@ adminModule
 * user
 * dashboard??
 
-frameworkModule (should be renamed)
+frameworkModule
 * framework_for_listings
 * main_framework (with header, footer, internationalization)
 
