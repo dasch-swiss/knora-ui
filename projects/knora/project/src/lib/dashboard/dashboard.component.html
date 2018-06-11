@@ -1,5 +1,39 @@
 <h2>Project dashboard</h2>
 
+<!-- get a list of all projects -->
+<!-- <div *ngFor="let p of allProjects">
+    <div *ngIf="p.status == true">
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{p.shortname}} ({{p.shortcode}})
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{p.longname}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div *ngFor="let d of p.description">
+                    <mat-panel-description>
+                        DESCRIPTION: {{d.value}}
+                    </mat-panel-description>
+                </div><br>
+                <mat-panel-description>
+                    KEYWORDS: 
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let tag of p.keywords">
+                            {{tag}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </mat-panel-description>
+                <mat-panel-description>
+                    ONTOLOGIES: {{p.ontologies}} 
+                </mat-panel-description>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div> -->
+
 <!-- get project by shortname -->
 <mat-card>
     <div *ngIf="project">
@@ -16,3 +50,52 @@
         </mat-card-content>
     </div>
 </mat-card>
+
+<mat-divider></mat-divider>
+
+<!-- get project members by shortname -->
+<mat-card>
+    <mat-card-title>Members of the project "incunabula"</mat-card-title>
+    <div *ngFor="let m of projectMembers">
+        <mat-list role="list">
+            <mat-list-item>{{m.email}}</mat-list-item>
+        </mat-list>
+    </div>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<mat-card>
+    <mat-card-title>Keywords</mat-card-title>
+    <mat-chip-list>
+        <mat-chip *ngFor="let k of project.keywords">
+            {{k}}
+        </mat-chip>
+    </mat-chip-list>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<mat-card>
+    <mat-card-title>
+        Ontologies
+    </mat-card-title>
+    <mat-card-content>
+        {{project.ontologies}}
+    </mat-card-content>
+</mat-card>
+
+
+<mat-divider></mat-divider>
+
+<mat-card>
+    <div *ngIf="project.status === true; else desactivated">
+        <mat-card-title>Status: activated</mat-card-title>
+    </div>
+    <ng-template #desactivated>
+        <mat-card-title>
+            Status: desactivated
+        </mat-card-title>
+    </ng-template>
+</mat-card>
+

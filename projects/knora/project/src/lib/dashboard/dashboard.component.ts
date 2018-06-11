@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiServiceError, ProjectsService, Project} from '@knora/core';
+import {ApiServiceError, ProjectsService, Project, User} from '@knora/core';
 
 @Component({
   selector: 'kui-dashboard',
@@ -9,12 +9,16 @@ import {ApiServiceError, ProjectsService, Project} from '@knora/core';
 export class DashboardComponent implements OnInit {
 
   project: Project;
+  allProjects: Project[] = [];
+  projectMembers: User[] = [];
 
   constructor(
     private _projectsService: ProjectsService) { }
 
   ngOnInit() {
     this.getProjectByShortname('incunabula');
+    this.getProjects();
+    this.getProjectMembersByShortname('incunabula');
   }
 
   getProjectByShortname(shortname: string) {
@@ -26,6 +30,28 @@ export class DashboardComponent implements OnInit {
             console.error(error);
         }
     );
-}
+  }
+
+  getProjects() {
+    this._projectsService.getAllProjects()
+      .subscribe((result: Project[]) => {
+        this.allProjects = result;
+      },
+      (error: ApiServiceError) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getProjectMembersByShortname(shortname: string) {
+    this._projectsService.getProjectMembersByShortname(shortname)
+      .subscribe((result: User[]) => {
+        this.projectMembers = result;
+      },
+      (error: ApiServiceError) => {
+        console.error(error);
+      }
+    );
+  }
 
 }
