@@ -38,3 +38,63 @@ The demo app runs on http://localhost:4200 and we use it on this repository's [G
 
 This repository replaces the [salsah-modules](https://github.com/dhlab-basel/salsah-modules).
 
+## Knora module structure
+
+coreModule
+* services (for API requests)
+* constants & utils (to work with Knora)
+* properties
+
+actionModule
+* buttons & buttons
+* progress-indicator
+* progress-stepper
+* message
+* directives & pipes??
+* dialog??
+
+authenticationModule
+* login
+* logout
+
+searchModule
+* search results
+* search panel incl. search action (like adding a collection)
+
+formModule
+* contact_form
+* list_form
+* edit_resource_class_form
+* new_resource_class_form
+* resource_class_form
+* resource_form
+* ontology_form
+* project_form
+* user_form
+
+viewerModule
+* object viewer
+
+adminModule
+* project
+* system
+* user
+* dashboard??
+
+frameworkModule (should be renamed)
+* framework_for_listings
+* main_framework (with header, footer, internationalization)
+
+listingModule
+* collections-list
+* lists-list
+* ontologies-list
+* projects_list
+* resource-grid-list
+* resource-types-list
+* resources-list
+* users-list
+
+appModule
+
+testModule
