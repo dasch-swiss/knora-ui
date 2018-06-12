@@ -57,10 +57,6 @@ const appRoutes: Routes = [
 
                 children: [
                     {
-                        path: 'authentication',
-                        component: AuthenticationComponent
-                    },
-                    {
                         path: 'projects',
                         component: ProjectsComponent
                     },

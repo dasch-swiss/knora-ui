@@ -44,6 +44,9 @@ import {UsersComponent} from './knora-ui-examples/core-demo/users/users.componen
 import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
 import {ExampleViewerComponent} from './partials/example-viewer/example-viewer.component';
 import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
+import {LoginComponent} from './knora-ui-examples/login/login.component';
+import {ProjectComponent} from './knora-ui-examples/project/project.component';
+
 
 
 @NgModule({
@@ -60,7 +63,9 @@ import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
         UsersComponent,
         AuthenticationComponent,
         ExampleViewerComponent,
-        SanitizeHtmlPipe
+        SanitizeHtmlPipe,
+        LoginComponent,
+        ProjectComponent
     ],
     imports: [
         BrowserModule,

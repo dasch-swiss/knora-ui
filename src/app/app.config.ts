@@ -22,6 +22,7 @@ export class AppDemo {
     public static adminImage: DemoModule = {
         name: 'admin-image',
         published: true,
+        stackblitz: false,
         label: 'Admin image'
     };
 
