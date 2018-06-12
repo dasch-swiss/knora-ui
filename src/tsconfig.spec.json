@@ -8,12 +8,18 @@
       "node"
     ],
     "paths": {
-        "@knora/core": [
-            "dist/@knora/core"
-        ],
-        "@knora/progress-indicator": [
-            "dist/@knora/progress-indicator"
-        ]
+      "@knora/core": [
+        "dist/@knora/core"
+      ],
+      "@knora/authentication": [
+        "dist/@knora/authentication"
+      ],
+      "@knora/project": [
+        "dist/@knora/project"
+      ],
+      "@knora/progress-indicator": [
+        "dist/@knora/progress-indicator"
+      ]
     }
   },
   "files": [

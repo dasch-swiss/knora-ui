@@ -13,7 +13,9 @@ import {MaterialModule} from './material-module';
 
 // import the knora-ui modules
 import {KuiCoreConfig, KuiCoreModule} from '@knora/core';
+import {KuiAuthenticationModule} from '@knora/authentication';
 import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
+import {KuiProjectModule} from '@knora/project';
 
 // set up the environment configuration
 import {environment} from '../environments/environment';
@@ -40,6 +42,9 @@ import {UsersComponent} from './knora-ui-examples/core-demo/users/users.componen
 import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
 import {ExampleViewerComponent} from './partials/example-viewer/example-viewer.component';
 import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
+import {LoginComponent} from './knora-ui-examples/login/login.component';
+import {ProjectComponent} from './knora-ui-examples/project/project.component';
+
 
 
 @NgModule({
@@ -56,7 +61,9 @@ import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
         UsersComponent,
         AuthenticationComponent,
         ExampleViewerComponent,
-        SanitizeHtmlPipe
+        SanitizeHtmlPipe,
+        LoginComponent,
+        ProjectComponent
     ],
     imports: [
         BrowserModule,
@@ -64,6 +71,8 @@ import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
         AppRoutingModule,
         KuiCoreModule.forRoot(AppEnvironment),
         KuiProgressIndicatorModule,
+        KuiAuthenticationModule,
+        KuiProjectModule,
         MaterialModule,
         HttpClientModule,
         MarkdownModule.forRoot({ loader: HttpClient })

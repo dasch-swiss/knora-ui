@@ -22,6 +22,12 @@
       ],
       "@knora/progress-indicator": [
         "dist/@knora/progress-indicator"
+      ],
+      "@knora/authentication": [
+        "dist/@knora/authentication"
+      ],
+      "@knora/project": [
+        "dist/@knora/project"
       ]
     }
   }

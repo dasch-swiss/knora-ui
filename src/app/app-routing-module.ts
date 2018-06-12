@@ -12,7 +12,8 @@ import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
 import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
 import {ExampleViewerComponent} from './partials/example-viewer/example-viewer.component';
-
+import {LoginComponent} from './knora-ui-examples/login/login.component';
+import {ProjectComponent} from './knora-ui-examples/project/project.component';
 
 const appRoutes: Routes = [
     {
@@ -29,6 +30,14 @@ const appRoutes: Routes = [
                 component: DemoIntroComponent,
             },
             {
+                path: 'authentication',
+                component: LoginComponent
+            },
+            {
+                path: 'project',
+                component: ProjectComponent
+            },
+            {
                 path: 'progress-indicator',
                 component: ProgressIndicatorDemoComponent
             },
@@ -37,10 +46,6 @@ const appRoutes: Routes = [
                 component: CoreDemoComponent,
 
                 children: [
-                    {
-                        path: 'authentication',
-                        component: AuthenticationComponent
-                    },
                     {
                         path: 'projects',
                         component: ProjectsComponent
