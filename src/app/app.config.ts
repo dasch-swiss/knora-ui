@@ -49,10 +49,10 @@ export class AppDemo {
         ]
     };
 
-    public static loginModule: DemoModule = {
-        name: 'login',
+    public static authenticationModule: DemoModule = {
+        name: 'authentication',
         published: false,
-        label: 'Login module'
+        label: 'Authentication module'
     };
 
     public static projectModule: DemoModule = {
@@ -70,7 +70,7 @@ export class AppDemo {
     public static examples: DemoModule[] = [
         AppDemo.progressIndicator,
         AppDemo.coreModule,
-        AppDemo.loginModule,
+        AppDemo.authenticationModule,
         AppDemo.projectModule
 
     ];

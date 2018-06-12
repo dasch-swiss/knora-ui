@@ -30,7 +30,7 @@ const appRoutes: Routes = [
                 component: DemoIntroComponent,
             },
             {
-                path: 'login',
+                path: 'authentication',
                 component: LoginComponent
             },
             {
@@ -46,10 +46,6 @@ const appRoutes: Routes = [
                 component: CoreDemoComponent,
 
                 children: [
-                    {
-                        path: 'authentication',
-                        component: AuthenticationComponent
-                    },
                     {
                         path: 'projects',
                         component: ProjectsComponent

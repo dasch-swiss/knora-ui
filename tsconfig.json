@@ -23,8 +23,8 @@
       "@knora/progress-indicator": [
         "dist/@knora/progress-indicator"
       ],
-      "@knora/login": [
-        "dist/@knora/login"
+      "@knora/authentication": [
+        "dist/@knora/authentication"
       ],
       "@knora/project": [
         "dist/@knora/project"

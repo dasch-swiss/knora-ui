@@ -13,7 +13,7 @@ import {MaterialModule} from './material-module';
 
 // import the knora-ui modules
 import {KuiCoreConfig, KuiCoreModule} from '@knora/core';
-import {KuiLoginModule} from '@knora/login';
+import {KuiAuthenticationModule} from '@knora/authentication';
 import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
 import {KuiProjectModule} from '@knora/project';
 
@@ -71,7 +71,7 @@ import {ProjectComponent} from './knora-ui-examples/project/project.component';
         AppRoutingModule,
         KuiCoreModule.forRoot(AppEnvironment),
         KuiProgressIndicatorModule,
-        KuiLoginModule,
+        KuiAuthenticationModule,
         KuiProjectModule,
         MaterialModule,
         HttpClientModule,

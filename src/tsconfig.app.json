@@ -8,8 +8,8 @@
       "@knora/core": [
         "dist/@knora/core"
       ],
-      "@knora/login": [
-        "dist/@knora/login"
+      "@knora/authentication": [
+        "dist/@knora/authentication"
       ],
       "@knora/project": [
         "dist/@knora/project"
