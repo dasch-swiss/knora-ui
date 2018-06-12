@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-lib": "ng build @knora/core && ng build @knora/progress-indicator && ng build @knora/authentication"
+    "build-lib": "ng build @knora/core && ng build @knora/progress-indicator && ng build @knora/authentication && ng build @knora/project"
   },
   "private": true,
   "dependencies": {
