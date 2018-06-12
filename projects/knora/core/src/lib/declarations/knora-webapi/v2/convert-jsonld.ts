@@ -1,6 +1,6 @@
-import {ReadResourcesSequence} from './read-resources-sequence';
-import {ReadResource} from './read-resource';
-import {ReadProperties} from './read-properties';
+import {ReadResourcesSequence} from './resources/read-resources-sequence';
+import {ReadResource} from './resources/read-resource';
+import {ReadProperties} from './properties/read-properties';
 import {
     ReadBooleanValue,
     ReadColorValue,
@@ -15,7 +15,7 @@ import {
     ReadTextValueAsString,
     ReadTextValueAsXml, ReadUriValue,
     ReferredResourcesByStandoffLink
-} from './read-property-item';
+} from './properties/read-property-item';
 import {AppConfig} from '../../../../app.config';
 import {Utils} from '../../../../utils';
 

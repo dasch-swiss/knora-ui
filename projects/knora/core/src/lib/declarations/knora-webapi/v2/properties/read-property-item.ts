@@ -1,7 +1,8 @@
-import {AppConfig} from '../../../../app-dep.config';
-import {ReadResource} from './read-resource';
-import {escape} from 'querystring';
-import {OntologyInformation} from '../../../services/ontologycache.service';
+
+import {ReadResource} from '..';
+import {KnoraConstants} from '../../../knora-constants';
+import {OntologyInformation} from '../../../../services/knora-v2/ontology-cache.service';
+
 
 /**
  * An abstract interface representing any value object.
@@ -47,14 +48,14 @@ export class ReadTextValueAsString implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.TextValue;
+    readonly type = KnoraConstants.TextValue;
 
     getContent(): string {
         return this.str;
-    };
+    }
 
     getClassName(): string {
-        return AppConfig.ReadTextValueAsString;
+        return KnoraConstants.ReadTextValueAsString;
     }
 }
 
@@ -74,11 +75,11 @@ export class ReadTextValueAsHtml implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.TextValue;
+    readonly type = KnoraConstants.TextValue;
 
     getContent(): string {
         return this.html;
-    };
+    }
 
     /**
      * Gets information about a resource referred to by a standoff link from a text value.
@@ -90,7 +91,7 @@ export class ReadTextValueAsHtml implements ReadPropertyItem {
     getReferredResourceInfo(resourceIri: string, ontologyInfo: OntologyInformation) {
         if (this.referredResources !== undefined && this.referredResources[resourceIri] !== undefined) {
 
-            let resClassLabel = ontologyInfo.getLabelForResourceClass(this.referredResources[resourceIri].type);
+            const resClassLabel = ontologyInfo.getLabelForResourceClass(this.referredResources[resourceIri].type);
 
             return this.referredResources[resourceIri].label + ` (${resClassLabel})`;
         } else {
@@ -99,7 +100,7 @@ export class ReadTextValueAsHtml implements ReadPropertyItem {
     }
 
     getClassName(): string {
-        return AppConfig.ReadTextValueAsHtml;
+        return KnoraConstants.ReadTextValueAsHtml;
     }
 
 }
@@ -113,16 +114,16 @@ export class ReadTextValueAsXml implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.TextValue;
+    readonly type = KnoraConstants.TextValue;
 
     getContent(): string {
 
         // return XML als plain text
         return this.xml;
-    };
+    }
 
     getClassName(): string {
-        return AppConfig.ReadTextValueAsXml;
+        return KnoraConstants.ReadTextValueAsXml;
     }
 
 }
@@ -132,11 +133,22 @@ export class ReadTextValueAsXml implements ReadPropertyItem {
  */
 export class ReadDateValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly calendar: string, readonly startYear: number, readonly endYear: number, readonly startEra: string, readonly endEra: string, readonly startMonth?: number, readonly endMonth?: number, readonly startDay?: number, readonly endDay?: number) {
+    constructor(
+        readonly id: string,
+        readonly propIri,
+        readonly calendar: string,
+        readonly startYear: number,
+        readonly endYear: number,
+        readonly startEra: string,
+        readonly endEra: string,
+        readonly startMonth?: number,
+        readonly endMonth?: number,
+        readonly startDay?: number,
+        readonly endDay?: number) {
 
     }
 
-    readonly type = AppConfig.DateValue;
+    readonly type = KnoraConstants.DateValue;
 
     private separator = '-';
 
@@ -170,15 +182,15 @@ export class ReadDateValue implements ReadPropertyItem {
             endDate = this.endYear + this.separator + this.endMonth + this.separator + this.endDay;
         }
         endDate += ' ' + this.endEra;
-        if (startDate == endDate) {
+        if (startDate === endDate) {
             return this.calendar + ':' + startDate;
         } else {
             return this.calendar + ':' + startDate + this.separator + endDate;
         }
-    };
+    }
 
     getClassName(): string {
-        return AppConfig.ReadDateValue;
+        return KnoraConstants.ReadDateValue;
     }
 }
 
@@ -191,7 +203,7 @@ export class ReadLinkValue implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.LinkValue;
+    readonly type = KnoraConstants.LinkValue;
 
     getContent(): string {
         if (this.referredResource !== undefined) {
@@ -200,12 +212,12 @@ export class ReadLinkValue implements ReadPropertyItem {
             // TODO: try to find information about the resource identified by the given Iri
             return this.referredResourceIri;
         }
-    };
+    }
 
     getReferredResourceInfo(ontologyInfo: OntologyInformation) {
         if (this.referredResource !== undefined) {
 
-            let resClassLabel = ontologyInfo.getLabelForResourceClass(this.referredResource.type);
+            const resClassLabel = ontologyInfo.getLabelForResourceClass(this.referredResource.type);
 
             return this.referredResource.label + ` (${resClassLabel})`;
         } else {
@@ -214,7 +226,7 @@ export class ReadLinkValue implements ReadPropertyItem {
     }
 
     getClassName(): string {
-        return AppConfig.ReadLinkValue;
+        return KnoraConstants.ReadLinkValue;
     }
 }
 
@@ -227,14 +239,14 @@ export class ReadIntegerValue implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.IntValue;
+    readonly type = KnoraConstants.IntValue;
 
     getContent(): string {
         return this.integer.toString();
-    };
+    }
 
     getClassName(): string {
-        return AppConfig.ReadIntegerValue;
+        return KnoraConstants.ReadIntegerValue;
     }
 
 }
@@ -248,14 +260,14 @@ export class ReadDecimalValue implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.DecimalValue;
+    readonly type = KnoraConstants.DecimalValue;
 
     getContent(): string {
         return this.decimal.toString();
-    };
+    }
 
     getClassName(): string {
-        return AppConfig.ReadDecimalValue;
+        return KnoraConstants.ReadDecimalValue;
     }
 }
 
@@ -264,13 +276,21 @@ export class ReadDecimalValue implements ReadPropertyItem {
  */
 export class ReadStillImageFileValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly imageFilename: string, readonly imageServerIIIFBaseURL: string, readonly imagePath: string, readonly dimX: number, readonly dimY: number, isPreview?: boolean) {
+    constructor(
+        readonly id: string,
+        readonly propIri,
+        readonly imageFilename: string,
+        readonly imageServerIIIFBaseURL: string,
+        readonly imagePath: string,
+        readonly dimX: number,
+        readonly dimY: number,
+        isPreview?: boolean) {
 
         this.isPreview = isPreview === undefined ? false : isPreview;
 
     }
 
-    readonly type = AppConfig.StillImageFileValue;
+    readonly type = KnoraConstants.StillImageFileValue;
 
     readonly isPreview: boolean;
 
@@ -290,10 +310,10 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
 
     getContent(): string {
         return this.makeIIIFUrl(4);
-    };
+    }
 
     getClassName(): string {
-        return AppConfig.ReadStillImageFileValue;
+        return KnoraConstants.ReadStillImageFileValue;
     }
 }
 
@@ -306,7 +326,7 @@ export class ReadTextFileValue implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.TextFileValue;
+    readonly type = KnoraConstants.TextFileValue;
 
     private makeUrl = function (): string {
         return `${this.textFileURL}`;
@@ -314,10 +334,10 @@ export class ReadTextFileValue implements ReadPropertyItem {
 
     getContent(): string {
         return this.makeUrl();
-    };
+    }
 
     getClassName(): string {
-        return AppConfig.TextFileValue;
+        return KnoraConstants.TextFileValue;
     }
 
 }
@@ -331,14 +351,14 @@ export class ReadColorValue implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.ColorValue;
+    readonly type = KnoraConstants.ColorValue;
 
     getContent(): string {
         return this.colorHex;
-    };
+    }
 
     getClassName(): string {
-        return AppConfig.ReadColorValue;
+        return KnoraConstants.ReadColorValue;
     }
 }
 
@@ -371,14 +391,14 @@ export class ReadGeomValue implements ReadPropertyItem {
 
     constructor(readonly id: string, readonly propIri: string, readonly geometryString: string) {
 
-        let geometryJSON = JSON.parse(geometryString);
+        const geometryJSON = JSON.parse(geometryString);
 
-        let points: Point2D[] = [];
-        for (let point of geometryJSON.points) {
+        const points: Point2D[] = [];
+        for (const point of geometryJSON.points) {
             points.push(new Point2D(point.x, point.y));
         }
 
-        let radius = undefined;
+        let radius;
         if (geometryJSON.radius) {
             radius = new Point2D(geometryJSON.radius.x, geometryJSON.radius.y);
         }
@@ -396,14 +416,14 @@ export class ReadGeomValue implements ReadPropertyItem {
 
     readonly geometry: RegionGeometry;
 
-    readonly type = AppConfig.GeomValue;
+    readonly type = KnoraConstants.GeomValue;
 
     getContent(): string {
         return this.geometryString;
-    };
+    }
 
     getClassName(): string {
-        return AppConfig.ReadGeomValue;
+        return KnoraConstants.ReadGeomValue;
     }
 }
 
@@ -416,14 +436,14 @@ export class ReadUriValue implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.UriValue;
+    readonly type = KnoraConstants.UriValue;
 
     getContent(): string {
         return `<a href="${this.uri}" target="_blank">${this.uri}</a>`;
-    };
+    }
 
     getClassName(): string {
-        return AppConfig.ReadUriValue;
+        return KnoraConstants.ReadUriValue;
     }
 
 }
@@ -437,14 +457,14 @@ export class ReadBooleanValue implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.BooleanValue;
+    readonly type = KnoraConstants.BooleanValue;
 
     getContent(): string {
         return String(this.bool);
     }
 
     getClassName(): string {
-        return AppConfig.ReadBooleanValue;
+        return KnoraConstants.ReadBooleanValue;
     }
 
 }
@@ -458,14 +478,14 @@ export class ReadIntervalValue implements ReadPropertyItem {
 
     }
 
-    readonly type = AppConfig.IntervalValue;
+    readonly type = KnoraConstants.IntervalValue;
 
     getContent(): string {
         return String(this.intervalStart) + '-' + String(this.intervalEnd);
     }
 
     getClassName(): string {
-        return AppConfig.ReadIntervalValue;
+        return KnoraConstants.ReadIntervalValue;
     }
 
 }
@@ -475,18 +495,18 @@ export class ReadIntervalValue implements ReadPropertyItem {
  */
 export class ReadListValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string,) {
+    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string, ) {
 
     }
 
-    readonly type = AppConfig.ListValue;
+    readonly type = KnoraConstants.ListValue;
 
     getContent(): string {
         return this.listNodeLabel;
     }
 
     getClassName(): string {
-        return AppConfig.ReadListValue;
+        return KnoraConstants.ReadListValue;
     }
 
 }

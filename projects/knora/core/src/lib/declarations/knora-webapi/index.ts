@@ -13,7 +13,7 @@ export * from './admin/';
 /**
  * Interfaces for V2
  */
-export * from './v2/index';
+export * from './v2/';
 
 
 

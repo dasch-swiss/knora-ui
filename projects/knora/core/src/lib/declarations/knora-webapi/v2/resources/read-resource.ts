@@ -1,6 +1,5 @@
-import {ReadProperties} from './read-properties';
-import {StillImageRepresentation} from '../../../../view/properties/still-image-osdviewer/still-image-osdviewer.component';
-import {ReadPropertyItem} from './read-property-item';
+import {ReadProperties} from '..';
+import {StillImageRepresentation} from '../still-image/still-image-representation';
 
 export class ReadResource {
 

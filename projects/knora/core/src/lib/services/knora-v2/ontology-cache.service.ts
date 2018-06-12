@@ -1,10 +1,8 @@
 import {Injectable} from '@angular/core';
 import {KuiCoreModule} from '../../core.module';
 import {OntologyService} from './ontology.service';
-import {Observable} from 'rxjs';
+import {Observable, forkJoin} from 'rxjs';
 import {ApiServiceResult, KnoraConstants, Utils} from '../../declarations';
-
-import {forkJoin} from 'rxjs';
 
 
 const jsonld = require('jsonld');
@@ -302,7 +300,7 @@ export class OntologyInformation {
 
         const properties: Array<Property> = [];
 
-        for (const propIri in this.properties) {
+        for (const propIri of properties) {
             const prop: Property = this.properties[propIri];
             properties.push(prop);
         }

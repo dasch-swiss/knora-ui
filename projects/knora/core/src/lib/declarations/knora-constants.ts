@@ -38,6 +38,7 @@ export class KnoraConstants {
     public static isEditable: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isEditable';
     public static isLinkProperty: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isLinkProperty';
     public static isLinkValueProperty: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isLinkValueProperty';
+    public static hasGeometry = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasGeometry';
 
     public static RdfProperty: string = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property';
     public static RdfsLabel = 'http://www.w3.org/2000/01/rdf-schema#label';
@@ -56,4 +57,22 @@ export class KnoraConstants {
     public static OwlMinCardinality: string = KnoraConstants.owl + '#minCardinality';
     public static OwlCardinality: string = KnoraConstants.owl + '#cardinality';
     public static OwlRestriction = KnoraConstants.owl + '#Restriction';
+
+
+    public static ReadTextValueAsHtml: string = 'ReadTextValueAsHtml';
+    public static ReadTextValueAsString: string = 'ReadTextValueAsString';
+    public static ReadTextValueAsXml: string = 'ReadTextValueAsXml';
+    public static ReadDateValue: string = 'ReadDateValue';
+    public static ReadLinkValue: string = 'ReadLinkValue';
+    public static ReadIntegerValue: string = 'ReadIntegerValue';
+    public static ReadDecimalValue: string = 'ReadDecimalValue';
+    public static ReadStillImageFileValue: string = 'ReadStillImageFileValue';
+    public static ReadGeomValue: string = 'ReadGeomValue';
+    public static ReadColorValue: string = 'ReadColorValue';
+    public static ReadUriValue: string = 'ReadUriValue';
+    public static ReadBooleanValue: string = 'ReadBooleanValue';
+    public static ReadIntervalValue: string = 'ReadIntervalValue';
+    public static ReadListValue: string = 'ReadListValue';
+
+
 }
