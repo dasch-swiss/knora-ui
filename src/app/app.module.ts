@@ -14,6 +14,7 @@ import {MaterialModule} from './material-module';
 // import the knora-ui modules
 import {KuiCoreConfig, KuiCoreModule} from '@knora/core';
 import {KuiAuthenticationModule} from '@knora/authentication';
+import {KuiAdminModule} from '@knora/admin';
 import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
 import {KuiProjectModule} from '@knora/project';
 
@@ -73,6 +74,7 @@ import {ProjectComponent} from './knora-ui-examples/project/project.component';
         KuiProgressIndicatorModule,
         KuiAuthenticationModule,
         KuiProjectModule,
+        KuiAdminModule,
         MaterialModule,
         HttpClientModule,
         MarkdownModule.forRoot({ loader: HttpClient })

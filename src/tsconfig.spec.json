@@ -14,6 +14,9 @@
       "@knora/authentication": [
         "dist/@knora/authentication"
       ],
+      "@knora/admin": [
+        "dist/@knora/admin"
+      ],
       "@knora/project": [
         "dist/@knora/project"
       ],

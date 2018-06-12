@@ -61,6 +61,12 @@ export class AppDemo {
         label: 'Project module'
     };
 
+    public static adminModule: DemoModule = {
+        name: 'admin',
+        published: false,
+        label: 'Admin module'
+    };
+
     /* ******************************************************************* */
 
     /**
@@ -71,7 +77,8 @@ export class AppDemo {
         AppDemo.progressIndicator,
         AppDemo.coreModule,
         AppDemo.authenticationModule,
-        AppDemo.projectModule
+        AppDemo.projectModule,
+        AppDemo.adminModule
 
     ];
 
