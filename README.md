@@ -40,61 +40,37 @@ This repository replaces the [salsah-modules](https://github.com/dhlab-basel/sal
 
 ## Knora module structure
 
-coreModule
+@knora/core
 * services (for API requests)
 * constants & utils (to work with Knora)
-* properties
 
-actionModule
+@knora/action
 * buttons & buttons
 * progress-indicator
 * progress-stepper
 * message
-* directives & pipes??
-* dialog??
+* directives & pipes
+* dialog
 
-authenticationModule
+@knora/authentication
 * login
 * logout
 
-searchModule
+@knora/search
 * search results
 * search panel incl. search action (like adding a collection)
 
-formModule
-* contact_form
-* list_form
-* edit_resource_class_form
-* new_resource_class_form
+@knora/viewer
+* object viewer (incl. video, audio, image)
+* properties (as form elements)
 * resource_class_form
-* resource_form
-* ontology_form
-* project_form
-* user_form
 
-viewerModule
-* object viewer
-
-adminModule
-* project
+@knora/admin
+* project (incl. ontology-editor)
 * system
 * user
-* dashboard??
-
-frameworkModule
-* framework_for_listings
-* main_framework (with header, footer, internationalization)
-
-listingModule
-* collections-list
-* lists-list
-* ontologies-list
-* projects_list
-* resource-grid-list
-* resource-types-list
-* resources-list
-* users-list
-
-appModule
-
-testModule
+* dashboard
+* ontology_form incl. resource-class-form (new-/edit-resource-class)
+* project_form
+* user_form
+* list_form
