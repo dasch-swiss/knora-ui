@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {KuiCoreModule} from '../../core.module';
 import {Observable} from 'rxjs';
-import {ApiServiceResult} from '../../declarations';
+import {catchError, map} from 'rxjs/operators';
+
+import {ApiServiceResult, JsonLd} from '../../declarations';
 import {ApiService} from '../api.service';
 
 @Injectable({
@@ -15,8 +17,12 @@ export class OntologyService extends ApiService {
      *
      * @returns {Observable<ApiServiceResult>}
      */
-    getOntologiesMetadata(): Observable<ApiServiceResult> {
-        return this.httpGet('/ontologies/metadata');
+    getOntologiesMetadata(): Observable<JsonLd> {
+        const path = '/v2/ontologies/metadata';
+        return this.httpGet(path).pipe(
+            map((result: ApiServiceResult) => result.getBody()),
+            catchError(this.handleJsonError)
+        );
     }
 
     /**
@@ -26,8 +32,11 @@ export class OntologyService extends ApiService {
      * @returns {any}
      */
     getAllEntityDefinitionsForOntologies(ontologyIri: string): Observable<ApiServiceResult> {
-
-        return this.httpGet('/ontologies/allentities/' + encodeURIComponent(ontologyIri));
+        const path = '/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri)
+        return this.httpGet(path).pipe(
+            map((result: ApiServiceResult) => result.getBody()),
+            catchError(this.handleJsonError)
+        );
 
     }
 

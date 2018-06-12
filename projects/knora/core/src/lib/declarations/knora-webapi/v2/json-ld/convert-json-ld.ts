@@ -1,23 +1,28 @@
-import {ReadResourcesSequence} from './resources/read-resources-sequence';
-import {ReadResource} from './resources/read-resource';
-import {ReadProperties} from './properties/read-properties';
 import {
     ReadBooleanValue,
     ReadColorValue,
     ReadDateValue,
     ReadDecimalValue,
     ReadGeomValue,
-    ReadIntegerValue, ReadIntervalValue,
-    ReadLinkValue, ReadListValue,
+    ReadIntegerValue,
+    ReadIntervalValue,
+    ReadLinkValue,
+    ReadListValue,
+    ReadProperties,
     ReadPropertyItem,
-    ReadStillImageFileValue, ReadTextFileValue,
+    ReadResource,
+    ReadResourcesSequence,
+    ReadStillImageFileValue,
+    ReadTextFileValue,
     ReadTextValueAsHtml,
     ReadTextValueAsString,
-    ReadTextValueAsXml, ReadUriValue,
+    ReadTextValueAsXml,
+    ReadUriValue,
     ReferredResourcesByStandoffLink
-} from './properties/read-property-item';
-import {AppConfig} from '../../../../app.config';
-import {Utils} from '../../../../utils';
+} from '..';
+
+import {Utils} from '../../../utils';
+import {KnoraConstants} from '../../../knora-constants';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 let jsonld = require('jsonld');
@@ -33,12 +38,12 @@ export module ConvertJSONLD {
      */
     function constructReadResource(resourceJSONLD: Object): ReadResource {
 
-        let properties: ReadProperties = constructReadProperties(resourceJSONLD);
+        const properties: ReadProperties = constructReadProperties(resourceJSONLD);
 
         return new ReadResource(
             resourceJSONLD['@id'],
             resourceJSONLD['@type'],
-            resourceJSONLD[AppConfig.schemaName],
+            resourceJSONLD[KnoraConstants.schemaName],
             [],
             [],
             [],
@@ -63,13 +68,13 @@ export module ConvertJSONLD {
 
         // check for the property's value type
         switch (propValue['@type']) {
-            case AppConfig.TextValue:
+            case KnoraConstants.TextValue:
                 // a text value might be given as plain string, html or xml.
                 let textValue: ReadPropertyItem;
 
-                if (propValue[AppConfig.valueAsString] !== undefined) {
-                    textValue = new ReadTextValueAsString(propValue['@id'], propIri, propValue[AppConfig.valueAsString]);
-                } else if (propValue[AppConfig.textValueAsHtml] !== undefined) {
+                if (propValue[KnoraConstants.valueAsString] !== undefined) {
+                    textValue = new ReadTextValueAsString(propValue['@id'], propIri, propValue[KnoraConstants.valueAsString]);
+                } else if (propValue[KnoraConstants.textValueAsHtml] !== undefined) {
 
                     let referredResources: ReferredResourcesByStandoffLink = {};
 
@@ -80,9 +85,9 @@ export module ConvertJSONLD {
                         referredResources[referredRes.id] = referredRes;
                     }
 
-                    textValue = new ReadTextValueAsHtml(propValue['@id'], propIri, propValue[AppConfig.textValueAsHtml], referredResources);
-                } else if (propValue[AppConfig.textValueAsXml] !== undefined && propValue[AppConfig.textValueHasMapping] !== undefined) {
-                    textValue = new ReadTextValueAsXml(propValue['@id'], propIri, propValue[AppConfig.textValueAsXml], propValue[AppConfig.textValueHasMapping]);
+                    textValue = new ReadTextValueAsHtml(propValue['@id'], propIri, propValue[KnoraConstants.textValueAsHtml], referredResources);
+                } else if (propValue[KnoraConstants.textValueAsXml] !== undefined && propValue[KnoraConstants.textValueHasMapping] !== undefined) {
+                    textValue = new ReadTextValueAsXml(propValue['@id'], propIri, propValue[KnoraConstants.textValueAsXml], propValue[KnoraConstants.textValueHasMapping]);
                 } else {
                     // expected text value members not defined
                     console.log('ERROR: Invalid text value: ' + JSON.stringify(propValue));
@@ -91,49 +96,49 @@ export module ConvertJSONLD {
                 valueSpecificProp = textValue;
                 break;
 
-            case AppConfig.DateValue:
+            case KnoraConstants.DateValue:
                 let dateValue = new ReadDateValue(propValue['@id'],
                     propIri,
-                    propValue[AppConfig.dateValueHasCalendar],
-                    propValue[AppConfig.dateValueHasStartYear],
-                    propValue[AppConfig.dateValueHasEndYear],
-                    propValue[AppConfig.dateValueHasStartEra],
-                    propValue[AppConfig.dateValueHasEndEra],
-                    propValue[AppConfig.dateValueHasStartMonth],
-                    propValue[AppConfig.dateValueHasEndMonth],
-                    propValue[AppConfig.dateValueHasStartDay],
-                    propValue[AppConfig.dateValueHasEndDay]);
+                    propValue[KnoraConstants.dateValueHasCalendar],
+                    propValue[KnoraConstants.dateValueHasStartYear],
+                    propValue[KnoraConstants.dateValueHasEndYear],
+                    propValue[KnoraConstants.dateValueHasStartEra],
+                    propValue[KnoraConstants.dateValueHasEndEra],
+                    propValue[KnoraConstants.dateValueHasStartMonth],
+                    propValue[KnoraConstants.dateValueHasEndMonth],
+                    propValue[KnoraConstants.dateValueHasStartDay],
+                    propValue[KnoraConstants.dateValueHasEndDay]);
 
                 valueSpecificProp = dateValue;
                 break;
 
-            case AppConfig.LinkValue:
+            case KnoraConstants.LinkValue:
 
                 let linkValue: ReadLinkValue;
 
                 // check if the referred resource is given as an object or just as an IRI
-                if (propValue[AppConfig.linkValueHasTarget] !== undefined) {
+                if (propValue[KnoraConstants.linkValueHasTarget] !== undefined) {
                     // linkValueHasTarget contains the object
 
-                    let referredResource: ReadResource = constructReadResource(propValue[AppConfig.linkValueHasTarget]);
+                    let referredResource: ReadResource = constructReadResource(propValue[KnoraConstants.linkValueHasTarget]);
 
                     linkValue = new ReadLinkValue(propValue['@id'], propIri, referredResource.id, referredResource);
-                } else if (propValue[AppConfig.linkValueHasTargetIri] !== undefined) {
+                } else if (propValue[KnoraConstants.linkValueHasTargetIri] !== undefined) {
                     // linkValueHasTargetIri contains the resource's Iri
 
-                    let referredResourceIri = propValue[AppConfig.linkValueHasTargetIri];
+                    let referredResourceIri = propValue[KnoraConstants.linkValueHasTargetIri];
 
                     linkValue = new ReadLinkValue(propValue['@id'], propIri, referredResourceIri);
-                } else if (propValue[AppConfig.linkValueHasSource] !== undefined) {
+                } else if (propValue[KnoraConstants.linkValueHasSource] !== undefined) {
                     // linkValueHasSource contains the object
 
-                    let incomingResource: ReadResource = constructReadResource(propValue[AppConfig.linkValueHasSource]);
+                    let incomingResource: ReadResource = constructReadResource(propValue[KnoraConstants.linkValueHasSource]);
 
                     linkValue = new ReadLinkValue(propValue['@id'], propIri, incomingResource.id, incomingResource);
-                } else if (propValue[AppConfig.linkValueHasSourceIri] !== undefined) {
+                } else if (propValue[KnoraConstants.linkValueHasSourceIri] !== undefined) {
                     // linkValueHasSourceIri contains the resource's Iri
 
-                    let incomingResourceIri = propValue[AppConfig.linkValueHasSourceIri];
+                    let incomingResourceIri = propValue[KnoraConstants.linkValueHasSourceIri];
 
                     linkValue = new ReadLinkValue(propValue['@id'], propIri, incomingResourceIri);
                 }
@@ -141,92 +146,92 @@ export module ConvertJSONLD {
                 valueSpecificProp = linkValue;
                 break;
 
-            case AppConfig.IntValue:
+            case KnoraConstants.IntValue:
 
-                let intValue = new ReadIntegerValue(propValue['@id'], propIri, propValue[AppConfig.integerValueAsInteger]);
+                let intValue = new ReadIntegerValue(propValue['@id'], propIri, propValue[KnoraConstants.integerValueAsInteger]);
                 valueSpecificProp = intValue;
 
                 break;
 
-            case AppConfig.DecimalValue:
+            case KnoraConstants.DecimalValue:
 
-                let decimalValue = new ReadDecimalValue(propValue['@id'], propIri, propValue[AppConfig.decimalValueAsDecimal]);
+                let decimalValue = new ReadDecimalValue(propValue['@id'], propIri, propValue[KnoraConstants.decimalValueAsDecimal]);
                 valueSpecificProp = decimalValue;
 
                 break;
 
-            case AppConfig.StillImageFileValue:
+            case KnoraConstants.StillImageFileValue:
 
                 let stillImageFileValue: ReadStillImageFileValue = new ReadStillImageFileValue(
                     propValue['@id'],
                     propIri,
-                    propValue[AppConfig.fileValueHasFilename],
-                    propValue[AppConfig.stillImageFileValueHasIIIFBaseUrl],
-                    propValue[AppConfig.fileValueAsUrl],
-                    propValue[AppConfig.stillImageFileValueHasDimX],
-                    propValue[AppConfig.stillImageFileValueHasDimY],
-                    propValue[AppConfig.fileValueIsPreview] // optional (may be undefined)
+                    propValue[KnoraConstants.fileValueHasFilename],
+                    propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl],
+                    propValue[KnoraConstants.fileValueAsUrl],
+                    propValue[KnoraConstants.stillImageFileValueHasDimX],
+                    propValue[KnoraConstants.stillImageFileValueHasDimY],
+                    propValue[KnoraConstants.fileValueIsPreview] // optional (may be undefined)
                 );
 
                 valueSpecificProp = stillImageFileValue;
 
                 break;
 
-            case AppConfig.TextFileValue:
+            case KnoraConstants.TextFileValue:
 
                 let textFileValue = new ReadTextFileValue(
                     propValue['@id'],
                     propIri,
-                    propValue[AppConfig.fileValueHasFilename],
-                    propValue[AppConfig.fileValueAsUrl]
+                    propValue[KnoraConstants.fileValueHasFilename],
+                    propValue[KnoraConstants.fileValueAsUrl]
                 );
 
                 valueSpecificProp = textFileValue;
 
                 break;
 
-            case AppConfig.ColorValue:
+            case KnoraConstants.ColorValue:
 
                 let readColorValue: ReadColorValue = new ReadColorValue(
                     propValue['@id'],
                     propIri,
-                    propValue[AppConfig.colorValueAsColor]
+                    propValue[KnoraConstants.colorValueAsColor]
                 );
 
                 valueSpecificProp = readColorValue;
 
                 break;
 
-            case AppConfig.GeomValue:
+            case KnoraConstants.GeomValue:
 
                 let readGeomValue: ReadGeomValue = new ReadGeomValue(
                     propValue['@id'],
                     propIri,
-                    propValue[AppConfig.geometryValueAsGeometry]
+                    propValue[KnoraConstants.geometryValueAsGeometry]
                 );
 
                 valueSpecificProp = readGeomValue;
 
                 break;
 
-            case AppConfig.UriValue:
+            case KnoraConstants.UriValue:
 
                 let uriValue: ReadUriValue = new ReadUriValue(
                     propValue['@id'],
                     propIri,
-                    propValue[AppConfig.uriValueAsUri]
+                    propValue[KnoraConstants.uriValueAsUri]
                 );
 
                 valueSpecificProp = uriValue;
 
                 break;
 
-            case AppConfig.BooleanValue:
+            case KnoraConstants.BooleanValue:
 
                 let boolValue: ReadBooleanValue = new ReadBooleanValue(
                     propValue['@id'],
                     propIri,
-                    propValue[AppConfig.booleanValueAsBoolean]
+                    propValue[KnoraConstants.booleanValueAsBoolean]
                 );
 
                 valueSpecificProp = boolValue;
@@ -234,26 +239,26 @@ export module ConvertJSONLD {
                 break;
 
 
-            case AppConfig.IntervalValue:
+            case KnoraConstants.IntervalValue:
 
                 let intervalValue: ReadIntervalValue = new ReadIntervalValue(
                     propValue['@id'],
                     propIri,
-                    propValue[AppConfig.intervalValueHasStart],
-                    propValue[AppConfig.intervalValueHasEnd]
+                    propValue[KnoraConstants.intervalValueHasStart],
+                    propValue[KnoraConstants.intervalValueHasEnd]
                 );
 
                 valueSpecificProp = intervalValue;
 
                 break;
 
-            case AppConfig.ListValue:
+            case KnoraConstants.ListValue:
 
                 let listValue: ReadListValue = new ReadListValue(
                     propValue['@id'],
                     propIri,
-                    propValue[AppConfig.listValueAsListNode],
-                    propValue[AppConfig.listValueAsListNodeLabel]
+                    propValue[KnoraConstants.listValueAsListNode],
+                    propValue[KnoraConstants.listValueAsListNodeLabel]
                 );
 
                 valueSpecificProp = listValue;
@@ -280,7 +285,7 @@ export module ConvertJSONLD {
     function constructReadProperties(resourceJSONLD: Object): ReadProperties {
 
         // JSONLD representing standoff link values
-        let standoffLinkValuesJSONLD: Object = resourceJSONLD[AppConfig.hasStandoffLinkToValue];
+        let standoffLinkValuesJSONLD: Object = resourceJSONLD[KnoraConstants.hasStandoffLinkToValue];
 
         // to be populated with standoff link values
         let standoffLinkValues: ReadLinkValue[] = [];
@@ -289,19 +294,19 @@ export module ConvertJSONLD {
         // in order populate the collection with all the standoff link values
         if (standoffLinkValuesJSONLD !== undefined && Array.isArray(standoffLinkValuesJSONLD)) {
             for (let standoffLinkJSONLD of standoffLinkValuesJSONLD) {
-                let standoffVal: ReadLinkValue = createValueSpecificProp(standoffLinkJSONLD, AppConfig.hasStandoffLinkToValue, []) as ReadLinkValue;
+                let standoffVal: ReadLinkValue = createValueSpecificProp(standoffLinkJSONLD, KnoraConstants.hasStandoffLinkToValue, []) as ReadLinkValue;
 
                 standoffLinkValues.push(standoffVal);
             }
         } else if (standoffLinkValuesJSONLD !== undefined) {
-            let standoffVal = createValueSpecificProp(standoffLinkValuesJSONLD, AppConfig.hasStandoffLinkToValue, []) as ReadLinkValue;
+            let standoffVal = createValueSpecificProp(standoffLinkValuesJSONLD, KnoraConstants.hasStandoffLinkToValue, []) as ReadLinkValue;
 
             standoffLinkValues.push(standoffVal);
         }
 
         let propNames = Object.keys(resourceJSONLD);
         // filter out everything that is not a Knora property name
-        propNames = propNames.filter(propName => propName != '@id' && propName != '@type' && propName != AppConfig.schemaName);
+        propNames = propNames.filter(propName => propName != '@id' && propName != '@type' && propName != KnoraConstants.schemaName);
 
         let properties: ReadProperties = {};
 
@@ -352,13 +357,13 @@ export module ConvertJSONLD {
     export function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD: Object): ReadResourcesSequence {
 
         let resources: Array<ReadResource> = [];
-        let numberOfResources: number = resourcesResponseJSONLD[AppConfig.schemaNumberOfItems];
+        let numberOfResources: number = resourcesResponseJSONLD[KnoraConstants.schemaNumberOfItems];
 
         // either an array of resources or just one resource is given
-        if (Array.isArray(resourcesResponseJSONLD[AppConfig.schemaItemListElement])) {
+        if (Array.isArray(resourcesResponseJSONLD[KnoraConstants.schemaItemListElement])) {
             // an array of resources
 
-            for (let resourceJSONLD of resourcesResponseJSONLD[AppConfig.schemaItemListElement]) {
+            for (let resourceJSONLD of resourcesResponseJSONLD[KnoraConstants.schemaItemListElement]) {
 
                 let resource: ReadResource = constructReadResource(resourceJSONLD);
 
@@ -368,7 +373,7 @@ export module ConvertJSONLD {
         } else {
             // only one resource
 
-            let resource: ReadResource = constructReadResource(resourcesResponseJSONLD[AppConfig.schemaItemListElement]);
+            let resource: ReadResource = constructReadResource(resourcesResponseJSONLD[KnoraConstants.schemaItemListElement]);
 
             // add the resource to the resources array
             resources.push(resource);
@@ -389,7 +394,7 @@ export module ConvertJSONLD {
 
         let propNames = Object.keys(resourceJSONLD);
         // filter out everything that is not a Knora property name
-        propNames = propNames.filter(propName => propName != '@id' && propName != '@type' && propName != AppConfig.schemaName);
+        propNames = propNames.filter(propName => propName != '@id' && propName != '@type' && propName != KnoraConstants.schemaName);
 
         let referredResourceClasses = [];
 
@@ -401,13 +406,13 @@ export module ConvertJSONLD {
                 for (let referredRes of resourceJSONLD[prop]) {
 
                     // if the property is a LinkValue and it contains an embedded resource, get its type
-                    if (referredRes['@type'] == AppConfig.LinkValue && referredRes[AppConfig.linkValueHasTarget] !== undefined) {
+                    if (referredRes['@type'] == KnoraConstants.LinkValue && referredRes[KnoraConstants.linkValueHasTarget] !== undefined) {
 
                         // target resource is represented
-                        referredResourceClasses.push(referredRes[AppConfig.linkValueHasTarget]['@type']);
-                    } else if (referredRes['@type'] == AppConfig.LinkValue && referredRes[AppConfig.linkValueHasSource] !== undefined) {
+                        referredResourceClasses.push(referredRes[KnoraConstants.linkValueHasTarget]['@type']);
+                    } else if (referredRes['@type'] == KnoraConstants.LinkValue && referredRes[KnoraConstants.linkValueHasSource] !== undefined) {
                         // source resource is represented
-                        referredResourceClasses.push(referredRes[AppConfig.linkValueHasSource]['@type']);
+                        referredResourceClasses.push(referredRes[KnoraConstants.linkValueHasSource]['@type']);
                     }
 
                 }
@@ -415,13 +420,13 @@ export module ConvertJSONLD {
                 // only one value given for this property
 
                 // if the property is a LinkValue and it contains an embedded resource, get its type
-                if (resourceJSONLD[prop]['@type'] == AppConfig.LinkValue && resourceJSONLD[prop][AppConfig.linkValueHasTarget] !== undefined) {
+                if (resourceJSONLD[prop]['@type'] == KnoraConstants.LinkValue && resourceJSONLD[prop][KnoraConstants.linkValueHasTarget] !== undefined) {
 
                     // target resource is represented
-                    referredResourceClasses.push(resourceJSONLD[prop][AppConfig.linkValueHasTarget]['@type']);
-                } else if (resourceJSONLD[prop]['@type'] == AppConfig.LinkValue && resourceJSONLD[prop][AppConfig.linkValueHasSource] !== undefined) {
+                    referredResourceClasses.push(resourceJSONLD[prop][KnoraConstants.linkValueHasTarget]['@type']);
+                } else if (resourceJSONLD[prop]['@type'] == KnoraConstants.LinkValue && resourceJSONLD[prop][KnoraConstants.linkValueHasSource] !== undefined) {
                     // source resource is represented
-                    referredResourceClasses.push(resourceJSONLD[prop][AppConfig.linkValueHasSource]['@type']);
+                    referredResourceClasses.push(resourceJSONLD[prop][KnoraConstants.linkValueHasSource]['@type']);
                 }
             }
 
@@ -439,13 +444,13 @@ export module ConvertJSONLD {
      */
     export function getResourceClassesFromJsonLD(resourcesResponseJSONLD: Object): string[] {
 
-        if (Array.isArray(resourcesResponseJSONLD[AppConfig.schemaItemListElement])) {
+        if (Array.isArray(resourcesResponseJSONLD[KnoraConstants.schemaItemListElement])) {
             // an array of resources
 
             let resourceClasses: Array<string> = [];
 
             // collect all resource classes
-            for (let res of resourcesResponseJSONLD[AppConfig.schemaItemListElement]) {
+            for (let res of resourcesResponseJSONLD[KnoraConstants.schemaItemListElement]) {
                 // get class of the current resource
                 resourceClasses.push(res['@type']);
 
@@ -463,7 +468,7 @@ export module ConvertJSONLD {
 
             let resourceClasses: Array<string> = [];
 
-            let res = resourcesResponseJSONLD[AppConfig.schemaItemListElement];
+            let res = resourcesResponseJSONLD[KnoraConstants.schemaItemListElement];
 
             // only one resource
             resourceClasses.push(res['@type']);

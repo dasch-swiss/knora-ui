@@ -40,6 +40,11 @@ export class KnoraConstants {
     public static isLinkValueProperty: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isLinkValueProperty';
     public static hasGeometry = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasGeometry';
 
+    public static schemaName = 'http://schema.org/name';
+    public static schemaNumberOfItems = 'http://schema.org/numberOfItems';
+    public static schemaItemListElement = 'http://schema.org/itemListElement';
+
+
     public static RdfProperty: string = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property';
     public static RdfsLabel = 'http://www.w3.org/2000/01/rdf-schema#label';
     public static RdfsComment = 'http://www.w3.org/2000/01/rdf-schema#comment';
@@ -73,6 +78,26 @@ export class KnoraConstants {
     public static ReadBooleanValue: string = 'ReadBooleanValue';
     public static ReadIntervalValue: string = 'ReadIntervalValue';
     public static ReadListValue: string = 'ReadListValue';
+
+    public static dateValueHasStartYear: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasStartYear';
+    public static dateValueHasEndYear: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndYear';
+    public static dateValueHasStartEra: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasStartEra';
+    public static dateValueHasEndEra: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndEra';
+    public static dateValueHasStartMonth = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasStartMonth';
+    public static dateValueHasEndMonth = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndMonth';
+    public static dateValueHasStartDay = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasStartDay';
+    public static dateValueHasEndDay = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndDay';
+    public static dateValueHasCalendar = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasCalendar';
+
+    public static linkValueHasTarget = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasTarget';
+    public static linkValueHasSource = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasSource';
+    public static linkValueHasSourceIri = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasSourceIri';
+    public static linkValueHasTargetIri = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasTargetIri';
+
+    public static integerValueAsInteger = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intValueAsInt';
+
+    public static decimalValueAsDecimal = KnoraConstants.KnoraApiV2WithValueObjectPath + 'decimalValueAsDecimal';
+
 
 
 }
