@@ -3,20 +3,21 @@
  */
 import {KnoraConstants} from './knora-constants';
 
+// @dynamic
 export class Utils {
     /**
      * A regex to validate Emails.
      *
      * @type {RegExp}
      */
-//    public static readonly RegexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    public static readonly RegexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     /**
      * A regex to validate URLs.
      *
      * @type {RegExp}
      */
-//    public static readonly RegexUrl = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/i;
+    public static readonly RegexUrl = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/i;
 
     /**
      * A regex to validate Passwords
@@ -57,7 +58,7 @@ export class Utils {
         // -> this means that there is no identical element before this index, hence it is not a duplicate
         // for all other elements, false is returned
         return index === self.indexOf(elem);
-    }
+    };
 
     /**
      * Given a Knora entity IRI, gets the ontology Iri.
