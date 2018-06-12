@@ -10,6 +10,9 @@
       ],
       "@knora/progress-indicator": [
         "dist/@knora/progress-indicator"
+      ],
+      "@knora/viewer": [
+        "dist/@knora/viewer"
       ]
     }
   },

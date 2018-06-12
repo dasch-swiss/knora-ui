@@ -13,7 +13,11 @@ import {MaterialModule} from './material-module';
 
 // import the knora-ui modules
 import {KuiCoreConfig, KuiCoreModule} from '@knora/core';
+import {KuiAuthenticationModule} from '@knora/authentication';
+import {KuiAdminModule} from '@knora/admin';
 import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
+import {KuiProjectModule} from '@knora/project';
+import {KuiViewerModule} from '@knora/viewer';
 
 // set up the environment configuration
 import {environment} from '../environments/environment';
@@ -64,6 +68,10 @@ import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
         AppRoutingModule,
         KuiCoreModule.forRoot(AppEnvironment),
         KuiProgressIndicatorModule,
+        KuiAuthenticationModule,
+        KuiProjectModule,
+        KuiAdminModule,
+        KuiViewerModule,
         MaterialModule,
         HttpClientModule,
         MarkdownModule.forRoot({ loader: HttpClient })
