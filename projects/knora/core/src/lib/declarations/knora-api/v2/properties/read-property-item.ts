@@ -1,7 +1,7 @@
 
 import {ReadResource} from '..';
 import {KnoraConstants} from '../../knora-constants';
-import {OntologyInformation} from '../../../../services/knora-v2/ontology-cache.service';
+// import {OntologyInformation} from '../../../../services/knora-v2/ontology-cache.service';
 
 
 /**
@@ -88,6 +88,7 @@ export class ReadTextValueAsHtml implements ReadPropertyItem {
      * @param {OntologyInformation} ontologyInfo ontology information.
      * @returns {string} information about the referred resource's class and its label.
      */
+    /*
     getReferredResourceInfo(resourceIri: string, ontologyInfo: OntologyInformation) {
         if (this.referredResources !== undefined && this.referredResources[resourceIri] !== undefined) {
 
@@ -98,6 +99,7 @@ export class ReadTextValueAsHtml implements ReadPropertyItem {
             return 'no information found about referred resource (target of standoff link)';
         }
     }
+    */
 
     getClassName(): string {
         return KnoraConstants.ReadTextValueAsHtml;
@@ -214,6 +216,7 @@ export class ReadLinkValue implements ReadPropertyItem {
         }
     }
 
+    /*
     getReferredResourceInfo(ontologyInfo: OntologyInformation) {
         if (this.referredResource !== undefined) {
 
@@ -224,6 +227,7 @@ export class ReadLinkValue implements ReadPropertyItem {
             return this.referredResourceIri;
         }
     }
+    */
 
     getClassName(): string {
         return KnoraConstants.ReadLinkValue;
