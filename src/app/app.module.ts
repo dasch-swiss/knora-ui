@@ -9,32 +9,21 @@ import {MarkdownModule} from 'ngx-markdown';
 
 import {AppComponent} from './app.component';
 import {MaterialModule} from './material-module';
-
-
 // import the knora-ui modules
 import {KuiCoreConfig, KuiCoreModule} from '@knora/core';
 import {KuiAuthenticationModule} from '@knora/authentication';
 import {KuiAdminModule} from '@knora/admin';
-import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
-import {KuiProjectModule} from '@knora/project';
-
+import {KuiActionModule} from '@knora/action';
+import {KuiSearchModule} from '@knora/search';
+import {KuiViewerModule} from '@knora/viewer';
 // set up the environment configuration
 import {environment} from '../environments/environment';
-
-const AppEnvironment: KuiCoreConfig = {
-    api: environment.api,
-    media: environment.media,
-    app: environment.app
-};
-
-
 // landing page framework components
 import {MainHeaderComponent} from './partials/main-header/main-header.component';
 import {ModuleHeaderComponent} from './partials/module-header/module-header.component';
 import {ModuleIndexComponent} from './partials/module-index/module-index.component';
 import {MainIntroComponent} from './landing-page/main-intro/main-intro.component';
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
-
 // examples: demo components
 import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indicator-demo/progress-indicator-demo.component';
 import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
@@ -46,6 +35,12 @@ import {SanitizeHtmlPipe} from './partials/pipes/sanitize-html.pipe';
 import {LoginComponent} from './knora-ui-examples/login/login.component';
 import {ProjectComponent} from './knora-ui-examples/project/project.component';
 
+
+const AppEnvironment: KuiCoreConfig = {
+    api: environment.api,
+    media: environment.media,
+    app: environment.app
+};
 
 
 @NgModule({
@@ -71,13 +66,14 @@ import {ProjectComponent} from './knora-ui-examples/project/project.component';
         RouterModule,
         AppRoutingModule,
         KuiCoreModule.forRoot(AppEnvironment),
-        KuiProgressIndicatorModule,
         KuiAuthenticationModule,
-        KuiProjectModule,
         KuiAdminModule,
+        KuiActionModule,
+        KuiSearchModule,
+        KuiViewerModule,
         MaterialModule,
         HttpClientModule,
-        MarkdownModule.forRoot({ loader: HttpClient })
+        MarkdownModule.forRoot({loader: HttpClient})
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -74,12 +74,8 @@ export class AppDemo {
      * @type {DemoModule[]}
      */
     public static examples: DemoModule[] = [
-        AppDemo.progressIndicator,
         AppDemo.coreModule,
         AppDemo.authenticationModule,
-        AppDemo.projectModule,
-        AppDemo.adminModule
-
     ];
 
 }

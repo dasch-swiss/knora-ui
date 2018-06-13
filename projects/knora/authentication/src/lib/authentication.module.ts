@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
-import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
+// import {KuiProgressIndicatorModule} from '@knora/progress-indicator'; TODO: move progress-indicator
 import {LoginComponent} from './login/login.component';
 import {LogoutComponent} from './logout/logout.component';
 
@@ -14,8 +14,7 @@ import {LogoutComponent} from './logout/logout.component';
         MatIconModule,
         MatInputModule,
         MatButtonModule,
-        MatFormFieldModule,
-        KuiProgressIndicatorModule
+        MatFormFieldModule
     ],
     declarations: [
         LoginComponent,
