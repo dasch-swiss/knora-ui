@@ -3,7 +3,6 @@
  */
 export * from './admin/';
 
-
 /**
  * Interfaces for V1
  */
@@ -13,8 +12,12 @@ export * from './admin/';
 /**
  * Interfaces for V2
  */
-export * from './v2/';
+// export * from './v2/';
 
+/**
+ * Knora constants
+ */
+export * from './knora-constants';
 
 
 

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {KuiCoreModule} from '../../core.module';
 import {OntologyService} from './ontology.service';
-import {Observable, forkJoin, fromPromise} from 'rxjs';
+import {Observable, forkJoin} from 'rxjs';
 
 import { flatMap, mergeMap,  } from 'rxjs/operators';
 

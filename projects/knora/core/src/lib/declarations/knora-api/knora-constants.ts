@@ -3,6 +3,15 @@ export class KnoraConstants {
     public static api: string = 'http://api.knora.org/ontology/knora-api';
     public static PathSeparator = '#';
 
+
+    public static KnoraOntologyPath: string = 'http://www.knora.org/ontology';
+    public static KnoraBase: string = KnoraConstants.KnoraOntologyPath + '/knora-base';
+
+    public static SystemProjectIRI: string = KnoraConstants.KnoraBase + '#SystemProject';
+    public static SystemAdminGroupIRI: string = KnoraConstants.KnoraBase + '#SystemAdmin';
+    public static ProjectAdminGroupIRI: string = KnoraConstants.KnoraBase + '#ProjectAdmin';
+    public static ProjectMemberGroupIRI: string = KnoraConstants.KnoraBase + '#ProjectMember';
+
     public static KnoraApiV2WithValueObjectPath: string = KnoraConstants.api + '/v2' + KnoraConstants.PathSeparator;
 
     public static SalsahGuiOntology = 'http://api.knora.org/ontology/salsah-gui/v2';
@@ -63,7 +72,6 @@ export class KnoraConstants {
     public static OwlCardinality: string = KnoraConstants.owl + '#cardinality';
     public static OwlRestriction = KnoraConstants.owl + '#Restriction';
 
-
     public static ReadTextValueAsHtml: string = 'ReadTextValueAsHtml';
     public static ReadTextValueAsString: string = 'ReadTextValueAsString';
     public static ReadTextValueAsXml: string = 'ReadTextValueAsXml';
@@ -78,6 +86,14 @@ export class KnoraConstants {
     public static ReadBooleanValue: string = 'ReadBooleanValue';
     public static ReadIntervalValue: string = 'ReadIntervalValue';
     public static ReadListValue: string = 'ReadListValue';
+
+    public static valueAsString: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'valueAsString';
+
+    public static textValueAsHtml: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueAsHtml';
+    public static textValueAsXml: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueAsXml';
+    public static textValueHasMapping: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueHasMapping';
+
+    public static hasStandoffLinkToValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasStandoffLinkToValue';
 
     public static dateValueHasStartYear: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasStartYear';
     public static dateValueHasEndYear: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndYear';
@@ -98,6 +114,24 @@ export class KnoraConstants {
 
     public static decimalValueAsDecimal = KnoraConstants.KnoraApiV2WithValueObjectPath + 'decimalValueAsDecimal';
 
+    public static fileValueAsUrl = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueAsUrl';
+    public static fileValueIsPreview = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueIsPreview';
+    public static fileValueHasFilename = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueHasFilename';
 
+    public static hasStillImageFileValue = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasStillImageFileValue';
 
+    public static stillImageFileValueHasDimX = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasDimX';
+    public static stillImageFileValueHasDimY = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasDimY';
+    public static stillImageFileValueHasIIIFBaseUrl = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasIIIFBaseUrl';
+
+    public static colorValueAsColor = KnoraConstants.KnoraApiV2WithValueObjectPath + 'colorValueAsColor';
+    public static geometryValueAsGeometry = KnoraConstants.KnoraApiV2WithValueObjectPath + 'geometryValueAsGeometry';
+    public static uriValueAsUri = KnoraConstants.KnoraApiV2WithValueObjectPath + 'uriValueAsUri';
+    public static booleanValueAsBoolean = KnoraConstants.KnoraApiV2WithValueObjectPath + 'booleanValueAsBoolean';
+
+    public static intervalValueHasStart = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasStart';
+    public static intervalValueHasEnd = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasEnd';
+
+    public static listValueAsListNode = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNode';
+    public static listValueAsListNodeLabel = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNodeLabel';
 }

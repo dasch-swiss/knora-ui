@@ -7,15 +7,16 @@ import {ApiService} from '../api.service';
 import {
     ApiServiceResult,
     List,
-    ListResponse,
-    ListsResponse,
     ListCreatePayload,
     ListInfo,
     ListInfoResponse,
     ListInfoUpdatePayload,
     ListNodeInfo,
-    ListNodeInfoResponse
+    ListNodeInfoResponse,
+    ListResponse,
+    ListsResponse
 } from '../../declarations';
+
 import {catchError, map} from 'rxjs/operators';
 
 @Injectable({

@@ -1,4 +1,4 @@
-import {KnoraConstants} from '../../../knora-constants';
+import {KnoraConstants} from '../../knora-constants';
 import {Point2D} from './point-2d';
 import {ReadPropertyItem} from '..';
 import {RegionGeometry} from './region-geometry';

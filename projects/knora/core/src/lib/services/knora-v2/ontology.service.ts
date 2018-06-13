@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {KuiCoreModule} from '../../core.module';
 import {Observable} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
@@ -7,7 +6,7 @@ import {ApiServiceResult, JsonLd} from '../../declarations';
 import {ApiService} from '../api.service';
 
 @Injectable({
-    providedIn: KuiCoreModule
+    providedIn: 'root'
 })
 export class OntologyService extends ApiService {
 

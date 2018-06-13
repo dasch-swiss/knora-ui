@@ -8,11 +8,11 @@ import {
     ApiServiceError,
     ApiServiceResult,
     AuthenticationRequestPayload,
-    KnoraApiConfig,
+    KnoraConstants,
     User,
     UserResponse,
     UsersResponse
-} from '../../declarations/index';
+} from '../../declarations/';
 
 import {KuiCoreModule} from '../../core.module';
 
@@ -308,9 +308,9 @@ export class UsersService extends ApiService {
 
                             const permissions = user.permissions;
 
-                            if (permissions.groupsPerProject[KnoraApiConfig.SystemProjectIRI]) {
-                                isSysAdmin = permissions.groupsPerProject[KnoraApiConfig.SystemProjectIRI]
-                                    .indexOf(KnoraApiConfig.SystemAdminGroupIRI) > -1;
+                            if (permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]) {
+                                isSysAdmin = permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]
+                                    .indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
                             }
 
                             const currentUserObject: any = {

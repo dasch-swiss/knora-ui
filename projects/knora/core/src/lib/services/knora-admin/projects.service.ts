@@ -4,7 +4,7 @@ import {catchError, map} from 'rxjs/operators';
 
 import {ApiService} from '../api.service';
 
-import {ApiServiceResult, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, User} from '../../declarations/index';
+import {ApiServiceResult, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, User} from '../../declarations/';
 
 import {KuiCoreModule} from '../../core.module';
 

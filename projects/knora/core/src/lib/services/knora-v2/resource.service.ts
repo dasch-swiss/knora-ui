@@ -1,13 +1,11 @@
 import {Injectable} from '@angular/core';
-import {catchError, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
 import {ApiService} from '../api.service';
-import {KuiCoreModule} from '../../core.module';
 import {ApiServiceResult} from '../../declarations';
 
 @Injectable({
-    providedIn: KuiCoreModule
+    providedIn: 'root'
 })
 export class ResourceService extends ApiService {
 

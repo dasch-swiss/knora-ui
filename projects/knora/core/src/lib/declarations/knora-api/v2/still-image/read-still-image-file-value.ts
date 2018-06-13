@@ -1,5 +1,5 @@
 import {ReadPropertyItem} from '..';
-import {KnoraConstants} from '../../../knora-constants';
+import {KnoraConstants} from '../../knora-constants';
 
 
 /**
