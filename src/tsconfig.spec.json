@@ -8,20 +8,23 @@
       "node"
     ],
     "paths": {
-      "@knora/core": [
-        "dist/@knora/core"
-      ],
-      "@knora/authentication": [
-        "dist/@knora/authentication"
+      "@knora/action": [
+        "dist/@knora/action"
       ],
       "@knora/admin": [
         "dist/@knora/admin"
       ],
-      "@knora/project": [
-        "dist/@knora/project"
+      "@knora/authentication": [
+        "dist/@knora/authentication"
       ],
-      "@knora/progress-indicator": [
-        "dist/@knora/progress-indicator"
+      "@knora/core": [
+        "dist/@knora/core"
+      ],
+      "@knora/search": [
+        "dist/@knora/search"
+      ],
+      "@knora/viewer": [
+        "dist/@knora/viewer"
       ]
     }
   },

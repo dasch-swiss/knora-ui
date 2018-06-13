@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AdminComponent } from './admin.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AdminComponent} from './admin.component';
 
 @NgModule({
     imports: [
@@ -13,4 +13,5 @@ import { AdminComponent } from './admin.component';
         AdminComponent
     ]
 })
-export class KuiAdminModule { }
+export class KuiAdminModule {
+}

@@ -34,10 +34,6 @@ const appRoutes: Routes = [
                 component: LoginComponent
             },
             {
-                path: 'project',
-                component: ProjectComponent
-            },
-            {
                 path: 'progress-indicator',
                 component: ProgressIndicatorDemoComponent
             },

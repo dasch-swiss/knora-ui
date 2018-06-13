@@ -33,10 +33,13 @@ $ yarn build-lib
 
 The demo app runs on http://localhost:4200 and we use it on this repository's [Github page](https://dhlab-basel.github.io/Knora-ui)
 
+### Developing modules
+
+To create new e.g. component inside existing module use the following command:
+
+`$ ng g c [component-name] --project @knora/[module-name] --styleext scss`
 
 ---
-
-This repository replaces the [salsah-modules](https://github.com/dhlab-basel/salsah-modules).
 
 ## Knora module structure
 
