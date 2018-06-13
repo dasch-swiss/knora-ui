@@ -39,8 +39,47 @@ $ yarn build-lib
 
 The demo app runs on http://localhost:4200 and we use it on this repository's [Github page](https://dhlab-basel.github.io/Knora-ui)
 
+### Developing modules
+
+To create new e.g. component inside existing module use the following command:
+
+`$ ng g c [component-name] --project @knora/[module-name] --styleext scss`
 
 ---
 
-This repository replaces the [salsah-modules](https://github.com/dhlab-basel/salsah-modules).
+## Knora module structure
 
+@knora/core
+* services (for API requests)
+* constants & utils (to work with Knora)
+
+@knora/action
+* buttons & buttons
+* progress-indicator
+* progress-stepper
+* message
+* directives & pipes
+* dialog
+
+@knora/authentication
+* login
+* logout
+
+@knora/search
+* search results
+* search panel incl. search action (like adding a collection)
+
+@knora/viewer
+* object viewer (incl. video, audio, image)
+* properties (as form elements)
+* resource_class_form
+
+@knora/admin
+* project (incl. ontology-editor)
+* system
+* user
+* dashboard
+* ontology_form incl. resource-class-form (new-/edit-resource-class)
+* project_form
+* user_form
+* list_form

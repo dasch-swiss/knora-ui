@@ -20,8 +20,38 @@
       "@knora/core": [
         "dist/@knora/core"
       ],
-      "@knora/progress-indicator": [
-        "dist/@knora/progress-indicator"
+      "@knora/core/*": [
+        "dist/@knora/core/*"
+      ],
+      "@knora/authentication": [
+        "dist/@knora/authentication"
+      ],
+      "@knora/authentication/*": [
+        "dist/@knora/authentication/*"
+      ],
+      "@knora/admin": [
+        "dist/@knora/admin"
+      ],
+      "@knora/admin/*": [
+        "dist/@knora/admin/*"
+      ],
+      "@knora/viewer": [
+        "dist/@knora/viewer"
+      ],
+      "@knora/viewer/*": [
+        "dist/@knora/viewer/*"
+      ],
+      "@knora/action": [
+        "dist/@knora/action"
+      ],
+      "@knora/action/*": [
+        "dist/@knora/action/*"
+      ],
+      "@knora/search": [
+        "dist/@knora/search"
+      ],
+      "@knora/search/*": [
+        "dist/@knora/search/*"
       ]
     }
   }

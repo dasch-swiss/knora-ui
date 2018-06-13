@@ -209,6 +209,246 @@
           }
         }
       }
+    },
+    "@knora/authentication": {
+      "root": "projects/knora/authentication",
+      "sourceRoot": "projects/knora/authentication/src",
+      "projectType": "library",
+      "prefix": "kui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/knora/authentication/tsconfig.lib.json",
+            "project": "projects/knora/authentication/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/knora/authentication/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/knora/authentication/src/test.ts",
+            "tsConfig": "projects/knora/authentication/tsconfig.spec.json",
+            "karmaConfig": "projects/knora/authentication/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/knora/authentication/tsconfig.lib.json",
+              "projects/knora/authentication/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@knora/project": {
+      "root": "projects/knora/project",
+      "sourceRoot": "projects/knora/project/src",
+      "projectType": "library",
+      "prefix": "kui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/knora/project/tsconfig.lib.json",
+            "project": "projects/knora/project/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/knora/project/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/knora/project/src/test.ts",
+            "tsConfig": "projects/knora/project/tsconfig.spec.json",
+            "karmaConfig": "projects/knora/project/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/knora/project/tsconfig.lib.json",
+              "projects/knora/project/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@knora/admin": {
+      "root": "projects/knora/admin",
+      "sourceRoot": "projects/knora/admin/src",
+      "projectType": "library",
+      "prefix": "kui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/knora/admin/tsconfig.lib.json",
+            "project": "projects/knora/admin/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/knora/admin/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/knora/admin/src/test.ts",
+            "tsConfig": "projects/knora/admin/tsconfig.spec.json",
+            "karmaConfig": "projects/knora/admin/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/knora/admin/tsconfig.lib.json",
+              "projects/knora/admin/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@knora/viewer": {
+      "root": "projects/knora/viewer",
+      "sourceRoot": "projects/knora/viewer/src",
+      "projectType": "library",
+      "prefix": "kui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/knora/viewer/tsconfig.lib.json",
+            "project": "projects/knora/viewer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/knora/viewer/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/knora/viewer/src/test.ts",
+            "tsConfig": "projects/knora/viewer/tsconfig.spec.json",
+            "karmaConfig": "projects/knora/viewer/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/knora/viewer/tsconfig.lib.json",
+              "projects/knora/viewer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@knora/action": {
+      "root": "projects/knora/action",
+      "sourceRoot": "projects/knora/action/src",
+      "projectType": "library",
+      "prefix": "kui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/knora/action/tsconfig.lib.json",
+            "project": "projects/knora/action/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/knora/action/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/knora/action/src/test.ts",
+            "tsConfig": "projects/knora/action/tsconfig.spec.json",
+            "karmaConfig": "projects/knora/action/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/knora/action/tsconfig.lib.json",
+              "projects/knora/action/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@knora/search": {
+      "root": "projects/knora/search",
+      "sourceRoot": "projects/knora/search/src",
+      "projectType": "library",
+      "prefix": "kui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/knora/search/tsconfig.lib.json",
+            "project": "projects/knora/search/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/knora/search/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/knora/search/src/test.ts",
+            "tsConfig": "projects/knora/search/tsconfig.spec.json",
+            "karmaConfig": "projects/knora/search/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/knora/search/tsconfig.lib.json",
+              "projects/knora/search/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "knora-ui"

@@ -1,0 +1,68 @@
+<div class="salsah-overlay fullscreen">
+
+    <div class="salsah-overlay-header">
+        <img routerLink="/" class="logo" src="/assets/img/salsah-logo.png" alt="SALSAH"
+             title="SALSAH">
+        <p>Sign in to SALSAH</p>
+    </div>
+
+    <mat-card class="salsah-login-card">
+        <mat-card-header class="login-header">
+            <mat-card-title>
+                {{login.title }}
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="login-content">
+            <!-- This is the login form (lf) -->
+            <form class="login-form" [formGroup]="loginForm">
+                <!-- Username -->
+                <mat-form-field class="full-width login-field">
+                    <mat-icon matPrefix>person</mat-icon>
+                    <input matInput
+                           [placeholder]="login.name"
+                           formControlName="email">
+                    <mat-hint *ngIf="formErrors.email" class="login-error">{{login.error.failed}}</mat-hint>
+                </mat-form-field>
+                <br><br><br>
+                <!-- Password -->
+
+                <mat-form-field class="full-width login-field">
+                    <mat-icon matPrefix>lock</mat-icon>
+                    <input matInput
+                           type="password"
+                           [placeholder]="login.pw"
+                           formControlName="password">
+                    <mat-hint *ngIf="formErrors.password" class="login-error">{{login.error.failed}}</mat-hint>
+                </mat-form-field>
+                <br><br><br>
+                <!-- Button: Login -->
+                <div class="button-row full-width">
+                    <button mat-raised-button type="submit"
+                            [disabled]="!loginForm.valid"
+                            class="full-width login mat-primary"
+                            (click)="submitData()">
+                        {{login.button}}
+                    </button>
+                </div>
+            </form>
+            <span class="login-error">{{login.error.server}}</span>
+            <!--
+            <kui-progress-indicator *ngIf="isLoading"></kui-progress-indicator>
+            -->
+        </mat-card-content>
+        <mat-card-content class="salsah-login-card">
+            <kui-logout></kui-logout>
+        </mat-card-content>
+
+
+    </mat-card>
+
+    <div class="salsah-overlay-footer">
+        <h4>{{signup.title}}</h4>
+        <h5>{{signup.subtitle}}</h5>
+        <div class="button-row full-width">
+            <button mat-button class="full-width">{{signup.button}}</button>
+        </div>
+    </div>
+</div>

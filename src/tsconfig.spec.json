@@ -8,12 +8,24 @@
       "node"
     ],
     "paths": {
-        "@knora/core": [
-            "dist/@knora/core"
-        ],
-        "@knora/progress-indicator": [
-            "dist/@knora/progress-indicator"
-        ]
+      "@knora/action": [
+        "dist/@knora/action"
+      ],
+      "@knora/admin": [
+        "dist/@knora/admin"
+      ],
+      "@knora/authentication": [
+        "dist/@knora/authentication"
+      ],
+      "@knora/core": [
+        "dist/@knora/core"
+      ],
+      "@knora/search": [
+        "dist/@knora/search"
+      ],
+      "@knora/viewer": [
+        "dist/@knora/viewer"
+      ]
     }
   },
   "files": [

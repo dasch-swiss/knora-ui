@@ -5,7 +5,6 @@ import {MainIntroComponent} from './landing-page/main-intro/main-intro.component
 // /modules demo
 import {ModuleIndexComponent} from './partials/module-index/module-index.component';
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
-import {ExampleViewerComponent} from './partials/example-viewer/example-viewer.component';
 // examples: demo components
 import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indicator-demo/progress-indicator-demo.component';
 import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
@@ -16,6 +15,7 @@ import {GroupsComponent} from './knora-ui-examples/core-demo/groups/groups.compo
 import {TreeComponent} from './material/tree/tree.component';
 import {ResourceComponent} from './knora-ui-examples/core-demo/resource/resource.component';
 
+import {LoginComponent} from './knora-ui-examples/login/login.component';
 
 const appRoutes: Routes = [
     {
@@ -30,6 +30,10 @@ const appRoutes: Routes = [
             {
                 path: '',
                 component: DemoIntroComponent,
+            },
+            {
+                path: 'authentication',
+                component: LoginComponent
             },
             {
                 path: 'progress-indicator',
