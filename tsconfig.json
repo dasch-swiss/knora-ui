@@ -28,7 +28,13 @@
       ],
       "@knora/project": [
         "dist/@knora/project"
-      ]
+      ],
+      "@knora/admin": [
+        "dist/@knora/admin"
+      ]/* ,
+      "@knora/admin/*": [
+        "dist/@knora/admin/*"
+      ] */
     }
   }
 }
