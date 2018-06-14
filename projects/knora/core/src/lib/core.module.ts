@@ -1,6 +1,6 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 import {KuiCoreConfig} from './declarations';
 
 @NgModule({

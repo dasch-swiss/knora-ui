@@ -1,0 +1,24 @@
+<div *ngIf="allGroups && !groupsService.loading">
+    <h4>List of all (project specific) groups</h4>
+
+    <ul>
+        <li class="link" *ngFor="let g of allGroups" (click)="getGroupByIri(g.id)">
+            <strong>{{g.name}}</strong> ({{g.project.longname}})
+            <span>{{g.description}}</span>
+        </li>
+    </ul>
+</div>
+
+
+
+<div *ngIf="group && !groupsService.loading">
+    <mat-divider></mat-divider>
+    <h4>Get group by iri ({{group.id}})</h4>
+    <p>Name: <strong>{{group.name}}</strong></p>
+    <p>Project: <strong>{{group.project.longname}}</strong> ({{group.project.shortname}})</p>
+    <p>Selfjoin: <strong>{{group.selfjoin}}</strong></p>
+    <p>Status: <strong>{{group.status}}</strong></p>
+    <p>Description: <br>{{group.description}}</p>
+</div>
+
+<kui-progress-indicator *ngIf="groupsService.loading"></kui-progress-indicator>
