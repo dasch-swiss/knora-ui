@@ -6,11 +6,6 @@ export * from './json-ld/json-ld';
 export * from './json-ld/convert-json-ld';
 
 /**
- * Interfaces for shared
- */
-export * from './shared/strings';
-
-/**
  * Interfaces for properties
  */
 export * from './properties/read-properties';

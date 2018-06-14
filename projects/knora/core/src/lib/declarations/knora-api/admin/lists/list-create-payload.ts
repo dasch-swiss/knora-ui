@@ -1,4 +1,4 @@
-import {StringLiteralV2} from '../../v2';
+import {StringLiteral} from '../../';
 
 
 export interface ListCreatePayload {
@@ -7,8 +7,8 @@ export interface ListCreatePayload {
     projectIri: string;
 
     // should have at least one label
-    labels: StringLiteralV2[];
+    labels: StringLiteral[];
 
     // can be empty
-    comments: StringLiteralV2[];
+    comments: StringLiteral[];
 }

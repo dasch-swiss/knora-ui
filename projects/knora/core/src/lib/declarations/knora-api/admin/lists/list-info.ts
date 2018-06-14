@@ -1,5 +1,5 @@
 import {JsonObject, JsonProperty} from 'json2typescript';
-import {StringLiteralV2} from '../../v2/shared/strings';
+import {StringLiteral} from '../../';
 
 @JsonObject
 export class ListInfo {
@@ -10,9 +10,9 @@ export class ListInfo {
     @JsonProperty('projectIri', String, false)
     public projectIri: string = undefined;
 
-    @JsonProperty('labels', [StringLiteralV2], true)
-    public labels: StringLiteralV2[] = undefined;
+    @JsonProperty('labels', [StringLiteral], true)
+    public labels: StringLiteral[] = undefined;
 
-    @JsonProperty('comments', [StringLiteralV2], true)
-    public comments: StringLiteralV2[] = undefined;
+    @JsonProperty('comments', [StringLiteral], true)
+    public comments: StringLiteral[] = undefined;
 }

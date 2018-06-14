@@ -1,5 +1,5 @@
 import {JsonObject, JsonProperty} from 'json2typescript';
-import {StringLiteralV2} from '../../v2';
+import {StringLiteral} from '../../';
 
 @JsonObject
 export class Project {
@@ -16,8 +16,8 @@ export class Project {
     @JsonProperty('longname', String, true)
     public longname: string = undefined;
 
-    @JsonProperty('description', [StringLiteralV2], true)
-    public description: StringLiteralV2[] = [new StringLiteralV2()];
+    @JsonProperty('description', [StringLiteral], true)
+    public description: StringLiteral[] = [new StringLiteral()];
 
     @JsonProperty('keywords', [String], true)
     public keywords: string[] = undefined;

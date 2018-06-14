@@ -12,7 +12,13 @@ export * from './admin/';
 /**
  * Interfaces for V2
  */
-// export * from './v2/';
+export * from './v2/';
+
+/**
+ * Interfaces for shared objects
+ */
+export * from './shared/';
+
 
 /**
  * Knora constants

@@ -1,4 +1,4 @@
-import {StringLiteralV2} from '../../v2';
+import {StringLiteral} from '../../';
 
 
 export interface ListInfoUpdatePayload {
@@ -10,8 +10,8 @@ export interface ListInfoUpdatePayload {
     projectIri: string
 
     // can be an empty array
-    labels: StringLiteralV2[]
+    labels: StringLiteral[]
 
     // can be an empty array
-    comments: StringLiteralV2[]
+    comments: StringLiteral[]
 }
