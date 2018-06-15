@@ -10,10 +10,12 @@ import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indic
 import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
 import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects.component';
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
-import {AuthenticationComponent} from './knora-ui-examples/core-demo/authentication/authentication.component';
-import {ExampleViewerComponent} from './partials/example-viewer/example-viewer.component';
+import {ListsComponent} from './knora-ui-examples/core-demo/lists/lists.component';
+import {GroupsComponent} from './knora-ui-examples/core-demo/groups/groups.component';
+import {TreeComponent} from './material/tree/tree.component';
+import {ResourceComponent} from './knora-ui-examples/core-demo/resource/resource.component';
+
 import {LoginComponent} from './knora-ui-examples/login/login.component';
-import {ProjectComponent} from './knora-ui-examples/project/project.component';
 
 const appRoutes: Routes = [
     {
@@ -49,6 +51,18 @@ const appRoutes: Routes = [
                     {
                         path: 'users',
                         component: UsersComponent
+                    },
+                    {
+                        path: 'groups',
+                        component: GroupsComponent
+                    },
+                    {
+                        path: 'lists',
+                        component: ListsComponent
+                    },
+                    {
+                        path: 'resource',
+                        component: ResourceComponent
                     }
 
                 ]
@@ -57,7 +71,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'test',
-        component: ExampleViewerComponent
+        component: TreeComponent
     }
     /*
         {
