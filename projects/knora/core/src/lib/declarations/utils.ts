@@ -1,7 +1,7 @@
 /**
  * Collection of useful utility functions.
  */
-import {KnoraConstants} from './knora-api/';
+import {KnoraConstants} from './knora-api/knora-constants';
 
 // @dynamic
 export class Utils {

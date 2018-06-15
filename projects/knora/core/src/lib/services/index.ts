@@ -6,7 +6,10 @@ export * from './api.service';
 /**
  * specific services for knora admin api
  */
-export * from './knora-admin/';
+export * from './knora-admin/groups.service';
+export * from './knora-admin/lists.service';
+export * from './knora-admin/projects.service';
+export * from './knora-admin/users.service';
 
 /**
  * specific services for knora v2 api

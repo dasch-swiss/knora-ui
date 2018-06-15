@@ -8,10 +8,7 @@ import {
     ReadIntervalValue,
     ReadLinkValue,
     ReadListValue,
-    ReadProperties,
     ReadPropertyItem,
-    ReadResource,
-    ReadResourcesSequence,
     ReadStillImageFileValue,
     ReadTextFileValue,
     ReadTextValueAsHtml,
@@ -19,7 +16,12 @@ import {
     ReadTextValueAsXml,
     ReadUriValue,
     ReferredResourcesByStandoffLink
-} from '..';
+} from '../properties/read-property-item';
+
+import {ReadProperties} from '../properties/read-properties';
+import {ReadResource} from '../resources/read-resource';
+import {ReadResourcesSequence} from '../resources/read-resources-sequence';
+
 
 import {Utils} from '../../../utils';
 import {KnoraConstants} from '../../knora-constants';

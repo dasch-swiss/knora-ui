@@ -1,4 +1,4 @@
-import {ReadProperties} from '..';
+import {ReadProperties} from '../../../';
 import {StillImageRepresentation} from '../still-image/still-image-representation';
 
 export class ReadResource {

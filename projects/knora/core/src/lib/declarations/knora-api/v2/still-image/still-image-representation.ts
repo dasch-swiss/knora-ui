@@ -1,4 +1,4 @@
-import {ReadStillImageFileValue} from '..';
+import {ReadStillImageFileValue} from '../../../';
 import {ImageRegion} from './image-region';
 
 /**

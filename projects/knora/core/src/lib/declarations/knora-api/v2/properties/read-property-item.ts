@@ -1,5 +1,5 @@
 
-import {ReadResource} from '..';
+import {ReadResource} from '../../../';
 import {KnoraConstants} from '../../knora-constants';
 // import {OntologyInformation} from '../../../../services/knora-v2/ontology-cache.service';
 

@@ -1,5 +1,6 @@
 import {JsonObject, JsonProperty} from 'json2typescript';
-import {StringLiteral} from '../../';
+import {StringLiteral} from '../../shared/strings';
+
 
 @JsonObject
 export class Project {

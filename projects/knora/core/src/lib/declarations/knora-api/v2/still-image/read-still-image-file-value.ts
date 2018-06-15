@@ -1,4 +1,4 @@
-import {ReadPropertyItem} from '..';
+import {ReadPropertyItem} from '../../../';
 import {KnoraConstants} from '../../knora-constants';
 
 

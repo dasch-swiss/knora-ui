@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiServiceError, ApiServiceResult, ResourceService, ReadResourcesSequence} from '@knora/core';
+import {ApiServiceError, ApiServiceResult, ReadResourcesSequence} from '@knora/core';
 
 declare let require: any;
 const jsonld = require('jsonld');
@@ -14,7 +14,7 @@ export class ResourceComponent implements OnInit {
     // example of a resource:
     iri: string = 'http://rdfh.ch/0fb54d8bd503';
 
-    constructor(public resourceService: ResourceService) {
+    constructor() {
     }
 
     ngOnInit() {
@@ -22,6 +22,7 @@ export class ResourceComponent implements OnInit {
     }
 
     getResource(iri: string) {
+        /*
         this.resourceService.getResource(iri)
             .subscribe(
                 (result: ApiServiceResult) => {
@@ -50,6 +51,7 @@ export class ResourceComponent implements OnInit {
                     console.error(error);
                 }
             );
+            */
     }
 
 }

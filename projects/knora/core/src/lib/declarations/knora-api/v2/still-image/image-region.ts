@@ -1,4 +1,4 @@
-import {ReadResource} from '..';
+import {ReadResource} from '../../../';
 import {KnoraConstants} from '../../knora-constants';
 import {ReadGeomValue} from './read-geom-value';
 
