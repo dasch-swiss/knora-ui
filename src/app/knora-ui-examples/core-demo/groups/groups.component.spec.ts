@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GroupsComponent } from './groups.component';
+import {MatDividerModule} from '@angular/material';
+import {KuiActionModule} from '@knora/action';
+import {KuiCoreModule} from '@knora/core';
 
 describe('GroupsComponent', () => {
   let component: GroupsComponent;
@@ -8,7 +11,14 @@ describe('GroupsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GroupsComponent ]
+        imports: [
+            KuiActionModule,
+            KuiCoreModule,
+            MatDividerModule
+        ],
+        declarations: [
+            GroupsComponent
+        ]
     })
     .compileComponents();
   }));

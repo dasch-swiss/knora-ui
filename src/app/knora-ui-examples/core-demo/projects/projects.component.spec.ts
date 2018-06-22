@@ -1,12 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {MatCardModule, MatChipsModule, MatDividerModule, MatIconModule, MatInputModule, MatTabsModule} from '@angular/material';
-import {KuiCoreModule, KuiCoreConfig} from '@knora/core';
+import {KuiActionModule} from '@knora/action';
+import {KuiCoreModule} from '@knora/core';
 
 import {ProjectsComponent} from './projects.component';
 import {ExampleViewerComponent} from '../../../partials/example-viewer/example-viewer.component';
-import {MarkdownModule, MarkdownService} from 'ngx-markdown';
-import {KuiProgressIndicatorModule} from '../../../../../projects/knora/progress-indicator/src/lib/progress-indicator.module';
+import {MarkdownModule} from 'ngx-markdown';
 import {ModuleHeaderComponent} from '../../../partials/module-header/module-header.component';
 
 describe('ProjectsComponent', () => {
@@ -23,7 +23,7 @@ describe('ProjectsComponent', () => {
                 MatIconModule,
                 MatTabsModule,
                 KuiCoreModule,
-                KuiProgressIndicatorModule,
+                KuiActionModule,
                 MarkdownModule.forRoot({ loader: HttpClient }),
                 HttpClientModule
             ],

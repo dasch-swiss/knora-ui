@@ -1,25 +1,30 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SortButtonComponent } from './sort-button.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {KuiActionModule} from '@knora/action';
+import {SortButtonComponent} from './sort-button.component';
 
 describe('SortButtonComponent', () => {
-  let component: SortButtonComponent;
-  let fixture: ComponentFixture<SortButtonComponent>;
+    let component: SortButtonComponent;
+    let fixture: ComponentFixture<SortButtonComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SortButtonComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                KuiActionModule
+            ],
+            declarations: [
+                SortButtonComponent
+            ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SortButtonComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(SortButtonComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
