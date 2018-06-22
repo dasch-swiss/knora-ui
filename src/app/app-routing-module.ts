@@ -6,7 +6,7 @@ import {MainIntroComponent} from './landing-page/main-intro/main-intro.component
 import {ModuleIndexComponent} from './partials/module-index/module-index.component';
 import {DemoIntroComponent} from './landing-page/demo-intro/demo-intro.component';
 // examples: demo components
-import {ProgressIndicatorDemoComponent} from './knora-ui-examples/progress-indicator-demo/progress-indicator-demo.component';
+import {ProgressIndicatorComponent} from './knora-ui-examples/action-demo/progress-indicator/progress-indicator.component';
 import {CoreDemoComponent} from './knora-ui-examples/core-demo/core-demo.component';
 import {ProjectsComponent} from './knora-ui-examples/core-demo/projects/projects.component';
 import {UsersComponent} from './knora-ui-examples/core-demo/users/users.component';
@@ -16,6 +16,8 @@ import {TreeComponent} from './material/tree/tree.component';
 import {ResourceComponent} from './knora-ui-examples/core-demo/resource/resource.component';
 
 import {LoginComponent} from './knora-ui-examples/login/login.component';
+import {ActionDemoComponent} from './knora-ui-examples/action-demo/action-demo.component';
+import {SortButtonComponent} from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 
 const appRoutes: Routes = [
     {
@@ -32,12 +34,22 @@ const appRoutes: Routes = [
                 component: DemoIntroComponent,
             },
             {
-                path: 'authentication',
-                component: LoginComponent
+                path: 'action',
+                component: ActionDemoComponent,
+                children: [
+                    {
+                        path: 'sort-button',
+                        component: SortButtonComponent
+                    },
+                    {
+                        path: 'progress-indicator',
+                        component: ProgressIndicatorComponent
+                    }
+                ]
             },
             {
-                path: 'progress-indicator',
-                component: ProgressIndicatorDemoComponent
+                path: 'authentication',
+                component: LoginComponent
             },
             {
                 path: 'core',

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiServiceError, ApiServiceResult, ReadResourcesSequence} from '@knora/core';
 
 declare let require: any;
 const jsonld = require('jsonld');
