@@ -9,20 +9,47 @@ export class SortButtonComponent implements OnInit {
 
     sortProps: any = [
         {
-            key: 'shortcode',
-            label: 'Short code'
+            key: 'prename',
+            label: 'Prename'
         },
         {
-            key: 'shortname',
-            label: 'Short name'
+            key: 'lastname',
+            label: 'Last name'
         },
         {
-            key: 'longname',
-            label: 'Long name'
+            key: 'creator',
+            label: 'Creator'
         }
     ];
 
-    sortKey: string = 'longname';
+    sortKey: string = 'creator';
+
+    list = [
+        {
+            prename: 'Gaston',
+            lastname: 'Lagaffe',
+            creator: 'André Franquin'
+
+        },
+        {
+            prename: 'Mickey',
+            lastname: 'Mouse',
+            creator: 'Walt Disney'
+
+        },
+        {
+            prename: 'Donald',
+            lastname: 'Duck',
+            creator: 'Walt Disney'
+
+        },
+        {
+            prename: 'Charlie',
+            lastname: 'Brown',
+            creator: 'Charles M. Schulz'
+
+        }
+    ];
 
     constructor() {
     }

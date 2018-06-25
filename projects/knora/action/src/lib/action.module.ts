@@ -5,6 +5,7 @@ import {ProgressIndicatorComponent} from './progress-indicator/progress-indicato
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatIconModule, MatMenuModule} from '@angular/material';
 import {SortButtonComponent} from './sort-button/sort-button.component';
+import {SortByPipe} from './sort-button/sort-by.pipe';
 
 @NgModule({
     imports: [
@@ -15,8 +16,18 @@ import {SortButtonComponent} from './sort-button/sort-button.component';
         MatMenuModule
 
     ],
-    declarations: [ActionComponent, ProgressIndicatorComponent, SortButtonComponent],
-    exports: [ActionComponent, ProgressIndicatorComponent, SortButtonComponent]
+    declarations: [
+        ActionComponent,
+        ProgressIndicatorComponent,
+        SortButtonComponent,
+        SortByPipe
+    ],
+    exports: [
+        ActionComponent,
+        ProgressIndicatorComponent,
+        SortButtonComponent,
+        SortByPipe
+    ]
 })
 export class KuiActionModule {
 }
