@@ -19,17 +19,21 @@ export class AppDemo {
         stackblitz: true,
         label: 'Progress indicator'
     };
-    public static adminImage: DemoModule = {
-        name: 'admin-image',
-        published: true,
-        stackblitz: false,
-        label: 'Admin image'
-    };
 
     public static actionModule: DemoModule = {
         name: 'action',
-        published: true,
-        label: 'Action module'
+        published: false,
+        label: 'Action module',
+        children: [
+            {
+                name: 'sort-button',
+                label: 'SortButton'
+            },
+            {
+                name: 'progress-indicator',
+                label: 'ProgressIndicator'
+            }
+        ]
     };
 
     public static coreModule: DemoModule = {
@@ -86,8 +90,9 @@ export class AppDemo {
      * @type {DemoModule[]}
      */
     public static examples: DemoModule[] = [
-        AppDemo.coreModule,
         AppDemo.authenticationModule,
+        AppDemo.actionModule,
+        AppDemo.coreModule,
     ];
 
 }

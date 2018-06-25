@@ -1,27 +1,25 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {KuiActionModule} from '@knora/action';
+import {SortButtonComponent} from './sort-button.component';
 
-import {TreeComponent} from './tree.component';
-import {MatIconModule, MatTreeModule} from '@angular/material';
-
-describe('TreeComponent', () => {
-    let component: TreeComponent;
-    let fixture: ComponentFixture<TreeComponent>;
+describe('SortButtonComponent', () => {
+    let component: SortButtonComponent;
+    let fixture: ComponentFixture<SortButtonComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                MatIconModule,
-                MatTreeModule
+                KuiActionModule
             ],
             declarations: [
-                TreeComponent
+                SortButtonComponent
             ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(TreeComponent);
+        fixture = TestBed.createComponent(SortButtonComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

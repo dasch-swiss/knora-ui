@@ -1,25 +1,33 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ListsComponent } from './lists.component';
+import {KuiCoreModule} from '@knora/core';
+
+import {ListsComponent} from './lists.component';
 
 describe('ListsComponent', () => {
-  let component: ListsComponent;
-  let fixture: ComponentFixture<ListsComponent>;
+    let component: ListsComponent;
+    let fixture: ComponentFixture<ListsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ListsComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                KuiCoreModule
+            ],
+            declarations: [
+                ListsComponent
+            ]
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ListsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        })
+            .compileComponents();
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ListsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

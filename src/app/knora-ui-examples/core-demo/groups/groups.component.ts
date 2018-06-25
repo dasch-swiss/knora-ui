@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiServiceError, Group, GroupsService} from '@knora/core';
-import {Example} from '../../../app.interfaces';
 
 @Component({
     selector: 'app-groups',
