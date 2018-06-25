@@ -14,4 +14,5 @@ export * from './knora-admin/users.service';
 /**
  * specific services for knora v2 api
  */
-// export * from './knora-v2/';
+ export * from './knora-v2/resource.service';
+ export * from './knora-v2/convert-jsonld';

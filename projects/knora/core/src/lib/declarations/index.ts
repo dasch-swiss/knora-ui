@@ -86,7 +86,7 @@ export * from './knora-api/admin/users/user';
  * Interfaces for json-ld
  */
 export * from './knora-api/v2/json-ld/json-ld';
-export * from './knora-api/v2/json-ld/convert-json-ld';
+// export * from './knora-api/v2/json-ld/convert-json-ld';
 
 /**
  * Interfaces for properties
