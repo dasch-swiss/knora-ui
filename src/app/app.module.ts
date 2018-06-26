@@ -39,6 +39,7 @@ import {LoginComponent} from './knora-ui-examples/login/login.component';
 import {ProjectComponent} from './knora-ui-examples/project/project.component';
 import {ActionDemoComponent} from './knora-ui-examples/action-demo/action-demo.component';
 import {SortButtonComponent} from './knora-ui-examples/action-demo/sort-button/sort-button.component';
+import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 
 @NgModule({
     declarations: [
@@ -61,7 +62,8 @@ import {SortButtonComponent} from './knora-ui-examples/action-demo/sort-button/s
         LoginComponent,
         ProjectComponent,
         ActionDemoComponent,
-        SortButtonComponent
+        SortButtonComponent,
+        ModuleSubHeaderComponent
     ],
     imports: [
         BrowserModule,

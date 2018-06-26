@@ -11,16 +11,23 @@ export class SortButtonComponent implements OnInit {
 
     @Input() sortProps: any;
 
-    @Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input() position: string = 'left';
 
     @Input() sortKey(value) {
         this.activeKey = value;
     }
 
+    @Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();
+
+    menuXPos: string = 'after';
+
     constructor() {
     }
 
     ngOnInit() {
+        if (this.position === 'right') {
+            this.menuXPos = 'before';
+        }
 
     }
 

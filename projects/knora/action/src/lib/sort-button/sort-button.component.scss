@@ -1,3 +1,11 @@
 .active {
     background: rgba(128, 128, 128, 0.8);
 }
+
+.right {
+    float: right;
+
+    .mat-icon {
+        transform: scale(-1, 1);
+    }
+}

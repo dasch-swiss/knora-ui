@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActionComponent } from './action.component';
+import { ModuleSubHeaderComponent } from './module-sub-header.component';
 
-describe('ActionComponent', () => {
-  let component: ActionComponent;
-  let fixture: ComponentFixture<ActionComponent>;
+describe('ModuleSubHeaderComponent', () => {
+  let component: ModuleSubHeaderComponent;
+  let fixture: ComponentFixture<ModuleSubHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActionComponent ]
+      declarations: [ ModuleSubHeaderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActionComponent);
+    fixture = TestBed.createComponent(ModuleSubHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
