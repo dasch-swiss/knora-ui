@@ -16,3 +16,7 @@ export * from './knora-admin/users.service';
  */
  export * from './knora-v2/resource.service';
  export * from './knora-v2/convert-jsonld';
+ export * from './knora-v2/ontology-cache.service';
+ export * from './knora-v2/ontology.service';
+ export * from './knora-v2/incoming.service';
+ export * from './knora-v2/search.service';

@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
-import { KnoraConstants, ApiServiceResult, Utils } from '../../declarations';
-import { from, Observable, of, forkJoin } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {KnoraConstants, ApiServiceResult, Utils} from '../../declarations';
+import {OntologyService} from './ontology.service';
+import {from, Observable, of, forkJoin} from 'rxjs';
+import {map, mergeMap} from 'rxjs/operators';
+import {KuiCoreModule} from '../../core.module';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -14,7 +16,6 @@ class OntologyCacheError extends Error {
     constructor(readonly message: string) {
         super(message);
     }
-
 }
 
 
@@ -345,12 +346,14 @@ export class OntologyInformation {
 }
 
 
-@Injectable()
 /**
  * Adds and retrieves information to and from the LocalStorage.
  * If an information is not cached already, it is requested from Knora and added to the cache.
  */
-export class OntologyCacheService {
+@Injectable({
+    providedIn: KuiCoreModule
+})
+ export class OntologyCacheService {
 
     private excludedOntologies: Array<string> = [KnoraConstants.SalsahGuiOntology, KnoraConstants.StandoffOntology];
 
@@ -372,19 +375,21 @@ export class OntologyCacheService {
      @returns {Observable<any>} an Observable representing the required information.
      */
     private getOntologiesMetadataFromKnora(): Observable<object> {
-        const ontoResponse = this._ontologyService.getOntologiesMetadata().flatMap(
-            // this would return an Observable of a PromiseObservable -> combine them into one Observable
-            // http://reactivex.io/documentation/operators/flatmap.html
-            // http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap
-            (ontRes: ApiServiceResult) => {
-                const ontPromises = jsonld.promises;
-                // compact JSON-LD using an empty context: expands all Iris
-                const ontPromise = ontPromises.compact(ontRes.body, {});
+        const ontoResponse = this._ontologyService.getOntologiesMetadata().pipe(
+            mergeMap(
+                // this would return an Observable of a PromiseObservable -> combine them into one Observable
+                // http://reactivex.io/documentation/operators/flatmap.html
+                // http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap
+                (ontRes: ApiServiceResult) => {
+                    const ontPromises = jsonld.promises;
+                    // compact JSON-LD using an empty context: expands all Iris
+                    const ontPromise = ontPromises.compact(ontRes.body, {});
 
-                // convert promise to Observable and return it
-                // https://www.learnrxjs.io/operators/creation/frompromise.html
-                return from(ontPromise);
-            }
+                    // convert promise to Observable and return it
+                    // https://www.learnrxjs.io/operators/creation/frompromise.html
+                    return from(ontPromise);
+                }
+            )
         );
 
         return ontoResponse;
@@ -397,21 +402,22 @@ export class OntologyCacheService {
      */
     private getAllEntityDefinitionsForOntologyFromKnora(ontologyIri: string): Observable<object> {
 
-        return this._ontologyService.getAllEntityDefinitionsForOntologies(ontologyIri).flatMap(
-            // this would return an Observable of a PromiseObservable -> combine them into one Observable
-            // http://reactivex.io/documentation/operators/flatmap.html
-            // http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap
-            (ontRes: ApiServiceResult) => {
-                const ontPromises = jsonld.promises;
-                // compact JSON-LD using an empty context: expands all Iris
-                const ontPromise = ontPromises.compact(ontRes.body, {});
+        return this._ontologyService.getAllEntityDefinitionsForOntologies(ontologyIri).pipe(
+            mergeMap(
+                // this would return an Observable of a PromiseObservable -> combine them into one Observable
+                // http://reactivex.io/documentation/operators/flatmap.html
+                // http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap
+                (ontRes: ApiServiceResult) => {
+                    const ontPromises = jsonld.promises;
+                    // compact JSON-LD using an empty context: expands all Iris
+                    const ontPromise = ontPromises.compact(ontRes.body, {});
 
-                // convert promise to Observable and return it
-                // https://www.learnrxjs.io/operators/creation/frompromise.html
-                return from(ontPromise);
-            }
+                    // convert promise to Observable and return it
+                    // https://www.learnrxjs.io/operators/creation/frompromise.html
+                    return from(ontPromise);
+                }
+            )
         );
-
     }
 
     /**
@@ -543,7 +549,8 @@ export class OntologyCacheService {
      * @param {Object} resourceClassDefinitions the resource class definitions returned by Knora.
      * @param {Object} propertyClassDefinitions the property definitions returned by Knora.
      */
-    private convertAndWriteEntityDefinitionsToCache(resourceClassDefinitions: Array<Object>, propertyClassDefinitions: Array<Object>): void {
+    private convertAndWriteEntityDefinitionsToCache(
+        resourceClassDefinitions: Array<Object>, propertyClassDefinitions: Array<Object>): void {
 
         // convert and cache each given resource class definition
         for (const resClass of resourceClassDefinitions) {
@@ -835,17 +842,16 @@ export class OntologyCacheService {
             ).filter(Utils.filterOutDuplicates);
 
             // obtain missing resource class information
-            return this.getAndCacheOntologies(ontologyIris).flatMap(
-                results => {
+            return this.getAndCacheOntologies(ontologyIris).pipe(
+                mergeMap(
+                    results => {
 
-                    return this.getResourceClassDefinitionsFromCache(resourceClassIris);
-                }
-            )
-
+                        return this.getResourceClassDefinitionsFromCache(resourceClassIris);
+                    }
+                )
+            );
         } else {
-
             // console.log("from cache");
-
             return this.getResourceClassDefinitionsFromCache(resourceClassIris);
         }
     }
@@ -882,14 +888,16 @@ export class OntologyCacheService {
             ).filter(Utils.filterOutDuplicates);
 
             // obtain missing resource class information
-            return this.getAndCacheOntologies(ontologyIris).map(
-                results => {
+            return this.getAndCacheOntologies(ontologyIris).pipe(
+                map(
+                    results => {
 
-                    return this.getPropertyDefinitionsFromCache(propertyIris);
-                }
+                        return this.getPropertyDefinitionsFromCache(propertyIris);
+                    }
+                )
             );
         } else {
-            return Observable.of(this.getPropertyDefinitionsFromCache(propertyIris));
+            return of(this.getPropertyDefinitionsFromCache(propertyIris));
         }
     }
 }

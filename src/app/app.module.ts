@@ -40,6 +40,7 @@ import {ProjectComponent} from './knora-ui-examples/project/project.component';
 import {ActionDemoComponent} from './knora-ui-examples/action-demo/action-demo.component';
 import {SortButtonComponent} from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 
+
 const AppEnvironment: KuiCoreConfig = {
     api: environment.api,
     media: environment.media,
