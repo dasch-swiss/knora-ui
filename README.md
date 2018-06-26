@@ -50,12 +50,12 @@ To create new e.g. component inside existing module use the following command:
 ## Knora module structure
 
 @knora/core
-![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg)
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg) -->
 * services (for API requests)
 * constants & utils (to work with Knora)
 
 @knora/action
-![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg) -->
 * buttons & buttons
 * progress-indicator
 * progress-stepper
