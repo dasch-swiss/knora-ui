@@ -25,6 +25,7 @@ For local usage (developer mode) define your environment.ts as follow:
 ```
 export const environment = {
   production: false,
+  name: 'Salsah',
   api: 'http://0.0.0.0:3333',
   app: 'http://localhost:4200',
   media: 'http://localhost:1024'
@@ -47,6 +48,7 @@ import {environment} from '../environments/environment';
     imports: [
         BrowserModule,
         KuiCoreModule.forRoot({
+            name: environment.name,
             api: environment.api,
             media: environment.media,
             app: environment.app

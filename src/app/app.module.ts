@@ -10,7 +10,7 @@ import {MarkdownModule} from 'ngx-markdown';
 import {AppComponent} from './app.component';
 import {MaterialModule} from './material-module';
 // import the knora-ui modules
-import {KuiCoreConfig, KuiCoreModule} from '@knora/core';
+import {KuiCoreModule} from '@knora/core';
 import {KuiAuthenticationModule} from '@knora/authentication';
 import {KuiAdminModule} from '@knora/admin';
 import {KuiActionModule} from '@knora/action';
@@ -40,13 +40,6 @@ import {ProjectComponent} from './knora-ui-examples/project/project.component';
 import {ActionDemoComponent} from './knora-ui-examples/action-demo/action-demo.component';
 import {SortButtonComponent} from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 
-const AppEnvironment: KuiCoreConfig = {
-    api: environment.api,
-    media: environment.media,
-    app: environment.app
-};
-
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -74,7 +67,12 @@ const AppEnvironment: KuiCoreConfig = {
         BrowserModule,
         RouterModule,
         AppRoutingModule,
-        KuiCoreModule.forRoot(AppEnvironment),
+        KuiCoreModule.forRoot({
+            name: 'Knora-ui Demo App',
+            api: environment.api,
+            media: environment.media,
+            app: environment.app,
+        }),
         KuiAuthenticationModule,
         KuiAdminModule,
         KuiActionModule,

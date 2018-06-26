@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiServiceError, UsersService} from '@knora/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ApiServiceError, KuiCoreConfig, UsersService} from '@knora/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'kui-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
     // labels for the login form
     login = {
-        title: 'Already have an account?',
+        title: 'Login',
         name: 'Username',
         pw: 'Password',
         button: 'Login',
@@ -54,11 +54,15 @@ export class LoginComponent implements OnInit {
         }
     };
 
-    constructor(private _usersService: UsersService,
+    constructor(public usersService: UsersService,
+                @Inject('config') public config: KuiCoreConfig,
                 private _formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
+        if (this.config.name !== undefined && this.config.name !== '') {
+            this.login.title += ' to ' + this.config.name;
+        }
         this.buildForm();
     }
 
@@ -105,7 +109,7 @@ export class LoginComponent implements OnInit {
         console.log(this.loginForm.value);
 
 
-        this._usersService.login(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value).subscribe(
+        this.usersService.login(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value).subscribe(
             (result: boolean) => {
 
                 console.log(result);
