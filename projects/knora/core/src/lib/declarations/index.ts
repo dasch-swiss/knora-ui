@@ -9,6 +9,7 @@ export * from './utils';
  *
  */
 export * from './knora-api/knora-constants';
+export * from './knora-api/key.pipe';
 
 
 /**

@@ -3,7 +3,10 @@ import {
     ApiServiceResult,
     ApiServiceError,
     OntologyCacheService,
-    ResourceService
+    ResourceService,
+    ReadPropertyItem,
+    ReadLinkValue,
+    Utils
 } from '@knora/core';
 import { ConvertJSONLD, OntologyInformation, IncomingService } from 'projects/knora/core/src/lib/services';
 import { ReadResource, ReadResourcesSequence, KnoraConstants, ReadStillImageFileValue, StillImageRepresentation, ImageRegion } from 'projects/knora/core/src/lib/declarations';
@@ -30,6 +33,8 @@ export class ResourceComponent implements OnChanges, OnInit {
     resource: ReadResource; // the resource to be displayed
 
     incomingStillImageRepresentationCurrentOffset: number; // last offset requested for `this.resource.incomingStillImageRepresentations`
+
+    KnoraConstants = KnoraConstants;
 
     constructor(private _resourceService: ResourceService,
                 private _cacheService: OntologyCacheService,
@@ -383,4 +388,50 @@ export class ResourceComponent implements OnChanges, OnInit {
         resource.stillImageRepresentationsToDisplay = imgRepresentations;
     }
 
+    /**
+     * Gets the link value properties pointing from the incoming resource to [[this.resource]].
+     *
+     * @param {ReadResource} incomingResource the incoming resource.
+     * @returns {string} a string containing all the labels of the link value properties.
+     */
+    getIncomingPropertiesFromIncomingResource(incomingResource: ReadResource) {
+
+        const incomingProperties = [];
+
+        // collect properties, if any
+        if (incomingResource.properties !== undefined) {
+            // get property Iris (keys)
+            const propIris = Object.keys(incomingResource.properties);
+
+            // iterate over the property Iris
+            for (const propIri of propIris) {
+
+                // get the values for the current property Iri
+                const propVals: Array<ReadPropertyItem> = incomingResource.properties[propIri];
+
+                for (const propVal of propVals) {
+                    // add the property if it is a link value property pointing to [[this.resource]]
+                    if (propVal.type === KnoraConstants.LinkValue) {
+                        const linkVal = propVal as ReadLinkValue;
+
+                        if (linkVal.referredResourceIri === this.resource.id) {
+                            incomingProperties.push(propIri);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        // eliminate duplicate Iris and transform to labels
+        const propLabels = incomingProperties.filter(Utils.filterOutDuplicates).map(
+            (propIri) => {
+                return this.ontologyInfo.getLabelForProperty(propIri);
+            }
+        );
+
+        // generate a string separating labels by a comma
+        return `(${propLabels.join(', ')})`;
+
+    }
 }

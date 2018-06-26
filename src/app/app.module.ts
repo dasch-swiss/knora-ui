@@ -39,7 +39,8 @@ import {LoginComponent} from './knora-ui-examples/login/login.component';
 import {ProjectComponent} from './knora-ui-examples/project/project.component';
 import {ActionDemoComponent} from './knora-ui-examples/action-demo/action-demo.component';
 import {SortButtonComponent} from './knora-ui-examples/action-demo/sort-button/sort-button.component';
-
+// directives, pipes, etc.
+import {KeyPipe} from './knora-ui-examples/core-demo/resource/key.pipe';
 
 const AppEnvironment: KuiCoreConfig = {
     api: environment.api,
@@ -69,7 +70,8 @@ const AppEnvironment: KuiCoreConfig = {
         LoginComponent,
         ProjectComponent,
         ActionDemoComponent,
-        SortButtonComponent
+        SortButtonComponent,
+        KeyPipe
     ],
     imports: [
         BrowserModule,
