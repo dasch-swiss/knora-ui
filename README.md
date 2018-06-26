@@ -50,10 +50,12 @@ To create new e.g. component inside existing module use the following command:
 ## Knora module structure
 
 @knora/core
+![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg)
 * services (for API requests)
 * constants & utils (to work with Knora)
 
 @knora/action
+![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)
 * buttons & buttons
 * progress-indicator
 * progress-stepper
@@ -62,19 +64,23 @@ To create new e.g. component inside existing module use the following command:
 * dialog
 
 @knora/authentication
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg) -->
 * login
 * logout
 
 @knora/search
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/search.svg) -->
 * search results
 * search panel incl. search action (like adding a collection)
 
 @knora/viewer
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg) -->
 * object viewer (incl. video, audio, image)
 * properties (as form elements)
 * resource_class_form
 
 @knora/admin
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/admin.svg) -->
 * project (incl. ontology-editor)
 * system
 * user
