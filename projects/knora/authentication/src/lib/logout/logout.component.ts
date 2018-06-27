@@ -4,7 +4,7 @@ import {UsersService} from '@knora/core';
 @Component({
     selector: 'kui-logout',
     templateUrl: './logout.component.html',
-    styleUrls: ['./logout.component.css']
+    styleUrls: ['./logout.component.scss']
 })
 export class LogoutComponent implements OnInit {
 
@@ -12,12 +12,11 @@ export class LogoutComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.logout();
+
     }
 
     logout() {
         this._usersService.logout();
-        // console.log('I am logout');
     }
 
 }

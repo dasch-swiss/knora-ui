@@ -2,6 +2,17 @@
   width: 100%;
 }
 
+.mat-hint,
+.mat-form-field,
+.button-row {
+    margin-top: 24px;
+}
+
+.mat-hint {
+    color: firebrick;
+    text-align: center;
+}
+
 .login-card {
   min-height: 320px;
   margin-left: auto;
@@ -32,12 +43,4 @@
 
 .sign-up {
   margin-top: 24px;
-}
-
-// TODO: replace with mat-hint
-.login-error {
-  color: firebrick;
-  margin-top: 12px;
-  text-align: center;
-  width: 100%;
 }

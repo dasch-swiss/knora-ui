@@ -1,0 +1,12 @@
+<button *ngIf="loggedIn"
+        mat-raised-button type="button"
+        class="full-width login mat-warn"
+        (click)="logout()">
+        Logout
+</button>
+<button *ngIf="!loggedIn"
+        mat-raised-button type="button"
+        class="full-width login mat-primary"
+        (click)="login()">
+        Login
+</button>

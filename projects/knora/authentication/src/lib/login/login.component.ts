@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {ApiServiceError, KuiCoreConfig, UsersService} from '@knora/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, Inject, OnInit, Input } from '@angular/core';
+import { ApiServiceError, KuiCoreConfig, UsersService } from '@knora/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'kui-login',
@@ -9,10 +9,16 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-    errorMessage: any;
-    isLoading = false;
-    isLoggin: boolean = false;
+    /**
+     * navigate to the defined url
+     * after login
+     */
+    @Input() navigate: string;
 
+    loading: boolean = false;
+    loggedIn: boolean = false;
+
+    errorMessage: any;
     loginErrorUser = false;
     loginErrorPw = false;
     loginErrorServer = false;
@@ -31,13 +37,7 @@ export class LoginComponent implements OnInit {
         }
     };
 
-    // signup labels
-    signup = {
-        title: 'New to Salsah?',
-        subtitle: 'Sign up to avail all of our services',
-        button: 'Contact us on how'
-    };
-
+    // reactive form setup
     loginForm: FormGroup;
 
     formErrors = {
@@ -54,9 +54,9 @@ export class LoginComponent implements OnInit {
         }
     };
 
-    constructor(public usersService: UsersService,
-                @Inject('config') public config: KuiCoreConfig,
-                private _formBuilder: FormBuilder) {
+    constructor(@Inject('config') public config: KuiCoreConfig,
+        private _usersService: UsersService,
+        private _formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
     }
 
     /**
-     *
+     * check for errors while using the form
      * @param data
      */
     onValueChanged(data?: any) {
@@ -98,36 +98,35 @@ export class LoginComponent implements OnInit {
                 Object.keys(control.errors).map(key => {
                     this.formErrors[field] += messages[key] + ' ';
                 });
-
             }
         });
     }
 
 
     submitData(): void {
+        // reset the error messages
+        this.loginErrorUser = false;
+        this.loginErrorPw = false;
+        this.loginErrorServer = false;
 
-        console.log(this.loginForm.value);
+        // show the progress indicator
+        this.loading = true;
 
-
-        this.usersService.login(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value).subscribe(
+        // login by using the usersService from @knora/core
+        this._usersService.login(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value).subscribe(
             (result: boolean) => {
+                // the result will be set in local storage
+                // (as a temporary solution only!) TODO: replace it with a cache service
+                // (e.g. http://www.syntaxsuccess.com/viewarticle/caching-with-rxjs-observables-in-angular-2.0)
 
-                console.log(result);
-
-                // after successful login, we want to go back to the previous page e.g. search incl. query
-                // for this case, we stored the previous url parameters in the current login url as query params
-                // let goToUrl = '/';
-
-                /*
-                this._route.queryParams.subscribe(
-                    data => goToUrl = (data['h'] === undefined ? '/' : data['h'])
-                );
-                window.location.replace(goToUrl);
-                */
-
-
+                this.loading = false;
+                // after successful login, go to the defined url (if there's one)
+                if (this.navigate) {
+                    window.location.replace(this.navigate);
+                }
             },
             (error: ApiServiceError) => {
+                // error handling
                 if (error.status === 0) {
                     this.loginErrorUser = false;
                     this.loginErrorPw = false;
@@ -144,9 +143,9 @@ export class LoginComponent implements OnInit {
                     this.loginErrorServer = false;
                 }
                 this.errorMessage = <any>error;
+                this.loading = false;
             }
         );
 
     }
-
 }

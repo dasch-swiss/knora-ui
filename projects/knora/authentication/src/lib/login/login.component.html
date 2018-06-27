@@ -1,50 +1,40 @@
-<kui-progress-indicator *ngIf="usersService.loading"></kui-progress-indicator>
-<mat-card class="login-card" *ngIf="!usersService.loading">
+<mat-card class="login-card">
     <mat-card-header class="login-header">
         <mat-card-title>
             {{login.title}}
         </mat-card-title>
     </mat-card-header>
-
-
-
-
     <mat-card-content class="login-content">
-        <!-- This is the login form (lf) -->
-        <form class="login-form" [formGroup]="loginForm">
+        <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
+        <!-- This is the login form -->
+        <form *ngIf="!loading" class="login-form" [formGroup]="loginForm" (ngSubmit)="submitData()">
+            <!-- Error message -->
+            <mat-hint *ngIf="errorMessage !== undefined" class="full-width">
+                <span *ngIf="loginErrorUser || loginErrorPw">{{login.error.failed}}</span>
+                <span *ngIf="loginErrorServer">{{login.error.server}}</span>
+            </mat-hint>
+
             <!-- Username -->
             <mat-form-field class="full-width login-field">
                 <mat-icon matPrefix>person</mat-icon>
-                <input matInput
-                       [placeholder]="login.name"
-                       formControlName="email">
+                <input matInput [placeholder]="login.name" formControlName="email">
                 <mat-hint *ngIf="formErrors.email" class="login-error">{{login.error.failed}}</mat-hint>
             </mat-form-field>
-            <br><br><br>
-            <!-- Password -->
 
+            <!-- Password -->
             <mat-form-field class="full-width login-field">
                 <mat-icon matPrefix>lock</mat-icon>
-                <input matInput
-                       type="password"
-                       [placeholder]="login.pw"
-                       formControlName="password">
+                <input matInput type="password" [placeholder]="login.pw" formControlName="password">
                 <mat-hint *ngIf="formErrors.password" class="login-error">{{login.error.failed}}</mat-hint>
             </mat-form-field>
-            <br><br><br>
+
             <!-- Button: Login -->
             <div class="button-row full-width">
-                <button mat-raised-button type="submit"
-                        [disabled]="!loginForm.valid"
-                        class="full-width login mat-primary"
-                        (click)="submitData()">
+                <button mat-raised-button type="submit" [disabled]="!loginForm.valid" class="full-width login mat-primary">
                     {{login.button}}
                 </button>
             </div>
         </form>
-        <span class="login-error">{{login.error.server}}</span>
-        <!--
-        <kui-progress-indicator *ngIf="isLoading"></kui-progress-indicator>
-        -->
     </mat-card-content>
+
 </mat-card>
