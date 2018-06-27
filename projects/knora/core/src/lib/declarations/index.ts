@@ -9,7 +9,6 @@ export * from './utils';
  *
  */
 export * from './knora-api/knora-constants';
-export * from './knora-api/key.pipe';
 
 
 /**
@@ -106,3 +105,8 @@ export * from './knora-api/v2/resources/read-resources-sequence';
  */
 export * from './knora-api/v2/still-image/still-image-representation';
 export * from './knora-api/v2/still-image/image-region';
+
+/**
+ * Interfaces for pipes
+ */
+export * from './knora-api/pipes/key.pipe';

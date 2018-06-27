@@ -54,7 +54,8 @@ export class ResourceComponent implements OnChanges, OnInit {
 
     private getResource(iri: string): void {
         this._resourceService.getResource(iri)
-            .subscribe(
+            .subscribe((result: any) => { console.log(result); },
+                /*
                 (result: ApiServiceResult) => {
                     const promises = jsonld.promises;
                     // compact JSON-LD using an empty context: expands all Iris
@@ -70,30 +71,30 @@ export class ResourceComponent implements OnChanges, OnInit {
                             // get resource class Iris from response
                             const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);
 
-                            this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
+                            // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
 
-                            this.requestIncomingResources();
+                            // this.requestIncomingResources();
 
-                            this.resource = resourceSeq.resources[0];
+                            // this.resource = resourceSeq.resources[0];
 
                             // request ontology information about resource class Iris (properties are implied)
-                             /* this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
-                                (resourceClassInfos: OntologyInformation) => {
+                            this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
+                                (resourceClassInfos: any) => {
                                     console.log('inside of cache service', resourceClassIris);
                                     // initialize ontology information
                                     this.ontologyInfo = resourceClassInfos;
 
                                     // prepare a possibly attached image file to be displayed
-                                    // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
+                                    this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
 
                                     this.resource = resourceSeq.resources[0];
 
-                                    // this.requestIncomingResources();
+                                    this.requestIncomingResources();
                                 },
                                 (err) => {
 
                                     console.log('cache request failed: ' + err);
-                                }); */
+                                });
                         } else {
                             // exactly one resource was expected, but resourceSeq.resources.length != 1
                             this.errorMessage = `Exactly one resource was expected, but ${resourceSeq.resources.length} resource(s) given.`;
@@ -102,12 +103,12 @@ export class ResourceComponent implements OnChanges, OnInit {
 
                     }, function (err) {
 
-                        console.log('JSONLD of full resource request could not be expanded:' + err);
+                        console.error('JSONLD of full resource request could not be expanded:' + err);
                     });
 
                    // this.isLoading = false;
-             },
-                (error: ApiServiceError) => {
+                },*/
+                (error) => {
                     console.error(error);
                     // this.errorMessage = <any>error;
                     // this.isLoading = false;
