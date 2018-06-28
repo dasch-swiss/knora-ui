@@ -54,8 +54,7 @@ export class ResourceComponent implements OnChanges, OnInit {
 
     private getResource(iri: string): void {
         this._resourceService.getResource(iri)
-            .subscribe((result: any) => { console.log(result); },
-                /*
+            .subscribe(
                 (result: ApiServiceResult) => {
                     const promises = jsonld.promises;
                     // compact JSON-LD using an empty context: expands all Iris
@@ -78,9 +77,9 @@ export class ResourceComponent implements OnChanges, OnInit {
                             // this.resource = resourceSeq.resources[0];
 
                             // request ontology information about resource class Iris (properties are implied)
-                            this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
+                             this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
                                 (resourceClassInfos: any) => {
-                                    console.log('inside of cache service', resourceClassIris);
+                                    // console.log('inside of cache service', resourceClassIris);
                                     // initialize ontology information
                                     this.ontologyInfo = resourceClassInfos;
 
@@ -98,22 +97,17 @@ export class ResourceComponent implements OnChanges, OnInit {
                         } else {
                             // exactly one resource was expected, but resourceSeq.resources.length != 1
                             this.errorMessage = `Exactly one resource was expected, but ${resourceSeq.resources.length} resource(s) given.`;
-
                         }
-
                     }, function (err) {
-
                         console.error('JSONLD of full resource request could not be expanded:' + err);
                     });
-
                    // this.isLoading = false;
-                },*/
-                (error) => {
+                },
+                (error: ApiServiceError) => {
                     console.error(error);
                     // this.errorMessage = <any>error;
                     // this.isLoading = false;
-                }
-             );
+                });
     }
 
     /**
@@ -130,7 +124,7 @@ export class ResourceComponent implements OnChanges, OnInit {
         if (this.resource.properties[KnoraConstants.hasStillImageFileValue]) { // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
             // the resource is a StillImageRepresentation, check if there are regions pointing to it
 
-            this.getIncomingRegions(0);
+            // this.getIncomingRegions(0);
 
         } else {
             // this resource is not a StillImageRepresentation
@@ -139,11 +133,11 @@ export class ResourceComponent implements OnChanges, OnInit {
             // this gets the first page of incoming StillImageRepresentations
             // more pages may be requested by [[this.viewer]].
             // TODO: for now, we begin with offset 0. This may have to be changed later (beginning somewhere in a collection)
-            this.getIncomingStillImageRepresentations(0);
+            // this.getIncomingStillImageRepresentations(0);
         }
 
         // check for incoming links for the current resource
-        this.getIncomingLinks(0);
+        // this.getIncomingLinks(0);
     }
 
     /**
