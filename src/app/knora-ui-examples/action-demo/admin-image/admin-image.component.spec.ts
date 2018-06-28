@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActionComponent } from './action.component';
+import { AdminImageComponent } from './admin-image.component';
 
-describe('ActionComponent', () => {
-  let component: ActionComponent;
-  let fixture: ComponentFixture<ActionComponent>;
+describe('AdminImageDemoComponent', () => {
+  let component: AdminImageComponent;
+  let fixture: ComponentFixture<AdminImageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActionComponent ]
+      declarations: [ AdminImageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActionComponent);
+    fixture = TestBed.createComponent(AdminImageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

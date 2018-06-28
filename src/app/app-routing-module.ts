@@ -18,6 +18,7 @@ import {ResourceComponent} from './knora-ui-examples/core-demo/resource/resource
 import {LoginComponent} from './knora-ui-examples/login/login.component';
 import {ActionDemoComponent} from './knora-ui-examples/action-demo/action-demo.component';
 import {SortButtonComponent} from './knora-ui-examples/action-demo/sort-button/sort-button.component';
+import {AdminImageComponent} from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 
 const appRoutes: Routes = [
     {
@@ -44,6 +45,10 @@ const appRoutes: Routes = [
                     {
                         path: 'progress-indicator',
                         component: ProgressIndicatorComponent
+                    },
+                    {
+                        path: 'admin-image',
+                        component: AdminImageComponent
                     }
                 ]
             },
