@@ -1,17 +1,16 @@
-import { Component, Inject, OnInit, Input } from '@angular/core';
-import { ApiServiceError, KuiCoreConfig, UsersService } from '@knora/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {ApiServiceError, KuiCoreConfig, UsersService} from '@knora/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-    selector: 'kui-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    selector: 'kui-login-form',
+    templateUrl: './login-form.component.html',
+    styleUrls: ['./login-form.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginFormComponent implements OnInit {
 
     /**
-     * navigate to the defined url
-     * after login
+     * navigate to the defined url after login
      */
     @Input() navigate: string;
 
@@ -55,8 +54,8 @@ export class LoginComponent implements OnInit {
     };
 
     constructor(@Inject('config') public config: KuiCoreConfig,
-        private _usersService: UsersService,
-        private _formBuilder: FormBuilder) {
+                private _usersService: UsersService,
+                private _formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
@@ -148,4 +147,5 @@ export class LoginComponent implements OnInit {
         );
 
     }
+
 }

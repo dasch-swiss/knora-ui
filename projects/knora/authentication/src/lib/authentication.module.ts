@@ -5,9 +5,10 @@ import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatI
 import { KuiCoreModule } from '@knora/core';
 import { KuiActionModule } from '@knora/action';
 
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { ButtonComponent } from './button/button.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { LoginButtonComponent } from './login-button/login-button.component';
+import { LogoutButtonComponent } from './logout-button/logout-button.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
     imports: [
@@ -22,14 +23,16 @@ import { ButtonComponent } from './button/button.component';
         KuiCoreModule
     ],
     declarations: [
-        LoginComponent,
-        LogoutComponent,
-        ButtonComponent
+        LoginFormComponent,
+        LoginButtonComponent,
+        LogoutButtonComponent,
+        AuthenticationComponent
+
     ],
     exports: [
-        LoginComponent,
-        LogoutComponent,
-        ButtonComponent
+        LoginFormComponent,
+        LoginButtonComponent,
+        LogoutButtonComponent
     ]
 })
 export class KuiAuthenticationModule {

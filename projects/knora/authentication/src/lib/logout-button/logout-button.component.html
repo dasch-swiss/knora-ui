@@ -1,0 +1,9 @@
+<button *ngIf="loggedIn"
+        mat-raised-button type="button"
+        class="full-width login mat-warn"
+        (click)="logout()">
+    Logout
+</button>
+
+<!-- if no user is logged in, show the login button -->
+<kui-login-button *ngIf="!loggedIn"></kui-login-button>
