@@ -2,15 +2,16 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {KuiCoreConfig} from './declarations';
+import { KeyPipe } from './declarations/knora-api/pipes/key.pipe';
 
 @NgModule({
     imports: [
         CommonModule,
         HttpClientModule
     ],
-    declarations: [],
+    declarations: [KeyPipe],
     exports: [
-        HttpClientModule
+        HttpClientModule, KeyPipe
     ],
     providers: [
         {provide: 'config', useValue: KuiCoreConfig}

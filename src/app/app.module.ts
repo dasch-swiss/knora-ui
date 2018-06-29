@@ -41,6 +41,7 @@ import {ActionDemoComponent} from './knora-ui-examples/action-demo/action-demo.c
 import {SortButtonComponent} from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import {AdminImageComponent} from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 
+
 const AppEnvironment: KuiCoreConfig = {
     api: environment.api,
     media: environment.media,
