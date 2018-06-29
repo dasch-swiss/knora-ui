@@ -1,31 +1,20 @@
-import {
-    async,
-    ComponentFixture,
-    TestBed
-} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {
-    SortButtonComponent
-} from './sort-button.component';
-import {
-    MatMenuModule,
-    MatIconModule
-} from '@angular/material';
+import {SortButtonComponent} from './sort-button.component';
+import {MatIconModule, MatMenuModule} from '@angular/material';
 
 describe('SortButtonComponent', () => {
     let component: SortButtonComponent;
-    let fixture: ComponentFixture < SortButtonComponent > ;
+    let fixture: ComponentFixture<SortButtonComponent>;
 
-    beforeEach(async (() => {
+    beforeEach(async(() => {
         TestBed.configureTestingModule({
-                imports: [
-                    MatIconModule,
-                    MatMenuModule
-                ],
-                declarations: [
-                    SortButtonComponent
-                ]
-            })
+            imports: [
+                MatIconModule,
+                MatMenuModule
+            ],
+            declarations: [SortButtonComponent]
+        })
             .compileComponents();
     }));
 

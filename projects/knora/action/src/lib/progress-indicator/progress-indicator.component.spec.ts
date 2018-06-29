@@ -33,7 +33,7 @@ describe('ProgressIndicatorComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+  it('should create', () => {
         expect(component).toBeDefined();
         expect(component).toBeTruthy();
     });

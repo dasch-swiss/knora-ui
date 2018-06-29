@@ -34,6 +34,10 @@ export class AppDemo {
                 name: 'progress-indicator',
                 label: 'ProgressIndicator',
                 stackblitz: true
+            },
+            {
+                name: 'admin-image',
+                label: 'AdminImage'
             }
         ]
     };
