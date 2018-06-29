@@ -39,6 +39,7 @@ import {LoginComponent} from './knora-ui-examples/login/login.component';
 import {ProjectComponent} from './knora-ui-examples/project/project.component';
 import {ActionDemoComponent} from './knora-ui-examples/action-demo/action-demo.component';
 import {SortButtonComponent} from './knora-ui-examples/action-demo/sort-button/sort-button.component';
+import {AdminImageComponent} from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 
 const AppEnvironment: KuiCoreConfig = {
     api: environment.api,
@@ -68,7 +69,8 @@ const AppEnvironment: KuiCoreConfig = {
         LoginComponent,
         ProjectComponent,
         ActionDemoComponent,
-        SortButtonComponent
+        SortButtonComponent,
+        AdminImageComponent
     ],
     imports: [
         BrowserModule,
