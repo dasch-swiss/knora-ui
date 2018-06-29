@@ -70,6 +70,8 @@ export class ResourceComponent implements OnChanges, OnInit {
                             // get resource class Iris from response
                             const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);
 
+                            console.log(resourceClassIris);    
+
                             // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
 
                             // this.requestIncomingResources();

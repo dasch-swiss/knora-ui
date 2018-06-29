@@ -284,7 +284,6 @@ export class OntologyInformation {
             if (resClassDef !== undefined && resClassDef.label !== undefined) {
                 return resClassDef.label;
             } else {
-                // console.log(`OntologyInformation: no resource class ${resClass}  found in resourceClasses`);
                 return resClassDef.id;
             }
         } else {
@@ -335,7 +334,6 @@ export class OntologyInformation {
             if (propDef !== undefined && propDef.label !== undefined) {
                 return propDef.label;
             } else {
-                // console.log(`OntologyInformation: no label found for ${property} in properties`);
                 return propDef.id;
             }
         } else {
@@ -481,9 +479,7 @@ export class OntologyInformation {
      */
     private convertAndWriteAllEntityDefinitionsForOntologyToCache(ontology: Object): void {
 
-        console.log('convertAndWriteAllEntityDefinitionsForOntologyToCache');
-
-        /* const graph = ontology['@graph'];
+        const graph = ontology['@graph'];
 
         const classDefs = graph.filter(
             (entity: Object) => {
@@ -500,9 +496,10 @@ export class OntologyInformation {
                     entityType === KnoraConstants.RdfProperty;
             });
 
+
         this.cacheOntology.resourceClassIrisForOntology[ontology['@id']] = this.getResourceClassIrisFromOntologyResponse(classDefs);
 
-        this.convertAndWriteEntityDefinitionsToCache(classDefs, propertyDefs); */
+        this.convertAndWriteEntityDefinitionsToCache(classDefs, propertyDefs);
 
     }
 
@@ -551,28 +548,55 @@ export class OntologyInformation {
      * @param {Object} resourceClassDefinitions the resource class definitions returned by Knora.
      * @param {Object} propertyClassDefinitions the property definitions returned by Knora.
      */
-    private convertAndWriteEntityDefinitionsToCache(
-        resourceClassDefinitions: Array<Object>, propertyClassDefinitions: Array<Object>): void {
+    private convertAndWriteEntityDefinitionsToCache(resourceClassDefinitions: Array<Object>, propertyClassDefinitions: Array<Object>): void {
+
+        console.log(resourceClassDefinitions);
+        console.log(propertyClassDefinitions);
 
         // convert and cache each given resource class definition
         for (const resClass of resourceClassDefinitions) {
-
+            // console.error('for loop 1 problem ??');
+            // console.log('resClass', resClass);
+            // console.log('KnoraConstants.RdfsSubclassOf', KnoraConstants.RdfsSubclassOf);
             const resClassIri = resClass['@id'];
 
             // represents all cardinalities of this resource class
             const cardinalities: Cardinality[] = [];
 
-            if (resClass[KnoraConstants.RdfsSubclassOf] !== undefined) {
+             if (resClass[KnoraConstants.RdfsSubclassOf] !== undefined) {
+
+                // console.log(resClass[KnoraConstants.RdfsSubclassOf]);
+
                 // get cardinalities for the properties of a resource class
                 for (const curCard of resClass[KnoraConstants.RdfsSubclassOf]) {
-
+                    // console.log('curCard', curCard);
                     // make sure it is a cardinality (it could also be an Iri of a superclass)
                     if (curCard instanceof Object && curCard['@type'] !== undefined && curCard['@type'] === KnoraConstants.OwlRestriction) {
+                        // console.log(true);
 
                         let newCard;
+                        if (curCard[KnoraConstants.OwlMinCardinality] !== undefined) {
+                            newCard = new Cardinality(CardinalityOccurrence.minCard, curCard[KnoraConstants.OwlMinCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
+                            //console.log('1 we are in the if statement', KnoraConstants.OwlMinCardinality);
+                        } else if (curCard[KnoraConstants.OwlCardinality] !== undefined) {
+                            newCard = new Cardinality(CardinalityOccurrence.card, curCard[KnoraConstants.OwlCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
+                            //console.log('2 we are in the if statement', KnoraConstants.OwlCardinality);
+                        } else if (curCard[KnoraConstants.OwlMaxCardinality] !== undefined) {
+                            console.log(curCard);
+                            
+                            newCard = new Cardinality(CardinalityOccurrence.maxCard, curCard[KnoraConstants.OwlMaxCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
+                            //console.log('3 we are in the if statement', KnoraConstants.OwlMaxCardinality);
+                            //console.log('3.1 CardinalityOccurrence.maxCard', CardinalityOccurrence.maxCard);
+                            //console.log('3.2 curCard[KnoraConstants.OwlMaxCardinality]', curCard[KnoraConstants.OwlMaxCardinality]);
+                            //console.log('3.3 curCard[KnoraConstants.OwlOnProperty][\'@id\']', curCard[KnoraConstants.OwlOnProperty]['@id']);
+                        } else {
+                            // no known occurrence found
+                            //console.log('no known occurrence found');
+                            throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[KnoraConstants.OwlOnProperty]}`);
+                        }
 
                         // get occurrence
-                        if (curCard[KnoraConstants.OwlMinCardinality] !== undefined) {
+                        /* if (curCard[KnoraConstants.OwlMinCardinality] !== undefined) {
                             newCard = new Cardinality(CardinalityOccurrence.minCard, curCard[KnoraConstants.OwlMinCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
                         } else if (curCard[KnoraConstants.OwlCardinality] !== undefined) {
                             newCard = new Cardinality(CardinalityOccurrence.card, curCard[KnoraConstants.OwlCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
@@ -581,7 +605,7 @@ export class OntologyInformation {
                         } else {
                             // no known occurrence found
                             throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[KnoraConstants.OwlOnProperty]}`);
-                        }
+                        } */
 
                         // add cardinality
                         cardinalities.push(newCard);
@@ -601,7 +625,7 @@ export class OntologyInformation {
 
             // write this resource class definition to the cache object
             this.cacheOntology.resourceClasses[resClassIri] = resClassObj;
-        }
+            }
 
         // cache the property definitions referred to by the cardinalities of the given resource classes
         this.convertAndWriteKnoraPropertyDefinitionsToOntologyCache(propertyClassDefinitions);
@@ -614,16 +638,16 @@ export class OntologyInformation {
      * @param resClassIris the given resource class Iris
      * @returns {ResourceClasses} an [[OntologyCache]] representing the requested resource classes.
      */
-    private getResourceClassDefinitionsFromCache(resClassIris: string[]): any {
-        // collect the definitions for each resource class from the cache Observable<OntologyInformation>
+    private getResourceClassDefinitionsFromCache(resClassIris: string[]): Observable<OntologyInformation> {
+        // collect the definitions for each resource class from the cache
 
         const resClassDefs = new ResourceClasses();
 
         // collect the properties from the cardinalities of the given resource classes
         const propertyIris = [];
 
-        console.log('getProperty Definitions', propertyIris, ' + refClass: ', resClassDefs);
-        console.log('propertyIris: ', propertyIris);
+        // console.log('getProperty Definitions', propertyIris, ' + refClass: ', resClassDefs);
+        // console.log('propertyIris: ', propertyIris);
 
         resClassIris.forEach(
             resClassIri => {
@@ -643,34 +667,6 @@ export class OntologyInformation {
                 }
              )
         );
-
-        /* resClassIris.forEach(
-            resClassIri => {
-
-                if (this.cacheOntology.resourceClasses[resClassIri] === undefined) {
-                    throw new OntologyCacheError(`getResourceClassDefinitionsFromCache: resource class not found in cache: ${resClassIri}`);
-                }
-
-                // add resource class definition to answer
-                resClassDefs[resClassIri] = this.cacheOntology.resourceClasses[resClassIri];
-
-                // get properties for the current resource class
-                this.cacheOntology.resourceClasses[resClassIri].cardinalities.forEach(
-                    card => {
-                        propertyIris.push(card.property);
-                    }
-                );
-            }
-        );
-
-        // get the property definitions for which cardinalities exist
-        return this.getPropertyDefinitions(propertyIris).pipe(
-            map(
-                propDefs => {
-                    return new OntologyInformation(new ResourceClassIrisForOntology(), resClassDefs, propDefs.getProperties());
-                }
-            )
-        ); */
 
     }
 
@@ -793,12 +789,12 @@ export class OntologyInformation {
     public getAndCacheOntologies(ontologyIris: string[]): Observable<any[]> {
 
         const observables = [];
-        console.log('we are in the getAndCacheOntologies', observables);
-        ontologyIris.forEach(ontologyIri => { console.log('what is in ontologyIris of getAndCacheOntologies? ', ontologyIris);
+        // console.log('we are in the getAndCacheOntologies', observables);
+        ontologyIris.forEach(ontologyIri => { // console.log('what is in ontologyIris of getAndCacheOntologies? ', ontologyIris);
             observables.push(this.getAllEntityDefinitionsForOntologyFromKnora(ontologyIri).pipe(
                 map(
                     (ontology: Object) => {
-                        console.log('what is in ontology? ', ontology);
+                        // console.log('what is in ontology? ', ontology);
                         // write to cache
                         this.convertAndWriteAllEntityDefinitionsForOntologyToCache(ontology);
                     }
@@ -807,7 +803,6 @@ export class OntologyInformation {
         });
 
         return forkJoin(observables);
-        // return null;
     }
 
 
@@ -903,7 +898,7 @@ export class OntologyInformation {
             }
         );
 
-        console.log('what is inside propertiesToQuery? ', propertiesToQuery);
+        // console.log('what is inside propertiesToQuery? ', propertiesToQuery);
 
         if (propertiesToQuery.length > 0) {
 
@@ -913,15 +908,14 @@ export class OntologyInformation {
                     return Utils.getOntologyIriFromEntityIri(propIri);
                 }
             ).filter(Utils.filterOutDuplicates);
-            console.log('what is inside ontologyIris? ', ontologyIris);
+            // console.log('what is inside ontologyIris? ', ontologyIris);
             // obtain missing resource class information
             return this.getAndCacheOntologies(ontologyIris).pipe(
                 map(
                     results => {
                         if (results) {
-                            console.log('what do we return? ', results);
-                            return null;
-                        // return this.getPropertyDefinitionsFromCache(propertyIris);
+                            // console.log('what do we return? ', results);
+                            return this.getPropertyDefinitionsFromCache(propertyIris);
                         } else {
                             throw new Error('Problem with: return this.getPropertyDefinitionsFromCache(propertyIris);');
                         }
@@ -929,8 +923,7 @@ export class OntologyInformation {
                 )
             );
         } else {
-            console.log('problem in getPropertyDefinitions');
-            // return of(this.getPropertyDefinitionsFromCache(propertyIris));
+            return of(this.getPropertyDefinitionsFromCache(propertyIris));
         }
     }
 }
