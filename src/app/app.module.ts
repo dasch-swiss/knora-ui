@@ -64,7 +64,7 @@ import {AdminImageComponent} from './knora-ui-examples/action-demo/admin-image/a
         ProjectComponent,
         ActionDemoComponent,
         SortButtonComponent,
-        ModuleSubHeaderComponent
+        ModuleSubHeaderComponent,
         AdminImageComponent
     ],
     imports: [

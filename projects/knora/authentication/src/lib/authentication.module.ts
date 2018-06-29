@@ -23,13 +23,13 @@ import { AuthenticationComponent } from './authentication/authentication.compone
         KuiCoreModule
     ],
     declarations: [
+        AuthenticationComponent,
         LoginFormComponent,
         LoginButtonComponent,
-        LogoutButtonComponent,
-        AuthenticationComponent
-
+        LogoutButtonComponent
     ],
     exports: [
+        AuthenticationComponent,
         LoginFormComponent,
         LoginButtonComponent,
         LogoutButtonComponent
