@@ -83,10 +83,10 @@ It's possible to set the position of the sort button to right side.
 A attribute directive for images (`<img />`) to get a user avatar, which uses the service from gravatar.com and to set a project logo.
 
 #### 1. html template for project logo
-<img kuiAdminImage [image]="url/to/image.ext" [type]="'project'" />
+`<img kuiAdminImage [image]="url/to/image.ext" [type]="'project'" />`
  
 #### 2. html template for user avatar
-<img kuiAdminImage [image]="user@domain.tld" [type]="'user'" />
+`<img kuiAdminImage [image]="user@domain.tld" [type]="'user'" />`
 
 #### Feature in both types
 - If no [image] is defined, a default image will be displayed.
