@@ -1,3 +1,4 @@
+import { KuiActionModule } from '@knora/action';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminImageComponent } from './admin-image.component';
@@ -8,6 +9,9 @@ describe('AdminImageDemoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+          KuiActionModule
+      ],
       declarations: [ AdminImageComponent ]
     })
     .compileComponents();
