@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import {
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatDialogModule,
+    MAT_DIALOG_DEFAULT_OPTIONS
+} from '@angular/material';
 import { KuiCoreModule } from '@knora/core';
 import { KuiActionModule } from '@knora/action';
 
@@ -18,9 +26,16 @@ import { AuthenticationComponent } from './authentication/authentication.compone
         MatIconModule,
         MatInputModule,
         MatButtonModule,
+        MatDialogModule,
         MatFormFieldModule,
         KuiActionModule,
         KuiCoreModule
+    ],
+    entryComponents: [
+        LoginFormComponent
+    ],
+    providers: [
+        // { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
     ],
     declarations: [
         AuthenticationComponent,

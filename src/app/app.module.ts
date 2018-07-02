@@ -11,7 +11,7 @@ import {AppComponent} from './app.component';
 import {MaterialModule} from './material-module';
 // import the knora-ui modules
 import {KuiCoreModule} from '@knora/core';
-import {KuiAuthenticationModule} from '@knora/authentication';
+import {KuiAuthenticationModule, LoginFormComponent} from '@knora/authentication';
 import {KuiAdminModule} from '@knora/admin';
 import {KuiActionModule} from '@knora/action';
 import {KuiSearchModule} from '@knora/search';
@@ -41,6 +41,7 @@ import {ActionDemoComponent} from './knora-ui-examples/action-demo/action-demo.c
 import {SortButtonComponent} from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import {AdminImageComponent} from './knora-ui-examples/action-demo/admin-image/admin-image.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -67,6 +68,9 @@ import {AdminImageComponent} from './knora-ui-examples/action-demo/admin-image/a
         ModuleSubHeaderComponent,
         AdminImageComponent
     ],
+    entryComponents: [
+        // LoginFormComponent
+    ],
     imports: [
         BrowserModule,
         RouterModule,
@@ -86,7 +90,9 @@ import {AdminImageComponent} from './knora-ui-examples/action-demo/admin-image/a
         HttpClientModule,
         MarkdownModule.forRoot({loader: HttpClient})
     ],
-    providers: [],
+    providers: [
+        {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,1 +1,5 @@
-<kui-login-button></kui-login-button>
+<!-- if no user is logged in, show the login button -->
+<kui-login-button *ngIf="!loggedIn"></kui-login-button>
+
+<!-- else: show the logout button -->
+<kui-logout-button *ngIf="loggedIn"></kui-logout-button>
