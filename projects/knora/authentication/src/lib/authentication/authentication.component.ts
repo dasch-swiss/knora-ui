@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiServiceError, UsersService } from '@knora/core';
+import {Component, OnInit} from '@angular/core';
+import {ApiServiceError, UsersService} from '@knora/core';
+import {LoginFormComponent} from '../login-form/login-form.component';
+import {MatDialog} from '@angular/material';
 
 /**
  * this component includes the whole process of user authentication;
@@ -15,7 +17,10 @@ export class AuthenticationComponent implements OnInit {
 
     loggedIn: boolean = false;
 
-    constructor(private _usersService: UsersService) {
+    loading: boolean = true;
+
+    constructor(private _dialog: MatDialog,
+                private _usersService: UsersService) {
     }
 
     ngOnInit() {
@@ -31,12 +36,37 @@ export class AuthenticationComponent implements OnInit {
                     // console.log('authenticate:', result);
                     // this.loggedIn = result;
                     this.loggedIn = result;
+                    this.loading = false;
                 },
                 (error: ApiServiceError) => {
-                    // console.error('authenticate:', error);
+                    console.error('authentication error:', error);
                     this.loggedIn = false;
+                    this.loading = false;
                     // this.errorMessage = error;
                 }
             );
+    }
+
+    logout() {
+        this.loading = true;
+        this._usersService.logout();
+        // switch button to login
+        this.loggedIn = false;
+        this.loading = false;
+    }
+
+    login() {
+        const dialogRef = this._dialog.open(LoginFormComponent, {
+            hasBackdrop: true,
+            panelClass: 'no-padding'
+        });
+
+        dialogRef.afterClosed()
+            .subscribe(() => {
+                this.loading = true;
+                // refresh parent component
+                this.authenticate();
+                this.loading = false;
+            });
     }
 }

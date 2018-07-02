@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {UsersService} from '@knora/core';
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from '@knora/core';
 
 @Component({
     selector: 'kui-logout-button',

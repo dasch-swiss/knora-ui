@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {KuiCoreModule} from '@knora/core';
 
 import {LogoutButtonComponent} from './logout-button.component';
+import {MatButtonModule, MatDialogModule, MatDialogRef} from '@angular/material';
 
 describe('LogoutButtonComponent', () => {
     let component: LogoutButtonComponent;
@@ -10,7 +11,12 @@ describe('LogoutButtonComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                KuiCoreModule
+                KuiCoreModule,
+                MatButtonModule,
+                MatDialogModule
+            ],
+            providers: [
+                {provide: MatDialogRef}
             ],
             declarations: [LogoutButtonComponent]
         })

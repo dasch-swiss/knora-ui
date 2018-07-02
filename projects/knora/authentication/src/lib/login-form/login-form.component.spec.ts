@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import {KuiCoreModule} from '@knora/core';
 import {KuiActionModule} from '@knora/action';
 
@@ -15,11 +15,15 @@ describe('LoginFormComponent', () => {
             imports: [
                 KuiCoreModule,
                 KuiActionModule,
-                MatCardModule,
+                MatDialogModule,
                 MatFormFieldModule,
                 MatIconModule,
                 MatInputModule,
                 ReactiveFormsModule
+            ],
+            providers: [
+                {provide: MAT_DIALOG_DATA, useValue: {}},
+                {provide: MatDialogRef}
             ],
             declarations: [LoginFormComponent]
         })

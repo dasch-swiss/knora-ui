@@ -1,10 +1,8 @@
-<mat-card class="login-card">
-    <mat-card-header class="login-header">
-        <mat-card-title>
-            {{login.title}}
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="login-content">
+<div class="login-form">
+    <div class="login-form-header">
+        <h3 mat-subheader>{{login.title}}</h3>
+    </div>
+    <div class="login-form-content">
         <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
         <!-- This is the login form -->
         <form *ngIf="!loading" class="login-form" [formGroup]="loginForm" (ngSubmit)="submitData()">
@@ -17,7 +15,7 @@
             <!-- Username -->
             <mat-form-field class="full-width login-field">
                 <mat-icon matPrefix>person</mat-icon>
-                <input matInput [placeholder]="login.name" formControlName="email">
+                <input matInput autofocus [placeholder]="login.name" formControlName="email">
                 <mat-hint *ngIf="formErrors.email" class="login-error">{{login.error.failed}}</mat-hint>
             </mat-form-field>
 
@@ -31,11 +29,11 @@
             <!-- Button: Login -->
             <div class="button-row full-width">
                 <button mat-raised-button type="submit" [disabled]="!loginForm.valid"
-                        class="full-width login mat-primary">
+                        class="full-width submit-button mat-primary">
                     {{login.button}}
                 </button>
             </div>
         </form>
-    </mat-card-content>
+    </div>
 
-</mat-card>
+</div>

@@ -2,6 +2,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {KuiCoreModule} from '@knora/core';
 import {AuthenticationComponent} from './authentication.component';
+import {LoginButtonComponent} from '../login-button/login-button.component';
+import {LogoutButtonComponent} from '../logout-button/logout-button.component';
+import {LoginFormComponent} from '../login-form/login-form.component';
 
 describe('AuthenticationComponent', () => {
     let component: AuthenticationComponent;
@@ -12,7 +15,9 @@ describe('AuthenticationComponent', () => {
             imports: [
                 KuiCoreModule
             ],
-            declarations: [AuthenticationComponent]
+            declarations: [
+                AuthenticationComponent
+            ]
         })
             .compileComponents();
     }));

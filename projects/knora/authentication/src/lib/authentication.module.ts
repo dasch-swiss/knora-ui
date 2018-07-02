@@ -7,8 +7,7 @@ import {
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatDialogModule,
-    MAT_DIALOG_DEFAULT_OPTIONS
+    MatDialogModule
 } from '@angular/material';
 import { KuiCoreModule } from '@knora/core';
 import { KuiActionModule } from '@knora/action';
@@ -34,9 +33,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     entryComponents: [
         LoginFormComponent
     ],
-    providers: [
-        // { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
-    ],
+    providers: [],
     declarations: [
         AuthenticationComponent,
         LoginFormComponent,

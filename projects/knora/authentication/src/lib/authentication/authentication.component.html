@@ -1,5 +1,19 @@
-<!-- if no user is logged in, show the login button -->
-<kui-login-button *ngIf="!loggedIn"></kui-login-button>
+<kui-progress-indicator *ngIf="loading" ></kui-progress-indicator>
 
-<!-- else: show the logout button -->
-<kui-logout-button *ngIf="loggedIn"></kui-logout-button>
+<div *ngIf="!loading">
+    <!-- if no user is logged in, show the login button -->
+    <button *ngIf="!loggedIn" mat-raised-button type="button"
+            class="full-width login mat-primary"
+            (click)="login()">
+        Login
+    </button>
+
+    <!-- else: show the logout button -->
+    <button *ngIf="loggedIn"
+            mat-raised-button type="button"
+            class="full-width login mat-warn"
+            (click)="logout()">
+        Logout
+    </button>
+</div>
+

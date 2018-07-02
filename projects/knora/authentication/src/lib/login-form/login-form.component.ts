@@ -1,7 +1,7 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ApiServiceError, KuiCoreConfig, UsersService} from '@knora/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
     selector: 'kui-login-form',

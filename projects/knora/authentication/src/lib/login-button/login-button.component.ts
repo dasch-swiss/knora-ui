@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { LoginFormComponent } from '../login-form/login-form.component';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {LoginFormComponent} from '../login-form/login-form.component';
 
 
 @Component({
@@ -22,8 +22,16 @@ export class LoginButtonComponent implements OnInit {
 
     login() {
 
-        const dialogRef = this._dialog.open(LoginFormComponent);
+        const dialogRef = this._dialog.open(LoginFormComponent, {
+            hasBackdrop: true,
+            panelClass: 'no-padding'
+        });
 
+        dialogRef.afterClosed()
+            .subscribe(() => {
+                // refresh parent component
+                console.log('refresh now');
+            });
         // will open a dialog box incl. the LoginFormComponent
         // TODO: implement the dialog from @knora/action, when it's done there
         // alert('open the login form here');
