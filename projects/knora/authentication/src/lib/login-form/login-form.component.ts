@@ -1,6 +1,7 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ApiServiceError, KuiCoreConfig, UsersService} from '@knora/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
     selector: 'kui-login-form',
@@ -55,6 +56,7 @@ export class LoginFormComponent implements OnInit {
 
     constructor(@Inject('config') public config: KuiCoreConfig,
                 private _usersService: UsersService,
+                public dialogRef: MatDialogRef<LoginFormComponent>,
                 private _formBuilder: FormBuilder) {
     }
 
@@ -122,6 +124,8 @@ export class LoginFormComponent implements OnInit {
                 // after successful login, go to the defined url (if there's one)
                 if (this.navigate) {
                     window.location.replace(this.navigate);
+                } else {
+                    this.dialogRef.close();
                 }
             },
             (error: ApiServiceError) => {
