@@ -1,10 +1,10 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule, MatDialogRef } from '@angular/material';
 
-import {KuiCoreModule} from '@knora/core';
-import {AuthenticationComponent} from './authentication.component';
-import {LoginButtonComponent} from '../login-button/login-button.component';
-import {LogoutButtonComponent} from '../logout-button/logout-button.component';
-import {LoginFormComponent} from '../login-form/login-form.component';
+import { KuiActionModule } from '@knora/action';
+import { KuiCoreModule } from '@knora/core';
+
+import { AuthenticationComponent } from './authentication.component';
 
 describe('AuthenticationComponent', () => {
     let component: AuthenticationComponent;
@@ -13,7 +13,12 @@ describe('AuthenticationComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                KuiCoreModule
+                KuiActionModule,
+                KuiCoreModule,
+                MatDialogModule
+            ],
+            providers: [
+                {provide: MatDialogRef}
             ],
             declarations: [
                 AuthenticationComponent

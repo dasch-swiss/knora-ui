@@ -4,23 +4,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule,
-    MatDialogModule
+    MatInputModule
 } from '@angular/material';
 import { KuiCoreModule } from '@knora/core';
 import { KuiActionModule } from '@knora/action';
 
 import { LoginFormComponent } from './login-form/login-form.component';
-import { LoginButtonComponent } from './login-button/login-button.component';
-import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
     imports: [
         CommonModule,
-        ReactiveFormsModule,
         MatCardModule,
         MatIconModule,
         MatInputModule,
@@ -28,7 +25,8 @@ import { AuthenticationComponent } from './authentication/authentication.compone
         MatDialogModule,
         MatFormFieldModule,
         KuiActionModule,
-        KuiCoreModule
+        KuiCoreModule,
+        ReactiveFormsModule
     ],
     entryComponents: [
         LoginFormComponent
@@ -36,15 +34,11 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     providers: [],
     declarations: [
         AuthenticationComponent,
-        LoginFormComponent,
-        LoginButtonComponent,
-        LogoutButtonComponent
+        LoginFormComponent
     ],
     exports: [
         AuthenticationComponent,
-        LoginFormComponent,
-        LoginButtonComponent,
-        LogoutButtonComponent
+        LoginFormComponent
     ]
 })
 export class KuiAuthenticationModule {

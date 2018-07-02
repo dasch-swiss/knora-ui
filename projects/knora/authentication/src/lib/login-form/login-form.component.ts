@@ -1,7 +1,7 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
-import {ApiServiceError, KuiCoreConfig, UsersService} from '@knora/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatDialogRef} from '@angular/material';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { ApiServiceError, KuiCoreConfig, UsersService } from '@knora/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
     selector: 'kui-login-form',
@@ -16,7 +16,6 @@ export class LoginFormComponent implements OnInit {
     @Input() navigate: string;
 
     loading: boolean = false;
-    loggedIn: boolean = false;
 
     errorMessage: any;
     loginErrorUser = false;
@@ -145,7 +144,7 @@ export class LoginFormComponent implements OnInit {
                     this.loginErrorPw = false;
                     this.loginErrorServer = false;
                 }
-                this.errorMessage = <any>error;
+                this.errorMessage = <any> error;
                 this.loading = false;
             }
         );

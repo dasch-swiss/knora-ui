@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiServiceError, UsersService} from '@knora/core';
-import {LoginFormComponent} from '../login-form/login-form.component';
-import {MatDialog} from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { ApiServiceError, UsersService } from '@knora/core';
+import { LoginFormComponent } from '../login-form/login-form.component';
+import { MatDialog } from '@angular/material';
 
 /**
  * this component includes the whole process of user authentication;
