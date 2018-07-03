@@ -43,7 +43,7 @@ export class UsersService extends ApiService {
      * @returns {Observable<User>}
      */
     getUserByEmail(email: string): Observable<User> {
-        const path = '/admin/users' + '/' + encodeURIComponent(email) + '?identifier=email';
+        const path = '/admin/users/' + encodeURIComponent(email) + '?identifier=email';
         return this.getUser(path);
     }
 
