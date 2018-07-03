@@ -6,11 +6,11 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 The core module contains every service to use Knora's RESTful webapi.
 
 ## Install
-`$ yarn add @knora/core`
+`$ yarn add @knora/core json2typescript@^1.0.5`
 
 OR
 
-`$ npm install @knora/core`
+`$ npm install --save @knora/core json2typescript@^1.0.5`
 
 
 ## Setup

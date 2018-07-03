@@ -7,10 +7,10 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project.
 
 ### NPM
-`npm install --save @knora/action`
+`npm install --save @knora/action ts-md5@^1.2.4`
 
 ### Yarn
-`yarn add @knora/action`
+`yarn add @knora/action ts-md5@^1.2.4`
 
 ## Components
 This module contains various components:

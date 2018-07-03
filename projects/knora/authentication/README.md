@@ -28,7 +28,7 @@ You can use the login form as follow:
 This standalone form is in an early beta state. Right now you should define the route, where the app should navigate after login.
 
 
-`<kui-login-form [navigate]="'/''""></kui-login-form>`
+`<kui-login-form [navigate]="'/'"></kui-login-form>`
 
 Or use the complete solution with login-button (when no user is logged-in), logout-button (when a user is logged-in) and with the login-form:
 
