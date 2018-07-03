@@ -1,6 +1,6 @@
 {
   "name": "@knora/authentication",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Knora ui module",
   "repository": {
     "type": "git",

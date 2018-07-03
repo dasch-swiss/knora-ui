@@ -57,8 +57,7 @@ export class AuthenticationComponent implements OnInit {
 
     login() {
         const dialogRef = this._dialog.open(LoginFormComponent, {
-            hasBackdrop: true,
-            panelClass: 'no-padding'
+            hasBackdrop: true
         });
 
         dialogRef.afterClosed()
