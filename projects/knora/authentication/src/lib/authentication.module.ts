@@ -1,28 +1,44 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
-// import {KuiProgressIndicatorModule} from '@knora/progress-indicator'; TODO: move progress-indicator
-import {LoginComponent} from './login/login.component';
-import {LogoutComponent} from './logout/logout.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import {
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule
+} from '@angular/material';
+import { KuiCoreModule } from '@knora/core';
+import { KuiActionModule } from '@knora/action';
+
+import { LoginFormComponent } from './login-form/login-form.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
     imports: [
         CommonModule,
-        ReactiveFormsModule,
         MatCardModule,
         MatIconModule,
         MatInputModule,
         MatButtonModule,
-        MatFormFieldModule
+        MatDialogModule,
+        MatFormFieldModule,
+        KuiActionModule,
+        KuiCoreModule,
+        ReactiveFormsModule
     ],
+    entryComponents: [
+        LoginFormComponent
+    ],
+    providers: [],
     declarations: [
-        LoginComponent,
-        LogoutComponent
+        AuthenticationComponent,
+        LoginFormComponent
     ],
     exports: [
-        LoginComponent,
-        LogoutComponent
+        AuthenticationComponent,
+        LoginFormComponent
     ]
 })
 export class KuiAuthenticationModule {

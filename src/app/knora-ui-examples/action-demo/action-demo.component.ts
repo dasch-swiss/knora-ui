@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AppDemo} from '../../app.config';
+import { Component, OnInit } from '@angular/core';
+import { AppDemo } from '../../app.config';
 
 @Component({
     selector: 'app-action-demo',
@@ -14,6 +14,9 @@ export class ActionDemoComponent implements OnInit {
     }
 
     ngOnInit() {
+
+
     }
+
 
 }

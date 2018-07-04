@@ -22,16 +22,18 @@ export class AppDemo {
 
     public static actionModule: DemoModule = {
         name: 'action',
-        published: false,
+        published: true,
         label: 'Action module',
         children: [
             {
                 name: 'sort-button',
-                label: 'SortButton'
+                label: 'SortButton',
+                stackblitz: true
             },
             {
                 name: 'progress-indicator',
-                label: 'ProgressIndicator'
+                label: 'ProgressIndicator',
+                stackblitz: true
             },
             {
                 name: 'admin-image',
@@ -90,7 +92,7 @@ export class AppDemo {
     /* ******************************************************************* */
 
     /**
-     * the following list of modules will be used on the public documentation
+     * the following list of modules will be used on the public documentation page
      * @type {DemoModule[]}
      */
     public static examples: DemoModule[] = [

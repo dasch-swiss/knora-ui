@@ -10,6 +10,8 @@ import {DemoModule} from '../../app.interfaces';
 })
 export class ModuleIndexComponent {
 
+    sortKey: string = 'name';
+
     examples: DemoModule[] = AppDemo.examples;
 
 }

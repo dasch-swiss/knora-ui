@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AppConfig} from '../../app.config';
-import {DemoModule, Item} from '../../app.interfaces';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { AppConfig } from '../../app.config';
+import { DemoModule, Item } from '../../app.interfaces';
 
 @Component({
   selector: 'app-module-header',
@@ -12,7 +11,6 @@ export class ModuleHeaderComponent implements OnInit {
 
   @Input() demo: DemoModule = new DemoModule();
 
-  stackBlitzDemo: string;
   package: string;
   badge: string;
 
@@ -20,8 +18,6 @@ export class ModuleHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.stackBlitzDemo = AppConfig.stackblitz + AppConfig.prefix + '-' + this.demo.name;
 
     if (this.demo.published) {
 
@@ -31,6 +27,7 @@ export class ModuleHeaderComponent implements OnInit {
 
       this.package = AppConfig.npm + urlEncode;
       this.badge = AppConfig.badge + urlEncode + '.svg';
+
     }
 
   }
