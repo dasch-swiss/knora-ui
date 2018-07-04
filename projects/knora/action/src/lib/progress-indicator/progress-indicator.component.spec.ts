@@ -1,19 +1,29 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {
+    async,
+    ComponentFixture,
+    TestBed
+} from '@angular/core/testing';
 
-import {ProgressIndicatorComponent} from './progress-indicator.component';
-import {MatIconModule} from '@angular/material';
+import {
+    ProgressIndicatorComponent
+} from './progress-indicator.component';
+import {
+    MatIconModule
+} from '@angular/material';
 
 describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
-    let fixture: ComponentFixture<ProgressIndicatorComponent>;
+    let fixture: ComponentFixture < ProgressIndicatorComponent > ;
 
-    beforeEach(async(() => {
+    beforeEach(async (() => {
         TestBed.configureTestingModule({
-            imports: [
-                MatIconModule
-            ],
-            declarations: [ProgressIndicatorComponent]
-        })
+                imports: [
+                    MatIconModule
+                ],
+                declarations: [
+                    ProgressIndicatorComponent
+                ]
+            })
             .compileComponents();
     }));
 
@@ -23,7 +33,9 @@ describe('ProgressIndicatorComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+  it('should create', () => {
+        expect(component).toBeDefined();
         expect(component).toBeTruthy();
     });
+
 });

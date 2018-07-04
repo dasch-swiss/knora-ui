@@ -9,8 +9,9 @@ import {Example} from '../../../app.interfaces';
 })
 export class ProgressIndicatorComponent implements OnInit {
 
-    module = AppDemo.progressIndicator;
+    partOf = AppDemo.actionModule;
 
+    // demo configuration incl. code to display
     classicLoader: Example = {
         title: 'Classic Loader',
         subtitle: '',
@@ -22,6 +23,7 @@ export class ProgressIndicatorComponent implements OnInit {
         }
     };
 
+    // demo configuration incl. code to display
     submitLoader: Example = {
         title: 'Submit-form-data loader',
         subtitle: 'e.g. as a list style type while submitting form data',

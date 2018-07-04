@@ -1,11 +1,23 @@
-<kui-sort-button [sortProps]="sortProps"
-                 [(sortKey)]="sortKey">
-</kui-sort-button>
+<app-module-sub-header [demo]="partOf"></app-module-sub-header>
 
-<ul>
-    <li *ngFor="let item of list | sortBy: sortKey">
-        <span [class.active]="sortKey === 'prename'">{{item.prename}} </span>
-        <span [class.active]="sortKey === 'lastname'">{{item.lastname}} </span>
-        by <span [class.active]="sortKey === 'creator'">{{item.creator}}</span>
-    </li>
-</ul>
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="sortButtonCode"></app-example-viewer>
+
+    <div class="demo">
+        <kui-sort-button [sortProps]="sortProps" [(sortKey)]="sortKey">
+        </kui-sort-button>
+
+        <kui-sort-button [sortProps]="sortProps" [(sortKey)]="sortKey" [position]="'right'">
+        </kui-sort-button>
+
+        <ul>
+            <li *ngFor="let item of list | sortBy: sortKey">
+                <span [class.active]="sortKey === 'prename'">{{item.prename}} </span>
+                <span [class.active]="sortKey === 'lastname'">{{item.lastname}} </span>
+                by
+                <span [class.active]="sortKey === 'creator'">{{item.creator}}</span>
+            </li>
+        </ul>
+    </div>
+</mat-card>

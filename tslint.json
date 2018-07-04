@@ -82,6 +82,14 @@
       "check-else",
       "check-whitespace"
     ],
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "any",
+        "named-imports-order": "case-insensitive",
+        "grouped-imports": true
+      }
+    ],
     "prefer-const": true,
     "quotemark": [
       true,
@@ -113,8 +121,13 @@
       "check-branch",
       "check-decl",
       "check-operator",
+      "check-module",
       "check-separator",
-      "check-type"
+      "check-rest-spread",
+      "check-type",
+      "check-typecast",
+      "check-type-operator",
+      "check-preblock"
     ],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,

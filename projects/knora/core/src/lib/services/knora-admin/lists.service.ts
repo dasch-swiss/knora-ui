@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import {KuiCoreModule} from '../../core.module';
-import {ApiService} from '../api.service';
+import { KuiCoreModule } from '../../core.module';
+import { ApiService } from '../api.service';
 
 import {
     ApiServiceResult,
@@ -17,7 +17,7 @@ import {
     ListsResponse
 } from '../../declarations';
 
-import {catchError, map} from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: KuiCoreModule

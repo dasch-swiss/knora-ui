@@ -1,3 +1,4 @@
+import { ModuleHeaderComponent } from './../../../partials/module-header/module-header.component';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {KuiAuthenticationModule} from '@knora/authentication';
 import {KuiCoreModule} from '@knora/core';
@@ -17,6 +18,7 @@ describe('LoginComponent', () => {
                 BrowserAnimationsModule
             ],
             declarations: [
+                ModuleHeaderComponent,
                 LoginComponent
             ]
         })

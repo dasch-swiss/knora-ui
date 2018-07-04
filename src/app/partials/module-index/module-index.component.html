@@ -6,7 +6,7 @@
             <h3 mat-subheader>Published modules</h3>
 
             <mat-list class="demo-nav">
-                <div *ngFor="let item of examples">
+                <div *ngFor="let item of examples | sortBy: 'name'">
                     <div *ngIf="item.published">
                         <mat-list-item [class.parent]="item.children">
                             <button mat-button [routerLink]="item.name" routerLinkActive="active-link" class="demo-nav-item">
@@ -17,7 +17,7 @@
                         </mat-list-item>
 
                         <div *ngIf="item.children" class="demo-nav-children">
-                            <mat-list-item *ngFor="let child of item.children">
+                            <mat-list-item *ngFor="let child of item.children | sortBy: 'name'">
                                 <button mat-button [routerLink]="item.name + '/' + child.name"
                                         routerLinkActive="active-link" class="demo-nav-item">
                                     {{child.label}}
@@ -37,7 +37,7 @@
             <h3 mat-subheader>Modules in dev mode</h3>
 
             <mat-list class="demo-nav">
-                <div *ngFor="let item of examples">
+                <div *ngFor="let item of examples | sortBy: 'name'">
                     <div *ngIf="!item.published">
                         <mat-list-item [class.parent]="item.children">
                             <button mat-button [routerLink]="item.name" routerLinkActive="active-link" class="demo-nav-item">
@@ -48,7 +48,7 @@
                         </mat-list-item>
 
                         <div *ngIf="item.children" class="demo-nav-children">
-                            <mat-list-item *ngFor="let child of item.children">
+                            <mat-list-item *ngFor="let child of item.children | sortBy: 'name'">
                                 <button mat-button [routerLink]="item.name + '/' + child.name"
                                         routerLinkActive="active-link" class="demo-nav-item">
                                     {{child.label}}

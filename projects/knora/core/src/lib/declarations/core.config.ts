@@ -9,12 +9,31 @@ import {JsonObject, JsonProperty} from 'json2typescript';
 @JsonObject
 export class KuiCoreConfig {
 
+    /**
+     * (Salsah) name of the app
+     * @type {string}
+     */
+    @JsonProperty('name', String)
+    public name: string = undefined;
+
+    /**
+     * (knora) url of the api
+     * @type {string}
+     */
     @JsonProperty('api', String)
     public api: string = undefined;
 
+    /**
+     * (sipi) url of media/file server
+     * @type {string}
+     */
     @JsonProperty('media', String)
     public media: string = undefined;
 
+    /**
+     * (salsah) url of the app
+     * @type {undefined}
+     */
     @JsonProperty('app', String)
     public app: string = undefined;
 }

@@ -451,5 +451,10 @@
       }
     }
   },
-  "defaultProject": "knora-ui"
+  "defaultProject": "knora-ui",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
