@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {KnoraConstants, ApiServiceResult, Utils} from '../../declarations';
-import {OntologyService} from './ontology.service';
-import {from, Observable, of, forkJoin} from 'rxjs';
-import {map, mergeMap} from 'rxjs/operators';
-import {KuiCoreModule} from '../../core.module';
+import { Injectable } from '@angular/core';
+import { KnoraConstants, ApiServiceResult, Utils } from '../../declarations';
+import { OntologyService } from './ontology.service';
+import { from, Observable, of, forkJoin } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
+import { KuiCoreModule } from '../../core.module';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -30,7 +30,7 @@ export class OntologyMetadata {
      * @param {string} label a label describing the ontology.
      */
     constructor(readonly id: string,
-                readonly label: string) {
+        readonly label: string) {
 
     }
 
@@ -59,8 +59,8 @@ export class Cardinality {
      * @param {string} property the property the given occurrence applies to.
      */
     constructor(readonly occurrence: CardinalityOccurrence,
-                readonly value: number,
-                readonly property: string) {
+        readonly value: number,
+        readonly property: string) {
     }
 }
 
@@ -79,10 +79,10 @@ export class ResourceClass {
      * @param {Array<Cardinality>} cardinalities the resource class's properties.
      */
     constructor(readonly id: string,
-                readonly icon: string,
-                readonly comment: string,
-                readonly label: string,
-                readonly cardinalities: Array<Cardinality>) {
+        readonly icon: string,
+        readonly comment: string,
+        readonly label: string,
+        readonly cardinalities: Array<Cardinality>) {
 
     }
 }
@@ -113,13 +113,13 @@ export class Property {
      * @param {Boolean} isLinkValueProperty indicates whether the given property refers to a link value.
      */
     constructor(readonly id: string,
-                readonly objectType: string,
-                readonly comment: string,
-                readonly label: string,
-                readonly subPropertyOf: Array<string>,
-                readonly isEditable: Boolean,
-                readonly isLinkProperty: Boolean,
-                readonly isLinkValueProperty: Boolean) {
+        readonly objectType: string,
+        readonly comment: string,
+        readonly label: string,
+        readonly subPropertyOf: Array<string>,
+        readonly isEditable: Boolean,
+        readonly isLinkProperty: Boolean,
+        readonly isLinkValueProperty: Boolean) {
 
     }
 }
@@ -351,7 +351,7 @@ export class OntologyInformation {
 @Injectable({
     providedIn: KuiCoreModule
 })
- export class OntologyCacheService {
+export class OntologyCacheService {
 
     private excludedOntologies: Array<string> = [KnoraConstants.SalsahGuiOntology, KnoraConstants.StandoffOntology];
 
@@ -537,7 +537,7 @@ export class OntologyInformation {
                         resourceClassesForOntology, resClassDefs.getResourceClasses(), resClassDefs.getProperties()
                     );
                 }
-        )
+            )
         );
 
     }
@@ -555,48 +555,34 @@ export class OntologyInformation {
 
         // convert and cache each given resource class definition
         for (const resClass of resourceClassDefinitions) {
-            // console.error('for loop 1 problem ??');
-            // console.log('resClass', resClass);
-            // console.log('KnoraConstants.RdfsSubclassOf', KnoraConstants.RdfsSubclassOf);
+
             const resClassIri = resClass['@id'];
 
             // represents all cardinalities of this resource class
             const cardinalities: Cardinality[] = [];
 
-             if (resClass[KnoraConstants.RdfsSubclassOf] !== undefined) {
+            if (resClass[KnoraConstants.RdfsSubclassOf] !== undefined) {
 
-                // console.log(resClass[KnoraConstants.RdfsSubclassOf]);
+                let subclassOfCollection;
+
+                // check if it is a single object or a collection
+                if (!Array.isArray(resClass[KnoraConstants.RdfsSubclassOf])) {
+                    subclassOfCollection = [resClass[KnoraConstants.RdfsSubclassOf]];
+                } else {
+                    subclassOfCollection = resClass[KnoraConstants.RdfsSubclassOf];
+                }
+
 
                 // get cardinalities for the properties of a resource class
-                for (const curCard of resClass[KnoraConstants.RdfsSubclassOf]) {
-                    // console.log('curCard', curCard);
+                for (const curCard of subclassOfCollection) {
+
                     // make sure it is a cardinality (it could also be an Iri of a superclass)
                     if (curCard instanceof Object && curCard['@type'] !== undefined && curCard['@type'] === KnoraConstants.OwlRestriction) {
-                        // console.log(true);
 
                         let newCard;
-                        if (curCard[KnoraConstants.OwlMinCardinality] !== undefined) {
-                            newCard = new Cardinality(CardinalityOccurrence.minCard, curCard[KnoraConstants.OwlMinCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
-                            //console.log('1 we are in the if statement', KnoraConstants.OwlMinCardinality);
-                        } else if (curCard[KnoraConstants.OwlCardinality] !== undefined) {
-                            newCard = new Cardinality(CardinalityOccurrence.card, curCard[KnoraConstants.OwlCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
-                            //console.log('2 we are in the if statement', KnoraConstants.OwlCardinality);
-                        } else if (curCard[KnoraConstants.OwlMaxCardinality] !== undefined) {
-                            console.log(curCard);
-                            
-                            newCard = new Cardinality(CardinalityOccurrence.maxCard, curCard[KnoraConstants.OwlMaxCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
-                            //console.log('3 we are in the if statement', KnoraConstants.OwlMaxCardinality);
-                            //console.log('3.1 CardinalityOccurrence.maxCard', CardinalityOccurrence.maxCard);
-                            //console.log('3.2 curCard[KnoraConstants.OwlMaxCardinality]', curCard[KnoraConstants.OwlMaxCardinality]);
-                            //console.log('3.3 curCard[KnoraConstants.OwlOnProperty][\'@id\']', curCard[KnoraConstants.OwlOnProperty]['@id']);
-                        } else {
-                            // no known occurrence found
-                            //console.log('no known occurrence found');
-                            throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[KnoraConstants.OwlOnProperty]}`);
-                        }
 
                         // get occurrence
-                        /* if (curCard[KnoraConstants.OwlMinCardinality] !== undefined) {
+                        if (curCard[KnoraConstants.OwlMinCardinality] !== undefined) {
                             newCard = new Cardinality(CardinalityOccurrence.minCard, curCard[KnoraConstants.OwlMinCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
                         } else if (curCard[KnoraConstants.OwlCardinality] !== undefined) {
                             newCard = new Cardinality(CardinalityOccurrence.card, curCard[KnoraConstants.OwlCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
@@ -605,7 +591,7 @@ export class OntologyInformation {
                         } else {
                             // no known occurrence found
                             throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[KnoraConstants.OwlOnProperty]}`);
-                        } */
+                        }
 
                         // add cardinality
                         cardinalities.push(newCard);
@@ -625,7 +611,7 @@ export class OntologyInformation {
 
             // write this resource class definition to the cache object
             this.cacheOntology.resourceClasses[resClassIri] = resClassObj;
-            }
+        }
 
         // cache the property definitions referred to by the cardinalities of the given resource classes
         this.convertAndWriteKnoraPropertyDefinitionsToOntologyCache(propertyClassDefinitions);
@@ -665,7 +651,7 @@ export class OntologyInformation {
                 propDefs => {
                     return new OntologyInformation(new ResourceClassIrisForOntology(), resClassDefs, propDefs.getProperties());
                 }
-             )
+            )
         );
 
     }
