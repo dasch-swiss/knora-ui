@@ -550,9 +550,6 @@ export class OntologyCacheService {
      */
     private convertAndWriteEntityDefinitionsToCache(resourceClassDefinitions: Array<Object>, propertyClassDefinitions: Array<Object>): void {
 
-        console.log(resourceClassDefinitions);
-        console.log(propertyClassDefinitions);
-
         // convert and cache each given resource class definition
         for (const resClass of resourceClassDefinitions) {
 
@@ -631,9 +628,6 @@ export class OntologyCacheService {
 
         // collect the properties from the cardinalities of the given resource classes
         const propertyIris = [];
-
-        // console.log('getProperty Definitions', propertyIris, ' + refClass: ', resClassDefs);
-        // console.log('propertyIris: ', propertyIris);
 
         resClassIris.forEach(
             resClassIri => {
@@ -775,12 +769,11 @@ export class OntologyCacheService {
     public getAndCacheOntologies(ontologyIris: string[]): Observable<any[]> {
 
         const observables = [];
-        // console.log('we are in the getAndCacheOntologies', observables);
-        ontologyIris.forEach(ontologyIri => { // console.log('what is in ontologyIris of getAndCacheOntologies? ', ontologyIris);
+
+        ontologyIris.forEach(ontologyIri => {
             observables.push(this.getAllEntityDefinitionsForOntologyFromKnora(ontologyIri).pipe(
                 map(
                     (ontology: Object) => {
-                        // console.log('what is in ontology? ', ontology);
                         // write to cache
                         this.convertAndWriteAllEntityDefinitionsForOntologyToCache(ontology);
                     }
@@ -857,8 +850,9 @@ export class OntologyCacheService {
                 )
             );
         } else {
-            // console.log("from cache");
+
             return this.getResourceClassDefinitionsFromCache(resourceClassIris);
+
         }
     }
 
@@ -870,7 +864,7 @@ export class OntologyCacheService {
      * @returns {Observable<OntologyCache>}  an OntologyCache instance containing the requested properties.
      */
     public getPropertyDefinitions(propertyIris: string[]): Observable<OntologyInformation> {
-        console.log('we are at the beginning of the method: getPropertyDefinitions', propertyIris);
+
         const propertiesToQuery: string[] = propertyIris.filter(
             propIri => {
 
@@ -884,8 +878,6 @@ export class OntologyCacheService {
             }
         );
 
-        // console.log('what is inside propertiesToQuery? ', propertiesToQuery);
-
         if (propertiesToQuery.length > 0) {
 
             // get a set of ontology Iris that have to be queried to obtain the missing properties
@@ -894,13 +886,13 @@ export class OntologyCacheService {
                     return Utils.getOntologyIriFromEntityIri(propIri);
                 }
             ).filter(Utils.filterOutDuplicates);
-            // console.log('what is inside ontologyIris? ', ontologyIris);
+
             // obtain missing resource class information
             return this.getAndCacheOntologies(ontologyIris).pipe(
                 map(
                     results => {
                         if (results) {
-                            // console.log('what do we return? ', results);
+
                             return this.getPropertyDefinitionsFromCache(propertyIris);
                         } else {
                             throw new Error('Problem with: return this.getPropertyDefinitionsFromCache(propertyIris);');
