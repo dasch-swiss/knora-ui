@@ -1,5 +1,5 @@
 
-import {JsonConvert, OperationMode, ValueCheckingMode} from 'json2typescript';
+import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
 
 /**
  * Result class used as API url response in ApiService

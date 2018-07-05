@@ -1,4 +1,4 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
+import { JsonObject, JsonProperty } from 'json2typescript';
 
 /**
  * Knora-ui core configuration with the server definitions of:

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { KnoraConstants, ApiServiceResult, Utils } from '../../declarations';
+import { ApiServiceResult, KnoraConstants, Utils } from '../../declarations';
 import { OntologyService } from './ontology.service';
-import { from, Observable, of, forkJoin } from 'rxjs';
+import { forkJoin, from, Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { KuiCoreModule } from '../../core.module';
 

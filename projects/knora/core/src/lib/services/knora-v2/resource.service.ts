@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ApiService} from '../api.service';
-import {ApiServiceResult} from '../../declarations';
-import {KuiCoreModule} from '../../core.module';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ApiService } from '../api.service';
+import { ApiServiceResult } from '../../declarations';
+import { KuiCoreModule } from '../../core.module';
 
 @Injectable({
     providedIn: KuiCoreModule,
@@ -19,4 +19,6 @@ export class ResourceService extends ApiService {
         // console.log('IRI from resource service: ', iri);
         return this.httpGet('/v2/resources/' + encodeURIComponent(iri));
     }
+
+    // TODO: post, put, delete
 }
