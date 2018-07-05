@@ -110,3 +110,4 @@ export * from './knora-api/v2/still-image/image-region';
  * Interfaces for pipes
  */
 export * from './knora-api/pipes/key.pipe';
+export * from './knora-api/pipes/reverse.pipe';
