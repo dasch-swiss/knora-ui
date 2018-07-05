@@ -86,7 +86,7 @@ export * from './knora-api/admin/users/user';
  * Interfaces for json-ld
  */
 export * from './knora-api/v2/json-ld/json-ld';
-export * from './knora-api/v2/json-ld/convert-json-ld';
+// export * from './knora-api/v2/json-ld/convert-json-ld';
 
 /**
  * Interfaces for properties
@@ -99,3 +99,14 @@ export * from './knora-api/v2/properties/read-property-item';
  */
 export * from './knora-api/v2/resources/read-resource';
 export * from './knora-api/v2/resources/read-resources-sequence';
+
+/**
+ * Interfaces for resources
+ */
+export * from './knora-api/v2/still-image/still-image-representation';
+export * from './knora-api/v2/still-image/image-region';
+
+/**
+ * Interfaces for pipes
+ */
+export * from './knora-api/pipes/key.pipe';
