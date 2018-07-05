@@ -20,6 +20,12 @@ Now we can create a library module quite easy. Please use the following command 
 
 `$ ng generate library @knora/[module-name] --prefix=kui`
 
+If you want to add more components, services and so on to this library, you can do it with:
+
+`$ ng generate component [path/in/your/module/][name-of-component] --project @knora/[module-name]`
+
+It puts the component or the service into `lib/` directly. Otherwise you can define a path inside of `lib/`.
+
 ### Install the demo app
 
 ```
@@ -33,8 +39,53 @@ $ yarn build-lib
 
 The demo app runs on http://localhost:4200 and we use it on this repository's [Github page](https://dhlab-basel.github.io/Knora-ui)
 
+### Developing modules
+
+To create new e.g. component inside existing module use the following command:
+
+`$ ng g c [component-name] --project @knora/[module-name] --styleext scss`
 
 ---
 
-This repository replaces the [salsah-modules](https://github.com/dhlab-basel/salsah-modules).
+## Knora module structure
 
+@knora/core
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg) -->
+* services (for API requests)
+* constants & utils (to work with Knora)
+
+@knora/action
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg) -->
+* buttons & buttons
+* progress-indicator
+* progress-stepper
+* message
+* directives & pipes
+* dialog
+
+@knora/authentication
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg) -->
+* login
+* logout
+
+@knora/search
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/search.svg) -->
+* search results
+* search panel incl. search action (like adding a collection)
+
+@knora/viewer
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg) -->
+* object viewer (incl. video, audio, image)
+* properties (as form elements)
+* resource_class_form
+
+@knora/admin
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/admin.svg) -->
+* project (incl. ontology-editor)
+* system
+* user
+* dashboard
+* ontology_form incl. resource-class-form (new-/edit-resource-class)
+* project_form
+* user_form
+* list_form

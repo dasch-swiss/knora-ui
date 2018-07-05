@@ -5,11 +5,20 @@
     "module": "es2015",
     "types": [],
     "paths": {
+      "@knora/action": [
+        "dist/@knora/action"
+      ],
+      "@knora/admin": [
+        "dist/@knora/admin"
+      ],
+      "@knora/authentication": [
+        "dist/@knora/authentication"
+      ],
       "@knora/core": [
         "dist/@knora/core"
       ],
-      "@knora/progress-indicator": [
-        "dist/@knora/progress-indicator"
+      "@knora/search": [
+        "dist/@knora/search"
       ],
       "@knora/viewer": [
         "dist/@knora/viewer"

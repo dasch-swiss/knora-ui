@@ -6,11 +6,11 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 The core module contains every service to use Knora's RESTful webapi.
 
 ## Install
-`$ yarn add @knora/core`
+`$ yarn add @knora/core json2typescript@^1.0.5`
 
 OR
 
-`$ npm install @knora/core`
+`$ npm install --save @knora/core json2typescript@^1.0.5`
 
 
 ## Setup
@@ -25,6 +25,7 @@ For local usage (developer mode) define your environment.ts as follow:
 ```
 export const environment = {
   production: false,
+  name: 'Salsah',
   api: 'http://0.0.0.0:3333',
   app: 'http://localhost:4200',
   media: 'http://localhost:1024'
@@ -40,19 +41,18 @@ Send this configuration to the `@knora/core` module in your app.module.ts
 ```
 import {environment} from '../environments/environment';
 
-const AppEnvironment: KuiCoreConfig = {
-    api: environment.api,
-    media: environment.media,
-    app: environment.app
-};
-
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
         BrowserModule,
-        KuiCoreModule.forRoot(AppEnvironment),      <--
+        KuiCoreModule.forRoot({
+            name: environment.name,
+            api: environment.api,
+            media: environment.media,
+            app: environment.app
+        }),
         HttpClientModule
     ],
     providers: [ ],

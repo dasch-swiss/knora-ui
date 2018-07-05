@@ -1,7 +1,7 @@
 {
   "name": "@knora/core",
-  "version": "1.0.0-alpha",
-  "description": "Knora ui core module",
+  "version": "1.0.1-alpha",
+  "description": "Knora ui module",
   "repository": {
     "type": "git",
     "url": "https://github.com/dhlab-basel/Knora-ui.git"

@@ -19,16 +19,27 @@ export class AppDemo {
         stackblitz: true,
         label: 'Progress indicator'
     };
-    public static adminImage: DemoModule = {
-        name: 'admin-image',
-        published: true,
-        label: 'Admin image'
-    };
 
     public static actionModule: DemoModule = {
         name: 'action',
         published: true,
-        label: 'Action module'
+        label: 'Action module',
+        children: [
+            {
+                name: 'sort-button',
+                label: 'SortButton',
+                stackblitz: true
+            },
+            {
+                name: 'progress-indicator',
+                label: 'ProgressIndicator',
+                stackblitz: true
+            },
+            {
+                name: 'admin-image',
+                label: 'AdminImage'
+            }
+        ]
     };
 
     public static coreModule: DemoModule = {
@@ -44,6 +55,18 @@ export class AppDemo {
             {
                 name: 'projects',
                 label: 'ProjectsService'
+            },
+            {
+                name: 'groups',
+                label: 'GroupsService'
+            },
+            {
+                name: 'lists',
+                label: 'ListsService'
+            },
+            {
+                name: 'resource',
+                label: 'ResourceService'
             }
         ]
     };
@@ -66,6 +89,7 @@ export class AppDemo {
         label: 'Admin module'
     };
 
+
     public static viewerModule: DemoModule = {
         name: 'viewer',
         published: false,
@@ -75,17 +99,13 @@ export class AppDemo {
     /* ******************************************************************* */
 
     /**
-     * the following list of modules will be used on the public documentation
+     * the following list of modules will be used on the public documentation page
      * @type {DemoModule[]}
      */
     public static examples: DemoModule[] = [
-        AppDemo.progressIndicator,
-        AppDemo.coreModule,
         AppDemo.authenticationModule,
-        AppDemo.projectModule,
-        AppDemo.adminModule,
-        AppDemo.viewerModule
-
+        AppDemo.actionModule,
+        AppDemo.coreModule,
     ];
 
 }

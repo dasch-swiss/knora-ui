@@ -3,11 +3,11 @@ import {AppDemo} from '../../app.config';
 import {Example} from '../../app.interfaces';
 
 @Component({
-    selector: 'app-progress-indicator-demo',
-    templateUrl: './progress-indicator-demo.component.html',
-    styleUrls: ['./progress-indicator-demo.component.scss']
+    selector: 'app-progress-indicator',
+    templateUrl: './progress-indicator.component.html',
+    styleUrls: ['./progress-indicator.component.scss']
 })
-export class ProgressIndicatorDemoComponent implements OnInit {
+export class ProgressIndicatorComponent implements OnInit {
 
     module = AppDemo.progressIndicator;
 

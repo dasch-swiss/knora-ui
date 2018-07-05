@@ -1,9 +1,10 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { KuiActionModule } from '@knora/action';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {ModuleIndexComponent} from './module-index.component';
-import {MatIconModule, MatListModule, MatSidenavModule} from '@angular/material';
-import {RouterTestingModule} from '@angular/router/testing';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ModuleIndexComponent } from './module-index.component';
+import { MatIconModule, MatListModule, MatSidenavModule } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ModuleIndexComponent', () => {
   let component: ModuleIndexComponent;
@@ -12,13 +13,16 @@ describe('ModuleIndexComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        KuiActionModule,
         MatIconModule,
         MatListModule,
         MatSidenavModule,
         RouterTestingModule,
         BrowserAnimationsModule
       ],
-      declarations: [ModuleIndexComponent]
+      declarations: [
+        ModuleIndexComponent
+      ]
     })
       .compileComponents();
   }));

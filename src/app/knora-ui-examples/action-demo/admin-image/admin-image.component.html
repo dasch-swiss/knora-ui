@@ -1,0 +1,31 @@
+<!--<app-module-header [demo]="module"></app-module-header>-->
+
+<h3>User avatar</h3>
+
+<h4>Default user profile image</h4>
+<p>The image source is an email, which is not registered on gravatar.com</p>
+<img kuiAdminImage [image]="imgDefaultUser" [type]="'user'"/>
+
+<h4>Avatar example: 'salsah' user</h4>
+<p>The image source is an email, which is registered on gravatar.com</p>
+<img kuiAdminImage [image]="imgSalsahUser" [type]="'user'"/>
+
+<h4>User image on error</h4>
+<img kuiAdminImage [image]="null" [type]="'user'"/>
+
+
+<hr>
+
+<h3>Project logo</h3>
+
+<h4>Default project image</h4>
+<img kuiAdminImage [image]="imgDefaultProject" [type]="'project'"/>
+
+<h4>Logo example: 'dasch' project</h4>
+<img kuiAdminImage [image]="imgDaschProject" [type]="'project'"/>
+
+<hr>
+
+<h3>Default error image</h3>
+<p>In the case of an image source 404 error, it shows the following 'image not available'-image</p>
+<img kuiAdminImage [image]="'null'"/>
