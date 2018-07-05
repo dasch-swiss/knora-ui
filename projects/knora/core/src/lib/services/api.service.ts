@@ -1,4 +1,4 @@
-import {Inject} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {catchError, map} from 'rxjs/operators';
@@ -6,7 +6,9 @@ import {throwError} from 'rxjs/internal/observable/throwError';
 import {ApiServiceError, ApiServiceResult, KuiCoreConfig} from '../declarations';
 
 
-// @Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export abstract class ApiService {
 
     /**
@@ -23,23 +25,23 @@ export abstract class ApiService {
     /**
      * GET
      *
-     * @param {string} url
+     * @param {string} path
      * @returns {Observable<any>}
      */
-    httpGet(url: string): Observable<any> {
+    httpGet(path: string): Observable<any> {
 
         this.loading = true;
 
         const headers = this.setHeaders();
 
-        return this.http.get(this.config.api + url, {headers: headers, observe: 'response'}).pipe(
+        return this.http.get(this.config.api + path, {headers: headers, observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
                 const result = new ApiServiceResult();
                 result.status = response.status;
                 result.statusText = response.statusText;
-                result.url = url;
+                result.url = path;
                 result.body = response.body;
                 return result;
             }),
@@ -55,17 +57,17 @@ export abstract class ApiService {
     /**
      * POST
      *
-     * @param {string} url
+     * @param {string} path
      * @param body
      * @returns {Observable<any>}
      */
-    httpPost(url: string, body?: any): Observable<any> {
+    httpPost(path: string, body?: any): Observable<any> {
 
         this.loading = true;
 
         const headers = this.setHeaders();
 
-        return this.http.post(this.config.api + url, body, {headers: headers, observe: 'response'}).pipe(
+        return this.http.post(this.config.api + path, body, {headers: headers, observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -74,7 +76,7 @@ export abstract class ApiService {
                 const result = new ApiServiceResult();
                 result.status = response.status;
                 result.statusText = response.statusText;
-                result.url = url;
+                result.url = path;
                 result.body = response.body;
                 return result;
             }),
@@ -92,17 +94,17 @@ export abstract class ApiService {
     /**
      * PUT
      *
-     * @param {string} url
+     * @param {string} path
      * @param body
      * @returns {Observable<any>}
      */
-    httpPut(url: string, body?: any): Observable<any> {
+    httpPut(path: string, body?: any): Observable<any> {
 
         this.loading = true;
 
         const headers = this.setHeaders();
 
-        return this.http.put(this.config.api + url, body, {headers: headers, observe: 'response'}).pipe(
+        return this.http.put(this.config.api + path, body, {headers: headers, observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -111,7 +113,7 @@ export abstract class ApiService {
                 const result = new ApiServiceResult();
                 result.status = response.status;
                 result.statusText = response.statusText;
-                result.url = url;
+                result.url = path;
                 result.body = response.body;
                 return result;
 
@@ -129,16 +131,16 @@ export abstract class ApiService {
     /**
      * DELETE
      *
-     * @param {string} url
+     * @param {string} path
      * @returns {Observable<any>}
      */
-    httpDelete(url: string): Observable<any> {
+    httpDelete(path: string): Observable<any> {
 
         this.loading = true;
 
         const headers = this.setHeaders();
 
-        return this.http.delete(this.config.api + url, {headers: headers, observe: 'response'}).pipe(
+        return this.http.delete(this.config.api + path, {headers: headers, observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -147,7 +149,7 @@ export abstract class ApiService {
                 const result = new ApiServiceResult();
                 result.status = response.status;
                 result.statusText = response.statusText;
-                result.url = url;
+                result.url = path;
                 result.body = response.body;
                 return result;
 

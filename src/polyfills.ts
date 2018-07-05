@@ -68,6 +68,12 @@ import 'core-js/es7/reflect';
  */
 // (window as any).__Zone_enable_cross_context_check = true;
 
+
+// fix issue: angular 6 providing global object; followed the solution here:
+// https://aws.github.io/aws-amplify/media/angular_guide#angular-6-support
+(window as any).global = window;
+
+
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */

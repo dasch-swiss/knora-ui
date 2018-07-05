@@ -1,17 +1,17 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatCardModule, MatIconModule, MatListModule, MatTabsModule} from '@angular/material';
-import {KuiProgressIndicatorModule} from '@knora/progress-indicator';
+import {KuiProgressIndicatorModule} from '@knora/action';
 
 import {ModuleHeaderComponent} from '../../partials/module-header/module-header.component';
-import {ProgressIndicatorDemoComponent} from './progress-indicator-demo.component';
+import {ProgressIndicatorComponent} from './pr';
 import {ExampleViewerComponent} from '../../partials/example-viewer/example-viewer.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {MarkdownModule} from 'ngx-markdown';
 
 
 describe('ProgressIndicatorDemoComponent', () => {
-    let component: ProgressIndicatorDemoComponent;
-    let fixture: ComponentFixture<ProgressIndicatorDemoComponent>;
+    let component: ProgressIndicatorComponent;
+    let fixture: ComponentFixture<ProgressIndicatorComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -27,14 +27,14 @@ describe('ProgressIndicatorDemoComponent', () => {
             declarations: [
                 ExampleViewerComponent,
                 ModuleHeaderComponent,
-                ProgressIndicatorDemoComponent
+                ProgressIndicatorComponent
             ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ProgressIndicatorDemoComponent);
+        fixture = TestBed.createComponent(ProgressIndicatorComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

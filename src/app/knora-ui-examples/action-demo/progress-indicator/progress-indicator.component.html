@@ -1,0 +1,63 @@
+<app-module-sub-header [demo]="partOf"></app-module-sub-header>
+
+<markdown>You can use the progress indicator in two ways:</markdown>
+
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="classicLoader"></app-example-viewer>
+
+    <div class="demo">
+        <kui-progress-indicator></kui-progress-indicator>
+    </div>
+</mat-card>
+
+<br><br>
+
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="submitLoader"></app-example-viewer>
+
+    <div class="demo">
+        <mat-list>
+            <mat-list-item *ngFor="let item of examples">
+
+                <kui-progress-indicator mat-list-avatar [status]="item.status">
+                </kui-progress-indicator>
+
+                <p mat-line>
+                    <strong>
+                        <span>{{item.label}}</span>
+                    </strong>
+                </p>
+                <p mat-line>
+                    status: {{item.status}}
+                </p>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</mat-card>
+
+<br><br>
+
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="dynamicExample"></app-example-viewer>
+
+    <div class="demo">
+        <mat-list>
+            <mat-list-item>
+                <kui-progress-indicator mat-list-avatar [status]="status"></kui-progress-indicator>
+                <p mat-line>
+                    <strong>
+                        <span *ngIf="status == -1">before submit (not ready)</span>
+                        <span *ngIf="status == 0">submitting</span>
+                        <span *ngIf="status == 1">after submit (done)</span>
+                    </strong>
+
+                    status: {{status}}
+                </p>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</mat-card>
+
