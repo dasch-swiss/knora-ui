@@ -6,6 +6,7 @@ import { MainIntroComponent } from './landing-page/main-intro/main-intro.compone
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 import { DemoIntroComponent } from './landing-page/demo-intro/demo-intro.component';
 // examples: demo components
+
 import { ProgressIndicatorComponent } from './knora-ui-examples/action-demo/progress-indicator/progress-indicator.component';
 import { CoreDemoComponent } from './knora-ui-examples/core-demo/core-demo.component';
 import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projects.component';
@@ -19,6 +20,7 @@ import { LoginComponent } from './knora-ui-examples/authentication-demo/login/lo
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
+
 
 const appRoutes: Routes = [
     {

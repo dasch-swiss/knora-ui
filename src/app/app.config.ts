@@ -89,6 +89,13 @@ export class AppDemo {
         label: 'Admin module'
     };
 
+
+    public static viewerModule: DemoModule = {
+        name: 'viewer',
+        published: false,
+        label: 'Viewer module'
+    };
+
     /* ******************************************************************* */
 
     /**
