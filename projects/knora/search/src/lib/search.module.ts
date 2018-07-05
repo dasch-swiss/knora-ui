@@ -1,12 +1,27 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {SearchComponent} from './search.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule, MatListModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+
+import { SearchComponent } from './search.component';
+import { SelectOntologyComponent } from './extended-search/select-ontology/select-ontology.component';
+
+import { ReversePipe } from '@knora/core';
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatListModule,
+        FormsModule
     ],
-    declarations: [SearchComponent],
+    declarations: [
+        SearchComponent,
+        SelectOntologyComponent,
+        ReversePipe
+    ],
     exports: [SearchComponent]
 })
 export class KuiSearchModule {
