@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppDemo } from '../../app.config';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-viewer-demo',
@@ -8,9 +9,15 @@ import { AppDemo } from '../../app.config';
 })
 export class ViewerDemoComponent implements OnInit {
 
-    module = AppDemo.viewerModule;
+    module: any;
 
-    constructor() {
+    constructor(private _route: ActivatedRoute) {
+        this._route.data
+            .subscribe(
+                (data: any) => {
+                    this.module = data.module;
+                }
+            );
     }
 
     ngOnInit() {

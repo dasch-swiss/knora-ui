@@ -22,6 +22,7 @@ import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
 import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
+import { AppDemo } from './app.config';
 // examples: demo components
 
 
@@ -64,18 +65,22 @@ const appRoutes: Routes = [
             {
                 path: 'viewer',
                 component: ViewerDemoComponent,
+                data: {module: AppDemo.viewerModule},
                 children: [
                     {
                         path: 'objects',
-                        component: ObjectsComponent
+                        component: ObjectsComponent,
+                        data: {partOf: AppDemo.viewerModule}
                     },
                     {
                         path: 'properties',
-                        component: PropertiesComponent
+                        component: PropertiesComponent,
+                        data: {partOf: AppDemo.viewerModule}
                     },
                     {
                         path: 'views',
-                        component: ViewsComponent
+                        component: ViewsComponent,
+                        data: {partOf: AppDemo.viewerModule}
                     }
                 ]
             },
