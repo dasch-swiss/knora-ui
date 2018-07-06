@@ -6,8 +6,11 @@ import { FormsModule } from '@angular/forms';
 
 import { SearchComponent } from './search.component';
 import { SelectOntologyComponent } from './extended-search/select-ontology/select-ontology.component';
+import { ExtendedSearchComponent } from './extended-search/extended-search.component';
+import { SelectResourceClassComponent } from './extended-search/select-resource-class/select-resource-class.component';
+import { SelectPropertyComponent } from './extended-search/select-property/select-property.component';
 
-import { ReversePipe } from '@knora/core';
+/* import { ReversePipe } from '@knora/core'; */
 
 @NgModule({
     imports: [
@@ -20,7 +23,10 @@ import { ReversePipe } from '@knora/core';
     declarations: [
         SearchComponent,
         SelectOntologyComponent,
-        ReversePipe
+        ExtendedSearchComponent,
+        SelectResourceClassComponent,
+        SelectPropertyComponent,
+        /*  ReversePipe */
     ],
     exports: [SearchComponent]
 })
