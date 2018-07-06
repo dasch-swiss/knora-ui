@@ -134,4 +134,26 @@ export class KnoraConstants {
 
     public static listValueAsListNode = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNode';
     public static listValueAsListNodeLabel = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNodeLabel';
+
+    public static Xsd = 'http://www.w3.org/2001/XMLSchema#';
+
+    public static xsdString = KnoraConstants.Xsd + 'string';
+    public static xsdBoolean = KnoraConstants.Xsd + 'boolean';
+    public static xsdInteger = KnoraConstants.Xsd + 'integer';
+    public static xsdDecimal = KnoraConstants.Xsd + 'decimal';
+    public static xsdUri = KnoraConstants.Xsd + 'anyURI';
+
+    public static KnoraApi: string = 'http://api.knora.org/ontology/knora-api';
+    public static KnoraApiV2SimplePath: string = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
+
+    public static resourceSimple = KnoraConstants.KnoraApiV2SimplePath + 'Resource';
+    public static dateSimple = KnoraConstants.KnoraApiV2SimplePath + 'Date';
+    public static intervalSimple = KnoraConstants.KnoraApiV2SimplePath + 'Interval';
+    public static geomSimple = KnoraConstants.KnoraApiV2SimplePath + 'Geom';
+    public static colorSimple = KnoraConstants.KnoraApiV2SimplePath + 'Color';
+    public static geonameSimple = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
+    public static fileSimple = KnoraConstants.KnoraApiV2SimplePath + 'File';
+
+    public static matchFunction = KnoraConstants.KnoraApiV2SimplePath + 'match';
+
 }
