@@ -12,7 +12,7 @@ import { AnnotationComponent } from './object/annotation/annotation.component';
 import { LinkObjComponent } from './object/link-obj/link-obj.component';
 import { TextValueComponent } from './property/text-value/text-value.component';
 import { DateValueComponent } from './property/date-value/date-value.component';
-import { IntValueComponent } from './property/int-value/int-value.component';
+import { IntegerValueComponent } from './property/integer-value/integer-value.component';
 import { ColorValueComponent } from './property/color-value/color-value.component';
 import { DecimalValueComponent } from './property/decimal-value/decimal-value.component';
 import { UriValueComponent } from './property/uri-value/uri-value.component';
@@ -30,9 +30,21 @@ import { ObjectViewComponent } from './view/object-view/object-view.component';
 import { CompareViewComponent } from './view/compare-view/compare-view.component';
 import { GraphViewComponent } from './view/graph-view/graph-view.component';
 
+import { MatCheckboxModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatSlideToggleModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule
+
     ],
     declarations: [
         StillImageComponent,
@@ -47,7 +59,7 @@ import { GraphViewComponent } from './view/graph-view/graph-view.component';
         LinkObjComponent,
         TextValueComponent,
         DateValueComponent,
-        IntValueComponent,
+        IntegerValueComponent,
         ColorValueComponent,
         DecimalValueComponent,
         UriValueComponent,
@@ -78,7 +90,7 @@ import { GraphViewComponent } from './view/graph-view/graph-view.component';
         LinkObjComponent,
         TextValueComponent,
         DateValueComponent,
-        IntValueComponent,
+        IntegerValueComponent,
         ColorValueComponent,
         DecimalValueComponent,
         UriValueComponent,

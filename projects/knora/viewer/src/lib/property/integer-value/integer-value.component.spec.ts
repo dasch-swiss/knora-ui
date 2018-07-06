@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IntValueComponent } from './int-value.component';
+import { IntegerValueComponent } from './integer-value.component';
 
 describe('IntValueComponent', () => {
-  let component: IntValueComponent;
-  let fixture: ComponentFixture<IntValueComponent>;
+  let component: IntegerValueComponent;
+  let fixture: ComponentFixture<IntegerValueComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IntValueComponent ]
+      declarations: [ IntegerValueComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IntValueComponent);
+    fixture = TestBed.createComponent(IntegerValueComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,6 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PropertiesComponent implements OnInit {
 
+    property: any = {
+        colorVal: {
+            colorHex: '#f06a33'
+        }
+    };
+
+
     partOf: any;
 
     constructor(private _route: ActivatedRoute) {
