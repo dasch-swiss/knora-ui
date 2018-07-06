@@ -1,0 +1,12 @@
+// color definitions
+$bright: rgba(249, 249, 249, 1);
+$dark: rgba(41, 41, 41, 1);
+
+// sizes for search element
+$search-width: 720px;
+$search-height: $search-width;
+
+// Box Shadow
+@mixin box-shadow($x: 0, $y: 1px, $blur: 3px, $alpha: .5) {
+    box-shadow: $x $y $blur rgba(0, 0, 0, $alpha);
+}
