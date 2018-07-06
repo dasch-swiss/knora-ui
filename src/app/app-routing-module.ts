@@ -5,8 +5,6 @@ import { MainIntroComponent } from './landing-page/main-intro/main-intro.compone
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 import { DemoIntroComponent } from './landing-page/demo-intro/demo-intro.component';
-// examples: demo components
-
 import { ProgressIndicatorComponent } from './knora-ui-examples/action-demo/progress-indicator/progress-indicator.component';
 import { CoreDemoComponent } from './knora-ui-examples/core-demo/core-demo.component';
 import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projects.component';
@@ -20,6 +18,11 @@ import { LoginComponent } from './knora-ui-examples/authentication-demo/login/lo
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
+import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
+import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
+import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
+import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
+// examples: demo components
 
 
 const appRoutes: Routes = [
@@ -57,6 +60,24 @@ const appRoutes: Routes = [
             {
                 path: 'authentication',
                 component: LoginComponent
+            },
+            {
+                path: 'viewer',
+                component: ViewerDemoComponent,
+                children: [
+                    {
+                        path: 'objects',
+                        component: ObjectsComponent
+                    },
+                    {
+                        path: 'properties',
+                        component: PropertiesComponent
+                    },
+                    {
+                        path: 'views',
+                        component: ViewsComponent
+                    }
+                ]
             },
             {
                 path: 'core',

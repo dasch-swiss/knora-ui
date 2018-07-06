@@ -73,7 +73,7 @@ export class AppDemo {
 
     public static authenticationModule: DemoModule = {
         name: 'authentication',
-        published: false,
+        published: true,
         label: 'Authentication module'
     };
 
@@ -93,7 +93,21 @@ export class AppDemo {
     public static viewerModule: DemoModule = {
         name: 'viewer',
         published: false,
-        label: 'Viewer module'
+        label: 'Viewer module',
+        children: [
+            {
+                name: 'objects',
+                label: 'Objects'
+            },
+            {
+                name: 'properties',
+                label: 'Properties'
+            },
+            {
+                name: 'views',
+                label: 'Views'
+            }
+        ]
     };
 
     /* ******************************************************************* */
@@ -106,6 +120,7 @@ export class AppDemo {
         AppDemo.authenticationModule,
         AppDemo.actionModule,
         AppDemo.coreModule,
+        AppDemo.viewerModule
     ];
 
 }

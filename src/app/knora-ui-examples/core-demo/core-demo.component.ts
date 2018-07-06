@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AppDemo} from '../../app.config';
-import {Item} from '../../app.interfaces';
+import { Component, OnInit } from '@angular/core';
+import { AppDemo } from '../../app.config';
 
 @Component({
     selector: 'app-core-demo',
@@ -11,29 +10,12 @@ export class CoreDemoComponent implements OnInit {
 
     module = AppDemo.coreModule;
 
-    subModules: Item[] = [
-        {
-            label: 'Authentication',
-            name: 'authentication'
-        },
-        {
-            label: 'Projects',
-            name: 'projects'
-        },
-        {
-            label: 'Users',
-            name: 'users'
-        }
-    ];
-
-
     constructor() {
     }
 
     ngOnInit() {
 
     }
-
 
 
 }
