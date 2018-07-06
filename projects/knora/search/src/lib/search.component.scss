@@ -1,11 +1,10 @@
-// @import '../../../../assets/style/mixins';
-// @import '../../../../assets/style/config';
+@import './assets/style/main.scss';
 
 //
 // disable browser's input type appearance
 //
 
-/* input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
@@ -71,13 +70,13 @@ $search-width: 720px;
     }
   }
   //    padding: 2px;
-  &.small {
-    //        width: 560px;
+  /* &.small {
+    width: 560px;
   }
 
   &.large {
-    //        width: 600px;
-  }
+    width: 600px;
+  } */
 
   &.active {
     @include box-shadow();
@@ -125,4 +124,4 @@ $search-width: 720px;
     z-index: 20;
   }
 
-}*/
+}
