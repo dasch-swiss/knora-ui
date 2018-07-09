@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { KuiCoreModule } from '@knora/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 
 /**
@@ -21,7 +20,7 @@ export class ExtendedSearchParams {
 }
 
 @Injectable({
-    providedIn: KuiCoreModule
+    providedIn: 'root'
 })
 /**
  * Temporarily stores the parameters of an extended search.
