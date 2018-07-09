@@ -42,6 +42,7 @@ import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button
 import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
         ActionDemoComponent,
         SortButtonComponent,
         ModuleSubHeaderComponent,
-        AdminImageComponent
+        AdminImageComponent,
+        SearchDemoComponent
     ],
     entryComponents: [
         // LoginFormComponent
@@ -88,10 +90,10 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
         KuiViewerModule,
         MaterialModule,
         HttpClientModule,
-        MarkdownModule.forRoot({loader: HttpClient})
+        MarkdownModule.forRoot({ loader: HttpClient })
     ],
     providers: [
-        {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+        { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
     ],
     bootstrap: [AppComponent]
 })

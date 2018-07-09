@@ -1,4 +1,4 @@
-import {DemoModule} from './app.interfaces';
+import { DemoModule } from './app.interfaces';
 
 export class AppConfig {
     public static prefix = 'knora';
@@ -95,6 +95,12 @@ export class AppDemo {
         label: 'Viewer module'
     };
 
+    public static searchModule: DemoModule = {
+        name: 'search',
+        published: false,
+        label: 'Search module'
+    };
+
     /* ******************************************************************* */
 
     /**
@@ -105,6 +111,7 @@ export class AppDemo {
         AppDemo.authenticationModule,
         AppDemo.actionModule,
         AppDemo.coreModule,
+        AppDemo.searchModule
     ];
 
 }
