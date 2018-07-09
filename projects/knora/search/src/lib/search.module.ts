@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatListModule, MatSelectModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KuiCoreModule } from '@knora/core';
+import { KuiActionModule } from '@knora/action';
 
 
 import { SearchComponent } from './search.component';
@@ -24,7 +25,8 @@ import { SpecifyPropertyValueComponent } from './extended-search/select-property
         MatSelectModule,
         FormsModule,
         ReactiveFormsModule,
-        KuiCoreModule
+        KuiCoreModule,
+        KuiActionModule
     ],
     declarations: [
         SearchComponent,
