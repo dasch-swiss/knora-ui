@@ -20,5 +20,5 @@ export * from './knora-v2/ontology-cache.service';
 export * from './knora-v2/ontology.service';
 export * from './knora-v2/incoming.service';
 export * from './knora-v2/search.service';
-export * from './knora-v2/grav-search.service';
 export * from './knora-v2/search-params.service';
+export * from './knora-v2/grav-search.service';

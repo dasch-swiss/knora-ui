@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { KuiCoreModule, Utils } from '@knora/core';
-// import { PropertyWithValue } from '@knora/search';
 import { ExtendedSearchParams, SearchParamsService } from './search-params.service';
-import { KnoraConstants } from '../../declarations';
+import { KnoraConstants, KnoraSchema, PropertyWithValue, Utils } from '../../declarations';
 
 /**
  * Represents an error that occurred when generating KnarQL.
  */
-class KnarqlGenerationError extends Error {
+class GravSearchError extends Error {
 
     constructor(msg: string) {
         super(msg);
@@ -15,14 +13,12 @@ class KnarqlGenerationError extends Error {
 }
 
 @Injectable({
-    providedIn: KuiCoreModule
+    providedIn: 'root'
 })
 export class GravSearchService {
 
-    constructor(private _searchParamsService: SearchParamsService) { }
-
     // map of complex knora-api value types to simple ones
-    private typeConversionComplexToSimple = {
+    typeConversionComplexToSimple = {
         [KnoraConstants.IntValue]: KnoraConstants.xsdInteger, // use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer
         [KnoraConstants.DecimalValue]: KnoraConstants.xsdDecimal,
         [KnoraConstants.BooleanValue]: KnoraConstants.xsdBoolean,
@@ -43,6 +39,8 @@ export class GravSearchService {
         [KnoraConstants.ListValue]: KnoraConstants.xsdString
     };
 
+    constructor(private _searchParamsService: SearchParamsService) { }
+
     /**
        * Converts a complex type Iri to a simple type Iri.
        *
@@ -56,20 +54,20 @@ export class GravSearchService {
         if (simpleType !== undefined) {
             return simpleType;
         } else {
-            throw new KnarqlGenerationError(`complex type ${complexType} could not be converted to simple type.`);
+            throw new GravSearchError(`complex type ${complexType} could not be converted to simple type.`);
         }
 
     }
 
     /**
-       * Generates a KnarQL query from the provided arguments.
+       * Generates a Gravsearch query from the provided arguments.
        *
        * @param {PropertyWithValue[]} properties the properties specified by the user.
        * @param {string} mainResourceClassOption the class of the main resource, if specified.
        * @param offset the offset to be used (nth page of results).
        * @returns {string} a KnarQL query string.
        */
-    createKnarQLQuery(properties: PropertyWithValue[], mainResourceClassOption?: string, offset: number = 0): string {
+    public createGravsearchQuery(properties: PropertyWithValue[], mainResourceClassOption?: string, offset: number = 0): string {
 
         // class restriction for the resource searched for
         let mainResourceClass = '';
@@ -106,7 +104,7 @@ export class GravSearchService {
                     propValue = `?propVal${index}`;
                 } else {
                     // it is a linking property and the comparison operator is not Exists, use its IRI
-                    propValue = propWithVal.valueLiteral.value.toSparql();
+                    propValue = propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple);
                 }
 
                 // generate statement
@@ -141,12 +139,12 @@ export class GravSearchService {
 
                     if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Like') {
                         // use regex function for LIKE
-                        filter = `FILTER regex(${propValue}, ${propWithVal.valueLiteral.value.toSparql()}, "i")`;
+                        filter = `FILTER regex(${propValue}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple)}, "i")`;
                     } else if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Match') {
                         // use contains function for MATCH
-                        filter = `FILTER <${KnoraConstants.matchFunction}>(${propValue}, ${propWithVal.valueLiteral.value.toSparql()})`;
+                        filter = `FILTER <${KnoraConstants.matchFunction}>(${propValue}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple)})`;
                     } else {
-                        filter = `FILTER(${propValue} ${propWithVal.valueLiteral.comparisonOperator.type} ${propWithVal.valueLiteral.value.toSparql()})`;
+                        filter = `FILTER(${propValue} ${propWithVal.valueLiteral.comparisonOperator.type} ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple)})`;
                     }
                 }
 
@@ -168,7 +166,7 @@ export class GravSearchService {
         }
 
         // template of the KnarQL query with dynamic components
-        const knarqlTemplate = `
+        const gravsearchTemplate = `
       PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
       CONSTRUCT {
 
@@ -193,22 +191,22 @@ export class GravSearchService {
       `;
 
         // function that generates the same KnarQL query with the given offset
-        const generateKnarQLWithCustomOffset = (localOffset: number): string => {
+        const generateGravsearchQueryWithCustomOffset = (localOffset: number): string => {
             const offsetCustomTemplate = `
           OFFSET ${localOffset}
           `;
 
-            return knarqlTemplate + offsetCustomTemplate;
+            return gravsearchTemplate + offsetCustomTemplate;
         };
 
         if (offset === 0) {
             // store the function so another KnarQL query can be created with an increased offset
-            this._searchParamsService.changeSearchParamsMsg(new ExtendedSearchParams(generateKnarQLWithCustomOffset));
+            this._searchParamsService.changeSearchParamsMsg(new ExtendedSearchParams(generateGravsearchQueryWithCustomOffset));
         }
 
         // console.log(knarqlTemplate + offsetTemplate);
 
-        return knarqlTemplate + offsetTemplate;
+        return gravsearchTemplate + offsetTemplate;
 
     }
 
