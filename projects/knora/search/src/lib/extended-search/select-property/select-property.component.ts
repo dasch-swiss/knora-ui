@@ -1,27 +1,16 @@
 import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Cardinality, CardinalityOccurrence, Properties, Property, ResourceClass } from '@knora/core';
+import {
+    Cardinality,
+    CardinalityOccurrence,
+    ComparisonOperatorAndValue,
+    Properties,
+    Property,
+    PropertyWithValue,
+    ResourceClass
+} from '@knora/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ComparisonOperatorAndValue, SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
+import { SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
 
-/**
- * Represents a property, the specified comparison operator, and value.
- */
-export class PropertyWithValue {
-
-    /**
-     * Constructs a [PropertyWithValue].
-     *
-     * @param {Property} property the specified property.
-     * @param {ComparisonOperatorAndValue} valueLiteral the specified comparison operator and value.
-     * @param isSortCriterion indicates if the property is used as a sort criterion.
-     */
-    constructor(
-        readonly property: Property,
-        readonly valueLiteral: ComparisonOperatorAndValue,
-        readonly isSortCriterion: Boolean) {
-    }
-
-}
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -112,8 +101,7 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
      * Property has to have cardinality or max cardinality 1 for the chosen resource class.
      *
      * We cannot sort by properties whose cardinality is greater than 1.
-     *
-     * @returns {boolean}
+     * Return boolean
      */
     sortCriterion() {
 
