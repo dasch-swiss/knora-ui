@@ -161,31 +161,31 @@ export class KnoraConstants {
     public static matchFunction = KnoraConstants.KnoraApiV2SimplePath + 'match';
 
     public static EqualsComparisonOperator = '=';
-    public static EqualsComparisonLabel = 'Equals';
+    public static EqualsComparisonLabel = 'is equal to';
 
     public static NotEqualsComparisonOperator = '!=';
-    public static NotEqualsComparisonLabel = 'Not_Equals';
+    public static NotEqualsComparisonLabel = 'is not equal to';
 
     public static GreaterThanComparisonOperator = '>';
-    public static GreaterThanComparisonLabel = 'Greater_Than';
+    public static GreaterThanComparisonLabel = 'is greater than';
 
     public static GreaterThanEqualsComparisonOperator = '>=';
-    public static GreaterThanEqualsComparisonLabel = 'Greater_Than_Equals';
+    public static GreaterThanEqualsComparisonLabel = 'is greater than equals to';
 
     public static LessThanComparisonOperator = '<';
-    public static LessThanComparisonLabel = 'Less_Than';
+    public static LessThanComparisonLabel = 'is less than';
 
     public static LessThanEqualsComparisonOperator = '<=';
-    public static LessThanQualsComparisonLabel = 'Less_Than_Equals';
+    public static LessThanQualsComparisonLabel = 'is less than equals to';
 
     public static ExistsComparisonOperator = 'E';
-    public static ExistsComparisonLabel = 'Exists';
+    public static ExistsComparisonLabel = 'exists';
 
     public static LikeComparisonOperator = 'regex';
-    public static LikeComparisonLabel = 'Like';
+    public static LikeComparisonLabel = 'is like';
 
     public static MatchComparisonOperator = 'contains';
-    public static MatchComparisonLabel = 'Match';
+    public static MatchComparisonLabel = 'matches';
 
 }
 
