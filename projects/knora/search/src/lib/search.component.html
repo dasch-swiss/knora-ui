@@ -1,4 +1,4 @@
-<!-- the next element -- div.extended-search-panel -- is a hidden dropdown filter menu -->
+<!-- the next element - div.extended-search-panel - is a hidden dropdown filter menu -->
 
 <div class="search-panel" [class.active]="searchPanelFocus">
     <div>
@@ -19,7 +19,7 @@
     -->
     <div>
         <button class="suffix" *ngIf="focusOnSimple === 'active'" (click)="resetSearch(search)">
-            <mat-icon class="mat-24">close</mat-icon>
+            <mat-icon>close</mat-icon>
         </button>
         <button class="suffix" *ngIf="focusOnSimple === 'inactive'" (click)="toggleMenu('extendedSearch')">
             <mat-icon>filter_list</mat-icon>
@@ -40,7 +40,7 @@
     <div class="salsah-menu extended-search" [@extendedSearchMenu]="focusOnExtended">
         <div class="salsah-menu-header">
             <span class="salsah-menu-title">
-                Extended search
+                <h4>Extended search</h4>
             </span>
             <span class="salsah-menu-action">
                 <button mat-icon-button (click)="toggleMenu('extendedSearch')">
@@ -48,6 +48,8 @@
                 </button>
             </span>
         </div>
-        <!-- <salsah-extended-search (toggleExtendedSearchForm)="toggleMenu('extendedSearch')"></salsah-extended-search> -->
+        <div class="extended-search-box">
+            <kui-extended-search (toggleExtendedSearchForm)="toggleMenu('extendedSearch')"></kui-extended-search>
+        </div>
     </div>
 </div>

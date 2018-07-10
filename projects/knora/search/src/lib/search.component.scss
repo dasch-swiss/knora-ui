@@ -60,7 +60,7 @@ $search-width: 720px;
       cursor: pointer;
       height: 38px;
       outline: none;
-      //        color: rgb(33,33,33);
+      // color: rgb(33,33,33);
       position: relative;
       width: 40px;
 
@@ -70,13 +70,13 @@ $search-width: 720px;
     }
   }
   //    padding: 2px;
-  /* &.small {
-    width: 560px;
+  &.small {
+    // width: 560px;
   }
 
   &.large {
-    width: 600px;
-  } */
+    // width: 600px;
+  }
 
   &.active {
     @include box-shadow();
@@ -87,10 +87,11 @@ $search-width: 720px;
 
 .salsah-menu {
 
+  background-color: darkgoldenrod;
+
   &.simple-search,
   &.extended-search {
     min-height: $search-height;
-//    top: 12px;
     width: $search-width;
   }
 
@@ -123,5 +124,32 @@ $search-width: 720px;
     // extended search menu styling
     z-index: 20;
   }
+}
 
+.salsah-menu-header {
+  // background-color: $bright;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+  display: inline-block;
+  height: 48px;
+  width: 100%;
+  background-color: grey;
+
+  .salsah-menu-title {
+    float: left;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 4px;
+    padding: 12px;
+
+  }
+
+  .salsah-menu-action {
+    float: right;
+    margin: 4px;
+  }
+}
+
+.extended-search-box {
+  margin: 12px;
 }

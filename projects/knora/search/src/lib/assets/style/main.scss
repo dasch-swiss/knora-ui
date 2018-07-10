@@ -1,3 +1,7 @@
+// including fonts and the material icons
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 // color definitions
 $bright: rgba(249, 249, 249, 1);
 $dark: rgba(41, 41, 41, 1);
@@ -6,7 +10,61 @@ $dark: rgba(41, 41, 41, 1);
 $search-width: 720px;
 $search-height: $search-width;
 
+// general border radius
+$border-radius: 4px;
+
+$border-color: #ebebeb;
+
 // Box Shadow
 @mixin box-shadow($x: 0, $y: 1px, $blur: 3px, $alpha: .5) {
-    box-shadow: $x $y $blur rgba(0, 0, 0, $alpha);
+box-shadow: $x $y $blur rgba(0, 0, 0, $alpha);
 }
+
+@mixin box-shadow-bottom($x: 0, $y: 5px, $blur: 6px, $side: -6px, $alpha: .5) {
+box-shadow: $x $y $blur $side rgba(0, 0, 0, $alpha);
+}
+
+@mixin mat-box-shadow-deep() {
+//  box-shadow: 0 5px 5px -3px $black-20-opacity, 0 8px 10px 1px $black-14-opacity, 0 3px 14px 2px $black-12-opacity;
+box-shadow: 0 3px 5px -1px $black-20-opacity, 0 6px 10px 0 $black-14-opacity, 0 1px 18px 0 $black-12-opacity;
+}
+
+@mixin mat-box-shadow-flat() {
+box-shadow: 0 2px 2px $black-20-opacity, 0 0 2px $black-12-opacity;
+}
+
+@mixin border-top() {
+border-top: 1px solid $border-color;
+}
+
+@mixin border-right() {
+border-right: 1px solid $border-color;
+}
+
+@mixin border-bottom() {
+border-bottom: 1px solid $border-color;
+}
+
+@mixin border-left() {
+border-left: 1px solid $border-color;
+}
+
+@mixin border() {
+border: 1px solid $border-color;
+}
+
+@mixin rel-viewheight($h1: 0, $h2: 0, $h3: 0) {
+// $minus: $h1 + $h2 + $h3 + px;
+// height: calc(100vh - $minus);
+}  
+
+// sizes for the main header and the header module
+$header-height: 64px;
+$module-header-height: 48px;
+
+// sizes for the main footer and the footer module
+$footer-height: 0px;
+$module-footer-height: $footer-height;
+
+// sizes for the sidebar
+$sidebar-width: 400px;
