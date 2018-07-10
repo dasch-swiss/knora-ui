@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatListModule, MatSelectModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatListModule, MatSelectModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KuiCoreModule } from '@knora/core';
 import { KuiActionModule } from '@knora/action';
@@ -18,6 +18,7 @@ import { SpecifyPropertyValueComponent } from './extended-search/select-property
     imports: [
         CommonModule,
         BrowserAnimationsModule,
+        MatButtonModule,
         MatCheckboxModule,
         MatFormFieldModule,
         MatIconModule,
