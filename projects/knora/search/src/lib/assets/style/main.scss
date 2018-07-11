@@ -6,6 +6,20 @@
 $bright: rgba(249, 249, 249, 1);
 $dark: rgba(41, 41, 41, 1);
 
+$black: rgb(11, 11, 11);
+$black-12-opacity: rgba($black, .12);
+$black-14-opacity: rgba($black, .14);
+$black-20-opacity: rgba($black, .2);
+$black-60-opacity: rgba($black, .6);
+
+$white: rgb(244, 244, 244);
+
+$mute: rgba(128, 128, 128, 0.8);
+
+$accent: rgba(255, 196, 0, 1);
+$primary: rgba(0, 105, 92, 1);
+$warn: rgb(244, 67, 54);
+
 // sizes for search element
 $search-width: 720px;
 $search-height: $search-width;
@@ -13,7 +27,23 @@ $search-height: $search-width;
 // general border radius
 $border-radius: 4px;
 
+// general border color
 $border-color: #ebebeb;
+
+@mixin background-cover($attachment: scroll) {
+    background-size: cover;
+    background: linear-gradient($black-20-opacity, $black-20-opacity) $attachment center center;
+  }
+  
+  @mixin font-smoothing() {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  // Text Shadow
+  @mixin text-shadow() {
+    text-shadow: 0 0 4px $black, -1px -1px $black-60-opacity, 1px 1px $black-60-opacity;
+  }
 
 // Box Shadow
 @mixin box-shadow($x: 0, $y: 1px, $blur: 3px, $alpha: .5) {

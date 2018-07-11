@@ -87,8 +87,6 @@ $search-width: 720px;
 
 .salsah-menu {
 
-  background-color: darkgoldenrod;
-
   &.simple-search,
   &.extended-search {
     min-height: $search-height;
@@ -127,13 +125,12 @@ $search-width: 720px;
 }
 
 .salsah-menu-header {
-  // background-color: $bright;
+  background-color: $bright;
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
   display: inline-block;
   height: 48px;
   width: 100%;
-  background-color: grey;
 
   .salsah-menu-title {
     float: left;
