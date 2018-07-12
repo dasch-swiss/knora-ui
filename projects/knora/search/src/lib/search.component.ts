@@ -86,13 +86,15 @@ export class SearchComponent implements OnInit {
     }
 
     /**
-     * Realise a search
+     * Realise a simple search
      * @param search_ele
      */
     doSearch(search_ele: HTMLElement): void {
         if (this.searchQuery !== undefined && this.searchQuery !== null) {
             this.toggleMenu('simpleSearch');
             this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });
+
+            // console.log(this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route }));
 
             // push the search query into the local storage prevSearch array (previous search)
             // to have a list of recent search requests
