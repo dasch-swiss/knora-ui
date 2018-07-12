@@ -69,17 +69,12 @@ export class SearchComponent implements OnInit {
     ngOnInit() {
     }
 
-    /*
-     @HostListener('document:click', ['$event'])
-     onClick(event) {
-     if (!this._eleRef.nativeElement.contains(event.target)) {
-     if (this.focusOnSimple) this.toggleMenu('simpleSearch');
-     if (this.focusOnExtended) this.toggleMenu('extendedSearch');
-     }
-     }
+    /**
+     *
+     * @param search_ele
+     * @param event
      */
-
-    onKey(search_ele: HTMLElement, event) {
+    onKey(search_ele: HTMLElement, event): void {
         this.focusOnSimple = 'active';
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
         if (this.searchQuery && (event.key === 'Enter' || event.keyCode === 13 || event.which === 13)) {
@@ -90,7 +85,11 @@ export class SearchComponent implements OnInit {
         }
     }
 
-    doSearch(search_ele: HTMLElement) {
+    /**
+     * Realise a search
+     * @param search_ele
+     */
+    doSearch(search_ele: HTMLElement): void {
         if (this.searchQuery !== undefined && this.searchQuery !== null) {
             this.toggleMenu('simpleSearch');
             this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });
@@ -116,20 +115,32 @@ export class SearchComponent implements OnInit {
         }
     }
 
-    resetSearch(search_ele: HTMLElement) {
+    /**
+     * Reset the search
+     * @param search_ele
+     */
+    resetSearch(search_ele: HTMLElement): void {
         this.searchQuery = null;
         search_ele.focus();
         this.focusOnSimple = 'inactive';
         this.searchPanelFocus = !this.searchPanelFocus;
     }
 
-    doPrevSearch(query: string) {
+    /**
+     * Realise a previous search
+     * @param query
+     */
+    doPrevSearch(query: string): void {
         this.searchQuery = query;
         this._router.navigate(['/search/fulltext/' + query], { relativeTo: this._route });
         this.toggleMenu('simpleSearch');
     }
 
-    resetPrevSearch(name: string = null) {
+    /**
+     * Reset previous searches - the whole previous search or specific item by name
+     * @param name
+     */
+    resetPrevSearch(name: string = null): void {
         if (name) {
             // delete only this item with the name ...
             const i: number = this.prevSearch.indexOf(name);
@@ -143,13 +154,20 @@ export class SearchComponent implements OnInit {
 
     }
 
-    setFocus() {
+    /**
+     * Set simple focus to active
+     */
+    setFocus(): void {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
         this.focusOnSimple = 'active';
         this.searchPanelFocus = !this.searchPanelFocus;
     }
 
-    toggleMenu(name: string) {
+    /**
+     * Switch according to the focus between simple or extended search
+     * @param name
+     */
+    toggleMenu(name: string): void {
         switch (name) {
             case 'simpleSearch':
                 this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));

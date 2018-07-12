@@ -120,6 +120,11 @@ $search-width: 720px;
       }
     }
 
+    .right {
+      margin-top: 24px;
+      margin-left: 16px;
+    }
+
   }
 
   &.extended-search {
@@ -131,4 +136,9 @@ $search-width: 720px;
 
 .extended-search-box {
   margin: 12px;
+}
+
+.extended-search-button {
+  margin-left: 12px;
+  display: inline-flex;
 }
