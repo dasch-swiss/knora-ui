@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatSelectModule } from '@angular/material';
 
 import { SelectResourceClassComponent } from './select-resource-class.component';
 
@@ -8,9 +10,14 @@ describe('SelectResourceClassComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectResourceClassComponent ]
+      declarations: [SelectResourceClassComponent],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

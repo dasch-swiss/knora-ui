@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
 
 import { SelectPropertyComponent } from './select-property.component';
+import { SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
 
 describe('SelectPropertyComponent', () => {
   let component: SelectPropertyComponent;
@@ -8,9 +11,15 @@ describe('SelectPropertyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectPropertyComponent ]
+      declarations: [SelectPropertyComponent, SpecifyPropertyValueComponent],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatSelectModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
