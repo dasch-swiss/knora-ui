@@ -4,6 +4,6 @@
   </mat-select>
 </mat-form-field>
 
-<mat-checkbox *ngIf="propertySelected !== undefined && sortCriterion()" [formControl]="form.controls['isSortCriterion']">sort criterion</mat-checkbox>
-
 <kui-specify-property-value #specifyPropertyValue [formGroup]="form" *ngIf="propertySelected !== undefined" [property]="propertySelected"></kui-specify-property-value>
+
+<mat-checkbox matTooltip="Sort criterion" *ngIf="propertySelected !== undefined && sortCriterion()" [formControl]="form.controls['isSortCriterion']"></mat-checkbox>
