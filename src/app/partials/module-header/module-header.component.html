@@ -1,14 +1,22 @@
 <div class="panel">
     <div class="panel-row">
         <h2 class="fill-remaining-space">{{demo.label}}</h2>
+        <span class="fill-remaining-space"></span>
+        <span *ngIf="demo.published" class="middle">
+            <a [href]="package" target="_blank">
+                <img [src]="badge">
+            </a>
+        </span>
     </div>
 
-    <div class="panel-row" *ngIf="demo.published">
-        <a [href]="package" target="_blank">
-            <img [src]="badge">
-        </a>
-
-        <span class="fill-remaining-space"></span>
+    <div class="panel-row">
+        <p>This is a demo of
+            <span *ngIf="demo.published">
+                <a href="package" target="_blank">@knora/{{demo.label | lowercase}}</a>
+            </span>
+            <span *ngIf="!demo.published">
+                @knora/{{demo.label | lowercase}}
+            </span>, developed by the team at the <a href="http://dhlab.unibas.ch">DHLab Basel</a>.</p>
     </div>
 </div>
 

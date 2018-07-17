@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IntValueComponent } from './int-value.component';
+import { ViewerDemoComponent } from './viewer-demo.component';
 
-describe('IntValueComponent', () => {
-  let component: IntValueComponent;
-  let fixture: ComponentFixture<IntValueComponent>;
+describe('ViewerDemoComponent', () => {
+  let component: ViewerDemoComponent;
+  let fixture: ComponentFixture<ViewerDemoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IntValueComponent ]
+      declarations: [ ViewerDemoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IntValueComponent);
+    fixture = TestBed.createComponent(ViewerDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

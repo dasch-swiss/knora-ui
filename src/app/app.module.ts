@@ -36,12 +36,15 @@ import { ListsComponent } from './knora-ui-examples/core-demo/lists/lists.compon
 import { TreeComponent } from './material/tree/tree.component';
 import { ResourceComponent } from './knora-ui-examples/core-demo/resource/resource.component';
 import { LoginComponent } from './knora-ui-examples/authentication-demo/login/login.component';
-import { ProjectComponent } from './knora-ui-examples/project/project.component';
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
+import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
+import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
+import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
 
 @NgModule({
     declarations: [
@@ -62,11 +65,14 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
         TreeComponent,
         ResourceComponent,
         LoginComponent,
-        ProjectComponent,
         ActionDemoComponent,
         SortButtonComponent,
         ModuleSubHeaderComponent,
-        AdminImageComponent
+        AdminImageComponent,
+        ViewerDemoComponent,
+        PropertiesComponent,
+        ObjectsComponent,
+        ViewsComponent
     ],
     entryComponents: [
         // LoginFormComponent
