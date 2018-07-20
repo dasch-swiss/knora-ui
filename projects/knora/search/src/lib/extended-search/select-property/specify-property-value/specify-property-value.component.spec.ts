@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCheckboxModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
 
 import { SpecifyPropertyValueComponent } from './specify-property-value.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Property, PropertyValue } from '@knora/core';
 
 describe('SpecifyPropertyValueComponent', () => {
   let component: SpecifyPropertyValueComponent;
@@ -19,21 +19,23 @@ describe('SpecifyPropertyValueComponent', () => {
         MatFormFieldModule,
         MatSelectModule],
       providers: [
-        FormBuilder
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
+        FormBuilder, FormGroup
+      ]
     })
       .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(inject([FormBuilder], (fb: FormBuilder) => {
     fixture = TestBed.createComponent(SpecifyPropertyValueComponent);
     component = fixture.componentInstance;
-    component.ngOnInit();
-    // fixture.detectChanges();
-  });
+    component.formGroup = fb.group({
+      comparisonOperator: [null, null, Validators.required]
+    });
+    fixture.detectChanges();
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    // console.log('SpecifyPropertyValueComponent: ', component);
   });
 });
