@@ -6,11 +6,11 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 The core module contains every service to use Knora's RESTful webapi.
 
 ## Install
-`$ yarn add @knora/core json2typescript@^1.0.5`
+`$ yarn add @knora/core json2typescript@^1.0.5 jsonld`
 
 OR
 
-`$ npm install --save @knora/core json2typescript@^1.0.5`
+`$ npm install --save @knora/core json2typescript@^1.0.5 jsonld`
 
 
 ## Setup
@@ -32,6 +32,7 @@ export const environment = {
 };
 ```
 
+- name: Name of the app. We're using it as a title in the authentication module
 - api: set the url of the [Knora](https://www.knora.org) webapi server
 - app: on which url is this app running?
 - media: url of a specific media server. In our case it's [sipi](http://www.sipi.io)
