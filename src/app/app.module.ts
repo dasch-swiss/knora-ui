@@ -43,6 +43,7 @@ import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-su
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
+import { SearchResultComponent } from './knora-ui-examples/search-demo/search-result/search-result.component';
 
 @NgModule({
     declarations: [
@@ -68,7 +69,8 @@ import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo
         SortButtonComponent,
         ModuleSubHeaderComponent,
         AdminImageComponent,
-        SearchDemoComponent
+        SearchDemoComponent,
+        SearchResultComponent
     ],
     entryComponents: [
         // LoginFormComponent

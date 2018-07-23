@@ -20,6 +20,7 @@ import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
+import { SearchResultComponent } from './knora-ui-examples/search-demo/search-result/search-result.component';
 import { AppDemo } from './app.config';
 
 const appRoutes: Routes = [
@@ -61,7 +62,14 @@ const appRoutes: Routes = [
             {
                 path: 'search',
                 component: SearchDemoComponent,
-                data: { partOf: AppDemo.searchModule }
+                data: { partOf: AppDemo.searchModule },
+
+                children: [
+                    {
+                        path: 'fulltext/:q',
+                        component: SearchResultComponent
+                    }
+                ]
             },
             {
                 path: 'core',

@@ -10,7 +10,8 @@ import { GravSearchService } from '@knora/core';
 })
 export class SearchDemoComponent implements OnInit {
 
-  partOf: any;
+  partOf = AppDemo.searchModule;
+
   result: string;
 
   constructor(private _route: ActivatedRoute, private gravSearchService: GravSearchService) {
@@ -23,12 +24,12 @@ export class SearchDemoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getSearch();
+    // this.getSearch();
   }
 
-  getSearch() {
+  /* getSearch() {
     this.result = JSON.parse(localStorage.getItem('prevSearch'));
     return this.result;
-  }
+  } */
 
 }
