@@ -1,6 +1,6 @@
 {
   "name": "@knora/core",
-  "version": "1.0.4-alpha",
+  "version": "1.0.5-alpha",
   "description": "Knora ui module",
   "repository": {
     "type": "git",
