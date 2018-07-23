@@ -1,4 +1,9 @@
 <p>
-  search-result works! <br>
-    {{list.restrictedBy}}
+  Search term: {{list.restrictedBy}}
 </p>
+<div *ngFor="let prop of resourceSearch?.properties | key">
+  <span>
+    <!-- Label property: {{ontologyInfo?.getLabelForProperty(prop.key)}}
+    <br> Properties: {{ontologyInfo?.getProperties(prop.key)}} -->
+  </span>
+</div>
