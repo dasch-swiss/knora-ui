@@ -93,7 +93,8 @@ export class SearchComponent implements OnInit {
         console.log('searchQuery', this.searchQuery);
         if (this.searchQuery !== undefined && this.searchQuery !== null) {
             this.toggleMenu('simpleSearch');
-            this._router.navigate(['/fulltext/' + this.searchQuery]);
+            console.log('ActivatedRoute:', this._route);
+            this._router.navigate(['/modules/search/fulltext/' + this.searchQuery]);
 
             // console.log(this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route }));
 
@@ -135,7 +136,7 @@ export class SearchComponent implements OnInit {
      */
     doPrevSearch(query: string): void {
         this.searchQuery = query;
-        this._router.navigate(['/search/fulltext/' + query], { relativeTo: this._route });
+        this._router.navigate(['/modules/search/fulltext/' + query], { relativeTo: this._route });
         this.toggleMenu('simpleSearch');
     }
 
