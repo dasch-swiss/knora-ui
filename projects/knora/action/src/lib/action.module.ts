@@ -5,7 +5,7 @@ import { MatButtonModule, MatIconModule, MatMenuModule } from '@angular/material
 
 import { ProgressIndicatorComponent } from './progress-indicator/progress-indicator.component';
 import { SortButtonComponent } from './sort-button/sort-button.component';
-import { SortByPipe } from './sort-button/sort-by.pipe';
+import { SortByPipe } from './pipes/sort-by.pipe';
 import { AdminImageDirective } from './admin-image/admin-image.directive';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { KeyPipe } from './pipes/key.pipe';
