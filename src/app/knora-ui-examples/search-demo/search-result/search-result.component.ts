@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { AppDemo } from '../../../app.config';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ApiServiceError, ApiServiceResult, ConvertJSONLD, OntologyCacheService, OntologyInformation, ReadResource, ReadResourcesSequence, SearchService } from '@knora/core';
+import { ApiServiceError, ApiServiceResult, ConvertJSONLD, KnoraConstants, OntologyCacheService, OntologyInformation, ReadResource, ReadResourcesSequence, SearchService } from '@knora/core';
 
 export interface ListData {
     title: string;
@@ -20,14 +20,21 @@ const jsonld = require('jsonld');
     templateUrl: './search-result.component.html',
     styleUrls: ['./search-result.component.scss']
 })
-export class SearchResultComponent implements OnInit {
-
-    @Output() change: EventEmitter<any> = new EventEmitter<any>();
+export class SearchResultComponent implements OnChanges, OnInit {
 
     partOf = AppDemo.searchModule;
-    resourceSearch: ReadResource; // the resource to be displayed
-    ontologyInfo: OntologyInformation;
+
     public selectedView: string = 'list';
+
+    result: ReadResource[] = []; // the results of a search query
+    ontologyInfo: OntologyInformation; // ontology information about resource classes and properties present in `result`
+    numberOfAllResults: number; // total number of results (count query)
+
+    // with the http get request, we need also a variable for error messages;
+    // just in the case if something's going wrong
+    errorMessage: any = undefined;
+
+    _offset: number = 0;
 
     list: ListData = <ListData>{
         title: 'Results: ',
@@ -44,59 +51,120 @@ export class SearchResultComponent implements OnInit {
     }
 
     ngOnInit() {
+        // set mode and query params
         this._route.params.subscribe((params: Params) => {
+            console.log('params: ', params);
             this.list.searchMode = params['mode'];
             this.list.restrictedBy = params['q'];
+        });
 
-            this.getResult(this.list);
+        this.getResult();
+    }
 
+    ngOnChanges() {
+    }
+
+    /**
+     * Get search result from Knora
+     */
+    getResult() {
+        // fulltext search
+        if (this.list.searchMode === 'fulltext') {
+            // perform count query
+            if (this._offset === 0) {
+
+                this._searchService.doFulltextSearchCountQuery(this.list.restrictedBy)
+                    .subscribe(
+                        this.showNumberOfAllResults,
+                        (error: ApiServiceError) => {
+                            this.errorMessage = <any>error;
+                            console.log('numberOfAllResults', this.numberOfAllResults);
+                        }
+                    );
+            }
+
+            // perform full text search
+            this._searchService.doFulltextSearch(this.list.restrictedBy, this._offset)
+                .subscribe(
+                    this.processSearchResults, // function pointer
+                    (error: ApiServiceError) => {
+                        this.errorMessage = <any>error;
+                    }
+                );
+        } else {
+            this.errorMessage = `search mode invalid: ${this.list.searchMode}`;
+        }
+    }
+
+
+    /**
+     * Shows total number of results returned by a count query.
+     *
+     * @param {ApiServiceResult} countQueryResult the response to a count query.
+     */
+    private showNumberOfAllResults = (countQueryResult: ApiServiceResult) => {
+        console.log('countQueryResult', countQueryResult);
+        const resPromises = jsonld.promises;
+        // compact JSON-LD using an empty context: expands all Iris
+        const resPromise = resPromises.compact(countQueryResult.body, {});
+
+        resPromise.then((compacted) => {
+            this.numberOfAllResults = compacted[KnoraConstants.schemaNumberOfItems];
+        }, function (err) {
+            console.log('JSONLD could not be expanded:' + err);
         });
     }
 
     /**
-     * Convert the jsonld body result
-     * @param list
+     *
+     * Converts search results from JSON-LD to a [[ReadResourcesSequence]] and requests information about ontology entities.
+     * This function is passed to `subscribe` as a pointer (instead of redundantly defining the same lambda function).
+     *
+     * Attention: this function definition makes uses of the arrow notation because the context of `this` has to be inherited from the context.
+     * See: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_binding_of_this>
+     *
+     * @param {ApiServiceResult} searchResult the answer to a search request.
      */
-    private getResult(list: ListData): any {
+    private processSearchResults = (searchResult: ApiServiceResult) => {
 
-        this._searchService.doFulltextSearch(this.list.restrictedBy)
-            .subscribe(
-                (result: ApiServiceResult) => {
-                    // the jsonld converter is needed... e.g. resource.component in demo app
-                    const promises = jsonld.promises;
-                    const promise = promises.compact(result.body, {});
+        const resPromises = jsonld.promises;
+        // compact JSON-LD using an empty context: expands all Iris
+        const resPromise = resPromises.compact(searchResult.body, {});
 
-                    promise.then((compacted) => {
-                        const searchResource: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
+        resPromise.then((compacted) => {
 
-                        if (searchResource.resources.length === 1) {
-                            const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);
+            // get resource class Iris from response
+            const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);
 
-                            this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
-                                (resourceClassInfos: any) => {
+            // request ontology information about resource class Iris (properties are implied)
+            this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
+                (resourceClassInfos: OntologyInformation) => {
 
-                                    this.ontologyInfo = resourceClassInfos;
+                    const resources: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
 
-                                    // Exactly one resource was expected, but0resource(s) given
-                                    this.resourceSearch = searchResource.resources[0];
-                                    console.log('this.resourceSearch ', this.resourceSearch);
-
-                                },
-                                (err) => {
-                                    console.error('cache request failed: ' + err);
-                                });
-                        } else {
-                            console.log('Exactly one resource was expected, but' + searchResource.resources.length + 'resource(s) given');
-                        }
-                    }, function (err) {
-                        console.error('JSONLD of full resource request could not be expanded:' + err);
+                    // assign ontology information to a variable so it can be used in the component's template
+                    if (this.ontologyInfo === undefined) {
+                        // init ontology information
+                        this.ontologyInfo = resourceClassInfos;
+                    } else {
+                        // update ontology information
+                        this.ontologyInfo.updateOntologyInformation(resourceClassInfos);
                     }
-                    );
+                    // append results to search results
+                    this.result = this.result.concat(resources.resources);
+
                 },
-                (error: ApiServiceError) => {
-                    console.error(error);
+                (err) => {
+
+                    console.log('cache request failed: ' + err);
                 }
             );
+
+        }, function (err) {
+
+            console.log('JSONLD could not be expanded:' + err);
+        });
+
     }
 
 }

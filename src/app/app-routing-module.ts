@@ -66,7 +66,7 @@ const appRoutes: Routes = [
 
                 children: [
                     {
-                        path: 'fulltext/:q',
+                        path: ':mode/:q',
                         component: SearchResultComponent
                     }
                 ]

@@ -1,9 +1,31 @@
-<p>
-  Search term: {{list.restrictedBy}}
-</p>
-<div *ngFor="let prop of resourceSearch?.properties | key">
-  <span>
-    <!-- Label property: {{ontologyInfo?.getLabelForProperty(prop.key)}}
-    <br> Properties: {{ontologyInfo?.getProperties(prop.key)}} -->
-  </span>
+<!-- show the number of results found in Knora -->
+<div *ngIf="numberOfAllResults != 0; else noResult">
+  <h4>Number of results: {{numberOfAllResults}}</h4>
+</div>
+
+<!-- show the result as a default list -->
+<div *ngFor="let res of result">
+  <h3 mat-line>{{res.label}} ({{ontologyInfo?.getLabelForResourceClass(res.type)}})</h3>
+  <div mat-line *ngFor="let prop of res.properties | key">
+    <span>{{ontologyInfo?.getLabelForProperty(prop.key)}}</span>
+    <ul>
+      <li *ngFor="let val of prop.value | key">
+        <span [ngSwitch]="val.value.getClassName()">
+          <span *ngSwitchDefault="">{{val.value.getContent()}}</span>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- In case of 0 result -->
+<ng-template #noResult>
+  <br>
+  <br>
+  <b>No result</b>
+</ng-template>
+
+<!-- Error message -->
+<div *ngIf="errorMessage">
+  OUPS ERROR: {{errorMessage}}
 </div>

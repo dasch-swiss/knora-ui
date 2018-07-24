@@ -93,10 +93,9 @@ export class SearchComponent implements OnInit {
         console.log('searchQuery', this.searchQuery);
         if (this.searchQuery !== undefined && this.searchQuery !== null) {
             this.toggleMenu('simpleSearch');
-            console.log('ActivatedRoute:', this._route);
             this._router.navigate(['/modules/search/fulltext/' + this.searchQuery]);
 
-            // console.log(this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route }));
+            // this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });
 
             // push the search query into the local storage prevSearch array (previous search)
             // to have a list of recent search requests

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppDemo } from '../../app.config';
 import { ActivatedRoute } from '@angular/router';
-import { GravSearchService } from '@knora/core';
 
 @Component({
   selector: 'app-search-demo',
@@ -14,7 +13,7 @@ export class SearchDemoComponent implements OnInit {
 
   result: string;
 
-  constructor(private _route: ActivatedRoute, private gravSearchService: GravSearchService) {
+  constructor(private _route: ActivatedRoute) {
     this._route.data
       .subscribe(
         (mod: any) => {
@@ -23,13 +22,6 @@ export class SearchDemoComponent implements OnInit {
       );
   }
 
-  ngOnInit() {
-    // this.getSearch();
-  }
-
-  /* getSearch() {
-    this.result = JSON.parse(localStorage.getItem('prevSearch'));
-    return this.result;
-  } */
+  ngOnInit() { }
 
 }
