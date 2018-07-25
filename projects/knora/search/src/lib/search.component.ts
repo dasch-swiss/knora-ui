@@ -60,6 +60,8 @@ export class SearchComponent implements OnInit {
 
     searchLabel: string = 'Search';
 
+    showSimpleSearch: boolean = true;
+
     constructor(private _route: ActivatedRoute,
         private _router: Router,
         private _eleRef: ElementRef) {
@@ -175,9 +177,11 @@ export class SearchComponent implements OnInit {
             case 'simpleSearch':
                 this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
                 this.focusOnSimple = (this.focusOnSimple === 'active' ? 'inactive' : 'active');
+                this.showSimpleSearch = true;
                 break;
             case 'extendedSearch':
                 this.focusOnExtended = (this.focusOnExtended === 'active' ? 'inactive' : 'active');
+                this.showSimpleSearch = false;
                 break;
         }
     }

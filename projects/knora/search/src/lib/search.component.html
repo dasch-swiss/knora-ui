@@ -25,7 +25,7 @@
     </div>
 
     <!-- the search panel has two "dropdown" menus: one for simple search and another one for the extended search -->
-    <div class="salsah-menu simple-search" [@simpleSearchMenu]="focusOnSimple">
+    <div class="salsah-menu simple-search" [@simpleSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch">
         <mat-list class="salsah-previous-search-list">
             <mat-list-item *ngFor="let item of prevSearch | reverse; let i=index">
                 <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)">{{item}}</h4>
@@ -55,6 +55,6 @@
 </div>
 
 <!-- Extended search button to display the extended search form in the search panel -->
-<button mat-button type="button" color="primary" class="extended-search-button" (click)="toggleMenu('extendedSearch')">
+<button mat-button type="button" color="primary" class="advanced-search-button" (click)="toggleMenu('extendedSearch')">
     advanced
 </button>
