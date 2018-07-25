@@ -18,13 +18,13 @@ import {
     ReferredResourcesByStandoffLink
 } from '../properties/read-property-item';
 
-import {ReadProperties} from '../properties/read-properties';
-import {ReadResource} from '../resources/read-resource';
-import {ReadResourcesSequence} from '../resources/read-resources-sequence';
+import { ReadProperties } from '../properties/read-properties';
+import { ReadResource } from '../resources/read-resource';
+import { ReadResourcesSequence } from '../resources/read-resources-sequence';
 
 
-import {Utils} from '../../../utils';
-import {KnoraConstants} from '../../knora-constants';
+import { Utils } from '../../../utils';
+import { KnoraConstants } from '../../knora-constants';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 let jsonld = require('jsonld');

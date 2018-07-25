@@ -10,8 +10,6 @@ export class LoginComponent implements OnInit {
 
     module = AppDemo.authenticationModule;
 
-    errorMessage: any;
-
     constructor() {
     }
 

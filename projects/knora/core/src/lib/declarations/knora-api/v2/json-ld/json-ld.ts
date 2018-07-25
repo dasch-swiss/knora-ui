@@ -1,6 +1,6 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
-import {Graph} from './graph';
-import {Context} from './context';
+import { JsonObject, JsonProperty } from 'json2typescript';
+import { Graph } from './graph';
+import { Context } from './context';
 
 
 @JsonObject
