@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Example} from '../../app.interfaces';
+import { Component, Input, OnInit } from '@angular/core';
+import { Example } from '../../app.interfaces';
 
 @Component({
     selector: 'app-example-viewer',

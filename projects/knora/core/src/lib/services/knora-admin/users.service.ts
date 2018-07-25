@@ -321,6 +321,7 @@ export class UsersService extends ApiService {
 
                             // store username and jwt token in local storage to keep user logged in between page refreshes
                             // and set the system admin property to true or false
+                            // TODO: return this currentUserObject back instead of true
                             localStorage.setItem('currentUser', JSON.stringify(currentUserObject));
 
                             return true;

@@ -1,40 +1,42 @@
-import { AppConfig } from './../../../../docs/app/app.config';
+
 import { ActivatedRoute } from '@angular/router';
-import { DemoModule } from './../../app.interfaces';
-import { Component, OnInit, Input } from '@angular/core';
+import { AppConfig } from '../../app.config';
+import { DemoModule } from '../../app.interfaces';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-module-sub-header',
-  templateUrl: './module-sub-header.component.html',
-  styleUrls: ['./module-sub-header.component.scss']
+    selector: 'app-module-sub-header',
+    templateUrl: './module-sub-header.component.html',
+    styleUrls: ['./module-sub-header.component.scss']
 })
 export class ModuleSubHeaderComponent implements OnInit {
 
-  @Input() demo: DemoModule = new DemoModule();
+    @Input() demo: DemoModule = new DemoModule();
 
-  stackBlitzDemo: string;
-  currentComponent: DemoModule;
+    stackBlitzDemo: string;
+    currentComponent: DemoModule;
 
-  constructor(private _route: ActivatedRoute) { }
+    constructor(private _route: ActivatedRoute) {
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    // get child route to set a stackblitz link
-    this._route.url.subscribe((url: any) => {
+        // get child route to set a stackblitz link
+        this._route.url.subscribe((url: any) => {
 
-      this.currentComponent = this.findChild(url[0].path);
+            this.currentComponent = this.findChild(url[0].path);
 
-      if (this.currentComponent !== undefined && this.currentComponent.stackblitz === true) {
-        this.stackBlitzDemo = AppConfig.stackblitz + AppConfig.prefix + '-' + this.currentComponent.name;
-      }
+            if (this.currentComponent !== undefined && this.currentComponent.stackblitz === true) {
+                this.stackBlitzDemo = AppConfig.stackblitz + AppConfig.prefix + '-' + this.currentComponent.name;
+            }
 
-    });
-  }
+        });
+    }
 
 
-  findChild(currentComp: string) {
-    return this.demo.children.find((obj: any) => {
-      return obj.name === currentComp;
-    });
-  }
+    findChild(currentComp: string) {
+        return this.demo.children.find((obj: any) => {
+            return obj.name === currentComp;
+        });
+    }
 }

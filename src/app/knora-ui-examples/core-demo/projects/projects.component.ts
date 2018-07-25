@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {ApiServiceError, Project, ProjectsService, User} from '@knora/core';
-import {Example} from '../../../app.interfaces';
+import { ApiServiceError, Project, ProjectsService, User } from '@knora/core';
+import { Example } from '../../../app.interfaces';
 
 @Component({
     selector: 'app-projects',

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiServiceError, AuthenticationRequestPayload, User, UsersService} from '@knora/core';
-import {Example} from '../../../app.interfaces';
+import { Component, OnInit } from '@angular/core';
+import { ApiServiceError, AuthenticationRequestPayload, User, UsersService } from '@knora/core';
+import { Example } from '../../../app.interfaces';
 
 @Component({
     selector: 'app-users',

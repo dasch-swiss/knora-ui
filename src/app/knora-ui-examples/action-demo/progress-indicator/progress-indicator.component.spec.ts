@@ -1,14 +1,14 @@
-import { ModuleSubHeaderComponent } from './../../../partials/module-sub-header/module-sub-header.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 import { MatCardModule, MatIconModule, MatListModule, MatTabsModule } from '@angular/material';
-import { KuiActionModule } from '@knora/action';
 
-import { ModuleHeaderComponent } from '../../../partials/module-header/module-header.component';
+import { KuiActionModule } from '@knora/action';
+import { ModuleSubHeaderComponent } from '../../../partials/module-sub-header/module-sub-header.component';
 import { ProgressIndicatorComponent } from './progress-indicator.component';
 import { ExampleViewerComponent } from '../../../partials/example-viewer/example-viewer.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 import { MarkdownModule } from 'ngx-markdown';
-import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('ProgressIndicatorDemoComponent', () => {
@@ -24,7 +24,7 @@ describe('ProgressIndicatorDemoComponent', () => {
                 MatIconModule,
                 MatListModule,
                 MatTabsModule,
-                MarkdownModule.forRoot({ loader: HttpClient }),
+                MarkdownModule.forRoot({loader: HttpClient}),
                 RouterTestingModule
             ],
             declarations: [
