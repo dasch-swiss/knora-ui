@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { AppDemo } from '../../../app.config';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiServiceError, ApiServiceResult, ConvertJSONLD, KnoraConstants, OntologyCacheService, OntologyInformation, ReadResource, ReadResourcesSequence, SearchService } from '@knora/core';
 
 export interface ListData {
@@ -20,71 +20,105 @@ const jsonld = require('jsonld');
     templateUrl: './search-result.component.html',
     styleUrls: ['./search-result.component.scss']
 })
-export class SearchResultComponent implements OnChanges, OnInit {
+export class SearchResultComponent implements AfterViewInit, OnChanges, OnInit {
 
     partOf = AppDemo.searchModule;
-
-    public selectedView: string = 'list';
 
     result: ReadResource[] = []; // the results of a search query
     ontologyInfo: OntologyInformation; // ontology information about resource classes and properties present in `result`
     numberOfAllResults: number; // total number of results (count query)
+    rerender: boolean = false;
 
     // with the http get request, we need also a variable for error messages;
     // just in the case if something's going wrong
     errorMessage: any = undefined;
 
-    _offset: number = 0;
+    offset: number = 0;
 
     list: ListData = <ListData>{
         title: 'Results: ',
-        description: 'Looked for: ',
         content: 'resource',
-        showAs: this.selectedView,
         restrictedBy: ''
     };
 
     constructor(
         private _route: ActivatedRoute,
+        private _router: Router,
         private _searchService: SearchService,
-        private _cacheService: OntologyCacheService) {
-    }
-
-    ngOnInit() {
-        // set mode and query params
-        this._route.params.subscribe((params: Params) => {
-            console.log('params: ', params);
-            this.list.searchMode = params['mode'];
-            this.list.restrictedBy = params['q'];
-        });
-
-        this.getResult();
+        private _cacheService: OntologyCacheService,
+        private _cdRef: ChangeDetectorRef) {
     }
 
     ngOnChanges() {
+        console.log('ngOnChanges: ', this.ngOnChanges);
     }
+
+    ngOnInit() {
+        this._route.params.subscribe((params: Params) => {
+            this.list.searchMode = params['mode'];
+            this.list.restrictedBy = params['q'];
+            this.offset = 0;
+        });
+
+        this.getResult();
+
+        this.reloadList();
+
+        console.log('ngOnInit: ', this.ngOnInit);
+    }
+
+    ngAfterViewInit() {
+        this._cdRef.detectChanges();
+    }
+
+    /**
+     * Reload component when activated route changes
+     */
+    reloadList() {
+        if (this.list.content === 'resource') {
+
+            this._route.params.subscribe((params: Params) => {
+                this.rerender = true;
+                this._cdRef.detectChanges();
+                this.rerender = false;
+                console.log('reloadList method: ', this.list.content);
+            });
+
+        }
+    }
+
+    /*  updateSession() {
+         this.rerender = true;
+         console.log('update session ', this.list);
+         if (this.list) {
+             this.getData(this.list.restrictedBy);
+             this.rerender = false;
+         } */
+
 
     /**
      * Get search result from Knora
      */
     getResult() {
         // fulltext search
+        console.log('getResult method: ');
+
         if (this.list.searchMode === 'fulltext') {
             // perform count query
-            if (this._offset === 0) {
+            if (this.offset === 0) {
 
                 this._searchService.doFulltextSearchCountQuery(this.list.restrictedBy)
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: ApiServiceError) => {
                             this.errorMessage = <any>error;
-                            console.log('numberOfAllResults', this.numberOfAllResults);
+                            // console.log('numberOfAllResults', this.numberOfAllResults);
                         }
                     );
             }
 
             // perform full text search
-            this._searchService.doFulltextSearch(this.list.restrictedBy, this._offset)
+            this._searchService.doFulltextSearch(this.list.restrictedBy, this.offset)
                 .subscribe(
                     this.processSearchResults, // function pointer
                     (error: ApiServiceError) => {
@@ -103,7 +137,7 @@ export class SearchResultComponent implements OnChanges, OnInit {
      * @param {ApiServiceResult} countQueryResult the response to a count query.
      */
     private showNumberOfAllResults = (countQueryResult: ApiServiceResult) => {
-        console.log('countQueryResult', countQueryResult);
+
         const resPromises = jsonld.promises;
         // compact JSON-LD using an empty context: expands all Iris
         const resPromise = resPromises.compact(countQueryResult.body, {});
