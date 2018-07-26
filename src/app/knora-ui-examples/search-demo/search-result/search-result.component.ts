@@ -1,10 +1,8 @@
 import {
-    AfterViewInit,
     ChangeDetectorRef,
     Component,
     EventEmitter,
     Input,
-    OnChanges,
     OnInit,
     Output
 } from '@angular/core';
@@ -42,7 +40,7 @@ const jsonld = require('jsonld');
     templateUrl: './search-result.component.html',
     styleUrls: ['./search-result.component.scss']
 })
-export class SearchResultComponent implements AfterViewInit, OnChanges, OnInit {
+export class SearchResultComponent implements OnInit {
 
     partOf = AppDemo.searchModule;
 
@@ -65,68 +63,30 @@ export class SearchResultComponent implements AfterViewInit, OnChanges, OnInit {
 
     constructor(
         private _route: ActivatedRoute,
-        private _router: Router,
         private _searchService: SearchService,
         private _cacheService: OntologyCacheService,
         private _searchParamsService: SearchParamsService,
-        private _gravSearchService: GravSearchService,
-        private _cdRef: ChangeDetectorRef) {
-    }
-
-    ngOnChanges() {
-        console.log('ngOnChanges: ', this.ngOnChanges);
-    }
+        private _gravSearchService: GravSearchService) { }
 
     ngOnInit() {
+
         this._route.params.subscribe((params: Params) => {
             this.list.searchMode = params['mode'];
             this.list.restrictedBy = params['q'];
-            this.offset = 0;
+
+            this.rerender = true;
+            this.getResult();
+            this.rerender = false;
         });
 
-        this.getResult();
-
-        // this.reloadList();
-
-        // console.log('ngOnInit: ', this.ngOnInit);
-    }
-
-    ngAfterViewInit() {
-        this._cdRef.detectChanges();
     }
 
     /**
-     * Reload component when activated route changes
-     */
-    reloadList() {
-        if (this.list.content === 'resource') {
-
-            this._route.params.subscribe((params: Params) => {
-                this.rerender = true;
-                this._cdRef.detectChanges();
-                this.rerender = false;
-                console.log('reloadList method: ', this.list.content);
-            });
-
-        }
-    }
-
-    /*  updateSession() {
-         this.rerender = true;
-         console.log('update session ', this.list);
-         if (this.list) {
-             this.getData(this.list.restrictedBy);
-             this.rerender = false;
-         } */
-
-
-    /**
-     * Get search result from Knora
+     * Get search result from Knora - 2 cases: simple search and extended search
      */
     getResult() {
-        // fulltext search
-        console.log('getResult method: ');
 
+        // FULLTEXT SEARCH
         if (this.list.searchMode === 'fulltext') {
             // perform count query
             if (this.offset === 0) {
@@ -147,10 +107,12 @@ export class SearchResultComponent implements AfterViewInit, OnChanges, OnInit {
                     this.processSearchResults, // function pointer
                     (error: ApiServiceError) => {
                         this.errorMessage = <any>error;
-                    }
-                );
+                    },
+            );
+
+            // EXTENDED SEARCH
         } else if (this.list.searchMode === 'extended') {
-            // perform extended search count query
+            // perform count query
             if (this.offset === 0) {
                 this._searchService.doExtendedSearchCountQuery(this.list.restrictedBy)
                     .subscribe(
@@ -160,22 +122,22 @@ export class SearchResultComponent implements AfterViewInit, OnChanges, OnInit {
                         }
                     );
             }
-
+            // perform the extended search
             this._searchParamsService.currentSearchParams
                 .subscribe((extendedSearchParams: ExtendedSearchParams) => {
                     if (this.offset === 0) {
                         this._searchService.doExtendedSearch(this.list.restrictedBy)
                             .subscribe(
-                                this.processSearchResults,
+                                this.processSearchResults, // function pointer
                                 (error: ApiServiceError) => {
                                     this.errorMessage = <any>error;
                                 });
                     } else {
-                        // generate new GravSearch with increased offset
+                        // generate new GravSearch
                         const gravSearch = extendedSearchParams.generateGravsearch(this.offset);
                         this._searchService.doExtendedSearch(gravSearch)
                             .subscribe(
-                                this.processSearchResults,
+                                this.processSearchResults, // function pointer
                                 (error: ApiServiceError) => {
                                     this.errorMessage = <any>error;
                                 }
@@ -218,6 +180,8 @@ export class SearchResultComponent implements AfterViewInit, OnChanges, OnInit {
      * @param {ApiServiceResult} searchResult the answer to a search request.
      */
     private processSearchResults = (searchResult: ApiServiceResult) => {
+
+        this.result = [];
 
         const resPromises = jsonld.promises;
         // compact JSON-LD using an empty context: expands all Iris

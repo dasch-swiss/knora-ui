@@ -11,8 +11,6 @@ export class SearchDemoComponent implements OnInit {
 
   partOf = AppDemo.searchModule;
 
-  result: string;
-
   constructor(private _route: ActivatedRoute) {
     this._route.data
       .subscribe(

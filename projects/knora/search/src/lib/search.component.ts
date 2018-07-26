@@ -92,7 +92,6 @@ export class SearchComponent implements OnInit {
      * @param search_ele
      */
     doSearch(search_ele: HTMLElement): void {
-        console.log('searchQuery', this.searchQuery);
         if (this.searchQuery !== undefined && this.searchQuery !== null) {
             this.toggleMenu('simpleSearch');
             this._router.navigate(['/modules/search/fulltext/' + this.searchQuery]);
