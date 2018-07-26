@@ -1,6 +1,9 @@
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
-import { BaseRequestOptions, Http, Response, ResponseOptions } from '@angular/http';
+import { BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatSelectModule } from '@angular/material';
 
@@ -9,7 +12,7 @@ import { SelectOntologyComponent } from './select-ontology/select-ontology.compo
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
-import { ApiService, OntologyMetadata } from '@knora/core';
+import { ApiService, KuiCoreConfig, OntologyCacheService, OntologyMetadata, OntologyService } from '@knora/core';
 
 describe('ExtendedSearchComponent', () => {
     let componentInstance: ExtendedSearchComponent;
@@ -27,16 +30,30 @@ describe('ExtendedSearchComponent', () => {
             imports: [
                 ReactiveFormsModule,
                 FormsModule,
+                HttpClientModule,
                 MatCheckboxModule,
                 MatIconModule,
                 MatFormFieldModule,
-                MatSelectModule
+                MatSelectModule,
+                RouterTestingModule.withRoutes([]),
+            ],
+            providers: [
+                {
+                    provide: ActivatedRoute,
+                    useValue: {
+                        params: null
+                    }
+                },
+                { provide: 'config', useValue: KuiCoreConfig },
+                OntologyCacheService,
+                OntologyService,
+                HttpClient
             ]
         })
             .compileComponents();
     }));
 
-    beforeEach(async(inject([ExtendedSearchComponent, MockBackend], (component: ExtendedSearchComponent, mockBackend) => {
+    /* beforeEach(async(inject([ExtendedSearchComponent, MockBackend], (component: ExtendedSearchComponent, mockBackend) => {
 
         // define different mock responses for different API calls
         const responses = {};
@@ -53,7 +70,13 @@ describe('ExtendedSearchComponent', () => {
         componentInstance = fixture.componentInstance;
         fixture.detectChanges();
 
-    })));
+    }))); */
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ExtendedSearchComponent);
+        componentInstance = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
     it('should create', () => {
         expect(fixture.componentInstance).toBeTruthy();
