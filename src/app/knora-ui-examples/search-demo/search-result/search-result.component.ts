@@ -1,7 +1,29 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output
+} from '@angular/core';
 import { AppDemo } from '../../../app.config';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiServiceError, ApiServiceResult, ConvertJSONLD, KnoraConstants, OntologyCacheService, OntologyInformation, ReadResource, ReadResourcesSequence, SearchService } from '@knora/core';
+import {
+    ApiServiceError,
+    ApiServiceResult,
+    ConvertJSONLD,
+    ExtendedSearchParams,
+    GravSearchService,
+    KnoraConstants,
+    OntologyCacheService,
+    OntologyInformation,
+    ReadResource,
+    ReadResourcesSequence,
+    SearchParamsService,
+    SearchService
+} from '@knora/core';
 
 export interface ListData {
     title: string;
@@ -46,6 +68,8 @@ export class SearchResultComponent implements AfterViewInit, OnChanges, OnInit {
         private _router: Router,
         private _searchService: SearchService,
         private _cacheService: OntologyCacheService,
+        private _searchParamsService: SearchParamsService,
+        private _gravSearchService: GravSearchService,
         private _cdRef: ChangeDetectorRef) {
     }
 
@@ -62,9 +86,9 @@ export class SearchResultComponent implements AfterViewInit, OnChanges, OnInit {
 
         this.getResult();
 
-        this.reloadList();
+        // this.reloadList();
 
-        console.log('ngOnInit: ', this.ngOnInit);
+        // console.log('ngOnInit: ', this.ngOnInit);
     }
 
     ngAfterViewInit() {
@@ -125,6 +149,40 @@ export class SearchResultComponent implements AfterViewInit, OnChanges, OnInit {
                         this.errorMessage = <any>error;
                     }
                 );
+        } else if (this.list.searchMode === 'extended') {
+            // perform extended search count query
+            if (this.offset === 0) {
+                this._searchService.doExtendedSearchCountQuery(this.list.restrictedBy)
+                    .subscribe(
+                        this.showNumberOfAllResults,
+                        (error: ApiServiceError) => {
+                            this.errorMessage = <any>error;
+                        }
+                    );
+            }
+
+            this._searchParamsService.currentSearchParams
+                .subscribe((extendedSearchParams: ExtendedSearchParams) => {
+                    if (this.offset === 0) {
+                        this._searchService.doExtendedSearch(this.list.restrictedBy)
+                            .subscribe(
+                                this.processSearchResults,
+                                (error: ApiServiceError) => {
+                                    this.errorMessage = <any>error;
+                                });
+                    } else {
+                        // generate new GravSearch with increased offset
+                        const gravSearch = extendedSearchParams.generateGravsearch(this.offset);
+                        this._searchService.doExtendedSearch(gravSearch)
+                            .subscribe(
+                                this.processSearchResults,
+                                (error: ApiServiceError) => {
+                                    this.errorMessage = <any>error;
+                                }
+                            );
+                    }
+                });
+
         } else {
             this.errorMessage = `search mode invalid: ${this.list.searchMode}`;
         }

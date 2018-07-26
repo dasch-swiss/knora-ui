@@ -203,7 +203,7 @@ export class ExtendedSearchComponent implements OnInit {
 
         const gravsearch = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);
 
-        this._router.navigate(['/search/extended/', gravsearch], { relativeTo: this._route });
+        this._router.navigate(['extended/', gravsearch], { relativeTo: this._route });
 
         // toggle extended search form
         this.toggleExtendedSearchForm.emit(true);
