@@ -8,6 +8,7 @@ import {
     ApiServiceError,
     ApiServiceResult,
     AuthenticationRequestPayload,
+    CurrentUser,
     KnoraConstants,
     User,
     UserResponse,
@@ -285,61 +286,177 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * Login makes two api requests: one for user profile and another to get user's token
+     *
+     * @param {string} email
+     * @param {string} password
+     * @returns {Observable<CurrentUser>}
+     */
+    login(email: string, password: string): Observable<CurrentUser> {
+        const url: string = '/v2/authentication';
+
+        let user: User;
+
+        // get the user profile
+        this.getUserByEmail(email)
+            .subscribe(
+                (result: User) => {
+                    user = result;
+                },
+                (error: ApiServiceError) => {
+                    console.error(error);
+                }
+            );
+
+        // ask for the user's token
+        // and create a current user object with email, token, sysAdmin and language info
+        return this.httpPost(url, {email, password}).pipe(
+            map((result: ApiServiceResult) => {
+                const token = result.body && result.body.token;
+
+                if (token && user) {
+                    let isSysAdmin: boolean = false;
+
+                    const permissions = user.permissions;
+
+                    if (permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]) {
+                        isSysAdmin = permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]
+                            .indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
+                    }
+
+                    const currentUserObject: CurrentUser = {
+                        email: user.email,
+                        token: token,
+                        sysAdmin: isSysAdmin,
+                        lang: user.lang
+                    };
+
+                    return currentUserObject;
+                } else {
+                    // If login does fail, then we would gotten an error back. This case covers
+                    // a `positive` login outcome without a returned token. This is a bug in `webapi`
+                    throw new Error('Token not returned. Please report this as a possible bug.');
+                }
+
+            }));
+    }
+
+    /**
      *
      * @param {string} email
      * @param {string} password
      * @returns {Observable<any>}
      */
-    login(email: string, password: string): Observable<any> {
+    loginDepr(email: string, password: string): Observable<any> {
 
         // new login, so remove anything stale
         this.clearEverything();
 
-        return this.doAuthentication({email, password}).pipe(
-            map((token: string) => {
-                // here we get the token
-                console.log('UsersService - login - token: : ', token);
+        const url: string = '/v2/authentication';
+        return this.httpPost(url, {email, password}).pipe(
+            map((result: ApiServiceResult) => {
+                const token = result.body && result.body.token;
 
-                // get the user profile by email (which is the user's id)
-                return this.getUserByEmail(email)
-                    .subscribe(
-                        (user: User) => {
-                            // console.log('UsersService - login - user: ', user);
-                            let isSysAdmin: boolean = false;
+                // console.log('UsersService - doAuthentication - result: ', result);
 
-                            const permissions = user.permissions;
+                if (token) {
+                    // console.log('UsersService - doAuthentication - token: : ', token);
 
-                            if (permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]) {
-                                isSysAdmin = permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]
-                                    .indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
-                            }
+                    return this.getUserByEmail(email)
+                        .subscribe(
+                            (user: User) => {
 
-                            const currentUserObject: any = {
-                                email: user.email,
-                                token: token,
-                                sysAdmin: isSysAdmin,
-                                lang: user.lang
-                            };
+                                console.log('UsersService - login - user: ', user);
+                                let isSysAdmin: boolean = false;
 
-                            // store username and jwt token in local storage to keep user logged in between page refreshes
-                            // and set the system admin property to true or false
-                            // TODO: return this currentUserObject back instead of true and store the object in the user cache service instead of localStorage
-                            localStorage.setItem('currentUser', JSON.stringify(currentUserObject));
+                                const permissions = user.permissions;
 
-                            console.log('usersService', currentUserObject);
-                            return currentUserObject;
+                                if (permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]) {
+                                    isSysAdmin = permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]
+                                        .indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
+                                }
+
+                                const currentUserObject: any = {
+                                    email: user.email,
+                                    token: token,
+                                    sysAdmin: isSysAdmin,
+                                    lang: user.lang
+                                };
+
+                                // store username and jwt token in local storage to keep user logged in between page refreshes
+                                // and set the system admin property to true or false
+                                // TODO: return this currentUserObject back instead of true and store the object in the user cache service instead of localStorage
+                                localStorage.setItem('currentUser', JSON.stringify(currentUserObject));
+
+                                console.log('usersService', currentUserObject);
+                                return currentUserObject;
 
 //                            return true;
-                        },
-                        (error: ApiServiceError) => {
-                            // console.error('UsersService - login - error: ', error);
-                            throw error;
-                        }
-                    );
-
+                            },
+                            (error: ApiServiceError) => {
+                                // console.error('UsersService - login - error: ', error);
+                                console.error(error);
+//                                throw error;
+                            }
+                        );
+//                    return token;
+                } else {
+                    // If login does fail, then we would gotten an error back. This case covers
+                    // a `positive` login outcome without a returned token. This is a bug in `webapi`
+                    throw new Error('Token not returned. Please report this as a possible bug.');
+                }
+//                result.getBody(AuthenticationResponse);
             }),
             catchError(this.handleJsonError)
         );
+
+        /*
+                return this.doAuthentication({email, password}).pipe(
+                    map((token: string) => {
+                        // here we get the token
+                        console.log('UsersService - login - token: : ', token);
+
+                        // get the user profile by email (which is the user's id)
+                        return this.getUserByEmail(email)
+                            .subscribe(
+                                (user: User) => {
+
+                                    console.log('UsersService - login - user: ', user);
+                                    let isSysAdmin: boolean = false;
+
+                                    const permissions = user.permissions;
+
+                                    if (permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]) {
+                                        isSysAdmin = permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]
+                                            .indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
+                                    }
+
+                                    const currentUserObject: any = {
+                                        email: user.email,
+                                        token: token,
+                                        sysAdmin: isSysAdmin,
+                                        lang: user.lang
+                                    };
+
+                                    // store username and jwt token in local storage to keep user logged in between page refreshes
+                                    // and set the system admin property to true or false
+                                    // TODO: return this currentUserObject back instead of true and store the object in the user cache service instead of localStorage
+                                    localStorage.setItem('currentUser', JSON.stringify(currentUserObject));
+
+                                    console.log('usersService', currentUserObject);
+                                    return currentUserObject;
+
+        //                            return true;
+                                },
+                                (error: ApiServiceError) => {
+                                    // console.error('UsersService - login - error: ', error);
+                                    throw error;
+                                }
+                            );
+
+                    }),
+                    catchError(this.handleJsonError)
+                );*/
     }
 
     /**
