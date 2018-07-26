@@ -55,7 +55,7 @@ export class LoginFormComponent implements OnInit {
 
     constructor(@Inject('config') public config: KuiCoreConfig,
                 private _usersService: UsersService,
-                public dialogRef: MatDialogRef<LoginFormComponent>,
+//                public dialogRef: MatDialogRef<LoginFormComponent>,
                 private _formBuilder: FormBuilder) {
     }
 
@@ -114,18 +114,24 @@ export class LoginFormComponent implements OnInit {
 
         // login by using the usersService from @knora/core
         this._usersService.login(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value).subscribe(
-            (result: boolean) => {
+            (result: any) => {
                 // the result will be set in local storage
-                // (as a temporary solution only!) TODO: replace it with a cache service
-                // (e.g. http://www.syntaxsuccess.com/viewarticle/caching-with-rxjs-observables-in-angular-2.0)
+                // (as a temporary solution only!) TODO: replace it with a cache service (e.g. http://www.syntaxsuccess.com/viewarticle/caching-with-rxjs-observables-in-angular-2.0)
+                // here I should get back the user data or at least the currentUserObject incl.
+                // email, token, sysAdmin (true || false), language
+                console.log('login-form', result);
+                // get the information from the cache, because the login is handled by the usersService (from core module), which has all the user's information
+//                return result;
 
+                /*
                 this.loading = false;
                 // after successful login, go to the defined url (if there's one)
                 if (this.navigate) {
                     window.location.replace(this.navigate);
                 } else {
-                    this.dialogRef.close();
+//                    this.dialogRef.close();
                 }
+                */
             },
             (error: ApiServiceError) => {
                 // error handling

@@ -297,8 +297,10 @@ export class UsersService extends ApiService {
 
         return this.doAuthentication({email, password}).pipe(
             map((token: string) => {
-                // console.log('UsersService - login - token: : ', token);
+                // here we get the token
+                console.log('UsersService - login - token: : ', token);
 
+                // get the user profile by email (which is the user's id)
                 return this.getUserByEmail(email)
                     .subscribe(
                         (user: User) => {
@@ -321,10 +323,13 @@ export class UsersService extends ApiService {
 
                             // store username and jwt token in local storage to keep user logged in between page refreshes
                             // and set the system admin property to true or false
-                            // TODO: return this currentUserObject back instead of true
+                            // TODO: return this currentUserObject back instead of true and store the object in the user cache service instead of localStorage
                             localStorage.setItem('currentUser', JSON.stringify(currentUserObject));
 
-                            return true;
+                            console.log('usersService', currentUserObject);
+                            return currentUserObject;
+
+//                            return true;
                         },
                         (error: ApiServiceError) => {
                             // console.error('UsersService - login - error: ', error);
