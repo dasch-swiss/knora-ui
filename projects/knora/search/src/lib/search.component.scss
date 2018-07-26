@@ -65,8 +65,7 @@ $search-height: $search-width;
 
 // position of the 'advanced' button
 .advanced-search-button {
-  margin-left: 12px;
-  display: inline-flex;
+  margin-left: 10px;
 }
 
 .full-width {
@@ -210,6 +209,10 @@ $search-height: $search-width;
     z-index: 20;
   }
 
+}
+
+.search-bar-elements {
+  display: flex;
 }
 
 .show {

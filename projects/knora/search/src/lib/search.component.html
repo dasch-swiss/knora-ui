@@ -1,60 +1,62 @@
-<!-- the next element - div.extended-search-panel - is a hidden dropdown filter menu -->
+<div class="search-bar-elements">
 
-<div class="search-panel" [class.active]="searchPanelFocus">
-    <div>
-        <button class="prefix" (click)="doSearch(search)">
-            <mat-icon>search</mat-icon>
-        </button>
-    </div>
+    <!-- the next element - div.extended-search-panel - is a hidden dropdown filter menu -->
 
-    <div class="input-field">
-        <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" name="search" (keyup.esc)="resetSearch(search)"
-            (keyup)="onKey(search, $event)" (click)="setFocus()" (focus)="toggleMenu('simpleSearch')" [disabled]="focusOnExtended === 'active'"
-        />
-    </div>
-
-    <!-- switch button:
-            - on some focus we need a close button for the simple or extended panel
-    -->
-    <div>
-        <button class="suffix" *ngIf="focusOnSimple === 'active'" (click)="resetSearch(search)">
-            <mat-icon>close</mat-icon>
-        </button>
-        <button class="suffix" *ngIf="focusOnSimple === 'inactive'">
-        </button>
-    </div>
-
-    <!-- the search panel has two "dropdown" menus: one for simple search and another one for the extended search -->
-    <div class="salsah-menu simple-search" [@simpleSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch">
-        <mat-list class="salsah-previous-search-list">
-            <mat-list-item *ngFor="let item of prevSearch | reverse; let i=index">
-                <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)">{{item}}</h4>
-                <button mat-icon-button (click)="resetPrevSearch(item)">
-                    <mat-icon aria-label="close">clear</mat-icon>
-                </button>
-            </mat-list-item>
-        </mat-list>
-        <button mat-stroked-button color="accent" class="right" (click)="resetPrevSearch()" *ngIf="prevSearch">Clear</button>
-    </div>
-
-    <div class="salsah-menu extended-search" [@extendedSearchMenu]="focusOnExtended">
-        <div class="salsah-menu-header">
-            <span class="salsah-menu-title">
-                <h4>Advanced search</h4>
-            </span>
-            <span class="salsah-menu-action">
-                <button mat-icon-button (click)="toggleMenu('extendedSearch')">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </span>
+    <div class="search-panel" [class.active]="searchPanelFocus">
+        <div>
+            <button class="prefix" (click)="doSearch(search)">
+                <mat-icon>search</mat-icon>
+            </button>
         </div>
-        <div class="extended-search-box">
-            <kui-extended-search (toggleExtendedSearchForm)="toggleMenu('extendedSearch')"></kui-extended-search>
+
+        <div class="input-field">
+            <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" name="search" (keyup.esc)="resetSearch(search)"
+                (keyup)="onKey(search, $event)" (click)="setFocus()" (focus)="toggleMenu('simpleSearch')" [disabled]="focusOnExtended === 'active'"
+            />
+        </div>
+
+        <!-- switch button: on some focus we need a close button for the simple or extended panel -->
+        <div>
+            <button class="suffix" *ngIf="focusOnSimple === 'active'" (click)="resetSearch(search)">
+                <mat-icon>close</mat-icon>
+            </button>
+            <button class="suffix" *ngIf="focusOnSimple === 'inactive'">
+            </button>
+        </div>
+
+        <!-- the search panel has two "dropdown" menus: one for simple search and another one for the extended search -->
+        <div class="salsah-menu simple-search" [@simpleSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch">
+            <mat-list class="salsah-previous-search-list">
+                <mat-list-item *ngFor="let item of prevSearch | reverse; let i=index">
+                    <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)">{{item}}</h4>
+                    <button mat-icon-button (click)="resetPrevSearch(item)">
+                        <mat-icon aria-label="close">clear</mat-icon>
+                    </button>
+                </mat-list-item>
+            </mat-list>
+            <button mat-stroked-button color="accent" class="right" (click)="resetPrevSearch()" *ngIf="prevSearch">Clear</button>
+        </div>
+
+        <div class="salsah-menu extended-search" [@extendedSearchMenu]="focusOnExtended">
+            <div class="salsah-menu-header">
+                <span class="salsah-menu-title">
+                    <h4>Advanced search</h4>
+                </span>
+                <span class="salsah-menu-action">
+                    <button mat-icon-button (click)="toggleMenu('extendedSearch')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </span>
+            </div>
+            <div class="extended-search-box">
+                <kui-extended-search (toggleExtendedSearchForm)="toggleMenu('extendedSearch')"></kui-extended-search>
+            </div>
         </div>
     </div>
+
+    <!-- Extended search button to display the extended search form in the search panel -->
+    <button mat-button type="button" color="primary" class="advanced-search-button" (click)="toggleMenu('extendedSearch')">
+        advanced
+    </button>
+
 </div>
-
-<!-- Extended search button to display the extended search form in the search panel -->
-<button mat-button type="button" color="primary" class="advanced-search-button" (click)="toggleMenu('extendedSearch')">
-    advanced
-</button>
