@@ -6,17 +6,18 @@ export * from './api.service';
 /**
  * specific services for knora admin api
  */
-export * from './knora-admin/groups.service';
-export * from './knora-admin/lists.service';
-export * from './knora-admin/projects.service';
-export * from './knora-admin/users.service';
+export * from './admin/authentication-cache.service';
+export * from './admin/groups.service';
+export * from './admin/lists.service';
+export * from './admin/projects.service';
+export * from './admin/users.service';
 
 /**
  * specific services for knora v2 api
  */
-export * from './knora-v2/convert-jsonld';
-export * from './knora-v2/incoming.service';
-export * from './knora-v2/ontology.service';
-export * from './knora-v2/ontology-cache.service';
-export * from './knora-v2/resource.service';
-export * from './knora-v2/search.service';
+export * from './v2/convert-jsonld';
+export * from './v2/incoming.service';
+export * from './v2/ontology.service';
+export * from './v2/ontology-cache.service';
+export * from './v2/resource.service';
+export * from './v2/search.service';

@@ -18,4 +18,4 @@
     </code>
 </pre>
 
-<kui-login-form [navigate]="'/modules/authentication'"></kui-login-form>
+<kui-login-form [navigate]="'/modules/authentication'" (authenticate)="getUserInfo($event)"></kui-login-form>

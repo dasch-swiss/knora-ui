@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiServiceError, UsersService } from '@knora/core';
+import { ApiServiceError, AuthenticationCacheService, UsersService } from '@knora/core';
 import { LoginFormComponent } from '../login-form/login-form.component';
 import { MatDialog } from '@angular/material';
 

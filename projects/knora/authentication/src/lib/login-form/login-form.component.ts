@@ -1,7 +1,6 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { ApiServiceError, KuiCoreConfig, UsersService } from '@knora/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { ApiServiceError, AuthenticationCacheService, KuiCoreConfig, UsersService } from '@knora/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
 
 @Component({
     selector: 'kui-login-form',
@@ -14,6 +13,8 @@ export class LoginFormComponent implements OnInit {
      * navigate to the defined url after login
      */
     @Input() navigate: string;
+
+    @Output() authenticate: EventEmitter<any> = new EventEmitter<any>();
 
     loading: boolean = false;
 
@@ -54,8 +55,9 @@ export class LoginFormComponent implements OnInit {
     };
 
     constructor(@Inject('config') public config: KuiCoreConfig,
+                private _acs: AuthenticationCacheService,
                 private _usersService: UsersService,
-//                public dialogRef: MatDialogRef<LoginFormComponent>,
+                //                public dialogRef: MatDialogRef<LoginFormComponent>,
                 private _formBuilder: FormBuilder) {
     }
 
@@ -66,11 +68,11 @@ export class LoginFormComponent implements OnInit {
         this.buildForm();
     }
 
-
+    // WARNING: TODO: remove the email and password before publishing!!!!!!!!!!!!!
     buildForm(): void {
         this.loginForm = this._formBuilder.group({
-            email: ['', Validators.required],
-            password: ['', Validators.required]
+            email: ['root@example.com', Validators.required],
+            password: ['test', Validators.required]
         });
 
         this.loginForm.valueChanges
@@ -120,8 +122,14 @@ export class LoginFormComponent implements OnInit {
                 // here I should get back the user data or at least the currentUserObject incl.
                 // email, token, sysAdmin (true || false), language
                 console.log('login-form', result);
+                // send the data to the parent component (output)
+                this.authenticate.emit(result);
+
+                // store the data in the cache service (authentication cache service)
+                this._acs.set('token', result);
+
+
                 // get the information from the cache, because the login is handled by the usersService (from core module), which has all the user's information
-//                return result;
 
                 /*
                 this.loading = false;
