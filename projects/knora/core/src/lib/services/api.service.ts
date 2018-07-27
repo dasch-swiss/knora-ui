@@ -1,9 +1,11 @@
-import {Inject, Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/internal/Observable';
-import {catchError, map} from 'rxjs/operators';
-import {throwError} from 'rxjs/internal/observable/throwError';
-import {ApiServiceError, ApiServiceResult, KuiCoreConfig} from '../declarations';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { catchError, map } from 'rxjs/operators';
+import { ApiServiceError, ApiServiceResult, CurrentUser, KuiCoreConfig } from '../declarations';
+import { SimpleCacheService } from './admin/authentication-cache.service';
 
 
 @Injectable({
@@ -19,6 +21,7 @@ export abstract class ApiService {
     loading = false;
 
     protected constructor(public http: HttpClient,
+                          private _scs: SimpleCacheService,
                           @Inject('config') public config: KuiCoreConfig) {
     }
 
@@ -201,7 +204,30 @@ export abstract class ApiService {
     }
 
     protected setHeaders(): HttpHeaders {
+        let currentUser: CurrentUser;
+        let subscription: Subscription;
+        // TODO: get the currentUser information from authenticationCacheService instead from localStorage
+        subscription = this._scs.getData()
+            .subscribe(
+                (result: any) => {
+                    currentUser = result;
+                    console.log('api service', currentUser);
 
+                },
+                (error: any) => {
+                    console.error(error);
+                    return new HttpHeaders();
+                }
+            );
+        if (currentUser) {
+            return new HttpHeaders({
+                'Authorization': `Bearer ${currentUser.token}`
+            });
+        } else {
+            return new HttpHeaders();
+        }
+
+        /*
         if (localStorage.getItem('currentUser') !== null) {
             return new HttpHeaders({
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('currentUser')).token}`
@@ -209,6 +235,7 @@ export abstract class ApiService {
         } else {
             return new HttpHeaders();
         }
+        */
 
 
     }

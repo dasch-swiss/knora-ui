@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-import { ApiServiceError, AuthenticationCacheService, KuiCoreConfig, UsersService } from '@knora/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiServiceError, KuiCoreConfig, SimpleCacheService, UsersService } from '@knora/core';
 
 @Component({
     selector: 'kui-login-form',
@@ -55,7 +55,7 @@ export class LoginFormComponent implements OnInit {
     };
 
     constructor(@Inject('config') public config: KuiCoreConfig,
-                private _acs: AuthenticationCacheService,
+                private _scs: SimpleCacheService,
                 private _usersService: UsersService,
                 //                public dialogRef: MatDialogRef<LoginFormComponent>,
                 private _formBuilder: FormBuilder) {
@@ -126,7 +126,7 @@ export class LoginFormComponent implements OnInit {
                 this.authenticate.emit(result);
 
                 // store the data in the cache service (authentication cache service)
-                this._acs.set('token', result);
+                this._scs.sendData(result);
 
 
                 // get the information from the cache, because the login is handled by the usersService (from core module), which has all the user's information

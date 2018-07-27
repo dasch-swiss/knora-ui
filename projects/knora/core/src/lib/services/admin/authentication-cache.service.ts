@@ -11,18 +11,15 @@ interface CacheContent {
 }
 
 
-
 @Injectable({
     providedIn: KuiCoreModule
 })
-/*
-
 export class SimpleCacheService {
 
     private subject = new Subject<any>();
 
-    sendData(currentUser: CurrentUser) {
-        this.subject.next(currentUser);
+    sendData(data: any) {
+        this.subject.next(data);
     }
 
     clearData() {
@@ -34,8 +31,11 @@ export class SimpleCacheService {
     }
 
 }
-*/
 
+
+@Injectable({
+    providedIn: KuiCoreModule
+})
 /**
  * Cache Service is an observables based in-memory cache implementation
  * Keeps track of in-flight observables and sets a default expiry for cached values
