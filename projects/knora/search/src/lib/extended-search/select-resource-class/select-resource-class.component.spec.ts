@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ResourceClass } from '@knora/core';
 
 import { SelectResourceClassComponent } from './select-resource-class.component';
 
@@ -10,23 +12,44 @@ describe('SelectResourceClassComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SelectResourceClassComponent],
+      declarations: [
+        SelectResourceClassComponent
+      ],
       imports: [
         FormsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
-        MatSelectModule]
+        MatSelectModule
+      ],
+      providers: [FormBuilder]
     })
       .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(inject([FormBuilder], (fb: FormBuilder) => {
     fixture = TestBed.createComponent(SelectResourceClassComponent);
     component = fixture.componentInstance;
+    component.ngOnChanges();
+    component.ngOnInit();
     fixture.detectChanges();
-  });
 
-  it('should create', () => {
+    const resolvedPromise = Promise.resolve(null);
+    component.formGroup = fb.group({
+      resourceClass: [null]
+    });
+    component.formGroup.addControl('resourceClass', component.form);
+
+    if (component.form !== undefined) {
+      resolvedPromise.then(() => {
+        component.formGroup.removeControl('resourceClass');
+        component.formGroup.addControl('resourceClass', component.form);
+      });
+    }
+
+  }));
+
+  it('should create', async () => {
     expect(component).toBeTruthy();
   });
+
 });

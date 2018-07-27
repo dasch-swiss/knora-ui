@@ -4,7 +4,7 @@ import { BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatSelectModule } from '@angular/material';
 
 import { ExtendedSearchComponent } from './extended-search.component';
@@ -12,7 +12,19 @@ import { SelectOntologyComponent } from './select-ontology/select-ontology.compo
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
-import { ApiService, KuiCoreConfig, OntologyCacheService, OntologyMetadata, OntologyService } from '@knora/core';
+import {
+    ApiService,
+    GravSearchService,
+    KuiCoreConfig,
+    OntologyCacheService,
+    OntologyInformation,
+    OntologyMetadata,
+    OntologyService,
+    Properties,
+    PropertyWithValue,
+    ReadResourcesSequence,
+    ResourceClass
+} from '@knora/core';
 
 describe('ExtendedSearchComponent', () => {
     let componentInstance: ExtendedSearchComponent;
@@ -45,6 +57,8 @@ describe('ExtendedSearchComponent', () => {
                     }
                 },
                 { provide: 'config', useValue: KuiCoreConfig },
+                FormBuilder,
+                GravSearchService,
                 OntologyCacheService,
                 OntologyService,
                 HttpClient
@@ -53,7 +67,7 @@ describe('ExtendedSearchComponent', () => {
             .compileComponents();
     }));
 
-    /* beforeEach(async(inject([ExtendedSearchComponent, MockBackend], (component: ExtendedSearchComponent, mockBackend) => {
+    beforeEach(async(inject([ExtendedSearchComponent, MockBackend], (component: ExtendedSearchComponent, mockBackend) => {
 
         // define different mock responses for different API calls
         const responses = {};
@@ -70,7 +84,7 @@ describe('ExtendedSearchComponent', () => {
         componentInstance = fixture.componentInstance;
         fixture.detectChanges();
 
-    }))); */
+    })));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ExtendedSearchComponent);
@@ -79,29 +93,31 @@ describe('ExtendedSearchComponent', () => {
     });
 
     it('should create', () => {
-        expect(fixture.componentInstance).toBeTruthy();
+        expect(componentInstance).toBeTruthy();
+        console.log('feature', fixture);
+        console.log('componentInstance', componentInstance);
     });
 
-    /*  it('should correctly initialized the ontologies\' metadata', () => {
- 
-         const expectedOntoMetata =
-             [
-                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),
-                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/something/v2', 'The something ontology'),
-                 new OntologyMetadata('http://0.0.0.0:3333/ontology/00FF/images/v2', 'The images demo ontology'),
-                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/beol/v2', 'The BEOL ontology'),
-                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0802/biblio/v2', 'The Biblio ontology'),
-                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
-                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
-                 new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
-                 new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
-             ];
- 
- 
-         expect(componentInstance.ontologies).toEqual(expectedOntoMetata);
- 
- 
-     }); */
+    /* it('should correctly initialized the ontologies\' metadata', () => {
+
+        const expectedOntoMetata =
+            [
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/something/v2', 'The something ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/00FF/images/v2', 'The images demo ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/beol/v2', 'The BEOL ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0802/biblio/v2', 'The Biblio ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
+                new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
+            ];
+
+
+        expect(componentInstance.ontologies).toEqual(expectedOntoMetata);
+
+
+    }); */
 
     /*it('should get the classes and properties for a specific ontology', async(inject([ExtendedSearchComponent, MockBackend], (component: ExtendedSearchComponent, mockBackend) => {
 
