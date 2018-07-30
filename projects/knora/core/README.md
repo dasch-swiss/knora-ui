@@ -6,15 +6,21 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 The core module contains every service to use Knora's RESTful webapi.
 
 ## Install
-`$ yarn add @knora/core json2typescript@^1.0.5`
+`$ yarn add @knora/core json2typescript@^1.0.5 jsonld`
 
 OR
 
-`$ npm install --save @knora/core json2typescript@^1.0.5`
-
+`$ npm install --save @knora/core json2typescript@^1.0.5 jsonld`
 
 ## Setup
-Import the core module in your app.module.ts 
+On version 6 of Angular CLI they removed the shim for global and other node built-ins as mentioned in [#9827 (comment)](https://github.com/angular/angular-cli/issues/9827#issuecomment-369578814). Because of the jsonld package, we have to manually shimming it inside of the polyfills.ts file of the app:
+```
+// Add global to window, assigning the value of window itself.
+
+ (window as any).global = window;
+```
+
+Next step is to import the core module in your app.module.ts 
 
 `import {KuiCoreConfig, KuiCoreModule} from '@knora/core';`
 
@@ -32,6 +38,7 @@ export const environment = {
 };
 ```
 
+- name: Name of the app. We're using it as a title in the authentication module
 - api: set the url of the [Knora](https://www.knora.org) webapi server
 - app: on which url is this app running?
 - media: url of a specific media server. In our case it's [sipi](http://www.sipi.io)
