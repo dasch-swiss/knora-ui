@@ -3,6 +3,7 @@ import { inject, TestBed } from '@angular/core/testing';
 import { GravSearchService } from './grav-search.service';
 import { SearchParamsService } from './search-params.service';
 import { Property } from './ontology-cache.service';
+import { ComparisonOperatorAndValue, Equals, IRI, Like, PropertyWithValue, ValueLiteral } from '../../declarations';
 
 describe('GravSearchService', () => {
     beforeEach(() => {
@@ -306,15 +307,11 @@ describe('GravSearchService', () => {
 
             ?mainRes a knora-api:Resource .
 
-
-
-
                         ?mainRes <http://0.0.0.0:3333/ontology/0001/anything/simple/v2#hasBoolean> ?propVal0 .
                         <http://0.0.0.0:3333/ontology/0001/anything/simple/v2#hasBoolean> knora-api:objectType <http://www.w3.org/2001/XMLSchema#boolean> .
                         ?propVal0 a <http://www.w3.org/2001/XMLSchema#boolean> .
 
                 FILTER(?propVal0 = "true"^^<http://www.w3.org/2001/XMLSchema#boolean>)
-
 
         }
 
@@ -345,7 +342,7 @@ describe('GravSearchService', () => {
         const gravsearch = service.createGravsearchQuery([propWithVal], undefined, 0);
 
         const expectedGravsearch = `
-        PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>  
+        PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
         CONSTRUCT {
 
             ?mainRes knora-api:isMainResource true .
@@ -356,16 +353,11 @@ describe('GravSearchService', () => {
 
             ?mainRes a knora-api:Resource .
 
-
-
-
                         ?mainRes <http://0.0.0.0:3333/ontology/0001/anything/simple/v2#hasUri> ?propVal0 .
                         <http://0.0.0.0:3333/ontology/0001/anything/simple/v2#hasUri> knora-api:objectType <http://www.w3.org/2001/XMLSchema#anyURI> .
                         ?propVal0 a <http://www.w3.org/2001/XMLSchema#anyURI> .
 
                 FILTER(?propVal0 = "http://www.google.ch"^^<http://www.w3.org/2001/XMLSchema#anyURI>)
-
-
         }
 
         OFFSET 0

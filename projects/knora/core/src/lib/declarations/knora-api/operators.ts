@@ -179,7 +179,7 @@ export class ValueLiteral implements Value {
     constructor(
         public readonly value: string,
         public readonly type: string,
-        private _gravSearchService: GravSearchService) {
+        private _gravSearchService?: GravSearchService) {
     }
 
 
