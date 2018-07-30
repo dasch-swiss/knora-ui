@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ViewerComponent } from './viewer.component';
 import { StillImageComponent } from './object/still-image/still-image.component';
 import { MovingImageComponent } from './object/moving-image/moving-image.component';
 import { AudioComponent } from './object/audio/audio.component';
@@ -77,11 +76,9 @@ import { ReactiveFormsModule } from '@angular/forms';
         TableViewComponent,
         ObjectViewComponent,
         CompareViewComponent,
-        GraphViewComponent,
-        ViewerComponent
+        GraphViewComponent
     ],
     exports: [
-        ViewerComponent,
         StillImageComponent,
         MovingImageComponent,
         AudioComponent,
