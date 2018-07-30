@@ -21,3 +21,12 @@ export * from './v2/ontology.service';
 export * from './v2/ontology-cache.service';
 export * from './v2/resource.service';
 export * from './v2/search.service';
+export * from './v2/resource.service';
+export * from './v2/convert-jsonld';
+export * from './v2/ontology-cache.service';
+export * from './v2/ontology.service';
+export * from './v2/incoming.service';
+export * from './v2/search.service';
+export * from './v2/search-params.service';
+export * from './v2/grav-search.service';
+

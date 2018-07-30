@@ -7,3 +7,6 @@ export * from './lib/sort-button/sort-button.component';
 export * from './lib/admin-image/admin-image.directive';
 
 export * from './lib/action.module';
+
+export * from './lib/pipes/reverse.pipe';
+export * from './lib/pipes/key.pipe';

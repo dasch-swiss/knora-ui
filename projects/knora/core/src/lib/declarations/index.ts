@@ -3,10 +3,12 @@ export * from './api-service-result';
 export * from './api-service-error';
 export * from './utils';
 
+
 /**
- * knora constants
+ * Interfaces for constants and operators
  */
 export * from './api/knora-constants';
+export * from './api/operators';
 
 /**
  * Interfaces for shared objects
@@ -95,8 +97,3 @@ export * from './api/v2/resources/read-resources-sequence';
  */
 export * from './api/v2/still-image/still-image-representation';
 export * from './api/v2/still-image/image-region';
-
-/**
- * Interfaces for pipes
- */
-export * from './api/pipes/key.pipe';

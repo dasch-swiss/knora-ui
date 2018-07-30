@@ -1,11 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'kui-sort-button',
-  templateUrl: './sort-button.component.html',
-  styleUrls: ['./sort-button.component.scss']
+    selector: 'kui-sort-button',
+    templateUrl: './sort-button.component.html',
+    styleUrls: ['./sort-button.component.scss']
 })
 export class SortButtonComponent implements OnInit {
+
+    @Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();
+
+    menuXPos: string = 'after';
 
     activeKey: string;
 
@@ -16,10 +20,6 @@ export class SortButtonComponent implements OnInit {
     @Input() sortKey(value) {
         this.activeKey = value;
     }
-
-    @Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();
-
-    menuXPos: string = 'after';
 
     constructor() {
     }

@@ -34,6 +34,7 @@ import { MatCheckboxModule, MatFormFieldModule, MatInputModule, MatNativeDateMod
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -109,5 +110,4 @@ import { ReactiveFormsModule } from '@angular/forms';
         GraphViewComponent
     ]
 })
-export class KuiViewerModule {
-}
+export class KuiViewerModule { }
