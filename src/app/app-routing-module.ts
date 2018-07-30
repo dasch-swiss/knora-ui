@@ -18,13 +18,15 @@ import { LoginComponent } from './knora-ui-examples/authentication-demo/login/lo
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
+
+import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
+import { SearchResultComponent } from './knora-ui-examples/search-demo/search-result/search-result.component';
+import { AppDemo } from './app.config';
+
 import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
 import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
-import { AppDemo } from './app.config';
-// examples: demo components
-
 
 const appRoutes: Routes = [
     {
@@ -61,6 +63,18 @@ const appRoutes: Routes = [
             {
                 path: 'authentication',
                 component: LoginComponent
+            },
+            {
+                path: 'search',
+                component: SearchDemoComponent,
+                data: { partOf: AppDemo.searchModule },
+
+                children: [
+                    {
+                        path: ':mode/:q',
+                        component: SearchResultComponent
+                    }
+                ]
             },
             {
                 path: 'viewer',

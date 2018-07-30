@@ -15,6 +15,7 @@ export class OntologyService extends ApiService {
 	   * @returns {Observable<ApiServiceResult>}
 	   */
     getOntologiesMetadata(): Observable<ApiServiceResult> {
+        console.log(this.httpGet('/v2/ontologies/metadata'));
         return this.httpGet('/v2/ontologies/metadata');
     }
 

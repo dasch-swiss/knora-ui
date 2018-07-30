@@ -4,12 +4,11 @@ export * from './api-service-error';
 export * from './utils';
 
 
-
 /**
- *
+ * Interfaces for constants and operators
  */
 export * from './knora-api/knora-constants';
-
+export * from './knora-api/operators';
 
 /**
  * Interfaces for shared objects
@@ -105,8 +104,3 @@ export * from './knora-api/v2/resources/read-resources-sequence';
  */
 export * from './knora-api/v2/still-image/still-image-representation';
 export * from './knora-api/v2/still-image/image-region';
-
-/**
- * Interfaces for pipes
- */
-export * from './knora-api/pipes/key.pipe';

@@ -1,7 +1,7 @@
 {
   "name": "knora-ui",
   "version": "0.0.0",
-  "license": "none",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

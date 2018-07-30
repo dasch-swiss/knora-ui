@@ -1,3 +1,7 @@
+/**
+ * Knora schemas
+ */
+
 export class KnoraConstants {
 
     public static api: string = 'http://api.knora.org/ontology/knora-api';
@@ -134,4 +138,59 @@ export class KnoraConstants {
 
     public static listValueAsListNode = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNode';
     public static listValueAsListNodeLabel = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNodeLabel';
+
+    public static Xsd = 'http://www.w3.org/2001/XMLSchema#';
+
+    public static xsdString = KnoraConstants.Xsd + 'string';
+    public static xsdBoolean = KnoraConstants.Xsd + 'boolean';
+    public static xsdInteger = KnoraConstants.Xsd + 'integer';
+    public static xsdDecimal = KnoraConstants.Xsd + 'decimal';
+    public static xsdUri = KnoraConstants.Xsd + 'anyURI';
+
+    public static KnoraApi: string = 'http://api.knora.org/ontology/knora-api';
+    public static KnoraApiV2SimplePath: string = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
+
+    public static resourceSimple = KnoraConstants.KnoraApiV2SimplePath + 'Resource';
+    public static dateSimple = KnoraConstants.KnoraApiV2SimplePath + 'Date';
+    public static intervalSimple = KnoraConstants.KnoraApiV2SimplePath + 'Interval';
+    public static geomSimple = KnoraConstants.KnoraApiV2SimplePath + 'Geom';
+    public static colorSimple = KnoraConstants.KnoraApiV2SimplePath + 'Color';
+    public static geonameSimple = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
+    public static fileSimple = KnoraConstants.KnoraApiV2SimplePath + 'File';
+
+    public static matchFunction = KnoraConstants.KnoraApiV2SimplePath + 'match';
+
+    public static EqualsComparisonOperator = '=';
+    public static EqualsComparisonLabel = 'is equal to';
+
+    public static NotEqualsComparisonOperator = '!=';
+    public static NotEqualsComparisonLabel = 'is not equal to';
+
+    public static GreaterThanComparisonOperator = '>';
+    public static GreaterThanComparisonLabel = 'is greater than';
+
+    public static GreaterThanEqualsComparisonOperator = '>=';
+    public static GreaterThanEqualsComparisonLabel = 'is greater than equals to';
+
+    public static LessThanComparisonOperator = '<';
+    public static LessThanComparisonLabel = 'is less than';
+
+    public static LessThanEqualsComparisonOperator = '<=';
+    public static LessThanQualsComparisonLabel = 'is less than equals to';
+
+    public static ExistsComparisonOperator = 'E';
+    public static ExistsComparisonLabel = 'exists';
+
+    public static LikeComparisonOperator = 'regex';
+    public static LikeComparisonLabel = 'is like';
+
+    public static MatchComparisonOperator = 'contains';
+    public static MatchComparisonLabel = 'matches';
+
+}
+
+
+export enum KnoraSchema {
+    complex = 0,
+    simple = 1
 }
