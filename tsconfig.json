@@ -29,12 +29,6 @@
       "@knora/authentication/*": [
         "dist/@knora/authentication/*"
       ],
-      "@knora/admin": [
-        "dist/@knora/admin"
-      ],
-      "@knora/admin/*": [
-        "dist/@knora/admin/*"
-      ],
       "@knora/viewer": [
         "dist/@knora/viewer"
       ],
