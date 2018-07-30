@@ -5,7 +5,6 @@ import { MainIntroComponent } from './landing-page/main-intro/main-intro.compone
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 import { DemoIntroComponent } from './landing-page/demo-intro/demo-intro.component';
-// examples: demo components
 import { ProgressIndicatorComponent } from './knora-ui-examples/action-demo/progress-indicator/progress-indicator.component';
 import { CoreDemoComponent } from './knora-ui-examples/core-demo/core-demo.component';
 import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projects.component';
@@ -19,9 +18,15 @@ import { LoginComponent } from './knora-ui-examples/authentication-demo/login/lo
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
+
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
 import { SearchResultComponent } from './knora-ui-examples/search-demo/search-result/search-result.component';
 import { AppDemo } from './app.config';
+
+import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
+import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
+import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
+import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
 
 const appRoutes: Routes = [
     {
@@ -68,6 +73,28 @@ const appRoutes: Routes = [
                     {
                         path: ':mode/:q',
                         component: SearchResultComponent
+                    }
+                ]
+            },
+            {
+                path: 'viewer',
+                component: ViewerDemoComponent,
+                data: {module: AppDemo.viewerModule},
+                children: [
+                    {
+                        path: 'objects',
+                        component: ObjectsComponent,
+                        data: {partOf: AppDemo.viewerModule}
+                    },
+                    {
+                        path: 'properties',
+                        component: PropertiesComponent,
+                        data: {partOf: AppDemo.viewerModule}
+                    },
+                    {
+                        path: 'views',
+                        component: ViewsComponent,
+                        data: {partOf: AppDemo.viewerModule}
                     }
                 ]
             },

@@ -79,8 +79,9 @@ To create new e.g. component inside existing module use the following command:
 * properties (as form elements)
 * resource_class_form
 
+<!--
 @knora/admin
-<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/admin.svg) -->
+<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/admin.svg) --
 * project (incl. ontology-editor)
 * system
 * user
@@ -89,3 +90,5 @@ To create new e.g. component inside existing module use the following command:
 * project_form
 * user_form
 * list_form
+
+-->

@@ -1,6 +1,6 @@
+import { ReadResource } from '../../../';
+import { KnoraConstants } from '../../knora-constants';
 
-import {ReadResource} from '../../../';
-import {KnoraConstants} from '../../knora-constants';
 // import {OntologyInformation} from '../../../../services/knora-v2/ontology-cache.service';
 
 
@@ -88,6 +88,7 @@ export class ReadTextValueAsHtml implements ReadPropertyItem {
      * @param {OntologyInformation} ontologyInfo ontology information.
      * @returns {string} information about the referred resource's class and its label.
      */
+
     /*
     getReferredResourceInfo(resourceIri: string, ontologyInfo: OntologyInformation) {
         if (this.referredResources !== undefined && this.referredResources[resourceIri] !== undefined) {
@@ -351,8 +352,9 @@ export class ReadTextFileValue implements ReadPropertyItem {
  */
 export class ReadColorValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly colorHex: string) {
-
+    constructor(readonly id: string,
+                readonly propIri,
+                readonly colorHex: string) {
     }
 
     readonly type = KnoraConstants.ColorValue;
@@ -499,7 +501,7 @@ export class ReadIntervalValue implements ReadPropertyItem {
  */
 export class ReadListValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string, ) {
+    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string,) {
 
     }
 

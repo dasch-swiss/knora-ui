@@ -12,7 +12,6 @@ import { MaterialModule } from './material-module';
 // import the knora-ui modules
 import { KuiCoreModule } from '@knora/core';
 import { KuiAuthenticationModule, LoginFormComponent } from '@knora/authentication';
-import { KuiAdminModule } from '@knora/admin';
 import { KuiActionModule } from '@knora/action';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
@@ -36,7 +35,6 @@ import { ListsComponent } from './knora-ui-examples/core-demo/lists/lists.compon
 import { TreeComponent } from './material/tree/tree.component';
 import { ResourceComponent } from './knora-ui-examples/core-demo/resource/resource.component';
 import { LoginComponent } from './knora-ui-examples/authentication-demo/login/login.component';
-import { ProjectComponent } from './knora-ui-examples/project/project.component';
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
@@ -44,6 +42,10 @@ import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
 import { SearchResultComponent } from './knora-ui-examples/search-demo/search-result/search-result.component';
+import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
+import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
+import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
+import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
 
 @NgModule({
     declarations: [
@@ -64,13 +66,16 @@ import { SearchResultComponent } from './knora-ui-examples/search-demo/search-re
         TreeComponent,
         ResourceComponent,
         LoginComponent,
-        ProjectComponent,
         ActionDemoComponent,
         SortButtonComponent,
         ModuleSubHeaderComponent,
         AdminImageComponent,
         SearchDemoComponent,
-        SearchResultComponent
+        SearchResultComponent,
+        ViewerDemoComponent,
+        PropertiesComponent,
+        ObjectsComponent,
+        ViewsComponent
     ],
     entryComponents: [
         // LoginFormComponent
@@ -86,7 +91,6 @@ import { SearchResultComponent } from './knora-ui-examples/search-demo/search-re
             app: environment.app,
         }),
         KuiAuthenticationModule,
-        KuiAdminModule,
         KuiActionModule,
         KuiSearchModule,
         KuiViewerModule,

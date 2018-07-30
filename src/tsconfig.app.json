@@ -8,9 +8,6 @@
       "@knora/action": [
         "dist/@knora/action"
       ],
-      "@knora/admin": [
-        "dist/@knora/admin"
-      ],
       "@knora/authentication": [
         "dist/@knora/authentication"
       ],
