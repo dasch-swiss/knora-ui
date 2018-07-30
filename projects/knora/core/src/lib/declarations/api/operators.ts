@@ -1,6 +1,5 @@
+import { GravSearchService, Property } from '../../services';
 import { KnoraConstants, KnoraSchema } from './knora-constants';
-import { Property } from '../../services/knora-v2/ontology-cache.service';
-import { GravSearchService } from '../../services/v2/grav-search.service';
 
 
 /**
@@ -184,11 +183,11 @@ export class ValueLiteral implements Value {
 
 
     /**
-    * Creates a type annotated value literal to be used in a SPARQL query.
-    *
-    * @param schema indicates the Knora schema to be used.
-    * @returns {string}
-    */
+     * Creates a type annotated value literal to be used in a SPARQL query.
+     *
+     * @param schema indicates the Knora schema to be used.
+     * @returns {string}
+     */
     public toSparql(schema: KnoraSchema): string {
 
         let literalType: string;
@@ -222,11 +221,11 @@ export class IRI implements Value {
     }
 
     /**
-    * Creates a SPARQL representation of the IRI.
-    *
-    * @param schema indicates the Knora schema to be used.
-    * @returns {string}
-    */
+     * Creates a SPARQL representation of the IRI.
+     *
+     * @param schema indicates the Knora schema to be used.
+     * @returns {string}
+     */
     public toSparql(schema: KnoraSchema): string {
         // this is an instance Iri and does not have to be converted.
         return `<${this.iri}>`;
