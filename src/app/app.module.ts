@@ -12,7 +12,6 @@ import { MaterialModule } from './material-module';
 // import the knora-ui modules
 import { KuiCoreModule } from '@knora/core';
 import { KuiAuthenticationModule, LoginFormComponent } from '@knora/authentication';
-import { KuiAdminModule } from '@knora/admin';
 import { KuiActionModule } from '@knora/action';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
@@ -88,7 +87,6 @@ import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.comp
             app: environment.app,
         }),
         KuiAuthenticationModule,
-        KuiAdminModule,
         KuiActionModule,
         KuiSearchModule,
         KuiViewerModule,
