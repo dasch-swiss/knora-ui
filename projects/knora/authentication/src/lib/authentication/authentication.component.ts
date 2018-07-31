@@ -20,6 +20,7 @@ export class AuthenticationComponent implements OnInit {
     loading: boolean = true;
 
     constructor(private _dialog: MatDialog,
+                private _acs: AuthenticationCacheService,
                 private _usersService: UsersService) {
     }
 
@@ -28,9 +29,35 @@ export class AuthenticationComponent implements OnInit {
     }
 
     authenticate() {
+
+        // first: get the user data from SimpleCacheService and check if it's still valid
+        if (localStorage.getItem('user') !== null) {
+            const id = localStorage.getItem('user');
+
+            this._acs.get(id, this._usersService.getUserByIri(id))
+                .subscribe(
+                    (result: any) => {
+                        console.log('auth comp -- result from acs:', result);
+                    },
+                    error => {
+                        console.error('auth comp -- error from acs:', error);
+                    }
+                );
+
+
+        } else {
+            // no data in localstorage, we don't have a logged in user yet
+        }
+
+
+
         this._usersService.authenticate()
             .subscribe(
                 (result: boolean) => {
+
+                    console.log('auth comp result from usersService authenticate:', result);
+
+
                     // if result == true: a user is logged-in,
                     // in case of an error (ApiServiceError), the current user is not authorized to do something
                     // console.log('authenticate:', result);
@@ -39,7 +66,8 @@ export class AuthenticationComponent implements OnInit {
                     this.loading = false;
                 },
                 (error: ApiServiceError) => {
-                    console.error('authentication error:', error);
+//                    console.error('authentication error:', error);
+                    // delete cached user data
                     this.loggedIn = false;
                     this.loading = false;
                     // this.errorMessage = error;

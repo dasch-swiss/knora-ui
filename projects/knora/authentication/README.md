@@ -6,11 +6,11 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 The authentication module contains the login form (for standalone usage) or a complete login- / logout-button environment incl. the login form.
 
 ## Install
-`$ yarn add @knora/authentication`
+`$ yarn add @knora/authentication moment`
 
 OR
 
-`$ npm install @knora/authentication`
+`$ npm install @knora/authentication moment`
 
 
 ## Setup

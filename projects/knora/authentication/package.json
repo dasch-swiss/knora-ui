@@ -20,6 +20,7 @@
     "@angular/animations": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/cdk": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/material": "^6.0.0-rc.0 || ^6.0.0",
-    "@knora/core": "^1.0.3-alpha"
+    "@knora/core": "^1.0.3-alpha",
+    "moment": "^2.22.2"
   }
 }

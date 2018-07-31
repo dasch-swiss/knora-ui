@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiServiceError, KuiCoreConfig, SimpleCacheService, UsersService } from '@knora/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
     selector: 'kui-login-form',
@@ -24,7 +26,7 @@ export class LoginFormComponent implements OnInit {
     loginErrorServer = false;
 
     // labels for the login form
-    login = {
+    label = {
         title: 'Login',
         name: 'Username',
         pw: 'Password',
@@ -54,23 +56,24 @@ export class LoginFormComponent implements OnInit {
         }
     };
 
-    constructor(@Inject('config') public config: KuiCoreConfig,
-                private _scs: SimpleCacheService,
-                private _usersService: UsersService,
-                //                public dialogRef: MatDialogRef<LoginFormComponent>,
-                private _formBuilder: FormBuilder) {
+    constructor(private _fb: FormBuilder,
+                private _authService: AuthenticationService,
+                private _router: Router,
+                @Inject('config') public config: KuiCoreConfig
+    ) {
     }
 
     ngOnInit() {
+        // set the title in the login form, which should be set in knora core config
         if (this.config.name !== undefined && this.config.name !== '') {
-            this.login.title += ' to ' + this.config.name;
+            this.label.title += ' to ' + this.config.name;
         }
         this.buildForm();
     }
 
     // WARNING: TODO: remove the email and password before publishing!!!!!!!!!!!!!
     buildForm(): void {
-        this.loginForm = this._formBuilder.group({
+        this.loginForm = this._fb.group({
             email: ['root@example.com', Validators.required],
             password: ['test', Validators.required]
         });
@@ -102,6 +105,20 @@ export class LoginFormComponent implements OnInit {
                 });
             }
         });
+    }
+
+    login() {
+        const val = this.loginForm.value;
+
+        if (val.email && val.password) {
+            this._authService.login(val.email, val.password)
+                .subscribe(
+                    () => {
+                        console.log('User is logged in');
+                        this._router.navigateByUrl('/');
+                    }
+                );
+        }
     }
 
 
