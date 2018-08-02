@@ -1,9 +1,10 @@
-import { environment } from '../../../../../../../src/environments/environment';
+// import { environment } from '../../../../../../../src/environments/environment';
+
 
 export class KnoraConstants {
 
-    public static FileServer: string = environment.media;
-    public static AdminFileServer: string = environment.media + '/server/admin';
+    // public static FileServer: string = environment.media;
+    // public static AdminFileServer: string = environment.media + '/server/admin';
 
     public static KnoraApi: string = 'http://api.knora.org/ontology/knora-api';
     public static PathSeparator = '#';
