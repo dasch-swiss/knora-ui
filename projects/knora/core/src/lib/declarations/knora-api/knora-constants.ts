@@ -1,12 +1,12 @@
-/**
- * Knora schemas
- */
+import { environment } from '../../../../../../../src/environments/environment';
 
 export class KnoraConstants {
 
-    public static api: string = 'http://api.knora.org/ontology/knora-api';
-    public static PathSeparator = '#';
+    public static FileServer: string = environment.media;
+    public static AdminFileServer: string = environment.media + '/server/admin';
 
+    public static KnoraApi: string = 'http://api.knora.org/ontology/knora-api';
+    public static PathSeparator = '#';
 
     public static KnoraOntologyPath: string = 'http://www.knora.org/ontology';
     public static KnoraBase: string = KnoraConstants.KnoraOntologyPath + '/knora-base';
@@ -16,7 +16,8 @@ export class KnoraConstants {
     public static ProjectAdminGroupIRI: string = KnoraConstants.KnoraBase + '#ProjectAdmin';
     public static ProjectMemberGroupIRI: string = KnoraConstants.KnoraBase + '#ProjectMember';
 
-    public static KnoraApiV2WithValueObjectPath: string = KnoraConstants.api + '/v2' + KnoraConstants.PathSeparator;
+    public static KnoraApiV2WithValueObjectPath: string = KnoraConstants.KnoraApi + '/v2' + KnoraConstants.PathSeparator;
+    public static KnoraApiV2SimplePath: string = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
 
     public static SalsahGuiOntology = 'http://api.knora.org/ontology/salsah-gui/v2';
     public static StandoffOntology = 'http://api.knora.org/ontology/standoff/v2';
@@ -46,6 +47,7 @@ export class KnoraConstants {
     public static ForbiddenResource: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ForbiddenResource';
     public static XMLToStandoffMapping: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'XMLToStandoffMapping';
     public static ListNode: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ListNode';
+
     public static ObjectType = KnoraConstants.KnoraApiV2WithValueObjectPath + 'objectType';
     public static ResourceIcon: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'resourceIcon';
     public static isEditable: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isEditable';
@@ -75,6 +77,11 @@ export class KnoraConstants {
     public static OwlMinCardinality: string = KnoraConstants.owl + '#minCardinality';
     public static OwlCardinality: string = KnoraConstants.owl + '#cardinality';
     public static OwlRestriction = KnoraConstants.owl + '#Restriction';
+
+    public static creationDate = KnoraConstants.KnoraApiV2WithValueObjectPath + 'creationDate';
+    public static hasPermissions = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasPermissions';
+
+    public static Region = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Region';
 
     public static ReadTextValueAsHtml: string = 'ReadTextValueAsHtml';
     public static ReadTextValueAsString: string = 'ReadTextValueAsString';
@@ -147,9 +154,6 @@ export class KnoraConstants {
     public static xsdDecimal = KnoraConstants.Xsd + 'decimal';
     public static xsdUri = KnoraConstants.Xsd + 'anyURI';
 
-    public static KnoraApi: string = 'http://api.knora.org/ontology/knora-api';
-    public static KnoraApiV2SimplePath: string = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
-
     public static resourceSimple = KnoraConstants.KnoraApiV2SimplePath + 'Resource';
     public static dateSimple = KnoraConstants.KnoraApiV2SimplePath + 'Date';
     public static intervalSimple = KnoraConstants.KnoraApiV2SimplePath + 'Interval';
@@ -186,6 +190,15 @@ export class KnoraConstants {
 
     public static MatchComparisonOperator = 'contains';
     public static MatchComparisonLabel = 'matches';
+
+    public static SalsahLink = 'salsah-link'; // class on an HTML <a> element that indicates a link to a Knora resource
+    public static RefMarker = 'ref-marker'; // class on an HTML element that refers to another element in the same document
+
+    public static GNDPrefix = '(DE-588)';
+    public static GNDResolver = 'http://d-nb.info/gnd/';
+
+    public static VIAFPrefix = '(VIAF)';
+    public static VIAFResolver = 'https://viaf.org/viaf/';
 
 }
 
