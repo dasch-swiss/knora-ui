@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing-module';
+import { AppRouting } from './app.routing';
 
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -45,6 +45,7 @@ import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
+import { AuthComponent } from './knora-ui-examples/authentication-demo/auth/auth.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.comp
         ViewerDemoComponent,
         PropertiesComponent,
         ObjectsComponent,
-        ViewsComponent
+        ViewsComponent,
+        AuthComponent
     ],
     entryComponents: [
         // LoginFormComponent
@@ -83,7 +85,7 @@ import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.comp
     imports: [
         BrowserModule,
         RouterModule,
-        AppRoutingModule,
+        AppRouting,
         KuiCoreModule.forRoot({
             name: 'Knora-ui Demo App',
             api: environment.api,

@@ -27,11 +27,17 @@ import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
 import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
+import { AuthComponent } from './knora-ui-examples/authentication-demo/auth/auth.component';
+import { AuthGuard } from '@knora/authentication';
 
 const appRoutes: Routes = [
     {
         path: '',
         component: MainIntroComponent,
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     },
     {
         path: 'modules',
@@ -62,7 +68,8 @@ const appRoutes: Routes = [
             },
             {
                 path: 'authentication',
-                component: LoginComponent
+                component: AuthComponent,
+                canActivate: [AuthGuard]
             },
             {
                 path: 'search',
@@ -146,5 +153,5 @@ const appRoutes: Routes = [
     exports: [RouterModule]
 })
 
-export class AppRoutingModule {
+export class AppRouting {
 }
