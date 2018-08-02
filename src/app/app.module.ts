@@ -4,14 +4,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing-module';
 
-
 import { MarkdownModule } from 'ngx-markdown';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material-module';
 // import the knora-ui modules
 import { KuiCoreModule } from '@knora/core';
-import { KuiAuthenticationModule, LoginFormComponent } from '@knora/authentication';
+import { KuiAuthenticationModule } from '@knora/authentication';
 import { KuiActionModule } from '@knora/action';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
@@ -20,6 +19,7 @@ import { environment } from '../environments/environment';
 // landing page framework components
 import { MainHeaderComponent } from './partials/main-header/main-header.component';
 import { ModuleHeaderComponent } from './partials/module-header/module-header.component';
+import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 import { MainIntroComponent } from './landing-page/main-intro/main-intro.component';
 import { DemoIntroComponent } from './landing-page/demo-intro/demo-intro.component';
@@ -37,7 +37,6 @@ import { ResourceComponent } from './knora-ui-examples/core-demo/resource/resour
 import { LoginComponent } from './knora-ui-examples/authentication-demo/login/login.component';
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
-import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
@@ -46,6 +45,7 @@ import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
+
 
 @NgModule({
     declarations: [
@@ -96,10 +96,10 @@ import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.comp
         KuiViewerModule,
         MaterialModule,
         HttpClientModule,
-        MarkdownModule.forRoot({ loader: HttpClient })
+        MarkdownModule.forRoot({loader: HttpClient})
     ],
     providers: [
-        { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+        {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
     ],
     bootstrap: [AppComponent]
 })
