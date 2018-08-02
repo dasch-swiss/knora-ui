@@ -1,7 +1,7 @@
 /*
- * Public API Surface of login
+ * Public API Surface of authentication
  */
 
-export * from './lib/authentication/authentication.component';
-export * from './lib/login-form/login-form.component';
 export * from './lib/authentication.module';
+export * from './lib/authentication.service';
+export * from './lib/authentication.component';

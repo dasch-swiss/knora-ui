@@ -15,11 +15,13 @@ export class LoginComponent implements OnInit {
 
     @Input()
     set id(id: string) {
+        /*
         this.user = this._acs.get(id, this._usersService.getUserByEmail(id));
         console.log('login comp in demo app: this.user from acs', this.user);
+        */
     }
 
-    constructor(private _acs: AuthenticationCacheService,
+    constructor(// private _acs: AuthenticationCacheService,
                 private _usersService: UsersService) {
     }
 
