@@ -5,7 +5,7 @@ import { KnoraConstants, KnoraSchema, PropertyWithValue, Utils } from '../../dec
 /**
  * Represents an error that occurred when generating KnarQL.
  */
-class GravSearchError extends Error {
+class GravsearchGenerationError extends Error {
 
     constructor(msg: string) {
         super(msg);
@@ -15,7 +15,7 @@ class GravSearchError extends Error {
 @Injectable({
     providedIn: 'root'
 })
-export class GravSearchService {
+export class GravsearchGenerationService {
 
     // map of complex knora-api value types to simple ones
     typeConversionComplexToSimple = {
@@ -54,7 +54,7 @@ export class GravSearchService {
         if (simpleType !== undefined) {
             return simpleType;
         } else {
-            throw new GravSearchError(`complex type ${complexType} could not be converted to simple type.`);
+            throw new GravsearchGenerationError(`complex type ${complexType} could not be converted to simple type.`);
         }
 
     }

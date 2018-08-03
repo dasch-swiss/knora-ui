@@ -13,7 +13,7 @@ import {
     ApiServiceResult,
     ConvertJSONLD,
     ExtendedSearchParams,
-    GravSearchService,
+    GravsearchGenerationService,
     KnoraConstants,
     OntologyCacheService,
     OntologyInformation,
@@ -66,7 +66,7 @@ export class SearchResultComponent implements OnInit {
         private _searchService: SearchService,
         private _cacheService: OntologyCacheService,
         private _searchParamsService: SearchParamsService,
-        private _gravSearchService: GravSearchService) { }
+        private _gravSearchService: GravsearchGenerationService) { }
 
     ngOnInit() {
 
