@@ -1,3 +1,7 @@
-<p>
-  auth works!
-</p>
+<p>You're logged in</p>
+
+<p>Otherwise you will redirect to the <span [routerLink]="'/login'">/login</span> page</p>
+
+<p>Expires at {{expire}}</p>
+
+<button mat-raised-button [color]="'warning'" (click)="logout()">Logout</button>

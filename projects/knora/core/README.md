@@ -10,7 +10,7 @@ The core module contains every service to use Knora's RESTful webapi.
 
 OR
 
-`$ npm install --save @knora/core json2typescript@ jsonld`
+`$ npm install --save @knora/core json2typescript jsonld`
 
 ## Setup
 On version 6 of Angular CLI they removed the shim for global and other node built-ins as mentioned in [#9827 (comment)](https://github.com/angular/angular-cli/issues/9827#issuecomment-369578814). Because of the jsonld package, we have to manually shimming it inside of the polyfills.ts file of the app:

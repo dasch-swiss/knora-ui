@@ -241,16 +241,16 @@ export class UsersService extends ApiService {
             catchError(this.handleJsonError)
         );
     }
-
+/*
     // ------------------------------------------------------------------------
     // AUTHENTICATION
     // ------------------------------------------------------------------------
 
-    /**
+    /!**
      * Checks if the user is logged in or not.
      *
      * @returns {Observable<boolean>}
-     */
+     *!/
     authenticate(): Observable<boolean> {
         return this.httpGet('/v2/authentication').pipe(
             map((result: ApiServiceResult) => {
@@ -261,11 +261,11 @@ export class UsersService extends ApiService {
         );
     }
 
-    /**
+    /!**
      *
      * @param {AuthenticationRequestPayload} payload
      * @returns {Observable<any>}
-     */
+     *!/
     protected doAuthentication(payload: AuthenticationRequestPayload): Observable<any> {
 
         const url: string = '/v2/authentication';
@@ -289,13 +289,13 @@ export class UsersService extends ApiService {
         );
     }
 
-    /**
+    /!**
      * Login makes two api requests: one for user profile and another to get user's token
      *
      * @param {string} email
      * @param {string} password
      * @returns {Observable<CurrentUser>}
-     */
+     *!/
     login(email: string, password: string): Observable<CurrentUser> {
         const url: string = '/v2/authentication';
 
@@ -368,10 +368,10 @@ export class UsersService extends ApiService {
         return moment(expiresAt);
     }
 
-    /**
+    /!**
      * Sends a logout request to the server and removes any variables.
      *
-     */
+     *!/
     logout(): void {
 
         this.httpDelete('/v2/authentication').pipe(
@@ -385,10 +385,10 @@ export class UsersService extends ApiService {
         this.clearEverything();
     }
 
-    /**
+    /!**
      * Clears any variables set during authentication in local and session storage
      *
-     */
+     *!/
     protected clearEverything(): void {
         // clear token remove user from local storage to log user out
         // this.token = null;
@@ -397,5 +397,5 @@ export class UsersService extends ApiService {
         // localStorage.removeItem('currentUser');
         // localStorage.removeItem('lang');
         sessionStorage.clear();
-    }
+    }*/
 }

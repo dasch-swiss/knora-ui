@@ -31,6 +31,8 @@ export class AuthenticationService {
                     // from https://blog.angular-university.io/angular-jwt-authentication/
                     const expiresAt = moment().add(res.expiresIn, 'second');
 
+                    console.log('res.expiresIn', res.expiresIn);
+
                     localStorage.setItem('id_token', res.token);
                     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
                     // end angular-university.io
