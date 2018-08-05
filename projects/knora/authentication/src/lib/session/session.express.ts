@@ -22,6 +22,7 @@ export function loginRoute(req: Request, res: Response) {
     const email = req.body.email,
         password = req.body.password;
 
+
     if (validateEmailAndPassword()) {
         const userId = findUserIdForEmail(email);
 

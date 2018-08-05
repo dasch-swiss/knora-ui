@@ -54,6 +54,8 @@ export class AuthenticationService {
     authenticate(): Observable<boolean> {
         return this._http.get('/v2/authentication').pipe(
             map((result: ApiServiceResult) => {
+
+                console.log('authenticate', result);
                 // return true || false
                 return result.status === 200;
             })

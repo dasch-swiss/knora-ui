@@ -211,14 +211,16 @@ export abstract class ApiService {
             .subscribe(
                 (result: any) => {
                     currentUser = result;
-                    console.log('api service', currentUser);
-
+                    console.log('api service -- setHeaders -- currentUser from scs', currentUser);
                 },
                 (error: any) => {
                     console.error(error);
                     return new HttpHeaders();
                 }
             );
+
+        console.log('api service -- setHeaders -- currentUser from scs', currentUser);
+
         if (currentUser) {
             return new HttpHeaders({
                 'Authorization': `Bearer ${currentUser.token}`
