@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 
 import { KuiAuthenticationModule } from '../authentication.module';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '@knora/core';
+
+import * as momentImported from 'moment';
+
+const moment = momentImported;
+
 
 @Injectable({
     providedIn: KuiAuthenticationModule
@@ -15,7 +20,11 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-        if (localStorage.getItem('id_token') && this._auth.authenticate()) {
+        if ((localStorage.getItem('id_token') && localStorage.getItem('expires_at')) && this._auth.authenticate()) {
+            // check the expiration time
+            console.log('auth expires_at', localStorage.getItem('expires_at'));
+            console.log('auth moment now', moment().add(0, 'seconds').valueOf());
+
             // logged in so return true
             return true;
         }

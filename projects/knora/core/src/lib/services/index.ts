@@ -6,6 +6,7 @@ export * from './api.service';
 /**
  * specific services for knora admin api
  */
+export * from './admin/authentication.service';
 export * from './admin/authentication-cache.service';
 export * from './admin/groups.service';
 export * from './admin/lists.service';

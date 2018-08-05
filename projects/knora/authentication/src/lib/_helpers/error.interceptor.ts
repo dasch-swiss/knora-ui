@@ -3,7 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '@knora/core';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

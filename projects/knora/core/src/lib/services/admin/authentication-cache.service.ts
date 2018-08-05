@@ -1,41 +1,17 @@
 import { Injectable } from '@angular/core';
-
-import { KuiCoreModule } from '../../core.module';
-
 import { Observable, of, Subject, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { KuiCoreModule } from '../../core.module';
 
 interface CacheContent {
     expiry: number;
     value: any;
 }
 
-
 @Injectable({
     providedIn: KuiCoreModule
 })
-export class SimpleCacheService {
 
-    private subject = new Subject<any>();
-
-    sendData(data: any) {
-        this.subject.next(data);
-    }
-
-    clearData() {
-        this.subject.next();
-    }
-
-    getData(): Observable<any> {
-        return this.subject.asObservable();
-    }
-
-}
-
-
-@Injectable({
-    providedIn: KuiCoreModule
-})
 /**
  * Cache Service is an observables based in-memory cache implementation
  * Keeps track of in-flight observables and sets a default expiry for cached values
@@ -46,7 +22,7 @@ export class AuthenticationCacheService {
 
     private cache: Map<string, CacheContent> = new Map<string, CacheContent>();
     private inFlightObservables: Map<string, Subject<any>> = new Map<string, Subject<any>>();
-    readonly DEFAULT_MAX_AGE: number = 300000;
+    readonly DEFAULT_MAX_AGE: number = 300000;  // 86400 (24h)
 
     /**
      * Gets the value from cache if the key is provided.
@@ -55,6 +31,9 @@ export class AuthenticationCacheService {
      * Subject inFlightObservable and return the source observable.
      */
     get(key: string, fallback?: Observable<any>, maxAge?: number): Observable<any> | Subject<any> {
+
+        // key is an own defined key by the module; or do we really need it?
+        // fallback could be the /v2/authentication request
 
         if (this.hasValidCachedValue(key)) {
             console.log(`%cGetting from cache ${key}`, 'color: green');
@@ -76,7 +55,7 @@ export class AuthenticationCacheService {
                 })
             );
         } else {
-            return throwError('Requested key is not available in Cache');
+            return throwError('Requested key \'' + key + '\' is not available in Cache');
         }
 
     }
@@ -91,7 +70,7 @@ export class AuthenticationCacheService {
     }
 
     /**
-     * Checks if the a key exists in cache
+     * Checks if a key exists in cache
      */
     has(key: string): boolean {
         return this.cache.has(key);
@@ -115,7 +94,7 @@ export class AuthenticationCacheService {
     }
 
     /**
-     * Checks if the key exists and   has not expired.
+     * Checks if the key exists and has not expired.
      */
     private hasValidCachedValue(key: string): boolean {
         if (this.cache.has(key)) {

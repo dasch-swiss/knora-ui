@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
 import { ApiServiceError, ApiServiceResult, CurrentUser, KuiCoreConfig } from '../declarations';
-import { SimpleCacheService } from './admin/authentication-cache.service';
+import { AuthenticationCacheService } from './admin/authentication-cache.service';
 
 
 @Injectable({
@@ -21,7 +21,7 @@ export abstract class ApiService {
     loading = false;
 
     protected constructor(public http: HttpClient,
-                          private _scs: SimpleCacheService,
+                          private _acs: AuthenticationCacheService,
                           @Inject('config') public config: KuiCoreConfig) {
     }
 
@@ -207,7 +207,10 @@ export abstract class ApiService {
         let currentUser: CurrentUser;
         let subscription: Subscription;
         // TODO: get the currentUser information from authenticationCacheService instead from localStorage
-        subscription = this._scs.getData()
+        // get key from local storage
+        const key = localStorage.getItem('session_id');
+
+        subscription = this._acs.get(key)
             .subscribe(
                 (result: any) => {
                     currentUser = result;
@@ -219,7 +222,6 @@ export abstract class ApiService {
                 }
             );
 
-        console.log('api service -- setHeaders -- currentUser from scs', currentUser);
 
         if (currentUser) {
             return new HttpHeaders({
@@ -228,6 +230,7 @@ export abstract class ApiService {
         } else {
             return new HttpHeaders();
         }
+
 
         /*
         if (localStorage.getItem('currentUser') !== null) {
