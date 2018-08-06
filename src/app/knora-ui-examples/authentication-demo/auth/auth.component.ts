@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '@knora/core';
-
-import * as momentImported from 'moment';
-import { Moment } from 'moment';
-
-const moment = momentImported;
+import { AuthenticationCacheService, AuthenticationService, CurrentUser } from '@knora/core';
 
 @Component({
     selector: 'app-auth',
@@ -13,20 +8,27 @@ const moment = momentImported;
 })
 export class AuthComponent implements OnInit {
 
-    expiresAt: Moment;
+    currentUser: CurrentUser;
 
-    constructor(private _auth: AuthenticationService) {
+    constructor(private _auth: AuthenticationService,
+                private _acs: AuthenticationCacheService) {
     }
 
     ngOnInit() {
-        // get expiration
-        this.expiresAt = moment(JSON.parse(localStorage.getItem('expires_at')));
-        console.log('expiresAt', this.expiresAt);
-    }
+        // get current User data from cache by using the session id as a key
+        if (localStorage.getItem('session_id')) {
+            this._acs.get(localStorage.getItem('session_id')).subscribe(
+                (result: CurrentUser) => {
+                    this.currentUser = result;
+                },
+                (error: any) => {
+                    this.currentUser = undefined;
+                    console.error(error);
+                }
+            );
+        }
 
-    getExpiration() {
-        const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-        return moment(expiresAt);
+
     }
 
     logout() {

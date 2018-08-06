@@ -2,6 +2,8 @@
 
 <p>Otherwise you will redirect to the <span [routerLink]="'/login'">/login</span> page</p>
 
-<p>Expires at {{expiresAt}}</p>
+<p>You're logged in as {{currentUser?.email}}</p>
+<p *ngIf="currentUser?.sysAdmin">And you are a system administrator</p>
+<p>Preferred language is: {{currentUser?.lang}}</p>
 
 <button mat-raised-button [color]="'warning'" (click)="logout()">Logout</button>

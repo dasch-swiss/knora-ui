@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, Subject, throwError } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { KuiCoreModule } from '../../core.module';
-import { ApiServiceResult } from '../../declarations';
+import { ApiServiceResult } from '../../declarations/index';
 
 interface CacheContent {
     expiry: number;
@@ -23,20 +23,20 @@ export class AuthenticationCacheService {
 
     private cache: Map<string, CacheContent> = new Map<string, CacheContent>();
     private inFlightObservables: Map<string, Subject<any>> = new Map<string, Subject<any>>();
-    readonly DEFAULT_MAX_AGE: number = 300000;  // 86400 (24h)
+    readonly DEFAULT_MAX_AGE: number = 86400;  // = (24h = 24 * 60 * 60)
 
 
     private subject = new Subject<any>();
 
-    getToken(): Observable<any> {
+    getData(): Observable<any> {
         return this.subject.asObservable();
     }
 
-    setToken(data: any) {
+    setData(data: any) {
         this.subject.next(data);
     }
 
-    clearToken() {
+    clearData() {
         this.subject.next();
     }
 
@@ -49,8 +49,6 @@ export class AuthenticationCacheService {
      * Subject inFlightObservable and return the source observable.
      */
     get(key: string, fallback?: Observable<any>, maxAge?: number): Observable<any> | Subject<any> {
-
-        console.log('cache -- get -- key', key);
 
         // key is an own defined key by the module; or do we really need it?
         // fallback could be the /v2/authentication request
@@ -89,7 +87,11 @@ export class AuthenticationCacheService {
      * Notifies all observers of the new value
      */
     set(key: string, value: any, maxAge: number = this.DEFAULT_MAX_AGE): void {
-        this.cache.set(key, {value: value, expiry: Date.now() + maxAge});
+        const now = Math.floor(Date.now() / 1000);
+
+        console.log('now', Math.floor(Date.now() / 1000));
+        console.log('expire', now + maxAge);
+        this.cache.set(key, {value: value, expiry: now + maxAge});
 
 //        this.inFlightObservables.set(key, new Subject());
 
@@ -128,7 +130,11 @@ export class AuthenticationCacheService {
      * Checks if the key exists and has not expired.
      */
     private hasValidCachedValue(key: string): boolean {
+
         if (this.cache.has(key)) {
+
+            console.log(this.cache.get(key));
+
             if (this.cache.get(key).expiry < Date.now()) {
                 this.cache.delete(key);
                 return false;

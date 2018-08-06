@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
 import { ApiServiceError, ApiServiceResult, CurrentUser, KuiCoreConfig } from '../declarations';
-import { AuthenticationCacheService } from './admin/authentication-cache.service';
+import { AuthenticationCacheService } from './authentication/authentication-cache.service';
 
 
 @Injectable({
@@ -210,38 +210,27 @@ export abstract class ApiService {
         // get key from local storage
         const key = localStorage.getItem('session_id');
 
-        subscription = this._acs.get(key)
-            .subscribe(
-                (result: any) => {
-                    currentUser = result;
-                    console.log('api service -- setHeaders -- currentUser from acs', currentUser);
-                },
-                (error: any) => {
-                    console.error(error);
-                    return new HttpHeaders();
-                }
-            );
-        console.log('api service -- setHeaders -- subscription from acs', subscription);
+        if (key && key !== null) {
+            subscription = this._acs.get(key)
+                .subscribe(
+                    (result: any) => {
+                        currentUser = result;
+                        console.log('api service -- setHeaders -- currentUser from acs', currentUser);
+                    },
+                    (error: any) => {
+                        console.error(error);
+                        return new HttpHeaders();
+                    }
+                );
 
-        if (currentUser) {
-            return new HttpHeaders({
-                'Authorization': `Bearer ${currentUser.token}`
-            });
+            if (currentUser) {
+                return new HttpHeaders({
+                    'Authorization': `Bearer ${currentUser.token}`
+                });
+            }
         } else {
             return new HttpHeaders();
         }
-
-
-        /*
-        if (localStorage.getItem('currentUser') !== null) {
-            return new HttpHeaders({
-                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('currentUser')).token}`
-            });
-        } else {
-            return new HttpHeaders();
-        }
-        */
-
 
     }
 

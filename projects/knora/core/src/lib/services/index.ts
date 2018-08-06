@@ -4,10 +4,15 @@
 export * from './api.service';
 
 /**
+ * specific services and interceptors for authentication
+ */
+export * from './authentication/authentication.service';
+export * from './authentication/authentication-cache.service';
+export * from './authentication/jwt.interceptor';
+
+/**
  * specific services for knora admin api
  */
-export * from './admin/authentication.service';
-export * from './admin/authentication-cache.service';
 export * from './admin/groups.service';
 export * from './admin/lists.service';
 export * from './admin/projects.service';

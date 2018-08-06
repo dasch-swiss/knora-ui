@@ -5,9 +5,9 @@ import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { KuiCoreModule } from '../../core.module';
-import { ApiServiceError, ApiServiceResult, CurrentUser, KnoraConstants, KuiCoreConfig, User } from '../../declarations';
+import { ApiServiceError, ApiServiceResult, CurrentUser, KnoraConstants, KuiCoreConfig, User } from '../../declarations/index';
 import { AuthenticationCacheService } from './authentication-cache.service';
-import { UsersService } from './users.service';
+import { UsersService } from '../admin/users.service';
 
 
 const moment = momentImported;
@@ -54,9 +54,6 @@ export class AuthenticationService {
                                 lang: result.lang,
                                 sysAdmin: sysAdmin
                             };
-
-                            console.log('our key', JSON.stringify(key.valueOf()));
-                            console.log('cache has key?', this._acs.has(JSON.stringify(key.valueOf())));
 
                             // set the currentUser in the cache service
                             this._acs.set(JSON.stringify(key.valueOf()), currentUser);
