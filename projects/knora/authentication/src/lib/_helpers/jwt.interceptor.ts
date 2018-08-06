@@ -12,6 +12,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
         // add authorization header with jwt token if available
 //        const idToken = JSON.parse(localStorage.getItem('token_id'));
+/*
 
         if (idToken) {
             request = request.clone({
@@ -20,6 +21,7 @@ export class JwtInterceptor implements HttpInterceptor {
                 }
             });
         }
+*/
 
         return next.handle(request);
     }

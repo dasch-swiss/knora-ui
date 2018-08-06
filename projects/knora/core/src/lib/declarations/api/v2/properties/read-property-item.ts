@@ -1,7 +1,7 @@
 import { ReadResource } from '../../../';
 import { KnoraConstants } from '../../knora-constants';
 
-import { OntologyInformation } from '../../../../services/knora-v2/ontology-cache.service';
+import { OntologyInformation } from '../../../../services';
 
 
 /**
@@ -353,8 +353,8 @@ export class ReadTextFileValue implements ReadPropertyItem {
 export class ReadColorValue implements ReadPropertyItem {
 
     constructor(readonly id: string,
-        readonly propIri,
-        readonly colorHex: string) {
+                readonly propIri,
+                readonly colorHex: string) {
     }
 
     readonly type = KnoraConstants.ColorValue;
@@ -381,11 +381,11 @@ export class Point2D {
  */
 export class RegionGeometry {
     constructor(public status: string,
-        public lineColor: string,
-        public lineWidth: number,
-        public points: Point2D[],
-        public type: string,
-        public radius?: Point2D
+                public lineColor: string,
+                public lineWidth: number,
+                public points: Point2D[],
+                public type: string,
+                public radius?: Point2D
     ) {
     }
 }
@@ -501,7 +501,7 @@ export class ReadIntervalValue implements ReadPropertyItem {
  */
 export class ReadListValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string, ) {
+    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string,) {
 
     }
 

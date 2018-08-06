@@ -1,4 +1,4 @@
-import {ReadPropertyItem} from './read-property-item';
+import { ReadPropertyItem } from './read-property-item';
 
 export interface ReadProperties {
 
