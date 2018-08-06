@@ -221,7 +221,7 @@ export abstract class ApiService {
                     return new HttpHeaders();
                 }
             );
-
+        console.log('api service -- setHeaders -- subscription from acs', subscription);
 
         if (currentUser) {
             return new HttpHeaders({

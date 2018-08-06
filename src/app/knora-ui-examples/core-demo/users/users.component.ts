@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiServiceError, AuthenticationRequestPayload, AuthenticationService, User, UsersService } from '@knora/core';
+import { ApiServiceError, AuthenticationRequestPayload, User, UsersService } from '@knora/core';
 import { Example } from '../../../app.interfaces';
 
 @Component({
@@ -45,39 +45,42 @@ export class UsersComponent implements OnInit {
             scss: ``
         }
     };
+    /*
 
-    exampleAuthenticate: Example = {
-        title: 'authenticate() / login(\'email\',\'password\') / logout()',
-        subtitle: 'returns if a user is logged-in or not',
-        name: 'authenticate',
-        code: {
-            html: ``,
-            ts: `
-            isLoggedIn: boolean = false;
-            errorMessage: ApiServiceError;
+        exampleAuthenticate: Example = {
+            title: 'authenticate() / login(\'email\',\'password\') / logout()',
+            subtitle: 'returns if a user is logged-in or not',
+            name: 'authenticate',
+            code: {
+                html: ``,
+                ts: `
+                isLoggedIn: boolean = false;
+                errorMessage: ApiServiceError;
 
-            // the services from @knora/core should be public,
-            // if you want to use the loading status in the html template
-            // --> usersService.loading = true | false
-            constructor(private _auth: AuthenticationService) { }
+                // the services from @knora/core should be public,
+                // if you want to use the loading status in the html template
+                // --> usersService.loading = true | false
+                constructor(private _auth: AuthenticationService) { }
 
-            [...]
-            
-            this._auth.authenticate()
-            .subscribe(
-                (result: any) => {
-                    // if result == true: a user is logged-in,
-                    // in case of an error (ApiServiceError), the current user is not authorized to do something
-                    this.isLoggedIn = result;
-                },
-                (error: ApiServiceError) => {
-                    this.isLoggedIn = false;
-                    this.errorMessage = error;
-                }
-            );`,
-            scss: ``
-        }
-    };
+                [...]
+
+                this._auth.authenticate()
+                .subscribe(
+                    (result: any) => {
+                        // if result == true: a user is logged-in,
+                        // in case of an error (ApiServiceError), the current user is not authorized to do something
+                        this.isLoggedIn = result;
+                    },
+                    (error: ApiServiceError) => {
+                        this.isLoggedIn = false;
+                        this.errorMessage = error;
+                    }
+                );`,
+                scss: ``
+            }
+        };
+    */
+
 
     userSimData: AuthenticationRequestPayload = {
         email: 'root@example.com',
@@ -92,13 +95,12 @@ export class UsersComponent implements OnInit {
 
     errorMessage: ApiServiceError;
 
-    constructor(public usersService: UsersService,
-                private _auth: AuthenticationService) {
+    constructor(public usersService: UsersService) {
     }
 
     ngOnInit() {
         this.getAllUsers();
-        this.simulateAuthentication();
+//        this.simulateAuthentication();
     }
 
     getAllUsers() {
@@ -125,6 +127,7 @@ export class UsersComponent implements OnInit {
             );
     }
 
+    /*
     simulateAuthentication() {
         this._auth.authenticate()
             .subscribe(
@@ -158,4 +161,5 @@ export class UsersComponent implements OnInit {
         this._auth.logout();
         this.simulateAuthentication();
     }
+    */
 }

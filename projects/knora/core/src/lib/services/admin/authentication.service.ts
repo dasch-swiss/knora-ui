@@ -74,20 +74,11 @@ export class AuthenticationService {
         // remove user from local storage to log user out
         // localStorage.removeItem('currentUser');
 
-        // from https://blog.angular-university.io/angular-jwt-authentication/
-        localStorage.removeItem('id_token');
-        localStorage.removeItem('expires_at');
-        // end angular-university.io
+        // delete session id
+        localStorage.removeItem('session_id');
+
+        // and clear the cache
+
     }
 
-    authenticate(): Observable<boolean> {
-        return this._http.get('/v2/authentication').pipe(
-            map((result: ApiServiceResult) => {
-
-                console.log('authenticate', result);
-                // return true || false
-                return result.status === 200;
-            })
-        );
-    }
 }

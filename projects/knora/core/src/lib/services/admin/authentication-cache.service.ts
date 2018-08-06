@@ -25,6 +25,23 @@ export class AuthenticationCacheService {
     private inFlightObservables: Map<string, Subject<any>> = new Map<string, Subject<any>>();
     readonly DEFAULT_MAX_AGE: number = 300000;  // 86400 (24h)
 
+
+    private subject = new Subject<any>();
+
+    getToken(): Observable<any> {
+        return this.subject.asObservable();
+    }
+
+    setToken(data: any) {
+        this.subject.next(data);
+    }
+
+    clearToken() {
+        this.subject.next();
+    }
+
+
+
     /**
      * Gets the value from cache if the key is provided.
      * If no value exists in cache, then check if the same call exists
@@ -32,6 +49,8 @@ export class AuthenticationCacheService {
      * Subject inFlightObservable and return the source observable.
      */
     get(key: string, fallback?: Observable<any>, maxAge?: number): Observable<any> | Subject<any> {
+
+        console.log('cache -- get -- key', key);
 
         // key is an own defined key by the module; or do we really need it?
         // fallback could be the /v2/authentication request
@@ -47,8 +66,6 @@ export class AuthenticationCacheService {
         if (!maxAge) {
             maxAge = this.DEFAULT_MAX_AGE;
         }
-
-        // TODO: set the values here!
 
         if (this.inFlightObservables.has(key)) {
             return this.inFlightObservables.get(key);
@@ -73,6 +90,9 @@ export class AuthenticationCacheService {
      */
     set(key: string, value: any, maxAge: number = this.DEFAULT_MAX_AGE): void {
         this.cache.set(key, {value: value, expiry: Date.now() + maxAge});
+
+//        this.inFlightObservables.set(key, new Subject());
+
         this.notifyInFlightObservers(key, value);
     }
 
@@ -118,15 +138,5 @@ export class AuthenticationCacheService {
             return false;
         }
     }
-/*
-    authenticate(): Observable<boolean> {
-        return this.get(this.config.api + '/v2/authentication').pipe(
-            map((result: ApiServiceResult) => {
 
-                console.log('authenticate', result);
-                // return true || false
-                return result.status === 200;
-            })
-        );
-    }*/
 }
