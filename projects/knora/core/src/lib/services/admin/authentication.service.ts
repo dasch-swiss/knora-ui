@@ -55,6 +55,9 @@ export class AuthenticationService {
                                 sysAdmin: sysAdmin
                             };
 
+                            console.log('our key', JSON.stringify(key.valueOf()));
+                            console.log('cache has key?', this._acs.has(JSON.stringify(key.valueOf())));
+
                             // set the currentUser in the cache service
                             this._acs.set(JSON.stringify(key.valueOf()), currentUser);
 

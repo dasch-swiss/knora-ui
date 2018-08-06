@@ -214,7 +214,7 @@ export abstract class ApiService {
             .subscribe(
                 (result: any) => {
                     currentUser = result;
-                    console.log('api service -- setHeaders -- currentUser from scs', currentUser);
+                    console.log('api service -- setHeaders -- currentUser from acs', currentUser);
                 },
                 (error: any) => {
                     console.error(error);

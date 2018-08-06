@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject, throwError } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { KuiCoreModule } from '../../core.module';
+import { ApiServiceResult } from '../../declarations';
 
 interface CacheContent {
     expiry: number;
@@ -34,6 +35,9 @@ export class AuthenticationCacheService {
 
         // key is an own defined key by the module; or do we really need it?
         // fallback could be the /v2/authentication request
+        if (!fallback) {
+//            fallback = this.authenticate();
+        }
 
         if (this.hasValidCachedValue(key)) {
             console.log(`%cGetting from cache ${key}`, 'color: green');
@@ -44,6 +48,8 @@ export class AuthenticationCacheService {
             maxAge = this.DEFAULT_MAX_AGE;
         }
 
+        // TODO: set the values here!
+
         if (this.inFlightObservables.has(key)) {
             return this.inFlightObservables.get(key);
         } else if (fallback) {
@@ -51,6 +57,7 @@ export class AuthenticationCacheService {
             console.log(`%c Calling api for ${key}`, 'color: purple');
             return fallback.pipe(
                 tap((value) => {
+                    console.log('fallback', value);
                     this.set(key, value, maxAge);
                 })
             );
@@ -81,6 +88,10 @@ export class AuthenticationCacheService {
      * in progress observables if observers exist.
      */
     private notifyInFlightObservers(key: string, value: any): void {
+
+        console.log('notifyInFlightObservers', key, value);
+        console.log('this.inFlightObservables', this.inFlightObservables);
+
         if (this.inFlightObservables.has(key)) {
             const inFlight = this.inFlightObservables.get(key);
             const observersCount = inFlight.observers.length;
@@ -107,4 +118,15 @@ export class AuthenticationCacheService {
             return false;
         }
     }
+/*
+    authenticate(): Observable<boolean> {
+        return this.get(this.config.api + '/v2/authentication').pipe(
+            map((result: ApiServiceResult) => {
+
+                console.log('authenticate', result);
+                // return true || false
+                return result.status === 200;
+            })
+        );
+    }*/
 }

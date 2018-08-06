@@ -26,10 +26,13 @@
 
             <!-- Button: Login -->
             <div class="button-row full-width">
-                <button mat-raised-button type="submit" [disabled]="!loginForm.valid"
+                <button mat-raised-button type="submit"
+                        *ngIf="!loading"
+                        [disabled]="!loginForm.valid"
                         class="full-width submit-button mat-primary">
                     {{label.button}}
                 </button>
+                <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
             </div>
         </form>
     </div>
