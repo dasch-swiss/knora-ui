@@ -14,7 +14,7 @@ import { SelectPropertyComponent } from './select-property/select-property.compo
 import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
 import {
     ApiService,
-    GravSearchService,
+    GravsearchGenerationService,
     KuiCoreConfig,
     OntologyCacheService,
     OntologyInformation,
@@ -58,7 +58,7 @@ describe('ExtendedSearchComponent', () => {
                 },
                 { provide: 'config', useValue: KuiCoreConfig },
                 FormBuilder,
-                GravSearchService,
+                GravsearchGenerationService,
                 OntologyCacheService,
                 OntologyService,
                 HttpClient
