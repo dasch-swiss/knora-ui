@@ -10,3 +10,4 @@ export * from './lib/action.module';
 
 export * from './lib/pipes/reverse.pipe';
 export * from './lib/pipes/key.pipe';
+export * from './lib/pipes/sort-by.pipe';

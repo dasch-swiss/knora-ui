@@ -1,22 +1,22 @@
 import { inject, TestBed } from '@angular/core/testing';
 
-import { GravSearchService } from './grav-search.service';
+import { GravsearchGenerationService } from './grav-search.service';
 import { SearchParamsService } from './search-params.service';
 import { Property } from './ontology-cache.service';
 import { ComparisonOperatorAndValue, Equals, IRI, Like, PropertyWithValue, ValueLiteral } from '../../declarations/index';
 
-describe('GravSearchService', () => {
+describe('GravsearchGenerationService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [GravSearchService, SearchParamsService]
+            providers: [GravsearchGenerationService, SearchParamsService]
         });
     });
 
-    it('should be created', inject([GravSearchService], (service: GravSearchService) => {
+    it('should be created', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
         expect(service).toBeTruthy();
     }));
 
-    it('should create a Gravsearch query string with restriction to a resource class using offset 0', inject([GravSearchService], (service: GravSearchService) => {
+    it('should create a Gravsearch query string with restriction to a resource class using offset 0', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
 
         const gravsearch = service.createGravsearchQuery([], 'http://0.0.0.0:3333/ontology/0801/beol/v2#letter', 0);
 
@@ -45,7 +45,7 @@ describe('GravSearchService', () => {
 
     }));
 
-    it('should create a Gravsearch query string with restriction to a resource class using offset 1', inject([GravSearchService], (service: GravSearchService) => {
+    it('should create a Gravsearch query string with restriction to a resource class using offset 1', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
 
         const gravsearch = service.createGravsearchQuery([], 'http://0.0.0.0:3333/ontology/0801/beol/v2#letter', 1);
 
@@ -74,7 +74,7 @@ describe('GravSearchService', () => {
 
     }));
 
-    it('should create a Gravsearch query string with a text property matching a value', inject([GravSearchService], (service: GravSearchService) => {
+    it('should create a Gravsearch query string with a text property matching a value', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
 
         const prop = new Property(
             'http://0.0.0.0:3333/ontology/0801/beol/v2#hasFamilyName',
@@ -124,7 +124,7 @@ describe('GravSearchService', () => {
 
     }));
 
-    it('should create a Gravsearch query string with a date property matching a value', inject([GravSearchService], (service: GravSearchService) => {
+    it('should create a Gravsearch query string with a date property matching a value', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
 
         const prop = new Property(
             'http://0.0.0.0:3333/ontology/0801/beol/v2#creationDate',
@@ -175,7 +175,7 @@ describe('GravSearchService', () => {
 
     }));
 
-    it('should create a Gravsearch query string with a decimal property matching a value', inject([GravSearchService], (service: GravSearchService) => {
+    it('should create a Gravsearch query string with a decimal property matching a value', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
 
         const prop = new Property(
             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasDecimal',
@@ -226,7 +226,7 @@ describe('GravSearchService', () => {
 
     }));
 
-    it('should create a Gravsearch query string with an integer property matching a value', inject([GravSearchService], (service: GravSearchService) => {
+    it('should create a Gravsearch query string with an integer property matching a value', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
 
         const prop = new Property(
             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger',
@@ -276,7 +276,7 @@ describe('GravSearchService', () => {
 
     }));
 
-    it('should create a Gravsearch query string with an Boolean property matching a value', inject([GravSearchService], (service: GravSearchService) => {
+    it('should create a Gravsearch query string with an Boolean property matching a value', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
 
         const prop = new Property(
             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBoolean',
@@ -322,7 +322,7 @@ describe('GravSearchService', () => {
 
     }));
 
-    it('should create a Gravsearch query string with a URI property matching a value', inject([GravSearchService], (service: GravSearchService) => {
+    it('should create a Gravsearch query string with a URI property matching a value', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
 
         const prop = new Property(
             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasUri',
@@ -368,7 +368,7 @@ describe('GravSearchService', () => {
 
     }));
 
-    it('should create a Gravsearch query string with a linking property matching a value', inject([GravSearchService], (service: GravSearchService) => {
+    it('should create a Gravsearch query string with a linking property matching a value', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
 
         const prop = new Property(
             'http://0.0.0.0:3333/ontology/0801/beol/v2#hasAuthor',
