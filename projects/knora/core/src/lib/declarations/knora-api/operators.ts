@@ -1,6 +1,6 @@
 import { KnoraConstants, KnoraSchema } from './knora-constants';
 import { Property } from '../../services/knora-v2/ontology-cache.service';
-import { GravSearchService } from '../../services/knora-v2/grav-search.service';
+import { GravsearchGenerationService } from '../../services/knora-v2/grav-search.service';
 
 
 /**
@@ -179,7 +179,7 @@ export class ValueLiteral implements Value {
     constructor(
         public readonly value: string,
         public readonly type: string,
-        private _gravSearchService?: GravSearchService) {
+        private _gravSearchService?: GravsearchGenerationService) {
     }
 
 
