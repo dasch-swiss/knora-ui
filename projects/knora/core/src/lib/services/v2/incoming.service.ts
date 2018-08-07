@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { KuiCoreModule } from '../../core.module';
 import { Observable } from 'rxjs';
 import { SearchService } from './search.service';
 
 @Injectable({
-    providedIn: KuiCoreModule,
+    providedIn: 'root',
 })
 export class IncomingService extends SearchService {
 

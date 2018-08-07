@@ -3,7 +3,6 @@ import { ApiServiceResult, KnoraConstants, Utils } from '../../declarations';
 import { OntologyService } from './ontology.service';
 import { forkJoin, from, Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-import { KuiCoreModule } from '../../core.module';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -349,7 +348,7 @@ export class OntologyInformation {
  * If an information is not cached already, it is requested from Knora and added to the cache.
  */
 @Injectable({
-    providedIn: KuiCoreModule
+    providedIn: 'root'
 })
 export class OntologyCacheService {
 

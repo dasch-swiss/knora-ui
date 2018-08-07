@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiServiceError, AuthenticationRequestPayload, User, UsersService } from '@knora/core';
+import { ApiServiceError, AuthenticationCacheService, User, UsersService } from '@knora/core';
 import { Example } from '../../../app.interfaces';
 
 @Component({
@@ -81,11 +81,12 @@ export class UsersComponent implements OnInit {
         };
     */
 
-
+/*
     userSimData: AuthenticationRequestPayload = {
         email: 'root@example.com',
         password: 'test'
     };
+*/
 
     allUsers: User[];
 
@@ -95,11 +96,13 @@ export class UsersComponent implements OnInit {
 
     errorMessage: ApiServiceError;
 
-    constructor(public usersService: UsersService) {
+    constructor(public usersService: UsersService,
+                private _acs: AuthenticationCacheService) {
     }
 
     ngOnInit() {
         this.getAllUsers();
+        this.getUserFromCache();
 //        this.simulateAuthentication();
     }
 
@@ -125,6 +128,14 @@ export class UsersComponent implements OnInit {
                     console.error(error);
                 }
             );
+    }
+
+    getUserFromCache() {
+        this._acs.getData().subscribe(
+            result => {
+                console.log('get user from cache', result);
+            }
+        );
     }
 
     /*

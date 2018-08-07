@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { ApiService } from '../api.service';
 import { ApiServiceResult, Group, GroupResponse, GroupsResponse } from '../../declarations/';
-import { KuiCoreModule } from '../../core.module';
+import { ApiService } from '../api.service';
 
 @Injectable({
-    providedIn: KuiCoreModule
+    providedIn: 'root'
 })
 export class GroupsService extends ApiService {
 

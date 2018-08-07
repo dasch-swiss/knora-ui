@@ -1,19 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 
-import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
+import * as momentImported from 'moment';
 import { map } from 'rxjs/operators';
-import { KuiCoreModule } from '../../core.module';
-import { ApiServiceError, ApiServiceResult, CurrentUser, KnoraConstants, KuiCoreConfig, User } from '../../declarations/index';
-import { AuthenticationCacheService } from './authentication-cache.service';
-import { UsersService } from '../admin/users.service';
 
+import { UsersService } from '..';
+import { ApiServiceError, CurrentUser, KnoraConstants, KuiCoreConfig, User } from '../../declarations';
+import { AuthenticationCacheService } from './authentication-cache.service';
 
 const moment = momentImported;
 
 @Injectable({
-    providedIn: KuiCoreModule
+    providedIn: 'root'
 })
 export class AuthenticationService {
 
@@ -56,7 +55,8 @@ export class AuthenticationService {
                             };
 
                             // set the currentUser in the cache service
-                            this._acs.set(JSON.stringify(key.valueOf()), currentUser);
+                            this._acs.setData(currentUser);
+                            // this._acs.setData(JSON.stringify(key.valueOf()), currentUser);
 
                         },
                         (error: ApiServiceError) => {

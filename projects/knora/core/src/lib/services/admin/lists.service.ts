@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { KuiCoreModule } from '../../core.module';
-import { ApiService } from '../api.service';
+import { catchError, map } from 'rxjs/operators';
 
 import {
     ApiServiceResult,
@@ -17,10 +16,10 @@ import {
     ListsResponse
 } from '../../declarations';
 
-import { catchError, map } from 'rxjs/operators';
+import { ApiService } from '../api.service';
 
 @Injectable({
-    providedIn: KuiCoreModule
+    providedIn: 'root'
 })
 export class ListsService extends ApiService {
 

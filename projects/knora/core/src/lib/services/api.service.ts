@@ -35,9 +35,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        const headers = this.setHeaders();
+        // const headers = this.setHeaders();
 
-        return this.http.get(this.config.api + path, {headers: headers, observe: 'response'}).pipe(
+        return this.http.get(this.config.api + path, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -68,9 +68,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        const headers = this.setHeaders();
+        // const headers = this.setHeaders();
 
-        return this.http.post(this.config.api + path, body, {headers: headers, observe: 'response'}).pipe(
+        return this.http.post(this.config.api + path, body, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -105,9 +105,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        const headers = this.setHeaders();
+        // const headers = this.setHeaders();
 
-        return this.http.put(this.config.api + path, body, {headers: headers, observe: 'response'}).pipe(
+        return this.http.put(this.config.api + path, body, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -141,9 +141,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        const headers = this.setHeaders();
+        // const headers = this.setHeaders();
 
-        return this.http.delete(this.config.api + path, {headers: headers, observe: 'response'}).pipe(
+        return this.http.delete(this.config.api + path, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -203,6 +203,8 @@ export abstract class ApiService {
 
     }
 
+    // the following method is replaced by the JwtInterceptor
+    /*
     protected setHeaders(): HttpHeaders {
         let currentUser: CurrentUser;
         let subscription: Subscription;
@@ -233,7 +235,7 @@ export abstract class ApiService {
         }
 
     }
-
+    */
     /**
      * Appends to existing options if they exist.
      * @param {HttpHeaders} options

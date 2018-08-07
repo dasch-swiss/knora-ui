@@ -1,16 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject, throwError } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { KuiCoreModule } from '../../core.module';
-import { ApiServiceResult } from '../../declarations/index';
+import { CurrentUser } from '../../declarations';
+import { OntologyMetadata, Properties, ResourceClasses, ResourceClassIrisForOntology } from '../v2/ontology-cache.service';
 
 interface CacheContent {
     expiry: number;
     value: any;
 }
 
+
+/**
+ * Represents cached ontology information (only used by this service internally).
+ */
+class AuthenticationCache {
+
+    /**
+     * a session id
+     */
+    session: string;
+
+    /**
+     * the current user object
+     */
+    user: CurrentUser;
+
+
+    constructor() {
+        this.session = '';
+
+        this.user = new CurrentUser();
+    }
+}
+
 @Injectable({
-    providedIn: KuiCoreModule
+    providedIn: 'root'
 })
 
 /**
@@ -29,10 +53,12 @@ export class AuthenticationCacheService {
     private subject = new Subject<any>();
 
     getData(): Observable<any> {
+        console.log('get Data from Cache', this.subject);
         return this.subject.asObservable();
     }
 
     setData(data: any) {
+        console.log('store Data in Cache', data);
         this.subject.next(data);
     }
 

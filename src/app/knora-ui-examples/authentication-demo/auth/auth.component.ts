@@ -15,17 +15,23 @@ export class AuthComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        console.log('auth comp on init');
+
+        this._acs.getData().subscribe(
+            (result: CurrentUser) => {
+                console.log('user from cache', result);
+                this.currentUser = result;
+            },
+            (error: any) => {
+                this.currentUser = undefined;
+                console.error(error);
+            }
+        );
+
         // get current User data from cache by using the session id as a key
         if (localStorage.getItem('session_id')) {
-            this._acs.get(localStorage.getItem('session_id')).subscribe(
-                (result: CurrentUser) => {
-                    this.currentUser = result;
-                },
-                (error: any) => {
-                    this.currentUser = undefined;
-                    console.error(error);
-                }
-            );
+
         }
 
 
