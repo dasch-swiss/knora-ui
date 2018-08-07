@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRouting } from './app.routing';
 
@@ -9,7 +9,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material-module';
 // import the knora-ui modules
-import { KuiCoreModule } from '@knora/core';
+import { JwtInterceptor, KuiCoreModule } from '@knora/core';
 import { KuiAuthenticationModule } from '@knora/authentication';
 import { KuiActionModule } from '@knora/action';
 import { KuiSearchModule } from '@knora/search';
@@ -101,7 +101,17 @@ import { AuthComponent } from './knora-ui-examples/authentication-demo/auth/auth
         MarkdownModule.forRoot({loader: HttpClient})
     ],
     providers: [
-        {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+        {
+            provide: MAT_DIALOG_DEFAULT_OPTIONS,
+            useValue: {
+                hasBackdrop: false
+            }
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor,
+            multi: true
+        }
     ],
     bootstrap: [AppComponent]
 })

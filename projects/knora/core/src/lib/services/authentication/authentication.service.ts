@@ -38,6 +38,9 @@ export class AuthenticationService {
                     const key = moment().add(0, 'second');
                     localStorage.setItem('session_id', JSON.stringify(key.valueOf()));
 
+                    // just a workaround to test the interceptor. TODO remove it later
+                    localStorage.setItem('token', res.token);
+
                     this._usersService.getUserByEmail(username).subscribe(
                         (result: User) => {
                             let sysAdmin: boolean = false;
@@ -77,5 +80,24 @@ export class AuthenticationService {
         // and clear the cache
 
     }
+
+
+    /**
+    * Checks if the user is logged in or not.
+    *
+    * @returns {Observable<boolean>}
+    */
+    public authenticate(): Observable<boolean> {
+        return this._http.get(this.config.api + '/v2/authentication').pipe(
+            map((result: any) => {
+
+                console.log('AuthenticationService - authenticate - result: : ', result);
+                // return true || false
+                return result.status === 200;
+            })
+        );
+    }
+
+
 
 }

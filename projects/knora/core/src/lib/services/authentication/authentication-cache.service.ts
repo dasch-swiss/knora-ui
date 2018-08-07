@@ -171,4 +171,8 @@ export class AuthenticationCacheService {
         }
     }
 
+    getJwt(): string {
+        return localStorage.getItem('token');
+    }
+
 }

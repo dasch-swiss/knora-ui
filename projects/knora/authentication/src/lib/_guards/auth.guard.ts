@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
             // check the expiration time
 
             // this._acs.getData(localStorage.getItem('session_id'));
-            // this._acs.getData();
+            console.log('authGuard', this._acs.getData());
 
             // console.log('auth expires_at', localStorage.getItem('expires_at'));
             // console.log('auth moment now', moment().add(0, 'seconds').valueOf());

@@ -18,6 +18,17 @@ export class AuthComponent implements OnInit {
 
         console.log('auth comp on init');
 
+        this._auth.authenticate().subscribe(
+            (result: any) => {
+                console.log('authenticate', result);
+//                this.currentUser = result;
+            },
+            (error: any) => {
+                this.currentUser = undefined;
+//                console.error(error);
+            }
+        );
+
         this._acs.getData().subscribe(
             (result: CurrentUser) => {
                 console.log('user from cache', result);
