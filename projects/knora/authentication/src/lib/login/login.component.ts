@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '@knora/core';
+import { AuthService } from '@knora/core';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _route: ActivatedRoute,
         private _router: Router,
-        private _authenticationService: AuthenticationService) {
+        private _authService: AuthService) {
     }
 
     ngOnInit() {
@@ -120,7 +120,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this._authenticationService.login(this.f.email.value, this.f.password.value)
+        this._authService.login(this.f.email.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {

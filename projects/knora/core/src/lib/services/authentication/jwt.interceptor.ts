@@ -1,42 +1,21 @@
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CurrentUser } from '../../declarations';
-import { AuthenticationCacheService } from './authentication-cache.service';
-import { fromPromise, tryCatch } from 'rxjs/internal-compatibility';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-
-    constructor(private _acs: AuthenticationCacheService) {}
-
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return fromPromise(this.handleAccess(request, next));
-    }
-
-    private async handleAccess(request: HttpRequest<any>, next: HttpHandler):
-        Promise<HttpEvent<any>> {
-        const token = await this._acs.getJwt();
-        let changedRequest = request;
-        // HttpHeader object immutable - copy values
-        const headerSettings: {[name: string]: string | string[]; } = {};
-
-        for (const key of request.headers.keys()) {
-            headerSettings[key] = request.headers.getAll(key);
+        // add authorization header with jwt token if available
+        const session = JSON.parse(localStorage.getItem('session'));
+        // TODO: check if the session is still valid, by comparing it with current time and the max session time; if it's false, check the api authentication /v2/authentication; if this is still true, set the new session id; a session is valid for 5 days by default
+        if (session && session.user.token) {
+            request = request.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${session.user.token}`
+                }
+            });
         }
-        if (token) {
-            headerSettings['Authorization'] = 'Bearer ' + token;
-        }
-        headerSettings['Content-Type'] = 'application/json';
-        const newHeader = new HttpHeaders(headerSettings);
 
-        changedRequest = request.clone({
-            headers: newHeader});
-        return next.handle(changedRequest).toPromise();
+        return next.handle(request);
     }
-
 }
-
-

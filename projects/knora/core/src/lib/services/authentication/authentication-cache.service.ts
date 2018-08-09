@@ -47,7 +47,7 @@ export class AuthenticationCacheService {
 
     private cache: Map<string, CacheContent> = new Map<string, CacheContent>();
     private inFlightObservables: Map<string, Subject<any>> = new Map<string, Subject<any>>();
-    readonly DEFAULT_MAX_AGE: number = 86400;  // = (24h = 24 * 60 * 60)
+    readonly DEFAULT_MAX_AGE: number = 2592000;  // 30d = 24 * 60 * 60 * 30
 
 
     private subject = new Subject<any>();
@@ -55,10 +55,18 @@ export class AuthenticationCacheService {
     getData(): Observable<any> {
         console.log('get Data from Cache', this.subject);
         return this.subject.asObservable();
+
+        // is the key still valid?
+
+        // return of(this.cache.get(key).value);
     }
 
     setData(data: any) {
         console.log('store Data in Cache', data);
+        const now = Math.floor(Date.now() / 1000);
+
+        // this.cache.set(key, {value: data, expiry: now + this.DEFAULT_MAX_AGE});
+
         this.subject.next(data);
     }
 
@@ -172,7 +180,22 @@ export class AuthenticationCacheService {
     }
 
     getJwt(): string {
-        return localStorage.getItem('token');
+        const key = localStorage.getItem('session_id');
+        let token: string = '';
+
+            this.getData().subscribe(
+                result => {
+                    console.log(result);
+                    token = result.token;
+                },
+                error => {
+                    console.error(error);
+                    throw(error);
+                }
+            );
+
+//        return localStorage.getItem('token');
+        return token;
     }
 
 }

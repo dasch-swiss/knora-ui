@@ -131,11 +131,15 @@ export class UsersComponent implements OnInit {
     }
 
     getUserFromCache() {
-        this._acs.getData().subscribe(
+        // key
+        const key = localStorage.getItem('session_id');
+        /*
+        this._acs.getData(key).subscribe(
             result => {
                 console.log('get user from cache', result);
             }
         );
+        */
     }
 
     /*

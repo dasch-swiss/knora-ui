@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { KuiActionModule } from '@knora/action';
-import { ErrorInterceptor } from './_helpers/error.interceptor';
 
 import { AuthenticationComponent } from './authentication.component';
 import { LoginComponent } from './login/login.component';
