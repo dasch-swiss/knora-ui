@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {
@@ -21,6 +21,8 @@ import { SelectResourceClassComponent } from './select-resource-class/select-res
     styleUrls: ['./extended-search.component.scss']
 })
 export class ExtendedSearchComponent implements OnInit {
+
+    @Input() route;
 
     // trigger toggle for extended search form
     @Output() toggleExtendedSearchForm = new EventEmitter<boolean>();
@@ -203,7 +205,7 @@ export class ExtendedSearchComponent implements OnInit {
 
         const gravsearch = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);
 
-        this._router.navigate(['extended/', gravsearch], { relativeTo: this._route });
+        this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });
 
         // toggle extended search form
         this.toggleExtendedSearchForm.emit(true);
