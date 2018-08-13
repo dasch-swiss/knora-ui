@@ -1,9 +1,9 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
+import { JsonObject, JsonProperty } from 'json2typescript';
 
 /**
  *
  */
-@JsonObject
+@JsonObject('Item')
 export class Item {
 
     @JsonProperty('name', String)
@@ -16,7 +16,7 @@ export class Item {
 /**
  *
  */
-@JsonObject
+@JsonObject('DemoModule')
 export class DemoModule {
 
     @JsonProperty('name', String)
@@ -39,7 +39,7 @@ export class DemoModule {
 /**
  *
  */
-@JsonObject
+@JsonObject('ExampleCode')
 export class ExampleCode {
 
     @JsonProperty('html', String, true)
@@ -57,7 +57,7 @@ export class ExampleCode {
 /**
  *
  */
-@JsonObject
+@JsonObject('Example')
 export class Example {
 
     @JsonProperty('name', String)

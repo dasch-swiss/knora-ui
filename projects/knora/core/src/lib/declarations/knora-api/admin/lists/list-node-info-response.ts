@@ -1,7 +1,7 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
-import {ListNodeInfo} from './list-node-info';
+import { JsonObject, JsonProperty } from 'json2typescript';
+import { ListNodeInfo } from './list-node-info';
 
-@JsonObject
+@JsonObject('ListNodeInfoResponse')
 export class ListNodeInfoResponse {
 
     @JsonProperty('nodeinfo', ListNodeInfo, false)

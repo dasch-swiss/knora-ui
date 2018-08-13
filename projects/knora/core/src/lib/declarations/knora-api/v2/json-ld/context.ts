@@ -1,7 +1,7 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
+import { JsonObject, JsonProperty } from 'json2typescript';
 
 
-@JsonObject
+@JsonObject('Context')
 export class Context {
 
     @JsonProperty('knora-api', String)

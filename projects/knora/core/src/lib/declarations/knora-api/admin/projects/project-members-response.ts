@@ -1,7 +1,7 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
-import {User} from '../users/user';
+import { JsonObject, JsonProperty } from 'json2typescript';
+import { User } from '../users/user';
 
-@JsonObject
+@JsonObject('ProjectMembersResponse')
 export class ProjectMembersResponse {
     @JsonProperty('members', [User])
     public members: User[] = undefined;

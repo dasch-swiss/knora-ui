@@ -1,6 +1,6 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
+import { JsonObject, JsonProperty } from 'json2typescript';
 
-@JsonObject
+@JsonObject('ListNode')
 export class ListNode {
     @JsonProperty('id', String, false)
     public id: string = undefined;
