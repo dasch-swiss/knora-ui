@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationCacheService, AuthService, CurrentUser } from '@knora/core';
+import { AuthenticationService } from '@knora/authentication';
+import { CurrentUser } from '@knora/core';
 
 @Component({
     selector: 'app-auth',
@@ -10,13 +11,19 @@ export class AuthComponent implements OnInit {
 
     currentUser: CurrentUser;
 
-    constructor(private _auth: AuthService,
-                private _acs: AuthenticationCacheService) {
+    constructor(private _auth: AuthenticationService) {
     }
 
     ngOnInit() {
 
-        console.log('auth comp on init');
+        this.currentUser = JSON.parse(localStorage.getItem('session')).user;
+        console.log(this.currentUser);
+    }
+
+    logout() {
+        this._auth.logout();
+    }
+/*
 
         this._auth.authenticate().subscribe(
             (result: any) => {
@@ -28,8 +35,9 @@ export class AuthComponent implements OnInit {
 //                console.error(error);
             }
         );
+*/
 
-        const key = localStorage.getItem('session_id');
+        // const key = localStorage.getItem('session');
         /*
         this._acs.getData().subscribe(
             (result: CurrentUser) => {
@@ -43,17 +51,15 @@ export class AuthComponent implements OnInit {
         );
         */
         // get current User data from cache by using the session id as a key
-        if (localStorage.getItem('session_id')) {
+        // if (localStorage.getItem('session_id')) {
 
-        }
-
-
-    }
+/*
 
     logout() {
         this._auth.logout();
         // refresh page
 
     }
+*/
 
 }

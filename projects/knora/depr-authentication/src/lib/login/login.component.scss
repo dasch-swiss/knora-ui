@@ -1,0 +1,43 @@
+.full-width {
+  width: 100%;
+}
+
+.mat-hint,
+.mat-form-field,
+.button-row {
+  margin-top: 24px;
+}
+
+.mat-hint {
+  color: firebrick;
+  text-align: center;
+}
+
+.login-form {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 280px;
+
+  .login-form-header {
+    margin-bottom: 24px;
+  }
+
+  .login-field {
+
+    .mat-icon {
+      font-size: 20px;
+      margin-right: 12px;
+    }
+  }
+
+  .button-row {
+    margin-top: 48px;
+  }
+}
+
+// mat-card-content
+
+.sign-up {
+  margin-top: 24px;
+}

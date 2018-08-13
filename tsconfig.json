@@ -24,10 +24,10 @@
         "dist/@knora/core/*"
       ],
       "@knora/authentication": [
-        "dist/@knora/authentication"
+        "dist/knora/authentication"
       ],
       "@knora/authentication/*": [
-        "dist/@knora/authentication/*"
+        "dist/knora/authentication/*"
       ],
       "@knora/viewer": [
         "dist/@knora/viewer"

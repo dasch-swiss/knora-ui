@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiServiceError, AuthenticationCacheService, User, UsersService } from '@knora/core';
+import { ApiServiceError, User, UsersService } from '@knora/core';
 import { Example } from '../../../app.interfaces';
 
 @Component({
@@ -96,8 +96,7 @@ export class UsersComponent implements OnInit {
 
     errorMessage: ApiServiceError;
 
-    constructor(public usersService: UsersService,
-                private _acs: AuthenticationCacheService) {
+    constructor(public usersService: UsersService) {
     }
 
     ngOnInit() {

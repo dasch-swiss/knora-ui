@@ -20,6 +20,7 @@ export * from './api/shared/strings';
  */
 export * from './api/admin/authentication/authentication-request-payload';
 export * from './api/admin/authentication/authentication-response';
+export * from './api/admin/authentication/session';
 
 /**
  * Interfaces for groups

@@ -1,0 +1,68 @@
+<div class="login-form">
+    <div class="login-form-header">
+        <h3 mat-subheader>{{label.title}}</h3>
+    </div>
+    <div class="login-form-content">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+            <mat-hint *ngIf="errorMessage !== undefined" class="full-width">
+                <span *ngIf="loginErrorUser || loginErrorPw">{{label.error.failed}}</span>
+                <span *ngIf="loginErrorServer">{{label.error.server}}</span>
+            </mat-hint>
+
+            <!-- Username -->
+            <mat-form-field class="full-width login-field">
+                <mat-icon matPrefix>person</mat-icon>
+                <input matInput autofocus [placeholder]="label.name" autocomplete formControlName="email">
+                <mat-hint *ngIf="formErrors.email" class="login-error">{{label.error.failed}}</mat-hint>
+            </mat-form-field>
+
+            <!-- Password -->
+            <mat-form-field class="full-width login-field">
+                <mat-icon matPrefix>lock</mat-icon>
+                <input matInput type="password" [placeholder]="label.pw" autocomplete formControlName="password">
+                <mat-hint *ngIf="formErrors.password" class="login-error">{{label.error.failed}}</mat-hint>
+            </mat-form-field>
+
+            <!-- Button: Login -->
+            <div class="button-row full-width">
+                <button mat-raised-button type="submit"
+                        *ngIf="!loading"
+                        [disabled]="!loginForm.valid"
+                        class="full-width submit-button mat-primary">
+                    {{label.button}}
+                </button>
+                <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
+            </div>
+        </form>
+    </div>
+</div>
+<!--
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" class="form-control"  autocomplete="username"
+               [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control" autocomplete="current-password"
+               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">Login</button>
+        <img *ngIf="loading"
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    </div>
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+</form>
+-->

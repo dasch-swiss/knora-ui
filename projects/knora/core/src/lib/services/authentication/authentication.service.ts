@@ -1,3 +1,4 @@
+/*
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import * as momentImported from 'moment';
@@ -35,28 +36,28 @@ export class AuthenticationService {
         @Inject('config') public config: KuiCoreConfig) {
     }
 
-    /**
+    /!**
      * returns whether or not the user is signed in
      *
      * @returns {boolean}
-     */
+     *!/
     public isSignedIn() {
         return !!this.session.accessToken;
     }
 
-    /**
+    /!**
      * signs out the user by clearing the session data
-     */
+     *!/
     public doSignOut() {
         this.session.destroy();
     }
 
-    /**
+    /!**
      * signs in the user by storing the session data
      *
      * @param {string} accessToken
      * @param {string} name
-     */
+     *!/
     public doSignIn(accessToken: string, name: string) {
         if ((!accessToken) || (!name)) {
             return;
@@ -131,6 +132,14 @@ export class AuthenticationService {
 
 }
 
+import { Observable, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { UsersService } from '..';
+import { ApiServiceError, KnoraConstants, KuiCoreConfig, Session, User } from '../../declarations';
+
+const moment = momentImported;
+
 // new service 2018-08-09
 @Injectable({
     providedIn: 'root'
@@ -149,11 +158,11 @@ export class AuthService {
 
     }
 
-    /**
+    /!**
      * Checks if the user is logged in or not.
      *
      * @returns {Observable<boolean>}
-     */
+     *!/
     public authenticate(): Observable<boolean> {
         return this._http.get(this.config.api + '/v2/authentication').pipe(
             map((result: any) => {
@@ -165,9 +174,9 @@ export class AuthService {
         );
     }
 
-    /**
+    /!**
      * returns whether or not the user is logged in
-     */
+     *!/
     public loggedIn() {
         const session: Session = JSON.parse(localStorage.getItem('session'));
         if (session) {
@@ -192,7 +201,7 @@ export class AuthService {
                         this.logout();
                         return false;
                     }
-                )
+                );
             } else {
                 return true;
             }
@@ -201,7 +210,27 @@ export class AuthService {
         return false;
     }
 
+    private handleError(error: Response | any) {
+        console.error('AuthService::handleError', error);
+        return throwError(error);
+    }
+
     login(username: string, password: string) {
+        /!*
+        return this._http.post(this.config.api + '/v2/authentication',
+            {email: username, password: password})
+            .pipe(
+                map((authRes: any) => {
+                    // console.log('ApiServie -- signIn http.post -- res', authRes);
+
+
+                    return {token: authRes.token, name: username};
+                }),
+                catchError(this.handleError)
+            );
+        *!/
+
+
         return this._http.post<any>(this.config.api + '/v2/authentication', {username, password})
             .pipe(map(result => {
                 // login successful if there's a jwt token in the response
@@ -254,3 +283,4 @@ export class AuthService {
         // TODO: and refresh page somehow
     }
 }
+*/

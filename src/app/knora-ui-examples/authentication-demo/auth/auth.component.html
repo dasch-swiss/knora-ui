@@ -2,8 +2,10 @@
 
 <p>Otherwise you will redirect to the <span [routerLink]="'/login'">/login</span> page</p>
 
-<p>You're logged in as {{currentUser?.email}}</p>
-<p *ngIf="currentUser?.sysAdmin">And you are a system administrator</p>
-<p>Preferred language is: {{currentUser?.lang}}</p>
+<hr>
+
+<p>You're logged in as <strong>{{currentUser?.name}}</strong></p>
+<p *ngIf="currentUser?.sysAdmin">And you are <strong>system administrator</strong></p>
+<p>Preferred language is: <strong>{{currentUser?.lang}}</strong></p>
 
 <button mat-raised-button [color]="'warning'" (click)="logout()">Logout</button>
