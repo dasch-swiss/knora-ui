@@ -16,7 +16,10 @@ export class SessionService {
 
     public session: Session;
 
-    readonly MAX_SESSION_TIME: number = 432000;  // 5d = 24 * 60 * 60 * 5
+    /**
+     * max session time in miliseconds
+     */
+    readonly MAX_SESSION_TIME: number = 30000; // 432000;  // 5d = 24 * 60 * 60 * 5
 
     constructor(
         private _http: HttpClient,
@@ -86,12 +89,17 @@ export class SessionService {
 
         if (this.session) {
             // check if the session is still valid: if session.id + MAX_SESSION_TIME > now: _session.validateSession()
-            console.log('current session id', this.session.id);
+            console.log(`%c current session id: ${this.session.id}`, 'color: blue');
+            console.log(`%c MAX_SESSION_TIME: ${this.MAX_SESSION_TIME}`, 'color: orange');
+            console.log(`%c Session valid until: ${this.session.id + this.MAX_SESSION_TIME}`, 'color: green');
 
-            if (this.session.id + this.MAX_SESSION_TIME > tsNow) {
+            console.log(`%c current time: ${tsNow}`, 'color: purple');
+
+            if (this.session.id + this.MAX_SESSION_TIME < tsNow) {
                 // the internal session has expired
                 // check if the api v2/authentication is still valid
-                console.log('session.service -- validateSession: the session expired');
+                console.log('session.service -- validateSession: the intern session expired; make an API request and update the session id if the api session is still valid');
+
 
                 this.authenticate().subscribe(
                     (response) => {
@@ -112,6 +120,8 @@ export class SessionService {
                     }
                 );
 
+            } else {
+                return true;
             }
 
             // then --> check if api v2/authentication is still valid this.authenticate()
@@ -128,7 +138,7 @@ export class SessionService {
         return this._http.get(this.config.api + '/v2/authentication').pipe(
             map((result: any) => {
 
-                console.log('AuthenticationService - authenticate - result: : ', result);
+                console.log('AuthenticationService - authenticate - result: ', result);
                 // return true || false
                 return result.status === 200;
             })
@@ -136,7 +146,7 @@ export class SessionService {
     }
 
     destroySession() {
-
+        localStorage.removeItem('session');
     }
 
 

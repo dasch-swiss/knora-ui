@@ -29,7 +29,9 @@ export class KuiCoreModule {
         // console.log(config);
         return {
             ngModule: KuiCoreModule,
-            providers: [{provide: 'config', useValue: config}]
+            providers: [
+                {provide: 'config', useValue: config}
+            ]
         };
     }
 }

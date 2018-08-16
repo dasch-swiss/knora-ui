@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
 import { ApiServiceError, ApiServiceResult, CurrentUser, KuiCoreConfig } from '../declarations';
-import { AuthenticationCacheService } from './authentication/authentication-cache.service';
 
 
 @Injectable({
@@ -21,7 +20,6 @@ export abstract class ApiService {
     loading = false;
 
     protected constructor(public http: HttpClient,
-                          private _acs: AuthenticationCacheService,
                           @Inject('config') public config: KuiCoreConfig) {
     }
 

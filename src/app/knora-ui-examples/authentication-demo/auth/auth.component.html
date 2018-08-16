@@ -1,11 +1,23 @@
-<p>You're logged in</p>
+<!-- logged in -->
+<div *ngIf="currentUser">
+    <p>You're logged in</p>
 
-<p>Otherwise you will redirect to the <span [routerLink]="'/login'">/login</span> page</p>
+    <p>Otherwise you will redirect to the <span [routerLink]="'/login'">/login</span> page</p>
 
-<hr>
+    <hr>
 
-<p>You're logged in as <strong>{{currentUser?.name}}</strong></p>
-<p *ngIf="currentUser?.sysAdmin">And you are <strong>system administrator</strong></p>
-<p>Preferred language is: <strong>{{currentUser?.lang}}</strong></p>
+    <p>You're logged in as <strong>{{currentUser?.name}}</strong></p>
+    <p *ngIf="currentUser?.sysAdmin">And you are <strong>system administrator</strong></p>
+    <p>Preferred language is: <strong>{{currentUser?.lang}}</strong></p>
 
-<button mat-raised-button [color]="'warning'" (click)="logout()">Logout</button>
+    <button mat-raised-button [color]="'warning'" (click)="logout()">Logout</button>
+</div>
+
+<!-- not logged in -->
+<div *ngIf="!currentUser">
+    <p>You're not logged in and not authorized</p>
+
+    <p>Please <button mat-button routerLink="/login">Login</button> again</p>
+
+
+</div>

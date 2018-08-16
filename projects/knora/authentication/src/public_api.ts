@@ -3,6 +3,8 @@
  */
 
 export * from './lib/guard/auth.guard';
+export * from './lib/interceptor/jwt.interceptor';
+export * from './lib/interceptor/error.interceptor';
 export * from './lib/login/login.component';
 
 export * from './lib/authentication.service';

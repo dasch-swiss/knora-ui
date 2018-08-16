@@ -25,7 +25,7 @@ export class AuthenticationService {
      * @returns
      */
     public loggedIn() {
-        return (!this._session.validateSession());
+        return (this._session.validateSession());
     }
 
     /**
@@ -58,7 +58,7 @@ export class AuthenticationService {
 
     public logout() {
         // destroy the session
-        // this._session.destroySession();
+        this._session.destroySession();
     }
 
     /**

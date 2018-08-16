@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { KuiActionModule } from '@knora/action';
-import { AuthGuard } from './guard/auth.guard';
+
 import { LoginComponent } from './login/login.component';
 
 @NgModule({

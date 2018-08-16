@@ -1,5 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AuthGuard } from '@knora/authentication';
+import { AppDemo } from './app.config';
 // / start with main-intro
 import { MainIntroComponent } from './landing-page/main-intro/main-intro.component';
 // /modules demo
@@ -21,14 +23,12 @@ import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image
 
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
 import { SearchResultComponent } from './knora-ui-examples/search-demo/search-result/search-result.component';
-import { AppDemo } from './app.config';
 
 import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
 import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
 import { AuthComponent } from './knora-ui-examples/authentication-demo/auth/auth.component';
-import { AuthGuard } from '@knora/authentication';
 
 const appRoutes: Routes = [
     {
@@ -69,7 +69,7 @@ const appRoutes: Routes = [
             {
                 path: 'authentication',
                 component: AuthComponent,
-                canActivate: [AuthGuard]
+//                canActivate: [AuthGuard]
             },
             {
                 path: 'search',
