@@ -1,6 +1,6 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
+import { JsonObject, JsonProperty } from 'json2typescript';
 
-@JsonObject
+@JsonObject('PermissionData')
 export class PermissionData {
 
     @JsonProperty('groupsPerProject', Object)

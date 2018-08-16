@@ -1,7 +1,7 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
-import {Group} from './group';
+import { JsonObject, JsonProperty } from 'json2typescript';
+import { Group } from './group';
 
-@JsonObject
+@JsonObject('GroupsResponse')
 export class GroupsResponse {
 
     @JsonProperty('groups', [Group])

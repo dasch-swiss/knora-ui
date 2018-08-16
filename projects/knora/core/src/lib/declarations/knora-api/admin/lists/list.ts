@@ -1,8 +1,8 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
-import {ListInfo} from './list-info';
-import {ListNode} from './list-node';
+import { JsonObject, JsonProperty } from 'json2typescript';
+import { ListInfo } from './list-info';
+import { ListNode } from './list-node';
 
-@JsonObject
+@JsonObject('List')
 export class List {
 
     @JsonProperty('listinfo', ListInfo, false)

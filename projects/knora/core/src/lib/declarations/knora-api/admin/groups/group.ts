@@ -1,7 +1,7 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { Project } from '../projects/project';
 
-@JsonObject
+@JsonObject('Group')
 export class Group {
 
     @JsonProperty('id', String)

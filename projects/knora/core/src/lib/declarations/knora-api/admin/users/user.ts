@@ -1,9 +1,9 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
-import {Group} from '../groups/group';
-import {PermissionData} from '../permissions/permission-data';
-import {Project} from '../projects/project';
+import { JsonObject, JsonProperty } from 'json2typescript';
+import { Group } from '../groups/group';
+import { PermissionData } from '../permissions/permission-data';
+import { Project } from '../projects/project';
 
-@JsonObject
+@JsonObject('User')
 export class User {
 
     @JsonProperty('id', String)
