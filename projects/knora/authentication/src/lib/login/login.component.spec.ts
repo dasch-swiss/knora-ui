@@ -1,4 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
+import { KuiActionModule } from '@knora/action';
+import { KuiCoreModule } from '@knora/core';
 
 import { LoginComponent } from './login.component';
 
@@ -8,7 +13,16 @@ describe('LoginComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-
+            imports: [
+                KuiCoreModule,
+                KuiActionModule,
+                MatDialogModule,
+                MatFormFieldModule,
+                MatIconModule,
+                MatInputModule,
+                ReactiveFormsModule,
+                RouterTestingModule
+            ],
             declarations: [
                 LoginComponent
             ]
