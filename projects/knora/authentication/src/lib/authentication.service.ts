@@ -44,11 +44,10 @@ export class AuthenticationService {
             {email: username, password: password})
             .pipe(
                 map((authRes: AuthenticationResponse) => {
-                    console.log('ApiServie -- signIn http.post -- res', authRes);
+                    // console.log('ApiServie -- signIn http.post -- res', authRes);
 
                     // we have a token; set the session now
                     this._session.setSession(authRes.token, username);
-
 
                     return {token: authRes.token, name: username};
                 }),

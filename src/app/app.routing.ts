@@ -69,7 +69,7 @@ const appRoutes: Routes = [
             {
                 path: 'authentication',
                 component: AuthComponent,
-//                canActivate: [AuthGuard]
+                canActivate: [AuthGuard]
             },
             {
                 path: 'search',

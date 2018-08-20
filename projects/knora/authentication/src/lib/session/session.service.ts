@@ -17,9 +17,11 @@ export class SessionService {
     public session: Session;
 
     /**
-     * max session time in miliseconds
+     * max session time in milliseconds
+     * default value (24h): 86400000
+     *
      */
-    readonly MAX_SESSION_TIME: number = 30000; // 432000;  // 5d = 24 * 60 * 60 * 5
+    readonly MAX_SESSION_TIME: number = 86400000; // 1d = 24 * 60 * 60 * 1000
 
     constructor(
         private _http: HttpClient,
@@ -57,8 +59,6 @@ export class SessionService {
                         sysAdmin: sysAdmin
                     }
                 };
-
-                console.log(this.session);
                 // store in the localStorage
                 localStorage.setItem('session', JSON.stringify(this.session));
 
@@ -88,47 +88,33 @@ export class SessionService {
         const tsNow: number = this.setTimestamp();
 
         if (this.session) {
-            // check if the session is still valid: if session.id + MAX_SESSION_TIME > now: _session.validateSession()
-            console.log(`%c current session id: ${this.session.id}`, 'color: blue');
-            console.log(`%c MAX_SESSION_TIME: ${this.MAX_SESSION_TIME}`, 'color: orange');
-            console.log(`%c Session valid until: ${this.session.id + this.MAX_SESSION_TIME}`, 'color: green');
-
-            console.log(`%c current time: ${tsNow}`, 'color: purple');
-
+            // the session exists
+            // check if the session is still valid:
+            // if session.id + MAX_SESSION_TIME > now: _session.validateSession()
             if (this.session.id + this.MAX_SESSION_TIME < tsNow) {
                 // the internal session has expired
                 // check if the api v2/authentication is still valid
-                console.log('session.service -- validateSession: the intern session expired; make an API request and update the session id if the api session is still valid');
 
+                if (this.authenticate()) {
+                    // the api authentication is valid;
+                    // update the session.id
+                    this.session.id = tsNow;
 
-                this.authenticate().subscribe(
-                    (response) => {
-                        console.log('session.service -- validateSession -- authenticate', response);
-                        // the api authentication is valid;
-                        // update the session.id
-                        this.session.id = tsNow;
-                        console.log('new session id', this.session.id);
-                        localStorage.setItem('session', JSON.stringify(this.session));
-                        return true;
-                    },
-                    (error) => {
-                        console.error('session.service -- validateSession -- authenticate: the session expired', error);
-                        // a user is not authenticated anymore!
-                        // TODO: destroy every session
+                    console.log('new session id', this.session.id);
+//                    localStorage.removeItem('session');
+                    localStorage.setItem('session', JSON.stringify(this.session));
+                    return true;
 
-                        return false;
-                    }
-                );
+                } else {
+                    console.error('session.service -- validateSession -- authenticate: the session expired on API side');
+                    // a user is not authenticated anymore!
+                    this.destroySession();
+                    return false;
+                }
 
             } else {
                 return true;
             }
-
-            // then --> check if api v2/authentication is still valid this.authenticate()
-            // then --> update the session.id _session.updateSession()
-            // else --> logout() this.logout()
-
-            return true;
         }
         return false;
     }
@@ -147,6 +133,7 @@ export class SessionService {
 
     destroySession() {
         localStorage.removeItem('session');
+        location.reload(true);
     }
 
 

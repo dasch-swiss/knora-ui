@@ -1,19 +1,27 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SessionService } from '../session/session.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
+
+    constructor(private _session: SessionService) {
+    }
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with jwt token if available
-        const session = JSON.parse(localStorage.getItem('session'));
-        // TODO: check if the session is still valid, by comparing it with current time and the max session time; if it's false, check the api authentication /v2/authentication; if this is still true, set the new session id; a session is valid for 5 days by default
-        if (session && session.user.token) {
+
+        if (this._session.validateSession()) {
+            // the session is valid (and up to date)
+            const jwt = JSON.parse(localStorage.getItem('session')).user.jwt;
             request = request.clone({
                 setHeaders: {
-                    Authorization: `Bearer ${session.user.token}`
+                    Authorization: `Bearer ${jwt}`
                 }
             });
+        } else {
+            this._session.destroySession();
         }
 
         return next.handle(request);

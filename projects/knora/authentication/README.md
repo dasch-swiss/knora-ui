@@ -11,3 +11,27 @@ The authentication module contains the login form (for standalone usage) or a co
 OR
 
 `$ npm install @knora/authentication moment`
+
+## Setup
+In your AppModule you have to define the following providers:
+
+```
+import { ErrorInterceptor, JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
+
+@NgModule({
+    declarations: [
+    ...
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        RouterModule,
+        KuiAuthenticationModule
+    ],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    ]
+})
+export class AppModule { }
+```
