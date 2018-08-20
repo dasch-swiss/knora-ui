@@ -28,7 +28,7 @@ export * from './lib/property/external-res-value/external-res-value.component';
 export * from './lib/view/list-view/list-view.component';
 export * from './lib/view/grid-view/grid-view.component';
 export * from './lib/view/table-view/table-view.component';
-export * from './lib/view/object-view/object-view.component';
+export * from './lib/view/resource-view/resource-view.component';
 export * from './lib/view/compare-view/compare-view.component';
 export * from './lib/view/graph-view/graph-view.component';
 

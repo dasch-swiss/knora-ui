@@ -26,7 +26,7 @@ import { ExternalResValueComponent } from './property/external-res-value/externa
 import { ListViewComponent } from './view/list-view/list-view.component';
 import { GridViewComponent } from './view/grid-view/grid-view.component';
 import { TableViewComponent } from './view/table-view/table-view.component';
-import { ObjectViewComponent } from './view/object-view/object-view.component';
+import { ResourceViewComponent } from './view/resource-view/resource-view.component';
 import { CompareViewComponent } from './view/compare-view/compare-view.component';
 import { GraphViewComponent } from './view/graph-view/graph-view.component';
 
@@ -74,7 +74,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         ListViewComponent,
         GridViewComponent,
         TableViewComponent,
-        ObjectViewComponent,
+        ResourceViewComponent,
         CompareViewComponent,
         GraphViewComponent
     ],
@@ -105,7 +105,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         ListViewComponent,
         GridViewComponent,
         TableViewComponent,
-        ObjectViewComponent,
+        ResourceViewComponent,
         CompareViewComponent,
         GraphViewComponent
     ]
