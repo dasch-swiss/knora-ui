@@ -1,15 +1,24 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { inject, TestBed } from '@angular/core/testing';
+import { KuiCoreModule } from '@knora/core';
 
 import { SessionService } from './session.service';
 
 describe('SessionService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [SessionService]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                HttpClientModule,
+                KuiCoreModule.forRoot({name: '', api: '', app: '', media: ''})
+            ],
+            providers: [
+                SessionService,
+                HttpClient
+            ]
+        });
     });
-  });
 
-  it('should be created', inject([SessionService], (service: SessionService) => {
-    expect(service).toBeTruthy();
-  }));
+    it('should be created', inject([SessionService], (service: SessionService) => {
+        expect(service).toBeTruthy();
+    }));
 });
