@@ -13,7 +13,8 @@ describe('SessionService', () => {
             ],
             providers: [
                 SessionService,
-                HttpClient
+                HttpClient,
+                HttpClientModule
             ]
         });
     });

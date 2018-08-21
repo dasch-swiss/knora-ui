@@ -9,12 +9,13 @@ describe('AuthenticationService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientModule,
-                KuiCoreModule.forRoot({ name: '', api: '', app: '', media: '' })
+                KuiCoreModule.forRoot({name: '', api: '', app: '', media: ''})
             ],
             providers: [
                 AuthenticationService,
-                HttpClient
-            ]
+                HttpClient,
+                HttpClientModule
+            ],
         });
     });
 

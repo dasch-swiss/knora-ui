@@ -129,6 +129,8 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 (response: any) => {
 
+                    // console.log('login component -- login -- _auth.login response', response);
+
                     this.loading = false;
                     // TODO: go back to the previous route
                     if (this.navigate) {
