@@ -101,12 +101,12 @@ export class SessionService {
                     this.session.id = tsNow;
 
                     console.log('new session id', this.session.id);
-//                    localStorage.removeItem('session');
+                    // localStorage.removeItem('session');
                     localStorage.setItem('session', JSON.stringify(this.session));
                     return true;
 
                 } else {
-                    console.error('session.service -- validateSession -- authenticate: the session expired on API side');
+                    // console.error('session.service -- validateSession -- authenticate: the session expired on API side');
                     // a user is not authenticated anymore!
                     this.destroySession();
                     return false;
@@ -133,7 +133,6 @@ export class SessionService {
 
     destroySession() {
         localStorage.removeItem('session');
-        location.reload(true);
     }
 
 

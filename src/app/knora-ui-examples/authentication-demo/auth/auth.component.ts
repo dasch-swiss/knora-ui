@@ -25,6 +25,7 @@ export class AuthComponent implements OnInit {
 
     logout() {
         this._auth.logout();
+        location.reload(true);
     }
 /*
 
