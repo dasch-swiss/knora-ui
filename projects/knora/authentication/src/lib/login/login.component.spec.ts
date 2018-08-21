@@ -25,11 +25,10 @@ describe('LoginComponent', () => {
                 RouterTestingModule
             ],
             declarations: [
-                HttpClientModule
+                LoginComponent
             ],
             providers: [
-                HttpClient,
-                LoginComponent
+                HttpClient
             ]
         })
             .compileComponents();
