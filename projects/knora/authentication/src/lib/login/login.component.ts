@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiServiceError, AuthenticationResponse, User, UsersService } from '@knora/core';
@@ -12,11 +12,49 @@ import { SessionService } from '../session/session.service';
 })
 export class LoginComponent implements OnInit {
 
-    public frm: FormGroup;
+    /**
+     * navigate to the defined url after login
+     */
+    @Input() navigate: string;
 
-    public loading = false;
-    public hasFailed = false;
-    public showInputErrors = false;
+    frm: FormGroup;
+
+    loading = false;
+
+    errorMessage: any;
+
+    // specific error messages
+    loginErrorUser = false;
+    loginErrorPw = false;
+    loginErrorServer = false;
+
+    // labels for the login form
+    login = {
+        title: 'Login',
+        name: 'Username',
+        pw: 'Password',
+        button: 'Login',
+        remember: 'Remember me',
+        forgot_pw: 'Forgot password?',
+        error: {
+            failed: 'Password or username is wrong',
+            server: 'There\'s an error with the server connection. Try it again later or inform the Knora Team'
+        }
+    };
+
+    formErrors = {
+        'email': '',
+        'password': ''
+    };
+
+    validationMessages = {
+        'email': {
+            'required': 'user name is required.'
+        },
+        'password': {
+            'required': 'password is required'
+        }
+    };
 
 
     constructor(private _auth: AuthenticationService,
@@ -24,45 +62,103 @@ export class LoginComponent implements OnInit {
                 private _users: UsersService,
                 private _fb: FormBuilder,
                 private _router: Router) {
-        this.frm = _fb.group({
-            username: ['root@example.com', Validators.required],
-            password: ['test', Validators.required]
-        });
     }
 
     ngOnInit() {
+        this.buildForm();
     }
 
+    buildForm(): void {
+        this.frm = this._fb.group({
+            email: ['', Validators.required],
+            password: ['', Validators.required]
+        });
 
-    public doSignIn() {
+        this.frm.valueChanges
+            .subscribe(data => this.onValueChanged(data));
+
+    }
+
+    /**
+     * check for errors while using the form
+     * @param data
+     */
+    onValueChanged(data?: any) {
+
+        if (!this.frm) {
+            return;
+        }
+
+        const form = this.frm;
+
+        Object.keys(this.formErrors).map(field => {
+            this.formErrors[field] = '';
+            const control = form.get(field);
+            if (control && control.dirty && !control.valid) {
+                const messages = this.validationMessages[field];
+                Object.keys(control.errors).map(key => {
+                    this.formErrors[field] += messages[key] + ' ';
+                });
+            }
+        });
+    }
+
+    doLogin() {
 
         // make sure form values are valid
         if (this.frm.invalid) {
-            this.showInputErrors = true;
+            this.loginErrorPw = true;
+            this.loginErrorUser = true;
             return;
         }
 
         // Reset status
         this.loading = true;
-        this.hasFailed = false;
+
+        // reset the error messages
+        this.loginErrorUser = false;
+        this.loginErrorPw = false;
+        this.loginErrorServer = false;
+
 
         // Grab values from form
-        const username = this.frm.get('username').value;
+        const username = this.frm.get('email').value;
         const password = this.frm.get('password').value;
 
         this._auth.login(username, password)
             .subscribe(
                 (response: any) => {
 
-                    console.log('login component -- login -- _auth.login response', response);
-
                     this.loading = false;
                     // TODO: go back to the previous route
-                    this._router.navigate(['/']);
+                    if (this.navigate) {
+                        this._router.navigate([this.navigate]);
+                    } else {
+                        // go to the previous url defined in the url params
+                        this._router.navigate(['/']);
+                    }
                 },
                 (error) => {
+
+                    console.error('login comp -- error', error);
+                    // error handling
+                    if (error.status === 0) {
+                        this.loginErrorUser = false;
+                        this.loginErrorPw = false;
+                        this.loginErrorServer = true;
+                    }
+                    if (error.status === 401) {
+                        this.loginErrorUser = false;
+                        this.loginErrorPw = true;
+                        this.loginErrorServer = false;
+                    }
+                    if (error.status === 404) {
+                        this.loginErrorUser = true;
+                        this.loginErrorPw = false;
+                        this.loginErrorServer = false;
+                    }
+                    this.errorMessage = <any> error;
                     this.loading = false;
-                    this.hasFailed = true;
                 }
             );
 

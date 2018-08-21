@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { AuthenticationResponse, KuiCoreConfig } from '@knora/core';
+import { AuthenticationResponse, KuiCoreConfig, ApiServiceError } from '@knora/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SessionService } from './session/session.service';
@@ -38,8 +38,6 @@ export class AuthenticationService {
      */
     public login(username: string, password: string) {
 
-        // authenticate
-
         return this._http.post(this.config.api + '/v2/authentication',
             {email: username, password: password})
             .pipe(
@@ -51,7 +49,9 @@ export class AuthenticationService {
 
                     return {token: authRes.token, name: username};
                 }),
-                catchError(this.handleError)
+                catchError((error: HttpErrorResponse) => {
+                        return this.handleRequestError(error);
+                })
             );
     }
 
@@ -72,5 +72,21 @@ export class AuthenticationService {
 
         // throw error
         return throwError(error);
+    }
+
+    /**
+     * handle request error in case of server error
+     *
+     * @param error
+     * @returns
+     */
+    protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
+        console.error('authentication service -- handleRequestError', error);
+        const serviceError = new ApiServiceError();
+        serviceError.status = error.status;
+        serviceError.statusText = error.statusText;
+        serviceError.errorInfo = error.message;
+        serviceError.url = error.url;
+        return throwError(serviceError);
     }
 }

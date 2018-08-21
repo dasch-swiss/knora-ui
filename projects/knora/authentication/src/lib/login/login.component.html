@@ -1,3 +1,4 @@
+<!--
 <div class="sign-in-wrapper">
     <form [formGroup]="frm">
 
@@ -29,7 +30,7 @@
         </div>
 
 
-        <button (click)="doSignIn()" [disabled]="loading">
+        <button (click)="doLogin()" [disabled]="loading">
             <ng-template [ngIf]="!loading">Sign in</ng-template>
             <ng-template [ngIf]="loading">Signing in, please wait...</ng-template>
         </button>
@@ -38,4 +39,49 @@
         <p class="tip">You can sign in with username "root@example.com" and password "test".</p>
 
     </form>
+</div>
+-->
+
+
+
+<div class="login-form">
+    <div class="login-form-header">
+        <h3 mat-subheader>{{login.title}}</h3>
+    </div>
+    <div class="login-form-content">
+        <!-- This is the login form -->
+        <form class="login-form" [formGroup]="frm" (ngSubmit)="doLogin()">
+            <!-- Error message -->
+            <mat-hint *ngIf="errorMessage !== undefined" class="full-width">
+                <span *ngIf="loginErrorUser || loginErrorPw">{{login.error.failed}}</span>
+                <span *ngIf="loginErrorServer">{{login.error.server}}</span>
+            </mat-hint>
+
+            <!-- Username -->
+            <mat-form-field class="full-width login-field">
+                <mat-icon matPrefix>person</mat-icon>
+                <input matInput autofocus [placeholder]="login.name" formControlName="email">
+                <mat-hint *ngIf="formErrors.email" class="login-error">{{login.error.failed}}</mat-hint>
+            </mat-form-field>
+
+            <!-- Password -->
+            <mat-form-field class="full-width login-field">
+                <mat-icon matPrefix>lock</mat-icon>
+                <input matInput type="password" [placeholder]="login.pw" formControlName="password">
+                <mat-hint *ngIf="formErrors.password" class="login-error">{{login.error.failed}}</mat-hint>
+            </mat-form-field>
+
+            <!-- Button: Login -->
+            <div class="button-row full-width">
+                <button mat-raised-button type="submit"
+                        *ngIf="!loading"
+                        [disabled]="!frm.valid"
+                        class="full-width submit-button mat-primary">
+                    {{login.button}}
+                </button>
+                <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
+            </div>
+        </form>
+    </div>
+
 </div>

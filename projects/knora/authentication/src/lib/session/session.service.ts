@@ -133,7 +133,7 @@ export class SessionService {
 
     destroySession() {
         localStorage.removeItem('session');
-        location.reload(true);
+        // location.reload(true);
     }
 
 
