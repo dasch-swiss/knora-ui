@@ -2,17 +2,17 @@
  * Public API Surface of viewer
  */
 
-export * from './lib/object/still-image/still-image.component';
-export * from './lib/object/moving-image/moving-image.component';
-export * from './lib/object/audio/audio.component';
-export * from './lib/object/ddd/ddd.component';
-export * from './lib/object/text/text.component';
-export * from './lib/object/document/document.component';
-export * from './lib/object/collection/collection.component';
-export * from './lib/object/region/region.component';
-export * from './lib/object/annotation/annotation.component';
-export * from './lib/object/link-obj/link-obj.component';
-export * from './lib/object/object/object.component';
+export * from './lib/resource/still-image/still-image.component';
+export * from './lib/resource/moving-image/moving-image.component';
+export * from './lib/resource/audio/audio.component';
+export * from './lib/resource/ddd/ddd.component';
+export * from './lib/resource/text/text.component';
+export * from './lib/resource/document/document.component';
+export * from './lib/resource/collection/collection.component';
+export * from './lib/resource/region/region.component';
+export * from './lib/resource/annotation/annotation.component';
+export * from './lib/resource/link-obj/link-obj.component';
+export * from './lib/resource/object/object.component';
 export * from './lib/property/text-value/text-value.component';
 export * from './lib/property/date-value/date-value.component';
 export * from './lib/property/integer-value/integer-value.component';
