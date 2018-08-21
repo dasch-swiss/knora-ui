@@ -12,6 +12,7 @@ export * from './lib/object/collection/collection.component';
 export * from './lib/object/region/region.component';
 export * from './lib/object/annotation/annotation.component';
 export * from './lib/object/link-obj/link-obj.component';
+export * from './lib/object/object/object.component';
 export * from './lib/property/text-value/text-value.component';
 export * from './lib/property/date-value/date-value.component';
 export * from './lib/property/integer-value/integer-value.component';

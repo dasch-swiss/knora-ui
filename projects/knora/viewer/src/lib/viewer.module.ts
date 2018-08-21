@@ -10,6 +10,7 @@ import { CollectionComponent } from './object/collection/collection.component';
 import { RegionComponent } from './object/region/region.component';
 import { AnnotationComponent } from './object/annotation/annotation.component';
 import { LinkObjComponent } from './object/link-obj/link-obj.component';
+import { ObjectComponent } from './object/object/object.component';
 import { TextValueComponent } from './property/text-value/text-value.component';
 import { DateValueComponent } from './property/date-value/date-value.component';
 import { IntegerValueComponent } from './property/integer-value/integer-value.component';
@@ -58,6 +59,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         RegionComponent,
         AnnotationComponent,
         LinkObjComponent,
+        ObjectComponent,
         TextValueComponent,
         DateValueComponent,
         IntegerValueComponent,
@@ -89,6 +91,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         RegionComponent,
         AnnotationComponent,
         LinkObjComponent,
+        ObjectComponent,
         TextValueComponent,
         DateValueComponent,
         IntegerValueComponent,
