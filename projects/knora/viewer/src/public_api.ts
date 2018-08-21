@@ -32,5 +32,6 @@ export * from './lib/view/table-view/table-view.component';
 export * from './lib/view/resource-view/resource-view.component';
 export * from './lib/view/compare-view/compare-view.component';
 export * from './lib/view/graph-view/graph-view.component';
+export * from './lib/view/properties-view/properties-view.component';
 
 export * from './lib/viewer.module';

@@ -30,6 +30,7 @@ import { TableViewComponent } from './view/table-view/table-view.component';
 import { ResourceViewComponent } from './view/resource-view/resource-view.component';
 import { CompareViewComponent } from './view/compare-view/compare-view.component';
 import { GraphViewComponent } from './view/graph-view/graph-view.component';
+import { PropertiesViewComponent } from './view/properties-view/properties-view.component';
 
 import { MatCheckboxModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatSlideToggleModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -78,7 +79,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         TableViewComponent,
         ResourceViewComponent,
         CompareViewComponent,
-        GraphViewComponent
+        GraphViewComponent,
+        PropertiesViewComponent
     ],
     exports: [
         StillImageComponent,
@@ -110,7 +112,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         TableViewComponent,
         ResourceViewComponent,
         CompareViewComponent,
-        GraphViewComponent
+        GraphViewComponent,
+        PropertiesViewComponent
     ]
 })
 export class KuiViewerModule { }
