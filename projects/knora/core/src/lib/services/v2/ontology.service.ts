@@ -9,12 +9,12 @@ import { ApiServiceResult } from '../../declarations';
 export class OntologyService extends ApiService {
 
     /**
-	   * Requests the metadata about existing ontologies from Knora's ontologies route.
-	   *
-	   * @returns {Observable<ApiServiceResult>}
-	   */
+     * Requests the metadata about existing ontologies from Knora's ontologies route.
+     *
+     * @returns {Observable<ApiServiceResult>}
+     */
     getOntologiesMetadata(): Observable<ApiServiceResult> {
-        console.log(this.httpGet('/v2/ontologies/metadata'));
+        // console.log(this.httpGet('/v2/ontologies/metadata'));
         return this.httpGet('/v2/ontologies/metadata');
     }
 

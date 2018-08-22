@@ -1,4 +1,5 @@
-<!-- logged in -->
+<app-module-header [demo]="module"></app-module-header>
+
 <div *ngIf="currentUser">
     <p>You're logged in</p>
 
@@ -14,14 +15,3 @@
 
     <p>If you're interested in the login page, go to <a routerLink="/login">/login</a></p>
 </div>
-<!--
-
-&lt;!&ndash; not logged in &ndash;&gt;
-<div *ngIf="!currentUser">
-    <p>You're not logged in and not authorized</p>
-
-    <p>Please <button mat-button routerLink="/login">Login</button> again</p>
-
-
-</div>
--->

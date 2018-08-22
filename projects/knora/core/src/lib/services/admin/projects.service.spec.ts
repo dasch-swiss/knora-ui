@@ -42,7 +42,7 @@ describe('ProjectsService', () => {
         const jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
 
         const result: ProjectsResponse = jsonConvert.deserializeObject(projectsResponseJson, ProjectsResponse);
-        console.log(result);
+        // console.log(result);
 
         expect(result).toBeTruthy();
     });

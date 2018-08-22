@@ -95,7 +95,7 @@ export module ConvertJSONLD {
                     );
                 } else {
                     // expected text value members not defined
-                    console.log('ERROR: Invalid text value: ' + JSON.stringify(propValue));
+                    console.error('ERROR: Invalid text value: ' + JSON.stringify(propValue));
                 }
 
                 valueSpecificProp = textValue;
@@ -279,7 +279,7 @@ export module ConvertJSONLD {
 
             default:
                 // unsupported value type
-                console.log('ERROR: value type not implemented yet: ' + propValue['@type']);
+                console.error('ERROR: value type not implemented yet: ' + propValue['@type']);
                 break;
         }
 
