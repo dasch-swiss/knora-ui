@@ -10,7 +10,9 @@
     <p *ngIf="currentUser?.sysAdmin">And you are <strong>system administrator</strong></p>
     <p>Preferred language is: <strong>{{currentUser?.lang}}</strong></p>
 
-    <button mat-raised-button [color]="'warning'" (click)="logout()">Logout</button>
+    <button mat-raised-button class="mat-warn" (click)="logout()">Logout</button>
+
+    <p>If you're interested in the login page, go to <a routerLink="/login">/login</a></p>
 </div>
 <!--
 

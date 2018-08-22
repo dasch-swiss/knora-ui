@@ -21,7 +21,7 @@ $width: 280px;
   width: $width;
 }
 
-.login-form {
+.login-form, .logout-form {
   margin-left: auto;
   margin-right: auto;
   position: relative;

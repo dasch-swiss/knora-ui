@@ -7,13 +7,14 @@ Search module allows to make simple searches or extended searches in Knora. In e
 
 
 ## Install
+This module needs the services from [@knora/core](https://www.npmjs.com/package/@knora/core) which should also be installed.
 You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project.
 
-### Yarn
-`$ yarn add @knora/search`
+`$ yarn add @knora/search @knora/core`
 
-### NPM
-`$ npm install --save @knora/search`
+OR
+
+`$ npm install --save @knora/search @knora/core`
 
 
 ## Components

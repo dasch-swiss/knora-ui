@@ -6,11 +6,13 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 The authentication module contains the login form (for standalone usage) or a complete login- / logout-button environment incl. the login form.
 
 ## Install
-`$ yarn add @knora/authentication moment`
+This module needs the configuration setup from [@knora/core](https://www.npmjs.com/package/@knora/core) which should also be installed.
+
+`$ yarn add @knora/authentication @knora/core moment`
 
 OR
 
-`$ npm install @knora/authentication moment`
+`$ npm install @knora/authentication @knora/core moment`
 
 ## Setup
 In your AppModule you have to define the following providers:
@@ -26,12 +28,40 @@ import { ErrorInterceptor, JwtInterceptor, KuiAuthenticationModule } from '@knor
         BrowserModule,
         HttpClientModule,
         RouterModule,
+        KuiCoreModule.forRoot({
+            name: 'Knora-ui Demo App',
+            api: environment.api,
+            media: environment.media,
+            app: environment.app,
+        }),
         KuiAuthenticationModule
     ],
     providers: [
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
     ]
 })
 export class AppModule { }
 ```
+
+
+## Usage
+
+The @knora/authentication module contains a guard class which will redirect a guest user to the login page. It can be used in the app routing as follow:
+
+```
+import { AuthGuard } from '@knora/authentication';
+
+const appRoutes: Routes = [
+    {
+        path: '',
+        component: AppComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    }
+]
+```
+
+The `LoginComponent` needs then only the `<kui-login></kui-login>` tag. It's also possible to define e navigation route, where the user will be redirected after successful login: `<kui-login [navigate="'/dashboard'"]></kui-login>`

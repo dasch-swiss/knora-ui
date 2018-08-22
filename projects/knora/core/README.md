@@ -6,11 +6,13 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 The core module contains every service to use Knora's RESTful webapi.
 
 ## Install
-`$ yarn add @knora/core json2typescript jsonld`
+We recommend to use the core module together with [@knora/authentication](https://www.npmjs.com/package/@knora/authentication). Other dependencies are [moment](https://www.npmjs.com/package/moment), [json2typescript](https://www.npmjs.com/package/json2typescript) and [jsonld](https://www.npmjs.com/package/jsonld)
+
+`$ yarn add @knora/core @knora/authentication moment json2typescript jsonld`
 
 OR
 
-`$ npm install --save @knora/core json2typescript jsonld`
+`$ npm install --save @knora/core @knora/authentication moment json2typescript jsonld`
 
 ## Setup
 On version 6 of Angular CLI they removed the shim for global and other node built-ins as mentioned in [#9827 (comment)](https://github.com/angular/angular-cli/issues/9827#issuecomment-369578814). Because of the jsonld package, we have to manually shimming it inside of the polyfills.ts file of the app:
