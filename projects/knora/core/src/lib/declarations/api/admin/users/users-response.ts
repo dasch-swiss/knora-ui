@@ -1,7 +1,7 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
-import {User} from './user';
+import { JsonObject, JsonProperty } from 'json2typescript';
+import { User } from './user';
 
-@JsonObject
+@JsonObject('UsersResponse')
 export class UsersResponse {
 
     @JsonProperty('users', [User])

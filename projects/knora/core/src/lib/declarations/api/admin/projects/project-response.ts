@@ -1,8 +1,8 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
-import {Project} from './project';
+import { Project } from './project';
 
 
-@JsonObject
+@JsonObject('ProjectResponse')
 export class ProjectResponse {
 
     @JsonProperty('project', Project)

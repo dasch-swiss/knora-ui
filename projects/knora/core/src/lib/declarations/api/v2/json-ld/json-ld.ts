@@ -3,7 +3,7 @@ import { Graph } from './graph';
 import { Context } from './context';
 
 
-@JsonObject
+@JsonObject('JsonLd')
 export class JsonLd {
 
     @JsonProperty('@graph', Graph, true)

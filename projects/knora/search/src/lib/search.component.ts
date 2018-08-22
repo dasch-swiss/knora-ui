@@ -12,7 +12,7 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
     animate,
@@ -48,6 +48,8 @@ import {
 
 
 export class SearchComponent implements OnInit {
+
+    @Input() route: string = '/search';
 
     searchQuery: string;
 
@@ -94,7 +96,7 @@ export class SearchComponent implements OnInit {
     doSearch(search_ele: HTMLElement): void {
         if (this.searchQuery !== undefined && this.searchQuery !== null) {
             this.toggleMenu('simpleSearch');
-            this._router.navigate(['/modules/search/fulltext/' + this.searchQuery]);
+            this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);
 
             // this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });
 
@@ -136,7 +138,7 @@ export class SearchComponent implements OnInit {
      */
     doPrevSearch(query: string): void {
         this.searchQuery = query;
-        this._router.navigate(['/modules/search/fulltext/' + query], { relativeTo: this._route });
+        this._router.navigate([this.route + '/fulltext/' + query], { relativeTo: this._route });
         this.toggleMenu('simpleSearch');
     }
 

@@ -1,7 +1,7 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
-import {StringLiteral} from '../../shared/strings';
+import { JsonObject, JsonProperty } from 'json2typescript';
+import { StringLiteral } from '../../shared/strings';
 
-@JsonObject
+@JsonObject('ListInfo')
 export class ListInfo {
 
     @JsonProperty('id', String, false)

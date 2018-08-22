@@ -1,6 +1,6 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
+import { JsonObject, JsonProperty } from 'json2typescript';
 
-@JsonObject
+@JsonObject('OntologyInfoShort')
 export class OntologyInfoShort {
 
     @JsonProperty('ontologyIri', String)

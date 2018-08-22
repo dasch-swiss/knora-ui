@@ -1,7 +1,7 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
-import {User} from './user';
+import { JsonObject, JsonProperty } from 'json2typescript';
+import { User } from './user';
 
-@JsonObject
+@JsonObject('UsersList')
 export class UsersList {
 
     @JsonProperty('users', [User])
@@ -9,7 +9,7 @@ export class UsersList {
 
 }
 
-@JsonObject
+@JsonObject('NewUserData')
 export class NewUserData {
 
     @JsonProperty('email', String, true)
@@ -25,7 +25,7 @@ export class NewUserData {
     public user_profile: User = undefined;
 }
 
-@JsonObject
+@JsonObject('NewUsersList')
 export class NewUsersList {
     @JsonProperty('users', [NewUserData])
     public users: NewUserData[] = undefined;
