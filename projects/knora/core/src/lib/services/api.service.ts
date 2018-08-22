@@ -33,7 +33,7 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders();
+        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
         return this.http.get(this.config.api + path, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
@@ -66,13 +66,11 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders();
+        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
         return this.http.post(this.config.api + path, body, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
-
-                // console.log(response);
 
                 const result = new ApiServiceResult();
                 result.status = response.status;
@@ -103,7 +101,7 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders();
+        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
         return this.http.put(this.config.api + path, body, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
@@ -139,7 +137,7 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders();
+        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
         return this.http.delete(this.config.api + path, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
@@ -206,7 +204,7 @@ export abstract class ApiService {
     protected setHeaders(): HttpHeaders {
         let currentUser: CurrentUser;
         let subscription: Subscription;
-        // TODO: get the currentUser information from authenticationCacheService instead from localStorage
+
         // get key from local storage
         const key = localStorage.getItem('session_id');
 
@@ -234,11 +232,12 @@ export abstract class ApiService {
 
     }
     */
-    /**
+    /*
+    /!**
      * Appends to existing options if they exist.
      * @param {HttpHeaders} options
      * @returns {HttpHeaders}
-     */
+     *!/
     protected appendToOptions(options: any): any {
 
         let headers: HttpHeaders;
@@ -265,12 +264,13 @@ export abstract class ApiService {
         }
         return options;
     }
-
-    /**
+*/
+    /*
+    /!**
      * Appends to existing headers if they exist.
      * @param {Headers} headers
      * @returns {Headers}
-     */
+     *!/
     protected appendAuthorizationHeader(headers?: HttpHeaders): HttpHeaders {
 
 
@@ -287,5 +287,5 @@ export abstract class ApiService {
         }
         return headers;
     }
-
+*/
 }

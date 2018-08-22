@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ApiServiceError, AuthenticationResponse, UsersService } from '@knora/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiServiceError, ApiServiceResult, UsersService } from '@knora/core';
 import { AuthenticationService } from '../authentication.service';
 import { SessionService } from '../session/session.service';
 
@@ -15,7 +15,9 @@ export class LoginComponent implements OnInit {
     /**
      * navigate to the defined url after login
      */
-    @Input() navigate: string;
+    @Input() navigate?: string;
+
+    returnUrl: string;
 
     frm: FormGroup;
 
@@ -61,24 +63,16 @@ export class LoginComponent implements OnInit {
                 private _session: SessionService,
                 private _users: UsersService,
                 private _fb: FormBuilder,
+                private _route: ActivatedRoute,
                 private _router: Router) {
     }
 
     ngOnInit() {
-        /*
-
-                this._auth.getUser('root@example.com').subscribe(
-                    (result: User) => {
-
-                        console.log(result);
-                    },
-                    (error: ApiServiceError) => {
-                        console.error(error);
-                    }
-                );
-        */
 
         this.buildForm();
+
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     buildForm(): void {
@@ -89,7 +83,6 @@ export class LoginComponent implements OnInit {
 
         this.frm.valueChanges
             .subscribe(data => this.onValueChanged(data));
-
     }
 
     /**
@@ -118,6 +111,12 @@ export class LoginComponent implements OnInit {
 
     doLogin() {
 
+        // reset the error messages
+        this.errorMessage = undefined;
+        this.loginErrorUser = false;
+        this.loginErrorPw = false;
+        this.loginErrorServer = false;
+
         // make sure form values are valid
         if (this.frm.invalid) {
             this.loginErrorPw = true;
@@ -128,35 +127,23 @@ export class LoginComponent implements OnInit {
         // Reset status
         this.loading = true;
 
-        // reset the error messages
-        this.loginErrorUser = false;
-        this.loginErrorPw = false;
-        this.loginErrorServer = false;
-
-
         // Grab values from form
         const username = this.frm.get('email').value;
         const password = this.frm.get('password').value;
 
         this._auth.login(username, password)
             .subscribe(
-                (response: AuthenticationResponse) => {
+                (response: ApiServiceResult) => {
 
                     // we have a token; set the session now
-                    console.log('login component -- login -- response', response);
-
-
-                    this._session.setSession(response.token, username);
-
-                    // console.log('login component -- login -- _auth.login response', response);
+                    this._session.setSession(response.body.token, username);
 
                     this.loading = false;
-                    // go back to the previous route or to the route defined in the @Input
-                    if (this.navigate) {
-                        this._router.navigate([this.navigate]);
+                    // go back to the previous route or to the route defined in the @Input if navigate exists
+                    if (!this.navigate) {
+                        this._router.navigate([this.returnUrl]);
                     } else {
-                        // go to the previous url defined in the url params
-                        this._router.navigate(['/']);
+                        this._router.navigate([this.navigate]);
                     }
                 },
                 (error: ApiServiceError) => {
