@@ -32,7 +32,7 @@ import { CompareViewComponent } from './view/compare-view/compare-view.component
 import { GraphViewComponent } from './view/graph-view/graph-view.component';
 import { PropertiesViewComponent } from './view/properties-view/properties-view.component';
 
-import { MatCheckboxModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatSlideToggleModule } from '@angular/material';
+import { MatCardModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatListModule, MatNativeDateModule, MatSlideToggleModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -40,10 +40,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
     imports: [
         CommonModule,
+        MatCardModule,
         MatCheckboxModule,
         MatDatepickerModule,
         MatFormFieldModule,
         MatInputModule,
+        MatListModule,
         MatNativeDateModule,
         MatSlideToggleModule,
         ReactiveFormsModule
