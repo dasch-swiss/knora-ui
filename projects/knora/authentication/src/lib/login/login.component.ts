@@ -75,9 +75,6 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
 
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
-
         // check if a user is already logged in
         if (this._session.validateSession()) {
             this.loggedInUser = JSON.parse(localStorage.getItem('session')).user.name;
@@ -146,18 +143,23 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 (response: ApiServiceResult) => {
 
-                    this.loggedInUser = username;
-
                     // we have a token; set the session now
                     this._session.setSession(response.body.token, username);
 
-                    this.loading = false;
-                    // go back to the previous route or to the route defined in the @Input if navigate exists
-                    if (!this.navigate) {
-                        this._router.navigate([this.returnUrl]);
-                    } else {
-                        this._router.navigate([this.navigate]);
-                    }
+                    setTimeout(() => {
+                        // get return url from route parameters or default to '/'
+                        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+
+
+                        // go back to the previous route or to the route defined in the @Input if navigate exists
+                        if (!this.navigate) {
+                            this._router.navigate([this.returnUrl]);
+                        } else {
+                            this._router.navigate([this.navigate]);
+                        }
+
+                        this.loading = false;
+                    }, 2000);
                 },
                 (error: ApiServiceError) => {
                     // error handling
