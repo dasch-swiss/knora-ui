@@ -19,10 +19,15 @@ export class LoginComponent implements OnInit {
 
     returnUrl: string;
 
+    // is there already a valid session?
+    loggedInUser: string;
+
+    // form
     frm: FormGroup;
 
     loading = false;
 
+    // general error message
     errorMessage: any;
 
     // specific error messages
@@ -44,11 +49,13 @@ export class LoginComponent implements OnInit {
         }
     };
 
+    // error definitions for the following form fields
     formErrors = {
         'email': '',
         'password': ''
     };
 
+    // error messages for the form fields defined in formErrors
     validationMessages = {
         'email': {
             'required': 'user name is required.'
@@ -61,7 +68,6 @@ export class LoginComponent implements OnInit {
 
     constructor(private _auth: AuthenticationService,
                 private _session: SessionService,
-                private _users: UsersService,
                 private _fb: FormBuilder,
                 private _route: ActivatedRoute,
                 private _router: Router) {
@@ -69,10 +75,15 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
 
-        this.buildForm();
-
         // get return url from route parameters or default to '/'
         this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+
+        // check if a user is already logged in
+        if (this._session.validateSession()) {
+            this.loggedInUser = JSON.parse(localStorage.getItem('session')).user.name;
+        } else {
+            this.buildForm();
+        }
     }
 
     buildForm(): void {
@@ -135,6 +146,8 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 (response: ApiServiceResult) => {
 
+                    this.loggedInUser = username;
+
                     // we have a token; set the session now
                     this._session.setSession(response.body.token, username);
 
@@ -170,5 +183,9 @@ export class LoginComponent implements OnInit {
 
     }
 
+    logout() {
+        this._auth.logout();
+        location.reload(true);
+    }
 
 }
