@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiServiceError, AuthenticationResponse, User, UsersService } from '@knora/core';
+import { ApiServiceError, AuthenticationResponse, UsersService } from '@knora/core';
 import { AuthenticationService } from '../authentication.service';
 import { SessionService } from '../session/session.service';
 
@@ -65,6 +65,19 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+        /*
+
+                this._auth.getUser('root@example.com').subscribe(
+                    (result: User) => {
+
+                        console.log(result);
+                    },
+                    (error: ApiServiceError) => {
+                        console.error(error);
+                    }
+                );
+        */
+
         this.buildForm();
     }
 
@@ -127,12 +140,18 @@ export class LoginComponent implements OnInit {
 
         this._auth.login(username, password)
             .subscribe(
-                (response: any) => {
+                (response: AuthenticationResponse) => {
+
+                    // we have a token; set the session now
+                    console.log('login component -- login -- response', response);
+
+
+                    this._session.setSession(response.token, username);
 
                     // console.log('login component -- login -- _auth.login response', response);
 
                     this.loading = false;
-                    // TODO: go back to the previous route
+                    // go back to the previous route or to the route defined in the @Input
                     if (this.navigate) {
                         this._router.navigate([this.navigate]);
                     } else {
@@ -140,9 +159,7 @@ export class LoginComponent implements OnInit {
                         this._router.navigate(['/']);
                     }
                 },
-                (error) => {
-
-                    console.error('login comp -- error', error);
+                (error: ApiServiceError) => {
                     // error handling
                     if (error.status === 0) {
                         this.loginErrorUser = false;

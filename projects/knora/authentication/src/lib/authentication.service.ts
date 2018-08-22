@@ -1,31 +1,17 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { AuthenticationResponse, KuiCoreConfig, ApiServiceError } from '@knora/core';
+import { ApiServiceError, KuiCoreConfig } from '@knora/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { SessionService } from './session/session.service';
-
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthenticationService {
 
-
-    constructor(private _session: SessionService,
-                private _http: HttpClient,
+    constructor(public http: HttpClient,
                 @Inject('config') public config: KuiCoreConfig) {
-    }
 
-    /**
-     * is a user logged in? returns true or false;
-     * it's a mix of checking session.validation and this.authenticate
-     * incl. update session if it's necessary
-     *
-     * @returns
-     */
-    public loggedIn() {
-        return (this._session.validateSession());
     }
 
     /**
@@ -36,43 +22,28 @@ export class AuthenticationService {
      * @param password
      * @returns
      */
-    public login(username: string, password: string) {
+    login(username: string, password: string): Observable<any> {
 
-        return this._http.post(this.config.api + '/v2/authentication',
-            {email: username, password: password})
-            .pipe(
-                map((authRes: AuthenticationResponse) => {
-                    // console.log('ApiServie -- signIn http.post -- res', authRes);
-
-                    // we have a token; set the session now
-                    this._session.setSession(authRes.token, username);
-
-                    return {token: authRes.token, name: username};
+        return this.http.post(
+            this.config.api + '/v2/authentication',
+            {email: username, password: password},
+            {observe: 'response'}).pipe(
+                map((response: HttpResponse<any>): any => {
+                    return response;
                 }),
                 catchError((error: HttpErrorResponse) => {
-                        return this.handleRequestError(error);
+
+                    return this.handleRequestError(error);
                 })
             );
     }
 
-    public logout() {
+
+    logout() {
         // destroy the session
-        this._session.destroySession();
+        localStorage.removeItem('session');
     }
 
-    /**
-     * error handler for login process
-     *
-     * @param error
-     * @returns
-     */
-    private handleError(error: Response | any) {
-        console.error('AuthenticationService -- handleError', error);
-        // TODO: destroy any session
-
-        // throw error
-        return throwError(error);
-    }
 
     /**
      * handle request error in case of server error
@@ -81,7 +52,6 @@ export class AuthenticationService {
      * @returns
      */
     protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
-        console.error('authentication service -- handleRequestError', error);
         const serviceError = new ApiServiceError();
         serviceError.status = error.status;
         serviceError.statusText = error.statusText;
