@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { ApiServiceError, KuiCoreConfig } from '@knora/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { SessionService } from './session/session.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +11,17 @@ import { catchError, map } from 'rxjs/operators';
 export class AuthenticationService {
 
     constructor(public http: HttpClient,
+                private _session: SessionService,
                 @Inject('config') public config: KuiCoreConfig) {
 
+    }
+
+    /**
+     * validate if a user is logged in or not
+     * and the session is active
+     */
+    session(): boolean {
+        return this._session.validateSession();
     }
 
     /**
