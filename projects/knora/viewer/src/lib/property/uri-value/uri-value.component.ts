@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ReadUriValue } from '@knora/core';
 
 @Component({
   selector: 'kui-uri-value',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./uri-value.component.scss']
 })
 export class UriValueComponent implements OnInit {
+
+  @Input() valueObject: ReadUriValue;
 
   constructor() { }
 
