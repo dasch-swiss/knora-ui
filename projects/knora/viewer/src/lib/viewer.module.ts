@@ -12,6 +12,10 @@ import { AnnotationComponent } from './resource/annotation/annotation.component'
 import { LinkObjComponent } from './resource/link-obj/link-obj.component';
 import { ObjectComponent } from './resource/object/object.component';
 import { TextValueComponent } from './property/text-value/text-value.component';
+import { TextValueAsStringComponent } from './property/text-value-as-string/text-value-as-string.component';
+import { TextValueAsHtmlComponent } from './property/text-value-as-html/text-value-as-html.component';
+import { TextValueAsXmlComponent } from './property/text-value-as-xml/text-value-as-xml.component';
+import { TextfileValueComponent } from './property/textfile-value/textfile-value.component';
 import { DateValueComponent } from './property/date-value/date-value.component';
 import { IntegerValueComponent } from './property/integer-value/integer-value.component';
 import { ColorValueComponent } from './property/color-value/color-value.component';
@@ -35,6 +39,8 @@ import { PropertiesViewComponent } from './view/properties-view/properties-view.
 import { MatCardModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatListModule, MatNativeDateModule, MatSlideToggleModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
+import { KuiCoreModule } from '@knora/core';
+import { KuiActionModule } from '@knora/action';
 
 
 @NgModule({
@@ -48,7 +54,9 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatListModule,
         MatNativeDateModule,
         MatSlideToggleModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        KuiCoreModule,
+        KuiActionModule
 
     ],
     declarations: [
@@ -64,6 +72,10 @@ import { ReactiveFormsModule } from '@angular/forms';
         LinkObjComponent,
         ObjectComponent,
         TextValueComponent,
+        TextValueAsStringComponent,
+        TextValueAsHtmlComponent,
+        TextValueAsXmlComponent,
+        TextfileValueComponent,
         DateValueComponent,
         IntegerValueComponent,
         ColorValueComponent,
@@ -97,6 +109,10 @@ import { ReactiveFormsModule } from '@angular/forms';
         LinkObjComponent,
         ObjectComponent,
         TextValueComponent,
+        TextValueAsStringComponent,
+        TextValueAsHtmlComponent,
+        TextValueAsXmlComponent,
+        TextfileValueComponent,
         DateValueComponent,
         IntegerValueComponent,
         ColorValueComponent,

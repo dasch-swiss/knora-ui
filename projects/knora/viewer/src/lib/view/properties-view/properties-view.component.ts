@@ -43,10 +43,10 @@ export class PropertiesViewComponent implements OnInit, OnChanges {
 
     KnoraConstants = KnoraConstants;
 
-    constructor(private _resourceService: ResourceService,
+    constructor(
+        private _resourceService: ResourceService,
         private _cacheService: OntologyCacheService,
-        private _incomingService: IncomingService,
-    ) { }
+        private _incomingService: IncomingService) { }
 
     ngOnChanges(changes: { [key: string]: SimpleChange }) {
         // prevent duplicate requests. if isFirstChange resource will be requested on ngOnInit
@@ -63,6 +63,7 @@ export class PropertiesViewComponent implements OnInit, OnChanges {
         this._resourceService.getResource(iri)
             .subscribe(
                 (result: ApiServiceResult) => {
+                    // console.log('result: ', result);
                     const promises = jsonld.promises;
                     // compact JSON-LD using an empty context: expands all Iris
                     const promise = promises.compact(result.body, {});
@@ -81,14 +82,15 @@ export class PropertiesViewComponent implements OnInit, OnChanges {
                             this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
                                 (resourceClassInfos: any) => {
                                     // initialize ontology information
-                                    this.ontologyInfo = resourceClassInfos;
+                                    this.ontologyInfo = resourceClassInfos; // console.log('initialization of ontologyInfo: ', this.ontologyInfo); > object received
 
                                     // prepare a possibly attached image file to be displayed
-                                    this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
+                                    // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
 
                                     this.resource = resourceSeq.resources[0];
+                                    // console.log('resource: ', this.resource);
 
-                                    this.requestIncomingResources();
+                                    //this.requestIncomingResources();
                                 },
                                 (err) => {
 
@@ -143,8 +145,8 @@ export class PropertiesViewComponent implements OnInit, OnChanges {
     /**
      * Gets the incoming regions for [[this.resource]].
      *
-     * @param offset the offset to be used (needed for paging). First request uses an offset of 0.
-     * @param function to be called when new images have been loaded from the server. It takes the number of images returned as an argument.
+     * @param offset                                   the offset to be used (needed for paging). First request uses an offset of 0.
+     * @param callback    function to be called when new images have been loaded from the server. It takes the number of images returned as an argument.
      */
     private getIncomingRegions(offset: number, callback?: (numberOfResources: number) => void): void {
         this._incomingService.getIncomingRegions(this.resource.id, offset).subscribe(
@@ -196,8 +198,8 @@ export class PropertiesViewComponent implements OnInit, OnChanges {
      * Get StillImageRepresentations pointing to [[this.resource]].
      * This method may have to called several times with an increasing offsetChange in order to get all available StillImageRepresentations.
      *
-     * @param offset the offset to be used (needed for paging). First request uses an offset of 0.
-     * @param function to be called when new images have been loaded from the server. It takes the number of images returned as an argument.
+     * @param offset                                   the offset to be used (needed for paging). First request uses an offset of 0.
+     * @param callback    function to be called when new images have been loaded from the server. It takes the number of images returned as an argument.
      */
     private getIncomingStillImageRepresentations(offset: number, callback?: (numberOfResources: number) => void): void {
         // make sure that this.resource has been initialized correctly
@@ -268,7 +270,7 @@ export class PropertiesViewComponent implements OnInit, OnChanges {
      * Get resources pointing to [[this.resource]] with properties other than knora-api:isPartOf and knora-api:isRegionOf.
      *
      * @param offset the offset to be used (needed for paging). First request uses an offset of 0.
-     * @param function to be called when new images have been loaded from the server. It takes the number of images returned as an argument.
+     * @param callback function to be called when new images have been loaded from the server. It takes the number of images returned as an argument.
      */
     private getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {
         this._incomingService.getIncomingLinksForResource(this.resource.id, offset).subscribe(
@@ -314,7 +316,7 @@ export class PropertiesViewComponent implements OnInit, OnChanges {
      * Creates a collection of [[StillImageRepresentation]] belonging to the given resource and assigns it to it.
      * Each [[StillImageRepresentation]] represents an image including regions.
      *
-     * @param resource The resource to get the images for.
+     * @param resource          The resource to get the images for.
      * @returns A collection of images for the given resource.
      */
     private collectImagesAndRegionsForResource(resource: ReadResource): void {
