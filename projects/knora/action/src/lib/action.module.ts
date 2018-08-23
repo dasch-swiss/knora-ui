@@ -9,6 +9,7 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { AdminImageDirective } from './admin-image/admin-image.directive';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { KeyPipe } from './pipes/key.pipe';
+import { GndDirective } from './directives/gnd.directive';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { KeyPipe } from './pipes/key.pipe';
         SortByPipe,
         AdminImageDirective,
         ReversePipe,
-        KeyPipe
+        KeyPipe,
+        GndDirective
     ],
     exports: [
         ProgressIndicatorComponent,
@@ -34,7 +36,8 @@ import { KeyPipe } from './pipes/key.pipe';
         SortByPipe,
         AdminImageDirective,
         ReversePipe,
-        KeyPipe
+        KeyPipe,
+        GndDirective
     ]
 })
 export class KuiActionModule {
