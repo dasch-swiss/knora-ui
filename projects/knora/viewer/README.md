@@ -9,7 +9,7 @@ The viewer module contains object components to show the resource class represen
 
 It has the following structure:
 
-## object
+## resource
   - stillImage
   - movingImage
   - audio
@@ -20,11 +20,16 @@ It has the following structure:
   - region
   - annotation
   - linkObj
+  - object
 
 ## property
   - textValue
+  - textValueAsString
+  - textValueAsHtml
+  - textValueAsXml
+  - textfileValue
   - dateValue
-  - intValue
+  - integerValue
   - colorValue
   - decimalValue
   - uriValue
@@ -40,6 +45,7 @@ It has the following structure:
   - listView
   - gridView
   - tableView
-  - objectView
+  - resourceView
   - compareView
   - graphView
+  - propertiesView
