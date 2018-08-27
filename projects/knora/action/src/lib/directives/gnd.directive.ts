@@ -6,7 +6,7 @@ import { KnoraConstants } from '@knora/core';
  */
 @Directive({
     // tslint:disable-next-line:directive-selector
-    selector: '[kui-gnd]'
+    selector: '[gnd]'
 })
 export class GndDirective implements OnInit {
     @Input('gnd') private gnd: string = ''; // the GND identifier to be rendered
