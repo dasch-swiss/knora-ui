@@ -14,8 +14,8 @@ It has the following structure:
   - movingImage
   - audio
   - ddd (3d / rti)
-  - text
-  - document
+  - text (long texts stored in eXist-db)
+  - document (various types of text documents like PDF, Word etc...)
   - collection
   - region
   - annotation
@@ -24,9 +24,9 @@ It has the following structure:
 
 ## property
   - textValue
-  - textValueAsString
-  - textValueAsHtml
-  - textValueAsXml
+    - textValueAsString
+    - textValueAsHtml
+    - textValueAsXml
   - textfileValue
   - dateValue
   - integerValue
