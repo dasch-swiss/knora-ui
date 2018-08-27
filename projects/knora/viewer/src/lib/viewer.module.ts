@@ -12,9 +12,9 @@ import { AnnotationComponent } from './resource/annotation/annotation.component'
 import { LinkObjComponent } from './resource/link-obj/link-obj.component';
 import { ObjectComponent } from './resource/object/object.component';
 import { TextValueComponent } from './property/text-value/text-value.component';
-import { TextValueAsStringComponent } from './property/text-value-as-string/text-value-as-string.component';
-import { TextValueAsHtmlComponent } from './property/text-value-as-html/text-value-as-html.component';
-import { TextValueAsXmlComponent } from './property/text-value-as-xml/text-value-as-xml.component';
+import { TextValueAsStringComponent } from './property/text-value/text-value-as-string/text-value-as-string.component';
+import { TextValueAsHtmlComponent } from './property/text-value/text-value-as-html/text-value-as-html.component';
+import { TextValueAsXmlComponent } from './property/text-value/text-value-as-xml/text-value-as-xml.component';
 import { TextfileValueComponent } from './property/textfile-value/textfile-value.component';
 import { DateValueComponent } from './property/date-value/date-value.component';
 import { IntegerValueComponent } from './property/integer-value/integer-value.component';
