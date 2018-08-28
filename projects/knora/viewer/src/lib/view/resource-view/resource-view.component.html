@@ -1,12 +1,21 @@
-<!-- <kui-still-image></kui-still-image>
-<kui-moving-image></kui-moving-image> -->
-
 <mat-card>
+
+    <kui-still-image></kui-still-image>
+    <kui-moving-image></kui-moving-image>
+    <kui-annotation></kui-annotation>
+    <kui-audio></kui-audio>
+    <kui-collection></kui-collection>
+    <kui-ddd></kui-ddd>
+    <kui-document></kui-document>
+    <kui-link-obj></kui-link-obj>
+    <kui-object></kui-object>
+    <kui-region></kui-region>
+    <kui-text></kui-text>
+
     <h2>metadata for resource {{ resource?.label}} ({{ resource?.id }})</h2>
     <h3>type: {{ontologyInfo?.getLabelForResourceClass(resource?.type)}}</h3>
 
     <div *ngFor="let prop of resource?.properties | key">
-
         <mat-list>
             <span>{{ontologyInfo?.getLabelForProperty(prop.key)}}</span>
             <mat-list-item *ngFor="let val of prop.value">
@@ -31,4 +40,5 @@
             </mat-list-item>
         </mat-list>
     </div>
+
 </mat-card>
