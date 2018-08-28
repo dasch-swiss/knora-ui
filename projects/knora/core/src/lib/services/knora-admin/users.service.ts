@@ -21,6 +21,8 @@ import { KuiCoreModule } from '../../core.module';
 })
 export class UsersService extends ApiService {
 
+    usersUrl = '/admin/users';
+
     // ------------------------------------------------------------------------
     // GET
     // ------------------------------------------------------------------------
