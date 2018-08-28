@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { KnoraConstants, OntologyInformation, ReadLinkValue } from '@knora/core';
+import { ResourceDialogComponent } from '@knora/action';
 
 @Component({
   selector: 'kui-link-value',
@@ -9,24 +10,24 @@ import { KnoraConstants, OntologyInformation, ReadLinkValue } from '@knora/core'
 })
 export class LinkValueComponent implements OnInit {
 
-    @Input() valueObject: ReadLinkValue;
-    @Input() ontologyInfo: OntologyInformation;
+  @Input() valueObject: ReadLinkValue;
+  @Input() ontologyInfo: OntologyInformation;
 
-    KnoraConstants = KnoraConstants;
+  KnoraConstants = KnoraConstants;
 
-    constructor(private dialog: MatDialog) {
-    }
+  constructor(private dialog: MatDialog) {
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
-    /* showReferredResourceInDialog() {
-      // TODO: create ObjectDialogComponent
+  showReferredResourceInDialog() {
+    // TODO: create ObjectDialogComponent
 
-        const config: MatDialogConfig = ObjectDialogComponent.createConfiguration(this.valueObject.referredResourceIri);
+    const config: MatDialogConfig = ResourceDialogComponent.createConfiguration(this.valueObject.referredResourceIri);
 
-        this.dialog.open(ObjectDialogComponent, config);
+    this.dialog.open(ResourceDialogComponent, config);
 
-    } */
+  }
 
 }

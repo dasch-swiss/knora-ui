@@ -1,35 +1,3 @@
-<mat-card>
-    <h2>Properties view</h2>
-    <p>resource id: {{ resource?.id }}</p>
-    <p>resource label: {{ resource?.label}}</p>
-    <p>resource type: {{ resource?.type }}</p>
-    <p>resource - label of the type: {{ontologyInfo?.getLabelForResourceClass(resource?.type)}}</p>
-    <div mat-line *ngFor="let prop of resource?.properties | key">
-        <span>{{ontologyInfo?.getLabelForProperty(prop.key)}}</span>
-        <mat-list>
-            <mat-list-item *ngFor="let val of prop.value | key">
-                <span [ngSwitch]="val.value.getClassName()">
-                    class name: {{val.value}}
-<!--                <kui-text-value-as-html *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml" [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="true"></kui-text-value-as-html>
--->                 <kui-color-value *ngSwitchCase="KnoraConstants.ReadColorValue" [valueObject]="val.value"></kui-color-value>
-                    <!-- <kui-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString" [valueObject]="val.value"></kui-text-value-as-string>
-                    <kui-text-value-as-xml *ngSwitchCase="KnoraConstants.ReadTextValueAsXml" [valueObject]="val.value"></kui-text-value-as-xml>
-                    <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value"></kui-date-value>
-                    <kui-link-value *ngSwitchCase="KnoraConstants.ReadLinkValue" [valueObject]="val.value" [ontologyInfo]="ontologyInfo"></kui-link-value>
-                    <kui-integer-value *ngSwitchCase="KnoraConstants.ReadIntegerValue" [valueObject]="val.value"></kui-integer-value>
-                    <kui-decimal-value *ngSwitchCase="KnoraConstants.ReadDecimalValue" [valueObject]="val.value"></kui-decimal-value>
-                    <kui-geometry-value *ngSwitchCase="KnoraConstants.ReadGeomValue" [valueObject]="val.value"></kui-geometry-value>
-                    -->
-                    <!--
-                    <kui-uri-value *ngSwitchCase="KnoraConstants.ReadUriValue" [valueObject]="val.value"></kui-uri-value>
-                    <kui-boolean-value *ngSwitchCase="KnoraConstants.ReadBooleanValue" [valueObject]="val.value"></kui-boolean-value>
-                    <kui-interval-value *ngSwitchCase="KnoraConstants.ReadIntervalValue" [valueObject]="val.value"></kui-interval-value>
-                    <kui-list-value *ngSwitchCase="KnoraConstants.ReadListValue" [valueObject]="val.value"></kui-list-value>
-                    <kui-textfile-value *ngSwitchCase="KnoraConstants.TextFileValue" [valueObject]="val.value"></kui-textfile-value>
-                    <span *ngSwitchDefault="">Not supported {{val.value.getClassName()}}</span>
-                    -->
-                </span>
-            </mat-list-item>
-        </mat-list>
-    </div>
-</mat-card>
+<p>
+    properties-view works!
+</p>

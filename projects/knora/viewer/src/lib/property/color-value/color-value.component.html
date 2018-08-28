@@ -1,3 +1,5 @@
-<mat-form-field class="square-size">
+<!-- <mat-form-field class="square-size">
     <input type="color" matInput placeholder="Color" [value]="valueObject?.colorHex">
-</mat-form-field>
+</mat-form-field> -->
+
+<span [style.background-color]="valueObject?.colorHex">{{valueObject?.colorHex}}</span>

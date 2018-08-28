@@ -8,7 +8,7 @@ import { ReadIntegerValue } from '@knora/core';
 })
 export class IntegerValueComponent implements OnInit {
 
-    errorMessage: any;
+    /* errorMessage: any; */
     @Input() valueObject: ReadIntegerValue;
 
     constructor() {
