@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TextValueAsXmlComponent } from './text-value-as-xml.component';
+import { ReadTextValueAsXml } from '@knora/core';
 
 describe('TextValueAsXmlComponent', () => {
     let component: TextValueAsXmlComponent;
@@ -7,8 +8,7 @@ describe('TextValueAsXmlComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
-            ]
+            declarations: [TextValueAsXmlComponent]
         })
             .compileComponents();
     }));
@@ -19,7 +19,7 @@ describe('TextValueAsXmlComponent', () => {
         fixture.detectChanges();
     });
 
-    xit('should create', () => {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 });
