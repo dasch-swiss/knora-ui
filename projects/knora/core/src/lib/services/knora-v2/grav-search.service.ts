@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ExtendedSearchParams, SearchParamsService } from './search-params.service';
-import { KnoraConstants, KnoraSchema, PropertyWithValue, Utils } from '../../declarations';
+import { KnoraConstants, KnoraSchema, Utils } from '../../declarations';
+import { PropertyWithValue } from '../../declarations/knora-api/operators';
 
 /**
  * Represents an error that occurred when generating KnarQL.
@@ -18,25 +19,25 @@ class GravsearchGenerationError extends Error {
 export class GravsearchGenerationService {
 
     // map of complex knora-api value types to simple ones
-    typeConversionComplexToSimple = {
-        [KnoraConstants.IntValue]: KnoraConstants.xsdInteger, // use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer
-        [KnoraConstants.DecimalValue]: KnoraConstants.xsdDecimal,
-        [KnoraConstants.BooleanValue]: KnoraConstants.xsdBoolean,
-        [KnoraConstants.TextValue]: KnoraConstants.xsdString,
-        [KnoraConstants.DateValue]: KnoraConstants.dateSimple,
-        [KnoraConstants.IntervalValue]: KnoraConstants.intervalSimple,
-        [KnoraConstants.GeomValue]: KnoraConstants.geomSimple,
-        [KnoraConstants.ColorValue]: KnoraConstants.colorSimple,
-        [KnoraConstants.GeonameValue]: KnoraConstants.geonameSimple,
-        [KnoraConstants.UriValue]: KnoraConstants.xsdUri,
-        [KnoraConstants.StillImageFileValue]: KnoraConstants.fileSimple,
-        [KnoraConstants.FileValue]: KnoraConstants.fileSimple,
-        [KnoraConstants.MovingImageFileValue]: KnoraConstants.fileSimple,
-        [KnoraConstants.DDDFileValue]: KnoraConstants.fileSimple,
-        [KnoraConstants.AudioFileValue]: KnoraConstants.fileSimple,
-        [KnoraConstants.DocumentFileValue]: KnoraConstants.fileSimple,
-        [KnoraConstants.TextFileValue]: KnoraConstants.fileSimple,
-        [KnoraConstants.ListValue]: KnoraConstants.xsdString
+    public static typeConversionComplexToSimple = {
+        'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.xsdInteger, // use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer
+        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': KnoraConstants.xsdDecimal,
+        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.xsdBoolean,
+        'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.xsdString,
+        'http://api.knora.org/ontology/knora-api/v2#DateValue': KnoraConstants.dateSimple,
+        'http://api.knora.org/ontology/knora-api/v2#IntervalValue': KnoraConstants.intervalSimple,
+        'http://api.knora.org/ontology/knora-api/v2#GeomValue': KnoraConstants.geomSimple,
+        'http://api.knora.org/ontology/knora-api/v2#ColorValue': KnoraConstants.colorSimple,
+        'http://api.knora.org/ontology/knora-api/v2#GeonameValue': KnoraConstants.geonameSimple,
+        'http://api.knora.org/ontology/knora-api/v2#UriValue': KnoraConstants.xsdUri,
+        'http://api.knora.org/ontology/knora-api/v2#StillImageFileValue': KnoraConstants.fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#FileValue': KnoraConstants.fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#MovingImageFileValue': KnoraConstants.fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#DDDFileValue': KnoraConstants.fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#AudioFileValue': KnoraConstants.fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#DocumentFileValue': KnoraConstants.fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#TextFileValue': KnoraConstants.fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.xsdString
     };
 
     constructor(private _searchParamsService: SearchParamsService) { }
@@ -49,7 +50,7 @@ export class GravsearchGenerationService {
        */
     private convertComplexTypeToSimpleType(complexType: string): string {
 
-        const simpleType: string = this.typeConversionComplexToSimple[complexType];
+        const simpleType: string = GravsearchGenerationService.typeConversionComplexToSimple[complexType];
 
         if (simpleType !== undefined) {
             return simpleType;
@@ -118,18 +119,18 @@ export class GravsearchGenerationService {
                 if (propWithVal.property.isLinkProperty && propWithVal.valueLiteral.comparisonOperator.getClassName() === 'NotEquals') {
                     // do not include statement in results, because the query checks for the absence of this statement
                     statement = `FILTER NOT EXISTS {
-                      ${statement}
-                      ${propTypeAnnotation}
-                      ${propValueAnnotation}
-                  }`;
+${statement}
+${propTypeAnnotation}
+${propValueAnnotation}
+}`;
                 } else {
                     // TODO: check if statement should be returned returned in results (Boolean flag from checkbox)
                     returnStatements.push(statement);
                     statement = `
-                      ${statement}
-                      ${propTypeAnnotation}
-                      ${propValueAnnotation}
-                  `;
+${statement}
+${propTypeAnnotation}
+${propValueAnnotation}
+`;
                 }
 
                 // generate filter if comparison operator is not Exists
@@ -152,8 +153,8 @@ export class GravsearchGenerationService {
                 if (propWithVal.isSortCriterion) orderByCriteria.push(propValue);
 
                 return `${statement}
-              ${filter}
-              `;
+${filter}
+`;
 
             });
 
@@ -161,40 +162,40 @@ export class GravsearchGenerationService {
 
         if (orderByCriteria.length > 0) {
             orderByStatement = `
-          ORDER BY ${orderByCriteria.join(' ')};
-          `;
+ORDER BY ${orderByCriteria.join(' ')};
+`;
         }
 
         // template of the KnarQL query with dynamic components
         const gravsearchTemplate = `
-      PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
-      CONSTRUCT {
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+CONSTRUCT {
 
-          ?mainRes knora-api:isMainResource true .
+?mainRes knora-api:isMainResource true .
 
-          ${returnStatements.join('\n')}
+${returnStatements.join('\n')}
 
-      } WHERE {
+} WHERE {
 
-          ?mainRes a knora-api:Resource .
+?mainRes a knora-api:Resource .
 
-          ${mainResourceClass}
+${mainResourceClass}
 
-          ${props.join('')}
+${props.join('')}
 
-      }
-      ${orderByStatement}`;
+}
+${orderByStatement}`;
 
         // offset component of the KnarQL query
         const offsetTemplate = `
-      OFFSET ${offset}
-      `;
+OFFSET ${offset}
+`;
 
         // function that generates the same KnarQL query with the given offset
         const generateGravsearchQueryWithCustomOffset = (localOffset: number): string => {
             const offsetCustomTemplate = `
-          OFFSET ${localOffset}
-          `;
+OFFSET ${localOffset}
+`;
 
             return gravsearchTemplate + offsetCustomTemplate;
         };

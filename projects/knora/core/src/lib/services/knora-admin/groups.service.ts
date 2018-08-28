@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
-import {ApiService} from '../api.service';
-import {ApiServiceResult, Group, GroupResponse, GroupsResponse} from '../../declarations/';
-import {KuiCoreModule} from '../../core.module';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { ApiService } from '../api.service';
+import { ApiServiceResult, Group, GroupResponse, GroupsResponse } from '../../declarations/';
+import { KuiCoreModule } from '../../core.module';
 
 @Injectable({
     providedIn: KuiCoreModule

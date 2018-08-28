@@ -1,6 +1,5 @@
 import { KnoraConstants, KnoraSchema } from './knora-constants';
-import { Property } from '../../services/knora-v2/ontology-cache.service';
-import { GravsearchGenerationService } from '../../services/knora-v2/grav-search.service';
+import { GravsearchGenerationService, Property } from '../../services';
 
 
 /**
@@ -178,8 +177,7 @@ export class ValueLiteral implements Value {
      */
     constructor(
         public readonly value: string,
-        public readonly type: string,
-        private _gravSearchService?: GravsearchGenerationService) {
+        public readonly type: string) {
     }
 
 
@@ -195,9 +193,9 @@ export class ValueLiteral implements Value {
 
         // check if a Knora schema conversion is necessary, e.g., knora-api:dateValue (complex) to knora-api:date (simple).
         // xsd types will remain unchanged
-        if (schema === KnoraSchema.simple && this._gravSearchService.typeConversionComplexToSimple[this.type] !== undefined) {
+        if (schema === KnoraSchema.simple && GravsearchGenerationService.typeConversionComplexToSimple[this.type] !== undefined) {
             // convert to simple schema
-            literalType = this._gravSearchService.typeConversionComplexToSimple[this.type];
+            literalType = GravsearchGenerationService.typeConversionComplexToSimple[this.type];
         } else {
             // do not convert
             literalType = this.type;
