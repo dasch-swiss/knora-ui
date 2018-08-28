@@ -1,26 +1,31 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReadTextValueAsHtmlComponent } from './text-value-as-html.component';
+import { MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { TextValueAsHtmlComponent } from './text-value-as-html.component';
+import { OntologyInformation, ReadTextValueAsHtml } from '@knora/core';
+import { MathJaxDirective } from '@knora/action';
 
-describe('ReadTextValueAsHtmlComponent', () => {
-    let component: ReadTextValueAsHtmlComponent;
-    let fixture: ComponentFixture<ReadTextValueAsHtmlComponent>;
+describe('TextValueAsHtmlComponent', () => {
+    let component: TextValueAsHtmlComponent;
+    let fixture: ComponentFixture<TextValueAsHtmlComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
-                ReadTextValueAsHtmlComponent
+            imports: [MatDialogModule, MatSnackBarModule],
+            declarations: [
+                TextValueAsHtmlComponent,
+                MathJaxDirective
             ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ReadTextValueAsHtmlComponent);
+        fixture = TestBed.createComponent(TextValueAsHtmlComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
 
-    xit('should create', () => {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 });

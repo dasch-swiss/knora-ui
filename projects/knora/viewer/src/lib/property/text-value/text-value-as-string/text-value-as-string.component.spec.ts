@@ -1,25 +1,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReadTextValueAsStringComponent } from './text-value-as-string.component';
+import { TextValueAsStringComponent } from './text-value-as-string.component';
+import { ReadTextValueAsString } from '@knora/core';
+import { GndDirective } from '@knora/action';
 
-describe('ReadTextValueAsStringComponent', () => {
-    let component: ReadTextValueAsStringComponent;
-    let fixture: ComponentFixture<ReadTextValueAsStringComponent>;
+describe('TextValueAsStringComponent', () => {
+    let component: TextValueAsStringComponent;
+    let fixture: ComponentFixture<TextValueAsStringComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
+            declarations: [
+                TextValueAsStringComponent,
+                GndDirective
             ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ReadTextValueAsStringComponent);
+        fixture = TestBed.createComponent(TextValueAsStringComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
 
-    xit('should create', () => {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 
