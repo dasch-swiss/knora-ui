@@ -28,7 +28,7 @@ const jsonld = require('jsonld');
 })
 export class ResourceViewComponent implements OnInit {
 
-  @Input() iri: string = 'http://rdfh.ch/2d301f147f03';
+  @Input() iri: string = 'http://rdfh.ch/8be1b7cf7103';
 
   ontologyInfo: OntologyInformation; // ontology information about resource classes and properties present in the requested resource with Iri `iri`
   resource: ReadResource; // the resource to be displayed
