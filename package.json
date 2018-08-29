@@ -29,7 +29,9 @@
     "json2typescript": "^1.0.5",
     "jsonld": "^1.0.2",
     "ngx-markdown": "^6.0.1",
+    "openseadragon": "^2.3.0",
     "rxjs": "^6.0.0",
+    "svg-overlay": "github:openseadragon/svg-overlay",
     "ts-md5": "^1.2.4",
     "zone.js": "^0.8.26"
   },
