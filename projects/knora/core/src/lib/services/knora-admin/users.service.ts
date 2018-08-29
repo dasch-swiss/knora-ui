@@ -14,14 +14,34 @@ import {
     UsersResponse
 } from '../../declarations/';
 
-import { KuiCoreModule } from '../../core.module';
-
 @Injectable({
-    providedIn: KuiCoreModule
+    providedIn: 'root'
 })
 export class UsersService extends ApiService {
 
-    usersUrl = '/admin/users';
+    // for the tests
+    usersUrl = 'http://0.0.0.0:3333/admin/users';
+    /*
+    // this was the setup as described on https://angular.io/guide/http
+    // and as a demo on: https://stackblitz.com/angular/ynbpdgjjbdx?file=src%2Fapp%2Fheroes%2Fheroes.service.spec.ts
+    // The tests worked fine. But with our ApiService configuration we get really bad errors with `ng t @knora/core`
+
+    private handleError: HandleError;
+
+    constructor(
+        private http: HttpClient,
+        httpErrorHandler: HttpErrorHandler) {
+        this.handleError = httpErrorHandler.createHandleError('UsersService');
+    }
+
+    getUsers (): Observable<User[]> {
+        return this.http.get<User[]>(this.usersUrl)
+            .pipe(
+                catchError(this.handleError('getUsers', []))
+            );
+    }
+    */
+
 
     // ------------------------------------------------------------------------
     // GET
