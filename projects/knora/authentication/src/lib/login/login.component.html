@@ -1,0 +1,58 @@
+<div class="login-form" *ngIf="!loggedInUser">
+    <div class="login-form-header">
+        <h3 mat-subheader>{{login.title}}</h3>
+    </div>
+    <div class="login-form-content">
+        <!-- This is the login form -->
+        <form class="login-form" [formGroup]="frm" (ngSubmit)="doLogin()">
+            <!-- Error message -->
+            <mat-hint *ngIf="errorMessage !== undefined" class="full-width">
+                <span *ngIf="loginErrorUser || loginErrorPw">{{login.error.failed}}</span>
+                <span *ngIf="loginErrorServer">{{login.error.server}}</span>
+            </mat-hint>
+
+            <!-- Username -->
+            <mat-form-field class="full-width login-field">
+                <mat-icon matPrefix>person</mat-icon>
+                <input matInput autofocus [placeholder]="login.name" formControlName="email">
+                <mat-hint *ngIf="formErrors.email" class="login-error">{{login.error.failed}}</mat-hint>
+            </mat-form-field>
+
+            <!-- Password -->
+            <mat-form-field class="full-width login-field">
+                <mat-icon matPrefix>lock</mat-icon>
+                <input matInput type="password" [placeholder]="login.pw" formControlName="password">
+                <mat-hint *ngIf="formErrors.password" class="login-error">{{login.error.failed}}</mat-hint>
+            </mat-form-field>
+
+            <!-- Button: Login -->
+            <div class="button-row full-width">
+                <button mat-raised-button type="submit"
+                        *ngIf="!loading"
+                        [disabled]="!frm.valid"
+                        class="full-width submit-button mat-primary">
+                    {{login.button}}
+                </button>
+                <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- a user is already logged in; show who it is and a logout button -->
+
+<div class="logout-form" *ngIf="loggedInUser">
+    <p>A user is already logged in:</p>
+    <p>{{loggedInUser}}</p>
+    <br>
+    <p>If it's not you, please logout!</p>
+    <div class="button-row full-width">
+        <button mat-raised-button
+                (click)="logout()"
+                *ngIf="!loading"
+                class="full-width mat-warn">
+            LOGOUT
+        </button>
+        <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
+    </div>
+</div>
