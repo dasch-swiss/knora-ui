@@ -1,5 +1,5 @@
-import {ReadStillImageFileValue} from '../../../';
-import {ImageRegion} from './image-region';
+import { ReadStillImageFileValue } from '../../../';
+import { ImageRegion } from './image-region';
 
 /**
  * Represents an image including its regions.
