@@ -3,10 +3,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ApiService } from '../api.service';
 import {
-    ApiServiceError,
     ApiServiceResult,
-    AuthenticationRequestPayload,
-    KnoraConstants,
     User,
     UserResponse,
     UsersResponse
