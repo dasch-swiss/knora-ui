@@ -14,7 +14,6 @@ export class PropertiesComponent implements OnInit {
         }
     };
 
-
     partOf: any;
 
     constructor(private _route: ActivatedRoute) {

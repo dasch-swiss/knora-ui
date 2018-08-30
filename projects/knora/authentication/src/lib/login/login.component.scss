@@ -1,0 +1,51 @@
+$warn: #ef5350;
+
+$width: 280px;
+
+.full-width {
+  width: 100%;
+}
+
+.mat-hint,
+.mat-form-field,
+.button-row {
+  margin-top: 24px;
+}
+
+.mat-hint {
+  background: rgba($warn, 0.39);
+  display: block;
+  margin-left: -16px;
+  padding: 16px;
+  text-align: center;
+  width: $width;
+}
+
+.login-form, .logout-form {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: $width;
+
+  .login-form-header {
+    margin-bottom: 24px;
+  }
+
+  .login-field {
+
+    .mat-icon {
+      font-size: 20px;
+      margin-right: 12px;
+    }
+  }
+
+  .button-row {
+    margin-top: 48px;
+  }
+}
+
+// mat-card-content
+
+.sign-up {
+  margin-top: 24px;
+}
