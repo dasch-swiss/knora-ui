@@ -3,7 +3,6 @@ import { ProjectsService } from './projects.service';
 import { HttpClientModule, HttpHandler } from '@angular/common/http';
 import { ApiServiceError, Project, ProjectResponse, ProjectsResponse } from '../../declarations/';
 import {
-
     anythingProjectResponseJson,
     imagesProject,
     imagesProjectResponseJson, incunabulaProject,
@@ -13,7 +12,6 @@ import {
 } from '../../test-data/admin/shared-test-data';
 import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
 import { KuiCoreModule } from '../../core.module';
-import { StoreService } from '../store.service';
 import { ApiService } from '../api.service';
 
 
@@ -27,8 +25,7 @@ fdescribe('ProjectsService', () => {
             ],
             providers: [
                 ApiService,
-                ProjectsService,
-                StoreService
+                ProjectsService
             ]
         });
     });
