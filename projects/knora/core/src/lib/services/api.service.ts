@@ -34,6 +34,7 @@ export abstract class ApiService {
         this.loading = true;
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
+        console.log(path);
 
         return this.http.get(this.config.api + path, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
@@ -44,6 +45,9 @@ export abstract class ApiService {
                 result.statusText = response.statusText;
                 result.url = path;
                 result.body = response.body;
+
+                console.log(response);
+
                 return result;
             }),
             catchError((error: HttpErrorResponse) => {

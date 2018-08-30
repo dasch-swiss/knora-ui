@@ -6,18 +6,17 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { ApiServiceError, User } from '../../declarations';
 import { KuiCoreModule } from '../../core.module';
 import { usersTestData } from '../../test-data/admin/shared-test-data';
-import { HttpClientModule } from '@angular/common/http';
 
 fdescribe('UsersService', () => {
-//     let httpClient: HttpClient;
-//     let httpTestingController: HttpTestingController;
+    let httpClient: HttpClient;
+    let httpTestingController: HttpTestingController;
     let usersService: UsersService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             // Import the HttpClient mocking services
             imports: [
-                HttpClientModule,
+                HttpClientTestingModule,
                 KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
             ],
             // Provide the service-under-test and its dependencies
@@ -29,8 +28,8 @@ fdescribe('UsersService', () => {
 
         // Inject the http, test controller, and service-under-test
         // as they will be referenced by each test.
-        // httpClient = TestBed.get(HttpClient);
-        // httpTestingController = TestBed.get(HttpTestingController);
+        httpClient = TestBed.get(HttpClient);
+        httpTestingController = TestBed.get(HttpTestingController);
         usersService = TestBed.get(UsersService);
     });
 
@@ -39,7 +38,7 @@ fdescribe('UsersService', () => {
         // httpTestingController.verify();
     });
 
-    fdescribe('#getUsers', () => {
+    describe('#getUsers', () => {
         const expectedUsers: User[] = usersTestData;
 
         beforeEach(() => {
@@ -72,14 +71,15 @@ fdescribe('UsersService', () => {
                             fail(error);
                         }
                     );
-                // usersService should have made one request to GET users from expected URL
-                // const req = httpTestingController.expectOne( usersService.usersUrl, 'expect one url' );
 
-                // TODO: fix the following setup. It doesn't work with our own ApiService configuration
-                // expect(req.request.method).toEqual('GET');
+
+                // usersService should have made one request to GET users from expected URL
+                httpTestingController.expectOne( (request) => {
+                    return request.url.match(service.url) && request.method === 'GET';
+                });
 
                 // Respond with the mock users
-                // req.flush(expectedUsers);
+//                req.flush(expectedUsers);
             })));
 
 

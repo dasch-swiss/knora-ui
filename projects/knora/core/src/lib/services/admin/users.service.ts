@@ -14,6 +14,8 @@ import {
 })
 export class UsersService extends ApiService {
 
+    url: string = this.config.api + '/admin/users';
+
 
     // ------------------------------------------------------------------------
     // GET

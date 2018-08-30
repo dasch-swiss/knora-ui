@@ -4,13 +4,14 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { KuiCoreModule } from '../../core.module';
 import { ApiService } from '../api.service';
-import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
+import { OntologyCacheService } from './ontology-cache.service';
 import { OntologyService } from './ontology.service';
 import { Observable } from 'rxjs';
 import { inject } from '@angular/core/testing';
+import { ApiServiceError } from '../../declarations';
 
 
-describe('OntologyCacheService', () => {
+fdescribe('OntologyCacheService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
     let ontologyCacheService: OntologyCacheService;
@@ -24,7 +25,7 @@ describe('OntologyCacheService', () => {
             providers: [
                 ApiService,
                 OntologyCacheService,
-                OntologyService
+                OntologyService,
             ]
         });
 
@@ -38,34 +39,42 @@ describe('OntologyCacheService', () => {
 
     afterEach(() => {
         // After every test, assert that there are no more pending requests.
-        httpTestingController.verify();
+        // httpTestingController.verify();
     });
 
     describe('BEOL ontology complex', () => {
         let expectedOntology;
+        let expectedOntology2;
 
         beforeEach(() => {
             ontologyCacheService = TestBed.get(OntologyCacheService);
             expectedOntology = require('../../test-data/ontologycache/beol-complex-onto.json') as String;
+            expectedOntology2 = require('../../test-data/ontologycache/knora-api-complex-onto.json') as String;
         });
 
-        it('should convert and cache the BEOL ontology complex', async(() => {
-            /*
-            
-                        heroService.getHeroes().subscribe(
-                            heroes => expect(heroes).toEqual(expectedHeroes, 'should return expected heroes'),
-                            fail
-                        );
-            
-                        // HeroService should have made one request to GET heroes from expected URL
-                        const req = httpTestingController.expectOne(heroService.heroesUrl);
-                        expect(req.request.method).toEqual('GET');
-            */
+        fit('should convert and cache the BEOL ontology complex', async(inject(
+            [OntologyCacheService], (service) => {
+
+
+                /*service.getEntityDefinitionsForOntologies(['http://0.0.0.0:3333/ontology/0801/beol/v2']).subscribe(
+                    (ontologies) => {
+                        console.log(ontologies);
+                        expect(ontologies).toEqual(expectedOntology, 'should return expected heroes');
+                    },
+                    (error) => {
+                          console.error(error);
+                      }
+                );*/
+
+
+            expect(service).toBeDefined();
 
             // expected resources classes defined in the BEOL ontology
             const resClassesInBEOL = [
-                'http://0.0.0.0:3333/ontology/0801/beol/v2#Archiv',
+                'http://0.0.0.0:3333/ontology/0801/beol/v2#Archive',
+                'http://0.0.0.0:3333/ontology/0801/beol/v2#documentImage',
                 'http://0.0.0.0:3333/ontology/0801/beol/v2#endnote',
+                'http://0.0.0.0:3333/ontology/0801/beol/v2#facsimile',
                 'http://0.0.0.0:3333/ontology/0801/beol/v2#figure',
                 'http://0.0.0.0:3333/ontology/0801/beol/v2#introduction',
                 'http://0.0.0.0:3333/ontology/0801/beol/v2#letter',
@@ -76,37 +85,55 @@ describe('OntologyCacheService', () => {
                 'http://0.0.0.0:3333/ontology/0801/beol/v2#section',
                 'http://0.0.0.0:3333/ontology/0801/beol/v2#writtenSource'];
 
-            ontologyCacheService.getEntityDefinitionsForOntologies(['http://0.0.0.0:3333/ontology/0801/beol/v2']).subscribe(
+
+            service.getEntityDefinitionsForOntologies(['http://0.0.0.0:3333/ontology/0801/beol/v2']).subscribe(
                 (ontoRes) => {
 
-                    console.log(ontoRes);
+                    // console.log(ontoRes);
 
                     expect(ontoRes.getResourceClassForOntology()['http://0.0.0.0:3333/ontology/0801/beol/v2']).toEqual(resClassesInBEOL, 'should get resource classes for beol');
 
                 },
-                (error) => {
+                (error: ApiServiceError) => {
                     console.error(error);
+                    fail(error);
                 }
-                /*                (ontoRes: OntologyInformation) => {
-                
-                                    console.log(ontoRes);
-                
-                                    const resClassesForBEOL = ontoRes.getResourceClassForOntology();
-                
-                                    expect(resClassesForBEOL['http://0.0.0.0:3333/ontology/0801/beol/v2']).toEqual(resClassesInBEOL, 'should get resource classes for beol');
-                                }, fail*/
             );
 
-            const req = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2F0.0.0.0%3A3333%2Fontology%2F0801%2Fbeol%2Fv2');
-            expect(req.request.method).toEqual('GET');
+            const call1 = httpTestingController.match(
+                (request) => {
 
-            req.flush(expectedOntology);
 
-        }));
+                    return request.url === 'http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2F0.0.0.0%3A3333%2Fontology%2F0801%2Fbeol%2Fv2' && request.method === 'GET';
+                }
+            );
 
-        afterEach(() => {
-            httpTestingController.verify();
-        });
+            /*const call2 = httpTestingController.match(
+                (request) => {
+                    console.log(request);
+
+                    return request.url === 'http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2Fapi.knora.org%2Fontology%2Fknora-api%2Fv2' && request.method === 'GET';
+                }
+            );*/
+
+            expect(call1.length).toEqual(2);
+            // expect(call2.length).toEqual(1);
+
+
+
+            // const req = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2F0.0.0.0%3A3333%2Fontology%2F0801%2Fbeol%2Fv2');
+
+            // expect(req.request.method).toEqual('GET');
+
+            // req.flush(expectedOntology);
+
+            // const req2 = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2Fapi.knora.org%2Fontology%2Fknora-api%2Fv2');
+            // expect(req2.request.method).toEqual('GET');
+
+            // req2.flush(expectedOntology2);
+
+        })));
+
 
     });
 

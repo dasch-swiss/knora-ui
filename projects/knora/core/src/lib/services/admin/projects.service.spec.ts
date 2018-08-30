@@ -16,7 +16,7 @@ import { ApiService } from '../api.service';
 
 
 
-fdescribe('ProjectsService', () => {
+describe('ProjectsService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
