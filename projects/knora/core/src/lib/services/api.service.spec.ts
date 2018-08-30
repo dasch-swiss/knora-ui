@@ -4,8 +4,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { KuiCoreModule } from '../core.module';
 
 import { ApiService } from './api.service';
-import { HttpErrorHandler } from './http-error-handler.service';
-import { MessageService } from './message.service';
 
 fdescribe('ApiService', () => {
     let httpClient: HttpClient;
@@ -21,9 +19,7 @@ fdescribe('ApiService', () => {
             ],
             // Provide the service-under-test and its dependencies
             providers: [
-                ApiService,
-                HttpErrorHandler,
-                MessageService
+                ApiService
             ]
         });
 
