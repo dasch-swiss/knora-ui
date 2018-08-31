@@ -8,7 +8,7 @@ import { OntologyCacheService } from './ontology-cache.service';
 import { OntologyService } from './ontology.service';
 import { Observable, of } from 'rxjs';
 import { inject } from '@angular/core/testing';
-import { ApiServiceError } from '../../declarations';
+import { ApiServiceError, ApiServiceResult } from '../../declarations';
 
 
 fdescribe('OntologyCacheService', () => {
@@ -52,7 +52,21 @@ fdescribe('OntologyCacheService', () => {
             expectedOntology2 = require('../../test-data/ontologycache/knora-api-complex-onto.json') as String;
         });
 
-        fit('should convert and cache the BEOL ontology complex', async(() => {
+        fit('should convert and cache the BEOL ontology complex', async(inject([OntologyService], (ontoService) => {
+            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake((param) => {
+                console.log(param)
+
+                let result = new ApiServiceResult();
+                result.status = 200;
+                result.statusText = '';
+                result.url = '';
+                result.body = (param === 'http://0.0.0.0:3333/ontology/0801/beol/v2' ? expectedOntology : expectedOntology2);
+
+                return of(
+                    result
+                );
+
+            });
 
 
                 /*service.getEntityDefinitionsForOntologies(['http://0.0.0.0:3333/ontology/0801/beol/v2']).subscribe(
@@ -100,7 +114,7 @@ fdescribe('OntologyCacheService', () => {
                 }
             );
 
-            let call1 = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2F0.0.0.0%3A3333%2Fontology%2F0801%2Fbeol%2Fv2');
+            /*let call1 = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2F0.0.0.0%3A3333%2Fontology%2F0801%2Fbeol%2Fv2');
 
 
 
@@ -112,7 +126,7 @@ fdescribe('OntologyCacheService', () => {
                 let call2 = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2Fapi.knora.org%2Fontology%2Fknora-api%2Fv2');
 
                 call2.flush(expectedOntology2);
-            }, 2000);
+            }, 2000);*/
 
 
 

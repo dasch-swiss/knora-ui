@@ -27,7 +27,7 @@ export class OntologyService extends ApiService {
      */
     getAllEntityDefinitionsForOntologies(ontologyIri: string): Observable<any> {
 
-        console.log(ontologyIri);
+        // console.log(ontologyIri);
 
         return this.httpGet('/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri));
 
