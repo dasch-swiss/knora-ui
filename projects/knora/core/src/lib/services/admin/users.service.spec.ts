@@ -7,7 +7,7 @@ import { User } from '../../declarations';
 import { KuiCoreModule } from '../../core.module';
 import { usersTestData } from '../../test-data/admin/shared-test-data';
 
-fdescribe('UsersService', () => {
+describe('UsersService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
     let usersService: UsersService;
