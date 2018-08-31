@@ -26,7 +26,9 @@ jobs:
           command: |
             node --version \
               && yarn --version \
-              && git --version
+              && git --version \
+              && yarn ng --version
+
       - run: yarn install
 
       - save_cache:
@@ -35,13 +37,14 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       # Build the libraries
-      # - run: yarn build:core
+      - run: yarn build-lib
 
       # Build the demo apps (from library packages)
       # - run: yarn build:app
 
       # Run unit tests!
       # - run: xvfb-run -a yarn ci:test
+      - run: yarn ng t --project @knora/core --watch=false --browsers=ChromeHeadless
 
       # Run e2e tests!
       # - run: xvfb-run -a yarn ci:e2e
