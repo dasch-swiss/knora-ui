@@ -21,12 +21,16 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
 
+      - run: yarn global add @angular/cli
+
       - run:
           name: Version Info
           command: |
             node --version \
               && yarn --version \
-              && git --version
+              && git --version \
+              && ng --version
+
       - run: yarn install
 
       - save_cache:
