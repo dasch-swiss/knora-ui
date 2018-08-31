@@ -19,7 +19,7 @@ import { KuiCoreModule } from '../../core.module';
 import { HttpClientModule } from '@angular/common/http';
 
 
-fdescribe('OntologyCacheService', () => {
+describe('OntologyCacheService', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [

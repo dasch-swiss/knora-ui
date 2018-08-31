@@ -11,7 +11,7 @@ import { inject } from '@angular/core/testing';
 import { ApiServiceError, ApiServiceResult } from '../../declarations';
 
 
-fdescribe('OntologyCacheService', () => {
+describe('OntologyCacheService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
     let ontologyCacheService: OntologyCacheService;
@@ -52,7 +52,7 @@ fdescribe('OntologyCacheService', () => {
             expectedOntology2 = require('../../test-data/ontologycache/knora-api-complex-onto.json') as String;
         });
 
-        fit('should convert and cache the BEOL ontology complex', async(inject([OntologyService], (ontoService) => {
+        it('should convert and cache the BEOL ontology complex', async(inject([OntologyService], (ontoService) => {
             spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake((param) => {
                 console.log(param);
 

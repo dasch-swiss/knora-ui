@@ -5,7 +5,7 @@ import { KuiCoreModule } from '../core.module';
 
 import { ApiService } from './api.service';
 
-fdescribe('ApiService', () => {
+describe('ApiService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
     let apiService: ApiService;
