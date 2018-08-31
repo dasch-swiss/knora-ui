@@ -17,6 +17,8 @@ env:
   global:
     - CXX=g++-4.9
 
+install: export CXX="g++-4.9"
+
 cache:
   yarn: true
   directories:
