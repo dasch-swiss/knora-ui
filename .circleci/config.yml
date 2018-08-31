@@ -21,15 +21,13 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
 
-      - run: yarn global add @angular/cli
-
       - run:
           name: Version Info
           command: |
             node --version \
               && yarn --version \
               && git --version \
-              && ng --version
+              && yarn ng --version
 
       - run: yarn install
 
@@ -46,7 +44,7 @@ jobs:
 
       # Run unit tests!
       # - run: xvfb-run -a yarn ci:test
-      - run: ng t @knora/core
+      - run: yarn ng t @knora/core
 
       # Run e2e tests!
       # - run: xvfb-run -a yarn ci:e2e

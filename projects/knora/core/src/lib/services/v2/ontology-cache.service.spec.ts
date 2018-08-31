@@ -54,9 +54,9 @@ fdescribe('OntologyCacheService', () => {
 
         fit('should convert and cache the BEOL ontology complex', async(inject([OntologyService], (ontoService) => {
             spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake((param) => {
-                console.log(param)
+                console.log(param);
 
-                let result = new ApiServiceResult();
+                const result = new ApiServiceResult();
                 result.status = 200;
                 result.statusText = '';
                 result.url = '';
@@ -160,7 +160,7 @@ fdescribe('OntologyCacheService', () => {
             // expect(call2.length).toEqual(1);
             // call2[0].flush(expectedOntology);
 
-        }));
+        })));
 
 
     });
