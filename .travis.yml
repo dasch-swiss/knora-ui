@@ -19,11 +19,6 @@ env:
 
 install: export CXX="g++-4.9"
 
-cache:
-  yarn: true
-  directories:
-    - "node_modules"
-
 addons:
   chrome: stable
 
