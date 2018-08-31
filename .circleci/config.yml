@@ -39,7 +39,7 @@ jobs:
       # Build the libraries
       - run: yarn build-lib
 
-      # Build the demo apps (from library packages)
+      # Build the demo app
       # - run: yarn build:app
 
       # Run unit tests!
