@@ -6,6 +6,16 @@ language: node_js
 node_js:
   - "8"
 
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-7.3
+
+env:
+   - CXX=g++-7.3
+
 cache:
   yarn: true
   directories:
