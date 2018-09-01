@@ -28,8 +28,7 @@ jobs:
           command: |
             node --version \
               && yarn --version \
-              && git --version \
-              && yarn ng --version
+              && git --version
 
       - run: yarn install
 
