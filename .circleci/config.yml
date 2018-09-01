@@ -20,8 +20,6 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
-          
-      - run: yarn global add @angular/cli
 
       - run:
           name: Version Info
