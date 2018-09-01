@@ -14,6 +14,7 @@ addons:
   chrome: stable
 
 before_script:
+  - npm install
 
 script:
   - npm ng t --project @knora/core --watch=false --browsers=ChromeHeadless
