@@ -16,4 +16,4 @@ addons:
 before_script:
 
 script:
-  - yarn ng t --project @knora/core --watch=false --browsers=ChromeHeadless
+  - npm ng t --project @knora/core --watch=false --browsers=ChromeHeadless
