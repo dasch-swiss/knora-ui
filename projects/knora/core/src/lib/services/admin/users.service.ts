@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-
-import { ApiServiceResult, User, UserResponse, UsersResponse } from '../../declarations/';
 import { ApiService } from '../api.service';
+import {
+    ApiServiceResult,
+    User,
+    UserResponse,
+    UsersResponse
+} from '../../declarations/';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UsersService extends ApiService {
+
+    usersUrl: string = this.config.api + '/admin/users';
+
 
     // ------------------------------------------------------------------------
     // GET

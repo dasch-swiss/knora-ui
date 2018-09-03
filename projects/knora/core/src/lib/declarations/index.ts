@@ -8,7 +8,6 @@ export * from './utils';
  * Interfaces for constants and operators
  */
 export * from './api/knora-constants';
-export * from './api/operators';
 
 /**
  * Interfaces for shared objects

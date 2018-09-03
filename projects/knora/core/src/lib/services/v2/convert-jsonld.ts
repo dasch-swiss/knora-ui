@@ -29,6 +29,22 @@ const jsonld = require('jsonld');
 export module ConvertJSONLD {
 
     /**
+     * Gets property names and filters out all non property names.
+     * Gets all members that have to be treated as value objects.
+     */
+    const getPropertyNames = (propName) => {
+        return propName !== '@id'
+            && propName !== '@type'
+            && propName !== KnoraConstants.RdfsLabel
+            && propName !== KnoraConstants.attachedToProject
+            && propName !== KnoraConstants.attachedToUser
+            && propName !== KnoraConstants.creationDate
+            && propName !== KnoraConstants.lastModificationDate
+            && propName !== KnoraConstants.hasPermissions;
+    };
+
+
+    /**
      * Construct a [[ReadResource]] from JSON-LD.
      *
      * @param resourceJSONLD an object describing the resource and its properties.
@@ -161,7 +177,7 @@ export module ConvertJSONLD {
             case KnoraConstants.DecimalValue:
 
                 // a decimal value is represented as a string in order to preserve its precision
-                const decVal: number = parseFloat(propValue[KnoraConstants.decimalValueAsDecimal]);
+                const decVal: number = parseFloat(propValue[KnoraConstants.decimalValueAsDecimal]['@value']);
 
                 const decimalValue = new ReadDecimalValue(propValue['@id'], propIri, decVal);
                 valueSpecificProp = decimalValue;
@@ -227,7 +243,7 @@ export module ConvertJSONLD {
                 const uriValue: ReadUriValue = new ReadUriValue(
                     propValue['@id'],
                     propIri,
-                    propValue[KnoraConstants.uriValueAsUri]
+                    propValue[KnoraConstants.uriValueAsUri]['@value']
                 );
 
                 valueSpecificProp = uriValue;
@@ -250,8 +266,8 @@ export module ConvertJSONLD {
             case KnoraConstants.IntervalValue:
 
                 // represented as strings to preserve precision
-                const intStart = parseFloat(propValue[KnoraConstants.intervalValueHasStart]);
-                const intEnd = parseFloat(propValue[KnoraConstants.intervalValueHasEnd]);
+                const intStart = parseFloat(propValue[KnoraConstants.intervalValueHasStart]['@value']);
+                const intEnd = parseFloat(propValue[KnoraConstants.intervalValueHasEnd]['@value']);
 
                 const intervalValue: ReadIntervalValue = new ReadIntervalValue(
                     propValue['@id'],
@@ -323,7 +339,15 @@ export module ConvertJSONLD {
 
         let propNames = Object.keys(resourceJSONLD);
         // filter out everything that is not a Knora property name
-        propNames = propNames.filter(propName => propName !== '@id' && propName !== '@type' && propName !== KnoraConstants.RdfsLabel);
+
+        /*
+        http://api.knora.org/ontology/knora-api/v2#attachedToProject: [  ]
+            http://api.knora.org/ontology/knora-api/v2#attachedToUser: [  ]
+            http://api.knora.org/ontology/knora-api/v2#creationDate: [  ]
+            http://api.knora.org/ontology/knora-api/v2#hasPermissions:
+        */
+
+        propNames = propNames.filter(getPropertyNames);
 
         const properties: ReadProperties = {};
 
@@ -418,7 +442,7 @@ export module ConvertJSONLD {
 
         let propNames = Object.keys(resourceJSONLD);
         // filter out everything that is not a Knora property name
-        propNames = propNames.filter(propName => propName !== '@id' && propName !== '@type' && propName !== KnoraConstants.RdfsLabel);
+        propNames = propNames.filter(getPropertyNames);
 
         const referredResourceClasses = [];
 
