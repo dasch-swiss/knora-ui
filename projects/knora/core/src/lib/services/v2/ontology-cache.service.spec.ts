@@ -64,8 +64,6 @@ describe('OntologyCacheService', () => {
             serveOntology = (ontologyIri: string) => {
                 let onto;
 
-                console.log(ontologyIri);
-
                 switch (ontologyIri) {
 
                     case 'http://0.0.0.0:3333/ontology/0801/beol/v2': {
@@ -780,6 +778,100 @@ describe('OntologyCacheService', () => {
 
         }));
 
+        it('should get an internal representation of a property from the cache', inject([OntologyService], (ontoService) => {
+
+            // serve ontology as JSON-LD when requested
+            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake(serveOntology);
+
+            expect(ontologyCacheService).toBeDefined();
+
+            const ontoResponseObs: Observable<OntologyInformation> = ontologyCacheService.getEntityDefinitionsForOntologies(['http://0.0.0.0:3333/ontology/0801/beol/v2']);
+
+            ontoResponseObs.subscribe(
+                (ontoRes: OntologyInformation) => {
+
+                    const props = ontoRes.getProperties();
+
+                    const commentExpected = new Property(
+                        'http://0.0.0.0:3333/ontology/0801/beol/v2#comment',
+                        'http://api.knora.org/ontology/knora-api/v2#TextValue',
+                        'Comment',
+                        'Comment',
+                        ['http://api.knora.org/ontology/knora-api/v2#hasComment'],
+                        true,
+                        false,
+                        false
+                    );
+
+                    expect(props['http://0.0.0.0:3333/ontology/0801/beol/v2#comment']).toEqual(commentExpected);
+
+                    const sonExpected = new Property(
+                        'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSon',
+                        'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
+                        'Repräsentiert eine Vater-Sohn Beziehung',
+                        'has son',
+                        ['http://api.knora.org/ontology/knora-api/v2#hasLinkTo'],
+                        true,
+                        true,
+                        false
+                    );
+
+                    expect(props['http://0.0.0.0:3333/ontology/0801/beol/v2#hasSon']).toEqual(sonExpected);
+
+                    const sonValueExpected = new Property(
+                        'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSonValue',
+                        'http://api.knora.org/ontology/knora-api/v2#LinkValue',
+                        'Repräsentiert eine Vater-Sohn Beziehung',
+                        'has son',
+                        ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
+                        true,
+                        false,
+                        true
+                    );
+
+                    expect(props['http://0.0.0.0:3333/ontology/0801/beol/v2#hasSonValue']).toEqual(sonValueExpected);
+
+                }
+            );
+
+
+        }));
+
+        it('should convert and cache the Knora-API ontology complex', inject([OntologyService], (ontoService: OntologyService) => {
+
+            // expected resource classes defined in the knora api ontology
+            const resClassesInKnoraApi = [
+                'http://api.knora.org/ontology/knora-api/v2#Annotation',
+                'http://api.knora.org/ontology/knora-api/v2#AudioRepresentation',
+                'http://api.knora.org/ontology/knora-api/v2#DDDRepresentation',
+                'http://api.knora.org/ontology/knora-api/v2#DocumentRepresentation',
+                'http://api.knora.org/ontology/knora-api/v2#LinkObj',
+                'http://api.knora.org/ontology/knora-api/v2#MovingImageRepresentation',
+                'http://api.knora.org/ontology/knora-api/v2#Region',
+                'http://api.knora.org/ontology/knora-api/v2#Representation',
+                'http://api.knora.org/ontology/knora-api/v2#StillImageRepresentation',
+                'http://api.knora.org/ontology/knora-api/v2#TextRepresentation',
+                'http://api.knora.org/ontology/knora-api/v2#XSLTransformation'
+            ];
+
+            // serve ontology as JSON-LD when requested
+            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake(serveOntology);
+
+            expect(ontologyCacheService).toBeDefined();
+
+            const ontoResponseObs: Observable<OntologyInformation> = ontologyCacheService.getEntityDefinitionsForOntologies(['http://api.knora.org/ontology/knora-api/v2']);
+
+            ontoResponseObs.subscribe(
+                (ontoRes: OntologyInformation) => {
+
+                    const resClassesForKnoraApi = ontoRes.getResourceClassForOntology();
+
+                    expect(resClassesForKnoraApi['http://api.knora.org/ontology/knora-api/v2']).toEqual(resClassesInKnoraApi);
+
+                }
+            );
+
+        }));
 
     });
 
