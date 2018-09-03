@@ -1,44 +1,30 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-    MatButtonModule,
-    MatCardModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule
-} from '@angular/material';
-import { KuiCoreModule } from '@knora/core';
+import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { KuiActionModule } from '@knora/action';
 
-import { LoginFormComponent } from './login-form/login-form.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
     imports: [
         CommonModule,
+        KuiActionModule,
         MatCardModule,
         MatIconModule,
         MatInputModule,
         MatButtonModule,
         MatDialogModule,
         MatFormFieldModule,
-        KuiActionModule,
-        KuiCoreModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule
     ],
-    entryComponents: [
-        LoginFormComponent
-    ],
-    providers: [],
     declarations: [
-        AuthenticationComponent,
-        LoginFormComponent
+        LoginComponent
     ],
     exports: [
-        AuthenticationComponent,
-        LoginFormComponent
+        LoginComponent
     ]
 })
 export class KuiAuthenticationModule {

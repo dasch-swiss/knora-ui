@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatListModule, MatTooltipModule } from '@angular/material';
 import { KuiCoreModule } from '@knora/core';
+import { KuiActionModule } from '@knora/action';
 
 import { ResourceComponent } from './resource.component';
 
@@ -13,7 +14,8 @@ describe('ResourceComponent', () => {
             imports: [
                 KuiCoreModule,
                 MatListModule,
-                MatTooltipModule
+                MatTooltipModule,
+                KuiActionModule
             ],
             declarations: [ResourceComponent]
         })

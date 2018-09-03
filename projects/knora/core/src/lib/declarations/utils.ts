@@ -1,7 +1,7 @@
 /**
  * Collection of useful utility functions.
  */
-import {KnoraConstants} from './knora-api/knora-constants';
+import {KnoraConstants} from './api/knora-constants';
 
 // @dynamic
 export class Utils {
@@ -71,7 +71,7 @@ export class Utils {
         // split class Iri on "#"
         const segments: string[] = entityIri.split(KnoraConstants.PathSeparator);
 
-        if (segments.length !== 2) console.log(`Error: ${entityIri} is not a valid entity IRI.`);
+        if (segments.length !== 2) console.error(`Error: ${entityIri} is not a valid entity IRI.`);
 
         return segments[0];
 
@@ -88,7 +88,7 @@ export class Utils {
         // split entity Iri on "#"
         const segments: string[] = complexEntityIri.split('v2' + KnoraConstants.PathSeparator);
 
-        if (segments.length !== 2) console.log(`Error: ${complexEntityIri} is not a valid entity IRI.`);
+        if (segments.length !== 2) console.error(`Error: ${complexEntityIri} is not a valid entity IRI.`);
 
         // add 'simple' to base path
         return segments[0] + 'simple/v2' + KnoraConstants.PathSeparator + segments[1];

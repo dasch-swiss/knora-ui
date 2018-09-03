@@ -7,6 +7,19 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 
 The viewer module contains object components to show the resource class representations from Knora, the gui-elements for the property values and different kind of view frameworks.
 
+## Install
+This module needs the services from [@knora/core](https://www.npmjs.com/package/@knora/core) which should also be installed.
+You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project.
+
+`$ yarn add @knora/viewer @knora/core`
+
+OR
+
+`$ npm install --save @knora/viewer @knora/core`
+
+
+
+## Components
 It has the following structure:
 
 ## object

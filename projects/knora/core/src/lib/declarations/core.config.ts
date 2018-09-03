@@ -6,7 +6,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  *  - media: URL of media server service e.g. sipi: http://localhost:1024
  *  - app: URL of the app e.g. salsah: http://localhost:4200
  */
-@JsonObject
+@JsonObject('KuiCoreConfig')
 export class KuiCoreConfig {
 
     /**

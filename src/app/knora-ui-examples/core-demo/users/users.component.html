@@ -20,22 +20,24 @@
     </div>
 </mat-card>
 
+
+<!--
 <mat-card class="example-viewer">
 
     <app-example-viewer [example]="exampleAuthenticate"></app-example-viewer>
 
     <div class="demo">
             <div *ngIf="!usersService.loading">
-            <!-- if logged-in user == true -->
+            &lt;!&ndash; if logged-in user == true &ndash;&gt;
             <div *ngIf="isLoggedIn">
                 <span class="success">User is logged in</span>
         
                 <br><br>
-                <!-- show user profile --
+                &lt;!&ndash; show user profile &#45;&#45;
                 <div class="user-profile">
                     <span></span>
                 </div>
-                -->
+                &ndash;&gt;
         
                 <button mat-raised-button
                         color="warn"
@@ -45,7 +47,7 @@
             </div>
         
         
-            <!-- else: not authorized user -->
+            &lt;!&ndash; else: not authorized user &ndash;&gt;
         
             <div *ngIf="!isLoggedIn">
                 <span *ngIf="errorMessage" class="error">{{errorMessage.statusText}} (Status: {{errorMessage.status}})</span>
@@ -63,7 +65,7 @@
         <kui-progress-indicator *ngIf="usersService.loading"></kui-progress-indicator>
     </div>
 </mat-card>
-
+-->
 
 
 <mat-divider></mat-divider>

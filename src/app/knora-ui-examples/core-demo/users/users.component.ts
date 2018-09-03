@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiServiceError, AuthenticationRequestPayload, User, UsersService} from '@knora/core';
-import {Example} from '../../../app.interfaces';
+import { Component, OnInit } from '@angular/core';
+import { ApiServiceError, User, UsersService } from '@knora/core';
+import { Example } from '../../../app.interfaces';
 
 @Component({
     selector: 'app-users',
@@ -45,44 +45,48 @@ export class UsersComponent implements OnInit {
             scss: ``
         }
     };
+    /*
 
-    exampleAuthenticate: Example = {
-        title: 'authenticate() / login(\'email\',\'password\') / logout()',
-        subtitle: 'returns if a user is logged-in or not',
-        name: 'authenticate',
-        code: {
-            html: ``,
-            ts: `
-            isLoggedIn: boolean = false;
-            errorMessage: ApiServiceError;
+        exampleAuthenticate: Example = {
+            title: 'authenticate() / login(\'email\',\'password\') / logout()',
+            subtitle: 'returns if a user is logged-in or not',
+            name: 'authenticate',
+            code: {
+                html: ``,
+                ts: `
+                isLoggedIn: boolean = false;
+                errorMessage: ApiServiceError;
 
-            // the services from @knora/core should be public,
-            // if you want to use the loading status in the html template
-            // --> usersService.loading = true | false
-            constructor(public usersService: UsersService) { }
+                // the services from @knora/core should be public,
+                // if you want to use the loading status in the html template
+                // --> usersService.loading = true | false
+                constructor(private _auth: AuthenticationService) { }
 
-            [...]
-            
-            this.usersService.authenticate()
-            .subscribe(
-                (result: any) => {
-                    // if result == true: a user is logged-in,
-                    // in case of an error (ApiServiceError), the current user is not authorized to do something
-                    this.isLoggedIn = result;
-                },
-                (error: ApiServiceError) => {
-                    this.isLoggedIn = false;
-                    this.errorMessage = error;
-                }
-            );`,
-            scss: ``
-        }
-    };
+                [...]
 
+                this._auth.authenticate()
+                .subscribe(
+                    (result: any) => {
+                        // if result == true: a user is logged-in,
+                        // in case of an error (ApiServiceError), the current user is not authorized to do something
+                        this.isLoggedIn = result;
+                    },
+                    (error: ApiServiceError) => {
+                        this.isLoggedIn = false;
+                        this.errorMessage = error;
+                    }
+                );`,
+                scss: ``
+            }
+        };
+    */
+
+/*
     userSimData: AuthenticationRequestPayload = {
         email: 'root@example.com',
         password: 'test'
     };
+*/
 
     allUsers: User[];
 
@@ -97,7 +101,8 @@ export class UsersComponent implements OnInit {
 
     ngOnInit() {
         this.getAllUsers();
-        this.simulateAuthentication();
+        this.getUserFromCache();
+//        this.simulateAuthentication();
     }
 
     getAllUsers() {
@@ -124,8 +129,21 @@ export class UsersComponent implements OnInit {
             );
     }
 
+    getUserFromCache() {
+        // key
+        const key = localStorage.getItem('session_id');
+        /*
+        this._acs.getData(key).subscribe(
+            result => {
+                console.log('get user from cache', result);
+            }
+        );
+        */
+    }
+
+    /*
     simulateAuthentication() {
-        this.usersService.authenticate()
+        this._auth.authenticate()
             .subscribe(
                 (result: any) => {
                     // if result == true: a user is logged-in,
@@ -140,7 +158,7 @@ export class UsersComponent implements OnInit {
     }
 
     login(data: AuthenticationRequestPayload) {
-        this.usersService.login(data.email, data.password)
+        this._auth.login(data.email, data.password)
             .subscribe(
                 (result: any) => {
                     this.isLoggedIn = result;
@@ -154,7 +172,8 @@ export class UsersComponent implements OnInit {
     }
 
     logout() {
-        this.usersService.logout();
+        this._auth.logout();
         this.simulateAuthentication();
     }
+    */
 }
