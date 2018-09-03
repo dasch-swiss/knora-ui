@@ -52,29 +52,63 @@ describe('OntologyCacheService', () => {
         let expectedOntologyAnything;
         let expectedOntologySomething;
 
+        let serveOntology: (ontologyIri: string) => Observable<ApiServiceResult>;
+
         beforeEach(() => {
             expectedOntologyBEOL = require('../../test-data/ontologycache/beol-complex-onto.json') as String;
             expectedOntologyKnoraApi = require('../../test-data/ontologycache/knora-api-complex-onto.json') as String;
             expectedOntologyAnything = require('../../test-data/ontologycache/anything-complex-onto.json') as String;
             expectedOntologySomething = require('../../test-data/ontologycache/something-complex-onto.json') as String;
+
+            // mock method to get an ontology
+            serveOntology = (ontologyIri: string) => {
+                let onto;
+
+                console.log(ontologyIri);
+
+                switch (ontologyIri) {
+
+                    case 'http://0.0.0.0:3333/ontology/0801/beol/v2': {
+                        onto = expectedOntologyBEOL;
+                        break;
+                    }
+
+                    case 'http://0.0.0.0:3333/ontology/0001/anything/v2': {
+                        onto = expectedOntologyAnything;
+                        break;
+                    }
+
+                    case 'http://0.0.0.0:3333/ontology/0001/something/v2': {
+                        onto = expectedOntologySomething;
+                        break;
+                    }
+
+                    case 'http://api.knora.org/ontology/knora-api/v2': {
+                        onto = expectedOntologyKnoraApi;
+                        break;
+                    }
+
+                    default:
+                        console.error('Unknown ontology ' + ontologyIri);
+                        break;
+                }
+                const result = new ApiServiceResult();
+                result.status = 200;
+                result.statusText = '';
+                result.url = '';
+                result.body = onto; // return json file depending on ontology requested
+
+                return of(
+                    result
+                );
+            };
+
         });
 
         it('should convert and cache the beol ontology complex', inject([OntologyService], (ontoService) => {
 
             // serve ontology as JSON-LD when requested
-            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake((param) => {
-
-                const result = new ApiServiceResult();
-                result.status = 200;
-                result.statusText = '';
-                result.url = '';
-                result.body = (param === 'http://0.0.0.0:3333/ontology/0801/beol/v2' ? expectedOntologyBEOL : expectedOntologyKnoraApi); // return json file depending on ontology requested
-
-                return of(
-                    result
-                );
-
-            });
+            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake(serveOntology);
 
             expect(ontologyCacheService).toBeDefined();
 
@@ -111,19 +145,7 @@ describe('OntologyCacheService', () => {
         it('should convert and cache the anything ontology complex', inject([OntologyService], (ontoService) => {
 
             // serve ontology as JSON-LD when requested
-            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake((param) => {
-
-                const result = new ApiServiceResult();
-                result.status = 200;
-                result.statusText = '';
-                result.url = '';
-                result.body = (param === 'http://0.0.0.0:3333/ontology/0001/anything/v2' ? expectedOntologyAnything : expectedOntologyKnoraApi); // return json file depending on ontology requested
-
-                return of(
-                    result
-                );
-
-            });
+            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake(serveOntology);
 
             expect(ontologyCacheService).toBeDefined();
 
@@ -149,38 +171,7 @@ describe('OntologyCacheService', () => {
         it('should convert and cache the something ontology complex', inject([OntologyService], (ontoService) => {
 
             // serve ontology as JSON-LD when requested
-            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake((param) => {
-
-                let onto;
-
-                switch (param) {
-
-                    case 'http://0.0.0.0:3333/ontology/0001/anything/v2': {
-                        onto = expectedOntologyAnything;
-                        break;
-                    }
-
-                    case 'http://0.0.0.0:3333/ontology/0001/something/v2': {
-                        onto = expectedOntologySomething;
-                        break;
-                    }
-
-                    case 'http://api.knora.org/ontology/knora-api/v2': {
-                        onto = expectedOntologyKnoraApi;
-                        break;
-                    }
-                }
-                const result = new ApiServiceResult();
-                result.status = 200;
-                result.statusText = '';
-                result.url = '';
-                result.body = onto; // return json file depending on ontology requested
-
-                return of(
-                    result
-                );
-
-            });
+            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake(serveOntology);
 
             expect(ontologyCacheService).toBeDefined();
 
