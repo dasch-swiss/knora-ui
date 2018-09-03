@@ -6,7 +6,13 @@ language: node_js
 node_js:
   - "8"
 
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
 addons:
+  chrome: stable
   apt:
     sources:
     - ubuntu-toolchain-r-test
@@ -19,10 +25,7 @@ env:
 
 install: export CXX="g++-4.9"
 
-addons:
-  chrome: stable
-
 before_script:
-- yarn global add @angular/cli
+  - yarn global add @angular/cli
 
 script: ng t --project @knora/core --watch=false --browsers=ChromeHeadless

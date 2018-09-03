@@ -1,5 +1,7 @@
 # Knora-ui
 
+[![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/wip%2Fcore-module-tests.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/wip%2Fcore-module-tests)
+
 This is the demo and developing environment for Knora ui modules, which will be published on [npm](https://www.npmjs.com/~knora).
 
 The modules helps to create a graphical user interface for [Knora](https://knora.org) in a quick and simple way. They're written in [Angular](https://angular.io) (v6) including the [material design](https://material.angular.io).
