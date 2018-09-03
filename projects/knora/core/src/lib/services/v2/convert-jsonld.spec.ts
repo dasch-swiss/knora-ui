@@ -310,8 +310,6 @@ describe('ConvertJSONLD', () => {
 
             expect(receivedResource.numberOfResources).toEqual(1);
 
-            console.log(receivedResource.resources[0]);
-
             const expectedProps: ReadProperties = {
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBoolean': [
                     new ReadBooleanValue(

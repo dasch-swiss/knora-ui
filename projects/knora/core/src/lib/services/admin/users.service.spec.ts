@@ -75,7 +75,7 @@ describe('UsersService', () => {
                     return request.url.match(service.usersUrl) && request.method === 'GET';
                 });
 
-                console.log(req);
+                // console.log(req);
 
 
                 // Respond with the mock users
