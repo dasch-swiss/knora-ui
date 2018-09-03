@@ -609,6 +609,177 @@ describe('OntologyCacheService', () => {
 
         }));
 
+        it('should get an internal representation of a resource class from the cache', inject([OntologyService], (ontoService) => {
+
+            // serve ontology as JSON-LD when requested
+            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake(serveOntology);
+
+            expect(ontologyCacheService).toBeDefined();
+
+            const ontoResponseObs: Observable<OntologyInformation> = ontologyCacheService.getEntityDefinitionsForOntologies(['http://0.0.0.0:3333/ontology/0801/beol/v2']);
+
+            ontoResponseObs.subscribe(
+                (ontoRes: OntologyInformation) => {
+
+                    const resourceClasses = ontoRes.getResourceClasses();
+
+                    const personExpected = new ResourceClass(
+                        'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
+                        'person.png',
+                        'A resource representing a person',
+                        'Person',
+                        [
+                            new Cardinality(
+                                CardinalityOccurrence.card,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#attachedToProject'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.card,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#attachedToUser'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.card,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#creationDate'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.card,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#hasPermissions'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.card,
+                                1,
+                                'http://www.w3.org/2000/01/rdf-schema#label'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasFamilyName'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasGivenName'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#personHasTitle'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasAlternativeName'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#beolIDs'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasIAFIdentifier'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasBirthDate'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasDeathDate'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasFloruitDate'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasMarriageDate'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasBirthPlace'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasDeathPlace'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasFloruitPlace'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasMarriagePlace'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSonValue'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSon'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasDictionaryEntries'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#comment'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.minCard,
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#mentionedIn'
+                            )
+
+                        ]
+                    );
+
+                    expect(resourceClasses['http://0.0.0.0:3333/ontology/0801/beol/v2#person']).toEqual(personExpected);
+
+                }
+            );
+
+        }));
+
 
     });
 
