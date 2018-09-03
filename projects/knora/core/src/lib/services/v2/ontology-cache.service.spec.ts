@@ -46,7 +46,7 @@ describe('OntologyCacheService', () => {
         httpTestingController.verify();
     });
 
-    describe('BEOL ontology complex', () => {
+    describe('Ontology (complex) handling', () => {
         let expectedOntologyBEOL;
         let expectedOntologyKnoraApi;
         let expectedOntologyAnything;
