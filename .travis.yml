@@ -13,9 +13,19 @@ cache:
 
 addons:
   chrome: stable
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.9
+
+env:
+  global:
+    - CXX=g++-4.9
+
+install: export CXX="g++-4.9"
 
 before_script:
-  - npm install -g node-gyp
+  - yarn global add @angular/cli
 
-script:
-  - yarn ng t --project @knora/core --watch=false --browsers=ChromeHeadless
+script: ng t --project @knora/core --watch=false --browsers=ChromeHeadless

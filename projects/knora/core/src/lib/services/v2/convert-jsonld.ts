@@ -33,7 +33,14 @@ export module ConvertJSONLD {
      * Gets all members that have to be treated as value objects.
      */
     const getPropertyNames = (propName) => {
-        return propName !== '@id' && propName !== '@type' && propName !== KnoraConstants.RdfsLabel && propName !== 'http://api.knora.org/ontology/knora-api/v2#attachedToProject' && propName !== 'http://api.knora.org/ontology/knora-api/v2#attachedToUser' && propName !== 'http://api.knora.org/ontology/knora-api/v2#creationDate' && propName !== 'http://api.knora.org/ontology/knora-api/v2#hasPermissions';
+        return propName !== '@id'
+            && propName !== '@type'
+            && propName !== KnoraConstants.RdfsLabel
+            && propName !== KnoraConstants.attachedToProject
+            && propName !== KnoraConstants.attachedToUser
+            && propName !== KnoraConstants.creationDate
+            && propName !== KnoraConstants.lastModificationDate
+            && propName !== KnoraConstants.hasPermissions;
     };
 
 
