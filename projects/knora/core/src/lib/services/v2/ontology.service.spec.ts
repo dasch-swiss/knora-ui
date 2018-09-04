@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { KuiCoreModule } from '../../core.module';
 import { ApiService } from '../api.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import {ApiServiceResult} from '../../declarations';
+import { ApiServiceResult } from '../../declarations';
 
 describe('OntologyService', () => {
     let httpClient: HttpClient;
@@ -37,12 +37,40 @@ describe('OntologyService', () => {
         httpTestingController.verify();
     });
 
+    describe('Get ontologies metadata', () => {
+        let expectedOntologiesMetadata;
+
+        beforeEach(() => {
+            expectedOntologiesMetadata = require('../../test-data/ontologycache/ontology-metadata.json');
+        });
+
+        it('Get metadata about all ontologies', () => {
+
+            expect(ontologyService).toBeDefined();
+
+            const ontoMetadata = ontologyService.getOntologiesMetadata();
+
+            ontoMetadata.subscribe(
+                (metadata: ApiServiceResult) => {
+                    expect(metadata.body).toEqual(expectedOntologiesMetadata);
+                }
+            );
+
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/metadata');
+
+            expect(httpRequest.request.method).toEqual('GET');
+
+            httpRequest.flush(expectedOntologiesMetadata);
+
+        });
+
+    });
+
     describe('Get a specific ontology', () => {
         let expectedOntologyBEOL;
         let expectedOntologyKnoraApi;
         let expectedOntologyAnything;
         let expectedOntologySomething;
-
 
         beforeEach(() => {
             expectedOntologyBEOL = require('../../test-data/ontologycache/beol-complex-onto.json') as String;
@@ -51,21 +79,19 @@ describe('OntologyService', () => {
             expectedOntologySomething = require('../../test-data/ontologycache/something-complex-onto.json') as String;
         });
 
-        it('should be created', inject([OntologyService], (service: OntologyService) => {
-            expect(service).toBeTruthy();
-        }));
-
         it('get an ontology', () => {
 
-            let beolOnto = ontologyService.getAllEntityDefinitionsForOntologies('http://0.0.0.0:3333/ontology/0801/beol/v2');
+            expect(ontologyService).toBeDefined();
+
+            const beolOnto = ontologyService.getAllEntityDefinitionsForOntologies('http://0.0.0.0:3333/ontology/0801/beol/v2');
 
             beolOnto.subscribe(
                 (onto: ApiServiceResult) => {
-                    expect(onto.body).toBe(expectedOntologyBEOL);
+                    expect(onto.body).toEqual(expectedOntologyBEOL);
                 }
             );
 
-            let httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/allentities/' + encodeURIComponent('http://0.0.0.0:3333/ontology/0801/beol/v2'));
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/allentities/' + encodeURIComponent('http://0.0.0.0:3333/ontology/0801/beol/v2'));
 
             expect(httpRequest.request.method).toEqual('GET');
 
