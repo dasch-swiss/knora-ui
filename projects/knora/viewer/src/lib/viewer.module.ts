@@ -14,6 +14,7 @@ import {
 } from '@angular/material';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { KuiCoreModule } from '@knora/core';
 import { BooleanValueComponent } from './property/boolean-value/boolean-value.component';
 import { ColorValueComponent } from './property/color-value/color-value.component';
 import { DateValueComponent } from './property/date-value/date-value.component';
@@ -50,6 +51,7 @@ import { TableViewComponent } from './view/table-view/table-view.component';
 @NgModule({
     imports: [
         CommonModule,
+        KuiCoreModule,
         MatAutocompleteModule,
         MatCardModule,
         MatCheckboxModule,
@@ -129,4 +131,5 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         PropertiesViewComponent
     ]
 })
-export class KuiViewerModule { }
+export class KuiViewerModule {
+}
