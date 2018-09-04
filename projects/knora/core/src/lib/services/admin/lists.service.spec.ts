@@ -5,9 +5,9 @@ import { KuiCoreModule } from '../../core.module';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from '../api.service';
 import { List } from '@knora/core/lib/declarations/knora-api/admin/lists/list';
-import { incunabulaProjectIri, listsResponse, listsTestData } from '../../test-data/admin/shared-test-data';
+import { incunabulaProjectIri, listsResponseJson, listsTestData } from '../../test-data/admin/shared-test-data';
 
-fdescribe('ListsService', () => {
+describe('ListsService', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let listService: ListsService;
@@ -34,15 +34,15 @@ fdescribe('ListsService', () => {
     httpTestingController.verify();
   });
 
-  fdescribe('#getList', () => {
+  describe('#getList', () => {
     const expectLists: List[] = listsTestData;
-    const expectedList = listsResponse;
+    const expectList: List = listsResponseJson;
 
-    fit('should be created', inject([ListsService], (service: ListsService) => {
+    it('should be created', inject([ListsService], (service: ListsService) => {
       expect(service).toBeTruthy();
     }));
 
-    fit('should return all lists', async(inject(
+    it('should return all lists', async(inject(
       [ListsService], (service) => {
 
         expect(service).toBeDefined();
@@ -58,12 +58,19 @@ fdescribe('ListsService', () => {
 
     })));
 
-    /* fit('should return one list', async(inject([ListsService], (service) => {
+    fit('should return one list by iri', async(inject([ListsService], (service) => {
+
       expect(service).toBeDefined();
-      service.getList(iri).subscribe((result) => {
+
+      service.getList('http://rdfh.ch/lists/FFFF/ynm01').subscribe((result) => {
         expect(result.body).toEqual(expectList);
       });
-    }))); */
+
+      const req = httpTestingController.expectOne((request) => {
+        return request.url.match(service.url) && request.method === 'GET';
+        });
+
+    })));
 
   });
 
