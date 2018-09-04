@@ -58,7 +58,7 @@ describe('ListsService', () => {
 
     })));
 
-    fit('should return one list by iri', async(inject([ListsService], (service) => {
+    it('should return one list by iri', async(inject([ListsService], (service) => {
 
       expect(service).toBeDefined();
 
