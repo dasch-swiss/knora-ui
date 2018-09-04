@@ -5,6 +5,7 @@ import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KuiCoreModule } from '@knora/core';
 import { KuiActionModule } from '@knora/action';
+import { KuiViewerModule } from '@knora/viewer';
 
 
 import { SearchComponent } from './search.component';
@@ -28,7 +29,8 @@ import { SpecifyPropertyValueComponent } from './extended-search/select-property
         FormsModule,
         ReactiveFormsModule,
         KuiCoreModule,
-        KuiActionModule
+        KuiActionModule,
+        KuiViewerModule
     ],
     declarations: [
         SearchComponent,
