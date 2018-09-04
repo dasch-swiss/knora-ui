@@ -7,7 +7,7 @@ import { ApiService } from '../api.service';
 import {
     Cardinality, CardinalityOccurrence,
     OntologyCacheService,
-    OntologyInformation, Properties, Property, ResourceClass, ResourceClasses,
+    OntologyInformation, OntologyMetadata, Properties, Property, ResourceClass, ResourceClasses,
     ResourceClassIrisForOntology
 } from './ontology-cache.service';
 import { OntologyService } from './ontology.service';
@@ -44,6 +44,58 @@ describe('OntologyCacheService', () => {
     afterEach(() => {
         // After every test, assert that there are no more pending requests.
         httpTestingController.verify();
+    });
+
+    describe('Ontology metadata handling', () => {
+        let expectedOntologiesMetadata;
+
+        beforeEach(() => {
+            expectedOntologiesMetadata = require('../../test-data/ontologycache/ontology-metadata.json');
+        });
+
+        it('Get metadata about all ontologies', inject([OntologyService], (ontoService) => {
+
+            // serve ontology as JSON-LD when requested
+            spyOn(ontoService, 'getOntologiesMetadata').and.callFake(() => {
+                const result = new ApiServiceResult();
+                result.status = 200;
+                result.statusText = '';
+                result.url = '';
+                result.body = expectedOntologiesMetadata;
+
+                return of(
+                    result
+                );
+            });
+
+            expect(ontologyCacheService).toBeDefined();
+
+            const metadataOntos: Observable<Array<OntologyMetadata>> = ontologyCacheService.getOntologiesMetadata();
+
+            const ontologiesMetadata = [
+
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/something/v2', 'The something ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/00FF/images/v2', 'The images demo ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/beol/v2', 'The BEOL ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0802/biblio/v2', 'The Biblio ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
+                new OntologyMetadata ('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
+            ];
+
+            metadataOntos.subscribe(
+                (metadata) => {
+                    expect(metadata).toEqual(ontologiesMetadata);
+                },
+                (error: ApiServiceError) => {
+                    fail(error);
+                }
+            );
+
+        });
+
     });
 
     describe('Ontology (complex) handling', () => {
@@ -90,6 +142,7 @@ describe('OntologyCacheService', () => {
                         console.error('Unknown ontology ' + ontologyIri);
                         break;
                 }
+
                 const result = new ApiServiceResult();
                 result.status = 200;
                 result.statusText = '';
