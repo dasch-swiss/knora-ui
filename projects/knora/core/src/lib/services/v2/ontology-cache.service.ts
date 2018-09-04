@@ -765,7 +765,7 @@ export class OntologyCacheService {
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be queried.
      */
-    public getAndCacheOntologies(ontologyIris: string[]): Observable<any[]> {
+    private getAndCacheOntologies(ontologyIris: string[]): Observable<any[]> {
 
         const observables = [];
 
