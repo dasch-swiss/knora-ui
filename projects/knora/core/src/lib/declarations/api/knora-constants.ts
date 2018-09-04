@@ -74,7 +74,10 @@ export class KnoraConstants {
     public static OwlRestriction = KnoraConstants.owl + '#Restriction';
 
     public static creationDate = KnoraConstants.KnoraApiV2WithValueObjectPath + 'creationDate';
+    public static lastModificationDate = KnoraConstants.KnoraApiV2WithValueObjectPath + 'lastModificationDate';
     public static hasPermissions = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasPermissions';
+    public static attachedToProject = KnoraConstants.KnoraApiV2WithValueObjectPath + 'attachedToProject';
+    public static attachedToUser = KnoraConstants.KnoraApiV2WithValueObjectPath + 'attachedToUser';
 
     public static Region = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Region';
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
-import { ApiServiceResult } from '../../declarations';
+import { ApiServiceResult, UsersResponse } from '../../declarations';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -21,10 +22,12 @@ export class OntologyService extends ApiService {
     /**
      * Requests all entity definitions for the given ontologies from Knora's ontologies route.
      *
-     * @param ontologyIris the Iris of the named graphs whose resource classes are to be returned.
+     * @param ontologyIri the Iris of the named graphs whose resource classes are to be returned.
      * @returns {any}
      */
-    getAllEntityDefinitionsForOntologies(ontologyIri: string): Observable<ApiServiceResult> {
+    getAllEntityDefinitionsForOntologies(ontologyIri: string): Observable<any> {
+
+        // console.log(ontologyIri);
 
         return this.httpGet('/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri));
 
