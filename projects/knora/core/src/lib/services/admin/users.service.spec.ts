@@ -5,7 +5,7 @@ import { UsersService } from './users.service';
 import { async, inject, TestBed } from '@angular/core/testing';
 import { User } from '../../declarations';
 import { KuiCoreModule } from '../../core.module';
-import { usersTestData } from '../../test-data/admin/shared-test-data';
+import { usersResponseJson, usersTestData } from '../../test-data/admin/shared-test-data';
 
 describe('UsersService', () => {
     let httpClient: HttpClient;
@@ -40,11 +40,7 @@ describe('UsersService', () => {
 
     describe('#getUsers', () => {
         const expectedUsers: User[] = usersTestData;
-
-        beforeEach(() => {
-
-
-        });
+        const expectedUser: User = usersResponseJson;
 
         it('should be created', async(inject(
             [UsersService], (service) => {
@@ -52,36 +48,61 @@ describe('UsersService', () => {
             }))
         );
 
-        it('#getAllUsers should return all users', async(inject(
-            [UsersService], (service) => {
+        it('should return all users', () => {
 
-                expect(service).toBeDefined();
+            expect(usersService).toBeDefined();
 
-                service.getAllUsers().subscribe(
-                    /*
-                    (users: User[]) => {
+            usersService.getAllUsers().subscribe(
+                (users: User[]) => {
+                    expect(users.length).toBe(8);
+                    expect(users).toEqual(expectedUsers);
+                }
+            );
 
-                        // expect(users.length).toBe(8);
-                        expect(users).toEqual(expectedUsers, 'should return expected users');
-                    },
-                    (error: ApiServiceError) => {
-                        fail(error);
-                    }
-                    */
-                );
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/users');
 
-                // usersService should have made one request to GET users from expected URL
-                const req = httpTestingController.expectOne( (request) => {
-                    return request.url.match(service.usersUrl) && request.method === 'GET';
-                });
+            expect(httpRequest.request.method).toEqual('GET');
 
-                // console.log(req);
+            httpRequest.flush(expectedUsers);
+        });
 
+        it('should return one user by email', () => {
 
-                // Respond with the mock users
-//                req.flush(expectedUsers);
-            })));
+            const email = 'root-alt@example.com';
 
+            expect(usersService).toBeDefined();
+
+            usersService.getUserByEmail(email).subscribe(
+                (user: User) => {
+                    expect(user).toEqual(expectedUser);
+                }
+            );
+
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/users/' + encodeURIComponent(email) + '?identifier=email');
+
+            expect(httpRequest.request.method).toEqual('GET');
+
+            httpRequest.flush(expectedUser);
+        });
+
+        it('should return one user by iri', () => {
+
+            const userIri = 'http://rdfh.ch/users/91e19f1e01';
+
+            expect(usersService).toBeDefined();
+
+            usersService.getUserByIri(userIri).subscribe(
+                (user: User) => {
+                    expect(user).toEqual(expectedUser);
+                }
+            );
+
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/users/' + encodeURIComponent(userIri));
+
+            expect(httpRequest.request.method).toEqual('GET');
+
+            httpRequest.flush(expectedUser);
+        });
 
         /*
         it('should be OK returning no users', () => {
