@@ -14,7 +14,7 @@ import { KuiCoreModule } from '../../core.module';
 import { ApiService } from '../api.service';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 
 
 describe('ProjectsService', () => {
@@ -26,7 +26,7 @@ describe('ProjectsService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({name: '', api: 'http://0.0.0.0:3333', app: '', media: ''})
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
             ],
             providers: [
                 ApiService,
@@ -42,11 +42,85 @@ describe('ProjectsService', () => {
 
     });
 
-    it('should be created', async(inject(
-        [ProjectsService], (service) => {
+    fdescribe('#getProjects', () => {
+
+        const expectProjects: Project[] = projectsTestData;
+        const expectProjectIncunabula: Project = incunabulaProject;
+
+        it('should be created', async(inject([ProjectsService], (service) => {
             expect(service).toBeDefined();
         }))
-    );
+        );
+
+        it('#getAllProjects should return all projects', async(() => {
+
+            expect(projectsService).toBeDefined();
+
+            projectsService.getAllProjects().subscribe(
+                (projects: Project[]) => {
+                    expect(projects.length).toBe(8);
+                    expect(projects).toEqual(expectProjects);
+                },
+                (error: ApiServiceError) => {
+                    fail(error);
+                }
+            );
+
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/projects');
+
+            expect(httpRequest.request.method).toEqual('GET');
+
+            httpRequest.flush(expectProjects);
+
+        }));
+
+        it('#getProjectByIri should return project (incunabula)', () => {
+
+            const incunabulaIri = 'http://rdfh.ch/projects/0803';
+
+            expect(projectsService).toBeDefined();
+
+            projectsService.getProjectByIri(incunabulaIri)
+                .subscribe(
+                    (project: Project) => {
+                        expect(project).toEqual(expectProjectIncunabula);
+                    },
+                    (error: ApiServiceError) => {
+                        fail(error);
+                    }
+                );
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/projects/' + encodeURIComponent(incunabulaIri));
+
+            expect(httpRequest.request.method).toEqual('GET');
+
+            httpRequest.flush(expectProjectIncunabula);
+
+        });
+
+        it('#getProjectByShortname should return project (incunabula)', () => {
+
+            const incunabulaShortname = 'incunabula';
+
+            expect(projectsService).toBeDefined();
+
+            projectsService.getProjectByShortname(incunabulaShortname)
+                .subscribe(
+                    (result: Project) => {
+                        expect(result).toEqual(expectProjectIncunabula);
+                    },
+                    (error: ApiServiceError) => {
+                        fail(error);
+                    }
+                );
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/projects/' + incunabulaShortname + '?identifier=shortname');
+
+            expect(httpRequest.request.method).toEqual('GET');
+
+            httpRequest.flush(expectProjectIncunabula);
+
+        });
+
+    });
 
 
     it('should parse projects-response', () => {
@@ -86,70 +160,6 @@ describe('ProjectsService', () => {
         expect(result).toBeTruthy();
     });
 
-    it('#getProjectByIri should return project (incunabula)', async(inject(
-        [ProjectsService], (service) => {
-
-            expect(service).toBeDefined();
-
-            service.getProjectByIri('http://rdfh.ch/projects/0803')
-                .subscribe(
-                    (project: Project) => {
-                        // console.log('project: ' + JSON.stringify(project));
-                        expect(project).toEqual(incunabulaProject);
-                    },
-                    (error: ApiServiceError) => {
-                        fail(error);
-                    }
-                );
-
-        })));
-
-    it('#getAllProjects should return all projects', async(inject(
-        [ProjectsService], (service) => {
-
-            expect(service).toBeDefined();
-
-            service.getAllProjects()
-                .subscribe(
-                    (projects: Project[]) => {
-
-                        // console.log('projects from TEST-DATA: ' + JSON.stringify(projectsTestData));
-                        // console.log('projects from API: ' + JSON.stringify(projects));
-
-                        expect(projects.length).toBe(8);
-                        expect(projects).toEqual(projectsTestData);
-                    },
-                    (error: ApiServiceError) => {
-                        fail(error);
-                    }
-                );
-
-        })));
-
-    /*
-
-        it('#getAllProjects should return all projects', async(inject(
-            [ProjectsService], (service) => {
-
-                expect(service).toBeDefined();
-
-                service.getAllProjects()
-                    .subscribe(
-                        (projects: Project[]) => {
-
-                            console.log('projects from TEST-DATA: ' + JSON.stringify(projectsTestData));
-                            console.log('projects from API: ' + JSON.stringify(projects));
-
-                            expect(projects.length).toBe(8);
-                            expect(projects).toEqual(projectsTestData);
-                        },
-                        (error: ApiServiceError) => {
-                            fail(error);
-                        }
-                    );
-
-            })));
-    */
 
     /*
     if (environment.type === 'integration') {

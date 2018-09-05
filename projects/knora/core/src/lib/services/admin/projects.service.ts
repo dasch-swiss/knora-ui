@@ -22,8 +22,12 @@ export class ProjectsService extends ApiService {
      * @returns {Observable<Project[]>}
      */
     getAllProjects(): Observable<Project[]> {
-        return this.httpGet('/admin/projects').pipe(
+        /* return this.httpGet('/admin/projects').pipe(
             map((result: ApiServiceResult) => result.getBody(ProjectsResponse).projects),
+            catchError(this.handleJsonError)
+        ); */
+        return this.httpGet('/admin/projects').pipe(
+            map((result: ApiServiceResult) => result.body),
             catchError(this.handleJsonError)
         );
     }
@@ -68,8 +72,12 @@ export class ProjectsService extends ApiService {
      * @returns {Observable<Project>}
      */
     protected getProject(url: string): Observable<Project> {
-        return this.httpGet(url).pipe(
+        /* return this.httpGet(url).pipe(
             map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),
+            catchError(this.handleJsonError)
+        ); */
+        return this.httpGet(url).pipe(
+            map((result: ApiServiceResult) => result.body),
             catchError(this.handleJsonError)
         );
     }
