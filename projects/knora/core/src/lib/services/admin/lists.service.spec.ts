@@ -46,7 +46,7 @@ describe('ListsService', () => {
 
       expect(listService).toBeDefined();
 
-      listService.getLists(incunabulaProjectIri).subscribe((result) => {
+      listService.getLists(incunabulaProjectIri).subscribe((result: List[]) => {
         expect(result).toEqual(expectLists);
       });
 
@@ -63,7 +63,7 @@ describe('ListsService', () => {
 
       expect(listService).toBeDefined();
 
-      listService.getList('http://rdfh.ch/lists/FFFF/ynm01').subscribe((result) => {
+      listService.getList('http://rdfh.ch/lists/FFFF/ynm01').subscribe((result: List) => {
         expect(result).toEqual(expectList);
       });
 
