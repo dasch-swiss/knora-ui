@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { KuiCoreModule } from '../../core.module';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from '../api.service';
-import { List } from '@knora/core/lib/declarations/knora-api/admin/lists/list';
+import { List } from '../../declarations';
 import { incunabulaProjectIri, listsResponseJson, listsTestData } from '../../test-data/admin/shared-test-data';
 
 describe('ListsService', () => {
@@ -56,7 +56,7 @@ describe('ListsService', () => {
           return request.url.match(service.url) && request.method === 'GET';
         });
 
-    })));
+      })));
 
     it('should return one list by iri', async(inject([ListsService], (service) => {
 
@@ -68,7 +68,7 @@ describe('ListsService', () => {
 
       const req = httpTestingController.expectOne((request) => {
         return request.url.match(service.url) && request.method === 'GET';
-        });
+      });
 
     })));
 
