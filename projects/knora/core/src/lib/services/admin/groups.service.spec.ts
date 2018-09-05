@@ -9,7 +9,7 @@ import { Group } from '../../declarations';
 import { groupsResponseJson, groupsTestData } from '../../test-data/admin/shared-test-data';
 
 
-fdescribe('GroupsService', () => {
+describe('GroupsService', () => {
 
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
@@ -34,15 +34,15 @@ fdescribe('GroupsService', () => {
         httpTestingController.verify();
     });
 
-    fdescribe('#getGroups', () => {
+    describe('#getGroups', () => {
         const expectedGroups: Group[] = groupsTestData;
         const expectGroup: Group = groupsResponseJson;
 
-        fit('should be created', inject([GroupsService], (service: GroupsService) => {
+        it('should be created', inject([GroupsService], (service: GroupsService) => {
             expect(service).toBeTruthy();
         }));
 
-        fit('should return all groups', () => {
+        it('should return all groups', () => {
 
             expect(groupsService).toBeDefined();
 
@@ -60,7 +60,7 @@ fdescribe('GroupsService', () => {
 
         });
 
-        fit('should return one group by iri', () => {
+        it('should return one group by iri', () => {
 
             expect(groupsService).toBeDefined();
 

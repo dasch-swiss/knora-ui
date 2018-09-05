@@ -34,7 +34,7 @@ describe('ListsService', () => {
     httpTestingController.verify();
   });
 
-  describe('#getList', () => {
+  describe('#getLists', () => {
     const expectLists: List[] = listsTestData;
     const expectList: List = listsResponseJson;
 
@@ -42,35 +42,38 @@ describe('ListsService', () => {
       expect(service).toBeTruthy();
     }));
 
-    it('should return all lists', async(inject(
-      [ListsService], (service) => {
+    it('should return all lists', () => {
 
-        expect(service).toBeDefined();
+      expect(listService).toBeDefined();
 
-        service.getLists(incunabulaProjectIri).subscribe((result) => {
-          expect(result.body).toEqual(expectLists);
-        });
-
-        // listService should have made one request to GET lists from expected URL
-        const req = httpTestingController.expectOne((request) => {
-          return request.url.match(service.url) && request.method === 'GET';
-        });
-
-      })));
-
-    it('should return one list by iri', async(inject([ListsService], (service) => {
-
-      expect(service).toBeDefined();
-
-      service.getList('http://rdfh.ch/lists/FFFF/ynm01').subscribe((result) => {
-        expect(result.body).toEqual(expectList);
+      listService.getLists(incunabulaProjectIri).subscribe((result) => {
+        expect(result).toEqual(expectLists);
       });
 
-      const req = httpTestingController.expectOne((request) => {
-        return request.url.match(service.url) && request.method === 'GET';
+      const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/lists?projectIri=' + encodeURIComponent(incunabulaProjectIri));
+
+      expect(httpRequest.request.method).toEqual('GET');
+
+      httpRequest.flush(expectLists);
+
+
+    });
+
+    it('should return one list by iri', () => {
+
+      expect(listService).toBeDefined();
+
+      listService.getList('http://rdfh.ch/lists/FFFF/ynm01').subscribe((result) => {
+        expect(result).toEqual(expectList);
       });
 
-    })));
+      const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/lists/' + encodeURIComponent('http://rdfh.ch/lists/FFFF/ynm01'));
+
+      expect(httpRequest.request.method).toEqual('GET');
+
+      httpRequest.flush(expectList);
+
+    });
 
   });
 
