@@ -217,7 +217,6 @@ export class ReadLinkValue implements ReadPropertyItem {
         }
     }
 
-    /*
     getReferredResourceInfo(ontologyInfo: OntologyInformation) {
         if (this.referredResource !== undefined) {
 
@@ -228,7 +227,6 @@ export class ReadLinkValue implements ReadPropertyItem {
             return this.referredResourceIri;
         }
     }
-    */
 
     getClassName(): string {
         return KnoraConstants.ReadLinkValue;
