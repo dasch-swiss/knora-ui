@@ -59,9 +59,9 @@ const appRoutes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginFormComponent
     }
 ]
 ```
 
-The `LoginComponent` needs then only the `<kui-login></kui-login>` tag. It's also possible to define e navigation route, where the user will be redirected after successful login: `<kui-login [navigate="'/dashboard'"]></kui-login>`
+The `LoginFormComponent` needs then only the `<kui-login-form></kui-login-form>` tag. It's also possible to define e navigation route, where the user will be redirected after successful login: `<kui-login-form [navigate="'/dashboard'"]></kui-login-form>`

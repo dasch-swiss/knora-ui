@@ -6,11 +6,11 @@ import { AuthenticationService } from '../authentication.service';
 import { SessionService } from '../session/session.service';
 
 @Component({
-    selector: 'kui-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    selector: 'kui-login-form',
+    templateUrl: './login-form.component.html',
+    styleUrls: ['./login-form.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginFormComponent implements OnInit {
 
     /**
      * navigate to the defined url after login
