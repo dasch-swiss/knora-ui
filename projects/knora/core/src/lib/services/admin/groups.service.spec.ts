@@ -9,7 +9,7 @@ import { Group } from '../../declarations';
 import { groupsResponseJson, groupsTestData } from '../../test-data/admin/shared-test-data';
 
 
-describe('GroupsService', () => {
+fdescribe('GroupsService', () => {
 
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
@@ -34,43 +34,49 @@ describe('GroupsService', () => {
         httpTestingController.verify();
     });
 
-    describe('#getGroups', () => {
+    fdescribe('#getGroups', () => {
         const expectedGroups: Group[] = groupsTestData;
         const expectGroup: Group = groupsResponseJson;
 
-        it('should be created', inject([GroupsService], (service: GroupsService) => {
+        fit('should be created', inject([GroupsService], (service: GroupsService) => {
             expect(service).toBeTruthy();
         }));
 
-        it('should return all the groups', async(inject([GroupsService], (service) => {
+        fit('should return all groups', () => {
 
-            expect(service).toBeDefined();
+            expect(groupsService).toBeDefined();
 
-            service.getAllGroups().subscribe((result) => {
-                expect(result.body).toEqual(expectedGroups);
+            const groups = groupsService.getAllGroups();
+
+            groups.subscribe((result: Group[]) => {
+                expect(result).toEqual(expectedGroups);
             });
 
-            const req = httpTestingController.expectOne((request) => {
-            return request.url.match(service.url) && request.method === 'GET';
-          });
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/groups');
 
-        })));
+            expect(httpRequest.request.method).toEqual('GET');
 
-        it('should return one group by iri', async(inject([GroupsService], (service) => {
+            httpRequest.flush(expectedGroups);
 
-            expect(service).toBeDefined();
+        });
 
-            service.getGroupByIri('http://rdfh.ch/groups/00FF/images-reviewer').subscribe((result) => {
-                expect(result.body).toEqual(expectGroup);
+        fit('should return one group by iri', () => {
+
+            expect(groupsService).toBeDefined();
+
+            const groupByIri = groupsService.getGroupByIri('http://rdfh.ch/groups/00FF/images-reviewer');
+
+            groupByIri.subscribe((result: Group) => {
+                expect(result).toEqual(expectGroup);
             });
 
-            const req = httpTestingController.expectOne((request) => {
-            return request.url.match(service.url) && request.method === 'GET';
-            });
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/groups/' + encodeURIComponent('http://rdfh.ch/groups/00FF/images-reviewer'));
 
-        })));
+            expect(httpRequest.request.method).toEqual('GET');
 
+            httpRequest.flush(expectGroup);
 
+        });
     });
 
 });
