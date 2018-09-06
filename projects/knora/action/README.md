@@ -103,7 +103,7 @@ A attribute directive for images (`<img />`) to get a user avatar, which uses th
 ### Existing Name
 This directive checks a form field to see if the value is unique. For example username or project short-name should be unique. Therefore we use the ExistingNameDirective.
 
-See the [Stackblitz example](https://stackblitz.com/edit/knora-existingname?file=src%2Fapp%2Fapp.component.ts) how it works.
+See the [Stackblitz example](https://stackblitz.com/edit/knora-existing-name?file=src%2Fapp%2Fapp.component.ts) how it works.
 
 
 ---
