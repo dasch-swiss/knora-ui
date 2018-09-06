@@ -1,0 +1,13 @@
+<mat-card>
+    <h2>Properties view</h2>
+    <p>resource id: {{ resource?.id }}</p>
+    <p>resource type: {{ resource?.type }}</p>
+    <p>resource label: {{ontologyInfo?.getLabelForResourceClass(resource?.type)}}</p>
+    <div mat-line *ngFor="let prop of resource?.properties">
+        <!-- <mat-list>
+            <mat-list-item *ngFor="let val of prop.value">
+                value: {{ val }}
+            </mat-list-item>
+        </mat-list> -->
+    </div>
+</mat-card>

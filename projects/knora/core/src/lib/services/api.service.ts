@@ -20,7 +20,7 @@ export abstract class ApiService {
     loading = false;
 
     protected constructor(public http: HttpClient,
-                          @Inject('config') public config: KuiCoreConfig) {
+        @Inject('config') public config: KuiCoreConfig) {
     }
 
     /**
@@ -33,9 +33,7 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
-
-        return this.http.get(this.config.api + path, {observe: 'response'}).pipe(
+        return this.http.get(this.config.api + path, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -44,6 +42,7 @@ export abstract class ApiService {
                 result.statusText = response.statusText;
                 result.url = path;
                 result.body = response.body;
+
                 return result;
             }),
             catchError((error: HttpErrorResponse) => {
@@ -68,7 +67,7 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.post(this.config.api + path, body, {observe: 'response'}).pipe(
+        return this.http.post(this.config.api + path, body, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -103,7 +102,7 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.put(this.config.api + path, body, {observe: 'response'}).pipe(
+        return this.http.put(this.config.api + path, body, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -139,7 +138,7 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.delete(this.config.api + path, {observe: 'response'}).pipe(
+        return this.http.delete(this.config.api + path, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 

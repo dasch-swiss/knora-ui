@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { ApiServiceResult } from '../../declarations';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class SearchService extends ApiService {
 
-  /**
+    /**
      * Perform a fulltext search.
      *
      * @param searchTerm the term to search for.
@@ -17,87 +17,88 @@ export class SearchService extends ApiService {
      */
     doFulltextSearch(searchTerm: string, offset: number = 0): Observable<ApiServiceResult> {
 
-      if (searchTerm === undefined || searchTerm.length === 0) {
-          return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
-      }
+        if (searchTerm === undefined || searchTerm.length === 0) {
+            return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
+        }
 
-      return this.httpGet('/v2/search/' + searchTerm + '?offset=' + offset);
-  }
+        return this.httpGet('/v2/search/' + searchTerm + '?offset=' + offset);
+    }
 
-  /**
-   * Perform a fulltext search count query.
-   *
-   * @param searchTerm the term to search for.
-   * @returns {Observable<ApiServiceResult>}
-   */
-  doFulltextSearchCountQuery(searchTerm: string): Observable<ApiServiceResult> {
+    /**
+     * Perform a fulltext search count query.
+     *
+     * @param searchTerm the term to search for.
+     * @returns {Observable<ApiServiceResult>}
+     */
+    doFulltextSearchCountQuery(searchTerm: string): Observable<ApiServiceResult> {
 
-      if (searchTerm === undefined || searchTerm.length === 0) {
-          return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));
-      }
+        if (searchTerm === undefined || searchTerm.length === 0) {
+            return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));
+        }
 
-      return this.httpGet('/v2/search/count/' + searchTerm);
-  }
+        return this.httpGet('/v2/search/count/' + searchTerm);
+    }
 
-  /**
-   * Perform an extended search.
-   *
-   * @param sparqlString the Sparql query string to be sent to Knora.
-   * @returns {Observable<any>}
-   */
-  doExtendedSearch(sparqlString: string): Observable<ApiServiceResult> {
+    /**
+     * Perform an extended search.
+     *
+     * @param sparqlString the Sparql query string to be sent to Knora.
+     * @returns {Observable<any>}
+     */
+    doExtendedSearch(sparqlString: string): Observable<ApiServiceResult> {
 
-      if (sparqlString === undefined || sparqlString.length === 0) {
-          return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));
-      }
+        if (sparqlString === undefined || sparqlString.length === 0) {
+            return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));
+        }
 
-      return this.httpGet('/v2/searchextended/' + encodeURIComponent(sparqlString));
+        // return this.httpGet('/v2/searchextended/' + encodeURIComponent(sparqlString));
+        return this.httpPost('/v2/searchextended', sparqlString);
 
-  }
+    }
 
-  /**
-   * Perform an extended search count query.
-   *
-   * @param sparqlString the Sparql query string to be sent to Knora.
-   * @returns {Observable<ApiServiceResult>}
-   */
-  doExtendedSearchCountQuery(sparqlString: string): Observable<ApiServiceResult> {
+    /**
+     * Perform an extended search count query.
+     *
+     * @param sparqlString the Sparql query string to be sent to Knora.
+     * @returns {Observable<ApiServiceResult>}
+     */
+    doExtendedSearchCountQuery(sparqlString: string): Observable<ApiServiceResult> {
 
-      if (sparqlString === undefined || sparqlString.length === 0) {
-          return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));
-      }
+        if (sparqlString === undefined || sparqlString.length === 0) {
+            return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));
+        }
 
-      return this.httpGet('/v2/searchextended/count/' + encodeURIComponent(sparqlString));
+        // return this.httpGet('/v2/searchextended/count/' + encodeURIComponent(sparqlString));
+        return this.httpPost('/v2/searchextended/count', sparqlString);
+    }
 
-  }
+    /**
+     * Perform a search by a resource's rdfs:label.
+     *
+     * @param {string} searchTerm the term to search for.
+     * @param resourceClassIRI restrict search to given resource class.
+     * @param projectIri restrict search to given project.
+     * @returns {Observable<ApiServiceResult>}
+     */
+    searchByLabel(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ApiServiceResult> {
 
-  /**
-   * Perform a search by a resource's rdfs:label.
-   *
-   * @param {string} searchTerm the term to search for.
-   * @param resourceClassIRI restrict search to given resource class.
-   * @param projectIri restrict search to given project.
-   * @returns {Observable<ApiServiceResult>}
-   */
-  searchByLabel(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ApiServiceResult> {
+        if (searchTerm === undefined || searchTerm.length === 0) {
+            return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
+        }
 
-      if (searchTerm === undefined || searchTerm.length === 0) {
-          return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
-      }
+        const params = {};
 
-      const params = {};
+        if (resourceClassIRI !== undefined) {
+            params['limitToResourceClass'] = resourceClassIRI;
+        }
 
-      if (resourceClassIRI !== undefined) {
-          params['limitToResourceClass'] = resourceClassIRI;
-      }
+        if (projectIri !== undefined) {
+            params['limitToProject'] = projectIri;
+        }
 
-      if (projectIri !== undefined) {
-          params['limitToProject'] = projectIri;
-      }
+        // httpGet() expects only one argument, not 2
+        // return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), {params: params});
+        return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm));
 
-      // httpGet() expects only one argument, not 2
-      // return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), {params: params});
-      return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm));
-
-  }
+    }
 }

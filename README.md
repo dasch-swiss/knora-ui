@@ -1,5 +1,7 @@
 # Knora-ui
 
+[![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/wip%2Fcore-module-tests.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/wip%2Fcore-module-tests)
+
 This is the demo and developing environment for Knora ui modules, which will be published on [npm](https://www.npmjs.com/~knora).
 
 The modules helps to create a graphical user interface for [Knora](https://knora.org) in a quick and simple way. They're written in [Angular](https://angular.io) (v6) including the [material design](https://material.angular.io).
@@ -79,16 +81,71 @@ To create new e.g. component inside existing module use the following command:
 * properties (as form elements)
 * resource_class_form
 
-<!--
-@knora/admin
-<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/admin.svg) --
-* project (incl. ontology-editor)
-* system
-* user
-* dashboard
-* ontology_form incl. resource-class-form (new-/edit-resource-class)
-* project_form
-* user_form
-* list_form
+<!-- ---
 
--->
+## Unit Testing Services
+
+Testing services with HttpClient and HttpTestingController
+
+* Then a test expects that certain requests have or have not been made, performs assertions against those requests, and finally provide responses by "flushing" each expected request.
+https://angular.io/guide/http#testing-http-requests
+* See https://stackblitz.com/edit/angular-uy5cdl?file=src%2Fapp%2Fheroes%2Fheroes.service.spec.ts for a working example.
+
+ ```
+ getAllHeroes (): Observable<any[]> {
+    const observables = [];
+
+    for (let i = 0; i <= 2; i++) {
+      observables.push(
+        this.http.get<Hero[]>(this.heroesUrl)
+        .pipe(
+          catchError(this.handleError('getAllHeroes', []))
+      )
+      );
+    }
+
+    return forkJoin(observables);
+
+  }
+  ``` 
+
+* Several http requests are created and pushed on an array, then they are passed to forkJoin and returned. With forkJoin, we get one Observable that we can subscribe to (executed once all Observables have been completed). Then we get the results of all Observables from within the subscription to the Observable returned by forkJoin.
+
+```
+ it('should get all heroes', () => {
+
+      let res = heroService.getAllHeroes();   
+
+      res.subscribe(
+        (obs) => { 
+
+          console.log("test")
+
+          expect(obs[0]).toEqual(expectedHeroes, 'should return expected heroes');
+          expect(obs[1]).toEqual(expectedHeroes, 'should return expected heroes');
+          expect(obs[2]).toEqual(expectedHeroes, 'should return expected heroes');
+        }, fail
+      );
+
+      // HeroService should have made three requests to GET heroes from expected URL
+      const req = httpTestingController.match(
+        (request) => {
+          return request.url === heroService.heroesUrl && request.method === 'GET'
+        }
+      );
+
+      // Respond with the mock heroes
+      expect(req.length).toEqual(3);
+
+      req[0].flush(expectedHeroes)
+      req[1].flush(expectedHeroes)
+      req[2].flush(expectedHeroes)
+
+    });
+```
+
+* The clue is that for each http request made, a response has to be "flushed". Otherwise the subscription to the Observable returned by forkJoin is never executed:
+If an inner observable does not complete forkJoin will never emit a value!
+https://www.learnrxjs.io/operators/combination/forkjoin.html
+
+> This is why the subscription never worked, because we did not flush all necessary responses. -->

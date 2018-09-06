@@ -1,33 +1,45 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { ProjectsService } from './projects.service';
-import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
-import { ProjectResponse, ProjectsResponse } from '../../declarations/index';
+import { ApiServiceError, Project, ProjectResponse, ProjectsResponse } from '../../declarations/';
 import {
-    anythingProject,
     anythingProjectResponseJson,
-    imagesProject,
-    imagesProjectResponseJson, incunabulaProject,
+    imagesProjectResponseJson,
+    incunabulaProject,
     incunabulaProjectResponseJson,
     projectsResponseJson,
     projectsTestData
-} from 'test-data/shared-test-data';
+} from '../../test-data/admin/shared-test-data';
 import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
 import { KuiCoreModule } from '../../core.module';
+import { ApiService } from '../api.service';
 
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient } from '@angular/common/http';
 
 
 describe('ProjectsService', () => {
+    let httpClient: HttpClient;
+    let httpTestingController: HttpTestingController;
+    let projectsService: ProjectsService;
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                HttpClientModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
+                HttpClientTestingModule,
+                KuiCoreModule.forRoot({name: '', api: 'http://0.0.0.0:3333', app: '', media: ''})
             ],
             providers: [
-                ProjectsService,
-                HttpClient
+                ApiService,
+                ProjectsService
             ]
         });
+
+        // Inject the http, test controller, and service-under-test
+        // as they will be referenced by each test.
+        httpClient = TestBed.get(HttpClient);
+        httpTestingController = TestBed.get(HttpTestingController);
+        projectsService = TestBed.get(ProjectsService);
+
     });
 
     it('should be created', async(inject(
@@ -74,6 +86,70 @@ describe('ProjectsService', () => {
         expect(result).toBeTruthy();
     });
 
+    it('#getProjectByIri should return project (incunabula)', async(inject(
+        [ProjectsService], (service) => {
+
+            expect(service).toBeDefined();
+
+            service.getProjectByIri('http://rdfh.ch/projects/0803')
+                .subscribe(
+                    (project: Project) => {
+                        // console.log('project: ' + JSON.stringify(project));
+                        expect(project).toEqual(incunabulaProject);
+                    },
+                    (error: ApiServiceError) => {
+                        fail(error);
+                    }
+                );
+
+        })));
+
+    it('#getAllProjects should return all projects', async(inject(
+        [ProjectsService], (service) => {
+
+            expect(service).toBeDefined();
+
+            service.getAllProjects()
+                .subscribe(
+                    (projects: Project[]) => {
+
+                        // console.log('projects from TEST-DATA: ' + JSON.stringify(projectsTestData));
+                        // console.log('projects from API: ' + JSON.stringify(projects));
+
+                        expect(projects.length).toBe(8);
+                        expect(projects).toEqual(projectsTestData);
+                    },
+                    (error: ApiServiceError) => {
+                        fail(error);
+                    }
+                );
+
+        })));
+
+    /*
+
+        it('#getAllProjects should return all projects', async(inject(
+            [ProjectsService], (service) => {
+
+                expect(service).toBeDefined();
+
+                service.getAllProjects()
+                    .subscribe(
+                        (projects: Project[]) => {
+
+                            console.log('projects from TEST-DATA: ' + JSON.stringify(projectsTestData));
+                            console.log('projects from API: ' + JSON.stringify(projects));
+
+                            expect(projects.length).toBe(8);
+                            expect(projects).toEqual(projectsTestData);
+                        },
+                        (error: ApiServiceError) => {
+                            fail(error);
+                        }
+                    );
+
+            })));
+    */
 
     /*
     if (environment.type === 'integration') {
