@@ -5,8 +5,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { KuiCoreModule } from '../../core.module';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from '../api.service';
-import { Group } from '../../declarations';
-import { groupsResponseJson, groupsTestData } from '../../test-data/admin/shared-test-data';
+import { ApiServiceError, ApiServiceResult, Group } from '../../declarations';
+import { groupsResponseJson, imagesReviewerGroupResponseJson } from '../../test-data/admin/shared-test-data';
+import { Observable, of } from 'rxjs';
 
 
 describe('GroupsService', () => {
@@ -35,48 +36,73 @@ describe('GroupsService', () => {
     });
 
     describe('#getGroups', () => {
-        const expectedGroups: Group[] = groupsTestData;
-        const expectGroup: Group = groupsResponseJson;
 
         it('should be created', inject([GroupsService], (service: GroupsService) => {
             expect(service).toBeTruthy();
         }));
 
-        it('should return all groups', () => {
+        it('should return all groups', async(inject([GroupsService], (service) => {
+
+            spyOn(service, 'getAllGroups').and.callFake(() => {
+                const result = new ApiServiceResult();
+                result.status = 200;
+                result.statusText = '';
+                result.url = '';
+                result.body = groupsResponseJson;
+
+                return of(result);
+            });
 
             expect(groupsService).toBeDefined();
 
-            const groups = groupsService.getAllGroups();
+            const allGroups: Observable<Group[]> = groupsService.getAllGroups();
 
-            groups.subscribe((result: Group[]) => {
-                expect(result).toEqual(expectedGroups);
+            const groups = {
+                'groups': [{ 'name': 'Image reviewer', 'project': { 'ontologies': ['http://www.knora.org/ontology/00FF/images'], 'shortname': 'images', 'description': [{ 'value': 'A demo project of a collection of images', 'language': 'en' }], 'shortcode': '00FF', 'logo': null, 'id': 'http://rdfh.ch/projects/00FF', 'status': true, 'selfjoin': false, 'keywords': ['collection', 'images'], 'longname': 'Image Collection Demo' }, 'description': 'A group for image reviewers.', 'id': 'http://rdfh.ch/groups/00FF/images-reviewer', 'status': true, 'selfjoin': false }]
+            };
+
+            allGroups.subscribe(
+                (result: any) => {
+                    const groupsResult = result.body;
+                    expect(groupsResult).toEqual(groups);
+                },
+                (error: ApiServiceError) => {
+                    fail(error);
+                }
+            );
+
+        })));
+
+        it('should return one group by iri', async(inject([GroupsService], (service) => {
+
+            spyOn(service, 'getGroupByIri').and.callFake(() => {
+                const result = new ApiServiceResult();
+                result.status = 200;
+                result.statusText = '';
+                result.url = '';
+                result.body = imagesReviewerGroupResponseJson;
+
+                return of(result);
             });
-
-            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/groups');
-
-            expect(httpRequest.request.method).toEqual('GET');
-
-            httpRequest.flush(expectedGroups);
-
-        });
-
-        it('should return one group by iri', () => {
 
             expect(groupsService).toBeDefined();
 
-            const groupByIri = groupsService.getGroupByIri('http://rdfh.ch/groups/00FF/images-reviewer');
+            const groupByIri: Observable<Group> = groupsService.getGroupByIri('http://rdfh.ch/groups/00FF/images-reviewer');
 
-            groupByIri.subscribe((result: Group) => {
-                expect(result).toEqual(expectGroup);
-            });
+            const group = {
+                'group': { 'name': 'Image reviewer', 'project': { 'ontologies': ['http://www.knora.org/ontology/00FF/images'], 'shortname': 'images', 'description': [{ 'value': 'A demo project of a collection of images', 'language': 'en' }], 'shortcode': '00FF', 'logo': null, 'id': 'http://rdfh.ch/projects/00FF', 'status': true, 'selfjoin': false, 'keywords': ['collection', 'images'], 'longname': 'Image Collection Demo' }, 'description': 'A group for image reviewers.', 'id': 'http://rdfh.ch/groups/00FF/images-reviewer', 'status': true, 'selfjoin': false }
+            };
 
-            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/groups/' + encodeURIComponent('http://rdfh.ch/groups/00FF/images-reviewer'));
+            groupByIri.subscribe(
+                (result: any) => {
+                    expect(result.body).toEqual(group);
+                },
+                (error: ApiServiceError) => {
+                    fail(error);
+                }
+            );
 
-            expect(httpRequest.request.method).toEqual('GET');
-
-            httpRequest.flush(expectGroup);
-
-        });
+        })));
     });
 
 });
