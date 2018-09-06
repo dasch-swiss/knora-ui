@@ -24,7 +24,7 @@ describe('ResourceService', () => {
         resourceService = TestBed.get(ResourceService);
     });
 
-    fdescribe('#getResource', () => {
+    describe('#getResource', () => {
 
         let expectedResource;
 
@@ -32,7 +32,7 @@ describe('ResourceService', () => {
             expectedResource = require('../../test-data/resources/Testthing.json');
         });
 
-        fit('should be created', () => {
+        it('should be created', () => {
             expect(resourceService).toBeTruthy();
         });
 
