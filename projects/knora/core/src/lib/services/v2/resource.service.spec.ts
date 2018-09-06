@@ -1,15 +1,13 @@
-import { async, inject, TestBed,  } from '@angular/core/testing';
+import { async, inject, TestBed, } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
-
 import { ApiService } from '../api.service';
 import { ResourceService } from './resource.service';
-import { ApiServiceResult } from '../../declarations';
+import { ApiServiceError, ApiServiceResult, ReadResource } from '../../declarations';
 import { KuiCoreModule } from '../../core.module';
+import { Observable, of } from 'rxjs';
 
 describe('ResourceService', () => {
-    let httpClient: HttpClient;
-    let httpTestingController: HttpTestingController;
     let resourceService: ResourceService;
 
     beforeEach(() => {
@@ -23,48 +21,55 @@ describe('ResourceService', () => {
                 ResourceService
             ]
         });
-
-        httpClient = TestBed.get(HttpClient);
-        httpTestingController = TestBed.get(HttpTestingController);
-        resourceService = TestBed.get(resourceService);
+        resourceService = TestBed.get(ResourceService);
     });
 
-    afterEach(() => {
-        httpTestingController.verify();
-    });
+    fdescribe('#getResource', () => {
 
-    it('should be created', inject([ResourceService], (service: ResourceService) => {
-        expect(service).toBeTruthy();
-    }));
-
-   /*  fdescribe('#getResource', () => {
         let expectedResource;
-        // const iri: string = 'http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw';
 
         beforeEach(() => {
-            expectedResource = require('../../test-data/resources/Testthing.json') as String;
+            expectedResource = require('../../test-data/resources/Testthing.json');
         });
 
-        fit('should be created', inject(
-            [ResourceService], (service: ResourceService) => {
-                expect(service).toBeDefined();
-            }
-        ));
- */
-        /* it('should return a resource', async(inject(
-            [ResourceService], (service: ResourceService) => {
+        fit('should be created', () => {
+            expect(resourceService).toBeTruthy();
+        });
 
-            expect(service).toBeDefined();
-            service.getResource(iri).subscribe((result: ApiServiceResult) => {
-                expect(result.body).toEqual(expectedResource);
+        /* // TODO: need to fix this test once the resourceService has been refactored
+
+        fit('should return a resource', inject([ResourceService], (service: ResourceService) => {
+
+            spyOn(service, 'getResource').and.callFake(() => {
+                const result = new ApiServiceResult();
+                result.status = 200;
+                result.statusText = '';
+                result.url = '';
+                result.body = expectedResource;
+
+                return of(result);
             });
 
-            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/resources/' + encodeURIComponent(iri));
+            expect(resourceService).toBeDefined();
 
-            expect(httpRequest.request.method).toEqual('GET');
+            const getResource: Observable<ApiServiceResult> = resourceService.getResource('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
 
-            httpRequest.flush(expectedResource);
-        }))); */
-    // });
+            const resource = [
+
+            ];
+
+            getResource.subscribe(
+                (result: any) => {
+                    expect(result.body).toEqual(resource);
+                },
+                (error: ApiServiceError) => {
+                    fail(error);
+                }
+            );
+
+        })); */
+
+
+    });
 
 });
