@@ -4,77 +4,104 @@ import { HttpClient } from '@angular/common/http';
 import { KuiCoreModule } from '../../core.module';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from '../api.service';
-import { List } from '../../declarations';
-import { incunabulaProjectIri, listsResponseJson, listsTestData } from '../../test-data/admin/shared-test-data';
+import { ApiServiceError, ApiServiceResult, List } from '../../declarations';
+import { incunabulaProjectIri, listsResponseJson, yesNoMaybeListResponseJson } from '../../test-data/admin/shared-test-data';
+import { Observable, of } from 'rxjs';
 
 describe('ListsService', () => {
-  let httpClient: HttpClient;
-  let httpTestingController: HttpTestingController;
-  let listService: ListsService;
+    let httpClient: HttpClient;
+    let httpTestingController: HttpTestingController;
+    let listsService: ListsService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
-      ],
-      providers: [
-        ApiService,
-        ListsService
-      ]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                HttpClientTestingModule,
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
+            ],
+            providers: [
+                ApiService,
+                ListsService
+            ]
+        });
+
+        httpClient = TestBed.get(HttpClient);
+        httpTestingController = TestBed.get(HttpTestingController);
+        listsService = TestBed.get(ListsService);
     });
 
-    httpClient = TestBed.get(HttpClient);
-    httpTestingController = TestBed.get(HttpTestingController);
-    listService = TestBed.get(ListsService);
-  });
-
-  afterEach(() => {
-    // After every test, assert that there are no more pending requests.
-    httpTestingController.verify();
-  });
-
-  describe('#getLists', () => {
-    const expectLists: List[] = listsTestData;
-    const expectList: List = listsResponseJson;
-
-    it('should be created', inject([ListsService], (service: ListsService) => {
-      expect(service).toBeTruthy();
-    }));
-
-    it('should return all lists', () => {
-
-      expect(listService).toBeDefined();
-
-      listService.getLists(incunabulaProjectIri).subscribe((result: List[]) => {
-        expect(result).toEqual(expectLists);
-      });
-
-      const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/lists?projectIri=' + encodeURIComponent(incunabulaProjectIri));
-
-      expect(httpRequest.request.method).toEqual('GET');
-
-      httpRequest.flush(expectLists);
-
-
+    afterEach(() => {
+        // After every test, assert that there are no more pending requests.
+        httpTestingController.verify();
     });
 
-    it('should return one list by iri', () => {
+    describe('#getLists', () => {
 
-      expect(listService).toBeDefined();
+        it('should be created', inject([ListsService], (service: ListsService) => {
+            expect(service).toBeTruthy();
+        }));
 
-      listService.getList('http://rdfh.ch/lists/FFFF/ynm01').subscribe((result: List) => {
-        expect(result).toEqual(expectList);
-      });
+        it('should return all lists', async(inject([ListsService], (service) => {
 
-      const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/admin/lists/' + encodeURIComponent('http://rdfh.ch/lists/FFFF/ynm01'));
+            spyOn(service, 'getLists').and.callFake(() => {
+                const result = new ApiServiceResult();
+                result.status = 200;
+                result.statusText = '';
+                result.url = '';
+                result.body = listsResponseJson;
 
-      expect(httpRequest.request.method).toEqual('GET');
+                return of(result);
+            });
 
-      httpRequest.flush(expectList);
+            expect(listsService).toBeDefined();
+
+            const allLists: Observable<List[]> = listsService.getLists(incunabulaProjectIri);
+
+            const lists = {
+                'lists': [{ 'listinfo': { 'id': 'http://rdfh.ch/lists/FFFF/ynm01', 'projectIri': 'http://www.knora.org/ontology/knora-base#SystemProject', 'labels': [{ 'value': 'The Yes, No, Maybe List', 'language': 'en' }, { 'value': 'Die Ja, Nein, Vielleicht Liste', 'language': 'de' }], 'comments': [{ 'value': 'This list can be used by all projects.', 'language': 'en' }, { 'value': 'Diese Liste kann von allen Projekten verwendet werden.', 'language': 'de' }] }, 'children': [] }]
+            };
+
+            allLists.subscribe(
+                (result: any) => {
+                    const listsResult = result.body;
+                    expect(listsResult).toEqual(lists);
+                },
+                (error: ApiServiceError) => {
+                    fail(error);
+                });
+
+        })));
+
+        it('should return one list by iri', async(inject([ListsService], (service) => {
+
+            spyOn(service, 'getList').and.callFake(() => {
+                const result = new ApiServiceResult();
+                result.status = 200;
+                result.statusText = '';
+                result.url = '';
+                result.body = yesNoMaybeListResponseJson;
+
+                return of(result);
+            });
+
+            expect(listsService).toBeDefined();
+
+            const getList: Observable<List> = listsService.getList('http://rdfh.ch/lists/FFFF/ynm01');
+
+            const list = {
+                'list': { 'listinfo': { 'id': 'http://rdfh.ch/lists/FFFF/ynm01', 'projectIri': 'http://www.knora.org/ontology/knora-base#SystemProject', 'labels': [{ 'value': 'The Yes, No, Maybe List', 'language': 'en' }, { 'value': 'Die Ja, Nein, Vielleicht Liste', 'language': 'de' }], 'comments': [{ 'value': 'This list can be used by all projects.', 'language': 'en' }, { 'value': 'Diese Liste kann von allen Projekten verwendet werden.', 'language': 'de' }] }, 'children': [{ 'children': [], 'name': 'yes', 'id': 'http://rdfh.ch/lists/FFFF/ynm01-01', 'labels': [{ 'value': 'Yes' }], 'position': 0, 'comments': [] }, { 'children': [], 'name': 'no', 'id': 'http://rdfh.ch/lists/FFFF/ynm01-02', 'labels': [{ 'value': 'No' }], 'position': 1, 'comments': [] }, { 'children': [], 'name': 'maybe', 'id': 'http://rdfh.ch/lists/FFFF/ynm01-03', 'labels': [{ 'value': 'Maybe' }], 'position': 2, 'comments': [] }] }
+            };
+
+            getList.subscribe(
+                (result: any) => {
+                    const listResult = result.body;
+                    expect(listResult).toEqual(list);
+                },
+                (error: ApiServiceError) => {
+                    fail(error);
+                });
+        })));
 
     });
-
-  });
 
 });
