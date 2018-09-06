@@ -318,6 +318,6 @@ describe('ProjectsService', () => {
             xit('integration tests skipped. run  "ng test --env=it".');
         }
         */
-
-
     });
+
+});
