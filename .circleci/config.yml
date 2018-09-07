@@ -36,6 +36,7 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       # Build the libraries
+      - run: yarn add --force node-sass
       - run: yarn build-lib
 
       # Build the demo app
