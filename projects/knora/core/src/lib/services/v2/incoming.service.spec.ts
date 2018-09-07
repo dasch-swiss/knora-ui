@@ -8,10 +8,10 @@ import { SearchService } from './search.service';
 
 describe('IncomingService', () => {
 
-    /*  let httpClient: HttpClient;
-     let httpTestingController: HttpTestingController;
-     let incomingService: IncomingService;
-  */
+    let httpClient: HttpClient;
+    let httpTestingController: HttpTestingController;
+    let incomingService: IncomingService;
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
@@ -21,20 +21,20 @@ describe('IncomingService', () => {
             providers: [SearchService, IncomingService]
         });
 
-        /*   httpClient = TestBed.get(HttpClient);
-          httpTestingController = TestBed.get(HttpTestingController);
-          incomingService = TestBed.get(IncomingService); */
+        httpClient = TestBed.get(HttpClient);
+        httpTestingController = TestBed.get(HttpTestingController);
+        incomingService = TestBed.get(IncomingService);
     });
 
-    /*  afterEach(() => {
-         httpTestingController.verify();
-     }); */
+    afterEach(() => {
+        httpTestingController.verify();
+    });
 
     it('should be created', inject([IncomingService], (service: IncomingService) => {
         expect(service).toBeDefined();
     }));
 
-    it('should get incoming regions ', async(inject([IncomingService, SearchService], (incomingService, searchService: SearchService) => {
+    it('should get incoming regions ', async(inject([SearchService], (searchService: SearchService) => {
         const query = incomingService.getIncomingRegions('http://0.0.0.0:3333/ontology/0801/beol/v2#letter', 0);
 
         const expectedQuery = `
@@ -76,11 +76,10 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
 
         const resultSearch = searchService.doExtendedSearch(expectedQuery);
 
-        console.log('resultSearch ', resultSearch);
-        console.log('query ', query);
+        /* console.log('resultSearch ', resultSearch);
+        console.log('query ', query); */
 
         expect(query).toEqual(resultSearch);
-        // Expected $.operator.selector = Function to equal Function.
 
     })));
 
