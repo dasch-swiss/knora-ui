@@ -2,6 +2,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from '@knora/authentication';
 import { AppDemo } from './app.config';
+import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
+import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
 // / start with main-intro
 import { MainIntroComponent } from './landing-page/main-intro/main-intro.component';
 // /modules demo
@@ -63,6 +65,14 @@ const appRoutes: Routes = [
                     {
                         path: 'admin-image',
                         component: AdminImageComponent
+                    },
+                    {
+                        path: 'existing-name',
+                        component: ExistingNameComponent
+                    },
+                    {
+                        path: 'key',
+                        component: KeyComponent
                     }
                 ]
             },

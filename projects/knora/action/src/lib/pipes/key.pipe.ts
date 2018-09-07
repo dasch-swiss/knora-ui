@@ -14,7 +14,6 @@ import { Pipe, PipeTransform } from '@angular/core';
  * {{item.value.name}} resp. {{item.value.label}}
  */
 
- // TODO: move this pipe to the action module
 
 @Pipe({
   name: 'key'

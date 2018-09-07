@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {AppDemo} from '../../../app.config';
-import {Example} from '../../../app.interfaces';
+import { Component, OnInit } from '@angular/core';
+import { AppDemo } from '../../../app.config';
+import { Example } from '../../../app.interfaces';
 
 @Component({
     selector: 'app-progress-indicator-demo',

@@ -5,5 +5,11 @@
 }
 
 .example-code-group {
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(193, 193, 193, 0.12);
+}
+
+.full-width {
+  width: calc(100% + 48px);
+  margin: 0 -24px;
+
 }

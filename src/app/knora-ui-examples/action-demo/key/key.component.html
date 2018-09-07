@@ -1,0 +1,16 @@
+<app-module-sub-header [demo]="partOf"></app-module-sub-header>
+
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="keyPipe"></app-example-viewer>
+
+    <div class="demo">
+        <ul>
+            <li *ngFor="let item of array | key">
+                {{item.key}}: {{item.value}}
+            </li>
+        </ul>
+    </div>
+</mat-card>
+
+

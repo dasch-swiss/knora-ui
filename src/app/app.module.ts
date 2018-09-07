@@ -1,5 +1,6 @@
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -48,6 +49,8 @@ import { ModuleHeaderComponent } from './partials/module-header/module-header.co
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
+import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
+import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
 
 
 @NgModule({
@@ -79,7 +82,9 @@ import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
         PropertiesComponent,
         ObjectsComponent,
         ViewsComponent,
-        AuthComponent
+        AuthComponent,
+        ExistingNameComponent,
+        KeyComponent
     ],
     entryComponents: [
         // LoginFormComponent
@@ -100,7 +105,8 @@ import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
         KuiViewerModule,
         MaterialModule,
         HttpClientModule,
-        MarkdownModule.forRoot({loader: HttpClient})
+        MarkdownModule.forRoot({loader: HttpClient}),
+        ReactiveFormsModule
     ],
     providers: [
         {
