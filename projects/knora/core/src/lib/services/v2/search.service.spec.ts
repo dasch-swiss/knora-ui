@@ -1,21 +1,36 @@
 import { inject, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient } from '@angular/common/http';
 
 import { SearchService } from './search.service';
-import { HttpClientModule } from '@angular/common/http';
 import { KuiCoreModule } from '../../core.module';
+import { ApiService } from '../api.service';
 
 describe('SearchService', () => {
+  let httpClient: HttpClient;
+  let httpTestingController: HttpTestingController;
+  let searchService: SearchService;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientModule,
+        HttpClientTestingModule,
         KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
       ],
-      providers: [SearchService]
+      providers: [ApiService, SearchService]
     });
+
+    httpClient = TestBed.get(HttpClient);
+    httpTestingController = TestBed.get(HttpTestingController);
+    searchService = TestBed.get(SearchService);
   });
 
-  it('should be created', inject([SearchService], (service: SearchService) => {
-    expect(service).toBeTruthy();
-  }));
+  afterEach(() => {
+    httpTestingController.verify();
+  });
+
+  it('should be created', () => {
+    expect(searchService).toBeDefined();
+  });
+
 });

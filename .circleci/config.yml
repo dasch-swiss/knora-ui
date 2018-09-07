@@ -14,41 +14,42 @@ jobs:
     working_directory: ~/repo
 
     steps:
-    - checkout
+      - checkout
 
-    # Download and cache dependencies
-    - restore_cache:
-        keys:
-        - v1-dependencies-{{ checksum "yarn.lock" }}
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
 
-    - run:
-        name: Version Info
-        command: |
-          node --version \
-            && yarn --version \
-            && git --version
-    - run: yarn install
+      - run:
+          name: Version Info
+          command: |
+            node --version \
+              && yarn --version \
+              && git --version
 
-    - save_cache:
-        paths:
-        - node_modules
-        key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn install
 
-    # Build the libraries
-    - run: yarn add --force node-sass
-    - run: yarn build-lib
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
-    # Build the demo app
-    # - run: yarn build:app
+      # Build the libraries
+      - run: yarn add --force node-sass
+      - run: yarn build-lib
 
-    # Run unit tests!
-    # - run: xvfb-run -a yarn ci:test
-    - run: yarn ng t --project @knora/core --watch=false --browsers=ChromeHeadless
+      # Build the demo app
+      # - run: yarn build:app
 
-    # Run e2e tests!
-    # - run: xvfb-run -a yarn ci:e2e
+      # Run unit tests!
+      # - run: xvfb-run -a yarn ci:test
+      - run: yarn ng t --project @knora/core --watch=false --browsers=ChromeHeadless
 
-    # Store build artefacts on circle
-    - store_artifacts:
-        path: ~/repo/dist
-        destination: dist
+      # Run e2e tests!
+      # - run: xvfb-run -a yarn ci:e2e
+
+      # Store build artefacts on circle
+      - store_artifacts:
+          path: ~/repo/dist
+          destination: dist
