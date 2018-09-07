@@ -9,6 +9,9 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { AdminImageDirective } from './admin-image/admin-image.directive';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { KeyPipe } from './pipes/key.pipe';
+import { GndDirective } from './directives/gnd.directive';
+import { MathJaxDirective } from './directives/mathjax.directive';
+import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
 
 
 @NgModule({
@@ -26,15 +29,21 @@ import { KeyPipe } from './pipes/key.pipe';
         SortByPipe,
         AdminImageDirective,
         ReversePipe,
-        KeyPipe
+        KeyPipe,
+        GndDirective,
+        MathJaxDirective,
+        ResourceDialogComponent
     ],
     exports: [
         ProgressIndicatorComponent,
         SortButtonComponent,
+        ResourceDialogComponent,
         SortByPipe,
         AdminImageDirective,
         ReversePipe,
-        KeyPipe
+        KeyPipe,
+        GndDirective,
+        MathJaxDirective
     ]
 })
 export class KuiActionModule {

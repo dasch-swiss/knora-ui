@@ -17,6 +17,9 @@ export * from './lib/resource/object/object.component';
 
 // property (gui) element
 export * from './lib/property/text-value/text-value.component';
+export * from './lib/property/text-value/text-value-as-html/text-value-as-html.component';
+export * from './lib/property/text-value/text-value-as-string/text-value-as-string.component';
+export * from './lib/property/text-value/text-value-as-xml/text-value-as-xml.component';
 export * from './lib/property/date-value/date-value.component';
 export * from './lib/property/integer-value/integer-value.component';
 export * from './lib/property/color-value/color-value.component';

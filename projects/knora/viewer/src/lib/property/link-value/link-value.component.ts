@@ -1,11 +1,14 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogConfig } from '@angular/material';
 import {
     ApiServiceResult,
     ConvertJSONLD,
     IRI,
     KnoraConstants,
     OntologyCacheService,
+    OntologyInformation,
+    ReadLinkValue,
     ReadResource,
     ReadResourcesSequence,
     SearchService,
@@ -24,6 +27,9 @@ const resolvedPromise = Promise.resolve(null);
     styleUrls: ['./link-value.component.scss']
 })
 export class LinkValueComponent implements OnInit {
+
+    @Input() valueObject?: ReadLinkValue;
+    @Input() ontologyInfo?: OntologyInformation;
 
 
     // parent FormGroup
@@ -153,6 +159,15 @@ export class LinkValueComponent implements OnInit {
     getValue(): Value {
 
         return new IRI(this.form.value.resource.id);
+    }
+
+    showReferredResourceInDialog() {
+        // TODO: create ObjectDialogComponent
+
+        // const config: MatDialogConfig = ResourceDialogComponent.createConfiguration(this.valueObject.referredResourceIri);
+        //
+        // this.dialog.open(ResourceDialogComponent, config);
+
     }
 
 }

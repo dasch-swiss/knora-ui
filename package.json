@@ -44,6 +44,8 @@
     "moment": "^2.22.2",
     "ngx-markdown": "^6.0.1",
     "rxjs": "^6.2.2",
+    "openseadragon": "^2.3.0",
+    "svg-overlay": "github:openseadragon/svg-overlay",
     "ts-md5": "^1.2.4",
     "zone.js": "^0.8.26"
   },

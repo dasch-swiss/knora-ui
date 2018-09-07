@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -10,12 +11,15 @@ import {
     MatInputModule,
     MatListModule,
     MatNativeDateModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTooltipModule
 } from '@angular/material';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { KuiActionModule } from '@knora/action';
 import { KuiCoreModule } from '@knora/core';
 import { BooleanValueComponent } from './property/boolean-value/boolean-value.component';
+
 import { ColorValueComponent } from './property/color-value/color-value.component';
 import { DateValueComponent } from './property/date-value/date-value.component';
 import { DecimalValueComponent } from './property/decimal-value/decimal-value.component';
@@ -26,7 +30,11 @@ import { IntegerValueComponent } from './property/integer-value/integer-value.co
 import { IntervalValueComponent } from './property/interval-value/interval-value.component';
 import { LinkValueComponent } from './property/link-value/link-value.component';
 import { ListValueComponent } from './property/list-value/list-value.component';
+import { TextValueAsHtmlComponent } from './property/text-value/text-value-as-html/text-value-as-html.component';
+import { TextValueAsStringComponent } from './property/text-value/text-value-as-string/text-value-as-string.component';
+import { TextValueAsXmlComponent } from './property/text-value/text-value-as-xml/text-value-as-xml.component';
 import { TextValueComponent } from './property/text-value/text-value.component';
+import { TextfileValueComponent } from './property/textfile-value/textfile-value.component';
 import { UriValueComponent } from './property/uri-value/uri-value.component';
 import { AnnotationComponent } from './resource/annotation/annotation.component';
 import { AudioComponent } from './resource/audio/audio.component';
@@ -37,6 +45,7 @@ import { LinkObjComponent } from './resource/link-obj/link-obj.component';
 import { MovingImageComponent } from './resource/moving-image/moving-image.component';
 import { ObjectComponent } from './resource/object/object.component';
 import { RegionComponent } from './resource/region/region.component';
+
 import { StillImageComponent } from './resource/still-image/still-image.component';
 import { TextComponent } from './resource/text/text.component';
 import { CompareViewComponent } from './view/compare-view/compare-view.component';
@@ -44,6 +53,7 @@ import { GraphViewComponent } from './view/graph-view/graph-view.component';
 import { GridViewComponent } from './view/grid-view/grid-view.component';
 import { ListViewComponent } from './view/list-view/list-view.component';
 import { PropertiesViewComponent } from './view/properties-view/properties-view.component';
+
 import { ResourceViewComponent } from './view/resource-view/resource-view.component';
 import { TableViewComponent } from './view/table-view/table-view.component';
 
@@ -61,7 +71,10 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         MatListModule,
         MatNativeDateModule,
         MatSlideToggleModule,
-        ReactiveFormsModule
+        MatTooltipModule,
+        ReactiveFormsModule,
+        KuiCoreModule,
+        KuiActionModule
 
     ],
     declarations: [
@@ -77,6 +90,10 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         LinkObjComponent,
         ObjectComponent,
         TextValueComponent,
+        TextValueAsStringComponent,
+        TextValueAsHtmlComponent,
+        TextValueAsXmlComponent,
+        TextfileValueComponent,
         DateValueComponent,
         IntegerValueComponent,
         ColorValueComponent,
@@ -110,6 +127,10 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         LinkObjComponent,
         ObjectComponent,
         TextValueComponent,
+        TextValueAsStringComponent,
+        TextValueAsHtmlComponent,
+        TextValueAsXmlComponent,
+        TextfileValueComponent,
         DateValueComponent,
         IntegerValueComponent,
         ColorValueComponent,

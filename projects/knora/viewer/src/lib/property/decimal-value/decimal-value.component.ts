@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ReadDecimalValue } from '@knora/core';
 
 @Component({
   selector: 'kui-decimal-value',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./decimal-value.component.scss']
 })
 export class DecimalValueComponent implements OnInit {
+
+  @Input() valueObject: ReadDecimalValue;
 
   constructor() { }
 
