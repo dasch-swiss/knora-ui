@@ -12,6 +12,9 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 ### Yarn
 `yarn add @knora/action ts-md5@^1.2.4`
 
+---
+
+
 ## Components
 This module contains various components:
 
@@ -79,6 +82,11 @@ It's possible to set the position of the sort button to right side.
                  [position]="'right'">
 </kui-sort-button>
 
+---
+
+## Directives
+
+
 ### Admin image
 A attribute directive for images (`<img />`) to get a user avatar, which uses the service from gravatar.com and to set a project logo.
 
@@ -91,3 +99,45 @@ A attribute directive for images (`<img />`) to get a user avatar, which uses th
 #### Feature in both types
 - If no [image] is defined, a default image will be displayed.
 - If the defined image is not found, a default error-image will be displayed.
+
+### Existing Name
+This directive checks a form field to see if the value is unique. For example username or project short-name should be unique. Therefore we use the ExistingNameDirective.
+
+See the [Stackblitz example](https://stackblitz.com/edit/knora-existing-name?file=src%2Fapp%2Fapp.component.ts) how it works.
+
+
+---
+
+## Pipes
+
+### Key
+In case of an object, where you don't know the labels or in case of an array with no numeric index, you can use the Key pipe. 
+
+For this array
+```
+array = [];
+
+[...]
+
+this.array['index-1'] = 'Value in index 1';
+this.array['index-2'] = 'Value in index 2';
+this.array['index-3'] = 'Value in index 3';
+
+]
+```
+we can use it in the template as follow:
+
+```
+<ul>
+    <li *ngFor="let item of array | key">
+        {{item.key}}: {{item.value}}
+    </li>
+</ul>
+```
+
+Which shows this list
+*  index-1: Value in index 1
+*  index-2: Value in index 2
+*  index-3: Value in index 3
+
+See the [Stackblitz example](https://stackblitz.com/edit/knora-key?file=src%2Fapp%2Fapp.component.html) how it works.
