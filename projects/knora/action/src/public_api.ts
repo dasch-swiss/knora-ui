@@ -9,7 +9,7 @@ export * from './lib/resource-dialog/resource-dialog.component';
 export * from './lib/admin-image/admin-image.directive';
 export * from './lib/directives/gnd.directive';
 export * from './lib/directives/mathjax.directive';
-
+export * from './lib/existing-name/existing-name.directive';
 
 export * from './lib/action.module';
 

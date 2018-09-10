@@ -37,7 +37,18 @@ export class AppDemo {
             },
             {
                 name: 'admin-image',
-                label: 'AdminImage'
+                label: 'AdminImage',
+                stackblitz: true
+            },
+            {
+                name: 'existing-name',
+                label: 'ExistingName',
+                stackblitz: true
+            },
+            {
+                name: 'key',
+                label: 'Key',
+                stackblitz: true
             }
         ]
     };
@@ -91,7 +102,7 @@ export class AppDemo {
 
     public static searchModule: DemoModule = {
         name: 'search',
-        published: false,
+        published: true,
         label: 'Search module'
     };
 
