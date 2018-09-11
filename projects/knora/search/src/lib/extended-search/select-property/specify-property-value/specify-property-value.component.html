@@ -8,14 +8,14 @@
 <span
     *ngIf="comparisonOperatorSelected !== undefined && comparisonOperatorSelected !== null && comparisonOperatorSelected.getClassName() != 'Exists'"
     [ngSwitch]="propertyValueType">
-  <kui-integer-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.IntValue"></kui-integer-value>
-  <kui-decimal-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.DecimalValue"></kui-decimal-value>
-  <kui-boolean-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.BooleanValue"></kui-boolean-value>
-  <kui-date-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.DateValue"></kui-date-value>
-  <kui-text-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.TextValue"></kui-text-value>
-  <kui-uri-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.UriValue"></kui-uri-value>
-  <kui-link-value #propertyValue [formGroup]="form" [restrictResourceClass]="property.objectType"
-                  *ngSwitchCase="KnoraConstants.Resource"></kui-link-value>
+  <boolean-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.BooleanValue"></boolean-value>
+  <date-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.DateValue"></date-value>
+  <decimal-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.DecimalValue"></decimal-value>
+  <integer-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.IntValue"></integer-value>
+  <link-value #propertyValue [formGroup]="form" [restrictResourceClass]="property.objectType"
+              *ngSwitchCase="KnoraConstants.Resource"></link-value>
+  <text-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.TextValue"></text-value>
+  <uri-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.UriValue"></uri-value>
 
     <!-- TODO: Resource: handle linking properties with target class restriction: access property member to get objectClass via property() getter method -->
   <span *ngSwitchDefault="">Not supported {{propertyValueType}}</span>

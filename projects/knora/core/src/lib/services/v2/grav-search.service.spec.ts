@@ -3,7 +3,15 @@ import { inject, TestBed } from '@angular/core/testing';
 import { GravsearchGenerationService } from './grav-search.service';
 import { SearchParamsService } from './search-params.service';
 import { Property } from './ontology-cache.service';
-import { ComparisonOperatorAndValue, Equals, IRI, Like, PropertyWithValue, ValueLiteral } from '../../declarations/api/operators';
+import {
+    ComparisonOperatorAndValue,
+    Equals,
+    GreaterThan,
+    IRI,
+    Like,
+    PropertyWithValue,
+    ValueLiteral
+} from '../../declarations/api/operators';
 
 describe('GravsearchGenerationService', () => {
     beforeEach(() => {
@@ -427,5 +435,58 @@ OFFSET 0
 
     }));
 
+    it('should create a Gravsearch query string with a URI property matching a value', inject([GravsearchGenerationService], (service: GravsearchGenerationService) => {
+
+        const prop = new Property(
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger',
+            'http://api.knora.org/ontology/knora-api/v2#IntValue',
+            'Integer',
+            'Integer',
+            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+            true,
+            false,
+            false
+        );
+
+        const value = new ComparisonOperatorAndValue(new GreaterThan(), new ValueLiteral('1', 'http://www.w3.org/2001/XMLSchema#integer'));
+
+        const propWithVal = new PropertyWithValue(prop, value, true);
+
+        const gravsearch = service.createGravsearchQuery([propWithVal], undefined, 0);
+
+        const expectedGravsearch = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+CONSTRUCT {
+
+?mainRes knora-api:isMainResource true .
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/simple/v2#hasInteger> ?propVal0 .
+
+} WHERE {
+
+?mainRes a knora-api:Resource .
+
+
+
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/simple/v2#hasInteger> ?propVal0 .
+<http://0.0.0.0:3333/ontology/0001/anything/simple/v2#hasInteger> knora-api:objectType <http://www.w3.org/2001/XMLSchema#integer> .
+?propVal0 a <http://www.w3.org/2001/XMLSchema#integer> .
+
+FILTER(?propVal0 > "1"^^<http://www.w3.org/2001/XMLSchema#integer>)
+
+
+}
+
+ORDER BY ?propVal0
+
+OFFSET 0
+`;
+
+        expect(gravsearch).toEqual(expectedGravsearch);
+
+
+
+    }));
 
 });
