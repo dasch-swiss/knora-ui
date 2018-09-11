@@ -31,7 +31,7 @@ export class DateValueComponent implements OnInit, OnDestroy, PropertyValue {
         });
 
         this.form.valueChanges.subscribe((data) => {
-            console.log(data.dateValue);
+            // console.log(data.dateValue);
         });
 
         resolvedPromise.then(() => {

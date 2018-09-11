@@ -7,7 +7,7 @@ import {
     MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatIconModule,
+    MatIconModule, MatInputModule,
     MatListModule,
     MatSelectModule,
     MatTooltipModule
@@ -41,6 +41,7 @@ import { UriValueComponent } from './extended-search/select-property/specify-pro
         MatCheckboxModule,
         MatDatepickerModule,
         MatFormFieldModule,
+        MatInputModule,
         MatIconModule,
         MatListModule,
         MatSelectModule,
