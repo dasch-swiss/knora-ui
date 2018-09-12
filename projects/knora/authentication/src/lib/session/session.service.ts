@@ -100,7 +100,7 @@ export class SessionService {
                     // update the session.id
                     this.session.id = tsNow;
 
-                    console.log('new session id', this.session.id);
+                    // console.log('new session id', this.session.id);
                     // localStorage.removeItem('session');
                     localStorage.setItem('session', JSON.stringify(this.session));
                     return true;
