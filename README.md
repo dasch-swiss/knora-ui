@@ -1,8 +1,9 @@
 # Knora-ui
 
-[![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/wip%2Fcore-module-tests.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/wip%2Fcore-module-tests)
+[![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui)
+[![Build Status](https://travis-ci.com/dhlab-basel/Knora-ui.svg?branch=develop)](https://travis-ci.com/dhlab-basel/Knora-ui)
 
-This is the demo and developing environment for Knora ui modules, which will be published on [npm](https://www.npmjs.com/~knora).
+This is the demo and developing environment for Knora ui modules.
 
 The modules helps to create a graphical user interface for [Knora](https://knora.org) in a quick and simple way. They're written in [Angular](https://angular.io) (v6) including the [material design](https://material.angular.io).
 
@@ -11,6 +12,36 @@ Knora itself is a software framework for storing, sharing, and working with prim
 It is developed by the [Digital Humanities Lab](http://dhlab.unibas.ch/) at the [University of Basel](https://unibas.ch/en.html), and is supported by the [Swiss Academy of Humanities and Social Sciences](http://www.sagw.ch/en/sagw.html).
 
 Knora and the Knora ui elements is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public License](http://www.gnu.org/licenses/agpl-3.0.en.html).
+
+## Already published modules
+
+### @knora/core
+![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg) 
+
+The core module contains every service to use Knora's RESTful webapi.
+
+
+### @knora/authentication
+![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg)
+
+The authentication module contains the login form (for standalone usage) or a complete login- / logout-button environment incl. the login form.
+
+
+
+### @knora/search 
+![npm (scoped)](https://img.shields.io/npm/v/@knora/search.svg)
+
+Search module allows to make simple searches or extended searches in Knora. In extended search, resource class and its properties related to one specific ontology are selected to create your query.
+
+### @knora/viewer 
+![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg)
+
+The viewer module contains object components to show the resource class representations from Knora, the gui-elements for the property values and different kind of view frameworks.
+
+### @knora/action 
+![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)
+
+The action module contains special buttons (e.g. to sort a list), pipes and directives.
 
 
 ## Developers note
