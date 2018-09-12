@@ -1,10 +1,8 @@
-import { Component, Directive, Host, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Host, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { KnoraConstants, PropertyValue, Value, ValueLiteral } from '@knora/core';
 import { GregorianCalendarDate, JDNConvertibleCalendar, JDNPeriod } from 'jdnconvertiblecalendar';
-import { DateAdapter, MAT_DATE_LOCALE, MatCalendar } from '@angular/material';
-import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateadapter';
 import { HeaderComponent } from './header-calendar/header-calendar.component';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
@@ -70,18 +68,4 @@ export class DateValueComponent implements OnInit, OnDestroy, PropertyValue {
 
         return new ValueLiteral(String(dateString), KnoraConstants.DateValue);
     }
-}
-
-
-/**
-* JdnDatepickerDirective creates a wrapper element that provides a new adapter with each instance of the datepicker.
-*/
-@Directive({
-    selector: 'jdn-datepicker',
-    providers: [
-        { provide: DateAdapter, useClass: JDNConvertibleCalendarDateAdapter, deps: [MAT_DATE_LOCALE] }
-    ]
-})
-export class JdnDatepickerDirective {
-    constructor(private adapter: DateAdapter<JDNConvertibleCalendar>) { }
 }
