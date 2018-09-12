@@ -1,9 +1,9 @@
-import { Component, Host, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Directive, Host, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { KnoraConstants, PropertyValue, Value, ValueLiteral } from '@knora/core';
-import { JDNConvertibleCalendar } from 'jdnconvertiblecalendar';
-import { DateAdapter, MatCalendar } from '@angular/material';
+import { GregorianCalendarDate, JDNConvertibleCalendar, JDNPeriod } from 'jdnconvertiblecalendar';
+import { DateAdapter, MAT_DATE_LOCALE, MatCalendar } from '@angular/material';
 import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateadapter';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
@@ -31,6 +31,7 @@ export class DateValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     ngOnInit() {
 
+        // init datepicker
         this.form = this.fb.group({
             dateValue: [null, Validators.compose([Validators.required])]
         });
@@ -61,9 +62,9 @@ export class DateValueComponent implements OnInit, OnDestroy, PropertyValue {
 
         // get calendar format
         const calendarFormat = dateObj.calendarName;
-
+        // get calendar period
         const calendarPeriod = dateObj.toCalendarPeriod();
-
+        // get the date
         const dateString = `${calendarFormat.toUpperCase()}:${calendarPeriod.periodStart.year}-${calendarPeriod.periodStart.month}-${calendarPeriod.periodStart.day}:${calendarPeriod.periodEnd.year}-${calendarPeriod.periodEnd.month}-${calendarPeriod.periodEnd.day}`;
 
         return new ValueLiteral(String(dateString), KnoraConstants.DateValue);
@@ -111,7 +112,7 @@ export class HeaderComponent<D> implements OnInit {
 
         // do the conversion when the user selects another calendar format
         this.form.valueChanges.subscribe((data) => {
-            // pass the target calendar format to the conversion method 
+            // pass the target calendar format to the conversion method
             this.convertDate(data.calendar);
         });
 
@@ -144,4 +145,17 @@ export class HeaderComponent<D> implements OnInit {
             console.log('date adapter is expected to be an instance of JDNConvertibleCalendarDateAdapter');
         }
     }
+}
+
+/**
+* JdnDatepickerDirective creates a wrapper element that provides a new adapter with each instance of the datepicker.
+*/
+@Directive({
+    selector: 'jdn-datepicker',
+    providers: [
+        { provide: DateAdapter, useClass: JDNConvertibleCalendarDateAdapter, deps: [MAT_DATE_LOCALE] }
+    ]
+})
+export class JdnDatepickerDirective {
+    constructor(private adapter: DateAdapter<JDNConvertibleCalendar>) { }
 }
