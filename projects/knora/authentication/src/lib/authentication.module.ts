@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { KuiActionModule } from '@knora/action';
 
-import { LoginComponent } from './login/login.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
     imports: [
@@ -21,10 +21,10 @@ import { LoginComponent } from './login/login.component';
         HttpClientModule
     ],
     declarations: [
-        LoginComponent
+        LoginFormComponent
     ],
     exports: [
-        LoginComponent
+        LoginFormComponent
     ]
 })
 export class KuiAuthenticationModule {

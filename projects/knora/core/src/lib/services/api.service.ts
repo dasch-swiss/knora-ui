@@ -1,10 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
-import { ApiServiceError, ApiServiceResult, CurrentUser, KuiCoreConfig } from '../declarations';
+import { ApiServiceError, ApiServiceResult, KuiCoreConfig } from '../declarations';
 
 
 @Injectable({
@@ -29,11 +28,11 @@ export abstract class ApiService {
      * @param {string} path
      * @returns {Observable<any>}
      */
-    httpGet(path: string): Observable<any> {
+    httpGet(path: string, params?: any): Observable<any> {
 
         this.loading = true;
 
-        return this.http.get(this.config.api + path, { observe: 'response' }).pipe(
+        return this.http.get(this.config.api + path, { observe: 'response', params: params }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 

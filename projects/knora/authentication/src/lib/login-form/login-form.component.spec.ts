@@ -6,11 +6,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { KuiActionModule } from '@knora/action';
 import { KuiCoreModule } from '@knora/core';
 
-import { LoginComponent } from './login.component';
+import { LoginFormComponent } from './login-form.component';
 
-describe('LoginComponent', () => {
-    let component: LoginComponent;
-    let fixture: ComponentFixture<LoginComponent>;
+describe('LoginFormComponent', () => {
+    let component: LoginFormComponent;
+    let fixture: ComponentFixture<LoginFormComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -25,7 +25,7 @@ describe('LoginComponent', () => {
                 RouterTestingModule
             ],
             declarations: [
-                LoginComponent
+                LoginFormComponent
             ],
             providers: [
                 HttpClient
@@ -35,7 +35,7 @@ describe('LoginComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(LoginComponent);
+        fixture = TestBed.createComponent(LoginFormComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ReadIntegerValue } from '@knora/core';
 
 @Component({
     selector: 'kui-integer-value',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntegerValueComponent implements OnInit {
 
-    errorMessage: any;
+    /* errorMessage: any; */
+    @Input() valueObject: ReadIntegerValue;
 
     constructor() {
     }

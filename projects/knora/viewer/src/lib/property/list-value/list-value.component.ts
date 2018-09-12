@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ReadListValue } from '@knora/core';
 
 @Component({
   selector: 'kui-list-value',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-value.component.scss']
 })
 export class ListValueComponent implements OnInit {
+
+  @Input() valueObject: ReadListValue;
 
   constructor() { }
 
