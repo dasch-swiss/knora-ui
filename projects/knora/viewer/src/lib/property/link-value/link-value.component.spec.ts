@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinkValueComponent } from './link-value.component';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import { KnoraConstants, OntologyInformation, ReadLinkValue } from '@knora/core';
+import { ResourceDialogComponent } from '@knora/action';
 
 describe('LinkValueComponent', () => {
     let component: LinkValueComponent;
@@ -11,9 +13,13 @@ describe('LinkValueComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 MatFormFieldModule,
-                MatInputModule
+                MatIconModule,
+                MatInputModule,
+                MatDialogModule
             ],
-            declarations: [LinkValueComponent]
+            declarations: [LinkValueComponent, ResourceDialogComponent],
+            providers: [
+            ]
         })
             .compileComponents();
     }));

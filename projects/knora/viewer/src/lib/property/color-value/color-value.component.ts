@@ -14,7 +14,7 @@ export class ColorValueComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.valueObject);
+        console.log('COLOR VALUE: ', this.valueObject);
     }
 
 }

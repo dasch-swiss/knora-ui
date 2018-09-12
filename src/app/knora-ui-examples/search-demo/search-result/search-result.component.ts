@@ -1,13 +1,6 @@
-import {
-    ChangeDetectorRef,
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output
-} from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { AppDemo } from '../../../app.config';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import {
     ApiServiceError,
     ApiServiceResult,
@@ -22,6 +15,7 @@ import {
     SearchParamsService,
     SearchService
 } from '@knora/core';
+import { Example } from '../../../app.interfaces';
 
 export interface ListData {
     title: string;
@@ -55,7 +49,7 @@ export class SearchResultComponent implements OnInit {
 
     offset: number = 0;
 
-    list: ListData = <ListData>{
+    list: ListData = <ListData> {
         title: 'Results: ',
         content: 'resource',
         restrictedBy: ''
@@ -66,7 +60,8 @@ export class SearchResultComponent implements OnInit {
         private _searchService: SearchService,
         private _cacheService: OntologyCacheService,
         private _searchParamsService: SearchParamsService,
-        private _gravSearchService: GravsearchGenerationService) { }
+        private _gravSearchService: GravsearchGenerationService) {
+    }
 
     ngOnInit() {
 
@@ -95,7 +90,7 @@ export class SearchResultComponent implements OnInit {
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: ApiServiceError) => {
-                            this.errorMessage = <any>error;
+                            this.errorMessage = <any> error;
                             // console.log('numberOfAllResults', this.numberOfAllResults);
                         }
                     );
@@ -106,9 +101,9 @@ export class SearchResultComponent implements OnInit {
                 .subscribe(
                     this.processSearchResults, // function pointer
                     (error: ApiServiceError) => {
-                        this.errorMessage = <any>error;
+                        this.errorMessage = <any> error;
                     },
-            );
+                );
 
             // EXTENDED SEARCH
         } else if (this.list.searchMode === 'extended') {
@@ -118,7 +113,7 @@ export class SearchResultComponent implements OnInit {
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: ApiServiceError) => {
-                            this.errorMessage = <any>error;
+                            this.errorMessage = <any> error;
                         }
                     );
             }
@@ -130,7 +125,7 @@ export class SearchResultComponent implements OnInit {
                             .subscribe(
                                 this.processSearchResults, // function pointer
                                 (error: ApiServiceError) => {
-                                    this.errorMessage = <any>error;
+                                    this.errorMessage = <any> error;
                                 });
                     } else {
                         // generate new GravSearch
@@ -139,7 +134,7 @@ export class SearchResultComponent implements OnInit {
                             .subscribe(
                                 this.processSearchResults, // function pointer
                                 (error: ApiServiceError) => {
-                                    this.errorMessage = <any>error;
+                                    this.errorMessage = <any> error;
                                 }
                             );
                     }

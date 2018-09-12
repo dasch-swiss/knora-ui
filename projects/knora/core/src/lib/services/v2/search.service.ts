@@ -97,8 +97,8 @@ export class SearchService extends ApiService {
         }
 
         // httpGet() expects only one argument, not 2
-        // return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), {params: params});
-        return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm));
+        return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), params);
+        // return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm));
 
     }
 }

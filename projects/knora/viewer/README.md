@@ -22,22 +22,27 @@ OR
 ## Components
 It has the following structure:
 
-## object
+## resource
   - stillImage
   - movingImage
   - audio
   - ddd (3d / rti)
-  - text
-  - document
+  - text (long texts stored in eXist-db)
+  - document (various types of text documents like PDF, Word etc...)
   - collection
   - region
   - annotation
   - linkObj
+  - object
 
 ## property
   - textValue
+    - textValueAsString
+    - textValueAsHtml
+    - textValueAsXml
+  - textfileValue
   - dateValue
-  - intValue
+  - integerValue
   - colorValue
   - decimalValue
   - uriValue
@@ -53,6 +58,7 @@ It has the following structure:
   - listView
   - gridView
   - tableView
-  - objectView
+  - resourceView
   - compareView
   - graphView
+  - propertiesView

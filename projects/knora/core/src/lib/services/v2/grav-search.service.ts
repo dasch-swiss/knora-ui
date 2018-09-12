@@ -162,7 +162,7 @@ ${filter}
 
         if (orderByCriteria.length > 0) {
             orderByStatement = `
-ORDER BY ${orderByCriteria.join(' ')};
+ORDER BY ${orderByCriteria.join(' ')}
 `;
         }
 

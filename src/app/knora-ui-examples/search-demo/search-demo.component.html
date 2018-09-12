@@ -1,5 +1,14 @@
 <app-module-header [demo]="partOf"></app-module-header>
 
-<kui-search [route]="'/modules/search'"></kui-search>
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="searchPanel"></app-example-viewer>
+
+    <div class="demo">
+        <kui-search [route]="'/modules/search'"></kui-search>
+    </div>
+</mat-card>
+
+
 
 <router-outlet></router-outlet>

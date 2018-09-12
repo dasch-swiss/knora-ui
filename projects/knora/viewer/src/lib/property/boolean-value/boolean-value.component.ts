@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ReadBooleanValue } from '@knora/core';
 
 @Component({
   selector: 'kui-boolean-value',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./boolean-value.component.scss']
 })
 export class BooleanValueComponent implements OnInit {
+
+  @Input() valueObject: ReadBooleanValue;
 
   constructor() { }
 
