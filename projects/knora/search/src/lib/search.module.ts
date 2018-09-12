@@ -18,7 +18,6 @@ import { KuiActionModule } from '@knora/action';
 import { KuiViewerModule } from '@knora/viewer';
 import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalendardateadapter';
 
-
 import { SearchComponent } from './search.component';
 import { SelectOntologyComponent } from './extended-search/select-ontology/select-ontology.component';
 import { ExtendedSearchComponent } from './extended-search/extended-search.component';
@@ -32,6 +31,7 @@ import { IntegerValueComponent } from './extended-search/select-property/specify
 import { LinkValueComponent } from './extended-search/select-property/specify-property-value/link-value/link-value.component';
 import { TextValueComponent } from './extended-search/select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './extended-search/select-property/specify-property-value/uri-value/uri-value.component';
+import { HeaderComponent } from './extended-search/select-property/specify-property-value/date-value/date-value.component';
 
 @NgModule({
     imports: [
@@ -67,9 +67,13 @@ import { UriValueComponent } from './extended-search/select-property/specify-pro
         IntegerValueComponent,
         LinkValueComponent,
         TextValueComponent,
-        UriValueComponent
+        UriValueComponent,
+        HeaderComponent
     ],
-    exports: [SearchComponent]
+    exports: [SearchComponent],
+    entryComponents: [
+        HeaderComponent
+    ]
 })
 export class KuiSearchModule {
 }
