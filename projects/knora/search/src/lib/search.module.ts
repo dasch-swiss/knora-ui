@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KuiCoreModule } from '@knora/core';
 import { KuiActionModule } from '@knora/action';
 import { KuiViewerModule } from '@knora/viewer';
+import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalendardateadapter';
 
 
 import { SearchComponent } from './search.component';
@@ -50,7 +51,8 @@ import { UriValueComponent } from './extended-search/select-property/specify-pro
         ReactiveFormsModule,
         KuiCoreModule,
         KuiActionModule,
-        KuiViewerModule
+        KuiViewerModule,
+        MatJDNConvertibleCalendarDateAdapterModule
     ],
     declarations: [
         SearchComponent,
