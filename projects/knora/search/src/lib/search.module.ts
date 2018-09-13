@@ -25,12 +25,13 @@ import { SelectResourceClassComponent } from './extended-search/select-resource-
 import { SelectPropertyComponent } from './extended-search/select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './extended-search/select-property/specify-property-value/specify-property-value.component';
 import { BooleanValueComponent } from './extended-search/select-property/specify-property-value/boolean-value/boolean-value.component';
-import { DateValueComponent, HeaderComponent, JdnDatepickerDirective } from './extended-search/select-property/specify-property-value/date-value/date-value.component';
+import { DateValueComponent } from './extended-search/select-property/specify-property-value/date-value/date-value.component';
 import { DecimalValueComponent } from './extended-search/select-property/specify-property-value/decimal-value/decimal-value.component';
 import { IntegerValueComponent } from './extended-search/select-property/specify-property-value/integer-value/integer-value.component';
 import { LinkValueComponent } from './extended-search/select-property/specify-property-value/link-value/link-value.component';
 import { TextValueComponent } from './extended-search/select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './extended-search/select-property/specify-property-value/uri-value/uri-value.component';
+import { HeaderComponent } from './extended-search/select-property/specify-property-value/date-value/header-calendar/header-calendar.component';
 
 
 @NgModule({
@@ -68,8 +69,7 @@ import { UriValueComponent } from './extended-search/select-property/specify-pro
         LinkValueComponent,
         TextValueComponent,
         UriValueComponent,
-        HeaderComponent,
-        JdnDatepickerDirective
+        HeaderComponent
     ],
     exports: [SearchComponent],
     entryComponents: [
