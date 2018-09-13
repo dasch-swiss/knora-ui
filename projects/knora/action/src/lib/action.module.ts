@@ -13,7 +13,7 @@ import { KeyPipe } from './pipes/key.pipe';
 import { GndDirective } from './directives/gnd.directive';
 import { MathJaxDirective } from './directives/mathjax.directive';
 import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
-
+import { JdnDatepickerDirective } from './directives/jdn-datepicker.directive';
 
 @NgModule({
     imports: [
@@ -34,7 +34,8 @@ import { ResourceDialogComponent } from './resource-dialog/resource-dialog.compo
         KeyPipe,
         GndDirective,
         MathJaxDirective,
-        ResourceDialogComponent
+        ResourceDialogComponent,
+        JdnDatepickerDirective
     ],
     exports: [
         ProgressIndicatorComponent,
@@ -46,7 +47,8 @@ import { ResourceDialogComponent } from './resource-dialog/resource-dialog.compo
         ReversePipe,
         KeyPipe,
         GndDirective,
-        MathJaxDirective
+        MathJaxDirective,
+        JdnDatepickerDirective
     ]
 })
 export class KuiActionModule {
