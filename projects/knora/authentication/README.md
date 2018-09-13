@@ -6,30 +6,62 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 The authentication module contains the login form (for standalone usage) or a complete login- / logout-button environment incl. the login form.
 
 ## Install
-`$ yarn add @knora/authentication`
+This module needs the configuration setup from [@knora/core](https://www.npmjs.com/package/@knora/core) which should also be installed.
+
+`$ yarn add @knora/authentication @knora/core moment`
 
 OR
 
-`$ npm install @knora/authentication`
-
+`$ npm install @knora/authentication @knora/core moment`
 
 ## Setup
-Import the authentication module in your app.module.ts 
+In your AppModule you have to define the following providers:
 
-`import {KuiAuthenicationModule} from '@knora/authentication';`
+```
+import { ErrorInterceptor, JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
+
+@NgModule({
+    declarations: [
+    ...
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        RouterModule,
+        KuiCoreModule.forRoot({
+            name: 'Knora-ui Demo App',
+            api: environment.api,
+            media: environment.media,
+            app: environment.app,
+        }),
+        KuiAuthenticationModule
+    ],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    ]
+})
+export class AppModule { }
+```
 
 
 ## Usage
 
-You can use the login form as follow:
+The @knora/authentication module contains a guard class which will redirect a guest user to the login page. It can be used in the app routing as follow:
 
-`<kui-login-form></kui-login-form>`
+```
+import { AuthGuard } from '@knora/authentication';
 
-This standalone form is in an early beta state. Right now you should define the route, where the app should navigate after login.
+const appRoutes: Routes = [
+    {
+        path: '',
+        component: AppComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'login',
+        component: LoginFormComponent
+    }
+]
+```
 
-
-`<kui-login-form [navigate]="'/'"></kui-login-form>`
-
-Or use the complete solution with login-button (when no user is logged-in), logout-button (when a user is logged-in) and with the login-form:
-
-`<kui-authentication></kui-authentication>`
+The `LoginFormComponent` needs then only the `<kui-login-form></kui-login-form>` tag. It's also possible to define e navigation route, where the user will be redirected after successful login: `<kui-login-form [navigate="'/dashboard'"]></kui-login-form>`

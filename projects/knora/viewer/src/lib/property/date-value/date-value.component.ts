@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ReadDateValue } from '@knora/core';
 
 @Component({
   selector: 'kui-date-value',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./date-value.component.scss']
 })
 export class DateValueComponent implements OnInit {
+
+  @Input() valueObject: ReadDateValue;
 
   constructor() { }
 

@@ -1,7 +1,9 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { ApiServiceError, KuiCoreConfig, UsersService } from '@knora/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiServiceError, ApiServiceResult } from '@knora/core';
+import { AuthenticationService } from '../authentication.service';
+import { SessionService } from '../session/session.service';
 
 @Component({
     selector: 'kui-login-form',
@@ -13,11 +15,22 @@ export class LoginFormComponent implements OnInit {
     /**
      * navigate to the defined url after login
      */
-    @Input() navigate: string;
+    @Input() navigate?: string;
 
-    loading: boolean = false;
+    returnUrl: string;
 
+    // is there already a valid session?
+    loggedInUser: string;
+
+    // form
+    frm: FormGroup;
+
+    loading = false;
+
+    // general error message
     errorMessage: any;
+
+    // specific error messages
     loginErrorUser = false;
     loginErrorPw = false;
     loginErrorServer = false;
@@ -36,14 +49,13 @@ export class LoginFormComponent implements OnInit {
         }
     };
 
-    // reactive form setup
-    loginForm: FormGroup;
-
+    // error definitions for the following form fields
     formErrors = {
         'email': '',
         'password': ''
     };
 
+    // error messages for the form fields defined in formErrors
     validationMessages = {
         'email': {
             'required': 'user name is required.'
@@ -53,29 +65,32 @@ export class LoginFormComponent implements OnInit {
         }
     };
 
-    constructor(@Inject('config') public config: KuiCoreConfig,
-                private _usersService: UsersService,
-                public dialogRef: MatDialogRef<LoginFormComponent>,
-                private _formBuilder: FormBuilder) {
+
+    constructor(private _auth: AuthenticationService,
+                private _session: SessionService,
+                private _fb: FormBuilder,
+                private _route: ActivatedRoute,
+                private _router: Router) {
     }
 
     ngOnInit() {
-        if (this.config.name !== undefined && this.config.name !== '') {
-            this.login.title += ' to ' + this.config.name;
+
+        // check if a user is already logged in
+        if (this._session.validateSession()) {
+            this.loggedInUser = JSON.parse(localStorage.getItem('session')).user.name;
+        } else {
+            this.buildForm();
         }
-        this.buildForm();
     }
 
-
     buildForm(): void {
-        this.loginForm = this._formBuilder.group({
+        this.frm = this._fb.group({
             email: ['', Validators.required],
             password: ['', Validators.required]
         });
 
-        this.loginForm.valueChanges
+        this.frm.valueChanges
             .subscribe(data => this.onValueChanged(data));
-
     }
 
     /**
@@ -84,11 +99,11 @@ export class LoginFormComponent implements OnInit {
      */
     onValueChanged(data?: any) {
 
-        if (!this.loginForm) {
+        if (!this.frm) {
             return;
         }
 
-        const form = this.loginForm;
+        const form = this.frm;
 
         Object.keys(this.formErrors).map(field => {
             this.formErrors[field] = '';
@@ -102,53 +117,77 @@ export class LoginFormComponent implements OnInit {
         });
     }
 
+    doLogin() {
 
-    submitData(): void {
         // reset the error messages
+        this.errorMessage = undefined;
         this.loginErrorUser = false;
         this.loginErrorPw = false;
         this.loginErrorServer = false;
 
-        // show the progress indicator
+        // make sure form values are valid
+        if (this.frm.invalid) {
+            this.loginErrorPw = true;
+            this.loginErrorUser = true;
+            return;
+        }
+
+        // Reset status
         this.loading = true;
 
-        // login by using the usersService from @knora/core
-        this._usersService.login(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value).subscribe(
-            (result: boolean) => {
-                // the result will be set in local storage
-                // (as a temporary solution only!) TODO: replace it with a cache service
-                // (e.g. http://www.syntaxsuccess.com/viewarticle/caching-with-rxjs-observables-in-angular-2.0)
+        // Grab values from form
+        const username = this.frm.get('email').value;
+        const password = this.frm.get('password').value;
 
-                this.loading = false;
-                // after successful login, go to the defined url (if there's one)
-                if (this.navigate) {
-                    window.location.replace(this.navigate);
-                } else {
-                    this.dialogRef.close();
-                }
-            },
-            (error: ApiServiceError) => {
-                // error handling
-                if (error.status === 0) {
-                    this.loginErrorUser = false;
-                    this.loginErrorPw = false;
-                    this.loginErrorServer = true;
-                }
-                if (error.status === 401) {
-                    this.loginErrorUser = false;
-                    this.loginErrorPw = true;
-                    this.loginErrorServer = false;
-                }
-                if (error.status === 404) {
-                    this.loginErrorUser = true;
-                    this.loginErrorPw = false;
-                    this.loginErrorServer = false;
-                }
-                this.errorMessage = <any> error;
-                this.loading = false;
-            }
-        );
+        this._auth.login(username, password)
+            .subscribe(
+                (response: ApiServiceResult) => {
 
+                    // we have a token; set the session now
+                    this._session.setSession(response.body.token, username);
+
+                    setTimeout(() => {
+                        // get return url from route parameters or default to '/'
+                        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+
+
+                        // go back to the previous route or to the route defined in the @Input if navigate exists
+                        if (!this.navigate) {
+                            this._router.navigate([this.returnUrl]);
+                        } else {
+                            this._router.navigate([this.navigate]);
+                        }
+
+                        this.loading = false;
+                    }, 2000);
+                },
+                (error: ApiServiceError) => {
+                    // error handling
+                    if (error.status === 0) {
+                        this.loginErrorUser = false;
+                        this.loginErrorPw = false;
+                        this.loginErrorServer = true;
+                    }
+                    if (error.status === 401) {
+                        this.loginErrorUser = false;
+                        this.loginErrorPw = true;
+                        this.loginErrorServer = false;
+                    }
+                    if (error.status === 404) {
+                        this.loginErrorUser = true;
+                        this.loginErrorPw = false;
+                        this.loginErrorServer = false;
+                    }
+                    this.errorMessage = <any> error;
+                    this.loading = false;
+                }
+            );
+
+    }
+
+    logout() {
+        this._auth.logout();
+        location.reload(true);
     }
 
 }

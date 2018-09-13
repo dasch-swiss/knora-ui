@@ -1,8 +1,19 @@
-<app-module-header [demo]="module"></app-module-header>
-<!-- <app-module-sub-header [demo]="partOf"></app-module-sub-header> -->
+<div class="demo-container">
 
+    <div class="module-content">
 
-<kui-authentication></kui-authentication>
+        <app-module-header [demo]="module"></app-module-header>
 
-<!-- <kui-login  *ngIf="!loggedIn"></kui-login> -->
-<!-- <kui-button></kui-button> -->
+        <h3>Whole authentication process example</h3>
+        <pre>
+            <code>
+                &lt;kui-login-form&gt;&lt;/kui-login-form&gt;
+            </code>
+        </pre>
+
+        <kui-login-form></kui-login-form>
+
+    </div>
+
+</div>
+

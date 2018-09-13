@@ -1,50 +1,80 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StillImageComponent } from './object/still-image/still-image.component';
-import { MovingImageComponent } from './object/moving-image/moving-image.component';
-import { AudioComponent } from './object/audio/audio.component';
-import { DddComponent } from './object/ddd/ddd.component';
-import { TextComponent } from './object/text/text.component';
-import { DocumentComponent } from './object/document/document.component';
-import { CollectionComponent } from './object/collection/collection.component';
-import { RegionComponent } from './object/region/region.component';
-import { AnnotationComponent } from './object/annotation/annotation.component';
-import { LinkObjComponent } from './object/link-obj/link-obj.component';
-import { TextValueComponent } from './property/text-value/text-value.component';
-import { DateValueComponent } from './property/date-value/date-value.component';
-import { IntegerValueComponent } from './property/integer-value/integer-value.component';
-import { ColorValueComponent } from './property/color-value/color-value.component';
-import { DecimalValueComponent } from './property/decimal-value/decimal-value.component';
-import { UriValueComponent } from './property/uri-value/uri-value.component';
+
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import {
+    MatAutocompleteModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
+    MatNativeDateModule,
+    MatSlideToggleModule,
+    MatTooltipModule
+} from '@angular/material';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { KuiActionModule } from '@knora/action';
+import { KuiCoreModule } from '@knora/core';
 import { BooleanValueComponent } from './property/boolean-value/boolean-value.component';
+
+import { ColorValueComponent } from './property/color-value/color-value.component';
+import { DateValueComponent } from './property/date-value/date-value.component';
+import { DecimalValueComponent } from './property/decimal-value/decimal-value.component';
+import { ExternalResValueComponent } from './property/external-res-value/external-res-value.component';
 import { GeometryValueComponent } from './property/geometry-value/geometry-value.component';
 import { GeonameValueComponent } from './property/geoname-value/geoname-value.component';
+import { IntegerValueComponent } from './property/integer-value/integer-value.component';
 import { IntervalValueComponent } from './property/interval-value/interval-value.component';
-import { ListValueComponent } from './property/list-value/list-value.component';
 import { LinkValueComponent } from './property/link-value/link-value.component';
-import { ExternalResValueComponent } from './property/external-res-value/external-res-value.component';
-import { ListViewComponent } from './view/list-view/list-view.component';
-import { GridViewComponent } from './view/grid-view/grid-view.component';
-import { TableViewComponent } from './view/table-view/table-view.component';
-import { ObjectViewComponent } from './view/object-view/object-view.component';
+import { ListValueComponent } from './property/list-value/list-value.component';
+import { TextValueAsHtmlComponent } from './property/text-value/text-value-as-html/text-value-as-html.component';
+import { TextValueAsStringComponent } from './property/text-value/text-value-as-string/text-value-as-string.component';
+import { TextValueAsXmlComponent } from './property/text-value/text-value-as-xml/text-value-as-xml.component';
+import { TextValueComponent } from './property/text-value/text-value.component';
+import { TextfileValueComponent } from './property/textfile-value/textfile-value.component';
+import { UriValueComponent } from './property/uri-value/uri-value.component';
+import { AnnotationComponent } from './resource/annotation/annotation.component';
+import { AudioComponent } from './resource/audio/audio.component';
+import { CollectionComponent } from './resource/collection/collection.component';
+import { DddComponent } from './resource/ddd/ddd.component';
+import { DocumentComponent } from './resource/document/document.component';
+import { LinkObjComponent } from './resource/link-obj/link-obj.component';
+import { MovingImageComponent } from './resource/moving-image/moving-image.component';
+import { ObjectComponent } from './resource/object/object.component';
+import { RegionComponent } from './resource/region/region.component';
+
+import { StillImageComponent } from './resource/still-image/still-image.component';
+import { TextComponent } from './resource/text/text.component';
 import { CompareViewComponent } from './view/compare-view/compare-view.component';
 import { GraphViewComponent } from './view/graph-view/graph-view.component';
+import { GridViewComponent } from './view/grid-view/grid-view.component';
+import { ListViewComponent } from './view/list-view/list-view.component';
+import { PropertiesViewComponent } from './view/properties-view/properties-view.component';
 
-import { MatCheckboxModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatSlideToggleModule } from '@angular/material';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ResourceViewComponent } from './view/resource-view/resource-view.component';
+import { TableViewComponent } from './view/table-view/table-view.component';
 
 
 @NgModule({
     imports: [
         CommonModule,
+        KuiCoreModule,
+        MatAutocompleteModule,
+        MatCardModule,
         MatCheckboxModule,
         MatDatepickerModule,
         MatFormFieldModule,
         MatInputModule,
+        MatListModule,
         MatNativeDateModule,
         MatSlideToggleModule,
-        ReactiveFormsModule
+        MatTooltipModule,
+        ReactiveFormsModule,
+        KuiCoreModule,
+        KuiActionModule
 
     ],
     declarations: [
@@ -58,7 +88,12 @@ import { ReactiveFormsModule } from '@angular/forms';
         RegionComponent,
         AnnotationComponent,
         LinkObjComponent,
+        ObjectComponent,
         TextValueComponent,
+        TextValueAsStringComponent,
+        TextValueAsHtmlComponent,
+        TextValueAsXmlComponent,
+        TextfileValueComponent,
         DateValueComponent,
         IntegerValueComponent,
         ColorValueComponent,
@@ -74,9 +109,10 @@ import { ReactiveFormsModule } from '@angular/forms';
         ListViewComponent,
         GridViewComponent,
         TableViewComponent,
-        ObjectViewComponent,
+        ResourceViewComponent,
         CompareViewComponent,
-        GraphViewComponent
+        GraphViewComponent,
+        PropertiesViewComponent
     ],
     exports: [
         StillImageComponent,
@@ -89,7 +125,12 @@ import { ReactiveFormsModule } from '@angular/forms';
         RegionComponent,
         AnnotationComponent,
         LinkObjComponent,
+        ObjectComponent,
         TextValueComponent,
+        TextValueAsStringComponent,
+        TextValueAsHtmlComponent,
+        TextValueAsXmlComponent,
+        TextfileValueComponent,
         DateValueComponent,
         IntegerValueComponent,
         ColorValueComponent,
@@ -105,9 +146,11 @@ import { ReactiveFormsModule } from '@angular/forms';
         ListViewComponent,
         GridViewComponent,
         TableViewComponent,
-        ObjectViewComponent,
+        ResourceViewComponent,
         CompareViewComponent,
-        GraphViewComponent
+        GraphViewComponent,
+        PropertiesViewComponent
     ]
 })
-export class KuiViewerModule { }
+export class KuiViewerModule {
+}

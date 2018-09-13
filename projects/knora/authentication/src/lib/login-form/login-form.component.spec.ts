@@ -1,8 +1,10 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
-import { KuiCoreModule } from '@knora/core';
+import { MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
 import { KuiActionModule } from '@knora/action';
+import { KuiCoreModule } from '@knora/core';
 
 import { LoginFormComponent } from './login-form.component';
 
@@ -19,13 +21,15 @@ describe('LoginFormComponent', () => {
                 MatFormFieldModule,
                 MatIconModule,
                 MatInputModule,
-                ReactiveFormsModule
+                ReactiveFormsModule,
+                RouterTestingModule
+            ],
+            declarations: [
+                LoginFormComponent
             ],
             providers: [
-                {provide: MAT_DIALOG_DATA, useValue: {}},
-                {provide: MatDialogRef}
-            ],
-            declarations: [LoginFormComponent]
+                HttpClient
+            ]
         })
             .compileComponents();
     }));

@@ -1,13 +1,13 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {MatCardModule, MatChipsModule, MatDividerModule, MatIconModule, MatInputModule, MatTabsModule} from '@angular/material';
-import {KuiActionModule} from '@knora/action';
-import {KuiCoreModule} from '@knora/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatCardModule, MatChipsModule, MatDividerModule, MatIconModule, MatInputModule, MatTabsModule } from '@angular/material';
+import { KuiActionModule } from '@knora/action';
+import { KuiCoreModule } from '@knora/core';
 
-import {ProjectsComponent} from './projects.component';
-import {ExampleViewerComponent} from '../../../partials/example-viewer/example-viewer.component';
-import {MarkdownModule} from 'ngx-markdown';
-import {ModuleHeaderComponent} from '../../../partials/module-header/module-header.component';
+import { ProjectsComponent } from './projects.component';
+import { ModuleHeaderComponent } from '../../../partials/module-header/module-header.component';
+import { ExampleViewerComponent } from '../../../partials/example-viewer/example-viewer.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 describe('ProjectsComponent', () => {
     let component: ProjectsComponent;
@@ -24,7 +24,7 @@ describe('ProjectsComponent', () => {
                 MatTabsModule,
                 KuiCoreModule,
                 KuiActionModule,
-                MarkdownModule.forRoot({ loader: HttpClient }),
+                MarkdownModule.forRoot({loader: HttpClient}),
                 HttpClientModule
             ],
             declarations: [

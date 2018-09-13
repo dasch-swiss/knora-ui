@@ -1,27 +1,23 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AppDemo } from '../../../app.config';
-import { ApiServiceError, UsersService } from '@knora/core';
+import { CurrentUser } from '@knora/core';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnChanges {
+export class LoginComponent implements OnInit {
 
     module = AppDemo.authenticationModule;
 
-    loggedIn: boolean;
+    user: any;
 
-    errorMessage: any;
-
-    constructor(private _usersService: UsersService) { }
+    constructor() {
+    }
 
     ngOnInit() {
 
-    }
-
-    ngOnChanges() {
     }
 
 }

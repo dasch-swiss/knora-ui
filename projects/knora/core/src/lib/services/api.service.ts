@@ -1,9 +1,9 @@
-import {Inject, Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/internal/Observable';
-import {catchError, map} from 'rxjs/operators';
-import {throwError} from 'rxjs/internal/observable/throwError';
-import {ApiServiceError, ApiServiceResult, KuiCoreConfig} from '../declarations';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { catchError, map } from 'rxjs/operators';
+import { ApiServiceError, ApiServiceResult, KuiCoreConfig } from '../declarations';
 
 
 @Injectable({
@@ -19,7 +19,7 @@ export abstract class ApiService {
     loading = false;
 
     protected constructor(public http: HttpClient,
-                          @Inject('config') public config: KuiCoreConfig) {
+        @Inject('config') public config: KuiCoreConfig) {
     }
 
     /**
@@ -28,13 +28,11 @@ export abstract class ApiService {
      * @param {string} path
      * @returns {Observable<any>}
      */
-    httpGet(path: string): Observable<any> {
+    httpGet(path: string, params?: any): Observable<any> {
 
         this.loading = true;
 
-        const headers = this.setHeaders();
-
-        return this.http.get(this.config.api + path, {headers: headers, observe: 'response'}).pipe(
+        return this.http.get(this.config.api + path, { observe: 'response', params: params }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -43,6 +41,7 @@ export abstract class ApiService {
                 result.statusText = response.statusText;
                 result.url = path;
                 result.body = response.body;
+
                 return result;
             }),
             catchError((error: HttpErrorResponse) => {
@@ -65,13 +64,11 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        const headers = this.setHeaders();
+        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.post(this.config.api + path, body, {headers: headers, observe: 'response'}).pipe(
+        return this.http.post(this.config.api + path, body, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
-
-                // console.log(response);
 
                 const result = new ApiServiceResult();
                 result.status = response.status;
@@ -102,9 +99,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        const headers = this.setHeaders();
+        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.put(this.config.api + path, body, {headers: headers, observe: 'response'}).pipe(
+        return this.http.put(this.config.api + path, body, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -138,9 +135,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        const headers = this.setHeaders();
+        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.delete(this.config.api + path, {headers: headers, observe: 'response'}).pipe(
+        return this.http.delete(this.config.api + path, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -200,24 +197,45 @@ export abstract class ApiService {
 
     }
 
+    // the following method is replaced by the JwtInterceptor
+    /*
     protected setHeaders(): HttpHeaders {
+        let currentUser: CurrentUser;
+        let subscription: Subscription;
 
-        if (localStorage.getItem('currentUser') !== null) {
-            return new HttpHeaders({
-                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('currentUser')).token}`
-            });
+        // get key from local storage
+        const key = localStorage.getItem('session_id');
+
+        if (key && key !== null) {
+            subscription = this._acs.get(key)
+                .subscribe(
+                    (result: any) => {
+                        currentUser = result;
+                        console.log('api service -- setHeaders -- currentUser from acs', currentUser);
+                    },
+                    (error: any) => {
+                        console.error(error);
+                        return new HttpHeaders();
+                    }
+                );
+
+            if (currentUser) {
+                return new HttpHeaders({
+                    'Authorization': `Bearer ${currentUser.token}`
+                });
+            }
         } else {
             return new HttpHeaders();
         }
 
-
     }
-
-    /**
+    */
+    /*
+    /!**
      * Appends to existing options if they exist.
      * @param {HttpHeaders} options
      * @returns {HttpHeaders}
-     */
+     *!/
     protected appendToOptions(options: any): any {
 
         let headers: HttpHeaders;
@@ -244,12 +262,13 @@ export abstract class ApiService {
         }
         return options;
     }
-
-    /**
+*/
+    /*
+    /!**
      * Appends to existing headers if they exist.
      * @param {Headers} headers
      * @returns {Headers}
-     */
+     *!/
     protected appendAuthorizationHeader(headers?: HttpHeaders): HttpHeaders {
 
 
@@ -266,5 +285,5 @@ export abstract class ApiService {
         }
         return headers;
     }
-
+*/
 }

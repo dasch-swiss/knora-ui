@@ -7,9 +7,13 @@ import { ProgressIndicatorComponent } from './progress-indicator/progress-indica
 import { SortButtonComponent } from './sort-button/sort-button.component';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { AdminImageDirective } from './admin-image/admin-image.directive';
+import { ExistingNameDirective } from './existing-name/existing-name.directive';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { KeyPipe } from './pipes/key.pipe';
-
+import { GndDirective } from './directives/gnd.directive';
+import { MathJaxDirective } from './directives/mathjax.directive';
+import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
+import { JdnDatepickerDirective } from './directives/jdn-datepicker.directive';
 
 @NgModule({
     imports: [
@@ -25,16 +29,26 @@ import { KeyPipe } from './pipes/key.pipe';
         SortButtonComponent,
         SortByPipe,
         AdminImageDirective,
+        ExistingNameDirective,
         ReversePipe,
-        KeyPipe
+        KeyPipe,
+        GndDirective,
+        MathJaxDirective,
+        ResourceDialogComponent,
+        JdnDatepickerDirective
     ],
     exports: [
         ProgressIndicatorComponent,
         SortButtonComponent,
+        ResourceDialogComponent,
         SortByPipe,
         AdminImageDirective,
+        ExistingNameDirective,
         ReversePipe,
-        KeyPipe
+        KeyPipe,
+        GndDirective,
+        MathJaxDirective,
+        JdnDatepickerDirective
     ]
 })
 export class KuiActionModule {
