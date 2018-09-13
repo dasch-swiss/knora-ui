@@ -1,7 +1,7 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {CommonModule} from '@angular/common';
-import {KuiCoreConfig} from './declarations';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { KuiCoreConfig } from './declarations';
 
 @NgModule({
     imports: [
@@ -29,7 +29,9 @@ export class KuiCoreModule {
         // console.log(config);
         return {
             ngModule: KuiCoreModule,
-            providers: [{provide: 'config', useValue: config}]
+            providers: [
+                {provide: 'config', useValue: config}
+            ]
         };
     }
 }

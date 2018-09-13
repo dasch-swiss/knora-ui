@@ -1,4 +1,4 @@
-import {DemoModule} from './app.interfaces';
+import { DemoModule } from './app.interfaces';
 
 export class AppConfig {
     public static prefix = 'knora';
@@ -19,16 +19,38 @@ export class AppDemo {
         stackblitz: true,
         label: 'Progress indicator'
     };
-    public static adminImage: DemoModule = {
-        name: 'admin-image',
-        published: true,
-        label: 'Admin image'
-    };
 
     public static actionModule: DemoModule = {
         name: 'action',
         published: true,
-        label: 'Action module'
+        label: 'Action module',
+        children: [
+            {
+                name: 'sort-button',
+                label: 'SortButton',
+                stackblitz: true
+            },
+            {
+                name: 'progress-indicator',
+                label: 'ProgressIndicator',
+                stackblitz: true
+            },
+            {
+                name: 'admin-image',
+                label: 'AdminImage',
+                stackblitz: true
+            },
+            {
+                name: 'existing-name',
+                label: 'ExistingName',
+                stackblitz: true
+            },
+            {
+                name: 'key',
+                label: 'Key',
+                stackblitz: true
+            }
+        ]
     };
 
     public static coreModule: DemoModule = {
@@ -44,6 +66,62 @@ export class AppDemo {
             {
                 name: 'projects',
                 label: 'ProjectsService'
+            },
+            {
+                name: 'groups',
+                label: 'GroupsService'
+            },
+            {
+                name: 'lists',
+                label: 'ListsService'
+            },
+            {
+                name: 'resource',
+                label: 'ResourceService'
+            }
+        ]
+    };
+
+    public static authenticationModule: DemoModule = {
+        name: 'authentication',
+        published: true,
+        label: 'Authentication module'
+    };
+
+    public static projectModule: DemoModule = {
+        name: 'project',
+        published: false,
+        label: 'Project module'
+    };
+
+    public static adminModule: DemoModule = {
+        name: 'admin',
+        published: false,
+        label: 'Admin module'
+    };
+
+    public static searchModule: DemoModule = {
+        name: 'search',
+        published: true,
+        label: 'Search module'
+    };
+
+    public static viewerModule: DemoModule = {
+        name: 'viewer',
+        published: false,
+        label: 'Viewer module',
+        children: [
+            {
+                name: 'objects',
+                label: 'Objects'
+            },
+            {
+                name: 'properties',
+                label: 'Properties'
+            },
+            {
+                name: 'views',
+                label: 'Views'
             }
         ]
     };
@@ -51,13 +129,15 @@ export class AppDemo {
     /* ******************************************************************* */
 
     /**
-     * the following list of modules will be used on the public documentation
+     * the following list of modules will be used on the public documentation page
      * @type {DemoModule[]}
      */
     public static examples: DemoModule[] = [
-        AppDemo.progressIndicator,
-        AppDemo.coreModule
-
+        AppDemo.authenticationModule,
+        AppDemo.actionModule,
+        AppDemo.coreModule,
+        AppDemo.searchModule,
+        AppDemo.viewerModule
     ];
 
 }

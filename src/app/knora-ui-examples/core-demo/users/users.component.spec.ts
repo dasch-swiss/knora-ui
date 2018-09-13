@@ -1,13 +1,14 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
 
-import {UsersComponent} from './users.component';
-import {MatCardModule, MatDividerModule, MatIconModule, MatInputModule, MatTabsModule} from '@angular/material';
-import {KuiCoreModule} from '@knora/core';
-import {ExampleViewerComponent} from '../../../partials/example-viewer/example-viewer.component';
-import {MarkdownModule} from 'ngx-markdown';
-import {HttpClient} from '@angular/common/http';
-import {KuiProgressIndicatorModule} from '../../../../../projects/knora/progress-indicator/src/lib/progress-indicator.module';
-import {ModuleHeaderComponent} from '../../../partials/module-header/module-header.component';
+import { UsersComponent } from './users.component';
+import { MatCardModule, MatDividerModule, MatIconModule, MatInputModule, MatTabsModule } from '@angular/material';
+import { KuiActionModule } from '@knora/action';
+import { KuiCoreModule } from '@knora/core';
+
+import { ExampleViewerComponent } from '../../../partials/example-viewer/example-viewer.component';
+import { ModuleHeaderComponent } from '../../../partials/module-header/module-header.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 describe('UsersComponent', () => {
     let component: UsersComponent;
@@ -21,9 +22,9 @@ describe('UsersComponent', () => {
                 MatInputModule,
                 MatIconModule,
                 MatTabsModule,
+                KuiActionModule,
                 KuiCoreModule,
-                KuiProgressIndicatorModule,
-                MarkdownModule.forRoot({ loader: HttpClient })
+                MarkdownModule.forRoot({loader: HttpClient})
             ],
             declarations: [
                 ExampleViewerComponent,

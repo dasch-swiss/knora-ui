@@ -1,0 +1,7 @@
+<mat-form-field>
+    <jdn-datepicker>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl]="form.controls['dateValue']">
+        <mat-datepicker #picker [calendarHeaderComponent]="headerComponent"></mat-datepicker>
+    </jdn-datepicker>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+</mat-form-field>

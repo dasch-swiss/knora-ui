@@ -1,4 +1,4 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
+import { JsonObject, JsonProperty } from 'json2typescript';
 
 /**
  * Knora-ui core configuration with the server definitions of:
@@ -6,26 +6,34 @@ import {JsonObject, JsonProperty} from 'json2typescript';
  *  - media: URL of media server service e.g. sipi: http://localhost:1024
  *  - app: URL of the app e.g. salsah: http://localhost:4200
  */
-@JsonObject
+@JsonObject('KuiCoreConfig')
 export class KuiCoreConfig {
 
+    /**
+     * (Salsah) name of the app
+     * @type {string}
+     */
+    @JsonProperty('name', String)
+    public name: string = undefined;
+
+    /**
+     * (knora) url of the api
+     * @type {string}
+     */
     @JsonProperty('api', String)
     public api: string = undefined;
 
+    /**
+     * (sipi) url of media/file server
+     * @type {string}
+     */
     @JsonProperty('media', String)
     public media: string = undefined;
 
+    /**
+     * (salsah) url of the app
+     * @type {undefined}
+     */
     @JsonProperty('app', String)
     public app: string = undefined;
-}
-
-export class KnoraApiConfig {
-
-    public static KnoraOntologyPath: string = 'http://www.knora.org/ontology';
-    public static KnoraBase: string = KnoraApiConfig.KnoraOntologyPath + '/knora-base';
-
-    public static SystemProjectIRI: string = KnoraApiConfig.KnoraBase + '#SystemProject';
-    public static SystemAdminGroupIRI: string = KnoraApiConfig.KnoraBase + '#SystemAdmin';
-    public static ProjectAdminGroupIRI: string = KnoraApiConfig.KnoraBase + '#ProjectAdmin';
-    public static ProjectMemberGroupIRI: string = KnoraApiConfig.KnoraBase + '#ProjectMember';
 }

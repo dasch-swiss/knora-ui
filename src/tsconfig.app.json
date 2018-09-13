@@ -4,12 +4,22 @@
     "outDir": "../out-tsc/app",
     "module": "es2015",
     "types": [],
+    "baseUrl": "../",
     "paths": {
+      "@knora/action": [
+        "dist/@knora/action"
+      ],
+      "@knora/authentication": [
+        "dist/@knora/authentication"
+      ],
       "@knora/core": [
         "dist/@knora/core"
       ],
-      "@knora/progress-indicator": [
-        "dist/@knora/progress-indicator"
+      "@knora/search": [
+        "dist/@knora/search"
+      ],
+      "@knora/viewer": [
+        "dist/@knora/viewer"
       ]
     }
   },

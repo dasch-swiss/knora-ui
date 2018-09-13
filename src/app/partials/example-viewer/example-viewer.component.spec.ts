@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {ExampleViewerComponent} from './example-viewer.component';
-import {MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, MatTabsModule} from '@angular/material';
+import { ExampleViewerComponent } from './example-viewer.component';
+import { MatButtonModule, MatCardModule, MatDividerModule, MatIconModule, MatTabsModule } from '@angular/material';
 
 describe('ExampleViewerComponent', () => {
     let component: ExampleViewerComponent;

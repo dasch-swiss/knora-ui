@@ -1,0 +1,24 @@
+{
+  "name": "@knora/search",
+  "version": "1.0.0-beta.1",
+  "description": "Knora ui module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dhlab-basel/Knora-ui.git"
+  },
+  "homepage": "https://dhlab-basel.github.io/Knora-ui",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "knora",
+    "digital humanities",
+    "dhlab basel"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "@knora/core": "^1.0.0-beta",
+    "@knora/viewer": "^0.0.1-alpha",
+    "jdnconvertiblecalendardateadapter": "^0.0.7"
+  }
+}
