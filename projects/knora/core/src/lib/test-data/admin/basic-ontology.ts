@@ -79,8 +79,8 @@ export class Gui {
 
 }
 
-@JsonObject('PropertyTest')
-export class PropertyTest {
+@JsonObject('Property')
+export class Property {
 
     @JsonProperty('label', String)
     public label: string = undefined;
@@ -104,8 +104,8 @@ export class PropertyTest {
  * the class includes the default properties as an array. The property id is the key in the array
  */
 
-@JsonObject('ResourceClassTest')
-export class ResourceClassTest {
+@JsonObject('ResourceClass')
+export class ResourceClass {
 
     @JsonProperty('id', String, true)
     public id: string = undefined;
@@ -150,8 +150,8 @@ export class BasicOntology {
     public defaultPermissions: Permissions = undefined;
 
     // defaultResourceClasses
-    @JsonProperty('resourceClasses', [ResourceClassTest], true)
-    public resourceClasses: ResourceClassTest[] = undefined;
+    @JsonProperty('resourceClasses', [ResourceClass], true)
+    public resourceClasses: ResourceClass[] = undefined;
 
 }
 
@@ -160,6 +160,6 @@ export class PropertyObject {
     @JsonProperty('key', String)
     public key: string = undefined;
 
-    @JsonProperty('value', PropertyTest)
-    public value: PropertyTest = undefined;
+    @JsonProperty('value', Property)
+    public value: Property = undefined;
 }
