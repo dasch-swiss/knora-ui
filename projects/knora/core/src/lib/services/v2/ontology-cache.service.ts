@@ -536,10 +536,10 @@ export class OntologyCacheService {
                 throw new OntologyCacheError(`getResourceClassesForOntologiesFromCache: ontology not found in cache: ${ontologyIri}`);
             }
 
-            // add information for the given named graph
+            // add information for the given ontology
             resourceClassesForOntology[ontologyIri] = this.cacheOntology.resourceClassIrisForOntology[ontologyIri];
 
-            // add all resource class Iris of this named graph
+            // add all resource class Iris of this ontology
             allResourceClassIris = allResourceClassIris.concat(this.cacheOntology.resourceClassIrisForOntology[ontologyIri]);
         }
 
