@@ -305,7 +305,7 @@ export class OntologyInformation {
      *
      * @returns all properties as an object.
      */
-    getProperties() {
+    getProperties(): Properties {
         return this.properties;
     }
 
@@ -314,7 +314,7 @@ export class OntologyInformation {
      *
      * @returns all properties as an array.
      */
-    getPropertiesAsArray() {
+    getPropertiesAsArray(): Array<Property> {
 
         const properties: Array<Property> = [];
 
