@@ -25,8 +25,8 @@ export class OntologyMetadata {
 
     /**
      *
-     * @param {string} id Iri identifying the ontology.
-     * @param {string} label a label describing the ontology.
+     * @param id Iri identifying the ontology.
+     * @param label a label describing the ontology.
      */
     constructor(readonly id: string,
         readonly label: string) {
@@ -37,7 +37,7 @@ export class OntologyMetadata {
 
 
 /**
- * Occurrence of a property for a resource class.
+ * Occurrence of a property for a resource class (its cardinality).
  */
 export enum CardinalityOccurrence {
     minCard = 0,
@@ -53,9 +53,9 @@ export class Cardinality {
 
     /**
      *
-     * @param {CardinalityOccurrence} occurrence type of given occurrence.
-     * @param {number} value numerical value of given occurrence.
-     * @param {string} property the property the given occurrence applies to.
+     * @param occurrence type of given occurrence.
+     * @param value numerical value of given occurrence.
+     * @param property the property the given occurrence applies to.
      */
     constructor(readonly occurrence: CardinalityOccurrence,
         readonly value: number,
@@ -71,11 +71,11 @@ export class ResourceClass {
 
     /**
      *
-     * @param {string} id Iri identifying the resource class.
-     * @param {string} icon path to an icon representing the resource class.
-     * @param {string} comment comment on the resource class.
-     * @param {string} label label for the resource class.
-     * @param {Array<Cardinality>} cardinalities the resource class's properties.
+     * @param id Iri identifying the resource class.
+     * @param icon path to an icon representing the resource class.
+     * @param comment comment on the resource class.
+     * @param label label describing the resource class.
+     * @param cardinalities the resource class's properties.
      */
     constructor(readonly id: string,
         readonly icon: string,
@@ -102,14 +102,14 @@ export class Property {
 
     /**
      *
-     * @param {string} id Iri identifying the property definition.
-     * @param {string} objectType the property's object constraint.
-     * @param {string} comment comment on the property definition.
-     * @param {string} label label for the property definition.
-     * @param {Array<string>} subPropertyOf Iris of properties the given property is a subproperty of.
-     * @param {Boolean} isEditable indicates whether the given property can be edited by the client.
-     * @param {Boolean} isLinkProperty indicates whether the given property is a linking property.
-     * @param {Boolean} isLinkValueProperty indicates whether the given property refers to a link value.
+     * @param id Iri identifying the property definition.
+     * @param objectType the property's object constraint.
+     * @param comment comment on the property definition.
+     * @param label label describing the property definition.
+     * @param subPropertyOf Iris of properties the given property is a subproperty of.
+     * @param isEditable indicates whether the given property can be edited by the client.
+     * @param isLinkProperty indicates whether the given property is a linking property.
+     * @param isLinkValueProperty indicates whether the given property refers to a link value.
      */
     constructor(readonly id: string,
         readonly objectType: string,
@@ -144,11 +144,14 @@ export class ResourceClassIrisForOntology {
 
 /**
  * Represents cached ontology information (only used by this service internally).
+ * This cache is updated whenever new definitions are requested from Knora.
+ *
+ * Requested ontology information by a service is represented by [[OntologyInformation]].
  */
 class OntologyCache {
 
     /**
-     * An Array of all existing ontologies.
+     * An array of all existing ontologies.
      */
     ontologies: Array<OntologyMetadata>;
 
@@ -180,13 +183,14 @@ class OntologyCache {
 
 /**
  * Represents ontology information requested from this service.
+ *
+ * For every request, an instance of this class is returned containing the requested information.
  */
 export class OntologyInformation {
 
     /**
      *
-     * @param {ResourceClassIrisForOntology} resourceClassesForOntology
-     * all resource class Iris for a given ontology. TODO: can this be removed?
+     * @param resourceClassesForOntology all resource class Iris for a given ontology.
      * @param {ResourceClasses} resourceClasses resource class definitions.
      * @param {Properties} properties property definitions.
      */
@@ -197,33 +201,39 @@ export class OntologyInformation {
     }
 
     /**
-     *
      * Merge the given [[OntologyInformation]] into the current instance,
      * updating the existing information.
      *
-     * @params ontologyInfo the given [[OntologyInformation]] that has to be integrated.
+     * This is necessary when a service like the search fetches new results
+     * that have to be added to an existing collection.
+     * The existing ontology information must not be lost.
+     *
+     * @params ontologyInfo the given definitions that have to be integrated.
      */
     updateOntologyInformation(ontologyInfo: OntologyInformation): void {
 
-        // update resourceClassIrisForOntology
-        const newResourceClassesForOntology = ontologyInfo.getResourceClassForOntology();
+        // get new resourceClassIrisForOntology
+        const newResourceClassesForOntology: ResourceClassIrisForOntology = ontologyInfo.getResourceClassForOntology();
 
+        // update new resourceClassIrisForOntology
         // tslint:disable-next-line:forin
         for (const newResClassForOntology in newResourceClassesForOntology) {
             this.resourceClassesForOntology[newResClassForOntology] = newResourceClassesForOntology[newResClassForOntology];
         }
 
-        // update resourceClasses
+        // get new resource class definitions
         const newResourceClasses = ontologyInfo.getResourceClasses();
 
+        // update resourceClasses
         // tslint:disable-next-line:forin
         for (const newResClass in newResourceClasses) {
             this.resourceClasses[newResClass] = newResourceClasses[newResClass];
         }
 
-        // update properties
+        // get new property definitions
         const newProperties = ontologyInfo.getProperties();
 
+        // update properties
         // tslint:disable-next-line:forin
         for (const newProp in newProperties) {
             this.properties[newProp] = newProperties[newProp];
@@ -232,25 +242,25 @@ export class OntologyInformation {
     }
 
     /**
-     * Gets resource classes definitions for ontologies.
+     * Returns resource class definitions for ontologies.
      *
-     * @returns {ResourceClassIrisForOntology}
+     * @returns all resource class definitions grouped by ontologies.
      */
     getResourceClassForOntology(): ResourceClassIrisForOntology {
         return this.resourceClassesForOntology;
     }
 
     /**
-     * Gets all resource classes as an object.
+     * Returns all resource classes as an object.
      *
-     * @returns {ResourceClasses}
+     * @returns all resource class definitions as an object.
      */
     getResourceClasses(): ResourceClasses {
         return this.resourceClasses;
     }
 
     /**
-     * Gets all resource classes as an Array.
+     * Returns all resource classes as an array.
      *
      * @returns {Array<ResourceClass>}
      */
@@ -271,8 +281,8 @@ export class OntologyInformation {
     /**
      * Returns a resource class's label.
      *
-     * @param {string} resClass to query for.
-     * @returns {string} the resource class's label.
+     * @param resClass resource class to query for.
+     * @returns the resource class's label.
      */
     getLabelForResourceClass(resClass: string): string {
 
@@ -291,18 +301,18 @@ export class OntologyInformation {
     }
 
     /**
-     * Get all properties as an object.
+     * Returns all properties as an object.
      *
-     * @returns {Properties}
+     * @returns all properties as an object.
      */
     getProperties() {
         return this.properties;
     }
 
     /**
-     * Gets all properties as an Array.
+     * Returns all properties as an array.
      *
-     * @returns {Array<Property>}
+     * @returns all properties as an array.
      */
     getPropertiesAsArray() {
 
@@ -321,8 +331,8 @@ export class OntologyInformation {
     /**
      * Returns a property's label.
      *
-     * @param {string} property to query for.
-     * @returns {string} the property's label.
+     * @param property to query for.
+     * @returns the property's label.
      */
     getLabelForProperty(property: string): string {
 
@@ -352,6 +362,7 @@ export class OntologyInformation {
 })
 export class OntologyCacheService {
 
+    // ontologies ingored by this service
     private excludedOntologies: Array<string> = [KnoraConstants.SalsahGuiOntology, KnoraConstants.StandoffOntology];
 
     // properties that Knora is not responsible for and
@@ -361,18 +372,20 @@ export class OntologyCacheService {
     // class definitions that are not be treated as Knora resource classes
     private nonResourceClasses: Array<string> = [KnoraConstants.ForbiddenResource, KnoraConstants.XMLToStandoffMapping, KnoraConstants.ListNode];
 
+    // central instance that caches all definitions
     private cacheOntology: OntologyCache = new OntologyCache();
 
     constructor(private _ontologyService: OntologyService) {
     }
 
     /**
-     * Requests the Iris of all the named graphs from Knora.
+     * Requests the metadata of all ontologies from Knora.
      *
-     * @returns {Observable<object>} an Observable representing the required information.
+     * @returns metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
      */
     private getOntologiesMetadataFromKnora(): Observable<object> {
-        const ontoResponse = this._ontologyService.getOntologiesMetadata().pipe(
+
+        return this._ontologyService.getOntologiesMetadata().pipe(
             mergeMap(
                 // this would return an Observable of a PromiseObservable -> combine them into one Observable
                 // http://reactivex.io/documentation/operators/flatmap.html
@@ -388,12 +401,10 @@ export class OntologyCacheService {
                 }
             )
         );
-
-        return ontoResponse;
     }
 
     /**
-     * Requests all entity definitions for the given ontology from Knora.
+     * Requests all entity definitions (resource classes and properties) for the given ontology from Knora.
      *
      * @param ontologyIri the Iri of the requested ontology.
      */
@@ -420,7 +431,7 @@ export class OntologyCacheService {
     /**
      * Writes all the ontologies' metadata returned by Knora to the cache.
      *
-     * @param {string[]} ontologies metadata of all existing ontologies.
+     * @param {string[]} ontologies metadata of all existing ontologies as JSON-LD.
      */
     private convertAndWriteOntologiesMetadataToCache(ontologies: object[]) {
 
@@ -432,9 +443,9 @@ export class OntologyCacheService {
     }
 
     /**
-     * Gets all ontologies' metadata from the cache and returns them.
+     * Returns all ontologies' metadata from the cache and returns them.
      *
-     * @returns {Array<string>}
+     * @returns metadata of all existing ontologies.
      */
     private getAllOntologiesMetadataFromCache(): Array<OntologyMetadata> {
 
@@ -443,13 +454,13 @@ export class OntologyCacheService {
     }
 
     /**
-     * Gets resource class definitions from the ontology response.
+     * Returns resource class Iris from the ontology response.
      * `knora-api:Resource` will be excluded.
      *
-     * @param {Object} classDefinitions the `hasClasses` section of an ontology response.
-     * @returns {string[]}
+     * @param classDefinitions the class definitions in an ontology response.
+     * @returns resource class Iris from the given class definitions.
      */
-    private getResourceClassIrisFromOntologyResponse(classDefinitions: Array<Object>): string[] {
+    private getResourceClassIrisFromOntologyResponse(classDefinitions: Array<object>): string[] {
         const resourceClassIris: string[] = [];
 
         for (const classDef of classDefinitions) {
@@ -471,21 +482,23 @@ export class OntologyCacheService {
      * Converts a Knora response for all entity definitions for the requested ontology
      * into an internal representation and caches it.
      *
-     * Knora automatically includes the resource class definitions for the given ontology and the property definitions
-     * which are referred to in the cardinalities of the resource classes that have been returned.
+     * Knora automatically includes the property definitions referred to in the cardinalities of resource classes.
+     * If they are defined in another ontology, that ontology is requested from Knora too.
      *
      * @param {Object} ontology the ontology to be cached.
      */
-    private convertAndWriteAllEntityDefinitionsForOntologyToCache(ontology: Object): void {
+    private convertAndWriteAllEntityDefinitionsForOntologyToCache(ontology: object): void {
 
         const graph = ontology['@graph'];
 
+        // get all class definitions
         const classDefs = graph.filter(
             (entity: Object) => {
                 const entityType = entity['@type'];
                 return entityType === KnoraConstants.OwlClass;
             });
 
+        // get all property definitions
         const propertyDefs = graph.filter(
             (entity: Object) => {
                 const entityType = entity['@type'];
@@ -496,17 +509,19 @@ export class OntologyCacheService {
             });
 
 
+        // cache all resource class Iris belonging to the current ontology
         this.cacheOntology.resourceClassIrisForOntology[ontology['@id']] = this.getResourceClassIrisFromOntologyResponse(classDefs);
 
+        // write class and property defintions to cache
         this.convertAndWriteEntityDefinitionsToCache(classDefs, propertyDefs);
 
     }
 
     /**
-     * Gets resource class definitions for the requested ontologies from the cache.
+     * Returns definitions for the requested ontologies from the cache.
      *
-     * @param {string[]} ontologyIris the ontologies for which resource classes should be returned.
-     * @returns {OntologyInformation} an [[OntologyInformation]] representing the requested information.
+     * @param ontologyIris the ontologies for which definitions should be returned.
+     * @returns the definitions for the requested ontologies.
      */
     private getOntologyInformationFromCache(ontologyIris: string[]): Observable<OntologyInformation> {
 
@@ -528,7 +543,7 @@ export class OntologyCacheService {
             allResourceClassIris = allResourceClassIris.concat(this.cacheOntology.resourceClassIrisForOntology[ontologyIri]);
         }
 
-        // get resource class definitions for all named graphs
+        // get resource class definitions for all requested ontologies
         return this.getResourceClassDefinitions(allResourceClassIris).pipe(
             map(
                 resClassDefs => {
@@ -544,10 +559,10 @@ export class OntologyCacheService {
     /**
      * Converts a Knora ontology response into an internal representation and caches it.
      *
-     * @param {Object} resourceClassDefinitions the resource class definitions returned by Knora.
-     * @param {Object} propertyClassDefinitions the property definitions returned by Knora.
+     * @param resourceClassDefinitions the resource class definitions returned by Knora.
+     * @param propertyClassDefinitions the property definitions returned by Knora.
      */
-    private convertAndWriteEntityDefinitionsToCache(resourceClassDefinitions: Array<Object>, propertyClassDefinitions: Array<Object>): void {
+    private convertAndWriteEntityDefinitionsToCache(resourceClassDefinitions: Array<object>, propertyClassDefinitions: Array<object>): void {
 
         // convert and cache each given resource class definition
         for (const resClass of resourceClassDefinitions) {
@@ -567,7 +582,6 @@ export class OntologyCacheService {
                 } else {
                     subclassOfCollection = resClass[KnoraConstants.RdfsSubclassOf];
                 }
-
 
                 // get cardinalities for the properties of a resource class
                 for (const curCard of subclassOfCollection) {
@@ -609,13 +623,13 @@ export class OntologyCacheService {
             this.cacheOntology.resourceClasses[resClassIri] = resClassObj;
         }
 
-        // cache the property definitions referred to by the cardinalities of the given resource classes
+        // cache the property definitions
         this.convertAndWriteKnoraPropertyDefinitionsToOntologyCache(propertyClassDefinitions);
     }
 
     /**
      * Gets information about resource classes from the cache.
-     * The answer includes the property definitions referred to by the cardinalities og the given resource classes.
+     * The answer includes the property definitions referred to by the cardinalities of the given resource classes.
      *
      * @param resClassIris the given resource class Iris
      * @returns {ResourceClasses} an [[OntologyCache]] representing the requested resource classes.
@@ -634,6 +648,7 @@ export class OntologyCacheService {
 
                 this.cacheOntology.resourceClasses[resClassIri].cardinalities.forEach(
                     card => {
+                        // get property definition for each cardinality
                         propertyIris.push(card.property);
                     }
                 );
@@ -650,12 +665,12 @@ export class OntologyCacheService {
     }
 
     /**
-     * Convert a Knora response for ontology information about properties
+     * Converts a Knora response for ontology information about properties
      * into an internal representation and cache it.
      *
-     * @param {Object} propertyDefinitionsFromKnora the property definitions returned by Knora
+     * @param propertyDefinitionsFromKnora the property definitions returned by Knora
      */
-    private convertAndWriteKnoraPropertyDefinitionsToOntologyCache(propertyDefinitionsFromKnora: Array<Object>): void {
+    private convertAndWriteKnoraPropertyDefinitionsToOntologyCache(propertyDefinitionsFromKnora: Array<object>): void {
 
         // convert and cache each given property definition
         for (const propDef of propertyDefinitionsFromKnora) {
@@ -706,10 +721,10 @@ export class OntologyCacheService {
     }
 
     /**
-     * Gets property definitions from the cache.
+     * Returns property definitions from the cache.
      *
-     * @param {string[]} propertyIris the property definitions to be returned.
-     * @returns {OntologyCache}
+     * @param propertyIris the property definitions to be returned.
+     * @returns requested property defintions.
      */
     private getPropertyDefinitionsFromCache(propertyIris: string[]): OntologyInformation {
 
@@ -735,13 +750,14 @@ export class OntologyCacheService {
     }
 
     /**
-     * Gets all named graphs.
+     * Returns metadata about all ontologies.
      *
-     * @returns {Observable<Array<OntologyMetadata>>}
+     * @returns metadata about all ontologies.
      */
     public getOntologiesMetadata(): Observable<Array<OntologyMetadata>> {
 
         if (this.cacheOntology.ontologies.length === 0) {
+            // nothing in cache yet, get metadata from Knora
             return this.getOntologiesMetadataFromKnora().pipe(
                 map(
                     metadata => {
@@ -754,6 +770,7 @@ export class OntologyCacheService {
                 )
             );
         } else {
+            // return metadata from cache
             return of(this.getAllOntologiesMetadataFromCache());
         }
 
@@ -761,33 +778,40 @@ export class OntologyCacheService {
 
 
     /**
-     * Gets the requested ontologies from Knora if necessary, adding them to the cache.
+     * Requests the requested ontologies from Knora, adding them to the cache.
      *
-     * @param {string[]} ontologyIris Iris of the ontologies to be queried.
+     * @param ontologyIris Iris of the ontologies to be requested.
      */
     private getAndCacheOntologies(ontologyIris: string[]): Observable<any[]> {
 
+        // array to be populated with Observables
         const observables = [];
 
+        // do a request for each ontology
         ontologyIris.forEach(ontologyIri => {
+            // push an Observable onto `observables`
             observables.push(this.getAllEntityDefinitionsForOntologyFromKnora(ontologyIri).pipe(
                 map(
-                    (ontology: Object) => {
-                        // write to cache
+                    (ontology: object) => {
+                        // write response to cache
                         this.convertAndWriteAllEntityDefinitionsForOntologyToCache(ontology);
                     }
                 )
             ));
         });
 
+        // forkJoin returns an Observable of an array of results
+        // returned by each Observable contained in `observables`
+        // a subscription to the Observable returned by forkJoin is executed
+        // once all Observables have been completed
         return forkJoin(observables);
     }
 
 
     /**
-     * Get the entity definitions for the given ontologies.
+     * Returns the entity definitions for the requested ontologies.
      *
-     * @param {string[]} ontologyIris Iris of the ontologies to be queried.
+     * @param ontologyIris Iris of the ontologies to be queried.
      */
     public getEntityDefinitionsForOntologies(ontologyIris: string[]): Observable<OntologyInformation> {
 
@@ -797,11 +821,13 @@ export class OntologyCacheService {
                 return this.cacheOntology.resourceClassIrisForOntology[ontologyIri] === undefined;
             });
 
+        // get ontologies that are mot cached yet
         if (ontologyIrisToQuery.length > 0) {
 
             return this.getAndCacheOntologies(ontologyIrisToQuery).pipe(
                 mergeMap(
                     results => {
+                        // executed once all ontologies have been cached
                         return this.getOntologyInformationFromCache(ontologyIris);
                     }
                 )
@@ -814,11 +840,13 @@ export class OntologyCacheService {
     }
 
     /**
-     * Get definitions for the given resource class Iris.
+     * Returns the definitions for the given resource class Iris.
      * If the definitions are not already in the cache, the will be retrieved from Knora and cached.
      *
+     * Properties contained in the cardinalities will be returned too.
+     *
      * @param resourceClassIris the given resource class Iris
-     * @returns {Observable<OntologyCache>} an OntologyCache instance representing the requested resource classes (including properties).
+     * @returns the requested resource classes (including properties).
      */
     public getResourceClassDefinitions(resourceClassIris: string[]): Observable<OntologyInformation> {
 
@@ -860,7 +888,7 @@ export class OntologyCacheService {
      * If the definitions are not already in the cache, the will be retrieved from Knora and cached.
      *
      * @param {string[]} propertyIris the Iris of the properties to be returned .
-     * @returns {Observable<OntologyCache>}  an OntologyCache instance containing the requested properties.
+     * @returns the requested property definitions.
      */
     public getPropertyDefinitions(propertyIris: string[]): Observable<OntologyInformation> {
 
@@ -891,7 +919,6 @@ export class OntologyCacheService {
                 map(
                     results => {
                         if (results) {
-
                             return this.getPropertyDefinitionsFromCache(propertyIris);
                         } else {
                             throw new Error('Problem with: return this.getPropertyDefinitionsFromCache(propertyIris);');
