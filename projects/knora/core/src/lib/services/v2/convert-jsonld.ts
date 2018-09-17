@@ -57,7 +57,7 @@ export module ConvertJSONLD {
      * @param resourceJSONLD an a resource and its properties serialized as JSON-LD.
      * @returns a [[ReadResource]].
      */
-    function constructReadResource(resourceJSONLD: Object): ReadResource {
+    function constructReadResource(resourceJSONLD: object): ReadResource {
 
         const properties: ReadProperties = constructReadProperties(resourceJSONLD);
 
@@ -319,7 +319,7 @@ export module ConvertJSONLD {
      * @param resourceJSONLD an object describing the resource and its properties.
      * @returns a [[ReadProperties]].
      */
-    function constructReadProperties(resourceJSONLD: Object): ReadProperties {
+    function constructReadProperties(resourceJSONLD: object): ReadProperties {
 
         // JSON-LD representing standoff link values
         // text values may contain standoff links
@@ -396,9 +396,9 @@ export module ConvertJSONLD {
      * Expects JSON-LD with all Iris fully expanded.
      *
      * @param resourcesResponseJSONLD a resource or a sequence of resources, represented as a JSON-LD object.
-     * @returns {ReadResourcesSequence} a [[ReadResourcesSequence]].
+     * @returns a [[ReadResourcesSequence]].
      */
-    export function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD: Object): ReadResourcesSequence {
+    export function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD: object): ReadResourcesSequence {
 
         const resources: Array<ReadResource> = [];
         let numberOfResources: number;
@@ -443,7 +443,7 @@ export module ConvertJSONLD {
      * @param {Object} resourceJSONLD JSON-LD describing one resource.
      * @return an Array of resource class Iris (including duplicates).
      */
-    function getReferredResourceClasses(resourceJSONLD: Object): string[] {
+    function getReferredResourceClasses(resourceJSONLD: object): string[] {
 
         let propNames = Object.keys(resourceJSONLD);
         // filter out everything that is not a Knora property name
@@ -503,7 +503,7 @@ export module ConvertJSONLD {
      * @param resourcesResponseJSONLD a sequence of resources, represented as a JSON-LD object.
      * @returns {Array<String>} the resource class Iris (without duplicates).
      */
-    export function getResourceClassesFromJsonLD(resourcesResponseJSONLD: Object): string[] {
+    export function getResourceClassesFromJsonLD(resourcesResponseJSONLD: object): string[] {
 
         const resourcesGraph = resourcesResponseJSONLD['@graph'];
         let resourceClasses: Array<string> = [];
