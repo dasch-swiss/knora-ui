@@ -354,8 +354,8 @@ export class OntologyInformation {
 
 
 /**
- * Adds and retrieves information to and from the LocalStorage.
- * If an information is not cached already, it is requested from Knora and added to the cache.
+ * Requests ontology information from Knora and caches it.
+ * Other components or services obtain ontology information through this service.
  */
 @Injectable({
     providedIn: 'root'

@@ -4,13 +4,16 @@ import { Observable } from 'rxjs';
 import { ApiServiceResult, UsersResponse } from '../../declarations';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
+/**
+ * Requests ontology information from Knora.
+ */
 @Injectable({
     providedIn: 'root',
 })
 export class OntologyService extends ApiService {
 
     /**
-     * Requests the metadata about existing ontologies from Knora's ontologies route.
+     * Requests the metadata about all existing ontologies from Knora's ontologies route.
      *
      * @returns the metadata of all ontologies.
      */
