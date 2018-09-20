@@ -1,6 +1,6 @@
 import { DemoModule } from './app.interfaces';
 
-export class AppConfig {
+export class AppDemoLink {
     public static prefix = 'knora';
     public static stackblitz = 'https://stackblitz.com/edit/';
     public static npm = 'https://www.npmjs.com/package/';
