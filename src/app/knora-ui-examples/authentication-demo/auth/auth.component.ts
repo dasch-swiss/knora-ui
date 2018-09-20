@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '@knora/authentication';
 import { CurrentUser } from '@knora/core';
-import { AppDemo } from '../../../app.config';
+import { AppDemo } from '../../../app.demo';
 
 @Component({
     selector: 'app-auth',

@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from '@knora/authentication';
-import { AppDemo } from './app.config';
+import { AppDemo } from './app.demo';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
 // / start with main-intro

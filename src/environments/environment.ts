@@ -3,10 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  api: 'http://0.0.0.0:3333',
-  app: 'http://localhost:4200',
-  media: 'http://localhost:1024'
+    name: 'dev',
+    production: false,
+    apiURL: 'http://0.0.0.0:3333',
+    iiifURL: 'http://localhost:1024/knora',
+    appURL: 'http://localhost:4200',
+    appName: 'Salsah',
+
 };
 
 /*

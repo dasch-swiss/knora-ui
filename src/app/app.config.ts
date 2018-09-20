@@ -1,143 +1,47 @@
-import { DemoModule } from './app.interfaces';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 
-export class AppConfig {
-    public static prefix = 'knora';
-    public static stackblitz = 'https://stackblitz.com/edit/';
-    public static npm = 'https://www.npmjs.com/package/';
-    public static badge = 'https://img.shields.io/npm/v/';
+export interface IAppConfig {
 
+    env: {
+        name: string;
+    };
+    ontologyIRI: string;
+    apiURL: string;
+    externalApiURL: string;
+    iiifURL: string;
+    appURL: string;
+    appName: string;
+    localData: string;
+    pagingLimit: number;
+    startComponent: string;
+    firebase: {
+        apiKey: string;
+        authDomain: string;
+        databaseURL: string;
+        projectId: string;
+        storageBucket: string;
+        messagingSenderId: string;
+
+    };
 }
 
-export class AppDemo {
+@Injectable()
+export class AppConfig {
 
-    /**
-     * examples of modules, which have an own demo page
-     */
-    public static progressIndicator: DemoModule = {
-        name: 'progress-indicator',
-        published: true,
-        stackblitz: true,
-        label: 'Progress indicator'
-    };
+    static settings: IAppConfig;
 
-    public static actionModule: DemoModule = {
-        name: 'action',
-        published: true,
-        label: 'Action module',
-        children: [
-            {
-                name: 'sort-button',
-                label: 'SortButton',
-                stackblitz: true
-            },
-            {
-                name: 'progress-indicator',
-                label: 'ProgressIndicator',
-                stackblitz: true
-            },
-            {
-                name: 'admin-image',
-                label: 'AdminImage',
-                stackblitz: true
-            },
-            {
-                name: 'existing-name',
-                label: 'ExistingName',
-                stackblitz: true
-            },
-            {
-                name: 'key',
-                label: 'Key',
-                stackblitz: true
-            }
-        ]
-    };
+    constructor(private http: HttpClient) {
+    }
 
-    public static coreModule: DemoModule = {
-        name: 'core',
-        published: true,
-        stackblitz: false,
-        label: 'Core module',
-        children: [
-            {
-                name: 'users',
-                label: 'UsersService'
-            },
-            {
-                name: 'projects',
-                label: 'ProjectsService'
-            },
-            {
-                name: 'groups',
-                label: 'GroupsService'
-            },
-            {
-                name: 'lists',
-                label: 'ListsService'
-            },
-            {
-                name: 'resource',
-                label: 'ResourceService'
-            }
-        ]
-    };
-
-    public static authenticationModule: DemoModule = {
-        name: 'authentication',
-        published: true,
-        label: 'Authentication module'
-    };
-
-    public static projectModule: DemoModule = {
-        name: 'project',
-        published: false,
-        label: 'Project module'
-    };
-
-    public static adminModule: DemoModule = {
-        name: 'admin',
-        published: false,
-        label: 'Admin module'
-    };
-
-    public static searchModule: DemoModule = {
-        name: 'search',
-        published: true,
-        label: 'Search module'
-    };
-
-    public static viewerModule: DemoModule = {
-        name: 'viewer',
-        published: false,
-        label: 'Viewer module',
-        children: [
-            {
-                name: 'objects',
-                label: 'Objects'
-            },
-            {
-                name: 'properties',
-                label: 'Properties'
-            },
-            {
-                name: 'views',
-                label: 'Views'
-            }
-        ]
-    };
-
-    /* ******************************************************************* */
-
-    /**
-     * the following list of modules will be used on the public documentation page
-     * @type {DemoModule[]}
-     */
-    public static examples: DemoModule[] = [
-        AppDemo.authenticationModule,
-        AppDemo.actionModule,
-        AppDemo.coreModule,
-        AppDemo.searchModule,
-        AppDemo.viewerModule
-    ];
-
+    loadAppConfig() {
+        const jsonFile = `config/config.${environment.name}.json`;
+        return this.http.get(jsonFile)
+            .toPromise()
+            .then(data => {
+                AppConfig.settings = <IAppConfig> data;
+                // console.log('AppConfig.settings = ', AppConfig.settings);
+            });
+    }
 }

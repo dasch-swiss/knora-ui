@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppDemo} from '../../../app.config';
+import {AppDemo} from '../../../app.demo';
 
 @Component({
     selector: 'app-admin-image-demo',

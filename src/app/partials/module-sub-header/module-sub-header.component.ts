@@ -1,8 +1,7 @@
-
-import { ActivatedRoute } from '@angular/router';
-import { AppConfig } from '../../app.config';
-import { DemoModule } from '../../app.interfaces';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AppDemoLink } from '../../app.demo';
+import { DemoModule } from '../../app.interfaces';
 
 @Component({
     selector: 'app-module-sub-header',
@@ -27,7 +26,7 @@ export class ModuleSubHeaderComponent implements OnInit {
             this.currentComponent = this.findChild(url[0].path);
 
             if (this.currentComponent !== undefined && this.currentComponent.stackblitz === true) {
-                this.stackBlitzDemo = AppConfig.stackblitz + AppConfig.prefix + '-' + this.currentComponent.name;
+                this.stackBlitzDemo = AppDemoLink.stackblitz + AppDemoLink.prefix + '-' + this.currentComponent.name;
             }
 
         });

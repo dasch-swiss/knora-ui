@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { existingNamesValidator } from '@knora/action';
-import { AppDemo } from '../../../app.config';
+import { AppDemo } from '../../../app.demo';
 import { Example } from '../../../app.interfaces';
 
 @Component({

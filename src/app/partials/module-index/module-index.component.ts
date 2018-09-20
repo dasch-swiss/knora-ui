@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AppDemo} from '../../app.config';
+import {AppDemo} from '../../app.demo';
 import {DemoModule} from '../../app.interfaces';
 
 

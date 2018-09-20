@@ -1,13 +1,12 @@
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
-import { ErrorInterceptor, JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
+import { JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
 import { KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
@@ -17,10 +16,14 @@ import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
+// Loads the application configuration file during application startup
+import { AppConfig } from './app.config';
 
 import { AppRouting } from './app.routing';
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
+import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
+import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
 // examples: demo components
 import { ProgressIndicatorComponent } from './knora-ui-examples/action-demo/progress-indicator/progress-indicator.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
@@ -49,9 +52,12 @@ import { ModuleHeaderComponent } from './partials/module-header/module-header.co
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
-import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
-import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
 
+
+
+export function initializeApp(appConfig: AppConfig) {
+    return () => appConfig.loadAppConfig();
+}
 
 @NgModule({
     declarations: [
@@ -94,11 +100,12 @@ import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component'
         RouterModule,
         AppRouting,
         KuiCoreModule.forRoot({
-            name: 'Knora-ui Demo App',
-            api: environment.api,
-            media: environment.media,
-            app: environment.app,
-        }),
+                name: environment.appName,
+                api: environment.apiURL,
+                media: environment.iiifURL,
+                app: environment.appURL
+            },
+        ),
         KuiAuthenticationModule,
         KuiActionModule,
         KuiSearchModule,
@@ -109,6 +116,13 @@ import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component'
         ReactiveFormsModule
     ],
     providers: [
+        AppConfig,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeApp,
+            deps: [AppConfig],
+            multi: true
+        },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {

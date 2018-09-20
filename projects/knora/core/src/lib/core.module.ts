@@ -19,10 +19,10 @@ import { KuiCoreConfig } from './declarations';
 
 
 export class KuiCoreModule {
+
     /**
      *
-     * @param {KuiCoreConfig} config
-     * @returns {ModuleWithProviders}
+     * @param config
      */
     static forRoot(config: KuiCoreConfig): ModuleWithProviders {
         // get the app environment configuration here
@@ -34,4 +34,19 @@ export class KuiCoreModule {
             ]
         };
     }
+
+    /**
+     *
+     * @param config
+     */
+    static initializeApp(config: KuiCoreConfig): ModuleWithProviders {
+        console.log(config);
+        return {
+            ngModule: KuiCoreModule,
+            providers: [
+                {provide: 'config', useValue: config}
+            ]
+        };
+    }
+
 }
