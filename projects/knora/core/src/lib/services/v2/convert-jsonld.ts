@@ -23,14 +23,20 @@ import {
     Utils
 } from '../../declarations';
 
-declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
-const jsonld = require('jsonld');
-
+/**
+ * Contains methods to convert JSON-LD representing resources and properties to classes.
+ * These methods works only for instances of resources and properties, not for ontologies (data model).
+ */
 export module ConvertJSONLD {
 
     /**
-     * Gets property names and filters out all non property names.
-     * Gets all members that have to be treated as value objects.
+     * Function to be passed to a filter used on an array of property names
+     * sorting out all non value property names.
+     *
+     * Gets all property names that refer to value objects.
+     *
+     * @param propName the name of a property to be checked.
+     * @returns Boolean indicating if the name refers to a value property.
      */
     const getPropertyNames = (propName) => {
         return propName !== '@id'
@@ -45,13 +51,13 @@ export module ConvertJSONLD {
 
 
     /**
-     * Construct a [[ReadResource]] from JSON-LD.
+     * Constructs a [[ReadResource]] from JSON-LD.
+     * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param resourceJSONLD an object describing the resource and its properties.
-     * @param properties    a [[ReadProperties]] describing the resource's properties. if any.
-     * @returns a [[ReadResource]]
+     * @param resourceJSONLD an a resource and its properties serialized as JSON-LD.
+     * @returns a [[ReadResource]].
      */
-    function constructReadResource(resourceJSONLD: Object): ReadResource {
+    function constructReadResource(resourceJSONLD: object): ReadResource {
 
         const properties: ReadProperties = constructReadProperties(resourceJSONLD);
 
@@ -59,20 +65,22 @@ export module ConvertJSONLD {
             resourceJSONLD['@id'],
             resourceJSONLD['@type'],
             resourceJSONLD[KnoraConstants.RdfsLabel],
-            [],
-            [],
-            [],
-            [],
+            [], // to be updated once another request has been made
+            [], // to be updated once another request has been made
+            [], // to be updated once another request has been made
+            [], // to be updated once another request has been made
             properties
         );
     }
 
     /**
-     * Constructs a [[ReadPropertyItem]] from JSON-LD.
+     * Constructs a [[ReadPropertyItem]] from JSON-LD,
+     * taking into account the property's value type.
+     * Expects JSON-LD with all Iris fully expanded.
      *
      * @param propValue the value serialized as JSON-LD.
      * @param propIri the Iri of the property.
-     * @param standoffLinkValues standoffLinkValues of the resource.
+     * @param standoffLinkValues standoffLinkValues of the resource. Text values may contain links to other resources.
      * @returns a [[ReadPropertyItem]] or `undefined` in case the value could not be processed correctly.
      */
     function createValueSpecificProp(
@@ -306,20 +314,21 @@ export module ConvertJSONLD {
 
     /**
      * Construct a [[ReadProperties]] from JSON-LD.
+     * Expects JSON-LD with all Iris fully expanded.
      *
      * @param resourceJSONLD an object describing the resource and its properties.
-     * @param standoffLinksValues standoff link values of the resource.
      * @returns a [[ReadProperties]].
      */
-    function constructReadProperties(resourceJSONLD: Object): ReadProperties {
+    function constructReadProperties(resourceJSONLD: object): ReadProperties {
 
-        // JSONLD representing standoff link values
+        // JSON-LD representing standoff link values
+        // text values may contain standoff links
         const standoffLinkValuesJSONLD: Object = resourceJSONLD[KnoraConstants.hasStandoffLinkToValue];
 
         // to be populated with standoff link values
         const standoffLinkValues: ReadLinkValue[] = [];
 
-        // convert each standoff link value JSONLD object to a ReadLinkValue
+        // convert each standoff link value JSON-LD object to a ReadLinkValue
         // in order populate the collection with all the standoff link values
         if (standoffLinkValuesJSONLD !== undefined && Array.isArray(standoffLinkValuesJSONLD)) {
             for (const standoffLinkJSONLD of standoffLinkValuesJSONLD) {
@@ -338,15 +347,8 @@ export module ConvertJSONLD {
         }
 
         let propNames = Object.keys(resourceJSONLD);
+
         // filter out everything that is not a Knora property name
-
-        /*
-        http://api.knora.org/ontology/knora-api/v2#attachedToProject: [  ]
-            http://api.knora.org/ontology/knora-api/v2#attachedToUser: [  ]
-            http://api.knora.org/ontology/knora-api/v2#creationDate: [  ]
-            http://api.knora.org/ontology/knora-api/v2#hasPermissions:
-        */
-
         propNames = propNames.filter(getPropertyNames);
 
         const properties: ReadProperties = {};
@@ -391,11 +393,12 @@ export module ConvertJSONLD {
 
     /**
      * Turns an API response in JSON-LD representing a sequence of resources into a [[ReadResourcesSequence]].
+     * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param resourcesResponseJSONLD   a sequence of resources, represented as a JSON-LD object.
-     * @returns {ReadResourcesSequence} a [[ReadResourcesSequence]].
+     * @param resourcesResponseJSONLD a resource or a sequence of resources, represented as a JSON-LD object.
+     * @returns a [[ReadResourcesSequence]].
      */
-    export function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD: Object): ReadResourcesSequence {
+    export function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD: object): ReadResourcesSequence {
 
         const resources: Array<ReadResource> = [];
         let numberOfResources: number;
@@ -415,6 +418,7 @@ export module ConvertJSONLD {
             }
         } else {
             if (Object.keys(resourcesResponseJSONLD).length === 0) {
+                // empty answer, no resources given
                 numberOfResources = 0;
             } else {
 
@@ -433,12 +437,13 @@ export module ConvertJSONLD {
     }
 
     /**
-     * Collects all the classes of referred resources from a given resource (from its linking properties).
+     * Collects all the types (classes) of referred resources from a given resource (from its linking properties).
+     * Expects JSON-LD with all Iris fully expanded.
      *
      * @param {Object} resourceJSONLD JSON-LD describing one resource.
      * @return an Array of resource class Iris (including duplicates).
      */
-    function getReferredResourceClasses(resourceJSONLD: Object): string[] {
+    function getReferredResourceClasses(resourceJSONLD: object): string[] {
 
         let propNames = Object.keys(resourceJSONLD);
         // filter out everything that is not a Knora property name
@@ -492,12 +497,13 @@ export module ConvertJSONLD {
     }
 
     /**
-     * Gets the resource classes (types) from a JSON-LD representing a sequence of resources.
+     * Gets the resource types (classes) from a JSON-LD representing a sequence of resources.
+     * Expects JSON-LD with all Iris fully expanded.
      *
      * @param resourcesResponseJSONLD a sequence of resources, represented as a JSON-LD object.
      * @returns {Array<String>} the resource class Iris (without duplicates).
      */
-    export function getResourceClassesFromJsonLD(resourcesResponseJSONLD: Object): string[] {
+    export function getResourceClassesFromJsonLD(resourcesResponseJSONLD: object): string[] {
 
         const resourcesGraph = resourcesResponseJSONLD['@graph'];
         let resourceClasses: Array<string> = [];
