@@ -1,16 +1,16 @@
-import {ReadResource} from './read-resource';
+import { ReadResource } from './read-resource';
 
+/**
+ * Represents a sequence of resources.
+ */
 export class ReadResourcesSequence {
 
-    constructor(resources: Array<ReadResource>, numberOfResources: number) {
-        this.resources = resources;
-
-        this.numberOfResources = numberOfResources;
-
+    /**
+     *
+     * @param {Array<ReadResource>} resources given sequence of resources.
+     * @param {number} numberOfResources number of given resources.
+     */
+    constructor(public readonly resources: Array<ReadResource>, public readonly numberOfResources: number) {
     }
-
-    resources: Array<ReadResource>;
-
-    numberOfResources: number;
 
 }

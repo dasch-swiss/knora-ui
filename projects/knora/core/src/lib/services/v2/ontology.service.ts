@@ -4,18 +4,20 @@ import { Observable } from 'rxjs';
 import { ApiServiceResult, UsersResponse } from '../../declarations';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
+/**
+ * Requests ontology information from Knora.
+ */
 @Injectable({
     providedIn: 'root',
 })
 export class OntologyService extends ApiService {
 
     /**
-     * Requests the metadata about existing ontologies from Knora's ontologies route.
+     * Requests the metadata about all existing ontologies from Knora's ontologies route.
      *
-     * @returns {Observable<ApiServiceResult>}
+     * @returns the metadata of all ontologies.
      */
     getOntologiesMetadata(): Observable<ApiServiceResult> {
-        // console.log(this.httpGet('/v2/ontologies/metadata'));
         return this.httpGet('/v2/ontologies/metadata');
     }
 
@@ -23,23 +25,19 @@ export class OntologyService extends ApiService {
      * Requests all entity definitions for the given ontologies from Knora's ontologies route.
      *
      * @param ontologyIri the Iris of the named graphs whose resource classes are to be returned.
-     * @returns {any}
+     * @returns the requested ontology.
      */
-    getAllEntityDefinitionsForOntologies(ontologyIri: string): Observable<any> {
-
-        // console.log(ontologyIri);
-
+    getAllEntityDefinitionsForOntologies(ontologyIri: string): Observable<ApiServiceResult> {
         return this.httpGet('/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri));
-
     }
 
     /**
      * Requests information about the given resource classes from Knora's ontologies route.
      *
      * @param resourceClassIris the Iris of the resource classes to be queried.
-     * @returns {any}
+     * @returns the requested resource class definitions.
      */
-    getResourceClasses(resourceClassIris: Array<string>): Observable<any> {
+    getResourceClasses(resourceClassIris: Array<string>): Observable<ApiServiceResult> {
 
         if (resourceClassIris.length === 0) {
             // no resource class Iris are given to query for, return a failed Observer
@@ -59,9 +57,9 @@ export class OntologyService extends ApiService {
      * Requests properties from Knora's ontologies route.
      *
      * @param propertyIris the Iris of the properties to be queried.
-     * @returns {any}
+     * @returns the requested properties.
      */
-    getProperties(propertyIris: string[]) {
+    getProperties(propertyIris: string[]): Observable<ApiServiceResult> {
 
         if (propertyIris.length === 0) {
             // no resource class Iris are given to query for, return a failed Observer
