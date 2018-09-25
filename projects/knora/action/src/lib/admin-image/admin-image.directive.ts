@@ -1,14 +1,14 @@
-import {Directive, ElementRef, Input, OnChanges, Renderer2} from '@angular/core';
-import {AdminImageConfig} from './admin-image.config';
+import { Directive, ElementRef, Input, OnChanges, Renderer2 } from '@angular/core';
 
-import {Md5} from 'ts-md5/dist/md5';
+import { Md5 } from 'ts-md5/dist/md5';
+import { AdminImageConfig } from './admin-image.config';
 
 
 /**
  * You can use the admin image module for user avatar together with gravatar.com and for project logos. The feature of this module ist the error handling. In case of a 404 error of the image source (img src) the module shows a default image-not-found image. Or — in case of user — a default user profile icon, or — in case of project — a default project icon.
  */
 @Directive({
-  selector: '[kuiAdminImage]'
+    selector: '[kuiAdminImage]'
 })
 export class AdminImageDirective implements OnChanges {
 
@@ -32,7 +32,7 @@ export class AdminImageDirective implements OnChanges {
                 if (this.image === null || this.image === undefined) {
                     this.source = AdminImageConfig.defaultUser;
                 } else {
-                    this.source = 'http://www.gravatar.com/avatar/' + Md5.hashStr(this.image);
+                    this.source = 'http://www.gravatar.com/avatar/' + Md5.hashStr(this.image) + '?d=mp';
                 }
 
                 break;

@@ -7,10 +7,10 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project.
 
 ### NPM
-`npm install --save @knora/action ts-md5@^1.2.4`
+`npm install --save @knora/action ts-md5@^1.2.4 jdnconvertiblecalendar@0.0.2 jdnconvertiblecalendardateadapter@0.0.7`
 
 ### Yarn
-`yarn add @knora/action ts-md5@^1.2.4`
+`yarn add @knora/action ts-md5@^1.2.4 jdnconvertiblecalendar@0.0.2 jdnconvertiblecalendardateadapter@0.0.7`
 
 ---
 
