@@ -1,6 +1,6 @@
 {
   "name": "@knora/action",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Knora ui module",
   "repository": {
     "type": "git",
