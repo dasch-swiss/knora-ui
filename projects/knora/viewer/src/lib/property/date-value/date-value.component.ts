@@ -13,6 +13,7 @@ export class DateValueComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('DATE VALUE: ', this.valueObject);
   }
 
 }
