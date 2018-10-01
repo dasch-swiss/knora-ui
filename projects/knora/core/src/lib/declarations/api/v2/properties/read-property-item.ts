@@ -148,12 +148,12 @@ export class ReadDateValue implements ReadPropertyItem {
         readonly endMonth?: number,
         readonly startDay?: number,
         readonly endDay?: number) {
-
     }
 
     readonly type = KnoraConstants.DateValue;
 
     private separator = '-';
+
 
     getContent(): string {
         // consider precision
@@ -186,9 +186,9 @@ export class ReadDateValue implements ReadPropertyItem {
         }
         endDate += ' ' + this.endEra;
         if (startDate === endDate) {
-            return this.calendar + ':' + startDate;
+            return startDate + ' (' + this.calendar + ')';
         } else {
-            return this.calendar + ':' + startDate + this.separator + endDate;
+            return startDate + this.separator + endDate + ' (' + this.calendar + ')';
         }
     }
 
@@ -351,8 +351,8 @@ export class ReadTextFileValue implements ReadPropertyItem {
 export class ReadColorValue implements ReadPropertyItem {
 
     constructor(readonly id: string,
-                readonly propIri,
-                readonly colorHex: string) {
+        readonly propIri,
+        readonly colorHex: string) {
     }
 
     readonly type = KnoraConstants.ColorValue;
@@ -379,11 +379,11 @@ export class Point2D {
  */
 export class RegionGeometry {
     constructor(public status: string,
-                public lineColor: string,
-                public lineWidth: number,
-                public points: Point2D[],
-                public type: string,
-                public radius?: Point2D
+        public lineColor: string,
+        public lineWidth: number,
+        public points: Point2D[],
+        public type: string,
+        public radius?: Point2D
     ) {
     }
 }
@@ -499,7 +499,7 @@ export class ReadIntervalValue implements ReadPropertyItem {
  */
 export class ReadListValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string,) {
+    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string, ) {
 
     }
 
