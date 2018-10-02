@@ -13,6 +13,7 @@ export * from './api/knora-constants';
  * Interfaces for shared objects
  */
 export * from './api/shared/strings';
+export * from './api/shared/shared-date';
 
 /**
  * Interfaces for authentication
