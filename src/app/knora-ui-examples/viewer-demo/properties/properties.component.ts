@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ReadDateValue } from '@knora/core';
 
 @Component({
     selector: 'app-properties',

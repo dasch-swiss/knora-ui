@@ -25,7 +25,7 @@ export class ResourceComponent implements OnChanges, OnInit {
 
     // example of a resource:
     // iri: string = 'http://rdfh.ch/0fb54d8bd503';
-    iri: string = 'http://rdfh.ch/2d301f147f03';
+    iri: string = 'http://rdfh.ch/0801/-PlaC5rTSdC1Tf0WCcYwZQ';
     isLoading: boolean = true;
     errorMessage: any;
 
