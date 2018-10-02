@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ReadDateValue } from '@knora/core';
+import { DateSalsah, ReadDateValue } from '@knora/core';
 
 @Component({
   selector: 'kui-date-value',
@@ -9,11 +9,15 @@ import { ReadDateValue } from '@knora/core';
 export class DateValueComponent implements OnInit {
 
   @Input() valueObject: ReadDateValue;
+  @Input() calendar?: boolean;
+  @Input() era?: boolean;
+
+  date: DateSalsah;
 
   constructor() { }
 
   ngOnInit() {
-    console.log('DATE VALUE: ', this.valueObject);
+    this.date = this.valueObject.getDate();
   }
 
 }

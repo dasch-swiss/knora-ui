@@ -6,8 +6,18 @@
 </mat-form-field>
 -->
 
-<p>
-    date-value works !
-</p>
+<span>{{date.start.date | date: date.start?.format}} </span>
+<span *ngIf="era">
+    {{date.start.era}}
+</span>
 
-<span>{{valueObject?.getContent()}}</span>
+<span *ngIf="date.end">
+    - {{date.end.date | date: date.end.format}}
+    <span *ngIf="era">
+        {{date.end.era}}
+    </span>
+</span>
+
+<span *ngIf="calendar">
+    ({{date.start.calendar}})
+</span>
