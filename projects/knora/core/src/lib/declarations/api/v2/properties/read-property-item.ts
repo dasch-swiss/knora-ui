@@ -4,7 +4,7 @@ import { KnoraConstants } from '../../knora-constants';
 import { OntologyInformation } from '../../../../services';
 import { JsonObject, JsonProperty } from 'json2typescript';
 
-import { DateFormatSalsah, DateSalsah } from '../../shared/shared-date';
+import { DateFormatSalsah, DateSalsah } from '../../shared/date';
 
 
 /**
