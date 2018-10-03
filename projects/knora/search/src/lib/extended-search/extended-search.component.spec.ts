@@ -1,6 +1,6 @@
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
-import { BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
+import { Response, ResponseOptions } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -13,17 +13,11 @@ import { SelectResourceClassComponent } from './select-resource-class/select-res
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
 import {
-    ApiService,
     GravsearchGenerationService,
+    KUI_CORE_CONFIG_TOKEN,
     KuiCoreConfig,
     OntologyCacheService,
-    OntologyInformation,
-    OntologyMetadata,
-    OntologyService,
-    Properties,
-    PropertyWithValue,
-    ReadResourcesSequence,
-    ResourceClass
+    OntologyService
 } from '@knora/core';
 
 describe('ExtendedSearchComponent', () => {
@@ -56,7 +50,7 @@ describe('ExtendedSearchComponent', () => {
                         params: null
                     }
                 },
-                { provide: 'config', useValue: KuiCoreConfig },
+                {provide: KUI_CORE_CONFIG_TOKEN, useValue: KuiCoreConfig},
                 FormBuilder,
                 GravsearchGenerationService,
                 OntologyCacheService,
@@ -71,9 +65,9 @@ describe('ExtendedSearchComponent', () => {
 
         // define different mock responses for different API calls
         const responses = {};
-        responses['http://0.0.0.0:3333/v2/ontologies/metadata'] = new Response(new ResponseOptions({ body: require('../../../../core/src/lib/test-data/ontologycache/ontology-metadata.json') }));
-        responses['http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2F0.0.0.0%3A3333%2Fontology%2F0801%2Fbeol%2Fv2'] = new Response(new ResponseOptions({ body: require('../../../../core/src/lib/test-data/ontologycache/beol-complex-onto.json') }));
-        responses['http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2Fapi.knora.org%2Fontology%2Fknora-api%2Fv2'] = new Response(new ResponseOptions({ body: require('../../../../core/src/lib/test-data/ontologycache/beol-complex-onto.json') }));
+        responses['http://0.0.0.0:3333/v2/ontologies/metadata'] = new Response(new ResponseOptions({body: require('../../../../core/src/lib/test-data/ontologycache/ontology-metadata.json')}));
+        responses['http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2F0.0.0.0%3A3333%2Fontology%2F0801%2Fbeol%2Fv2'] = new Response(new ResponseOptions({body: require('../../../../core/src/lib/test-data/ontologycache/beol-complex-onto.json')}));
+        responses['http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2Fapi.knora.org%2Fontology%2Fknora-api%2Fv2'] = new Response(new ResponseOptions({body: require('../../../../core/src/lib/test-data/ontologycache/beol-complex-onto.json')}));
 
         mockBackend.connections.subscribe(c => {
             const response = responses[c.request.url];

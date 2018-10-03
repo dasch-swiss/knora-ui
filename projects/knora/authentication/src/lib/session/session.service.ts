@@ -1,6 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiServiceError, KnoraConstants, KuiCoreConfig, Session, User, UsersService } from '@knora/core';
+import {
+    ApiServiceError,
+    KnoraConstants,
+    KUI_CORE_CONFIG_TOKEN,
+    KuiCoreConfig,
+    Session,
+    User,
+    UsersService
+} from '@knora/core';
 
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
@@ -25,7 +33,7 @@ export class SessionService {
 
     constructor(
         private _http: HttpClient,
-        @Inject('config') public config: KuiCoreConfig,
+        @Inject(KUI_CORE_CONFIG_TOKEN) public config: KuiCoreConfig,
         private _users: UsersService) {
     }
 

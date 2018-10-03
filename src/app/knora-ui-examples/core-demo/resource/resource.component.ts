@@ -10,6 +10,7 @@ import {
 } from '@knora/core';
 import { ConvertJSONLD, OntologyInformation, IncomingService } from 'projects/knora/core/src/lib/services';
 import { ReadResource, ReadResourcesSequence, KnoraConstants, ReadStillImageFileValue, StillImageRepresentation, ImageRegion } from 'projects/knora/core/src/lib/declarations';
+import { AppConfig } from '../../../app.config';
 
 declare let require: any;
 const jsonld = require('jsonld');

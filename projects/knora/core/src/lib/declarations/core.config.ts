@@ -5,6 +5,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  *  - api: URL of data service e.g. knora: http://localhost:3333
  *  - media: URL of media server service e.g. sipi: http://localhost:1024
  *  - app: URL of the app e.g. salsah: http://localhost:4200
+ *  - name: Name of the app e.g. salsah: Salsah
  */
 @JsonObject('KuiCoreConfig')
 export class KuiCoreConfig {
@@ -37,3 +38,4 @@ export class KuiCoreConfig {
     @JsonProperty('app', String)
     public app: string = undefined;
 }
+

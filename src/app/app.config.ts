@@ -1,5 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import 'rxjs/add/operator/do';
+
+import { KuiCoreConfig } from '../../projects/knora/core/src/lib/declarations';
 import { environment } from '../environments/environment';
 
 export interface IAppConfig {
@@ -28,20 +32,39 @@ export interface IAppConfig {
 }
 
 @Injectable()
-export class AppConfig {
+export class AppConfig extends KuiCoreConfig {
 
-    static settings: IAppConfig;
+    // settings: IAppConfig;
 
-    constructor(private http: HttpClient) {
+    constructor(private _http: HttpClient) {
+        super();
+        console.log('AppConfig constructor');
     }
 
-    loadAppConfig() {
+    loadAppConfig(): Promise<void> {
+
         const jsonFile = `config/config.${environment.name}.json`;
-        return this.http.get(jsonFile)
-            .toPromise()
-            .then(data => {
-                AppConfig.settings = <IAppConfig> data;
-                // console.log('AppConfig.settings = ', AppConfig.settings);
-            });
+
+        return this._http.get(jsonFile).toPromise().then(
+            (data: IAppConfig) => {
+                // this.settings = data;
+                this.api = data.apiURL;
+                console.log(data);
+            },
+            (error: any) => {
+                console.error(error);
+            }
+        );
+
+
+        /*
+        return this._http.get<IAppConfig>(jsonFile)
+            .do(data => {
+                AppConfig.settings = data;
+                AppConfig.apiUrl = data.apiURL;
+                //this.config.api = data.apiURL;
+                console.log('AppConfig.settings = ', AppConfig.settings);
+            })
+            .toPromise();*/
     }
 }

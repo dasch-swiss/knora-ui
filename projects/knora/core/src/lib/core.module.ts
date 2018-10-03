@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { KuiCoreConfig } from './declarations';
+
+export const KUI_CORE_CONFIG_TOKEN = new InjectionToken<KuiCoreConfig>('KUI_CORE_CONFIG_TOKEN (knora.core.config)');
 
 @NgModule({
     imports: [
@@ -11,12 +13,8 @@ import { KuiCoreConfig } from './declarations';
     declarations: [],
     exports: [
         HttpClientModule
-    ],
-    providers: [
-        {provide: 'config', useValue: KuiCoreConfig}
     ]
 })
-
 
 export class KuiCoreModule {
 
@@ -30,23 +28,30 @@ export class KuiCoreModule {
         return {
             ngModule: KuiCoreModule,
             providers: [
-                {provide: 'config', useValue: config}
+                {provide: KUI_CORE_CONFIG_TOKEN, useValue: config}
             ]
         };
     }
 
-    /**
-     *
-     * @param config
-     */
-    static initializeApp(config: KuiCoreConfig): ModuleWithProviders {
-        console.log(config);
+    static initializeApp(config: KuiCoreConfig) {
         return {
             ngModule: KuiCoreModule,
             providers: [
-                {provide: 'config', useValue: config}
+                {provide: KUI_CORE_CONFIG_TOKEN, useValue: config}
             ]
         };
     }
+
+    /*
+        static initializeApp(config: KuiCoreConfig): {
+                ngModule: typeof KuiCoreModule,
+                providers: {
+                        provide: InjectionToken<string | KuiCoreConfig | undefined>;
+                        useValue: string | KuiCoreConfig | undefined;
+                    }[];
+            };
+        };
+    */
+
 
 }
