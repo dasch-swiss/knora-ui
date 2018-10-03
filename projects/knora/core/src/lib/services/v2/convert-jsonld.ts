@@ -113,9 +113,9 @@ export module ConvertJSONLD {
                         propValue['@id'], propIri, propValue[KnoraConstants.textValueAsHtml], referredResources
                     );
                 } else if (
-                    propValue[KnoraConstants.textValueAsXml] !== undefined && propValue[KnoraConstants.textValueHasMapping] !== undefined) {
+                    propValue[KnoraConstants.textValueAsXml] !== undefined && propValue[KnoraConstants.textValueHasMapping]['@id'] !== undefined) {
                     textValue = new ReadTextValueAsXml(
-                        propValue['@id'], propIri, propValue[KnoraConstants.textValueAsXml], propValue[KnoraConstants.textValueHasMapping]
+                        propValue['@id'], propIri, propValue[KnoraConstants.textValueAsXml], propValue[KnoraConstants.textValueHasMapping]['@id']
                     );
                 } else {
                     // expected text value members not defined

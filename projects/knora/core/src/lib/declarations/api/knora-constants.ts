@@ -100,7 +100,7 @@ export class KnoraConstants {
 
     public static textValueAsHtml: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueAsHtml';
     public static textValueAsXml: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueAsXml';
-    public static textValueHasMapping: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueHasMapping';
+    public static textValueHasMapping = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueHasMapping';
 
     public static hasStandoffLinkToValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasStandoffLinkToValue';
 
