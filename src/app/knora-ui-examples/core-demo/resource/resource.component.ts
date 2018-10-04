@@ -23,9 +23,21 @@ export class ResourceComponent implements OnChanges, OnInit {
 
     // @ViewChild('OSDViewer') osdViewer: StillImageOSDViewerComponent;
 
-    // example of a resource:
-    // iri: string = 'http://rdfh.ch/0fb54d8bd503';
-    iri: string = 'http://rdfh.ch/0801/-PlaC5rTSdC1Tf0WCcYwZQ';
+    // example of a few resources:
+    resources: any[] = [
+        {
+            'name': 'beol',
+            'iri': 'http://rdfh.ch/0801/-PlaC5rTSdC1Tf0WCcYwZQ'
+        },
+        {
+            'name': 'incunabula',
+            'iri': 'http://rdfh.ch/0fb54d8bd503'
+        },
+        {
+            'name': 'still image resource',
+            'iri': 'http://rdfh.ch/0801/--nO85prSoKPB9gKv1p2YA'
+        }
+    ];
     isLoading: boolean = true;
     errorMessage: any;
 
@@ -43,13 +55,20 @@ export class ResourceComponent implements OnChanges, OnInit {
 
     ngOnChanges(changes: { [key: string]: SimpleChange }) {
         // prevent duplicate requests. if isFirstChange resource will be requested on ngOnInit
+        /*
         if (!changes['iri'].isFirstChange()) {
             this.getResource(this.iri);
         }
+        */
     }
 
     ngOnInit() {
-        this.getResource(this.iri);
+        this.getResource(this.resources[0].iri);
+
+        // for testing by user: I want to see, what's inside of the resource object
+        setTimeout(() => {
+            console.log(this.resource);
+        }, 1000);
     }
 
     private getResource(iri: string): void {
@@ -421,5 +440,14 @@ export class ResourceComponent implements OnChanges, OnInit {
         // generate a string separating labels by a comma
         return `(${propLabels.join(', ')})`;
 
+    }
+
+    openResource(iri: string) {
+        this.getResource(iri);
+
+        // for testing by user: I want to see, what's inside of the resource object
+        setTimeout(() => {
+            console.log(this.resource);
+        }, 1000);
     }
 }

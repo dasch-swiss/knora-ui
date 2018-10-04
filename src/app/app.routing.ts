@@ -1,36 +1,36 @@
-import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@knora/authentication';
 import { AppDemo } from './app.config';
+import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
+import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
-// / start with main-intro
-import { MainIntroComponent } from './landing-page/main-intro/main-intro.component';
-// /modules demo
-import { ModuleIndexComponent } from './partials/module-index/module-index.component';
-import { DemoIntroComponent } from './landing-page/demo-intro/demo-intro.component';
 import { ProgressIndicatorComponent } from './knora-ui-examples/action-demo/progress-indicator/progress-indicator.component';
-import { CoreDemoComponent } from './knora-ui-examples/core-demo/core-demo.component';
-import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projects.component';
-import { UsersComponent } from './knora-ui-examples/core-demo/users/users.component';
-import { ListsComponent } from './knora-ui-examples/core-demo/lists/lists.component';
-import { GroupsComponent } from './knora-ui-examples/core-demo/groups/groups.component';
-import { TreeComponent } from './material/tree/tree.component';
-import { ResourceComponent } from './knora-ui-examples/core-demo/resource/resource.component';
+import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
+import { AuthComponent } from './knora-ui-examples/authentication-demo/auth/auth.component';
 
 import { LoginComponent } from './knora-ui-examples/authentication-demo/login/login.component';
-import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
-import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
-import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
+import { CoreDemoComponent } from './knora-ui-examples/core-demo/core-demo.component';
+import { GroupsComponent } from './knora-ui-examples/core-demo/groups/groups.component';
+import { ListsComponent } from './knora-ui-examples/core-demo/lists/lists.component';
+import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projects.component';
+import { ResourceComponent } from './knora-ui-examples/core-demo/resource/resource.component';
+import { UsersComponent } from './knora-ui-examples/core-demo/users/users.component';
 
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
 import { SearchResultComponent } from './knora-ui-examples/search-demo/search-result/search-result.component';
+import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
+import { ResourcesComponent } from './knora-ui-examples/viewer-demo/resources/resources.component';
 
 import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
-import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
-import { ObjectsComponent } from './knora-ui-examples/viewer-demo/objects/objects.component';
-import { AuthComponent } from './knora-ui-examples/authentication-demo/auth/auth.component';
+import { DemoIntroComponent } from './landing-page/demo-intro/demo-intro.component';
+// / start with main-intro
+import { MainIntroComponent } from './landing-page/main-intro/main-intro.component';
+import { TreeComponent } from './material/tree/tree.component';
+// /modules demo
+import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 
 const appRoutes: Routes = [
     {
@@ -84,7 +84,7 @@ const appRoutes: Routes = [
             {
                 path: 'search',
                 component: SearchDemoComponent,
-                data: { partOf: AppDemo.searchModule },
+                data: {partOf: AppDemo.searchModule},
 
                 children: [
                     {
@@ -99,8 +99,8 @@ const appRoutes: Routes = [
                 data: {module: AppDemo.viewerModule},
                 children: [
                     {
-                        path: 'objects',
-                        component: ObjectsComponent,
+                        path: 'resources',
+                        component: ResourcesComponent,
                         data: {partOf: AppDemo.viewerModule}
                     },
                     {
