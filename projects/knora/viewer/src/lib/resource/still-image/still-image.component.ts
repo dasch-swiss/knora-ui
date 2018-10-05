@@ -2,10 +2,10 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnIni
 import { Point2D, ReadStillImageFileValue, RegionGeometry, StillImageRepresentation } from '@knora/core';
 
 // This component needs the openseadragon library itself, as well as the openseadragon plugin openseadragon-svg-overlay
-// Both libraries are installed via package.json, and loaded globally via the script tag in .angular-cli.json
+// Both libraries are installed via package.json, and loaded globally via the script tag in angular.json
 
 // OpenSeadragon does not export itself as ES6/ECMA2015 module,
-// it is loaded globally in scripts tag of angular-cli.json,
+// it is loaded globally in scripts tag of angular.json,
 // we still need to declare the namespace to make TypeScript compiler happy.
 declare let OpenSeadragon: any;
 
@@ -84,6 +84,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     @Input() imageRangeStart: number;  // index first image of this.images to be displayed
     @Input() imageRangeEnd: number; // index of last image of this.images to be displayed.
     @Input() imageChangeInterval: number; // the size of the interval when displaying more images of this.images
+
+    @Input() simple?: boolean;
 
     @Output() getImages = new EventEmitter<RequestStillImageRepresentations>(); // sends a message to the parent component (object.component) to load the next or previous page of results (images) from the server
 
