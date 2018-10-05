@@ -91,6 +91,9 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
     private viewer;
 
+    // example of one image:
+    simpleImageExample: string;
+
     /**
      * Prepare tile sources from the given sequence of [[ReadStillImageFileValue]].
      *
@@ -154,6 +157,13 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
     ngOnInit() {
         // initialisation is done on first run of ngOnChanges
+
+        /* TODO: handle images array */
+        if (this.simple && this.images.length === 1) {
+            const img = this.images[0].stillImageFileValue;
+            this.simpleImageExample = img.imageServerIIIFBaseURL + '/' + img.imageFilename + '/full/240,/0/default.jpg';
+        }
+
     }
 
     ngOnDestroy() {

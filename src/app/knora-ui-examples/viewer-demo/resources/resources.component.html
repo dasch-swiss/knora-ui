@@ -4,7 +4,15 @@
 <kui-text></kui-text>
 
 <h4>StillImage</h4>
-<kui-still-image [images]="stillImage"
+<p><strong>Simple still image viewer</strong></p>
+<kui-still-image [simple]="true"
+                 [images]="stillImage">
+</kui-still-image>
+
+<br>
+<p><strong>OR with openSeaDragon</strong></p>
+<kui-still-image #OSDViewer
+                 [images]="stillImage"
                  [imageRangeStart]="0"
                  [imageRangeEnd]="0"
                  [imageChangeInterval]="1">
