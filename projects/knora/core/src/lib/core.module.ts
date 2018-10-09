@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { KuiCoreConfig } from './declarations';
 
-export const KUI_CORE_CONFIG_TOKEN = new InjectionToken<KuiCoreConfig>('KUI_CORE_CONFIG_TOKEN (knora.core.config)');
+export const KuiCoreConfigToken = new InjectionToken<KuiCoreConfig>('KuiCoreConfigToken (knora.core.config)');
 
 @NgModule({
     imports: [
@@ -28,7 +28,7 @@ export class KuiCoreModule {
         return {
             ngModule: KuiCoreModule,
             providers: [
-                {provide: KUI_CORE_CONFIG_TOKEN, useValue: config}
+                {provide: KuiCoreConfigToken, useValue: config}
             ]
         };
     }
@@ -37,10 +37,11 @@ export class KuiCoreModule {
         return {
             ngModule: KuiCoreModule,
             providers: [
-                {provide: KUI_CORE_CONFIG_TOKEN, useValue: config}
+                {provide: KuiCoreConfigToken, useValue: config}
             ]
         };
     }
+
 
     /*
         static initializeApp(config: KuiCoreConfig): {
@@ -52,6 +53,4 @@ export class KuiCoreModule {
             };
         };
     */
-
-
 }

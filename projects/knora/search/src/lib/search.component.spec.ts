@@ -12,7 +12,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReversePipe } from '@knora/action';
-import { KUI_CORE_CONFIG_TOKEN, KuiCoreConfig, OntologyCacheService, OntologyService } from '@knora/core';
+import { KuiCoreConfig, KuiCoreConfigToken, OntologyCacheService, OntologyService } from '@knora/core';
 import { ExtendedSearchComponent } from './extended-search/extended-search.component';
 import { SelectOntologyComponent } from './extended-search/select-ontology/select-ontology.component';
 import { SelectPropertyComponent } from './extended-search/select-property/select-property.component';
@@ -53,7 +53,7 @@ describe('SearchComponent', () => {
                 HttpClient,
                 OntologyCacheService,
                 OntologyService,
-                {provide: KUI_CORE_CONFIG_TOKEN, useValue: KuiCoreConfig}
+                {provide: KuiCoreConfigToken, useValue: KuiCoreConfig}
             ]
         })
             .compileComponents();

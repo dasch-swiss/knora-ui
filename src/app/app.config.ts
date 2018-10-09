@@ -1,10 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/do';
-
 import { KuiCoreConfig } from '../../projects/knora/core/src/lib/declarations';
-import { environment } from '../environments/environment';
 
 export interface IAppConfig {
 
@@ -32,39 +29,39 @@ export interface IAppConfig {
 }
 
 @Injectable()
-export class AppConfig extends KuiCoreConfig {
+export class AppConfig {
 
-    // settings: IAppConfig;
+    static settings: IAppConfig;
 
-    constructor(private _http: HttpClient) {
-        super();
-        console.log('AppConfig constructor');
+    constructor() {
+        const data = <IAppConfig> window['tempConfigStorage'];
+        console.log('AppConfig constructor: json', data);
+        AppConfig.settings = data;
     }
 
-    loadAppConfig(): Promise<void> {
-
-        const jsonFile = `config/config.${environment.name}.json`;
-
-        return this._http.get(jsonFile).toPromise().then(
-            (data: IAppConfig) => {
-                // this.settings = data;
-                this.api = data.apiURL;
-                console.log(data);
-            },
-            (error: any) => {
-                console.error(error);
+    /*
+    loadAppConfig() {
+        const promise = new Promise((resolve, reject) => {
+            if (AppConfig.settings) {
+                resolve(AppConfig.settings);
             }
-        );
+            else {
+                console.error('config object not set');
+                reject('config object not set.');
+            }
+        });
 
-
-        /*
-        return this._http.get<IAppConfig>(jsonFile)
-            .do(data => {
-                AppConfig.settings = data;
-                AppConfig.apiUrl = data.apiURL;
-                //this.config.api = data.apiURL;
-                console.log('AppConfig.settings = ', AppConfig.settings);
-            })
-            .toPromise();*/
+        return promise;
     }
+    */
 }
+
+/*
+export function initializeApp(appConfig: AppConfig) {
+    return () => {
+        console.log('Init App');
+        appConfig.loadAppConfig();
+    };
+}
+*/
+

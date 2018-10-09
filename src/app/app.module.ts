@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
 import { JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
-import { KUI_CORE_CONFIG_TOKEN, KuiCoreModule } from '@knora/core';
+import { KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
 
@@ -50,16 +50,6 @@ import { ModuleHeaderComponent } from './partials/module-header/module-header.co
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
-
-// set up the environment configuration
-
-export function initializeApp(appConfig: AppConfig) {
-    console.log('Init App 2');
-    return () => {
-        console.log('Init App');
-        appConfig.loadAppConfig();
-    };
-}
 
 
 @NgModule({
@@ -114,28 +104,21 @@ export function initializeApp(appConfig: AppConfig) {
     ],
     providers: [
         AppConfig,
-        KuiCoreConfig,
         {
-            provide: APP_INITIALIZER,
-            useFactory: initializeApp,
+            provide: KuiCoreConfigToken,
+            useFactory: function( config: AppConfig) {
+
+                    console.log('KuiCoreConfigToken factory config.settings: ', AppConfig.settings);
+
+                    return( <KuiCoreConfig> {
+                        name: AppConfig.settings.appName,
+                        api: AppConfig.settings.apiURL,
+                        media: AppConfig.settings.iiifURL,
+                        app: AppConfig.settings.appURL
+                    } );
+            },
             deps: [AppConfig],
             multi: true
-        },
-        {
-            provide: KUI_CORE_CONFIG_TOKEN,
-            useFactory: (appConfig: AppConfig) => {
-                console.log(appConfig);
-                return appConfig;
-            },
-            /*
-            useValue: <KuiCoreConfig> {
-                name: "AppConfig.settings.appName",
-                api: AppConfig.apiUrl,
-                media: 'AppConfig.settings.iiifURL',
-                app: 'AppConfig.settings.appURL'
-            },*/
-            deps: [KuiCoreConfig],
-            multi: false
         },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,

@@ -4,8 +4,8 @@ import { MatCardModule, MatListModule } from '@angular/material';
 import { GndDirective, KeyPipe, MathJaxDirective } from '@knora/action';
 import {
     IncomingService,
-    KUI_CORE_CONFIG_TOKEN,
     KuiCoreConfig,
+    KuiCoreConfigToken,
     OntologyCacheService,
     OntologyService,
     ResourceService
@@ -38,6 +38,7 @@ import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-a
 import { TextValueAsXmlComponent } from '../../property/text-value/text-value-as-xml/text-value-as-xml.component';
 import { TextfileValueComponent } from '../../property/textfile-value/textfile-value.component';
 import { UriValueComponent } from '../../property/uri-value/uri-value.component';
+import { KuiCoreConfigToken } from '../../../../../core/src/lib/core.module';
 
 describe('ResourceViewComponent', () => {
     let component: ResourceViewComponent;
@@ -86,7 +87,7 @@ describe('ResourceViewComponent', () => {
                 OntologyCacheService,
                 OntologyService,
                 ResourceService,
-                {provide: KUI_CORE_CONFIG_TOKEN, useValue: KuiCoreConfig},
+                {provide: KuiCoreConfigToken, useValue: KuiCoreConfig},
             ]
         })
             .compileComponents();

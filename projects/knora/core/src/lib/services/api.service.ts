@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
-import { KUI_CORE_CONFIG_TOKEN } from '../core.module';
+import { KuiCoreConfigToken } from '../core.module';
 import { ApiServiceError, ApiServiceResult, KuiCoreConfig } from '../declarations';
 
 
@@ -22,7 +22,7 @@ export abstract class ApiService {
     loading = false;
 
     protected constructor(public http: HttpClient,
-                          @Inject(KUI_CORE_CONFIG_TOKEN) public config: KuiCoreConfig) {
+                          @Inject(KuiCoreConfigToken) public config: KuiCoreConfig) {
     }
 
     /**

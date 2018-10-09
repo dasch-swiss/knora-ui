@@ -3,8 +3,8 @@ import { Inject, Injectable } from '@angular/core';
 import {
     ApiServiceError,
     KnoraConstants,
-    KUI_CORE_CONFIG_TOKEN,
     KuiCoreConfig,
+    KuiCoreConfigToken,
     Session,
     User,
     UsersService
@@ -33,7 +33,7 @@ export class SessionService {
 
     constructor(
         private _http: HttpClient,
-        @Inject(KUI_CORE_CONFIG_TOKEN) public config: KuiCoreConfig,
+        @Inject(KuiCoreConfigToken) public config: KuiCoreConfig,
         private _users: UsersService) {
     }
 

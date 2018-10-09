@@ -14,8 +14,8 @@ import { SelectPropertyComponent } from './select-property/select-property.compo
 import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
 import {
     GravsearchGenerationService,
-    KUI_CORE_CONFIG_TOKEN,
     KuiCoreConfig,
+    KuiCoreConfigToken,
     OntologyCacheService,
     OntologyService
 } from '@knora/core';
@@ -50,7 +50,7 @@ describe('ExtendedSearchComponent', () => {
                         params: null
                     }
                 },
-                {provide: KUI_CORE_CONFIG_TOKEN, useValue: KuiCoreConfig},
+                {provide: KuiCoreConfigToken, useValue: KuiCoreConfig},
                 FormBuilder,
                 GravsearchGenerationService,
                 OntologyCacheService,
