@@ -49,8 +49,8 @@ export class LinkValueComponent implements OnInit {
     }
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder,
-                private _searchService: SearchService,
-                private _cacheService: OntologyCacheService) {
+        private _searchService: SearchService,
+        private _cacheService: OntologyCacheService) {
 
     }
 
@@ -143,18 +143,18 @@ export class LinkValueComponent implements OnInit {
 
         resolvedPromise.then(() => {
             // add form to the parent form group
-            this.formGroup.addControl('propValue', this.form);
+            // this.formGroup.addControl('propValue', this.form);
         });
     }
 
-    ngOnDestroy() {
-
-        // remove form from the parent form group
-        resolvedPromise.then(() => {
-            this.formGroup.removeControl('propValue');
-        });
-
-    }
+    /*  ngOnDestroy() {
+ 
+         // remove form from the parent form group
+         resolvedPromise.then(() => {
+             this.formGroup.removeControl('propValue');
+         });
+ 
+     } */
 
     getValue(): Value {
 

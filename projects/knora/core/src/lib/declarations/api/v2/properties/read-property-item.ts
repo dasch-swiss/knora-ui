@@ -2,6 +2,9 @@ import { ReadResource } from '../../../';
 import { KnoraConstants } from '../../knora-constants';
 
 import { OntologyInformation } from '../../../../services';
+import { JsonObject, JsonProperty } from 'json2typescript';
+
+import { DateFormatSalsah, DateSalsah } from '../../shared/date';
 
 
 /**
@@ -29,7 +32,14 @@ export interface ReadPropertyItem {
      *
      * @returns {string}
      */
-    getContent: () => string;
+    getContent?: () => string;
+
+    /**
+     * Gets the value object's value.
+     *
+     * @returns {DateSalsah}
+     */
+    getDate?: () => DateSalsah;
 
     /**
      * Gets the class name of the class that implements this interface.
@@ -131,6 +141,7 @@ export class ReadTextValueAsXml implements ReadPropertyItem {
 
 }
 
+
 /**
  * Represents a date value object.
  */
@@ -148,48 +159,60 @@ export class ReadDateValue implements ReadPropertyItem {
         readonly endMonth?: number,
         readonly startDay?: number,
         readonly endDay?: number) {
-
     }
 
     readonly type = KnoraConstants.DateValue;
 
     private separator = '-';
 
-    getContent(): string {
+
+    getDate(): DateSalsah {
         // consider precision
 
+        const dateObj: DateSalsah = new DateSalsah();
+        // console.log('dateObj', dateObj);
+
         let startDate: string;
+        let startPrecision: string;
 
         if (this.startMonth === undefined) {
             // year precision
             startDate = this.startYear.toString();
+            startPrecision = 'yyyy';
         } else if (this.startDay === undefined) {
             // month precision
             startDate = this.startYear + this.separator + this.startMonth;
+            startPrecision = 'MMMM ' + 'yyyy';
         } else {
             // day precision
             startDate = this.startYear + this.separator + this.startMonth + this.separator + this.startDay;
+            startPrecision = 'longDate';
         }
-        startDate += ' ' + this.startEra;
+
+        dateObj.start = { date: new Date(startDate), format: startPrecision, era: this.startEra, calendar: this.calendar };
 
         let endDate: string;
+        let endPrecision: string;
 
         if (this.endMonth === undefined) {
             // year precision
             endDate = this.endYear.toString();
+            endPrecision = 'yyyy';
         } else if (this.endDay === undefined) {
             // month precision
             endDate = this.endYear + this.separator + this.endMonth;
+            endPrecision = 'MMMM ' + 'yyyy';
         } else {
             // day precision
             endDate = this.endYear + this.separator + this.endMonth + this.separator + this.endDay;
+            endPrecision = 'longDate';
         }
-        endDate += ' ' + this.endEra;
-        if (startDate === endDate) {
-            return this.calendar + ':' + startDate;
-        } else {
-            return this.calendar + ':' + startDate + this.separator + endDate;
+
+        if (startDate !== endDate) {
+            dateObj.end = { date: new Date(endDate), format: endPrecision, era: this.endEra, calendar: this.calendar };
         }
+
+        return dateObj;
     }
 
     getClassName(): string {
@@ -351,8 +374,8 @@ export class ReadTextFileValue implements ReadPropertyItem {
 export class ReadColorValue implements ReadPropertyItem {
 
     constructor(readonly id: string,
-                readonly propIri,
-                readonly colorHex: string) {
+        readonly propIri,
+        readonly colorHex: string) {
     }
 
     readonly type = KnoraConstants.ColorValue;
@@ -379,11 +402,11 @@ export class Point2D {
  */
 export class RegionGeometry {
     constructor(public status: string,
-                public lineColor: string,
-                public lineWidth: number,
-                public points: Point2D[],
-                public type: string,
-                public radius?: Point2D
+        public lineColor: string,
+        public lineWidth: number,
+        public points: Point2D[],
+        public type: string,
+        public radius?: Point2D
     ) {
     }
 }
@@ -499,7 +522,7 @@ export class ReadIntervalValue implements ReadPropertyItem {
  */
 export class ReadListValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string,) {
+    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string, ) {
 
     }
 

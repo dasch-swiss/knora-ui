@@ -16,12 +16,13 @@
 
         <!--  single templates -->
         <!--  other types of properties are displayed in 1 template for each single property in the property list. -->
-        <ng-template #singleTemplates>
-            <ul>
-                <li *ngFor="let val of prop.value | key">
-                    <span [ngSwitch]="val.value.getClassName()">
-                        <p>we get the class name: {{val.value}}</p>
-                        <!-- <read-text-value-as-html *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml" [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="true"></read-text-value-as-html>
+        <!--   <ng-template #singleTemplates> -->
+        <ul>
+            <li *ngFor="let val of prop.value | key">
+                <span [ngSwitch]="val.value.getClassName()">
+                    <p>we get the class name: {{val.value}}</p>
+                    <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value>
+                    <!-- <read-text-value-as-html *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml" [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="true"></read-text-value-as-html>
                 <read-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString" [valueObject]="val.value"></read-text-value-as-string>
                 <read-text-value-as-xml *ngSwitchCase="KnoraConstants.ReadTextValueAsXml" [valueObject]="val.value"></read-text-value-as-xml>
                 <read-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value"></read-date-value>
@@ -36,10 +37,10 @@
                 <read-list-value *ngSwitchCase="KnoraConstants.ReadListValue" [valueObject]="val.value"></read-list-value>
                 <read-textfile-value *ngSwitchCase="KnoraConstants.TextFileValue" [valueObject]="val.value"></read-textfile-value>
                 <span *ngSwitchDefault="">Not supported {{val.value.getClassName()}}</span> -->
-                    </span>
-                </li>
-            </ul>
-        </ng-template>
+                </span>
+            </li>
+        </ul>
+        <!--  </ng-template> -->
 
     </div>
 
