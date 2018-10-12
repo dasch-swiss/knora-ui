@@ -8,13 +8,15 @@ import { ReadIntegerValue } from '@knora/core';
 })
 export class IntegerValueComponent implements OnInit {
 
-    /* errorMessage: any; */
     @Input() valueObject: ReadIntegerValue;
+
+    integer: number;
 
     constructor() {
     }
 
     ngOnInit() {
+        this.integer = this.valueObject.integer;
     }
 
 }

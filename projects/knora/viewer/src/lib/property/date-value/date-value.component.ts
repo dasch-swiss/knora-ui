@@ -17,7 +17,7 @@ export class DateValueComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.date = this.valueObject.getDate();
+    this.date = this.valueObject.getDateSalsah();
   }
 
 }

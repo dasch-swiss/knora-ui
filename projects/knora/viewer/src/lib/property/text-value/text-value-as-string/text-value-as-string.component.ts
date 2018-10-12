@@ -24,10 +24,13 @@ export class TextValueAsStringComponent implements OnInit {
 
     @Input() valueObject: ReadTextValueAsString;
 
+    text: string;
+
     constructor() {
     }
 
     ngOnInit() {
+        this.text = this.valueObject.str;
     }
 
 }

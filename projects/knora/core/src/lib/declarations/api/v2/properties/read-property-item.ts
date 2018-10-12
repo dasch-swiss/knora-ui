@@ -28,20 +28,6 @@ export interface ReadPropertyItem {
     readonly propIri: string;
 
     /**
-     * Gets the value object's value.
-     *
-     * @returns {string}
-     */
-    getContent?: () => string;
-
-    /**
-     * Gets the value object's value.
-     *
-     * @returns {DateSalsah}
-     */
-    getDate?: () => DateSalsah;
-
-    /**
      * Gets the class name of the class that implements this interface.
      *
      * @returns {string}
@@ -59,10 +45,6 @@ export class ReadTextValueAsString implements ReadPropertyItem {
     }
 
     readonly type = KnoraConstants.TextValue;
-
-    getContent(): string {
-        return this.str;
-    }
 
     getClassName(): string {
         return KnoraConstants.ReadTextValueAsString;
@@ -86,10 +68,6 @@ export class ReadTextValueAsHtml implements ReadPropertyItem {
     }
 
     readonly type = KnoraConstants.TextValue;
-
-    getContent(): string {
-        return this.html;
-    }
 
     /**
      * Gets information about a resource referred to by a standoff link from a text value.
@@ -129,12 +107,6 @@ export class ReadTextValueAsXml implements ReadPropertyItem {
 
     readonly type = KnoraConstants.TextValue;
 
-    getContent(): string {
-
-        // return XML als plain text
-        return this.xml;
-    }
-
     getClassName(): string {
         return KnoraConstants.ReadTextValueAsXml;
     }
@@ -165,8 +137,7 @@ export class ReadDateValue implements ReadPropertyItem {
 
     private separator = '-';
 
-
-    getDate(): DateSalsah {
+    getDateSalsah(): DateSalsah {
         // consider precision
 
         const dateObj: DateSalsah = new DateSalsah();
@@ -231,15 +202,6 @@ export class ReadLinkValue implements ReadPropertyItem {
 
     readonly type = KnoraConstants.LinkValue;
 
-    getContent(): string {
-        if (this.referredResource !== undefined) {
-            return this.referredResource.label;
-        } else {
-            // TODO: try to find information about the resource identified by the given Iri
-            return this.referredResourceIri;
-        }
-    }
-
     getReferredResourceInfo(ontologyInfo: OntologyInformation) {
         if (this.referredResource !== undefined) {
 
@@ -267,10 +229,6 @@ export class ReadIntegerValue implements ReadPropertyItem {
 
     readonly type = KnoraConstants.IntValue;
 
-    getContent(): string {
-        return this.integer.toString();
-    }
-
     getClassName(): string {
         return KnoraConstants.ReadIntegerValue;
     }
@@ -287,10 +245,6 @@ export class ReadDecimalValue implements ReadPropertyItem {
     }
 
     readonly type = KnoraConstants.DecimalValue;
-
-    getContent(): string {
-        return this.decimal.toString();
-    }
 
     getClassName(): string {
         return KnoraConstants.ReadDecimalValue;
@@ -320,7 +274,7 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
 
     readonly isPreview: boolean;
 
-    private makeIIIFUrl = function (reduceFactor: number): string {
+    makeIIIFUrl = function (reduceFactor: number): string {
 
         if (this.isPreview) {
             return this.imagePath;
@@ -333,10 +287,6 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
         }
 
     };
-
-    getContent(): string {
-        return this.makeIIIFUrl(4);
-    }
 
     getClassName(): string {
         return KnoraConstants.ReadStillImageFileValue;
@@ -354,13 +304,9 @@ export class ReadTextFileValue implements ReadPropertyItem {
 
     readonly type = KnoraConstants.TextFileValue;
 
-    private makeUrl = function (): string {
+    makeUrl = function (): string {
         return `${this.textFileURL}`;
     };
-
-    getContent(): string {
-        return this.makeUrl();
-    }
 
     getClassName(): string {
         return KnoraConstants.TextFileValue;
@@ -379,10 +325,6 @@ export class ReadColorValue implements ReadPropertyItem {
     }
 
     readonly type = KnoraConstants.ColorValue;
-
-    getContent(): string {
-        return this.colorHex;
-    }
 
     getClassName(): string {
         return KnoraConstants.ReadColorValue;
@@ -445,10 +387,6 @@ export class ReadGeomValue implements ReadPropertyItem {
 
     readonly type = KnoraConstants.GeomValue;
 
-    getContent(): string {
-        return this.geometryString;
-    }
-
     getClassName(): string {
         return KnoraConstants.ReadGeomValue;
     }
@@ -464,10 +402,6 @@ export class ReadUriValue implements ReadPropertyItem {
     }
 
     readonly type = KnoraConstants.UriValue;
-
-    getContent(): string {
-        return `<a href="${this.uri}" target="_blank">${this.uri}</a>`;
-    }
 
     getClassName(): string {
         return KnoraConstants.ReadUriValue;
@@ -486,10 +420,6 @@ export class ReadBooleanValue implements ReadPropertyItem {
 
     readonly type = KnoraConstants.BooleanValue;
 
-    getContent(): string {
-        return String(this.bool);
-    }
-
     getClassName(): string {
         return KnoraConstants.ReadBooleanValue;
     }
@@ -507,10 +437,6 @@ export class ReadIntervalValue implements ReadPropertyItem {
 
     readonly type = KnoraConstants.IntervalValue;
 
-    getContent(): string {
-        return String(this.intervalStart) + '-' + String(this.intervalEnd);
-    }
-
     getClassName(): string {
         return KnoraConstants.ReadIntervalValue;
     }
@@ -527,10 +453,6 @@ export class ReadListValue implements ReadPropertyItem {
     }
 
     readonly type = KnoraConstants.ListValue;
-
-    getContent(): string {
-        return this.listNodeLabel;
-    }
 
     getClassName(): string {
         return KnoraConstants.ReadListValue;

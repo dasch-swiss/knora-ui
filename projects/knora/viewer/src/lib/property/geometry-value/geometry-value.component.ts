@@ -10,9 +10,12 @@ export class GeometryValueComponent implements OnInit {
 
   @Input() valueObject: ReadGeomValue;
 
+  geometry: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.geometry = this.valueObject.geometryString;
   }
 
 }

@@ -24,10 +24,14 @@ export class TextValueAsXmlComponent implements OnInit {
 
     @Input() valueObject: ReadTextValueAsXml;
 
+    xml: string;
+
     constructor() {
     }
 
     ngOnInit() {
+
+        this.xml = this.valueObject.xml;
     }
 
 }

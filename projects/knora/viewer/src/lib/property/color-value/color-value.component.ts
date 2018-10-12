@@ -10,11 +10,13 @@ export class ColorValueComponent implements OnInit {
 
     @Input() valueObject: ReadColorValue;
 
+    color: string;
+
     constructor() {
     }
 
     ngOnInit() {
-        console.log('COLOR VALUE: ', this.valueObject);
+        this.color = this.valueObject.colorHex;
     }
 
 }

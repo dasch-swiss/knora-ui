@@ -10,9 +10,12 @@ export class BooleanValueComponent implements OnInit {
 
   @Input() valueObject: ReadBooleanValue;
 
+  boolean: boolean;
+
   constructor() { }
 
   ngOnInit() {
+    this.boolean = this.valueObject.bool;
   }
 
 }

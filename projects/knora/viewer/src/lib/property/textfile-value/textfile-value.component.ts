@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { KnoraConstants, ReadLinkValue } from '@knora/core';
+import { KnoraConstants, ReadTextFileValue } from '@knora/core';
 
 @Component({
   selector: 'kui-textfile-value',
@@ -8,13 +8,14 @@ import { KnoraConstants, ReadLinkValue } from '@knora/core';
 })
 export class TextfileValueComponent implements OnInit {
 
-  @Input() valueObject: ReadLinkValue;
+  @Input() valueObject: ReadTextFileValue;
 
-  KnoraConstants = KnoraConstants;
+  fileUrl;
 
   constructor() { }
 
   ngOnInit() {
+    this.fileUrl = this.valueObject.makeUrl;
   }
 
 }

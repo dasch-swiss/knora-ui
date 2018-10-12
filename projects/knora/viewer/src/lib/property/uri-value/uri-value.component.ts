@@ -10,9 +10,12 @@ export class UriValueComponent implements OnInit {
 
   @Input() valueObject: ReadUriValue;
 
+  uri: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.uri = this.valueObject.uri;
   }
 
 }

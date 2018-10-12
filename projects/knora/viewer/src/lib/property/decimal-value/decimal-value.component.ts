@@ -10,9 +10,12 @@ export class DecimalValueComponent implements OnInit {
 
   @Input() valueObject: ReadDecimalValue;
 
+  decimal: number;
+
   constructor() { }
 
   ngOnInit() {
+    this.decimal = this.valueObject.decimal;
   }
 
 }

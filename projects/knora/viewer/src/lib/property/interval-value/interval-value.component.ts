@@ -10,9 +10,14 @@ export class IntervalValueComponent implements OnInit {
 
   @Input() valueObject: ReadIntervalValue;
 
+  intervalStart: number;
+  intervalEnd: number;
+
   constructor() { }
 
   ngOnInit() {
+    this.intervalStart = this.valueObject.intervalStart;
+    this.intervalEnd = this.valueObject.intervalEnd;
   }
 
 }
