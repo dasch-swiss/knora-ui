@@ -1,15 +1,22 @@
-import { Component, OnInit, ViewChild, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import {
-    ApiServiceResult,
     ApiServiceError,
+    ApiServiceResult,
+    ConvertJSONLD,
+    ImageRegion,
+    IncomingService,
+    KnoraConstants,
     OntologyCacheService,
-    ResourceService,
-    ReadPropertyItem,
+    OntologyInformation,
     ReadLinkValue,
+    ReadPropertyItem,
+    ReadResource,
+    ReadResourcesSequence,
+    ReadStillImageFileValue,
+    ResourceService,
+    StillImageRepresentation,
     Utils
 } from '@knora/core';
-import { ConvertJSONLD, OntologyInformation, IncomingService } from 'projects/knora/core/src/lib/services';
-import { ReadResource, ReadResourcesSequence, KnoraConstants, ReadStillImageFileValue, StillImageRepresentation, ImageRegion } from 'projects/knora/core/src/lib/declarations';
 
 declare let require: any;
 const jsonld = require('jsonld');
@@ -391,7 +398,6 @@ export class ResourceComponent implements OnChanges, OnInit {
             }
 
         }
-
         resource.stillImageRepresentationsToDisplay = imgRepresentations;
     }
 
