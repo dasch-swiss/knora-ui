@@ -1,15 +1,22 @@
-import { Component, OnInit, ViewChild, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import {
-    ApiServiceResult,
     ApiServiceError,
+    ApiServiceResult,
+    ConvertJSONLD,
+    ImageRegion,
+    IncomingService,
+    KnoraConstants,
     OntologyCacheService,
-    ResourceService,
-    ReadPropertyItem,
+    OntologyInformation,
     ReadLinkValue,
+    ReadPropertyItem,
+    ReadResource,
+    ReadResourcesSequence,
+    ReadStillImageFileValue,
+    ResourceService,
+    StillImageRepresentation,
     Utils
 } from '@knora/core';
-import { ConvertJSONLD, OntologyInformation, IncomingService } from 'projects/knora/core/src/lib/services';
-import { ReadResource, ReadResourcesSequence, KnoraConstants, ReadStillImageFileValue, StillImageRepresentation, ImageRegion } from 'projects/knora/core/src/lib/declarations';
 
 declare let require: any;
 const jsonld = require('jsonld');
@@ -24,8 +31,9 @@ export class ResourceComponent implements OnChanges, OnInit {
     // @ViewChild('OSDViewer') osdViewer: StillImageOSDViewerComponent;
 
     // example of a resource:
-    // iri: string = 'http://rdfh.ch/0fb54d8bd503';
-    iri: string = 'http://rdfh.ch/0801/-PlaC5rTSdC1Tf0WCcYwZQ';
+    iri: string = 'http://rdfh.ch/0001/a-thing-with-text-values';
+    // iri: string = 'http://rdfh.ch/0801/-PlaC5rTSdC1Tf0WCcYwZQ';
+
     isLoading: boolean = true;
     errorMessage: any;
 
