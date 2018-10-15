@@ -11,7 +11,6 @@ import { ExistingNameDirective } from './existing-name/existing-name.directive';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { KeyPipe } from './pipes/key.pipe';
 import { GndDirective } from './directives/gnd.directive';
-import { MathJaxDirective } from './directives/mathjax.directive';
 import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
 import { JdnDatepickerDirective } from './directives/jdn-datepicker.directive';
 
@@ -33,7 +32,6 @@ import { JdnDatepickerDirective } from './directives/jdn-datepicker.directive';
         ReversePipe,
         KeyPipe,
         GndDirective,
-        MathJaxDirective,
         ResourceDialogComponent,
         JdnDatepickerDirective
     ],
@@ -47,7 +45,6 @@ import { JdnDatepickerDirective } from './directives/jdn-datepicker.directive';
         ReversePipe,
         KeyPipe,
         GndDirective,
-        MathJaxDirective,
         JdnDatepickerDirective
     ]
 })
