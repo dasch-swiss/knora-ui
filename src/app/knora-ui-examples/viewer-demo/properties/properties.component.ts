@@ -25,20 +25,22 @@ import { ReadGeomValue } from 'projects/knora/core/src/public_api';
 })
 export class PropertiesComponent implements OnInit {
 
+
+    referredResource = new ReadResource('http://rdfh.ch/c9824353ae06', 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book', 'Holzschnitt', [], [], [], [], {});
+    standoff = { 'http://rdfh.ch/c9824353ae06': this.referredResource };
+
     color = new ReadColorValue('id', 'prop', '#f06a33');
     boolean = new ReadBooleanValue('id', 'propIri', true);
     date = new ReadDateValue('id', 'propIri', 'gregorian', 1700, 1750, 'CE', 'CE', 1, 12);
     decimal = new ReadDecimalValue('id', 'propIri', 12345.6789);
-    // TODO: find an example of a geometry string
-    // geometry = new ReadGeomValue('id', 'propIri', 'A = pi x r2');
+    geometry = new ReadGeomValue('id', 'propIri', '{"status":"active","lineColor":"#ff3333","lineWidth":2,"points":[{"x":0.17296511627906977,"y":0.08226691042047532},{"x":0.7122093023255814,"y":0.16544789762340037}],"type":"rectangle","original_index":1}');
     integer = new ReadIntegerValue('id', 'propIri', 123);
     interval = new ReadIntervalValue('id', 'propIri', 1700, 1800);
-    link = new ReadLinkValue('id', 'propIri', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
+    link = new ReadLinkValue('id', 'propIri', 'http://rdfh.ch/c9824353ae06', this.referredResource);
     list = new ReadListValue('id', 'propIri', 'listNodeIri', 'Node Label');
     textString = new ReadTextValueAsString('id', 'propIri', 'Text as string');
     textXML = new ReadTextValueAsXml('id', 'propIri', '<?xml version="1.0" encoding="UTF-8"?> <text>Ich liebe die <a href="http://rdfh.ch/0001/a-thing" class="salsah-link">Dinge</a>, sie sind alles für mich.</text>', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
-    // TODO: mock referredResources
-    // html = new ReadTextValueAsHtml('id', 'propIri', '<p>This is a very simple HTML document</p>', 'referredResources');
+    html = new ReadTextValueAsHtml('id', 'propIri', '<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="salsah-link">link</a></p>', this.standoff);
     textFile = new ReadTextFileValue('id', 'propIri', 'Text File Name', 'Text File URL');
     uri = new ReadUriValue('id', 'propIri', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
 

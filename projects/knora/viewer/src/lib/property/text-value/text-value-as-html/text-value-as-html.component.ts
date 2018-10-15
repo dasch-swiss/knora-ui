@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, HostListener } from '@angular/core';
 import { OntologyInformation, ReadTextValueAsHtml } from '@knora/core';
 
 @Component({
@@ -19,6 +19,18 @@ export class TextValueAsHtmlComponent implements OnInit {
 
     ngOnInit() {
         this.el.nativeElement.innerHTML = this.valueObject.html;
+    }
+
+    @HostListener('click', ['$event.target'])
+    onClick(targetElement) {
+        if (this.bindEvents && targetElement.nodeName.toLowerCase() === 'a') {
+            // open link in a new window
+            window.open(targetElement.href, '_blank');
+            return false;
+        } else {
+            // prevent propagation
+            return false;
+        }
     }
 
 }
