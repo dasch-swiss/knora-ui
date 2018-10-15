@@ -1,17 +1,28 @@
 <!-- TODO: handle range or period date cases -->
 
-<span>{{date.start.date | date: date.start?.format}} </span>
-<span *ngIf="era">
-    {{date.start.era}}
-</span>
-
-<span *ngIf="date.end">
-    - {{date.end.date | date: date.end.format}}
+<div *ngIf="period; else preciseDate">
+    {{dates[0].date | date: dates[0].format}}
     <span *ngIf="era">
-        {{date.end.era}}
+        {{dates[0].era}}
     </span>
-</span>
+    - {{dates[1].date | date: dates[1].format}}
+    <span *ngIf="era">
+        {{dates[1].era}}
+    </span>
 
-<span *ngIf="calendar">
-    ({{date.start.calendar}})
-</span>
+    <span *ngIf="calendar">
+        ({{dates[0].calendar}})
+    </span>
+</div>
+
+<ng-template #preciseDate>
+
+    {{dates[0].date | date: dates[0].format }}
+    <span *ngIf="era">
+        {{dates[0].era}}
+    </span>
+    <span *ngIf="calendar">
+        ({{dates[0].calendar}})
+    </span>
+
+</ng-template>

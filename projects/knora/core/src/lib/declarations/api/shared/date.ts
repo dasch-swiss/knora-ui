@@ -1,3 +1,6 @@
+/**
+ * Precision for DateSalsah.
+ */
 export enum Precision {
     yearPrecision,
     monthPrecision,
@@ -5,7 +8,7 @@ export enum Precision {
 }
 
 /**
- * Represents a Salsah date object with a precision information
+ * Represents a Salsah date object with a precision information.
  */
 export class DateSalsah {
 
@@ -34,7 +37,7 @@ export class DateSalsah {
 }
 
 /**
- * Represents a period (with start date and end date)
+ * Represents a period (with start date and end date).
  */
 export class DateRangeSalsah {
 
