@@ -7,7 +7,19 @@
 <kui-color-value [valueObject]="color"></kui-color-value>
 
 <h4>DateValue</h4>
-<kui-date-value [valueObject]="date" [calendar]="true" [era]="true"></kui-date-value>
+<mat-list>
+    <p>Precise date: </p>
+    <mat-list-item>
+        <kui-date-value [valueObject]="date" [calendar]="true" [era]="true"></kui-date-value>
+    </mat-list-item>
+    <p>Period: </p>
+    <mat-list-item>
+        <kui-date-value [valueObject]="period" [calendar]="true"></kui-date-value>
+    </mat-list-item>
+    <mat-list-item>
+        <kui-date-value [valueObject]="period2"></kui-date-value>
+    </mat-list-item>
+</mat-list>
 
 <h4>DecimalValue</h4>
 <kui-decimal-value [valueObject]="decimal"></kui-decimal-value>

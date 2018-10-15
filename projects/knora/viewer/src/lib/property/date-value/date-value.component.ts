@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DateRangeSalsah, DateSalsah, ReadDateValue, Precision } from '@knora/core';
+import { DateRangeSalsah, DateSalsah, Precision, ReadDateValue } from '@knora/core';
 
 @Component({
   selector: 'kui-date-value',
@@ -32,6 +32,7 @@ export class DateValueComponent implements OnInit {
 
   /**
    * Converts a `DateSalsah` to a JS Date, providing necessary formatting information.
+   * JULIAN and GREGORIAN calendar are the only available for the moment.
    *
    * @param date the date to be converted.
    * @return DateFormatter.
@@ -48,14 +49,14 @@ export class DateValueComponent implements OnInit {
     } else if (date.precision === Precision.monthPrecision) {
       return {
         format: 'MMMM ' + 'yyyy',
-        date: new Date(date.year, date.month),
+        date: new Date(date.year, date.month - 1), // 0 base month
         era: date.era,
         calendar: date.calendar
       };
     } else if (date.precision === Precision.dayPrecision) {
       return {
         format: 'longDate',
-        date: new Date(date.year, date.month, date.day),
+        date: new Date(date.year, date.month - 1, date.day),  // 0 base month
         era: date.era,
         calendar: date.calendar
       };

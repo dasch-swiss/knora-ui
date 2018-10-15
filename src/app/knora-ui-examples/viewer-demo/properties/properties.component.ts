@@ -31,7 +31,11 @@ export class PropertiesComponent implements OnInit {
     // set up mocked values for properties
     color = new ReadColorValue('id', 'prop', '#f06a33');
     boolean = new ReadBooleanValue('id', 'propIri', true);
-    date = new ReadDateValue('id', 'propIri', 'GREGORIAN', 1700, 1750, 'CE', 'CE', 1, 12);
+
+    date = new ReadDateValue('id', 'propIri', 'JULIAN', 1700, 1700, 'CE', 'CE', 1, 1);
+    period = new ReadDateValue('id', 'propIri', 'GREGORIAN', 1700, 1750, 'CE', 'CE', 1, 12, 15, 30);
+    period2 = new ReadDateValue('id', 'propIri', 'GREGORIAN', 1700, 1750, 'CE', 'CE', 1, 12, 15);
+
     decimal = new ReadDecimalValue('id', 'propIri', 12345.6789);
     geometry = new ReadGeomValue('id', 'propIri', '{"status":"active","lineColor":"#ff3333","lineWidth":2,"points":[{"x":0.17296511627906977,"y":0.08226691042047532},{"x":0.7122093023255814,"y":0.16544789762340037}],"type":"rectangle","original_index":1}');
     integer = new ReadIntegerValue('id', 'propIri', 123);
