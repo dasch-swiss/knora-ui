@@ -7,6 +7,9 @@ export class ListNodeInfo {
     @JsonProperty('id', String)
     public id: string = undefined;
 
+    @JsonProperty('name', String, true)
+    public name: string = undefined;
+
     @JsonProperty('projectIri', String, true)
     public projectIri: string = undefined;
 
