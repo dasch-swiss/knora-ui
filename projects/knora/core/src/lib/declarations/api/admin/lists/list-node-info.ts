@@ -4,12 +4,18 @@ import { StringLiteral } from '../../shared/strings';
 @JsonObject('ListNodeInfo')
 export class ListNodeInfo {
 
-    @JsonProperty('id', String, false)
+    @JsonProperty('id', String)
     public id: string = undefined;
 
-    @JsonProperty('labels', [StringLiteral], false)
+    @JsonProperty('projectIri', String, true)
+    public projectIri: string = undefined;
+
+    @JsonProperty('isRootNode', Boolean, true)
+    public isRootNode: boolean = undefined;
+
+    @JsonProperty('labels', [StringLiteral])
     public labels: StringLiteral[] = undefined;
 
-    @JsonProperty('comments', [StringLiteral], false)
+    @JsonProperty('comments', [StringLiteral])
     public comments: StringLiteral[] = undefined;
 }
