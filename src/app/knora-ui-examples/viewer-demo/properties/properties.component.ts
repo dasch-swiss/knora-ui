@@ -25,10 +25,10 @@ import { ReadGeomValue } from 'projects/knora/core/src/public_api';
 })
 export class PropertiesComponent implements OnInit {
 
-
     referredResource = new ReadResource('http://rdfh.ch/c9824353ae06', 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book', 'Holzschnitt', [], [], [], [], {});
     standoff = { 'http://rdfh.ch/c9824353ae06': this.referredResource };
 
+    // set up mocked values for properties
     color = new ReadColorValue('id', 'prop', '#f06a33');
     boolean = new ReadBooleanValue('id', 'propIri', true);
     date = new ReadDateValue('id', 'propIri', 'gregorian', 1700, 1750, 'CE', 'CE', 1, 12);
