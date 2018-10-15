@@ -21,6 +21,11 @@ export class TextValueAsHtmlComponent implements OnInit {
         this.el.nativeElement.innerHTML = this.valueObject.html;
     }
 
+    /**
+     * Binds a click event to standoff links that shows the referred resource.
+     *
+     * @param targetElement
+     */
     @HostListener('click', ['$event.target'])
     onClick(targetElement) {
         if (this.bindEvents && targetElement.nodeName.toLowerCase() === 'a') {
