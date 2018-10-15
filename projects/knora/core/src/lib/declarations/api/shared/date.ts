@@ -1,28 +1,45 @@
-import { JsonObject, JsonProperty } from 'json2typescript';
-
-@JsonObject('DateFormatSalsah')
-export class DateFormatSalsah {
-
-    @JsonProperty('date', Date)
-    public date: Date = undefined;
-
-    @JsonProperty('format', String)
-    public format: string = undefined;
-
-    @JsonProperty('era', String)
-    public era: string = undefined;
-
-    @JsonProperty('calendar', String)
-    public calendar: string = undefined;
+export enum Precision {
+    yearPrecision,
+    monthPrecision,
+    dayPrecision
 }
 
-
-@JsonObject('DateSalsah')
+/**
+ * Represents a Salsah date object with a precision information
+ */
 export class DateSalsah {
 
-    @JsonProperty('start', DateFormatSalsah)
-    public start: DateFormatSalsah = undefined;
+    precision: Precision;
 
-    @JsonProperty('end', DateFormatSalsah, true)
-    public end: DateFormatSalsah = undefined;
+    constructor(
+        readonly calendar: string,
+        readonly era: string,
+        readonly year: number,
+        readonly month?: number,
+        readonly day?: number
+    ) {
+        if (this.month === undefined) {
+            // year precision
+            this.precision = Precision.yearPrecision;
+        } else if (this.day === undefined) {
+            // month precision
+            this.precision = Precision.monthPrecision;
+        } else {
+            // day precision
+            this.precision = Precision.dayPrecision;
+        }
+
+    }
+
+}
+
+/**
+ * Represents a period (with start date and end date)
+ */
+export class DateRangeSalsah {
+
+    constructor(
+        readonly start: DateSalsah,
+        readonly end: DateSalsah
+    ) { }
 }

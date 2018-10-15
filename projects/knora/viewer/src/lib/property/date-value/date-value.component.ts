@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DateSalsah, ReadDateValue } from '@knora/core';
+import { DateRangeSalsah, DateSalsah, ReadDateValue } from '@knora/core';
 
 @Component({
   selector: 'kui-date-value',
@@ -12,7 +12,7 @@ export class DateValueComponent implements OnInit {
   @Input() calendar?: boolean;
   @Input() era?: boolean;
 
-  date: DateSalsah;
+  date: DateSalsah | DateRangeSalsah;
 
   constructor() { }
 

@@ -4,8 +4,7 @@ import { KnoraConstants } from '../../knora-constants';
 import { OntologyInformation } from '../../../../services';
 import { JsonObject, JsonProperty } from 'json2typescript';
 
-import { DateFormatSalsah, DateSalsah } from '../../shared/date';
-
+import { DateRangeSalsah, DateSalsah } from '../../shared/date';
 
 /**
  * An abstract interface representing any value object.
@@ -137,10 +136,19 @@ export class ReadDateValue implements ReadPropertyItem {
 
     private separator = '-';
 
-    getDateSalsah(): DateSalsah {
-        // consider precision
+    getDateSalsah(): DateSalsah | DateRangeSalsah {
 
-        const dateObj: DateSalsah = new DateSalsah();
+        if (this.startYear === this.endYear && this.startMonth === this.endMonth && this.startDay === this.endDay && this.startEra === this.endEra) {
+            // precise date
+            return new DateSalsah(this.calendar, this.startEra, this.startYear, this.startMonth, this.startDay);
+        } else {
+            // period date
+            return new DateRangeSalsah(new DateSalsah(this.calendar, this.startEra, this.startYear, this.startMonth, this.startDay), new DateSalsah(this.calendar, this.endEra, this.endYear, this.endMonth, this.endDay));
+        }
+
+
+
+        /* const dateObj: DateSalsah = new DateSalsah();
         // console.log('dateObj', dateObj);
 
         let startDate: string;
@@ -183,7 +191,7 @@ export class ReadDateValue implements ReadPropertyItem {
             dateObj.end = { date: new Date(endDate), format: endPrecision, era: this.endEra, calendar: this.calendar };
         }
 
-        return dateObj;
+        return dateObj; */
     }
 
     getClassName(): string {
