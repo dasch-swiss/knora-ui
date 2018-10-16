@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiServiceError, Group, List, ListsService} from '@knora/core';
-import {FlatTreeControl} from '@angular/cdk/tree';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { Component, OnInit } from '@angular/core';
+import { ApiServiceError, List, ListNodeInfo, ListsService } from '@knora/core';
 
 class ListNode {
     label: string;
@@ -17,7 +17,7 @@ export class ListsComponent implements OnInit {
 
     projectIri: string = 'http://rdfh.ch/projects/00FF';
 
-    projectLists: List[];
+    projectLists: ListNodeInfo[];
 
     treeControl: FlatTreeControl<ListNode>;
 
@@ -32,7 +32,7 @@ export class ListsComponent implements OnInit {
     getAllLists() {
         this.listsService.getLists(this.projectIri)
             .subscribe(
-                (result: List[]) => {
+                (result: ListNodeInfo[]) => {
                     this.projectLists = result;
                 },
                 (error: ApiServiceError) => {

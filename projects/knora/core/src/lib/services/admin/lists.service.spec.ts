@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { KuiCoreModule } from '../../core.module';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from '../api.service';
-import { ApiServiceError, ApiServiceResult, List } from '../../declarations';
+import { ApiServiceError, ApiServiceResult, List, ListNodeInfo } from '../../declarations';
 import { incunabulaProjectIri, listsResponseJson, yesNoMaybeListResponseJson } from '../../test-data/admin/shared-test-data';
 import { Observable, of } from 'rxjs';
 
@@ -55,11 +55,15 @@ describe('ListsService', () => {
 
             expect(listsService).toBeDefined();
 
-            const allLists: Observable<List[]> = listsService.getLists(incunabulaProjectIri);
+            const allLists: Observable<ListNodeInfo[]> = listsService.getLists(incunabulaProjectIri);
 
+            const lists = {'lists': [{'id': 'http: //rdfh.ch/lists/FFFF/ynm01', 'labels': [{'value': 'Die Ja,  Nein,  Vielleicht Liste', 'language': 'de'}, {'value': 'The Yes,  No,  Maybe List', 'language': 'en'}], 'projectIri': 'http: //www.knora.org/ontology/knora-base#SystemProject', 'isRootNode': true, 'comments': [{'value': 'Diese Liste kann von allen Projekten verwendet werden.', 'language': 'de'}, {'value': 'This list can be used by all projects.', 'language': 'en'}]}]}
+
+            /*
             const lists = {
                 'lists': [{ 'listinfo': { 'id': 'http://rdfh.ch/lists/FFFF/ynm01', 'projectIri': 'http://www.knora.org/ontology/knora-base#SystemProject', 'labels': [{ 'value': 'The Yes, No, Maybe List', 'language': 'en' }, { 'value': 'Die Ja, Nein, Vielleicht Liste', 'language': 'de' }], 'comments': [{ 'value': 'This list can be used by all projects.', 'language': 'en' }, { 'value': 'Diese Liste kann von allen Projekten verwendet werden.', 'language': 'de' }] }, 'children': [] }]
             };
+            */
 
             allLists.subscribe(
                 (result: any) => {
