@@ -51,6 +51,7 @@ import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-su
 import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
+import { StillImageComponent } from './knora-ui-examples/viewer-demo/resources/still-image/still-image.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component'
         AuthComponent,
         ExistingNameComponent,
         KeyComponent,
-        ResourcesComponent
+        ResourcesComponent,
+        StillImageComponent
     ],
     entryComponents: [
         // LoginFormComponent

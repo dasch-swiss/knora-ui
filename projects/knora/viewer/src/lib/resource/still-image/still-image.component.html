@@ -1,16 +1,14 @@
 <!-- simple image viewer e.g. as a preview -->
 <!-- TODO: handle images array -->
-<img *ngIf="simple && images?.length === 1; else osdViewer" [src]="simpleImageExample">
+<!--<img *ngIf="simple && images?.length === 1; else osdViewer" [src]="simpleImageExample">-->
 
 
 <!-- openseadragon (osd) viewer -->
-<ng-template #osdViewer>
-    <p>hello</p>
     <div class="osdViewerContainer"></div>
+<!--
     <div>
         <span *ngIf="images.length > 1" (click)="gotoLeft()">&lt;&lt;</span>
         <span *ngIf="images.length > 1" (click)="gotoRight()">&gt;&gt;</span>
     </div>
-</ng-template>
-
+-->
 

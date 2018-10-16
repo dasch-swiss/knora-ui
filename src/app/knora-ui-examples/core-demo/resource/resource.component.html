@@ -21,19 +21,22 @@
 
         <div *ngIf="prop.key === KnoraConstants.hasStillImageFileValue; else singleTemplates">
             <p>OSD viewer</p>
-            <kui-still-image #OSDViewer *ngIf="prop.key === KnoraConstants.hasStillImageFileValue; else singleTemplates"
+
+            <kui-still-image #OSDViewer *ngIf="!loading && resource.stillImageRepresentationsToDisplay.length > 0"
                              [images]="resource?.stillImageRepresentationsToDisplay"
                              [imageRangeStart]="0"
                              [imageRangeEnd]="0"
                              [imageChangeInterval]="1">
             </kui-still-image>
 
+
             <p>Simple image</p>
+            <!--
             <kui-still-image
                 [simple]="true"
                 [images]="resource?.stillImageRepresentationsToDisplay">
             </kui-still-image>
-
+            -->
         </div>
 
 
@@ -104,9 +107,11 @@
 
     <!-- Check if StillImageRepresentations are pointing to the current resource -->
     <!-- Event getImages: more images are requested (previous or next set) -->
+    <!--
     <kui-still-image #OSDViewer *ngIf="resource?.incomingStillImageRepresentations?.length > 0;" [images]="resource?.stillImageRepresentationsToDisplay" [imageRangeStart]="0" [imageRangeEnd]="4" [imageChangeInterval]="5">
         <!-- I removed the following method, which we should implement again:
         <!-- (getImages)="changeOffsetForStillImageRepresentations($event)" -->
-    </kui-still-image>
+    <!--</kui-still-image>-->
+
 
 </mat-list>

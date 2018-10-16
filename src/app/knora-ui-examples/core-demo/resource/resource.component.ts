@@ -45,7 +45,7 @@ export class ResourceComponent implements OnChanges, OnInit {
             'iri': 'http://rdfh.ch/0801/--nO85prSoKPB9gKv1p2YA'
         }
     ];
-    isLoading: boolean = true;
+    loading: boolean = true;
     errorMessage: any;
 
     ontologyInfo: OntologyInformation; // ontology information about resource classes and properties present in the requested resource with Iri `iri`
@@ -75,7 +75,8 @@ export class ResourceComponent implements OnChanges, OnInit {
         // for testing by user: I want to see, what's inside of the resource object
         setTimeout(() => {
             console.log(this.resource);
-        }, 1000);
+            this.loading = false;
+        }, 3000);
     }
 
     private getResource(iri: string): void {
@@ -120,12 +121,12 @@ export class ResourceComponent implements OnChanges, OnInit {
                     }, function (err) {
                         console.error('JSONLD of full resource request could not be expanded:' + err);
                     });
-                    // this.isLoading = false;
+                    // this.loading = false;
                 },
                 (error: ApiServiceError) => {
                     console.error(error);
                     // this.errorMessage = <any>error;
-                    // this.isLoading = false;
+                    // this.loading = false;
                 });
     }
 
@@ -205,7 +206,7 @@ export class ResourceComponent implements OnChanges, OnInit {
             },
             (error: ApiServiceError) => {
                 this.errorMessage = <any>error;
-                this.isLoading = false;
+                // this.loading = false;
             }
         );
     }
@@ -277,7 +278,7 @@ export class ResourceComponent implements OnChanges, OnInit {
             },
             (error: ApiServiceError) => {
                 this.errorMessage = <any>error;
-                this.isLoading = false;
+                // this.loading = false;
             }
         );
     }
@@ -323,7 +324,7 @@ export class ResourceComponent implements OnChanges, OnInit {
             },
             (error: ApiServiceError) => {
                 this.errorMessage = <any>error;
-                this.isLoading = false;
+                // this.loading = false;
             }
         );
     }
