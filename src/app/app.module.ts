@@ -51,6 +51,8 @@ import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-su
 import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
+// dev documentation
+import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
 
 
 @NgModule({
@@ -84,7 +86,8 @@ import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component'
         ViewsComponent,
         AuthComponent,
         ExistingNameComponent,
-        KeyComponent
+        KeyComponent,
+        DocIntroComponent
     ],
     entryComponents: [
         // LoginFormComponent
@@ -105,7 +108,7 @@ import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component'
         KuiViewerModule,
         MaterialModule,
         HttpClientModule,
-        MarkdownModule.forRoot({loader: HttpClient}),
+        MarkdownModule.forRoot({ loader: HttpClient }),
         ReactiveFormsModule
     ],
     providers: [
@@ -115,7 +118,7 @@ import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component'
                 hasBackdrop: false
             }
         },
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
 
     ],

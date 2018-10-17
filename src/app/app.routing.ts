@@ -6,6 +6,8 @@ import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
 // / start with main-intro
 import { MainIntroComponent } from './landing-page/main-intro/main-intro.component';
+// dev docs
+import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 import { DemoIntroComponent } from './landing-page/demo-intro/demo-intro.component';
@@ -96,22 +98,22 @@ const appRoutes: Routes = [
             {
                 path: 'viewer',
                 component: ViewerDemoComponent,
-                data: {module: AppDemo.viewerModule},
+                data: { module: AppDemo.viewerModule },
                 children: [
                     {
                         path: 'objects',
                         component: ObjectsComponent,
-                        data: {partOf: AppDemo.viewerModule}
+                        data: { partOf: AppDemo.viewerModule }
                     },
                     {
                         path: 'properties',
                         component: PropertiesComponent,
-                        data: {partOf: AppDemo.viewerModule}
+                        data: { partOf: AppDemo.viewerModule }
                     },
                     {
                         path: 'views',
                         component: ViewsComponent,
-                        data: {partOf: AppDemo.viewerModule}
+                        data: { partOf: AppDemo.viewerModule }
                     }
                 ]
             },
@@ -144,6 +146,10 @@ const appRoutes: Routes = [
                 ]
             }
         ]
+    },
+    {
+        path: 'documentation',
+        component: DocIntroComponent
     },
     {
         path: 'test',
