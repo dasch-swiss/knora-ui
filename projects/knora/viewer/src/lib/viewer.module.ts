@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {
-    MatAutocompleteModule,
+    MatAutocompleteModule, MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
-    MatFormFieldModule,
+    MatFormFieldModule, MatIconModule,
     MatInputModule,
     MatListModule,
     MatNativeDateModule,
@@ -63,11 +63,13 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         CommonModule,
         KuiCoreModule,
         MatAutocompleteModule,
+        MatButtonModule,
         MatCardModule,
         MatCheckboxModule,
         MatDatepickerModule,
         MatFormFieldModule,
         MatInputModule,
+        MatIconModule,
         MatListModule,
         MatNativeDateModule,
         MatSlideToggleModule,

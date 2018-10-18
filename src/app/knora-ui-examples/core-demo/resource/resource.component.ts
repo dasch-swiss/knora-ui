@@ -33,6 +33,10 @@ export class ResourceComponent implements OnChanges, OnInit {
     // example of a few resources:
     resources: any[] = [
         {
+            'name': 'book',
+            'iri': 'http://rdfh.ch/5e77e98d2603'
+        },
+        {
             'name': 'beol',
             'iri': 'http://rdfh.ch/0801/-PlaC5rTSdC1Tf0WCcYwZQ'
         },
@@ -153,7 +157,7 @@ export class ResourceComponent implements OnChanges, OnInit {
             // this gets the first page of incoming StillImageRepresentations
             // more pages may be requested by [[this.viewer]].
             // TODO: for now, we begin with offset 0. This may have to be changed later (beginning somewhere in a collection)
-            // this.getIncomingStillImageRepresentations(0);
+            this.getIncomingStillImageRepresentations(0);
         }
 
         // check for incoming links for the current resource

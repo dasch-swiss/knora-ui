@@ -34,12 +34,7 @@ import { ResourcesComponent } from './knora-ui-examples/viewer-demo/resources/re
 
 import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
-import { DemoIntroComponent } from './landing-page/demo-intro/demo-intro.component';
-// / start with main-intro
-import { MainIntroComponent } from './landing-page/main-intro/main-intro.component';
 import { TreeComponent } from './material/tree/tree.component';
-// /modules demo
-import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 
 const appRoutes: Routes = [
     {

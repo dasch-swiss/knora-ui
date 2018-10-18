@@ -102,7 +102,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     @Output() getImages = new EventEmitter<RequestStillImageRepresentations>(); // sends a message to the parent component (object.component) to load the next or previous page of results (images) from the server
 
     // the paging limit should be defined in the configuration of the app
-    pagingLimit: number = 5;
+    pagingLimit: number = 25;
 
 
     private viewer;
@@ -147,10 +147,11 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             imageXOffset++;
 
             // 5 images per row
+            /*
             if (imageXOffset % 5 === 0) {
                 imageYOffset += 2;
                 imageXOffset = 0;
-            }
+            }*/
         }
 
         return tileSources;
@@ -326,7 +327,16 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             element: viewerContainer,
             prefixUrl: 'assets/icons/openseadragon/',
             sequenceMode: false,
-            showNavigator: true
+            showNavigator: true,
+            zoomInButton: 'ZOOM_IN',
+            zoomOutButton: 'ZOOM_OUT',
+            nextButton: 'NEXT_PAGE',
+            previousButton: 'PREV_PAGE',
+            homeButton: 'HOME',
+            fullPageButton: 'FULL_PAGE',
+            rotateLeftButton: 'ROTATE_LEFT',
+            rotateRightButton: 'ROTATE_RIGHT',
+
         };
         this.viewer = new OpenSeadragon.Viewer(osdOptions);
         this.viewer.addHandler('full-screen', function (args) {
