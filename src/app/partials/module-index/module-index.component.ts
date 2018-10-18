@@ -12,6 +12,12 @@ export class ModuleIndexComponent {
 
     sortKey: string = 'name';
 
+    curIndex: number;
+
     examples: DemoModule[] = AppDemo.examples;
+
+    toggleChildren(index: number) {
+        this.curIndex = (index === this.curIndex ? undefined : index);
+    }
 
 }

@@ -30,6 +30,12 @@
   .demo-nav-children {
     padding-left: 24px;
 
+    display: none;
+
+    &.open {
+      display: block;
+    }
+
     .mat-list-item {
       width: 196px;
     }
