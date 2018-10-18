@@ -1,13 +1,71 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChange } from '@angular/core';
-import { Point2D, ReadStillImageFileValue, RegionGeometry, StillImageRepresentation } from '@knora/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChange
+} from '@angular/core';
+import {
+    KnoraConstants,
+    Point2D,
+    ReadGeomValue,
+    ReadResource,
+    ReadStillImageFileValue,
+    RegionGeometry
+} from '@knora/core';
+
 
 // This component needs the openseadragon library itself, as well as the openseadragon plugin openseadragon-svg-overlay
-// Both libraries are installed via package.json, and loaded globally via the script tag in angular.json
+// Both libraries are installed via package.json, and loaded globally via the script tag in .angular-cli.json
 
 // OpenSeadragon does not export itself as ES6/ECMA2015 module,
-// it is loaded globally in scripts tag of angular.json,
+// it is loaded globally in scripts tag of angular-cli.json,
 // we still need to declare the namespace to make TypeScript compiler happy.
 declare let OpenSeadragon: any;
+
+/**
+ * Represents a region.
+ * Contains a reference to the resource representing the region and its geometries.
+ */
+export class ImageRegion {
+
+    /**
+     *
+     * @param regionResource a resource of type Region
+     */
+    constructor(readonly regionResource: ReadResource) {
+
+    }
+
+    /**
+     * Get all geometry information belonging to this region.
+     *
+     * @returns
+     */
+    getGeometries() {
+        return this.regionResource.properties[KnoraConstants.hasGeometry] as ReadGeomValue[];
+    }
+}
+
+/**
+ * Represents an image including its regions.
+ */
+export class StillImageRepresentation {
+
+    /**
+     *
+     * @param stillImageFileValue a [[ReadStillImageFileValue]] representing an image.
+     * @param regions the regions belonging to the image.
+     */
+    constructor(readonly stillImageFileValue: ReadStillImageFileValue, readonly regions: ImageRegion[]) {
+
+    }
+
+}
 
 /**
  * Sends a requests to the parent component to load more StillImageRepresentations.
@@ -24,55 +82,11 @@ export class RequestStillImageRepresentations {
 }
 
 /**
- * Prepare tile sources from the given sequence of [[ReadStillImageFileValue]].
- *
- * @param imagesToDisplay the given file values to de displayed.
- * @returns the tile sources to be passed to OSD viewer.
+ * This component creates a OpenSeadragon viewer instance.
+ * Accepts an array of ReadResource containing (among other resources) ReadStillImageFileValues to be rendered.
+ * The viewer will not render ReadStillImageFileValues with isPreview == true
+ * @member resources - resources containing (among other resources) the StillImageFileValues and incoming regions to be rendered. (Use as angular @Input data binding property.)
  */
-/* private static prepareTileSourcesFromFileValues(imagesToDisplay: ReadStillImageFileValue[]): Object[] {
-let imageXOffset = 0;
-let imageYOffset = 0;
-let tileSources = [];
-
-for (let image of imagesToDisplay) {
-    let sipiBasePath = image.imageServerIIIFBaseURL + "/" + image.imageFilename;
-    let width = image.dimX;
-    let height = image.dimY;
-
-    // construct OpenSeadragon tileSources according to https://openseadragon.github.io/docs/OpenSeadragon.Viewer.html#open
-    tileSources.push({
-        // construct IIIF tileSource configuration according to
-        // http://iiif.io/api/image/2.1/#technical-properties
-        // see also http://iiif.io/api/image/2.0/#a-implementation-notes
-        "tileSource": {
-            "@context": "http://iiif.io/api/image/2/context.json",
-            "@id": sipiBasePath,
-            "height": height,
-            "width": width,
-            "profile": ["http://iiif.io/api/image/2/level2.json"],
-            "protocol": "http://iiif.io/api/image",
-            "tiles": [{
-                "scaleFactors": [1, 2, 4, 8, 16, 32],
-                "width": 1024
-            }]
-        },
-        "x": imageXOffset,
-        "y": imageYOffset
-    });
-
-    imageXOffset++;
-
-    // 5 images per row
-    if (imageXOffset % 5 == 0) {
-        imageYOffset += 2;
-        imageXOffset = 0;
-    }
-}
-
-return tileSources;
-} */
-
-
 @Component({
     selector: 'kui-still-image',
     templateUrl: './still-image.component.html',
@@ -85,9 +99,11 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     @Input() imageRangeEnd: number; // index of last image of this.images to be displayed.
     @Input() imageChangeInterval: number; // the size of the interval when displaying more images of this.images
 
-    @Input() simple?: boolean;
-
     @Output() getImages = new EventEmitter<RequestStillImageRepresentations>(); // sends a message to the parent component (object.component) to load the next or previous page of results (images) from the server
+
+    // the paging limit should be defined in the configuration of the app
+    pagingLimit: number = 25;
+
 
     private viewer;
 
@@ -131,16 +147,18 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             imageXOffset++;
 
             // 5 images per row
+            /*
             if (imageXOffset % 5 === 0) {
                 imageYOffset += 2;
                 imageXOffset = 0;
-            }
+            }*/
         }
 
         return tileSources;
     }
 
-    constructor(private elementRef: ElementRef) { }
+    constructor(private elementRef: ElementRef) {
+    }
 
     ngOnChanges(changes: { [key: string]: SimpleChange }) {
         if (changes['images'] && changes['images'].isFirstChange()) {
@@ -178,14 +196,12 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * Get the more images from the server by requesting the previous page of results for the current resource (decrease offset).
      */
-    gotoLeft() {
-
-        console.log('gotoLeft');
+    private gotoLeft() {
 
         // TODO: move left on this.images
         // TODO: if necessary, request more images from the server
 
-        /* if (this.imageRangeStart - this.imageChangeInterval >= 0) {
+        if (this.imageRangeStart - this.imageChangeInterval >= 0) {
             // this.images has more images to display
             this.imageRangeStart -= this.imageChangeInterval;
             this.imageRangeEnd -= this.imageChangeInterval;
@@ -205,18 +221,16 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             // request more images from the server using a negative offset
 
             // TODO: implement getting previous offset (also in parent component)
-        } */
+        }
 
     }
 
     /**
      * Get the more images from the server by requesting the next page of results for the current resource (increase offset).
      */
-    gotoRight() {
+    private gotoRight() {
 
-        console.log('gotoRight');
-
-        /* if (this.imageRangeEnd < this.images.length - 1) {
+        if (this.imageRangeEnd < this.images.length - 1) {
             // this.images has more images to display
 
             if (this.imageRangeEnd + this.imageChangeInterval < this.images.length) {
@@ -240,7 +254,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             this.openImages();
             this.renderRegions();
 
-        } else if (this.images.length % environment.pagingLimit === 0) { // paging always returned full result lists, so there could be more data to fetch
+        } else if (this.images.length % this.pagingLimit === 0) { // paging always returned full result lists, so there could be more data to fetch
             console.log(`request more images`);
             // this.images cannot display more images of length interval
             // request more images from the server using a positive offset
@@ -289,7 +303,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             // no more data to fetch
             // TODO: deactivate next button
 
-        } */
+        }
     }
 
     /**
@@ -313,7 +327,16 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             element: viewerContainer,
             prefixUrl: 'assets/icons/openseadragon/',
             sequenceMode: false,
-            showNavigator: true
+            showNavigator: true,
+            zoomInButton: 'ZOOM_IN',
+            zoomOutButton: 'ZOOM_OUT',
+            nextButton: 'NEXT_PAGE',
+            previousButton: 'PREV_PAGE',
+            homeButton: 'HOME',
+            fullPageButton: 'FULL_PAGE',
+            rotateLeftButton: 'ROTATE_LEFT',
+            rotateRightButton: 'ROTATE_RIGHT',
+
         };
         this.viewer = new OpenSeadragon.Viewer(osdOptions);
         this.viewer.addHandler('full-screen', function (args) {
@@ -351,8 +374,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-    * Adds a ROI-overlay to the viewer for every region of every image in this.images
-    */
+     * Adds a ROI-overlay to the viewer for every region of every image in this.images
+     */
     private renderRegions(): void {
         this.viewer.clearOverlays();
 
@@ -365,7 +388,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
                 for (const geometryValue of region.getGeometries()) {
                     const geometry = geometryValue.geometry;
-                    this.createSVGOverlay(geometry, aspectRatio, imageXOffset, region.regionResource.label);
+                    // this.createSVGOverlay(geometry, aspectRatio, imageXOffset, region.regionResource.label);
                 }
             }
 
@@ -491,10 +514,10 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-    * Returns a string in the format expected by the 'points' attribute of a SVGElement
-    * @param points - an array of points to be serialized to a string
-    * @returns - the points serialized to a string in the format expected by the 'points' attribute of a SVGElement
-    */
+     * Returns a string in the format expected by the 'points' attribute of a SVGElement
+     * @param points - an array of points to be serialized to a string
+     * @returns - the points serialized to a string in the format expected by the 'points' attribute of a SVGElement
+     */
     private createSVGPolygonPointsAttribute(points: Point2D[]): string {
         let pointsString = '';
         for (const i in points) {
@@ -507,6 +530,4 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         }
         return pointsString;
     }
-
-
 }

@@ -33,14 +33,14 @@ export class ListsService extends ApiService {
     /**
      *
      * @param {string} projectIri (optional)
-     * @returns {Observable<List[]>}
+     * @returns {Observable<ListNodeInfo[]>}
      */
-    getLists(projectIri?: string): Observable<List[]> {
+    getLists(projectIri?: string): Observable<ListNodeInfo[]> {
         if (projectIri) {
             this.path += '?projectIri=' + encodeURIComponent(projectIri);
         }
         return this.httpGet(this.path).pipe(
-            map((result: ApiServiceResult) => result.getBody(ListsResponse)),
+            map((result: ApiServiceResult) => result.getBody(ListsResponse).lists),
             catchError(this.handleJsonError)
         );
     }

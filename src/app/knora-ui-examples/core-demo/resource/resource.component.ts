@@ -1,15 +1,22 @@
-import { Component, OnInit, ViewChild, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import {
-    ApiServiceResult,
     ApiServiceError,
+    ApiServiceResult,
+    ConvertJSONLD,
+    ImageRegion,
+    IncomingService,
+    KnoraConstants,
     OntologyCacheService,
-    ResourceService,
-    ReadPropertyItem,
+    OntologyInformation,
     ReadLinkValue,
+    ReadPropertyItem,
+    ReadResource,
+    ReadResourcesSequence,
+    ReadStillImageFileValue,
+    ResourceService,
+    StillImageRepresentation,
     Utils
 } from '@knora/core';
-import { ConvertJSONLD, OntologyInformation, IncomingService } from 'projects/knora/core/src/lib/services';
-import { ReadResource, ReadResourcesSequence, KnoraConstants, ReadStillImageFileValue, StillImageRepresentation, ImageRegion } from 'projects/knora/core/src/lib/declarations';
 
 declare let require: any;
 const jsonld = require('jsonld');
@@ -26,6 +33,10 @@ export class ResourceComponent implements OnChanges, OnInit {
     // example of a few resources:
     resources: any[] = [
         {
+            'name': 'book',
+            'iri': 'http://rdfh.ch/5e77e98d2603'
+        },
+        {
             'name': 'beol',
             'iri': 'http://rdfh.ch/0801/-PlaC5rTSdC1Tf0WCcYwZQ'
         },
@@ -38,7 +49,7 @@ export class ResourceComponent implements OnChanges, OnInit {
             'iri': 'http://rdfh.ch/0801/--nO85prSoKPB9gKv1p2YA'
         }
     ];
-    isLoading: boolean = true;
+    loading: boolean = true;
     errorMessage: any;
 
     ontologyInfo: OntologyInformation; // ontology information about resource classes and properties present in the requested resource with Iri `iri`
@@ -68,7 +79,8 @@ export class ResourceComponent implements OnChanges, OnInit {
         // for testing by user: I want to see, what's inside of the resource object
         setTimeout(() => {
             console.log(this.resource);
-        }, 1000);
+            this.loading = false;
+        }, 3000);
     }
 
     private getResource(iri: string): void {
@@ -113,12 +125,12 @@ export class ResourceComponent implements OnChanges, OnInit {
                     }, function (err) {
                         console.error('JSONLD of full resource request could not be expanded:' + err);
                     });
-                    // this.isLoading = false;
+                    // this.loading = false;
                 },
                 (error: ApiServiceError) => {
                     console.error(error);
                     // this.errorMessage = <any>error;
-                    // this.isLoading = false;
+                    // this.loading = false;
                 });
     }
 
@@ -145,7 +157,7 @@ export class ResourceComponent implements OnChanges, OnInit {
             // this gets the first page of incoming StillImageRepresentations
             // more pages may be requested by [[this.viewer]].
             // TODO: for now, we begin with offset 0. This may have to be changed later (beginning somewhere in a collection)
-            // this.getIncomingStillImageRepresentations(0);
+            this.getIncomingStillImageRepresentations(0);
         }
 
         // check for incoming links for the current resource
@@ -198,7 +210,7 @@ export class ResourceComponent implements OnChanges, OnInit {
             },
             (error: ApiServiceError) => {
                 this.errorMessage = <any>error;
-                this.isLoading = false;
+                // this.loading = false;
             }
         );
     }
@@ -270,7 +282,7 @@ export class ResourceComponent implements OnChanges, OnInit {
             },
             (error: ApiServiceError) => {
                 this.errorMessage = <any>error;
-                this.isLoading = false;
+                // this.loading = false;
             }
         );
     }
@@ -316,7 +328,7 @@ export class ResourceComponent implements OnChanges, OnInit {
             },
             (error: ApiServiceError) => {
                 this.errorMessage = <any>error;
-                this.isLoading = false;
+                // this.loading = false;
             }
         );
     }
@@ -391,7 +403,6 @@ export class ResourceComponent implements OnChanges, OnInit {
             }
 
         }
-
         resource.stillImageRepresentationsToDisplay = imgRepresentations;
     }
 

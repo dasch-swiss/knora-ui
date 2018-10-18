@@ -1,14 +1,25 @@
+<button mat-button id="ZOOM_IN">Zoom in</button>
+<button mat-button id="ZOOM_OUT">Zoom out</button>
+
+<button mat-button id="PREV_PAGE">previous</button>
+<button mat-button id="NEXT_PAGE">next</button>
+
+<button mat-raised-button color="warn" id="ROTATE_LEFT">left</button>
+<button mat-raised-button color="primary" id="ROTATE_RIGHT">right</button>
+<br><br>
 <!-- simple image viewer e.g. as a preview -->
-<img *ngIf="simple && images?.length === 1; else osdViewer" [src]="images[0].stillImageFileValue.isPreview">
+<!-- TODO: handle images array -->
+<!--<img *ngIf="simple && images?.length === 1; else osdViewer" [src]="simpleImageExample">-->
 
 
 <!-- openseadragon (osd) viewer -->
-<ng-template #osdViewer>
     <div class="osdViewerContainer"></div>
+<!--
     <div>
         <span *ngIf="images.length > 1" (click)="gotoLeft()">&lt;&lt;</span>
         <span *ngIf="images.length > 1" (click)="gotoRight()">&gt;&gt;</span>
     </div>
-</ng-template>
+-->
+
 
 
