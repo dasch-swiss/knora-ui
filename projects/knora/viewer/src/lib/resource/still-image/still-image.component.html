@@ -1,7 +1,63 @@
-<div class="osdViewerContainer"></div>
-<div>
-  <span *ngIf="images.length > 1" (click)="gotoLeft()">&lt;&lt;</span>
-  <span *ngIf="images.length > 1" (click)="gotoRight()">&gt;&gt;</span>
+<div class="still-image-viewer">
+    <div class="navigation left">
+        <button mat-button class="full-size" id="KUI_OSD_PREV_PAGE">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+    </div>
+
+    <!-- main content with navigation and osd viewer -->
+    <div class="content">
+
+        <!-- header with image tools -->
+        <mat-toolbar class="header">
+            <mat-toolbar-row>
+                <!-- home button -->
+                <span>
+                <button mat-icon-button id="KUI_OSD_HOME"><mat-icon>home</mat-icon></button>
+            </span>
+                <!-- zoom buttons -->
+                <span class="fill-remaining-space"></span>
+                <span>
+                <button mat-icon-button id="KUI_OSD_ZOOM_IN"><mat-icon>add</mat-icon></button>
+                <button mat-icon-button id="KUI_OSD_ZOOM_OUT"><mat-icon>remove</mat-icon></button>
+            </span>
+                <!-- window button -->
+                <span class="fill-remaining-space"></span>
+                <span>
+                <button mat-icon-button id="KUI_OSD_FULL_PAGE"><mat-icon>fullscreen</mat-icon></button>
+            </span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <!-- openseadragon (osd) viewer -->
+        <div class="osd-container"></div>
+        <!-- /openseadragon (osd) -->
+        <!-- footer for copyright info; download button etc. -->
+        <div class="footer">
+            <p class="mat-caption" [innerHtml]="imageCaption"></p>
+        </div>
+
+    </div>
+
+    <div class="navigation right">
+        <button mat-button class="full-size" id="KUI_OSD_NEXT_PAGE">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
+
 </div>
 
-<!-- <p>still-image component template works!</p> -->
+<!-- simple image viewer e.g. as a preview -->
+<!-- TODO: handle images array -->
+<!--<img *ngIf="simple && images?.length === 1; else osdViewer" [src]="simpleImageExample">-->
+
+
+<!--
+    <div>
+        <span *ngIf="images.length > 1" (click)="gotoLeft()">&lt;&lt;</span>
+        <span *ngIf="images.length > 1" (click)="gotoRight()">&gt;&gt;</span>
+    </div>
+-->
+
+
+

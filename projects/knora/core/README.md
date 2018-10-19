@@ -3,7 +3,7 @@
 
 This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
 
-The core module contains every service to use Knora's RESTful webapi.
+The core module contains every service to use Knora's RESTful webapi v2 and admin.
 
 ## Install
 We recommend to use the core module together with [@knora/authentication](https://www.npmjs.com/package/@knora/authentication). Other dependencies are [moment](https://www.npmjs.com/package/moment), [json2typescript](https://www.npmjs.com/package/json2typescript) and [jsonld](https://www.npmjs.com/package/jsonld)

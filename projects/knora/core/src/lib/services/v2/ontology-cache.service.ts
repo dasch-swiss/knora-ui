@@ -603,6 +603,9 @@ export class OntologyCacheService {
                             throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[KnoraConstants.OwlOnProperty]}`);
                         }
 
+                        // TODO: get gui order
+
+
                         // add cardinality
                         cardinalities.push(newCard);
 

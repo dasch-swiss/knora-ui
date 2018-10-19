@@ -112,8 +112,8 @@ export class AppDemo {
         label: 'Viewer module',
         children: [
             {
-                name: 'objects',
-                label: 'Objects'
+                name: 'resources',
+                label: 'Resources'
             },
             {
                 name: 'properties',
