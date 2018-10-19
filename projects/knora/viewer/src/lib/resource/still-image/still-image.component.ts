@@ -99,6 +99,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     @Input() imageRangeEnd: number; // index of last image of this.images to be displayed.
     @Input() imageChangeInterval: number; // the size of the interval when displaying more images of this.images
 
+    @Input() imageCaption?: string;
+
     @Output() getImages = new EventEmitter<RequestStillImageRepresentations>(); // sends a message to the parent component (object.component) to load the next or previous page of results (images) from the server
 
     // the paging limit should be defined in the configuration of the app
@@ -322,20 +324,19 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
      * Initializes the OpenSeadragon viewer
      */
     private setupViewer(): void {
-        const viewerContainer = this.elementRef.nativeElement.getElementsByClassName('osdViewerContainer')[0];
+        const viewerContainer = this.elementRef.nativeElement.getElementsByClassName('osd-container')[0];
         const osdOptions = {
             element: viewerContainer,
-            prefixUrl: 'assets/icons/openseadragon/',
             sequenceMode: false,
             showNavigator: true,
-            zoomInButton: 'ZOOM_IN',
-            zoomOutButton: 'ZOOM_OUT',
-            nextButton: 'NEXT_PAGE',
-            previousButton: 'PREV_PAGE',
-            homeButton: 'HOME',
-            fullPageButton: 'FULL_PAGE',
-            rotateLeftButton: 'ROTATE_LEFT',
-            rotateRightButton: 'ROTATE_RIGHT',
+            zoomInButton: 'KUI_OSD_ZOOM_IN',
+            zoomOutButton: 'KUI_OSD_ZOOM_OUT',
+            previousButton: 'KUI_OSD_PREV_PAGE',
+            nextButton: 'KUI_OSD_NEXT_PAGE',
+            homeButton: 'KUI_OSD_HOME',
+            fullPageButton: 'KUI_OSD_FULL_PAGE',
+            rotateLeftButton: 'KUI_OSD_ROTATE_LEFT',        // doesn't work yet
+            rotateRightButton: 'KUI_OSD_ROTATE_RIGHT'       // doesn't work yet
 
         };
         this.viewer = new OpenSeadragon.Viewer(osdOptions);

@@ -49,6 +49,11 @@ export class ResourceComponent implements OnChanges, OnInit {
             'iri': 'http://rdfh.ch/0801/--nO85prSoKPB9gKv1p2YA'
         }
     ];
+
+    year: number = new Date().getFullYear();
+    copyright: string = '&copy; ' + this.year + ' | Data and Service Center for the Humantites DaSCH';
+
+
     loading: boolean = true;
     errorMessage: any;
 

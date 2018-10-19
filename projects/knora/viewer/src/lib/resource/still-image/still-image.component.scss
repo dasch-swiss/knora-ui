@@ -1,19 +1,69 @@
-.osdViewerContainer {
-  width: 100%;
-  height: 400px;
+// sizes
+$max-width: 800px;
+$nav-width: 36px;
 
-  max-width: 800px;
+$osd-width: calc(100% - (2 * #{$nav-width}));
+$osd-max-width: calc(#{$max-width} - (2 * #{$nav-width}));
+
+$osd-height: 400px;
+$full-height: calc(#{$osd-height} + 64px + 24px);
+
+// colors
+$dark: #000;
+$bright: #ccc;
+
+.still-image-viewer {
+  display: inline-flex;
+  height: $osd-height;
+  max-width: $max-width;
+  width: 100%;
 
   @media (max-height: 636px) {
     height: 300px;
   }
 
-  background-color: black;
+  .navigation {
+    height: $full-height;
+    width: $nav-width;
 
-  &.fullscreen {
-    max-width: 100%;
+    .mat-button.full-size {
+      height: 100% !important;
+      width: $nav-width !important;
+
+      padding: 0 !important;
+      min-width: $nav-width !important;
+    }
+  }
+
+  .content {
+    height: $full-height;
+    max-width: $osd-max-width;
+    width: $osd-width;
+
+    .osd-container {
+      color: $bright;
+      background-color: $dark;
+      height: $osd-height;
+
+      &.fullscreen {
+        max-width: 100vw;
+      }
+    }
+
+    .footer p {
+      color: $bright;
+      background-color: $dark;
+      height: 24px;
+      margin: 0;
+      padding: 0 16px;
+    }
   }
 }
+
+
+/*
+ Overlay styling
+ */
 
 /deep/ .roi-svgoverlay {
   filter: alpha(opacity=40);
