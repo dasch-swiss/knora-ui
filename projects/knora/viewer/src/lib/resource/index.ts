@@ -1,4 +1,3 @@
-
 export * from './annotation/annotation.component';
 export * from './audio/audio.component';
 export * from './collection/collection.component';

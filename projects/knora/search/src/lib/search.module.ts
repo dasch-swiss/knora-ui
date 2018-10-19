@@ -12,15 +12,18 @@ import {
     MatSelectModule,
     MatTooltipModule
 } from '@angular/material';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KuiCoreModule } from '@knora/core';
 import { KuiActionModule } from '@knora/action';
 import { KuiViewerModule } from '@knora/viewer';
+
 import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalendardateadapter';
 
 import { SearchComponent } from './search.component';
-import { SelectOntologyComponent } from './extended-search/select-ontology/select-ontology.component';
 import { ExtendedSearchComponent } from './extended-search/extended-search.component';
+
+import { SelectOntologyComponent } from './extended-search/select-ontology/select-ontology.component';
 import { SelectResourceClassComponent } from './extended-search/select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './extended-search/select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './extended-search/select-property/specify-property-value/specify-property-value.component';
