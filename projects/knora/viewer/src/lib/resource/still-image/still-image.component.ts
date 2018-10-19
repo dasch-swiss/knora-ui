@@ -327,7 +327,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         const viewerContainer = this.elementRef.nativeElement.getElementsByClassName('osd-container')[0];
         const osdOptions = {
             element: viewerContainer,
-            sequenceMode: false,
+            sequenceMode: true,
+            showReferenceStrip: true,
             showNavigator: true,
             zoomInButton: 'KUI_OSD_ZOOM_IN',
             zoomOutButton: 'KUI_OSD_ZOOM_OUT',
