@@ -15,6 +15,9 @@ export class KnoraConstants {
     public static KnoraApiV2SimplePath: string = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
 
     public static SalsahGuiOntology = 'http://api.knora.org/ontology/salsah-gui/v2';
+
+    public static SalsahGuiOrder = KnoraConstants.SalsahGuiOntology + '#guiOrder';
+
     public static StandoffOntology = 'http://api.knora.org/ontology/standoff/v2';
 
     public static Resource: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Resource';

@@ -15,6 +15,7 @@ export class IntegerValueComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.valueObject);
     }
 
 }
