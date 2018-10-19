@@ -51,7 +51,6 @@ import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-su
 import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
-import { StillImageComponent } from './knora-ui-examples/viewer-demo/resources/still-image/still-image.component';
 // dev documentation
 import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
 
@@ -87,7 +86,6 @@ import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
         ExistingNameComponent,
         KeyComponent,
         ResourcesComponent,
-        StillImageComponent,
         DocIntroComponent
     ],
     entryComponents: [
