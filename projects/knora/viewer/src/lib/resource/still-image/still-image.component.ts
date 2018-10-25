@@ -390,7 +390,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
                 for (const geometryValue of region.getGeometries()) {
                     const geometry = geometryValue.geometry;
-                    // this.createSVGOverlay(geometry, aspectRatio, imageXOffset, region.regionResource.label);
+                    this.createSVGOverlay(geometry, aspectRatio, imageXOffset, region.regionResource.label);
                 }
             }
 
