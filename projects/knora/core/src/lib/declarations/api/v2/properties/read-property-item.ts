@@ -163,7 +163,7 @@ export class ReadDateValue implements ReadPropertyItem {
 
     readonly type = KnoraConstants.DateValue;
 
-    private separator = '-';
+    private separator = '/';
 
 
     getDate(): DateSalsah {
