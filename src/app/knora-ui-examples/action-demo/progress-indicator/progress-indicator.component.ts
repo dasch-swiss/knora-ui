@@ -91,7 +91,7 @@ export class ProgressIndicatorComponent implements OnInit {
         code: {
             html: `<mat-list>
                       <mat-list-item>
-                        <kui-progress-indicator mat-list-avatar [status]="status"></kui-progress-indicator>
+                        <kui-progress-indicator mat-list-avatar [status]="status" [color]="'#D47942'"></kui-progress-indicator>
                         <p mat-line>
                           <strong>
                             <span *ngIf="status == -1">before submit (not ready)</span>
