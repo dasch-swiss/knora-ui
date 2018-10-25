@@ -2,14 +2,14 @@
 <div class="submit-progress-indicator" *ngIf="status !== undefined; else isLoading">
     <!-- spinner while on load / on submit -->
     <div class="on-submit" *ngIf="status === 0">
-        <div class="spinner"></div>
+        <div class="spinner" [style.border-top-color]="color" [style.border-left-color]="color"></div>
     </div>
 
     <div>
         <!-- bullet point before submit -->
         <mat-icon *ngIf="status === -1" class="before-submit">keyboard_arrow_right</mat-icon>
         <!-- icon 'check' when done -->
-        <mat-icon *ngIf="status === 1" class="after-submit">done</mat-icon>
+        <mat-icon *ngIf="status === 1" class="after-submit" [style.color]="color">done</mat-icon>
         <!-- in case of an error -->
         <mat-icon *ngIf="status === 400" class="submit-error">not_interested</mat-icon>
     </div>
@@ -21,13 +21,13 @@
     <div class="default-progress-indicator">
         <div class="line">
             <div class="bounce1" [style.background-color]="color"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
+            <div class="bounce2" [style.background-color]="color"></div>
+            <div class="bounce3" [style.background-color]="color"></div>
         </div>
         <div class="line">
-            <div class="bounce3"></div>
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
+            <div class="bounce3" [style.background-color]="color"></div>
+            <div class="bounce1" [style.background-color]="color"></div>
+            <div class="bounce2" [style.background-color]="color"></div>
         </div>
     </div>
 </ng-template>
