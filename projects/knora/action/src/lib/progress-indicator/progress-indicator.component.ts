@@ -16,6 +16,7 @@ export class ProgressIndicatorComponent implements OnInit {
      * - error:       400
      */
     @Input() status?: number;
+    @Input() color?: string = '#ff0000';
 
     constructor() {
     }
