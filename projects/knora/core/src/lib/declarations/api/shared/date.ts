@@ -8,7 +8,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 export class DateFormatSalsah {
 
     @JsonProperty('date', Date)
-    public date: Date = undefined;
+    public date: Date = new Date();
 
     @JsonProperty('format', String)
     public format: string = undefined;
