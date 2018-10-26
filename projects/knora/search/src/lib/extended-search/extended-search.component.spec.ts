@@ -1,32 +1,38 @@
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
-import { MockBackend } from '@angular/http/testing';
-import { BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatSelectModule } from '@angular/material';
+import {
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSelectModule
+} from '@angular/material';
 
 import { ExtendedSearchComponent } from './extended-search.component';
 import { SelectOntologyComponent } from './select-ontology/select-ontology.component';
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
-import {
-    ApiService,
-    GravsearchGenerationService,
-    KuiCoreConfig,
-    OntologyCacheService,
-    OntologyInformation,
-    OntologyMetadata,
-    OntologyService,
-    Properties,
-    PropertyWithValue,
-    ReadResourcesSequence,
-    ResourceClass
-} from '@knora/core';
+import { GravsearchGenerationService, KuiCoreConfig, OntologyCacheService, OntologyService } from '@knora/core';
+import { BooleanValueComponent } from './select-property/specify-property-value/boolean-value/boolean-value.component';
+import { DateValueComponent } from './select-property/specify-property-value/date-value/date-value.component';
+import { DecimalValueComponent } from './select-property/specify-property-value/decimal-value/decimal-value.component';
+import { IntegerValueComponent } from './select-property/specify-property-value/integer-value/integer-value.component';
+import { LinkValueComponent } from './select-property/specify-property-value/link-value/link-value.component';
+import { TextValueComponent } from './select-property/specify-property-value/text-value/text-value.component';
+import { UriValueComponent } from './select-property/specify-property-value/uri-value/uri-value.component';
+import { JdnDatepickerDirective } from '../../../../action/src/lib/directives/jdn-datepicker.directive';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { OntologyMetadata } from '@knora/core';
+import { of } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('ExtendedSearchComponent', () => {
+fdescribe('ExtendedSearchComponent', () => {
+
     let componentInstance: ExtendedSearchComponent;
     let fixture: ComponentFixture<ExtendedSearchComponent>;
 
@@ -37,9 +43,18 @@ describe('ExtendedSearchComponent', () => {
                 SelectOntologyComponent,
                 SelectResourceClassComponent,
                 SelectPropertyComponent,
-                SpecifyPropertyValueComponent
+                SpecifyPropertyValueComponent,
+                BooleanValueComponent,
+                DateValueComponent,
+                DecimalValueComponent,
+                IntegerValueComponent,
+                LinkValueComponent,
+                TextValueComponent,
+                UriValueComponent,
+                JdnDatepickerDirective
             ],
             imports: [
+                HttpClientTestingModule,
                 ReactiveFormsModule,
                 FormsModule,
                 HttpClientModule,
@@ -47,7 +62,10 @@ describe('ExtendedSearchComponent', () => {
                 MatIconModule,
                 MatFormFieldModule,
                 MatSelectModule,
-                RouterTestingModule.withRoutes([]),
+                MatDatepickerModule,
+                MatAutocompleteModule,
+                BrowserAnimationsModule,
+                RouterTestingModule.withRoutes([])
             ],
             providers: [
                 {
@@ -61,44 +79,45 @@ describe('ExtendedSearchComponent', () => {
                 GravsearchGenerationService,
                 OntologyCacheService,
                 OntologyService,
-                HttpClient
+                HttpClient,
+                ExtendedSearchComponent
             ]
         })
             .compileComponents();
+
     }));
 
-    beforeEach(async(inject([ExtendedSearchComponent, MockBackend], (component: ExtendedSearchComponent, mockBackend) => {
+    beforeEach( inject([OntologyCacheService], (ontoCacheService) => {
 
-        // define different mock responses for different API calls
-        const responses = {};
-        responses['http://0.0.0.0:3333/v2/ontologies/metadata'] = new Response(new ResponseOptions({ body: require('../../../../core/src/lib/test-data/ontologycache/ontology-metadata.json') }));
-        responses['http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2F0.0.0.0%3A3333%2Fontology%2F0801%2Fbeol%2Fv2'] = new Response(new ResponseOptions({ body: require('../../../../core/src/lib/test-data/ontologycache/beol-complex-onto.json') }));
-        responses['http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2Fapi.knora.org%2Fontology%2Fknora-api%2Fv2'] = new Response(new ResponseOptions({ body: require('../../../../core/src/lib/test-data/ontologycache/beol-complex-onto.json') }));
+        spyOn(ontoCacheService, 'getOntologiesMetadata').and.callFake(() => {
 
-        mockBackend.connections.subscribe(c => {
-            const response = responses[c.request.url];
-            c.mockRespond(response);
+            const ontoMeta = [
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/something/v2', 'The something ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/00FF/images/v2', 'The images demo ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/beol/v2', 'The BEOL ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0802/biblio/v2', 'The Biblio ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
+                new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
+            ];
+
+            return of(ontoMeta);
+
         });
 
         fixture = TestBed.createComponent(ExtendedSearchComponent);
         componentInstance = fixture.componentInstance;
         fixture.detectChanges();
 
-    })));
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(ExtendedSearchComponent);
-        componentInstance = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+    }));
 
     it('should create', () => {
         expect(componentInstance).toBeTruthy();
-        console.log('feature', fixture);
-        console.log('componentInstance', componentInstance);
     });
 
-    /* it('should correctly initialized the ontologies\' metadata', () => {
+    it('should correctly initialized the ontologies\' metadata', () => {
 
         const expectedOntoMetata =
             [
@@ -116,8 +135,7 @@ describe('ExtendedSearchComponent', () => {
 
         expect(componentInstance.ontologies).toEqual(expectedOntoMetata);
 
-
-    }); */
+    });
 
     /*it('should get the classes and properties for a specific ontology', async(inject([ExtendedSearchComponent, MockBackend], (component: ExtendedSearchComponent, mockBackend) => {
 
