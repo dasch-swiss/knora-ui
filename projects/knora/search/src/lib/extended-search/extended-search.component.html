@@ -18,7 +18,7 @@
 
 
   <div>
-    <button mat-mini-fab class="property-buttons add-property-button" color="primary" type="button" (click)="addProperty()" [disabled]="activeProperties.length >= 4">
+    <button mat-mini-fab class="property-buttons add-property-button" color="primary" type="button" (click)="addProperty()" [disabled]="activeOntology === undefined || activeProperties.length >= 4">
       <mat-icon aria-label="add a property">add</mat-icon>
     </button>
 
