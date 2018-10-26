@@ -41,6 +41,8 @@ import {
     CardinalityOccurrence, Property,
     ResourceClasses
 } from '../../../../core/src/lib/services/v2/ontology-cache.service';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 fdescribe('ExtendedSearchComponent', () => {
 
@@ -128,6 +130,17 @@ fdescribe('ExtendedSearchComponent', () => {
         expect(componentInstance).toBeTruthy();
     });
 
+    it('should check that add properties is disabled after init', () => {
+
+        const ele: DebugElement = fixture.debugElement;
+        const addPropDE = ele.query(By.css('.add-property-button'));
+
+        const addPro = addPropDE.nativeElement;
+
+        expect(addPro.disabled).toBeTruthy();
+
+    });
+
     it('should correctly initialized the ontologies\' metadata', async(() => {
 
         const expectedOntoMetata =
@@ -178,7 +191,8 @@ fdescribe('ExtendedSearchComponent', () => {
         'http://0.0.0.0:3333/ontology/0001/anything/v2': [
             'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing'//,
         //'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing',
-        //'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingPicture']
+        //'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingPicture'
+        ]
     };
 
     const resClasses: ResourceClasses = {
