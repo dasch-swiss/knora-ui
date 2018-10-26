@@ -27,9 +27,20 @@ import { TextValueComponent } from './select-property/specify-property-value/tex
 import { UriValueComponent } from './select-property/specify-property-value/uri-value/uri-value.component';
 import { JdnDatepickerDirective } from '../../../../action/src/lib/directives/jdn-datepicker.directive';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { OntologyMetadata } from '@knora/core';
+
 import { of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+    OntologyInformation,
+    OntologyMetadata,
+    ResourceClass,
+    ResourceClassIrisForOntology
+} from '../../../../core/src/lib/services';
+import {
+    Cardinality,
+    CardinalityOccurrence, Property,
+    ResourceClasses
+} from '../../../../core/src/lib/services/v2/ontology-cache.service';
 
 fdescribe('ExtendedSearchComponent', () => {
 
@@ -74,7 +85,7 @@ fdescribe('ExtendedSearchComponent', () => {
                         params: null
                     }
                 },
-                { provide: 'config', useValue: KuiCoreConfig },
+                {provide: 'config', useValue: KuiCoreConfig},
                 FormBuilder,
                 GravsearchGenerationService,
                 OntologyCacheService,
@@ -87,7 +98,7 @@ fdescribe('ExtendedSearchComponent', () => {
 
     }));
 
-    beforeEach( inject([OntologyCacheService], (ontoCacheService) => {
+    beforeEach(inject([OntologyCacheService], (ontoCacheService) => {
 
         spyOn(ontoCacheService, 'getOntologiesMetadata').and.callFake(() => {
 
@@ -117,7 +128,7 @@ fdescribe('ExtendedSearchComponent', () => {
         expect(componentInstance).toBeTruthy();
     });
 
-    it('should correctly initialized the ontologies\' metadata', () => {
+    it('should correctly initialized the ontologies\' metadata', async(() => {
 
         const expectedOntoMetata =
             [
@@ -135,13 +146,186 @@ fdescribe('ExtendedSearchComponent', () => {
 
         expect(componentInstance.ontologies).toEqual(expectedOntoMetata);
 
-    });
+    }));
 
-    /*it('should get the classes and properties for a specific ontology', async(inject([ExtendedSearchComponent, MockBackend], (component: ExtendedSearchComponent, mockBackend) => {
+    it('should get the classes and properties for a specific ontology', async(inject([OntologyCacheService], (ontoCacheService) => {
 
-          // TODO: this involves an asynchronous function: find a way to check for the results
+        spyOn(ontoCacheService, 'getEntityDefinitionsForOntologies').and.callFake((ontoIri: string) => {
 
-          const resClassesAndProps = componentInstance.getResourceClassesAndPropertiesForOntology('http://0.0.0.0:3333/ontology/0801/beol/v2')
+            return of(ontoInfo);
 
-      })));*/
+        });
+
+        componentInstance.getResourceClassesAndPropertiesForOntology('http://0.0.0.0:3333/ontology/0801/anything/v2');
+
+        expect(componentInstance.activeResourceClass).toBeUndefined();
+
+        expect(componentInstance.activeProperties).toEqual([]);
+
+        expect(componentInstance.activeOntology).toEqual('http://0.0.0.0:3333/ontology/0801/anything/v2');
+
+        expect(componentInstance.resourceClasses).toEqual(ontoInfo.getResourceClassesAsArray());
+
+        expect(componentInstance.properties).toEqual(ontoInfo.getProperties());
+
+
+
+    })));
+
+    // TODO: put in a better place
+
+    const resClassesForOnto: ResourceClassIrisForOntology = {
+        'http://0.0.0.0:3333/ontology/0001/anything/v2': [
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing'//,
+        //'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing',
+        //'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingPicture']
+    };
+
+    const resClasses: ResourceClasses = {
+        'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing':
+            new ResourceClass(
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing',
+                'blueting.png',
+                'A blue thing.',
+                'blue thing',
+                [
+                    new Cardinality(
+                        CardinalityOccurrence.minCard,
+                        0,
+                        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+                    ),
+                    new Cardinality(
+                        CardinalityOccurrence.card,
+                        1,
+                        'http://api.knora.org/ontology/knora-api/v2#attachedToProject'
+                    ),
+                    new Cardinality(
+                        CardinalityOccurrence.card,
+                        1,
+                        'http://api.knora.org/ontology/knora-api/v2#attachedToUser'
+                    ),
+                    new Cardinality(
+                        CardinalityOccurrence.card,
+                        1,
+                        'http://api.knora.org/ontology/knora-api/v2#creationDate'
+                    ),
+                    new Cardinality(
+                        CardinalityOccurrence.card,
+                        1,
+                        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                    ),
+                    new Cardinality(
+                        CardinalityOccurrence.card,
+                        1,
+                        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                    ),
+                    new Cardinality(
+                        CardinalityOccurrence.card,
+                        1,
+                        'http://api.knora.org/ontology/knora-api/v2#hasPermissions'
+                    ),
+                    new Cardinality(
+                        CardinalityOccurrence.card,
+                        1,
+                        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo'
+                    ),
+                    new Cardinality(
+                        CardinalityOccurrence.card,
+                        1,
+                        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
+                    ),
+                    new Cardinality(
+                        CardinalityOccurrence.card,
+                        1,
+                        'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
+                    )
+                ]
+            )
+    };
+
+    const properties = {
+        'http://api.knora.org/ontology/knora-api/v2#attachedToProject': new Property(
+            'http://api.knora.org/ontology/knora-api/v2#attachedToProject',
+            'http://api.knora.org/ontology/knora-api/v2#knoraProject',
+            'Connects something to a project',
+            'attached to project',
+            [],
+            false,
+            false,
+            false),
+        'http://api.knora.org/ontology/knora-api/v2#attachedToUser': new Property(
+            'http://api.knora.org/ontology/knora-api/v2#attachedToUser',
+            'http://api.knora.org/ontology/knora-api/v2#User',
+            'Connects something to a user',
+            'attached to user',
+            [],
+            false,
+            false,
+            false),
+        'http://api.knora.org/ontology/knora-api/v2#creationDate': new Property(
+            'http://api.knora.org/ontology/knora-api/v2#creationDate',
+            'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
+            'Indicates when a resource was created',
+            undefined,
+            [],
+            false,
+            false,
+            false),
+        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink': new Property(
+            'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink',
+            'http://api.knora.org/ontology/knora-api/v2#LinkValue',
+            'Indicates that this resource referred to by another resource',
+            'has incoming links',
+            ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
+            false,
+            false,
+            true),
+        'http://api.knora.org/ontology/knora-api/v2#hasPermissions': new Property(
+            'http://api.knora.org/ontology/knora-api/v2#hasPermissions',
+            'http://www.w3.org/2001/XMLSchema#string',
+            undefined,
+            undefined,
+            [],
+            false,
+            false,
+            false),
+        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo': new Property(
+            'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo',
+            'http://api.knora.org/ontology/knora-api/v2#Resource',
+            'Represents a link in standoff markup from one resource to another.',
+            'has Standoff Link to',
+            ['http://api.knora.org/ontology/knora-api/v2#hasLinkTo'],
+            false,
+            true,
+            false),
+        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue': new Property(
+            'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue',
+            'http://api.knora.org/ontology/knora-api/v2#LinkValue',
+            'Represents a link in standoff markup from one resource to another.',
+            'has Standoff Link to',
+            ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
+            false,
+            false,
+            true),
+        'http://api.knora.org/ontology/knora-api/v2#lastModificationDate': new Property(
+            'http://api.knora.org/ontology/knora-api/v2#lastModificationDate',
+            'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
+            undefined,
+            undefined,
+            [],
+            false,
+            false,
+            false),
+        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText': new Property(
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText',
+            'http://api.knora.org/ontology/knora-api/v2#TextValue',
+            undefined,
+            'Text',
+            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+            true,
+            false,
+            false)
+    };
+
+    const ontoInfo = new OntologyInformation(resClassesForOnto, resClasses, properties);
 });

@@ -111,7 +111,7 @@ export class ExtendedSearchComponent implements OnInit {
      *
      * @param ontologyIri Iri of the ontology chosen by the user.
      */
-    getResourceClassesAndPropertiesForOntology(ontologyIri: string) {
+    getResourceClassesAndPropertiesForOntology(ontologyIri: string): void {
 
         // reset active resource class definition
         this.activeResourceClass = undefined;
