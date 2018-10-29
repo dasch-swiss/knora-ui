@@ -196,9 +196,7 @@ fdescribe('ExtendedSearchComponent', () => {
 
         const resClassesForOnto: ResourceClassIrisForOntology = {
             'http://0.0.0.0:3333/ontology/0001/anything/v2': [
-                'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing'//,
-                //'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing',
-                //'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingPicture'
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing'
             ]
         };
 
@@ -400,6 +398,33 @@ fdescribe('ExtendedSearchComponent', () => {
             fixture.detectChanges();
 
             expect(componentInstance.activeProperties.length).toEqual(1);
+
+        });
+
+        it('should remove a property', () => {
+
+            const ele: DebugElement = fixture.debugElement;
+            const addPropDe = ele.query(By.css('.add-property-button'));
+
+            const addProp: HTMLElement = addPropDe.nativeElement;
+
+            addProp.click();
+
+            fixture.detectChanges();
+
+            expect(componentInstance.activeProperties.length).toEqual(1);
+
+            const rmPropDe = ele.query(By.css('.remove-property-button'));
+
+            const rmProp = rmPropDe.nativeElement;
+
+            expect(rmProp.disabled).toBeFalsy();
+
+            rmProp.click();
+
+            fixture.detectChanges();
+
+            expect(componentInstance.activeProperties.length).toEqual(0);
 
         });
 
