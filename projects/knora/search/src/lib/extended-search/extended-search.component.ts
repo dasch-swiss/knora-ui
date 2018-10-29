@@ -109,7 +109,7 @@ export class ExtendedSearchComponent implements OnInit {
      * Once an ontology has been selected, gets its classes and properties.
      * The classes and properties will be made available to the user for selection.
      *
-     * @param ontologyIri Iri of the ontology chosen by the user.
+     * @param {string} ontologyIri Iri of the ontology chosen by the user.
      */
     getResourceClassesAndPropertiesForOntology(ontologyIri: string) {
 
@@ -136,7 +136,7 @@ export class ExtendedSearchComponent implements OnInit {
      * Once a resource class has been selected, gets its properties.
      * The properties will be made available to the user for selection.
      *
-     * @param resourceClassIri
+     * @param {string} resourceClassIri
      */
     getPropertiesForResourceClass(resourceClassIri: string) {
 
