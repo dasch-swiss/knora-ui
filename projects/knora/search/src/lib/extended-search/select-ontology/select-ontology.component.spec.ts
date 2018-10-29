@@ -111,7 +111,33 @@ fdescribe('SelectOntologyComponent', () => {
         // make sure that there are nine mat-option (one for each ontology)
         expect(options.length).toEqual(9);
     });
-    
+
+    it('should select the first ontology and emit its Iri', () => {
+
+        // access the test host component's child
+        expect(testHostComponent.selectOntosComp).toBeTruthy();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const selOntos = hostCompDe.query(By.directive(SelectOntologyComponent));
+
+        const matSelect = selOntos.query(By.css('mat-select'));
+
+        matSelect.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        const options: DebugElement[] = matSelect.queryAll(By.css('mat-option'));
+
+        (options[0].nativeElement as HTMLElement).click();
+
+        testHostFixture.detectChanges();
+
+        // make sure that the selected ontology's Iri was correctly emitted to the parent component
+        expect(testHostComponent.selectedOnto).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2');
+
+    });
+
 });
 
 /**
@@ -120,13 +146,16 @@ fdescribe('SelectOntologyComponent', () => {
 @Component({
     selector: `host-component`,
     template: `
-        <kui-select-ontology #ontosComp [formGroup]="form" [ontologies]="ontos"></kui-select-ontology>`
+        <kui-select-ontology #ontosComp [formGroup]="form" [ontologies]="ontos"
+                             (ontologySelected)="ontoSelected($event)"></kui-select-ontology>`
 })
 class TestHostComponent implements OnInit {
 
     form;
 
     ontos: Array<OntologyMetadata> = [];
+
+    selectedOnto: string;
 
     @ViewChild('ontosComp') selectOntosComp: SelectOntologyComponent;
 
@@ -143,6 +172,10 @@ class TestHostComponent implements OnInit {
     ];
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ontoSelected(ontoIri) {
+        this.selectedOnto = ontoIri;
     }
 
     ngOnInit() {
