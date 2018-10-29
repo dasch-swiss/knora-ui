@@ -163,7 +163,7 @@ export class ReadDateValue implements ReadPropertyItem {
 
     readonly type = KnoraConstants.DateValue;
 
-    private separator = '-';
+    private separator = '/';
 
 
     getDate(): DateSalsah {
@@ -181,7 +181,7 @@ export class ReadDateValue implements ReadPropertyItem {
             startPrecision = 'yyyy';
         } else if (this.startDay === undefined) {
             // month precision
-            startDate = this.startYear + this.separator + this.startMonth;
+            startDate = this.startYear + this.separator + this.startMonth + this.separator + 1;
             startPrecision = 'MMMM ' + 'yyyy';
         } else {
             // day precision
@@ -200,7 +200,7 @@ export class ReadDateValue implements ReadPropertyItem {
             endPrecision = 'yyyy';
         } else if (this.endDay === undefined) {
             // month precision
-            endDate = this.endYear + this.separator + this.endMonth;
+            endDate = this.endYear + this.separator + this.endMonth + this.separator + 1;
             endPrecision = 'MMMM ' + 'yyyy';
         } else {
             // day precision
