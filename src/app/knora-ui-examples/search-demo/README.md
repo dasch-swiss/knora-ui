@@ -5,6 +5,164 @@ Please follow the README of [Knora-ui search module](https://www.npmjs.com/packa
 
 Then you can use the following methods from `SearchService`:
 
+### Search ([more details](https://www.npmjs.com/package/@knora/search#search))
+
+#### onKey(search_ele, event) 
+
+Do search on Enter click, reset search on Escape
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| search_ele |  |  | &nbsp; |
+| event |  |  | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  void
+
+
+
+#### doSearch(search_ele) 
+
+Realise a simple search
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| search_ele |  |  | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  void
+
+
+
+#### resetSearch(search_ele) 
+
+Reset the search
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| search_ele |  |  | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  void
+
+
+
+#### doPrevSearch(query) 
+
+Realise a previous search
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| query |  |  | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  void
+
+
+
+#### resetPrevSearch(name) 
+
+Reset previous searches - the whole previous search or specific item by name
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| name |  |  | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  void
+
+
+
+#### setFocus() 
+
+Set simple focus to active
+
+
+
+
+
+
+##### Returns
+
+
+-  void
+
+
+
+#### toggleMenu(name) 
+
+Switch according to the focus between simple or extended search
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| name |  |  | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  void
+
+
+
+
 
 ### Extended-search ([more details](https://www.npmjs.com/package/@knora/search#extended-search))
 
@@ -21,7 +179,7 @@ Add a property to the search form.
 ##### Returns
 
 
-- `Void`
+-  void
 
 
 
@@ -37,7 +195,7 @@ Remove the last property from the search form.
 ##### Returns
 
 
-- `Void`
+-  void
 
 
 
@@ -53,7 +211,7 @@ Gets all available ontologies for the search form.
 ##### Returns
 
 
-- `Void`
+-  void
 
 
 
@@ -69,7 +227,7 @@ The classes and properties will be made available to the user for selection.
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| ontologyIri | `string`  | Iri of the ontology chosen by the user. | &nbsp; |
+| ontologyIri |  | Iri of the ontology chosen by the user. | &nbsp; |
 
 
 
@@ -77,7 +235,7 @@ The classes and properties will be made available to the user for selection.
 ##### Returns
 
 
-- `Void`
+-  void
 
 
 
@@ -93,7 +251,7 @@ The properties will be made available to the user for selection.
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| resourceClassIri | `string`  |  | &nbsp; |
+| resourceClassIri |  |  | &nbsp; |
 
 
 
@@ -101,7 +259,7 @@ The properties will be made available to the user for selection.
 ##### Returns
 
 
-- `Void`
+-  void
 
 
 
@@ -134,6 +292,4 @@ Creates a GravSearch query with the given form values and calls the extended sea
 
 
 - `Void`
-
-
 

@@ -83,22 +83,25 @@ export class ExtendedSearchComponent implements OnInit {
 
     /**
      * Add a property to the search form.
+     * @returns void
      */
-    addProperty() {
+    addProperty(): void {
         this.activeProperties.push(true);
     }
 
     /**
      * Remove the last property from the search form.
+     * @returns void
      */
-    removeProperty() {
+    removeProperty(): void {
         this.activeProperties.splice(-1, 1);
     }
 
     /**
      * Gets all available ontologies for the search form.
+     * @returns void
      */
-    initializeOntologies() {
+    initializeOntologies(): void {
         this._cacheService.getOntologiesMetadata().subscribe(
             (ontologies: Array<OntologyMetadata>) => {
                 this.ontologies = ontologies;
@@ -109,9 +112,10 @@ export class ExtendedSearchComponent implements OnInit {
      * Once an ontology has been selected, gets its classes and properties.
      * The classes and properties will be made available to the user for selection.
      *
-     * @param {string} ontologyIri Iri of the ontology chosen by the user.
+     * @param ontologyIri Iri of the ontology chosen by the user.
+     * @returns void
      */
-    getResourceClassesAndPropertiesForOntology(ontologyIri: string) {
+    getResourceClassesAndPropertiesForOntology(ontologyIri: string): void {
 
         // reset active resource class definition
         this.activeResourceClass = undefined;
@@ -136,9 +140,10 @@ export class ExtendedSearchComponent implements OnInit {
      * Once a resource class has been selected, gets its properties.
      * The properties will be made available to the user for selection.
      *
-     * @param {string} resourceClassIri
+     * @param resourceClassIri
+     * @returns void
      */
-    getPropertiesForResourceClass(resourceClassIri: string) {
+    getPropertiesForResourceClass(resourceClassIri: string): void {
 
         // reset specified properties
         this.activeProperties = [];
