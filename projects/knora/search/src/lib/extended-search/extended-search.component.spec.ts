@@ -388,5 +388,20 @@ fdescribe('ExtendedSearchComponent', () => {
 
         });
 
+        it('should add a property', () => {
+
+            const ele: DebugElement = fixture.debugElement;
+            const addPropDe = ele.query(By.css('.add-property-button'));
+
+            const addProp: HTMLElement = addPropDe.nativeElement;
+
+            addProp.click();
+
+            fixture.detectChanges();
+
+            expect(componentInstance.activeProperties.length).toEqual(1);
+
+        });
+
     });
 });
