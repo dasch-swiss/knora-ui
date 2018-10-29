@@ -22,7 +22,7 @@
       <mat-icon aria-label="add a property">add</mat-icon>
     </button>
 
-    <button mat-mini-fab class="property-buttons" color="primary" type="button" (click)="removeProperty()" [disabled]="activeProperties.length == 0">
+    <button mat-mini-fab class="property-buttons remove-property-button" color="primary" type="button" (click)="removeProperty()" [disabled]="activeProperties.length == 0">
       <mat-icon aria-label="remove property">remove</mat-icon>
     </button>
   </div>
@@ -40,7 +40,7 @@
   <button class="extended-buttons extended-search-button" mat-stroked-button color="primary" type="submit" [disabled]="!formValid">
     Search
   </button>
-  <button class="extended-buttons" mat-stroked-button type="button" (click)="resetForm()" [disabled]="this.activeOntology === undefined">
+  <button class="extended-buttons reset" mat-stroked-button type="button" (click)="resetForm()" [disabled]="this.activeOntology === undefined">
     Reset
   </button>
 
