@@ -50,7 +50,8 @@ fdescribe('SelectOntologyComponent', () => {
                     },
                 },
                 {provide: 'config', useValue: KuiCoreConfig},
-                FormBuilder]
+                FormBuilder
+            ]
         })
             .compileComponents();
     }));
