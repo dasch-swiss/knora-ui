@@ -1,24 +1,38 @@
-<div *ngIf="projectLists && !listsService.loading">
-    <h4>List of all lists from project ({{projectIri}})</h4>
+<h3>Demo</h3>
+<h2>ListsService</h2>
 
-    <div *ngFor="let item of projectLists">
-        <p><strong>{{item.labels[0].value}}</strong></p>
-        <p *ngIf="item.comments.length > 0">{{item.comments[0].value}}</p>
-        <mat-divider></mat-divider>
+<mat-card class="example-viewer">
+    <div *ngIf="projectLists && !listsService.loading">
+        <h4>List of all lists from project ({{projectIri}})</h4>
+
+        <div *ngFor="let item of projectLists">
+            <p>
+                <strong>{{item.labels[0].value}}</strong>
+            </p>
+            <p *ngIf="item.comments.length > 0">{{item.comments[0].value}}</p>
+            <mat-divider></mat-divider>
+        </div>
+
+        <!-- here should be a tree with the content of the lists result -->
+        <!-- I'm testing it in material/tree -->
+        <!--
+        <ul>
+            <li class="link" *ngFor="let l of projectLists"> <!--(click)="getGroupByIri(g.id)">--
+                <strong>{{l.listinfo.labels}}</strong>
+                <ul>
+                    <li *ngFor="let child of l.children">
+                        {{child.label}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        -->
     </div>
+</mat-card>
 
-    <!-- here should be a tree with the content of the lists result -->
-    <!-- I'm testing it in material/tree -->
-    <!--
-    <ul>
-        <li class="link" *ngFor="let l of projectLists"> <!--(click)="getGroupByIri(g.id)">--
-            <strong>{{l.listinfo.labels}}</strong>
-            <ul>
-                <li *ngFor="let child of l.children">
-                    {{child.label}}
-                </li>
-            </ul>
-        </li>
-    </ul>
-    -->
-</div>
+
+<mat-divider></mat-divider>
+
+<h3>Documentation</h3>
+
+<markdown [src]="'app/knora-ui-examples/core-demo/lists/README.md'"></markdown>

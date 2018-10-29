@@ -31,9 +31,10 @@ export class ListsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * returns a list of all lists
      *
      * @param {string} projectIri (optional)
-     * @returns {Observable<ListNodeInfo[]>}
+     * @returns Observable of ListNodeInfo[]
      */
     getLists(projectIri?: string): Observable<ListNodeInfo[]> {
         if (projectIri) {
@@ -46,9 +47,10 @@ export class ListsService extends ApiService {
     }
 
     /**
+     * return a list object
      *
      * @param {string} listIri
-     * @returns {Observable<List>}
+     * @returns Observable of List
      */
     getList(listIri: string): Observable<List> {
         return this.httpGet(this.path + '/' + encodeURIComponent(listIri)).pipe(
@@ -58,9 +60,10 @@ export class ListsService extends ApiService {
     }
 
     /**
+     * return a list info object
      *
      * @param {string} listIri
-     * @returns {Observable<ListInfo>}
+     * @returns Observable of ListInfo
      */
     getListInfo(listIri: string): Observable<ListInfo> {
         this.path += '/infos/' + encodeURIComponent(listIri);
@@ -71,9 +74,10 @@ export class ListsService extends ApiService {
     }
 
     /**
+     * return a list node info object
      *
      * @param {string} nodeIri
-     * @returns {Observable<ListNodeInfo>}
+     * @returns Observable of ListNodeInfo
      */
     getListNodeInfo(nodeIri: string): Observable<ListNodeInfo> {
         this.path += '/nodes/' + encodeURIComponent(nodeIri);
@@ -89,9 +93,10 @@ export class ListsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * create new list
      *
      * @param {ListCreatePayload} payload
-     * @returns {Observable<List>}
+     * @returns Observable of List
      */
     createList(payload: ListCreatePayload): Observable<List> {
         return this.httpPost(this.path, payload).pipe(
@@ -106,9 +111,10 @@ export class ListsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * edit list data
      *
      * @param {ListInfoUpdatePayload} payload
-     * @returns {Observable<ListInfo>}
+     * @returns Observable of ListInfo
      */
     updateListInfo(payload: ListInfoUpdatePayload): Observable<ListInfo> {
         this.path += '/infos/' + encodeURIComponent(payload.listIri);
