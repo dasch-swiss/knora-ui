@@ -17,7 +17,7 @@ import { SelectOntologyComponent } from './select-ontology/select-ontology.compo
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
-import { GravsearchGenerationService, KuiCoreConfig, OntologyCacheService, OntologyService } from '@knora/core';
+
 import { BooleanValueComponent } from './select-property/specify-property-value/boolean-value/boolean-value.component';
 import { DateValueComponent } from './select-property/specify-property-value/date-value/date-value.component';
 import { DecimalValueComponent } from './select-property/specify-property-value/decimal-value/decimal-value.component';
@@ -26,23 +26,24 @@ import { LinkValueComponent } from './select-property/specify-property-value/lin
 import { TextValueComponent } from './select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './select-property/specify-property-value/uri-value/uri-value.component';
 import { JdnDatepickerDirective } from '../../../../action/src/lib/directives/jdn-datepicker.directive';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+    Cardinality,
+    CardinalityOccurrence,
+    OntologyCacheService,
     OntologyInformation,
     OntologyMetadata,
+    Property,
     ResourceClass,
+    ResourceClasses,
     ResourceClassIrisForOntology
-} from '../../../../core/src/lib/services';
-import {
-    Cardinality,
-    CardinalityOccurrence, Property,
-    ResourceClasses
-} from '../../../../core/src/lib/services/v2/ontology-cache.service';
+} from '@knora/core';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { KuiCoreConfig } from '../../../../core/src/lib/declarations';
 
 fdescribe('ExtendedSearchComponent', () => {
 
@@ -89,9 +90,7 @@ fdescribe('ExtendedSearchComponent', () => {
                 },
                 {provide: 'config', useValue: KuiCoreConfig},
                 FormBuilder,
-                GravsearchGenerationService,
                 OntologyCacheService,
-                OntologyService,
                 HttpClient,
                 ExtendedSearchComponent
             ]
@@ -103,6 +102,8 @@ fdescribe('ExtendedSearchComponent', () => {
     beforeEach(inject([OntologyCacheService], (ontoCacheService) => {
 
         spyOn(ontoCacheService, 'getOntologiesMetadata').and.callFake(() => {
+
+            console.log('init spy')
 
             const ontoMeta = [
                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),
