@@ -350,7 +350,9 @@ fdescribe('ExtendedSearchComponent', () => {
 
         const ontoInfo = new OntologyInformation(resClassesForOnto, resClasses, properties);
 
-        it('should get the classes and properties for a specific ontology', inject([OntologyCacheService], (ontoCacheService) => {
+        beforeEach(inject([OntologyCacheService], (ontoCacheService) => {
+
+            // choose the anything ontology
 
             spyOn(ontoCacheService, 'getEntityDefinitionsForOntologies').and.callFake((ontoIri: string) => {
 
@@ -370,8 +372,21 @@ fdescribe('ExtendedSearchComponent', () => {
 
             expect(componentInstance.properties).toEqual(ontoInfo.getProperties());
 
+            fixture.detectChanges();
+
         }));
 
+        it('should be able to add a property', () => {
+
+            const ele: DebugElement = fixture.debugElement;
+            const addPropDe = ele.query(By.css('.add-property-button'));
+
+            const addProp = addPropDe.nativeElement;
+
+            expect(addProp.disabled).toBeFalsy();
+
+
+        });
 
     });
 });
