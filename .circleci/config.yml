@@ -45,6 +45,8 @@ jobs:
       # Run unit tests!
       # - run: xvfb-run -a yarn ci:test
       - run: yarn ng t --project @knora/core --watch=false --browsers=ChromeHeadless
+      - run: yarn ng build @knora/core && ng build @knora/action
+      - run: yarn ng t --project @knora/search --watch=false --browsers=ChromeHeadless
 
       # Run e2e tests!
       # - run: xvfb-run -a yarn ci:e2e
