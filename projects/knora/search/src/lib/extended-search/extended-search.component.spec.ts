@@ -45,7 +45,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { KuiCoreConfig } from '../../../../core/src/lib/declarations';
 
-fdescribe('ExtendedSearchComponent', () => {
+describe('ExtendedSearchComponent', () => {
 
     let componentInstance: ExtendedSearchComponent;
     let fixture: ComponentFixture<ExtendedSearchComponent>;
