@@ -14,9 +14,10 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { KuiCoreConfig } from '../../../../../core/src/lib/declarations';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
 import { OntologyMetadata } from '../../../../../core/src/lib/services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { By } from '@angular/platform-browser';
 
 fdescribe('SelectOntologyComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -68,7 +69,7 @@ fdescribe('SelectOntologyComponent', () => {
         expect(testHostComponent.selectOntosComp).toBeTruthy();
     });
 
-    it('should make sure that th ontologies have been initialized correctly', () => {
+    it('should initialize the ontologies', () => {
         // access the test host component's child
         expect(testHostComponent.selectOntosComp).toBeTruthy();
 
@@ -90,10 +91,27 @@ fdescribe('SelectOntologyComponent', () => {
 
     });
 
+    it('should create the selection for the ontologies', () => {
+
+        // access the test host component's child
+        expect(testHostComponent.selectOntosComp).toBeTruthy();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const selOntos = hostCompDe.query(By.directive(SelectOntologyComponent));
+
+        const matSelect = selOntos.query(By.css('mat-select'));
+
+        matSelect.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        const options: DebugElement[] = matSelect.queryAll(By.css('mat-option'));
+
+        // make sure that there are nine mat-option (one for each ontology)
+        expect(options.length).toEqual(9);
+    });
     
-
-
-
 });
 
 /**
