@@ -28,7 +28,7 @@ import { KuiCoreConfig } from '../../../../../../core/src/lib/declarations';
 import { Equals, Exists, Like, Match, NotEquals } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('SpecifyPropertyValueComponent', () => {
+describe('SpecifyPropertyValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 

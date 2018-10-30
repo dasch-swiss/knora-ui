@@ -14,7 +14,6 @@ import { SpecifyPropertyValueComponent } from './specify-property-value/specify-
 import { ActivatedRoute } from '@angular/router';
 import { KuiCoreConfig } from '../../../../../core/src/lib/declarations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
 import {
@@ -42,7 +41,6 @@ describe('SelectPropertyComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 SelectPropertyComponent,
-                SpecifyPropertyValueComponent,
                 SpecifyPropertyValueComponent,
                 BooleanValueComponent,
                 DateValueComponent,
