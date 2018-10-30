@@ -11,7 +11,7 @@ import { KuiCoreConfig } from '../../../../../../../core/src/lib/declarations';
 import { By } from '@angular/platform-browser';
 import { ValueLiteral } from '@knora/core';
 
-fdescribe('BooleanValueComponent', () => {
+describe('BooleanValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
@@ -93,7 +93,7 @@ fdescribe('BooleanValueComponent', () => {
 });
 
 /**
- * Test host component to simulate `ExtendedSearchComponent`.
+ * Test host component to simulate parent component.
  */
 @Component({
     selector: `host-component`,
