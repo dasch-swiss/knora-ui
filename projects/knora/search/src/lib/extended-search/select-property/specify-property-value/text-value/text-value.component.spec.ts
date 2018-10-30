@@ -11,7 +11,7 @@ import { KuiCoreConfig } from '../../../../../../../core/src/lib/declarations';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { ValueLiteral } from '@knora/core';
 
-fdescribe('TextValueComponent', () => {
+describe('TextValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
@@ -64,11 +64,11 @@ fdescribe('TextValueComponent', () => {
 
         const hostCompDe = testHostFixture.debugElement;
 
-        const decLiteralVal = new ValueLiteral('test', 'http://www.w3.org/2001/XMLSchema#string');
+        const textLiteralVal = new ValueLiteral('test', 'http://www.w3.org/2001/XMLSchema#string');
 
-        const decVal = hostCompDe.query(By.directive(TextValueComponent));
+        const textVal = hostCompDe.query(By.directive(TextValueComponent));
 
-        const matInput = decVal.query(By.css('input'));
+        const matInput = textVal.query(By.css('input'));
 
         matInput.nativeElement.value = 'test';
 
@@ -76,7 +76,7 @@ fdescribe('TextValueComponent', () => {
 
         testHostFixture.detectChanges();
 
-        expect(testHostComponent.textValue.getValue()).toEqual(decLiteralVal);
+        expect(testHostComponent.textValue.getValue()).toEqual(textLiteralVal);
 
     });
 });
