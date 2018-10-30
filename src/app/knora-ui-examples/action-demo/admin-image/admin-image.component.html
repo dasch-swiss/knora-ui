@@ -4,14 +4,14 @@
 
 <h4>Default user profile image</h4>
 <p>The image source is an email, which is not registered on gravatar.com</p>
-<img kuiAdminImage [image]="imgDefaultUser" [type]="'user'"/>
+<img kuiAdminImage [image]="imgDefaultUser" [type]="'user'" />
 
 <h4>Avatar example: 'salsah' user</h4>
 <p>The image source is an email, which is registered on gravatar.com</p>
-<img kuiAdminImage [image]="imgSalsahUser" [type]="'user'"/>
+<img kuiAdminImage [image]="imgSalsahUser" [type]="'user'" />
 
 <h4>User image on error</h4>
-<img kuiAdminImage [image]="null" [type]="'user'"/>
+<img kuiAdminImage [image]="null" [type]="'user'" />
 
 
 <hr>
@@ -19,13 +19,29 @@
 <h3>Project logo</h3>
 
 <h4>Default project image</h4>
-<img kuiAdminImage [image]="imgDefaultProject" [type]="'project'"/>
+<img kuiAdminImage [image]="imgDefaultProject" [type]="'project'" />
 
 <h4>Logo example: 'dasch' project</h4>
-<img kuiAdminImage [image]="imgDaschProject" [type]="'project'"/>
+<img kuiAdminImage [image]="imgDaschProject" [type]="'project'" />
 
 <hr>
 
 <h3>Default error image</h3>
 <p>In the case of an image source 404 error, it shows the following 'image not available'-image</p>
-<img kuiAdminImage [image]="'null'"/>
+<img kuiAdminImage [image]="'null'" />
+
+<mat-divider></mat-divider>
+
+<h2>Documentation</h2>
+
+<h3>
+    Admin Image
+</h3>
+
+<h4>Usage</h4>
+<p>
+    Please follow the README of
+    <a href="https://www.npmjs.com/package/@knora/action#admin-image">Knora-ui action module</a>. Then you can use the following methods from `AdminImage`:
+</p>
+
+<markdown [src]="'app/knora-ui-examples/action-demo/admin-image/README.md'"></markdown>

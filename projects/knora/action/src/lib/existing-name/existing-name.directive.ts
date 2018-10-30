@@ -52,7 +52,7 @@ export function existingNameValidator(nameRe: RegExp): ValidatorFn {
 /**
  * The same as above, but with an array list of existing names.
  *
- * @param {[RegExp]} nameAr
+ * @param {RegExp} nameAr
  * @returns ValidatorFn
  */
 export function existingNamesValidator(nameAr: [RegExp]): ValidatorFn {
