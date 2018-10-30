@@ -101,7 +101,7 @@ export class AppDemo {
             },
             {
                 name: 'convertjsonld',
-                label: 'ConvertJsonLDService'
+                label: 'ConvertJsonLD'
             }
         ]
     };
