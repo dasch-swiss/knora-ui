@@ -23,7 +23,7 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { SpecifyPropertyValueComponent } from '../../specify-property-value.component';
 import { By } from '@angular/platform-browser';
 
-fdescribe('HeaderComponent', () => {
+describe('HeaderComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
