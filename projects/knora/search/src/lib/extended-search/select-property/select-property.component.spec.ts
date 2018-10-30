@@ -34,7 +34,7 @@ import { DecimalValueComponent } from './specify-property-value/decimal-value/de
 import { UriValueComponent } from './specify-property-value/uri-value/uri-value.component';
 import { By } from '@angular/platform-browser';
 
-fdescribe('SelectPropertyComponent', () => {
+describe('SelectPropertyComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
@@ -55,7 +55,6 @@ fdescribe('SelectPropertyComponent', () => {
                 TestHostComponent
             ],
             imports: [
-                HttpClientTestingModule,
                 FormsModule,
                 ReactiveFormsModule,
                 MatFormFieldModule,
