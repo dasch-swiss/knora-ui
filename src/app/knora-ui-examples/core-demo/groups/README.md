@@ -1,9 +1,5 @@
-## Groups service
+### projects/knora/core/src/lib/services/admin/groups.service.ts
 
-### Usage
-Please follow the README of [Knora-ui core module](https://www.npmjs.com/package/%40knora%2Fcore) first!
-
-Then you can use the following methods from `GroupsService`:
 
 #### getAllGroups() 
 
@@ -41,6 +37,5 @@ return a group object (filter by IRI)
 
 
 -  Observable of Group
-
 
 

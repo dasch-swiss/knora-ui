@@ -1,9 +1,4 @@
-## Resource service
-
-### Usage
-Please follow the README of [Knora-ui core module](https://www.npmjs.com/package/%40knora%2Fcore) first!
-
-Then you can use the following methods from `ResourceService`:
+### projects/knora/core/src/lib/services/v2/resource.service.ts
 
 
 #### getResource(iri) 
@@ -17,7 +12,7 @@ Given the Iri, requests the representation of a resource.
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| iri |  | Iri of the resource (already URL encoded). | &nbsp; |
+| iri | `string`  | Iri of the resource (already URL encoded). | &nbsp; |
 
 
 
@@ -26,4 +21,6 @@ Given the Iri, requests the representation of a resource.
 
 
 -  Observable of ApiServiceResult
+
+
 

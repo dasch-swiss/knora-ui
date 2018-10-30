@@ -53,6 +53,13 @@ import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
 // dev documentation
 import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
+import { SearchComponent } from './knora-ui-examples/core-demo/search/search.component';
+import { GravsearchComponent } from './knora-ui-examples/core-demo/gravsearch/gravsearch.component';
+import { IncomingComponent } from './knora-ui-examples/core-demo/incoming/incoming.component';
+import { ConvertJsonLdComponent } from './knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component';
+import { OntologyCacheComponent } from './knora-ui-examples/core-demo/ontology-cache/ontology-cache.component';
+import { OntologyComponent } from './knora-ui-examples/core-demo/ontology/ontology.component';
+import { ApiComponent } from './knora-ui-examples/core-demo/api/api.component';
 
 @NgModule({
     declarations: [
@@ -86,7 +93,14 @@ import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
         ExistingNameComponent,
         KeyComponent,
         ResourcesComponent,
-        DocIntroComponent
+        DocIntroComponent,
+        SearchComponent,
+        GravsearchComponent,
+        IncomingComponent,
+        ConvertJsonLdComponent,
+        OntologyCacheComponent,
+        OntologyComponent,
+        ApiComponent
     ],
     entryComponents: [
         // LoginFormComponent

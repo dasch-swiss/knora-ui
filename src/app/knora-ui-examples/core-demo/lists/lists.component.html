@@ -1,4 +1,4 @@
-<h3>Demo</h3>
+<!-- <h3>Demo</h3>
 <h2>ListsService</h2>
 
 <mat-card class="example-viewer">
@@ -11,11 +11,11 @@
             </p>
             <p *ngIf="item.comments.length > 0">{{item.comments[0].value}}</p>
             <mat-divider></mat-divider>
-        </div>
+        </div> -->
 
-        <!-- here should be a tree with the content of the lists result -->
-        <!-- I'm testing it in material/tree -->
-        <!--
+<!-- here should be a tree with the content of the lists result -->
+<!-- I'm testing it in material/tree -->
+<!--
         <ul>
             <li class="link" *ngFor="let l of projectLists"> <!--(click)="getGroupByIri(g.id)">--
                 <strong>{{l.listinfo.labels}}</strong>
@@ -27,12 +27,19 @@
             </li>
         </ul>
         -->
-    </div>
-</mat-card>
+<!--     </div>
+</mat-card> -->
 
 
-<mat-divider></mat-divider>
+<h2>Documentation</h2>
 
-<h3>Documentation</h3>
+<h3>Lists service</h3>
+
+<h4>Usage</h4>
+<p>
+    Please follow the README of
+    <a href="https://www.npmjs.com/package/%40knora%2Fcore">Knora-ui core module</a>
+    Then you can use the following methods from `ListsService`:
+</p>
 
 <markdown [src]="'app/knora-ui-examples/core-demo/lists/README.md'"></markdown>

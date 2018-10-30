@@ -1,9 +1,4 @@
-## Projects service
-
-### Usage
-Please follow the README of [Knora-ui core module](https://www.npmjs.com/package/%40knora%2Fcore) first!
-
-Then you can use the following methods from `ProjectsService`:
+### projects/knora/core/src/lib/services/admin/projects.service.ts
 
 
 #### getAllProjects() 
@@ -18,7 +13,7 @@ returns a list of all projects
 ##### Returns
 
 
-- `Observable.<Array.<Project>>`  
+-  Observable of Project[]
 
 
 
@@ -41,7 +36,7 @@ returns a project object
 ##### Returns
 
 
-- `Observable.<Project>`  
+-  Observable of Project
 
 
 
@@ -64,7 +59,7 @@ returns a project object
 ##### Returns
 
 
-- `Observable.<Project>`  
+-  Observable of Project
 
 
 
@@ -87,7 +82,7 @@ returns a project object
 ##### Returns
 
 
-- `Observable.<Project>`  
+-  Observable of Project
 
 
 
@@ -110,7 +105,7 @@ returns all project members
 ##### Returns
 
 
-- `Observable.<Array.<User>>`  
+-  Observable of User[]
 
 
 
@@ -133,7 +128,7 @@ returns all project members
 ##### Returns
 
 
-- `Observable.<Array.<User>>`  
+-  Observable of User[]
 
 
 
@@ -148,7 +143,7 @@ create new project
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| data |  |  | &nbsp; |
+| data | `any`  |  | &nbsp; |
 
 
 
@@ -156,7 +151,7 @@ create new project
 ##### Returns
 
 
-- `Observable.<Project>`  
+-  Observable of Project
 
 
 
@@ -172,7 +167,7 @@ edit project data
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
 | iri | `string`  |  | &nbsp; |
-| data |  |  | &nbsp; |
+| data | `any`  |  | &nbsp; |
 
 
 
@@ -180,7 +175,7 @@ edit project data
 ##### Returns
 
 
-- `Observable.<Project>`  
+-  Observable of Project
 
 
 
@@ -203,7 +198,7 @@ activate project (if it was deleted)
 ##### Returns
 
 
-- `Observable.<Project>`  
+-  Observable of Project
 
 
 
@@ -226,5 +221,8 @@ Delete (set inactive) project
 ##### Returns
 
 
-- `Observable.<Project>`  
+-  Observable of Project
+
+
+
 

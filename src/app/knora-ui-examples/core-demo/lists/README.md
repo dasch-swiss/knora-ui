@@ -1,9 +1,4 @@
-## Lists service
-
-### Usage
-Please follow the README of [Knora-ui core module](https://www.npmjs.com/package/%40knora%2Fcore) first!
-
-Then you can use the following methods from `ListsService`
+### projects/knora/core/src/lib/services/admin/lists.service.ts
 
 
 #### getLists(projectIri) 
@@ -141,4 +136,7 @@ edit list data
 
 
 -  Observable of ListInfo
+
+
+
 

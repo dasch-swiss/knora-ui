@@ -26,6 +26,12 @@ import { ListsComponent } from './knora-ui-examples/core-demo/lists/lists.compon
 import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projects.component';
 import { ResourceComponent } from './knora-ui-examples/core-demo/resource/resource.component';
 import { UsersComponent } from './knora-ui-examples/core-demo/users/users.component';
+import { SearchComponent } from './knora-ui-examples/core-demo/search/search.component';
+import { OntologyCacheComponent } from './knora-ui-examples/core-demo/ontology-cache/ontology-cache.component';
+import { OntologyComponent } from './knora-ui-examples/core-demo/ontology/ontology.component';
+import { IncomingComponent } from './knora-ui-examples/core-demo/incoming/incoming.component';
+import { GravsearchComponent } from './knora-ui-examples/core-demo/gravsearch/gravsearch.component';
+import { ConvertJsonLdComponent } from './knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component';
 
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
 import { SearchResultComponent } from './knora-ui-examples/search-demo/search-result/search-result.component';
@@ -88,7 +94,7 @@ const appRoutes: Routes = [
             {
                 path: 'search',
                 component: SearchDemoComponent,
-                data: {partOf: AppDemo.searchModule},
+                data: { partOf: AppDemo.searchModule },
 
                 children: [
                     {
@@ -105,7 +111,7 @@ const appRoutes: Routes = [
                     {
                         path: 'resources',
                         component: ResourcesComponent,
-                        data: {partOf: AppDemo.viewerModule}
+                        data: { partOf: AppDemo.viewerModule }
                     },
                     {
                         path: 'properties',
@@ -143,6 +149,30 @@ const appRoutes: Routes = [
                     {
                         path: 'resource',
                         component: ResourceComponent
+                    },
+                    {
+                        path: 'search-service',
+                        component: SearchComponent
+                    },
+                    {
+                        path: 'ontology-cache',
+                        component: OntologyCacheComponent
+                    },
+                    {
+                        path: 'ontology',
+                        component: OntologyComponent
+                    },
+                    {
+                        path: 'incoming',
+                        component: IncomingComponent
+                    },
+                    {
+                        path: 'gravsearch',
+                        component: GravsearchComponent
+                    },
+                    {
+                        path: 'convertjsonld',
+                        component: ConvertJsonLdComponent
                     }
 
                 ]

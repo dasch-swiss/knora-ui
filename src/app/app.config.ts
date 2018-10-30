@@ -78,6 +78,30 @@ export class AppDemo {
             {
                 name: 'resource',
                 label: 'ResourceService'
+            },
+            {
+                name: 'search-service',
+                label: 'SearchService'
+            },
+            {
+                name: 'ontology-cache',
+                label: 'OntologyCacheService'
+            },
+            {
+                name: 'ontology',
+                label: 'OntologyService'
+            },
+            {
+                name: 'incoming',
+                label: 'IncomingService'
+            },
+            {
+                name: 'gravsearch',
+                label: 'GravSearchService'
+            },
+            {
+                name: 'convertjsonld',
+                label: 'ConvertJsonLDService'
             }
         ]
     };

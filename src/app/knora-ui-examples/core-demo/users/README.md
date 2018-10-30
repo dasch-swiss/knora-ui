@@ -1,21 +1,28 @@
-## UsersService
+### projects/knora/core/src/lib/services/admin/users.service.ts
 
-### Usage
-Please follow the README of [Knora-ui core module](https://www.npmjs.com/package/%40knora%2Fcore) first!
-
-Then you can use the following methods from `UsersService`:
 
 #### getAllUsers() 
 
 returns a list of all users
 
 
+
+
+
+
 ##### Returns
 
-- `Observable.<Array.<User>>`  
+
+-  Observable of User[]
+
 
 
 #### getUserByEmail(email) 
+
+return an user object filtered by email
+
+
+
 
 ##### Parameters
 
@@ -23,11 +30,21 @@ returns a list of all users
 | ---- | ---- | ----------- | -------- |
 | email | `string`  |  | &nbsp; |
 
+
+
+
 ##### Returns
 
-- `Observable.<User>`  
+
+-  Observable of User
+
+
 
 #### getUserByIri(iri) 
+
+return an user object filtered by iri
+
+
 
 
 ##### Parameters
@@ -36,27 +53,46 @@ returns a list of all users
 | ---- | ---- | ----------- | -------- |
 | iri | `string`  |  | &nbsp; |
 
+
+
+
 ##### Returns
 
-- `Observable.<User>`  
+
+-  Observable of User
+
 
 
 #### createUser(data) 
+
+Add a new user.
+
+
+
 
 ##### Parameters
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| data |  |  | &nbsp; |
+| data | `any`  |  | &nbsp; |
+
+
+
 
 ##### Returns
 
-- `Observable.<User>`  
+
+-  Observable of User
 
 
 
 #### addUserToProject(userIri, projectIri) 
 
+Add an user to a project.
+
+
+
+
 ##### Parameters
 
 | Name | Type | Description |  |
@@ -64,15 +100,19 @@ returns a list of all users
 | userIri | `string`  |  | &nbsp; |
 | projectIri | `string`  |  | &nbsp; |
 
+
+
+
 ##### Returns
 
-- `Observable.<User>`  
+
+-  Observable of User
 
 
 
 #### addUserToProjectAdmin(userIri, projectIri) 
 
-
+Add an user to an admin project.
 
 
 
@@ -90,13 +130,13 @@ returns a list of all users
 ##### Returns
 
 
-- `Observable.<User>`  
+-  Observable of User
 
 
 
 #### removeUserFromProjectAdmin(userIri, projectIri) 
 
-
+Delete an user of an admin project.
 
 
 
@@ -114,13 +154,13 @@ returns a list of all users
 ##### Returns
 
 
-- `Observable.<User>`  
+-  Observable of User
 
 
 
 #### addUserToSystemAdmin(userIri, data) 
 
-
+Add an user to the admin system
 
 
 
@@ -130,7 +170,7 @@ returns a list of all users
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
 | userIri | `string`  |  | &nbsp; |
-| data |  |  | &nbsp; |
+| data | `any`  |  | &nbsp; |
 
 
 
@@ -138,13 +178,13 @@ returns a list of all users
 ##### Returns
 
 
-- `Observable.<User>`  
+-  Observable of User
 
 
 
 #### activateUser(userIri) 
 
-
+Active an user.
 
 
 
@@ -161,7 +201,7 @@ returns a list of all users
 ##### Returns
 
 
-- `Observable.<User>`  
+-  Observable of User
 
 
 
@@ -186,13 +226,38 @@ Update own password
 ##### Returns
 
 
-- `Observable.<User>`  
+-  Observable of User
+
+
+
+#### updateUsersPassword(userIri, requesterPassword, newPassword) 
+
+Update users password.
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| userIri | `string`  |  | &nbsp; |
+| requesterPassword | `string`  |  | &nbsp; |
+| newPassword | `string`  |  | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Observable of User
 
 
 
 #### updateUser(userIri, data) 
 
-
+Update user.
 
 
 
@@ -202,7 +267,7 @@ Update own password
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
 | userIri | `string`  |  | &nbsp; |
-| data |  |  | &nbsp; |
+| data | `any`  |  | &nbsp; |
 
 
 
@@ -210,13 +275,13 @@ Update own password
 ##### Returns
 
 
-- `Observable.<User>`  
+-  Observable of User
 
 
 
 #### deleteUser(userIri) 
 
-
+Delete user.
 
 
 
@@ -233,13 +298,13 @@ Update own password
 ##### Returns
 
 
-- `Observable.<User>`  
+-  Observable of User
 
 
 
 #### removeUserFromProject(userIri, projectIri) 
 
-
+Remove an user from a project.
 
 
 
@@ -257,61 +322,8 @@ Update own password
 ##### Returns
 
 
-- `Observable.<User>`  
+-  Observable of User
 
 
 
-#### authenticate() 
-
-Checks if the user is logged in or not.
-
-
-
-
-
-
-##### Returns
-
-
-- `Observable.<boolean>`  
-
-
-
-#### login(email, password) 
-
-
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| email | `string`  |  | &nbsp; |
-| password | `string`  |  | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Observable.<any>`  
-
-
-
-#### logout() 
-
-Sends a logout request to the server and removes any variables.
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
 
