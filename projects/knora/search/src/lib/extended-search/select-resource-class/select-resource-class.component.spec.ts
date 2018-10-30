@@ -78,73 +78,11 @@ fdescribe('SelectResourceClassComponent', () => {
 
         const selectResClassCompInstance = testHostComponent.selectResClassesComp;
 
-        const resClassesArray = [
-
-            new ResourceClass(
-                'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing',
-                'blueting.png',
-                'A blue thing.',
-                'blue thing',
-                [
-                    new Cardinality(
-                        CardinalityOccurrence.minCard,
-                        0,
-                        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#attachedToProject'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#attachedToUser'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#creationDate'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#hasPermissions'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
-                    )
-                ]
-            )
-        ];
-
-        expect(selectResClassCompInstance.resourceClasses).toEqual(resClassesArray);
+        expect(selectResClassCompInstance.resourceClasses).toEqual(initResClasses);
 
     });
 
-    it('should create the selection for the resourceClasses', () => {
+    it('should create the selection for the resource classes', () => {
 
         // access the test host component's child
         expect(testHostComponent.selectResClassesComp).toBeTruthy();
@@ -225,72 +163,11 @@ fdescribe('SelectResourceClassComponent', () => {
 
     it('should update the resource classes through the input', () => {
 
-        const newResClassesArray = [
-            new ResourceClass(
-                'http://0.0.0.0:3333/ontology/0001/anything/v2#RedThing',
-                'blueting.png',
-                'A blue thing.',
-                'blue thing',
-                [
-                    new Cardinality(
-                        CardinalityOccurrence.minCard,
-                        0,
-                        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#attachedToProject'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#attachedToUser'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#creationDate'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#hasPermissions'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
-                    ),
-                    new Cardinality(
-                        CardinalityOccurrence.card,
-                        1,
-                        'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
-                    )
-                ]
-            )
-        ];
-
-        testHostComponent.resClasses = newResClassesArray;
+        testHostComponent.resClasses = updatedResClasses;
 
         testHostFixture.detectChanges();
 
-        expect(testHostComponent.selectResClassesComp.resourceClasses).toEqual(newResClassesArray);
+        expect(testHostComponent.selectResClassesComp.resourceClasses).toEqual(updatedResClasses);
 
     });
 
@@ -316,67 +193,6 @@ class TestHostComponent implements OnInit {
 
     @ViewChild('resClass') selectResClassesComp: SelectResourceClassComponent;
 
-    private resClassesArray = [
-        new ResourceClass(
-            'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing',
-            'blueting.png',
-            'A blue thing.',
-            'blue thing',
-            [
-                new Cardinality(
-                    CardinalityOccurrence.minCard,
-                    0,
-                    'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
-                ),
-                new Cardinality(
-                    CardinalityOccurrence.card,
-                    1,
-                    'http://api.knora.org/ontology/knora-api/v2#attachedToProject'
-                ),
-                new Cardinality(
-                    CardinalityOccurrence.card,
-                    1,
-                    'http://api.knora.org/ontology/knora-api/v2#attachedToUser'
-                ),
-                new Cardinality(
-                    CardinalityOccurrence.card,
-                    1,
-                    'http://api.knora.org/ontology/knora-api/v2#creationDate'
-                ),
-                new Cardinality(
-                    CardinalityOccurrence.card,
-                    1,
-                    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
-                ),
-                new Cardinality(
-                    CardinalityOccurrence.card,
-                    1,
-                    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
-                ),
-                new Cardinality(
-                    CardinalityOccurrence.card,
-                    1,
-                    'http://api.knora.org/ontology/knora-api/v2#hasPermissions'
-                ),
-                new Cardinality(
-                    CardinalityOccurrence.card,
-                    1,
-                    'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo'
-                ),
-                new Cardinality(
-                    CardinalityOccurrence.card,
-                    1,
-                    'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
-                ),
-                new Cardinality(
-                    CardinalityOccurrence.card,
-                    1,
-                    'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
-                )
-            ]
-        )
-    ];
-
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
@@ -387,7 +203,130 @@ class TestHostComponent implements OnInit {
     ngOnInit() {
         this.form = this.fb.group({});
 
-        this.resClasses = this.resClassesArray;
+        this.resClasses = initResClasses;
     }
 
 }
+
+// resource classes passed to `SelectResourceClass` from parent component
+const initResClasses = [
+    new ResourceClass(
+        'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing',
+        'blueting.png',
+        'A blue thing.',
+        'blue thing',
+        [
+            new Cardinality(
+                CardinalityOccurrence.minCard,
+                0,
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#attachedToProject'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#attachedToUser'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#creationDate'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#hasPermissions'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
+            )
+        ]
+    )
+];
+
+const updatedResClasses = [
+    new ResourceClass(
+        'http://0.0.0.0:3333/ontology/0001/anything/v2#RedThing',
+        'blueting.png',
+        'A blue thing.',
+        'blue thing',
+        [
+            new Cardinality(
+                CardinalityOccurrence.minCard,
+                0,
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#attachedToProject'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#attachedToUser'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#creationDate'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#hasPermissions'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
+            ),
+            new Cardinality(
+                CardinalityOccurrence.card,
+                1,
+                'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
+            )
+        ]
+    )
+];

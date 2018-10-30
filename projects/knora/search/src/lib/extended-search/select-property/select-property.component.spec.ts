@@ -16,7 +16,7 @@ import { KuiCoreConfig } from '../../../../../core/src/lib/declarations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
 import { Cardinality, CardinalityOccurrence, Properties, Property } from '../../../../../core/src/lib/services';
 import { IntegerValueComponent } from './specify-property-value/integer-value/integer-value.component';
 import { LinkValueComponent } from './specify-property-value/link-value/link-value.component';
@@ -26,6 +26,8 @@ import { TextValueComponent } from './specify-property-value/text-value/text-val
 import { JdnDatepickerDirective } from '../../../../../action/src/lib/directives/jdn-datepicker.directive';
 import { DecimalValueComponent } from './specify-property-value/decimal-value/decimal-value.component';
 import { UriValueComponent } from './specify-property-value/uri-value/uri-value.component';
+import { SelectResourceClassComponent } from '../select-resource-class/select-resource-class.component';
+import { By } from '@angular/platform-browser';
 
 fdescribe('SelectPropertyComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -94,103 +96,31 @@ fdescribe('SelectPropertyComponent', () => {
 
         const selectPropCompInstance = testHostComponent.selectPropertyComp;
 
-        const initProps = {
-            'http://api.knora.org/ontology/knora-api/v2#attachedToProject': new Property(
-                'http://api.knora.org/ontology/knora-api/v2#attachedToProject',
-                'http://api.knora.org/ontology/knora-api/v2#knoraProject',
-                'Connects something to a project',
-                'attached to project',
-                [],
-                false,
-                false,
-                false),
-            'http://api.knora.org/ontology/knora-api/v2#attachedToUser': new Property(
-                'http://api.knora.org/ontology/knora-api/v2#attachedToUser',
-                'http://api.knora.org/ontology/knora-api/v2#User',
-                'Connects something to a user',
-                'attached to user',
-                [],
-                false,
-                false,
-                false),
-            'http://api.knora.org/ontology/knora-api/v2#creationDate': new Property(
-                'http://api.knora.org/ontology/knora-api/v2#creationDate',
-                'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
-                'Indicates when a resource was created',
-                undefined,
-                [],
-                false,
-                false,
-                false),
-            'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink': new Property(
-                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink',
-                'http://api.knora.org/ontology/knora-api/v2#LinkValue',
-                'Indicates that this resource referred to by another resource',
-                'has incoming links',
-                ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
-                false,
-                false,
-                true),
-            'http://api.knora.org/ontology/knora-api/v2#hasPermissions': new Property(
-                'http://api.knora.org/ontology/knora-api/v2#hasPermissions',
-                'http://www.w3.org/2001/XMLSchema#string',
-                undefined,
-                undefined,
-                [],
-                false,
-                false,
-                false),
-            'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo': new Property(
-                'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo',
-                'http://api.knora.org/ontology/knora-api/v2#Resource',
-                'Represents a link in standoff markup from one resource to another.',
-                'has Standoff Link to',
-                ['http://api.knora.org/ontology/knora-api/v2#hasLinkTo'],
-                false,
-                true,
-                false),
-            'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue': new Property(
-                'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue',
-                'http://api.knora.org/ontology/knora-api/v2#LinkValue',
-                'Represents a link in standoff markup from one resource to another.',
-                'has Standoff Link to',
-                ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
-                false,
-                false,
-                true),
-            'http://api.knora.org/ontology/knora-api/v2#lastModificationDate': new Property(
-                'http://api.knora.org/ontology/knora-api/v2#lastModificationDate',
-                'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
-                undefined,
-                undefined,
-                [],
-                false,
-                false,
-                false),
-            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText': new Property(
-                'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText',
-                'http://api.knora.org/ontology/knora-api/v2#TextValue',
-                undefined,
-                'Text',
-                ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
-                true,
-                false,
-                false),
-            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger': new Property(
-                'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger',
-                'http://api.knora.org/ontology/knora-api/v2#IntValue',
-                undefined,
-                'Integer',
-                ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
-                true,
-                false,
-                false)
-        };
-
         expect(selectPropCompInstance.properties).toEqual(initProps);
 
-        expect(selectPropCompInstance.propertiesAsArray).toEqual([ initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'], initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger']]);
+        expect(selectPropCompInstance.propertiesAsArray).toEqual([ initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'], initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger'], initProps['http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething']]);
 
+    });
+
+    it('should create the selection for the properties', () => {
+
+        // access the test host component's child
+        expect(testHostComponent.selectPropertyComp).toBeTruthy();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const selResClasses = hostCompDe.query(By.directive(SelectPropertyComponent));
+
+        const matSelect = selResClasses.query(By.css('mat-select'));
+
+        matSelect.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        const options: DebugElement[] = matSelect.queryAll(By.css('mat-option'));
+
+        // make sure that there are two mat-option (one for no selection)
+        expect(options.length).toEqual(3);
     });
 
 });
@@ -214,102 +144,121 @@ class TestHostComponent implements OnInit {
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
-    private initProps = {
-        'http://api.knora.org/ontology/knora-api/v2#attachedToProject': new Property(
-            'http://api.knora.org/ontology/knora-api/v2#attachedToProject',
-            'http://api.knora.org/ontology/knora-api/v2#knoraProject',
-            'Connects something to a project',
-            'attached to project',
-            [],
-            false,
-            false,
-            false),
-        'http://api.knora.org/ontology/knora-api/v2#attachedToUser': new Property(
-            'http://api.knora.org/ontology/knora-api/v2#attachedToUser',
-            'http://api.knora.org/ontology/knora-api/v2#User',
-            'Connects something to a user',
-            'attached to user',
-            [],
-            false,
-            false,
-            false),
-        'http://api.knora.org/ontology/knora-api/v2#creationDate': new Property(
-            'http://api.knora.org/ontology/knora-api/v2#creationDate',
-            'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
-            'Indicates when a resource was created',
-            undefined,
-            [],
-            false,
-            false,
-            false),
-        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink': new Property(
-            'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink',
-            'http://api.knora.org/ontology/knora-api/v2#LinkValue',
-            'Indicates that this resource referred to by another resource',
-            'has incoming links',
-            ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
-            false,
-            false,
-            true),
-        'http://api.knora.org/ontology/knora-api/v2#hasPermissions': new Property(
-            'http://api.knora.org/ontology/knora-api/v2#hasPermissions',
-            'http://www.w3.org/2001/XMLSchema#string',
-            undefined,
-            undefined,
-            [],
-            false,
-            false,
-            false),
-        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo': new Property(
-            'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo',
-            'http://api.knora.org/ontology/knora-api/v2#Resource',
-            'Represents a link in standoff markup from one resource to another.',
-            'has Standoff Link to',
-            ['http://api.knora.org/ontology/knora-api/v2#hasLinkTo'],
-            false,
-            true,
-            false),
-        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue': new Property(
-            'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue',
-            'http://api.knora.org/ontology/knora-api/v2#LinkValue',
-            'Represents a link in standoff markup from one resource to another.',
-            'has Standoff Link to',
-            ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
-            false,
-            false,
-            true),
-        'http://api.knora.org/ontology/knora-api/v2#lastModificationDate': new Property(
-            'http://api.knora.org/ontology/knora-api/v2#lastModificationDate',
-            'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
-            undefined,
-            undefined,
-            [],
-            false,
-            false,
-            false),
-        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText': new Property(
-            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText',
-            'http://api.knora.org/ontology/knora-api/v2#TextValue',
-            undefined,
-            'Text',
-            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
-            true,
-            false,
-            false),
-        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger': new Property(
-            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger',
-            'http://api.knora.org/ontology/knora-api/v2#IntValue',
-            undefined,
-            'Integer',
-            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
-            true,
-            false,
-            false)
-    };
-
     ngOnInit() {
         this.form = this.fb.group({});
 
-        this.properties = this.initProps;
+        this.properties = initProps;
     }
 }
+
+// properties passed to `SelectPropertyComponent` from parent component
+const initProps = {
+    'http://api.knora.org/ontology/knora-api/v2#attachedToProject': new Property(
+        'http://api.knora.org/ontology/knora-api/v2#attachedToProject',
+        'http://api.knora.org/ontology/knora-api/v2#knoraProject',
+        'Connects something to a project',
+        'attached to project',
+        [],
+        false,
+        false,
+        false),
+    'http://api.knora.org/ontology/knora-api/v2#attachedToUser': new Property(
+        'http://api.knora.org/ontology/knora-api/v2#attachedToUser',
+        'http://api.knora.org/ontology/knora-api/v2#User',
+        'Connects something to a user',
+        'attached to user',
+        [],
+        false,
+        false,
+        false),
+    'http://api.knora.org/ontology/knora-api/v2#creationDate': new Property(
+        'http://api.knora.org/ontology/knora-api/v2#creationDate',
+        'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
+        'Indicates when a resource was created',
+        undefined,
+        [],
+        false,
+        false,
+        false),
+    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink': new Property(
+        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink',
+        'http://api.knora.org/ontology/knora-api/v2#LinkValue',
+        'Indicates that this resource referred to by another resource',
+        'has incoming links',
+        ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
+        false,
+        false,
+        true),
+    'http://api.knora.org/ontology/knora-api/v2#hasPermissions': new Property(
+        'http://api.knora.org/ontology/knora-api/v2#hasPermissions',
+        'http://www.w3.org/2001/XMLSchema#string',
+        undefined,
+        undefined,
+        [],
+        false,
+        false,
+        false),
+    'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo': new Property(
+        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo',
+        'http://api.knora.org/ontology/knora-api/v2#Resource',
+        'Represents a link in standoff markup from one resource to another.',
+        'has Standoff Link to',
+        ['http://api.knora.org/ontology/knora-api/v2#hasLinkTo'],
+        false,
+        true,
+        false),
+    'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue': new Property(
+        'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue',
+        'http://api.knora.org/ontology/knora-api/v2#LinkValue',
+        'Represents a link in standoff markup from one resource to another.',
+        'has Standoff Link to',
+        ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
+        false,
+        false,
+        true),
+    'http://api.knora.org/ontology/knora-api/v2#lastModificationDate': new Property(
+        'http://api.knora.org/ontology/knora-api/v2#lastModificationDate',
+        'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
+        undefined,
+        undefined,
+        [],
+        false,
+        false,
+        false),
+    'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText': new Property(
+        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText',
+        'http://api.knora.org/ontology/knora-api/v2#TextValue',
+        undefined,
+        'Text',
+        ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+        true,
+        false,
+        false),
+    'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger': new Property(
+        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger',
+        'http://api.knora.org/ontology/knora-api/v2#IntValue',
+        undefined,
+        'Integer',
+        ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+        true,
+        false,
+        false),
+    'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething': new Property(
+        'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething',
+        'http://0.0.0.0:3333/ontology/0001/something/v2#Something',
+        'Has another something.',
+        'has other something',
+        ['http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherThing'],
+        true,
+        true,
+        false),
+    'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomethingValue': new Property(
+        'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomethingValue',
+        'http://api.knora.org/ontology/knora-api/v2#LinkValue',
+        'Has another something.',
+        'has other something',
+        ['http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherThingValue'],
+        true,
+        false,
+        true)
+};
