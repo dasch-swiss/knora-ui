@@ -31,6 +31,10 @@ export class SortButtonComponent implements OnInit {
 
     }
 
+    /**
+     * TODO: add description
+     * @param {string} key
+     */
     sortBy(key: string) {
         this.sortKeyChange.emit(key);
     }

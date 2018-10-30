@@ -1,9 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'sortBy'
+    name: 'sortBy'
 })
 export class SortByPipe implements PipeTransform {
+
+    /**
+     * TODO: add description
+     */
 
     transform(array: Array<string>, args: string): Array<string> {
         if (array !== undefined) {

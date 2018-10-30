@@ -3,7 +3,7 @@ import { AbstractControl, NG_VALIDATORS, ValidatorFn, Validators } from '@angula
 
 @Directive({
     selector: '[kuiExistingName]',
-    providers: [{provide: NG_VALIDATORS, useExisting: ExistingNameDirective, multi: true}]
+    providers: [{ provide: NG_VALIDATORS, useExisting: ExistingNameDirective, multi: true }]
 })
 /**
  * With the ExistingNameDirective we could prevent to use an already existing name
@@ -30,7 +30,12 @@ export class ExistingNameDirective implements Validators, OnChanges {
     }
 }
 
-// validation of existing name value
+/**
+ * Validation of existing name value.
+ *
+ * @param {RegExp} nameRe
+ * @returns ValidatorFn
+ */
 export function existingNameValidator(nameRe: RegExp): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
         let name;
@@ -40,11 +45,16 @@ export function existingNameValidator(nameRe: RegExp): ValidatorFn {
         }
 
         const no = nameRe.test(name);
-        return no ? {'existingName': {name}} : null;
+        return no ? { 'existingName': { name } } : null;
     };
 }
 
-// the same as above, but with an array list of existing names
+/**
+ * The same as above, but with an array list of existing names.
+ *
+ * @param {[RegExp]} nameAr
+ * @returns ValidatorFn
+ */
 export function existingNamesValidator(nameAr: [RegExp]): ValidatorFn {
 
     return (control: AbstractControl): { [key: string]: any } => {
@@ -60,13 +70,20 @@ export function existingNamesValidator(nameAr: [RegExp]): ValidatorFn {
             no = existing.test(name);
             if (no) {
                 // console.log(no);
-                return no ? {'existingName': {name}} : null;
+                return no ? { 'existingName': { name } } : null;
             }
         }
-        return no ? {'existingName': {name}} : null;
+        return no ? { 'existingName': { name } } : null;
     };
 }
 
+/**
+ * TODO: add description
+ *
+ * @param {RegExp} pattern
+ * @param {string} regType
+ * @returns ValidatorFn
+ */
 export function notAllowed(pattern: RegExp, regType: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
         let name;
@@ -80,6 +97,6 @@ export function notAllowed(pattern: RegExp, regType: string): ValidatorFn {
         // console.log(name);
 
         const no = pattern.test(name);
-        return no ? {regType: {name}} : null;
+        return no ? { regType: { name } } : null;
     };
 }

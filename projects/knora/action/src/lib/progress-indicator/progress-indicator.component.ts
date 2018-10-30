@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProgressIndicatorComponent implements OnInit {
 
     /**
+     * TODO: add description
+     *
      * status is a number
      * - not ready:    -1
      * - loading:       0
@@ -15,6 +17,7 @@ export class ProgressIndicatorComponent implements OnInit {
      *
      * - error:       400
      */
+
     @Input() status?: number;
     @Input() color?: string = 'primary';
 
