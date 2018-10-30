@@ -11,7 +11,7 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ValueLiteral } from '@knora/core';
 
-fdescribe('IntegerValueComponent', () => {
+describe('IntegerValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
