@@ -4,6 +4,7 @@ import { HeaderComponent } from './header-calendar.component';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+    MatCalendar,
     MatDatepicker,
     MatDatepickerModule,
     MatFormFieldModule,
@@ -55,7 +56,7 @@ fdescribe('HeaderComponent', () => {
                 {provide: 'config', useValue: KuiCoreConfig},
                 FormBuilder
             ]
-        })
+        });
 
         TestBed.overrideModule(BrowserDynamicTestingModule, {
             set: {
@@ -75,15 +76,30 @@ fdescribe('HeaderComponent', () => {
 
     it('should create', () => {
         // access the test host component's child
-        expect(testHostComponent.datePicker).toBeTruthy();
+        expect(testHostComponent.calendar).toBeTruthy();
 
-        testHostComponent.datePicker.open();
+        const hostCompDe = testHostFixture.debugElement;
 
-        testHostFixture.detectChanges();
+        // get the header
+        const header = hostCompDe.query(By.directive(HeaderComponent));
 
-        expect(testHostComponent.datePicker.calendarHeaderComponent).toBeTruthy();
+        expect(header).toBeTruthy();
 
-        expect(testHostComponent.datePicker.calendarHeaderComponent).toBe(HeaderComponent);
+        // TODO: header HTML seems no to be initialized correctly
+
+        // header.componentInstance.ngOnInit();
+
+        // console.log(header.componentInstance);
+
+        // const calSel = header.query(By.css('mat-select'));
+
+        // console.log(calSel);
+
+        // const calSelEle: HTMLElement = calSel.nativeElement;
+
+        // calSelEle.click();
+
+        // testHostFixture.detectChanges();
     });
 
     /*it('should create the selection fot the calendars', () => {
@@ -122,11 +138,7 @@ fdescribe('HeaderComponent', () => {
 @Component({
     selector: `host-component`,
     template: `
-        <jdn-datepicker>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-            <mat-datepicker #picker [calendarHeaderComponent]="headerComponent"></mat-datepicker>
-        </jdn-datepicker>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>`
+        <mat-calendar #cal [headerComponent]="headerComponent"></mat-calendar>`
 })
 class TestHostComponent implements OnInit {
 
@@ -134,7 +146,7 @@ class TestHostComponent implements OnInit {
 
     headerComponent = HeaderComponent;
 
-    @ViewChild('picker') datePicker: MatDatepicker<JDNConvertibleCalendar>;
+    @ViewChild('cal') calendar: MatCalendar<JDNConvertibleCalendar>;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }
