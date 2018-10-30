@@ -11,9 +11,9 @@ export class SearchService extends ApiService {
     /**
      * Perform a fulltext search.
      *
-     * @param searchTerm the term to search for.
-     * @param offset the offset to be used (for paging, first offset is 0).
-     * @returns {Observable<ApiServiceResult>}
+     * @param {string} searchTerm the term to search for.
+     * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @returns Observable of ApiServiceResult
      */
     doFulltextSearch(searchTerm: string, offset: number = 0): Observable<ApiServiceResult> {
 
@@ -27,8 +27,8 @@ export class SearchService extends ApiService {
     /**
      * Perform a fulltext search count query.
      *
-     * @param searchTerm the term to search for.
-     * @returns {Observable<ApiServiceResult>}
+     * @param {string} searchTerm the term to search for.
+     * @returns Observable of ApiServiceResult
      */
     doFulltextSearchCountQuery(searchTerm: string): Observable<ApiServiceResult> {
 
@@ -42,8 +42,8 @@ export class SearchService extends ApiService {
     /**
      * Perform an extended search.
      *
-     * @param sparqlString the Sparql query string to be sent to Knora.
-     * @returns {Observable<any>}
+     * @param {string} sparqlString the Sparql query string to be sent to Knora.
+     * @returns Observable of ApiServiceResult
      */
     doExtendedSearch(sparqlString: string): Observable<ApiServiceResult> {
 
@@ -59,8 +59,8 @@ export class SearchService extends ApiService {
     /**
      * Perform an extended search count query.
      *
-     * @param sparqlString the Sparql query string to be sent to Knora.
-     * @returns {Observable<ApiServiceResult>}
+     * @param {string} sparqlString the Sparql query string to be sent to Knora.
+     * @returns Observable of ApiServiceResult
      */
     doExtendedSearchCountQuery(sparqlString: string): Observable<ApiServiceResult> {
 
@@ -76,9 +76,9 @@ export class SearchService extends ApiService {
      * Perform a search by a resource's rdfs:label.
      *
      * @param {string} searchTerm the term to search for.
-     * @param resourceClassIRI restrict search to given resource class.
-     * @param projectIri restrict search to given project.
-     * @returns {Observable<ApiServiceResult>}
+     * @param {string} resourceClassIRI restrict search to given resource class.
+     * @param {string} projectIri restrict search to given project.
+     * @returns Observable of ApiServiceResult
      */
     searchByLabel(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ApiServiceResult> {
 

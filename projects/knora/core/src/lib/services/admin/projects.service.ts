@@ -19,7 +19,7 @@ export class ProjectsService extends ApiService {
     /**
      * returns a list of all projects
      *
-     * @returns {Observable<Project[]>}
+     * @returns Observable of Project[]
      */
     getAllProjects(): Observable<Project[]> {
         return this.httpGet('/admin/projects').pipe(
@@ -32,7 +32,7 @@ export class ProjectsService extends ApiService {
      * returns a project object
      *
      * @param {string} iri
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     getProjectByIri(iri: string): Observable<Project> {
         const url: string = '/admin/projects/' + encodeURIComponent(iri);
@@ -43,7 +43,7 @@ export class ProjectsService extends ApiService {
      * returns a project object
      *
      * @param {string} shortname
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     getProjectByShortname(shortname: string): Observable<Project> {
         const url = '/admin/projects/' + shortname + '?identifier=shortname';
@@ -54,7 +54,7 @@ export class ProjectsService extends ApiService {
      * returns a project object
      *
      * @param {string} shortcode
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     getProjectByShortcode(shortcode: string): Observable<Project> {
         const url = '/admin/projects/' + shortcode + '?identifier=shortcode';
@@ -65,7 +65,7 @@ export class ProjectsService extends ApiService {
      * Helper method combining project retrieval
      *
      * @param {string} url
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     protected getProject(url: string): Observable<Project> {
         return this.httpGet(url).pipe(
@@ -78,7 +78,7 @@ export class ProjectsService extends ApiService {
      * returns all project members
      *
      * @param {string} iri
-     * @returns {Observable<User[]>}
+     * @returns Observable of User[]
      */
     getProjectMembersByIri(iri: string): Observable<User[]> {
         const url = '/admin/projects/members/' + encodeURIComponent(iri);
@@ -89,7 +89,7 @@ export class ProjectsService extends ApiService {
      * returns all project members
      *
      * @param {string} shortname
-     * @returns {Observable<User[]>}
+     * @returns Observable of User[]
      */
     getProjectMembersByShortname(shortname: string): Observable<User[]> {
         const url = '/admin/projects/members/' + shortname + '?identifier=shortname';
@@ -100,7 +100,7 @@ export class ProjectsService extends ApiService {
      * Helper method combining project member retrieval
      *
      * @param {string} url
-     * @returns {Observable<User[]>}
+     * @returns Observable of User[]
      */
     protected getProjectMembers(url: string): Observable<User[]> {
         return this.httpGet(url).pipe(
@@ -117,8 +117,8 @@ export class ProjectsService extends ApiService {
     /**
      * create new project
      *
-     * @param data
-     * @returns {Observable<Project>}
+     * @param {any} data
+     * @returns Observable of Project
      */
     createProject(data: any): Observable<Project> {
         const url: string = '/admin/projects';
@@ -136,8 +136,8 @@ export class ProjectsService extends ApiService {
      * edit project data
      *
      * @param {string} iri
-     * @param data
-     * @returns {Observable<Project>}
+     * @param {any} data
+     * @returns Observable of Project
      */
     updateProject(iri: string, data: any): Observable<Project> {
         const url: string = '/admin/projects/' + encodeURIComponent(iri);
@@ -153,7 +153,7 @@ export class ProjectsService extends ApiService {
      * activate project (if it was deleted)
      *
      * @param {string} iri
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     activateProject(iri: string): Observable<Project> {
         const data: any = {
@@ -177,7 +177,7 @@ export class ProjectsService extends ApiService {
      * Delete (set inactive) project
      *
      * @param {string} iri
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     deleteProject(iri: string): Observable<Project> {
         const url: string = '/admin/projects/' + encodeURIComponent(iri);

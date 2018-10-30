@@ -12,7 +12,7 @@ export class ResourceService extends ApiService {
     /**
      * Given the Iri, requests the representation of a resource.
      *
-     * @param iri Iri of the resource (already URL encoded).
+     * @param {string} iri Iri of the resource (already URL encoded).
      * @returns Observable of ApiServiceResult
      */
 

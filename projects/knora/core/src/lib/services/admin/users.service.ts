@@ -24,7 +24,7 @@ export class UsersService extends ApiService {
     /**
      * returns a list of all users
      *
-     * @returns {Observable<User[]>}
+     * @returns Observable of User[]
      */
     getAllUsers(): Observable<User[]> {
         return this.httpGet('/admin/users').pipe(
@@ -34,9 +34,10 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * return an user object filtered by email
      *
      * @param {string} email
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     getUserByEmail(email: string): Observable<User> {
         const path = '/admin/users/' + encodeURIComponent(email) + '?identifier=email';
@@ -44,9 +45,10 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * return an user object filtered by iri
      *
      * @param {string} iri
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     getUserByIri(iri: string): Observable<User> {
         const path = '/admin/users/' + encodeURIComponent(iri);
@@ -54,7 +56,7 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * Helper method combining user retrieval
+     * return an user object
      *
      * @param {string} path
      * @returns {Observable<User>}
@@ -72,9 +74,10 @@ export class UsersService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * Add a new user.
      *
-     * @param data
-     * @returns {Observable<User>}
+     * @param {any} data
+     * @returns Observable of User
      */
     createUser(data: any): Observable<User> {
         const path = '/admin/users';
@@ -85,10 +88,11 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * Add an user to a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     addUserToProject(userIri: string, projectIri: string): Observable<User> {
         const path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -99,10 +103,11 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * Add an user to an admin project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     addUserToProjectAdmin(userIri: string, projectIri: string): Observable<User> {
         const path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -113,10 +118,11 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * Delete an user of an admin project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     removeUserFromProjectAdmin(userIri: string, projectIri: string): Observable<User> {
         const path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -133,10 +139,11 @@ export class UsersService extends ApiService {
 
 
     /**
+     * Add an user to the admin system
      *
      * @param {string} userIri
-     * @param data
-     * @returns {Observable<User>}
+     * @param {any} data
+     * @returns Observable of User
      */
     addUserToSystemAdmin(userIri: string, data: any): Observable<User> {
         const path = '/admin/users/' + encodeURIComponent(userIri);
@@ -147,9 +154,10 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * Active an user.
      *
      * @param {string} userIri
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     activateUser(userIri: string): Observable<User> {
         const data: any = {
@@ -165,7 +173,7 @@ export class UsersService extends ApiService {
      * @param {string} userIri
      * @param {string} oldPassword
      * @param {string} newPassword
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     updateOwnPassword(userIri: string, oldPassword: string, newPassword: string): Observable<User> {
         const data = {
@@ -175,7 +183,14 @@ export class UsersService extends ApiService {
         return this.updateUser(userIri, data);
     }
 
-
+    /**
+     * Update users password.
+     *
+     * @param {string} userIri
+     * @param {string} requesterPassword
+     * @param {string} newPassword
+     * @returns Observable of User
+     */
     updateUsersPassword(userIri: string, requesterPassword: string, newPassword: string): Observable<User> {
         const data = {
             newPassword: newPassword,
@@ -186,10 +201,11 @@ export class UsersService extends ApiService {
 
 
     /**
+     * Update user.
      *
      * @param {string} userIri
-     * @param data
-     * @returns {Observable<User>}
+     * @param {any} data
+     * @returns Observable of User
      */
     updateUser(userIri: string, data: any): Observable<User> {
 
@@ -206,9 +222,10 @@ export class UsersService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * Delete user.
      *
      * @param {string} userIri
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     deleteUser(userIri: string): Observable<User> {
         const path = '/admin/users/' + encodeURIComponent(userIri);
@@ -220,10 +237,11 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * Remove an user from a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     removeUserFromProject(userIri: string, projectIri: string): Observable<User> {
         const path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);

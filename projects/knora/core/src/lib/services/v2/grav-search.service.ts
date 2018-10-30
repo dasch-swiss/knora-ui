@@ -65,7 +65,7 @@ export class GravsearchGenerationService {
        *
        * @param {PropertyWithValue[]} properties the properties specified by the user.
        * @param {string} mainResourceClassOption the class of the main resource, if specified.
-       * @param offset the offset to be used (nth page of results).
+       * @param {number} offset the offset to be used (nth page of results).
        * @returns {string} a KnarQL query string.
        */
     public createGravsearchQuery(properties: PropertyWithValue[], mainResourceClassOption?: string, offset: number = 0): string {
