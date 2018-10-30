@@ -17,7 +17,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-import { Properties, Property } from '../../../../../core/src/lib/services';
+import {
+    Cardinality,
+    CardinalityOccurrence,
+    Properties,
+    Property,
+    ResourceClass
+} from '../../../../../core/src/lib/services';
 import { IntegerValueComponent } from './specify-property-value/integer-value/integer-value.component';
 import { LinkValueComponent } from './specify-property-value/link-value/link-value.component';
 import { BooleanValueComponent } from './specify-property-value/boolean-value/boolean-value.component';
@@ -155,6 +161,81 @@ fdescribe('SelectPropertyComponent', () => {
         expect(testHostComponent.selectPropertyComp.propertySelected).toEqual(initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText']);
 
         expect(testHostComponent.selectPropertyComp.specifyPropertyValue).toBeTruthy();
+
+        // no resource class selected yet
+        expect(testHostComponent.selectPropertyComp.sortCriterion()).toBeFalsy();
+
+
+        const activeResClass = new ResourceClass(
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing',
+            'blueting.png',
+            'A blue thing.',
+            'blue thing',
+            [
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+                ),
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://api.knora.org/ontology/knora-api/v2#attachedToProject'
+                ),
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://api.knora.org/ontology/knora-api/v2#attachedToUser'
+                ),
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://api.knora.org/ontology/knora-api/v2#creationDate'
+                ),
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                ),
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                ),
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://api.knora.org/ontology/knora-api/v2#hasPermissions'
+                ),
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo'
+                ),
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
+                ),
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
+                )
+            ]
+        );
+
+        testHostComponent.activeResourceCass = activeResClass;
+
+        testHostFixture.detectChanges();
+
+        // active resource class has cardinality one for selected property
+        expect(testHostComponent.selectPropertyComp.sortCriterion()).toBeTruthy();
+
+        const checkbox = selProps.query(By.css('mat-checkbox'));
+
+        // there should be a checkbox in the template
+        expect(checkbox).toBeTruthy();
     });
 
 });
@@ -165,13 +246,15 @@ fdescribe('SelectPropertyComponent', () => {
 @Component({
     selector: `host-component`,
     template: `
-        <kui-select-property #props [formGroup]="form" [properties]="properties"></kui-select-property>`
+        <kui-select-property #props [formGroup]="form" [properties]="properties" [activeResourceClass]="activeResourceCass"></kui-select-property>`
 })
 class TestHostComponent implements OnInit {
 
     form;
 
     properties: Properties;
+
+    activeResourceCass: ResourceClass;
 
     @ViewChild('props') selectPropertyComp: SelectPropertyComponent;
 
