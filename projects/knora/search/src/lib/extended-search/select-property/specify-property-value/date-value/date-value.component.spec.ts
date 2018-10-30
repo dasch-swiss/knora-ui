@@ -21,7 +21,7 @@ import { JDNConvertibleCalendarModule } from 'jdnconvertiblecalendar/dist/src/JD
 import { ValueLiteral } from '@knora/core';
 import JDNPeriod = JDNConvertibleCalendarModule.JDNPeriod;
 
-fdescribe('DateValueComponent', () => {
+describe('DateValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
