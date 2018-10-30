@@ -19,7 +19,7 @@ import { OntologyMetadata } from '../../../../../core/src/lib/services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 
-fdescribe('SelectOntologyComponent', () => {
+describe('SelectOntologyComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 

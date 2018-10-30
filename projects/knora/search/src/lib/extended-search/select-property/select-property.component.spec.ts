@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-import { Cardinality, CardinalityOccurrence, Properties, Property } from '../../../../../core/src/lib/services';
+import { Properties, Property } from '../../../../../core/src/lib/services';
 import { IntegerValueComponent } from './specify-property-value/integer-value/integer-value.component';
 import { LinkValueComponent } from './specify-property-value/link-value/link-value.component';
 import { BooleanValueComponent } from './specify-property-value/boolean-value/boolean-value.component';
@@ -26,7 +26,6 @@ import { TextValueComponent } from './specify-property-value/text-value/text-val
 import { JdnDatepickerDirective } from '../../../../../action/src/lib/directives/jdn-datepicker.directive';
 import { DecimalValueComponent } from './specify-property-value/decimal-value/decimal-value.component';
 import { UriValueComponent } from './specify-property-value/uri-value/uri-value.component';
-import { SelectResourceClassComponent } from '../select-resource-class/select-resource-class.component';
 import { By } from '@angular/platform-browser';
 
 fdescribe('SelectPropertyComponent', () => {
@@ -98,8 +97,9 @@ fdescribe('SelectPropertyComponent', () => {
 
         expect(selectPropCompInstance.properties).toEqual(initProps);
 
-        expect(selectPropCompInstance.propertiesAsArray).toEqual([ initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'], initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger'], initProps['http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething']]);
+        expect(selectPropCompInstance.propertiesAsArray).toEqual([initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'], initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger'], initProps['http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething']]);
 
+        expect(testHostComponent.selectPropertyComp.specifyPropertyValue).toBeUndefined();
     });
 
     it('should create the selection for the properties', () => {
@@ -109,9 +109,9 @@ fdescribe('SelectPropertyComponent', () => {
 
         const hostCompDe = testHostFixture.debugElement;
 
-        const selResClasses = hostCompDe.query(By.directive(SelectPropertyComponent));
+        const selProps = hostCompDe.query(By.directive(SelectPropertyComponent));
 
-        const matSelect = selResClasses.query(By.css('mat-select'));
+        const matSelect = selProps.query(By.css('mat-select'));
 
         matSelect.nativeElement.click();
 
@@ -121,6 +121,40 @@ fdescribe('SelectPropertyComponent', () => {
 
         // make sure that there are two mat-option (one for no selection)
         expect(options.length).toEqual(3);
+
+        expect(testHostComponent.selectPropertyComp.specifyPropertyValue).toBeUndefined();
+    });
+
+    it('should select a property', () => {
+
+        // access the test host component's child
+        expect(testHostComponent.selectPropertyComp).toBeTruthy();
+
+        expect(testHostComponent.selectPropertyComp.specifyPropertyValue).toBeUndefined();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const selProps = hostCompDe.query(By.directive(SelectPropertyComponent));
+
+        const matSelect = selProps.query(By.css('mat-select'));
+
+        matSelect.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        const options: DebugElement[] = matSelect.queryAll(By.css('mat-option'));
+
+        matSelect.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        (options[0].nativeElement as HTMLElement).click();
+
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent.selectPropertyComp.propertySelected).toEqual(initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText']);
+
+        expect(testHostComponent.selectPropertyComp.specifyPropertyValue).toBeTruthy();
     });
 
 });
