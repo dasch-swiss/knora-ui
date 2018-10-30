@@ -10,11 +10,11 @@ Search module allows to make simple searches or extended searches in Knora. In e
 This module needs the services from [@knora/core](https://www.npmjs.com/package/@knora/core) which should also be installed.
 You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project.
 
-`$ yarn add @knora/search @knora/core @knora/viewer`
+`$ yarn add @knora/search @knora/core @knora/viewer jdnconvertiblecalendar jdnconvertiblecalendardateadapter` 
 
 OR
 
-`$ npm install --save @knora/search @knora/core @knora/viewer`
+`$ npm install --save @knora/search @knora/core @knora/viewer jdnconvertiblecalendar jdnconvertiblecalendardateadapter`
 
 
 ## Components

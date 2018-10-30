@@ -1,25 +1,27 @@
 import { CommonModule } from '@angular/common';
-
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {
     MatAutocompleteModule,
+    MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatListModule,
     MatNativeDateModule,
     MatSlideToggleModule,
+    MatToolbarModule,
     MatTooltipModule
 } from '@angular/material';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { KuiActionModule } from '@knora/action';
 import { KuiCoreModule } from '@knora/core';
-import { BooleanValueComponent } from './property/boolean-value/boolean-value.component';
 
+import { BooleanValueComponent } from './property/boolean-value/boolean-value.component';
 import { ColorValueComponent } from './property/color-value/color-value.component';
 import { DateValueComponent } from './property/date-value/date-value.component';
 import { DecimalValueComponent } from './property/decimal-value/decimal-value.component';
@@ -45,7 +47,6 @@ import { LinkObjComponent } from './resource/link-obj/link-obj.component';
 import { MovingImageComponent } from './resource/moving-image/moving-image.component';
 import { ObjectComponent } from './resource/object/object.component';
 import { RegionComponent } from './resource/region/region.component';
-
 import { StillImageComponent } from './resource/still-image/still-image.component';
 import { TextComponent } from './resource/text/text.component';
 import { CompareViewComponent } from './view/compare-view/compare-view.component';
@@ -53,45 +54,47 @@ import { GraphViewComponent } from './view/graph-view/graph-view.component';
 import { GridViewComponent } from './view/grid-view/grid-view.component';
 import { ListViewComponent } from './view/list-view/list-view.component';
 import { PropertiesViewComponent } from './view/properties-view/properties-view.component';
-
 import { ResourceViewComponent } from './view/resource-view/resource-view.component';
 import { TableViewComponent } from './view/table-view/table-view.component';
+
+
 
 
 @NgModule({
     imports: [
         CommonModule,
         KuiCoreModule,
+        KuiActionModule,
         MatAutocompleteModule,
+        MatButtonModule,
         MatCardModule,
         MatCheckboxModule,
         MatDatepickerModule,
         MatFormFieldModule,
         MatInputModule,
+        MatIconModule,
         MatListModule,
         MatNativeDateModule,
         MatSlideToggleModule,
+        MatToolbarModule,
         MatTooltipModule,
-        ReactiveFormsModule,
-        KuiCoreModule,
-        KuiActionModule
-
+        ReactiveFormsModule
     ],
     declarations: [
-        StillImageComponent,
-        MovingImageComponent,
-        AudioComponent,
-        DddComponent,
-        TextComponent,
-        DocumentComponent,
-        CollectionComponent,
-        RegionComponent,
         AnnotationComponent,
+        AudioComponent,
+        CollectionComponent,
+        DddComponent,
+        DocumentComponent,
         LinkObjComponent,
+        MovingImageComponent,
         ObjectComponent,
-        TextValueComponent,
-        TextValueAsStringComponent,
+        RegionComponent,
+        StillImageComponent,
+        TextComponent,
         TextValueAsHtmlComponent,
+        TextValueAsStringComponent,
+        TextValueComponent,
         TextValueAsXmlComponent,
         TextfileValueComponent,
         DateValueComponent,
@@ -115,20 +118,21 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         PropertiesViewComponent
     ],
     exports: [
-        StillImageComponent,
-        MovingImageComponent,
-        AudioComponent,
-        DddComponent,
-        TextComponent,
-        DocumentComponent,
-        CollectionComponent,
-        RegionComponent,
+
         AnnotationComponent,
+        AudioComponent,
+        CollectionComponent,
+        DddComponent,
+        DocumentComponent,
         LinkObjComponent,
+        MovingImageComponent,
         ObjectComponent,
-        TextValueComponent,
-        TextValueAsStringComponent,
+        RegionComponent,
+        StillImageComponent,
+        TextComponent,
         TextValueAsHtmlComponent,
+        TextValueAsStringComponent,
+        TextValueComponent,
         TextValueAsXmlComponent,
         TextfileValueComponent,
         DateValueComponent,

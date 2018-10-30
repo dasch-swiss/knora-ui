@@ -37,7 +37,9 @@
               "node_modules/marked/lib/marked.js",
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-csharp.min.js",
-              "node_modules/prismjs/components/prism-css.min.js"
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/openseadragon/build/openseadragon/openseadragon.min.js",
+              "node_modules/svg-overlay/openseadragon-svg-overlay.js"
             ]
           },
           "configurations": {
@@ -87,7 +89,10 @@
             "styles": [
               "styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/openseadragon/build/openseadragon/openseadragon.min.js",
+              "node_modules/svg-overlay/openseadragon-svg-overlay.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
