@@ -21,7 +21,7 @@ Returns all incoming regions for a particular resource.
 ##### Returns
 
 
--  Observable<any>
+-  Observable of any
 
 
 
@@ -46,7 +46,7 @@ StillImageRepresentations link to the given resource via knora-base:isPartOf.
 ##### Returns
 
 
--  Observable<any>
+-  Observable of any
 
 
 
@@ -71,6 +71,8 @@ but incoming regions and still image representations.
 ##### Returns
 
 
--  Observable<any>
+-  Observable of any
+
+
 
 

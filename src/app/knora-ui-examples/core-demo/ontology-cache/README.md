@@ -1,7 +1,7 @@
 ### projects/knora/core/src/lib/services/v2/ontology-cache.service.ts
 
 
-#### new OntologyCacheError() 
+#### constructor() 
 
 Represents an error occurred in OntologyCacheService.
 
@@ -434,7 +434,7 @@ Returns all resource classes as an array.
 ##### Returns
 
 
--  Array<ResourceClass>
+-  Array of ResourceClass
 
 
 
@@ -489,7 +489,7 @@ Returns all properties as an array.
 ##### Returns
 
 
--  Array<Property> - all properties as an array.
+-  Array of Property - all properties as an array.
 
 
 
@@ -513,6 +513,7 @@ Returns a property's label.
 
 
 - `string`  the property's label.
+
 
 
 

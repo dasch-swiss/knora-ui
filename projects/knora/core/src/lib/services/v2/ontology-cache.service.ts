@@ -7,9 +7,7 @@ import { map, mergeMap } from 'rxjs/operators';
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
 
-/**
- * Represents an error occurred in OntologyCacheService.
- */
+// Represents an error occurred in OntologyCacheService.
 class OntologyCacheError extends Error {
 
     constructor(readonly message: string) {
@@ -18,13 +16,10 @@ class OntologyCacheError extends Error {
 }
 
 
-/**
- * Represents an ontology's metadata.
- */
+// Represents an ontology's metadata.
 export class OntologyMetadata {
 
     /**
-     *
      * @param id Iri identifying the ontology.
      * @param label a label describing the ontology.
      */
@@ -36,9 +31,7 @@ export class OntologyMetadata {
 }
 
 
-/**
- * Occurrence of a property for a resource class (its cardinality).
- */
+// Occurrence of a property for a resource class (its cardinality).
 export enum CardinalityOccurrence {
     minCard = 0,
     card = 1,
@@ -46,13 +39,10 @@ export enum CardinalityOccurrence {
 }
 
 
-/**
- * Cardinality of a property for the given resource class.
- */
+// Cardinality of a property for the given resource class.
 export class Cardinality {
 
     /**
-     *
      * @param occurrence type of given occurrence.
      * @param value numerical value of given occurrence.
      * @param property the property the given occurrence applies to.
@@ -64,13 +54,10 @@ export class Cardinality {
 }
 
 
-/**
- * A resource class definition.
- */
+// A resource class definition.
 export class ResourceClass {
 
     /**
-     *
      * @param id Iri identifying the resource class.
      * @param icon path to an icon representing the resource class.
      * @param comment comment on the resource class.
@@ -87,21 +74,16 @@ export class ResourceClass {
 }
 
 
-/**
- * A map of resource class Iris to resource class definitions.
- */
+// A map of resource class Iris to resource class definitions.
 export class ResourceClasses {
     [index: string]: ResourceClass;
 }
 
 
-/**
- * A property definition.
- */
+// A property definition.
 export class Property {
 
     /**
-     *
      * @param {string} id Iri identifying the property definition.
      * @param {string} objectType the property's object constraint.
      * @param {string} comment comment on the property definition.
@@ -127,6 +109,7 @@ export class Property {
 /**
  * A map of property Iris to property definitions.
  */
+
 export class Properties {
     [index: string]: Property;
 }
@@ -137,6 +120,7 @@ export class Properties {
  *
  * A map of ontology Iris to an array of resource class Iris.
  */
+
 export class ResourceClassIrisForOntology {
     [index: string]: Array<string>;
 }
@@ -148,6 +132,7 @@ export class ResourceClassIrisForOntology {
  *
  * Requested ontology information by a service is represented by [[OntologyInformation]].
  */
+
 class OntologyCache {
 
     /**
@@ -186,6 +171,7 @@ class OntologyCache {
  *
  * For every request, an instance of this class is returned containing the requested information.
  */
+
 export class OntologyInformation {
 
     /**
@@ -261,7 +247,7 @@ export class OntologyInformation {
     /**
      * Returns all resource classes as an array.
      *
-     * @returns Array<ResourceClass>
+     * @returns Array of ResourceClass
      */
     getResourceClassesAsArray(): Array<ResourceClass> {
 
@@ -311,7 +297,7 @@ export class OntologyInformation {
     /**
      * Returns all properties as an array.
      *
-     * @returns Array<Property> - all properties as an array.
+     * @returns Array of Property - all properties as an array.
      */
     getPropertiesAsArray(): Array<Property> {
 
@@ -380,7 +366,7 @@ export class OntologyCacheService {
     /**
      * Requests the metadata of all ontologies from Knora.
      *
-     * @returns Observable<object> - metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
+     * @returns metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
      */
     private getOntologiesMetadataFromKnora(): Observable<object> {
 
@@ -406,7 +392,7 @@ export class OntologyCacheService {
      * Requests all entity definitions (resource classes and properties) for the given ontology from Knora.
      *
      * @param {string} ontologyIri the Iri of the requested ontology.
-     * @returns Observable<object> - metadata for all entity definitions for ontology from Knora.
+     * @returns metadata for all entity definitions for ontology from Knora.
      */
     private getAllEntityDefinitionsForOntologyFromKnora(ontologyIri: string): Observable<object> {
 
@@ -446,7 +432,7 @@ export class OntologyCacheService {
     /**
      * Returns all ontologies' metadata from the cache and returns them.
      *
-     * @returns Array<OntologyMetadata> - metadata of all existing ontologies.
+     * @returns Array of OntologyMetadata - metadata of all existing ontologies.
      */
     private getAllOntologiesMetadataFromCache(): Array<OntologyMetadata> {
 
@@ -759,7 +745,7 @@ export class OntologyCacheService {
     /**
      * Returns metadata about all ontologies.
      *
-     * @returns Observable<Array<OntologyMetadata>> - metadata about all ontologies.
+     * @returns metadata about all ontologies.
      */
     public getOntologiesMetadata(): Observable<Array<OntologyMetadata>> {
 
@@ -788,7 +774,7 @@ export class OntologyCacheService {
      * Requests the requested ontologies from Knora, adding them to the cache.
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be requested.
-     * @returns Observable<any[]>
+     * @returns Observable of any[]
      */
     private getAndCacheOntologies(ontologyIris: string[]): Observable<any[]> {
 
@@ -820,7 +806,7 @@ export class OntologyCacheService {
      * Returns the entity definitions for the requested ontologies.
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be queried.
-     * @returns Observable<OntologyInformation> - all ontology metadata from the cache
+     * @returns Observable of OntologyInformation - all ontology metadata from the cache
      */
     public getEntityDefinitionsForOntologies(ontologyIris: string[]): Observable<OntologyInformation> {
 
@@ -855,7 +841,7 @@ export class OntologyCacheService {
      * Properties contained in the cardinalities will be returned too.
      *
      * @param {string[]} resourceClassIris the given resource class Iris
-     * @returns Observable<OntologyInformation> - the requested resource classes (including properties).
+     * @returns Observable of OntologyInformation - the requested resource classes (including properties).
      */
     public getResourceClassDefinitions(resourceClassIris: string[]): Observable<OntologyInformation> {
 
@@ -897,7 +883,7 @@ export class OntologyCacheService {
      * If the definitions are not already in the cache, the will be retrieved from Knora and cached.
      *
      * @param {string[]} propertyIris the Iris of the properties to be returned .
-     * @returns Observable<OntologyInformation> - the requested property definitions.
+     * @returns Observable of OntologyInformation - the requested property definitions.
      */
     public getPropertyDefinitions(propertyIris: string[]): Observable<OntologyInformation> {
 

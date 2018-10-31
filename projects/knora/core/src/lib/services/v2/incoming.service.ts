@@ -12,7 +12,7 @@ export class IncomingService extends SearchService {
     *
     * @param {string} resourceIRI
     * @param {number} offset
-    * @returns Observable<any>
+    * @returns Observable of any
     */
     getIncomingRegions(resourceIRI: string, offset: number): Observable<any> {
         const sparqlQueryStr = `
@@ -61,7 +61,7 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
      *
      * @param {string} resourceIri the Iri of the resource whose StillImageRepresentations should be returned.
      * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
-     * @returns Observable<any>
+     * @returns Observable of any
      */
     getStillImageRepresentationsForCompoundResource(resourceIri: string, offset: number): Observable<any> {
         const sparqlQueryStr = `
@@ -110,7 +110,7 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
      *
      * @param {string} resourceIri the Iri of the resource whose incoming links should be returned.
      * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
-     * @returns Observable<any>
+     * @returns Observable of any
      */
     getIncomingLinksForResource(resourceIri: string, offset: number): Observable<any> {
         const sparqlQueryStr = `
