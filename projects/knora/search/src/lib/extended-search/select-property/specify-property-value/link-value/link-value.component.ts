@@ -85,7 +85,7 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
                         const resourceSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
 
                         this.resources = resourceSeq.resources;
-                        
+
                     }, function (err) {
 
                         console.log('JSONLD of full resource request could not be expanded:' + err);
