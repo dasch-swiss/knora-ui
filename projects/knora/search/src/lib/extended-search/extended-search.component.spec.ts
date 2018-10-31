@@ -17,7 +17,6 @@ import { SelectOntologyComponent } from './select-ontology/select-ontology.compo
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
-
 import { BooleanValueComponent } from './select-property/specify-property-value/boolean-value/boolean-value.component';
 import { DateValueComponent } from './select-property/specify-property-value/date-value/date-value.component';
 import { DecimalValueComponent } from './select-property/specify-property-value/decimal-value/decimal-value.component';
@@ -25,7 +24,7 @@ import { IntegerValueComponent } from './select-property/specify-property-value/
 import { LinkValueComponent } from './select-property/specify-property-value/link-value/link-value.component';
 import { TextValueComponent } from './select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './select-property/specify-property-value/uri-value/uri-value.component';
-import { JdnDatepickerDirective } from '../../../../action/src/lib/directives/jdn-datepicker.directive';
+import { JdnDatepickerDirective } from '@knora/action';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { of } from 'rxjs';
@@ -33,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     Cardinality,
     CardinalityOccurrence,
+    KuiCoreConfig,
     OntologyCacheService,
     OntologyInformation,
     OntologyMetadata,
@@ -43,7 +43,6 @@ import {
 } from '@knora/core';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { KuiCoreConfig } from '../../../../core/src/lib/declarations';
 
 describe('ExtendedSearchComponent', () => {
 
@@ -88,7 +87,10 @@ describe('ExtendedSearchComponent', () => {
                         params: null
                     }
                 },
-                {provide: 'config', useValue: KuiCoreConfig},
+                {
+                    provide: 'config',
+                    useValue: KuiCoreConfig
+                },
                 FormBuilder,
                 OntologyCacheService,
                 HttpClient,

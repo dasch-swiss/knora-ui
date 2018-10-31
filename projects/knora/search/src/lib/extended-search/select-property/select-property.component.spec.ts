@@ -12,23 +12,16 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectPropertyComponent } from './select-property.component';
 import { SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig } from '../../../../../core/src/lib/declarations';
+import { Cardinality, CardinalityOccurrence, KuiCoreConfig, Properties, Property, ResourceClass } from '@knora/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-import {
-    Cardinality,
-    CardinalityOccurrence,
-    Properties,
-    Property,
-    ResourceClass
-} from '../../../../../core/src/lib/services';
 import { IntegerValueComponent } from './specify-property-value/integer-value/integer-value.component';
 import { LinkValueComponent } from './specify-property-value/link-value/link-value.component';
 import { BooleanValueComponent } from './specify-property-value/boolean-value/boolean-value.component';
 import { DateValueComponent } from './specify-property-value/date-value/date-value.component';
 import { TextValueComponent } from './specify-property-value/text-value/text-value.component';
-import { JdnDatepickerDirective } from '../../../../../action/src/lib/directives/jdn-datepicker.directive';
+import { JdnDatepickerDirective } from '@knora/action';
 import { DecimalValueComponent } from './specify-property-value/decimal-value/decimal-value.component';
 import { UriValueComponent } from './specify-property-value/uri-value/uri-value.component';
 import { By } from '@angular/platform-browser';
@@ -71,7 +64,10 @@ describe('SelectPropertyComponent', () => {
                         params: null
                     },
                 },
-                {provide: 'config', useValue: KuiCoreConfig},
+                {
+                    provide: 'config',
+                    useValue: KuiCoreConfig
+                },
                 FormBuilder
             ]
         })
@@ -243,7 +239,8 @@ describe('SelectPropertyComponent', () => {
 @Component({
     selector: `host-component`,
     template: `
-        <kui-select-property #props [formGroup]="form" [properties]="properties" [activeResourceClass]="activeResourceCass"></kui-select-property>`
+        <kui-select-property #props [formGroup]="form" [properties]="properties"
+                             [activeResourceClass]="activeResourceCass"></kui-select-property>`
 })
 class TestHostComponent implements OnInit {
 

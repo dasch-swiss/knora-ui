@@ -8,14 +8,11 @@ import {
     MatIconModule,
     MatSelectModule
 } from '@angular/material';
-import { ResourceClass } from '@knora/core';
+import { Cardinality, CardinalityOccurrence, KuiCoreConfig, ResourceClass } from '@knora/core';
 
 import { SelectResourceClassComponent } from './select-resource-class.component';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-
-import { Cardinality, CardinalityOccurrence } from '../../../../../core/src/lib/services';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig } from '../../../../../core/src/lib/declarations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -51,7 +48,10 @@ describe('SelectResourceClassComponent', () => {
                         params: null
                     },
                 },
-                {provide: 'config', useValue: KuiCoreConfig},
+                {
+                    provide: 'config',
+                    useValue: KuiCoreConfig
+                },
                 FormBuilder
             ]
         })
