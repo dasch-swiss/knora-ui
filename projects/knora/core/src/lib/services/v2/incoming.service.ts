@@ -10,8 +10,8 @@ export class IncomingService extends SearchService {
     /**
     * Returns all incoming regions for a particular resource.
     *
-    * @param {string} resourceIRI
-    * @param {number} offset
+    * @param {string} resourceIRI the Iri of the resource whose Incoming regions should be returned.
+    * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
     * @returns Observable of any
     */
     getIncomingRegions(resourceIRI: string, offset: number): Observable<any> {

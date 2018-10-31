@@ -7,7 +7,9 @@ import { map, mergeMap } from 'rxjs/operators';
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
 
-// Represents an error occurred in OntologyCacheService.
+/**
+ * Represents an error occurred in OntologyCacheService.
+ */
 class OntologyCacheError extends Error {
 
     constructor(readonly message: string) {
@@ -16,12 +18,14 @@ class OntologyCacheError extends Error {
 }
 
 
-// Represents an ontology's metadata.
+/**
+ * Represents an ontology's metadata.
+ */
 export class OntologyMetadata {
 
     /**
-     * @param id Iri identifying the ontology.
-     * @param label a label describing the ontology.
+     * @param {string} id Iri identifying the ontology.
+     * @param {string} label a label describing the ontology.
      */
     constructor(readonly id: string,
         readonly label: string) {
@@ -31,7 +35,9 @@ export class OntologyMetadata {
 }
 
 
-// Occurrence of a property for a resource class (its cardinality).
+/**
+ * Occurrence of a property for a resource class (its cardinality).
+ */
 export enum CardinalityOccurrence {
     minCard = 0,
     card = 1,
@@ -39,7 +45,9 @@ export enum CardinalityOccurrence {
 }
 
 
-// Cardinality of a property for the given resource class.
+/**
+ * Cardinality of a property for the given resource class.
+ */
 export class Cardinality {
 
     /**
@@ -54,7 +62,9 @@ export class Cardinality {
 }
 
 
-// A resource class definition.
+/**
+ * A resource class definition.
+ */
 export class ResourceClass {
 
     /**
@@ -74,13 +84,17 @@ export class ResourceClass {
 }
 
 
-// A map of resource class Iris to resource class definitions.
+/**
+ * A map of resource class Iris to resource class definitions.
+ */
 export class ResourceClasses {
     [index: string]: ResourceClass;
 }
 
 
-// A property definition.
+/**
+ * A property definition.
+ */
 export class Property {
 
     /**
@@ -109,7 +123,6 @@ export class Property {
 /**
  * A map of property Iris to property definitions.
  */
-
 export class Properties {
     [index: string]: Property;
 }
@@ -120,7 +133,6 @@ export class Properties {
  *
  * A map of ontology Iris to an array of resource class Iris.
  */
-
 export class ResourceClassIrisForOntology {
     [index: string]: Array<string>;
 }
@@ -132,7 +144,6 @@ export class ResourceClassIrisForOntology {
  *
  * Requested ontology information by a service is represented by [[OntologyInformation]].
  */
-
 class OntologyCache {
 
     /**
@@ -171,7 +182,6 @@ class OntologyCache {
  *
  * For every request, an instance of this class is returned containing the requested information.
  */
-
 export class OntologyInformation {
 
     /**
