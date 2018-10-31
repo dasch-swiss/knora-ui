@@ -8,14 +8,20 @@ import { ReadBooleanValue } from '@knora/core';
 })
 export class BooleanValueComponent implements OnInit {
 
-  @Input() valueObject: ReadBooleanValue;
+  @Input()
+  set valueObject(value: ReadBooleanValue) {
+      this._booleanValueObj = value;
+  }
 
-  boolean: boolean;
+  get valueObject() {
+      return this._booleanValueObj;
+  }
+
+  private _booleanValueObj: ReadBooleanValue;
 
   constructor() { }
 
   ngOnInit() {
-    this.boolean = this.valueObject.bool;
   }
 
 }
