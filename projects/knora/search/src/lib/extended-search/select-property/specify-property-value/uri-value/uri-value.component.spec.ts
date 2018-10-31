@@ -11,7 +11,7 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { ValueLiteral } from '@knora/core';
 import { UriValueComponent } from './uri-value.component';
 
-fdescribe('UriValueComponent', () => {
+describe('UriValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
