@@ -20,8 +20,8 @@ import { SelectOntologyComponent } from './extended-search/select-ontology/selec
 import { SelectResourceClassComponent } from './extended-search/select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './extended-search/select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './extended-search/select-property/specify-property-value/specify-property-value.component';
-import { ReversePipe } from '@knora/action';
-import { KuiCoreConfig, OntologyCacheService, OntologyService } from '@knora/core';
+import { JdnDatepickerDirective, ReversePipe } from '@knora/action';
+import { KuiCoreConfig, OntologyCacheService, OntologyMetadata, OntologyService } from '@knora/core';
 import { BooleanValueComponent } from './extended-search/select-property/specify-property-value/boolean-value/boolean-value.component';
 import { DateValueComponent } from './extended-search/select-property/specify-property-value/date-value/date-value.component';
 import { DecimalValueComponent } from './extended-search/select-property/specify-property-value/decimal-value/decimal-value.component';
@@ -29,9 +29,7 @@ import { IntegerValueComponent } from './extended-search/select-property/specify
 import { LinkValueComponent } from './extended-search/select-property/specify-property-value/link-value/link-value.component';
 import { TextValueComponent } from './extended-search/select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './extended-search/select-property/specify-property-value/uri-value/uri-value.component';
-import { JdnDatepickerDirective } from '../../../action/src/lib/directives/jdn-datepicker.directive';
 import { of } from 'rxjs';
-import { OntologyMetadata } from '../../../core/src/lib/services';
 
 describe('SearchComponent', () => {
     let component: SearchComponent;
@@ -75,7 +73,10 @@ describe('SearchComponent', () => {
                 HttpClient,
                 OntologyCacheService,
                 OntologyService,
-                {provide: 'config', useValue: KuiCoreConfig}
+                {
+                    provide: 'config',
+                    useValue: KuiCoreConfig
+                }
             ]
         })
             .compileComponents();
