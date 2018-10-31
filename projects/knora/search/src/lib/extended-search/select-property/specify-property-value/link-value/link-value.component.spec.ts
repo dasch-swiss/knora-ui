@@ -12,10 +12,9 @@ import {
 } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ApiServiceResult, KuiCoreConfig, ReadResource } from '../../../../../../../core/src/lib/declarations';
+import { ApiServiceResult, IRI, KuiCoreConfig, ReadResource, SearchService } from '@knora/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { IRI, SearchService } from '@knora/core';
 import { of } from 'rxjs';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
@@ -50,7 +49,10 @@ describe('LinkValueComponent', () => {
                         params: null
                     },
                 },
-                {provide: 'config', useValue: KuiCoreConfig},
+                {
+                    provide: 'config',
+                    useValue: KuiCoreConfig
+                },
                 FormBuilder
             ]
         })

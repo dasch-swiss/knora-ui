@@ -13,13 +13,10 @@ import {
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig } from '../../../../../../../core/src/lib/declarations';
+import { KuiCoreConfig, ValueLiteral } from '@knora/core';
 import { JdnDatepickerDirective } from '@knora/action';
 import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalendardateadapter';
-import { GregorianCalendarDate } from 'jdnconvertiblecalendar';
-import { JDNConvertibleCalendarModule } from 'jdnconvertiblecalendar/dist/src/JDNConvertibleCalendar';
-import { ValueLiteral } from '@knora/core';
-import JDNPeriod = JDNConvertibleCalendarModule.JDNPeriod;
+import { GregorianCalendarDate, JDNPeriod } from 'jdnconvertiblecalendar';
 
 describe('DateValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -51,7 +48,10 @@ describe('DateValueComponent', () => {
                         params: null
                     },
                 },
-                {provide: 'config', useValue: KuiCoreConfig},
+                {
+                    provide: 'config',
+                    useValue: KuiCoreConfig
+                },
                 FormBuilder
             ]
         })

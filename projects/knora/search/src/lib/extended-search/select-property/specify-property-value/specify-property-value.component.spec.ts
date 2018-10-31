@@ -12,7 +12,7 @@ import {
 
 import { SpecifyPropertyValueComponent } from './specify-property-value.component';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-import { Property } from '../../../../../../core/src/lib/services';
+import { Equals, Exists, KuiCoreConfig, Like, Match, NotEquals, Property } from '@knora/core';
 import { BooleanValueComponent } from './boolean-value/boolean-value.component';
 import { DateValueComponent } from './date-value/date-value.component';
 import { DecimalValueComponent } from './decimal-value/decimal-value.component';
@@ -20,12 +20,10 @@ import { IntegerValueComponent } from './integer-value/integer-value.component';
 import { LinkValueComponent } from './link-value/link-value.component';
 import { TextValueComponent } from './text-value/text-value.component';
 import { UriValueComponent } from './uri-value/uri-value.component';
-import { JdnDatepickerDirective } from '../../../../../../action/src/lib/directives/jdn-datepicker.directive';
+import { JdnDatepickerDirective } from '@knora/action';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig } from '../../../../../../core/src/lib/declarations';
-import { Equals, Exists, Like, Match, NotEquals } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
 describe('SpecifyPropertyValueComponent', () => {
@@ -66,7 +64,10 @@ describe('SpecifyPropertyValueComponent', () => {
                         params: null
                     },
                 },
-                {provide: 'config', useValue: KuiCoreConfig},
+                {
+                    provide: 'config',
+                    useValue: KuiCoreConfig
+                },
                 FormBuilder
             ]
         })

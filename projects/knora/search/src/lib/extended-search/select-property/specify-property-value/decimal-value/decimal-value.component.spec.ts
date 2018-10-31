@@ -6,10 +6,9 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { KuiCoreConfig } from '../../../../../../../core/src/lib/declarations';
+import { KuiCoreConfig, ValueLiteral } from '@knora/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { ValueLiteral } from '@knora/core';
 
 describe('DecimalValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -38,7 +37,10 @@ describe('DecimalValueComponent', () => {
                         params: null
                     },
                 },
-                {provide: 'config', useValue: KuiCoreConfig},
+                {
+                    provide: 'config',
+                    useValue: KuiCoreConfig
+                },
                 FormBuilder
             ]
         })

@@ -7,9 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
-import { KuiCoreConfig } from '../../../../../../../core/src/lib/declarations';
+import { KuiCoreConfig, ValueLiteral } from '@knora/core';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { ValueLiteral } from '@knora/core';
 
 describe('TextValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -38,7 +37,10 @@ describe('TextValueComponent', () => {
                         params: null
                     },
                 },
-                {provide: 'config', useValue: KuiCoreConfig},
+                {
+                    provide: 'config',
+                    useValue: KuiCoreConfig
+                },
                 FormBuilder
             ]
         })
