@@ -5,7 +5,7 @@ import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadListValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('ListValueComponent', () => {
+describe('ListValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
