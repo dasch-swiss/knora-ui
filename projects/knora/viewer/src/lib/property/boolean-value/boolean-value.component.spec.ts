@@ -6,7 +6,7 @@ import { ReadBooleanValue } from '@knora/core';
 import { MatCheckbox, MatCheckboxModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 
-fdescribe('BooleanValueComponent', () => {
+describe('BooleanValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
