@@ -5,7 +5,7 @@ import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadUriValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('UriValueComponent', () => {
+describe('UriValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 

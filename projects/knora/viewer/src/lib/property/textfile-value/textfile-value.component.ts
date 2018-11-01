@@ -1,21 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { KnoraConstants, ReadTextFileValue } from '@knora/core';
+import { Component, Input } from '@angular/core';
+import { ReadTextFileValue } from '@knora/core';
 
 @Component({
   selector: 'kui-textfile-value',
   templateUrl: './textfile-value.component.html',
   styleUrls: ['./textfile-value.component.scss']
 })
-export class TextfileValueComponent implements OnInit {
+export class TextfileValueComponent {
 
-  @Input() valueObject: ReadTextFileValue;
+  @Input()
+  set valueObject(value: ReadTextFileValue) {
+    this._textfileValueObj = value;
+  }
 
-  fileUrl;
+  get valueObject() {
+    return this._textfileValueObj;
+  }
+
+  private _textfileValueObj: ReadTextFileValue;
 
   constructor() { }
-
-  ngOnInit() {
-    this.fileUrl = this.valueObject.makeUrl;
-  }
 
 }
