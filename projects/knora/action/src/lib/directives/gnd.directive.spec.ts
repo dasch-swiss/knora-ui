@@ -13,7 +13,7 @@ class MockElementRef implements ElementRef {
 @Component({
     template: `<span [gnd]="'(DE-588)118696149'"></span>`
 })
-class TestGnd1Component {}
+class TestGnd1Component { }
 
 /**
  * Test component for a VIAF identifier.
@@ -21,7 +21,7 @@ class TestGnd1Component {}
 @Component({
     template: `<span [gnd]="'(VIAF)22936072'"></span>`
 })
-class TestGnd2Component {}
+class TestGnd2Component { }
 
 /**
  * Test component for normal text.
@@ -29,7 +29,7 @@ class TestGnd2Component {}
 @Component({
     template: `<span [gnd]="'normal text'"></span>`
 })
-class TestGnd3Component {}
+class TestGnd3Component { }
 
 /**
  * Test component for long normal text.
@@ -37,13 +37,13 @@ class TestGnd3Component {}
 @Component({
     template: `<span [gnd]="'normal text that is quite long an will not even be looked at because it cannot possibly be a GND/IAF or VIAF identifier'"></span>`
 })
-class TestGnd4Component {}
+class TestGnd4Component { }
 
 describe('GndDirective', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ TestGnd1Component, TestGnd2Component, TestGnd3Component, TestGnd4Component, GndDirective ],
+            declarations: [TestGnd1Component, TestGnd2Component, TestGnd3Component, TestGnd4Component, GndDirective],
             providers: [
                 { provide: ElementRef, useClass: MockElementRef }
             ]
