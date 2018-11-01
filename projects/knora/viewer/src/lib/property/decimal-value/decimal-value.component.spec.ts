@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DecimalValueComponent } from './decimal-value.component';
-import { Component, OnInit, ViewChild, DebugElement } from '@angular/core';
+import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadDecimalValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('DecimalValueComponent', () => {
+describe('DecimalValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
@@ -43,8 +43,8 @@ fdescribe('DecimalValueComponent', () => {
         expect(spanNativeElement.innerText).toEqual('1234');
     });
 
-    it('should contain the decimal value 5678', () => {
-        testHostComponent.decimalValue = new ReadDecimalValue('id', 'propIri', 5678);
+    it('should contain the decimal value 56.78', () => {
+        testHostComponent.decimalValue = new ReadDecimalValue('id', 'propIri', 56.78);
 
         testHostFixture.detectChanges();
 
@@ -56,7 +56,7 @@ fdescribe('DecimalValueComponent', () => {
 
         const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('5678');
+        expect(spanNativeElement.innerText).toEqual('56.78');
     });
 });
 
