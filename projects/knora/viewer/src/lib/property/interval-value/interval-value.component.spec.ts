@@ -5,7 +5,7 @@ import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadIntervalValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('IntervalValueComponent', () => {
+describe('IntervalValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
