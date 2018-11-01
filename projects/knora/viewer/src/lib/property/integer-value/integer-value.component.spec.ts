@@ -5,7 +5,7 @@ import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadIntegerValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('IntegerValueComponent', () => {
+describe('IntegerValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 

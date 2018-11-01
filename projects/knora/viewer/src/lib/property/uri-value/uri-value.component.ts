@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ReadUriValue } from '@knora/core';
 
 @Component({
@@ -6,16 +6,19 @@ import { ReadUriValue } from '@knora/core';
   templateUrl: './uri-value.component.html',
   styleUrls: ['./uri-value.component.scss']
 })
-export class UriValueComponent implements OnInit {
+export class UriValueComponent {
 
-  @Input() valueObject: ReadUriValue;
+  @Input()
+  set valueObject(value: ReadUriValue) {
+    this.__uriValueObj = value;
+  }
 
-  uri: string;
+  get valueObject() {
+    return this.__uriValueObj;
+  }
+
+  private __uriValueObj: ReadUriValue;
 
   constructor() { }
-
-  ngOnInit() {
-    this.uri = this.valueObject.uri;
-  }
 
 }
