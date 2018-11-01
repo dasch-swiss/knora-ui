@@ -5,7 +5,7 @@ import { GndDirective } from '@knora/action';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-describe('TextValueAsStringComponent', () => {
+fdescribe('TextValueAsStringComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
@@ -46,7 +46,7 @@ describe('TextValueAsStringComponent', () => {
         expect(spanNativeElement.innerText).toEqual('Number theory');
     });
 
-    /* it('should contain the string "Natural Science"', () => {
+    it('should contain the string "Natural Science"', () => {
         testHostComponent.stringValue = new ReadTextValueAsString('id', 'propIri', 'Natural Science');
 
         testHostFixture.detectChanges();
@@ -60,7 +60,7 @@ describe('TextValueAsStringComponent', () => {
         const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
 
         expect(spanNativeElement.innerText).toEqual('Natural Science');
-    }); */
+    });
 
 });
 

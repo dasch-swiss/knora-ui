@@ -4,7 +4,7 @@ import { ReadTextValueAsXml } from '@knora/core';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('TextValueAsXmlComponent', () => {
+describe('TextValueAsXmlComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
