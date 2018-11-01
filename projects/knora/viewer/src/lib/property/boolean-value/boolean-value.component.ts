@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ReadBooleanValue } from '@knora/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { ReadBooleanValue } from '@knora/core';
   templateUrl: './boolean-value.component.html',
   styleUrls: ['./boolean-value.component.scss']
 })
-export class BooleanValueComponent implements OnInit {
+export class BooleanValueComponent {
 
   @Input()
   set valueObject(value: ReadBooleanValue) {
@@ -20,8 +20,5 @@ export class BooleanValueComponent implements OnInit {
   private _booleanValueObj: ReadBooleanValue;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }
