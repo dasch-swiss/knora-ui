@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ReadListValue } from '@knora/core';
 
 @Component({
@@ -6,16 +6,19 @@ import { ReadListValue } from '@knora/core';
   templateUrl: './list-value.component.html',
   styleUrls: ['./list-value.component.scss']
 })
-export class ListValueComponent implements OnInit {
+export class ListValueComponent {
 
-  @Input() valueObject: ReadListValue;
+  @Input()
+  set valueObject(value: ReadListValue) {
+    this._listValueObj = value;
+  }
 
-  nodeLabel: string;
+  get valueObject() {
+    return this._listValueObj;
+  }
+
+  private _listValueObj: ReadListValue;
 
   constructor() { }
-
-  ngOnInit() {
-    this.nodeLabel = this.valueObject.listNodeLabel;
-  }
 
 }
