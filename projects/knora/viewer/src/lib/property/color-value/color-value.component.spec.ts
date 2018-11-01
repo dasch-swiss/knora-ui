@@ -5,7 +5,7 @@ import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadColorValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('ColorValueComponent', () => {
+describe('ColorValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
