@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UriValueComponent } from './uri-value.component';
-import { Component, OnInit, ViewChild, DebugElement } from '@angular/core';
+import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadUriValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
@@ -47,6 +47,7 @@ fdescribe('UriValueComponent', () => {
         expect(hrefAttribute).toEqual('http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
     });
 
+    // the new uri has been made up!!
     it('should be equal to the uri value http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g', () => {
         testHostComponent.uriValue = new ReadUriValue('id', 'propIri', 'http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
 
