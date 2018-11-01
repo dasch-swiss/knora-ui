@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GeometryValueComponent } from './geometry-value.component';
-import { Component, OnInit, ViewChild, DebugElement } from '@angular/core';
+import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadGeomValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
@@ -61,23 +61,25 @@ fdescribe('GeometryValueComponent', () => {
 
     });
 
-    /**
-     * Test host component to simulate parent component.
-     */
-    @Component({
-        template: `
-        <kui-geometry-value #geometryVal [valueObject]="geometryValue"></kui-geometry-value>`
-    })
-    class TestHostComponent implements OnInit {
+});
 
-        @ViewChild('geometryVal') geometryValueComponent: GeometryValueComponent;
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    template: `
+<kui-geometry-value #geometryVal [valueObject]="geometryValue"></kui-geometry-value>`
+})
+class TestHostComponent implements OnInit {
 
-        geometryValue;
+    @ViewChild('geometryVal') geometryValueComponent: GeometryValueComponent;
 
-        constructor() {
-        }
+    geometryValue;
 
-        ngOnInit() {
-            this.geometryValue = new ReadGeomValue('id', 'propIri', '{"status":"active","lineColor":"#ff3333","lineWidth":2,"points":[{"x":0.17296511627906977,"y":0.08226691042047532},{"x":0.7122093023255814,"y":0.16544789762340037}],"type":"rectangle","original_index":1}');
-        }
+    constructor() {
     }
+
+    ngOnInit() {
+        this.geometryValue = new ReadGeomValue('id', 'propIri', '{"status":"active","lineColor":"#ff3333","lineWidth":2,"points":[{"x":0.17296511627906977,"y":0.08226691042047532},{"x":0.7122093023255814,"y":0.16544789762340037}],"type":"rectangle","original_index":1}');
+    }
+}
