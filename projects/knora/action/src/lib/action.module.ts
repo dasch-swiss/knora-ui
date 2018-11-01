@@ -1,19 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
 import { MatButtonModule, MatIconModule, MatMenuModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminImageDirective } from './admin-image/admin-image.directive';
+import { GndDirective } from './directives/gnd.directive';
+import { JdnDatepickerDirective } from './directives/jdn-datepicker.directive';
+import { ExistingNameDirective } from './existing-name/existing-name.directive';
+import { KeyPipe } from './pipes/key.pipe';
+import { ReversePipe } from './pipes/reverse.pipe';
+import { SortByPipe } from './pipes/sort-by.pipe';
 
 import { ProgressIndicatorComponent } from './progress-indicator/progress-indicator.component';
-import { SortButtonComponent } from './sort-button/sort-button.component';
-import { SortByPipe } from './pipes/sort-by.pipe';
-import { AdminImageDirective } from './admin-image/admin-image.directive';
-import { ExistingNameDirective } from './existing-name/existing-name.directive';
-import { ReversePipe } from './pipes/reverse.pipe';
-import { KeyPipe } from './pipes/key.pipe';
-import { GndDirective } from './directives/gnd.directive';
-import { MathJaxDirective } from './directives/mathjax.directive';
 import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
-import { JdnDatepickerDirective } from './directives/jdn-datepicker.directive';
+import { SortButtonComponent } from './sort-button/sort-button.component';
 
 @NgModule({
     imports: [
@@ -33,7 +32,6 @@ import { JdnDatepickerDirective } from './directives/jdn-datepicker.directive';
         ReversePipe,
         KeyPipe,
         GndDirective,
-        MathJaxDirective,
         ResourceDialogComponent,
         JdnDatepickerDirective
     ],
@@ -47,7 +45,6 @@ import { JdnDatepickerDirective } from './directives/jdn-datepicker.directive';
         ReversePipe,
         KeyPipe,
         GndDirective,
-        MathJaxDirective,
         JdnDatepickerDirective
     ]
 })

@@ -7,7 +7,7 @@
     <app-example-viewer [example]="classicLoader"></app-example-viewer>
 
     <div class="demo">
-        <kui-progress-indicator></kui-progress-indicator>
+        <kui-progress-indicator [color]="'rgb(212,121,66)'"></kui-progress-indicator>
     </div>
 </mat-card>
 
@@ -46,7 +46,7 @@
     <div class="demo">
         <mat-list>
             <mat-list-item>
-                <kui-progress-indicator mat-list-avatar [status]="status"></kui-progress-indicator>
+                <kui-progress-indicator mat-list-avatar [status]="status" [color]="'#D47942'"></kui-progress-indicator>
                 <p mat-line>
                     <strong>
                         <span *ngIf="status == -1">before submit (not ready)</span>

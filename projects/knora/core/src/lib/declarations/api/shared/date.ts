@@ -44,5 +44,6 @@ export class DateRangeSalsah {
     constructor(
         readonly start: DateSalsah,
         readonly end: DateSalsah
-    ) { }
+    ) {
+    }
 }

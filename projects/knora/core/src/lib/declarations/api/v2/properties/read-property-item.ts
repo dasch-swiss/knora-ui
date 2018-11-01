@@ -2,8 +2,6 @@ import { ReadResource } from '../../../';
 import { KnoraConstants } from '../../knora-constants';
 
 import { OntologyInformation } from '../../../../services';
-import { JsonObject, JsonProperty } from 'json2typescript';
-
 import { DateRangeSalsah, DateSalsah } from '../../shared/date';
 
 /**
@@ -134,10 +132,9 @@ export class ReadDateValue implements ReadPropertyItem {
 
     readonly type = KnoraConstants.DateValue;
 
-    private separator = '-';
+    private separator = '/';
 
     getDateSalsah(): DateSalsah | DateRangeSalsah {
-
         if (this.startYear === this.endYear && this.startMonth === this.endMonth && this.startDay === this.endDay && this.startEra === this.endEra) {
             // precise date
             return new DateSalsah(this.calendar, this.startEra, this.startYear, this.startMonth, this.startDay);
