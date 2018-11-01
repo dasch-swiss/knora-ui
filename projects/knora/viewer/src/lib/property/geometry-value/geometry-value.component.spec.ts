@@ -5,7 +5,7 @@ import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadGeomValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('GeometryValueComponent', () => {
+describe('GeometryValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
