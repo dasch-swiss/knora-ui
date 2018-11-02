@@ -34,7 +34,7 @@
 <kui-interval-value [valueObject]="interval"></kui-interval-value>
 
 <h4>LinkValue</h4>
-<kui-link-value [valueObject]="link"></kui-link-value>
+<kui-link-value [valueObject]="link" (referredResourceClicked)="referredResClicked($event)"></kui-link-value>
 
 <h4>ListValue</h4>
 <kui-list-value [valueObject]="list"></kui-list-value>

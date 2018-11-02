@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinkValueComponent } from './link-value.component';
-import { KnoraConstants, OntologyInformation, ReadLinkValue } from '@knora/core';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { KnoraConstants, OntologyInformation, ReadLinkValue, ResourceClass, ResourceClassIrisForOntology, ResourceClasses, ReadResource } from '@knora/core';
+import { Component, OnInit, ViewChild, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
-describe('LinkValueComponent', () => {
+fdescribe('LinkValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
@@ -29,6 +30,88 @@ describe('LinkValueComponent', () => {
     it('should create', () => {
         expect(testHostComponent.linkValueComponent).toBeTruthy();
     });
+
+    it('should display the referred resource\'s Iri', () => {
+        expect(testHostComponent.linkValueComponent.valueObject.referredResourceIri).toEqual('http://rdfh.ch/test');
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const intervalVal = hostCompDe.query(By.directive(LinkValueComponent));
+
+        const spanDebugElement: DebugElement = intervalVal.query(By.css('a'));
+
+        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
+
+        expect(spanNativeElement.innerText).toEqual('http://rdfh.ch/test');
+
+        expect(spanNativeElement.getAttribute('class')).toEqual('salsah-link');
+
+        spanNativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent.refResClickedIri).toEqual('http://rdfh.ch/test');
+    });
+
+    it('should display the referred resource\'s label', () => {
+
+        const referredResource = new ReadResource(
+            'http://rdfh.ch/test',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
+            'test book label',
+            [],
+            [],
+            [],
+            [],
+            {}
+        );
+
+        const resClassesForOnto: ResourceClassIrisForOntology = {
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2': [
+                'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book'
+            ]
+        };
+
+        const resClasses: ResourceClasses = {
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book':
+                new ResourceClass(
+                    'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
+                    'book.png',
+                    'A book.',
+                    'book',
+                    []
+                )
+        };
+
+        const ontoInfo = new OntologyInformation(resClassesForOnto, resClasses, {});
+
+        const linkValue = new ReadLinkValue('id', 'propIri', 'http://rdfh.ch/test', referredResource);
+
+        testHostComponent.ontoInfo = ontoInfo;
+        testHostComponent.linkValue = linkValue;
+
+        testHostFixture.detectChanges();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const intervalVal = hostCompDe.query(By.directive(LinkValueComponent));
+
+        const spanDebugElement: DebugElement = intervalVal.query(By.css('a'));
+
+        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
+
+        expect(spanNativeElement.innerText).toEqual('test book label');
+
+        expect(spanNativeElement.getAttribute('class')).toEqual('salsah-link');
+
+        spanNativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent.refResClickedIri).toEqual('http://rdfh.ch/test');
+
+    });
+
 });
 
 /**
@@ -36,18 +119,25 @@ describe('LinkValueComponent', () => {
  */
 @Component({
     template: `
-        <kui-link-value #linkVal [valueObject]="linkValue"></kui-link-value>`
+        <kui-link-value #linkVal [valueObject]="linkValue" [ontologyInfo]="ontoInfo" (referredResourceClicked)="refResClicked($event)"></kui-link-value>`
 })
 class TestHostComponent implements OnInit {
 
     @ViewChild('linkVal') linkValueComponent: LinkValueComponent;
 
     linkValue;
+    ontoInfo;
+
+    refResClickedIri: string;
 
     constructor() {
     }
 
+    refResClicked(refResIri: string) {
+        this.refResClickedIri = refResIri;
+    }
+
     ngOnInit() {
-        this.linkValue = new ReadLinkValue('id', 'propIri', 'iri');
+        this.linkValue = new ReadLinkValue('id', 'propIri', 'http://rdfh.ch/test');
     }
 }

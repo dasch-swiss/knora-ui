@@ -41,6 +41,7 @@ export class PropertiesComponent implements OnInit {
     integer = new ReadIntegerValue('id', 'propIri', 123);
     interval = new ReadIntervalValue('id', 'propIri', 1700, 1800);
     link = new ReadLinkValue('id', 'propIri', 'http://rdfh.ch/c9824353ae06', this.referredResource);
+
     list = new ReadListValue('id', 'propIri', 'listNodeIri', 'Node Label');
     textString = new ReadTextValueAsString('id', 'propIri', 'Text as string');
     textXML = new ReadTextValueAsXml('id', 'propIri', '<?xml version="1.0" encoding="UTF-8"?> <text>Ich liebe die <a href="http://rdfh.ch/0001/a-thing" class="salsah-link">Dinge</a>, sie sind alles für mich.</text>', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
@@ -57,6 +58,10 @@ export class PropertiesComponent implements OnInit {
                     this.partOf = mod.partOf;
                 }
             );
+    }
+
+    referredResClicked(refResIri) {
+        console.log('clicked on ', refResIri);
     }
 
     ngOnInit() {

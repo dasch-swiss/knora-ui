@@ -5,7 +5,7 @@ import { GndDirective } from '@knora/action';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('TextValueAsStringComponent', () => {
+describe('TextValueAsStringComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
