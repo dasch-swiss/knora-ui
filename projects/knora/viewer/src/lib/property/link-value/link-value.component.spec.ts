@@ -1,23 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinkValueComponent } from './link-value.component';
-import { MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { KnoraConstants, OntologyInformation, ReadLinkValue } from '@knora/core';
-import { ResourceDialogComponent } from '@knora/action';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 describe('LinkValueComponent', () => {
-    let component: LinkValueComponent;
-    let fixture: ComponentFixture<LinkValueComponent>;
+    let testHostComponent: TestHostComponent;
+    let testHostFixture: ComponentFixture<TestHostComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
-                MatFormFieldModule,
-                MatIconModule,
-                MatInputModule,
-                MatDialogModule
-            ],
-            declarations: [LinkValueComponent, ResourceDialogComponent],
+            imports: [],
+            declarations: [LinkValueComponent, TestHostComponent],
             providers: [
             ]
         })
@@ -25,12 +19,35 @@ describe('LinkValueComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(LinkValueComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+        testHostFixture = TestBed.createComponent(TestHostComponent);
+        testHostComponent = testHostFixture.componentInstance;
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent).toBeTruthy();
     });
 
     it('should create', () => {
-        expect(component).toBeTruthy();
+        expect(testHostComponent.linkValueComponent).toBeTruthy();
     });
 });
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    template: `
+        <kui-link-value #linkVal [valueObject]="linkValue"></kui-link-value>`
+})
+class TestHostComponent implements OnInit {
+
+    @ViewChild('linkVal') linkValueComponent: LinkValueComponent;
+
+    linkValue;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.linkValue = new ReadLinkValue('id', 'propIri', 'iri');
+    }
+}

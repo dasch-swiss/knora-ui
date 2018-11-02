@@ -1,41 +1,27 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogConfig } from '@angular/material';
-import {
-    ApiServiceResult,
-    ConvertJSONLD,
-    IRI,
-    KnoraConstants,
-    OntologyCacheService,
-    OntologyInformation,
-    ReadLinkValue,
-    ReadResource,
-    ReadResourcesSequence,
-    SearchService,
-    Value
-} from '@knora/core';
+import { Component, Inject, Input } from '@angular/core';
+import { OntologyInformation, ReadLinkValue } from '@knora/core';
 
 @Component({
     selector: 'kui-link-value',
     templateUrl: './link-value.component.html',
     styleUrls: ['./link-value.component.scss']
 })
-export class LinkValueComponent implements OnInit {
+export class LinkValueComponent {
 
-    @Input() valueObject: ReadLinkValue;
-    @Input() ontologyInfo?: OntologyInformation;
+    @Input()
+    ontologyInfo?: OntologyInformation;
 
-    referredResource: string;
+    @Input()
+    set valueObject(value: ReadLinkValue) {
+        this._linkValueObj = value;
+    }
+
+    get valueObject() {
+        return this._linkValueObj;
+    }
+
+    private _linkValueObj: ReadLinkValue;
 
     constructor() { }
-
-    ngOnInit() {
-        if (this.valueObject.referredResource !== undefined) {
-            this.referredResource = this.valueObject.referredResource.label;
-        } else {
-            this.referredResource = this.valueObject.referredResourceIri;
-        }
-
-    }
 
 }
