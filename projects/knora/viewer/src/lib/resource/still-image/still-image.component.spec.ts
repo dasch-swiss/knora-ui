@@ -76,7 +76,50 @@ describe('StillImageOSDViewerComponent', () => {
         expect(overlay.node().childElementCount).toEqual(5);
     });
 
+    it('should emit the region\'s Iri when a region is hovered', () => {
+        host.resourcesHost = images;
+        fixture.detectChanges();
+
+        let overlay = component['viewer'].svgOverlay();
+
+        // first region -> polygon element (second element in <g> element)
+        const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
+
+        const event = new MouseEvent('mouseover', {
+            bubbles: true,
+            cancelable: true,
+            view: window
+        });
+
+        regionSvgEle.dispatchEvent(event);
+
+        fixture.detectChanges();
+
+        expect(host.activeRegion).toEqual('http://rdfh.ch/b6b64a62b006');
+
+    });
+
 });
+
+// define and create host component
+
+@Component({
+    template: `
+        <kui-still-image [images]="resourcesHost" [imageRangeStart]="0" [imageRangeEnd]="0" [imageChangeInterval]="1"
+                         [imageCaption]="caption" (regionHovered)="regionActive($event)">
+        </kui-still-image>`
+})
+class TestHostComponent {
+    resourcesHost: StillImageRepresentation[] = [];
+    caption = 'test';
+    activeRegion: string;
+
+    @ViewChild(StillImageComponent) osdViewerComp: StillImageComponent;
+
+    regionActive(regionIri: string) {
+        this.activeRegion = regionIri;
+    }
+}
 
 // create test input data
 
@@ -110,20 +153,6 @@ let testRegionMulti: ReadResource = createTestRegionMulti();
 let images: StillImageRepresentation[] = [
     new StillImageRepresentation(stillImageFullSize, [new ImageRegion(testRegionRectangle), new ImageRegion(testRegionPolygon), new ImageRegion(testRegionCircle), new ImageRegion(testRegionMulti)])
 ];
-
-// define and create host component
-
-@Component({
-    template: `
-        <kui-still-image [images]="resourcesHost" [imageRangeStart]="0" [imageRangeEnd]="0" [imageChangeInterval]="1"
-                         [imageCaption]="caption">
-        </kui-still-image>`
-})
-class TestHostComponent {
-    resourcesHost: StillImageRepresentation[] = [];
-    caption = 'test';
-    @ViewChild(StillImageComponent) osdViewerComp: StillImageComponent;
-}
 
 // utility functions
 

@@ -82,6 +82,21 @@ export class RequestStillImageRepresentations {
 }
 
 /**
+ * Represents a geometry belonging to a specific region.
+ */
+export class GeometryForRegion {
+
+    /**
+     *
+     * @param {RegionGeometry} geometry the geometrical information.
+     * @param {ReadResource} region the region the geometry belongs to.
+     */
+    constructor(readonly geometry: RegionGeometry, readonly region: ReadResource) {
+    }
+
+}
+
+/**
  * This component creates a OpenSeadragon viewer instance.
  * Accepts an array of ReadResource containing (among other resources) ReadStillImageFileValues to be rendered.
  * The viewer will not render ReadStillImageFileValues with isPreview == true
@@ -102,12 +117,33 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     @Input() imageCaption?: string;
 
     @Output() getImages = new EventEmitter<RequestStillImageRepresentations>(); // sends a message to the parent component (object.component) to load the next or previous page of results (images) from the server
+    @Output() regionHovered = new EventEmitter<string>();
 
     // the paging limit should be defined in the configuration of the app
     pagingLimit: number = 25;
 
 
     private viewer;
+
+    /**
+     * Calculates the surface of a rectangular region.
+     *
+     * @param {ReadGeomValue} geom the region's geometry.
+     * @returns {number} the surface.
+     */
+    private static surfaceOfRectangularRegion(geom: RegionGeometry): number {
+
+        if (geom.type !== 'rectangle') {
+            console.log('expected rectangular region, but ' + geom.type + ' given');
+            return 0;
+        }
+
+        const w = Math.max(geom.points[0].x, geom.points[1].x) - Math.min(geom.points[0].x, geom.points[1].x);
+        const h = Math.max(geom.points[0].y, geom.points[1].y) - Math.min(geom.points[0].y, geom.points[1].y);
+
+        return w * h;
+
+    }
 
     /**
      * Prepare tile sources from the given sequence of [[ReadStillImageFileValue]].
@@ -386,12 +422,48 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         for (const image of this.images) {
             const aspectRatio = (image.stillImageFileValue.dimY / image.stillImageFileValue.dimX);
 
-            for (const region of image.regions) {
+            // collect all geometries belonging to this page
+            let geometries: GeometryForRegion[] = [];
+            image.regions.map((reg) => {
 
-                for (const geometryValue of region.getGeometries()) {
-                    const geometry = geometryValue.geometry;
-                    this.createSVGOverlay(geometry, aspectRatio, imageXOffset, region.regionResource.label);
+                let geoms = reg.getGeometries();
+
+                geoms.map((geom) => {
+                    let geomForReg = new GeometryForRegion(geom.geometry, reg.regionResource);
+
+                    geometries.push(geomForReg);
+                });
+            });
+
+            // sort all geometries belonging to this page
+            geometries.sort((geom1, geom2) => {
+
+                if (geom1.geometry.type === 'rectangle' && geom2.geometry.type === 'rectangle') {
+
+                    const surf1 = StillImageComponent.surfaceOfRectangularRegion(geom1.geometry);
+                    const surf2 = StillImageComponent.surfaceOfRectangularRegion(geom2.geometry);
+
+                    // if reg1 is smaller than reg2, return 1
+                    // reg1 then comes after reg2 and thus is rendered later
+                    if (surf1 < surf2) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+
+                } else {
+                    return 0;
                 }
+
+
+            });
+
+            // render all geometries for this page
+            for (let geom of geometries) {
+
+                let geometry = geom.geometry;
+                this.createSVGOverlay(geom.region.id, geometry, aspectRatio, imageXOffset, geom.region.label);
+
             }
 
             imageXOffset++;
@@ -401,12 +473,13 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
     /**
      * Creates and adds a ROI-overlay to the viewer
+     * @param regionIri the Iri of the region.
      * @param geometry - the geometry describing the ROI
      * @param aspectRatio -  the aspectRatio (h/w) of the image on which the geometry should be placed
      * @param xOffset -  the x-offset in Openseadragon viewport coordinates of the image on which the geometry should be placed
      * @param toolTip -  the tooltip which should be displayed on mousehover of the svg element
      */
-    private createSVGOverlay(geometry: RegionGeometry, aspectRatio: number, xOffset: number, toolTip: string): void {
+    private createSVGOverlay(regionIri: string, geometry: RegionGeometry, aspectRatio: number, xOffset: number, toolTip: string): void {
         const lineColor = geometry.lineColor;
         const lineWidth = geometry.lineWidth;
 
@@ -431,6 +504,11 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         svgElement.id = 'roi-svgoverlay-' + Math.random() * 10000;
         svgElement.setAttribute('class', 'roi-svgoverlay');
         svgElement.setAttribute('style', 'stroke: ' + lineColor + '; stroke-width: ' + lineWidth + 'px;');
+
+        // event when a region is hovered (output)
+        svgElement.addEventListener('mouseover', () => {
+                this.regionHovered.emit(regionIri);
+            }, false);
 
         const svgTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
         svgTitle.textContent = toolTip;
