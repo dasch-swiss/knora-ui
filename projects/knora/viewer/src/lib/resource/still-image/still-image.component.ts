@@ -88,8 +88,8 @@ export class GeometryForRegion {
 
     /**
      *
-     * @param {RegionGeometry} geometry the geometrical information.
-     * @param {ReadResource} region the region the geometry belongs to.
+     * @param geometry the geometrical information.
+     * @param region the region the geometry belongs to.
      */
     constructor(readonly geometry: RegionGeometry, readonly region: ReadResource) {
     }
@@ -128,8 +128,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * Calculates the surface of a rectangular region.
      *
-     * @param {ReadGeomValue} geom the region's geometry.
-     * @returns {number} the surface.
+     * @param geom the region's geometry.
+     * @returns the surface.
      */
     private static surfaceOfRectangularRegion(geom: RegionGeometry): number {
 
