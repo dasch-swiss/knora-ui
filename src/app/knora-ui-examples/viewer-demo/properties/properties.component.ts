@@ -1,6 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ReadResource, ReadColorValue, ReadBooleanValue, ReadDateValue, ReadDecimalValue, ReadGeomValue, ReadIntegerValue, ReadIntervalValue, ReadLinkValue, ReadListValue, ReadTextValueAsXml, ReadTextValueAsString, ReadTextValueAsHtml, ReadTextFileValue, ReadUriValue } from '@knora/core';
+import {
+    ReadBooleanValue,
+    ReadColorValue,
+    ReadDateValue,
+    ReadDecimalValue,
+    ReadIntegerValue,
+    ReadIntervalValue,
+    ReadLinkValue,
+    ReadListValue,
+    ReadResource,
+    ReadTextFileValue,
+    ReadTextValueAsHtml,
+    ReadTextValueAsString,
+    ReadTextValueAsXml,
+    ReadUriValue
+} from '@knora/core';
+import { ReadGeomValue } from 'projects/knora/core/src/public_api';
 
 @Component({
     selector: 'app-properties',

@@ -1,12 +1,6 @@
 import { Component, Inject, Input, Output, EventEmitter } from '@angular/core';
 import { OntologyInformation, ReadLinkValue } from '@knora/core';
 
-declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
-const jsonld = require('jsonld');
-
-// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
-const resolvedPromise = Promise.resolve(null);
-
 @Component({
     selector: 'kui-link-value',
     templateUrl: './link-value.component.html',

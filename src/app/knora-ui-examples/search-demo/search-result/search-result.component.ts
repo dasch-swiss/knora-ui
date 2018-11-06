@@ -38,6 +38,8 @@ export class SearchResultComponent implements OnInit {
 
     partOf = AppDemo.searchModule;
 
+    KnoraConstants = KnoraConstants;
+
     result: ReadResource[] = []; // the results of a search query
     ontologyInfo: OntologyInformation; // ontology information about resource classes and properties present in `result`
     numberOfAllResults: number; // total number of results (count query)
@@ -49,7 +51,7 @@ export class SearchResultComponent implements OnInit {
 
     offset: number = 0;
 
-    list: ListData = <ListData> {
+    list: ListData = <ListData>{
         title: 'Results: ',
         content: 'resource',
         restrictedBy: ''
@@ -90,7 +92,7 @@ export class SearchResultComponent implements OnInit {
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: ApiServiceError) => {
-                            this.errorMessage = <any> error;
+                            this.errorMessage = <any>error;
                             // console.log('numberOfAllResults', this.numberOfAllResults);
                         }
                     );
@@ -101,9 +103,9 @@ export class SearchResultComponent implements OnInit {
                 .subscribe(
                     this.processSearchResults, // function pointer
                     (error: ApiServiceError) => {
-                        this.errorMessage = <any> error;
+                        this.errorMessage = <any>error;
                     },
-                );
+            );
 
             // EXTENDED SEARCH
         } else if (this.list.searchMode === 'extended') {
@@ -113,7 +115,7 @@ export class SearchResultComponent implements OnInit {
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: ApiServiceError) => {
-                            this.errorMessage = <any> error;
+                            this.errorMessage = <any>error;
                         }
                     );
             }
@@ -125,7 +127,7 @@ export class SearchResultComponent implements OnInit {
                             .subscribe(
                                 this.processSearchResults, // function pointer
                                 (error: ApiServiceError) => {
-                                    this.errorMessage = <any> error;
+                                    this.errorMessage = <any>error;
                                 });
                     } else {
                         // generate new GravSearch
@@ -134,7 +136,7 @@ export class SearchResultComponent implements OnInit {
                             .subscribe(
                                 this.processSearchResults, // function pointer
                                 (error: ApiServiceError) => {
-                                    this.errorMessage = <any> error;
+                                    this.errorMessage = <any>error;
                                 }
                             );
                     }
