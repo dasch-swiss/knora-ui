@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { OntologyInformation, ReadTextValueAsHtml } from '@knora/core';
 
 @Component({
@@ -6,19 +6,45 @@ import { OntologyInformation, ReadTextValueAsHtml } from '@knora/core';
     templateUrl: './text-value-as-html.component.html',
     styleUrls: ['./text-value-as-html.component.scss']
 })
-export class TextValueAsHtmlComponent implements OnInit {
+export class TextValueAsHtmlComponent {
 
-    @Input() valueObject: ReadTextValueAsHtml;
-    @Input() ontologyInfo: OntologyInformation;
-    @Input() bindEvents: Boolean; // indicates if click and mouseover events have to be bound
-
-    html: string;
-
-    constructor(private el: ElementRef) {
+    @Input()
+    set ontologyInfo(value: OntologyInformation) {
+        this._ontoInfo = value;
     }
 
-    ngOnInit() {
-        this.el.nativeElement.innerHTML = this.valueObject.html;
+    get ontologyInfo() {
+        return this._ontoInfo;
+    }
+
+    @Input()
+    set bindEvents(value: Boolean) {
+        this._bindEvents = value;
+    }
+
+    get bindEvents() {
+        return this._bindEvents;
+    }
+
+    @Input()
+    set valueObject(value: ReadTextValueAsHtml) {
+        this._htmlValueObj = value;
+
+        if (this.el.nativeElement.innerHTML) {
+            this.el.nativeElement.innerHTML = this.valueObject.html;
+        }
+    }
+
+    get valueObject() {
+        return this._htmlValueObj;
+    }
+
+    html: string;
+    private _htmlValueObj: ReadTextValueAsHtml;
+    private _ontoInfo: OntologyInformation;
+    private _bindEvents: Boolean;
+
+    constructor(private el: ElementRef) {
     }
 
     /**
