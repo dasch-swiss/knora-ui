@@ -5,7 +5,7 @@ import { KnoraConstants, OntologyInformation, ReadLinkValue, ResourceClass, Reso
 import { Component, OnInit, ViewChild, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('LinkValueComponent', () => {
+describe('LinkValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
@@ -36,9 +36,9 @@ fdescribe('LinkValueComponent', () => {
 
         const hostCompDe = testHostFixture.debugElement;
 
-        const intervalVal = hostCompDe.query(By.directive(LinkValueComponent));
+        const linkVal = hostCompDe.query(By.directive(LinkValueComponent));
 
-        const spanDebugElement: DebugElement = intervalVal.query(By.css('a'));
+        const spanDebugElement: DebugElement = linkVal.query(By.css('a'));
 
         const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
 
@@ -94,9 +94,9 @@ fdescribe('LinkValueComponent', () => {
 
         const hostCompDe = testHostFixture.debugElement;
 
-        const intervalVal = hostCompDe.query(By.directive(LinkValueComponent));
+        const linkVal = hostCompDe.query(By.directive(LinkValueComponent));
 
-        const spanDebugElement: DebugElement = intervalVal.query(By.css('a'));
+        const spanDebugElement: DebugElement = linkVal.query(By.css('a'));
 
         const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
 
