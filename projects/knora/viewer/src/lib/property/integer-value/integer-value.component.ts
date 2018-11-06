@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ReadIntegerValue } from '@knora/core';
 
 @Component({
@@ -6,20 +6,16 @@ import { ReadIntegerValue } from '@knora/core';
     templateUrl: './integer-value.component.html',
     styleUrls: ['./integer-value.component.scss']
 })
-export class IntegerValueComponent {
+export class IntegerValueComponent implements OnInit {
 
-    @Input()
-    set valueObject(value: ReadIntegerValue) {
-        this._integerValueObj = value;
-    }
-
-    get valueObject() {
-        return this._integerValueObj;
-    }
-
-    private _integerValueObj: ReadIntegerValue;
+    /* errorMessage: any; */
+    @Input() valueObject: ReadIntegerValue;
 
     constructor() {
+    }
+
+    ngOnInit() {
+        console.log(this.valueObject);
     }
 
 }

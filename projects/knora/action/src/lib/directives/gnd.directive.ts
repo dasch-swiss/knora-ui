@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, Input, OnChanges } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, OnInit } from '@angular/core';
 import { KnoraConstants } from '@knora/core';
 
 /**
@@ -8,26 +8,15 @@ import { KnoraConstants } from '@knora/core';
     // tslint:disable-next-line:directive-selector
     selector: '[gnd]'
 })
-export class GndDirective implements OnChanges {
-
-    @Input()
-    set gnd(value: string) {
-        this._gnd = value;
-    }
-
-    get gnd() {
-        return this._gnd;
-    }
-
-
-    // the GND identifier to be rendered
-    private _gnd: string;
+export class GndDirective implements OnInit {
+    @Input('gnd') private gnd: string = ''; // the GND identifier to be rendered
 
     constructor(private el: ElementRef) {
 
     }
 
-    ngOnChanges() {
+    ngOnInit() {
+
         if (this.gnd.length < 30) {
 
             if (this.gnd.indexOf(KnoraConstants.GNDPrefix) === 0) {
