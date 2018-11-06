@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { TextValueAsHtmlComponent } from './text-value-as-html.component';
 import { OntologyInformation, ReadTextValueAsHtml } from '@knora/core';
+import { MathJaxDirective } from '@knora/action';
 
 describe('TextValueAsHtmlComponent', () => {
     let component: TextValueAsHtmlComponent;
@@ -11,7 +12,8 @@ describe('TextValueAsHtmlComponent', () => {
         TestBed.configureTestingModule({
             imports: [MatDialogModule, MatSnackBarModule],
             declarations: [
-                TextValueAsHtmlComponent
+                TextValueAsHtmlComponent,
+                MathJaxDirective
             ]
         })
             .compileComponents();
