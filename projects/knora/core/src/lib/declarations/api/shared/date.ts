@@ -1,49 +1,84 @@
-/**
- * Precision for DateSalsah.
- */
-export enum Precision {
-    yearPrecision,
-    monthPrecision,
-    dayPrecision
-}
+import { JsonObject, JsonProperty } from 'json2typescript';
 
 /**
- * Represents a Salsah date object with a precision information.
+ * Start / End date format for Salsah or any other GUI
+ * = Zeitpunkt
  */
+@JsonObject('DateFormatSalsah')
+export class DateFormatSalsah {
+
+    @JsonProperty('date', Date)
+    public date: Date = new Date();
+
+    @JsonProperty('format', String)
+    public format: string = undefined;
+
+    @JsonProperty('era', String)
+    public era: string = undefined;
+
+    @JsonProperty('calendar', String)
+    public calendar: string = undefined;
+}
+
+
+/**
+ * Date format for Salsah
+ * = Period (even when there's only a start date)
+ */
+@JsonObject('DateSalsah')
 export class DateSalsah {
 
-    precision: Precision;
+    @JsonProperty('start', DateFormatSalsah)
+    public start: DateFormatSalsah = undefined;
 
-    constructor(
-        readonly calendar: string,
-        readonly era: string,
-        readonly year: number,
-        readonly month?: number,
-        readonly day?: number
-    ) {
-        if (this.month === undefined) {
-            // year precision
-            this.precision = Precision.yearPrecision;
-        } else if (this.day === undefined) {
-            // month precision
-            this.precision = Precision.monthPrecision;
-        } else {
-            // day precision
-            this.precision = Precision.dayPrecision;
-        }
-
-    }
-
+    @JsonProperty('end', DateFormatSalsah, true)
+    public end: DateFormatSalsah = undefined;
 }
 
 /**
- * Represents a period (with start date and end date).
+ * date value, which is needed by the JSON-LD converter
  */
-export class DateRangeSalsah {
+@JsonObject('DateValue')
+export class DateValue {
 
-    constructor(
-        readonly start: DateSalsah,
-        readonly end: DateSalsah
-    ) {
-    }
+    @JsonProperty('calendar', String)
+    public calendar: string = undefined;
+
+    @JsonProperty('id', String)
+    public id: string = undefined;
+
+    @JsonProperty('propIri', String)
+    public propIri: string = undefined;
+
+    @JsonProperty('type', String)
+    public type: string = undefined;
+
+    @JsonProperty('startDay', Number)
+    public startDay: number = undefined;
+
+    @JsonProperty('startMonth', Number)
+    public startMonth: number = undefined;
+
+    @JsonProperty('startYear', Number)
+    public startYear: number = undefined;
+
+    @JsonProperty('startEra', String)
+    public startEra: string = undefined;
+
+    @JsonProperty('endDay', Number)
+    public endDay: number = undefined;
+
+    @JsonProperty('endMonth', Number)
+    public endMonth: number = undefined;
+
+    @JsonProperty('endYear', Number)
+    public endYear: number = undefined;
+
+    @JsonProperty('endEra', String)
+    public endEra: string = undefined;
+
+    // we don't need the separator anymore!?
+    @JsonProperty('separator', String, true)
+    public separator: string = undefined;
+
 }
