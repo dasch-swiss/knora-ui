@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateValueComponent } from './date-value.component';
 import { MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DateFormatSalsah, DateSalsah } from '@knora/core';
 
 describe('DateValueComponent', () => {
   let component: DateValueComponent;

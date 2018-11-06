@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatCardModule, MatListModule } from '@angular/material';
-import { GndDirective, KeyPipe } from '@knora/action';
+import { GndDirective, KeyPipe, MathJaxDirective } from '@knora/action';
 import {
   IncomingService,
   KnoraConstants,
@@ -66,6 +66,7 @@ describe('ResourceViewComponent', () => {
         TextComponent,
         KeyPipe,
         GndDirective,
+        MathJaxDirective,
         BooleanValueComponent,
         ColorValueComponent,
         DateValueComponent,

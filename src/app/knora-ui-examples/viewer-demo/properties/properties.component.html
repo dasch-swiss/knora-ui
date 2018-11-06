@@ -1,52 +1,41 @@
 <app-module-sub-header *ngIf="partOf" [demo]="partOf"></app-module-sub-header>
 
 <h4 class="first">BooleanValue</h4>
-<kui-boolean-value [valueObject]="boolean"></kui-boolean-value>
+<kui-boolean-value></kui-boolean-value>
 
 <h4>ColorValue</h4>
-<kui-color-value [valueObject]="color"></kui-color-value>
+<kui-color-value [valueObject]="property.colorVal"></kui-color-value>
 
 <h4>DateValue</h4>
-<mat-list>
-    <p>Precise date: </p>
-    <mat-list-item>
-        <kui-date-value [valueObject]="date" [calendar]="true" [era]="true"></kui-date-value>
-    </mat-list-item>
-    <p>Period: </p>
-    <mat-list-item>
-        <kui-date-value [valueObject]="period" [calendar]="true"></kui-date-value>
-    </mat-list-item>
-    <mat-list-item>
-        <kui-date-value [valueObject]="period2"></kui-date-value>
-    </mat-list-item>
-</mat-list>
+<kui-date-value [valueObject]="propDate"
+[calendar]="true" [era]="true"></kui-date-value>
 
 <h4>DecimalValue</h4>
-<kui-decimal-value [valueObject]="decimal"></kui-decimal-value>
+<kui-decimal-value></kui-decimal-value>
+
+<h4>ExternalResValue</h4>
+<kui-external-res-value></kui-external-res-value>
 
 <h4>GeometryValue</h4>
-<kui-geometry-value [valueObject]="geometry"></kui-geometry-value>
+<kui-geometry-value></kui-geometry-value>
+
+<h4>GeonameValue</h4>
+<kui-geoname-value></kui-geoname-value>
 
 <h4>IntegerValue</h4>
-<kui-integer-value [valueObject]="integer"></kui-integer-value>
+<kui-integer-value></kui-integer-value>
 
 <h4>IntervalValue</h4>
-<kui-interval-value [valueObject]="interval"></kui-interval-value>
+<kui-interval-value></kui-interval-value>
 
 <h4>LinkValue</h4>
-<kui-link-value [valueObject]="link"></kui-link-value>
+<kui-link-value></kui-link-value>
 
 <h4>ListValue</h4>
-<kui-list-value [valueObject]="list"></kui-list-value>
+<kui-list-value></kui-list-value>
 
-<h4>HTMLValue</h4>
-<kui-text-value-as-html [valueObject]="html" [bindEvents]="true"></kui-text-value-as-html>
-
-<h4>StringValue</h4>
-<kui-text-value-as-string [valueObject]="textString"></kui-text-value-as-string>
-
-<h4>XMLValue</h4>
-<kui-text-value-as-xml [valueObject]="textXML"></kui-text-value-as-xml>
+<h4>TextValue</h4>
+<kui-text-value></kui-text-value>
 
 <h4>UriValue</h4>
-<kui-uri-value [valueObject]="uri"></kui-uri-value>
+<kui-uri-value></kui-uri-value>
