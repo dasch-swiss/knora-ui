@@ -1,7 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TextValueAsHtmlComponent } from './text-value-as-html.component';
-import { OntologyInformation, ReadResource, ReadTextValueAsHtml, ReferredResourcesByStandoffLink } from '@knora/core';
-import { Component, OnInit, ViewChild, DebugElement } from '@angular/core';
+import {
+    OntologyInformation,
+    ReadResource,
+    ReadTextValueAsHtml,
+    ReferredResourcesByStandoffLink,
+    ResourceClass,
+    ResourceClasses,
+    ResourceClassIrisForOntology
+} from '@knora/core';
+import { Component, DebugElement, OnInit, ViewChild, } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 fdescribe('TextValueAsHtmlComponent', () => {
@@ -32,7 +40,7 @@ fdescribe('TextValueAsHtmlComponent', () => {
     });
 
     it('should contain html', () => {
-        expect(testHostComponent.htmlValueComponent.valueObject.html).toEqual('Html text');
+        expect(testHostComponent.htmlValueComponent.valueObject.html).toEqual('<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="salsah-link">link</a></p>');
 
         const hostCompDe = testHostFixture.debugElement;
 
@@ -41,12 +49,54 @@ fdescribe('TextValueAsHtmlComponent', () => {
         const divDebugElement: DebugElement = htmlVal.query(By.css('div'));
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
-        console.log(spanNativeElement);
 
-        expect(spanNativeElement.innerText).toEqual('Html text');
+        expect(spanNativeElement.innerText).toEqual('<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="salsah-link">link</a></p>');
     });
 
     it('should display the referred resources by standoff link', () => {
+
+        const resClassesForOnto: ResourceClassIrisForOntology = {
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2': [
+                'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book'
+            ]
+        };
+
+        const resClasses: ResourceClasses = {
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book':
+                new ResourceClass(
+                    'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
+                    'book.png',
+                    'A book.',
+                    'book',
+                    []
+                )
+        };
+
+        const ontoInfo = new OntologyInformation(resClassesForOnto, resClasses, {});
+
+        testHostComponent.ontoInfo = ontoInfo;
+
+        testHostFixture.detectChanges();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const htmlVal = hostCompDe.query(By.directive(TextValueAsHtmlComponent));
+
+        const divDebugElement: DebugElement = htmlVal.query(By.css('div'));
+
+        const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
+
+        expect(spanNativeElement.innerText).toEqual('<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="salsah-link">link</a></p>');
+
+        const text = testHostFixture.nativeElement.querySelector('.salsah-link');
+
+        expect(text.getAttribute('class')).toEqual('salsah-link');
+
+        text.click();
+
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent.refResClickedIri).toEqual('http://rdfh.ch/c9824353ae06');
 
     });
 
@@ -58,7 +108,7 @@ fdescribe('TextValueAsHtmlComponent', () => {
  */
 @Component({
     template: `
-        <kui-text-value-as-html #htmlVal [valueObject]="htmlValue" [ontologyInfo]="ontoInfo" [bindEvents]="bindEvents"></kui-text-value-as-html>`
+        <kui-text-value-as-html #htmlVal [valueObject]="htmlValue" [ontologyInfo]="ontoInfo" [bindEvents]="bindEvents" (referredResourceClicked)="refResClicked($event)"></kui-text-value-as-html>`
 })
 class TestHostComponent implements OnInit {
 
@@ -66,14 +116,19 @@ class TestHostComponent implements OnInit {
 
     htmlValue;
     ontoInfo;
-    bindEvents;
+    bindEvents = true;
     referredResource = new ReadResource('http://rdfh.ch/c9824353ae06', 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book', 'Holzschnitt', [], [], [], [], {});
     referredResources: ReferredResourcesByStandoffLink = { 'http://rdfh.ch/c9824353ae06': this.referredResource };
+    refResClickedIri: string;
 
     constructor() {
     }
 
     ngOnInit() {
-        this.htmlValue = new ReadTextValueAsHtml('id', 'propIri', 'Html text', this.referredResources);
+        this.htmlValue = new ReadTextValueAsHtml('id', 'propIri', '<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="salsah-link">link</a></p>', this.referredResources);
+    }
+
+    refResClicked(refResIri: string) {
+        this.refResClickedIri = refResIri;
     }
 }

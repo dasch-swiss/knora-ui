@@ -1,5 +1,5 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
-import { OntologyInformation, ReadTextValueAsHtml } from '@knora/core';
+import { Component, ElementRef, HostListener, Input, Output, EventEmitter } from '@angular/core';
+import { OntologyInformation, ReadTextValueAsHtml, KnoraConstants } from '@knora/core';
 
 @Component({
     selector: 'kui-text-value-as-html',
@@ -7,6 +7,9 @@ import { OntologyInformation, ReadTextValueAsHtml } from '@knora/core';
     styleUrls: ['./text-value-as-html.component.scss']
 })
 export class TextValueAsHtmlComponent {
+
+    @Output()
+    referredResourceClicked: EventEmitter<string> = new EventEmitter();
 
     @Input()
     set ontologyInfo(value: OntologyInformation) {
@@ -47,6 +50,10 @@ export class TextValueAsHtmlComponent {
     constructor(private el: ElementRef) {
     }
 
+    refResClicked(refResourceIri: string) {
+        this.referredResourceClicked.emit(refResourceIri);
+    }
+
     /**
      * Binds a click event to standoff links that shows the referred resource.
      *
@@ -54,9 +61,16 @@ export class TextValueAsHtmlComponent {
      */
     @HostListener('click', ['$event.target'])
     onClick(targetElement) {
-        if (this.bindEvents && targetElement.nodeName.toLowerCase() === 'a') {
+        if (this._bindEvents && targetElement.nodeName.toLowerCase() === 'a'
+            && targetElement.className.toLowerCase().indexOf(KnoraConstants.SalsahLink) >= 0
+            && targetElement.href !== undefined) {
+            this.refResClicked(targetElement.href);
+            // prevent propagation
+            return false;
+        } else if (this.bindEvents && targetElement.nodeName.toLowerCase() === 'a' && targetElement.href !== undefined) {
             // open link in a new window
             window.open(targetElement.href, '_blank');
+            // prevent propagation
             return false;
         } else {
             // prevent propagation
