@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ReadColorValue } from '@knora/core';
 
 @Component({
@@ -6,20 +6,15 @@ import { ReadColorValue } from '@knora/core';
     templateUrl: './color-value.component.html',
     styleUrls: ['./color-value.component.scss']
 })
-export class ColorValueComponent {
+export class ColorValueComponent implements OnInit {
 
-    @Input()
-    set valueObject(value: ReadColorValue) {
-        this._colorValueObj = value;
-    }
-
-    get valueObject() {
-        return this._colorValueObj;
-    }
-
-    private _colorValueObj: ReadColorValue;
+    @Input() valueObject: ReadColorValue;
 
     constructor() {
+    }
+
+    ngOnInit() {
+        console.log('COLOR VALUE: ', this.valueObject);
     }
 
 }

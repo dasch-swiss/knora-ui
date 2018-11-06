@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ReadDecimalValue } from '@knora/core';
 
 @Component({
@@ -6,19 +6,13 @@ import { ReadDecimalValue } from '@knora/core';
   templateUrl: './decimal-value.component.html',
   styleUrls: ['./decimal-value.component.scss']
 })
-export class DecimalValueComponent {
+export class DecimalValueComponent implements OnInit {
 
-  @Input()
-  set valueObject(value: ReadDecimalValue) {
-    this._decimalValueObj = value;
-  }
-
-  get valueObject() {
-    return this._decimalValueObj;
-  }
-
-  private _decimalValueObj: ReadDecimalValue;
+  @Input() valueObject: ReadDecimalValue;
 
   constructor() { }
+
+  ngOnInit() {
+  }
 
 }
