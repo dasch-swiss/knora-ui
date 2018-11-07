@@ -1,26 +1,40 @@
 # Knora-ui viewer
-<!-- // not yet published
 ![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg)
--->
 
 This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
 
 The viewer module contains object components to show the resource class representations from Knora, the gui-elements for the property values and different kind of view frameworks.
 
+## Prerequisites
+For help getting started with a new Angular app, check out the [Angular CLI](https://cli.angular.io/).
+
+For existing apps, follow these steps to begin using Knora-ui viewer.
+
 ## Install
-This module needs the services from [@knora/core](https://www.npmjs.com/package/@knora/core) which should also be installed.
-You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project.
+You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project in the examples below.
 
-`$ yarn add @knora/viewer @knora/core`
+### Yarn
 
-OR
+`$ yarn add @knora/viewer`
 
-`$ npm install --save @knora/viewer @knora/core`
+### NPM
+`$ npm install --save @knora/viewer`
+
+### Dependencies
+This module has the following package dependencies, which you also have to install.
+ - @angular/common@6.0.0
+ - @angular/core@6.0.0
+ - @angular/animations@6.0.0"
+ - @angular/cdk@6.0.0
+ - @angular/material@6.0.0
+ - @knora/core@6.0.0
 
 
 
 ## Components
-It has the following structure:
+With this module, you can use the following components:
+()
+
 
 ## resource
   - stillImage

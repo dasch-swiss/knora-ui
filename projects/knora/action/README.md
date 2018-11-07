@@ -3,17 +3,33 @@
 
 This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
 
-## Install
-You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project.
+## Prerequisites
+For help getting started with a new Angular app, check out the [Angular CLI](https://cli.angular.io/).
 
-### NPM
-`npm install --save @knora/action ts-md5@^1.2.4 jdnconvertiblecalendar@0.0.2 jdnconvertiblecalendardateadapter@0.0.7`
+For existing apps, follow these steps to begin using Knora-ui authentication.
+
+## Install
+You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project in the examples below.
 
 ### Yarn
-`yarn add @knora/action ts-md5@^1.2.4 jdnconvertiblecalendar@0.0.2 jdnconvertiblecalendardateadapter@0.0.7`
 
----
+`yarn add @knora/action`
 
+### NPM
+`npm install --save @knora/action`
+
+
+### Dependencies
+This module has the following package dependencies, which you also have to install.
+ - @angular/common@6.0.0
+ - @angular/core@6.0.0
+ - @angular/animations@6.0.0
+ - @angular/cdk@6.0.0
+ - @angular/material@6.0.0
+ - ts-md5@1.2.4
+ - jdnconvertiblecalendar@0.0.2
+ - jdnconvertiblecalendardateadapter@0.0.7
+ 
 
 ## Components
 This module contains various components:
