@@ -12,7 +12,7 @@ import {
 import { Component, DebugElement, OnInit, ViewChild, } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('TextValueAsHtmlComponent', () => {
+describe('TextValueAsHtmlComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 

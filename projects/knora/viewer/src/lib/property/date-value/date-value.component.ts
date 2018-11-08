@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DateRangeSalsah, DateSalsah, Precision, ReadDateValue } from '@knora/core';
 
 @Component({
@@ -6,18 +6,30 @@ import { DateRangeSalsah, DateSalsah, Precision, ReadDateValue } from '@knora/co
   templateUrl: './date-value.component.html',
   styleUrls: ['./date-value.component.scss']
 })
-export class DateValueComponent implements OnInit {
+export class DateValueComponent {
 
-  @Input() valueObject: ReadDateValue;
-  @Input() calendar?: boolean;
-  @Input() era?: boolean;
+  @Input()
+  set calendar(value: boolean) {
+    this._calendar = value;
+  }
 
-  dates: DateFormatter[];
-  period: boolean;
+  get calendar() {
+    return this._calendar;
+  }
 
-  constructor() { }
+  @Input()
+  set era(value: boolean) {
+    this._era = value;
+  }
 
-  ngOnInit() {
+  get era() {
+    return this._era;
+  }
+
+  @Input()
+  set valueObject(value: ReadDateValue) {
+    this._dateValueObj = value;
+
     const dateOrRange = this.valueObject.getDateSalsah();
     if (dateOrRange instanceof DateRangeSalsah) {
       // period (start and end dates)
@@ -28,7 +40,20 @@ export class DateValueComponent implements OnInit {
       this.period = false;
       this.dates = [this.getJSDate(dateOrRange)];
     }
+
   }
+
+  get valueObject() {
+    return this._dateValueObj;
+  }
+
+  dates: DateFormatter[];
+  period: boolean;
+  private _calendar: boolean;
+  private _era: boolean;
+  private _dateValueObj: ReadDateValue;
+
+  constructor() { }
 
   /**
    * Converts a `DateSalsah` to a JS Date, providing necessary formatting information.
