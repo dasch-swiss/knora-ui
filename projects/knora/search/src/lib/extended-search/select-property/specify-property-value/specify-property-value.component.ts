@@ -34,7 +34,7 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
     // parent FormGroup
     @Input() formGroup: FormGroup;
 
-    @ViewChild('propertyValue') private propertyValueComponent: PropertyValue;
+    @ViewChild('propertyValue') propertyValueComponent: PropertyValue;
 
     // setter method for the property chosen by the user
     @Input()
