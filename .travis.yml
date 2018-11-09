@@ -29,4 +29,8 @@ before_script:
   - yarn global add @angular/cli
   - yarn install
 
-script: ng t --project @knora/core --watch=false --browsers=ChromeHeadless
+script:
+  - ng t --project @knora/core --watch=false --browsers=ChromeHeadless
+  - ng build @knora/core && ng build @knora/action
+  - ng t --project @knora/search --watch=false --browsers=ChromeHeadless
+
