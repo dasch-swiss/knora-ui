@@ -83,6 +83,24 @@ fdescribe('DateValueComponent', () => {
     expect(spanNativeElement.innerText).toEqual('April 12, 1700 CE - August 30, 1750 CE (julian)');
   });
 
+  it('should contain 2 dates with different precisions', () => {
+
+    testHostComponent.dateValue = new ReadDateValue('id', 'propIri', 'julian', 1700, 1750, 'CE', 'CE', undefined, 8);
+
+    testHostFixture.detectChanges();
+
+    const hostCompDe = testHostFixture.debugElement;
+
+    const dateVal = hostCompDe.query(By.directive(DateValueComponent));
+
+    const divDebugElement: DebugElement = dateVal.query(By.css('div'));
+
+    const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
+
+    console.log(spanNativeElement.innerText);
+    expect(spanNativeElement.innerText).toEqual('1700 CE - August 1750 CE (julian)');
+  });
+
 });
 
 
