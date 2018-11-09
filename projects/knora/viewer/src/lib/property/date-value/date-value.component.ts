@@ -67,14 +67,14 @@ export class DateValueComponent {
     if (date.precision === Precision.yearPrecision) {
       return {
         format: 'yyyy',
-        date: new Date(date.year),
+        date: new Date(date.year.toString()),
         era: date.era,
         calendar: date.calendar
       };
     } else if (date.precision === Precision.monthPrecision) {
       return {
         format: 'MMMM ' + 'yyyy',
-        date: new Date(date.year, date.month - 1), // 0 base month
+        date: new Date(date.year, date.month - 1, 1), // 0 base month
         era: date.era,
         calendar: date.calendar
       };

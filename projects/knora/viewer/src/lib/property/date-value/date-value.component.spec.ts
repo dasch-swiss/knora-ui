@@ -29,24 +29,59 @@ fdescribe('DateValueComponent', () => {
     expect(testHostComponent.dateValueComponent).toBeTruthy();
   });
 
-  /* it('should contain the date 1700 - 1750', () => {
-     expect(testHostComponent.dateValueComponent.valueObject.startYear).toEqual(1700);
-     expect(testHostComponent.dateValueComponent.valueObject.endYear).toEqual(1750);
-     expect(testHostComponent.dateValueComponent.valueObject.startEra).toEqual('CE');
-     expect(testHostComponent.dateValueComponent.valueObject.endEra).toEqual('CE');
-     expect(testHostComponent.dateValueComponent.valueObject.calendar).toEqual('julian');
- 
-     const hostCompDe = testHostFixture.debugElement;
- 
-     const dateVal = hostCompDe.query(By.directive(DateValueComponent));
- 
-     const divDebugElement: DebugElement = dateVal.query(By.css('div'));
-     console.log('divDebugElement', divDebugElement);
-     const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
- 
-     console.log(spanNativeElement.innerText);
-     expect(spanNativeElement.innerText).toEqual('1700 CE - 1750 CE (julian)');
-  }); */
+  it('should contain a yyyy date with era and calendar', () => {
+    expect(testHostComponent.dateValueComponent.valueObject.startYear).toEqual(1700);
+    expect(testHostComponent.dateValueComponent.valueObject.endYear).toEqual(1750);
+    expect(testHostComponent.dateValueComponent.valueObject.startEra).toEqual('CE');
+    expect(testHostComponent.dateValueComponent.valueObject.endEra).toEqual('CE');
+    expect(testHostComponent.dateValueComponent.valueObject.calendar).toEqual('julian');
+
+    const hostCompDe = testHostFixture.debugElement;
+
+    const dateVal = hostCompDe.query(By.directive(DateValueComponent));
+
+    const divDebugElement: DebugElement = dateVal.query(By.css('div'));
+
+    const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
+
+    expect(spanNativeElement.innerText).toEqual('1700 CE - 1750 CE (julian)');
+  });
+
+  it('should contain a MMMM yyyy date with era and calendar', () => {
+
+    testHostComponent.dateValue = new ReadDateValue('id', 'propIri', 'julian', 1700, 1750, 'CE', 'CE', 3, 11);
+
+    testHostFixture.detectChanges();
+
+    const hostCompDe = testHostFixture.debugElement;
+
+    const dateVal = hostCompDe.query(By.directive(DateValueComponent));
+
+    const divDebugElement: DebugElement = dateVal.query(By.css('div'));
+
+    const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
+
+    expect(spanNativeElement.innerText).toEqual('March 1700 CE - November 1750 CE (julian)');
+
+  });
+
+  it('should contain a DD MMMM yyyy date with era and calendar', () => {
+
+    testHostComponent.dateValue = new ReadDateValue('id', 'propIri', 'julian', 1700, 1750, 'CE', 'CE', 4, 8, 12, 30);
+
+    testHostFixture.detectChanges();
+
+    const hostCompDe = testHostFixture.debugElement;
+
+    const dateVal = hostCompDe.query(By.directive(DateValueComponent));
+
+    const divDebugElement: DebugElement = dateVal.query(By.css('div'));
+
+    const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
+
+    console.log(spanNativeElement.innerText);
+    expect(spanNativeElement.innerText).toEqual('April 12, 1700 CE - August 30, 1750 CE (julian)');
+  });
 
 });
 
