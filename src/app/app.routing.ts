@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@knora/authentication';
+import { ResourceViewComponent } from '@knora/viewer';
 import { AppDemo } from './app.config';
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
@@ -108,6 +109,10 @@ const appRoutes: Routes = [
                         data: {partOf: AppDemo.viewerModule}
                     },
                     {
+                        path: 'resource/:id',
+                        component: ResourceViewComponent
+                    },
+                    {
                         path: 'properties',
                         component: PropertiesComponent,
                         data: { partOf: AppDemo.viewerModule }
@@ -117,6 +122,7 @@ const appRoutes: Routes = [
                         component: ViewsComponent,
                         data: { partOf: AppDemo.viewerModule }
                     }
+
                 ]
             },
             {

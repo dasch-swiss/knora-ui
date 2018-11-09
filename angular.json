@@ -24,8 +24,9 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
+              "src/app",
               "src/assets",
-              "src/app"
+              "src/docs"
             ],
             "styles": [
               "node_modules/prismjs/themes/prism-okaidia.css",
