@@ -5,7 +5,7 @@ import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadDateValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('DateValueComponent', () => {
+describe('DateValueComponent', () => {
   let testHostComponent: TestHostComponent;
   let testHostFixture: ComponentFixture<TestHostComponent>;
 
