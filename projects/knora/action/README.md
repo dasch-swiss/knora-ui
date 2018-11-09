@@ -1,5 +1,5 @@
 # Action module
-![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)](https://www.npmjs.com/package/@knora/action)
 
 This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
 
