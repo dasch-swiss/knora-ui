@@ -29,7 +29,7 @@ fdescribe('DateValueComponent', () => {
     expect(testHostComponent.dateValueComponent).toBeTruthy();
   });
 
-  it('should contain a yyyy date with era and calendar', () => {
+  it('should contain a period with a year precision', () => {
     expect(testHostComponent.dateValueComponent.valueObject.startYear).toEqual(1700);
     expect(testHostComponent.dateValueComponent.valueObject.endYear).toEqual(1750);
     expect(testHostComponent.dateValueComponent.valueObject.startEra).toEqual('CE');
@@ -47,7 +47,7 @@ fdescribe('DateValueComponent', () => {
     expect(spanNativeElement.innerText).toEqual('1700 CE - 1750 CE (julian)');
   });
 
-  it('should contain a MMMM yyyy date with era and calendar', () => {
+  it('should contain a period with a month precision', () => {
 
     testHostComponent.dateValue = new ReadDateValue('id', 'propIri', 'julian', 1700, 1750, 'CE', 'CE', 3, 11);
 
@@ -65,7 +65,7 @@ fdescribe('DateValueComponent', () => {
 
   });
 
-  it('should contain a DD MMMM yyyy date with era and calendar', () => {
+  it('should contain a period with a day precision', () => {
 
     testHostComponent.dateValue = new ReadDateValue('id', 'propIri', 'julian', 1700, 1750, 'CE', 'CE', 4, 8, 12, 30);
 
@@ -79,13 +79,12 @@ fdescribe('DateValueComponent', () => {
 
     const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-    console.log(spanNativeElement.innerText);
     expect(spanNativeElement.innerText).toEqual('April 12, 1700 CE - August 30, 1750 CE (julian)');
   });
 
-  it('should contain 2 dates with different precisions', () => {
+  it('should contain a period with different precisions', () => {
 
-    testHostComponent.dateValue = new ReadDateValue('id', 'propIri', 'julian', 1700, 1750, 'CE', 'CE', undefined, 8);
+    testHostComponent.dateValue = new ReadDateValue('id', 'propIri', 'julian', 1700, 1750, 'CE', 'CE', undefined, 2);
 
     testHostFixture.detectChanges();
 
@@ -97,8 +96,24 @@ fdescribe('DateValueComponent', () => {
 
     const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-    console.log(spanNativeElement.innerText);
-    expect(spanNativeElement.innerText).toEqual('1700 CE - August 1750 CE (julian)');
+    expect(spanNativeElement.innerText).toEqual('1700 CE - February 1750 CE (julian)');
+  });
+
+  it('should contain one date', () => {
+
+    testHostComponent.dateValue = new ReadDateValue('id', 'propIri', 'gregorian', 1690, 1690, 'CE', 'CE', 3, 3, 18, 18);
+
+    testHostFixture.detectChanges();
+
+    const hostCompDe = testHostFixture.debugElement;
+
+    const dateVal = hostCompDe.query(By.directive(DateValueComponent));
+
+    const divDebugElement: DebugElement = dateVal.query(By.css('div'));
+
+    const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
+
+    expect(spanNativeElement.innerText).toEqual('March 18, 1690 CE (gregorian)');
   });
 
 });

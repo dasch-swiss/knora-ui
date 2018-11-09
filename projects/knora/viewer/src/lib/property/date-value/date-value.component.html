@@ -17,12 +17,14 @@
 
 <ng-template #preciseDate>
 
-    {{dates[0].date | date: dates[0].format }}
-    <span *ngIf="era">
-        {{dates[0].era}}
-    </span>
-    <span *ngIf="calendar">
-        ({{dates[0].calendar}})
-    </span>
+    <div>
+        {{dates[0].date | date: dates[0].format }}
+        <span *ngIf="era">
+            {{dates[0].era}}
+        </span>
+        <span *ngIf="calendar">
+            ({{dates[0].calendar}})
+        </span>
+    </div>
 
 </ng-template>
