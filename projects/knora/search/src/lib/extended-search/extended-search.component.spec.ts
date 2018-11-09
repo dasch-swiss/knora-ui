@@ -1,32 +1,51 @@
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
-import { MockBackend } from '@angular/http/testing';
-import { BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatSelectModule } from '@angular/material';
+import {
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSelectModule
+} from '@angular/material';
 
 import { ExtendedSearchComponent } from './extended-search.component';
 import { SelectOntologyComponent } from './select-ontology/select-ontology.component';
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
+import { BooleanValueComponent } from './select-property/specify-property-value/boolean-value/boolean-value.component';
+import { DateValueComponent } from './select-property/specify-property-value/date-value/date-value.component';
+import { DecimalValueComponent } from './select-property/specify-property-value/decimal-value/decimal-value.component';
+import { IntegerValueComponent } from './select-property/specify-property-value/integer-value/integer-value.component';
+import { LinkValueComponent } from './select-property/specify-property-value/link-value/link-value.component';
+import { TextValueComponent } from './select-property/specify-property-value/text-value/text-value.component';
+import { UriValueComponent } from './select-property/specify-property-value/uri-value/uri-value.component';
+import { JdnDatepickerDirective } from '@knora/action';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { of } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-    ApiService,
-    GravsearchGenerationService,
+    Cardinality,
+    CardinalityOccurrence,
     KuiCoreConfig,
     OntologyCacheService,
     OntologyInformation,
     OntologyMetadata,
-    OntologyService,
-    Properties,
-    PropertyWithValue,
-    ReadResourcesSequence,
-    ResourceClass
+    Property,
+    ResourceClass,
+    ResourceClasses,
+    ResourceClassIrisForOntology
 } from '@knora/core';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('ExtendedSearchComponent', () => {
+
     let componentInstance: ExtendedSearchComponent;
     let fixture: ComponentFixture<ExtendedSearchComponent>;
 
@@ -37,9 +56,18 @@ describe('ExtendedSearchComponent', () => {
                 SelectOntologyComponent,
                 SelectResourceClassComponent,
                 SelectPropertyComponent,
-                SpecifyPropertyValueComponent
+                SpecifyPropertyValueComponent,
+                BooleanValueComponent,
+                DateValueComponent,
+                DecimalValueComponent,
+                IntegerValueComponent,
+                LinkValueComponent,
+                TextValueComponent,
+                UriValueComponent,
+                JdnDatepickerDirective
             ],
             imports: [
+                HttpClientTestingModule,
                 ReactiveFormsModule,
                 FormsModule,
                 HttpClientModule,
@@ -47,7 +75,10 @@ describe('ExtendedSearchComponent', () => {
                 MatIconModule,
                 MatFormFieldModule,
                 MatSelectModule,
-                RouterTestingModule.withRoutes([]),
+                MatDatepickerModule,
+                MatAutocompleteModule,
+                BrowserAnimationsModule,
+                RouterTestingModule.withRoutes([])
             ],
             providers: [
                 {
@@ -56,74 +87,348 @@ describe('ExtendedSearchComponent', () => {
                         params: null
                     }
                 },
-                { provide: 'config', useValue: KuiCoreConfig },
+                {
+                    provide: 'config',
+                    useValue: KuiCoreConfig
+                },
                 FormBuilder,
-                GravsearchGenerationService,
                 OntologyCacheService,
-                OntologyService,
-                HttpClient
+                HttpClient,
+                ExtendedSearchComponent
             ]
         })
             .compileComponents();
+
     }));
 
-    beforeEach(async(inject([ExtendedSearchComponent, MockBackend], (component: ExtendedSearchComponent, mockBackend) => {
+    beforeEach(inject([OntologyCacheService], (ontoCacheService) => {
 
-        // define different mock responses for different API calls
-        const responses = {};
-        responses['http://0.0.0.0:3333/v2/ontologies/metadata'] = new Response(new ResponseOptions({ body: require('../../../../core/src/lib/test-data/ontologycache/ontology-metadata.json') }));
-        responses['http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2F0.0.0.0%3A3333%2Fontology%2F0801%2Fbeol%2Fv2'] = new Response(new ResponseOptions({ body: require('../../../../core/src/lib/test-data/ontologycache/beol-complex-onto.json') }));
-        responses['http://0.0.0.0:3333/v2/ontologies/allentities/http%3A%2F%2Fapi.knora.org%2Fontology%2Fknora-api%2Fv2'] = new Response(new ResponseOptions({ body: require('../../../../core/src/lib/test-data/ontologycache/beol-complex-onto.json') }));
+        const ontoMeta = [
+            new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),
+            new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/something/v2', 'The something ontology'),
+            new OntologyMetadata('http://0.0.0.0:3333/ontology/00FF/images/v2', 'The images demo ontology'),
+            new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/beol/v2', 'The BEOL ontology'),
+            new OntologyMetadata('http://0.0.0.0:3333/ontology/0802/biblio/v2', 'The Biblio ontology'),
+            new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
+            new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
+            new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
+            new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
+        ];
 
-        mockBackend.connections.subscribe(c => {
-            const response = responses[c.request.url];
-            c.mockRespond(response);
-        });
+        spyOn(ontoCacheService, 'getOntologiesMetadata').and.returnValue(of(ontoMeta));
 
         fixture = TestBed.createComponent(ExtendedSearchComponent);
         componentInstance = fixture.componentInstance;
         fixture.detectChanges();
 
-    })));
-
-    beforeEach(() => {
-        fixture = TestBed.createComponent(ExtendedSearchComponent);
-        componentInstance = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+    }));
 
     it('should create', () => {
         expect(componentInstance).toBeTruthy();
-        console.log('feature', fixture);
-        console.log('componentInstance', componentInstance);
     });
 
-    /* it('should correctly initialized the ontologies\' metadata', () => {
+    describe('Component init state', () => {
 
-        const expectedOntoMetata =
-            [
-                new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),
-                new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/something/v2', 'The something ontology'),
-                new OntologyMetadata('http://0.0.0.0:3333/ontology/00FF/images/v2', 'The images demo ontology'),
-                new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/beol/v2', 'The BEOL ontology'),
-                new OntologyMetadata('http://0.0.0.0:3333/ontology/0802/biblio/v2', 'The Biblio ontology'),
-                new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
-                new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
-                new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
-                new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
-            ];
+        it('should correctly initialized the ontologies\' metadata', async(() => {
+
+            const expectedOntoMetata =
+                [
+                    new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),
+                    new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/something/v2', 'The something ontology'),
+                    new OntologyMetadata('http://0.0.0.0:3333/ontology/00FF/images/v2', 'The images demo ontology'),
+                    new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/beol/v2', 'The BEOL ontology'),
+                    new OntologyMetadata('http://0.0.0.0:3333/ontology/0802/biblio/v2', 'The Biblio ontology'),
+                    new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
+                    new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
+                    new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
+                    new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
+                ];
+
+            expect(componentInstance.ontologies).toEqual(expectedOntoMetata);
+
+        }));
+
+        it('should check that add properties is disabled after init', () => {
+
+            const ele: DebugElement = fixture.debugElement;
+            const addPropDe = ele.query(By.css('.add-property-button'));
+
+            const addProp = addPropDe.nativeElement;
+
+            expect(addProp.disabled).toBeTruthy();
+
+        });
+
+        it('should check that remove properties is disabled after init', () => {
+
+            const ele: DebugElement = fixture.debugElement;
+            const rmPropDe = ele.query(By.css('.remove-property-button'));
+
+            const rmProp = rmPropDe.nativeElement;
+
+            expect(rmProp.disabled).toBeTruthy();
+
+        });
+
+        it('should check that the submit button is disabled after init', () => {
+
+            const ele: DebugElement = fixture.debugElement;
+            const submitDe = ele.query(By.css('button[type="submit"]'));
+
+            const submit = submitDe.nativeElement;
+
+            expect(submit.disabled).toBeTruthy();
+
+        });
+
+        it('should check that the reset button is disabled after init', () => {
+
+            const ele: DebugElement = fixture.debugElement;
+            const resetDe = ele.query(By.css('button.reset'));
+
+            const reset = resetDe.nativeElement;
+
+            expect(reset.disabled).toBeTruthy();
+
+        });
+
+    });
+
+    describe('Choose a specific ontology', () => {
+
+        const resClassesForOnto: ResourceClassIrisForOntology = {
+            'http://0.0.0.0:3333/ontology/0001/anything/v2': [
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing'
+            ]
+        };
+
+        const resClasses: ResourceClasses = {
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing':
+                new ResourceClass(
+                    'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing',
+                    'blueting.png',
+                    'A blue thing.',
+                    'blue thing',
+                    [
+                        new Cardinality(
+                            CardinalityOccurrence.minCard,
+                            0,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#attachedToProject'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#attachedToUser'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#creationDate'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#hasPermissions'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
+                        )
+                    ]
+                )
+        };
+
+        const properties = {
+            'http://api.knora.org/ontology/knora-api/v2#attachedToProject': new Property(
+                'http://api.knora.org/ontology/knora-api/v2#attachedToProject',
+                'http://api.knora.org/ontology/knora-api/v2#knoraProject',
+                'Connects something to a project',
+                'attached to project',
+                [],
+                false,
+                false,
+                false),
+            'http://api.knora.org/ontology/knora-api/v2#attachedToUser': new Property(
+                'http://api.knora.org/ontology/knora-api/v2#attachedToUser',
+                'http://api.knora.org/ontology/knora-api/v2#User',
+                'Connects something to a user',
+                'attached to user',
+                [],
+                false,
+                false,
+                false),
+            'http://api.knora.org/ontology/knora-api/v2#creationDate': new Property(
+                'http://api.knora.org/ontology/knora-api/v2#creationDate',
+                'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
+                'Indicates when a resource was created',
+                undefined,
+                [],
+                false,
+                false,
+                false),
+            'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink': new Property(
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink',
+                'http://api.knora.org/ontology/knora-api/v2#LinkValue',
+                'Indicates that this resource referred to by another resource',
+                'has incoming links',
+                ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
+                false,
+                false,
+                true),
+            'http://api.knora.org/ontology/knora-api/v2#hasPermissions': new Property(
+                'http://api.knora.org/ontology/knora-api/v2#hasPermissions',
+                'http://www.w3.org/2001/XMLSchema#string',
+                undefined,
+                undefined,
+                [],
+                false,
+                false,
+                false),
+            'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo': new Property(
+                'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo',
+                'http://api.knora.org/ontology/knora-api/v2#Resource',
+                'Represents a link in standoff markup from one resource to another.',
+                'has Standoff Link to',
+                ['http://api.knora.org/ontology/knora-api/v2#hasLinkTo'],
+                false,
+                true,
+                false),
+            'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue': new Property(
+                'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue',
+                'http://api.knora.org/ontology/knora-api/v2#LinkValue',
+                'Represents a link in standoff markup from one resource to another.',
+                'has Standoff Link to',
+                ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
+                false,
+                false,
+                true),
+            'http://api.knora.org/ontology/knora-api/v2#lastModificationDate': new Property(
+                'http://api.knora.org/ontology/knora-api/v2#lastModificationDate',
+                'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
+                undefined,
+                undefined,
+                [],
+                false,
+                false,
+                false),
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText': new Property(
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText',
+                'http://api.knora.org/ontology/knora-api/v2#TextValue',
+                undefined,
+                'Text',
+                ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+                true,
+                false,
+                false)
+        };
+
+        const ontoInfo = new OntologyInformation(resClassesForOnto, resClasses, properties);
+
+        beforeEach(inject([OntologyCacheService], (ontoCacheService) => {
+
+            // choose the anything ontology
+
+            spyOn(ontoCacheService, 'getEntityDefinitionsForOntologies').and.callFake((ontoIri: string) => {
+
+                return of(ontoInfo);
+
+            });
+
+            componentInstance.getResourceClassesAndPropertiesForOntology('http://0.0.0.0:3333/ontology/0801/anything/v2');
+
+            expect(componentInstance.activeResourceClass).toBeUndefined();
+
+            expect(componentInstance.activeProperties).toEqual([]);
+
+            expect(componentInstance.activeOntology).toEqual('http://0.0.0.0:3333/ontology/0801/anything/v2');
+
+            expect(componentInstance.resourceClasses).toEqual(ontoInfo.getResourceClassesAsArray());
+
+            expect(componentInstance.properties).toEqual(ontoInfo.getProperties());
+
+            fixture.detectChanges();
+
+        }));
+
+        it('should be able to add a property', () => {
+
+            const ele: DebugElement = fixture.debugElement;
+            const addPropDe = ele.query(By.css('.add-property-button'));
+
+            const addProp = addPropDe.nativeElement;
+
+            expect(addProp.disabled).toBeFalsy();
 
 
-        expect(componentInstance.ontologies).toEqual(expectedOntoMetata);
+        });
 
+        it('should add a property', () => {
 
-    }); */
+            const ele: DebugElement = fixture.debugElement;
+            const addPropDe = ele.query(By.css('.add-property-button'));
 
-    /*it('should get the classes and properties for a specific ontology', async(inject([ExtendedSearchComponent, MockBackend], (component: ExtendedSearchComponent, mockBackend) => {
+            const addProp: HTMLElement = addPropDe.nativeElement;
 
-          // TODO: this involves an asynchronous function: find a way to check for the results
+            addProp.click();
 
-          const resClassesAndProps = componentInstance.getResourceClassesAndPropertiesForOntology('http://0.0.0.0:3333/ontology/0801/beol/v2')
+            fixture.detectChanges();
 
-      })));*/
+            expect(componentInstance.activeProperties.length).toEqual(1);
+
+        });
+
+        it('should remove a property', () => {
+
+            const ele: DebugElement = fixture.debugElement;
+            const addPropDe = ele.query(By.css('.add-property-button'));
+
+            const addProp: HTMLElement = addPropDe.nativeElement;
+
+            addProp.click();
+
+            fixture.detectChanges();
+
+            expect(componentInstance.activeProperties.length).toEqual(1);
+
+            const rmPropDe = ele.query(By.css('.remove-property-button'));
+
+            const rmProp = rmPropDe.nativeElement;
+
+            expect(rmProp.disabled).toBeFalsy();
+
+            rmProp.click();
+
+            fixture.detectChanges();
+
+            expect(componentInstance.activeProperties.length).toEqual(0);
+
+        });
+
+    });
 });
