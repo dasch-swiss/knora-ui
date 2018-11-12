@@ -1,18 +1,23 @@
 import {
+    Point2D,
+    ReadBooleanValue,
+    ReadColorValue,
     ReadDateValue,
     ReadDecimalValue,
+    ReadGeomValue,
     ReadIntegerValue,
-    ReadLinkValue, ReadStillImageFileValue, ReadTextFileValue,
+    ReadLinkValue,
+    ReadStillImageFileValue,
+    ReadTextFileValue,
     ReadTextValueAsHtml,
     ReadTextValueAsString,
     ReadTextValueAsXml,
+    ReadUriValue,
     ReferredResourcesByStandoffLink,
-    ReadColorValue, Point2D,
+    RegionGeometry,
 } from './read-property-item';
 import { ReadResource } from '../../..';
 import { OntologyInformation, ResourceClass } from '../../../../services';
-import { ReadGeomValue } from './read-property-item';
-import { RegionGeometry } from './read-property-item';
 
 describe('ReadPropertyItem', () => {
 
@@ -211,16 +216,17 @@ describe('ReadPropertyItem', () => {
 
     it('should create a ReadColorValue', () => {
 
-        const textFileItem = new ReadColorValue(
+        const colorItem = new ReadColorValue(
             'http://rdfh.ch/00c650d23303/values/af68552c3626',
             'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasColor',
             '#000000'
         );
 
-        expect(textFileItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
-        expect(textFileItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#ColorValue');
-        expect(textFileItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasColor');
-        expect(textFileItem.getClassName()).toEqual('ReadColorValue');
+        expect(colorItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(colorItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#ColorValue');
+        expect(colorItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasColor');
+        expect(colorItem.colorHex).toEqual('#000000');
+        expect(colorItem.getClassName()).toEqual('ReadColorValue');
 
     });
 
@@ -228,7 +234,7 @@ describe('ReadPropertyItem', () => {
 
         const expectedGeometry = new RegionGeometry(
             'active',
-    '#ff3333',
+            '#ff3333',
             2,
             [
                 new Point2D(0.08098591549295775, 0.16741071428571427),
@@ -249,8 +255,39 @@ describe('ReadPropertyItem', () => {
         expect(geomItem.geometryString).toEqual('{"status":"active","lineColor":"#ff3333","lineWidth":2,"points":[{"x":0.08098591549295775,"y":0.16741071428571427},{"x":0.7394366197183099,"y":0.7299107142857143}],"type":"rectangle","original_index":0}');
         expect(geomItem.getClassName()).toEqual('ReadGeomValue');
 
-
         expect(geomItem.geometry).toEqual(expectedGeometry);
+
+    });
+
+    it('should create a ReadUriValue', () => {
+
+        const uriItem = new ReadUriValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasUri',
+            'http://www.knora.org'
+        );
+
+        expect(uriItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(uriItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#UriValue');
+        expect(uriItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasUri');
+        expect(uriItem.uri).toEqual('http://www.knora.org');
+        expect(uriItem.getClassName()).toEqual('ReadUriValue');
+
+    });
+
+    it('should create a ReadBooleanValue', () => {
+
+        const boolItem = new ReadBooleanValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasBoolean',
+            true
+        );
+
+        expect(boolItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(boolItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#BooleanValue');
+        expect(boolItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasBoolean');
+        expect(boolItem.bool).toEqual(true);
+        expect(boolItem.getClassName()).toEqual('ReadBooleanValue');
 
     });
 
