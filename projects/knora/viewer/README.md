@@ -1,5 +1,5 @@
 # Knora-ui viewer
-![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg)](https://www.npmjs.com/package/@knora/viewer)
 
 This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
 
