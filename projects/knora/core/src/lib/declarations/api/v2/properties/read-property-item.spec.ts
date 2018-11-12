@@ -2,11 +2,12 @@ import {
     ReadDateValue,
     ReadDecimalValue,
     ReadIntegerValue,
-    ReadLinkValue, ReadStillImageFileValue,
+    ReadLinkValue, ReadStillImageFileValue, ReadTextFileValue,
     ReadTextValueAsHtml,
     ReadTextValueAsString,
     ReadTextValueAsXml,
     ReferredResourcesByStandoffLink
+    ReadColorValue,
 } from './read-property-item';
 import { ReadResource } from '../../..';
 import { OntologyInformation, ResourceClass } from '../../../../services';
@@ -187,6 +188,37 @@ describe('ReadPropertyItem', () => {
         expect(imageItem.dimY).toEqual(270);
         expect(imageItem.isPreview).toEqual(true);
 
+
+    });
+
+    it('should create a ReadTextFileValue', () => {
+
+        const textFileItem = new ReadTextFileValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasTextFile',
+            'test.txt',
+            'http://localhost:1024/server/test.txt'
+        );
+
+        expect(textFileItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(textFileItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#TextFileValue');
+        expect(textFileItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasTextFile');
+        expect(textFileItem.getClassName()).toEqual('ReadTextFileValue');
+
+    });
+
+    it('should create a ReadColorValue', () => {
+
+        const textFileItem = new ReadColorValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasColor',
+            '#000000'
+        );
+
+        expect(textFileItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(textFileItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#ColorValue');
+        expect(textFileItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasColor');
+        expect(textFileItem.getClassName()).toEqual('ReadColorValue');
 
     });
 
