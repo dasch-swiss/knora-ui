@@ -5,7 +5,7 @@ import {
     ReadDateValue,
     ReadDecimalValue,
     ReadGeomValue,
-    ReadIntegerValue,
+    ReadIntegerValue, ReadIntervalValue,
     ReadLinkValue,
     ReadStillImageFileValue,
     ReadTextFileValue,
@@ -15,6 +15,7 @@ import {
     ReadUriValue,
     ReferredResourcesByStandoffLink,
     RegionGeometry,
+    ReadListValue
 } from './read-property-item';
 import { ReadResource } from '../../..';
 import { OntologyInformation, ResourceClass } from '../../../../services';
@@ -288,6 +289,42 @@ describe('ReadPropertyItem', () => {
         expect(boolItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasBoolean');
         expect(boolItem.bool).toEqual(true);
         expect(boolItem.getClassName()).toEqual('ReadBooleanValue');
+
+    });
+
+    it('should create a ReadIntervalValue', () => {
+
+        const intervalItem = new ReadIntervalValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasInterval',
+            1,
+            2
+        );
+
+        expect(intervalItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(intervalItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#IntervalValue');
+        expect(intervalItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasInterval');
+        expect(intervalItem.intervalStart).toEqual(1);
+        expect(intervalItem.intervalEnd).toEqual(2);
+        expect(intervalItem.getClassName()).toEqual('ReadIntervalValue');
+
+    });
+
+    it('should create a ReadListValue', () => {
+
+        const listItem = new ReadListValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasListNode',
+            'http://rdfh.ch/00c650d23303/myNode',
+            'testnode'
+        );
+
+        expect(listItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(listItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#ListValue');
+        expect(listItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasListNode');
+        expect(listItem.listNodeIri).toEqual('http://rdfh.ch/00c650d23303/myNode');
+        expect(listItem.listNodeLabel).toEqual('testnode');
+        expect(listItem.getClassName()).toEqual('ReadListValue');
 
     });
 
