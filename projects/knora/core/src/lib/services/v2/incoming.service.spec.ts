@@ -1,41 +1,28 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { KuiCoreModule } from '../../core.module';
 
 import { IncomingService } from './incoming.service';
-import { HttpClient } from '@angular/common/http';
-import { KuiCoreModule } from '../../core.module';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { SearchService } from './search.service';
 
 describe('IncomingService', () => {
 
-    let httpClient: HttpClient;
-    let httpTestingController: HttpTestingController;
     let incomingService: IncomingService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
+                KuiCoreModule.forRoot({name: '', api: 'http://0.0.0.0:3333', app: '', media: ''})
             ],
-            providers: [SearchService, IncomingService]
+            providers: [IncomingService]
         });
 
-        httpClient = TestBed.get(HttpClient);
-        httpTestingController = TestBed.get(HttpTestingController);
         incomingService = TestBed.get(IncomingService);
     });
 
-    afterEach(() => {
-        httpTestingController.verify();
+    it('should be created', () => {
+        expect(incomingService).toBeDefined();
     });
 
-    it('should be created', inject([IncomingService], (service: IncomingService) => {
-        expect(service).toBeDefined();
-    }));
-
-    xit('should get incoming regions ', async(inject([SearchService], (searchService: SearchService) => {
-        const query = incomingService.getIncomingRegions('http://0.0.0.0:3333/ontology/0801/beol/v2#letter', 0);
+    it('should get incoming regions ', () => {
 
         const expectedQuery = `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
@@ -74,13 +61,13 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
 } OFFSET 0
 `;
 
-        const resultSearch = searchService.doExtendedSearch(expectedQuery);
 
-        /* console.log('resultSearch ', resultSearch);
-        console.log('query ', query); */
+        const incrementSpy = spyOn(incomingService, 'doExtendedSearch').and.stub();
 
-        expect(query).toEqual(resultSearch);
+        incomingService.getIncomingRegions('http://0.0.0.0:3333/ontology/0801/beol/v2#letter', 0);
 
-    })));
+        expect(incrementSpy).toHaveBeenCalledWith(expectedQuery);
+
+    });
 
 });
