@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MatCardModule, MatListModule } from '@angular/material';
+import { MatCardModule, MatCheckboxModule, MatIconModule, MatListModule, MatToolbarModule } from '@angular/material';
 import { GndDirective, KeyPipe } from '@knora/action';
 import {
-  IncomingService,
-  KnoraConstants,
-  KuiCoreConfig,
-  OntologyCacheService,
-  OntologyInformation,
-  OntologyService,
-  ResourceService
+    IncomingService,
+    KnoraConstants,
+    KuiCoreConfig,
+    OntologyCacheService,
+    OntologyInformation,
+    OntologyService,
+    ResourceService
 } from '@knora/core';
 import { ResourceViewComponent } from './resource-view.component';
 
@@ -41,64 +41,67 @@ import { TextfileValueComponent } from '../../property/textfile-value/textfile-v
 import { UriValueComponent } from '../../property/uri-value/uri-value.component';
 
 describe('ResourceViewComponent', () => {
-  let component: ResourceViewComponent;
-  let fixture: ComponentFixture<ResourceViewComponent>;
+    let component: ResourceViewComponent;
+    let fixture: ComponentFixture<ResourceViewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        HttpClientModule,
-        MatCardModule,
-        MatListModule
-      ],
-      declarations: [
-        ResourceViewComponent,
-        AnnotationComponent,
-        AudioComponent,
-        CollectionComponent,
-        DddComponent,
-        DocumentComponent,
-        LinkObjComponent,
-        MovingImageComponent,
-        ObjectComponent,
-        RegionComponent,
-        StillImageComponent,
-        TextComponent,
-        KeyPipe,
-        GndDirective,
-        BooleanValueComponent,
-        ColorValueComponent,
-        DateValueComponent,
-        DecimalValueComponent,
-        GeometryValueComponent,
-        IntegerValueComponent,
-        IntervalValueComponent,
-        LinkValueComponent,
-        ListValueComponent,
-        TextValueAsStringComponent,
-        TextValueAsHtmlComponent,
-        TextValueAsXmlComponent,
-        TextfileValueComponent,
-        UriValueComponent
-      ],
-      providers: [
-        IncomingService,
-        OntologyCacheService,
-        OntologyService,
-        ResourceService,
-        { provide: 'config', useValue: KuiCoreConfig },
-      ]
-    })
-      .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                HttpClientModule,
+                MatCardModule,
+                MatListModule,
+                MatIconModule,
+                MatToolbarModule,
+                MatCheckboxModule
+            ],
+            declarations: [
+                ResourceViewComponent,
+                AnnotationComponent,
+                AudioComponent,
+                CollectionComponent,
+                DddComponent,
+                DocumentComponent,
+                LinkObjComponent,
+                MovingImageComponent,
+                ObjectComponent,
+                RegionComponent,
+                StillImageComponent,
+                TextComponent,
+                KeyPipe,
+                GndDirective,
+                BooleanValueComponent,
+                ColorValueComponent,
+                DateValueComponent,
+                DecimalValueComponent,
+                GeometryValueComponent,
+                IntegerValueComponent,
+                IntervalValueComponent,
+                LinkValueComponent,
+                ListValueComponent,
+                TextValueAsStringComponent,
+                TextValueAsHtmlComponent,
+                TextValueAsXmlComponent,
+                TextfileValueComponent,
+                UriValueComponent
+            ],
+            providers: [
+                IncomingService,
+                OntologyCacheService,
+                OntologyService,
+                ResourceService,
+                {provide: 'config', useValue: KuiCoreConfig},
+            ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ResourceViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ResourceViewComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  xit('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
