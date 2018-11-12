@@ -2,7 +2,7 @@ import {
     ReadDateValue,
     ReadDecimalValue,
     ReadIntegerValue,
-    ReadLinkValue,
+    ReadLinkValue, ReadStillImageFileValue,
     ReadTextValueAsHtml,
     ReadTextValueAsString,
     ReadTextValueAsXml,
@@ -137,6 +137,58 @@ describe('ReadPropertyItem', () => {
 
     });
 
+    it('should create a ReadStillImageFileValue (full)', () => {
+
+        const imageItem = new ReadStillImageFileValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasImage',
+            'incunabula_0000003856.jp2',
+            'http://localhost:1024/knora',
+            'http://localhost:1024/knora/incunabula_0000003856.jp2/full/1904,2700/0/default.jpg',
+            1904,
+            2700);
+
+        expect(imageItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(imageItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#StillImageFileValue');
+        expect(imageItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasImage');
+        expect(imageItem.getClassName()).toEqual('ReadStillImageFileValue');
+
+        expect(imageItem.imageFilename).toEqual('incunabula_0000003856.jp2');
+        expect(imageItem.imageServerIIIFBaseURL).toEqual('http://localhost:1024/knora');
+        expect(imageItem.imagePath).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/1904,2700/0/default.jpg');
+        expect(imageItem.dimX).toEqual(1904);
+        expect(imageItem.dimY).toEqual(2700);
+        expect(imageItem.isPreview).toEqual(false);
+
+
+    });
+
+    it('should create a ReadStillImageFileValue (preview)', () => {
+
+        const imageItem = new ReadStillImageFileValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasImage',
+            'incunabula_0000003856.jp2',
+            'http://localhost:1024/knora',
+            'http://localhost:1024/knora/incunabula_0000003856.jp2/full/1904,2700/0/default.jpg',
+            190,
+            270,
+            true);
+
+        expect(imageItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(imageItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#StillImageFileValue');
+        expect(imageItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasImage');
+        expect(imageItem.getClassName()).toEqual('ReadStillImageFileValue');
+
+        expect(imageItem.imageFilename).toEqual('incunabula_0000003856.jp2');
+        expect(imageItem.imageServerIIIFBaseURL).toEqual('http://localhost:1024/knora');
+        expect(imageItem.imagePath).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/1904,2700/0/default.jpg');
+        expect(imageItem.dimX).toEqual(190);
+        expect(imageItem.dimY).toEqual(270);
+        expect(imageItem.isPreview).toEqual(true);
+
+
+    });
 
 
 });
