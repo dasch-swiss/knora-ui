@@ -1,5 +1,7 @@
 import {
     ReadDateValue,
+    ReadDecimalValue,
+    ReadIntegerValue,
     ReadLinkValue,
     ReadTextValueAsHtml,
     ReadTextValueAsString,
@@ -75,6 +77,7 @@ describe('ReadPropertyItem', () => {
         expect(dateItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
         expect(dateItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#DateValue');
         expect(dateItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#pubDate');
+        expect(dateItem.getClassName()).toEqual('ReadDateValue');
 
         expect(dateItem.startYear).toEqual(2018);
         expect(dateItem.endYear).toEqual(2019);
@@ -101,14 +104,44 @@ describe('ReadPropertyItem', () => {
         expect(linkItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
         expect(linkItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#LinkValue');
         expect(linkItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasReference');
+        expect(linkItem.getClassName()).toEqual('ReadLinkValue');
         expect(linkItem.referredResourceIri).toEqual('http://rdfh.ch/test');
-
 
         expect(linkItem.getReferredResourceInfo(ontologyInfo)).toEqual('test resource (book)');
 
     });
 
+    it('should create a ReadIntegerValue', () => {
+
+        const intItem = new ReadIntegerValue('http://rdfh.ch/00c650d23303/values/af68552c3626', 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasInteger', 1);
+
+        expect(intItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(intItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#IntValue');
+        expect(intItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasInteger');
+        expect(intItem.getClassName()).toEqual('ReadIntegerValue');
+
+        expect(intItem.integer).toEqual(1);
+
+    });
+
+    it('should create a ReadDecimalValue', () => {
+
+        const decItem = new ReadDecimalValue('http://rdfh.ch/00c650d23303/values/af68552c3626', 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasDecimal', 1.1);
+
+        expect(decItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(decItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#DecimalValue');
+        expect(decItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasDecimal');
+        expect(decItem.getClassName()).toEqual('ReadDecimalValue');
+
+        expect(decItem.decimal).toEqual(1.1);
+
+    });
+
+
+
 });
+
+// test resources and ontology information
 
 const testResource = new ReadResource('http://rdfh.ch/test',
     'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
