@@ -1,4 +1,9 @@
-import { ReadTextValueAsHtml, ReadTextValueAsString, ReferredResourcesByStandoffLink } from './read-property-item';
+import {
+    ReadTextValueAsHtml,
+    ReadTextValueAsString,
+    ReadTextValueAsXml,
+    ReferredResourcesByStandoffLink
+} from './read-property-item';
 import { ReadResource } from '../../..';
 import { OntologyInformation, ResourceClass } from '../../../../services';
 
@@ -29,7 +34,7 @@ describe('ReadPropertyItem', () => {
                 )
         };
 
-        const stringItem = new ReadTextValueAsHtml('http://rdfh.ch/00c650d23303/values/af68552c3626',
+        const htmlItem = new ReadTextValueAsHtml('http://rdfh.ch/00c650d23303/values/af68552c3626',
             'http://0.0.0.0:3333/ontology/0803/incunabula/v2#description',
             'This is a test with <a href="http://rdfh.ch/test" class="salsah-link">a standoff link</a>',
             referredResourcesInStandoff);
@@ -46,15 +51,28 @@ describe('ReadPropertyItem', () => {
 
         const ontoInfo = new OntologyInformation({}, resClasses, {});
 
-        expect(stringItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
-        expect(stringItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#TextValue');
-        expect(stringItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#description');
-        expect(stringItem.html).toEqual('This is a test with <a href="http://rdfh.ch/test" class="salsah-link">a standoff link</a>');
-        expect(stringItem.getClassName()).toEqual('ReadTextValueAsHtml');
+        expect(htmlItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(htmlItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#TextValue');
+        expect(htmlItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#description');
+        expect(htmlItem.html).toEqual('This is a test with <a href="http://rdfh.ch/test" class="salsah-link">a standoff link</a>');
+        expect(htmlItem.getClassName()).toEqual('ReadTextValueAsHtml');
 
-        expect(stringItem.referredResources).toBe(referredResourcesInStandoff);
-        expect(stringItem.getReferredResourceInfo('http://rdfh.ch/test', ontoInfo)).toEqual('test resource (book)');
-        
+        expect(htmlItem.referredResources).toBe(referredResourcesInStandoff);
+        expect(htmlItem.getReferredResourceInfo('http://rdfh.ch/test', ontoInfo)).toEqual('test resource (book)');
+
+    });
+
+    it('should create a ReadTextValueAsXml', () => {
+
+        const xmlItem = new ReadTextValueAsXml('http://rdfh.ch/00c650d23303/values/af68552c3626', 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#description', '<root>This is a test</root>', 'http://rdfh.ch/00c650d23303/mappings/af68552c3626');
+
+        expect(xmlItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(xmlItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#TextValue');
+        expect(xmlItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#description');
+        expect(xmlItem.xml).toEqual('<root>This is a test</root>');
+        expect(xmlItem.mappingIri).toEqual('http://rdfh.ch/00c650d23303/mappings/af68552c3626');
+
+        expect(xmlItem.getClassName()).toEqual('ReadTextValueAsXml');
     });
 
 });
