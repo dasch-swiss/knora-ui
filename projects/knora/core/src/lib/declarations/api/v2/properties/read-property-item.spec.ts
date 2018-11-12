@@ -6,11 +6,13 @@ import {
     ReadTextValueAsHtml,
     ReadTextValueAsString,
     ReadTextValueAsXml,
-    ReferredResourcesByStandoffLink
-    ReadColorValue,
+    ReferredResourcesByStandoffLink,
+    ReadColorValue, Point2D,
 } from './read-property-item';
 import { ReadResource } from '../../..';
 import { OntologyInformation, ResourceClass } from '../../../../services';
+import { ReadGeomValue } from './read-property-item';
+import { RegionGeometry } from './read-property-item';
 
 describe('ReadPropertyItem', () => {
 
@@ -219,6 +221,36 @@ describe('ReadPropertyItem', () => {
         expect(textFileItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#ColorValue');
         expect(textFileItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasColor');
         expect(textFileItem.getClassName()).toEqual('ReadColorValue');
+
+    });
+
+    it('should create a ReadGeomValue', () => {
+
+        const expectedGeometry = new RegionGeometry(
+            'active',
+    '#ff3333',
+            2,
+            [
+                new Point2D(0.08098591549295775, 0.16741071428571427),
+                new Point2D(0.7394366197183099, 0.7299107142857143)
+            ],
+            'rectangle',
+        );
+
+        const geomItem = new ReadGeomValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasRegion',
+            '{"status":"active","lineColor":"#ff3333","lineWidth":2,"points":[{"x":0.08098591549295775,"y":0.16741071428571427},{"x":0.7394366197183099,"y":0.7299107142857143}],"type":"rectangle","original_index":0}'
+        );
+
+        expect(geomItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(geomItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#GeomValue');
+        expect(geomItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasRegion');
+        expect(geomItem.geometryString).toEqual('{"status":"active","lineColor":"#ff3333","lineWidth":2,"points":[{"x":0.08098591549295775,"y":0.16741071428571427},{"x":0.7394366197183099,"y":0.7299107142857143}],"type":"rectangle","original_index":0}');
+        expect(geomItem.getClassName()).toEqual('ReadGeomValue');
+
+
+        expect(geomItem.geometry).toEqual(expectedGeometry);
 
     });
 
