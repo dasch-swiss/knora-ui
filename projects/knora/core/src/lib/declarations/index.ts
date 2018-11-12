@@ -76,12 +76,6 @@ export * from './api/admin/users/user-response';
 export * from './api/admin/users/user';
 
 /**
- * Interfaces for json-ld
- */
-export * from './api/v2/json-ld/json-ld';
-// export * from './knora-api/v2/json-ld/convert-json-ld';
-
-/**
  * Interfaces for properties
  */
 export * from './api/v2/properties/read-properties';
