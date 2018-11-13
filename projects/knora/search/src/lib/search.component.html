@@ -30,7 +30,7 @@
                 <mat-list-item *ngFor="let item of prevSearch | reverse; let i=index">
                     <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)">{{item}}</h4>
                     <button mat-icon-button (click)="resetPrevSearch(item)">
-                        <mat-icon aria-label="close">clear</mat-icon>
+                        <mat-icon aria-label="close">close</mat-icon>
                     </button>
                 </mat-list-item>
             </mat-list>
