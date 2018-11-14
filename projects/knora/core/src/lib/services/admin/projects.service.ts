@@ -97,6 +97,17 @@ export class ProjectsService extends ApiService {
     }
 
     /**
+     * returns all project members
+     *
+     * @param {string} shortname
+     * @returns {Observable<User[]>}
+     */
+    getProjectMembersByShortcode(shortcode: string): Observable<User[]> {
+        const url = '/admin/projects/members/' + shortcode + '?identifier=shortcode';
+        return this.getProjectMembers(url);
+    }
+
+    /**
      * Helper method combining project member retrieval
      *
      * @param {string} url
