@@ -33,7 +33,7 @@ export class LinkValueComponent {
     }
 
     @Output()
-    referredResourceClicked: EventEmitter<string> = new EventEmitter();
+    referredResourceClicked: EventEmitter<ReadLinkValue> = new EventEmitter();
 
     private _linkValueObj: ReadLinkValue;
     private _ontoInfo: OntologyInformation;
@@ -42,6 +42,6 @@ export class LinkValueComponent {
     constructor() { }
 
     refResClicked() {
-        this.referredResourceClicked.emit(this._linkValueObj.referredResourceIri);
+        this.referredResourceClicked.emit(this._linkValueObj);
     }
 }

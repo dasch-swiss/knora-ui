@@ -133,8 +133,8 @@ class TestHostComponent implements OnInit {
     constructor() {
     }
 
-    refResClicked(refResIri: string) {
-        this.refResClickedIri = refResIri;
+    refResClicked(linkValue: ReadLinkValue) {
+        this.refResClickedIri = linkValue.referredResourceIri;
     }
 
     ngOnInit() {
