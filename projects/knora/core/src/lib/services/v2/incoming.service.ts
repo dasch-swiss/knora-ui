@@ -61,37 +61,36 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
      */
     getStillImageRepresentationsForCompoundResource(resourceIri: string, offset: number): Observable<any> {
         const sparqlQueryStr = `
-      PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
 
-      CONSTRUCT {
+CONSTRUCT {
+?page knora-api:isMainResource true .
 
-          ?page knora-api:isMainResource true .
+?page knora-api:seqnum ?seqnum .
 
-          ?page knora-api:seqnum ?seqnum .
+?page knora-api:hasStillImageFile ?file .
+} WHERE {
 
-          ?page knora-api:hasStillImageFile ?file .
-      } WHERE {
+?page a knora-api:StillImageRepresentation .
+?page a knora-api:Resource .
 
-          ?page a knora-api:StillImageRepresentation .
-          ?page a knora-api:Resource .
+?page knora-api:isPartOf <${resourceIri}> .
+knora-api:isPartOf knora-api:objectType knora-api:Resource .
 
-          ?page knora-api:isPartOf <${resourceIri}> .
-          knora-api:isPartOf knora-api:objectType knora-api:Resource .
+<${resourceIri}> a knora-api:Resource .
 
-          <${resourceIri}> a knora-api:Resource .
+?page knora-api:seqnum ?seqnum .
+knora-api:seqnum knora-api:objectType xsd:integer .
 
-          ?page knora-api:seqnum ?seqnum .
-          knora-api:seqnum knora-api:objectType xsd:integer .
+?seqnum a xsd:integer .
 
-          ?seqnum a xsd:integer .
+?page knora-api:hasStillImageFile ?file .
+knora-api:hasStillImageFile knora-api:objectType knora-api:File .
 
-          ?page knora-api:hasStillImageFile ?file .
-          knora-api:hasStillImageFile knora-api:objectType knora-api:File .
+?file a knora-api:File .
 
-          ?file a knora-api:File .
-
-      } ORDER BY ?seqnum
-        OFFSET ${offset}
+} ORDER BY ?seqnum
+OFFSET ${offset}
 `;
 
         return this.doExtendedSearch(sparqlQueryStr);
@@ -109,38 +108,36 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
      */
     getIncomingLinksForResource(resourceIri: string, offset: number): Observable<any> {
         const sparqlQueryStr = `
-      PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
 
-      CONSTRUCT {
+CONSTRUCT {
+?incomingRes knora-api:isMainResource true .
 
-          ?incomingRes knora-api:isMainResource true .
+?incomingRes ?incomingProp <${resourceIri}> .
 
-          ?incomingRes ?incomingProp <${resourceIri}> .
+} WHERE {
 
-      } WHERE {
+?incomingRes a knora-api:Resource .
 
-          ?incomingRes a knora-api:Resource .
+?incomingRes ?incomingProp <${resourceIri}> .
 
-          ?incomingRes ?incomingProp <${resourceIri}> .
+<${resourceIri}> a knora-api:Resource .
 
-          <${resourceIri}> a knora-api:Resource .
+?incomingProp knora-api:objectType knora-api:Resource .
 
-          ?incomingProp knora-api:objectType knora-api:Resource .
+knora-api:isRegionOf knora-api:objectType knora-api:Resource .
+knora-api:isPartOf knora-api:objectType knora-api:Resource .
 
-          knora-api:isRegionOf knora-api:objectType knora-api:Resource .
-          knora-api:isPartOf knora-api:objectType knora-api:Resource .
+FILTER NOT EXISTS {
+ ?incomingRes  knora-api:isRegionOf <${resourceIri}> .
+}
 
-          FILTER NOT EXISTS {
-             ?incomingRes  knora-api:isRegionOf <${resourceIri}> .
-          }
+FILTER NOT EXISTS {
+ ?incomingRes  knora-api:isPartOf <${resourceIri}> .
+}
 
-          FILTER NOT EXISTS {
-             ?incomingRes  knora-api:isPartOf <${resourceIri}> .
-          }
-
-      } OFFSET ${offset}
-
-      `;
+} OFFSET ${offset}
+`;
 
         return this.doExtendedSearch(sparqlQueryStr);
     }
