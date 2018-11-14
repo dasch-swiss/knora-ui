@@ -30,6 +30,13 @@ export interface ReadPropertyItem {
      * @returns {string}
      */
     getClassName: () => string;
+
+    /**
+     * Gets the value as a string (complexity of the value possibly reduced).
+     *
+     * @returns {string}
+     */
+    getContent: () => string;
 }
 
 /**
@@ -45,6 +52,10 @@ export class ReadTextValueAsString implements ReadPropertyItem {
 
     getClassName(): string {
         return KnoraConstants.ReadTextValueAsString;
+    }
+
+    getContent() {
+        return this.str;
     }
 }
 
@@ -91,6 +102,10 @@ export class ReadTextValueAsHtml implements ReadPropertyItem {
         return KnoraConstants.ReadTextValueAsHtml;
     }
 
+    getContent() {
+        return this.html;
+    }
+
 }
 
 /**
@@ -106,6 +121,10 @@ export class ReadTextValueAsXml implements ReadPropertyItem {
 
     getClassName(): string {
         return KnoraConstants.ReadTextValueAsXml;
+    }
+
+    getContent() {
+        return this.xml;
     }
 
 }
@@ -148,6 +167,10 @@ export class ReadDateValue implements ReadPropertyItem {
     getClassName(): string {
         return KnoraConstants.ReadDateValue;
     }
+
+    getContent() {
+        return this.getDateSalsah().getDateAsString();
+    }
 }
 
 /**
@@ -175,6 +198,14 @@ export class ReadLinkValue implements ReadPropertyItem {
     getClassName(): string {
         return KnoraConstants.ReadLinkValue;
     }
+
+    getContent() {
+        if (this.referredResource !== undefined) {
+            return this.referredResource.label;
+        } else {
+            return this.referredResourceIri;
+        }
+    }
 }
 
 /**
@@ -192,6 +223,10 @@ export class ReadIntegerValue implements ReadPropertyItem {
         return KnoraConstants.ReadIntegerValue;
     }
 
+    getContent() {
+        return this.integer.toString();
+    }
+
 }
 
 /**
@@ -207,6 +242,10 @@ export class ReadDecimalValue implements ReadPropertyItem {
 
     getClassName(): string {
         return KnoraConstants.ReadDecimalValue;
+    }
+
+    getContent() {
+        return this.decimal.toString();
     }
 }
 
@@ -233,7 +272,7 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
 
     readonly isPreview: boolean;
 
-    makeIIIFUrl = function (reduceFactor: number): string {
+    makeIIIFUrl(reduceFactor: number): string {
 
         if (this.isPreview) {
             return this.imagePath;
@@ -250,6 +289,10 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
     getClassName(): string {
         return KnoraConstants.ReadStillImageFileValue;
     }
+
+    getContent() {
+        return this.imagePath;
+    }
 }
 
 /**
@@ -263,12 +306,12 @@ export class ReadTextFileValue implements ReadPropertyItem {
 
     readonly type = KnoraConstants.TextFileValue;
 
-    makeUrl = function (): string {
-        return `${this.textFileURL}`;
-    };
-
     getClassName(): string {
         return KnoraConstants.ReadTextFileValue;
+    }
+
+    getContent() {
+        return this.textFileURL;
     }
 
 }
@@ -287,6 +330,10 @@ export class ReadColorValue implements ReadPropertyItem {
 
     getClassName(): string {
         return KnoraConstants.ReadColorValue;
+    }
+
+    getContent() {
+        return this.colorHex;
     }
 }
 
@@ -349,6 +396,10 @@ export class ReadGeomValue implements ReadPropertyItem {
     getClassName(): string {
         return KnoraConstants.ReadGeomValue;
     }
+
+    getContent() {
+        return this.geometryString;
+    }
 }
 
 /**
@@ -364,6 +415,10 @@ export class ReadUriValue implements ReadPropertyItem {
 
     getClassName(): string {
         return KnoraConstants.ReadUriValue;
+    }
+
+    getContent() {
+        return this.uri;
     }
 
 }
@@ -383,6 +438,10 @@ export class ReadBooleanValue implements ReadPropertyItem {
         return KnoraConstants.ReadBooleanValue;
     }
 
+    getContent() {
+        return this.bool.toString();
+    }
+
 }
 
 /**
@@ -400,6 +459,10 @@ export class ReadIntervalValue implements ReadPropertyItem {
         return KnoraConstants.ReadIntervalValue;
     }
 
+    getContent() {
+        return this.intervalStart.toString() + '-' + this.intervalEnd;
+    }
+
 }
 
 /**
@@ -415,6 +478,10 @@ export class ReadListValue implements ReadPropertyItem {
 
     getClassName(): string {
         return KnoraConstants.ReadListValue;
+    }
+
+    getContent() {
+        return this.listNodeLabel;
     }
 
 }

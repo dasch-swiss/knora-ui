@@ -12,7 +12,9 @@ export enum Precision {
  */
 export class DateSalsah {
 
-    precision: Precision;
+    private static separator = '-';
+
+    readonly precision: Precision;
 
     constructor(
         readonly calendar: string,
@@ -34,6 +36,50 @@ export class DateSalsah {
 
     }
 
+    /**
+     * Returns a string representation of the date with the calendar.
+     *
+     * @returns {string}
+     */
+    getDateAsStringWithCalendar() {
+        return this.calendar + ':' + this.getDateAsString();
+    }
+
+    /**
+     * Returns a string representation of the date (without calendar).
+     *
+     * @returns {string}
+     */
+    getDateAsString(): string {
+
+        let dateString = '(' + this.era + ') ';
+
+        switch (this.precision) {
+
+            case Precision.yearPrecision: {
+                dateString += this.year.toString();
+                break;
+            }
+
+            case Precision.monthPrecision: {
+                dateString += this.year + DateSalsah.separator + this.month;
+                break;
+            }
+
+            case Precision.dayPrecision: {
+                dateString += this.year + DateSalsah.separator + this.month + DateSalsah.separator + this.day;
+                break;
+            }
+
+            default: {
+                break;
+            }
+
+        }
+
+        return dateString;
+    }
+
 }
 
 /**
@@ -45,5 +91,14 @@ export class DateRangeSalsah {
         readonly start: DateSalsah,
         readonly end: DateSalsah
     ) {
+    }
+
+    /**
+     * Returns a string representation of the date range (with preceding calendar).
+     *
+     * @returns {string}
+     */
+    getDateAsString() {
+        return this.start.getDateAsStringWithCalendar() + ':' + this.end.getDateAsString();
     }
 }

@@ -31,6 +31,7 @@ describe('ReadPropertyItem', () => {
         expect(stringItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#description');
         expect(stringItem.str).toEqual('This is a test');
         expect(stringItem.getClassName()).toEqual('ReadTextValueAsString');
+        expect(stringItem.getContent()).toEqual('This is a test');
     });
 
     it('should create a ReadTextValueAsHtml', () => {
@@ -49,6 +50,7 @@ describe('ReadPropertyItem', () => {
         expect(htmlItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#description');
         expect(htmlItem.html).toEqual('This is a test with <a href="http://rdfh.ch/test" class="salsah-link">a standoff link</a>');
         expect(htmlItem.getClassName()).toEqual('ReadTextValueAsHtml');
+        expect(htmlItem.getContent()).toEqual('This is a test with <a href="http://rdfh.ch/test" class="salsah-link">a standoff link</a>');
 
         expect(htmlItem.referredResources).toBe(referredResourcesInStandoff);
         expect(htmlItem.getReferredResourceInfo('http://rdfh.ch/test', ontologyInfo)).toEqual('test resource (book)');
@@ -64,6 +66,7 @@ describe('ReadPropertyItem', () => {
         expect(xmlItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#description');
         expect(xmlItem.xml).toEqual('<root>This is a test</root>');
         expect(xmlItem.mappingIri).toEqual('http://rdfh.ch/00c650d23303/mappings/af68552c3626');
+        expect(xmlItem.getContent()).toEqual('<root>This is a test</root>');
 
         expect(xmlItem.getClassName()).toEqual('ReadTextValueAsXml');
     });
@@ -97,11 +100,29 @@ describe('ReadPropertyItem', () => {
         expect(dateItem.startEra).toEqual('CE');
         expect(dateItem.endEra).toEqual('CE');
 
-
-        // TODO: add more tests after refactoring (https://github.com/dhlab-basel/Knora-ui/pull/94)
+        expect(dateItem.getContent()).toEqual('GREGORIAN:(CE) 2018-5-18:(CE) 2019-6-19');
     });
 
-    it('should create a ReadLinkValue', () => {
+    it('should create a ReadLinkValue with a referred resource Iri only', () => {
+
+        const linkItem = new ReadLinkValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasReference',
+            'http://rdfh.ch/test'
+        );
+
+        expect(linkItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(linkItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#LinkValue');
+        expect(linkItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasReference');
+        expect(linkItem.getClassName()).toEqual('ReadLinkValue');
+        expect(linkItem.referredResourceIri).toEqual('http://rdfh.ch/test');
+        expect(linkItem.getContent()).toEqual('http://rdfh.ch/test');
+
+        expect(linkItem.getReferredResourceInfo(ontologyInfo)).toEqual('http://rdfh.ch/test');
+
+    });
+
+    it('should create a ReadLinkValue with a referred resource', () => {
 
         const linkItem = new ReadLinkValue(
             'http://rdfh.ch/00c650d23303/values/af68552c3626',
@@ -115,6 +136,7 @@ describe('ReadPropertyItem', () => {
         expect(linkItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasReference');
         expect(linkItem.getClassName()).toEqual('ReadLinkValue');
         expect(linkItem.referredResourceIri).toEqual('http://rdfh.ch/test');
+        expect(linkItem.getContent()).toEqual('test resource');
 
         expect(linkItem.getReferredResourceInfo(ontologyInfo)).toEqual('test resource (book)');
 
@@ -128,6 +150,7 @@ describe('ReadPropertyItem', () => {
         expect(intItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#IntValue');
         expect(intItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasInteger');
         expect(intItem.getClassName()).toEqual('ReadIntegerValue');
+        expect(intItem.getContent()).toEqual('1');
 
         expect(intItem.integer).toEqual(1);
 
@@ -141,6 +164,7 @@ describe('ReadPropertyItem', () => {
         expect(decItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#DecimalValue');
         expect(decItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasDecimal');
         expect(decItem.getClassName()).toEqual('ReadDecimalValue');
+        expect(decItem.getContent()).toEqual('1.1');
 
         expect(decItem.decimal).toEqual(1.1);
 
@@ -161,6 +185,7 @@ describe('ReadPropertyItem', () => {
         expect(imageItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#StillImageFileValue');
         expect(imageItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasImage');
         expect(imageItem.getClassName()).toEqual('ReadStillImageFileValue');
+        expect(imageItem.getContent()).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/1904,2700/0/default.jpg');
 
         expect(imageItem.imageFilename).toEqual('incunabula_0000003856.jp2');
         expect(imageItem.imageServerIIIFBaseURL).toEqual('http://localhost:1024/knora');
@@ -169,6 +194,7 @@ describe('ReadPropertyItem', () => {
         expect(imageItem.dimY).toEqual(2700);
         expect(imageItem.isPreview).toEqual(false);
 
+        expect(imageItem.makeIIIFUrl(10)).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/pct:10/0/default.jpg');
 
     });
 
@@ -179,7 +205,7 @@ describe('ReadPropertyItem', () => {
             'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasImage',
             'incunabula_0000003856.jp2',
             'http://localhost:1024/knora',
-            'http://localhost:1024/knora/incunabula_0000003856.jp2/full/1904,2700/0/default.jpg',
+            'http://localhost:1024/knora/incunabula_0000003856.jp2/full/190,270/0/default.jpg',
             190,
             270,
             true);
@@ -188,15 +214,16 @@ describe('ReadPropertyItem', () => {
         expect(imageItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#StillImageFileValue');
         expect(imageItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasImage');
         expect(imageItem.getClassName()).toEqual('ReadStillImageFileValue');
+        expect(imageItem.getContent()).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/190,270/0/default.jpg');
 
         expect(imageItem.imageFilename).toEqual('incunabula_0000003856.jp2');
         expect(imageItem.imageServerIIIFBaseURL).toEqual('http://localhost:1024/knora');
-        expect(imageItem.imagePath).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/1904,2700/0/default.jpg');
+        expect(imageItem.imagePath).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/190,270/0/default.jpg');
         expect(imageItem.dimX).toEqual(190);
         expect(imageItem.dimY).toEqual(270);
         expect(imageItem.isPreview).toEqual(true);
 
-
+        expect(imageItem.makeIIIFUrl(10)).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/190,270/0/default.jpg');
     });
 
     it('should create a ReadTextFileValue', () => {
@@ -228,6 +255,7 @@ describe('ReadPropertyItem', () => {
         expect(colorItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasColor');
         expect(colorItem.colorHex).toEqual('#000000');
         expect(colorItem.getClassName()).toEqual('ReadColorValue');
+        expect(colorItem.getContent()).toEqual('#000000');
 
     });
 
@@ -255,6 +283,7 @@ describe('ReadPropertyItem', () => {
         expect(geomItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasRegion');
         expect(geomItem.geometryString).toEqual('{"status":"active","lineColor":"#ff3333","lineWidth":2,"points":[{"x":0.08098591549295775,"y":0.16741071428571427},{"x":0.7394366197183099,"y":0.7299107142857143}],"type":"rectangle","original_index":0}');
         expect(geomItem.getClassName()).toEqual('ReadGeomValue');
+        expect(geomItem.getContent()).toEqual('{"status":"active","lineColor":"#ff3333","lineWidth":2,"points":[{"x":0.08098591549295775,"y":0.16741071428571427},{"x":0.7394366197183099,"y":0.7299107142857143}],"type":"rectangle","original_index":0}');
 
         expect(geomItem.geometry).toEqual(expectedGeometry);
 
@@ -273,6 +302,7 @@ describe('ReadPropertyItem', () => {
         expect(uriItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasUri');
         expect(uriItem.uri).toEqual('http://www.knora.org');
         expect(uriItem.getClassName()).toEqual('ReadUriValue');
+        expect(uriItem.getContent()).toEqual('http://www.knora.org');
 
     });
 
@@ -289,6 +319,7 @@ describe('ReadPropertyItem', () => {
         expect(boolItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasBoolean');
         expect(boolItem.bool).toEqual(true);
         expect(boolItem.getClassName()).toEqual('ReadBooleanValue');
+        expect(boolItem.getContent()).toEqual('true');
 
     });
 
@@ -307,6 +338,7 @@ describe('ReadPropertyItem', () => {
         expect(intervalItem.intervalStart).toEqual(1);
         expect(intervalItem.intervalEnd).toEqual(2);
         expect(intervalItem.getClassName()).toEqual('ReadIntervalValue');
+        expect(intervalItem.getContent()).toEqual('1-2');
 
     });
 
@@ -325,6 +357,7 @@ describe('ReadPropertyItem', () => {
         expect(listItem.listNodeIri).toEqual('http://rdfh.ch/00c650d23303/myNode');
         expect(listItem.listNodeLabel).toEqual('testnode');
         expect(listItem.getClassName()).toEqual('ReadListValue');
+        expect(listItem.getContent()).toEqual('testnode');
 
     });
 
