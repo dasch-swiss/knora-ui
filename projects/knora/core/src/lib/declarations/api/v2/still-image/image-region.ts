@@ -1,7 +1,5 @@
-import {ReadResource} from '../../../';
-import {KnoraConstants} from '../../knora-constants';
-import {ReadGeomValue} from './read-geom-value';
-
+import { ReadGeomValue, ReadResource } from '../../../';
+import { KnoraConstants } from '../../knora-constants';
 
 /**
  * Represents a region.
@@ -24,6 +22,6 @@ export class ImageRegion {
      * @returns {ReadGeomValue[]}
      */
     getGeometries() {
-        return this.regionResource.properties[KnoraConstants.hasGeometry] as ReadGeomValue[]
+        return this.regionResource.properties[KnoraConstants.hasGeometry] as ReadGeomValue[];
     }
 }

@@ -1,41 +1,30 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { KuiCoreModule } from '../../core.module';
 
 import { IncomingService } from './incoming.service';
-import { HttpClient } from '@angular/common/http';
-import { KuiCoreModule } from '../../core.module';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { SearchService } from './search.service';
 
 describe('IncomingService', () => {
 
-    let httpClient: HttpClient;
-    let httpTestingController: HttpTestingController;
     let incomingService: IncomingService;
+    let serviceSpy;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
+                KuiCoreModule.forRoot({name: '', api: 'http://0.0.0.0:3333', app: '', media: ''})
             ],
-            providers: [SearchService, IncomingService]
+            providers: [IncomingService]
         });
 
-        httpClient = TestBed.get(HttpClient);
-        httpTestingController = TestBed.get(HttpTestingController);
         incomingService = TestBed.get(IncomingService);
+        serviceSpy = spyOn(incomingService, 'doExtendedSearch').and.stub();
     });
 
-    afterEach(() => {
-        httpTestingController.verify();
+    it('should be created', () => {
+        expect(incomingService).toBeDefined();
     });
 
-    it('should be created', inject([IncomingService], (service: IncomingService) => {
-        expect(service).toBeDefined();
-    }));
-
-    xit('should get incoming regions ', async(inject([SearchService], (searchService: SearchService) => {
-        const query = incomingService.getIncomingRegions('http://0.0.0.0:3333/ontology/0801/beol/v2#letter', 0);
+    it('should get incoming regions ', () => {
 
         const expectedQuery = `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
@@ -52,10 +41,10 @@ CONSTRUCT {
 ?region a knora-api:Region .
 ?region a knora-api:Resource .
 
-?region knora-api:isRegionOf <http://0.0.0.0:3333/ontology/0801/beol/v2#letter> .
+?region knora-api:isRegionOf <http://rdfh.ch/0801/letter> .
 knora-api:isRegionOf knora-api:objectType knora-api:Resource .
 
-<http://0.0.0.0:3333/ontology/0801/beol/v2#letter> a knora-api:Resource .
+<http://rdfh.ch/0801/letter> a knora-api:Resource .
 
 ?region knora-api:hasGeometry ?geom .
 knora-api:hasGeometry knora-api:objectType knora-api:Geom .
@@ -74,13 +63,91 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
 } OFFSET 0
 `;
 
-        const resultSearch = searchService.doExtendedSearch(expectedQuery);
+        incomingService.getIncomingRegions('http://rdfh.ch/0801/letter', 0);
 
-        /* console.log('resultSearch ', resultSearch);
-        console.log('query ', query); */
+        expect(serviceSpy).toHaveBeenCalledWith(expectedQuery);
 
-        expect(query).toEqual(resultSearch);
+    });
 
-    })));
+    it('should get incoming StillImageRepresentations ', () => {
+
+        const expectedQuery = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+
+CONSTRUCT {
+?page knora-api:isMainResource true .
+
+?page knora-api:seqnum ?seqnum .
+
+?page knora-api:hasStillImageFile ?file .
+} WHERE {
+
+?page a knora-api:StillImageRepresentation .
+?page a knora-api:Resource .
+
+?page knora-api:isPartOf <http://rdfh.ch/0801/letter> .
+knora-api:isPartOf knora-api:objectType knora-api:Resource .
+
+<http://rdfh.ch/0801/letter> a knora-api:Resource .
+
+?page knora-api:seqnum ?seqnum .
+knora-api:seqnum knora-api:objectType xsd:integer .
+
+?seqnum a xsd:integer .
+
+?page knora-api:hasStillImageFile ?file .
+knora-api:hasStillImageFile knora-api:objectType knora-api:File .
+
+?file a knora-api:File .
+
+} ORDER BY ?seqnum
+OFFSET 1
+`;
+
+        incomingService.getStillImageRepresentationsForCompoundResource('http://rdfh.ch/0801/letter', 1);
+
+        expect(serviceSpy).toHaveBeenCalledWith(expectedQuery);
+
+    });
+
+    it('should get incoming Links', () => {
+
+        const expectedQuery = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+
+CONSTRUCT {
+?incomingRes knora-api:isMainResource true .
+
+?incomingRes ?incomingProp <http://rdfh.ch/0801/letter> .
+
+} WHERE {
+
+?incomingRes a knora-api:Resource .
+
+?incomingRes ?incomingProp <http://rdfh.ch/0801/letter> .
+
+<http://rdfh.ch/0801/letter> a knora-api:Resource .
+
+?incomingProp knora-api:objectType knora-api:Resource .
+
+knora-api:isRegionOf knora-api:objectType knora-api:Resource .
+knora-api:isPartOf knora-api:objectType knora-api:Resource .
+
+FILTER NOT EXISTS {
+ ?incomingRes  knora-api:isRegionOf <http://rdfh.ch/0801/letter> .
+}
+
+FILTER NOT EXISTS {
+ ?incomingRes  knora-api:isPartOf <http://rdfh.ch/0801/letter> .
+}
+
+} OFFSET 0
+`;
+
+        incomingService.getIncomingLinksForResource('http://rdfh.ch/0801/letter', 0);
+
+        expect(serviceSpy).toHaveBeenCalledWith(expectedQuery);
+
+    });
 
 });
