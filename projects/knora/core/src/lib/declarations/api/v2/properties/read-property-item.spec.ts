@@ -5,8 +5,10 @@ import {
     ReadDateValue,
     ReadDecimalValue,
     ReadGeomValue,
-    ReadIntegerValue, ReadIntervalValue,
+    ReadIntegerValue,
+    ReadIntervalValue,
     ReadLinkValue,
+    ReadListValue,
     ReadStillImageFileValue,
     ReadTextFileValue,
     ReadTextValueAsHtml,
@@ -14,8 +16,7 @@ import {
     ReadTextValueAsXml,
     ReadUriValue,
     ReferredResourcesByStandoffLink,
-    RegionGeometry,
-    ReadListValue
+    RegionGeometry
 } from './read-property-item';
 import { ReadResource } from '../../..';
 import { OntologyInformation, ResourceClass } from '../../../../services';

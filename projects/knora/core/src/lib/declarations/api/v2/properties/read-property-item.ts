@@ -29,26 +29,40 @@ export interface ReadPropertyItem {
      *
      * @returns {string}
      */
-    getClassName: () => string;
+    getClassName(): string;
 
     /**
      * Gets the value as a string (complexity of the value possibly reduced).
      *
      * @returns {string}
      */
-    getContent: () => string;
+    getContent(): string;
+}
+
+/**
+ * Abstract class representing a text value object with or without markup.
+ */
+export abstract class ReadTextValue implements ReadPropertyItem {
+
+    abstract id: string;
+
+    readonly type: string = KnoraConstants.TextValue;
+
+    abstract propIri: string;
+
+    abstract getClassName(): string;
+
+    abstract getContent(): string;
 }
 
 /**
  * Represents a text value object without markup (mere character string).
  */
-export class ReadTextValueAsString implements ReadPropertyItem {
+export class ReadTextValueAsString extends ReadTextValue {
 
     constructor(readonly id: string, readonly propIri, readonly str: string) {
-
+        super();
     }
-
-    readonly type = KnoraConstants.TextValue;
 
     getClassName(): string {
         return KnoraConstants.ReadTextValueAsString;
@@ -69,13 +83,11 @@ export class ReferredResourcesByStandoffLink {
 /**
  * Represents a text value object with markup that has been turned into HTML.
  */
-export class ReadTextValueAsHtml implements ReadPropertyItem {
+export class ReadTextValueAsHtml extends ReadTextValue {
 
     constructor(readonly id: string, readonly propIri, readonly html: string, readonly referredResources: ReferredResourcesByStandoffLink) {
-
+        super();
     }
-
-    readonly type = KnoraConstants.TextValue;
 
     /**
      * Gets information about a resource referred to by a standoff link from a text value.
@@ -111,13 +123,11 @@ export class ReadTextValueAsHtml implements ReadPropertyItem {
 /**
  * Represents a text value object with markup as XML.
  */
-export class ReadTextValueAsXml implements ReadPropertyItem {
+export class ReadTextValueAsXml extends ReadTextValue {
 
     constructor(readonly id: string, readonly propIri, readonly xml: string, readonly mappingIri: string) {
-
+        super();
     }
-
-    readonly type = KnoraConstants.TextValue;
 
     getClassName(): string {
         return KnoraConstants.ReadTextValueAsXml;
