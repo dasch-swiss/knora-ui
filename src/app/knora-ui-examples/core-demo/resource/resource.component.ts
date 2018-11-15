@@ -17,6 +17,7 @@ import {
     StillImageRepresentation,
     Utils
 } from '@knora/core';
+import { StillImageComponent } from '@knora/viewer';
 
 declare let require: any;
 const jsonld = require('jsonld');
@@ -28,10 +29,14 @@ const jsonld = require('jsonld');
 })
 export class ResourceComponent implements OnChanges, OnInit {
 
-    // @ViewChild('OSDViewer') osdViewer: StillImageOSDViewerComponent;
+    @ViewChild('OSDViewer') osdViewer: StillImageComponent;
 
     // example of a few resources:
     resources: any[] = [
+        {
+            'name': 'region',
+            'iri': 'http://rdfh.ch/fb9d11a1d403'
+        },
         {
             'name': 'book',
             'iri': 'http://rdfh.ch/5e77e98d2603'
@@ -153,7 +158,7 @@ export class ResourceComponent implements OnChanges, OnInit {
         if (this.resource.properties[KnoraConstants.hasStillImageFileValue]) { // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
             // the resource is a StillImageRepresentation, check if there are regions pointing to it
 
-            // this.getIncomingRegions(0);
+            this.getIncomingRegions(0);
 
         } else {
             // this resource is not a StillImageRepresentation
@@ -197,9 +202,9 @@ export class ResourceComponent implements OnChanges, OnInit {
                             // prepare regions to be displayed
                             this.collectImagesAndRegionsForResource(this.resource);
 
-                            /* if (this.osdViewer) {
+                            if (this.osdViewer) {
                                 this.osdViewer.updateRegions();
-                            } */
+                            }
 
                             // if callback is given, execute function with the amount of new images as the parameter
                             if (callback !== undefined) callback(regions.resources.length);

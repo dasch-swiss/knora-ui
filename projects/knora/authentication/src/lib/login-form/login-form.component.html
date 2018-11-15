@@ -14,14 +14,14 @@
             <!-- Username -->
             <mat-form-field class="full-width login-field">
                 <mat-icon matPrefix>person</mat-icon>
-                <input matInput autofocus [placeholder]="login.name" formControlName="email">
+                <input matInput autofocus [placeholder]="login.name" autocomplete="username" formControlName="email">
                 <mat-hint *ngIf="formErrors.email" class="login-error">{{login.error.failed}}</mat-hint>
             </mat-form-field>
 
             <!-- Password -->
             <mat-form-field class="full-width login-field">
                 <mat-icon matPrefix>lock</mat-icon>
-                <input matInput type="password" [placeholder]="login.pw" formControlName="password">
+                <input matInput type="password" [placeholder]="login.pw" autocomplete="current-password" formControlName="password">
                 <mat-hint *ngIf="formErrors.password" class="login-error">{{login.error.failed}}</mat-hint>
             </mat-form-field>
 
@@ -33,7 +33,7 @@
                         class="full-width submit-button mat-primary">
                     {{login.button}}
                 </button>
-                <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
+                <kui-progress-indicator *ngIf="loading" [color]="color"></kui-progress-indicator>
             </div>
         </form>
     </div>

@@ -36,6 +36,10 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
         this.updatePropertiesArray();
     }
 
+    get properties() {
+       return this._properties;
+    }
+
     _activeResourceClass: ResourceClass;
 
     // setter method for selected resource class
@@ -45,7 +49,7 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
     }
 
     // reference to child component: combination of comparison operator and value for chosen property
-    @ViewChild('specifyPropertyValue') private specifyPropertyValue: SpecifyPropertyValueComponent;
+    @ViewChild('specifyPropertyValue') specifyPropertyValue: SpecifyPropertyValueComponent;
 
     // properties that can be selected from
     private _properties: Properties;

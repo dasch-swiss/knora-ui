@@ -122,7 +122,7 @@ Testing services with HttpClient and HttpTestingController
 https://angular.io/guide/http#testing-http-requests
 * See https://stackblitz.com/edit/angular-uy5cdl?file=src%2Fapp%2Fheroes%2Fheroes.service.spec.ts for a working example.
 
- ```
+ ```TypeScript
  getAllHeroes (): Observable<any[]> {
     const observables = [];
 
@@ -142,7 +142,7 @@ https://angular.io/guide/http#testing-http-requests
 
 * Several http requests are created and pushed on an array, then they are passed to forkJoin and returned. With forkJoin, we get one Observable that we can subscribe to (executed once all Observables have been completed). Then we get the results of all Observables from within the subscription to the Observable returned by forkJoin.
 
-```
+```TypeScript
  it('should get all heroes', () => {
 
       let res = heroService.getAllHeroes();   

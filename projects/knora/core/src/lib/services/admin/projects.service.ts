@@ -76,6 +76,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * returns all project members
+     * project identifier is project id (iri)
      *
      * @param {string} iri
      * @returns Observable of User[]
@@ -87,12 +88,25 @@ export class ProjectsService extends ApiService {
 
     /**
      * returns all project members
+     * project identifier is shortname
      *
      * @param {string} shortname
      * @returns Observable of User[]
      */
     getProjectMembersByShortname(shortname: string): Observable<User[]> {
         const url = '/admin/projects/members/' + shortname + '?identifier=shortname';
+        return this.getProjectMembers(url);
+    }
+
+    /**
+     * returns all project members
+     * project identifier is shortcode
+     *
+     * @param {string} shortcode
+     * @returns {Observable<User[]>}
+     */
+    getProjectMembersByShortcode(shortcode: string): Observable<User[]> {
+        const url = '/admin/projects/members/' + shortcode + '?identifier=shortcode';
         return this.getProjectMembers(url);
     }
 

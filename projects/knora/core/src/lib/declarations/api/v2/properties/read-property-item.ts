@@ -363,7 +363,7 @@ export class ReadTextFileValue implements ReadPropertyItem {
     }
 
     getClassName(): string {
-        return KnoraConstants.TextFileValue;
+        return KnoraConstants.ReadTextFileValue;
     }
 
 }

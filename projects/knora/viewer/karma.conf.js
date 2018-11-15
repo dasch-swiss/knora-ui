@@ -26,6 +26,10 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false
+    singleRun: false,
+    files: [
+        "../../../node_modules/openseadragon/build/openseadragon/openseadragon.min.js",
+        "../../../node_modules/svg-overlay/openseadragon-svg-overlay.js"
+    ]
   });
 };
