@@ -54,7 +54,7 @@ The sort button helps to sort a list by a selected topic. The following setup is
 - the sort button returns a sortKey which is needed in the list and the pipe called sortBy
 
 #### html template
-```
+```HTML
 <kui-sort-button [sortProps]="sortProps"
                  [(sortKey)]="sortKey">
 </kui-sort-button>
@@ -114,10 +114,10 @@ See the [Stackblitz example](https://stackblitz.com/edit/knora-existing-name?fil
 In case of an object, where you don't know the labels or in case of an array with no numeric index, you can use the Key pipe. 
 
 For this array
-```
+```TypeScript
 array = [];
 
-[...]
+// ... 
 
 this.array['index-1'] = 'Value in index 1';
 this.array['index-2'] = 'Value in index 2';
@@ -127,7 +127,7 @@ this.array['index-3'] = 'Value in index 3';
 ```
 we can use it in the template as follow:
 
-```
+```HTML
 <ul>
     <li *ngFor="let item of array | key">
         {{item.key}}: {{item.value}}
