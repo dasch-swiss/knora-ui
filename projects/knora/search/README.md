@@ -59,7 +59,7 @@ First step: Import the search module in your app.module.ts:
 
 and add it to the NgModules's imports:
 
-```
+```TypeScript
 @NgModule({
     declarations: [
         AppComponent
