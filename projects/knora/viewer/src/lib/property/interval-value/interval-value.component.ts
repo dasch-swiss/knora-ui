@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ReadIntervalValue } from '@knora/core';
 
 @Component({
@@ -6,13 +6,19 @@ import { ReadIntervalValue } from '@knora/core';
   templateUrl: './interval-value.component.html',
   styleUrls: ['./interval-value.component.scss']
 })
-export class IntervalValueComponent implements OnInit {
+export class IntervalValueComponent {
 
-  @Input() valueObject: ReadIntervalValue;
+  @Input()
+  set valueObject(value: ReadIntervalValue) {
+    this._intervalValueObj = value;
+  }
+
+  get valueObject() {
+    return this._intervalValueObj;
+  }
+
+  private _intervalValueObj: ReadIntervalValue;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

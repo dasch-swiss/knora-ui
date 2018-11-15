@@ -17,7 +17,7 @@ OR
 ## Setup
 In your AppModule you have to define the following providers:
 
-```
+```TypeScript
 import { ErrorInterceptor, JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
 
 @NgModule({
@@ -48,7 +48,7 @@ export class AppModule { }
 
 The @knora/authentication module contains a guard class which will redirect a guest user to the login page. It can be used in the app routing as follow:
 
-```
+```TypeScript
 import { AuthGuard } from '@knora/authentication';
 
 const appRoutes: Routes = [

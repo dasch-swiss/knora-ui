@@ -17,6 +17,12 @@ export class LoginFormComponent implements OnInit {
      */
     @Input() navigate?: string;
 
+    /**
+     * set your theme color here,
+     * it will be used in the progress-indicator
+     */
+    @Input() color?: string;
+
     returnUrl: string;
 
     // is there already a valid session?
