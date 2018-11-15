@@ -16,7 +16,7 @@ OR
 
 ## Setup
 On version 6 of Angular CLI they removed the shim for global and other node built-ins as mentioned in [#9827 (comment)](https://github.com/angular/angular-cli/issues/9827#issuecomment-369578814). Because of the jsonld package, we have to manually shimming it inside of the polyfills.ts file of the app:
-```
+```TypeScript
 // Add global to window, assigning the value of window itself.
 
  (window as any).global = window;
@@ -30,7 +30,7 @@ and set the api server of your environment first. In our apps we define it in th
 
 For local usage (developer mode) define your environment.ts as follow: 
 
-```
+```TypeScript
 export const environment = {
   production: false,
   name: 'Salsah',
@@ -47,7 +47,7 @@ export const environment = {
 
 Send this configuration to the `@knora/core` module in your app.module.ts
 
-```
+```TypeScript
 import {environment} from '../environments/environment';
 
 @NgModule({
@@ -88,10 +88,10 @@ To get project information you have to import at least three elements from `@kno
 
 and use it as follow:
 
-```
+```TypeScript
 project: Project;
 
-(...)
+// ...
 
 this.projectsService.getProjectByIri(iri)
     .subscribe(

@@ -18,7 +18,7 @@ $warn: rgb(244, 67, 54);
 // two lines with three bouncing squares each
 //
 
-.default-progress-indicator {
+.kui-progress-indicator.default {
   height: 56px;
   margin-left: auto;
   margin-right: auto;
@@ -85,7 +85,7 @@ $warn: rgb(244, 67, 54);
 //
 // submit data has a different progress indicator
 //
-.submit-progress-indicator {
+.kui-progress-indicator.submit {
   height: 32px;
   width: 32px;
 

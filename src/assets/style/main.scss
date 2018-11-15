@@ -51,3 +51,12 @@ markdown {
 
 
 }
+
+// example to change kui-progress-indicator color
+/*
+.kui-progress-indicator {
+  .line > div {
+    background-color: #ff0000 !important;
+  }
+}
+*/
