@@ -415,6 +415,34 @@
                 <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
     </p>
 
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+                <div>
+                    <pre class="line-numbers"><code class="language-html">// default progress indicator
+&lt;kui-progress-indicator color=&quot;#ff00aa&quot;&gt;&lt;/kui-progress-indicator&gt;</code></pre>
+                </div>
+                <div>
+                    <pre class="line-numbers"><code class="language-html">// submit progress indicator: html
+&lt;mat-list&gt;
+    &lt;mat-list-item *ngFor=&quot;let item of examples&quot;&gt;
+        &lt;kui-progress-indicator mat-list-avatar [status]=&quot;item.status&quot;&gt;&lt;/kui-progress-indicator&gt;
+        &lt;p mat-line&gt;&lt;strong&gt;&lt;span&gt;{{item.label}}&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+        &lt;p mat-line&gt;status: {{item.status}}&lt;/p&gt;
+    &lt;/mat-list-item&gt;
+&lt;/mat-list&gt;</code></pre>
+                </div>
+                <div>
+                    <pre class="line-numbers"><code class="language-html">// instead of [color]: overwrite the progress indicator color in a global scss file in the app.
+
+.kui-progress-indicator {
+  .line &gt; div {
+       background-color: #ff0000 !important;
+   }
+}</code></pre>
+                </div>
+    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -508,6 +536,9 @@
                         <code>color</code>
                     </td>
                     <td class="col-md-10">
+                        <div><p>With [color] you can customize the appearance of the loader.
+You can define the color with the hexadecimal value e.g. #00ff00.</p>
+</div>
                             <p>
                             <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
@@ -527,8 +558,7 @@
                         <code>status</code>
                     </td>
                     <td class="col-md-10">
-                        <div><p>TODO: add description</p>
-<p>status is a number</p>
+                        <div><p>status is a number and can be used when submitting form data:</p>
 <ul>
 <li>not ready:    -1</li>
 <li>loading:       0</li>
