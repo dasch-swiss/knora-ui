@@ -20,3 +20,24 @@ Status is a number:
 *  1 => done
 
 and in case of an error: the number is 400
+
+## Theme 
+It's possible to change the color of the progress-indicator with the following two possibilities:
+
+### Color parameter
+Add `[color]="'#ff0000'"` to the kui-progess-indicator tag.
+
+### Define color in sass
+Overwrite the progress indicator color in a global scss file
+
+#### Default loader
+```
+.kui-progress-indicator {
+  .line > div {
+    background-color: #ff0000 !important;
+  }
+}
+```
+
+#### Submit loader 
+Not yet implemented! Here you should use the variant with the `[color]` parameter.
