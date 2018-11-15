@@ -31,7 +31,7 @@ Add `[color]="'#ff0000'"` to the kui-progess-indicator tag.
 Overwrite the progress indicator color in a global scss file
 
 #### Default loader
-```
+```SCSS
 .kui-progress-indicator {
   .line > div {
     background-color: #ff0000 !important;
