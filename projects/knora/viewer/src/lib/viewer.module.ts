@@ -35,7 +35,6 @@ import { ListValueComponent } from './property/list-value/list-value.component';
 import { TextValueAsHtmlComponent } from './property/text-value/text-value-as-html/text-value-as-html.component';
 import { TextValueAsStringComponent } from './property/text-value/text-value-as-string/text-value-as-string.component';
 import { TextValueAsXmlComponent } from './property/text-value/text-value-as-xml/text-value-as-xml.component';
-import { TextValueComponent } from './property/text-value/text-value.component';
 import { TextfileValueComponent } from './property/textfile-value/textfile-value.component';
 import { UriValueComponent } from './property/uri-value/uri-value.component';
 import { AnnotationComponent } from './resource/annotation/annotation.component';
@@ -94,7 +93,6 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         TextComponent,
         TextValueAsHtmlComponent,
         TextValueAsStringComponent,
-        TextValueComponent,
         TextValueAsXmlComponent,
         TextfileValueComponent,
         DateValueComponent,
@@ -132,7 +130,6 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         TextComponent,
         TextValueAsHtmlComponent,
         TextValueAsStringComponent,
-        TextValueComponent,
         TextValueAsXmlComponent,
         TextfileValueComponent,
         DateValueComponent,
