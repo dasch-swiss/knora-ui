@@ -72,7 +72,39 @@ describe('ReadPropertyItem', () => {
         expect(xmlItem.getClassName()).toEqual('ReadTextValueAsXml');
     });
 
-    it('should create a ReadDateValue', () => {
+    it('should create a ReadDateValue for a precise date', () => {
+
+        const dateItem = new ReadDateValue(
+            'http://rdfh.ch/00c650d23303/values/af68552c3626',
+            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#pubDate',
+            'GREGORIAN',
+            2018,
+            2018,
+            'CE',
+            'CE',
+            5,
+            5,
+            18,
+            18);
+
+        expect(dateItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(dateItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#DateValue');
+        expect(dateItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#pubDate');
+        expect(dateItem.getClassName()).toEqual('ReadDateValue');
+
+        expect(dateItem.startYear).toEqual(2018);
+        expect(dateItem.endYear).toEqual(2018);
+        expect(dateItem.startMonth).toEqual(5);
+        expect(dateItem.endMonth).toEqual(5);
+        expect(dateItem.startDay).toEqual(18);
+        expect(dateItem.endDay).toEqual(18);
+        expect(dateItem.startEra).toEqual('CE');
+        expect(dateItem.endEra).toEqual('CE');
+
+        expect(dateItem.getContent()).toEqual('GREGORIAN:(CE) 2018-5-18');
+    });
+
+    it('should create a ReadDateValue fro a period', () => {
 
         const dateItem = new ReadDateValue(
             'http://rdfh.ch/00c650d23303/values/af68552c3626',

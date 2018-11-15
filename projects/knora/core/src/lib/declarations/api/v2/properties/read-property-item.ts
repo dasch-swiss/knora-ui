@@ -294,7 +294,7 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
             return this.imageServerIIIFBaseURL + '/' + this.imageFilename + '/full/pct:' + percentage.toString() + '/0/default.jpg';
         }
 
-    };
+    }
 
     getClassName(): string {
         return KnoraConstants.ReadStillImageFileValue;

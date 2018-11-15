@@ -13,9 +13,9 @@ describe('DateSalsah', () => {
 
         expect(date.precision).toEqual(Precision.dayPrecision);
 
-        expect(date.getDateAsString()).toEqual('(CE) 2018-11-14');
+        expect(date.getDateAsString()).toEqual('Gregorian:(CE) 2018-11-14');
 
-        expect(date.getDateAsStringWithCalendar()).toEqual('Gregorian:(CE) 2018-11-14');
+        expect(date.getDateAsStringWithoutCalendar()).toEqual('(CE) 2018-11-14');
     });
 
     it('should create a DateSalsah with month precision', () => {
@@ -28,8 +28,8 @@ describe('DateSalsah', () => {
 
         expect(date.precision).toEqual(Precision.monthPrecision);
 
-        expect(date.getDateAsString()).toEqual('(CE) 2018-11');
-        expect(date.getDateAsStringWithCalendar()).toEqual('Gregorian:(CE) 2018-11');
+        expect(date.getDateAsString()).toEqual('Gregorian:(CE) 2018-11');
+        expect(date.getDateAsStringWithoutCalendar()).toEqual('(CE) 2018-11');
     });
 
     it('should create a DateSalsah with year precision', () => {
@@ -41,8 +41,8 @@ describe('DateSalsah', () => {
 
         expect(date.precision).toEqual(Precision.yearPrecision);
 
-        expect(date.getDateAsString()).toEqual('(CE) 2018');
-        expect(date.getDateAsStringWithCalendar()).toEqual('Gregorian:(CE) 2018');
+        expect(date.getDateAsString()).toEqual('Gregorian:(CE) 2018');
+        expect(date.getDateAsStringWithoutCalendar()).toEqual('(CE) 2018');
     });
 
     it('should create a DateRangeSalsah ', () => {

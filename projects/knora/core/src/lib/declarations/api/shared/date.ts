@@ -37,20 +37,11 @@ export class DateSalsah {
     }
 
     /**
-     * Returns a string representation of the date with the calendar.
+     * Returns a string representation of the date without the calendar.
      *
      * @returns {string}
      */
-    getDateAsStringWithCalendar() {
-        return this.calendar + ':' + this.getDateAsString();
-    }
-
-    /**
-     * Returns a string representation of the date (without calendar).
-     *
-     * @returns {string}
-     */
-    getDateAsString(): string {
+    getDateAsStringWithoutCalendar() {
 
         let dateString = '(' + this.era + ') ';
 
@@ -80,6 +71,16 @@ export class DateSalsah {
         return dateString;
     }
 
+    /**
+     * Returns a string representation of the date (with calendar).
+     *
+     * @returns {string}
+     */
+    getDateAsString(): string {
+
+        return this.calendar + ':' + this.getDateAsStringWithoutCalendar();
+    }
+
 }
 
 /**
@@ -99,6 +100,6 @@ export class DateRangeSalsah {
      * @returns {string}
      */
     getDateAsString() {
-        return this.start.getDateAsStringWithCalendar() + ':' + this.end.getDateAsString();
+        return this.start.getDateAsString() + ':' + this.end.getDateAsStringWithoutCalendar();
     }
 }
