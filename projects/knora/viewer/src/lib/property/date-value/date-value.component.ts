@@ -30,13 +30,13 @@ export class DateValueComponent {
   set valueObject(value: ReadDateValue) {
     this._dateValueObj = value;
 
-    const dateOrRange = this.valueObject.getDateSalsah();
+    const dateOrRange: DateSalsah | DateRangeSalsah = this.valueObject.getDateSalsah();
     if (dateOrRange instanceof DateRangeSalsah) {
       // period (start and end dates)
       this.period = true;
       this.dates = [this.getJSDate(dateOrRange.start), this.getJSDate(dateOrRange.end)];
     } else {
-      // one date
+      // single date
       this.period = false;
       this.dates = [this.getJSDate(dateOrRange)];
     }

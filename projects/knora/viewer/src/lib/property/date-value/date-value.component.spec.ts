@@ -40,7 +40,7 @@ describe('DateValueComponent', () => {
 
     const dateVal = hostCompDe.query(By.directive(DateValueComponent));
 
-    const divDebugElement: DebugElement = dateVal.query(By.css('div'));
+    const divDebugElement: DebugElement = dateVal.query(By.css('span'));
 
     const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
@@ -57,7 +57,7 @@ describe('DateValueComponent', () => {
 
     const dateVal = hostCompDe.query(By.directive(DateValueComponent));
 
-    const divDebugElement: DebugElement = dateVal.query(By.css('div'));
+    const divDebugElement: DebugElement = dateVal.query(By.css('span'));
 
     const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
@@ -75,7 +75,7 @@ describe('DateValueComponent', () => {
 
     const dateVal = hostCompDe.query(By.directive(DateValueComponent));
 
-    const divDebugElement: DebugElement = dateVal.query(By.css('div'));
+    const divDebugElement: DebugElement = dateVal.query(By.css('span'));
 
     const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
@@ -92,7 +92,7 @@ describe('DateValueComponent', () => {
 
     const dateVal = hostCompDe.query(By.directive(DateValueComponent));
 
-    const divDebugElement: DebugElement = dateVal.query(By.css('div'));
+    const divDebugElement: DebugElement = dateVal.query(By.css('span'));
 
     const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
@@ -109,7 +109,7 @@ describe('DateValueComponent', () => {
 
     const dateVal = hostCompDe.query(By.directive(DateValueComponent));
 
-    const divDebugElement: DebugElement = dateVal.query(By.css('div'));
+    const divDebugElement: DebugElement = dateVal.query(By.css('span'));
 
     const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
