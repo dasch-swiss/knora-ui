@@ -1,20 +1,25 @@
+
 import { Component, Input, OnInit } from '@angular/core';
 
 /**
+ * progress indicator / loader
  *
+ * <example-url>https://stackblitz.com/edit/knora-progress-indicator</example-url>
  *
  * @example
  * // default progress indicator
+ *
  * <kui-progress-indicator color="#ff00aa"></kui-progress-indicator>
  *
  * @example
  * // submit progress indicator: html
+ *
  * <mat-list>
- *                 <mat-list-item *ngFor="let item of examples">
- *                     <kui-progress-indicator mat-list-avatar [status]="item.status"></kui-progress-indicator>
- *                     <p mat-line><strong><span>{{item.label}}</span></strong></p>
- *                     <p mat-line>status: {{item.status}}</p>
- *                 </mat-list-item>
+ *     <mat-list-item *ngFor="let item of examples">
+ *         <kui-progress-indicator mat-list-avatar [status]="item.status"></kui-progress-indicator>
+ *         <p mat-line><strong><span>{{item.label}}</span></strong></p>
+ *         <p mat-line>status: {{item.status}}</p>
+ *     </mat-list-item>
  * </mat-list>
  *
  * @example
@@ -28,6 +33,7 @@ import { Component, Input, OnInit } from '@angular/core';
  *
  *
  */
+
 @Component({
     selector: 'kui-progress-indicator',
     templateUrl: './progress-indicator.component.html',
@@ -36,7 +42,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProgressIndicatorComponent implements OnInit {
 
     /**
-     * status is a number and can be used when submitting form data:
+     * @param status
+     *
+     * [status] is a number and can be used when submitting form data:
      *
      * - not ready:    -1
      * - loading:       0
@@ -47,15 +55,23 @@ export class ProgressIndicatorComponent implements OnInit {
     @Input() status?: number;
 
     /**
+     * @param color
+     *
      * With [color] you can customize the appearance of the loader.
      * You can define the color with the hexadecimal value e.g. #00ff00.
      *
      */
     @Input() color?: string = 'primary';
 
+    /**
+     * @ignore
+     */
     constructor() {
     }
 
+    /**
+     * @ignore
+     */
     ngOnInit() {
     }
 

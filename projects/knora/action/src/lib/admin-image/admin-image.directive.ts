@@ -8,6 +8,14 @@ import { AdminImageConfig } from './admin-image.config';
  * You can use the admin image module for user avatar together with gravatar.com and for project logos.
  *
  * The feature of this module ist the error handling: In case of a 404 error of the image source (img src) the module shows a default image-not-found image. Or a default user profile icon (type=user), or a default project icon (type=project).
+ *
+ * @example
+ * // user avatar picture
+ * <img kuiAdminImage [image]=\"'user@example.com'\" [type]=\"'user'\" />
+ *
+ * @example
+ * // project logo
+ * <img kuiAdminImage [image]="'http://url.to/our/project/image.png'" [type]="'project'" />
  */
 @Directive({
     selector: '[kuiAdminImage]'
@@ -28,13 +36,29 @@ export class AdminImageDirective implements OnChanges {
      */
     @Input() type: string;
 
+
+    /**
+     * @ignore
+     */
     source: string;
+
+
+    /**
+     * @ignore
+     */
     onError: string = AdminImageConfig.defaultNotFound;
 
+
+    /**
+     * @ignore
+     */
     constructor(private _renderer: Renderer2,
                 private _ele: ElementRef) {
     }
 
+    /**
+     * @ignore
+     */
     ngOnChanges() {
 
         this.source = this.image;

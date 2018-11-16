@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/@compodoc/compodoc/src/config/schema.json",
+  "name": "@knora/authentication | Knora-ui module",
+  "output": "./docs/modules/authentication/",
+  "tsconfig": "./projects/knora/authentication/tsconfig.doc.json",
+  "customFavicon": "./src/favicon.ico",
+  "theme": "material",
+  "hideGenerator": true,
+  "disableSourceCode": true,
+  "disableDomTree": true,
+  "disableGraph": true,
+  "disablePrivate": true,
+  "disableProtected": true,
+  "disableLifeCycleHooks": true,
+  "disableRoutesGraph": true,
+  "disableInternal": true,
+  "disableCoverage": false
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppDemo } from '../../../app.config';
 import { Example } from '../../../app.interfaces';
+import { JsdocService } from '../../../partials/services/jsdoc.service';
 
 @Component({
     selector: 'app-progress-indicator-demo',
@@ -84,6 +85,7 @@ export class ProgressIndicatorComponent implements OnInit {
         }
     };
 
+    // demo configuration: dynamic example
     dynamicExample: Example = {
         title: 'Dynamic example of ' + this.submitLoader.title,
         subtitle: '',
@@ -143,6 +145,7 @@ export class ProgressIndicatorComponent implements OnInit {
         }
     };
 
+    // configuration data
     examples = [
         {
             status: -1,

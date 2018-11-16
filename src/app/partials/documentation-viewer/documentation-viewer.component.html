@@ -1,0 +1,36 @@
+
+<div *ngIf="documentation">
+    <section *ngFor="let item of documentation">
+
+        <div *ngIf="item.tags[0].type !== 'ignore'">
+
+            <div [innerHtml]="item.description.full | sanitizeHtml"></div>
+
+
+
+            <div *ngFor="let tag of item.tags">
+
+                <div [ngSwitch]="tag.type">
+                    <!-- example code -->
+                    <pre *ngSwitchCase="'example'">
+                        <code>{{tag.string}}</code>
+                    </pre>
+
+                    <p *ngSwitchCase="'param'">
+                        parameter: {{tag.name}}
+                    </p>
+
+                    <div *ngIf="tag.description"
+                         [innerHtml]="tag.description | sanitizeHtml">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+    </section>
+</div>
+
+

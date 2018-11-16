@@ -11,9 +11,9 @@ import { Pipe, PipeTransform } from '@angular/core';
  *
  * @example
  * <ul>
- *     <li *ngFor="let item of list | key">
- *         {{ item.key }}: {{item.value}}
- *     </li>
+ *              <li *ngFor="let item of list | key">
+ *                {{ item.key }}: {{item.value}}
+ *              </li>
  * </ul>
  *
  */

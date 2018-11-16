@@ -1,0 +1,772 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@knora/action</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">@knora/action</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ExistingNameComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/knora-ui-examples/action-demo/existing-name/existing-name.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-existing-name</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./existing-name.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./existing-name.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dataMock">dataMock</a>
+                            </li>
+                            <li>
+                                <a href="#existingName">existingName</a>
+                            </li>
+                            <li>
+                                <a href="#existingNames">existingNames</a>
+                            </li>
+                            <li>
+                                <a href="#form">form</a>
+                            </li>
+                            <li>
+                                <a href="#formErrors">formErrors</a>
+                            </li>
+                            <li>
+                                <a href="#partOf">partOf</a>
+                            </li>
+                            <li>
+                                <a href="#validationMessages">validationMessages</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onValueChanged">onValueChanged</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_formBuilder</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onValueChanged"></a>
+                        <span class="name">
+                            <b>
+                            onValueChanged
+                            </b>
+                            <a href="#onValueChanged"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onValueChanged(data?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>data</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dataMock"></a>
+                        <span class="name">
+                            <b>
+                            dataMock
+                            </b>
+                            <a href="#dataMock"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>dataMock:     <code>string[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+        &#x27;Max&#x27;, &#x27;Peter&#x27;, &#x27;Paul&#x27;, &#x27;John&#x27;
+    ]</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="existingName"></a>
+                        <span class="name">
+                            <b>
+                            existingName
+                            </b>
+                            <a href="#existingName"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>existingName:     <code><a href="../classes/Example.html" target="_self" >Example</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Example.html" target="_self" >Example</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+        title: &#x27;Existing Name Validator&#x27;,
+        subtitle: &#x27;&#x27;,
+        name: &#x27;existingName&#x27;,
+        code: {
+            html: &#x60;
+            &lt;form [formGroup]&#x3D;&quot;form&quot; class&#x3D;&quot;center card&quot;&gt;
+                &lt;mat-form-field&gt;
+                    &lt;input matInput 
+                           [formControl]&#x3D;&quot;form.controls[&#x27;name&#x27;]&quot; 
+                           [placeholder]&#x3D;&quot;&#x27;Name (should be unique)&#x27;&quot;&gt;
+                    &lt;mat-hint *ngIf&#x3D;&quot;formErrors.name&quot;&gt;
+                        {{formErrors.name}}
+                    &lt;/mat-hint&gt;
+                &lt;/mat-form-field&gt;
+    
+                &lt;button mat-button color&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!form.valid&quot;&gt;
+                    Submit
+                &lt;/button&gt;
+            &lt;/form&gt;&#x60;,
+            ts: &#x60;
+            dataMock: string[] &#x3D; [
+                &#x27;Max&#x27;, &#x27;Peter&#x27;, &#x27;Paul&#x27;, &#x27;John&#x27;
+            ];
+        
+            // list of existing names
+            existingNames: [RegExp] &#x3D; [
+                new RegExp(&#x27;user&#x27;)
+            ];
+        
+            // define your form group
+            form: FormGroup;
+        
+            // error handling on the defined fields e.g. name
+            formErrors &#x3D; {
+                &#x27;name&#x27;: &#x27;&#x27;
+            };
+        
+            // error message on the defined fields in formErrors
+            validationMessages &#x3D; {
+                &#x27;name&#x27;: {
+                    &#x27;required&#x27;: &#x27;A name is required&#x27;,
+                    &#x27;existingName&#x27;: &#x27;This name exists already.&#x27;
+                }
+            };
+        
+            constructor(private _formBuilder: FormBuilder) {
+        
+            }
+        
+            ngOnInit() {
+                // create a list of names, which already exists
+                for (const user of this.dataMock) {
+                    this.existingNames.push(
+                        new RegExp(&#x27;(?:^|\\W)&#x27; + user.toLowerCase() + &#x27;(?:$|\\W)&#x27;)
+                    );
+                }
+        
+                // build form
+                this.form &#x3D; this._formBuilder.group({
+                    &#x27;name&#x27;: new FormControl({
+                        value: &#x27;&#x27;, disabled: false
+                    }, [
+                        Validators.required,
+                        existingNamesValidator(this.existingNames)
+                    ])
+                });
+        
+                // detect changes in the form
+                this.form.valueChanges.subscribe(
+                    data &#x3D;&gt; this.onValueChanged(data)
+                );
+        
+                this.onValueChanged();
+            }
+        
+        
+            onValueChanged(data?: any) {
+        
+                if (!this.form) {
+                    return;
+                }
+        
+                // check if the form is valid
+                Object.keys(this.formErrors).map(field &#x3D;&gt; {
+                    this.formErrors[field] &#x3D; &#x27;&#x27;;
+                    const control &#x3D; this.form.get(field);
+                    if (control &amp;&amp; control.dirty &amp;&amp; !control.valid) {
+                        const messages &#x3D; this.validationMessages[field];
+                        Object.keys(control.errors).map(key &#x3D;&gt; {
+                            this.formErrors[field] +&#x3D; messages[key] + &#x27; &#x27;;
+                        });
+                    }
+                });
+            }
+            &#x60;,
+            scss: &#x27;&#x27;
+        }
+    }</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="existingNames"></a>
+                        <span class="name">
+                            <b>
+                            existingNames
+                            </b>
+                            <a href="#existingNames"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>existingNames:     <code>[RegExp]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[RegExp]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+        new RegExp(&#x27;user&#x27;)
+    ]</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="form"></a>
+                        <span class="name">
+                            <b>
+                            form
+                            </b>
+                            <a href="#form"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>form:     <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formErrors"></a>
+                        <span class="name">
+                            <b>
+                            formErrors
+                            </b>
+                            <a href="#formErrors"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>formErrors:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+        &#x27;name&#x27;: &#x27;&#x27;
+    }</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="partOf"></a>
+                        <span class="name">
+                            <b>
+                            partOf
+                            </b>
+                            <a href="#partOf"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>partOf:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>AppDemo.actionModule</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validationMessages"></a>
+                        <span class="name">
+                            <b>
+                            validationMessages
+                            </b>
+                            <a href="#validationMessages"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>validationMessages:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+        &#x27;name&#x27;: {
+            &#x27;required&#x27;: &#x27;A name is required&#x27;,
+            &#x27;existingName&#x27;: &#x27;This name exists already.&#x27;
+        }
+    }</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-module-sub-header [demo]&#x3D;&quot;partOf&quot;&gt;&lt;/app-module-sub-header&gt;
+
+&lt;mat-card class&#x3D;&quot;example-viewer&quot;&gt;
+
+    &lt;app-example-viewer [example]&#x3D;&quot;existingName&quot;&gt;&lt;/app-example-viewer&gt;
+
+    &lt;div class&#x3D;&quot;demo&quot;&gt;
+        &lt;form [formGroup]&#x3D;&quot;form&quot; class&#x3D;&quot;center card&quot;&gt;
+            &lt;mat-form-field&gt;
+                &lt;input matInput [formControl]&#x3D;&quot;form.controls[&#x27;name&#x27;]&quot; [placeholder]&#x3D;&quot;&#x27;Name (should be unique)&#x27;&quot;&gt;
+                &lt;mat-hint *ngIf&#x3D;&quot;formErrors.name&quot;&gt;
+                    {{formErrors.name}}
+                &lt;/mat-hint&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;button mat-button color&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!form.valid&quot;&gt;
+                Submit
+            &lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/mat-card&gt;
+
+
+&lt;h3&gt;The following names already exists&lt;/h3&gt;
+&lt;p&gt;Try to use one of them in the form above and see what happens&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li *ngFor&#x3D;&quot;let n of dataMock&quot;&gt;{{n}}&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;mat-divider&gt;&lt;/mat-divider&gt;
+
+&lt;h2&gt;Documentation&lt;/h2&gt;
+
+&lt;h3&gt;
+    Existing name
+&lt;/h3&gt;
+
+&lt;h4&gt;Usage&lt;/h4&gt;
+&lt;p&gt;
+    Please follow the README of
+    &lt;a href&#x3D;&quot;https://www.npmjs.com/package/@knora/action#existing-name&quot;&gt;Knora-ui action module&lt;/a&gt;. Then you can use the following methods from &#x60;ExistingName&#x60;:
+&lt;/p&gt;
+
+&lt;markdown [src]&#x3D;&quot;&#x27;app/knora-ui-examples/action-demo/existing-name/README.md&#x27;&quot;&gt;&lt;/markdown&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./existing-name.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-module-sub-header [demo]="partOf"></app-module-sub-header><mat-card class="example-viewer">    <app-example-viewer [example]="existingName"></app-example-viewer>    <div class="demo">        <form [formGroup]="form" class="center card">            <mat-form-field>                <input matInput [formControl]="form.controls[\'name\']" [placeholder]="\'Name (should be unique)\'">                <mat-hint *ngIf="formErrors.name">                    {{formErrors.name}}                </mat-hint>            </mat-form-field>            <button mat-button color="primary" [disabled]="!form.valid">                Submit            </button>        </form>    </div></mat-card><h3>The following names already exists</h3><p>Try to use one of them in the form above and see what happens</p><ul>    <li *ngFor="let n of dataMock">{{n}}</li></ul><mat-divider></mat-divider><h2>Documentation</h2><h3>    Existing name</h3><h4>Usage</h4><p>    Please follow the README of    <a href="https://www.npmjs.com/package/@knora/action#existing-name">Knora-ui action module</a>. Then you can use the following methods from `ExistingName`:</p><markdown [src]="\'app/knora-ui-examples/action-demo/existing-name/README.md\'"></markdown></div>'
+    var COMPONENTS = [{'name': 'ActionDemoComponent', 'selector': 'app-action-demo'},{'name': 'AdminImageComponent', 'selector': 'app-admin-image-demo'},{'name': 'ApiComponent', 'selector': 'app-api'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'ConvertJsonLdComponent', 'selector': 'app-convert-json-ld'},{'name': 'CoreDemoComponent', 'selector': 'app-core-demo'},{'name': 'DemoIntroComponent', 'selector': 'app-demo-intro'},{'name': 'DocIntroComponent', 'selector': 'app-doc-intro'},{'name': 'ExampleViewerComponent', 'selector': 'app-example-viewer'},{'name': 'ExistingNameComponent', 'selector': 'app-existing-name'},{'name': 'GravsearchComponent', 'selector': 'app-gravsearch'},{'name': 'GroupsComponent', 'selector': 'app-groups'},{'name': 'IncomingComponent', 'selector': 'app-incoming'},{'name': 'KeyComponent', 'selector': 'app-key'},{'name': 'ListsComponent', 'selector': 'app-lists'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainIntroComponent', 'selector': 'app-introduction'},{'name': 'ModuleHeaderComponent', 'selector': 'app-module-header'},{'name': 'ModuleIndexComponent', 'selector': 'app-module-index'},{'name': 'ModuleSubHeaderComponent', 'selector': 'app-module-sub-header'},{'name': 'OntologyCacheComponent', 'selector': 'app-ontology-cache'},{'name': 'OntologyComponent', 'selector': 'app-ontology'},{'name': 'ProgressIndicatorComponent', 'selector': 'app-progress-indicator-demo'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'PropertiesComponent', 'selector': 'app-properties'},{'name': 'ResourceComponent', 'selector': 'app-resource'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'SearchDemoComponent', 'selector': 'app-search-demo'},{'name': 'SearchResultComponent', 'selector': 'app-search-result'},{'name': 'SortButtonComponent', 'selector': 'app-sort-button'},{'name': 'TreeComponent', 'selector': 'app-tree'},{'name': 'UsersComponent', 'selector': 'app-users'},{'name': 'ViewerDemoComponent', 'selector': 'app-viewer-demo'},{'name': 'ViewsComponent', 'selector': 'app-views'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ExistingNameComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ExistingNameComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

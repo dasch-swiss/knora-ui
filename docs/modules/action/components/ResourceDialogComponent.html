@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>@knora/action</title>
+        <title>@knora/action | Knora-ui module</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,368 +14,18 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">@knora/action</a>
-            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+            <a href="../" class="navbar-brand">@knora/action | Knora-ui module</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-            <div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search">
-</div>
-            <nav>
-
-    <ul class="list">
-
-        <li class="title">
-            <a href="index.html" data-type="index-link">@knora/action</a>
-        </li>
-
-        <li class="divider"></li>
-
-
-        <li class="chapter">
-            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
-            <ul class="links">
-                    <li class="link">
-                        <a 
-                            
-                             href="overview.html" 
-                             href="overview.html" 
-                            data-type="chapter-link">
-                            <span class="fa fa-fw fa-th"></span>Overview
-                        </a>
-                    </li>
-                    <li class="link">
-                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
-                    </li>
-                    <li class="link">
-                        <a href="dependencies.html"
-                            data-type="chapter-link">
-                            <span class="fa fa-fw fa-list"></span>Dependencies
-                        </a>
-                    </li>
-            </ul>
-        </li>
-
-
-        <li class="chapter modules">
-            <a data-type="chapter-link" href="modules.html">
-                <div class="menu-toggler linked" data-toggle="collapse"
-                        data-target="#xs-modules-links"
-                >
-                    <span class="fa fa-fw fa-archive"></span>
-                    <span class="link-name">Modules</span>
-                    <span class="fa fa-angle-down"></span>
-                </div>
-            </a>
-            <ul class="links collapse"
-                    id="xs-modules-links"
-                >
-                    <li class="link">
-                        <a href="modules/KuiActionModule.html" data-type="entity-link">KuiActionModule</a>
-                            <li class="chapter inner">
-                                <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-components-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
-                                    >
-                                    <span class="fa fa-fw fa-cogs"></span>
-                                    <span>Components</span>
-                                    <span class="fa fa-angle-down"></span>
-                                </div>
-                                <ul class="links collapse"
-                                        id="xs-components-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
-                                    >
-                                        <li class="link">
-                                            <a href="components/ProgressIndicatorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ProgressIndicatorComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="components/ResourceDialogComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDialogComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="components/SortButtonComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">SortButtonComponent</a>
-                                        </li>
-                                </ul>
-                            </li>
-                            <li class="chapter inner">
-                                <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-directives-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
-                                    >
-                                    <span class="fa fa-fw fa-code"></span>
-                                    <span>Directives</span>
-                                    <span class="fa fa-angle-down"></span>
-                                </div>
-                                <ul class="links collapse"
-                                        id="xs-directives-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
-                                    >
-                                        <li class="link">
-                                            <a href="directives/AdminImageDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AdminImageDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/ExistingNameDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ExistingNameDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/GndDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">GndDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/JdnDatepickerDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">JdnDatepickerDirective</a>
-                                        </li>
-                                </ul>
-                            </li>
-                            <li class="chapter inner">
-                                <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#xs-pipes-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
-                                    >
-                                    <span class="fa fa-fw fa-plus"></span>
-                                    <span>Pipes</span>
-                                    <span class="fa fa-angle-down"></span>
-                                </div>
-                                <ul class="links collapse"
-                                        id="xs-pipes-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
-                                    >
-                                        <li class="link">
-                                            <a href="pipes/KeyPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">KeyPipe</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="pipes/ReversePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ReversePipe</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="pipes/SortByPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">SortByPipe</a>
-                                        </li>
-                                </ul>
-                            </li>
-                    </li>
-            </ul>
-        </li>
-
-
-
-        <li class="chapter">
-            <div class="simple menu-toggler" data-toggle="collapse"
-                    data-target="#xs-classes-links"
-                >
-                <span class="fa fa-fw fa-file-code-o"></span>
-                <span>Classes</span>
-                <span class="fa fa-angle-down"></span>
-            </div>
-            <ul class="links collapse"
-                    id="xs-classes-links"
-                >
-                    <li class="link">
-                        <a href="classes/AdminImageConfig.html" data-type="entity-link">AdminImageConfig</a>
-                    </li>
-            </ul>
-        </li>
-
-
-
-
-
-        <li class="chapter">
-            <div class="simple menu-toggler" data-toggle="collapse"
-                    data-target="#xs-miscellaneous-links"
-                >
-                <span class="fa fa-fw fa-cubes"></span>
-                <span>Miscellaneous</span>
-                <span class="fa fa-angle-down"></span>
-            </div>
-            <ul class="links collapse"
-                    id="xs-miscellaneous-links"
-                >
-                    <li class="link">
-                      <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
-                    </li>
-            </ul>
-        </li>
-
-
-        <li class="chapter">
-            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
-        </li>
-
-
-    </ul>
-
-</nav>
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
            <div class="row main">
                <div class="hidden-xs menu">
-                   <nav>
-
-    <ul class="list">
-
-        <li class="title">
-            <a href="index.html" data-type="index-link">@knora/action</a>
-        </li>
-
-        <li class="divider"></li>
-
-            <div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search">
-</div>
-
-        <li class="chapter">
-            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
-            <ul class="links">
-                    <li class="link">
-                        <a 
-                            
-                             href="overview.html" 
-                             href="overview.html" 
-                            data-type="chapter-link">
-                            <span class="fa fa-fw fa-th"></span>Overview
-                        </a>
-                    </li>
-                    <li class="link">
-                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
-                    </li>
-                    <li class="link">
-                        <a href="dependencies.html"
-                            data-type="chapter-link">
-                            <span class="fa fa-fw fa-list"></span>Dependencies
-                        </a>
-                    </li>
-            </ul>
-        </li>
-
-
-        <li class="chapter modules">
-            <a data-type="chapter-link" href="modules.html">
-                <div class="menu-toggler linked" data-toggle="collapse"
-                        data-target="#modules-links"
-                >
-                    <span class="fa fa-fw fa-archive"></span>
-                    <span class="link-name">Modules</span>
-                    <span class="fa fa-angle-down"></span>
-                </div>
-            </a>
-            <ul class="links collapse"
-                    id="modules-links"
->
-                    <li class="link">
-                        <a href="modules/KuiActionModule.html" data-type="entity-link">KuiActionModule</a>
-                            <li class="chapter inner">
-                                <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#components-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
->
-                                    <span class="fa fa-fw fa-cogs"></span>
-                                    <span>Components</span>
-                                    <span class="fa fa-angle-down"></span>
-                                </div>
-                                <ul class="links collapse"
-                                        id="components-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
->
-                                        <li class="link">
-                                            <a href="components/ProgressIndicatorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ProgressIndicatorComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="components/ResourceDialogComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDialogComponent</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="components/SortButtonComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">SortButtonComponent</a>
-                                        </li>
-                                </ul>
-                            </li>
-                            <li class="chapter inner">
-                                <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#directives-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
->
-                                    <span class="fa fa-fw fa-code"></span>
-                                    <span>Directives</span>
-                                    <span class="fa fa-angle-down"></span>
-                                </div>
-                                <ul class="links collapse"
-                                        id="directives-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
->
-                                        <li class="link">
-                                            <a href="directives/AdminImageDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AdminImageDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/ExistingNameDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ExistingNameDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/GndDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">GndDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/JdnDatepickerDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">JdnDatepickerDirective</a>
-                                        </li>
-                                </ul>
-                            </li>
-                            <li class="chapter inner">
-                                <div class="simple menu-toggler" data-toggle="collapse"
-                                        data-target="#pipes-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
->
-                                    <span class="fa fa-fw fa-plus"></span>
-                                    <span>Pipes</span>
-                                    <span class="fa fa-angle-down"></span>
-                                </div>
-                                <ul class="links collapse"
-                                        id="pipes-links-module-KuiActionModule-76d7ad97c00b2915b893972aa4f6c013"
->
-                                        <li class="link">
-                                            <a href="pipes/KeyPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">KeyPipe</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="pipes/ReversePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">ReversePipe</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="pipes/SortByPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">SortByPipe</a>
-                                        </li>
-                                </ul>
-                            </li>
-                    </li>
-            </ul>
-        </li>
-
-
-
-        <li class="chapter">
-            <div class="simple menu-toggler" data-toggle="collapse"
-                    data-target="#classes-links"
->
-                <span class="fa fa-fw fa-file-code-o"></span>
-                <span>Classes</span>
-                <span class="fa fa-angle-down"></span>
-            </div>
-            <ul class="links collapse"
-                    id="classes-links"
->
-                    <li class="link">
-                        <a href="classes/AdminImageConfig.html" data-type="entity-link">AdminImageConfig</a>
-                    </li>
-            </ul>
-        </li>
-
-
-
-
-
-        <li class="chapter">
-            <div class="simple menu-toggler" data-toggle="collapse"
-                    data-target="#miscellaneous-links"
->
-                <span class="fa fa-fw fa-cubes"></span>
-                <span>Miscellaneous</span>
-                <span class="fa fa-angle-down"></span>
-            </div>
-            <ul class="links collapse"
-                    id="miscellaneous-links"
->
-                    <li class="link">
-                      <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
-                    </li>
-            </ul>
-        </li>
-
-
-        <li class="chapter">
-            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
-        </li>
-
-
-    </ul>
-
-</nav>
+                   <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
                <div class="content component">
@@ -396,6 +46,9 @@
         <li >
             <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
         </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
 </ul>
 
 <div class="tab-content">
@@ -403,7 +56,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/lib/resource-dialog/resource-dialog.component.ts</code>
+    <code>projects/knora/action/src/lib/resource-dialog/resource-dialog.component.ts</code>
 </p>
 
 
@@ -438,7 +91,7 @@
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>resource-dialog.component.scss</code></td>
+                <td class="col-md-9"><code>./resource-dialog.component.scss</code></td>
             </tr>
 
 
@@ -447,6 +100,12 @@
                 <td class="col-md-3">templateUrl</td>
                 <td class="col-md-9"><code>./resource-dialog.component.html</code></td>
             </tr>
+
+
+
+
+
+
 
 
         </tbody>
@@ -538,7 +197,7 @@
                                                         </td>
                                                   
                                                     <td>
-                                                            no
+                                                            No
                                                     </td>
                                                     
                                                 </tr>
@@ -550,7 +209,7 @@
                                                         </td>
                                                   
                                                     <td>
-                                                            no
+                                                            No
                                                     </td>
                                                     
                                                 </tr>
@@ -582,13 +241,13 @@
                                 <span class="modifier">Static</span>
                             createConfiguration
                             </b>
-                            <a href="#createConfiguration"><span class="fa fa-link"></span></a>
+                            <a href="#createConfiguration"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span>
+                            <span class="modifier-icon icon ion-ios-reset"></span>
                         <code>createConfiguration(resourceIri: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, widthPct: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, heightPct: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                     </td>
                 </tr>
@@ -621,7 +280,7 @@
                                                         </td>
                                                     
                                                     <td>
-                                                            no
+                                                            No
                                                     </td>
                                                     
                                                         <td>
@@ -639,7 +298,7 @@
                                                         </td>
                                                     
                                                     <td>
-                                                            no
+                                                            No
                                                     </td>
                                                     
                                                         <td>
@@ -658,7 +317,7 @@
                                                         </td>
                                                     
                                                     <td>
-                                                            no
+                                                            No
                                                     </td>
                                                     
                                                         <td>
@@ -695,7 +354,7 @@
                             <b>
                             toggleFullSize
                             </b>
-                            <a href="#toggleFullSize"><span class="fa fa-link"></span></a>
+                            <a href="#toggleFullSize"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -736,13 +395,13 @@
                                 <span class="modifier">Public</span>
                             _dialogRef
                             </b>
-                            <a href="#_dialogRef"><span class="fa fa-link"></span></a>
+                            <a href="#_dialogRef"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon fa fa-reset"></span><code>_dialogRef:     <code><a href="../components/ResourceDialogComponent.html" target="_self" >MatDialogRef&lt;ResourceDialogComponent&gt;</a></code>
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_dialogRef:     <code><a href="../components/ResourceDialogComponent.html" target="_self" >MatDialogRef&lt;ResourceDialogComponent&gt;</a></code>
 </code>
                     </td>
                 </tr>
@@ -766,13 +425,13 @@
                                 <span class="modifier">Public</span>
                             data
                             </b>
-                            <a href="#data"><span class="fa fa-link"></span></a>
+                            <a href="#data"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon fa fa-reset"></span><code>data:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>data:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 </code>
                     </td>
                 </tr>
@@ -784,7 +443,11 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Decorators : </i><code>Inject</code>
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Inject(MAT_DIALOG_DATA)<br />
+                            </code>
                         </td>
                     </tr>
 
@@ -800,7 +463,7 @@
                             <b>
                             fullSize
                             </b>
-                            <a href="#fullSize"><span class="fa fa-link"></span></a>
+                            <a href="#fullSize"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -865,6 +528,13 @@
 &lt;/div&gt;</code></pre>
     </div>
 
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./resource-dialog.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
 
     
 </div>
@@ -890,9 +560,12 @@
 
 
 
+
+
+
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -904,6 +577,18 @@
            </div>
        </div>
 
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ResourceDialogComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
        <script src="../js/libs/bootstrap-native.js"></script>
 
        <script src="../js/libs/es6-shim.min.js"></script>
@@ -913,21 +598,16 @@
 
        <script src="../js/compodoc.js"></script>
 
-        <script>
-            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'ResourceDialogComponent.html';
-        </script>
-
-       <script src="../js/search/search.js"></script>
-       <script src="../js/search/lunr.min.js"></script>
-       <script src="../js/search/search-lunr.js"></script>
-
        <script src="../js/tabs.js"></script>
        <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
        <script src="../js/libs/prism.js"></script>
        <script src="../js/sourceCode.js"></script>
-       <script src="../js/search/search_index.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
 
 
     </body>
