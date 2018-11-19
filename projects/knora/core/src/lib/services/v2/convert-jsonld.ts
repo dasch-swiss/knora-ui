@@ -198,8 +198,8 @@ export module ConvertJSONLD {
                     propValue['@id'],
                     propIri,
                     propValue[KnoraConstants.fileValueHasFilename],
-                    propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl],
-                    propValue[KnoraConstants.fileValueAsUrl],
+                    propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl]['@value'],
+                    propValue[KnoraConstants.fileValueAsUrl]['@value'],
                     propValue[KnoraConstants.stillImageFileValueHasDimX],
                     propValue[KnoraConstants.stillImageFileValueHasDimY],
                     propValue[KnoraConstants.fileValueIsPreview] // optional (may be undefined)
