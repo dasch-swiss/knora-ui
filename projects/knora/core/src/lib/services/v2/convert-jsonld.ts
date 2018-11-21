@@ -201,8 +201,7 @@ export module ConvertJSONLD {
                     propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl]['@value'],
                     propValue[KnoraConstants.fileValueAsUrl]['@value'],
                     propValue[KnoraConstants.stillImageFileValueHasDimX],
-                    propValue[KnoraConstants.stillImageFileValueHasDimY],
-                    propValue[KnoraConstants.fileValueIsPreview] // optional (may be undefined)
+                    propValue[KnoraConstants.stillImageFileValueHasDimY]
                 );
 
                 valueSpecificProp = stillImageFileValue;
