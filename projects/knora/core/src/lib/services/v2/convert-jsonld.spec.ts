@@ -13,6 +13,7 @@ import {
     ReadResource,
     ReadResourcesSequence,
     ReadStillImageFileValue,
+    ReadTextFileValue,
     ReadTextValueAsHtml,
     ReadTextValueAsString,
     ReadTextValueAsXml,
@@ -701,6 +702,34 @@ describe('ConvertJSONLD', () => {
         });
 
 
+    }));
+
+    it('parse a JSON-LD document representing text file value', async(() => {
+
+        const jsonld = require('jsonld');
+
+        const textfilerepr: any = require('../../test-data/resources/TextfileRepresentation.json');
+
+        const promises = jsonld.promises;
+        // compact JSON-LD using an empty context: expands all Iris
+        const promise = promises.compact(textfilerepr, {});
+
+        promise.then((compacted) => {
+
+            const receivedResource: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
+
+            expect(receivedResource.numberOfResources).toEqual(1);
+
+            const expectedTextfileValue = new ReadTextFileValue(
+                'http://rdfh.ch/0802/C9bbwuLORoCZZ1DVek1qCQ/values/DSQxeAI-T8eYlgXynsQWhw',
+                'http://api.knora.org/ontology/knora-api/v2#hasTextFileValue',
+                'LZoxQd7xyNT-EC4kgw2gokg',
+                'http://localhost:1024/server/knora/LZoxQd7xyNT-EC4kgw2gokg'
+            );
+
+            expect(receivedResource.resources[0].properties['http://api.knora.org/ontology/knora-api/v2#hasTextFileValue'][0]).toEqual(expectedTextfileValue);
+
+        });
     }));
 
     it('parse a JSON-LD document representing a collection of resources and get the Iris of the resource classes contained in it', async(() => {
