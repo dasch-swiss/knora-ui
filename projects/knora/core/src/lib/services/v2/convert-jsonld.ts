@@ -214,7 +214,7 @@ export module ConvertJSONLD {
                     propValue['@id'],
                     propIri,
                     propValue[KnoraConstants.fileValueHasFilename],
-                    propValue[KnoraConstants.fileValueAsUrl]
+                    propValue[KnoraConstants.fileValueAsUrl]['@value']
                 );
 
                 valueSpecificProp = textFileValue;
