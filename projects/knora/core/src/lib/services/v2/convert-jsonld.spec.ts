@@ -20,7 +20,14 @@ import {
     ReadUriValue
 } from '../../declarations';
 
+
 describe('ConvertJSONLD', () => {
+
+    /**
+     * The following tests use async() because the JSON-LD processor is involved.
+     * The data to check for are inside a Promise.
+     * See https://angular.io/guide/testing#component-with-async-service
+     */
 
     it('parse a JSON-LD document representing letter 176-O', async(() => {
 
