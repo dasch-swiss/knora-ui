@@ -96,7 +96,7 @@ describe('SelectPropertyComponent', () => {
 
         expect(selectPropCompInstance.properties).toEqual(initProps);
 
-        expect(selectPropCompInstance.propertiesAsArray).toEqual([initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'], initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger'], initProps['http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething']]);
+        expect(selectPropCompInstance.propertiesAsArray).toEqual([initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger'], initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'], initProps['http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething']]);
 
         expect(testHostComponent.selectPropertyComp.specifyPropertyValue).toBeUndefined();
     });
@@ -151,7 +151,7 @@ describe('SelectPropertyComponent', () => {
 
         testHostFixture.detectChanges();
 
-        expect(testHostComponent.selectPropertyComp.propertySelected).toEqual(initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText']);
+        expect(testHostComponent.selectPropertyComp.propertySelected).toEqual(initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger']);
 
         expect(testHostComponent.selectPropertyComp.specifyPropertyValue).toBeTruthy();
 
@@ -169,6 +169,11 @@ describe('SelectPropertyComponent', () => {
                     CardinalityOccurrence.card,
                     1,
                     'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+                ),
+                new Cardinality(
+                    CardinalityOccurrence.card,
+                    1,
+                    'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger'
                 ),
                 new Cardinality(
                     CardinalityOccurrence.card,

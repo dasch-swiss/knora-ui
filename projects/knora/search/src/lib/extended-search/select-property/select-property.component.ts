@@ -148,7 +148,17 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
             }
         }
 
-        this.propertiesAsArray = propsArray;
+        // sort properties alphabetically by their label
+        this.propertiesAsArray = propsArray.sort((a: Property, b: Property) => {
+            if (a.label < b.label) {
+                return -1;
+            } else if (a.label > b.label) {
+                return 1;
+            } else {
+                return 0;
+            }
+
+        });
     }
 
     /**
