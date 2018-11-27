@@ -39,7 +39,7 @@ export class SearchParamsService {
      *
      * @param {ExtendedSearchParams} searchParams
      */
-    changeSearchParamsMsg(searchParams: ExtendedSearchParams) {
+    changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {
         this.searchParamsMessage.next(searchParams);
     }
 

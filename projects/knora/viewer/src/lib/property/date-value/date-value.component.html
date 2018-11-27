@@ -1,6 +1,4 @@
-<!-- TODO: handle range or period date cases -->
-
-<div *ngIf="period; else preciseDate">
+<span *ngIf="period; else preciseDate">
     {{dates[0].date | date: dates[0].format}}
     <span *ngIf="era">
         {{dates[0].era}}
@@ -13,11 +11,11 @@
     <span *ngIf="calendar">
         ({{dates[0].calendar}})
     </span>
-</div>
+</span>
 
 <ng-template #preciseDate>
 
-    <div>
+    <span>
         {{dates[0].date | date: dates[0].format }}
         <span *ngIf="era">
             {{dates[0].era}}
@@ -25,6 +23,6 @@
         <span *ngIf="calendar">
             ({{dates[0].calendar}})
         </span>
-    </div>
+    </span>
 
 </ng-template>
