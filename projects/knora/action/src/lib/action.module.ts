@@ -3,7 +3,7 @@
  * https://github.com/dhlab-basel/Knora-ui
  *
  * @copyright 2018
- * Digital Humanities Lab, of University Basel;
+ * Digital Humanities Lab, University of Basel;
  * Data and Service Center for the Humanities DaSCH;
  * All Rights Reserved.
  *

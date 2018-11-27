@@ -1,0 +1,109 @@
+[
+  {
+    "tags": [
+      {
+        "type": "example",
+        "string": "// default progress indicator\n\n<kui-progress-indicator color=\"#ff00aa\"></kui-progress-indicator>",
+        "html": "<p>// default progress indicator</p>\n<p><kui-progress-indicator color=\"#ff00aa\"></kui-progress-indicator></p>"
+      },
+      {
+        "type": "example",
+        "string": "// submit progress indicator: html\n\n<mat-list>\n    <mat-list-item *ngFor=\"let item of examples\">\n        <kui-progress-indicator mat-list-avatar [status]=\"item.status\"></kui-progress-indicator>\n        <p mat-line><strong><span>{{item.label}}</span></strong></p>\n        <p mat-line>status: {{item.status}}</p>\n    </mat-list-item>\n</mat-list>",
+        "html": "<p>// submit progress indicator: html</p>\n<mat-list>\n    <mat-list-item *ngFor=\"let item of examples\">\n        <kui-progress-indicator mat-list-avatar [status]=\"item.status\"></kui-progress-indicator>\n        <p mat-line><strong><span>{{item.label}}</span></strong></p>\n        <p mat-line>status: {{item.status}}</p>\n    </mat-list-item>\n</mat-list>"
+      },
+      {
+        "type": "example",
+        "string": "// instead of [color]: overwrite the progress indicator color in a global scss file in the app.\n\n.kui-progress-indicator {\n    .line > div {\n        background-color: #ff0000 !important;\n    }\n}",
+        "html": "<p>// instead of [color]: overwrite the progress indicator color in a global scss file in the app.</p>\n<p>.kui-progress-indicator {<br />\n.line &gt; div {<br />\nbackground-color: #ff0000 !important;<br />\n}<br />\n}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>progress indicator / loader</p>\n<p><example-url>https://stackblitz.com/edit/knora-progress-indicator</example-url></p>",
+      "summary": "<p>progress indicator / loader</p>",
+      "body": "<p><example-url>https://stackblitz.com/edit/knora-progress-indicator</example-url></p>"
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 4,
+    "codeStart": 37,
+    "code": "@Component({\n    selector: 'kui-progress-indicator',\n    templateUrl: './progress-indicator.component.html',\n    styleUrls: ['./progress-indicator.component.scss']\n})\nexport class ProgressIndicatorComponent implements OnInit {",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "status: number\n\n[status] is a number and can be used when submitting form data:\n\n- not ready:    -1\n- loading:       0\n- done:          1\n\n- error:       400",
+        "name": "status:",
+        "description": "<p>number<br />\n[status] is a number and can be used when submitting form data:</p>\n<ul>\n<li>\n<p>not ready:    -1</p>\n</li>\n<li>\n<p>loading:       0</p>\n</li>\n<li>\n<p>done:          1</p>\n</li>\n<li>\n<p>error:       400</p>\n</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 44,
+    "codeStart": 55,
+    "code": "@Input() status?: number;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "color",
+        "name": "color",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>color</p>"
+      },
+      {
+        "type": "type",
+        "string": "string\n\nWith [color] you can customize the appearance of the loader.\nYou can define the color with the hexadecimal value e.g. #00ff00.",
+        "types": [
+          "trin"
+        ],
+        "typesDescription": "<a href=\"trin.html\">trin</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>string</p>\n<p>With [color] you can customize the appearance of the loader.<br />\nYou can define the color with the hexadecimal value e.g. #00ff00.</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 57,
+    "codeStart": 65,
+    "code": "@Input() color?: string = 'primary';\n\nconstructor() {\n}\n\nngOnInit() {\n}\n\n}",
+    "ctx": false
+  }
+]

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppDemo } from '../../../app.config';
 import { Example } from '../../../app.interfaces';
-import { JsdocService } from '../../../partials/services/jsdoc.service';
 
 @Component({
     selector: 'app-progress-indicator-demo',

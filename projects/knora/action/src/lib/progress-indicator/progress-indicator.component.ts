@@ -26,9 +26,9 @@ import { Component, Input, OnInit } from '@angular/core';
  * // instead of [color]: overwrite the progress indicator color in a global scss file in the app.
  *
  * .kui-progress-indicator {
- *                .line > div {
- *                     background-color: #ff0000 !important;
- *                 }
+ *     .line > div {
+ *         background-color: #ff0000 !important;
+ *     }
  * }
  *
  *
@@ -42,7 +42,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProgressIndicatorComponent implements OnInit {
 
     /**
-     * @param status
+     * @param status: number
      *
      * [status] is a number and can be used when submitting form data:
      *
@@ -56,22 +56,21 @@ export class ProgressIndicatorComponent implements OnInit {
 
     /**
      * @param color
+     * @type string
      *
      * With [color] you can customize the appearance of the loader.
      * You can define the color with the hexadecimal value e.g. #00ff00.
      *
      */
-    @Input() color?: string = 'primary';
 
     /**
-     * @ignore
+     *
      */
+    @Input() color?: string = 'primary';
+
     constructor() {
     }
 
-    /**
-     * @ignore
-     */
     ngOnInit() {
     }
 

@@ -6,8 +6,6 @@
 
             <div [innerHtml]="item.description.full | sanitizeHtml"></div>
 
-
-
             <div *ngFor="let tag of item.tags">
 
                 <div [ngSwitch]="tag.type">
@@ -24,7 +22,6 @@
                          [innerHtml]="tag.description | sanitizeHtml">
                     </div>
                 </div>
-
 
             </div>
         </div>
