@@ -182,3 +182,7 @@ If an inner observable does not complete forkJoin will never emit a value!
 https://www.learnrxjs.io/operators/combination/forkjoin.html
 
 > This is why the subscription never worked, because we did not flush all necessary responses. -->
+
+## Required version of Knora
+
+3.0.0 or later
