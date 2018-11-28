@@ -12,7 +12,7 @@ export class JsdocService {
     }
 
     readJson(module: string, name: string) {
-        const file = this.path + module + '/' + name + '.doc.json';
+        const file = this.path + module + '/' + name + '.json';
         return this._http.get(file);
     }
 }

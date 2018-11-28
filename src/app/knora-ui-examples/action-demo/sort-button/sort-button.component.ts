@@ -29,6 +29,16 @@ export class SortButtonComponent implements OnInit {
     sortKey: string = 'creator';
 
     list = [{
+        prename: 'Charlie',
+        lastname: 'Brown',
+        creator: 'Charles M. Schulz'
+    },
+    {
+        prename: 'Donald',
+        lastname: 'Duck',
+        creator: 'Walt Disney'
+    },
+    {
         prename: 'Gaston',
         lastname: 'Lagaffe',
         creator: 'André Franquin'
@@ -38,21 +48,10 @@ export class SortButtonComponent implements OnInit {
         prename: 'Mickey',
         lastname: 'Mouse',
         creator: 'Walt Disney'
-
-    },
-    {
-        prename: 'Donald',
-        lastname: 'Duck',
-        creator: 'Walt Disney'
-
-    },
-    {
-        prename: 'Charlie',
-        lastname: 'Brown',
-        creator: 'Charles M. Schulz'
-
     }
     ];
+
+
 
     // demo configuration incl. code to display
     sortButtonCode: Example = {

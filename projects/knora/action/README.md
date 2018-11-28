@@ -55,10 +55,12 @@ The sort button helps to sort a list by a selected topic. The following setup is
 
 #### html template
 ```HTML
+<!-- the sortProps is a list of properties and they define the sortKey -->
 <kui-sort-button [sortProps]="sortProps"
                  [(sortKey)]="sortKey">
 </kui-sort-button>
 
+<!-- in this example, the sortKey can be 'prename', 'lastname' or 'creator' -->
 <ul>
     <li *ngFor="let item of list | sortBy: sortKey">
         <span [class.active]="sortKey === 'prename'">

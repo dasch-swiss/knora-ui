@@ -89,13 +89,18 @@ const appRoutes: Routes = [
             {
                 path: 'authentication',
                 component: AuthComponent,
-                canActivate: [AuthGuard]
+                canActivate: [AuthGuard],
+                children: [
+                    {
+                        path: 'demo',
+                        component: AuthComponent
+                    }
+                ]
             },
             {
                 path: 'search',
                 component: SearchDemoComponent,
                 data: { partOf: AppDemo.searchModule },
-
                 children: [
                     {
                         path: ':mode/:q',

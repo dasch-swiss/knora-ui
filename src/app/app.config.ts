@@ -112,18 +112,6 @@ export class AppDemo {
         label: 'Authentication module'
     };
 
-    public static projectModule: DemoModule = {
-        name: 'project',
-        published: false,
-        label: 'Project module'
-    };
-
-    public static adminModule: DemoModule = {
-        name: 'admin',
-        published: false,
-        label: 'Admin module'
-    };
-
     public static searchModule: DemoModule = {
         name: 'search',
         published: true,
@@ -157,11 +145,11 @@ export class AppDemo {
      * @type {DemoModule[]}
      */
     public static examples: DemoModule[] = [
-        AppDemo.authenticationModule,
-        AppDemo.actionModule,
         AppDemo.coreModule,
+        AppDemo.authenticationModule,
         AppDemo.searchModule,
-        AppDemo.viewerModule
+        AppDemo.viewerModule,
+        AppDemo.actionModule
     ];
 
 }

@@ -2,9 +2,9 @@
 <div *ngIf="documentation">
     <section *ngFor="let item of documentation">
 
-        <div *ngIf="item.tags[0].type !== 'ignore'">
+        <div [innerHtml]="item.description.full | sanitizeHtml"></div>
 
-            <div [innerHtml]="item.description.full | sanitizeHtml"></div>
+        <div *ngIf="item.tags[0].type !== 'ignore'">
 
             <div *ngFor="let tag of item.tags">
 
@@ -14,8 +14,15 @@
                         <code>{{tag.string}}</code>
                     </pre>
 
+                    <hr>
                     <p *ngSwitchCase="'param'">
                         parameter: {{tag.name}}
+                    </p>
+                    <div *ngSwitchCase="'type'" [innerHtml]="tag.html | sanitizeHtml">
+                    </div>
+                    <hr>
+                    <p *ngSwitchDefault>
+                        default: {{tag.type}}
                     </p>
 
                     <div *ngIf="tag.description"
@@ -30,4 +37,35 @@
     </section>
 </div>
 
+<!--
 
+
+{% for module in site.data.action %}
+
+{% assign mod = module[1] %}
+
+{% for object in mod %}
+
+{{ object.description.full }}
+
+{% for tag in object.tags %}
+
+{% if tag.type != 'ignore' %}
+
+##### {{ tag.type }}
+
+~~~html
+{{ tag.string }}
+~~~
+
+{% endif %}
+
+{% endfor %}
+
+{% endfor %}
+
+---
+
+{% endfor %}
+
+-->
