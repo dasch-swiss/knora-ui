@@ -203,7 +203,9 @@ describe('OntologyCacheService', () => {
             const resClassesInAnything = [
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing',
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing',
-                'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingPicture'
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingPicture',
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingWithSeqnum',
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#TrivialThing'
             ];
 
             const ontoResponseObs: Observable<OntologyInformation> = ontologyCacheService.getEntityDefinitionsForOntologies(['http://0.0.0.0:3333/ontology/0001/anything/v2']);
