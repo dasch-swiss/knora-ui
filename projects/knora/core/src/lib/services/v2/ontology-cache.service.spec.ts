@@ -696,6 +696,16 @@ describe('OntologyCacheService', () => {
                                 'http://api.knora.org/ontology/knora-api/v2#creationDate'
                             ),
                             new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#deleteComment'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#deleteDate'
+                            ),
+                            new Cardinality(
                                 CardinalityOccurrence.minCard,
                                 0,
                                 'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
@@ -714,6 +724,11 @@ describe('OntologyCacheService', () => {
                                 CardinalityOccurrence.minCard,
                                 0,
                                 'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.card,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#isDeleted'
                             ),
                             new Cardinality(
                                 CardinalityOccurrence.maxCard,
