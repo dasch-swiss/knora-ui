@@ -78,11 +78,11 @@ describe('OntologyCacheService', () => {
                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/something/v2', 'The something ontology'),
                 new OntologyMetadata('http://0.0.0.0:3333/ontology/00FF/images/v2', 'The images demo ontology'),
                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/beol/v2', 'The BEOL ontology'),
-                new OntologyMetadata('http://0.0.0.0:3333/ontology/0802/biblio/v2', 'The Biblio ontology'),
+                new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/biblio/v2', 'The Biblio ontology'),
                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
                 new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
-                new OntologyMetadata ('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
+                new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
             ];
 
             metadataOntos.subscribe(
@@ -203,7 +203,9 @@ describe('OntologyCacheService', () => {
             const resClassesInAnything = [
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing',
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing',
-                'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingPicture'
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingPicture',
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingWithSeqnum',
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#TrivialThing'
             ];
 
             const ontoResponseObs: Observable<OntologyInformation> = ontologyCacheService.getEntityDefinitionsForOntologies(['http://0.0.0.0:3333/ontology/0001/anything/v2']);
@@ -259,6 +261,16 @@ describe('OntologyCacheService', () => {
                             'http://api.knora.org/ontology/knora-api/v2#creationDate'
                         ),
                         new Cardinality(
+                            CardinalityOccurrence.maxCard,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#deleteComment'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.maxCard,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#deleteDate'
+                        ),
+                        new Cardinality(
                             CardinalityOccurrence.minCard,
                             0,
                             'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
@@ -277,6 +289,11 @@ describe('OntologyCacheService', () => {
                             CardinalityOccurrence.minCard,
                             0,
                             'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#isDeleted'
                         ),
                         new Cardinality(
                             CardinalityOccurrence.maxCard,
@@ -356,6 +373,16 @@ describe('OntologyCacheService', () => {
                         new Cardinality(
                             CardinalityOccurrence.minCard,
                             0,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeometry'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.minCard,
+                            0,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeoname'
+                        ),
+                        new Cardinality(
+                            CardinalityOccurrence.minCard,
+                            0,
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasThingPicture'
                         ),
                         new Cardinality(
@@ -372,16 +399,6 @@ describe('OntologyCacheService', () => {
                             CardinalityOccurrence.minCard,
                             0,
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#isPartOfOtherThingValue'
-                        ),
-                        new Cardinality(
-                            CardinalityOccurrence.minCard,
-                            0,
-                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBlueThingValue'
-                        ),
-                        new Cardinality(
-                            CardinalityOccurrence.minCard,
-                            0,
-                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBlueThing'
                         )
                     ];
 
@@ -621,25 +638,53 @@ describe('OntologyCacheService', () => {
                             true,
                             false,
                             true),
-                        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBlueThingValue': new Property(
-                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBlueThingValue',
-                            'http://api.knora.org/ontology/knora-api/v2#LinkValue',
+                        'http://api.knora.org/ontology/knora-api/v2#deleteComment': new Property(
+                            'http://api.knora.org/ontology/knora-api/v2#deleteComment',
+                            'http://www.w3.org/2001/XMLSchema#string',
+                            'A comment explaining why a resource or value was marked as deleted',
                             undefined,
-                            'A blue thing',
-                            ['http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherThingValue'],
+                            [],
+                            false,
+                            false,
+                            false),
+                        'http://api.knora.org/ontology/knora-api/v2#deleteDate': new Property(
+                            'http://api.knora.org/ontology/knora-api/v2#deleteDate',
+                            'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
+                            'Indicates when a resource or value was deleted',
+                            undefined,
+                            [],
+                            false,
+                            false,
+                            false),
+                        'http://api.knora.org/ontology/knora-api/v2#isDeleted': new Property(
+                            'http://api.knora.org/ontology/knora-api/v2#isDeleted',
+                            'http://www.w3.org/2001/XMLSchema#boolean',
+                            'Exists and is true if the resource has been deleted',
+                            undefined,
+                            [],
+                            false,
+                            false,
+                            false),
+                        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeometry': new Property(
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeometry',
+                            'http://api.knora.org/ontology/knora-api/v2#GeomValue',
+                            undefined,
+                            'Geometry',
+                            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            true),
-                        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBlueThing': new Property(
-                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBlueThing',
-                            'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing',
+                            false
+                        ),
+                        'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeoname': new Property(
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeoname',
+                            'http://api.knora.org/ontology/knora-api/v2#GeonameValue',
                             undefined,
-                            'A blue thing',
-                            ['http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherThing'],
+                            'Geoname',
+                            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
-                            true,
-                            false)
-                    };
+                            false,
+                            false
+                        )};
 
                     const expectedProperties = new Properties();
 
@@ -656,7 +701,7 @@ describe('OntologyCacheService', () => {
                     expect(props).toEqual(expectedProperties);
 
                 }
-            );
+                );
 
         }));
 
@@ -696,6 +741,16 @@ describe('OntologyCacheService', () => {
                                 'http://api.knora.org/ontology/knora-api/v2#creationDate'
                             ),
                             new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#deleteComment'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.maxCard,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#deleteDate'
+                            ),
+                            new Cardinality(
                                 CardinalityOccurrence.minCard,
                                 0,
                                 'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
@@ -714,6 +769,11 @@ describe('OntologyCacheService', () => {
                                 CardinalityOccurrence.minCard,
                                 0,
                                 'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue'
+                            ),
+                            new Cardinality(
+                                CardinalityOccurrence.card,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#isDeleted'
                             ),
                             new Cardinality(
                                 CardinalityOccurrence.maxCard,
