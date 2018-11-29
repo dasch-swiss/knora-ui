@@ -49,7 +49,6 @@ export class SearchParamsService {
      * @returns {ExtendedSearchParams}
      */
     getSearchParams(): ExtendedSearchParams {
-        console.log(this._currentSearchParams.getValue().generateGravsearch(0))
         return this._currentSearchParams.getValue();
     }
 
