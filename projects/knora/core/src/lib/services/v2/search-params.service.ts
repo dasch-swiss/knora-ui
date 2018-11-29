@@ -9,9 +9,9 @@ export class ExtendedSearchParams {
 
     /**
      *
-     * @param generateGravsearch a function the generates KnarQL.
+     * @param generateGravsearch a function the generates Gravsearch.
      *                       The function is expected to take the offset
-     *                       as a parameter and return a KnarQL query string.
+     *                       as a parameter and return a Gravsearch query string.
      */
     constructor(public generateGravsearch: (offset: number) => string) {
 
@@ -27,20 +27,30 @@ export class ExtendedSearchParams {
  */
 export class SearchParamsService {
 
-    // init with a dummy function
-    private searchParamsMessage = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => ''));
-    currentSearchParams = this.searchParamsMessage.asObservable();
+    private _currentSearchParams;
 
     constructor() {
+        // init with a dummy function
+        this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => 'empty'));
     }
 
     /**
-     * Update the parameters of an extended seacrh.
+     * Update the parameters of an extended search.
      *
      * @param {ExtendedSearchParams} searchParams
      */
     changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {
-        this.searchParamsMessage.next(searchParams);
+        this._currentSearchParams.next(searchParams);
+    }
+
+    /**
+     * Gets the search params of an extended search.
+     *
+     * @returns {ExtendedSearchParams}
+     */
+    getSearchParams(): ExtendedSearchParams {
+        console.log(this._currentSearchParams.getValue().generateGravsearch(0))
+        return this._currentSearchParams.getValue();
     }
 
 }
