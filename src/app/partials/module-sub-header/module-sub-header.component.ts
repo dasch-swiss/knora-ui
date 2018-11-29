@@ -4,6 +4,8 @@ import { AppConfig } from '../../app.config';
 import { DemoModule } from '../../app.interfaces';
 import { Component, Input, OnInit } from '@angular/core';
 
+// TODO: remove this component after refactor all demo components
+
 @Component({
     selector: 'app-module-sub-header',
     templateUrl: './module-sub-header.component.html',

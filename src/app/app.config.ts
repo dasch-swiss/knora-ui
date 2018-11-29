@@ -3,6 +3,7 @@ import { DemoModule } from './app.interfaces';
 export class AppConfig {
     public static prefix = 'knora';
     public static stackblitz = 'https://stackblitz.com/edit/';
+    public static parameter = '?hideExplorer=1&hideNavigation=1&view=editor';
     public static npm = 'https://www.npmjs.com/package/';
     public static badge = 'https://img.shields.io/npm/v/';
 

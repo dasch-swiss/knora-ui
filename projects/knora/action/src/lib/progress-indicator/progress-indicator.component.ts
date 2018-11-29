@@ -11,7 +11,7 @@ import { Component, Input, OnInit } from '@angular/core';
  *
  * <kui-progress-indicator color="#ff00aa"></kui-progress-indicator>
  *
- * @example
+ * @example ~~~html
  * // submit progress indicator: html
  *
  * <mat-list>
@@ -42,7 +42,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProgressIndicatorComponent implements OnInit {
 
     /**
-     * @param status: number
+     * @param {number} status
      *
      * [status] is a number and can be used when submitting form data:
      *
@@ -55,19 +55,17 @@ export class ProgressIndicatorComponent implements OnInit {
     @Input() status?: number;
 
     /**
-     * @param color
-     * @type string
+     * @param {string} color (optional)
      *
-     * With [color] you can customize the appearance of the loader.
-     * You can define the color with the hexadecimal value e.g. #00ff00.
-     *
-     */
-
-    /**
-     *
+     * Parameter to customize the appearance of the loader.
+     * Hexadecimal color value e.g. #00ff00 or similar color values 'red', 'green' etc.
      */
     @Input() color?: string = 'primary';
 
+
+    /**
+     * @ignore
+     */
     constructor() {
     }
 

@@ -1,6 +1,7 @@
-<app-module-sub-header [demo]="partOf"></app-module-sub-header>
+<!-- Documentation from JSDocs -->
+<app-documentation-viewer [module]="module"></app-documentation-viewer>
 
-
+<!-- Examples? -->
 
 <!--
 
@@ -67,26 +68,3 @@
     </div>
 </mat-card>
 -->
-
-
-<mat-divider></mat-divider>
-
-<!-- Documentation -->
-<app-documentation-viewer [module]="partOf.name" [name]="'progress-indicator'"></app-documentation-viewer>
-
-
-<mat-divider></mat-divider>
-
-<h2>OLD Documentation</h2>
-
-<h3>
-    Progress indicator
-</h3>
-
-<h4>Usage</h4>
-<p>
-    Please follow the README of
-    <a href="https://www.npmjs.com/package/@knora/action#progress-indicator">Knora-ui action module</a>. Then you can use the following methods from `ProgressIndicator`:
-</p>
-
-<markdown [src]="'app/knora-ui-examples/action-demo/progress-indicator/README.md'"></markdown>

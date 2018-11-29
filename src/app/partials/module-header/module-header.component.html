@@ -1,24 +1,25 @@
 <div class="panel">
+
+    <!-- title: name of component, directive, pipe or service -->
     <div class="panel-row">
-        <h2 class="fill-remaining-space">{{demo.label}}</h2>
+
+        <span>
+            <h3 class="mat-subheading-2">
+                Part of <a [routerLink]="'/modules/' + module.name">@knora/{{module.name | lowercase}}</a>
+            </h3>
+            <h2 class="mat-title">{{demo?.label}}</h2>
+        </span>
+
         <span class="fill-remaining-space"></span>
-        <span *ngIf="demo.published" class="middle">
-            <a [href]="package" target="_blank">
+        <span>
+            <a [href]="package" target="_blank" class="right padding-top">
                 <img [src]="badge">
             </a>
         </span>
     </div>
 
-    <div class="panel-row">
-        <p>This is a demo of components, directives, pipes and services of
-            <span *ngIf="demo.published">
-                <a [href]="package" target="_blank">@knora/{{demo.name | lowercase}}</a>
-            </span>
-            <span *ngIf="!demo.published">
-                @knora/{{demo.label | lowercase}}
-            </span>, developed by the team at the <a href="http://dhlab.unibas.ch">Digital Humanities Lab, Basel</a>.</p>
-    </div>
 </div>
 
-<mat-divider>
+
+
 

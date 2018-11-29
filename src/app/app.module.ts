@@ -49,6 +49,7 @@ import { ModuleHeaderComponent } from './partials/module-header/module-header.co
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
+import { SanitizeUrlPipe } from './partials/pipes/sanitize-url.pipe';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
 // dev documentation
@@ -76,6 +77,7 @@ import { DocumentationViewerComponent } from './partials/documentation-viewer/do
         UsersComponent,
         ExampleViewerComponent,
         SanitizeHtmlPipe,
+        SanitizeUrlPipe,
         GroupsComponent,
         ListsComponent,
         TreeComponent,
@@ -123,7 +125,7 @@ import { DocumentationViewerComponent } from './partials/documentation-viewer/do
         KuiViewerModule,
         MaterialModule,
         HttpClientModule,
-        MarkdownModule.forRoot({ loader: HttpClient }),
+        MarkdownModule.forRoot({loader: HttpClient}),
         ReactiveFormsModule
     ],
     providers: [
@@ -133,7 +135,7 @@ import { DocumentationViewerComponent } from './partials/documentation-viewer/do
                 hasBackdrop: false
             }
         },
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
         // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
 
     ],

@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 @import 'config';
+@import 'code';
+@import 'prism';
 
 body {
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
@@ -45,7 +47,7 @@ body {
   box-shadow: none !important;
 }
 .bolder {
-
+  font-weight: bolder;
 }
 
 markdown {
@@ -55,7 +57,23 @@ markdown {
     padding-top: 24px;
   }
 
+}
 
+.right {
+  margin-left: auto;
+  margin-right: 0;
+  display: table;
+}
+
+.padding-top {
+  padding-top: 6px;
+}
+
+iframe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
 }
 
 // example to change kui-progress-indicator color
