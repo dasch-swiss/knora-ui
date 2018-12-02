@@ -1,34 +1,18 @@
 [
   {
-    "tags": [
-      {
-        "type": "example",
-        "string": "// default progress indicator\n\n<kui-progress-indicator color=\"#ff00aa\"></kui-progress-indicator>",
-        "html": "<p>// default progress indicator</p>\n<p><kui-progress-indicator color=\"#ff00aa\"></kui-progress-indicator></p>"
-      },
-      {
-        "type": "example",
-        "string": "~~~html // submit progress indicator: html\n\n<mat-list>\n    <mat-list-item *ngFor=\"let item of examples\">\n        <kui-progress-indicator mat-list-avatar [status]=\"item.status\"></kui-progress-indicator>\n        <p mat-line><strong><span>{{item.label}}</span></strong></p>\n        <p mat-line>status: {{item.status}}</p>\n    </mat-list-item>\n</mat-list>",
-        "html": "<pre><code class=\"lang-html\">\n&lt;mat-list&gt;\n    &lt;mat-list-item *ngFor=&quot;let item of examples&quot;&gt;\n        &lt;kui-progress-indicator mat-list-avatar [status]=&quot;item.status&quot;&gt;&lt;/kui-progress-indicator&gt;\n        &lt;p mat-line&gt;&lt;strong&gt;&lt;span&gt;{{item.label}}&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\n        &lt;p mat-line&gt;status: {{item.status}}&lt;/p&gt;\n    &lt;/mat-list-item&gt;\n&lt;/mat-list&gt;</code></pre>"
-      },
-      {
-        "type": "example",
-        "string": "// instead of [color]: overwrite the progress indicator color in a global scss file in the app.\n\n.kui-progress-indicator {\n    .line > div {\n        background-color: #ff0000 !important;\n    }\n}",
-        "html": "<p>// instead of [color]: overwrite the progress indicator color in a global scss file in the app.</p>\n<p>.kui-progress-indicator {<br />\n.line &gt; div {<br />\nbackground-color: #ff0000 !important;<br />\n}<br />\n}</p>"
-      }
-    ],
+    "tags": [],
     "description": {
-      "full": "<p>progress indicator / loader</p>\n<p><example-url>https://stackblitz.com/edit/knora-progress-indicator</example-url></p>",
-      "summary": "<p>progress indicator / loader</p>",
-      "body": "<p><example-url>https://stackblitz.com/edit/knora-progress-indicator</example-url></p>"
+      "full": "<p>The progress indicator can be used the show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>",
+      "summary": "<p>The progress indicator can be used the show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>",
+      "body": ""
     },
     "isPrivate": false,
     "isConstructor": false,
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 4,
-    "codeStart": 37,
+    "line": 3,
+    "codeStart": 7,
     "code": "@Component({\n    selector: 'kui-progress-indicator',\n    templateUrl: './progress-indicator.component.html',\n    styleUrls: ['./progress-indicator.component.scss']\n})\nexport class ProgressIndicatorComponent implements OnInit {",
     "ctx": false
   },
@@ -59,8 +43,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 44,
-    "codeStart": 55,
+    "line": 14,
+    "codeStart": 25,
     "code": "@Input() status?: number;",
     "ctx": false
   },
@@ -91,8 +75,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 57,
-    "codeStart": 63,
+    "line": 27,
+    "codeStart": 33,
     "code": "@Input() color?: string = 'primary';",
     "ctx": false
   },
@@ -114,8 +98,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 66,
-    "codeStart": 69,
+    "line": 36,
+    "codeStart": 39,
     "code": "constructor() {\n}\n\nngOnInit() {\n}\n\n}",
     "ctx": {
       "type": "constructor",

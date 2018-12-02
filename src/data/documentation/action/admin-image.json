@@ -1,0 +1,174 @@
+[
+  {
+    "tags": [
+      {
+        "type": "example",
+        "string": "// user avatar picture\n<img kuiAdminImage [image]=\\\"'user@example.com'\\\" [type]=\\\"'user'\\\" />",
+        "html": "<p>// user avatar picture<br />\n&lt;img kuiAdminImage [image]=&quot;'user@example.com'&quot; [type]=&quot;'user'&quot; /&gt;</p>"
+      },
+      {
+        "type": "example",
+        "string": "// project logo\n<img kuiAdminImage [image]=\"'http://url.to/our/project/image.png'\" [type]=\"'project'\" />",
+        "html": "<p>// project logo<br />\n&lt;img kuiAdminImage [image]=&quot;'http://url.to/our/project/image.png'&quot; [type]=&quot;'project'&quot; /&gt;</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>You can use the admin image module for user avatar together with gravatar.com and for project logos.</p>\n<p>The feature of this module ist the error handling: In case of a 404 error of the image source (img src) the module shows a default image-not-found image. Or a default user profile icon (type=user), or a default project icon (type=project).</p>",
+      "summary": "<p>You can use the admin image module for user avatar together with gravatar.com and for project logos.</p>",
+      "body": "<p>The feature of this module ist the error handling: In case of a 404 error of the image source (img src) the module shows a default image-not-found image. Or a default user profile icon (type=user), or a default project icon (type=project).</p>"
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 7,
+    "codeStart": 20,
+    "code": "@Directive({\n    selector: '[kuiAdminImage]'\n})\nexport class AdminImageDirective implements OnChanges {",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>source of the image;<br />\nin case of user (gr)avatar it's the e-mail address,<br />\nin case of project logo it's the image url</p>",
+      "summary": "<p>source of the image;<br />\nin case of user (gr)avatar it's the e-mail address,<br />\nin case of project logo it's the image url</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 25,
+    "codeStart": 30,
+    "code": "@Input() image: string;",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>type of image; you can use it with</p>\n<ul>\n<li>project</li>\n<li>user</li>\n</ul>",
+      "summary": "<p>type of image; you can use it with</p>\n<ul>\n<li>project</li>\n<li>user</li>\n</ul>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 32,
+    "codeStart": 37,
+    "code": "@Input() type: string;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 40,
+    "codeStart": 43,
+    "code": "source: string;",
+    "ctx": {
+      "type": "property",
+      "name": "source",
+      "value": "string",
+      "string": "source"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 46,
+    "codeStart": 49,
+    "code": "onError: string = AdminImageConfig.defaultNotFound;",
+    "ctx": {
+      "type": "property",
+      "name": "onError",
+      "value": "string = AdminImageConfig.defaultNotFound",
+      "string": "onError"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 52,
+    "codeStart": 55,
+    "code": "constructor(private _renderer: Renderer2,\n            private _ele: ElementRef) {\n}",
+    "ctx": {
+      "type": "constructor",
+      "name": "constructor",
+      "string": "constructor()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 59,
+    "codeStart": 62,
+    "code": "ngOnChanges() {\n\n    this.source = this.image;\n\n    switch (this.type) {\n\n        case 'user':\n            if (this.image === null || this.image === undefined) {\n                this.source = AdminImageConfig.defaultUser;\n            } else {\n                this.source = 'http://www.gravatar.com/avatar/' + Md5.hashStr(this.image) + '?d=mp';\n            }\n\n            break;\n\n        case 'project':\n\n            if (this.image === null || this.image === undefined) {\n\n                this.source = AdminImageConfig.defaultProject;\n            }\n\n            break;\n\n        default:\n            this.source = this.image;\n    }\n\n    this._renderer.setAttribute(this._ele.nativeElement, 'src', this.source);\n    this._renderer.setAttribute(this._ele.nativeElement, 'onError', 'this.src=\\'' + this.onError + '\\'');\n\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "ngOnChanges",
+      "string": "ngOnChanges()"
+    }
+  }
+]

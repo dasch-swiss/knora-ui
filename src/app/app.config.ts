@@ -39,7 +39,7 @@ export class AppDemo {
             {
                 name: 'admin-image',
                 label: 'AdminImage',
-                stackblitz: true
+                stackblitz: false
             },
             {
                 name: 'existing-name',

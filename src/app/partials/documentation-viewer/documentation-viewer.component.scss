@@ -45,3 +45,20 @@ p > code {
   display: flex;
   flex-direction: column;
 }
+
+table {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  max-width: 100%;
+  width: 100%;
+
+  td {
+    padding: 12px;
+    vertical-align: top;
+
+    &.border-right {
+      border-right: 1px solid #ddd;
+    }
+  }
+}

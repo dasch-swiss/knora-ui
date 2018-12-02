@@ -1,39 +1,9 @@
-
 import { Component, Input, OnInit } from '@angular/core';
 
 /**
- * progress indicator / loader
- *
- * <example-url>https://stackblitz.com/edit/knora-progress-indicator</example-url>
- *
- * @example
- * // default progress indicator
- *
- * <kui-progress-indicator color="#ff00aa"></kui-progress-indicator>
- *
- * @example ~~~html
- * // submit progress indicator: html
- *
- * <mat-list>
- *     <mat-list-item *ngFor="let item of examples">
- *         <kui-progress-indicator mat-list-avatar [status]="item.status"></kui-progress-indicator>
- *         <p mat-line><strong><span>{{item.label}}</span></strong></p>
- *         <p mat-line>status: {{item.status}}</p>
- *     </mat-list-item>
- * </mat-list>
- *
- * @example
- * // instead of [color]: overwrite the progress indicator color in a global scss file in the app.
- *
- * .kui-progress-indicator {
- *     .line > div {
- *         background-color: #ff0000 !important;
- *     }
- * }
- *
- *
+ * The progress indicator can be used the show the status of loading something.
+ * This can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).
  */
-
 @Component({
     selector: 'kui-progress-indicator',
     templateUrl: './progress-indicator.component.html',

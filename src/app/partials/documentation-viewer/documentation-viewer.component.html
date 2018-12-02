@@ -18,9 +18,7 @@
         <mat-tab label="API">
             <section *ngFor="let item of documentation; let i = index">
 
-                <p>{{item.tags[i]?.type}}</p>
-
-                <div *ngIf="item.tags[0].type !== 'ignore'">
+                <div *ngIf="item.tags.length > 0 && item.tags[0].type !== 'ignore'">
 
                     <div *ngFor="let tag of item.tags">
 
@@ -30,20 +28,30 @@
                                 <code>{{tag.string}}</code>
                             </pre>
 
-                            <hr>
-                            <p *ngSwitchCase="'param'">
-                                parameter: {{tag.name}}
-                            </p>
+                            <div *ngSwitchCase="'param'">
+                                <p>Parameter</p>
+                                <table>
+                                    <tr>
+                                        <td class="border-right">
+                                            <p>{{tag.name}}</p>
+                                        </td>
+                                        <td>
+                                            <p>Type:
+                                            <span *ngFor="let type of tag.types; let last = last">
+                                                {{type}}<span *ngIf="!last">, </span>
+                                            </span>
+                                            </p>
+                                            <div [innerHtml]="tag.description"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
                             <div *ngSwitchCase="'type'" [innerHtml]="tag.html | sanitizeHtml">
                             </div>
-                            <hr>
                             <p *ngSwitchDefault>
                                 default: {{tag.type}}
                             </p>
-
-                            <div *ngIf="tag.description"
-                                 [innerHtml]="tag.description | sanitizeHtml">
-                            </div>
                         </div>
 
                     </div>
@@ -61,38 +69,4 @@
         </mat-tab>
     </mat-tab-group>
 
-
 </div>
-
-<!--
-
-
-{% for module in site.data.action %}
-
-{% assign mod = module[1] %}
-
-{% for object in mod %}
-
-{{ object.description.full }}
-
-{% for tag in object.tags %}
-
-{% if tag.type != 'ignore' %}
-
-##### {{ tag.type }}
-
-~~~html
-{{ tag.string }}
-~~~
-
-{% endif %}
-
-{% endfor %}
-
-{% endfor %}
-
----
-
-{% endfor %}
-
--->

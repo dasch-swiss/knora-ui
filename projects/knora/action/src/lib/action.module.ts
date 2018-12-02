@@ -12,7 +12,6 @@
  * found in the LICENSE file at https://opensource.org/licenses/MIT
  *
  */
-
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule, MatIconModule, MatMenuModule } from '@angular/material';
@@ -63,5 +62,8 @@ import { SortButtonComponent } from './sort-button/sort-button.component';
         JdnDatepickerDirective
     ]
 })
+/**
+ * export @dec class
+ */
 export class KuiActionModule {
 }

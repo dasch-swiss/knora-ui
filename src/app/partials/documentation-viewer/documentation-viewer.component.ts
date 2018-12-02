@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppConfig } from '../../app.config';
-import { DemoModule } from '../../app.interfaces';
+import { DemoModule, Example } from '../../app.interfaces';
 import { JsdocService } from '../services/jsdoc.service';
 
 @Component({
@@ -12,6 +12,8 @@ import { JsdocService } from '../services/jsdoc.service';
 export class DocumentationViewerComponent implements OnInit {
 
     @Input() module: DemoModule = new DemoModule();
+
+//    @Input() examples?: Example[];
 
     documentation: any;
 
