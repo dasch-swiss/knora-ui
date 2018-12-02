@@ -9,13 +9,6 @@ import { AdminImageConfig } from './admin-image.config';
  *
  * The feature of this module ist the error handling: In case of a 404 error of the image source (img src) the module shows a default image-not-found image. Or a default user profile icon (type=user), or a default project icon (type=project).
  *
- * @example
- * // user avatar picture
- * <img kuiAdminImage [image]=\"'user@example.com'\" [type]=\"'user'\" />
- *
- * @example
- * // project logo
- * <img kuiAdminImage [image]="'http://url.to/our/project/image.png'" [type]="'project'" />
  */
 @Directive({
     selector: '[kuiAdminImage]'
@@ -23,13 +16,17 @@ import { AdminImageConfig } from './admin-image.config';
 export class AdminImageDirective implements OnChanges {
 
     /**
+     * @param {string} image
+     *
      * source of the image;
-     * in case of user (gr)avatar it's the e-mail address,
-     * in case of project logo it's the image url
+     * - in case of user (gr)avatar it's the e-mail address,
+     * - in case of project logo it's the image url
      */
     @Input() image: string;
 
     /**
+     * @param {string} type
+     *
      * type of image; you can use it with
      * - project
      * - user
