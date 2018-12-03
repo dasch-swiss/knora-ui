@@ -28,15 +28,15 @@ export class AuthenticationService {
      * login process;
      * it's used by the login component
      *
-     * @param username
+     * @param identifier (email or username)
      * @param password
      * @returns
      */
-    login(username: string, password: string): Observable<any> {
+    login(identifier: string, password: string): Observable<any> {
 
         return this.http.post(
             this.config.api + '/v2/authentication',
-            {email: username, password: password},
+            {identifier: identifier, password: password},
             {observe: 'response'}).pipe(
                 map((response: HttpResponse<any>): any => {
                     return response;

@@ -34,32 +34,13 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * Get user by username, email or by iri
      *
-     * @param {string} email
+     * @param {string} identifier
      * @returns {Observable<User>}
      */
-    getUserByEmail(email: string): Observable<User> {
-        const path = '/admin/users/' + encodeURIComponent(email) + '?identifier=email';
-        return this.getUser(path);
-    }
-
-    /**
-     *
-     * @param {string} iri
-     * @returns {Observable<User>}
-     */
-    getUserByIri(iri: string): Observable<User> {
-        const path = '/admin/users/' + encodeURIComponent(iri);
-        return this.getUser(path);
-    }
-
-    /**
-     * Helper method combining user retrieval
-     *
-     * @param {string} path
-     * @returns {Observable<User>}
-     */
-    protected getUser(path: string): Observable<User> {
+    getUser(identifier: string): Observable<User> {
+        const path = '/admin/users/' + encodeURIComponent(identifier);
         return this.httpGet(path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)

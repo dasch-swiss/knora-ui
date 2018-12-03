@@ -45,6 +45,40 @@ export class UsersComponent implements OnInit {
             scss: ``
         }
     };
+
+    exampleGetUser: Example = {
+        title: 'getUser(username || email || iri)',
+        subtitle: 'returns a user object',
+        name: 'getUser',
+        code: {
+            html: `
+        <div *ngIf="user && !usersService.loading">
+            <p><strong>{{user.familyName}}, </strong>
+                {{user.givenName}} ({{user.email}})
+            </p>
+        </div>
+            `,
+            ts: `public getUser: User;
+            
+            // the services from @knora/core should be public,
+            // if you want to use the loading status in the html template
+            // --> usersService.loading = true | false
+            constructor(public usersService: UsersService) { }
+
+            [...]
+            
+            this.usersService.getUser('root')
+                .subscribe(
+                    (result: User) => {
+                        this.user = result;
+                    },
+                    (error: ApiServiceError) => {
+                        console.error(error);
+                    }
+            );`,
+            scss: ``
+        }
+    };
     /*
 
         exampleAuthenticate: Example = {
@@ -102,6 +136,9 @@ export class UsersComponent implements OnInit {
     ngOnInit() {
         this.getAllUsers();
         this.getUserFromCache();
+        this.getUser('root@example.com');
+        this.getUser('root');
+        this.getUser('http://rdfh.ch/users/root');
 //        this.simulateAuthentication();
     }
 
@@ -117,8 +154,8 @@ export class UsersComponent implements OnInit {
             );
     }
 
-    getUser(email: string) {
-        this.usersService.getUserByEmail(email)
+    getUser(identifier: string) {
+        this.usersService.getUser(identifier)
             .subscribe(
                 (result: User) => {
                     this.user = result;
