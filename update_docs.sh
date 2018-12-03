@@ -52,6 +52,6 @@ dox < projects/knora/action/src/lib/progress-indicator/progress-indicator.compon
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 2) build the ng-app and update the files in docs/ folder
 #
-ng build --prod=false
+ng build --prod=false --base-href /Knora-ui/ --build-optimizer
 rm -rf docs/*
 mv dist/knora-ui/* docs
