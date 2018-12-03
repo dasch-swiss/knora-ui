@@ -39,6 +39,7 @@ outPath='./src/data/documentation/'
 
 # we should loop through the inPath to write the documentation data files as following:
 dox < projects/knora/action/src/lib/admin-image/admin-image.directive.ts > src/data/documentation/action/admin-image.json
+dox < projects/knora/action/src/lib/progress-indicator/progress-indicator.component.ts > src/data/documentation/action/progress-indicator.json
 
 # read the files
 #for i in ${inPath}*; do
@@ -53,4 +54,4 @@ dox < projects/knora/action/src/lib/admin-image/admin-image.directive.ts > src/d
 #
 ng build --prod=false
 rm -rf docs/*
-mv dist/knora-ui docs
+mv dist/knora-ui/* docs
