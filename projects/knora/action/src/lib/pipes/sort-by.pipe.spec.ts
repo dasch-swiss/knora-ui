@@ -1,6 +1,6 @@
 import { SortByPipe } from './sort-by.pipe';
 
-fdescribe('SortByPipe', () => {
+describe('SortByPipe', () => {
 
   let pipe: SortByPipe;
   let sortKey: string = 'creator';
