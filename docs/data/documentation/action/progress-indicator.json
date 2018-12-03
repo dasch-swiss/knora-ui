@@ -2,9 +2,9 @@
   {
     "tags": [],
     "description": {
-      "full": "<p>The progress indicator can be used the show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>",
+      "full": "<p>The progress indicator can be used the show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>\n<p>Selector: kui-progress-indicator</p>",
       "summary": "<p>The progress indicator can be used the show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>",
-      "body": ""
+      "body": "<p>Selector: kui-progress-indicator</p>"
     },
     "isPrivate": false,
     "isConstructor": false,
@@ -12,7 +12,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 3,
-    "codeStart": 7,
+    "codeStart": 9,
     "code": "@Component({\n    selector: 'kui-progress-indicator',\n    templateUrl: './progress-indicator.component.html',\n    styleUrls: ['./progress-indicator.component.scss']\n})\nexport class ProgressIndicatorComponent implements OnInit {",
     "ctx": false
   },
@@ -43,8 +43,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 14,
-    "codeStart": 25,
+    "line": 16,
+    "codeStart": 27,
     "code": "@Input() status?: number;",
     "ctx": false
   },
@@ -75,8 +75,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 27,
-    "codeStart": 33,
+    "line": 29,
+    "codeStart": 35,
     "code": "@Input() color?: string = 'primary';",
     "ctx": false
   },
@@ -98,8 +98,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 36,
-    "codeStart": 39,
+    "line": 38,
+    "codeStart": 41,
     "code": "constructor() {\n}\n\nngOnInit() {\n}\n\n}",
     "ctx": {
       "type": "constructor",

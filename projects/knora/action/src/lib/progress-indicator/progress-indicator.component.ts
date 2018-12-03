@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 /**
- * The progress indicator can be used the show the status of loading something.
+ * The progress indicator can be used to show the status of loading something.
  * This can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).
+ *
+ * selector: kui-progress-indicator
  */
 @Component({
     selector: 'kui-progress-indicator',
