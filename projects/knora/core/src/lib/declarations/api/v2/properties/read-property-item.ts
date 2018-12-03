@@ -271,10 +271,10 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
         readonly imageServerIIIFBaseURL: string,
         readonly imagePath: string,
         readonly dimX: number,
-        readonly dimY: number,
-        isPreview?: boolean) {
+        readonly dimY: number) {
 
-        this.isPreview = isPreview === undefined ? false : isPreview;
+        // if the image is a jpeg, it is a preview image
+        this.isPreview = imageFilename.endsWith('.jpg');
 
     }
 

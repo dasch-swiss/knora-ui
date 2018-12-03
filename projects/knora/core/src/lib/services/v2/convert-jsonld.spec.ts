@@ -1,12 +1,33 @@
 import { async } from '@angular/core/testing';
 import { ConvertJSONLD } from './convert-jsonld';
 import {
-    ReadBooleanValue, ReadColorValue, ReadDateValue, ReadDecimalValue, ReadIntegerValue, ReadIntervalValue,
-    ReadLinkValue, ReadListValue, ReadProperties, ReadResource, ReadResourcesSequence, ReadTextValueAsHtml,
-    ReadTextValueAsString, ReadTextValueAsXml, ReadUriValue
+    ReadBooleanValue,
+    ReadColorValue,
+    ReadDateValue,
+    ReadDecimalValue,
+    ReadIntegerValue,
+    ReadIntervalValue,
+    ReadLinkValue,
+    ReadListValue,
+    ReadProperties,
+    ReadResource,
+    ReadResourcesSequence,
+    ReadStillImageFileValue,
+    ReadTextFileValue,
+    ReadTextValueAsHtml,
+    ReadTextValueAsString,
+    ReadTextValueAsXml,
+    ReadUriValue
 } from '../../declarations';
 
+
 describe('ConvertJSONLD', () => {
+
+    /**
+     * The following tests use async() because the JSON-LD processor is involved.
+     * The data to check for are inside a Promise.
+     * See https://angular.io/guide/testing#component-with-async-service
+     */
 
     it('parse a JSON-LD document representing letter 176-O', async(() => {
 
@@ -582,6 +603,138 @@ describe('ConvertJSONLD', () => {
             );
 
             expect(receivedResource.resources[0]).toEqual(BookResourceWithIncomingExpected);
+
+        });
+    }));
+
+    it('parse a JSON-LD document representing a page with images', async(() => {
+
+        const jsonld = require('jsonld');
+
+        // http://localhost:3333/v2/resources/http%3A%2F%2Frdfh.ch%2F00505cf0a803
+        const page: any = require('../../test-data/resources/PageWithImages.json');
+
+        const promises = jsonld.promises;
+        // compact JSON-LD using an empty context: expands all Iris
+        const promise = promises.compact(page, {});
+
+        promise.then((compacted) => {
+
+            const receivedResource: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
+
+            expect(receivedResource.numberOfResources).toEqual(1);
+
+            const expectedProps: ReadProperties = {
+                'http://0.0.0.0:3333/ontology/0803/incunabula/v2#description': [
+                    new ReadTextValueAsString(
+                        'http://rdfh.ch/00505cf0a803/values/549527258a26',
+                        'http://0.0.0.0:3333/ontology/0803/incunabula/v2#description',
+                        'Beginn Kapitel 105.\nHolzschnitt identisch mit Kap. 95: In einer Landschaft fasst ein Narr, der ein Zepter in der Linken hält, einem Mann an die Schulter und redet auf ihn ein, er möge die Feiertage missachten, 11.7 x 8.6 cm.'
+                    )
+                ],
+                'http://0.0.0.0:3333/ontology/0803/incunabula/v2#origname': [
+                    new ReadTextValueAsString(
+                        'http://rdfh.ch/00505cf0a803/values/47da3831980e',
+                        'http://0.0.0.0:3333/ontology/0803/incunabula/v2#origname',
+                        'IBB_1_002758751_0241.tif'
+                    )
+                ],
+                'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page_comment': [
+                    new ReadTextValueAsString(
+                        'http://rdfh.ch/00505cf0a803/values/1d9257bae428',
+                        'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page_comment',
+                        'Schramm, Bd. 22, Abb. 1200.'
+                    )
+                ],
+                'http://0.0.0.0:3333/ontology/0803/incunabula/v2#pagenum': [
+                    new ReadTextValueAsString(
+                        'http://rdfh.ch/00505cf0a803/values/fe5c3f85970e',
+                        'http://0.0.0.0:3333/ontology/0803/incunabula/v2#pagenum',
+                        'p7v'
+                    )
+                ],
+                'http://0.0.0.0:3333/ontology/0803/incunabula/v2#partOfValue': [
+                    new ReadLinkValue('http://rdfh.ch/00505cf0a803/values/a2c239c3-eac5-4f9f-88e9-9411835d11ff',
+                        'http://0.0.0.0:3333/ontology/0803/incunabula/v2#partOfValue',
+                        'http://rdfh.ch/8be1b7cf7103',
+                        new ReadResource('http://rdfh.ch/8be1b7cf7103',
+                            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
+                            '[Das] Narrenschiff (lat.)',
+                            [],
+                            [],
+                            [],
+                            [],
+                            {})
+                    )
+                ],
+                'http://0.0.0.0:3333/ontology/0803/incunabula/v2#seqnum': [
+                    new ReadIntegerValue(
+                        'http://rdfh.ch/00505cf0a803/values/84b0e5f7970e',
+                        'http://0.0.0.0:3333/ontology/0803/incunabula/v2#seqnum',
+                        241
+                    )
+                ],
+                'http://api.knora.org/ontology/knora-api/v2#hasStillImageFileValue': [
+                    new ReadStillImageFileValue(
+                        'http://rdfh.ch/00505cf0a803/reps/9e73f9ac2307',
+                        'http://api.knora.org/ontology/knora-api/v2#hasStillImageFileValue',
+                        'incunabula_0000004096.jp2',
+                        'http://localhost:1024/knora',
+                        'http://localhost:1024/knora/incunabula_0000004096.jp2/full/1954,2630/0/default.jpg',
+                        1954,
+                        2630
+                    ),
+                    new ReadStillImageFileValue(
+                        'http://rdfh.ch/00505cf0a803/reps/df4da6732307',
+                        'http://api.knora.org/ontology/knora-api/v2#hasStillImageFileValue',
+                        'incunabula_0000004096.jpg',
+                        'http://localhost:1024/knora',
+                        'http://localhost:1024/knora/incunabula_0000004096.jpg/full/95,128/0/default.jpg',
+                        95,
+                        128
+                    )
+                ]
+            };
+
+            const expectedPage = new ReadResource('http://rdfh.ch/00505cf0a803',
+               'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page',
+                'p7v',
+                [],
+                [],
+                [],
+                [],
+                expectedProps);
+
+            expect(receivedResource.resources[0]).toEqual(expectedPage);
+        });
+
+
+    }));
+
+    it('parse a JSON-LD document representing text file value', async(() => {
+
+        const jsonld = require('jsonld');
+
+        const textfilerepr: any = require('../../test-data/resources/TextfileRepresentation.json');
+
+        const promises = jsonld.promises;
+        // compact JSON-LD using an empty context: expands all Iris
+        const promise = promises.compact(textfilerepr, {});
+
+        promise.then((compacted) => {
+
+            const receivedResource: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
+
+            expect(receivedResource.numberOfResources).toEqual(1);
+
+            const expectedTextfileValue = new ReadTextFileValue(
+                'http://rdfh.ch/0802/C9bbwuLORoCZZ1DVek1qCQ/values/DSQxeAI-T8eYlgXynsQWhw',
+                'http://api.knora.org/ontology/knora-api/v2#hasTextFileValue',
+                'LZoxQd7xyNT-EC4kgw2gokg',
+                'http://localhost:1024/server/knora/LZoxQd7xyNT-EC4kgw2gokg'
+            );
+
+            expect(receivedResource.resources[0].properties['http://api.knora.org/ontology/knora-api/v2#hasTextFileValue'][0]).toEqual(expectedTextfileValue);
 
         });
     }));

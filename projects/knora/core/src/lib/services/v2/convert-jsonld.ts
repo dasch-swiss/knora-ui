@@ -113,9 +113,9 @@ export module ConvertJSONLD {
                         propValue['@id'], propIri, propValue[KnoraConstants.textValueAsHtml], referredResources
                     );
                 } else if (
-                    propValue[KnoraConstants.textValueAsXml] !== undefined && propValue[KnoraConstants.textValueHasMapping] !== undefined) {
+                    propValue[KnoraConstants.textValueAsXml] !== undefined && propValue[KnoraConstants.textValueHasMapping]['@id'] !== undefined) {
                     textValue = new ReadTextValueAsXml(
-                        propValue['@id'], propIri, propValue[KnoraConstants.textValueAsXml], propValue[KnoraConstants.textValueHasMapping]
+                        propValue['@id'], propIri, propValue[KnoraConstants.textValueAsXml], propValue[KnoraConstants.textValueHasMapping]['@id']
                     );
                 } else {
                     // expected text value members not defined
@@ -198,11 +198,10 @@ export module ConvertJSONLD {
                     propValue['@id'],
                     propIri,
                     propValue[KnoraConstants.fileValueHasFilename],
-                    propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl],
-                    propValue[KnoraConstants.fileValueAsUrl],
+                    propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl]['@value'],
+                    propValue[KnoraConstants.fileValueAsUrl]['@value'],
                     propValue[KnoraConstants.stillImageFileValueHasDimX],
-                    propValue[KnoraConstants.stillImageFileValueHasDimY],
-                    propValue[KnoraConstants.fileValueIsPreview] // optional (may be undefined)
+                    propValue[KnoraConstants.stillImageFileValueHasDimY]
                 );
 
                 valueSpecificProp = stillImageFileValue;
@@ -215,7 +214,7 @@ export module ConvertJSONLD {
                     propValue['@id'],
                     propIri,
                     propValue[KnoraConstants.fileValueHasFilename],
-                    propValue[KnoraConstants.fileValueAsUrl]
+                    propValue[KnoraConstants.fileValueAsUrl]['@value']
                 );
 
                 valueSpecificProp = textFileValue;
