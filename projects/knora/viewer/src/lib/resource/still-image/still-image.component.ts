@@ -99,7 +99,6 @@ export class GeometryForRegion {
 /**
  * This component creates a OpenSeadragon viewer instance.
  * Accepts an array of ReadResource containing (among other resources) ReadStillImageFileValues to be rendered.
- * The viewer will not render ReadStillImageFileValues with isPreview == true
  * @member resources - resources containing (among other resources) the StillImageFileValues and incoming regions to be rendered. (Use as angular @Input data binding property.)
  */
 @Component({
@@ -391,7 +390,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Adds all (non-preview) images in this.images to the viewer.
+     * Adds all images in this.images to the viewer.
      * Images are positioned in a horizontal row next to each other.
      */
     private openImages(): void {

@@ -82,7 +82,7 @@ describe('UsersService', () => {
 
         it('should return one user by email', async(inject([UsersService], (service) => {
 
-            spyOn(service, 'getUserByEmail').and.callFake(() => {
+            spyOn(service, 'getUser').and.callFake(() => {
                 const result = new ApiServiceResult();
                 result.status = 200;
                 result.statusText = '';
@@ -94,7 +94,7 @@ describe('UsersService', () => {
 
             expect(usersService).toBeDefined();
 
-            const userByEmail: Observable<User> = usersService.getUserByEmail('root-alt@example.com');
+            const userByEmail: Observable<User> = usersService.getUser('root-alt@example.com');
 
             const user = {
                 'user': { 'familyName': 'User', 'givenName': 'User01', 'email': 'user01.user1@example.com', 'permissions': { 'groupsPerProject': { 'http://rdfh.ch/projects/00FF': ['http://www.knora.org/ontology/knora-base#ProjectMember', 'http://www.knora.org/ontology/knora-base#ProjectAdmin'] }, 'administrativePermissionsPerProject': { 'http://rdfh.ch/projects/00FF': [{ 'name': 'ProjectAdminAllPermission', 'additionalInformation': null, 'v1Code': null }, { 'name': 'ProjectResourceCreateAllPermission', 'additionalInformation': null, 'v1Code': null }] } }, 'groups': [], 'id': 'http://rdfh.ch/users/c266a56709', 'status': true, 'token': null, 'sessionId': null, 'projects': [{ 'ontologies': ['http://www.knora.org/ontology/00FF/images'], 'shortname': 'images', 'description': [{ 'value': 'A demo project of a collection of images', 'language': 'en' }], 'shortcode': '00FF', 'logo': null, 'id': 'http://rdfh.ch/projects/00FF', 'status': true, 'selfjoin': false, 'keywords': ['collection', 'images'], 'longname': 'Image Collection Demo' }], 'lang': 'de', 'password': null }
@@ -110,7 +110,7 @@ describe('UsersService', () => {
 
         it('should return one user by iri', async(inject([UsersService], (service) => {
 
-            spyOn(service, 'getUserByIri').and.callFake(() => {
+            spyOn(service, 'getUser').and.callFake(() => {
                 const result = new ApiServiceResult();
                 result.status = 200;
                 result.statusText = '';
@@ -122,7 +122,7 @@ describe('UsersService', () => {
 
             expect(usersService).toBeDefined();
 
-            const userByIri: Observable<User> = usersService.getUserByIri('http://rdfh.ch/users/c266a56709');
+            const userByIri: Observable<User> = usersService.getUser('http://rdfh.ch/users/c266a56709');
 
             const user = {
                 'user': { 'familyName': 'User', 'givenName': 'User01', 'email': 'user01.user1@example.com', 'permissions': { 'groupsPerProject': { 'http://rdfh.ch/projects/00FF': ['http://www.knora.org/ontology/knora-base#ProjectMember', 'http://www.knora.org/ontology/knora-base#ProjectAdmin'] }, 'administrativePermissionsPerProject': { 'http://rdfh.ch/projects/00FF': [{ 'name': 'ProjectAdminAllPermission', 'additionalInformation': null, 'v1Code': null }, { 'name': 'ProjectResourceCreateAllPermission', 'additionalInformation': null, 'v1Code': null }] } }, 'groups': [], 'id': 'http://rdfh.ch/users/c266a56709', 'status': true, 'token': null, 'sessionId': null, 'projects': [{ 'ontologies': ['http://www.knora.org/ontology/00FF/images'], 'shortname': 'images', 'description': [{ 'value': 'A demo project of a collection of images', 'language': 'en' }], 'shortcode': '00FF', 'logo': null, 'id': 'http://rdfh.ch/projects/00FF', 'status': true, 'selfjoin': false, 'keywords': ['collection', 'images'], 'longname': 'Image Collection Demo' }], 'lang': 'de', 'password': null }
