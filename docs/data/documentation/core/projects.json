@@ -1,0 +1,621 @@
+[
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "Observable of Project[]",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of Project[]</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>returns a list of all projects</p>",
+      "summary": "<p>returns a list of all projects</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 19,
+    "codeStart": 24,
+    "code": "getAllProjects(): Observable<Project[]> {\n    return this.httpGet('/admin/projects').pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectsResponse).projects),\n        catchError(this.handleJsonError)\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getAllProjects",
+      "string": "getAllProjects()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} iri",
+        "name": "iri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} iri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of Project",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of Project</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>returns a project object</p>",
+      "summary": "<p>returns a project object</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 31,
+    "codeStart": 37,
+    "code": "getProjectByIri(iri: string): Observable<Project> {\n    const url: string = '/admin/projects/' + encodeURIComponent(iri);\n    return this.getProject(url);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getProjectByIri",
+      "string": "getProjectByIri()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} shortname",
+        "name": "shortname",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} shortname</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of Project",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of Project</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>returns a project object</p>",
+      "summary": "<p>returns a project object</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 42,
+    "codeStart": 48,
+    "code": "getProjectByShortname(shortname: string): Observable<Project> {\n    const url = '/admin/projects/' + shortname + '?identifier=shortname';\n    return this.getProject(url);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getProjectByShortname",
+      "string": "getProjectByShortname()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} shortcode",
+        "name": "shortcode",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} shortcode</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of Project",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of Project</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>returns a project object</p>",
+      "summary": "<p>returns a project object</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 53,
+    "codeStart": 59,
+    "code": "getProjectByShortcode(shortcode: string): Observable<Project> {\n    const url = '/admin/projects/' + shortcode + '?identifier=shortcode';\n    return this.getProject(url);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getProjectByShortcode",
+      "string": "getProjectByShortcode()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} url",
+        "name": "url",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} url</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of Project",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of Project</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Helper method combining project retrieval</p>",
+      "summary": "<p>Helper method combining project retrieval</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 64,
+    "codeStart": 70,
+    "code": "protected getProject(url: string): Observable<Project> {\n    return this.httpGet(url).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} iri",
+        "name": "iri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} iri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of User[]",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of User[]</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>returns all project members<br />\nproject identifier is project id (iri)</p>",
+      "summary": "<p>returns all project members<br />\nproject identifier is project id (iri)</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 77,
+    "codeStart": 84,
+    "code": "getProjectMembersByIri(iri: string): Observable<User[]> {\n    const url = '/admin/projects/members/' + encodeURIComponent(iri);\n    return this.getProjectMembers(url);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getProjectMembersByIri",
+      "string": "getProjectMembersByIri()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} shortname",
+        "name": "shortname",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} shortname</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of User[]",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of User[]</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>returns all project members<br />\nproject identifier is shortname</p>",
+      "summary": "<p>returns all project members<br />\nproject identifier is shortname</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 89,
+    "codeStart": 96,
+    "code": "getProjectMembersByShortname(shortname: string): Observable<User[]> {\n    const url = '/admin/projects/members/' + shortname + '?identifier=shortname';\n    return this.getProjectMembers(url);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getProjectMembersByShortname",
+      "string": "getProjectMembersByShortname()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} shortcode",
+        "name": "shortcode",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} shortcode</p>"
+      },
+      {
+        "type": "returns",
+        "string": "{Observable<User[]>}",
+        "types": [
+          "Observable.<Array.<User>>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<code>Array</code>.&lt;<a href=\"User.html\">User</a>&gt;&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable&lt;User[]&gt;}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>returns all project members<br />\nproject identifier is shortcode</p>",
+      "summary": "<p>returns all project members<br />\nproject identifier is shortcode</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 101,
+    "codeStart": 108,
+    "code": "getProjectMembersByShortcode(shortcode: string): Observable<User[]> {\n    const url = '/admin/projects/members/' + shortcode + '?identifier=shortcode';\n    return this.getProjectMembers(url);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getProjectMembersByShortcode",
+      "string": "getProjectMembersByShortcode()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} url",
+        "name": "url",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} url</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of User[]",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of User[]</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Helper method combining project member retrieval</p>",
+      "summary": "<p>Helper method combining project member retrieval</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 113,
+    "codeStart": 119,
+    "code": "protected getProjectMembers(url: string): Observable<User[]> {\n    return this.httpGet(url).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectMembersResponse).members),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{any} data",
+        "name": "data",
+        "description": "",
+        "types": [
+          "any"
+        ],
+        "typesDescription": "<a href=\"any.html\">any</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{any} data</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of Project",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of Project</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>create new project</p>",
+      "summary": "<p>create new project</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 131,
+    "codeStart": 137,
+    "code": "createProject(data: any): Observable<Project> {\n    const url: string = '/admin/projects';\n    return this.httpPost(url, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}\n\n// ------------------------------------------------------------------------\n// PUT\n// ------------------------------------------------------------------------",
+    "ctx": {
+      "type": "method",
+      "name": "createProject",
+      "string": "createProject()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} iri",
+        "name": "iri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} iri</p>"
+      },
+      {
+        "type": "param",
+        "string": "{any} data",
+        "name": "data",
+        "description": "",
+        "types": [
+          "any"
+        ],
+        "typesDescription": "<a href=\"any.html\">any</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{any} data</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of Project",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of Project</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>edit project data</p>",
+      "summary": "<p>edit project data</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 149,
+    "codeStart": 156,
+    "code": "updateProject(iri: string, data: any): Observable<Project> {\n    const url: string = '/admin/projects/' + encodeURIComponent(iri);\n\n    return this.httpPut(url, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "updateProject",
+      "string": "updateProject()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} iri",
+        "name": "iri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} iri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of Project",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of Project</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>activate project (if it was deleted)</p>",
+      "summary": "<p>activate project (if it was deleted)</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 166,
+    "codeStart": 172,
+    "code": "activateProject(iri: string): Observable<Project> {\n    const data: any = {\n        status: true\n    };\n\n    const url: string = '/admin/projects/' + encodeURIComponent(iri);\n\n    return this.httpPut(url, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// DELETE\n// ------------------------------------------------------------------------",
+    "ctx": {
+      "type": "method",
+      "name": "activateProject",
+      "string": "activateProject()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} iri",
+        "name": "iri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} iri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of Project",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of Project</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Delete (set inactive) project</p>",
+      "summary": "<p>Delete (set inactive) project</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 190,
+    "codeStart": 196,
+    "code": "deleteProject(iri: string): Observable<Project> {\n    const url: string = '/admin/projects/' + encodeURIComponent(iri);\n\n    return this.httpDelete(url).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "deleteProject",
+      "string": "deleteProject()"
+    }
+  }
+]

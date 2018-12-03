@@ -1,0 +1,25 @@
+<div class="panel">
+
+    <!-- title: name of component, directive, pipe or service -->
+    <div class="panel-row">
+
+        <span>
+            <h3 class="mat-subheading-2">
+                Part of <a [routerLink]="'/modules/' + module.name">@knora/{{module.name | lowercase}}</a>
+            </h3>
+            <h2 class="mat-title">{{demo?.label}}</h2>
+        </span>
+
+        <span class="fill-remaining-space"></span>
+        <span>
+            <a [href]="package" target="_blank" class="right padding-top">
+                <img [src]="badge">
+            </a>
+        </span>
+    </div>
+
+</div>
+
+
+
+

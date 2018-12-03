@@ -1,12 +1,86 @@
----
-layout: null
-sitemap: true
----
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-$dark: #2b2b2b;
+@import 'config';
+@import 'code';
+@import 'prism';
 
-@import "pygments";
-@import "code";
-@import "elements";
-@import "normalize";
+body {
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+}
 
+.panel {
+  margin-bottom: 24px;
+  width: 100%;
+
+  .panel-row {
+    display: flex;
+    box-sizing: border-box;
+  }
+}
+
+.action-button {
+  height: 48px;
+  width: 48px;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.demo {
+  padding: 12px 0;
+}
+
+.example-viewer {
+  margin: 36px auto;
+}
+.no-shadow {
+  box-shadow: none !important;
+}
+.bolder {
+  font-weight: bolder;
+}
+
+markdown {
+
+  h4 {
+    border-top: 1px solid #323232;
+    padding-top: 24px;
+  }
+
+}
+
+.right {
+  margin-left: auto;
+  margin-right: 0;
+  display: table;
+}
+
+.padding-top {
+  padding-top: 6px;
+}
+
+iframe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+// example to change kui-progress-indicator color
+/*
+.kui-progress-indicator {
+  .line > div {
+    background-color: #ff0000 !important;
+  }
+}
+*/
