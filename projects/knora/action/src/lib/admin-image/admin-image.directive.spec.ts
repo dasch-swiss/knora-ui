@@ -6,7 +6,7 @@ import { AdminImageComponent } from 'src/app/knora-ui-examples/action-demo/admin
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 
-fdescribe('Directive: AdminImageDirective', () => {
+describe('Directive: AdminImageDirective', () => {
     let component: TestAdminImageComponent;
     let fixture: ComponentFixture<TestAdminImageComponent>;
     let imageEl: DebugElement;
