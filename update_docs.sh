@@ -41,6 +41,8 @@ outPath='./src/data/documentation/'
 dox < projects/knora/action/src/lib/admin-image/admin-image.directive.ts > src/data/documentation/action/admin-image.json
 dox < projects/knora/action/src/lib/progress-indicator/progress-indicator.component.ts > src/data/documentation/action/progress-indicator.json
 
+dox < projects/knora/core/src/lib/services/admin/users.service.ts > src/data/documentation/core/users.json
+
 # read the files
 #for i in ${inPath}*; do
 #    if [ -d "$i" ]; then
@@ -52,6 +54,6 @@ dox < projects/knora/action/src/lib/progress-indicator/progress-indicator.compon
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 2) build the ng-app and update the files in docs/ folder
 #
-ng build --prod=false --base-href /Knora-ui/ --build-optimizer
+ng build --prod=false --base-href /Knora-ui/ --build-optimizer --aot
 rm -rf docs/*
 mv dist/knora-ui/* docs
