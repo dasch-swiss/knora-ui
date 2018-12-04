@@ -3,17 +3,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 
 /**
- * Represents teh parameters of an extended search.
+ * Represents the parameters of an extended search.
  */
 export class ExtendedSearchParams {
 
     /**
      *
-     * @param generateGravsearch a function the generates Gravsearch.
-     *                       The function is expected to take the offset
-     *                       as a parameter and return a Gravsearch query string.
+     * @param generateGravsearch a function that generates a Gravsearch query.
+     *
+     *                           The function takes the offset
+     *                           as a parameter and returns a Gravsearch query string.
+     *                           Returns false if not set correctly.
      */
-    constructor(public generateGravsearch: (offset: number) => string) {
+    constructor(public generateGravsearch: (offset: number) => string | boolean) {
 
     }
 
@@ -30,12 +32,12 @@ export class SearchParamsService {
     private _currentSearchParams;
 
     constructor() {
-        // init with a dummy function
-        this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => 'empty'));
+        // init with a dummy function that returns false
+        this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => false));
     }
 
     /**
-     * Update the parameters of an extended search.
+     * Updates the parameters of an extended search.
      *
      * @param {ExtendedSearchParams} searchParams
      */
