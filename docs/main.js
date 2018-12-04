@@ -43,72 +43,51 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * The progress indicator can be used to show the status of loading something.
+ * This can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).
+ *
+ * selector: kui-progress-indicator
  */
 var ProgressIndicatorComponent = /** @class */ /*@__PURE__*/ (function () {
+    /**
+     * @ignore
+     */
     function ProgressIndicatorComponent() {
+        /**
+         * @param {string} color (optional)
+         *
+         * Parameter to customize the appearance of the loader.
+         * Hexadecimal color value e.g. #00ff00 or similar color values 'red', 'green' etc.
+         */
         this.color = 'primary';
     }
-    /**
-     * @return {?}
-     */
-    ProgressIndicatorComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    ProgressIndicatorComponent.prototype.ngOnInit = function () {
+    };
     return ProgressIndicatorComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var SortButtonComponent = /** @class */ /*@__PURE__*/ (function () {
     function SortButtonComponent() {
         this.sortKeyChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.menuXPos = 'after';
         this.position = 'left';
     }
+    SortButtonComponent.prototype.sortKey = function (value) {
+        this.activeKey = value;
+    };
+    SortButtonComponent.prototype.ngOnInit = function () {
+        if (this.position === 'right') {
+            this.menuXPos = 'before';
+        }
+    };
     /**
-     * @param {?} value
-     * @return {?}
+     * TODO: add description
+     * @param {string} key
      */
-    SortButtonComponent.prototype.sortKey = /**
-     * @param {?} value
-     * @return {?}
-     */
-        function (value) {
-            this.activeKey = value;
-        };
-    /**
-     * @return {?}
-     */
-    SortButtonComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            if (this.position === 'right') {
-                this.menuXPos = 'before';
-            }
-        };
-    /**
-     * @param {?} key
-     * @return {?}
-     */
-    SortButtonComponent.prototype.sortBy = /**
-     * @param {?} key
-     * @return {?}
-     */
-        function (key) {
-            this.sortKeyChange.emit(key);
-        };
+    SortButtonComponent.prototype.sortBy = function (key) {
+        this.sortKeyChange.emit(key);
+    };
     return SortButtonComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var ResourceDialogComponent = /** @class */ /*@__PURE__*/ (function () {
     function ResourceDialogComponent(_dialogRef, data) {
         this._dialogRef = _dialogRef;
@@ -123,130 +102,107 @@ var ResourceDialogComponent = /** @class */ /*@__PURE__*/ (function () {
      * @param heightPct height of the dialog in percentage.
      * @returns
      */
-    /**
-     * Creates a configuration object for `MatDialog`.
-     *
-     * @param {?} resourceIri the Iri of the resource to be displayed in a dialog.
-     * @param {?=} widthPct width of the dialog in percentage.
-     * @param {?=} heightPct height of the dialog in percentage.
-     * @return {?}
-     */
-    ResourceDialogComponent.createConfiguration = /**
-     * Creates a configuration object for `MatDialog`.
-     *
-     * @param {?} resourceIri the Iri of the resource to be displayed in a dialog.
-     * @param {?=} widthPct width of the dialog in percentage.
-     * @param {?=} heightPct height of the dialog in percentage.
-     * @return {?}
-     */
-        function (resourceIri, widthPct, heightPct) {
-            if (widthPct === void 0) {
-                widthPct = 60;
-            }
-            if (heightPct === void 0) {
-                heightPct = 60;
-            }
-            /** @type {?} */
-            var config = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogConfig"]();
-            config.height = widthPct + "%";
-            config.width = heightPct + "%";
-            config.data = {
-                iri: resourceIri
-            };
-            config.panelClass = 'resizable';
-            return config;
+    ResourceDialogComponent.createConfiguration = function (resourceIri, widthPct, heightPct) {
+        if (widthPct === void 0) {
+            widthPct = 60;
+        }
+        if (heightPct === void 0) {
+            heightPct = 60;
+        }
+        var config = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogConfig"]();
+        config.height = widthPct + "%";
+        config.width = heightPct + "%";
+        config.data = {
+            iri: resourceIri
         };
-    /**
-     * @return {?}
-     */
-    ResourceDialogComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            this.fullSize = (!this.data.fullSize);
-            // start in full size
-            if (this._dialogRef) {
-                this.toggleFullSize();
-            }
-        };
-    /**
-     * @return {?}
-     */
-    ResourceDialogComponent.prototype.toggleFullSize = /**
-     * @return {?}
-     */
-        function () {
-            this.fullSize = (!this.fullSize);
-            if (this.fullSize) {
-                this._dialogRef.updateSize('100vw', '100vh');
-                this._dialogRef.updatePosition();
-            }
-            else {
-                this._dialogRef.updateSize('80vw', 'auto');
-                this._dialogRef.updatePosition();
-            }
-        };
+        config.panelClass = 'resizable';
+        return config;
+    };
+    ResourceDialogComponent.prototype.ngOnInit = function () {
+        this.fullSize = (!this.data.fullSize);
+        // start in full size
+        if (this._dialogRef) {
+            this.toggleFullSize();
+        }
+    };
+    ResourceDialogComponent.prototype.toggleFullSize = function () {
+        this.fullSize = (!this.fullSize);
+        if (this.fullSize) {
+            this._dialogRef.updateSize('100vw', '100vh');
+            this._dialogRef.updatePosition();
+        }
+        else {
+            this._dialogRef.updateSize('80vw', 'auto');
+            this._dialogRef.updatePosition();
+        }
+    };
     return ResourceDialogComponent;
 }());
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * @ignore
  */
 var AdminImageConfig = /** @class */ /*@__PURE__*/ (function () {
     function AdminImageConfig() {
     }
+    /**
+     *  default-project-logo
+     */
     AdminImageConfig.defaultProject = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAQAAAD9CzEMAAAAuUlEQVR4Ae2XP8rCUBAHp5F4gPxBsA45mpUgXkt4Se4Rkc97fIQkhVZrK+JbxGwhujN9Bh77K8IPsWTPkSsXOnYkGLPmjNx5YoUhCX/Igx0LzNgiT9zwBhU1AxLxQEpGQCJOtFT653tEMQUgRxR7LVEjqhkABaLaEGVAVAM5BQ2iOhJFjPSAXeBVPKADfqa+Aw/4Dr53Bx6wD/iZfkZgQgwcidIiBgb0H5CZ/lOClmgYZzxOoMRxjLkBL3E6cltSSnYAAAAASUVORK5CYII=';
+    /**
+     * default-user-avatar icon
+     */
     AdminImageConfig.defaultUser = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAQAAAD9CzEMAAAA+klEQVR4Ae3SMUrDYBjG8X+n1kPoKg4l5g6Cu7jokaxbW5KhNxAcdZMiiOgB2iaXMChKO5jHrEr7Ncn7OSjf77/nScJLEAQNxKTkrKoyEiK82mGCvlWS0vP3+Hu0pqmviQnaUIIHMdpYSYRZihyNMcuRozlmK+Ro+QcGMuRohlmCHA0xiygdZ9qH3zzUEV70mKI13dEFXxMp5Y+fM6KLVxFj5iyrZgzpE/wre5xzyS0LCj6rChbcMOCMXYxiBuTIUcYFh7TQ4ZRnVLMnTujQwAGPqGEP7FPTMW+oRa8c1Xv7D9Sy9zpfcY0MXbFVgQy9sJWMNR8IA0EQfAFx/QsJxgdnsQAAAABJRU5ErkJggg==';
+    /**
+     *  default "not found" image in case of 404 error
+     */
     AdminImageConfig.defaultNotFound = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAD8GlDQ1BJQ0MgUHJvZmlsZQAAOI2NVd1v21QUP4lvXKQWP6Cxjg4Vi69VU1u5GxqtxgZJk6XpQhq5zdgqpMl1bhpT1za2021Vn/YCbwz4A4CyBx6QeEIaDMT2su0BtElTQRXVJKQ9dNpAaJP2gqpwrq9Tu13GuJGvfznndz7v0TVAx1ea45hJGWDe8l01n5GPn5iWO1YhCc9BJ/RAp6Z7TrpcLgIuxoVH1sNfIcHeNwfa6/9zdVappwMknkJsVz19HvFpgJSpO64PIN5G+fAp30Hc8TziHS4miFhheJbjLMMzHB8POFPqKGKWi6TXtSriJcT9MzH5bAzzHIK1I08t6hq6zHpRdu2aYdJYuk9Q/881bzZa8Xrx6fLmJo/iu4/VXnfH1BB/rmu5ScQvI77m+BkmfxXxvcZcJY14L0DymZp7pML5yTcW61PvIN6JuGr4halQvmjNlCa4bXJ5zj6qhpxrujeKPYMXEd+q00KR5yNAlWZzrF+Ie+uNsdC/MO4tTOZafhbroyXuR3Df08bLiHsQf+ja6gTPWVimZl7l/oUrjl8OcxDWLbNU5D6JRL2gxkDu16fGuC054OMhclsyXTOOFEL+kmMGs4i5kfNuQ62EnBuam8tzP+Q+tSqhz9SuqpZlvR1EfBiOJTSgYMMM7jpYsAEyqJCHDL4dcFFTAwNMlFDUUpQYiadhDmXteeWAw3HEmA2s15k1RmnP4RHuhBybdBOF7MfnICmSQ2SYjIBM3iRvkcMki9IRcnDTthyLz2Ld2fTzPjTQK+Mdg8y5nkZfFO+se9LQr3/09xZr+5GcaSufeAfAww60mAPx+q8u/bAr8rFCLrx7s+vqEkw8qb+p26n11Aruq6m1iJH6PbWGv1VIY25mkNE8PkaQhxfLIF7DZXx80HD/A3l2jLclYs061xNpWCfoB6WHJTjbH0mV35Q/lRXlC+W8cndbl9t2SfhU+Fb4UfhO+F74GWThknBZ+Em4InwjXIyd1ePnY/Psg3pb1TJNu15TMKWMtFt6ScpKL0ivSMXIn9QtDUlj0h7U7N48t3i8eC0GnMC91dX2sTivgloDTgUVeEGHLTizbf5Da9JLhkhh29QOs1luMcScmBXTIIt7xRFxSBxnuJWfuAd1I7jntkyd/pgKaIwVr3MgmDo2q8x6IdB5QH162mcX7ajtnHGN2bov71OU1+U0fqqoXLD0wX5ZM005UHmySz3qLtDqILDvIL+iH6jB9y2x83ok898GOPQX3lk3Itl0A+BrD6D7tUjWh3fis58BXDigN9yF8M5PJH4B8Gr79/F/XRm8m241mw/wvur4BGDj42bzn+Vmc+NL9L8GcMn8F1kAcXgSteGGAAAACXBIWXMAAAsTAAALEwEAmpwYAABAAElEQVR4AeydB7xVxbm36Qc4wAEEpQgWqtiN3WiC3sSIEhUVRZqoiakmuTf1lsTc3JSb3HhvTMwXkijSwUaQiCkaTKzRGGMMiIAoSEd6Oxza97zHvbfrbPY+Z5c1q+3//v3WXm3KO8+sNf+ZWbNmNWumnwiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIQMgEmoccv6IXAREogcCCBQtabdy4sS1e2+zatatNy5Yt2/Brbfv79u1r07x5cztWv3/gwIE2dtyz34ztOo7VcW5fetv29+/fv69169b15w4dOlRXW1u7r7q6un5/0aJFtXfcccd+3OknAiIQQQIS9AhmikwSgYkTJ7bu0qXLEZDoisjWsK45ePBgDUJd06JFi05sdwiJ0k7i34bY1y9UBrZh33aOberZs+emoUOHSvBDyhhFKwISdF0DIhAigfvvv7/l3r17j8SEIxHF7gh2d8SyO9tdEO1Y3Z/YjOmHNrNstIU0baC3YCMt/I0jR448ECJmRS0CFUEgVgVGReSIEploAnPmzOm8Y8eOo1u1anU04t2bxPZEuFslOdEIvbXa15DeVWyvYns1Ar8tyWlW2kQgDAIS9DCoK86KIUALvGtdXV0/uqaPJ9F9QuwqjxRzxH0H4r6SZ/jLMWz56NGjt0TKQBkjAjEkIEGPYabJ5OgSQMDbYd1xPFfux7ofXc+do2ttpCzbjMC/gdAv37Nnz5sTJkyojZR1MkYEYkBAgh6DTJKJ0SYwbdq0TgjRYARpCJYeE7dn31GjC8uDVITeguciejYW0z2/M2o2yh4RiCIBCXoUc0U2RZ7ApEmTOldVVZ2A8JiI94m8wTE1EFEH8aGViPwiuudfGzNmzPaYJkVmi4BzAhJ054gVQVII3HXXXVW8SnYiInM6aZKIh5CxsH8LcX9527Zti2677bZ9IZigKEUgsgQk6JHNGhkWFQI8F+9LN/rptBRPZG2TtOgXMgFEfS8m/IP8eJlWu42c108EKp6ABL3iLwEByEWALvW2/M5AxN/HYhO86BdRAoj7BpaXmDnvb7fffrsJvX4iUJEEJOgVme1KdD4C06dP74KAn4tAWLe6WuP5QEXwOHlWS4v9r0yB+2e95x7BDJJJzglI0J0jVgRxIDBlypS+PJ89j1HVgxEF3RdxyLQ8NiLsB1kW8f7/c+PHj1+dx5kOi0DiCKjgSlyWKkHFEJg1a5a9K/5BRFyD3IoBFxO3NogOU58cNWqUrfUTgUQTkKAnOnuVuHwEaJEfx1fFhiLkffO50fHkEKDF/iaT/SwYN27cyuSkSikRgYYEJOgNeWgv4QR4Rn4MSRzKcmzCk6rk5SbwBj0yCzQyPjccHY03AQl6vPNP1hdIgFfPutNCu5TCvH+BXuQswQRosb/Ol+B+xzP2TQlOppJWYQQk6BWW4ZWWXJtbnW51e0Z+FmLeotLSr/TmJ8DzdSafO/BnhP1Pmjs+PyediQ8BCXp88kqWFkHgjjvuaDFgwIAzKbTtObl9MEU/EchJgNb6Lip7f1i6dOnLXDcHczrSQRGIAQEJegwySSYWRyA14G0YQt69OJ9yXckEqPytI/2PMiL+7UrmoLTHl4AEPb55J8uzCFj3Ol2oH0LIz8g6pV0RKIgAon6I6+fFTZs2PaFZ5wpCJkcRIiBBj1BmyJTSCfA++QmI+eWE0KH0UORTBN4lgLBvQ9h/PXr06KViIgJxISBBj0tOyc6cBO65556OfMZ0GM9BT8jpoEIOIkD7EaB9rOtsDY/6hWfDdbadPpba51DzNmy3Bo9Nb9sm1z5+WlUIvrzJhMurvB3xG95f35XXkU6IQEQISNAjkhEyo3gCtMpPQnSuQJjaFu87Xj5Sgr0VgbFlC/tb6ZGo3+7QocPW4cOH7/Y7RTaw8Oyzz269c+fOToTdFWHrStxdYd7V9tmugX3i3xwgncb2kRtvvHGx34wVngj4SUCC7idNhRUIAfsuebdu3S5DTE4LJMIAI0GoDxHdO4imfRJ0FfsbmF9+Cx8b2RmgGQVFxZiFlnv27OncqlWrrtjZlfywD9scyfbR2J+4D9uQtr/s2rXrt/oOe0GXhxyFQECCHgJ0RVk6AUSkNy3Ta1KtxNIDiohPa/0hFKtZm3ivQiBXx/2daBN6PozSE8Q2K98xpKsvaUxELwpp2UgF6yEqWDYiXj8RiBQBCXqkskPG5CNg3b+DBg26AGEYyhLbbl4EYQ9pXEL39XJrhVfCTGWWd0OGDDmSitgx5F29yLOuzpfXMTh+gArY47ze9jxr61HRTwQiQUCCHolskBGNEeC98mq6da9FBI5rzF1Uz1Ho72BZjIC/xgdhVtC6OxBVW4Oyi1Z8d1rx/WjtngyX3kHF62c8VM6WYP8c8tMqafqJQOgEJOihZ4EMaIzAzJkze3H+egr9msbcRe0cAr6JCshrLIt59cm61NWSy5NJiHtXWu+nwOpkliPyOIvkYUR9MzbPZsDc+kgaKKMqioAEvaKyO16J5ctop1FgXoGYx+L1KUR7K4RfpjdhEa22jfGiHQ1rrQKHQJq4n4RFsZhTgHzfxyOUubza9o9oUJQVlUpAgl6pOR/hdNugKlpsH0HIz4qwmRnTqHTYJzlfXMJPc4FnsJS1Yc/dBw8efBzXwMkEdAJ8q8oKMADP2PjssmXLHtc1EABsRZGTgAQ9JxYdDIvAvHnz2m/fvn0U8fcJy4ZC4qVVthch/xuC8yLdre8U4kduSiMwceLE1rxrfzrMz0c0O5cWSmC+ljM24P64v6kQGC1F5CsBCbqvOBVYOQRomdfwKcuxhNGtnHBc+kXENyIsL2zYsOHvmuvbJenDw7aeG64Pa7G/nyWy1wi2ra+trZ12yy237Dg8FToiAu4ISNDdsVXIRRCgsO7Oc8ixtMBsVrIo/pYzQv0pno2/GUXjKskmrpHms2fPHkyaL+TRjA2ajOJvC9fLVK6XzVE0TjYlk4AEPZn5GqtUMRDKutdvpPs6ct8tpzW+llb54zfccMMbsYJaIcYy/W8/BP5Crp1jo5Zkrp1dVDimjR07dm3UbJM9ySQgQU9mvsYmVYxkH0DBN5JC2T4UEqXfZgrjP1AYL8Q+vXIWpZzJYUuqUmjCPjDH6dAOce3sZZnJJDRvhWaEIq4YAhL0isnq6CV0xowZp2DVVYh5ZGZ+o/C1SWD+yIQhL9NdeiB61GRRYwSoIB7P+WEskXnGTg/Pfq6ph+jlea0x23VOBMolIEEvl6D8l0SArtJzaQF/pCTPDjxR4NayPIOQ/xkhr3MQhYIMiACvjbVimuDzqCheFJWeH0T9ENfXPET9rwFhUDQVSECCXoGZHnaS6R69hK7RC8O2Ix0/Be1LTAbzOEKuKTzTUBKwnjNnTmc+dmNf5RsUleQg7E/Q/f5UVOyRHckiIEFPVn5GOjU2WQgtJ5v57YyIGGojkR9ByDVyPSIZ4sKMqVOnDqLnxYQ9Eu+wU4F8HlH/LWuNzXCR4RUcpgS9gjM/yKQvWLCg1Zo1a64lTnvdKNSfdX/S3f9CmzZtnlD3eqhZEVjkNjlNdXX1RQj7+VQoWwYWcZ6IsOPvXIdzuf40TiMPIx0unoAEvXhm8lEkgdSEIDfgbUCRXl04fwcxf4R5t1e6CFxhRpsAAzFtsNzltNaPC9tSRH3h4sWLH9JUsWHnRHLil6AnJy8jmRIKzuYMgLuKVtGpYRpI9+ZBbHm2V69eTw4dOnR/mLYo7nAJ2DWJsF9IC3ko12WoZSA2vEj3+6PhElHsSSEQ6sWcFIhKR34CvEZ0KWfPy+/C/RlaQuspxOdScK5xH5tiiAsBBmcei6DbY6BQv+qGqD/JtflkXLjJzugSiMz7v9FFJMtKJUAryObcDlXMbQQ73Zq/kJiXmovJ9cc18RaDIn9GCpeHmUoqFR+kFysWXxYMk5PibpqAWuhNM5KLEgjQ+jmdgurKErz64oVWD1PD75/PTG9679cXoskNJPX2xUWk8ANhdcFzvdKJdOhBvty3MLmklTLXBCTorglXYPgMghvEwLMbwiocQb6NAnK2WuUVePGVkWSbZY4enWsQ1uoyginZK9fsAe6Z6aNHjw61x6DkBMhj6AQk6KFnQbIMoFA8hoJpLAVTq5BStrxTp04PDh8+fHdI8SvaGBO45557OrZt2/YaknBsGMng3uFz6nWTx48fvzqM+BVnvAnoGXq88y9S1k+aNKkHLZxRIYr500uXLp0mMY/UZRErY+wb5lxDU7iO/xSG4dw7bXiuPzr1el0YJijOGBNQCz3GmRcl02mZd8GeW1gCHzFM4buXls2v9PGLKF0R8beFGebOYErg4YhsGOXkNrr+7xkzZsz2+JNUCoIioBZ6UKQTHA/PzDtYNztJDFzMDSuCPlNinuALLKSk2YBKRHU213YY8xbUEO8Y7q12ISVf0caQgAQ9hpkWJZMpcNowmnw0rZiuYdlF3FdYpSKs+BVvcgkw6nwxqZtmvUBBp5LKxJH79u270b4eF3Tcii+eBCTo8cy3yFiNmA+n4OkZskHdGFU/XqIeci4kNHp7X52u90m0mHeGkMQ+AwcOvCyEeBVlDAlI0GOYaVExmYE79s3pk6NgD6307hL1KOREMm3gIyrrmHHwXlK3JegUco+9jzEq7ws6XsUXPwIS9PjlWSQsnjJlynEY8qFIGJMyQqIepdxIni2I+mZGoN9DS31dCKkbNm3atKNDiFdRxoiABD1GmRUVU+narqEL8jpaDpG7fiTqUblKkmkHor6ztrb2PkT9rYBT2JI4R+qxUsDUYxZd5ArkmPGrOHPtu+YM1LkeMW8f1cSnRd0mCYmqjbIrvgQmTJhQ26NHj2mkwAbMBfbjnuvEmJXrEPXQv+ceWKIVUVEEJOhF4ZLj9evXWzd7r6iTMFFv3779OLVoop5T8bTPPsHLBDQPYn2g07Qi6scwk9wH40lNVrsmIEF3TThB4TMwZwADz86JS5LSLXWJelxyLF528jrZ/k2bNs3G6kA/y8vgvPfbp1/jRUvWBkFAgh4E5QTEYaLIu7hXxS0pEvW45Vi87L399tv3Usmdzr2xKSjLuaab01IfwT2pSWeCgh6TeCToMcmosM3k2d1VFCKhfIWq3LRL1MslKP+NERg3btyuvXv3TkXUdzTmzs9zqefpw/0MU2HFn4AEPf556DwFvC5zLgVIf+cROYxAou4QroJuxkC5rVR6TdRrg8LBPTnE5psPKj7FE30CEvTo51GoFvK++ZEUUpF637xUICbqjNC/Sc/USyUof40RoKW+gXvFut/3NebOz3M8T7+M6zm0aZf9TIvCKp+ABL18hokNgUE/LXjf/KMkMEmvyWia2MReseEnjGli3+Z98QcQ9YNBWEMrvbVNvxxEXIoj+gQk6NHPo9AsHDx48NkUGImbnUrd76FdUhURMV/+W8JAublBJZZ79Dh1vQdFO9rxSNCjnT+hWTdnzpzOCN8loRngOGJ1vzsGXOHB8+nVV2ilPx4UBrreP6yJlIKiHd14JOjRzZtQLdu9e7d9Ra11qEa4j1zd7+4ZV2wMfHr1aRIfyGxy3Kttq6qqhlUsbCW8noAEXRfCYQRmzZp1Kgf7HXbCwQFaMasI9lc8dzzkIPgmg1T3e5OI5KAMAnzMZS7X+NYygijYK/GcwL17QsEe5DBxBCToicvS8hJkk1UgcpeWF0phvimA9tKyeGj06NF/Yz1Hol4YN7mKDwE+5rKHgaUPcG0fCMJq7t1h3MNtgohLcUSPgAQ9enkSqkWMmP0A4hrIh1cofH6NmNd/X5ruyb9L1EPNekXuiACivpqgf+co+AbBcg915B5+f4OD2qkYAhL0isnqphM6Y8aMbrg6u2mX5bugdf63MWPGvOoNSaLupaHtJBHgdbY/I7avBZEm7q3zJ02a1DmIuBRHtAhI0KOVH6FaQ4FzKYvza4ICZxPdkPNzJVainouKjiWBAJMa2ats9T1SLtNDz1erNm3aJGIyKJeckhi288I7idCSmCb7khrpssXpz54lIugP0Q1Zly8iiXo+MjoeZwL2HXWu/wdIQxDP00/knj4mzrxke/EEJOjFM0ucDwbR2ExwgQyEI54n6H5s8nOTEvXEXWZKEATs2ued8d8EAYOK80dstscg4lIc0SCgzI5GPoRqBV2Bp2GAPT93/XuDWbSeKzQSiXqhpOQuTgS4B15E1Be6tpnHZz379+9/out4FH50CEjQo5MXoVhCDb4V3YAXBRB5HQWMvZNb1PvmEvUAckZRBE6grq5uPveC8y+zEccH1EoPPHtDi1CCHhr6aEQ8YMCAMxhEU+PaGgqWBYxq315KPBL1UqjJT5QJ2DfUue+eCMDGbnyT4eQA4lEUESDQPAI2yISQCCxYsKDV2rVrP0fLuaNLE+heXE8vwM8ZCFfWYCBeqzuFisHVFIShXLekYSNpmUw6dpbDyyb+IA0D4W6DELuxPpJ1G9JWVO9FOTYE6JfkHdpJ2jYQ5xpGXy+65ppr1gYYf2SjspYzFepbMbCXSyO5bjdz3d5d7v3n0kaF7Q+BUApGf0xXKOUSmDZt2rkUtB8pN5ym/DP95b0UJiubclfI+TiLOryPhsX1CNzFLCdRyLaHvw1ItCXJ96JV5KjDHKzjK2RWuXue9M+rqal5fNiwYXsLyfekupk5c6aJ+cdcV1JhPpcBeS8nlaPS9S6BJBciyuNGCEycOLF1p06dPkdB0qERZ2WfQrD+Rpf5r8oOyBNA3ET92WefbbdixYqbScItvH9/PKJm0+tW5PScXA8HqMjUsd7MjGZ/gMnPEJpnPdlbcZuI+uVcD2e5TDi8t3Lt/VitdJeUww9bz9DDz4NQLKiurj4tADGvpdD+vd8JjNMz9cmTJ/dGzH9JV/N/UaiewhsFNSbmtFCbVeJC2ltyTbSDQ2+E/VqY3EsFbQIsKrZxAYc/wGGX3/eJNzz4doa7Rrx7oSRwW4KewExtKklWeNIFd25T7so9T+H9hA3+KTecXP7jIOr33Xdfv7Zt206nZTRi7969nWmZt0yLeK40VcqxNAMTdrYHIGjfnD179hfZrsjyiFbzHu7HIOZ6P69SrrFKTWdF3kCVmtnpdPMs1wZkHZHed7Res2zZspcchV0fbJRFnVm6uvC8/Ke0vC6gNdrWREy/hgSMCZW+FqyPhtNnEfUxDV1Uzh7vpr8CgxUuUwznnnTvH+syDoUdLgEJerj8Q4md1oDzmjqFx3xG8R50ncAoiDqCfRMj1zNjEf7yl7+0Jt3foZv9g7RCW5lw6ZefAD0XzRH23rj48pQpU87J7zLZZ7hWHkXUnd4zXIvO7/1k51K0UydBj3b++G7d1KlTexLosb4H3DDApbxzvqrhIXd7YYs6KevmFfXly5dXUTCfyFL/rNxdypMTMkLTAl79qWz+81133VWVnJQVnhIeT22gYvNi4T6KdwnnQQ8//LDr3rniDZMPXwhI0H3BGJ9Agmid09X8ZNBEoiDqtDTHW0udZ6I7mQlsAiL/Z1rpQaOIZXzWiwG/Knhd1K1btw/HMhH+GP0M92hZ8zU0ZQbjOZyPn2nKBp13Q0CC7oZrJEOdN29eewoL1yNdlyJoq8MAELao07rqnhb18ePHL6fFOZpuVIl6ERcDDO073tci8BU56j01m+IrRSArxempldoLUgqsOPmRoMcpt8q0ddu2badQYNokJs5+FMR/dBZ4AQFHRdQfeOCBagY6SdQLyLO0E2ulc33aY4oz6Ra2Z+oV+aN3x1rpzgZeGOPu3bsPqUi4CU+0BD3hGexNHq9Pne7d93ubFumyIJ+d57M/KqJO97tEPV8m5T/eguv0yN27d5+Z30myz9C7s4kUOv0aG6J+RrIpVmbqJOgVku82xSTdwUe5TC6CHmrr3Js2ibqXRry2eS+9FddSn3hZ7a+1tbW1T/sb4mGh9WFCnyA+mXxYxDrgjoAE3R3bqIXstHVOYt9gCs+3o5RoiXqUcqMoW1rS5VzRYjNhwoR1MFhSFLXiHbsuE4q3SD7KIlCRA0/KIhZDzzZve8eOHf+FZ5NtXZlP4XNP1AQ9ndYIzf2+a9asWceTDzZ73Dk8K02bqHWKAC3zZrTQ99CbNAtGdwQBhnw42L59+z2DBg3aceKJJ0YmU+hV60PX+C2uGHDP7oT1/2p+d1eEgw9Xgh4888BjRNBORESucxUxBcPbiPk9rsIvNFyeWfenAPwg7o/l1Zz/TT2LrPcuUS+UYiTccbkesulQtwZhDXHZZC67iG8L6zfZ/xWViWcWLVq0NojJkRpLI6J+E9f0sY25KfPc9NGjRy8tMwx5jwgBCXpEMsKlGbQKr6PF4+x1NQrCUD/N+OCDDw6mlfUJWndXUhAfRaujBYL+yJ49ez598803b0yzlainSWidTYBr2EaVH+LaOYig72VZzjKL/Zm0YN/Mdh/UPvduP+7dsQ7jexlBn+swfAUdIAEJeoCww4gq1d3+ZQonm47U9x8iuhcR/SGFXuBdlQsWLGi1Zs2aT1AY344NfZnIpYp01qexqqqK3X2/ipqoY9w7TLxzH7zU/e771ehPgNbtz3KQpY7r6a/WLU3Ij5Jne/yJobhQaKV/glZ6j+J8Fex6D9fj/5A2p5PZFGyNHJZFQIPiysIXfc81NTX9XYm5pR4xfTUMMZ8/f36ndevWfR/h/iZmDKCFnhFzs4sWOuVU66vatWt397333tvdjtkv7IFymNCNFpfNKKdX2upzJHp/VilEQFuwtEXUz2X/e+TZJ/gUbihTphL/Kw4p2adsj3EYvoIOkIAEPUDYYURFoeR0AgkKm78GnS7EvGrLli3/Tav8ZoS8K2nMaUJURR170zPK1Ys6053eaDPKUTnJmQ4dDIeACTtCbl+DO55W+r9wvU2YO3dux6Ctqa6u/kfqkYCTqEmb0zLCidEKNCcBCXpOLMk4yICeVqRkoKvU0HpZy2C4Na7CzxcuM959HhEcScuixgrdxn5xEPVrrrnmTViOJj2+TxNLuNZ9bD0p9QuFt40ir1/Sx+y8fvkJIOrNuc56we0WJry5KvU1vfwefD5z5ZVX7qAS6Ow5PmGfQFkhLfA538IITpkYBvWA4hwwYMBxFETOmn0UBIG3znmeeCEC9CnEr2tTYp7GHGVRJx326VVfut9NmGlFNrOWvi08crCu4wMc3wYrGxz4NuJkg72WsF7Beg3nN3N+p7GyD8mYP1ub6Ft4+r1LgB4UcDQfCJdRy5Yte1/QXOzRlqs4uQ6qKSsqeiIfV2yDDleCHjTxAOPjRu3vKjoKN7Ron7NCJpfd9kEJCtZPEfeRuc43diyqoo7NZT1TN+E1ETYhp9DfQp78mccQk1j+HdEezbEPMuvYhYwlsO9gX8Cx83bt2nUeYn8uHC+A53mI+oX4/wh+P4G/73PsYdy+zrLXxN0Wa81X+g92LVjOh8+Hg+56Jw9fIw/2u8oDroV+rsJWuMERsC5Z/RJKwPFNupDZrGqDRMcHJd6PgH2AArUtlZWiozZRR/yuMo8MlMu80mYD5XilzUTrasQt8GYpcdqgPRsoN5kBhst5Vcm+0jYdIc05+YyJqwk4buwVq9cQ4T9y7FnC+RsTCK0knfsZMHiQtB7s0qXLQR6L2IjtNC8vOOtKbvbNb36z+ZAhQ5rv2LGjRZ8+fVosXLiwVb9+/aoJZxAifxZhX4Dn86kE9DD3iFqzUvinDYjr2tLM9VcD+4t27tz5JOn4U1BpsXuNa9RmjnPyvDtVVvwhqPQoHjcEMne5m+AValgEpk2b1omb9J9dxU/hPg3xWeYq/Fzh0t3+AwrUTyBkHcoRFIQOnYreK20I50bSZ6Ke85U2ztV3hWP7BvL2MZY5iPjzCMx2BgnuX7t27QGeheYeIZgLaBPHCKsFQt9q48aNbXr27NmLisMVcP8o8Z6FLe3JB+vSbyKUZJ22yhS/NVRqvkWF6xfkVWCve1HRO4F4r3dBlHTZO/jfJz2hvJrnIk2VGKZa6AnNdW7Ofq4KWwr0fbSW3woSnb2mtnnz5guIu6TWudfWuLXU27Zte47lJYX5G6zvRdAfpAv9bWYy24foOuuGTVUObH4BW5ay/5NTTz31Xrrs7RnyOETgo1QmOleSsFtFksUmLzoRDtazso4lkN/ixYuXDhw4sJb4fZ/CmeuqOWk6joQsCiQxisQJAT0Yc4I1/EC56Y93ZQVhvzF06FBnQpLL7q1bt9qgnb4UPL5UQk3U+UXuPXXS1+CVNiowo2kZP4KYfw3uQ9evX//DcePGLbWWlEsxz5EHh4iv7uqrr97K8+MnEbPPwHA49v4SG7fAsiIG0ZEH9rgD7WvZm0qV068XZueB5TesnQkuFTM9R8+GHrN9CXrMMqwQcyl07FGKM0GnMLNneYH+KES70SL0dba7uIh6hw4dRpH2O3kWvur222/fS6HufQ4eaD5YZA888MCBW265Zce8efOe41nyPyPqV3PNzUt12wZuTxgRkt6OpDvwd9LpnXE2EJU0OSszwsijSoxTgp7AXKfA7cbNWe0qabTOAv+YA62HbrQCfb9e4yDqw4cP302L3Lq9QxXy7OspLexz5sx5mryZQC/CJ3CzuEJa6x1Iqy2B/pYvX76CCt1eR5F2YWBmjaOwFWwABHwvIAOwWVE0QYCC9egmnJRzeo21zsoJoBS/pMmm4XQyiDMl6tfxrHoSBVpkpon1dL8HLhzF5JEJ+4gRIzbxtsAvaLF/hMrkJFrriX7VjTS2gZGvPUaFMKfb3d5sWFmI2xLd9C7Rn7xFgIAEPQKZ4LcJ3PDOBJ2COvDuduODljttnSLq9r715fQESNRLvCAtj2699dYVsPwsQXyW/Xd4VFJiaNH25vp6bCz1xL2isfPlnKMS6azsKMcu+S2MgAS9ME6xcsUN77KWHYqgB5EBEnV/KDNobxfT807kee91VC7/YRPT6OcfAZeC7rIx4B8BhZSPgAQ9H5mYHqfL2EpPJ6NvKUh23HDDDWtjiqYgsyXqBWFq0tFtt922j/f9n8LhKHo9npOoN4msYAcMSl3DvbivYA9FOETQe1KGtCzCi5xGiIAEPUKZ4YcpPGvuRbeZk2fNdLfbR0Scdn37waDcMCTq5RJ81z8D+Q5cf/31C7lmxiLqv7HBcvqVT8C4Irxvlx/S4SEQbmuu/6KnVj48JB0Jg4AEPQzqDuNEdJ11t1MoB/5lNYeoGg1aot4onoJPWgWQXp3ltNA/RmXzMbXUC0bXqEO4OnuOTth6jt4o/eieTOaIlejydm4ZrXNntWu6+lY7T0CEIjBRp9v4ciZ2sYFyE2gZ2RfLmkVs7vf6L6Xlw2YfEWHkeXfrSmWAWieuj/a4bcP+bvZ3sb+Jito60rkp9WpcvqDKOX6IUfCrmY74dgKZjKifD9Nywqt4vybo5KETDtznzsoQJwYr0AwBCXoGRTI2uMmd3IwUIAe3b98e2DSXUcmNOIk6rzS1YGrQ7nRtn4pgXkhvzXl8cKU/6yPgWf/qG4V1/etkCHn9POysD3DevtK2lrnyX6UV/RSC+wzTyi60V6T8ygeuH5tpbjn2fZI4plOZOImKhF/BV1w43IurmXDI5pF38bw78+pmxYGNeYLV5R7zDPSaj5jbs/Nu3mN+bVMgb7CBTn6FF6dw4tL9fswxx9gHeX6EaP+WFve/s74E4TwG1vVijpDaF9qaWevY1ibquG+JoHfD7cm4vZF38f8f5/6M8D7Bx0A+Ravat+5XqyDwkZdFVB4+y7W6kXjjdBlEyla7F+HnpMeMvJGgRyq3CzdGd1ThrCLvks8rduZmdDXyqGKen+fK6DiI+k033bQNMf4Gtr7AddAM4WzyU6fmzoTdxN6E3tLJrx0C/0EE/iesn6Pl/m0eORyXi0uxx+wbALt3736BOO+gMuH9rGuxQVW8e/LMyXN0rolqpvW1RzP6xYyABD1mGdaYuRS+LmvWFS3oxj3qos6MbdVjx45dglDeiJi/UOoANBN5a8GTXuvxOZou/K8hwE9RYfzs3XffXfasdbQudxPHTJZJGvne2B3d+Dny19krpIy7cPLorvEU6Wy5BCTo5RKMkH8KcmeCTgHvpHsvQvgKMiXqok5LutpGldMdW5aop2FY692EHfHtjfj+T9euXefSDX9u+nyp69GjR2/lev0urcxX6QkoNZhK97fZFQDyxVlZ4spmhdusmQQ9QVcBouvk+TnisJ9nshsShKqspFSaqBssE3Za/W3oBRqKAD/E8/WP80y8nPLj0J49e1ZzzX6PyoJ9FrSsPKlQz84EHZ5OypIKzafAkl3ODRmYkYqoYAJOvpREYb7BJrMo2IoKcFiJoo7wmqib8vaikvfD/v37f3/BggVtS83uCRMm1NIS/C3hzlHXe/EU7TVD8qHR1xaLD/VdH1SwnJQlpdojf4URkKAXxikWrlzdhBQaLlsCsWCby0ivqE+ZMiXzuVp7T91ECm5uXhTOZYznGBWw7gjleL+739NRELY9Y+/AiPhPrl+//sd33XVXp/S5Ytft2rXbWltbeyfhadR7sfDede/k3nRVlpSWRPkqlIAEvVBS8XBXcsHaWPIQp22Nna/kc2lRpxt6WtRFHdH8c6kD5bLz2FrrjIpvT7pHH3HEET8staWe6vlZjIDYu+nZ0Wi/CQLkgxNBJ1onZUkTydHpMglI0MsEGBXvJibc3E5eWZOgN57LKVG/KuqijmiOLmf0ezaFlKi3o5Jww5o1a75Fj0BJk5xUV1fvIKzpVBA20auRHY32GyHAmAYngk5+VE+cONFJedJIcnSqTAK6e8oEGBXvFNbOatQUGlujks6o2hEXUUcwfRn9ns4HE3UqCR14Bn4L61vSx4tZWyud7vtl2Ha/WunFkGvWDP5OBN2sIE+clSnFpVKuCyUgQS+UVMTdIbrOBrHwTFZd7gXkv1fUaa12TXtJ+jN1E3Wukc5cg1+bPn362el0F7N+5ZVXbHDXNCoF26mcFuO1ot1yzW1xBYDKlbMyxZXNlR6uBD0hVwCFYNkTfuRD0blzZ7XQ88HJOm6izit+VzFw7GLvqaiIOo9m2vv5nno6jQi6qXBvrsP/9I4lSJ9vas0rcPt5jW0prfSn1UpvitZ75xlU6KyF7rJMeS8F2vKTgATdT5rhhtXGRfTc1LXDhg2rnw/URfhJC9OeATNqewOt1aez0xYFUadr/CYXop5qpRN863Msjuy0F7JP63wX7h6hclCIc7mBAI8r9rCyxfcf976TMsV3QxVghoAEPYMi9htObj4KanW3F3FppFqXj1LQ5vwyXdJFnZH0neid+NRDDz1U9EddPv7xj5sw/QlBX2UVI/0KI4DwOulB497XoLjCsiAyrnTXRCYryjOEQtSJoLsqLMpLbXR9kw+HWGY3ZmHURJ1KyA20jp9ktHrZkwchAi145NCHEeu3sF3Uw3CutUPMIb6e9RPqdm/sCmp4Ds6uetCclCkNrdeenwQk6H7SDDEsunid1KZpKe0IMVmxitpalYj5hm7duv21KcOjJOr0JryFgN6MqNu30MsSdcTFJp2phsO1Dz/8cO+mOGSfx18tHJ9nnX1K+3kIwLwuz6lyD0vQyyUYsH8JesDAHUbn5OajYK3Ib6CXkk9Uquz74i8z5mBjIf6jKOrktx+ibq303gwQvLwQDl43Xbp02UuXu820p9HuXjCNbHPdORF0rmUnZUojSdGpMglI0MsEGBXvFMRObj5uagl6gZlsLXTE6E8FOq93FjVRJw03+yHqcLCpcD9S7OQk9k46ArUC//ZeejEoK9mtE0GnUuWk16+SM8p12nXHuCYcUPiuatMS9MIzkC5rc/xC4T7edZk0Ubdud6tgsj6jpqZmULE8tm/fvgdR/7v1eOjXNAFYu6p0O2kkNJ0iuSiVgAS9VHIR80drxklt2mFhETGC5ZlDxcda57t5Fv1WKSElTdSNAc/jO3D9nFksj1Ql8s1i/VWweyctdMvCCmYay6RL0GOZbTmNdnLzqYWek/VhB1Pdwxvsq2GHnSzwQNJEnRa6fVq16Jnjtm3bth+/K2FZILnKdqZn6JWd/97US9C9NGK8TetQgh5i/lkLnd+qMWPGFP1WALOk2X1YH0AURJ1ehvE2+YyNfi/nmTqtc+s1Gjh//vwqg1Poj4+1oOX7V3NN16W4Fuq1Ut05aaFTqXLS61epmRREuiXoQVAOJg4ngk6B7ur5XDBUAorFWugsK4mu6G+gDx48+GTmfu+VNjVsUacgPzKXqDMDXMHvkhGGJaclgnwU30zvkk5bIeu1a9cegKV9H32bBL1pYlR+XN2jTsqUplMkF6USkKCXSi5i/ij4nNSmKVRdFRYRI1ieOSY8tEi3lxIK/sbgbzKi3j3tP4qijkg/V6SoW/liYp5JVzp9ja2/8Y1vHCKePbTQXU2Y0lj0sTtHvjhpoQNCgh6zq0GCHrMMy2cuguLk5mPktgQ9H/Ss4zzLtC+GFf2jQK7hU5WX0NKaFGVRx85PFiPquLX38lu1b9++qBY6fmzGuH2sXQlV0XkUZQ8MPnTFyUmZEmWWcbdNgh73HMR+ewZLa6aoaTYLTTYtdH0po0BY5EFJgg7j9qlPr14eRVG3j63YM/XFixcvKkbUEWQT9BbUCW1wXFG/Dh06WOu81sLQr0kCBT8KaTKkhg6kDw15RH5PGRb5LGraQATdRNfJTY1IOenKbzpVsXRhXwsr+gfjduYpqqKOfd3tmfrxxx/frlhRp7KCJjevT1+RYA5Qeagt0k9FOnd4j6p3LmZXlAQ9ZhnWiLlOut0ojNXt1gh07ynEqyRWMM4UnFEVdcS1fqBcsaKOv0NUBjLp8/JqbJtxBVYTaNWYG517l4BDQXdSpijf3BGQoLtjG2jIiImrm68kkQo08RGJDBHqWIopaN4uxCvjNUmiDpNDCM7uTOIK3GA8gol5O9gU6KNynbmqdHsrmpVLN14pl6DHK78as9aJoFOgqsu9Meqec4hQB89uwZtUxg77nnUSRN3EGDE/iDAU+yiiOd7suXvRz94Lhp4gh1x3ru5RJ2VKgtBHLikS9MhlSWkGUQAW3a1ZSEyuav+FxB03N+RBp1JsRvhyTnMad1Hn2jlEZWUHI/jXFcOFMSHWXdEGnq6EqhhzIu/WVaWbcCXokc/9hgZK0BvyiPOeq5tPXe4FXBWIj43oPrIAp4c5oeB8g67pw47bgbiKOiyMhyVq/erVq7fkTFz+g/b8vIbKQEfY5HelM/UEuHZc3aOuyhTlnCMCEnRHYIMOVs/QgybeMD4TdMTn2GKnObVQEK9lvNq120Qw1y+uos41aXOyr/j0pz9d1Ot8Z599dkt4HA2Lagl6riui4TE4O+nJ4Hp00uvX0Hrt+UlAgu4nzXDDclKbpkB1UliEi8r/2FPC02PdunVFt9IHDRr0FoXnYp6F5jUsjqJOemqp6LyYN1F5TjCpTGtGxvdlyeNCh7MIuLpHnZQpWbZr10cCEnQfYYYZFAWnk9o0QuOqOy9MXL7HnRL0Tsza1bvYwM8880zLu2cbE3QL0yvq8+bN65aOJyrTxHpfaaMb+HmunZ1VVVVFfx9+165dreB5HP7TSdS6EQKuWujkgQS9Ee5RPCVBj2KulGCTw5tPgl5AfpigI+YtWJ9agPNcTn5NN3OTs/KlRX379u0/jaqoIzCv1dXVfQxbZzLt6+JciW3sGLPl2dfZTjCm+jVNQM/Qm2ZUKS4k6AnJaVp3rmrTEvQirhHE7BKcF920pFB+GgF7talWupmSEvWracn+grnf+6bji0pLvba2tu24ceNeGzVq1FeuuOKKogbEXXfddS0ZFd8bFifCxJKrXxME6Mko6XXJJoK1sR1Oev2ailfnSycgQS+dXdR8OhF0Ctb2UUtoVO2hZWmmnfn73/++6NfXEMBdsL4fQW+ylW6R0AJuhdsreNTyI0S9D4fqKxFREPXU3O/VCELRTexhw4bhvfVJVIy62UBD/ZomAOfOTbsqyYWTMqUkS+SpIAIS9IIwRd8RrRkntWkK1qK+lBV9Uu4sRJCbIbJ9+P73SaXEAuupCPWaQlrpFn5URR0hrp/7nQ+6VJfAoS0CdTYMiu7lKCGu2HuZOHFia3g7aaHbJRZ7QBWWAAl6QjKcQtDJhywoLNpRaKiVXsB1YoLOyOxWCPPlBTg/zAld1G/jdxJiZrOrHXY+14Goijosjky31HPZnedY8+rq6i5UTi9K9XbkcabDaQJdunRx1TpvRj7oe/Rp0DFZS9BjklEFmLm9ADclOaHQUCu9QHImRIjZ1XSD1xTopYEzxHwig+OWIuwNjje2E1VRL7alzjv8bRgfcBZpH2yVI/2aJsC14kzQid1ZmdJ0yuSiFAKFlxqlhC4/gRFo167dNleRIRhdXYWdtHBtIBeN9IEMDLuolLSNHDlyNYL2HZaivgUeVVG3ljo8xhfS/Q6zDlRoLmdpLUEv+OpxVtmmcuWsTCk4dXJYFAEJelG4out448aNzmrTiIsEvYish1cLROlG5iQvaWYUvM9CoB9BCA8U2vVu5sVZ1GHVYs+ePX1I78Xqbi/8YuM6c9JC5xo8cPPNNxc1w1/hVsulKwISdFdkAw73tttu20dhWPRnKgsxk3Al6IWASrkxQaJAvOykk04aUoS3jFNa6XX0uHyZLutFFNhF9T3HVdS7du1qrfOPwu1o0p1hoY3GCXCtOWmhkwfbue+LuvYat1RngyAgQQ+CcnBxuOoik6AXkYcmSLSuaxDXz/AsPf98ro2Eec0116ygsP4CXc9rEbpGXB5+Km6ibq3zHj16HE1aR0vMD8/Pxo5QAXLVQndVljSWHJ0rk4AEvUyAUfJOgejkJiRcCXqRGW2tdFo4IxHXklrpFt2YMWOe4Jn8vxDOJgruoiyIk6gPGTKkPbyuJI0DJehFZbNdY04E3VroxVki11EgUFwpEQWLZUNeAtzcW/OeLOMEgl5dylfEyogy9l7TrXRE6nZa6SXPtjd69OhZiPpXCWejiTp5XDCbGIm68RlMr8beYtJXMIiEOuS66sB11s5R8oqa4c+RDQq2SAIS9CKBRdk5wrvRlX2bNm1SK71IuLxSZM/Sb0SQLyzSawPnzP72S1qwtyN29p56EgfKbSN9P2CU+1O8uy5Rb5D7+XdgZp+YdfLjMY+zssSJwQq0noAEPUEXAoX9BlfJoaA9wlXYSQ2XCpYJuk3K8805c+aU1TVqLXVeI7qZMF/mIzB7rCVbaGs26i11+LRbvnz5ItL2OSpBEvUCbwh4ORN0Wv4S9ALzIUrOJOhRyo0ybaGF4+wmpDVg84XrVySBVCv9gt27d9+6YMGCkl5jS0c5fvz4xylor0WgH6B7eguCXnBrPcqizrU1zj69umzZssWkT6KezvAm1lQWnQg619XBJUuWbGoiep2OIAEJegQzpVSTJkyYYJOR7CjVf2P+6II7prHzOpefACJlc7x/ecWKFefgqvCH4DmCpKW+omfPnrfQOvsief0KPSfbKdjrp4plP4eP9w5FWdSpoIyXqL+XV01t2ZsBXAO9m3JX4vkthF//paES/ctbSAQk6CGBdxUtN7mrVvpRkyZNauvK7iSHa4KO6Havqqq6c+bMmT3LTevQoUP38676pJ07d47g+fwPCe8fCPs24qj/QI8Jez5xj5Oo03L/E0Jfly8t5XKMs/9+/fodxb3e2kUaHJYhLsxVmB4CEnQPjCRsuroZEaXmTHbSNwmMwkiDdb0jTmeTP9+00cnl2oDIHbr11ltXXH/99d8irCsJ/1uI+58Q9Q3WaqdHwAaX1U8MYoLoXXCLKa3s06t3PfTQQ32ttWf2ROHTq9iVaamTns+zvMgxiXrWBUN+Oulut2gI29lYnKxkaNdnAhJ0n4GGHRw341pXNiAA6nYvA27qefrNtDw/6dcX7MjvQ3yl7S3E+IfdunW7kgrDSGu1E8fvOLcYgV+PwG+2FjyD6XYgjrtswV0tFbSLGHfx36ecckq3dLKiJurY9TWJejp33ltTYXMm6Nzn696LSVtxIlDWIJ04JbRSbKXgXm3C4egnQS8DLCJqX2Kzed6/1bFjxy08wphm4x7KCLKB10svvXQXB/5oi8UzderUo+nm74No9+W6OBph7Mi5apZWiH0t3e+7Of8Oo+dtJH7mZ6I+Y8YMe0xwtfXMZE4EtIHt9R904Zn65O3btz/fqVMnE/XvUhE5i4pKG+NY6T8YOBN02K6qdL5xTb8EPa45l8fu66677h2e09Zyw7t43t3LJkmxucbzRK/DTRBAIM1FFaL+Q1rM2xD1eX6Kejp6BNsiWplankkfL3QdFVGnF0GinpVp8+bNa09Fx8lrpFw32xl4qVnispjHZVdd7nHJqQLt5IY8xLK6QOdFOaOS0AJB0utrRVE73LGJOiw70eK8m5bzlX51vx8eU3lHotL9jqi3sZY6qVH3OxD4Kt2x5eVsft9cm07Kjvwx6oyfBCToftKMSFjclM66zAhb3e4+5DNdyCbq3RH0n3fu3Hm0HwPlfDDrsCAk6ochCf0Ajx1OcGiEs7LDoc0KOkVAgp7AS4HuXJe1bAm6T9eMiToVpE4I+08opL8+a9asfjwyKe7Taj7Z0lgwURJ1vsr2HM/+/xlmv+E630VvVGOmJ+4cbyTYY9KBrhIGTwm6K7gBhCtBDwBy0FFUV1c7uym54XvTRdw66DQlNT4E3VrqbRiAZhPFfA9BP3vKlCk2cC1SvyiIOr0ZN7399ttVffv2/SsD/b4NoCcqTdQHDBhwHNdLlYuLg+vvIIydvSXjwmaF2ZCABL0hj0TsDR8+fDcC4eTVEwSoVU1NzaBEgIpIIkzUWShPm1/LeiIidRUDG3thXqSan2GLOmy6M+5gfCWLOve1s+52rr9VGvAakUKhRDMk6CWCi7o3avFvuLKR7uFTXIVdqeGSX81S76mfTKH9YwrXLyHq76M3pCZKTMIWdTjVv9JWiaKemu7VWWXaZZkRpWs4ybZI0BOau4jCcldJI+z+UR2Z7SrNQYWbmkOgC4L+eTj/gnewx0yePHmgvaoUlA1NxSNRb4qQm/N0t/dBdJ09jqEHxFkjwA0RhZpNQIKeTSQh+9u2bVuJIDj5wAKFSgue05+YEFSRSwYFazN6Qcyu02D9v7y29YMdO3aMYNDcwKg8X5eoB3/ZUMlz2d1ey9fu1gSfKsXoJwEJup80IxTWbbfdZtPFrXBlEs95T3YVtsJ9l0BK1G0A4kcpzH9OBe1OniGPZBa3E1m6pUY8B4aLV+vaWbys60fiS9QDQ18fEZU7l4L+JtdT/axHwaZKsflJQILuJ82IhcVrUc663WlF9p0zZ07niCU5ceZQiNc/W2fdjsRdzvJTKlN3I/CfGDJkyEX33XdfP8sHm8HPReLvvPNOE/Gjpk2bdjIVjKvatm17y65du06257kWn0TdBfXDw0wNknQ5nkLd7Ydjj90Re6dRv4QSYGrRJTyT/ZCr5PHqkLXSn3IVvsJ9j0Ba2BHytiwfYLmIY6sR2OeouD1PPi9G1N9mRrXtPHffQd7sZUaxulRPzXsB5dkirOY//vGPrVJQxUde2tET0BH/XXmNqR89AyeyXMi5M6jItW7fvv35AwcO/A9E/R/WqjNRR/RDn/udgXKT7ZW2lStXfhsu9g36S2BTbezi/iO/z3CZBlgtdRm+wg6GQKReiwkmyZUVCzX7T1MId3eRagqZDRTmP3URdnaYtBBvpJC+i0lFjkhCAZ2dvlL2EVkTrWaIFkgObSE/liHE/4DRG6xX06LeyPIOomwfgDlgC+4OcD0c4lgL3FnXOUG0bMWxjvjpxvme7Pdkbd27J7LuSzztCdvisXfm7TOwe1n/lv3/WLJkSb2o47YZon4K7kL5oIvFb9cj6Z3cp0+fvYj6GVwv/8Zh30Wd9Ft0L5H+b3L9z7Mdlz/m+2/LR3T+BeZO5n8gf1fzxb5fuEyDwg6GgFrowXAOLRYKgdeI3ImgE/aRFDY9+LiIk3feQ4MWk4gRYXt/3axtTqHclcW+t352SuT3I3D2ydTNuNnK9h6O2zfSd+NmP8faIurWjW9fL+vAOaso2SMU+1a7hVcfNsfSA/Q4/O4P0axC1C61eNRST1Nxt0bMTycfnIi5WU1eL3JnvUIOkoCeoQdJO4S4+DSm05uVwkaD40LI1+woTdgR2vrn7daS5mefSD2CZQDiexbLRWzb45crWV+DGF/OcjHL+1lO41gfFvu8anNvOCbo2b+UyFfh3kT9W4j6SXqmnk3Jn31Yg7n5Wf6EljsUwrdKv34JICBBT0AmNpYEaz1TA9/cmJtyzlEYnKqpYMsh6Mavia6JvIl7WqDtHfdci503t7bkEvBcFkrUc1Hx/9js2bMHkC9d/Q/53RApG9YxO5yz8sGV3Qo3NwEJem4uiTpKgeCslU7YHZgK9rREAVNiCiIgUS8IU1mOuL/OLiuAJjyru70JQDE7LUGPWYaVYi6FwsJS/BXqh/AvSL+bXKgfuUsGAYm6u3x8+OGHbVxDf3cxNGvGOAqnZYNL2xX24QQk6IczSdyRsWPH2heU1rtKGIVOZ0T9JFfhW7g8A95HHC6jUNglEqhEUedRU/0bAyUiK8jb7t27XbfOV44YMWJTQcbIUSwISNBjkU3lG0mh+3L5oeQPgfDfz+LyNchthF8/2iu/FToTFgHyxp7VV8xAOdK7h+7q3a5433XXXVWE7/pRltMywRUbhZufgAQ9P5tEneE5999JkDNBpPXcnQE8gx1CewfB2G/CoV80CVSKqFs6aaFv55rf4SonjjrqqDOJp8pV+FQW6nhDQd3trgCHFK4EPSTwQUdr30jnBl7sMl5GVF/oKnxGZ6+lEN1IQaR+d1eQfQi3EkSdNB5ksWvRSXc141HaubyXLJupjCzUt899uOAjFoQEPWIZ4tIcCiDXXWy9+CJYPxdp4H33DRSiL5MGmxzFRRQK0ycCSRZ1rj9rnW+ls2gJFWQn41II2x5ftfUpO3IGQ4XBdVmQM14ddEtAgu6Wb6RCX7Ro0XIKpG0ujXLVsqA1YVOWPm5dnS7tV9j+EEiqqKcqk29wH/2Da3KPP7TeC4UpjjsRxznvHXGy9c64ceNWOglZgYZKQIIeKv5gI7cPaSC4LziO9Vjmj+/jIg5a6U/Q9b6IwnRfqmB1EY3C9IlAXEU9X/JT15wNhHue++iVfO7KOU4cQ6m4Op2Sm/vn+XJslN/oEpCgRzdvnFiGIL7EDV3nJPBUoBTkF7sInxbROrojv4P9yyj4DkrUXVD2N8y0qCNSl/Hq4c8HDx58VXpmwSh9erVdu3Yv8YW6L2Hvu+GdWAAAQABJREFUz7Bze/a1Zft0sdsc+E+yzBw9evRqf0k1a8az8+5c265Htu/hg3xOKiN+81B4xROQoBfPLNY+mAq21vXzMwrF43iW7uS99AEDBjyD/fdSwG6g8NOQ9xhcjSbqLK3JtzPIsy/zxsXwqIk6Yt4WUX+Dbx/8HKS/Qbwzop4Wd9KwEPtnI/ivcsz3a4/K9iVUFpwOEMHuFwv9pG4MLi2ZmEVAgp4FpBJ2uamfdy2GFEyXzp8/3/fXbs4///w9FHxTyKepLO9Q8NrXKyoh22KdxpiJ+k+BXS/q3Cf2NbJDLK9zbBKfnP0NPUU7/c6M1GMql699WjoO8I37F/22XeFFh4AEPTp5EZgldBduobXk9BU2CvCOW7duHeoiUQzosRHvPyUNP2W9HFE/YAWvftEmEBdR5zvqz9FS/ykVxd+ybMbulyD7Ex73PGTXniPK9iU8179/3HLLLc7enXdtvMJvmoBKwaYZJdIFLejnXCeMwvAc+166i3hGjRr1FvNQ303Y/50ueOkKPYS422tFLqJUmD4QiImotzZRpxv+bq6lH2LzD/iu/MwxY8as8gHBYUEwsv1k7se+h53w+QDpcX7P+2yygiuSgEq+IoElyfn06dPHkZ7jXaaJlvPbN9xwgz3z9v2Zo9m9YMGCtmvXrj2d8P8JgT+XVtQgWu72be821mpn7TJ5CrsMAlS+7G2Fl+kGvvP4449/xB6nWHAzZsw4heNXu36enM904t7AdTQZUd9HF3tbxHyfi1fULP4pU6ZUUxH9NJWG9vns8en4YnrmZvkUloKJKAGnr0dENM0yK0UA4XuSQtWpoFMo96EFcjpR/tUF+KFDh9YS7nOMEF5EC+T3pGcAy8kc60Yh2RFRb8e2eqJcwC8zTK4N+9rXfgT09FWrVlnrcaUFaaPfEXV75huKqHPdHInIjud6mkwXu9N5D6gsDOM+dC3mzaiYPGls9Us2ATVfkp2/TaaOgnMMBZjTTzRSYO/esWPHTxhd6+xjFt6E/vrXv+6ycePGGoS9A4JhM261ZCCd14m2I0IAMWvO6HIbA/EWreCNXrOi0lJH1Hd57fJrm4ruEO6NkX6Fly8c4lhEJen+fOd1PDkE1EJPTl6WlBJaSU9ywzsVdOtO7NSp0z9h4CMlGVmkpyuuuGILXmzRL8YEotJSp1vcWuq+ijqv7bWnEnM594bTHCKOQ1Rmn3QaiQKPDAF1RUYmK8IxxAb6cNMvcR07FYczXM0g59p2hR8egahMPmPPuv2k0LFjx8sQc1/DzGPfQocj8/NEqcNhEZCgh0U+QvEyAGhBQOZczah36wLXTwQKJpA0UWe8xyDE3MZ5OP3R82ZfhXvSaSQKPFIEJOiRyo5wjBk7duxaWunOp4Okld6V56XDw0mlYo0zgaSIun0alQr0FUHkBYL+EtzeCSIuxRENAhL0aORD6Fa0b9/+cUTd6RzvlkgGQZ3I63Jnh55gGRA7AkkQdcT8UlrNHV3DR8xrmbM9qJ4318lR+AUSkKAXCCrpzq688sodtKCfDiidl/I8vVdAcSmaBBGIs6hTkT0NMXf98ZX63EbQFwT1VkmCLq/YJ0WCHvss9C8BO3fufI6CYKt/IeYNqSWVh+v0PD0vH51ohEAcRd0qsPSABdLVDjr7xsFfGkGoUwklIEFPaMaWkqzUV5h+X4rfEvx0YSauK0vwJy8iUD/5DK3dOYik2/e+8rAm7vrJZwoZ/T5v3rz2VGCvZwnkNWHmXrAPyBzIY7oOJ5iABD3BmVtK0mj9LMTfW6X4LdYPBdwJfGb13GL9yb0IGIE4tNTvuOOOFjzLvhZza4LINXrYXkfMlwURl+KIHgEJevTyJHSLGLgzj5bP/iAMoaXzIWbMOjqIuBRH8ghEXdQHDhx4CdSPD4h8HVPWzg8oLkUTQQIS9AhmStgmjR8/fhNC+2QQdtBKb0nl4Vp7nSeI+BRH8ghEVdS5podwH10QIPHHaZ1vCzA+RRUxAhL0iGVIVMyhpm8D5NYGYQ+FXmd6BUbSPRnIM8Yg0qQ4giUQNVHn2fqRvKJ5VVAUqBSvhMGLQcWneKJJQIIezXwJ3SobVMPvEUT9YBDGIOrHDR48+Gp75hhEfIojeQSiIuq0zLtSIbZBcG0ConyA+8fu1VAGCAaURkVTAAEVngVAqlQnNoMcabfPWgbys0lnBg0adFkgkSmSRBKIgqhzHdv3zY8ICjCVhz+Sbs0IFxTwCMcjQY9w5kTBND57+iTdeQ0+a+nSLlo1ZzEBx1CXcSjsZBMIW9RtXEiAhNfQMn8mwPgUVYQJSNAjnDlRMM3eTae18WBQo95Taf6ApoeNQu7H14awRT0IctyTdYw9eUjvnAdBOx5xSNDjkU+hWknhuJ5uxMeDNILC6jIGFp0UZJyKK1kEKkDUH7M3UpKVa0pNOQQk6OXQqyC/fDf9eZK7NKgk023ZnBmvrmbimX5Bxal4kkcgqaLO1K4LR40a9XLyckwpKoeABL0cehXmF4Gdy/O6XUEl255F0t1//eTJk3sHFafiSR6BpIk6vVfbWH6dvJxSisolIEEvl2AF+edZ3U4E9ldBJhlRb0NFYvSMGTO6BRmv4koWgaSIOkJ+iHviYe7FPcnKIaXGDwISdD8oVlAYo0ePtm73PwaZZCoR7YlvwtSpU3sGGa/iShaBhIj677kHVyQrZ5QavwhI0P0iWUHhUDDaq2xLgkwyol7Nc8Ob+AzlsUHGq7iSRSDmom7PzZ9NVo4oNX4SkKD7SbNCwrIZqWprax8muZuDTDKiXkV341gGyp0QZLyKK1kE4ijq3HMbbAxLsnJCqfGbgATdb6IVEt6ECRNqeZVtFgXNvoCTbAPlRvKe+vsCjlfRJYhAnESde6yW2eBm8dy8LkFZoKQ4ICBBdwC1UoIcN27cBtIa6CA5Y0srvTmr4Yj6RbavnwiUQiAOom6D4FhsEFygvWGl8JSf8AlI0MPPg1hbQKG4kBbEgpAScTHfUr+MFrsJvH4iUDSBqIs61/bvbrjhhkDHqxQNUR4iQ0AFYWSyIt6GMFjtclrOZ4WRCioUr9Il+StaMQfCiF9xxp8Ar0WewnV0dar3JyoJepoR7YHO0BiVhMuO0giohV4aN/nKIvD6668/xqGFWYcD2aUVczJzWo/is5VBfa4ykHQpkuAIRLCl/rLEPLj8T0pMEvSk5GTI6eA75geXLl06BzOWh2EKot6fQXofQ9S7hxG/4ow/gaiIOj0Fr3MvzYs/UaUgaALqcg+aeMLju+uuu6qOOOKI8SSzVxhJpTDcxyCiX/Pc8ZUw4lec8SVgPTz79u27jBScHlYquH5X8MniafaVw7BsULzxJSBBj2/eRdZyvpJWzTPtm2k1HxGikS/v3LlzvgrGEHMgRlFPmjSpR5s2ba7F5DCnGF5fV1c3yV4JjRE6mRohAhL0CGVGkkyhgOxcVVV1C6LeMax00dqx1+rupyv1nbBsULzRJ8Drj2fTq/NhBsS1CtHaLUzWdO8tt9yyI0QbFHXMCUjQY56BUTaflvqRzG41gYKyXVh2UlDX8Wx9Hp9/fTUsGxRvNAlMnDixfceOHa+k0jkoTAupeO6iR+sevWseZi4kI24JejLyMbKp4HW2PhSY41hah2kkheZLPJv8jbrgw8yF6MRt3wTgmhzB0ilMq7gu91LhvG/s2LFrw7RDcSeDgAQ9GfkY6VTQpTmAgmsUhWeob1XQWl/HY4AHRowYsSnSwGScMwIMfGvJwLeLuBYuCvudc2zYT0Kn8cGVt5wlWAFXFAEJekVld3iJjcrEHalC9OkePXo8PXToUCtQ9asQAoh5X0T8clrER4WdZK7DA1RwH2B8x+KwbVH8ySEgQU9OXkY+JYj6YFrq11Kohjn4qJ4TBepmPsc6n+eWyyIPTgaWRWDevHntt2/f/iECCe11NG8CuPbquA9m82rlG97j2haBcglI0MslKP9FEaD7/RgKsxtpnVQV5dGRY2xZRAXjNwya2+4oCgUbEgGuseazZ88+nRa5iXloAzO9yed6280AuOlUJFd7j2tbBPwgIEH3g6LCKIpA6p3fMXjqUJRHR46txUTQT9Ji/zMFreaDd8Q5yGDtGmvbtq19X6BPkPE2FhfX2TYqGVP1GmVjlHSuHAIS9HLoyW/JBGipd6GAG0uB27XkQHz2SOtpAwXuo8yhvcLnoBVcQATmz59ftWXLlg+Sl+eQl6EOwvQmmWt9Iz0FU9UT5KWibb8JSND9JqrwCibAIKUOFHJjEPUeBXsKwCGF7yvY9YQK3wBg+xSFTdvKB3rOJrjzEfL2PgXrSzBULlalutn3+BKgAhGBPAQk6HnA6HAwBOgabcuUmzcQ27HBxFhwLAcoiP9GQfwM3fCbC/Ylh4ESMCFHwM+iAnZB1IQ8BWIpkys9wDVkj3X0EwGnBCToTvEq8EIILFiwoNW6deuuoaV+QiHug3RDax2dOPQP4nyaZ5/rg4xbceUnYELOvOdnkT9RFfJmjMn4O/bN1biM/PmoM/4SkKD7y1OhlUiAz6+2GDhw4OWI5/tKDMK5N2xbQiH9FBOBvO08MkWQk4BHyK1rvTqnowgcpHfnea6T37I+FAFzZEKFEJCgV0hGxyWZ06ZNu4RC8MKI2/uWCbveIw4ul+bMmdN5z549ZxDj+6Is5EaEVvkTiPlTwdFRTCLwLgEJuq6EyBGYNWvWGTwTvRzDWkbOuIYGrbGWGM/ZF+sZaUMwfuzRGm/JY5iBLO+Dcz/WkS6vsHEfNj6iDwH5kfsKoxQCkb5BSkmQ/CSDAC31o2npjKQ1FurHMwqhaQU57hZj76ssb+iZaSHU8ruxVxo5+z5YnoZARmKugvzWZs5s4Zn+bL5lvi5zRBsiEDABCXrAwBVd4QRooXXgVaTrEPVjCvcVrkvEfTfLQj4A8uq4ceNWhmtNfGLnU6at+ZTpQPLaxlAcHx/LmzUjv5fRS/MQFTm9lhanjEugrRL0BGZqkpJk3a6I+oco6M+NW7oo6LfSwnzVFsR9Q9zsd20vvTCdGIswkHhsOR5Ooc/xX2ya6UV46vXXX1/AoM6DxfqVexHwm4AE3W+iCs8JAQr/kyk8r0DYIzEHfAmJXI94vUEaVuB3ZSW25si75oyP6IlwD6KyY63xniVwjIQX8nEP9s/V19IikR0yIkVAgq5LITYE7NkqQnANBenRsTE6h6GIwSFEzVrsK0jPCrprVyDwO3M4jf2hyZMnH0FFphdpPpbEmIh3jH2imjV7i8li5pBn2xKQFiUhQQQk6AnKzEpIir2vPmDAgA8gEBchikm6ft8xcScPV+zdu3clg6u2xi0/586d23HXrl29yZfeJuKId2+WtnFLRz57yZ+DLAvoYn9GXez5KOl4mASSVCCGyVFxB0zAPsNKlCNYagKOOpDoqLDUIYxbEMTNbG+2Na/ybeYLYpuvu+667QhLKBOWWIXq1FNP7VRbW9sZG2qwqwt29mDbxDsJre+c+Wt5QCXFBr7ps6c5CelgFAhI0KOQC7KhJAIMmGuHyH0EQTm1pABi6glx2Y/p9WKfEvwd7NexXcc5e4Wuftv26c6v37djVAT2eSsCNrKc4627dOnSmoGHrWHZGj+tmVu/NUxtu9pEmzA7s1/Ddmfcd2K7osoN0v3SO++887vbb799L+nXTwQiS6CibszI5oIMK4vA1KlT+9N6sgFzJjj6NUIAcTKBt1etWlWaMDeCJd8p6x15hFnf3srnQMdFIEoEJOhRyg3ZUjIBWuv2sY5LEPazJVQlY5RHCFDZOUjl8NmdO3f+8bbbbquvAAmMCMSBgAQ9DrkkGwsmkJph7qMUyEcW7EkORSBFADFfy6OHR8aOHbtWUEQgbgQk6HHLMdnbJAGbjIZC+RxE/QMscX1vvcl0yoGvBGyWtwVLly79i0aw+8pVgQVIQIIeIGxFFSyBKVOmVDMo7GJaXWeoGz5Y9nGJzbrXeU7+IsuTlTjZT1zySXYWRkCCXhgnuYoxgUmTJvVg5PZHSMKxMU6GTPeZAGJuc7D/FiHf6HPQCk4EQiEgQQ8FuyINgwDTjp5AF/zFtNa7hxG/4owGAVrj67gGnhg9evTSaFgkK0TAHwISdH84KpSYELCJUfr3738irbMPYHK3mJgtM30gQJ5vQMifRMhfYzuUiXl8SIaCEIG8BCToedHoRJIJmLD369fvZLpcP0Ah3zXJaa30tNEi38jnbP/IyPWFEvJKvxqSnX4JerLzV6lrgoAJO3PDn0JBfz7d8XrVrQlecTptXeu87fDMsmXLFmrkepxyTraWSkCCXio5+UscAZtxDhE4j4T1S1ziKihBVMyW0OvyHN+gf7OCkq2kikAzCbouAhHIIsDrbkcy49x5iPvJCEOrrNPajSABelj2kVevkGfP843ydyJookwSAecEJOjOESuCuBKw99j57rV9+OV0xEIj46OZkesR8b9SAfu73iOPZgbJquAISNCDY62YYkzAppRFNM6gO/dEFs0+F2Je0hqvZXkVE17mwylrQjRFUYtApAhI0COVHTIm6gTsIzCMmB6CoJyErccj7i2ibnNC7DtAS/wNBrm9umvXrsX6aEpCclXJ8JWABN1XnAqskgjY99gR90GIugm8DaRrWUnpd51WBNy++74Uvq/t3bt3yYQJE2pdx6nwRSDOBCTocc492R4ZAvPnz6/avHnzQLrlTeCt5d4+MsbFyBAqRrswdznLYuYIWMpz8boYmS9TRSBUAhL0UPEr8iQSQMybM81sTxN20tePdV/War3nyOxUK3wFXenLmW//jeuuu249oq5Z3HKw0iERaIqABL0pQjovAmUSmDhxYuv27dsfg3j1YTkage/N0rbMYOPqfQ+CvZplFW8OrNy5c+fbeh4e16yU3VEjIEGPWo7InsQTQMybP/DAA914/t6bLvqjSXAvey2O460Tlvg6KjD2JbM1+/fvX1VdXb1qxIgRmxKWRiVHBCJDQIIemayQIZVMwER+xowZnRH47ohfd4SwO61Ye/e9K2LfLspssHM39m028SYdG7F3Y11d3UYGsW2Nst2yTQSSRkCCnrQcVXoSR8BelSNRNYz0rkE0a9juhIja2oS+Ddt2vk2qhV+/j6iWNMMd4e8nHBuIVr8Q9r70Pud286x7O2FvY8KdbbZm4Np2DVyDln4iEAECEvQIZIJMEAG/CdhHZ84+++zWdOu32bp1axvEuE1VVZV16behYtCM7XrB3rNnzz56BOp69uxZ98ILL+zTR0z8zgmFJwIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiUKEEmldoupVsEYgUgQULFrTauHFjp/3797c+4ogjdn74wx/e3bx580ORMlLGlEzg0KFDzR977LGOO3fubN+hQ4fdl1122U7y92DJAcqjCOQgIEHPASWuh+6///4hBw4caG/2U4DsvPHGGxcXmpaZM2f2GTBgwLozzzxzX6F+/HA3ffr040ePHr3cj7AaC2POnDmd9+7de8QNN9zwRmPugjhHPvXYt2/fRynQzyWfTmE9iHUHb9wcq+PYm6xfZ/1sixYtnsT2F9gvW+RnzJhxFOH08cZX7nZNTc2rw4YN21tuOGn/s2bNOuGoo45aOnTo0P3pY36uyYM23CunpMNs2bLlipEjR25M75e7NvsPHjw4gnDOJv/OYN2LpYUn3H3kwUr2F3H+GbYf4379u+d80Zvcw6fjqWXRHnN4wKaiyo8cQehQCARahRCnonREgNbdTG7E+kKKAuJZormg0Kjw990lS5Y8hfuJhfop1x3C8gHC+B+Ws8oNqyn/e/bs+R5pvJqW8DGIRG1T7v0+T9wtKORHsP4cYn4+4bdguz6a9NobJ8fasG9CP4j1RxGHZvBayTKjqqrq7muuuWaV132R26MI73+L9NOoc1qeA3CwrFFHRZxEbCevXbv2b3j5eBHeinHaGwYvejx8ku2fefaL3rReFmweS559AftPbiKA1rjrhxtbhrP9PbL2NbZ/0qpVq0lULvY04f+w06TnDxzsfNiJ0g48g7f3l+ZVvsIi4K0xhmWD4o0GgQEUKl/7y1/+0jpAc75OnP1dx/fQQw/1JI6bWI6kwL3ZdXzZ4SPkV9B6eo0C9wHSa4VkqfddX/x/tba2djk9G7+0ln52XEnaJ60fQ+S+Foc0YedVa9asWYLN92JvU2KeM0n4PYHlbirmy7hebszpSAdFoBECpRYsjQSpUzElYMJ6DK308UHYT4F1PoXXxcTVGWHq7jJOutq/QFxVFgfrLxJfS5fxpcN++OGHj0B4Z9Fam0e8A9PHvWt6Utax/xjrH7H+Jut/Zfkuy3SWVziW6zmrVbpuoaX/OkLyWcJO8qOzb5PGUaTX1x/sfGHGtVSDfdPIgzkYeFwOI7eTj39guZPFKiefZW15/H8sT7K/I9sPYfWi8selM/1XhN81+7z2RSAfAXW55yNTQccpOLpQiNQXHKz/la7D+1w9u0xjJZ6vp7dpkVhlwrfnl+lwbW3Pznfv3v0Jz7HjKMyvY3+W55jvm7TKB9LN/ygBH9YDQUG+huO/pGv1QbpWX20scivQ4XMpvMbi78OsvZWRTuzfhaBchrvxZTwD/jw2mE3l/Kxi4vuP9JHs5pOoAK4aNWrUU35F0Lp160NcB2UFh019yJvHsPHE7ICw+RGOWR7/lnypyz6f3iff2lj+sm89R1daetPnbB8bX8TNpYRRyOOM6xgLkLeHjYrldMLsYuFj30LGZXzJtvP8tuQ5rsMRJiBBj3DmBGjaAE9cx61bt24c+9Z16ORHBcIGClkhVv9j2+J/LrXr64ru6c8QYMesQL/CvjNBpwA+jYL4D8RRX3im46YQNdH7Dwr5KY0V8mn3tsbdZlYzbaGS0I+W21fZvglm3nv3MuL7K/EOw32jFQT8HvZDBB5jwN2Sw05E5ABprcIUa62eT/pej4JZiPmx2PU0S+8se/6EUH6eysfLWcdz7qaug3mcnEf6Tkbcf0iYH/I4Pp68fYa8/yB5ZM/Y8/4YXPp43pOcoOK3l7DTTjYT3mPpHa2TQUBd7snIx7JSQQHUoBXJTW+tdK9glBV+Ds//kXXMW6HIOlX67rx589qTlttzhHAalYpMhSLH+ZIP8bz+GArg+QTQQMzZv6ddu3YnMJL5l6lCvOg4KIDfwP/HqBCcQeXg2awAjibep2fPnl3wQMgs/5HeJR+tp+JRRM/p45lCIFivDxWrR7HJK+bW3P88+fPBQsU8Oy6rjOH/w+TtxzjnHbh5JK3r33FtHZ3tR/si4CUgQffSqNBtCqZsQe/H4LHRLnDQsjmdcK/whk0B1iB+77lythl5fStpyykAxGktXV9/iE0bntfPJdCenoDt9aRP0Hq69eqrr97qOV7yphX8iMaFhPufBHLQE9DrHGu0FedxG7tN8rIflZZH4NwuTON5lDKF+Id4bNgB98vJ4x+xzjSBPeeL2rRKH70mQwnL+xjqaHqbHgh40GpRdstx+AQk6OHnQegWZAu6GcSxf6fg9D6v9cVOws1unVtcvrfQreCjFfUvHqNN+DLdtcT5Qev695wve5MWpI3aP9UT0EEK5TEU0BM9x3zZJNyDhPsNCv4RbO8h0D8xYckliL110Sf5dy6iboPQQim7qJDeSNzDPYD30WNyJXnxe8+xsjfpjXmefLVepB2ewM5l0Oq/e/a1KQINCIRyUzSwQDtRIJBLUPvTzefrqzNUEOx1nquyE0zB5XsLfenSpdbD0DcdF3E8iPh9Jb2fWmfvZ50ufJfnk4Nx3SA8HmV8kYL+/sJDKd4lBf9c0nYBg7w+cuWVV3oL/+IDi6gP0rcX07Z7zBsBb5u/INAf128HxPxHWZF+5vrrr1+QdcyXXeu6J+3ZPWVfwQ7f7xdfDFYgoROQoIeeBeEbQKHhLSAyXbgUXr620mnB/jthekfx1ieeYzUUUjm7xkuhY3GwfNnrl1bUdyl4beTxIs/xq4h3kGe/5E3i+w+WVukAYPp7xPb/0vsu11bw0zK3VnpSfzuojF0H0/2eBH6B1vKnPfvON7l+P0Ued/NE9Du62X/u2fd9kwrhPNJ9bzpg4q+y+yi9X8wav2U/DigmPrkNnoAEPXjmkYrRBvh4CykKj7vTBnJ8IN2bN6T3y1lbC5bwrk2HQTwmrpkfvQG5egky54vZYGDY1cR1gsfPYwje34jT3oH6vud4C9L3Jc9+SZs2+hyPXk7WDXubxVdSgPJ0GAEqR7+D523eEzxSsVf2vN3f3tO+btsjHK6pBo9wqGR81tdI8gdmPT+70qex40Yqoj3S+4Wu4XdYZbpQv3IXDwIS9HjkkzMrGWjjbZ03Y1pRm9TktXSEbFur2o/rxFoV9eEQ5h6Wz7AcSMdDHL4JOpWDBgPe6Pr+bjqegQMHziDet9P7bI+lpdcrvV/KOvVoIsOIMO+lAvFmKWHJT34C9ETcS15+y+PCps+dyViI93mOOdl8/fXXP0TAR3oCf4BKRiCv+tFKf4dr6meeuFtTEb3es69NEagnkCmExKMyCdDK8Qr6LuYIXwuJTKFJgTmYVtDIcuiknvllWrCE+TMKZxPVjLByzGtHydEhzpfg+ax0ABSETxPXU+l9+/gMcf0wvc92Gxh8Ib1fypo4sgvXH5cSjvw0TYC8/DqupnpcVsP/1/a6oOeYi83rsgL9Zda+0116fDLd7qmIrnQaoQKPJQEJeiyzzT+js95BX24hU2jOppBc7InFng+XfK3Qmvg3/LdMhVfbtm3bH9g2x97wxOFLCx1x/ponTIsj0zpPH+/UqdMv2N6U3md9mz168OwXvGnTuxJHZqYwuP2dFtXCggOQw6IJMADwVjwtSHuEfw96muaXmofpcBpbk68fTJ9ne3OvXr2eTO8HsabHx8Z+ZN7SwIZz9QpbEOTjFUereJkra/0mQGHoFdJ6QaewOEhL91ucm56Kbwj79vy76BHbtM6PYxDPGMJKm/7zVC+A7ZugX5I64bUjdai4Fc+yz6L7Ox2eef4bg5bmZ4cyfPjw3aTnx4j/HalzHZke9lNsfyfbbVP7dXV12d29f2jKT9TOw2Ec3dbed56LMpFK4SEqgXcV5akMx4hbHeI9gvfBbaa2dGVqCPsPIXIf8fsTwLCxqZGPTZvM9p9dT42cjitr/Rz7g+wYNrRbvny53TMm9AX98JO5CQvyIEexIyBBj12W+W5wpqsbIc+0mBnwM5uC/uvEVl+AsLZW+gO4KapQQMy/hr/66wy/e+k6zAxKs/g8ZUzGjlJTmN06J/zDWufpsEmfCfqX2K+2Y7i9ndnx7iz206pUILyD7yyol+wvTj/y4N/KsRf/dk0EJuhmq03SQ2VxGL0/z7Pb045hxsW8p21d4eNt368f1+wQruNMcFwrr2R2Atyg4vR3rtlMjGwfz07Bgo7d9vZHxr82kkeg5G7U5KGozBRxg2eElPt9eZoCraAD7P9Xeh93J9ECvia9X8iaVnAf3GUKV8KwaU9Xe/xmKhAc60T39ZGec0VtYpsJa+Ydd2xfSqvxwXyBYIdNwJJ55QjbjmIO+5vyuW/keBfvOSoK3vR5T2nbZwLk4Up426yDu9JBk4/W23BHet+PNZW2rlnhlPshm6zgCttFwDd4XbJ/hHe/qW3YSM2bghTz8xL0mGdgOebPnz+/E/4zIsr97hXYZrRMZpowpuPgvLXSC371BbdfZWlj/gmnjhbGf6fDsjXhN4iP1lbJ3e4Ubl/Jsu37xPlec8YbcWqbZ/l3srkvfQr/RX9alThq0v5tTRjbvPvadkuAkeZ/JYaR5MMBT0zfYCBnpiLpOV7SJmE3GF8RVh5jx/asBNT3LmUdy7uL/4Lv3byB6ESkCdR3hUbaQhnnjMD27dszrXOLBMHNtNBt31rpqWfpU2yfguwUWsLWCp5j+4398NcL97ek3bB9L4PF3k7v25pX5N5AxDOHEGUT9GcyBwrcoOu1L+HcmHZOubWaykK9zeljudY8y19FwW/TiE6w86z70RqzsQKzc7nPc8wrJM1IQ/s87oo+jG02F/3RRXt818Nixg8U9EU5WrnnYfeyEuMJ3ZuNk4DVpzEk82oX3H7Bsbe55v5QroGE1aBlG5YwEm9Vlil15aZN/pNFQIKerPwsKjUU4l5BP4igv5UdAIX9DNx9neP1blPbTQo6Bc+XWapS4e2jNfy97LBtqlIK3Y24627nWHvtyXaed5/nm1/kZGuPg/+hMlJoYWct+ZuIu771wtom8ShG0Bu0mmBYVDeox+bDNrHFKkTnHnaisAOWhoIEHXeb7V3nwoKNpivsn0hX+3FYZ/lnP7seHub6uoBzZb11wPWxi7yoDzT1Zz1bYfyye4N2hmGE4owuAQl6dPMmCMsGeCJZlUsErZVOofhfFGj3pdyeRiv9Sro653r8NtjE/VEc+Hj6IAXifbSGV6T3vWvCtW73ekFn7bXH6yzvNq3z7rTOMz0BKYen2Cj2vJ6yTlBJ2cyheiHGntNJ34dtZrIsZ/l2G6SLFv4pOMzLJl8gfh+HeYOKht/hRzE8hPtr5Psx5GH9nAesTQDnc42cw3W8rlSbYbnK65dwreIQ+I94G1R4qTyuDNwIRRhpAhL0SGePW+OyCogGz7O9Mffs2XM6n1O15+f97DiiZS32vKKFO2sxtzO3FIb76f7OO9qc8zbSPd0KLVrQaZ1/jmgadHMT3gQWi76kHwJvrbyCBB37F3rjYj+dlpLi9noirFr293iPNbLdEjvqxyuYG7YbPN5oxF9iTsHrEONCbtq6dWtv0n9hKmH2OObXv/3tbz9w6aWXZgbPFZNoHg0t5bXGjBfiOT2zE+xGg3hJ45Jgo1dsUSegQXFRzyGH9lEweWv8DZ6fe6NNvXP7bc+xM2jF2ujiw360zrtx8JOeE1NoHb3p2c/ezFQkKKC89mS7O2x/7ty5HfFjz059/RHmxaTvrEICHTBgwCu4e6+05716vyY4ocU5lKV9IQs2/KvXXlpvGa7e40nfHjZsmL0aaeM8MpOwsP2+d955ZxYt9ZalpN9ekeNeec3j95x58+Y1qER6zjnZxPZ2XJfpSopVlJdyXcT6MYkTUBUeqAS9si+ATIuYAqJRAaCVPhVUGdGnFfuNPOj+meP1o28J8wDC8p087uoPU0h54+2Y6q5vzEvm3K5du6zi4B2BvIU4V5e4NOiSTbXSM3Hl27BJTIgv05onPVW05kblc+/w+Pu9YWP/i979StqmArmZ2eQuI83e17yuoKX+o1I5kMdPpP2Sx+0YUPrR9H4Qa3qihhFPphKBPY8HEa/iiBcBdbnHK798s5YafwcKOHvWXf+jgMiIdfqYd22tdJ5PfhuhuMeOU6idySCkYd6Z2Ni3GbU+4/E3jWfRXsH2nHp3015d807awVGrZKw/zGHWAbpWq+ha/UL6MPZb1/5pFOYlPVfE7uak71XWJ1qYrK+mlT4Q+5vs1iTu6bi3VmH691X43oMtdekDLtdMiNOWRyIXpePAnjW03jKvG6aPV9LaeoW4HoeT5gUsaSH8NBXGN2GTmcu/CCYzceu9tu1RT6GDDouIJrdTrq/MtW4uqCgHFndui3Q0igTUQo9irgRjU3b3dqPCayb16NFjCqtM9znC0aCVzv7nOd/R3LJ9gELI201vhw/74a5BvOxn23WYHzuwbds2e07ew3NyeqlibmEQ7yFW3/OE14LKy5c8+3k34fIrTq7yOOjLOIPbPftON5kQZzQsuqYjIS1z09uVvKay+QJvadwIg4MeDj9A1K/x7Be0ScXuORy+6nF8LuFYhcH5j4rJPxHJBemIyN+FXOtPpfe1FoE0AQl6mkSFrRGcBsJJwddoC93wWCudwiTThY6InE2h9hE7R4u0hn2viM2kQG2ylUjBtA7v3sFKmccAFm6uH3G1zBJbK7C9YpzLW5PHeKwwC0eZCgvbY/mKV/20oo15Ni60mP7T6wb7voWdQ7zHXGzn+E63VU4muYgrjmEixHPhYRXN+h/XaHM2pnL9n5c6VNCKMA6Rxw0qqIT1Y7vuCwqgREeE3w6v/8/rnXjtE8dWAdVPBBoQkKA3wFE5OxQKXuHcirBuLiT1fE98MoXJWx63X7dtCsjPsuqcOm4C26DwSx3Pt8pUJhBCr1053dNFP5ITx6dPYs8culEXp/dLXaeE+ftp/zCq2rt3b0YM0sdzrakQ3cvxlzzn2mLngxTImZaz55xvm8xd/p/YeUI6QFg8hYhV7PPzNAfvmmvDXmH83/QxeLXjOqt/dJQ+VsgarvfD92mP22PI4/sIz1k5Svg/Ib5M5Zv4nyM9Mzw2aFMEMgScXYiZGLQRVQKZQgIDM4LalLGpQWDeVvp5PGseQaGWecZHoTO7GIHFfabbnW2vXfnM+ar3BHHnfS3O666Q7ZqaGmvdrk27JexPFNIKo0J0AFG/Cfszr5nh9wTGKTxaiP90fMWs7U0D4vhy2g9xWysys58+rnWzZlyP9irlwx4WbT3bBW2m+H4cx5keJfhfVcycBwVFlHJEuN8g/JvTflLX1sfMjvQxrUXAS0CC7qVRQdsUFF7hzAhqIQh4Ves+3GUmVKF1boPC0i3RgwxO+69CwvG48cbfaAudQu5y4jrF4/d3dO17W8aeU8Vv2mtPiOKdHp+daCV90rOfd5MW3D+w7RNZDs7F//OIupd3lpPidxHzK2llPoTPzD1M3D/FhueLDy35PhDBg4x8H0NKy+ID39cIq0Eew/1TPHq6jzxu4wdJwmvBc/Mfkb93ZIX3aSomC7OOaVcEMgQyhUHmiDYqhYBXOAtuoRuc1PemM610DrVNQ6Owe5DW6qL0fiFrCrCMoLPdgYLRO9itQRAUcl/zHkB8fWudp8Olpf0z0uF9BPF5G0mePt/YmsrFFPw2sJE0DUbUX6aQ/pwV1o35b+qcPTNHPL4JhwcJyysgL/Xq1ctaofrlIcB1uYe8Gc7psuatR1Sncd39hzca8mI8vTFPk8fe+8rrpKBte7OCSusfcXy71wPxfYt4NTbCC0XbhxEoq3A5LDQdiAUBZs2y98Qzg70oLDKCWmgCaO3ch9uVXvcUlodKaJ03Q0AbxI/45WzNUtBdSHze0b7P8YnUJ702+LFNwb+TtNyVDovC+iheCxuf3m9qTcH7Pdz8m/FIuyWMDmz/H2l4BUEeQwWhVfpcIWv8N7cu9tdff/0Ftr/OkvFPPEvbtWs3jDEAtYWEVcluyBubjGUYy6ZyOHDd/Rf+v5kVxlnkxavk7/dZMq+EZrnJucvgy6Pxcxe9Xa+Qtw3mFCDM7xLf13N61EER8BDIFAqeY9pMOIEtW7b0z0piUS1084vo1SFO36Wl6B2B+zDHva/2ZEWTd7eBoOPKWjlPZ7vO0Tr39hJkOy9rn0rGjylYv8hiQmzvpdv2LyhcDxYSMC3171BAW0vwXharQNX/COMkNqauWbPmh5x/hO1HmVr05Vxz3dtsZDt27DgXPxfB+kbWh7X+sOcvfPjm8hEjRmx4N4bi/xGRR7Flb/E+3/OBUFq6YvGzty/g+VGupycwuKCel1wJI5w74LaKcz8hb6rMTWr9JfLlc5ybz3oex55lMOkbqZ6t+qCse574T4L9Obi5msGXQ3HXoDzmeB3LPyPmd9d70p8INEGgwQXUhFudTggBCpL+WUnJFtSs07l3Eb17KYT+laUPBY8NyPpWbpeNHz3qqKNW0ALe7ynQDhMuCsDT6NK8zBPSq9dff/2jPNP0HPJvk4rJZrpPf0aI6W7s/ojAtezfX2gsiBxm3/8iPQ6/JG0XZ/k7kmO3cuzW2traZhT+O9nfDMftHLNpPo9AzO1VQHvNyoTCVpmf8WbnJ507d/6SPffPnChto392+MUEk7KlGC+hu0UknyU/x5Lu+9OMSzGKPP4lefwX8ngy4WTGdrBtj0OuYn2VhcvbCAe4nmwK2VqOdcS9TVucM2/NPe5e4/xNhP+C7esnAoUQUJd7IZQS5oaCwivo+xDmt0tJorXS8Wfdy/abi7i+8u5mcf/2uhg2ebvvDxN0xPyr3lAp8Jy/i0vL907iyYglNn7Fa0Mh2zCymckuobJzBe7zvk5G2NYT0Jf1SSz92O7Mur7Az44Hm/7Acjbh3u6DmGcHXzH7iPqDJPZL5SaYPP4bj5rOII8/Q1ircoVHXrbk+BGse7Pu1EjeriNv/4UW/an0AEjMc8HUsbwEWuU9oxOxI0Ah8RSFQX2BwnbegWm42UHi5lsCcbeBAulAqYmlhXgPU7BeXMqzc2+c2GQt33QLp0GhyDSvnYijPefrbWa9nfjMvdMf3eBraVV9A9suSkdEa6w/vIoeVIV4PEoYj9IqPJ0ekrFsX8oyJB1uAes3cfMrKl+TS604peNAeN7EhjTL9OFy1g27D8oJKeUX5s+wuTG1a70WTn5Uin5IHneEh7dCWXRcqXvobgYt/pzW+NXcVzZD3T+xZB63NBJoLel9kmUGsw4+4HAsxOPE0TVlxz8asUenYkogZwsgpmmR2SIQKwJUDuxb7qdSyPZDAI5m3YG1VVzsgy+7WFaz/ybrl6gQrIlV4mRsMxv4uH79eqvADSEfjyMfrdelHeu9rLdRsXqLZXHHjh3/op4WXTAiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIxIdA8JnbKzIgQmDVr1hk33HDDX/0y5+GHHz5y7969fdPhtWzZctXIkSPXpff9Xs+cOfNYwuyWDrempmbJsGHDtqf3y13D59Sjjjpq4dChQ/eXG5bX/4IFC9quW7fupPSxqqqqlf+/vXOBt6qq8ziX9zMYBbWHRoBMNNKQg2lUKIiQFMlDQiQlCM0XCAlqNZ+mz0yDmZYPHvXxMWMgFDrgEIoyZpraYybTBi1lqPE1gIDIQ7kgyGW+/+Neu3U25567z9773HvOvb/9+Zy71n+t9f+v//rtff//9dprjx8/fpujo+E999xz1KFDh/q49M6dO28455xz3nR0U4Rg/z7ub1057m8Un2j7ampqDrZu3Xr/O++8s+P8889/PZqfhKY9x8N3rOOlbc/QtkOOThNG/y/SyHK8POvP8qy/7WiFzQ+Bts2vSWpRuRDAWY3ESaxbtmzZWVOmTPlZFvXs37//uMOHD//WySL+MPGRjs4yxMm1waA/Sh29A7l7d+7caUY5k2v58uUfBZ/f43gvRODSTIQGQrZv396nrq4uxGnfvn0zyVpYXx20cxTtXO7ya2trRxB/xNFNEaLPavTaS91nZF3/li1b+iI/xKeQfO5NLpn7tI/Ien6Ptm3bdilO+I+FyjeUxv2YQxn75S4ceg8iuwMyVcD9nYyAm1MJiTDzrPcnaWMkWWQzQqB1M2qLmlJmBDBgXwuquDarqhgtrWf09JgnbwQdhwEenVkUZzLWc+atGLEtoWOyM7MKWrXK4UMdV/PT7JcHLJ3AEWAymN/pjGxP9bIyieKYD8cVhA6d+J3K71qeiefQbQmdve5x+V05ntvYdToehUKgnAjIoZcT3WYkGyd7GgbwjKBJZ2IE/y6r5uFYFzhZ1FHDz0af5biudELNGHPd6ui0Ifj0RcZEk4Pck6BHp5XZnPjB23UGDZ9rKqVt6GIdrwtw7L/BqR9XKXpJDyGQBAFNuSdBrQXyeKNz13ozyl9wRJoQh76a6dBXkJFbS6euCzGuX2MqNJPpS9MNB3sydXza03MdswMveHSqKLKvRkAbJwRHYbMYDzi6JYd0/j4OHsM9DMYy7f3hLPHHIefNiNCB+B7P1ROuTupvza8L9DGEAwmtw3WMl/9hZKxiLX5o3P0PyMmr08kqR0h75lDfpjSy27VrtyUNv3grHwE59Mq/R02uIcb3b1BiTESRCTjdfjjdP0XSSyZtIxF1LMJgXR8wd8FBTid+U8nC6mFA3uxI1i0ROjG5cuXK97Kxbyr6hzKIf4qp5SGTJ0/+VZjYQiM4o2sj2JBUMw84vpwVJDblfvDgQV/c79i8udpP8OM8u7af4ivo9T3SO1oe8U+wFn8x0cVGN3TRBlj+cs8bKp8mn/Y9yP/JhjQyxNv8EdCUe/O/x1m00AxydDTSGgNqRjmTC4N1BwbSNivlLuq7nF8mz6dNpSJ7kpNN/AUc7TpHpw1x5jZ66hCVQ1rFTC1HdWssmpkR2w8xtkB9X+S+vL9AeqMkWSeSGYLFPAt5s0zcs6saRQFVIgTKgEAmBrMMeklkhSDAKLM3qpxXSB2M4VRzloXySk3DwL4Bz92OD8Pad8WKFZmsQzMSuxR57T3Zt6J7JkOr++67rweyL3GyI+EY8PlIJK1FkSyfXAM+0c6gjYbbc1/mNDUYOPU16PCgp0cf7plNyesSAlWHgBx61d2yxlUYwzuPX7g0gyN83mlAegdG6dGpbJddcsgoPdwcZ8w4g1klC4kwrF27tgN6+g53V8+ePZdEiiUmee3uCpi7OQERfGpwWra23iIvHOMJYH++azzYbCUevlVA3sXWIXL5aUJwPqLTEFcea+15ex14pj8ahxf9E9cZR77KCIFSEZBDLxWxFlTeDregudO8Ju/EKI+A3uXSoC/Bab7H0WlCRunPIu8xT8YI2zzl0SVHd+/ePRkma0fuQv7to0aN2uvoNOGaNWs6Y9T9nfMHOPDlbGS+7OSaQwsOIHFJLSbEyc6lse28Bn8f5+m/O9+N960v9/ITR20NPSkzz0TeZjF0jNXJgC9xnUl1FZ8QKIaAHHoxdFp4HqPP2TikTg4GM8asPW8mXOzSyO/OgRWXOjptiJEMXyVDto2AZqaRySjfd7iHcLiL0sjzed96660Z6BieOkfejyZMmPAybbCNVu5qR5mvOqKlhIzOe9HWGV57d3Xp0uUHYGH3t9alQ8+yU94c3RQhOuQ5cOi34uhBOY3Q4wClMo2GgBx6o0FdXRUFo+7LPK334gxzO8MtxGntc3nEZ9vUtqPThJy29VP4wxEucXuFrXsSmYzuT4dvkMf77+ZwPTpx9KmnnjJHbSPQ3AUGhxglfteIbt263QkdHi9KuYtow1HvlmwZfxmdX0m7w84grV5oR8+yZv062NzpoXDM5s2bp3l0omiaKXf0tOckvKDDZaUwUREhUAUIyKFXwU1qChV37dp1GYbNd6S3cXb4DtMlOEP8X51elDuOqW077jT1ZbuPMfjhKBrZXTHWSQ3+7IhCN0foxOTGjRunoNvxnoB70T33Ct+YMWNqybORqLu60AZba28R1+rVq7vRfn8qvZZ7Gr4mSMfnRmj/rPu5dHjCd/gbEyTqtXX+L3h1buN97d95tKJCoGoQkEOvmlvVeIoGU6ChM8T4HsDI+dPIrQKjfMhphVG0zXOZPE/IthFuOANAHVcgu8bVFSfEUH8Ins97ZZ9mdPikRyeOmi78rokIuC5CL6QN/tTtTFtzj5RpluTevXttCaaHaxw43G4jc0fT8XmF+HJHE/ZhI9pEjy45yjNT8nq23Q86Wj+msnDKn+WkBdapLFkBMQiBCkAgEwNcAe2QChkiwOEa03FYx3oil2Dk8k6pgn6RMitcGeIn8s7xeEenCZH9Bvx3OxnI7lvqUao4iJnw+893OEJ0cpOGvE43Dp3CzXo4rAdwWOt9ecEZ8be5NMr33LNnz3RHN9cwWHrxX0c7CD55ncGg7d8l3XfC0Q5SSRCVOuVOh28Q9+Nx7ssQVxH6PM+STyFdXRGFQqCiEWhb0dpJuUZHgNF5Wxz6PK/iOoxebm3YS8tFMYDXkxe+lkTcjPK/RcsloRlxLcApX+R4g1fYHnB0sdCmfNmwFp5Chp5bkfeTYjyl5KFLeC658SF/fiF+6vy+TbWDi3sHfi74/jDu0aKFZFZ6Gksv02hveDYB2CxlI+WrUb3pAP2BPQ72DribRRnEEbGj6AhldeDPB81pc0KgzewY/l25b6aXdcSG8Wx9kjC80PNV7tdn6UzuCxMrKEI7LgSfbWlUAtvMOrVp9BBv+RCQQy8ftlUpGWd+Hga5t6f8vRiCgp9ctFEpRnkt5UdbecLBvKJ1Jgb8EY8/URTD+iwG7FGYh5kADO5Z9gobdb7QkECmfL9EmfBVOnh/gLwDDfHFyUen3FfDvLKP095feXQYpc5NlF9KgutcfJANYJOgl4WFmlEEB9oGR5nXGWQK+/oiTfwOec6hWzHrECZy6DjjvKNfeRavQ5foMojVccTF87GWxOncr61HZBZJgI9q/EmGIoVTZtEZ+XpKEcYuh54BiJUswp+SrGQ9pVsjIIBxstHMtX5VrJ2b0a33wqjl5SPDjHImF7LDjWWmG78GN5YF5WY5BZDxNmk/dHTaEHl5o3PkFRydu3rA7wbidY4mzAwfT2ZFRBlFWmelj6fMSs5T/x+PzovSOfs1CY97icPoAH3co8se5X7a5rytdDxyHwYqe4WqQAiUEQE59DKCW22iWaceg/OzD7HkLozdWkYtv3d0oZDR6ROk/9LlwX8Wck52dJqQUdcadHjJySA+taFDbJgh+Bzl+zkewp/gOEoaeXm8eVFzNrRvuJf4dENTxOC3Ab3v83gGIic3o+GlNYsoo8i8ziBOssERMmvWeR1CgEjU4Sl1Dd0Bzv1sy28anZH/YgboIZ7d/i6voRC+kjZqNiRP+UIgLQJy6GkRbEb80bVhmtagQbbm47DyplWRk8goR6HEGdpu48UuHQPaldfppju6UEiZ8CAZy0e3zKYZkZU3Oo/jsEyHAtPOmeBjsivlwhFaR2qg0wesHqKz94yj6wsZwT9I2f/28scydf/XHp00eheMM5E9i98c7sE8ft8ibq8uruBnpxLmzZfz7IzCsT9diR0udB3Cr1eaH23W1cwR0Bp6M7/BcZvHyPYMHPFprjyG4wlGtk86uliI4XICcKsAAAvdSURBVL4f/ucwiCcF5SZg4PtirP9cjC9OHjLvoNy3+HW28tD2FTY72CbPGFsejmAg66ZnWjy4bH27QafiChcLac8A8DnHK7OB9q1CvpdUOEq53+IkbF+B020oo8FPBFPOhZmqLDXaGWTkHaszGDTTOoTLg7j7it+MUiCIrqHzfPwH+P64mAz77C2nIU6j7FU8U0cFZbsQruT+fAb+XxTjb8w82vcGHdzXG7NO1VV9CMihV989K4vGUYOMgTuMk877WEp9FePsLKvW5cPaBnm2OeoSl5Y0ZEp7J87wbvgvDmT0oz6bsj5ixzvOPG90jlPJbHROe/K+GoYTeBM9bgGjWE2DP282DIxslD42FnOFFwKDT9O+IZ6atdATSZ/opRWLtiHTHrncFDbYXgDvN+ksbS7GlDaPUwO3IGM+ztvOPVhB/acHMjsSX8J76gPskKD66oHHdK4vW+lCoNERkENvdMgrr0Ic08lMNY6MaDYUozw0khabxNBNxVD+A6Oc1OvXOOYF6Occull+e8c8z6FTV0/SpzgFMbYvMcW62tFpQkb+J7BGG8o2WdQ12H5J5aLf58F9AKP355PKqBQ+cIjuwO7Ms3NFUv2Q1x7e2fyuTiqjFD57RrnHZ9MhtBH5KQHvCbynfhXxfypFlsoKgaZEIG/U0JSKqO6mQwDjm7c2nJEmHZFjRjn1hdN7Dgf4c0/QyALrrF8h3+p018JgDd7RiUOc+VycTKadX+TV0ElpFIeVuOExGLkPg2jLZ2IULakIMi/J6tOqcSrmWdlHx3EqZcM3EnjmwnMQCsmwe1goXWlCoKkQkENvKuQrpF5Gif0xTOM9dfZjyDal+B3wZF3a0K50r2xD0XD63wwpoykbpecu+1AKkcsC0oK9nTp1utOjE0dxWL1gnuEEgMuBFNhsQs5+J4twCuu4H/DoqotyH/J2toPN1qT40PgdHgD2adVLPbpoNOkud1+ozZag+8MujefseJZ7TnS0QiFQ6QhkOuqo9MZKvyMRYHRua7lhx45p6rmsXS46smS8FKa+v03Jb1hpDGJ3dqXbyNnexU51odNPWVd9CZm9TRCG115h+/ro0aP38KGUiaS/z6vgrnHjxu3y6MRRHEX0q2E3MEX790kF4iBsKtp1TtqxKeur0ParuovOTj8c+kRP8Vf69+/fb/DgwQe9tNjRYNnkZRhyGyAJr+RkvZs4Wc/vBBWUF90UV7BQjESeqyd5lka5ooza+xHf6GiFQqCSEQgNeSUrKd3Kg0AwOvyiJ30bBuxfPDpJ9GaYwo1EGMc5wfneSWSFPBjaOn5hRwO5XfkO+zQrQKcknNqnzGEOc3EOM+RPEin01TDkWPsSX+hmMwfbnAD0vQgn/1eOrqaQzo4tGYQ2hLbcmNSZW7vpKNmnVW9zGHCPj33ttde+5OhiYRYjdJNPnW/49UD7yzh+luJCoOIQCP8ZK04zKVR2BGx0iMGyDUi5C2N6k60lOjpJGBjl2z3e9zJKv8CjE0dx3OYMw84C8Sv4UMonCU9xQmnPQ7Rhg6PThA19NSyJbMPXcHa86NuVWZHLHV0tIbMlNiNia865izZtZ5RsrximupBhn1YNl23AJ9anVW2EnqrigJm6e/lyqH+7T/txymZSpy9TcSGQBgE59DToVTHvqlWrjkb9cOc4xml3jx49FmfRpA4dOuQZZWRm8mlVe4UNPZd6OvZjZObTrZhhSDWCdrKDWYU5jias76thXpF40QDnXa40TmMW09edHF0NITrndQahb07bGbR2I8P2GfzIYYDcvmwePNfR5Q7pNA736+B5syWAghe61RTMUKIQaCIE5NCbCPimrpYNR7aprIvTA8O1yNajHZ0m5P3e/8PYhY6WeH9GdOPSyPR4o9PpH3J5tOH5SZMmPezoNGHcr4YlqSPAeaHjBZ9eOK3pjq70MFgisL0R7trDUkK4HOISk4aMtu3TqoccP/jYPo+yX2wQtZmeoa4idHiOvRuvOjoakq8RehQU0U2KgBx6k8LfNJUzGuyKMQp3iRO3V3YyGdl6LboeuZkbZab0/4Dcn3v1hFHSb+WX2siCjzsYx8muY1rcTjPL7ELPWxAWLh/gtGJNLWemQApB6D4Tfbs6EdCLGFnvdnTaEFl/QsY9Tg51fYwNc2c5ulCYdg3d3sagU3VXRPayCC1SCFQ0AnLoFX17yqMcxu9ijORRnvQ7MKL1rhV65WJHg0+u3usxnIJRHu7RiaM411sLMO/s2rXrkgLpJSdh2CfB1MdjLPrVMK9c7GiBDWC9g3pjy2iKguvWrevCs+N/zW5fx44ds+4MtmKUfl2kc5b3elyWbWf2qDf7PB5B5kecXOq276Nbp0uXEKgaBOTQq+ZWZaMoo0/bBOe/JmVrwzdkI/0IKdf5KTiCTKZOmVZfg9wXfdm04fZix3T6ZYvF0bGGddQ850EHIq8dxfhLycNh5O01oG7bNV7R144dOy5CQdt/kbvA/c7x48eHu/ZdetqQDuazyLjfyQGb4TjexCfzOTku5P+gOxsqhyFzAbL/yM+Xbf8T09Ch6AZReLSG7gBVWBEI6D30irgNjacEo/MLMUTvdzViuO4utk7oyiUJGYWuZ73VjPLnAv6RGNCPUV+qD6agcx2j/UW040aTC32I38KgjlQBRv6zCBjohCA31lfDXPlSQhzGJtphswozjI/2/C3ruGdzwMmDpciJU5ZOyk3UFW7Ei8NjZY4++uizR40atdfidoDPhg0brrK4XWDzTvv27XP34N2UbP/SkZrPrMUYJxV8rKN1rqMbCOfT3nmRMu2QYa+h9eT9+R6RvBwZPEtf5hm1EXtJF/9ba6kzXGaKw4w+rzKbNaWhsuh7P7LfbqhcsXz+H08qlq+86kdADr3672HsFmA8WuNQ/VFgHaPETNeGo8pgIOdTr3Po9s64jdLPi5YrlbaT4Gpra/8Rvs7IX4WxqnfzUimy0S/vGFzTvxT+Ussa/jiCabShjfEG+GTu0BE9kDpKVa8VmwNDG8EBPhcg4AOekGVsgKx3F7hXLlGUjs1v6BA+CvMwE4D+46BPDJZz8mSC42GcXphG2d4Q9ot9ca9fo/B5OPNfxGGiPNX8BVPiQ+Lw+WWQsdGni8T7+XUVKaesFoyAptxb0M3HmZ+LUTjRNRljsopRYibvbDuZ0RBH+2vqecylEz8Xo9zH0UlDOwkOWbmd9BjzTNY6GZ0P9Y0y8p/EuD+RVMc4fOBvG8DCvQbUfzr36dQ4vI1ZBr1a09kIO4NgY57sO42gg9+hak290VF3TgU6RTUpdLElg2/QSRzA8xrLmaeoS6xCoGwIhL3vstUgwZWEwCAM4lqnEFOa33bxcobU+U3k++vSn4L+37R1ov8tOJk2rKn/Mq0s42d691QfH3b+l2062deXdvwz7XiPSyN+GvH/dLSF6Pamrxs8L/n5BeKb/fIF8mMl4eRyw146OwOR92eY7GfXepzfC+9Gy/eX0fjPmGq+gxrsIBu7etoZAbz6lzf9TKfuTZvyfrdI0b/WEdlDW3bQSXmR8HHu8zN0rEqaKg9qsLPf49RZTKFNhTK5vy+iX1rZhUQrTQgIASEgBISAEBACQkAICAEhIASEgBAQAkJACAgBISAEhIAQEAJCQAgIASEgBISAEBACQkAICAEhIASEgBAQAkJACAgBISAEhIAQEAJCQAgIASEgBISAEBACQkAICAEhIASEgBAQAkJACAgBISAEhIAQEAJCQAgIASEgBISAEBACQkAICAEhIASEgBAQAkJACAgBISAEhIAQEAJCQAgIASEgBISAEBACQkAICAEhIASEgBAQAkJACAgBISAEhIAQEAJCQAgIASEgBISAEBACQkAICAEhIASEgBAQAkJACAgBISAEhIAQEAJCQAgIASEgBISAEBACQkAICAEhIASEgBAQAkJACAgBISAEhIAQEAJCQAgIASEgBISAEBACQkAICAEhIASEgBAQAkJACAgBISAEhIAQEAJCQAgIASEgBISAEBACQkAICAEhIASEgBAQAkJACAgBISAEhIAQEAJCQAgIARD4f8fcJLjgr+o5AAAAAElFTkSuQmCC';
     return AdminImageConfig;
 }());
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/**
- * You can use the admin image module for user avatar together with gravatar.com and for project logos. The feature of this module ist the error handling. In case of a 404 error of the image source (img src) the module shows a default image-not-found image. Or — in case of user — a default user profile icon, or — in case of project — a default project icon.
+ * You can use the admin image module for user avatar together with gravatar.com and for project logos.
+ *
+ * The feature of this module ist the error handling: In case of a 404 error of the image source (img src) the module shows a default image-not-found image. Or a default user profile icon (type=user), or a default project icon (type=project).
+ *
  */
 var AdminImageDirective = /** @class */ /*@__PURE__*/ (function () {
+    /**
+     * @ignore
+     */
     function AdminImageDirective(_renderer, _ele) {
         this._renderer = _renderer;
         this._ele = _ele;
+        /**
+         * @ignore
+         */
         this.onError = AdminImageConfig.defaultNotFound;
     }
     /**
-     * @return {?}
+     * @ignore
      */
-    AdminImageDirective.prototype.ngOnChanges = /**
-     * @return {?}
-     */
-        function () {
-            this.source = this.image;
-            switch (this.type) {
-                case 'user':
-                    if (this.image === null || this.image === undefined) {
-                        this.source = AdminImageConfig.defaultUser;
-                    }
-                    else {
-                        this.source = 'http://www.gravatar.com/avatar/' + ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_2__["Md5"].hashStr(this.image) + '?d=mp';
-                    }
-                    break;
-                case 'project':
-                    if (this.image === null || this.image === undefined) {
-                        this.source = AdminImageConfig.defaultProject;
-                    }
-                    break;
-                default:
-                    this.source = this.image;
-            }
-            this._renderer.setAttribute(this._ele.nativeElement, 'src', this.source);
-            this._renderer.setAttribute(this._ele.nativeElement, 'onError', 'this.src=\'' + this.onError + '\'');
-        };
+    AdminImageDirective.prototype.ngOnChanges = function () {
+        this.source = this.image;
+        switch (this.type) {
+            case 'user':
+                if (this.image === null || this.image === undefined) {
+                    this.source = AdminImageConfig.defaultUser;
+                }
+                else {
+                    this.source = 'http://www.gravatar.com/avatar/' + ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_2__["Md5"].hashStr(this.image) + '?d=mp';
+                }
+                break;
+            case 'project':
+                if (this.image === null || this.image === undefined) {
+                    this.source = AdminImageConfig.defaultProject;
+                }
+                break;
+            default:
+                this.source = this.image;
+        }
+        this._renderer.setAttribute(this._ele.nativeElement, 'src', this.source);
+        this._renderer.setAttribute(this._ele.nativeElement, 'onError', 'this.src=\'' + this.onError + '\'');
+    };
     return AdminImageDirective;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 /**
  * This directive renders a GND/IAF or a VIAF identifier as a link to the respective resolver.
  */
@@ -255,119 +211,85 @@ var GndDirective = /** @class */ /*@__PURE__*/ (function () {
         this.el = el;
     }
     Object.defineProperty(GndDirective.prototype, "gnd", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._gnd;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._gnd = value;
         },
         enumerable: true,
         configurable: true
     });
-    /**
-     * @return {?}
-     */
-    GndDirective.prototype.ngOnChanges = /**
-     * @return {?}
-     */
-        function () {
-            if (this.gnd.length < 30) {
-                if (this.gnd.indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].GNDPrefix) === 0) {
-                    // GND/IAF identifier
-                    this.el.nativeElement.innerHTML = "<a href=\"" + (_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].GNDResolver + this.gnd.replace(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].GNDPrefix, '')) + "\" target=\"_blank\">" + this.gnd + "</a>";
-                }
-                else if (this.gnd.indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].VIAFPrefix) === 0) {
-                    // VIAF identifier
-                    this.el.nativeElement.innerHTML = "<a href=\"" + (_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].VIAFResolver + this.gnd.replace(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].VIAFPrefix, '')) + "\" target=\"_blank\">" + this.gnd + "</a>";
-                }
-                else {
-                    // no identifier, leave unchanged
-                    this.el.nativeElement.innerHTML = this.gnd;
-                }
+    GndDirective.prototype.ngOnChanges = function () {
+        if (this.gnd.length < 30) {
+            if (this.gnd.indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].GNDPrefix) === 0) {
+                // GND/IAF identifier
+                this.el.nativeElement.innerHTML = "<a href=\"" + (_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].GNDResolver + this.gnd.replace(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].GNDPrefix, '')) + "\" target=\"_blank\">" + this.gnd + "</a>";
+            }
+            else if (this.gnd.indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].VIAFPrefix) === 0) {
+                // VIAF identifier
+                this.el.nativeElement.innerHTML = "<a href=\"" + (_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].VIAFResolver + this.gnd.replace(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].VIAFPrefix, '')) + "\" target=\"_blank\">" + this.gnd + "</a>";
             }
             else {
                 // no identifier, leave unchanged
                 this.el.nativeElement.innerHTML = this.gnd;
             }
-        };
+        }
+        else {
+            // no identifier, leave unchanged
+            this.el.nativeElement.innerHTML = this.gnd;
+        }
+    };
     return GndDirective;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var ExistingNameDirective = /** @class */ /*@__PURE__*/ (function () {
     function ExistingNameDirective() {
         this.valFn = _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].nullValidator;
     }
-    /**
-     * @param {?} changes
-     * @return {?}
-     */
-    ExistingNameDirective.prototype.ngOnChanges = /**
-     * @param {?} changes
-     * @return {?}
-     */
-        function (changes) {
-            /** @type {?} */
-            var change = changes['existingName'];
-            if (change) {
-                /** @type {?} */
-                var val = change.currentValue;
-                /** @type {?} */
-                var re = val instanceof RegExp ? val : new RegExp(val);
-                this.valFn = existingNameValidator(re);
-            }
-            else {
-                this.valFn = _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].nullValidator;
-            }
-        };
-    /**
-     * @param {?} control
-     * @return {?}
-     */
-    ExistingNameDirective.prototype.validate = /**
-     * @param {?} control
-     * @return {?}
-     */
-        function (control) {
-            return this.valFn(control);
-        };
+    ExistingNameDirective.prototype.ngOnChanges = function (changes) {
+        var change = changes['existingName'];
+        if (change) {
+            var val = change.currentValue;
+            var re = val instanceof RegExp ? val : new RegExp(val);
+            this.valFn = existingNameValidator(re);
+        }
+        else {
+            this.valFn = _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].nullValidator;
+        }
+    };
+    ExistingNameDirective.prototype.validate = function (control) {
+        return this.valFn(control);
+    };
     return ExistingNameDirective;
 }());
 /**
- * @param {?} nameRe
- * @return {?}
+ * Validation of existing name value.
+ *
+ * @param {RegExp} nameRe
+ * @returns ValidatorFn
  */
 function existingNameValidator(nameRe) {
     return function (control) {
-        /** @type {?} */
         var name;
         if (control.value) {
             name = control.value.toLowerCase();
         }
-        /** @type {?} */
         var no = nameRe.test(name);
         return no ? { 'existingName': { name: name } } : null;
     };
 }
 /**
- * @param {?} nameAr
- * @return {?}
+ * The same as above, but with an array list of existing names.
+ *
+ * @param {RegExp} nameAr
+ * @returns ValidatorFn
  */
 function existingNamesValidator(nameAr) {
     return function (control) {
-        /** @type {?} */
         var name;
         if (control.value) {
             name = control.value.toLowerCase();
         }
-        /** @type {?} */
         var no;
         try {
             for (var nameAr_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(nameAr), nameAr_1_1 = nameAr_1.next(); !nameAr_1_1.done; nameAr_1_1 = nameAr_1.next()) {
@@ -397,30 +319,27 @@ function existingNamesValidator(nameAr) {
     };
 }
 /**
- * @param {?} pattern
- * @param {?} regType
- * @return {?}
+ * TODO: add description
+ *
+ * @param {RegExp} pattern
+ * @param {string} regType
+ * @returns ValidatorFn
  */
 function notAllowed(pattern, regType) {
     return function (control) {
-        /** @type {?} */
         var name;
         // console.log(regType);
         if (control.value) {
             name = control.value.toLowerCase();
         }
-        /** @type {?} */
+        // console.log(name);
         var no = pattern.test(name);
         return no ? { regType: { name: name } } : null;
     };
 }
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/**
- * JdnDatepickerDirective creates a wrapper element that provides a new adapter with each instance of the datepicker.
- */
+* JdnDatepickerDirective creates a wrapper element that provides a new adapter with each instance of the datepicker.
+*/
 var JdnDatepickerDirective = /** @class */ /*@__PURE__*/ (function () {
     function JdnDatepickerDirective(adapter) {
         this.adapter = adapter;
@@ -428,124 +347,104 @@ var JdnDatepickerDirective = /** @class */ /*@__PURE__*/ (function () {
     return JdnDatepickerDirective;
 }());
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/**
  * This pipe can be used for "for loops", in the case of an array with non-numeric indexes.
- * it returns the key and the value and we have to use it as follow:
+ * It returns the key and the value(s). In the example below the {{item.key}} contains the index value
+ * and the {{item.value}} contains the value(s).
  *
- * *ngFor="let item of list | key"
+ * When the value is an object with name and label, you get them with:
+ * {{item.value.name}} and {{item.value.label}}
  *
- * {{item.key}} is the index value;
  *
- * {{item.value}} are the values
+ * @example
+ * <ul>
+ *              <li *ngFor="let item of list | key">
+ *                {{ item.key }}: {{item.value}}
+ *              </li>
+ * </ul>
  *
- * When the value is an object with name and label, you got them with:
- * {{item.value.name}} resp. {{item.value.label}}
  */
 var KeyPipe = /** @class */ /*@__PURE__*/ (function () {
     function KeyPipe() {
     }
     /**
-     * @param {?} value
-     * @param {?=} args
-     * @return {?}
+     * @ignore
      */
-    KeyPipe.prototype.transform = /**
-     * @param {?} value
-     * @param {?=} args
-     * @return {?}
-     */
-        function (value, args) {
-            /** @type {?} */
-            var keys = [];
-            for (var key in value) {
-                if (value.hasOwnProperty(key)) {
-                    keys.push({ key: key, value: value[key] });
-                }
+    KeyPipe.prototype.transform = function (value, args) {
+        var keys = [];
+        for (var key in value) {
+            if (value.hasOwnProperty(key)) {
+                keys.push({ key: key, value: value[key] });
             }
-            return keys;
-        };
+        }
+        return keys;
+    };
     return KeyPipe;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var ReversePipe = /** @class */ /*@__PURE__*/ (function () {
     function ReversePipe() {
     }
     /**
-     * @param {?} value
-     * @return {?}
+     * TODO: add description
      */
-    ReversePipe.prototype.transform = /**
-     * @param {?} value
-     * @return {?}
-     */
-        function (value) {
-            if (value) {
-                return value.slice().reverse();
-            }
-        };
+    ReversePipe.prototype.transform = function (value) {
+        if (value) {
+            return value.slice().reverse();
+        }
+    };
     return ReversePipe;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var SortByPipe = /** @class */ /*@__PURE__*/ (function () {
     function SortByPipe() {
     }
     /**
-     * @param {?} array
-     * @param {?} args
-     * @return {?}
+     * TODO: add description
      */
-    SortByPipe.prototype.transform = /**
-     * @param {?} array
-     * @param {?} args
-     * @return {?}
-     */
-        function (array, args) {
-            if (array !== undefined) {
-                array.sort(function (a, b) {
-                    if (args) {
-                        a[args] = (a[args] === null ? '' : a[args]);
-                        b[args] = (b[args] === null ? '' : b[args]);
-                        if (a[args].toLowerCase() < b[args].toLowerCase()) {
-                            return -1;
-                        }
-                        else if (a[args].toLowerCase() > b[args].toLowerCase()) {
-                            return 1;
-                        }
-                        else {
-                            return 0;
-                        }
+    SortByPipe.prototype.transform = function (array, args) {
+        if (array !== undefined) {
+            array.sort(function (a, b) {
+                if (args) {
+                    a[args] = (a[args] === null ? '' : a[args]);
+                    b[args] = (b[args] === null ? '' : b[args]);
+                    if (a[args].toLowerCase() < b[args].toLowerCase()) {
+                        return -1;
                     }
-                });
-            }
-            return array;
-        };
+                    else if (a[args].toLowerCase() > b[args].toLowerCase()) {
+                        return 1;
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+            });
+        }
+        return array;
+    };
     return SortByPipe;
 }());
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * This module is part of the Knora-ui modules:
+ * https://github.com/dhlab-basel/Knora-ui
+ *
+ * @copyright 2018
+ * Digital Humanities Lab, University of Basel;
+ * Data and Service Center for the Humanities DaSCH;
+ * All Rights Reserved.
+ *
+ * @licence
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://opensource.org/licenses/MIT
+ *
  */
 var KuiActionModule = /** @class */ /*@__PURE__*/ (function () {
     function KuiActionModule() {
     }
     return KuiActionModule;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+/*
+ * Public API Surface of action
  */
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 
@@ -719,18 +618,18 @@ var ResourceDialogComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core
 /*!******************************************************************!*\
   !*** ./dist/@knora/authentication/fesm5/knora-authentication.js ***!
   \******************************************************************/
-/*! exports provided: AuthGuard, JwtInterceptor, ErrorInterceptor, LoginFormComponent, AuthenticationService, KuiAuthenticationModule, ɵa */
+/*! exports provided: ɵa, AuthGuard, JwtInterceptor, ErrorInterceptor, LoginFormComponent, AuthenticationService, KuiAuthenticationModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return SessionService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JwtInterceptor", function() { return JwtInterceptor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorInterceptor", function() { return ErrorInterceptor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginFormComponent", function() { return LoginFormComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthenticationService", function() { return AuthenticationService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KuiAuthenticationModule", function() { return KuiAuthenticationModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return SessionService; });
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
@@ -754,11 +653,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
 var moment = moment__WEBPACK_IMPORTED_MODULE_3__;
 var SessionService = /** @class */ /*@__PURE__*/ (function () {
     function SessionService(_http, config, _users) {
@@ -770,7 +664,7 @@ var SessionService = /** @class */ /*@__PURE__*/ (function () {
          * default value (24h): 86400000
          *
          */
-        this.MAX_SESSION_TIME = 86400000;
+        this.MAX_SESSION_TIME = 86400000; // 1d = 24 * 60 * 60 * 1000
     }
     /**
      * set the session by using the json web token (jwt) and the user object;
@@ -779,210 +673,123 @@ var SessionService = /** @class */ /*@__PURE__*/ (function () {
      * @param jwt
      * @param username
      */
-    /**
-     * set the session by using the json web token (jwt) and the user object;
-     * it will be used in the login process
-     *
-     * @param {?} jwt
-     * @param {?} username
-     * @return {?}
-     */
-    SessionService.prototype.setSession = /**
-     * set the session by using the json web token (jwt) and the user object;
-     * it will be used in the login process
-     *
-     * @param {?} jwt
-     * @param {?} username
-     * @return {?}
-     */
-        function (jwt, username) {
-            var _this = this;
-            // get user information
-            this._users.getUser(username).subscribe(function (result) {
-                /** @type {?} */
-                var sysAdmin = false;
-                /** @type {?} */
-                var permissions = result.permissions;
-                if (permissions.groupsPerProject[_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemProjectIRI]) {
-                    sysAdmin = permissions.groupsPerProject[_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemProjectIRI]
-                        .indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemAdminGroupIRI) > -1;
+    SessionService.prototype.setSession = function (jwt, username) {
+        var _this = this;
+        // get user information
+        this._users.getUser(username).subscribe(function (result) {
+            var sysAdmin = false;
+            var permissions = result.permissions;
+            if (permissions.groupsPerProject[_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemProjectIRI]) {
+                sysAdmin = permissions.groupsPerProject[_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemProjectIRI]
+                    .indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemAdminGroupIRI) > -1;
+            }
+            // define a session id, which is the timestamp of login
+            _this.session = {
+                id: _this.setTimestamp(),
+                user: {
+                    name: username,
+                    jwt: jwt,
+                    lang: result.lang,
+                    sysAdmin: sysAdmin
                 }
-                // define a session id, which is the timestamp of login
-                // define a session id, which is the timestamp of login
-                _this.session = {
-                    id: _this.setTimestamp(),
-                    user: {
-                        name: username,
-                        jwt: jwt,
-                        lang: result.lang,
-                        sysAdmin: sysAdmin
-                    }
-                };
-                // store in the localStorage
-                localStorage.setItem('session', JSON.stringify(_this.session));
-            }, function (error) {
-                console.error(error);
-            });
-        };
-    /**
-     * @return {?}
-     */
-    SessionService.prototype.setTimestamp = /**
-     * @return {?}
-     */
-        function () {
-            return (moment().add(0, 'second')).valueOf();
-        };
-    /**
-     * @return {?}
-     */
-    SessionService.prototype.getSession = /**
-     * @return {?}
-     */
-        function () {
-        };
-    /**
-     * @return {?}
-     */
-    SessionService.prototype.updateSession = /**
-     * @return {?}
-     */
-        function () {
-        };
-    /**
-     * @return {?}
-     */
-    SessionService.prototype.validateSession = /**
-     * @return {?}
-     */
-        function () {
-            // mix of checks with session.validation and this.authenticate
-            this.session = JSON.parse(localStorage.getItem('session'));
-            /** @type {?} */
-            var tsNow = this.setTimestamp();
-            if (this.session) {
-                // the session exists
-                // check if the session is still valid:
-                // if session.id + MAX_SESSION_TIME > now: _session.validateSession()
-                if (this.session.id + this.MAX_SESSION_TIME < tsNow) {
-                    // the internal session has expired
-                    // check if the api v2/authentication is still valid
-                    if (this.authenticate()) {
-                        // the api authentication is valid;
-                        // update the session.id
-                        this.session.id = tsNow;
-                        console.log('new session id', this.session.id);
-                        // localStorage.removeItem('session');
-                        localStorage.setItem('session', JSON.stringify(this.session));
-                        return true;
-                    }
-                    else {
-                        // console.error('session.service -- validateSession -- authenticate: the session expired on API side');
-                        // a user is not authenticated anymore!
-                        this.destroySession();
-                        return false;
-                    }
-                }
-                else {
+            };
+            // store in the localStorage
+            localStorage.setItem('session', JSON.stringify(_this.session));
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    SessionService.prototype.setTimestamp = function () {
+        return (moment().add(0, 'second')).valueOf();
+    };
+    SessionService.prototype.getSession = function () {
+    };
+    SessionService.prototype.updateSession = function () {
+    };
+    SessionService.prototype.validateSession = function () {
+        // mix of checks with session.validation and this.authenticate
+        this.session = JSON.parse(localStorage.getItem('session'));
+        var tsNow = this.setTimestamp();
+        if (this.session) {
+            // the session exists
+            // check if the session is still valid:
+            // if session.id + MAX_SESSION_TIME > now: _session.validateSession()
+            if (this.session.id + this.MAX_SESSION_TIME < tsNow) {
+                // the internal session has expired
+                // check if the api v2/authentication is still valid
+                if (this.authenticate()) {
+                    // the api authentication is valid;
+                    // update the session.id
+                    this.session.id = tsNow;
+                    console.log('new session id', this.session.id);
+                    // localStorage.removeItem('session');
+                    localStorage.setItem('session', JSON.stringify(this.session));
                     return true;
                 }
+                else {
+                    // console.error('session.service -- validateSession -- authenticate: the session expired on API side');
+                    // a user is not authenticated anymore!
+                    this.destroySession();
+                    return false;
+                }
             }
-            return false;
-        };
-    /**
-     * @return {?}
-     */
-    SessionService.prototype.authenticate = /**
-     * @return {?}
-     */
-        function () {
-            return this._http.get(this.config.api + '/v2/authentication').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) {
-                console.log('AuthenticationService - authenticate - result: ', result);
-                // return true || false
-                return result.status === 200;
-            }));
-        };
-    /**
-     * @return {?}
-     */
-    SessionService.prototype.destroySession = /**
-     * @return {?}
-     */
-        function () {
-            localStorage.removeItem('session');
-        };
-    /** @nocollapse */ SessionService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function SessionService_Factory() { return new SessionService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])("config"), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_knora_core__WEBPACK_IMPORTED_MODULE_2__["UsersService"])); }, token: SessionService, providedIn: "root" });
+            else {
+                return true;
+            }
+        }
+        return false;
+    };
+    SessionService.prototype.authenticate = function () {
+        return this._http.get(this.config.api + '/v2/authentication').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) {
+            console.log('AuthenticationService - authenticate - result: ', result);
+            // return true || false
+            return result.status === 200;
+        }));
+    };
+    SessionService.prototype.destroySession = function () {
+        localStorage.removeItem('session');
+    };
+    SessionService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function SessionService_Factory() { return new SessionService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])("config"), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_knora_core__WEBPACK_IMPORTED_MODULE_2__["UsersService"])); }, token: SessionService, providedIn: "root" });
     return SessionService;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var AuthGuard = /** @class */ /*@__PURE__*/ (function () {
     function AuthGuard(_session, _router) {
         this._session = _session;
         this._router = _router;
     }
-    /**
-     * @param {?} next
-     * @param {?} state
-     * @return {?}
-     */
-    AuthGuard.prototype.canActivate = /**
-     * @param {?} next
-     * @param {?} state
-     * @return {?}
-     */
-        function (next, state) {
-            if (!this._session.validateSession()) {
-                this._router.navigate(['login'], { queryParams: { returnUrl: state.url } });
-                return false;
-            }
-            return true;
-        };
-    /** @nocollapse */ AuthGuard.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function AuthGuard_Factory() { return new AuthGuard(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(SessionService), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"])); }, token: AuthGuard, providedIn: "root" });
+    AuthGuard.prototype.canActivate = function (next, state) {
+        if (!this._session.validateSession()) {
+            this._router.navigate(['login'], { queryParams: { returnUrl: state.url } });
+            return false;
+        }
+        return true;
+    };
+    AuthGuard.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function AuthGuard_Factory() { return new AuthGuard(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(SessionService), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"])); }, token: AuthGuard, providedIn: "root" });
     return AuthGuard;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var JwtInterceptor = /** @class */ /*@__PURE__*/ (function () {
     function JwtInterceptor(_session) {
         this._session = _session;
     }
-    /**
-     * @param {?} request
-     * @param {?} next
-     * @return {?}
-     */
-    JwtInterceptor.prototype.intercept = /**
-     * @param {?} request
-     * @param {?} next
-     * @return {?}
-     */
-        function (request, next) {
-            // add authorization header with jwt token if available
-            if (this._session.validateSession()) {
-                /** @type {?} */
-                var jwt = JSON.parse(localStorage.getItem('session')).user.jwt;
-                request = request.clone({
-                    setHeaders: {
-                        Authorization: "Bearer " + jwt
-                    }
-                });
-            }
-            else {
-                this._session.destroySession();
-            }
-            return next.handle(request);
-        };
+    JwtInterceptor.prototype.intercept = function (request, next) {
+        // add authorization header with jwt token if available
+        if (this._session.validateSession()) {
+            // the session is valid (and up to date)
+            var jwt = JSON.parse(localStorage.getItem('session')).user.jwt;
+            request = request.clone({
+                setHeaders: {
+                    Authorization: "Bearer " + jwt
+                }
+            });
+        }
+        else {
+            this._session.destroySession();
+        }
+        return next.handle(request);
+    };
     return JwtInterceptor;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
+// import { AuthenticationService } from './authentication.service';
 var ErrorInterceptor = /** @class */ /*@__PURE__*/ (function () {
     function ErrorInterceptor() {
     }
@@ -990,32 +797,17 @@ var ErrorInterceptor = /** @class */ /*@__PURE__*/ (function () {
     constructor(private _authService: AuthenticationService) {
     }
 */
-    /**
-     * @param {?} request
-     * @param {?} next
-     * @return {?}
-     */
-    ErrorInterceptor.prototype.intercept = /**
-     * @param {?} request
-     * @param {?} next
-     * @return {?}
-     */
-        function (request, next) {
-            return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-                console.log('authentication -- error.interceptor', err);
-                if (err.status === 401)
-                    ;
-                /** @type {?} */
-                var error = err.error.message || err.statusText;
-                return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["throwError"])(error);
-            }));
-        };
+    ErrorInterceptor.prototype.intercept = function (request, next) {
+        return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
+            console.log('authentication -- error.interceptor', err);
+            if (err.status === 401)
+                ;
+            var error = err.error.message || err.statusText;
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["throwError"])(error);
+        }));
+    };
     return ErrorInterceptor;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var AuthenticationService = /** @class */ /*@__PURE__*/ (function () {
     function AuthenticationService(http, _session, config) {
         this.http = http;
@@ -1026,19 +818,9 @@ var AuthenticationService = /** @class */ /*@__PURE__*/ (function () {
      * validate if a user is logged in or not
      * and the session is active
      */
-    /**
-     * validate if a user is logged in or not
-     * and the session is active
-     * @return {?}
-     */
-    AuthenticationService.prototype.session = /**
-     * validate if a user is logged in or not
-     * and the session is active
-     * @return {?}
-     */
-        function () {
-            return this._session.validateSession();
-        };
+    AuthenticationService.prototype.session = function () {
+        return this._session.validateSession();
+    };
     /**
      * login process;
      * it's used by the login component
@@ -1047,74 +829,35 @@ var AuthenticationService = /** @class */ /*@__PURE__*/ (function () {
      * @param password
      * @returns
      */
-    /**
-     * login process;
-     * it's used by the login component
-     *
-     * @param {?} identifier (email or username)
-     * @param {?} password
-     * @return {?}
-     */
-    AuthenticationService.prototype.login = /**
-     * login process;
-     * it's used by the login component
-     *
-     * @param {?} identifier (email or username)
-     * @param {?} password
-     * @return {?}
-     */
-        function (identifier, password) {
-            var _this = this;
-            return this.http.post(this.config.api + '/v2/authentication', { identifier: identifier, password: password }, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
-                return response;
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
-                return _this.handleRequestError(error);
-            }));
-        };
-    /**
-     * @return {?}
-     */
-    AuthenticationService.prototype.logout = /**
-     * @return {?}
-     */
-        function () {
-            // destroy the session
-            localStorage.removeItem('session');
-        };
+    AuthenticationService.prototype.login = function (identifier, password) {
+        var _this = this;
+        return this.http.post(this.config.api + '/v2/authentication', { identifier: identifier, password: password }, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
+            return response;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+            return _this.handleRequestError(error);
+        }));
+    };
+    AuthenticationService.prototype.logout = function () {
+        // destroy the session
+        localStorage.removeItem('session');
+    };
     /**
      * handle request error in case of server error
      *
      * @param error
      * @returns
      */
-    /**
-     * handle request error in case of server error
-     *
-     * @param {?} error
-     * @return {?}
-     */
-    AuthenticationService.prototype.handleRequestError = /**
-     * handle request error in case of server error
-     *
-     * @param {?} error
-     * @return {?}
-     */
-        function (error) {
-            /** @type {?} */
-            var serviceError = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["ApiServiceError"]();
-            serviceError.status = error.status;
-            serviceError.statusText = error.statusText;
-            serviceError.errorInfo = error.message;
-            serviceError.url = error.url;
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["throwError"])(serviceError);
-        };
-    /** @nocollapse */ AuthenticationService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function AuthenticationService_Factory() { return new AuthenticationService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(SessionService), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])("config")); }, token: AuthenticationService, providedIn: "root" });
+    AuthenticationService.prototype.handleRequestError = function (error) {
+        var serviceError = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["ApiServiceError"]();
+        serviceError.status = error.status;
+        serviceError.statusText = error.statusText;
+        serviceError.errorInfo = error.message;
+        serviceError.url = error.url;
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["throwError"])(serviceError);
+    };
+    AuthenticationService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function AuthenticationService_Factory() { return new AuthenticationService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(SessionService), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])("config")); }, token: AuthenticationService, providedIn: "root" });
     return AuthenticationService;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var LoginFormComponent = /** @class */ /*@__PURE__*/ (function () {
     function LoginFormComponent(_auth, _session, _fb, _route, _router) {
         this._auth = _auth;
@@ -1155,162 +898,116 @@ var LoginFormComponent = /** @class */ /*@__PURE__*/ (function () {
             }
         };
     }
-    /**
-     * @return {?}
-     */
-    LoginFormComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            // check if a user is already logged in
-            if (this._session.validateSession()) {
-                this.loggedInUser = JSON.parse(localStorage.getItem('session')).user.name;
-            }
-            else {
-                this.buildForm();
-            }
-        };
-    /**
-     * @return {?}
-     */
-    LoginFormComponent.prototype.buildForm = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            this.frm = this._fb.group({
-                email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]
-            });
-            this.frm.valueChanges
-                .subscribe(function (data) { return _this.onValueChanged(data); });
-        };
+    LoginFormComponent.prototype.ngOnInit = function () {
+        // check if a user is already logged in
+        if (this._session.validateSession()) {
+            this.loggedInUser = JSON.parse(localStorage.getItem('session')).user.name;
+        }
+        else {
+            this.buildForm();
+        }
+    };
+    LoginFormComponent.prototype.buildForm = function () {
+        var _this = this;
+        this.frm = this._fb.group({
+            email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]
+        });
+        this.frm.valueChanges
+            .subscribe(function (data) { return _this.onValueChanged(data); });
+    };
     /**
      * check for errors while using the form
      * @param data
      */
-    /**
-     * check for errors while using the form
-     * @param {?=} data
-     * @return {?}
-     */
-    LoginFormComponent.prototype.onValueChanged = /**
-     * check for errors while using the form
-     * @param {?=} data
-     * @return {?}
-     */
-        function (data) {
-            var _this = this;
-            if (!this.frm) {
-                return;
+    LoginFormComponent.prototype.onValueChanged = function (data) {
+        var _this = this;
+        if (!this.frm) {
+            return;
+        }
+        var form = this.frm;
+        Object.keys(this.formErrors).map(function (field) {
+            _this.formErrors[field] = '';
+            var control = form.get(field);
+            if (control && control.dirty && !control.valid) {
+                var messages_1 = _this.validationMessages[field];
+                Object.keys(control.errors).map(function (key) {
+                    _this.formErrors[field] += messages_1[key] + ' ';
+                });
             }
-            /** @type {?} */
-            var form = this.frm;
-            Object.keys(this.formErrors).map(function (field) {
-                _this.formErrors[field] = '';
-                /** @type {?} */
-                var control = form.get(field);
-                if (control && control.dirty && !control.valid) {
-                    /** @type {?} */
-                    var messages_1 = _this.validationMessages[field];
-                    Object.keys(control.errors).map(function (key) {
-                        _this.formErrors[field] += messages_1[key] + ' ';
-                    });
+        });
+    };
+    LoginFormComponent.prototype.doLogin = function () {
+        var _this = this;
+        // reset the error messages
+        this.errorMessage = undefined;
+        this.loginErrorUser = false;
+        this.loginErrorPw = false;
+        this.loginErrorServer = false;
+        // make sure form values are valid
+        if (this.frm.invalid) {
+            this.loginErrorPw = true;
+            this.loginErrorUser = true;
+            return;
+        }
+        // Reset status
+        this.loading = true;
+        // Grab values from form
+        var username = this.frm.get('email').value;
+        var password = this.frm.get('password').value;
+        this._auth.login(username, password)
+            .subscribe(function (response) {
+            // we have a token; set the session now
+            _this._session.setSession(response.body.token, username);
+            setTimeout(function () {
+                // get return url from route parameters or default to '/'
+                _this.returnUrl = _this._route.snapshot.queryParams['returnUrl'] || '/';
+                // go back to the previous route or to the route defined in the @Input if navigate exists
+                if (!_this.navigate) {
+                    _this._router.navigate([_this.returnUrl]);
                 }
-            });
-        };
-    /**
-     * @return {?}
-     */
-    LoginFormComponent.prototype.doLogin = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // reset the error messages
-            this.errorMessage = undefined;
-            this.loginErrorUser = false;
-            this.loginErrorPw = false;
-            this.loginErrorServer = false;
-            // make sure form values are valid
-            if (this.frm.invalid) {
-                this.loginErrorPw = true;
-                this.loginErrorUser = true;
-                return;
-            }
-            // Reset status
-            this.loading = true;
-            /** @type {?} */
-            var username = this.frm.get('email').value;
-            /** @type {?} */
-            var password = this.frm.get('password').value;
-            this._auth.login(username, password)
-                .subscribe(function (response) {
-                // we have a token; set the session now
-                // we have a token; set the session now
-                _this._session.setSession(response.body.token, username);
-                setTimeout(function () {
-                    // get return url from route parameters or default to '/'
-                    // get return url from route parameters or default to '/'
-                    _this.returnUrl = _this._route.snapshot.queryParams['returnUrl'] || '/';
-                    // go back to the previous route or to the route defined in the @Input if navigate exists
-                    if (!_this.navigate) {
-                        _this._router.navigate([_this.returnUrl]);
-                    }
-                    else {
-                        _this._router.navigate([_this.navigate]);
-                    }
-                    _this.loading = false;
-                }, 2000);
-            }, function (error) {
-                // error handling
-                if (error.status === 0) {
-                    _this.loginErrorUser = false;
-                    _this.loginErrorPw = false;
-                    _this.loginErrorServer = true;
+                else {
+                    _this._router.navigate([_this.navigate]);
                 }
-                if (error.status === 401) {
-                    _this.loginErrorUser = false;
-                    _this.loginErrorPw = true;
-                    _this.loginErrorServer = false;
-                }
-                if (error.status === 404) {
-                    _this.loginErrorUser = true;
-                    _this.loginErrorPw = false;
-                    _this.loginErrorServer = false;
-                }
-                _this.errorMessage = /** @type {?} */ (error);
                 _this.loading = false;
-            });
-        };
-    /**
-     * @return {?}
-     */
-    LoginFormComponent.prototype.logout = /**
-     * @return {?}
-     */
-        function () {
-            this._auth.logout();
-            location.reload(true);
-        };
+            }, 2000);
+        }, function (error) {
+            // error handling
+            if (error.status === 0) {
+                _this.loginErrorUser = false;
+                _this.loginErrorPw = false;
+                _this.loginErrorServer = true;
+            }
+            if (error.status === 401) {
+                _this.loginErrorUser = false;
+                _this.loginErrorPw = true;
+                _this.loginErrorServer = false;
+            }
+            if (error.status === 404) {
+                _this.loginErrorUser = true;
+                _this.loginErrorPw = false;
+                _this.loginErrorServer = false;
+            }
+            _this.errorMessage = error;
+            _this.loading = false;
+        });
+    };
+    LoginFormComponent.prototype.logout = function () {
+        this._auth.logout();
+        location.reload(true);
+    };
     return LoginFormComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var KuiAuthenticationModule = /** @class */ /*@__PURE__*/ (function () {
     function KuiAuthenticationModule() {
     }
     return KuiAuthenticationModule;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+/*
+ * Public API Surface of authentication
  */
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 
@@ -3148,18 +2845,16 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
     function ApiService(http, config) {
         this.http = http;
         this.config = config;
-        /**
-         *  if is loading, set it true;
-         *  it can be used in components
-         *  for progress loader element
-         */
+        // if is loading, set it true;
+        // it can be used in components
+        // for progress loader element
         this.loading = false;
     }
     /**
      * GET
      *
      * @param {string} path
-     * @returns {Observable<any>}
+     * @returns Observable of any
      */
     ApiService.prototype.httpGet = function (path, params) {
         var _this = this;
@@ -3181,8 +2876,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
      * POST
      *
      * @param {string} path
-     * @param body
-     * @returns {Observable<any>}
+     * @param {any} body
+     * @returns Observable of any
      */
     ApiService.prototype.httpPost = function (path, body) {
         var _this = this;
@@ -3206,8 +2901,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
      * PUT
      *
      * @param {string} path
-     * @param body
-     * @returns {Observable<any>}
+     * @param {any} body
+     * @returns Observable of any
      */
     ApiService.prototype.httpPut = function (path, body) {
         var _this = this;
@@ -3232,7 +2927,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
      * DELETE
      *
      * @param {string} path
-     * @returns {Observable<any>}
+     * @returns Observable of any
      */
     ApiService.prototype.httpDelete = function (path) {
         var _this = this;
@@ -3257,7 +2952,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
      * handle request error in case of server error
      *
      * @param {HttpErrorResponse} error
-     * @returns {Observable<ApiServiceError>}
+     * @returns Observable of ApiServiceError
      */
     ApiService.prototype.handleRequestError = function (error) {
         // console.error(error);
@@ -3271,8 +2966,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * handle json error in case of type error in json response (json2typescript)
      *
-     * @param error
-     * @returns {Observable<ApiServiceError>}
+     * @param {any} error
+     * @returns Observable of ApiServiceError
      */
     ApiService.prototype.handleJsonError = function (error) {
         if (error instanceof ApiServiceError)
@@ -3295,16 +2990,18 @@ var GroupsService = /** @class */ /*@__PURE__*/ (function (_super) {
         return _this;
     }
     /**
+     * return a list of all groups
      *
-     * @returns {Observable<Group[]>}
+     * @returns Observable of Group[]
      */
     GroupsService.prototype.getAllGroups = function () {
         return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(GroupsResponse).groups; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
+     * return a group object (filter by IRI)
      *
      * @param {string} iri
-     * @returns {Observable<Group>}
+     * @returns Observable of Group
      */
     GroupsService.prototype.getGroupByIri = function (iri) {
         this.path += '/' + encodeURIComponent(iri);
@@ -3324,9 +3021,10 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // GET
     // ------------------------------------------------------------------------
     /**
+     * returns a list of all lists
      *
      * @param {string} projectIri (optional)
-     * @returns {Observable<ListNodeInfo[]>}
+     * @returns Observable of ListNodeInfo[]
      */
     ListsService.prototype.getLists = function (projectIri) {
         if (projectIri) {
@@ -3335,26 +3033,29 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ListsResponse).lists; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
+     * return a list object
      *
      * @param {string} listIri
-     * @returns {Observable<List>}
+     * @returns Observable of List
      */
     ListsService.prototype.getList = function (listIri) {
         return this.httpGet(this.path + '/' + encodeURIComponent(listIri)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ListResponse).list; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
+     * return a list info object
      *
      * @param {string} listIri
-     * @returns {Observable<ListInfo>}
+     * @returns Observable of ListInfo
      */
     ListsService.prototype.getListInfo = function (listIri) {
         this.path += '/infos/' + encodeURIComponent(listIri);
         return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ListInfoResponse).listinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
+     * return a list node info object
      *
      * @param {string} nodeIri
-     * @returns {Observable<ListNodeInfo>}
+     * @returns Observable of ListNodeInfo
      */
     ListsService.prototype.getListNodeInfo = function (nodeIri) {
         this.path += '/nodes/' + encodeURIComponent(nodeIri);
@@ -3364,9 +3065,10 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // POST
     // ------------------------------------------------------------------------
     /**
+     * create new list
      *
      * @param {ListCreatePayload} payload
-     * @returns {Observable<List>}
+     * @returns Observable of List
      */
     ListsService.prototype.createList = function (payload) {
         return this.httpPost(this.path, payload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ListResponse).list; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
@@ -3375,9 +3077,10 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // PUT
     // ------------------------------------------------------------------------
     /**
+     * edit list data
      *
      * @param {ListInfoUpdatePayload} payload
-     * @returns {Observable<ListInfo>}
+     * @returns Observable of ListInfo
      */
     ListsService.prototype.updateListInfo = function (payload) {
         this.path += '/infos/' + encodeURIComponent(payload.listIri);
@@ -3397,7 +3100,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * returns a list of all projects
      *
-     * @returns {Observable<Project[]>}
+     * @returns Observable of Project[]
      */
     ProjectsService.prototype.getAllProjects = function () {
         return this.httpGet('/admin/projects').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ProjectsResponse).projects; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
@@ -3406,7 +3109,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * returns a project object
      *
      * @param {string} iri
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     ProjectsService.prototype.getProjectByIri = function (iri) {
         var url = '/admin/projects/' + encodeURIComponent(iri);
@@ -3416,7 +3119,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * returns a project object
      *
      * @param {string} shortname
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     ProjectsService.prototype.getProjectByShortname = function (shortname) {
         var url = '/admin/projects/' + shortname + '?identifier=shortname';
@@ -3426,7 +3129,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * returns a project object
      *
      * @param {string} shortcode
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     ProjectsService.prototype.getProjectByShortcode = function (shortcode) {
         var url = '/admin/projects/' + shortcode + '?identifier=shortcode';
@@ -3436,7 +3139,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Helper method combining project retrieval
      *
      * @param {string} url
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     ProjectsService.prototype.getProject = function (url) {
         return this.httpGet(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
@@ -3446,7 +3149,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * project identifier is project id (iri)
      *
      * @param {string} iri
-     * @returns {Observable<User[]>}
+     * @returns Observable of User[]
      */
     ProjectsService.prototype.getProjectMembersByIri = function (iri) {
         var url = '/admin/projects/members/' + encodeURIComponent(iri);
@@ -3457,7 +3160,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * project identifier is shortname
      *
      * @param {string} shortname
-     * @returns {Observable<User[]>}
+     * @returns Observable of User[]
      */
     ProjectsService.prototype.getProjectMembersByShortname = function (shortname) {
         var url = '/admin/projects/members/' + shortname + '?identifier=shortname';
@@ -3478,7 +3181,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Helper method combining project member retrieval
      *
      * @param {string} url
-     * @returns {Observable<User[]>}
+     * @returns Observable of User[]
      */
     ProjectsService.prototype.getProjectMembers = function (url) {
         return this.httpGet(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ProjectMembersResponse).members; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
@@ -3489,8 +3192,8 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * create new project
      *
-     * @param data
-     * @returns {Observable<Project>}
+     * @param {any} data
+     * @returns Observable of Project
      */
     ProjectsService.prototype.createProject = function (data) {
         var url = '/admin/projects';
@@ -3503,8 +3206,8 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * edit project data
      *
      * @param {string} iri
-     * @param data
-     * @returns {Observable<Project>}
+     * @param {any} data
+     * @returns Observable of Project
      */
     ProjectsService.prototype.updateProject = function (iri, data) {
         var url = '/admin/projects/' + encodeURIComponent(iri);
@@ -3514,7 +3217,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * activate project (if it was deleted)
      *
      * @param {string} iri
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     ProjectsService.prototype.activateProject = function (iri) {
         var data = {
@@ -3530,7 +3233,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Delete (set inactive) project
      *
      * @param {string} iri
-     * @returns {Observable<Project>}
+     * @returns Observable of Project
      */
     ProjectsService.prototype.deleteProject = function (iri) {
         var url = '/admin/projects/' + encodeURIComponent(iri);
@@ -3539,6 +3242,9 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     ProjectsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["defineInjectable"])({ factory: function ProjectsService_Factory() { return new ProjectsService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])("config")); }, token: ProjectsService, providedIn: "root" });
     return ProjectsService;
 }(ApiService));
+/**
+ * This service uses the Knora admin API and handles all user data.
+ */
 var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(UsersService, _super);
     function UsersService() {
@@ -3557,7 +3263,6 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     UsersService.prototype.getAllUsers = function () {
         return this.httpGet('/admin/users').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(UsersResponse).users; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
-    // TODO: merge the following two methods into one getUser() by email, iri or username should work!?
     /**
      * Get user by username, email or by iri
      *
@@ -3572,15 +3277,17 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     // POST
     // ------------------------------------------------------------------------
     /**
+     * Create new user.
      *
-     * @param data
-     * @returns {Observable<User>}
+     * @param {any} data
+     * @returns  {Observable<User>}
      */
     UsersService.prototype.createUser = function (data) {
         var path = '/admin/users';
         return this.httpPost(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
+     * Add user to a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
@@ -3591,6 +3298,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
+     * Add user to an admin project.
      *
      * @param {string} userIri
      * @param {string} projectIri
@@ -3601,6 +3309,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
+     * Delete user of an admin project.
      *
      * @param {string} userIri
      * @param {string} projectIri
@@ -3614,19 +3323,21 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     // PUT
     // ------------------------------------------------------------------------
     /**
+     * Add user to the admin system
      *
      * @param {string} userIri
-     * @param data
-     * @returns {Observable<User>}
+     * @param {any} data
+     * @returns Observable of User
      */
     UsersService.prototype.addUserToSystemAdmin = function (userIri, data) {
         var path = '/admin/users/' + encodeURIComponent(userIri);
         return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
+     * Activate user.
      *
      * @param {string} userIri
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     UsersService.prototype.activateUser = function (userIri) {
         var data = {
@@ -3635,12 +3346,12 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.updateUser(userIri, data);
     };
     /**
-     * Update own password
+     * Update own password.
      *
      * @param {string} userIri
      * @param {string} oldPassword
      * @param {string} newPassword
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     UsersService.prototype.updateOwnPassword = function (userIri, oldPassword, newPassword) {
         var data = {
@@ -3649,6 +3360,14 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         };
         return this.updateUser(userIri, data);
     };
+    /**
+     * Update password of another user (not own).
+     *
+     * @param {string} userIri
+     * @param {string} requesterPassword
+     * @param {string} newPassword
+     * @returns Observable of User
+     */
     UsersService.prototype.updateUsersPassword = function (userIri, requesterPassword, newPassword) {
         var data = {
             newPassword: newPassword,
@@ -3657,10 +3376,11 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.updateUser(userIri, data);
     };
     /**
+     * Update user data.
      *
      * @param {string} userIri
-     * @param data
-     * @returns {Observable<User>}
+     * @param {any} data
+     * @returns Observable of User
      */
     UsersService.prototype.updateUser = function (userIri, data) {
         var path = '/admin/users/' + encodeURIComponent(userIri);
@@ -3670,19 +3390,21 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     // DELETE
     // ------------------------------------------------------------------------
     /**
+     * Delete / deactivate user.
      *
      * @param {string} userIri
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     UsersService.prototype.deleteUser = function (userIri) {
         var path = '/admin/users/' + encodeURIComponent(userIri);
         return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
+     * Remove user from project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable of User
      */
     UsersService.prototype.removeUserFromProject = function (userIri, projectIri) {
         var path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -3737,7 +3459,7 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Requests the metadata about all existing ontologies from Knora's ontologies route.
      *
-     * @returns the metadata of all ontologies.
+     * @returns the metadata of all ontologies (Observable of ApiServiceResult).
      */
     OntologyService.prototype.getOntologiesMetadata = function () {
         return this.httpGet('/v2/ontologies/metadata');
@@ -3745,8 +3467,8 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Requests all entity definitions for the given ontologies from Knora's ontologies route.
      *
-     * @param ontologyIri the Iris of the named graphs whose resource classes are to be returned.
-     * @returns the requested ontology.
+     * @param {string} ontologyIri the Iris of the named graphs whose resource classes are to be returned.
+     * @returns the requested ontology (Observable of ApiServiceResult).
      */
     OntologyService.prototype.getAllEntityDefinitionsForOntologies = function (ontologyIri) {
         return this.httpGet('/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri));
@@ -3754,8 +3476,8 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Requests information about the given resource classes from Knora's ontologies route.
      *
-     * @param resourceClassIris the Iris of the resource classes to be queried.
-     * @returns the requested resource class definitions.
+     * @param {string[]} resourceClassIris the Iris of the resource classes to be queried.
+     * @returns the requested resource class definitions (Observable of ApiServiceResult).
      */
     OntologyService.prototype.getResourceClasses = function (resourceClassIris) {
         if (resourceClassIris.length === 0) {
@@ -3771,8 +3493,8 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Requests properties from Knora's ontologies route.
      *
-     * @param propertyIris the Iris of the properties to be queried.
-     * @returns the requested properties.
+     * @param {string[]} propertyIris the Iris of the properties to be queried.
+     * @returns the requested properties (Observable of ApiServiceResult).
      */
     OntologyService.prototype.getProperties = function (propertyIris) {
         if (propertyIris.length === 0) {
@@ -3806,9 +3528,8 @@ var OntologyCacheError = /** @class */ /*@__PURE__*/ (function (_super) {
  */
 var OntologyMetadata = /** @class */ /*@__PURE__*/ (function () {
     /**
-     *
-     * @param id Iri identifying the ontology.
-     * @param label a label describing the ontology.
+     * @param {string} id Iri identifying the ontology.
+     * @param {string} label a label describing the ontology.
      */
     function OntologyMetadata(id, label) {
         this.id = id;
@@ -3830,7 +3551,6 @@ var CardinalityOccurrence = /*@__PURE__*/ (function (CardinalityOccurrence) {
  */
 var Cardinality = /** @class */ /*@__PURE__*/ (function () {
     /**
-     *
      * @param occurrence type of given occurrence.
      * @param value numerical value of given occurrence.
      * @param property the property the given occurrence applies to.
@@ -3847,7 +3567,6 @@ var Cardinality = /** @class */ /*@__PURE__*/ (function () {
  */
 var ResourceClass = /** @class */ /*@__PURE__*/ (function () {
     /**
-     *
      * @param id Iri identifying the resource class.
      * @param icon path to an icon representing the resource class.
      * @param comment comment on the resource class.
@@ -3876,15 +3595,14 @@ var ResourceClasses = /** @class */ /*@__PURE__*/ (function () {
  */
 var Property = /** @class */ /*@__PURE__*/ (function () {
     /**
-     *
-     * @param id Iri identifying the property definition.
-     * @param objectType the property's object constraint.
-     * @param comment comment on the property definition.
-     * @param label label describing the property definition.
-     * @param subPropertyOf Iris of properties the given property is a subproperty of.
-     * @param isEditable indicates whether the given property can be edited by the client.
-     * @param isLinkProperty indicates whether the given property is a linking property.
-     * @param isLinkValueProperty indicates whether the given property refers to a link value.
+     * @param {string} id Iri identifying the property definition.
+     * @param {string} objectType the property's object constraint.
+     * @param {string} comment comment on the property definition.
+     * @param {string} label label describing the property definition.
+     * @param {string[]} subPropertyOf Iris of properties the given property is a subproperty of.
+     * @param {boolean} isEditable indicates whether the given property can be edited by the client.
+     * @param {boolean} isLinkProperty indicates whether the given property is a linking property.
+     * @param {boolean} isLinkValueProperty indicates whether the given property refers to a link value.
      */
     function Property(id, objectType, comment, label, subPropertyOf, isEditable, isLinkProperty, isLinkValueProperty) {
         this.id = id;
@@ -3938,8 +3656,7 @@ var OntologyCache = /** @class */ /*@__PURE__*/ (function () {
  */
 var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
-     *
-     * @param resourceClassesForOntology all resource class Iris for a given ontology.
+     * @param {ResourceClassIrisForOntology} resourceClassesForOntology all resource class Iris for a given ontology.
      * @param {ResourceClasses} resourceClasses resource class definitions.
      * @param {Properties} properties property definitions.
      */
@@ -3951,12 +3668,12 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Merge the given [[OntologyInformation]] into the current instance,
      * updating the existing information.
-     *
      * This is necessary when a service like the search fetches new results
      * that have to be added to an existing collection.
      * The existing ontology information must not be lost.
      *
-     * @params ontologyInfo the given definitions that have to be integrated.
+     * @param {OntologyInformation} ontologyInfo the given definitions that have to be integrated.
+     * @returns void
      */
     OntologyInformation.prototype.updateOntologyInformation = function (ontologyInfo) {
         // get new resourceClassIrisForOntology
@@ -3984,7 +3701,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns resource class definitions for ontologies.
      *
-     * @returns all resource class definitions grouped by ontologies.
+     * @returns {ResourceClassIrisForOntology} all resource class definitions grouped by ontologies.
      */
     OntologyInformation.prototype.getResourceClassForOntology = function () {
         return this.resourceClassesForOntology;
@@ -3992,7 +3709,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all resource classes as an object.
      *
-     * @returns all resource class definitions as an object.
+     * @returns {ResourceClasses} all resource class definitions as an object.
      */
     OntologyInformation.prototype.getResourceClasses = function () {
         return this.resourceClasses;
@@ -4000,7 +3717,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all resource classes as an array.
      *
-     * @returns {Array<ResourceClass>}
+     * @returns Array of ResourceClass
      */
     OntologyInformation.prototype.getResourceClassesAsArray = function () {
         var resClasses = [];
@@ -4014,8 +3731,8 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns a resource class's label.
      *
-     * @param resClass resource class to query for.
-     * @returns the resource class's label.
+     * @param {string} resClass resource class to query for.
+     * @returns {string} the resource class's label.
      */
     OntologyInformation.prototype.getLabelForResourceClass = function (resClass) {
         if (resClass !== undefined) {
@@ -4034,7 +3751,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all properties as an object.
      *
-     * @returns all properties as an object.
+     * @returns {Properties} all properties as an object.
      */
     OntologyInformation.prototype.getProperties = function () {
         return this.properties;
@@ -4042,7 +3759,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all properties as an array.
      *
-     * @returns all properties as an array.
+     * @returns Array of Property - all properties as an array.
      */
     OntologyInformation.prototype.getPropertiesAsArray = function () {
         var properties = [];
@@ -4056,8 +3773,8 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns a property's label.
      *
-     * @param property to query for.
-     * @returns the property's label.
+     * @param {string} property to query for.
+     * @returns {string} the property's label.
      */
     OntologyInformation.prototype.getLabelForProperty = function (property) {
         if (property !== undefined) {
@@ -4114,7 +3831,8 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Requests all entity definitions (resource classes and properties) for the given ontology from Knora.
      *
-     * @param ontologyIri the Iri of the requested ontology.
+     * @param {string} ontologyIri the Iri of the requested ontology.
+     * @returns metadata for all entity definitions for ontology from Knora.
      */
     OntologyCacheService.prototype.getAllEntityDefinitionsForOntologyFromKnora = function (ontologyIri) {
         return this._ontologyService.getAllEntityDefinitionsForOntologies(ontologyIri).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["mergeMap"])(
@@ -4133,7 +3851,8 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Writes all the ontologies' metadata returned by Knora to the cache.
      *
-     * @param {string[]} ontologies metadata of all existing ontologies as JSON-LD.
+     * @param {object[]} ontologies metadata of all existing ontologies as JSON-LD.
+     * @returns a new OntologyMetadata object
      */
     OntologyCacheService.prototype.convertAndWriteOntologiesMetadataToCache = function (ontologies) {
         this.cacheOntology.ontologies = ontologies.map(function (ontology) {
@@ -4143,7 +3862,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all ontologies' metadata from the cache and returns them.
      *
-     * @returns metadata of all existing ontologies.
+     * @returns Array of OntologyMetadata - metadata of all existing ontologies.
      */
     OntologyCacheService.prototype.getAllOntologiesMetadataFromCache = function () {
         return this.cacheOntology.ontologies;
@@ -4152,8 +3871,8 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Returns resource class Iris from the ontology response.
      * `knora-api:Resource` will be excluded.
      *
-     * @param classDefinitions the class definitions in an ontology response.
-     * @returns resource class Iris from the given class definitions.
+     * @param {Array<object>} classDefinitions the class definitions in an ontology response.
+     * @returns {string[]} resource class Iris from the given class definitions.
      */
     OntologyCacheService.prototype.getResourceClassIrisFromOntologyResponse = function (classDefinitions) {
         var resourceClassIris = [];
@@ -4193,6 +3912,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * If they are defined in another ontology, that ontology is requested from Knora too.
      *
      * @param {Object} ontology the ontology to be cached.
+     * @returns void
      */
     OntologyCacheService.prototype.convertAndWriteAllEntityDefinitionsForOntologyToCache = function (ontology) {
         var graph = ontology['@graph'];
@@ -4217,8 +3937,8 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns definitions for the requested ontologies from the cache.
      *
-     * @param ontologyIris the ontologies for which definitions should be returned.
-     * @returns the definitions for the requested ontologies.
+     * @param {string[]} ontologyIris the ontologies for which definitions should be returned.
+     * @returns {OntologyInformation} the definitions for the requested ontologies.
      */
     OntologyCacheService.prototype.getOntologyInformationFromCache = function (ontologyIris) {
         var resourceClassesForOntology = new ResourceClassIrisForOntology();
@@ -4258,8 +3978,9 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Converts a Knora ontology response into an internal representation and caches it.
      *
-     * @param resourceClassDefinitions the resource class definitions returned by Knora.
-     * @param propertyClassDefinitions the property definitions returned by Knora.
+     * @param {object[]} resourceClassDefinitions the resource class definitions returned by Knora.
+     * @param {object[]} propertyClassDefinitions the property definitions returned by Knora.
+     * @returns void
      */
     OntologyCacheService.prototype.convertAndWriteEntityDefinitionsToCache = function (resourceClassDefinitions, propertyClassDefinitions) {
         try {
@@ -4345,8 +4066,8 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Gets information about resource classes from the cache.
      * The answer includes the property definitions referred to by the cardinalities of the given resource classes.
      *
-     * @param resClassIris the given resource class Iris
-     * @returns {ResourceClasses} an [[OntologyCache]] representing the requested resource classes.
+     * @param {string[]} resClassIris the given resource class Iris
+     * @returns {OntologyInformation} an [[OntologyCache]] representing the requested resource classes.
      */
     OntologyCacheService.prototype.getResourceClassDefinitionsFromCache = function (resClassIris) {
         // collect the definitions for each resource class from the cache
@@ -4369,7 +4090,8 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Converts a Knora response for ontology information about properties
      * into an internal representation and cache it.
      *
-     * @param propertyDefinitionsFromKnora the property definitions returned by Knora
+     * @param {object[]} propertyDefinitionsFromKnora the property definitions returned by Knora
+     * @returns void
      */
     OntologyCacheService.prototype.convertAndWriteKnoraPropertyDefinitionsToOntologyCache = function (propertyDefinitionsFromKnora) {
         try {
@@ -4422,8 +4144,8 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns property definitions from the cache.
      *
-     * @param propertyIris the property definitions to be returned.
-     * @returns requested property defintions.
+     * @param {string[]} propertyIris the property definitions to be returned.
+     * @returns {OntologyInformation} requested property defintions.
      */
     OntologyCacheService.prototype.getPropertyDefinitionsFromCache = function (propertyIris) {
         var _this = this;
@@ -4465,7 +4187,8 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Requests the requested ontologies from Knora, adding them to the cache.
      *
-     * @param ontologyIris Iris of the ontologies to be requested.
+     * @param {string[]} ontologyIris Iris of the ontologies to be requested.
+     * @returns Observable of any[]
      */
     OntologyCacheService.prototype.getAndCacheOntologies = function (ontologyIris) {
         var _this = this;
@@ -4488,7 +4211,8 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns the entity definitions for the requested ontologies.
      *
-     * @param ontologyIris Iris of the ontologies to be queried.
+     * @param {string[]} ontologyIris Iris of the ontologies to be queried.
+     * @returns Observable of OntologyInformation - all ontology metadata from the cache
      */
     OntologyCacheService.prototype.getEntityDefinitionsForOntologies = function (ontologyIris) {
         var _this = this;
@@ -4513,8 +4237,8 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      *
      * Properties contained in the cardinalities will be returned too.
      *
-     * @param resourceClassIris the given resource class Iris
-     * @returns the requested resource classes (including properties).
+     * @param {string[]} resourceClassIris the given resource class Iris
+     * @returns Observable of OntologyInformation - the requested resource classes (including properties).
      */
     OntologyCacheService.prototype.getResourceClassDefinitions = function (resourceClassIris) {
         var _this = this;
@@ -4541,7 +4265,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * If the definitions are not already in the cache, the will be retrieved from Knora and cached.
      *
      * @param {string[]} propertyIris the Iris of the properties to be returned .
-     * @returns the requested property definitions.
+     * @returns Observable of OntologyInformation - the requested property definitions.
      */
     OntologyCacheService.prototype.getPropertyDefinitions = function (propertyIris) {
         var _this = this;
@@ -4583,8 +4307,8 @@ var ResourceService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Given the Iri, requests the representation of a resource.
      *
-     * @param iri Iri of the resource (already URL encoded).
-     * @returns {Observable<any>}
+     * @param {string} iri Iri of the resource (already URL encoded).
+     * @returns Observable of ApiServiceResult
      */
     ResourceService.prototype.getResource = function (iri) {
         // console.log('IRI from resource service: ', iri);
@@ -4601,9 +4325,9 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Perform a fulltext search.
      *
-     * @param searchTerm the term to search for.
-     * @param offset the offset to be used (for paging, first offset is 0).
-     * @returns {Observable<ApiServiceResult>}
+     * @param {string} searchTerm the term to search for.
+     * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @returns Observable of ApiServiceResult
      */
     SearchService.prototype.doFulltextSearch = function (searchTerm, offset) {
         if (offset === void 0) {
@@ -4617,8 +4341,8 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Perform a fulltext search count query.
      *
-     * @param searchTerm the term to search for.
-     * @returns {Observable<ApiServiceResult>}
+     * @param {string} searchTerm the term to search for.
+     * @returns Observable of ApiServiceResult
      */
     SearchService.prototype.doFulltextSearchCountQuery = function (searchTerm) {
         if (searchTerm === undefined || searchTerm.length === 0) {
@@ -4629,8 +4353,8 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Perform an extended search.
      *
-     * @param sparqlString the Sparql query string to be sent to Knora.
-     * @returns {Observable<any>}
+     * @param {string} sparqlString the Sparql query string to be sent to Knora.
+     * @returns Observable of ApiServiceResult
      */
     SearchService.prototype.doExtendedSearch = function (sparqlString) {
         if (sparqlString === undefined || sparqlString.length === 0) {
@@ -4642,8 +4366,8 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Perform an extended search count query.
      *
-     * @param sparqlString the Sparql query string to be sent to Knora.
-     * @returns {Observable<ApiServiceResult>}
+     * @param {string} sparqlString the Sparql query string to be sent to Knora.
+     * @returns Observable of ApiServiceResult
      */
     SearchService.prototype.doExtendedSearchCountQuery = function (sparqlString) {
         if (sparqlString === undefined || sparqlString.length === 0) {
@@ -4656,9 +4380,9 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform a search by a resource's rdfs:label.
      *
      * @param {string} searchTerm the term to search for.
-     * @param resourceClassIRI restrict search to given resource class.
-     * @param projectIri restrict search to given project.
-     * @returns {Observable<ApiServiceResult>}
+     * @param {string} resourceClassIRI restrict search to given resource class.
+     * @param {string} projectIri restrict search to given project.
+     * @returns Observable of ApiServiceResult
      */
     SearchService.prototype.searchByLabel = function (searchTerm, resourceClassIRI, projectIri) {
         if (searchTerm === undefined || searchTerm.length === 0) {
@@ -4707,8 +4431,8 @@ var ConvertJSONLD;
      * Constructs a [[ReadResource]] from JSON-LD.
      * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param resourceJSONLD an a resource and its properties serialized as JSON-LD.
-     * @returns a [[ReadResource]].
+     * @param {object} resourceJSONLD an a resource and its properties serialized as JSON-LD.
+     * @returns ReadResource
      */
     function constructReadResource(resourceJSONLD) {
         var properties = constructReadProperties(resourceJSONLD);
@@ -4723,9 +4447,9 @@ var ConvertJSONLD;
      * taking into account the property's value type.
      * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param propValue the value serialized as JSON-LD.
-     * @param propIri the Iri of the property.
-     * @param standoffLinkValues standoffLinkValues of the resource. Text values may contain links to other resources.
+     * @param {Object} propValue the value serialized as JSON-LD.
+     * @param {string} propIri the Iri of the property.
+     * @param {ReadLinkValue[]} standoffLinkValues standoffLinkValues of the resource. Text values may contain links to other resources.
      * @returns a [[ReadPropertyItem]] or `undefined` in case the value could not be processed correctly.
      */
     function createValueSpecificProp(propValue, propIri, standoffLinkValues) {
@@ -4860,8 +4584,8 @@ var ConvertJSONLD;
      * Construct a [[ReadProperties]] from JSON-LD.
      * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param resourceJSONLD an object describing the resource and its properties.
-     * @returns a [[ReadProperties]].
+     * @param {object} resourceJSONLD an object describing the resource and its properties.
+     * @returns ReadProperties
      */
     function constructReadProperties(resourceJSONLD) {
         // JSON-LD representing standoff link values
@@ -4967,8 +4691,8 @@ var ConvertJSONLD;
      * Turns an API response in JSON-LD representing a sequence of resources into a [[ReadResourcesSequence]].
      * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param resourcesResponseJSONLD a resource or a sequence of resources, represented as a JSON-LD object.
-     * @returns a [[ReadResourcesSequence]].
+     * @param {object} resourcesResponseJSONLD a resource or a sequence of resources, represented as a JSON-LD object.
+     * @returns ReadResourcesSequence
      */
     function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD) {
         var resources = [];
@@ -5021,8 +4745,8 @@ var ConvertJSONLD;
      * Collects all the types (classes) of referred resources from a given resource (from its linking properties).
      * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param {Object} resourceJSONLD JSON-LD describing one resource.
-     * @return an Array of resource class Iris (including duplicates).
+     * @param {object} resourceJSONLD JSON-LD describing one resource.
+     * @return string[] - an Array of resource class Iris (including duplicates).
      */
     function getReferredResourceClasses(resourceJSONLD) {
         var propNames = Object.keys(resourceJSONLD);
@@ -5101,7 +4825,7 @@ var ConvertJSONLD;
      * Expects JSON-LD with all Iris fully expanded.
      *
      * @param resourcesResponseJSONLD a sequence of resources, represented as a JSON-LD object.
-     * @returns {Array<String>} the resource class Iris (without duplicates).
+     * @returns string[] - the resource class Iris (without duplicates).
      */
     function getResourceClassesFromJsonLD(resourcesResponseJSONLD) {
         var resourcesGraph = resourcesResponseJSONLD['@graph'];
@@ -5157,8 +4881,12 @@ var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-       * Returns all incoming regions for a particular resource.
-       */
+    * Returns all incoming regions for a particular resource.
+    *
+    * @param {string} resourceIRI the Iri of the resource whose Incoming regions should be returned.
+    * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
+    * @returns Observable of any
+    */
     IncomingService.prototype.getIncomingRegions = function (resourceIRI, offset) {
         var sparqlQueryStr = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?region knora-api:isMainResource true .\n\n?region knora-api:hasGeometry ?geom .\n\n?region knora-api:hasComment ?comment .\n\n?region knora-api:hasColor ?color .\n} WHERE {\n?region a knora-api:Region .\n?region a knora-api:Resource .\n\n?region knora-api:isRegionOf <" + resourceIRI + "> .\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\n\n<" + resourceIRI + "> a knora-api:Resource .\n\n?region knora-api:hasGeometry ?geom .\nknora-api:hasGeometry knora-api:objectType knora-api:Geom .\n\n?geom a knora-api:Geom .\n\n?region knora-api:hasComment ?comment .\nknora-api:hasComment knora-api:objectType xsd:string .\n\n?comment a xsd:string .\n\n?region knora-api:hasColor ?color .\nknora-api:hasColor knora-api:objectType knora-api:Color .\n\n?color a knora-api:Color .\n} OFFSET " + offset + "\n";
         // console.log('sparqlQueryStr ', sparqlQueryStr);
@@ -5168,9 +4896,9 @@ var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Returns all the StillImageRepresentations for the given resource, if any.
      * StillImageRepresentations link to the given resource via knora-base:isPartOf.
      *
-     * @param resourceIri the Iri of the resource whose StillImageRepresentations should be returned.
-     * @param offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
-     * @returns {Observable<any>}
+     * @param {string} resourceIri the Iri of the resource whose StillImageRepresentations should be returned.
+     * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
+     * @returns Observable of any
      */
     IncomingService.prototype.getStillImageRepresentationsForCompoundResource = function (resourceIri, offset) {
         var sparqlQueryStr = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?page knora-api:isMainResource true .\n\n?page knora-api:seqnum ?seqnum .\n\n?page knora-api:hasStillImageFile ?file .\n} WHERE {\n\n?page a knora-api:StillImageRepresentation .\n?page a knora-api:Resource .\n\n?page knora-api:isPartOf <" + resourceIri + "> .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\n<" + resourceIri + "> a knora-api:Resource .\n\n?page knora-api:seqnum ?seqnum .\nknora-api:seqnum knora-api:objectType xsd:integer .\n\n?seqnum a xsd:integer .\n\n?page knora-api:hasStillImageFile ?file .\nknora-api:hasStillImageFile knora-api:objectType knora-api:File .\n\n?file a knora-api:File .\n\n} ORDER BY ?seqnum\nOFFSET " + offset + "\n";
@@ -5182,7 +4910,8 @@ var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
      * but incoming regions and still image representations.
      *
      * @param {string} resourceIri the Iri of the resource whose incoming links should be returned.
-     * @param offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
+     * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
+     * @returns Observable of any
      */
     IncomingService.prototype.getIncomingLinksForResource = function (resourceIri, offset) {
         var sparqlQueryStr = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?incomingRes knora-api:isMainResource true .\n\n?incomingRes ?incomingProp <" + resourceIri + "> .\n\n} WHERE {\n\n?incomingRes a knora-api:Resource .\n\n?incomingRes ?incomingProp <" + resourceIri + "> .\n\n<" + resourceIri + "> a knora-api:Resource .\n\n?incomingProp knora-api:objectType knora-api:Resource .\n\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isRegionOf <" + resourceIri + "> .\n}\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isPartOf <" + resourceIri + "> .\n}\n\n} OFFSET " + offset + "\n";
@@ -5257,7 +4986,7 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
        *
        * @param {PropertyWithValue[]} properties the properties specified by the user.
        * @param {string} mainResourceClassOption the class of the main resource, if specified.
-       * @param offset the offset to be used (nth page of results).
+       * @param {number} offset the offset to be used (nth page of results).
        * @returns {string} a KnarQL query string.
        */
     GravsearchGenerationService.prototype.createGravsearchQuery = function (properties, mainResourceClassOption, offset) {
@@ -5699,10 +5428,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
     function SearchComponent(_route, _router, _eleRef) {
         this._route = _route;
@@ -5716,218 +5441,148 @@ var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
         this.searchLabel = 'Search';
         this.showSimpleSearch = true;
     }
+    SearchComponent.prototype.ngOnInit = function () {
+    };
     /**
-     * @return {?}
-     */
-    SearchComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
-    /**
-     *
+     * Do search on Enter click, reset search on Escape
      * @param search_ele
      * @param event
+     * @returns void
      */
-    /**
-     *
-     * @param {?} search_ele
-     * @param {?} event
-     * @return {?}
-     */
-    SearchComponent.prototype.onKey = /**
-     *
-     * @param {?} search_ele
-     * @param {?} event
-     * @return {?}
-     */
-        function (search_ele, event) {
-            this.focusOnSimple = 'active';
-            this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-            if (this.searchQuery && (event.key === 'Enter' || event.keyCode === 13 || event.which === 13)) {
-                this.doSearch(search_ele);
-            }
-            if (event.key === 'Escape' || event.keyCode === 27 || event.which === 27) {
-                this.resetSearch(search_ele);
-            }
-        };
+    SearchComponent.prototype.onKey = function (search_ele, event) {
+        this.focusOnSimple = 'active';
+        this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
+        if (this.searchQuery && (event.key === 'Enter' || event.keyCode === 13 || event.which === 13)) {
+            this.doSearch(search_ele);
+        }
+        if (event.key === 'Escape' || event.keyCode === 27 || event.which === 27) {
+            this.resetSearch(search_ele);
+        }
+    };
     /**
      * Realise a simple search
      * @param search_ele
+     * @returns void
      */
-    /**
-     * Realise a simple search
-     * @param {?} search_ele
-     * @return {?}
-     */
-    SearchComponent.prototype.doSearch = /**
-     * Realise a simple search
-     * @param {?} search_ele
-     * @return {?}
-     */
-        function (search_ele) {
-            if (this.searchQuery !== undefined && this.searchQuery !== null) {
-                this.toggleMenu('simpleSearch');
-                this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);
-                /** @type {?} */
-                var existingPrevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-                if (existingPrevSearch === null) {
-                    existingPrevSearch = [];
-                }
-                /** @type {?} */
-                var i = 0;
-                try {
-                    for (var existingPrevSearch_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(existingPrevSearch), existingPrevSearch_1_1 = existingPrevSearch_1.next(); !existingPrevSearch_1_1.done; existingPrevSearch_1_1 = existingPrevSearch_1.next()) {
-                        var entry = existingPrevSearch_1_1.value;
-                        // remove entry, if exists already
-                        if (this.searchQuery === entry) {
-                            existingPrevSearch.splice(i, 1);
-                        }
-                        i++;
+    SearchComponent.prototype.doSearch = function (search_ele) {
+        if (this.searchQuery !== undefined && this.searchQuery !== null) {
+            this.toggleMenu('simpleSearch');
+            this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);
+            // this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });
+            // push the search query into the local storage prevSearch array (previous search)
+            // to have a list of recent search requests
+            var existingPrevSearch = JSON.parse(localStorage.getItem('prevSearch'));
+            if (existingPrevSearch === null) {
+                existingPrevSearch = [];
+            }
+            var i = 0;
+            try {
+                for (var existingPrevSearch_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(existingPrevSearch), existingPrevSearch_1_1 = existingPrevSearch_1.next(); !existingPrevSearch_1_1.done; existingPrevSearch_1_1 = existingPrevSearch_1.next()) {
+                    var entry = existingPrevSearch_1_1.value;
+                    // remove entry, if exists already
+                    if (this.searchQuery === entry) {
+                        existingPrevSearch.splice(i, 1);
                     }
+                    i++;
                 }
-                catch (e_1_1) {
-                    e_1 = { error: e_1_1 };
+            }
+            catch (e_1_1) {
+                e_1 = { error: e_1_1 };
+            }
+            finally {
+                try {
+                    if (existingPrevSearch_1_1 && !existingPrevSearch_1_1.done && (_a = existingPrevSearch_1.return))
+                        _a.call(existingPrevSearch_1);
                 }
                 finally {
-                    try {
-                        if (existingPrevSearch_1_1 && !existingPrevSearch_1_1.done && (_a = existingPrevSearch_1.return))
-                            _a.call(existingPrevSearch_1);
-                    }
-                    finally {
-                        if (e_1)
-                            throw e_1.error;
-                    }
+                    if (e_1)
+                        throw e_1.error;
                 }
-                existingPrevSearch.push(this.searchQuery);
-                localStorage.setItem('prevSearch', JSON.stringify(existingPrevSearch));
-                // TODO: save the previous search queries somewhere in the user's profile
             }
-            else {
-                search_ele.focus();
-                this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-            }
-            var e_1, _a;
-        };
+            existingPrevSearch.push(this.searchQuery);
+            localStorage.setItem('prevSearch', JSON.stringify(existingPrevSearch));
+            // TODO: save the previous search queries somewhere in the user's profile
+        }
+        else {
+            search_ele.focus();
+            this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
+        }
+        var e_1, _a;
+    };
     /**
      * Reset the search
      * @param search_ele
+     * @returns void
      */
-    /**
-     * Reset the search
-     * @param {?} search_ele
-     * @return {?}
-     */
-    SearchComponent.prototype.resetSearch = /**
-     * Reset the search
-     * @param {?} search_ele
-     * @return {?}
-     */
-        function (search_ele) {
-            this.searchQuery = null;
-            search_ele.focus();
-            this.focusOnSimple = 'inactive';
-            this.searchPanelFocus = !this.searchPanelFocus;
-        };
+    SearchComponent.prototype.resetSearch = function (search_ele) {
+        this.searchQuery = null;
+        search_ele.focus();
+        this.focusOnSimple = 'inactive';
+        this.searchPanelFocus = !this.searchPanelFocus;
+    };
     /**
      * Realise a previous search
      * @param query
+     * @returns void
      */
-    /**
-     * Realise a previous search
-     * @param {?} query
-     * @return {?}
-     */
-    SearchComponent.prototype.doPrevSearch = /**
-     * Realise a previous search
-     * @param {?} query
-     * @return {?}
-     */
-        function (query) {
-            this.searchQuery = query;
-            this._router.navigate([this.route + '/fulltext/' + query], { relativeTo: this._route });
-            this.toggleMenu('simpleSearch');
-        };
+    SearchComponent.prototype.doPrevSearch = function (query) {
+        this.searchQuery = query;
+        this._router.navigate([this.route + '/fulltext/' + query], { relativeTo: this._route });
+        this.toggleMenu('simpleSearch');
+    };
     /**
      * Reset previous searches - the whole previous search or specific item by name
      * @param name
+     * @returns void
      */
-    /**
-     * Reset previous searches - the whole previous search or specific item by name
-     * @param {?=} name
-     * @return {?}
-     */
-    SearchComponent.prototype.resetPrevSearch = /**
-     * Reset previous searches - the whole previous search or specific item by name
-     * @param {?=} name
-     * @return {?}
-     */
-        function (name) {
-            if (name === void 0) {
-                name = null;
-            }
-            if (name) {
-                /** @type {?} */
-                var i = this.prevSearch.indexOf(name);
-                this.prevSearch.splice(i, 1);
-                localStorage.setItem('prevSearch', JSON.stringify(this.prevSearch));
-            }
-            else {
-                // delete the whole "previous search" array
-                localStorage.removeItem('prevSearch');
-            }
-            this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-        };
+    SearchComponent.prototype.resetPrevSearch = function (name) {
+        if (name === void 0) {
+            name = null;
+        }
+        if (name) {
+            // delete only this item with the name ...
+            var i = this.prevSearch.indexOf(name);
+            this.prevSearch.splice(i, 1);
+            localStorage.setItem('prevSearch', JSON.stringify(this.prevSearch));
+        }
+        else {
+            // delete the whole "previous search" array
+            localStorage.removeItem('prevSearch');
+        }
+        this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
+    };
     /**
      * Set simple focus to active
+     *
+     * @returns void
      */
-    /**
-     * Set simple focus to active
-     * @return {?}
-     */
-    SearchComponent.prototype.setFocus = /**
-     * Set simple focus to active
-     * @return {?}
-     */
-        function () {
-            this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-            this.focusOnSimple = 'active';
-            this.searchPanelFocus = !this.searchPanelFocus;
-        };
+    SearchComponent.prototype.setFocus = function () {
+        this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
+        this.focusOnSimple = 'active';
+        this.searchPanelFocus = !this.searchPanelFocus;
+    };
     /**
      * Switch according to the focus between simple or extended search
+     *
      * @param name
+     * @returns void
      */
-    /**
-     * Switch according to the focus between simple or extended search
-     * @param {?} name
-     * @return {?}
-     */
-    SearchComponent.prototype.toggleMenu = /**
-     * Switch according to the focus between simple or extended search
-     * @param {?} name
-     * @return {?}
-     */
-        function (name) {
-            switch (name) {
-                case 'simpleSearch':
-                    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-                    this.focusOnSimple = (this.focusOnSimple === 'active' ? 'inactive' : 'active');
-                    this.showSimpleSearch = true;
-                    break;
-                case 'extendedSearch':
-                    this.focusOnExtended = (this.focusOnExtended === 'active' ? 'inactive' : 'active');
-                    this.showSimpleSearch = false;
-                    break;
-            }
-        };
+    SearchComponent.prototype.toggleMenu = function (name) {
+        switch (name) {
+            case 'simpleSearch':
+                this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
+                this.focusOnSimple = (this.focusOnSimple === 'active' ? 'inactive' : 'active');
+                this.showSimpleSearch = true;
+                break;
+            case 'extendedSearch':
+                this.focusOnExtended = (this.focusOnExtended === 'active' ? 'inactive' : 'active');
+                this.showSimpleSearch = false;
+                break;
+        }
+    };
     return SearchComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 var resolvedPromise = Promise.resolve(null);
 var SelectResourceClassComponent = /** @class */ /*@__PURE__*/ (function () {
     function SelectResourceClassComponent(fb) {
@@ -5937,16 +5592,11 @@ var SelectResourceClassComponent = /** @class */ /*@__PURE__*/ (function () {
     }
     Object.defineProperty(SelectResourceClassComponent.prototype, "resourceClasses", {
         // getter method for resource classes (used in template)
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._resourceClasses;
         },
         // setter method for resource classes when being updated by parent component
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this.resourceClassSelected = undefined; // reset on updates
             this._resourceClasses = value;
         },
@@ -5958,85 +5608,51 @@ var SelectResourceClassComponent = /** @class */ /*@__PURE__*/ (function () {
      *
      * @returns the Iri of the selected resource class or false in case no resource class is selected.
      */
-    /**
-     * Returns the Iri of the selected resource class.
-     *
-     * @return {?} the Iri of the selected resource class or false in case no resource class is selected.
-     */
-    SelectResourceClassComponent.prototype.getResourceClassSelected = /**
-     * Returns the Iri of the selected resource class.
-     *
-     * @return {?} the Iri of the selected resource class or false in case no resource class is selected.
-     */
-        function () {
-            if (this.resourceClassSelected !== undefined && this.resourceClassSelected !== null) {
-                return this.resourceClassSelected;
-            }
-            else {
-                return false;
-            }
-        };
+    SelectResourceClassComponent.prototype.getResourceClassSelected = function () {
+        if (this.resourceClassSelected !== undefined && this.resourceClassSelected !== null) {
+            return this.resourceClassSelected;
+        }
+        else {
+            return false;
+        }
+    };
     /**
      * Initalizes the FormGroup for the resource class selection.
      * The initial value is set to null.
-     * @return {?}
      */
-    SelectResourceClassComponent.prototype.initForm = /**
-     * Initalizes the FormGroup for the resource class selection.
-     * The initial value is set to null.
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // build a form for the resource class selection
-            this.form = this.fb.group({
-                resourceClass: [null] // resource class selection is optional
+    SelectResourceClassComponent.prototype.initForm = function () {
+        var _this = this;
+        // build a form for the resource class selection
+        this.form = this.fb.group({
+            resourceClass: [null] // resource class selection is optional
+        });
+        // store and emit Iri of the resource class when selected
+        this.form.valueChanges.subscribe(function (data) {
+            _this.resourceClassSelected = data.resourceClass;
+            _this.resourceClassSelectedEvent.emit(_this.resourceClassSelected);
+        });
+    };
+    SelectResourceClassComponent.prototype.ngOnInit = function () {
+        this.initForm();
+        // add form to the parent form group
+        this.formGroup.addControl('resourceClass', this.form);
+    };
+    SelectResourceClassComponent.prototype.ngOnChanges = function () {
+        var _this = this;
+        if (this.form !== undefined) {
+            // resource classes have been reinitialized
+            // reset form
+            resolvedPromise.then(function () {
+                // remove this form from the parent form group
+                _this.formGroup.removeControl('resourceClass');
+                _this.initForm();
+                // add form to the parent form group
+                _this.formGroup.addControl('resourceClass', _this.form);
             });
-            // store and emit Iri of the resource class when selected
-            this.form.valueChanges.subscribe(function (data) {
-                _this.resourceClassSelected = data.resourceClass;
-                _this.resourceClassSelectedEvent.emit(_this.resourceClassSelected);
-            });
-        };
-    /**
-     * @return {?}
-     */
-    SelectResourceClassComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            this.initForm();
-            // add form to the parent form group
-            this.formGroup.addControl('resourceClass', this.form);
-        };
-    /**
-     * @return {?}
-     */
-    SelectResourceClassComponent.prototype.ngOnChanges = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            if (this.form !== undefined) {
-                // resource classes have been reinitialized
-                // reset form
-                resolvedPromise.then(function () {
-                    // remove this form from the parent form group
-                    // remove this form from the parent form group
-                    _this.formGroup.removeControl('resourceClass');
-                    _this.initForm();
-                    // add form to the parent form group
-                    // add form to the parent form group
-                    _this.formGroup.addControl('resourceClass', _this.form);
-                });
-            }
-        };
+        }
+    };
     return SelectResourceClassComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var ExtendedSearchComponent = /** @class */ /*@__PURE__*/ (function () {
     function ExtendedSearchComponent(fb, _route, _router, _cacheService, _gravSearchService) {
         this.fb = fb;
@@ -6056,233 +5672,141 @@ var ExtendedSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         // form validation status
         this.formValid = false;
     }
-    /**
-     * @return {?}
-     */
-    ExtendedSearchComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // parent form is empty, it gets passed to the child components
-            this.form = this.fb.group({});
-            // if form status changes, re-run validation
-            this.form.statusChanges.subscribe(function (data) {
-                _this.formValid = _this.validateForm();
-                // console.log(this.form);
-            });
-            // initialize ontologies to be used for the ontologies selection in the search form
-            this.initializeOntologies();
-        };
+    ExtendedSearchComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // parent form is empty, it gets passed to the child components
+        this.form = this.fb.group({});
+        // if form status changes, re-run validation
+        this.form.statusChanges.subscribe(function (data) {
+            _this.formValid = _this.validateForm();
+            // console.log(this.form);
+        });
+        // initialize ontologies to be used for the ontologies selection in the search form
+        this.initializeOntologies();
+    };
     /**
      * Add a property to the search form.
+     * @returns void
      */
-    /**
-     * Add a property to the search form.
-     * @return {?}
-     */
-    ExtendedSearchComponent.prototype.addProperty = /**
-     * Add a property to the search form.
-     * @return {?}
-     */
-        function () {
-            this.activeProperties.push(true);
-        };
+    ExtendedSearchComponent.prototype.addProperty = function () {
+        this.activeProperties.push(true);
+    };
     /**
      * Remove the last property from the search form.
+     * @returns void
      */
-    /**
-     * Remove the last property from the search form.
-     * @return {?}
-     */
-    ExtendedSearchComponent.prototype.removeProperty = /**
-     * Remove the last property from the search form.
-     * @return {?}
-     */
-        function () {
-            this.activeProperties.splice(-1, 1);
-        };
+    ExtendedSearchComponent.prototype.removeProperty = function () {
+        this.activeProperties.splice(-1, 1);
+    };
     /**
      * Gets all available ontologies for the search form.
+     * @returns void
      */
-    /**
-     * Gets all available ontologies for the search form.
-     * @return {?}
-     */
-    ExtendedSearchComponent.prototype.initializeOntologies = /**
-     * Gets all available ontologies for the search form.
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            this._cacheService.getOntologiesMetadata().subscribe(function (ontologies) {
-                _this.ontologies = ontologies;
-            });
-        };
+    ExtendedSearchComponent.prototype.initializeOntologies = function () {
+        var _this = this;
+        this._cacheService.getOntologiesMetadata().subscribe(function (ontologies) {
+            _this.ontologies = ontologies;
+        });
+    };
     /**
      * Once an ontology has been selected, gets its classes and properties.
      * The classes and properties will be made available to the user for selection.
      *
      * @param ontologyIri Iri of the ontology chosen by the user.
+     * @returns void
      */
-    /**
-     * Once an ontology has been selected, gets its classes and properties.
-     * The classes and properties will be made available to the user for selection.
-     *
-     * @param {?} ontologyIri Iri of the ontology chosen by the user.
-     * @return {?}
-     */
-    ExtendedSearchComponent.prototype.getResourceClassesAndPropertiesForOntology = /**
-     * Once an ontology has been selected, gets its classes and properties.
-     * The classes and properties will be made available to the user for selection.
-     *
-     * @param {?} ontologyIri Iri of the ontology chosen by the user.
-     * @return {?}
-     */
-        function (ontologyIri) {
-            var _this = this;
-            // reset active resource class definition
-            this.activeResourceClass = undefined;
-            // reset specified properties
-            this.activeProperties = [];
-            this.activeOntology = ontologyIri;
-            this._cacheService.getEntityDefinitionsForOntologies([ontologyIri]).subscribe(function (ontoInfo) {
-                _this.resourceClasses = ontoInfo.getResourceClassesAsArray();
-                _this.properties = ontoInfo.getProperties();
-            });
-        };
+    ExtendedSearchComponent.prototype.getResourceClassesAndPropertiesForOntology = function (ontologyIri) {
+        var _this = this;
+        // reset active resource class definition
+        this.activeResourceClass = undefined;
+        // reset specified properties
+        this.activeProperties = [];
+        this.activeOntology = ontologyIri;
+        this._cacheService.getEntityDefinitionsForOntologies([ontologyIri]).subscribe(function (ontoInfo) {
+            _this.resourceClasses = ontoInfo.getResourceClassesAsArray();
+            _this.properties = ontoInfo.getProperties();
+        });
+    };
     /**
      * Once a resource class has been selected, gets its properties.
      * The properties will be made available to the user for selection.
      *
      * @param resourceClassIri
+     * @returns void
      */
-    /**
-     * Once a resource class has been selected, gets its properties.
-     * The properties will be made available to the user for selection.
-     *
-     * @param {?} resourceClassIri
-     * @return {?}
-     */
-    ExtendedSearchComponent.prototype.getPropertiesForResourceClass = /**
-     * Once a resource class has been selected, gets its properties.
-     * The properties will be made available to the user for selection.
-     *
-     * @param {?} resourceClassIri
-     * @return {?}
-     */
-        function (resourceClassIri) {
-            var _this = this;
-            // reset specified properties
-            this.activeProperties = [];
-            // if the client undoes the selection of a resource class, use the active ontology as a fallback
-            if (resourceClassIri === null) {
-                this.getResourceClassesAndPropertiesForOntology(this.activeOntology);
-            }
-            else {
-                this._cacheService.getResourceClassDefinitions([resourceClassIri]).subscribe(function (ontoInfo) {
-                    _this.properties = ontoInfo.getProperties();
-                    _this.activeResourceClass = ontoInfo.getResourceClasses()[resourceClassIri];
-                });
-            }
-        };
-    /**
-     * Validates form and returns its status (boolean).
-     * @return {?}
-     */
-    ExtendedSearchComponent.prototype.validateForm = /**
-     * Validates form and returns its status (boolean).
-     * @return {?}
-     */
-        function () {
-            // check that either a resource class is selected or at least one property is specified
-            return this.form.valid &&
-                (this.propertyComponents.length > 0 || (this.resourceClassComponent !== undefined && this.resourceClassComponent.getResourceClassSelected() !== false));
-        };
-    /**
-     * Resets the form (selected resource class and specified properties) preserving the active ontology.
-     */
-    /**
-     * Resets the form (selected resource class and specified properties) preserving the active ontology.
-     * @return {?}
-     */
-    ExtendedSearchComponent.prototype.resetForm = /**
-     * Resets the form (selected resource class and specified properties) preserving the active ontology.
-     * @return {?}
-     */
-        function () {
-            if (this.activeOntology !== undefined) {
-                this.getResourceClassesAndPropertiesForOntology(this.activeOntology);
-            }
-        };
-    /**
-     * Creates a GravSearch query with the given form values and calls the extended search route.
-     */
-    /**
-     * Creates a GravSearch query with the given form values and calls the extended search route.
-     * @return {?}
-     */
-    ExtendedSearchComponent.prototype.submit = /**
-     * Creates a GravSearch query with the given form values and calls the extended search route.
-     * @return {?}
-     */
-        function () {
-            if (!this.formValid)
-                return;
-            /** @type {?} */
-            var resClassOption = this.resourceClassComponent.getResourceClassSelected();
-            /** @type {?} */
-            var resClass;
-            if (resClassOption !== false) {
-                resClass = resClassOption;
-            }
-            /** @type {?} */
-            var properties = this.propertyComponents.map(function (propComp) {
-                return propComp.getPropertySelectedWithValue();
+    ExtendedSearchComponent.prototype.getPropertiesForResourceClass = function (resourceClassIri) {
+        var _this = this;
+        // reset specified properties
+        this.activeProperties = [];
+        // if the client undoes the selection of a resource class, use the active ontology as a fallback
+        if (resourceClassIri === null) {
+            this.getResourceClassesAndPropertiesForOntology(this.activeOntology);
+        }
+        else {
+            this._cacheService.getResourceClassDefinitions([resourceClassIri]).subscribe(function (ontoInfo) {
+                _this.properties = ontoInfo.getProperties();
+                _this.activeResourceClass = ontoInfo.getResourceClasses()[resourceClassIri];
             });
-            /** @type {?} */
-            var gravsearch = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);
-            this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });
-            // toggle extended search form
-            this.toggleExtendedSearchForm.emit(true);
-        };
+        }
+    };
+    /**
+     * Validates form and returns its status (boolean).
+     */
+    ExtendedSearchComponent.prototype.validateForm = function () {
+        // check that either a resource class is selected or at least one property is specified
+        return this.form.valid &&
+            (this.propertyComponents.length > 0 || (this.resourceClassComponent !== undefined && this.resourceClassComponent.getResourceClassSelected() !== false));
+    };
+    /**
+     * Resets the form (selected resource class and specified properties) preserving the active ontology.
+     */
+    ExtendedSearchComponent.prototype.resetForm = function () {
+        if (this.activeOntology !== undefined) {
+            this.getResourceClassesAndPropertiesForOntology(this.activeOntology);
+        }
+    };
+    /**
+     * Creates a GravSearch query with the given form values and calls the extended search route.
+     */
+    ExtendedSearchComponent.prototype.submit = function () {
+        if (!this.formValid)
+            return; // check that from is valid
+        var resClassOption = this.resourceClassComponent.getResourceClassSelected();
+        var resClass;
+        if (resClassOption !== false) {
+            resClass = resClassOption;
+        }
+        var properties = this.propertyComponents.map(function (propComp) {
+            return propComp.getPropertySelectedWithValue();
+        });
+        var gravsearch = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);
+        this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });
+        // toggle extended search form
+        this.toggleExtendedSearchForm.emit(true);
+    };
     return ExtendedSearchComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var SelectOntologyComponent = /** @class */ /*@__PURE__*/ (function () {
     function SelectOntologyComponent(fb) {
         this.fb = fb;
         this.ontologySelected = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
-    /**
-     * @return {?}
-     */
-    SelectOntologyComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // build a form for the named graph selection
-            this.form = this.fb.group({
-                ontology: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
-            });
-            // emit Iri of the ontology when being selected
-            this.form.valueChanges.subscribe(function (data) {
-                _this.ontologySelected.emit(data.ontology);
-            });
-            // add form to the parent form group
-            this.formGroup.addControl('ontology', this.form);
-        };
+    SelectOntologyComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // build a form for the named graph selection
+        this.form = this.fb.group({
+            ontology: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+        });
+        // emit Iri of the ontology when being selected
+        this.form.valueChanges.subscribe(function (data) {
+            _this.ontologySelected.emit(data.ontology);
+        });
+        // add form to the parent form group
+        this.formGroup.addControl('ontology', this.form);
+    };
     return SelectOntologyComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 var resolvedPromise$1 = Promise.resolve(null);
 var SpecifyPropertyValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function SpecifyPropertyValueComponent(fb) {
@@ -6293,16 +5817,11 @@ var SpecifyPropertyValueComponent = /** @class */ /*@__PURE__*/ (function () {
     }
     Object.defineProperty(SpecifyPropertyValueComponent.prototype, "property", {
         // getter method for this._property
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._property;
         },
         // setter method for the property chosen by the user
-        set: /**
-         * @param {?} prop
-         * @return {?}
-         */ function (prop) {
+        set: function (prop) {
             this.comparisonOperatorSelected = undefined; // reset to initial state
             this._property = prop;
             this.resetComparisonOperators(); // reset comparison operators for given property (overwriting any previous selection)
@@ -6313,134 +5832,91 @@ var SpecifyPropertyValueComponent = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Resets the comparison operators for this._property.
      */
-    /**
-     * Resets the comparison operators for this._property.
-     * @return {?}
-     */
-    SpecifyPropertyValueComponent.prototype.resetComparisonOperators = /**
-     * Resets the comparison operators for this._property.
-     * @return {?}
-     */
-        function () {
-            // depending on object class, set comparison operators and value entry field
-            if (this._property.isLinkProperty) {
-                this.propertyValueType = _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].Resource;
-            }
-            else {
-                this.propertyValueType = this._property.objectType;
-            }
-            switch (this.propertyValueType) {
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].TextValue:
-                    this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Like"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Match"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Exists"]()];
-                    break;
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].BooleanValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].Resource:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].UriValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].IntervalValue:
-                    this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Exists"]()];
-                    break;
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].IntValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].DecimalValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].DateValue:
-                    this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["LessThan"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["LessThanEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["GreaterThan"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["GreaterThanEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Exists"]()];
-                    break;
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].ListValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].GeomValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].FileValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].AudioFileValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].StillImageFileValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].DDDFileValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].MovingImageFileValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].TextFileValue:
-                case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].ColorValue:
-                    this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Exists"]()];
-                    break;
-                default:
-                    console.log('ERROR: Unsupported value type ' + this._property.objectType);
-            }
-        };
-    /**
-     * @return {?}
-     */
-    SpecifyPropertyValueComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () { };
-    /**
-     * @return {?}
-     */
-    SpecifyPropertyValueComponent.prototype.ngOnChanges = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // build a form for comparison operator selection
-            this.form = this.fb.group({
-                comparisonOperator: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
-            });
-            // store comparison operator when selected
-            this.form.valueChanges.subscribe(function (data) {
-                _this.comparisonOperatorSelected = data.comparisonOperator;
-            });
-            resolvedPromise$1.then(function () {
-                // remove from the parent form group (clean reset)
-                // remove from the parent form group (clean reset)
-                _this.formGroup.removeControl('comparisonOperator');
-                // add form to the parent form group
-                // add form to the parent form group
-                _this.formGroup.addControl('comparisonOperator', _this.form);
-            });
-        };
+    SpecifyPropertyValueComponent.prototype.resetComparisonOperators = function () {
+        // depending on object class, set comparison operators and value entry field
+        if (this._property.isLinkProperty) {
+            this.propertyValueType = _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].Resource;
+        }
+        else {
+            this.propertyValueType = this._property.objectType;
+        }
+        switch (this.propertyValueType) {
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].TextValue:
+                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Like"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Match"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Exists"]()];
+                break;
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].BooleanValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].Resource:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].UriValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].IntervalValue:
+                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Exists"]()];
+                break;
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].IntValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].DecimalValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].DateValue:
+                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["LessThan"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["LessThanEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["GreaterThan"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["GreaterThanEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Exists"]()];
+                break;
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].ListValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].GeomValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].FileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].AudioFileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].StillImageFileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].DDDFileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].MovingImageFileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].TextFileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].ColorValue:
+                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_5__["Exists"]()];
+                break;
+            default:
+                console.log('ERROR: Unsupported value type ' + this._property.objectType);
+        }
+    };
+    SpecifyPropertyValueComponent.prototype.ngOnInit = function () { };
+    SpecifyPropertyValueComponent.prototype.ngOnChanges = function () {
+        var _this = this;
+        // build a form for comparison operator selection
+        this.form = this.fb.group({
+            comparisonOperator: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+        });
+        // store comparison operator when selected
+        this.form.valueChanges.subscribe(function (data) {
+            _this.comparisonOperatorSelected = data.comparisonOperator;
+        });
+        resolvedPromise$1.then(function () {
+            // remove from the parent form group (clean reset)
+            _this.formGroup.removeControl('comparisonOperator');
+            // add form to the parent form group
+            _this.formGroup.addControl('comparisonOperator', _this.form);
+        });
+    };
     /**
      * Gets the specified comparison operator and value for the property.
      *
      * returns {ComparisonOperatorAndValue} the comparison operator and the specified value
      */
-    /**
-     * Gets the specified comparison operator and value for the property.
-     *
-     * returns {ComparisonOperatorAndValue} the comparison operator and the specified value
-     * @return {?}
-     */
-    SpecifyPropertyValueComponent.prototype.getComparisonOperatorAndValueLiteralForProperty = /**
-     * Gets the specified comparison operator and value for the property.
-     *
-     * returns {ComparisonOperatorAndValue} the comparison operator and the specified value
-     * @return {?}
-     */
-        function () {
-            /** @type {?} */
-            var value;
-            // comparison operator 'Exists' does not require a value
-            if (this.comparisonOperatorSelected.getClassName() !== 'Exists') {
-                value = this.propertyValueComponent.getValue();
-            }
-            // return the comparison operator and the specified value
-            return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ComparisonOperatorAndValue"](this.comparisonOperatorSelected, value);
-        };
+    SpecifyPropertyValueComponent.prototype.getComparisonOperatorAndValueLiteralForProperty = function () {
+        // return value (literal or IRI) from the child component
+        var value;
+        // comparison operator 'Exists' does not require a value
+        if (this.comparisonOperatorSelected.getClassName() !== 'Exists') {
+            value = this.propertyValueComponent.getValue();
+        }
+        // return the comparison operator and the specified value
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ComparisonOperatorAndValue"](this.comparisonOperatorSelected, value);
+    };
     return SpecifyPropertyValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 var resolvedPromise$2 = Promise.resolve(null);
 var SelectPropertyComponent = /** @class */ /*@__PURE__*/ (function () {
     function SelectPropertyComponent(fb) {
         this.fb = fb;
     }
     Object.defineProperty(SelectPropertyComponent.prototype, "properties", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._properties;
         },
         // setter method for properties when being updated by parent component
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this.propertySelected = undefined; // reset selected property (overwriting any previous selection)
             this._properties = value;
             this.updatePropertiesArray();
@@ -6450,54 +5926,37 @@ var SelectPropertyComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     Object.defineProperty(SelectPropertyComponent.prototype, "activeResourceClass", {
         // setter method for selected resource class
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._activeResourceClass = value;
         },
         enumerable: true,
         configurable: true
     });
-    /**
-     * @return {?}
-     */
-    SelectPropertyComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // build a form for the property selection
-            this.form = this.fb.group({
-                property: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
-                isSortCriterion: [false, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
-            });
-            // update the selected property
-            this.form.valueChanges.subscribe(function (data) {
-                /** @type {?} */
-                var propIri = data.property;
-                _this.propertySelected = _this._properties[propIri];
-            });
-            resolvedPromise$2.then(function () {
-                _this.propIndex = 'property' + _this.index;
-                // add form to the parent form group
-                // add form to the parent form group
-                _this.formGroup.addControl(_this.propIndex, _this.form);
-            });
-        };
-    /**
-     * @return {?}
-     */
-    SelectPropertyComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // remove form from the parent form group
-            resolvedPromise$2.then(function () {
-                _this.formGroup.removeControl(_this.propIndex);
-            });
-        };
+    SelectPropertyComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // build a form for the property selection
+        this.form = this.fb.group({
+            property: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            isSortCriterion: [false, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+        });
+        // update the selected property
+        this.form.valueChanges.subscribe(function (data) {
+            var propIri = data.property;
+            _this.propertySelected = _this._properties[propIri];
+        });
+        resolvedPromise$2.then(function () {
+            _this.propIndex = 'property' + _this.index;
+            // add form to the parent form group
+            _this.formGroup.addControl(_this.propIndex, _this.form);
+        });
+    };
+    SelectPropertyComponent.prototype.ngOnDestroy = function () {
+        var _this = this;
+        // remove form from the parent form group
+        resolvedPromise$2.then(function () {
+            _this.formGroup.removeControl(_this.propIndex);
+        });
+    };
     /**
      * Indicates if property can be used as a sort criterion.
      * Property has to have cardinality or max cardinality 1 for the chosen resource class.
@@ -6505,146 +5964,83 @@ var SelectPropertyComponent = /** @class */ /*@__PURE__*/ (function () {
      * We cannot sort by properties whose cardinality is greater than 1.
      * Return boolean
      */
-    /**
-     * Indicates if property can be used as a sort criterion.
-     * Property has to have cardinality or max cardinality 1 for the chosen resource class.
-     *
-     * We cannot sort by properties whose cardinality is greater than 1.
-     * Return boolean
-     * @return {?}
-     */
-    SelectPropertyComponent.prototype.sortCriterion = /**
-     * Indicates if property can be used as a sort criterion.
-     * Property has to have cardinality or max cardinality 1 for the chosen resource class.
-     *
-     * We cannot sort by properties whose cardinality is greater than 1.
-     * Return boolean
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // check if a resource class is selected and if the property's cardinality is 1 for the selected resource class
-            if (this._activeResourceClass !== undefined && this.propertySelected !== undefined && !this.propertySelected.isLinkProperty) {
-                /** @type {?} */
-                var cardinalities = this._activeResourceClass.cardinalities.filter(function (card) {
-                    // cardinality 1 or max occurrence 1
-                    return card.property === _this.propertySelected.id
-                        && card.value === 1
-                        && (card.occurrence === _knora_core__WEBPACK_IMPORTED_MODULE_5__["CardinalityOccurrence"].card || card.occurrence === _knora_core__WEBPACK_IMPORTED_MODULE_5__["CardinalityOccurrence"].maxCard);
-                });
-                return cardinalities.length === 1;
-            }
-            else {
-                return false;
-            }
-        };
+    SelectPropertyComponent.prototype.sortCriterion = function () {
+        var _this = this;
+        // check if a resource class is selected and if the property's cardinality is 1 for the selected resource class
+        if (this._activeResourceClass !== undefined && this.propertySelected !== undefined && !this.propertySelected.isLinkProperty) {
+            var cardinalities = this._activeResourceClass.cardinalities.filter(function (card) {
+                // cardinality 1 or max occurrence 1
+                return card.property === _this.propertySelected.id
+                    && card.value === 1
+                    && (card.occurrence === _knora_core__WEBPACK_IMPORTED_MODULE_5__["CardinalityOccurrence"].card || card.occurrence === _knora_core__WEBPACK_IMPORTED_MODULE_5__["CardinalityOccurrence"].maxCard);
+            });
+            return cardinalities.length === 1;
+        }
+        else {
+            return false;
+        }
+    };
     /**
      * Updates the properties array that is accessed by the template.
-     * @return {?}
      */
-    SelectPropertyComponent.prototype.updatePropertiesArray = /**
-     * Updates the properties array that is accessed by the template.
-     * @return {?}
-     */
-        function () {
-            /** @type {?} */
-            var propsArray = [];
-            for (var propIri in this._properties) {
-                if (this._properties.hasOwnProperty(propIri)) {
-                    /** @type {?} */
-                    var prop = this._properties[propIri];
-                    // only list editable props that are not link value props
-                    if (prop.isEditable && !prop.isLinkValueProperty) {
-                        propsArray.push(this._properties[propIri]);
-                    }
+    SelectPropertyComponent.prototype.updatePropertiesArray = function () {
+        // represent the properties as an array to be accessed by the template
+        var propsArray = [];
+        for (var propIri in this._properties) {
+            if (this._properties.hasOwnProperty(propIri)) {
+                var prop = this._properties[propIri];
+                // only list editable props that are not link value props
+                if (prop.isEditable && !prop.isLinkValueProperty) {
+                    propsArray.push(this._properties[propIri]);
                 }
             }
-            this.propertiesAsArray = propsArray;
-        };
+        }
+        this.propertiesAsArray = propsArray;
+    };
     /**
      * Returns the selected property with the specified value.
      */
-    /**
-     * Returns the selected property with the specified value.
-     * @return {?}
-     */
-    SelectPropertyComponent.prototype.getPropertySelectedWithValue = /**
-     * Returns the selected property with the specified value.
-     * @return {?}
-     */
-        function () {
-            /** @type {?} */
-            var propVal = this.specifyPropertyValue.getComparisonOperatorAndValueLiteralForProperty();
-            /** @type {?} */
-            var isSortCriterion = false;
-            // only non linking properties can be used for sorting
-            if (!this.propertySelected.isLinkProperty) {
-                isSortCriterion = this.form.value.isSortCriterion;
-            }
-            return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["PropertyWithValue"](this.propertySelected, propVal, isSortCriterion);
-        };
+    SelectPropertyComponent.prototype.getPropertySelectedWithValue = function () {
+        var propVal = this.specifyPropertyValue.getComparisonOperatorAndValueLiteralForProperty();
+        var isSortCriterion = false;
+        // only non linking properties can be used for sorting
+        if (!this.propertySelected.isLinkProperty) {
+            isSortCriterion = this.form.value.isSortCriterion;
+        }
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["PropertyWithValue"](this.propertySelected, propVal, isSortCriterion);
+    };
     return SelectPropertyComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 var resolvedPromise$3 = Promise.resolve(null);
 var BooleanValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function BooleanValueComponent(fb) {
         this.fb = fb;
         this.type = _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].BooleanValue;
     }
-    /**
-     * @return {?}
-     */
-    BooleanValueComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            this.form = this.fb.group({
-                booleanValue: [false, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required])]
-            });
-            resolvedPromise$3.then(function () {
-                // add form to the parent form group
-                // add form to the parent form group
-                _this.formGroup.addControl('propValue', _this.form);
-            });
-        };
-    /**
-     * @return {?}
-     */
-    BooleanValueComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // remove form from the parent form group
-            resolvedPromise$3.then(function () {
-                _this.formGroup.removeControl('propValue');
-            });
-        };
-    /**
-     * @return {?}
-     */
-    BooleanValueComponent.prototype.getValue = /**
-     * @return {?}
-     */
-        function () {
-            return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(this.form.value.booleanValue), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].xsdBoolean);
-        };
+    BooleanValueComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.form = this.fb.group({
+            booleanValue: [false, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required])]
+        });
+        resolvedPromise$3.then(function () {
+            // add form to the parent form group
+            _this.formGroup.addControl('propValue', _this.form);
+        });
+    };
+    BooleanValueComponent.prototype.ngOnDestroy = function () {
+        var _this = this;
+        // remove form from the parent form group
+        resolvedPromise$3.then(function () {
+            _this.formGroup.removeControl('propValue');
+        });
+    };
+    BooleanValueComponent.prototype.getValue = function () {
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(this.form.value.booleanValue), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].xsdBoolean);
+    };
     return BooleanValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/**
- * Custom header component containing a calendar format switcher
- * @template D
- */
+/** Custom header component containing a calendar format switcher */
 var HeaderComponent = /** @class */ /*@__PURE__*/ (function () {
     function HeaderComponent(_calendar, _dateAdapter, fb) {
         this._calendar = _calendar;
@@ -6653,73 +6049,50 @@ var HeaderComponent = /** @class */ /*@__PURE__*/ (function () {
         // a list of supported calendar formats (Gregorian and Julian)
         this.supportedCalendarFormats = jdnconvertiblecalendar__WEBPACK_IMPORTED_MODULE_6__["JDNConvertibleCalendar"].supportedCalendars;
     }
-    /**
-     * @return {?}
-     */
-    HeaderComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // get the currently active calendar format from the date adapter
-            if (this._dateAdapter instanceof jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_8__["JDNConvertibleCalendarDateAdapter"]) {
-                this.activeFormat = this._dateAdapter.activeCalendarFormat;
-            }
-            else {
-                console.log('date adapter is expected to be an instance of JDNConvertibleCalendarDateAdapter');
-            }
-            // build a form for the calendar format selection
-            this.form = this.fb.group({
-                calendar: [this.activeFormat, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
-            });
-            // do the conversion when the user selects another calendar format
-            this.form.valueChanges.subscribe(function (data) {
-                // pass the target calendar format to the conversion method
-                // pass the target calendar format to the conversion method
-                _this.convertDate(data.calendar);
-            });
-        };
+    HeaderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // get the currently active calendar format from the date adapter
+        if (this._dateAdapter instanceof jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_8__["JDNConvertibleCalendarDateAdapter"]) {
+            this.activeFormat = this._dateAdapter.activeCalendarFormat;
+        }
+        else {
+            console.log('date adapter is expected to be an instance of JDNConvertibleCalendarDateAdapter');
+        }
+        // build a form for the calendar format selection
+        this.form = this.fb.group({
+            calendar: [this.activeFormat, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+        });
+        // do the conversion when the user selects another calendar format
+        this.form.valueChanges.subscribe(function (data) {
+            // pass the target calendar format to the conversion method
+            _this.convertDate(data.calendar);
+        });
+    };
     /**
      * Converts the date into the target format.
      *
      * @param calendar the target calendar format.
      */
-    /**
-     * Converts the date into the target format.
-     *
-     * @param {?} calendar the target calendar format.
-     * @return {?}
-     */
-    HeaderComponent.prototype.convertDate = /**
-     * Converts the date into the target format.
-     *
-     * @param {?} calendar the target calendar format.
-     * @return {?}
-     */
-        function (calendar) {
-            if (this._dateAdapter instanceof jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_8__["JDNConvertibleCalendarDateAdapter"]) {
-                /** @type {?} */
-                var convertedDate = this._dateAdapter.convertCalendarFormat(this._calendar.activeDate, calendar);
-                // set the new date
-                this._calendar.activeDate = convertedDate;
-                // select the new date in the datepicker UI
-                this._calendar._dateSelected(convertedDate);
-                /** @type {?} */
-                var view = this._calendar.currentView === 'month' ? this._calendar.monthView :
-                    (this._calendar.currentView === 'year' ? this._calendar.yearView : this._calendar.multiYearView);
-                view.ngAfterContentInit();
-            }
-            else {
-                console.log('date adapter is expected to be an instance of JDNConvertibleCalendarDateAdapter');
-            }
-        };
+    HeaderComponent.prototype.convertDate = function (calendar) {
+        if (this._dateAdapter instanceof jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_8__["JDNConvertibleCalendarDateAdapter"]) {
+            // convert the date into the target calendar format
+            var convertedDate = this._dateAdapter.convertCalendarFormat(this._calendar.activeDate, calendar);
+            // set the new date
+            this._calendar.activeDate = convertedDate;
+            // select the new date in the datepicker UI
+            this._calendar._dateSelected(convertedDate);
+            // update view after calendar format conversion
+            var view = this._calendar.currentView === 'month' ? this._calendar.monthView :
+                (this._calendar.currentView === 'year' ? this._calendar.yearView : this._calendar.multiYearView);
+            view.ngAfterContentInit();
+        }
+        else {
+            console.log('date adapter is expected to be an instance of JDNConvertibleCalendarDateAdapter');
+        }
+    };
     return HeaderComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 var resolvedPromise$4 = Promise.resolve(null);
 var DateValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function DateValueComponent(fb) {
@@ -6728,170 +6101,99 @@ var DateValueComponent = /** @class */ /*@__PURE__*/ (function () {
         // custom header for the datepicker
         this.headerComponent = HeaderComponent;
     }
-    /**
-     * @return {?}
-     */
-    DateValueComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // init datepicker
-            this.form = this.fb.group({
-                dateValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required])]
-            });
-            this.form.valueChanges.subscribe(function (data) {
-                // console.log(data.dateValue);
-            });
-            resolvedPromise$4.then(function () {
-                // add form to the parent form group
-                // add form to the parent form group
-                _this.formGroup.addControl('propValue', _this.form);
-            });
-        };
-    /**
-     * @return {?}
-     */
-    DateValueComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // remove form from the parent form group
-            resolvedPromise$4.then(function () {
-                _this.formGroup.removeControl('propValue');
-            });
-        };
-    /**
-     * @return {?}
-     */
-    DateValueComponent.prototype.getValue = /**
-     * @return {?}
-     */
-        function () {
-            /** @type {?} */
-            var dateObj = this.form.value.dateValue;
-            /** @type {?} */
-            var calendarFormat = dateObj.calendarName;
-            /** @type {?} */
-            var calendarPeriod = dateObj.toCalendarPeriod();
-            /** @type {?} */
-            var dateString = calendarFormat.toUpperCase() + ":" + calendarPeriod.periodStart.year + "-" + calendarPeriod.periodStart.month + "-" + calendarPeriod.periodStart.day + ":" + calendarPeriod.periodEnd.year + "-" + calendarPeriod.periodEnd.month + "-" + calendarPeriod.periodEnd.day;
-            return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(dateString), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].DateValue);
-        };
+    DateValueComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // init datepicker
+        this.form = this.fb.group({
+            dateValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required])]
+        });
+        this.form.valueChanges.subscribe(function (data) {
+            // console.log(data.dateValue);
+        });
+        resolvedPromise$4.then(function () {
+            // add form to the parent form group
+            _this.formGroup.addControl('propValue', _this.form);
+        });
+    };
+    DateValueComponent.prototype.ngOnDestroy = function () {
+        var _this = this;
+        // remove form from the parent form group
+        resolvedPromise$4.then(function () {
+            _this.formGroup.removeControl('propValue');
+        });
+    };
+    DateValueComponent.prototype.getValue = function () {
+        var dateObj = this.form.value.dateValue;
+        // get calendar format
+        var calendarFormat = dateObj.calendarName;
+        // get calendar period
+        var calendarPeriod = dateObj.toCalendarPeriod();
+        // get the date
+        var dateString = calendarFormat.toUpperCase() + ":" + calendarPeriod.periodStart.year + "-" + calendarPeriod.periodStart.month + "-" + calendarPeriod.periodStart.day + ":" + calendarPeriod.periodEnd.year + "-" + calendarPeriod.periodEnd.month + "-" + calendarPeriod.periodEnd.day;
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(dateString), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].DateValue);
+    };
     return DateValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 var resolvedPromise$5 = Promise.resolve(null);
 var DecimalValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function DecimalValueComponent(fb) {
         this.fb = fb;
         this.type = _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].DecimalValue;
     }
-    /**
-     * @return {?}
-     */
-    DecimalValueComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            this.form = this.fb.group({
-                decimalValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required])]
-            });
-            resolvedPromise$5.then(function () {
-                // add form to the parent form group
-                // add form to the parent form group
-                _this.formGroup.addControl('propValue', _this.form);
-            });
-        };
-    /**
-     * @return {?}
-     */
-    DecimalValueComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // remove form from the parent form group
-            resolvedPromise$5.then(function () {
-                _this.formGroup.removeControl('propValue');
-            });
-        };
-    /**
-     * @return {?}
-     */
-    DecimalValueComponent.prototype.getValue = /**
-     * @return {?}
-     */
-        function () {
-            return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(this.form.value.decimalValue), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].xsdDecimal);
-        };
+    DecimalValueComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.form = this.fb.group({
+            decimalValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required])]
+        });
+        resolvedPromise$5.then(function () {
+            // add form to the parent form group
+            _this.formGroup.addControl('propValue', _this.form);
+        });
+    };
+    DecimalValueComponent.prototype.ngOnDestroy = function () {
+        var _this = this;
+        // remove form from the parent form group
+        resolvedPromise$5.then(function () {
+            _this.formGroup.removeControl('propValue');
+        });
+    };
+    DecimalValueComponent.prototype.getValue = function () {
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(this.form.value.decimalValue), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].xsdDecimal);
+    };
     return DecimalValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 var resolvedPromise$6 = Promise.resolve(null);
 var IntegerValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function IntegerValueComponent(fb) {
         this.fb = fb;
         this.type = _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].IntValue;
     }
-    /**
-     * @return {?}
-     */
-    IntegerValueComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            this.form = this.fb.group({
-                integerValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern(/^-?\d+$/)])] // only allow for integer values (no fractions)
-            });
-            resolvedPromise$6.then(function () {
-                // add form to the parent form group
-                // add form to the parent form group
-                _this.formGroup.addControl('propValue', _this.form);
-            });
-        };
-    /**
-     * @return {?}
-     */
-    IntegerValueComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // remove form from the parent form group
-            resolvedPromise$6.then(function () {
-                _this.formGroup.removeControl('propValue');
-            });
-        };
-    /**
-     * @return {?}
-     */
-    IntegerValueComponent.prototype.getValue = /**
-     * @return {?}
-     */
-        function () {
-            return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(this.form.value.integerValue), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].xsdInteger);
-        };
+    IntegerValueComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.form = this.fb.group({
+            integerValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern(/^-?\d+$/)])] // only allow for integer values (no fractions)
+        });
+        resolvedPromise$6.then(function () {
+            // add form to the parent form group
+            _this.formGroup.addControl('propValue', _this.form);
+        });
+    };
+    IntegerValueComponent.prototype.ngOnDestroy = function () {
+        var _this = this;
+        // remove form from the parent form group
+        resolvedPromise$6.then(function () {
+            _this.formGroup.removeControl('propValue');
+        });
+    };
+    IntegerValueComponent.prototype.getValue = function () {
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(this.form.value.integerValue), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].xsdInteger);
+    };
     return IntegerValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
 var jsonld = __webpack_require__(/*! jsonld */ "./node_modules/jsonld/lib/jsonld.js");
-/** @type {?} */
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 var resolvedPromise$7 = Promise.resolve(null);
 var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function LinkValueComponent(fb, _searchService, _cacheService) {
@@ -6901,15 +6203,10 @@ var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
         this.type = _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].LinkValue;
     }
     Object.defineProperty(LinkValueComponent.prototype, "restrictResourceClass", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._restrictToResourceClass;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._restrictToResourceClass = value;
         },
         enumerable: true,
@@ -6921,64 +6218,38 @@ var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
      * @param resource the resource to be displayed (or no selection yet).
      * @returns
      */
-    /**
-     * Displays a selected resource using its label.
-     *
-     * @param {?} resource the resource to be displayed (or no selection yet).
-     * @return {?}
-     */
-    LinkValueComponent.prototype.displayResource = /**
-     * Displays a selected resource using its label.
-     *
-     * @param {?} resource the resource to be displayed (or no selection yet).
-     * @return {?}
-     */
-        function (resource) {
-            // null is the initial value (no selection yet)
-            if (resource !== null) {
-                return resource.label;
-            }
-        };
+    LinkValueComponent.prototype.displayResource = function (resource) {
+        // null is the initial value (no selection yet)
+        if (resource !== null) {
+            return resource.label;
+        }
+    };
     /**
      * Search for resources whose labels contain the given search term, restricting to to the given properties object constraint.
      *
      * @param searchTerm
      */
-    /**
-     * Search for resources whose labels contain the given search term, restricting to to the given properties object constraint.
-     *
-     * @param {?} searchTerm
-     * @return {?}
-     */
-    LinkValueComponent.prototype.searchByLabel = /**
-     * Search for resources whose labels contain the given search term, restricting to to the given properties object constraint.
-     *
-     * @param {?} searchTerm
-     * @return {?}
-     */
-        function (searchTerm) {
-            var _this = this;
-            // at least 3 characters are required
-            if (searchTerm.length >= 3) {
-                this._searchService.searchByLabel(searchTerm, this._restrictToResourceClass).subscribe(function (result) {
-                    /** @type {?} */
-                    var promises = jsonld.promises;
-                    /** @type {?} */
-                    var promise = promises.compact(result.body, {});
-                    promise.then(function (compacted) {
-                        /** @type {?} */
-                        var resourceSeq = _knora_core__WEBPACK_IMPORTED_MODULE_5__["ConvertJSONLD"].createReadResourcesSequenceFromJsonLD(compacted);
-                        _this.resources = resourceSeq.resources;
-                    }, function (err) {
-                        console.log('JSONLD of full resource request could not be expanded:' + err);
-                    });
+    LinkValueComponent.prototype.searchByLabel = function (searchTerm) {
+        var _this = this;
+        // at least 3 characters are required
+        if (searchTerm.length >= 3) {
+            this._searchService.searchByLabel(searchTerm, this._restrictToResourceClass).subscribe(function (result) {
+                var promises = jsonld.promises;
+                // compact JSON-LD using an empty context: expands all Iris
+                var promise = promises.compact(result.body, {});
+                promise.then(function (compacted) {
+                    var resourceSeq = _knora_core__WEBPACK_IMPORTED_MODULE_5__["ConvertJSONLD"].createReadResourcesSequenceFromJsonLD(compacted);
+                    _this.resources = resourceSeq.resources;
+                }, function (err) {
+                    console.log('JSONLD of full resource request could not be expanded:' + err);
                 });
-            }
-            else {
-                // clear selection
-                this.resources = undefined;
-            }
-        };
+            });
+        }
+        else {
+            // clear selection
+            this.resources = undefined;
+        }
+    };
     /**
      * Checks that the selection is a [[ReadResource]].
      *
@@ -6987,203 +6258,115 @@ var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
      * @param the form element whose value has to be checked.
      * @returns
      */
-    /**
-     * Checks that the selection is a [[ReadResource]].
-     *
-     * Surprisingly, [null] has to be returned if the value is valid: https://angular.io/guide/form-validation#custom-validators
-     *
-     * @param {?} c
-     * @return {?}
-     */
-    LinkValueComponent.prototype.validateResource = /**
-     * Checks that the selection is a [[ReadResource]].
-     *
-     * Surprisingly, [null] has to be returned if the value is valid: https://angular.io/guide/form-validation#custom-validators
-     *
-     * @param {?} c
-     * @return {?}
-     */
-        function (c) {
-            /** @type {?} */
-            var isValidResource = (c.value instanceof _knora_core__WEBPACK_IMPORTED_MODULE_5__["ReadResource"]);
-            if (isValidResource) {
-                return null;
-            }
-            else {
-                return {
-                    noResource: {
-                        value: c.value
-                    }
-                };
-            }
-        };
-    /**
-     * @return {?}
-     */
-    LinkValueComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            this.form = this.fb.group({
-                resource: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([
-                        _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required,
-                        this.validateResource
-                    ])]
-            });
-            this.form.valueChanges.subscribe(function (data) {
-                _this.searchByLabel(data.resource);
-            });
-            resolvedPromise$7.then(function () {
-                // add form to the parent form group
-                // add form to the parent form group
-                _this.formGroup.addControl('propValue', _this.form);
-            });
-        };
-    /**
-     * @return {?}
-     */
-    LinkValueComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // remove form from the parent form group
-            resolvedPromise$7.then(function () {
-                _this.formGroup.removeControl('propValue');
-            });
-        };
-    /**
-     * @return {?}
-     */
-    LinkValueComponent.prototype.getValue = /**
-     * @return {?}
-     */
-        function () {
-            return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["IRI"](this.form.value.resource.id);
-        };
+    LinkValueComponent.prototype.validateResource = function (c) {
+        var isValidResource = (c.value instanceof _knora_core__WEBPACK_IMPORTED_MODULE_5__["ReadResource"]);
+        if (isValidResource) {
+            return null;
+        }
+        else {
+            return {
+                noResource: {
+                    value: c.value
+                }
+            };
+        }
+    };
+    LinkValueComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.form = this.fb.group({
+            resource: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required,
+                    this.validateResource
+                ])]
+        });
+        this.form.valueChanges.subscribe(function (data) {
+            _this.searchByLabel(data.resource);
+        });
+        resolvedPromise$7.then(function () {
+            // add form to the parent form group
+            _this.formGroup.addControl('propValue', _this.form);
+        });
+    };
+    LinkValueComponent.prototype.ngOnDestroy = function () {
+        var _this = this;
+        // remove form from the parent form group
+        resolvedPromise$7.then(function () {
+            _this.formGroup.removeControl('propValue');
+        });
+    };
+    LinkValueComponent.prototype.getValue = function () {
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["IRI"](this.form.value.resource.id);
+    };
     return LinkValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 var resolvedPromise$8 = Promise.resolve(null);
 var TextValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function TextValueComponent(fb) {
         this.fb = fb;
         this.type = _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].TextValue;
     }
-    /**
-     * @return {?}
-     */
-    TextValueComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            this.form = this.fb.group({
-                textValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
-            });
-            resolvedPromise$8.then(function () {
-                // add form to the parent form group
-                // add form to the parent form group
-                _this.formGroup.addControl('propValue', _this.form);
-            });
-        };
-    /**
-     * @return {?}
-     */
-    TextValueComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // remove form from the parent form group
-            resolvedPromise$8.then(function () {
-                _this.formGroup.removeControl('propValue');
-            });
-        };
-    /**
-     * @return {?}
-     */
-    TextValueComponent.prototype.getValue = /**
-     * @return {?}
-     */
-        function () {
-            return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(this.form.value.textValue), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].xsdString);
-        };
+    TextValueComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.form = this.fb.group({
+            textValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+        });
+        resolvedPromise$8.then(function () {
+            // add form to the parent form group
+            _this.formGroup.addControl('propValue', _this.form);
+        });
+    };
+    TextValueComponent.prototype.ngOnDestroy = function () {
+        var _this = this;
+        // remove form from the parent form group
+        resolvedPromise$8.then(function () {
+            _this.formGroup.removeControl('propValue');
+        });
+    };
+    TextValueComponent.prototype.getValue = function () {
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(this.form.value.textValue), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].xsdString);
+    };
     return TextValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 var resolvedPromise$9 = Promise.resolve(null);
 var UriValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function UriValueComponent(fb) {
         this.fb = fb;
         this.type = _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].UriValue;
     }
-    /**
-     * @return {?}
-     */
-    UriValueComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            this.form = this.fb.group({
-                uriValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern(_knora_core__WEBPACK_IMPORTED_MODULE_5__["Utils"].RegexUrl)])]
-            });
-            resolvedPromise$9.then(function () {
-                // add form to the parent form group
-                // add form to the parent form group
-                _this.formGroup.addControl('propValue', _this.form);
-            });
-        };
-    /**
-     * @return {?}
-     */
-    UriValueComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            // remove form from the parent form group
-            resolvedPromise$9.then(function () {
-                _this.formGroup.removeControl('propValue');
-            });
-        };
-    /**
-     * @return {?}
-     */
-    UriValueComponent.prototype.getValue = /**
-     * @return {?}
-     */
-        function () {
-            return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(this.form.value.uriValue), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].xsdUri);
-        };
+    UriValueComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.form = this.fb.group({
+            uriValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern(_knora_core__WEBPACK_IMPORTED_MODULE_5__["Utils"].RegexUrl)])]
+        });
+        resolvedPromise$9.then(function () {
+            // add form to the parent form group
+            _this.formGroup.addControl('propValue', _this.form);
+        });
+    };
+    UriValueComponent.prototype.ngOnDestroy = function () {
+        var _this = this;
+        // remove form from the parent form group
+        resolvedPromise$9.then(function () {
+            _this.formGroup.removeControl('propValue');
+        });
+    };
+    UriValueComponent.prototype.getValue = function () {
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_5__["ValueLiteral"](String(this.form.value.uriValue), _knora_core__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].xsdUri);
+    };
     return UriValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var KuiSearchModule = /** @class */ /*@__PURE__*/ (function () {
     function KuiSearchModule() {
     }
     return KuiSearchModule;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+/*
+ * Public API Surface of search
  */
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 
@@ -8272,11 +7455,45 @@ var SelectResourceClassComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular
 /*!**************************************************!*\
   !*** ./dist/@knora/viewer/fesm5/knora-viewer.js ***!
   \**************************************************/
-/*! exports provided: AnnotationComponent, AudioComponent, CollectionComponent, DddComponent, DocumentComponent, LinkObjComponent, MovingImageComponent, ObjectComponent, RegionComponent, ImageRegion, StillImageRepresentation, RequestStillImageRepresentations, GeometryForRegion, StillImageComponent, TextComponent, BooleanValueComponent, ColorValueComponent, DateValueComponent, DecimalValueComponent, ExternalResValueComponent, GeometryValueComponent, GeonameValueComponent, IntegerValueComponent, IntervalValueComponent, LinkValueComponent, ListValueComponent, TextValueAsHtmlComponent, TextValueAsStringComponent, TextValueAsXmlComponent, TextfileValueComponent, UriValueComponent, CompareViewComponent, GraphViewComponent, GridViewComponent, ListViewComponent, PropertiesViewComponent, ResourceViewComponent, TableViewComponent, KuiViewerModule, ɵu, ɵr, ɵp, ɵs, ɵba, ɵv, ɵw, ɵq, ɵx, ɵz, ɵy, ɵl, ɵm, ɵn, ɵo, ɵt, ɵa, ɵb, ɵc, ɵd, ɵe, ɵf, ɵg, ɵh, ɵi, ɵj, ɵk, ɵbf, ɵbg, ɵbc, ɵbb, ɵbh, ɵbe, ɵbd */
+/*! exports provided: ɵu, ɵr, ɵp, ɵs, ɵba, ɵv, ɵw, ɵq, ɵx, ɵz, ɵy, ɵl, ɵm, ɵn, ɵo, ɵt, ɵa, ɵb, ɵc, ɵd, ɵe, ɵf, ɵg, ɵh, ɵi, ɵj, ɵk, ɵbf, ɵbg, ɵbc, ɵbb, ɵbh, ɵbe, ɵbd, AnnotationComponent, AudioComponent, CollectionComponent, DddComponent, DocumentComponent, LinkObjComponent, MovingImageComponent, ObjectComponent, RegionComponent, ImageRegion, StillImageRepresentation, RequestStillImageRepresentations, GeometryForRegion, StillImageComponent, TextComponent, BooleanValueComponent, ColorValueComponent, DateValueComponent, DecimalValueComponent, ExternalResValueComponent, GeometryValueComponent, GeonameValueComponent, IntegerValueComponent, IntervalValueComponent, LinkValueComponent, ListValueComponent, TextValueAsHtmlComponent, TextValueAsStringComponent, TextValueAsXmlComponent, TextfileValueComponent, UriValueComponent, CompareViewComponent, GraphViewComponent, GridViewComponent, ListViewComponent, PropertiesViewComponent, ResourceViewComponent, TableViewComponent, KuiViewerModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵu", function() { return BooleanValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵr", function() { return ColorValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵp", function() { return DateValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵs", function() { return DecimalValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵba", function() { return ExternalResValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵv", function() { return GeometryValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵw", function() { return GeonameValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵq", function() { return IntegerValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵx", function() { return IntervalValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵz", function() { return LinkValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵy", function() { return ListValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵl", function() { return TextValueAsHtmlComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵm", function() { return TextValueAsStringComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵn", function() { return TextValueAsXmlComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵo", function() { return TextfileValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵt", function() { return UriValueComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return AnnotationComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵb", function() { return AudioComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵc", function() { return CollectionComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵd", function() { return DddComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵe", function() { return DocumentComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵf", function() { return LinkObjComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵg", function() { return MovingImageComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵh", function() { return ObjectComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵi", function() { return RegionComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵj", function() { return StillImageComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵk", function() { return TextComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbf", function() { return CompareViewComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbg", function() { return GraphViewComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbc", function() { return GridViewComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbb", function() { return ListViewComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbh", function() { return PropertiesViewComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbe", function() { return ResourceViewComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbd", function() { return TableViewComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotationComponent", function() { return AnnotationComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AudioComponent", function() { return AudioComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CollectionComponent", function() { return CollectionComponent; });
@@ -8316,40 +7533,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceViewComponent", function() { return ResourceViewComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TableViewComponent", function() { return TableViewComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KuiViewerModule", function() { return KuiViewerModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵu", function() { return BooleanValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵr", function() { return ColorValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵp", function() { return DateValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵs", function() { return DecimalValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵba", function() { return ExternalResValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵv", function() { return GeometryValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵw", function() { return GeonameValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵq", function() { return IntegerValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵx", function() { return IntervalValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵz", function() { return LinkValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵy", function() { return ListValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵl", function() { return TextValueAsHtmlComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵm", function() { return TextValueAsStringComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵn", function() { return TextValueAsXmlComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵo", function() { return TextfileValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵt", function() { return UriValueComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return AnnotationComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵb", function() { return AudioComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵc", function() { return CollectionComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵd", function() { return DddComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵe", function() { return DocumentComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵf", function() { return LinkObjComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵg", function() { return MovingImageComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵh", function() { return ObjectComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵi", function() { return RegionComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵj", function() { return StillImageComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵk", function() { return TextComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbf", function() { return CompareViewComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbg", function() { return GraphViewComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbc", function() { return GridViewComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbb", function() { return ListViewComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbh", function() { return PropertiesViewComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbe", function() { return ResourceViewComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbd", function() { return TableViewComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
@@ -8366,171 +7549,74 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var AnnotationComponent = /** @class */ /*@__PURE__*/ (function () {
     function AnnotationComponent() {
     }
-    /**
-     * @return {?}
-     */
-    AnnotationComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    AnnotationComponent.prototype.ngOnInit = function () {
+    };
     return AnnotationComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var AudioComponent = /** @class */ /*@__PURE__*/ (function () {
     function AudioComponent() {
     }
-    /**
-     * @return {?}
-     */
-    AudioComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    AudioComponent.prototype.ngOnInit = function () {
+    };
     return AudioComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var CollectionComponent = /** @class */ /*@__PURE__*/ (function () {
     function CollectionComponent() {
     }
-    /**
-     * @return {?}
-     */
-    CollectionComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    CollectionComponent.prototype.ngOnInit = function () {
+    };
     return CollectionComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var DddComponent = /** @class */ /*@__PURE__*/ (function () {
     function DddComponent() {
     }
-    /**
-     * @return {?}
-     */
-    DddComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    DddComponent.prototype.ngOnInit = function () {
+    };
     return DddComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var DocumentComponent = /** @class */ /*@__PURE__*/ (function () {
     function DocumentComponent() {
     }
-    /**
-     * @return {?}
-     */
-    DocumentComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    DocumentComponent.prototype.ngOnInit = function () {
+    };
     return DocumentComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var LinkObjComponent = /** @class */ /*@__PURE__*/ (function () {
     function LinkObjComponent() {
     }
-    /**
-     * @return {?}
-     */
-    LinkObjComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    LinkObjComponent.prototype.ngOnInit = function () {
+    };
     return LinkObjComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var MovingImageComponent = /** @class */ /*@__PURE__*/ (function () {
     function MovingImageComponent() {
     }
-    /**
-     * @return {?}
-     */
-    MovingImageComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    MovingImageComponent.prototype.ngOnInit = function () {
+    };
     return MovingImageComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var ObjectComponent = /** @class */ /*@__PURE__*/ (function () {
     function ObjectComponent() {
     }
-    /**
-     * @return {?}
-     */
-    ObjectComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    ObjectComponent.prototype.ngOnInit = function () {
+    };
     return ObjectComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var RegionComponent = /** @class */ /*@__PURE__*/ (function () {
     function RegionComponent() {
     }
-    /**
-     * @return {?}
-     */
-    RegionComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    RegionComponent.prototype.ngOnInit = function () {
+    };
     return RegionComponent;
 }());
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/**
  * Represents a region.
  * Contains a reference to the resource representing the region and its geometries.
  */
-var /**
- * Represents a region.
- * Contains a reference to the resource representing the region and its geometries.
- */ ImageRegion = /** @class */ /*@__PURE__*/ (function () {
+var ImageRegion = /** @class */ /*@__PURE__*/ (function () {
     /**
      *
      * @param regionResource a resource of type Region
@@ -8543,27 +7629,15 @@ var /**
      *
      * @returns
      */
-    /**
-     * Get all geometry information belonging to this region.
-     *
-     * @return {?}
-     */
-    ImageRegion.prototype.getGeometries = /**
-     * Get all geometry information belonging to this region.
-     *
-     * @return {?}
-     */
-        function () {
-            return /** @type {?} */ (this.regionResource.properties[_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].hasGeometry]);
-        };
+    ImageRegion.prototype.getGeometries = function () {
+        return this.regionResource.properties[_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].hasGeometry];
+    };
     return ImageRegion;
 }());
 /**
  * Represents an image including its regions.
  */
-var /**
- * Represents an image including its regions.
- */ StillImageRepresentation = /** @class */ /*@__PURE__*/ (function () {
+var StillImageRepresentation = /** @class */ /*@__PURE__*/ (function () {
     /**
      *
      * @param stillImageFileValue a [[ReadStillImageFileValue]] representing an image.
@@ -8578,9 +7652,7 @@ var /**
 /**
  * Sends a requests to the parent component to load more StillImageRepresentations.
  */
-var /**
- * Sends a requests to the parent component to load more StillImageRepresentations.
- */ RequestStillImageRepresentations = /** @class */ /*@__PURE__*/ (function () {
+var RequestStillImageRepresentations = /** @class */ /*@__PURE__*/ (function () {
     /**
      *
      * @param offsetChange the relative change of the offset in order to get more incoming StillImageRepresentations for the resource currently being displayed. Either 1 or -1.
@@ -8595,9 +7667,7 @@ var /**
 /**
  * Represents a geometry belonging to a specific region.
  */
-var /**
- * Represents a geometry belonging to a specific region.
- */ GeometryForRegion = /** @class */ /*@__PURE__*/ (function () {
+var GeometryForRegion = /** @class */ /*@__PURE__*/ (function () {
     /**
      *
      * @param geometry the geometrical information.
@@ -8612,12 +7682,12 @@ var /**
 /**
  * This component creates a OpenSeadragon viewer instance.
  * Accepts an array of ReadResource containing (among other resources) ReadStillImageFileValues to be rendered.
- * \@member resources - resources containing (among other resources) the StillImageFileValues and incoming regions to be rendered. (Use as angular \@Input data binding property.)
+ * @member resources - resources containing (among other resources) the StillImageFileValues and incoming regions to be rendered. (Use as angular @Input data binding property.)
  */
 var StillImageComponent = /** @class */ /*@__PURE__*/ (function () {
     function StillImageComponent(elementRef) {
         this.elementRef = elementRef;
-        this.getImages = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.getImages = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"](); // sends a message to the parent component (object.component) to load the next or previous page of results (images) from the server
         this.regionHovered = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         // the paging limit should be defined in the configuration of the app
         this.pagingLimit = 25;
@@ -8625,662 +7695,472 @@ var StillImageComponent = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Calculates the surface of a rectangular region.
      *
-     * @param {?} geom the region's geometry.
-     * @return {?} the surface.
+     * @param geom the region's geometry.
+     * @returns the surface.
      */
-    StillImageComponent.surfaceOfRectangularRegion = /**
-     * Calculates the surface of a rectangular region.
-     *
-     * @param {?} geom the region's geometry.
-     * @return {?} the surface.
-     */
-        function (geom) {
-            if (geom.type !== 'rectangle') {
-                console.log('expected rectangular region, but ' + geom.type + ' given');
-                return 0;
-            }
-            /** @type {?} */
-            var w = Math.max(geom.points[0].x, geom.points[1].x) - Math.min(geom.points[0].x, geom.points[1].x);
-            /** @type {?} */
-            var h = Math.max(geom.points[0].y, geom.points[1].y) - Math.min(geom.points[0].y, geom.points[1].y);
-            return w * h;
-        };
+    StillImageComponent.surfaceOfRectangularRegion = function (geom) {
+        if (geom.type !== 'rectangle') {
+            console.log('expected rectangular region, but ' + geom.type + ' given');
+            return 0;
+        }
+        var w = Math.max(geom.points[0].x, geom.points[1].x) - Math.min(geom.points[0].x, geom.points[1].x);
+        var h = Math.max(geom.points[0].y, geom.points[1].y) - Math.min(geom.points[0].y, geom.points[1].y);
+        return w * h;
+    };
     /**
      * Prepare tile sources from the given sequence of [[ReadStillImageFileValue]].
      *
-     * @param {?} imagesToDisplay the given file values to de displayed.
-     * @return {?} the tile sources to be passed to OSD viewer.
+     * @param imagesToDisplay the given file values to de displayed.
+     * @returns the tile sources to be passed to OSD viewer.
      */
-    StillImageComponent.prepareTileSourcesFromFileValues = /**
-     * Prepare tile sources from the given sequence of [[ReadStillImageFileValue]].
-     *
-     * @param {?} imagesToDisplay the given file values to de displayed.
-     * @return {?} the tile sources to be passed to OSD viewer.
-     */
-        function (imagesToDisplay) {
-            /** @type {?} */
-            var imageXOffset = 0;
-            /** @type {?} */
-            var imageYOffset = 0;
-            /** @type {?} */
-            var tileSources = [];
-            try {
-                for (var imagesToDisplay_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__values"])(imagesToDisplay), imagesToDisplay_1_1 = imagesToDisplay_1.next(); !imagesToDisplay_1_1.done; imagesToDisplay_1_1 = imagesToDisplay_1.next()) {
-                    var image = imagesToDisplay_1_1.value;
-                    /** @type {?} */
-                    var sipiBasePath = image.imageServerIIIFBaseURL + '/' + image.imageFilename;
-                    /** @type {?} */
-                    var width = image.dimX;
-                    /** @type {?} */
-                    var height = image.dimY;
-                    // construct OpenSeadragon tileSources according to https://openseadragon.github.io/docs/OpenSeadragon.Viewer.html#open
-                    tileSources.push({
-                        // construct IIIF tileSource configuration according to
-                        // http://iiif.io/api/image/2.1/#technical-properties
-                        // see also http://iiif.io/api/image/2.0/#a-implementation-notes
-                        'tileSource': {
-                            '@context': 'http://iiif.io/api/image/2/context.json',
-                            '@id': sipiBasePath,
-                            'height': height,
-                            'width': width,
-                            'profile': ['http://iiif.io/api/image/2/level2.json'],
-                            'protocol': 'http://iiif.io/api/image',
-                            'tiles': [{
-                                    'scaleFactors': [1, 2, 4, 8, 16, 32],
-                                    'width': 1024
-                                }]
-                        },
-                        'x': imageXOffset,
-                        'y': imageYOffset
-                    });
-                    imageXOffset++;
-                    // 5 images per row
-                    /*
-                                if (imageXOffset % 5 === 0) {
-                                    imageYOffset += 2;
-                                    imageXOffset = 0;
-                                }*/
-                }
+    StillImageComponent.prepareTileSourcesFromFileValues = function (imagesToDisplay) {
+        var imageXOffset = 0;
+        var imageYOffset = 0;
+        var tileSources = [];
+        try {
+            for (var imagesToDisplay_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__values"])(imagesToDisplay), imagesToDisplay_1_1 = imagesToDisplay_1.next(); !imagesToDisplay_1_1.done; imagesToDisplay_1_1 = imagesToDisplay_1.next()) {
+                var image = imagesToDisplay_1_1.value;
+                var sipiBasePath = image.imageServerIIIFBaseURL + '/' + image.imageFilename;
+                var width = image.dimX;
+                var height = image.dimY;
+                // construct OpenSeadragon tileSources according to https://openseadragon.github.io/docs/OpenSeadragon.Viewer.html#open
+                tileSources.push({
+                    // construct IIIF tileSource configuration according to
+                    // http://iiif.io/api/image/2.1/#technical-properties
+                    // see also http://iiif.io/api/image/2.0/#a-implementation-notes
+                    'tileSource': {
+                        '@context': 'http://iiif.io/api/image/2/context.json',
+                        '@id': sipiBasePath,
+                        'height': height,
+                        'width': width,
+                        'profile': ['http://iiif.io/api/image/2/level2.json'],
+                        'protocol': 'http://iiif.io/api/image',
+                        'tiles': [{
+                                'scaleFactors': [1, 2, 4, 8, 16, 32],
+                                'width': 1024
+                            }]
+                    },
+                    'x': imageXOffset,
+                    'y': imageYOffset
+                });
+                imageXOffset++;
+                // 5 images per row
+                /*
+                if (imageXOffset % 5 === 0) {
+                    imageYOffset += 2;
+                    imageXOffset = 0;
+                }*/
             }
-            catch (e_1_1) {
-                e_1 = { error: e_1_1 };
+        }
+        catch (e_1_1) {
+            e_1 = { error: e_1_1 };
+        }
+        finally {
+            try {
+                if (imagesToDisplay_1_1 && !imagesToDisplay_1_1.done && (_a = imagesToDisplay_1.return))
+                    _a.call(imagesToDisplay_1);
             }
             finally {
-                try {
-                    if (imagesToDisplay_1_1 && !imagesToDisplay_1_1.done && (_a = imagesToDisplay_1.return))
-                        _a.call(imagesToDisplay_1);
-                }
-                finally {
-                    if (e_1)
-                        throw e_1.error;
-                }
+                if (e_1)
+                    throw e_1.error;
             }
-            return tileSources;
-            var e_1, _a;
-        };
-    /**
-     * @param {?} changes
-     * @return {?}
-     */
-    StillImageComponent.prototype.ngOnChanges = /**
-     * @param {?} changes
-     * @return {?}
-     */
-        function (changes) {
-            if (changes['images'] && changes['images'].isFirstChange()) {
-                this.setupViewer();
-            }
-            if (changes['images']) {
-                this.openImages();
-                this.renderRegions();
-            }
-        };
-    /**
-     * @return {?}
-     */
-    StillImageComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            // initialisation is done on first run of ngOnChanges
-        };
-    /**
-     * @return {?}
-     */
-    StillImageComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-        function () {
-            if (this.viewer) {
-                this.viewer.destroy();
-                this.viewer = undefined;
-            }
-        };
+        }
+        return tileSources;
+        var e_1, _a;
+    };
+    StillImageComponent.prototype.ngOnChanges = function (changes) {
+        if (changes['images'] && changes['images'].isFirstChange()) {
+            this.setupViewer();
+        }
+        if (changes['images']) {
+            this.openImages();
+            this.renderRegions();
+        }
+    };
+    StillImageComponent.prototype.ngOnInit = function () {
+        // initialisation is done on first run of ngOnChanges
+    };
+    StillImageComponent.prototype.ngOnDestroy = function () {
+        if (this.viewer) {
+            this.viewer.destroy();
+            this.viewer = undefined;
+        }
+    };
     /**
      * Renders all ReadStillImageFileValues to be found in [[this.images]].
      * (Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.
      * Use this method if additional ReadStillImageFileValues were added to this.images after creation/assignment of the this.images array.)
      */
+    StillImageComponent.prototype.updateImages = function () {
+        if (!this.viewer) {
+            this.setupViewer();
+        }
+        this.openImages();
+    };
     /**
-     * Renders all ReadStillImageFileValues to be found in [[this.images]].
-     * (Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.
-     * Use this method if additional ReadStillImageFileValues were added to this.images after creation/assignment of the this.images array.)
-     * @return {?}
+     * Get the more images from the server by requesting the previous page of results for the current resource (decrease offset).
      */
-    StillImageComponent.prototype.updateImages = /**
-     * Renders all ReadStillImageFileValues to be found in [[this.images]].
-     * (Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.
-     * Use this method if additional ReadStillImageFileValues were added to this.images after creation/assignment of the this.images array.)
-     * @return {?}
+    StillImageComponent.prototype.gotoLeft = function () {
+        // TODO: move left on this.images
+        // TODO: if necessary, request more images from the server
+        if (this.imageRangeStart - this.imageChangeInterval >= 0) {
+            // this.images has more images to display
+            this.imageRangeStart -= this.imageChangeInterval;
+            this.imageRangeEnd -= this.imageChangeInterval;
+            this.openImages();
+            this.renderRegions();
+        }
+        else if (this.imageRangeStart > 0) {
+            // fewer remaining images than interval, show remaining images
+            this.imageRangeEnd -= this.imageRangeStart;
+            this.imageRangeStart = 0;
+            this.openImages();
+            this.renderRegions();
+        }
+    };
+    /**
+     * Get the more images from the server by requesting the next page of results for the current resource (increase offset).
      */
-        function () {
-            if (!this.viewer) {
-                this.setupViewer();
+    StillImageComponent.prototype.gotoRight = function () {
+        var _this = this;
+        if (this.imageRangeEnd < this.images.length - 1) {
+            // this.images has more images to display
+            if (this.imageRangeEnd + this.imageChangeInterval < this.images.length) {
+                // the whole next interval can be displayed
+                console.log("display next interval");
+                this.imageRangeStart += this.imageChangeInterval;
+                this.imageRangeEnd += this.imageChangeInterval;
+            }
+            else {
+                console.log("display remaining images");
+                // less than the interval can be displayed just display remaining images
+                var remainingDiff = this.images.length - this.imageRangeEnd + 1;
+                this.imageRangeStart += remainingDiff;
+                this.imageRangeEnd += remainingDiff;
+                // TODO: deactivate next button
             }
             this.openImages();
-        };
-    /**
-     * Get the more images from the server by requesting the previous page of results for the current resource (decrease offset).
-     * @return {?}
-     */
-    StillImageComponent.prototype.gotoLeft = /**
-     * Get the more images from the server by requesting the previous page of results for the current resource (decrease offset).
-     * @return {?}
-     */
-        function () {
-            // TODO: move left on this.images
-            // TODO: if necessary, request more images from the server
-            if (this.imageRangeStart - this.imageChangeInterval >= 0) {
-                // this.images has more images to display
-                this.imageRangeStart -= this.imageChangeInterval;
-                this.imageRangeEnd -= this.imageChangeInterval;
-                this.openImages();
-                this.renderRegions();
-            }
-            else if (this.imageRangeStart > 0) {
-                // fewer remaining images than interval, show remaining images
-                this.imageRangeEnd -= this.imageRangeStart;
-                this.imageRangeStart = 0;
-                this.openImages();
-                this.renderRegions();
-            }
-        };
-    /**
-     * Get the more images from the server by requesting the next page of results for the current resource (increase offset).
-     * @return {?}
-     */
-    StillImageComponent.prototype.gotoRight = /**
-     * Get the more images from the server by requesting the next page of results for the current resource (increase offset).
-     * @return {?}
-     */
-        function () {
-            var _this = this;
-            if (this.imageRangeEnd < this.images.length - 1) {
-                // this.images has more images to display
-                if (this.imageRangeEnd + this.imageChangeInterval < this.images.length) {
-                    // the whole next interval can be displayed
-                    console.log("display next interval");
-                    this.imageRangeStart += this.imageChangeInterval;
-                    this.imageRangeEnd += this.imageChangeInterval;
-                }
-                else {
-                    console.log("display remaining images");
-                    /** @type {?} */
-                    var remainingDiff = this.images.length - this.imageRangeEnd + 1;
-                    this.imageRangeStart += remainingDiff;
-                    this.imageRangeEnd += remainingDiff;
-                    // TODO: deactivate next button
-                }
-                this.openImages();
-                this.renderRegions();
-            }
-            else if (this.images.length % this.pagingLimit === 0) {
-                // paging always returned full result lists, so there could be more data to fetch
-                console.log("request more images");
-                /** @type {?} */
-                var callback = function (numberOfImages) {
-                    if (numberOfImages >= _this.imageChangeInterval) {
-                        // more images were loaded than are actually to be displayed
-                        // more images were loaded than are actually to be displayed
-                        _this.imageRangeStart += _this.imageChangeInterval;
-                        _this.imageRangeEnd += _this.imageChangeInterval;
-                        _this.openImages();
-                        _this.renderRegions();
-                    }
-                    else if (numberOfImages > 0) {
-                        // the amount of new images in less than the interval, show everything that can be shown
-                        // the amount of new images in less than the interval, show everything that can be shown
-                        _this.imageRangeStart += numberOfImages;
-                        _this.imageRangeEnd += numberOfImages;
-                        _this.openImages();
-                        _this.renderRegions();
-                    }
-                    else {
-                        /** @type {?} */
-                        var remainingImages = _this.images.length - 1 - _this.imageRangeEnd;
-                        _this.imageRangeStart += remainingImages;
-                        _this.imageRangeEnd += remainingImages;
-                        // TODO: no new images can be loaded -> deactivate control in GUI (note that perhaps sufficient permissions were missing, so we actually cannot be sure that higher offsets still deliver images)
-                        // TODO: no new images can be loaded -> deactivate control in GUI (note that perhaps sufficient permissions were missing, so we actually cannot be sure that higher offsets still deliver images)
-                        _this.openImages();
-                        _this.renderRegions();
-                    }
-                };
-                /** @type {?} */
-                var msg = new RequestStillImageRepresentations(1, callback);
-                this.getImages.emit(msg);
-            }
-        };
-    /**
-     * Renders all regions to be found in [[this.images]].
-     * (Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.
-     * Use this method if additional regions were added to the resources.images)
-     */
-    /**
-     * Renders all regions to be found in [[this.images]].
-     * (Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.
-     * Use this method if additional regions were added to the resources.images)
-     * @return {?}
-     */
-    StillImageComponent.prototype.updateRegions = /**
-     * Renders all regions to be found in [[this.images]].
-     * (Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.
-     * Use this method if additional regions were added to the resources.images)
-     * @return {?}
-     */
-        function () {
-            if (!this.viewer) {
-                this.setupViewer();
-            }
             this.renderRegions();
-        };
-    /**
-     * Initializes the OpenSeadragon viewer
-     * @return {?}
-     */
-    StillImageComponent.prototype.setupViewer = /**
-     * Initializes the OpenSeadragon viewer
-     * @return {?}
-     */
-        function () {
-            /** @type {?} */
-            var viewerContainer = this.elementRef.nativeElement.getElementsByClassName('osd-container')[0];
-            /** @type {?} */
-            var osdOptions = {
-                element: viewerContainer,
-                sequenceMode: true,
-                showReferenceStrip: true,
-                showNavigator: true,
-                zoomInButton: 'KUI_OSD_ZOOM_IN',
-                zoomOutButton: 'KUI_OSD_ZOOM_OUT',
-                previousButton: 'KUI_OSD_PREV_PAGE',
-                nextButton: 'KUI_OSD_NEXT_PAGE',
-                homeButton: 'KUI_OSD_HOME',
-                fullPageButton: 'KUI_OSD_FULL_PAGE',
-                rotateLeftButton: 'KUI_OSD_ROTATE_LEFT',
-                // doesn't work yet
-                rotateRightButton: 'KUI_OSD_ROTATE_RIGHT' // doesn't work yet
-            };
-            this.viewer = new OpenSeadragon.Viewer(osdOptions);
-            this.viewer.addHandler('full-screen', function (args) {
-                if (args.fullScreen) {
-                    viewerContainer.classList.add('fullscreen');
+        }
+        else if (this.images.length % this.pagingLimit === 0) {
+            console.log("request more images");
+            // this.images cannot display more images of length interval
+            // request more images from the server using a positive offset
+            // function called when parent component loaded new images
+            var callback = function (numberOfImages) {
+                if (numberOfImages >= _this.imageChangeInterval) {
+                    // more images were loaded than are actually to be displayed
+                    _this.imageRangeStart += _this.imageChangeInterval;
+                    _this.imageRangeEnd += _this.imageChangeInterval;
+                    _this.openImages();
+                    _this.renderRegions();
+                }
+                else if (numberOfImages > 0) {
+                    // the amount of new images in less than the interval, show everything that can be shown
+                    _this.imageRangeStart += numberOfImages;
+                    _this.imageRangeEnd += numberOfImages;
+                    _this.openImages();
+                    _this.renderRegions();
                 }
                 else {
-                    viewerContainer.classList.remove('fullscreen');
+                    // no new images could be returned, display remaining images (there are fewer than this.imageChangeInterval)
+                    var remainingImages = _this.images.length - 1 - _this.imageRangeEnd;
+                    _this.imageRangeStart += remainingImages;
+                    _this.imageRangeEnd += remainingImages;
+                    // TODO: no new images can be loaded -> deactivate control in GUI (note that perhaps sufficient permissions were missing, so we actually cannot be sure that higher offsets still deliver images)
+                    _this.openImages();
+                    _this.renderRegions();
                 }
-            });
-            this.viewer.addHandler('resize', function (args) {
-                args.eventSource.svgOverlay().resize();
-            });
+            };
+            var msg = new RequestStillImageRepresentations(1, callback);
+            this.getImages.emit(msg);
+        }
+    };
+    /**
+     * Renders all regions to be found in [[this.images]].
+     * (Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.
+     * Use this method if additional regions were added to the resources.images)
+     */
+    StillImageComponent.prototype.updateRegions = function () {
+        if (!this.viewer) {
+            this.setupViewer();
+        }
+        this.renderRegions();
+    };
+    /**
+     * Initializes the OpenSeadragon viewer
+     */
+    StillImageComponent.prototype.setupViewer = function () {
+        var viewerContainer = this.elementRef.nativeElement.getElementsByClassName('osd-container')[0];
+        var osdOptions = {
+            element: viewerContainer,
+            sequenceMode: true,
+            showReferenceStrip: true,
+            showNavigator: true,
+            zoomInButton: 'KUI_OSD_ZOOM_IN',
+            zoomOutButton: 'KUI_OSD_ZOOM_OUT',
+            previousButton: 'KUI_OSD_PREV_PAGE',
+            nextButton: 'KUI_OSD_NEXT_PAGE',
+            homeButton: 'KUI_OSD_HOME',
+            fullPageButton: 'KUI_OSD_FULL_PAGE',
+            rotateLeftButton: 'KUI_OSD_ROTATE_LEFT',
+            rotateRightButton: 'KUI_OSD_ROTATE_RIGHT' // doesn't work yet
         };
+        this.viewer = new OpenSeadragon.Viewer(osdOptions);
+        this.viewer.addHandler('full-screen', function (args) {
+            if (args.fullScreen) {
+                viewerContainer.classList.add('fullscreen');
+            }
+            else {
+                viewerContainer.classList.remove('fullscreen');
+            }
+        });
+        this.viewer.addHandler('resize', function (args) {
+            args.eventSource.svgOverlay().resize();
+        });
+    };
     /**
      * Adds all images in this.images to the viewer.
      * Images are positioned in a horizontal row next to each other.
-     * @return {?}
      */
-    StillImageComponent.prototype.openImages = /**
-     * Adds all images in this.images to the viewer.
-     * Images are positioned in a horizontal row next to each other.
-     * @return {?}
-     */
-        function () {
-            /** @type {?} */
-            var fileValues = this.images.map(function (img) {
-                return img.stillImageFileValue;
-            });
-            /** @type {?} */
-            var tileSources = StillImageComponent.prepareTileSourcesFromFileValues(fileValues.slice(this.imageRangeStart, this.imageRangeEnd + 1));
-            this.viewer.clearOverlays();
-            this.viewer.open(tileSources);
-        };
+    StillImageComponent.prototype.openImages = function () {
+        // imageXOffset controls the x coordinate of the left side of each image in the OpenSeadragon viewport coordinate system.
+        // The first image has its left side at x = 0, and all images are scaled to have a width of 1 in viewport coordinates.
+        // see also: https://openseadragon.github.io/examples/viewport-coordinates/
+        var fileValues = this.images.map(function (img) {
+            return img.stillImageFileValue;
+        });
+        // display only the defined range of this.images
+        var tileSources = StillImageComponent.prepareTileSourcesFromFileValues(fileValues.slice(this.imageRangeStart, this.imageRangeEnd + 1));
+        this.viewer.clearOverlays();
+        this.viewer.open(tileSources);
+    };
     /**
      * Adds a ROI-overlay to the viewer for every region of every image in this.images
-     * @return {?}
      */
-    StillImageComponent.prototype.renderRegions = /**
-     * Adds a ROI-overlay to the viewer for every region of every image in this.images
-     * @return {?}
-     */
-        function () {
-            this.viewer.clearOverlays();
-            /** @type {?} */
-            var imageXOffset = 0; // see documentation in this.openImages() for the usage of imageXOffset
-            var _loop_1 = function (image) {
-                /** @type {?} */
-                var aspectRatio = (image.stillImageFileValue.dimY / image.stillImageFileValue.dimX);
-                /** @type {?} */
-                var geometries = [];
-                image.regions.map(function (reg) {
-                    /** @type {?} */
-                    var geoms = reg.getGeometries();
-                    geoms.map(function (geom) {
-                        /** @type {?} */
-                        var geomForReg = new GeometryForRegion(geom.geometry, reg.regionResource);
-                        geometries.push(geomForReg);
-                    });
+    StillImageComponent.prototype.renderRegions = function () {
+        this.viewer.clearOverlays();
+        var imageXOffset = 0; // see documentation in this.openImages() for the usage of imageXOffset
+        var _loop_1 = function (image) {
+            var aspectRatio = (image.stillImageFileValue.dimY / image.stillImageFileValue.dimX);
+            // collect all geometries belonging to this page
+            var geometries = [];
+            image.regions.map(function (reg) {
+                var geoms = reg.getGeometries();
+                geoms.map(function (geom) {
+                    var geomForReg = new GeometryForRegion(geom.geometry, reg.regionResource);
+                    geometries.push(geomForReg);
                 });
-                // sort all geometries belonging to this page
-                geometries.sort(function (geom1, geom2) {
-                    if (geom1.geometry.type === 'rectangle' && geom2.geometry.type === 'rectangle') {
-                        /** @type {?} */
-                        var surf1 = StillImageComponent.surfaceOfRectangularRegion(geom1.geometry);
-                        /** @type {?} */
-                        var surf2 = StillImageComponent.surfaceOfRectangularRegion(geom2.geometry);
-                        // if reg1 is smaller than reg2, return 1
-                        // reg1 then comes after reg2 and thus is rendered later
-                        if (surf1 < surf2) {
-                            return 1;
-                        }
-                        else {
-                            return -1;
-                        }
+            });
+            // sort all geometries belonging to this page
+            geometries.sort(function (geom1, geom2) {
+                if (geom1.geometry.type === 'rectangle' && geom2.geometry.type === 'rectangle') {
+                    var surf1 = StillImageComponent.surfaceOfRectangularRegion(geom1.geometry);
+                    var surf2 = StillImageComponent.surfaceOfRectangularRegion(geom2.geometry);
+                    // if reg1 is smaller than reg2, return 1
+                    // reg1 then comes after reg2 and thus is rendered later
+                    if (surf1 < surf2) {
+                        return 1;
                     }
                     else {
-                        return 0;
-                    }
-                });
-                try {
-                    // render all geometries for this page
-                    for (var geometries_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__values"])(geometries), geometries_1_1 = geometries_1.next(); !geometries_1_1.done; geometries_1_1 = geometries_1.next()) {
-                        var geom = geometries_1_1.value;
-                        /** @type {?} */
-                        var geometry = geom.geometry;
-                        this_1.createSVGOverlay(geom.region.id, geometry, aspectRatio, imageXOffset, geom.region.label);
+                        return -1;
                     }
                 }
-                catch (e_2_1) {
-                    e_2 = { error: e_2_1 };
+                else {
+                    return 0;
                 }
-                finally {
-                    try {
-                        if (geometries_1_1 && !geometries_1_1.done && (_a = geometries_1.return))
-                            _a.call(geometries_1);
-                    }
-                    finally {
-                        if (e_2)
-                            throw e_2.error;
-                    }
-                }
-                imageXOffset++;
-                var e_2, _a;
-            };
-            var this_1 = this;
+            });
             try {
-                for (var _a = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__values"])(this.images), _b = _a.next(); !_b.done; _b = _a.next()) {
-                    var image = _b.value;
-                    _loop_1(image);
+                // render all geometries for this page
+                for (var geometries_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__values"])(geometries), geometries_1_1 = geometries_1.next(); !geometries_1_1.done; geometries_1_1 = geometries_1.next()) {
+                    var geom = geometries_1_1.value;
+                    var geometry = geom.geometry;
+                    this_1.createSVGOverlay(geom.region.id, geometry, aspectRatio, imageXOffset, geom.region.label);
                 }
             }
-            catch (e_3_1) {
-                e_3 = { error: e_3_1 };
+            catch (e_2_1) {
+                e_2 = { error: e_2_1 };
             }
             finally {
                 try {
-                    if (_b && !_b.done && (_c = _a.return))
-                        _c.call(_a);
+                    if (geometries_1_1 && !geometries_1_1.done && (_a = geometries_1.return))
+                        _a.call(geometries_1);
                 }
                 finally {
-                    if (e_3)
-                        throw e_3.error;
+                    if (e_2)
+                        throw e_2.error;
                 }
             }
-            var e_3, _c;
+            imageXOffset++;
+            var e_2, _a;
         };
-    /**
-     * Creates and adds a ROI-overlay to the viewer
-     * @param {?} regionIri the Iri of the region.
-     * @param {?} geometry - the geometry describing the ROI
-     * @param {?} aspectRatio -  the aspectRatio (h/w) of the image on which the geometry should be placed
-     * @param {?} xOffset -  the x-offset in Openseadragon viewport coordinates of the image on which the geometry should be placed
-     * @param {?} toolTip -  the tooltip which should be displayed on mousehover of the svg element
-     * @return {?}
-     */
-    StillImageComponent.prototype.createSVGOverlay = /**
-     * Creates and adds a ROI-overlay to the viewer
-     * @param {?} regionIri the Iri of the region.
-     * @param {?} geometry - the geometry describing the ROI
-     * @param {?} aspectRatio -  the aspectRatio (h/w) of the image on which the geometry should be placed
-     * @param {?} xOffset -  the x-offset in Openseadragon viewport coordinates of the image on which the geometry should be placed
-     * @param {?} toolTip -  the tooltip which should be displayed on mousehover of the svg element
-     * @return {?}
-     */
-        function (regionIri, geometry, aspectRatio, xOffset, toolTip) {
-            var _this = this;
-            /** @type {?} */
-            var lineColor = geometry.lineColor;
-            /** @type {?} */
-            var lineWidth = geometry.lineWidth;
-            /** @type {?} */
-            var svgElement;
-            switch (geometry.type) {
-                case 'rectangle':
-                    svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'polygon'); // yes, we render rectangles as svg polygon elements
-                    this.addSVGAttributesRectangle(svgElement, geometry, aspectRatio, xOffset);
-                    break;
-                case 'polygon':
-                    svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-                    this.addSVGAttributesPolygon(svgElement, geometry, aspectRatio, xOffset);
-                    break;
-                case 'circle':
-                    svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                    this.addSVGAttributesCircle(svgElement, geometry, aspectRatio, xOffset);
-                    break;
-                default:
-                    console.log('ERROR: StillImageOSDViewerComponent.createSVGOverlay: unknown geometryType: ' + geometry.type);
-                    return;
+        var this_1 = this;
+        try {
+            for (var _a = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__values"])(this.images), _b = _a.next(); !_b.done; _b = _a.next()) {
+                var image = _b.value;
+                _loop_1(image);
             }
-            svgElement.id = 'roi-svgoverlay-' + Math.random() * 10000;
-            svgElement.setAttribute('class', 'roi-svgoverlay');
-            svgElement.setAttribute('style', 'stroke: ' + lineColor + '; stroke-width: ' + lineWidth + 'px;');
-            // event when a region is hovered (output)
-            svgElement.addEventListener('mouseover', function () {
-                _this.regionHovered.emit(regionIri);
-            }, false);
-            /** @type {?} */
-            var svgTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
-            svgTitle.textContent = toolTip;
-            /** @type {?} */
-            var svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            svgGroup.appendChild(svgTitle);
-            svgGroup.appendChild(svgElement);
-            /** @type {?} */
-            var overlay = this.viewer.svgOverlay();
-            overlay.node().appendChild(svgGroup);
-        };
+        }
+        catch (e_3_1) {
+            e_3 = { error: e_3_1 };
+        }
+        finally {
+            try {
+                if (_b && !_b.done && (_c = _a.return))
+                    _c.call(_a);
+            }
+            finally {
+                if (e_3)
+                    throw e_3.error;
+            }
+        }
+        var e_3, _c;
+    };
+    /**
+     * Creates and adds a ROI-overlay to the viewer
+     * @param regionIri the Iri of the region.
+     * @param geometry - the geometry describing the ROI
+     * @param aspectRatio -  the aspectRatio (h/w) of the image on which the geometry should be placed
+     * @param xOffset -  the x-offset in Openseadragon viewport coordinates of the image on which the geometry should be placed
+     * @param toolTip -  the tooltip which should be displayed on mousehover of the svg element
+     */
+    StillImageComponent.prototype.createSVGOverlay = function (regionIri, geometry, aspectRatio, xOffset, toolTip) {
+        var _this = this;
+        var lineColor = geometry.lineColor;
+        var lineWidth = geometry.lineWidth;
+        var svgElement;
+        switch (geometry.type) {
+            case 'rectangle':
+                svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'polygon'); // yes, we render rectangles as svg polygon elements
+                this.addSVGAttributesRectangle(svgElement, geometry, aspectRatio, xOffset);
+                break;
+            case 'polygon':
+                svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                this.addSVGAttributesPolygon(svgElement, geometry, aspectRatio, xOffset);
+                break;
+            case 'circle':
+                svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                this.addSVGAttributesCircle(svgElement, geometry, aspectRatio, xOffset);
+                break;
+            default:
+                console.log('ERROR: StillImageOSDViewerComponent.createSVGOverlay: unknown geometryType: ' + geometry.type);
+                return;
+        }
+        svgElement.id = 'roi-svgoverlay-' + Math.random() * 10000;
+        svgElement.setAttribute('class', 'roi-svgoverlay');
+        svgElement.setAttribute('style', 'stroke: ' + lineColor + '; stroke-width: ' + lineWidth + 'px;');
+        // event when a region is hovered (output)
+        svgElement.addEventListener('mouseover', function () {
+            _this.regionHovered.emit(regionIri);
+        }, false);
+        var svgTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        svgTitle.textContent = toolTip;
+        var svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        svgGroup.appendChild(svgTitle);
+        svgGroup.appendChild(svgElement);
+        var overlay = this.viewer.svgOverlay();
+        overlay.node().appendChild(svgGroup);
+    };
     /**
      * Adds the necessary attributes to create a ROI-overlay of type 'rectangle' to a SVGElement
-     * @param {?} svgElement - an SVGElement (should have type 'polygon' (sic))
-     * @param {?} geometry - the geometry describing the rectangle
-     * @param {?} aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed
-     * @param {?} xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed
-     * @return {?}
+     * @param svgElement - an SVGElement (should have type 'polygon' (sic))
+     * @param geometry - the geometry describing the rectangle
+     * @param aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed
+     * @param xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed
      */
-    StillImageComponent.prototype.addSVGAttributesRectangle = /**
-     * Adds the necessary attributes to create a ROI-overlay of type 'rectangle' to a SVGElement
-     * @param {?} svgElement - an SVGElement (should have type 'polygon' (sic))
-     * @param {?} geometry - the geometry describing the rectangle
-     * @param {?} aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed
-     * @param {?} xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed
-     * @return {?}
-     */
-        function (svgElement, geometry, aspectRatio, xOffset) {
-            /** @type {?} */
-            var pointA = geometry.points[0];
-            /** @type {?} */
-            var pointB = geometry.points[1];
-            /** @type {?} */
-            var positionUL = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["Point2D"](Math.min(pointA.x, pointB.x), Math.min(pointA.y, pointB.y));
-            /** @type {?} */
-            var positionLR = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["Point2D"](Math.max(pointA.x, pointB.x), Math.max(pointA.y, pointB.y));
-            /** @type {?} */
-            var positionUR = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["Point2D"](Math.max(pointA.x, pointB.x), Math.min(pointA.y, pointB.y));
-            /** @type {?} */
-            var positionLL = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["Point2D"](Math.min(pointA.x, pointB.x), Math.max(pointA.y, pointB.y));
-            /** @type {?} */
-            var points = [positionUL, positionUR, positionLR, positionLL];
-            /** @type {?} */
-            var viewCoordPoints = this.image2ViewPortCoords(points, aspectRatio, xOffset);
-            /** @type {?} */
-            var pointsString = this.createSVGPolygonPointsAttribute(viewCoordPoints);
-            svgElement.setAttribute('points', pointsString);
-        };
+    StillImageComponent.prototype.addSVGAttributesRectangle = function (svgElement, geometry, aspectRatio, xOffset) {
+        var pointA = geometry.points[0];
+        var pointB = geometry.points[1];
+        // geometry.points contains two diagonally opposed corners of the rectangle, but the order of the corners is arbitrary.
+        // We therefore construct the upperleft (UL), lowerright (LR), upperright (UR) and lowerleft (LL) positions of the corners with min and max operations.
+        var positionUL = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["Point2D"](Math.min(pointA.x, pointB.x), Math.min(pointA.y, pointB.y));
+        var positionLR = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["Point2D"](Math.max(pointA.x, pointB.x), Math.max(pointA.y, pointB.y));
+        var positionUR = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["Point2D"](Math.max(pointA.x, pointB.x), Math.min(pointA.y, pointB.y));
+        var positionLL = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["Point2D"](Math.min(pointA.x, pointB.x), Math.max(pointA.y, pointB.y));
+        var points = [positionUL, positionUR, positionLR, positionLL];
+        var viewCoordPoints = this.image2ViewPortCoords(points, aspectRatio, xOffset);
+        var pointsString = this.createSVGPolygonPointsAttribute(viewCoordPoints);
+        svgElement.setAttribute('points', pointsString);
+    };
     /**
      * Adds the necessary attributes to create a ROI-overlay of type 'polygon' to a SVGElement
-     * @param {?} svgElement - an SVGElement (should have type 'polygon')
-     * @param {?} geometry - the geometry describing the polygon
-     * @param {?} aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed
-     * @param {?} xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed
-     * @return {?}
+     * @param svgElement - an SVGElement (should have type 'polygon')
+     * @param geometry - the geometry describing the polygon
+     * @param aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed
+     * @param xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed
      */
-    StillImageComponent.prototype.addSVGAttributesPolygon = /**
-     * Adds the necessary attributes to create a ROI-overlay of type 'polygon' to a SVGElement
-     * @param {?} svgElement - an SVGElement (should have type 'polygon')
-     * @param {?} geometry - the geometry describing the polygon
-     * @param {?} aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed
-     * @param {?} xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed
-     * @return {?}
-     */
-        function (svgElement, geometry, aspectRatio, xOffset) {
-            /** @type {?} */
-            var viewCoordPoints = this.image2ViewPortCoords(geometry.points, aspectRatio, xOffset);
-            /** @type {?} */
-            var pointsString = this.createSVGPolygonPointsAttribute(viewCoordPoints);
-            svgElement.setAttribute('points', pointsString);
-        };
+    StillImageComponent.prototype.addSVGAttributesPolygon = function (svgElement, geometry, aspectRatio, xOffset) {
+        var viewCoordPoints = this.image2ViewPortCoords(geometry.points, aspectRatio, xOffset);
+        var pointsString = this.createSVGPolygonPointsAttribute(viewCoordPoints);
+        svgElement.setAttribute('points', pointsString);
+    };
     /**
      * Adds the necessary attributes to create a ROI-overlay of type 'circle' to a SVGElement
-     * @param {?} svgElement - an SVGElement (should have type 'circle')
-     * @param {?} geometry - the geometry describing the circle
-     * @param {?} aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed
-     * @param {?} xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed
-     * @return {?}
+     * @param svgElement - an SVGElement (should have type 'circle')
+     * @param geometry - the geometry describing the circle
+     * @param aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed
+     * @param xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed
      */
-    StillImageComponent.prototype.addSVGAttributesCircle = /**
-     * Adds the necessary attributes to create a ROI-overlay of type 'circle' to a SVGElement
-     * @param {?} svgElement - an SVGElement (should have type 'circle')
-     * @param {?} geometry - the geometry describing the circle
-     * @param {?} aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed
-     * @param {?} xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed
-     * @return {?}
-     */
-        function (svgElement, geometry, aspectRatio, xOffset) {
-            /** @type {?} */
-            var viewCoordPoints = this.image2ViewPortCoords(geometry.points, aspectRatio, xOffset);
-            /** @type {?} */
-            var cx = String(viewCoordPoints[0].x);
-            /** @type {?} */
-            var cy = String(viewCoordPoints[0].y);
-            /** @type {?} */
-            var radius = String(Math.sqrt(geometry.radius.x * geometry.radius.x + aspectRatio * aspectRatio * geometry.radius.y * geometry.radius.y));
-            svgElement.setAttribute('cx', cx);
-            svgElement.setAttribute('cy', cy);
-            svgElement.setAttribute('r', radius);
-        };
+    StillImageComponent.prototype.addSVGAttributesCircle = function (svgElement, geometry, aspectRatio, xOffset) {
+        var viewCoordPoints = this.image2ViewPortCoords(geometry.points, aspectRatio, xOffset);
+        var cx = String(viewCoordPoints[0].x);
+        var cy = String(viewCoordPoints[0].y);
+        // geometry.radius contains not the radius itself, but the coordinates of a (arbitrary) point on the circle.
+        // We therefore have to calculate the length of the vector geometry.radius to get the actual radius. -> sqrt(x^2 + y^2)
+        // Since geometry.radius has its y coordinate scaled to the height of the image,
+        // we need to multiply it with the aspectRatio to get to the scale used by Openseadragon, analoguous to this.image2ViewPortCoords()
+        var radius = String(Math.sqrt(geometry.radius.x * geometry.radius.x + aspectRatio * aspectRatio * geometry.radius.y * geometry.radius.y));
+        svgElement.setAttribute('cx', cx);
+        svgElement.setAttribute('cy', cy);
+        svgElement.setAttribute('r', radius);
+    };
     /**
      * Maps a Point2D[] with coordinates relative to an image to a new Point2D[] with coordinates in the viewport coordinate system of Openseadragon
      * see also: https://openseadragon.github.io/examples/viewport-coordinates/
-     * @param {?} points - an array of points in coordinate system relative to an image
-     * @param {?} aspectRatio - the aspectRatio (h/w) of the image
-     * @param {?} xOffset - the x-offset in viewport coordinates of the image
-     * @return {?} - a new Point2D[] with coordinates in the viewport coordinate system of Openseadragon
+     * @param points - an array of points in coordinate system relative to an image
+     * @param aspectRatio - the aspectRatio (h/w) of the image
+     * @param xOffset - the x-offset in viewport coordinates of the image
+     * @returns - a new Point2D[] with coordinates in the viewport coordinate system of Openseadragon
      */
-    StillImageComponent.prototype.image2ViewPortCoords = /**
-     * Maps a Point2D[] with coordinates relative to an image to a new Point2D[] with coordinates in the viewport coordinate system of Openseadragon
-     * see also: https://openseadragon.github.io/examples/viewport-coordinates/
-     * @param {?} points - an array of points in coordinate system relative to an image
-     * @param {?} aspectRatio - the aspectRatio (h/w) of the image
-     * @param {?} xOffset - the x-offset in viewport coordinates of the image
-     * @return {?} - a new Point2D[] with coordinates in the viewport coordinate system of Openseadragon
-     */
-        function (points, aspectRatio, xOffset) {
-            return points.map(function (point) {
-                return new _knora_core__WEBPACK_IMPORTED_MODULE_2__["Point2D"](point.x + xOffset, point.y * aspectRatio);
-            });
-        };
+    StillImageComponent.prototype.image2ViewPortCoords = function (points, aspectRatio, xOffset) {
+        return points.map(function (point) {
+            return new _knora_core__WEBPACK_IMPORTED_MODULE_2__["Point2D"](point.x + xOffset, point.y * aspectRatio);
+        });
+    };
     /**
      * Returns a string in the format expected by the 'points' attribute of a SVGElement
-     * @param {?} points - an array of points to be serialized to a string
-     * @return {?} - the points serialized to a string in the format expected by the 'points' attribute of a SVGElement
+     * @param points - an array of points to be serialized to a string
+     * @returns - the points serialized to a string in the format expected by the 'points' attribute of a SVGElement
      */
-    StillImageComponent.prototype.createSVGPolygonPointsAttribute = /**
-     * Returns a string in the format expected by the 'points' attribute of a SVGElement
-     * @param {?} points - an array of points to be serialized to a string
-     * @return {?} - the points serialized to a string in the format expected by the 'points' attribute of a SVGElement
-     */
-        function (points) {
-            /** @type {?} */
-            var pointsString = '';
-            for (var i in points) {
-                if (points.hasOwnProperty(i)) {
-                    pointsString += points[i].x;
-                    pointsString += ',';
-                    pointsString += points[i].y;
-                    pointsString += ' ';
-                }
+    StillImageComponent.prototype.createSVGPolygonPointsAttribute = function (points) {
+        var pointsString = '';
+        for (var i in points) {
+            if (points.hasOwnProperty(i)) {
+                pointsString += points[i].x;
+                pointsString += ',';
+                pointsString += points[i].y;
+                pointsString += ' ';
             }
-            return pointsString;
-        };
+        }
+        return pointsString;
+    };
     return StillImageComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var TextComponent = /** @class */ /*@__PURE__*/ (function () {
     function TextComponent() {
     }
-    /**
-     * @return {?}
-     */
-    TextComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    TextComponent.prototype.ngOnInit = function () {
+    };
     return TextComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var BooleanValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function BooleanValueComponent() {
     }
     Object.defineProperty(BooleanValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._booleanValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._booleanValueObj = value;
         },
         enumerable: true,
@@ -9288,23 +8168,14 @@ var BooleanValueComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return BooleanValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var ColorValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function ColorValueComponent() {
     }
     Object.defineProperty(ColorValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._colorValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._colorValueObj = value;
         },
         enumerable: true,
@@ -9312,55 +8183,35 @@ var ColorValueComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return ColorValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var DateValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function DateValueComponent() {
     }
     Object.defineProperty(DateValueComponent.prototype, "calendar", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._calendar;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._calendar = value;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(DateValueComponent.prototype, "era", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._era;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._era = value;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(DateValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._dateValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._dateValueObj = value;
-            /** @type {?} */
             var dateOrRange = this.valueObject.getDateSalsah();
             if (dateOrRange instanceof _knora_core__WEBPACK_IMPORTED_MODULE_2__["DateRangeSalsah"]) {
                 // period (start and end dates)
@@ -9383,70 +8234,45 @@ var DateValueComponent = /** @class */ /*@__PURE__*/ (function () {
      * @param date the date to be converted.
      * @return DateFormatter.
      */
-    /**
-     * Converts a `DateSalsah` to a JS Date, providing necessary formatting information.
-     * JULIAN and GREGORIAN calendar are the only available for the moment.
-     *
-     * @param {?} date the date to be converted.
-     * @return {?} DateFormatter.
-     */
-    DateValueComponent.prototype.getJSDate = /**
-     * Converts a `DateSalsah` to a JS Date, providing necessary formatting information.
-     * JULIAN and GREGORIAN calendar are the only available for the moment.
-     *
-     * @param {?} date the date to be converted.
-     * @return {?} DateFormatter.
-     */
-        function (date) {
-            if (date.precision === _knora_core__WEBPACK_IMPORTED_MODULE_2__["Precision"].yearPrecision) {
-                return {
-                    format: 'yyyy',
-                    date: new Date(date.year.toString()),
-                    era: date.era,
-                    calendar: date.calendar
-                };
-            }
-            else if (date.precision === _knora_core__WEBPACK_IMPORTED_MODULE_2__["Precision"].monthPrecision) {
-                return {
-                    format: 'MMMM ' + 'yyyy',
-                    date: new Date(date.year, date.month - 1, 1),
-                    // 0 base month
-                    era: date.era,
-                    calendar: date.calendar
-                };
-            }
-            else if (date.precision === _knora_core__WEBPACK_IMPORTED_MODULE_2__["Precision"].dayPrecision) {
-                return {
-                    format: 'longDate',
-                    date: new Date(date.year, date.month - 1, date.day),
-                    // 0 base month
-                    era: date.era,
-                    calendar: date.calendar
-                };
-            }
-            else {
-                console.error('Error: incorrect precision for date');
-            }
-        };
+    DateValueComponent.prototype.getJSDate = function (date) {
+        if (date.precision === _knora_core__WEBPACK_IMPORTED_MODULE_2__["Precision"].yearPrecision) {
+            return {
+                format: 'yyyy',
+                date: new Date(date.year.toString()),
+                era: date.era,
+                calendar: date.calendar
+            };
+        }
+        else if (date.precision === _knora_core__WEBPACK_IMPORTED_MODULE_2__["Precision"].monthPrecision) {
+            return {
+                format: 'MMMM ' + 'yyyy',
+                date: new Date(date.year, date.month - 1, 1),
+                era: date.era,
+                calendar: date.calendar
+            };
+        }
+        else if (date.precision === _knora_core__WEBPACK_IMPORTED_MODULE_2__["Precision"].dayPrecision) {
+            return {
+                format: 'longDate',
+                date: new Date(date.year, date.month - 1, date.day),
+                era: date.era,
+                calendar: date.calendar
+            };
+        }
+        else {
+            console.error('Error: incorrect precision for date');
+        }
+    };
     return DateValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var DecimalValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function DecimalValueComponent() {
     }
     Object.defineProperty(DecimalValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._decimalValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._decimalValueObj = value;
         },
         enumerable: true,
@@ -9454,40 +8280,21 @@ var DecimalValueComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return DecimalValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var ExternalResValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function ExternalResValueComponent() {
     }
-    /**
-     * @return {?}
-     */
-    ExternalResValueComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    ExternalResValueComponent.prototype.ngOnInit = function () {
+    };
     return ExternalResValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var GeometryValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function GeometryValueComponent() {
     }
     Object.defineProperty(GeometryValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._geomValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._geomValueObj = value;
         },
         enumerable: true,
@@ -9495,40 +8302,21 @@ var GeometryValueComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return GeometryValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var GeonameValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function GeonameValueComponent() {
     }
-    /**
-     * @return {?}
-     */
-    GeonameValueComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    GeonameValueComponent.prototype.ngOnInit = function () {
+    };
     return GeonameValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var IntegerValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function IntegerValueComponent() {
     }
     Object.defineProperty(IntegerValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._integerValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._integerValueObj = value;
         },
         enumerable: true,
@@ -9536,23 +8324,14 @@ var IntegerValueComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return IntegerValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var IntervalValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function IntervalValueComponent() {
     }
     Object.defineProperty(IntervalValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._intervalValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._intervalValueObj = value;
         },
         enumerable: true,
@@ -9560,39 +8339,25 @@ var IntervalValueComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return IntervalValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function LinkValueComponent() {
         this.referredResourceClicked = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     Object.defineProperty(LinkValueComponent.prototype, "ontologyInfo", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._ontoInfo;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._ontoInfo = value;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(LinkValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._linkValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._linkValueObj = value;
             if (this.valueObject.referredResource !== undefined) {
                 this.referredResource = this.valueObject.referredResource.label;
@@ -9604,34 +8369,19 @@ var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
         enumerable: true,
         configurable: true
     });
-    /**
-     * @return {?}
-     */
-    LinkValueComponent.prototype.refResClicked = /**
-     * @return {?}
-     */
-        function () {
-            this.referredResourceClicked.emit(this._linkValueObj);
-        };
+    LinkValueComponent.prototype.refResClicked = function () {
+        this.referredResourceClicked.emit(this._linkValueObj);
+    };
     return LinkValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var ListValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function ListValueComponent() {
     }
     Object.defineProperty(ListValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._listValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._listValueObj = value;
         },
         enumerable: true,
@@ -9639,55 +8389,36 @@ var ListValueComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return ListValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var TextValueAsHtmlComponent = /** @class */ /*@__PURE__*/ (function () {
     function TextValueAsHtmlComponent(el) {
         this.el = el;
         this.referredResourceClicked = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     Object.defineProperty(TextValueAsHtmlComponent.prototype, "ontologyInfo", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._ontoInfo;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._ontoInfo = value;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(TextValueAsHtmlComponent.prototype, "bindEvents", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._bindEvents;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._bindEvents = value;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(TextValueAsHtmlComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._htmlValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._htmlValueObj = value;
             if (this.el.nativeElement.innerHTML) {
                 this.el.nativeElement.innerHTML = this.valueObject.html;
@@ -9696,72 +8427,43 @@ var TextValueAsHtmlComponent = /** @class */ /*@__PURE__*/ (function () {
         enumerable: true,
         configurable: true
     });
-    /**
-     * @param {?} refResourceIri
-     * @return {?}
-     */
-    TextValueAsHtmlComponent.prototype.refResClicked = /**
-     * @param {?} refResourceIri
-     * @return {?}
-     */
-        function (refResourceIri) {
-            this.referredResourceClicked.emit(refResourceIri);
-        };
+    TextValueAsHtmlComponent.prototype.refResClicked = function (refResourceIri) {
+        this.referredResourceClicked.emit(refResourceIri);
+    };
     /**
      * Binds a click event to standoff links that shows the referred resource.
      *
      * @param targetElement
      */
-    /**
-     * Binds a click event to standoff links that shows the referred resource.
-     *
-     * @param {?} targetElement
-     * @return {?}
-     */
-    TextValueAsHtmlComponent.prototype.onClick = /**
-     * Binds a click event to standoff links that shows the referred resource.
-     *
-     * @param {?} targetElement
-     * @return {?}
-     */
-        function (targetElement) {
-            if (this._bindEvents && targetElement.nodeName.toLowerCase() === 'a'
-                && targetElement.className.toLowerCase().indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SalsahLink) >= 0
-                && targetElement.href !== undefined) {
-                this.refResClicked(targetElement.href);
-                // prevent propagation
-                return false;
-            }
-            else if (this.bindEvents && targetElement.nodeName.toLowerCase() === 'a' && targetElement.href !== undefined) {
-                // open link in a new window
-                window.open(targetElement.href, '_blank');
-                // prevent propagation
-                return false;
-            }
-            else {
-                // prevent propagation
-                return false;
-            }
-        };
+    TextValueAsHtmlComponent.prototype.onClick = function (targetElement) {
+        if (this._bindEvents && targetElement.nodeName.toLowerCase() === 'a'
+            && targetElement.className.toLowerCase().indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SalsahLink) >= 0
+            && targetElement.href !== undefined) {
+            this.refResClicked(targetElement.href);
+            // prevent propagation
+            return false;
+        }
+        else if (this.bindEvents && targetElement.nodeName.toLowerCase() === 'a' && targetElement.href !== undefined) {
+            // open link in a new window
+            window.open(targetElement.href, '_blank');
+            // prevent propagation
+            return false;
+        }
+        else {
+            // prevent propagation
+            return false;
+        }
+    };
     return TextValueAsHtmlComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var TextValueAsStringComponent = /** @class */ /*@__PURE__*/ (function () {
     function TextValueAsStringComponent() {
     }
     Object.defineProperty(TextValueAsStringComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._textStringValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._textStringValueObj = value;
         },
         enumerable: true,
@@ -9769,23 +8471,14 @@ var TextValueAsStringComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return TextValueAsStringComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var TextValueAsXmlComponent = /** @class */ /*@__PURE__*/ (function () {
     function TextValueAsXmlComponent() {
     }
     Object.defineProperty(TextValueAsXmlComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._xmlValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._xmlValueObj = value;
         },
         enumerable: true,
@@ -9793,23 +8486,14 @@ var TextValueAsXmlComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return TextValueAsXmlComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var TextfileValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function TextfileValueComponent() {
     }
     Object.defineProperty(TextfileValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this._textfileValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this._textfileValueObj = value;
         },
         enumerable: true,
@@ -9817,23 +8501,14 @@ var TextfileValueComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return TextfileValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var UriValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function UriValueComponent() {
     }
     Object.defineProperty(UriValueComponent.prototype, "valueObject", {
-        get: /**
-         * @return {?}
-         */ function () {
+        get: function () {
             return this.__uriValueObj;
         },
-        set: /**
-         * @param {?} value
-         * @return {?}
-         */ function (value) {
+        set: function (value) {
             this.__uriValueObj = value;
         },
         enumerable: true,
@@ -9841,92 +8516,39 @@ var UriValueComponent = /** @class */ /*@__PURE__*/ (function () {
     });
     return UriValueComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var CompareViewComponent = /** @class */ /*@__PURE__*/ (function () {
     function CompareViewComponent() {
     }
-    /**
-     * @return {?}
-     */
-    CompareViewComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    CompareViewComponent.prototype.ngOnInit = function () {
+    };
     return CompareViewComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var GraphViewComponent = /** @class */ /*@__PURE__*/ (function () {
     function GraphViewComponent() {
     }
-    /**
-     * @return {?}
-     */
-    GraphViewComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    GraphViewComponent.prototype.ngOnInit = function () {
+    };
     return GraphViewComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var GridViewComponent = /** @class */ /*@__PURE__*/ (function () {
     function GridViewComponent() {
     }
-    /**
-     * @return {?}
-     */
-    GridViewComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    GridViewComponent.prototype.ngOnInit = function () {
+    };
     return GridViewComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var ListViewComponent = /** @class */ /*@__PURE__*/ (function () {
     function ListViewComponent() {
     }
-    /**
-     * @return {?}
-     */
-    ListViewComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    ListViewComponent.prototype.ngOnInit = function () {
+    };
     return ListViewComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var PropertiesViewComponent = /** @class */ /*@__PURE__*/ (function () {
     function PropertiesViewComponent() {
     }
     return PropertiesViewComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/** @type {?} */
 var jsonld = __webpack_require__(/*! jsonld */ "./node_modules/jsonld/lib/jsonld.js");
 var ResourceViewComponent = /** @class */ /*@__PURE__*/ (function () {
     function ResourceViewComponent(_resourceService, _cacheService, _incomingService) {
@@ -9936,110 +8558,69 @@ var ResourceViewComponent = /** @class */ /*@__PURE__*/ (function () {
         this.iri = 'http://rdfh.ch/8be1b7cf7103';
         this.KnoraConstants = _knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"];
     }
-    /**
-     * @return {?}
-     */
-    ResourceViewComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-            this.getResource(this.iri);
-        };
-    /**
-     * @param {?} iri
-     * @return {?}
-     */
-    ResourceViewComponent.prototype.getResource = /**
-     * @param {?} iri
-     * @return {?}
-     */
-        function (iri) {
-            var _this = this;
-            this._resourceService.getResource(iri)
-                .subscribe(function (result) {
-                console.log('result: ', result.body);
-                /** @type {?} */
-                var promises = jsonld.promises;
-                /** @type {?} */
-                var promise = promises.compact(result.body, {});
-                promise.then(function (compacted) {
-                    /** @type {?} */
-                    var resourceSeq = _knora_core__WEBPACK_IMPORTED_MODULE_2__["ConvertJSONLD"].createReadResourcesSequenceFromJsonLD(compacted);
-                    // make sure that exactly one resource is returned
-                    if (resourceSeq.resources.length === 1) {
-                        /** @type {?} */
-                        var resourceClassIris = _knora_core__WEBPACK_IMPORTED_MODULE_2__["ConvertJSONLD"].getResourceClassesFromJsonLD(compacted);
-                        // request ontology information about resource class Iris (properties are implied)
-                        // request ontology information about resource class Iris (properties are implied)
-                        _this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(function (resourceClassInfos) {
-                            // initialize ontology information
-                            // initialize ontology information
-                            _this.ontologyInfo = resourceClassInfos; // console.log('initialization of ontologyInfo: ', this.ontologyInfo); > object received
-                            // prepare a possibly attached image file to be displayed
-                            // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
-                            // prepare a possibly attached image file to be displayed
-                            // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
-                            _this.resource = resourceSeq.resources[0];
-                            // console.log('resource: ', this.resource);
-                            // this.requestIncomingResources();
-                        }, function (err) {
-                            console.log('cache request failed: ' + err);
-                        });
-                    }
-                    else {
-                        // exactly one resource was expected, but resourceSeq.resources.length != 1
-                        // exactly one resource was expected, but resourceSeq.resources.length != 1
-                        _this.errorMessage = "Exactly one resource was expected, but " + resourceSeq.resources.length + " resource(s) given.";
-                    }
-                }, function (err) {
-                    console.error('JSONLD of full resource request could not be expanded:' + err);
-                });
-                // this.isLoading = false;
-            }, function (error) {
-                console.error(error);
-                // this.errorMessage = <any>error;
-                // this.isLoading = false;
+    ResourceViewComponent.prototype.ngOnInit = function () {
+        this.getResource(this.iri);
+    };
+    ResourceViewComponent.prototype.getResource = function (iri) {
+        var _this = this;
+        this._resourceService.getResource(iri)
+            .subscribe(function (result) {
+            console.log('result: ', result.body);
+            var promises = jsonld.promises;
+            // compact JSON-LD using an empty context: expands all Iris
+            var promise = promises.compact(result.body, {});
+            promise.then(function (compacted) {
+                var resourceSeq = _knora_core__WEBPACK_IMPORTED_MODULE_2__["ConvertJSONLD"].createReadResourcesSequenceFromJsonLD(compacted);
+                // make sure that exactly one resource is returned
+                if (resourceSeq.resources.length === 1) {
+                    // get resource class Iris from response
+                    var resourceClassIris = _knora_core__WEBPACK_IMPORTED_MODULE_2__["ConvertJSONLD"].getResourceClassesFromJsonLD(compacted);
+                    // request ontology information about resource class Iris (properties are implied)
+                    _this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(function (resourceClassInfos) {
+                        // initialize ontology information
+                        _this.ontologyInfo = resourceClassInfos; // console.log('initialization of ontologyInfo: ', this.ontologyInfo); > object received
+                        // prepare a possibly attached image file to be displayed
+                        // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
+                        _this.resource = resourceSeq.resources[0];
+                        // console.log('resource: ', this.resource);
+                        // this.requestIncomingResources();
+                    }, function (err) {
+                        console.log('cache request failed: ' + err);
+                    });
+                }
+                else {
+                    // exactly one resource was expected, but resourceSeq.resources.length != 1
+                    _this.errorMessage = "Exactly one resource was expected, but " + resourceSeq.resources.length + " resource(s) given.";
+                }
+            }, function (err) {
+                console.error('JSONLD of full resource request could not be expanded:' + err);
             });
-        };
+            // this.isLoading = false;
+        }, function (error) {
+            console.error(error);
+            // this.errorMessage = <any>error;
+            // this.isLoading = false;
+        });
+    };
     return ResourceViewComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var TableViewComponent = /** @class */ /*@__PURE__*/ (function () {
     function TableViewComponent() {
     }
-    /**
-     * @return {?}
-     */
-    TableViewComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-        function () {
-        };
+    TableViewComponent.prototype.ngOnInit = function () {
+    };
     return TableViewComponent;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
- */
 var KuiViewerModule = /** @class */ /*@__PURE__*/ (function () {
     function KuiViewerModule() {
     }
     return KuiViewerModule;
 }());
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+/*
+ * Public API Surface of viewer
  */
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 
@@ -14101,6 +12682,9 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+/**
+ * This service uses the Knora admin API and handles all user data.
+ */
 var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     __extends(UsersService, _super);
     function UsersService() {
@@ -14114,7 +12698,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * returns a list of all users
      *
-     * @returns Observable of User[]
+     * @returns {Observable<User[]>}
      */
     UsersService.prototype.getAllUsers = function () {
         return this.httpGet('/admin/users').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UsersResponse"]).users; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
@@ -14133,43 +12717,43 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     // POST
     // ------------------------------------------------------------------------
     /**
-     * Add a new user.
+     * Create new user.
      *
      * @param {any} data
-     * @returns Observable of User
+     * @returns  {Observable<User>}
      */
     UsersService.prototype.createUser = function (data) {
         var path = '/admin/users';
         return this.httpPost(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * Add an user to a project.
+     * Add user to a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns Observable of User
+     * @returns {Observable<User>}
      */
     UsersService.prototype.addUserToProject = function (userIri, projectIri) {
         var path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
         return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * Add an user to an admin project.
+     * Add user to an admin project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns Observable of User
+     * @returns {Observable<User>}
      */
     UsersService.prototype.addUserToProjectAdmin = function (userIri, projectIri) {
         var path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
         return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * Delete an user of an admin project.
+     * Delete user of an admin project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns Observable of User
+     * @returns {Observable<User>}
      */
     UsersService.prototype.removeUserFromProjectAdmin = function (userIri, projectIri) {
         var path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -14179,7 +12763,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     // PUT
     // ------------------------------------------------------------------------
     /**
-     * Add an user to the admin system
+     * Add user to the admin system
      *
      * @param {string} userIri
      * @param {any} data
@@ -14190,7 +12774,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * Active an user.
+     * Activate user.
      *
      * @param {string} userIri
      * @returns Observable of User
@@ -14202,7 +12786,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.updateUser(userIri, data);
     };
     /**
-     * Update own password
+     * Update own password.
      *
      * @param {string} userIri
      * @param {string} oldPassword
@@ -14217,7 +12801,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.updateUser(userIri, data);
     };
     /**
-     * Update users password.
+     * Update password of another user (not own).
      *
      * @param {string} userIri
      * @param {string} requesterPassword
@@ -14232,7 +12816,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.updateUser(userIri, data);
     };
     /**
-     * Update user.
+     * Update user data.
      *
      * @param {string} userIri
      * @param {any} data
@@ -14246,7 +12830,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     // DELETE
     // ------------------------------------------------------------------------
     /**
-     * Delete user.
+     * Delete / deactivate user.
      *
      * @param {string} userIri
      * @returns Observable of User
@@ -14256,7 +12840,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * Remove an user from a project.
+     * Remove user from project.
      *
      * @param {string} userIri
      * @param {string} projectIri
@@ -19097,20 +17681,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreDemoComponentNgFactory", function() { return CoreDemoComponentNgFactory; });
 /* harmony import */ var _core_demo_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-demo.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/core-demo/core-demo.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _partials_module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../partials/module-header/module-header.component.ngfactory */ "./src/app/partials/module-header/module-header.component.ngfactory.js");
-/* harmony import */ var _partials_module_header_module_header_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../partials/module-header/module-header.component */ "./src/app/partials/module-header/module-header.component.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _core_demo_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./core-demo.component */ "./src/app/knora-ui-examples/core-demo/core-demo.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _core_demo_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./core-demo.component */ "./src/app/knora-ui-examples/core-demo/core-demo.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _core_demo.component.scss.shim.ngstyle,_angular_core,_.._partials_module_header_module_header.component.ngfactory,_.._partials_module_header_module_header.component,_angular_router,_core_demo.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _core_demo.component.scss.shim.ngstyle,_angular_core,_.._partials_module_header_module_header.component.ngfactory,_.._partials_module_header_module_header.component,_angular_router,_core_demo.component PURE_IMPORTS_END */
-
-
+/** PURE_IMPORTS_START _core_demo.component.scss.shim.ngstyle,_angular_core,_angular_router,_core_demo.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _core_demo.component.scss.shim.ngstyle,_angular_core,_angular_router,_core_demo.component PURE_IMPORTS_END */
 
 
 
@@ -19118,9 +17698,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_CoreDemoComponent = [_core_demo_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_CoreDemoComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_CoreDemoComponent, data: {} });
 
-function View_CoreDemoComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-module-header", [], null, null, null, _partials_module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_ModuleHeaderComponent_0"], _partials_module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_ModuleHeaderComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_module_header_module_header_component__WEBPACK_IMPORTED_MODULE_3__["ModuleHeaderComponent"], [], { demo: [0, "demo"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 16777216, null, null, 1, "router-outlet", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 212992, null, 0, _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterOutlet"], [_angular_router__WEBPACK_IMPORTED_MODULE_4__["ChildrenOutletContexts"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ComponentFactoryResolver"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); _ck(_v, 3, 0); }, null); }
-function View_CoreDemoComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-core-demo", [], null, null, null, View_CoreDemoComponent_0, RenderType_CoreDemoComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _core_demo_component__WEBPACK_IMPORTED_MODULE_5__["CoreDemoComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var CoreDemoComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-core-demo", _core_demo_component__WEBPACK_IMPORTED_MODULE_5__["CoreDemoComponent"], View_CoreDemoComponent_Host_0, {}, {}, []);
+function View_CoreDemoComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 16777216, null, null, 1, "router-outlet", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 212992, null, 0, _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterOutlet"], [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ChildrenOutletContexts"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ComponentFactoryResolver"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_CoreDemoComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-core-demo", [], null, null, null, View_CoreDemoComponent_0, RenderType_CoreDemoComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _core_demo_component__WEBPACK_IMPORTED_MODULE_3__["CoreDemoComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var CoreDemoComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-core-demo", _core_demo_component__WEBPACK_IMPORTED_MODULE_3__["CoreDemoComponent"], View_CoreDemoComponent_Host_0, {}, {}, []);
 
 
 
@@ -20464,23 +19044,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsersComponentNgFactory", function() { return UsersComponentNgFactory; });
 /* harmony import */ var _users_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/core-demo/users/users.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _users_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./users.component */ "./src/app/knora-ui-examples/core-demo/users/users.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../dist/@knora/action/knora-action.ngfactory */ "./dist/@knora/action/knora-action.ngfactory.js");
+/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _users_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./users.component */ "./src/app/knora-ui-examples/core-demo/users/users.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _users.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_angular_common,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_users.component,_knora_core PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _users.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_angular_common,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_users.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _users.component.scss.shim.ngstyle,_angular_core,_angular_material_card,_angular_common,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_users.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _users.component.scss.shim.ngstyle,_angular_core,_angular_material_card,_angular_common,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_users.component,_knora_core PURE_IMPORTS_END */
+
+
+
+
 
 
 
@@ -20495,10 +19083,13 @@ __webpack_require__.r(__webpack_exports__);
 var styles_UsersComponent = [_users_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_UsersComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_UsersComponent, data: {} });
 
-function View_UsersComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ", "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, [" ", " (", ") "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.user.familyName; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.user.givenName; var currVal_2 = _co.user.email; _ck(_v, 4, 0, currVal_1, currVal_2); }); }
-function View_UsersComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_5__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Documentation"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Users service"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Then you can use the following methods from `UsersService`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](19, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_8__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_8__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.exampleGetUser; _ck(_v, 3, 0, currVal_0); var currVal_1 = (_co.user && !_co.usersService.loading); _ck(_v, 6, 0, currVal_1); var currVal_2 = "app/knora-ui-examples/core-demo/users/README.md"; _ck(_v, 19, 0, currVal_2); }, null); }
-function View_UsersComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-users", [], null, null, null, View_UsersComponent_0, RenderType_UsersComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _users_component__WEBPACK_IMPORTED_MODULE_9__["UsersComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_10__["UsersService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var UsersComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-users", _users_component__WEBPACK_IMPORTED_MODULE_9__["UsersComponent"], View_UsersComponent_Host_0, {}, {}, []);
+function View_UsersComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", ", "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, [" ", " (", ") "]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.familyName; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.givenName; var currVal_2 = _v.context.$implicit.email; _ck(_v, 3, 0, currVal_1, currVal_2); }); }
+function View_UsersComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 6, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "mat-card-subtitle", [["class", "mat-card-subtitle"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCardSubtitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.allUsers; _ck(_v, 6, 0, currVal_0); }, null); }
+function View_UsersComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_5__["ProgressIndicatorComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_UsersComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ", "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, [" ", " (", ") "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.user.familyName; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.user.givenName; var currVal_2 = _co.user.email; _ck(_v, 4, 0, currVal_1, currVal_2); }); }
+function View_UsersComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_7__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_8__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Live example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](19, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGetAllUsers; _ck(_v, 7, 0, currVal_1); var currVal_2 = (_co.allUsers && !_co.usersService.loading); _ck(_v, 10, 0, currVal_2); var currVal_3 = _co.usersService.loading; _ck(_v, 12, 0, currVal_3); var currVal_4 = _co.exampleGetUser; _ck(_v, 16, 0, currVal_4); var currVal_5 = (_co.user && !_co.usersService.loading); _ck(_v, 19, 0, currVal_5); }, null); }
+function View_UsersComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-users", [], null, null, null, View_UsersComponent_0, RenderType_UsersComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _users_component__WEBPACK_IMPORTED_MODULE_13__["UsersComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_14__["UsersService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var UsersComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-users", _users_component__WEBPACK_IMPORTED_MODULE_13__["UsersComponent"], View_UsersComponent_Host_0, {}, {}, []);
 
 
 
@@ -20540,9 +19131,12 @@ var styles = [""];
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsersComponent", function() { return UsersComponent; });
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../app.config */ "./src/app/app.config.ts");
+
 var UsersComponent = /** @class */ /*@__PURE__*/ (function () {
     function UsersComponent(usersService) {
         this.usersService = usersService;
+        this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].coreModule;
         this.exampleGetAllUsers = {
             title: 'getAllUsers()',
             subtitle: 'returns a list of all users in Knora',
@@ -21994,24 +20588,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocumentationViewerComponentNgFactory", function() { return DocumentationViewerComponentNgFactory; });
 /* harmony import */ var _documentation_viewer_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./documentation-viewer.component.scss.shim.ngstyle */ "./src/app/partials/documentation-viewer/documentation-viewer.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/@angular/material/divider/typings/index.ngfactory */ "./node_modules/@angular/material/divider/typings/index.ngfactory.js");
-/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm5/divider.es5.js");
-/* harmony import */ var _pipes_sanitize_html_pipe__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pipes/sanitize-html.pipe */ "./src/app/partials/pipes/sanitize-html.pipe.ts");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../module-header/module-header.component.ngfactory */ "./src/app/partials/module-header/module-header.component.ngfactory.js");
-/* harmony import */ var _module_header_module_header_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../module-header/module-header.component */ "./src/app/partials/module-header/module-header.component.ts");
-/* harmony import */ var _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
-/* harmony import */ var _services_jsdoc_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../dist/@knora/action/knora-action.ngfactory */ "./dist/@knora/action/knora-action.ngfactory.js");
+/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../node_modules/@angular/material/divider/typings/index.ngfactory */ "./node_modules/@angular/material/divider/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm5/divider.es5.js");
+/* harmony import */ var _pipes_sanitize_html_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pipes/sanitize-html.pipe */ "./src/app/partials/pipes/sanitize-html.pipe.ts");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../module-header/module-header.component.ngfactory */ "./src/app/partials/module-header/module-header.component.ngfactory.js");
+/* harmony import */ var _module_header_module_header_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../module-header/module-header.component */ "./src/app/partials/module-header/module-header.component.ts");
+/* harmony import */ var _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _services_jsdoc_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _documentation_viewer.component.scss.shim.ngstyle,_angular_core,_angular_common,_.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_pipes_sanitize_html.pipe,_angular_platform_browser,_module_header_module_header.component.ngfactory,_module_header_module_header.component,_documentation_viewer.component,_services_jsdoc.service,_angular_router PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _documentation_viewer.component.scss.shim.ngstyle,_angular_core,_angular_common,_.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_pipes_sanitize_html.pipe,_angular_platform_browser,_module_header_module_header.component.ngfactory,_module_header_module_header.component,_documentation_viewer.component,_services_jsdoc.service,_angular_router PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _documentation_viewer.component.scss.shim.ngstyle,_angular_core,_.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_angular_common,_.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_pipes_sanitize_html.pipe,_angular_platform_browser,_module_header_module_header.component.ngfactory,_module_header_module_header.component,_documentation_viewer.component,_services_jsdoc.service,_angular_router PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _documentation_viewer.component.scss.shim.ngstyle,_angular_core,_.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_angular_common,_.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_pipes_sanitize_html.pipe,_angular_platform_browser,_module_header_module_header.component.ngfactory,_module_header_module_header.component,_documentation_viewer.component,_services_jsdoc.service,_angular_router PURE_IMPORTS_END */
+
+
 
 
 
@@ -22027,20 +20625,23 @@ __webpack_require__.r(__webpack_exports__);
 var styles_DocumentationViewerComponent = [_documentation_viewer_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_DocumentationViewerComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_DocumentationViewerComponent, data: {} });
 
-function View_DocumentationViewerComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "section", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](2, 1), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "div", [["class", "bolder"]], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](4, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 1, 0, _ck(_v, 2, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent, 0), _v.context.$implicit.description.summary)); _ck(_v, 1, 0, currVal_0); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 3, 0, _ck(_v, 4, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent, 0), _v.context.$implicit.description.body)); _ck(_v, 3, 0, currVal_1); }); }
-function View_DocumentationViewerComponent_6(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "pre", [["class", "line-numbers"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["                                "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "code", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\n                            "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.string; _ck(_v, 3, 0, currVal_0); }); }
-function View_DocumentationViewerComponent_9(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [", "]))], null, null); }
-function View_DocumentationViewerComponent_8(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" ", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_1 = !_v.context.last; _ck(_v, 3, 0, currVal_1); }, function (_ck, _v) { var currVal_0 = _v.context.$implicit; _ck(_v, 1, 0, currVal_0); }); }
-function View_DocumentationViewerComponent_7(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 14, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Parameter"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 11, "table", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 10, "tbody", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 9, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 2, "td", [["class", "border-right"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](8, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 5, "td", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Type: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null))], function (_ck, _v) { var currVal_1 = _v.parent.context.$implicit.types; _ck(_v, 13, 0, currVal_1); }, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.name; _ck(_v, 8, 0, currVal_0); var currVal_2 = _v.parent.context.$implicit.description; _ck(_v, 14, 0, currVal_2); }); }
-function View_DocumentationViewerComponent_10(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](1, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 0, 0, _ck(_v, 1, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent.parent.parent, 0), _v.parent.context.$implicit.html)); _ck(_v, 0, 0, currVal_0); }); }
-function View_DocumentationViewerComponent_11(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" default: ", " "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.type; _ck(_v, 1, 0, currVal_0); }); }
-function View_DocumentationViewerComponent_5(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 10, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 9, "div", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgSwitch"], [], { ngSwitch: [0, "ngSwitch"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_6)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_7)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_10)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_11)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgSwitchDefault"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgSwitch"]], null, null)], function (_ck, _v) { var currVal_0 = _v.context.$implicit.type; _ck(_v, 2, 0, currVal_0); var currVal_1 = "example"; _ck(_v, 4, 0, currVal_1); var currVal_2 = "param"; _ck(_v, 6, 0, currVal_2); var currVal_3 = "type"; _ck(_v, 8, 0, currVal_3); }, null); }
-function View_DocumentationViewerComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 2, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.tags; _ck(_v, 2, 0, currVal_0); }, null); }
-function View_DocumentationViewerComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 2, "section", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_0 = ((_v.context.$implicit.tags.length > 0) && (_v.context.$implicit.tags[0].type !== "ignore")); _ck(_v, 2, 0, currVal_0); }, null); }
-function View_DocumentationViewerComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 8, "div", [["class", "documentation"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_4__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_4__["MatDivider"], [], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.documentation; _ck(_v, 2, 0, currVal_0); var currVal_5 = _co.documentation; _ck(_v, 6, 0, currVal_5); }, function (_ck, _v) { var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical ? "vertical" : "horizontal"); var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_3 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).inset; _ck(_v, 3, 0, currVal_1, currVal_2, currVal_3, currVal_4); var currVal_6 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 8).vertical ? "vertical" : "horizontal"); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 8).vertical; var currVal_8 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 8).vertical; var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 8).inset; _ck(_v, 7, 0, currVal_6, currVal_7, currVal_8, currVal_9); }); }
-function View_DocumentationViewerComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _pipes_sanitize_html_pipe__WEBPACK_IMPORTED_MODULE_5__["SanitizeHtmlPipe"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["DomSanitizer"]]), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-module-header", [], null, null, null, _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_ModuleHeaderComponent_0"], _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_ModuleHeaderComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _module_header_module_header_component__WEBPACK_IMPORTED_MODULE_8__["ModuleHeaderComponent"], [], { module: [0, "module"], demo: [1, "demo"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_4__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; var currVal_1 = _co.currentComponent; _ck(_v, 2, 0, currVal_0, currVal_1); var currVal_6 = _co.documentation; _ck(_v, 6, 0, currVal_6); }, function (_ck, _v) { var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical ? "vertical" : "horizontal"); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_4 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).inset; _ck(_v, 3, 0, currVal_2, currVal_3, currVal_4, currVal_5); }); }
-function View_DocumentationViewerComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, View_DocumentationViewerComponent_0, RenderType_DocumentationViewerComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_9__["DocumentationViewerComponent"], [_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_10__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_11__["ActivatedRoute"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var DocumentationViewerComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-documentation-viewer", _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_9__["DocumentationViewerComponent"], View_DocumentationViewerComponent_Host_0, { module: "module" }, {}, []);
+function View_DocumentationViewerComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_3__["ProgressIndicatorComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_DocumentationViewerComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](2, 1), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "div", [["class", "bolder"]], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](4, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 1, 0, _ck(_v, 2, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent, 0), _v.parent.context.$implicit.description.summary)); _ck(_v, 1, 0, currVal_0); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 3, 0, _ck(_v, 4, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent, 0), _v.parent.context.$implicit.description.body)); _ck(_v, 3, 0, currVal_1); }); }
+function View_DocumentationViewerComponent_7(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "pre", [["class", "line-numbers"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["                        "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "code", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\n                    "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.string; _ck(_v, 3, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_8(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 8, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Returns"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 5, "table", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 4, "tbody", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 3, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 2, "td", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](8, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.string; _ck(_v, 8, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_11(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [", "]))], null, null); }
+function View_DocumentationViewerComponent_10(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" ", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_11)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_1 = !_v.context.last; _ck(_v, 3, 0, currVal_1); }, function (_ck, _v) { var currVal_0 = _v.context.$implicit; _ck(_v, 1, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_9(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 14, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Parameter"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 11, "table", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 10, "tbody", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 9, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 2, "td", [["class", "border-right"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](8, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 5, "td", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Type: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_10)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null))], function (_ck, _v) { var currVal_1 = _v.parent.context.$implicit.types; _ck(_v, 13, 0, currVal_1); }, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.name; _ck(_v, 8, 0, currVal_0); var currVal_2 = _v.parent.context.$implicit.description; _ck(_v, 14, 0, currVal_2); }); }
+function View_DocumentationViewerComponent_12(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](1, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 0, 0, _ck(_v, 1, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent.parent.parent, 0), _v.parent.context.$implicit.html)); _ck(_v, 0, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_13(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 0, "div", [], null, null, null, null, null))], null, null); }
+function View_DocumentationViewerComponent_14(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" This type (", ") is not yet supported in the documentation view. "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.type; _ck(_v, 1, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_6(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 14, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 13, "div", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitch"], [], { ngSwitch: [0, "ngSwitch"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_7)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_12)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_13)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_14)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitchDefault"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgSwitch"]], null, null)], function (_ck, _v) { var currVal_0 = _v.context.$implicit.type; _ck(_v, 2, 0, currVal_0); var currVal_1 = "example"; _ck(_v, 4, 0, currVal_1); var currVal_2 = "returns"; _ck(_v, 6, 0, currVal_2); var currVal_3 = "param"; _ck(_v, 8, 0, currVal_3); var currVal_4 = "type"; _ck(_v, 10, 0, currVal_4); var currVal_5 = "ignore"; _ck(_v, 12, 0, currVal_5); }, null); }
+function View_DocumentationViewerComponent_5(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 7, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_5__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_5__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_6__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "p", [["class", "bolder"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_6)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var currVal_6 = _v.parent.context.$implicit.tags; _ck(_v, 7, 0, currVal_6); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical ? "vertical" : "horizontal"); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical; var currVal_2 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).inset; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3); var currVal_4 = _v.parent.context.$implicit.ctx.string; _ck(_v, 4, 0, currVal_4); var currVal_5 = _v.parent.context.$implicit.description.full; _ck(_v, 5, 0, currVal_5); }); }
+function View_DocumentationViewerComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "section", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_0 = (_v.context.$implicit.tags.length === 0); _ck(_v, 2, 0, currVal_0); var currVal_1 = (_v.context.$implicit.tags.length > 0); _ck(_v, 4, 0, currVal_1); }, null); }
+function View_DocumentationViewerComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [["class", "documentation"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_5__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_5__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_6__["MatDivider"], [], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.documentation; _ck(_v, 2, 0, currVal_0); }, function (_ck, _v) { var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical ? "vertical" : "horizontal"); var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_3 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).inset; _ck(_v, 3, 0, currVal_1, currVal_2, currVal_3, currVal_4); }); }
+function View_DocumentationViewerComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _pipes_sanitize_html_pipe__WEBPACK_IMPORTED_MODULE_7__["SanitizeHtmlPipe"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__["DomSanitizer"]]), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-module-header", [], null, null, null, _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ModuleHeaderComponent_0"], _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ModuleHeaderComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _module_header_module_header_component__WEBPACK_IMPORTED_MODULE_10__["ModuleHeaderComponent"], [], { module: [0, "module"], demo: [1, "demo"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_5__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_5__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_6__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; var currVal_1 = _co.currentComponent; _ck(_v, 2, 0, currVal_0, currVal_1); var currVal_6 = _co.loading; _ck(_v, 6, 0, currVal_6); var currVal_7 = (_co.documentation && !_co.loading); _ck(_v, 8, 0, currVal_7); }, function (_ck, _v) { var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical ? "vertical" : "horizontal"); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_4 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).inset; _ck(_v, 3, 0, currVal_2, currVal_3, currVal_4, currVal_5); }); }
+function View_DocumentationViewerComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, View_DocumentationViewerComponent_0, RenderType_DocumentationViewerComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_11__["DocumentationViewerComponent"], [_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_12__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_13__["ActivatedRoute"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var DocumentationViewerComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-documentation-viewer", _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_11__["DocumentationViewerComponent"], View_DocumentationViewerComponent_Host_0, { module: "module" }, {}, []);
 
 
 
@@ -22096,11 +20697,11 @@ var DocumentationViewerComponent = /** @class */ /*@__PURE__*/ (function () {
         // get child route to include the stackblitz example, if it exists
         this._route.url.subscribe(function (url) {
             _this.currentComponent = _this.findChild(url[0].path);
-            _this.loading = false;
         });
         // read the JSDocs documentation json
         this._jsdoc.readJson(this.module.name, this.currentComponent.name).subscribe(function (result) {
             _this.documentation = result;
+            _this.loading = false;
         }, function (error) {
             console.error(error);
         });
@@ -22506,7 +21107,6 @@ var ModuleHeaderComponent = /** @class */ /*@__PURE__*/ (function () {
     function ModuleHeaderComponent() {
     }
     ModuleHeaderComponent.prototype.ngOnInit = function () {
-        console.log(this.demo);
         if (this.module.published) {
             var packageName = '@' + _app_config__WEBPACK_IMPORTED_MODULE_0__["AppConfig"].prefix + '/' + this.module.name;
             var urlEncode = encodeURIComponent(packageName);

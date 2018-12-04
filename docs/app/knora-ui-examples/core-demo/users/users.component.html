@@ -1,6 +1,8 @@
-<!-- <h3>Demo</h3>
-<h2>UsersService</h2>
+<!-- Documentation from JSDocs -->
+<app-documentation-viewer [module]="module"></app-documentation-viewer>
 
+<!-- Examples and demo tests -->
+<h3>Live example</h3>
 <mat-card class="example-viewer">
 
     <app-example-viewer [example]="exampleGetAllUsers"></app-example-viewer>
@@ -18,7 +20,8 @@
         </div>
         <kui-progress-indicator *ngIf="usersService.loading"></kui-progress-indicator>
     </div>
-</mat-card> -->
+</mat-card>
+
 
 <mat-card class="example-viewer">
     <app-example-viewer [example]="exampleGetUser"></app-example-viewer>
@@ -31,63 +34,3 @@
         </div>
     </div>
 </mat-card>
-
-
-<!--
-<mat-card class="example-viewer">
-
-    <app-example-viewer [example]="exampleAuthenticate"></app-example-viewer>
-
-    <div class="demo">
-            <div *ngIf="!usersService.loading">
-            &lt;!&ndash; if logged-in user == true &ndash;&gt;
-            <div *ngIf="isLoggedIn">
-                <span class="success">User is logged in</span>
-        
-                <br><br>
-                &lt;!&ndash; show user profile &#45;&#45;
-                <div class="user-profile">
-                    <span></span>
-                </div>
-                &ndash;&gt;
-        
-                <button mat-raised-button
-                        color="warn"
-                        (click)="logout()">
-                    Logout
-                </button>
-            </div>
-        
-        
-            &lt;!&ndash; else: not authorized user &ndash;&gt;
-        
-            <div *ngIf="!isLoggedIn">
-                <span *ngIf="errorMessage" class="error">{{errorMessage.statusText}} (Status: {{errorMessage.status}})</span>
-        
-                <br>
-        
-                <button mat-raised-button
-                        color="primary"
-                        (click)="login(userSimData)">
-                    Login
-                </button>
-            </div>
-        </div>
-        
-        <kui-progress-indicator *ngIf="usersService.loading"></kui-progress-indicator>
-    </div>
-</mat-card>
--->
-
-<h2>Documentation</h2>
-
-<h3>Users service</h3>
-
-<h4>Usage</h4>
-<p>
-    Please follow the README of
-    <a href="https://www.npmjs.com/package/%40knora%2Fcore">Knora-ui core module</a>
-    Then you can use the following methods from `UsersService`:
-</p>
-
-<markdown [src]="'app/knora-ui-examples/core-demo/users/README.md'"></markdown>
