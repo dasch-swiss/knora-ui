@@ -28,10 +28,13 @@ usage ()
 #    echo "-o = OutputPath"
 #    echo ${sep}
 }
-
+home=`pwd`
 inPath='./projects/knora/'
 outPath='./src/data/documentation/'
 
+declare -a modules=('action' 'authentication' 'core' 'search' 'viewer')
+
+# echo ${home}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 1) update the documentation data from JSDocs of the ts files
@@ -43,17 +46,32 @@ dox < projects/knora/action/src/lib/progress-indicator/progress-indicator.compon
 
 dox < projects/knora/core/src/lib/services/admin/users.service.ts > src/data/documentation/core/users.json
 
+
+
+for m in "${modules[@]}"
+do
+    echo ${sep}
+    echo ${m}:
+
+    cd ${inPath}${m}/src/lib
+    for i in `ls`; do
+        if [ -d "$i" ]; then
+                echo ${i}
+        fi
+    done
+    cd ${home}
+done
+
 # read the files
-#for i in ${inPath}*; do
-#    if [ -d "$i" ]; then
-#        echo ${i}
-#    fi
-#done
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 2) build the ng-app and update the files in docs/ folder
 #
-ng build --prod=false --base-href /Knora-ui/ --build-optimizer --aot
-rm -rf docs/*
-mv dist/knora-ui/* docs
+
+ng build --prod=false --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
+cp docs/index.html docs/404.html
+
+#rm -rf docs/*
+#mv dist/knora-ui/* docs
+
