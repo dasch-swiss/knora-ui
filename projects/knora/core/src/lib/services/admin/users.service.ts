@@ -9,6 +9,9 @@ import {
     UsersResponse
 } from '../../declarations/';
 
+/**
+ * This service uses the Knora admin API and handles all user data.
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -24,7 +27,7 @@ export class UsersService extends ApiService {
     /**
      * returns a list of all users
      *
-     * @returns Observable of User[]
+     * @returns {Observable<User[]>}
      */
     getAllUsers(): Observable<User[]> {
         return this.httpGet('/admin/users').pipe(
@@ -53,10 +56,10 @@ export class UsersService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
-     * Add a new user.
+     * Create new user.
      *
      * @param {any} data
-     * @returns Observable of User
+     * @returns  {Observable<User>}
      */
     createUser(data: any): Observable<User> {
         const path = '/admin/users';
@@ -67,11 +70,11 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * Add an user to a project.
+     * Add user to a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns Observable of User
+     * @returns {Observable<User>}
      */
     addUserToProject(userIri: string, projectIri: string): Observable<User> {
         const path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -82,11 +85,11 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * Add an user to an admin project.
+     * Add user to an admin project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns Observable of User
+     * @returns {Observable<User>}
      */
     addUserToProjectAdmin(userIri: string, projectIri: string): Observable<User> {
         const path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -97,11 +100,11 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * Delete an user of an admin project.
+     * Delete user of an admin project.
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns Observable of User
+     * @returns {Observable<User>}
      */
     removeUserFromProjectAdmin(userIri: string, projectIri: string): Observable<User> {
         const path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -118,7 +121,7 @@ export class UsersService extends ApiService {
 
 
     /**
-     * Add an user to the admin system
+     * Add user to the admin system
      *
      * @param {string} userIri
      * @param {any} data
@@ -133,7 +136,7 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * Active an user.
+     * Activate user.
      *
      * @param {string} userIri
      * @returns Observable of User
@@ -147,7 +150,7 @@ export class UsersService extends ApiService {
 
 
     /**
-     * Update own password
+     * Update own password.
      *
      * @param {string} userIri
      * @param {string} oldPassword
@@ -163,7 +166,7 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * Update users password.
+     * Update password of another user (not own).
      *
      * @param {string} userIri
      * @param {string} requesterPassword
@@ -180,7 +183,7 @@ export class UsersService extends ApiService {
 
 
     /**
-     * Update user.
+     * Update user data.
      *
      * @param {string} userIri
      * @param {any} data
@@ -201,7 +204,7 @@ export class UsersService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
-     * Delete user.
+     * Delete / deactivate user.
      *
      * @param {string} userIri
      * @returns Observable of User
@@ -216,7 +219,7 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * Remove an user from a project.
+     * Remove user from project.
      *
      * @param {string} userIri
      * @param {string} projectIri
