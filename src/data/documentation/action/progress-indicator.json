@@ -2,9 +2,9 @@
   {
     "tags": [],
     "description": {
-      "full": "<p>The progress indicator can be used the show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>\n<p>Selector: kui-progress-indicator</p>",
-      "summary": "<p>The progress indicator can be used the show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>",
-      "body": "<p>Selector: kui-progress-indicator</p>"
+      "full": "<p>The progress indicator can be used to show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>\n<p>selector: kui-progress-indicator</p>",
+      "summary": "<p>The progress indicator can be used to show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>",
+      "body": "<p>selector: kui-progress-indicator</p>"
     },
     "isPrivate": false,
     "isConstructor": false,

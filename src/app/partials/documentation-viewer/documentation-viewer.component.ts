@@ -29,7 +29,6 @@ export class DocumentationViewerComponent implements OnInit {
         // get child route to include the stackblitz example, if it exists
         this._route.url.subscribe((url: any) => {
             this.currentComponent = this.findChild(url[0].path);
-            this.loading = false;
         });
 
 
@@ -37,6 +36,7 @@ export class DocumentationViewerComponent implements OnInit {
         this._jsdoc.readJson(this.module.name, this.currentComponent.name).subscribe(
             (result: any) => {
                 this.documentation = result;
+                this.loading = false;
             },
             (error: any) => {
                 console.error(error);

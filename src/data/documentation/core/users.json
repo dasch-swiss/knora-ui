@@ -1,0 +1,796 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>This service uses the Knora admin API and handles all user data.</p>",
+      "summary": "<p>This service uses the Knora admin API and handles all user data.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 12,
+    "codeStart": 15,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class UsersService extends ApiService {\n\n    usersUrl: string = this.config.api + '/admin/users';\n\n\n    // ------------------------------------------------------------------------\n    // GET\n    // ------------------------------------------------------------------------",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "{Observable<User[]>}",
+        "types": [
+          "Observable.<Array.<User>>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<code>Array</code>.&lt;<a href=\"User.html\">User</a>&gt;&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable&lt;User[]&gt;}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>returns a list of all users</p>",
+      "summary": "<p>returns a list of all users</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 27,
+    "codeStart": 32,
+    "code": "getAllUsers(): Observable<User[]> {\n    return this.httpGet('/admin/users').pipe(\n        map((result: ApiServiceResult) => result.getBody(UsersResponse).users),\n        catchError(this.handleJsonError)\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getAllUsers",
+      "string": "getAllUsers()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} identifier",
+        "name": "identifier",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} identifier</p>"
+      },
+      {
+        "type": "returns",
+        "string": "{Observable<User>}",
+        "types": [
+          "Observable.<User>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<User>}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Get user by username, email or by iri</p>",
+      "summary": "<p>Get user by username, email or by iri</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 39,
+    "codeStart": 45,
+    "code": "getUser(identifier: string): Observable<User> {\n    const path = '/admin/users/' + encodeURIComponent(identifier);\n    return this.httpGet(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
+    "ctx": {
+      "type": "method",
+      "name": "getUser",
+      "string": "getUser()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{any} data",
+        "name": "data",
+        "description": "",
+        "types": [
+          "any"
+        ],
+        "typesDescription": "<a href=\"any.html\">any</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{any} data</p>"
+      },
+      {
+        "type": "returns",
+        "string": "{Observable<User>}",
+        "types": [
+          "Observable.<User>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<User>}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Create new user.</p>",
+      "summary": "<p>Create new user.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 58,
+    "codeStart": 64,
+    "code": "createUser(data: any): Observable<User> {\n    const path = '/admin/users';\n    return this.httpPost(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "createUser",
+      "string": "createUser()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} userIri",
+        "name": "userIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} projectIri",
+        "name": "projectIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} projectIri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "{Observable<User>}",
+        "types": [
+          "Observable.<User>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<User>}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Add user to a project.</p>",
+      "summary": "<p>Add user to a project.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 72,
+    "codeStart": 79,
+    "code": "addUserToProject(userIri: string, projectIri: string): Observable<User> {\n    const path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);\n    return this.httpPost(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "addUserToProject",
+      "string": "addUserToProject()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} userIri",
+        "name": "userIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} projectIri",
+        "name": "projectIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} projectIri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "{Observable<User>}",
+        "types": [
+          "Observable.<User>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<User>}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Add user to an admin project.</p>",
+      "summary": "<p>Add user to an admin project.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 87,
+    "codeStart": 94,
+    "code": "addUserToProjectAdmin(userIri: string, projectIri: string): Observable<User> {\n    const path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);\n    return this.httpPost(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "addUserToProjectAdmin",
+      "string": "addUserToProjectAdmin()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} userIri",
+        "name": "userIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} projectIri",
+        "name": "projectIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} projectIri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "{Observable<User>}",
+        "types": [
+          "Observable.<User>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<User>}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Delete user of an admin project.</p>",
+      "summary": "<p>Delete user of an admin project.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 102,
+    "codeStart": 109,
+    "code": "removeUserFromProjectAdmin(userIri: string, projectIri: string): Observable<User> {\n    const path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);\n    return this.httpDelete(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// PUT\n// ------------------------------------------------------------------------",
+    "ctx": {
+      "type": "method",
+      "name": "removeUserFromProjectAdmin",
+      "string": "removeUserFromProjectAdmin()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} userIri",
+        "name": "userIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
+      },
+      {
+        "type": "param",
+        "string": "{any} data",
+        "name": "data",
+        "description": "",
+        "types": [
+          "any"
+        ],
+        "typesDescription": "<a href=\"any.html\">any</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{any} data</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of User",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of User</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Add user to the admin system</p>",
+      "summary": "<p>Add user to the admin system</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 123,
+    "codeStart": 130,
+    "code": "addUserToSystemAdmin(userIri: string, data: any): Observable<User> {\n    const path = '/admin/users/' + encodeURIComponent(userIri);\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "addUserToSystemAdmin",
+      "string": "addUserToSystemAdmin()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} userIri",
+        "name": "userIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of User",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of User</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Activate user.</p>",
+      "summary": "<p>Activate user.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 138,
+    "codeStart": 144,
+    "code": "activateUser(userIri: string): Observable<User> {\n    const data: any = {\n        status: true\n    };\n    return this.updateUser(userIri, data);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "activateUser",
+      "string": "activateUser()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} userIri",
+        "name": "userIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} oldPassword",
+        "name": "oldPassword",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} oldPassword</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} newPassword",
+        "name": "newPassword",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} newPassword</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of User",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of User</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Update own password.</p>",
+      "summary": "<p>Update own password.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 152,
+    "codeStart": 160,
+    "code": "updateOwnPassword(userIri: string, oldPassword: string, newPassword: string): Observable<User> {\n    const data = {\n        newPassword: newPassword,\n        requesterPassword: oldPassword\n    };\n    return this.updateUser(userIri, data);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "updateOwnPassword",
+      "string": "updateOwnPassword()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} userIri",
+        "name": "userIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} requesterPassword",
+        "name": "requesterPassword",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} requesterPassword</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} newPassword",
+        "name": "newPassword",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} newPassword</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of User",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of User</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Update password of another user (not own).</p>",
+      "summary": "<p>Update password of another user (not own).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 168,
+    "codeStart": 176,
+    "code": "updateUsersPassword(userIri: string, requesterPassword: string, newPassword: string): Observable<User> {\n    const data = {\n        newPassword: newPassword,\n        requesterPassword: requesterPassword\n    };\n    return this.updateUser(userIri, data);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "updateUsersPassword",
+      "string": "updateUsersPassword()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} userIri",
+        "name": "userIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
+      },
+      {
+        "type": "param",
+        "string": "{any} data",
+        "name": "data",
+        "description": "",
+        "types": [
+          "any"
+        ],
+        "typesDescription": "<a href=\"any.html\">any</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{any} data</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of User",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of User</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Update user data.</p>",
+      "summary": "<p>Update user data.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 185,
+    "codeStart": 192,
+    "code": "updateUser(userIri: string, data: any): Observable<User> {\n\n    const path = '/admin/users/' + encodeURIComponent(userIri);\n\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}\n\n// ------------------------------------------------------------------------\n// DELETE\n// ------------------------------------------------------------------------",
+    "ctx": {
+      "type": "method",
+      "name": "updateUser",
+      "string": "updateUser()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} userIri",
+        "name": "userIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of User",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of User</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Delete / deactivate user.</p>",
+      "summary": "<p>Delete / deactivate user.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 206,
+    "codeStart": 212,
+    "code": "deleteUser(userIri: string): Observable<User> {\n    const path = '/admin/users/' + encodeURIComponent(userIri);\n    return this.httpDelete(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "deleteUser",
+      "string": "deleteUser()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} userIri",
+        "name": "userIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} projectIri",
+        "name": "projectIri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} projectIri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable of User",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable of User</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Remove user from project.</p>",
+      "summary": "<p>Remove user from project.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 221,
+    "codeStart": 228,
+    "code": "removeUserFromProject(userIri: string, projectIri: string): Observable<User> {\n    const path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);\n    return this.httpDelete(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "removeUserFromProject",
+      "string": "removeUserFromProject()"
+    }
+  }
+]

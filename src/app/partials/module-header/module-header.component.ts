@@ -25,8 +25,6 @@ export class ModuleHeaderComponent implements OnInit {
 
     ngOnInit() {
 
-        console.log(this.demo);
-
         if (this.module.published) {
 
             const packageName: string = '@' + AppConfig.prefix + '/' + this.module.name;

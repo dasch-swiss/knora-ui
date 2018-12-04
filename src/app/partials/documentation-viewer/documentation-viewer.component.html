@@ -1,34 +1,54 @@
+
 <!-- header with title and module info -->
 <app-module-header [module]="module" [demo]="currentComponent"></app-module-header>
 
 <mat-divider></mat-divider>
 
-<div *ngIf="documentation" class="documentation">
+<kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
 
-    <!-- introduction -->
-    <section *ngFor="let item of documentation">
+<!-- documentation page -->
+<div *ngIf="documentation && !loading" class="documentation">
 
-        <div [innerHtml]="item.description.summary | sanitizeHtml"></div>
-
-        <div [innerHtml]="item.description.body | sanitizeHtml" class="bolder"></div>
-
-    </section>
-
-    <mat-divider></mat-divider>
-
-    <!-- usage -->
+    <!-- documentation data from jsdoc -->
     <section *ngFor="let item of documentation; let i = index">
 
-        <div *ngIf="item.tags.length > 0 && item.tags[0].type !== 'ignore'">
+        <!-- introduction -->
+        <div *ngIf="item.tags.length === 0">
+            <div [innerHtml]="item.description.summary | sanitizeHtml"></div>
 
+            <div [innerHtml]="item.description.body | sanitizeHtml" class="bolder"></div>
+        </div>
+
+        <div *ngIf="item.tags.length > 0">
+            <mat-divider></mat-divider>
+
+            <!-- description of each tag -->
+            <p class="bolder">{{item.ctx.string}}</p>
+            <div [innerHtml]="item.description.full"></div>
+
+            <!-- going through the list of tags -->
             <div *ngFor="let tag of item.tags">
 
                 <div [ngSwitch]="tag.type">
+
                     <!-- example code -->
                     <pre *ngSwitchCase="'example'" class="line-numbers">
-                                <code>{{tag.string}}</code>
-                            </pre>
+                        <code>{{tag.string}}</code>
+                    </pre>
 
+                    <!-- returns -->
+                    <div *ngSwitchCase="'returns'">
+                        <p>Returns</p>
+                        <table>
+                            <tr>
+                                <td>
+                                    <p>{{tag.string}}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- parameter -->
                     <div *ngSwitchCase="'param'">
                         <p>Parameter</p>
                         <table>
@@ -48,10 +68,15 @@
                         </table>
                     </div>
 
-                    <div *ngSwitchCase="'type'" [innerHtml]="tag.html | sanitizeHtml">
-                    </div>
+                    <!-- type -->
+                    <div *ngSwitchCase="'type'" [innerHtml]="tag.html | sanitizeHtml"></div>
+
+                    <!-- ignore (do nothing!) -->
+                    <div *ngSwitchCase="'ignore'"></div>
+
+                    <!-- default -->
                     <p *ngSwitchDefault>
-                        default: {{tag.type}}
+                        This type ({{tag.type}}) is not yet supported in the documentation view.
                     </p>
                 </div>
 

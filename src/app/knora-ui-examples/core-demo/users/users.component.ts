@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceError, User, UsersService } from '@knora/core';
+import { AppDemo } from '../../../app.config';
 import { Example } from '../../../app.interfaces';
 
 @Component({
@@ -8,6 +9,8 @@ import { Example } from '../../../app.interfaces';
     styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+
+    module = AppDemo.coreModule;
 
     exampleGetAllUsers: Example = {
         title: 'getAllUsers()',
