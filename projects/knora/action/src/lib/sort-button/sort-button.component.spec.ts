@@ -45,7 +45,7 @@ fdescribe('SortButtonComponent', () => {
         expect(testHostComponent.sortButtonComponent).toBeTruthy();
     });
 
-    fit('should sort the list by lastname', () => {
+    it('should sort the list by lastname', () => {
         expect(testHostComponent.sortButtonComponent).toBeTruthy();
         expect(testHostComponent.sortKey).toBe('creator');
         expect(testHostComponent.list).toEqual(listData);
@@ -84,7 +84,7 @@ fdescribe('SortButtonComponent', () => {
         item2.click();
         testHostFixture.detectChanges();
 
-        // expect the sort key to be 'lastname'
+        // expect the list to be sorted by lastname
         expect(testHostComponent.sortKey).toBe('lastname');
         expect(testHostComponent.list).toEqual(
             [
