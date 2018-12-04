@@ -1,15 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SortButtonComponent } from './sort-button.component';
-import { MatIconModule, MatMenuModule } from '@angular/material';
+import { MatIconModule, MatMenuModule, } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Component, DebugElement, OnInit, ViewChild, } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { SortByPipe } from '../pipes/sort-by.pipe';
 
 fdescribe('SortButtonComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
+    const listData = [
+        { prename: 'Gaston', lastname: 'Lagaffe', creator: 'André Franquin' },
+        { prename: 'Charlie', lastname: 'Brown', creator: 'Charles M. Schulz' },
+        { prename: 'Mickey', lastname: 'Mouse', creator: 'Walt Disney' },
+        { prename: 'Donald', lastname: 'Duck', creator: 'Walt Disney' },
+    ];
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -18,7 +25,10 @@ fdescribe('SortButtonComponent', () => {
                 MatMenuModule,
                 BrowserAnimationsModule
             ],
-            declarations: [SortButtonComponent, TestHostComponent]
+            declarations: [
+                SortButtonComponent,
+                TestHostComponent,
+                SortByPipe]
         })
             .compileComponents();
     }));
@@ -35,9 +45,11 @@ fdescribe('SortButtonComponent', () => {
         expect(testHostComponent.sortButtonComponent).toBeTruthy();
     });
 
-    it('should sort the list by lastname', () => {
+    fit('should sort the list by lastname', () => {
         expect(testHostComponent.sortButtonComponent).toBeTruthy();
         expect(testHostComponent.sortKey).toBe('creator');
+        expect(testHostComponent.list).toEqual(listData);
+        console.log(testHostComponent.list);
 
         const hostCompDe = testHostFixture.debugElement;
 
@@ -74,6 +86,13 @@ fdescribe('SortButtonComponent', () => {
 
         // expect the sort key to be 'lastname'
         expect(testHostComponent.sortKey).toBe('lastname');
+        expect(testHostComponent.list).toEqual(
+            [
+                { prename: 'Charlie', lastname: 'Brown', creator: 'Charles M. Schulz' },
+                { prename: 'Donald', lastname: 'Duck', creator: 'Walt Disney' },
+                { prename: 'Gaston', lastname: 'Lagaffe', creator: 'André Franquin' },
+                { prename: 'Mickey', lastname: 'Mouse', creator: 'Walt Disney' }
+            ]);
     });
 });
 
@@ -83,7 +102,16 @@ fdescribe('SortButtonComponent', () => {
 @Component({
     template: `
     <kui-sort-button #sortButton [sortProps]="sortProps" [(sortKey)]="sortKey" [position]="position">
-    </kui-sort-button>`
+    </kui-sort-button>
+    <ul>
+            <li *ngFor="let item of list | sortBy: sortKey">
+                <span [class.active]="sortKey === 'prename'">{{item.prename}} </span>
+                <span [class.active]="sortKey === 'lastname'">{{item.lastname}} </span>
+                by
+                <span [class.active]="sortKey === 'creator'">{{item.creator}}</span>
+            </li>
+        </ul>
+    `
 })
 class TestHostComponent implements OnInit {
 
@@ -104,6 +132,32 @@ class TestHostComponent implements OnInit {
     ];
     sortKey: string = 'creator';
     position: string = 'left';
+
+    list = [{
+        prename: 'Gaston',
+        lastname: 'Lagaffe',
+        creator: 'André Franquin'
+
+    },
+    {
+        prename: 'Mickey',
+        lastname: 'Mouse',
+        creator: 'Walt Disney'
+
+    },
+    {
+        prename: 'Donald',
+        lastname: 'Duck',
+        creator: 'Walt Disney'
+
+    },
+    {
+        prename: 'Charlie',
+        lastname: 'Brown',
+        creator: 'Charles M. Schulz'
+
+    }
+    ];
 
     constructor() {
     }
