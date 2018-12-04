@@ -13,7 +13,7 @@ export class ExtendedSearchParams {
      *
      *                           The function takes the offset
      *                           as a parameter and returns a Gravsearch query string.
-     *                           Returns false if not set correctly.
+     *                           Returns false if not set correctly (init state).
      */
     constructor(public generateGravsearch: (offset: number) => string | boolean) {
 
@@ -33,6 +33,7 @@ export class SearchParamsService {
 
     constructor() {
         // init with a dummy function that returns false
+        // if the application is reloaded, this will be returned
         this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => false));
     }
 

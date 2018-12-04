@@ -50,7 +50,7 @@ export class SearchResultComponent implements OnInit {
     errorMessage: any = undefined;
 
     offset: number = 0;
-    gravsearchGenerator: ExtendedSearchParams;
+    gravsearchParams: ExtendedSearchParams;
 
     list: ListData = <ListData> {
         title: 'Results: ',
@@ -75,16 +75,20 @@ export class SearchResultComponent implements OnInit {
             if (this.list.searchMode === 'fulltext') {
                 this.list.restrictedBy = params['q'];
             } else if (this.list.searchMode === 'extended') {
-                this.gravsearchGenerator = this._searchParamsService.getSearchParams();
-                this.list.restrictedBy = this.gravsearchGenerator.generateGravsearch(this.offset);
-                if (this.list.restrictedBy === 'empty') {
+                this.gravsearchParams = this._searchParamsService.getSearchParams();
+                const gravsearch: string | boolean = this.gravsearchParams.generateGravsearch(this.offset);
+                if (gravsearch === false) {
                     // no valid search params (application has been reloaded)
                     // go to root
                     this._router.navigate([''], { relativeTo: this._route });
                     return;
+                } else {
+                    // assign Gravsearch query
+                    this.list.restrictedBy = <string> gravsearch;
                 }
             }
 
+            this.result = [];
             this.rerender = true;
             this.getResult();
         });
