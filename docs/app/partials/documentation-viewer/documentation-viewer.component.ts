@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AppConfig } from '../../app.config';
 import { DemoModule, Example } from '../../app.interfaces';
 import { JsdocService } from '../services/jsdoc.service';
 
@@ -11,13 +10,14 @@ import { JsdocService } from '../services/jsdoc.service';
 })
 export class DocumentationViewerComponent implements OnInit {
 
+    loading: boolean = true;
+
     @Input() module: DemoModule = new DemoModule();
 
-//    @Input() examples?: Example[];
+    // @Input() examples?: Example[];
 
     documentation: any;
 
-    stackBlitzDemo: string;
     currentComponent: DemoModule;
 
     constructor(private _jsdoc: JsdocService,
@@ -26,17 +26,10 @@ export class DocumentationViewerComponent implements OnInit {
 
     ngOnInit() {
 
-        console.log(this.module);
-
         // get child route to include the stackblitz example, if it exists
         this._route.url.subscribe((url: any) => {
-
             this.currentComponent = this.findChild(url[0].path);
-
-            if (this.currentComponent !== undefined && this.currentComponent.stackblitz === true) {
-                this.stackBlitzDemo = AppConfig.stackblitz + AppConfig.prefix + '-' + this.currentComponent.name + AppConfig.parameter;
-            }
-
+            this.loading = false;
         });
 
 

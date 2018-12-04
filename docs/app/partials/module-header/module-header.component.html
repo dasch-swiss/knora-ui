@@ -1,13 +1,10 @@
 <div class="panel">
-
-    <!-- title: name of component, directive, pipe or service -->
+    <!-- subtitle: name of module and version -->
     <div class="panel-row">
-
         <span>
             <h3 class="mat-subheading-2">
                 Part of <a [routerLink]="'/modules/' + module.name">@knora/{{module.name | lowercase}}</a>
             </h3>
-            <h2 class="mat-title">{{demo?.label}}</h2>
         </span>
 
         <span class="fill-remaining-space"></span>
@@ -18,8 +15,21 @@
         </span>
     </div>
 
+    <br>
+    <!-- title: name of component, directive, pipe or service plus link to stackblitz -->
+    <div class="panel-row">
+        <h2 class="mat-title">{{demo?.label}}</h2>
+        <span class="fill-remaining-space"></span>
+        <span>
+            <a *ngIf="stackBlitzDemo" [href]="stackBlitzDemo" target="_blank">
+        <button mat-button class="small-button">
+          Stackblitz example
+          <mat-icon matSuffix>call_made</mat-icon>
+        </button>
+      </a>
+    </span>
+
+    </div>
+
 </div>
-
-
-
 

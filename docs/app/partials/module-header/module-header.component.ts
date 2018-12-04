@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AppConfig } from '../../app.config';
-import { DemoModule, Item } from '../../app.interfaces';
+import { DemoModule } from '../../app.interfaces';
 
 @Component({
     selector: 'app-module-header',
@@ -11,21 +10,22 @@ import { DemoModule, Item } from '../../app.interfaces';
 export class ModuleHeaderComponent implements OnInit {
 
     // module info
-    @Input() module: DemoModule = new DemoModule();
+    @Input() module: DemoModule;
 
     // demo of current component, service etc.
-    @Input() child: DemoModule = new DemoModule();
-
-    // TODO: remove the demo input after refactor all demo components
     @Input() demo: DemoModule;
 
     package: string;
     badge: string;
 
+    stackBlitzDemo: string;
+
     constructor() {
     }
 
     ngOnInit() {
+
+        console.log(this.demo);
 
         if (this.module.published) {
 
@@ -38,5 +38,8 @@ export class ModuleHeaderComponent implements OnInit {
 
         }
 
+        if (this.demo !== undefined && this.demo.stackblitz) {
+            this.stackBlitzDemo = AppConfig.stackblitz + AppConfig.prefix + '-' + this.demo.name + AppConfig.parameter;
+        }
     }
 }

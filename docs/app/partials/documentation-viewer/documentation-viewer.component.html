@@ -1,72 +1,64 @@
 <!-- header with title and module info -->
 <app-module-header [module]="module" [demo]="currentComponent"></app-module-header>
 
-<div *ngIf="documentation">
+<mat-divider></mat-divider>
 
-    <mat-tab-group>
-        <!-- introduction -->
-        <mat-tab label="Overview">
-            <section *ngFor="let item of documentation">
+<div *ngIf="documentation" class="documentation">
 
-                <div [innerHtml]="item.description.full | sanitizeHtml"></div>
+    <!-- introduction -->
+    <section *ngFor="let item of documentation">
 
-            </section>
+        <div [innerHtml]="item.description.summary | sanitizeHtml"></div>
 
-        </mat-tab>
+        <div [innerHtml]="item.description.body | sanitizeHtml" class="bolder"></div>
 
-        <!-- usage -->
-        <mat-tab label="API">
-            <section *ngFor="let item of documentation; let i = index">
+    </section>
 
-                <div *ngIf="item.tags.length > 0 && item.tags[0].type !== 'ignore'">
+    <mat-divider></mat-divider>
 
-                    <div *ngFor="let tag of item.tags">
+    <!-- usage -->
+    <section *ngFor="let item of documentation; let i = index">
 
-                        <div [ngSwitch]="tag.type">
-                            <!-- example code -->
-                            <pre *ngSwitchCase="'example'" class="line-numbers">
+        <div *ngIf="item.tags.length > 0 && item.tags[0].type !== 'ignore'">
+
+            <div *ngFor="let tag of item.tags">
+
+                <div [ngSwitch]="tag.type">
+                    <!-- example code -->
+                    <pre *ngSwitchCase="'example'" class="line-numbers">
                                 <code>{{tag.string}}</code>
                             </pre>
 
-                            <div *ngSwitchCase="'param'">
-                                <p>Parameter</p>
-                                <table>
-                                    <tr>
-                                        <td class="border-right">
-                                            <p>{{tag.name}}</p>
-                                        </td>
-                                        <td>
-                                            <p>Type:
-                                            <span *ngFor="let type of tag.types; let last = last">
+                    <div *ngSwitchCase="'param'">
+                        <p>Parameter</p>
+                        <table>
+                            <tr>
+                                <td class="border-right">
+                                    <p>{{tag.name}}</p>
+                                </td>
+                                <td>
+                                    <p>Type:
+                                        <span *ngFor="let type of tag.types; let last = last">
                                                 {{type}}<span *ngIf="!last">, </span>
                                             </span>
-                                            </p>
-                                            <div [innerHtml]="tag.description"></div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div *ngSwitchCase="'type'" [innerHtml]="tag.html | sanitizeHtml">
-                            </div>
-                            <p *ngSwitchDefault>
-                                default: {{tag.type}}
-                            </p>
-                        </div>
-
+                                    </p>
+                                    <div [innerHtml]="tag.description"></div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
+
+                    <div *ngSwitchCase="'type'" [innerHtml]="tag.html | sanitizeHtml">
+                    </div>
+                    <p *ngSwitchDefault>
+                        default: {{tag.type}}
+                    </p>
                 </div>
-            </section>
 
-        </mat-tab>
+            </div>
+        </div>
+    </section>
 
-        <!-- example -->
-        <mat-tab label="Example" *ngIf="currentComponent.stackblitz">
-            <iframe class="example-container" [src]="stackBlitzDemo | sanitizeUrl">
-                <p>no-iframes</p>
-            </iframe>
-
-        </mat-tab>
-    </mat-tab-group>
+    <mat-divider></mat-divider>
 
 </div>
