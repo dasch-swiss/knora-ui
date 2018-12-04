@@ -3,8 +3,6 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { AdminImageComponent } from 'src/app/knora-ui-examples/action-demo/admin-image/admin-image.component';
-import { toBase64String } from '@angular/compiler/src/output/source_map';
-
 
 describe('Directive: AdminImageDirective', () => {
     let component: TestAdminImageComponent;

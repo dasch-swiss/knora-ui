@@ -8,7 +8,7 @@ import { Component, DebugElement, OnInit, ViewChild, } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 
-fdescribe('SortButtonComponent', () => {
+describe('SortButtonComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
     const listData = [
