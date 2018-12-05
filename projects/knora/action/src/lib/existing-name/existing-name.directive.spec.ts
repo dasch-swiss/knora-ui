@@ -33,9 +33,6 @@ fdescribe('ExistingNameDirective', () => {
         fixture = TestBed.createComponent(TestHostComponent);
         component = fixture.componentInstance;
         component.ngOnInit();
-
-        fixture.detectChanges();
-
     });
 
     it('should create an instance', () => {
@@ -51,8 +48,9 @@ fdescribe('ExistingNameDirective', () => {
         expect(name.valid).toBeFalsy();
     });
 
-    fit('should recognize the new name "Benjamin"', () => {
+    it('should recognize the new name "Benjamin" and valid the form', () => {
         expect(component.dataMock).toEqual(existingNamesList);
+        expect(component.form.valid).toBeFalsy();
 
         for (const user of existingNamesList) {
             existingNames.push(
@@ -61,6 +59,8 @@ fdescribe('ExistingNameDirective', () => {
         }
 
         expect(component.existingNames).toEqual(existingNames);
+
+        fixture.detectChanges();
 
         let errors = {};
         const name = component.form.controls['name'];
@@ -76,12 +76,16 @@ fdescribe('ExistingNameDirective', () => {
         fixture.detectChanges();
 
         errors = name.errors || {};
+        expect(component.form.valid).toBeTruthy();
         expect(errors['required']).toBeFalsy();
-        expect(existingNamesValidator(existingNames));
+        expect(existingNamesValidator(existingNames)).toBeTruthy();
+        expect(component.form.controls.name.errors).toBe(null);
     });
 
-    it('should recognize the existing name "Lucas"', () => {
+    it('should recognize the existing name "Ben" and invalid the form', () => {
+        fixture.detectChanges();
         expect(component.dataMock).toEqual(existingNamesList);
+        expect(component.form.valid).toBeFalsy();
 
         for (const user of existingNamesList) {
             existingNames.push(
@@ -105,8 +109,10 @@ fdescribe('ExistingNameDirective', () => {
         fixture.detectChanges();
 
         errors = name.errors || {};
+        expect(component.form.valid).toBeFalsy();
         expect(errors['required']).toBeFalsy();
-        expect(existingNamesValidator(existingNames));
+        expect(existingNamesValidator(existingNames)).toBeTruthy();
+        expect(component.form.controls.name.errors.existingName.name).toBe('ben');
     });
 
 });
