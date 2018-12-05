@@ -60,8 +60,8 @@ import { IncomingComponent } from './knora-ui-examples/core-demo/incoming/incomi
 import { ConvertJsonLdComponent } from './knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component';
 import { OntologyCacheComponent } from './knora-ui-examples/core-demo/ontology-cache/ontology-cache.component';
 import { OntologyComponent } from './knora-ui-examples/core-demo/ontology/ontology.component';
-import { ApiComponent } from './knora-ui-examples/core-demo/api/api.component';
 import { DocumentationViewerComponent } from './partials/documentation-viewer/documentation-viewer.component';
+import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-demo/authentication-demo.component';
 
 @NgModule({
     declarations: [
@@ -103,8 +103,8 @@ import { DocumentationViewerComponent } from './partials/documentation-viewer/do
         ConvertJsonLdComponent,
         OntologyCacheComponent,
         OntologyComponent,
-        ApiComponent,
-        DocumentationViewerComponent
+        DocumentationViewerComponent,
+        AuthenticationDemoComponent
     ],
     entryComponents: [
         // LoginFormComponent
