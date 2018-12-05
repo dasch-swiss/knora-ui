@@ -1,0 +1,39 @@
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} key",
+        "name": "key",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} key</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>TODO: add description</p>",
+      "summary": "<p>TODO: add description</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 34,
+    "codeStart": 38,
+    "code": "sortBy(key: string) {\n    this.sortKeyChange.emit(key);\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "sortBy",
+      "string": "sortBy()"
+    }
+  }
+]

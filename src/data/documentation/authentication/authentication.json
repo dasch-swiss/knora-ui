@@ -1,0 +1,125 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>validate if a user is logged in or not<br />\nand the session is active</p>",
+      "summary": "<p>validate if a user is logged in or not<br />\nand the session is active</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 19,
+    "codeStart": 23,
+    "code": "session(): boolean {\n    return this._session.validateSession();\n}",
+    "ctx": {
+      "type": "method",
+      "name": "session",
+      "string": "session()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "identifier (email or username)",
+        "name": "identifier",
+        "description": "<p>(email or username)</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "password",
+        "name": "password",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>password</p>"
+      },
+      {
+        "type": "returns",
+        "string": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "<p>login process;<br />\nit's used by the login component</p>",
+      "summary": "<p>login process;<br />\nit's used by the login component</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 27,
+    "codeStart": 35,
+    "code": "login(identifier: string, password: string): Observable<any> {\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        {identifier: identifier, password: password},\n        {observe: 'response'}).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}\n\n\nlogout() {\n    // destroy the session\n    localStorage.removeItem('session');\n}",
+    "ctx": {
+      "type": "method",
+      "name": "login",
+      "string": "login()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "error",
+        "name": "error",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>error</p>"
+      },
+      {
+        "type": "returns",
+        "string": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "<p>handle request error in case of server error</p>",
+      "summary": "<p>handle request error in case of server error</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 58,
+    "codeStart": 64,
+    "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    const serviceError = new ApiServiceError();\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}\n}",
+    "ctx": false
+  }
+]

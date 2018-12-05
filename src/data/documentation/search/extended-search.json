@@ -1,0 +1,251 @@
+[
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "void",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Add a property to the search form.</p>",
+      "summary": "<p>Add a property to the search form.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 84,
+    "codeStart": 88,
+    "code": "addProperty(): void {\n    this.activeProperties.push(true);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "addProperty",
+      "string": "addProperty()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "void",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Remove the last property from the search form.</p>",
+      "summary": "<p>Remove the last property from the search form.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 92,
+    "codeStart": 96,
+    "code": "removeProperty(): void {\n    this.activeProperties.splice(-1, 1);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "removeProperty",
+      "string": "removeProperty()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "void",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Gets all available ontologies for the search form.</p>",
+      "summary": "<p>Gets all available ontologies for the search form.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 100,
+    "codeStart": 104,
+    "code": "initializeOntologies(): void {\n    this._cacheService.getOntologiesMetadata().subscribe(\n        (ontologies: Array<OntologyMetadata>) => {\n            this.ontologies = ontologies;\n        });\n}",
+    "ctx": {
+      "type": "method",
+      "name": "initializeOntologies",
+      "string": "initializeOntologies()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "ontologyIri Iri of the ontology chosen by the user.",
+        "name": "ontologyIri",
+        "description": "<p>Iri of the ontology chosen by the user.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "returns",
+        "string": "void",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Once an ontology has been selected, gets its classes and properties.<br />\nThe classes and properties will be made available to the user for selection.</p>",
+      "summary": "<p>Once an ontology has been selected, gets its classes and properties.<br />\nThe classes and properties will be made available to the user for selection.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 111,
+    "codeStart": 118,
+    "code": "getResourceClassesAndPropertiesForOntology(ontologyIri: string): void {\n\n    // reset active resource class definition\n    this.activeResourceClass = undefined;\n\n    // reset specified properties\n    this.activeProperties = [];\n\n    this.activeOntology = ontologyIri;\n\n    this._cacheService.getEntityDefinitionsForOntologies([ontologyIri]).subscribe(\n        (ontoInfo: OntologyInformation) => {\n\n            this.resourceClasses = ontoInfo.getResourceClassesAsArray();\n            this.properties = ontoInfo.getProperties();\n\n        }\n    );\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getResourceClassesAndPropertiesForOntology",
+      "string": "getResourceClassesAndPropertiesForOntology()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "resourceClassIri",
+        "name": "resourceClassIri",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>resourceClassIri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "void",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Once a resource class has been selected, gets its properties.<br />\nThe properties will be made available to the user for selection.</p>",
+      "summary": "<p>Once a resource class has been selected, gets its properties.<br />\nThe properties will be made available to the user for selection.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 139,
+    "codeStart": 146,
+    "code": "getPropertiesForResourceClass(resourceClassIri: string): void {\n\n    // reset specified properties\n    this.activeProperties = [];\n\n    // if the client undoes the selection of a resource class, use the active ontology as a fallback\n    if (resourceClassIri === null) {\n        this.getResourceClassesAndPropertiesForOntology(this.activeOntology);\n    } else {\n\n        this._cacheService.getResourceClassDefinitions([resourceClassIri]).subscribe(\n            (ontoInfo: OntologyInformation) => {\n                this.properties = ontoInfo.getProperties();\n\n                this.activeResourceClass = ontoInfo.getResourceClasses()[resourceClassIri];\n\n            }\n        );\n\n    }\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getPropertiesForResourceClass",
+      "string": "getPropertiesForResourceClass()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Validates form and returns its status (boolean).</p>",
+      "summary": "<p>Validates form and returns its status (boolean).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 169,
+    "codeStart": 172,
+    "code": "private validateForm() {\n\n    // check that either a resource class is selected or at least one property is specified\n    return this.form.valid &&\n        (this.propertyComponents.length > 0 || (this.resourceClassComponent !== undefined && this.resourceClassComponent.getResourceClassSelected() !== false));\n\n}",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Resets the form (selected resource class and specified properties) preserving the active ontology.</p>",
+      "summary": "<p>Resets the form (selected resource class and specified properties) preserving the active ontology.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 180,
+    "codeStart": 183,
+    "code": "resetForm() {\n    if (this.activeOntology !== undefined) {\n        this.getResourceClassesAndPropertiesForOntology(this.activeOntology);\n    }\n}",
+    "ctx": {
+      "type": "method",
+      "name": "resetForm",
+      "string": "resetForm()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Creates a GravSearch query with the given form values and calls the extended search route.</p>",
+      "summary": "<p>Creates a GravSearch query with the given form values and calls the extended search route.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 190,
+    "codeStart": 193,
+    "code": "submit() {\n\n    if (!this.formValid) return; // check that from is valid\n\n    const resClassOption = this.resourceClassComponent.getResourceClassSelected();\n\n    let resClass;\n\n    if (resClassOption !== false) {\n        resClass = resClassOption;\n    }\n\n    const properties: PropertyWithValue[] = this.propertyComponents.map(\n        (propComp) => {\n            return propComp.getPropertySelectedWithValue();\n        }\n    );\n\n    const gravsearch = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);\n\n    this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });\n\n    // toggle extended search form\n    this.toggleExtendedSearchForm.emit(true);\n\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "submit",
+      "string": "submit()"
+    }
+  }
+]

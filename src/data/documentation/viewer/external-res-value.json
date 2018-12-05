@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'kui-external-res-value',\n  templateUrl: './external-res-value.component.html',\n  styleUrls: ['./external-res-value.component.scss']\n})\nexport class ExternalResValueComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}",
+    "ctx": false
+  }
+]

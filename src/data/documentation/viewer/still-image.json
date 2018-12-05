@@ -1,0 +1,945 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Represents a region.<br />\nContains a reference to the resource representing the region and its geometries.</p>",
+      "summary": "<p>Represents a region.<br />\nContains a reference to the resource representing the region and its geometries.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 30,
+    "codeStart": 34,
+    "code": "export class ImageRegion {",
+    "ctx": {
+      "type": "class",
+      "constructor": "ImageRegion",
+      "cons": "ImageRegion",
+      "name": "ImageRegion",
+      "extends": "",
+      "string": "new ImageRegion()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "regionResource a resource of type Region",
+        "name": "regionResource",
+        "description": "<p>a resource of type Region</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 36,
+    "codeStart": 40,
+    "code": "constructor(readonly regionResource: ReadResource) {\n\n}",
+    "ctx": {
+      "type": "constructor",
+      "constructor": "ImageRegion",
+      "cons": "ImageRegion",
+      "name": "constructor",
+      "string": "ImageRegion.prototype.constructor()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Get all geometry information belonging to this region.</p>",
+      "summary": "<p>Get all geometry information belonging to this region.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 44,
+    "codeStart": 49,
+    "code": "getGeometries() {\n    return this.regionResource.properties[KnoraConstants.hasGeometry] as ReadGeomValue[];\n}\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "ImageRegion",
+      "cons": "ImageRegion",
+      "name": "getGeometries",
+      "string": "ImageRegion.prototype.getGeometries()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Represents an image including its regions.</p>",
+      "summary": "<p>Represents an image including its regions.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 54,
+    "codeStart": 57,
+    "code": "export class StillImageRepresentation {",
+    "ctx": {
+      "type": "class",
+      "constructor": "StillImageRepresentation",
+      "cons": "StillImageRepresentation",
+      "name": "StillImageRepresentation",
+      "extends": "",
+      "string": "new StillImageRepresentation()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "stillImageFileValue a [[ReadStillImageFileValue]] representing an image.",
+        "name": "stillImageFileValue",
+        "description": "<p>a [[ReadStillImageFileValue]] representing an image.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "regions the regions belonging to the image.",
+        "name": "regions",
+        "description": "<p>the regions belonging to the image.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 59,
+    "codeStart": 64,
+    "code": "constructor(readonly stillImageFileValue: ReadStillImageFileValue, readonly regions: ImageRegion[]) {\n\n}\n\n}",
+    "ctx": {
+      "type": "constructor",
+      "constructor": "StillImageRepresentation",
+      "cons": "StillImageRepresentation",
+      "name": "constructor",
+      "string": "StillImageRepresentation.prototype.constructor()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Sends a requests to the parent component to load more StillImageRepresentations.</p>",
+      "summary": "<p>Sends a requests to the parent component to load more StillImageRepresentations.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 70,
+    "codeStart": 73,
+    "code": "export class RequestStillImageRepresentations {",
+    "ctx": {
+      "type": "class",
+      "constructor": "RequestStillImageRepresentations",
+      "cons": "RequestStillImageRepresentations",
+      "name": "RequestStillImageRepresentations",
+      "extends": "",
+      "string": "new RequestStillImageRepresentations()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "offsetChange the relative change of the offset in order to get more incoming StillImageRepresentations for the resource currently being displayed. Either 1 or -1.",
+        "name": "offsetChange",
+        "description": "<p>the relative change of the offset in order to get more incoming StillImageRepresentations for the resource currently being displayed. Either 1 or -1.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "whenLoadedCB a callback function that is called when more incoming StillImageRepresentations have been requested and the answer arrived from the server.",
+        "name": "whenLoadedCB",
+        "description": "<p>a callback function that is called when more incoming StillImageRepresentations have been requested and the answer arrived from the server.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 75,
+    "codeStart": 80,
+    "code": "constructor(readonly offsetChange: number, readonly whenLoadedCB: (numberOfImages: number) => void) {\n}\n}",
+    "ctx": {
+      "type": "constructor",
+      "constructor": "RequestStillImageRepresentations",
+      "cons": "RequestStillImageRepresentations",
+      "name": "constructor",
+      "string": "RequestStillImageRepresentations.prototype.constructor()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Represents a geometry belonging to a specific region.</p>",
+      "summary": "<p>Represents a geometry belonging to a specific region.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 84,
+    "codeStart": 87,
+    "code": "export class GeometryForRegion {",
+    "ctx": {
+      "type": "class",
+      "constructor": "GeometryForRegion",
+      "cons": "GeometryForRegion",
+      "name": "GeometryForRegion",
+      "extends": "",
+      "string": "new GeometryForRegion()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "geometry the geometrical information.",
+        "name": "geometry",
+        "description": "<p>the geometrical information.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "region the region the geometry belongs to.",
+        "name": "region",
+        "description": "<p>the region the geometry belongs to.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 89,
+    "codeStart": 94,
+    "code": "constructor(readonly geometry: RegionGeometry, readonly region: ReadResource) {\n}\n\n}",
+    "ctx": {
+      "type": "constructor",
+      "constructor": "GeometryForRegion",
+      "cons": "GeometryForRegion",
+      "name": "constructor",
+      "string": "GeometryForRegion.prototype.constructor()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "member",
+        "string": "resources - resources containing (among other resources) the StillImageFileValues and incoming regions to be rendered. (Use as angular @Input data binding property.)",
+        "html": "<p>resources - resources containing (among other resources) the StillImageFileValues and incoming regions to be rendered. (Use as angular @Input data binding property.)</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>This component creates a OpenSeadragon viewer instance.<br />\nAccepts an array of ReadResource containing (among other resources) ReadStillImageFileValues to be rendered.</p>",
+      "summary": "<p>This component creates a OpenSeadragon viewer instance.<br />\nAccepts an array of ReadResource containing (among other resources) ReadStillImageFileValues to be rendered.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 99,
+    "codeStart": 104,
+    "code": "@Component({\n    selector: 'kui-still-image',\n    templateUrl: './still-image.component.html',\n    styleUrls: ['./still-image.component.scss']\n})\nexport class StillImageComponent implements OnInit, OnChanges, OnDestroy {\n\n    @Input() images: StillImageRepresentation[];\n    @Input() imageRangeStart: number;  // index first image of this.images to be displayed\n    @Input() imageRangeEnd: number; // index of last image of this.images to be displayed.\n    @Input() imageChangeInterval: number; // the size of the interval when displaying more images of this.images\n\n    @Input() imageCaption?: string;\n\n    @Output() getImages = new EventEmitter<RequestStillImageRepresentations>(); // sends a message to the parent component (object.component) to load the next or previous page of results (images) from the server\n    @Output() regionHovered = new EventEmitter<string>();\n\n    // the paging limit should be defined in the configuration of the app\n    pagingLimit: number = 25;\n\n\n    private viewer;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "geom the region's geometry.",
+        "name": "geom",
+        "description": "<p>the region's geometry.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "returns",
+        "string": "the surface.",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>the surface.</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Calculates the surface of a rectangular region.</p>",
+      "summary": "<p>Calculates the surface of a rectangular region.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 127,
+    "codeStart": 133,
+    "code": "private static surfaceOfRectangularRegion(geom: RegionGeometry): number {\n\n    if (geom.type !== 'rectangle') {\n        console.log('expected rectangular region, but ' + geom.type + ' given');\n        return 0;\n    }\n\n    const w = Math.max(geom.points[0].x, geom.points[1].x) - Math.min(geom.points[0].x, geom.points[1].x);\n    const h = Math.max(geom.points[0].y, geom.points[1].y) - Math.min(geom.points[0].y, geom.points[1].y);\n\n    return w * h;\n\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "imagesToDisplay the given file values to de displayed.",
+        "name": "imagesToDisplay",
+        "description": "<p>the given file values to de displayed.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "returns",
+        "string": "the tile sources to be passed to OSD viewer.",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>the tile sources to be passed to OSD viewer.</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Prepare tile sources from the given sequence of [[ReadStillImageFileValue]].</p>",
+      "summary": "<p>Prepare tile sources from the given sequence of [[ReadStillImageFileValue]].</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 147,
+    "codeStart": 153,
+    "code": "private static prepareTileSourcesFromFileValues(imagesToDisplay: ReadStillImageFileValue[]): Object[] {\n    let imageXOffset = 0;\n    let imageYOffset = 0;\n    const tileSources = [];\n\n    for (const image of imagesToDisplay) {\n        const sipiBasePath = image.imageServerIIIFBaseURL + '/' + image.imageFilename;\n        const width = image.dimX;\n        const height = image.dimY;\n\n        // construct OpenSeadragon tileSources according to https://openseadragon.github.io/docs/OpenSeadragon.Viewer.html#open\n        tileSources.push({\n            // construct IIIF tileSource configuration according to\n            // http://iiif.io/api/image/2.1/#technical-properties\n            // see also http://iiif.io/api/image/2.0/#a-implementation-notes\n            'tileSource': {\n                '@context': 'http://iiif.io/api/image/2/context.json',\n                '@id': sipiBasePath,\n                'height': height,\n                'width': width,\n                'profile': ['http://iiif.io/api/image/2/level2.json'],\n                'protocol': 'http://iiif.io/api/image',\n                'tiles': [{\n                    'scaleFactors': [1, 2, 4, 8, 16, 32],\n                    'width': 1024\n                }]\n            },\n            'x': imageXOffset,\n            'y': imageYOffset\n        });\n\n        imageXOffset++;\n\n        // 5 images per row",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>if (imageXOffset % 5 === 0) {<br />\nimageYOffset += 2;<br />\nimageXOffset = 0;<br />\n}</p>",
+      "summary": "<p>if (imageXOffset % 5 === 0) {<br />\nimageYOffset += 2;<br />\nimageXOffset = 0;<br />\n}</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 187,
+    "codeStart": 192,
+    "code": "}\n\nreturn tileSources;\n    }\n\n    constructor(private elementRef: ElementRef) {\n    }\n\n    ngOnChanges(changes: { [key: string]: SimpleChange }) {\nif (changes['images'] && changes['images'].isFirstChange()) {\n    this.setupViewer();\n}\nif (changes['images']) {\n    this.openImages();\n    this.renderRegions();\n}\n    }\n\n    ngOnInit() {\n// initialisation is done on first run of ngOnChanges\n    }\n\n    ngOnDestroy() {\nif (this.viewer) {\n    this.viewer.destroy();\n    this.viewer = undefined;\n}\n    }",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Renders all ReadStillImageFileValues to be found in [[this.images]].<br />\n(Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.<br />\nUse this method if additional ReadStillImageFileValues were added to this.images after creation/assignment of the this.images array.)</p>",
+      "summary": "<p>Renders all ReadStillImageFileValues to be found in [[this.images]].<br />\n(Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.<br />\nUse this method if additional ReadStillImageFileValues were added to this.images after creation/assignment of the this.images array.)</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 221,
+    "codeStart": 226,
+    "code": "updateImages() {\n    if (!this.viewer) {\n        this.setupViewer();\n    }\n    this.openImages();\n}",
+    "ctx": {
+      "type": "method",
+      "name": "updateImages",
+      "string": "updateImages()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Get the more images from the server by requesting the previous page of results for the current resource (decrease offset).</p>",
+      "summary": "<p>Get the more images from the server by requesting the previous page of results for the current resource (decrease offset).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 233,
+    "codeStart": 236,
+    "code": "private gotoLeft() {\n\n    // TODO: move left on this.images\n    // TODO: if necessary, request more images from the server\n\n    if (this.imageRangeStart - this.imageChangeInterval >= 0) {\n        // this.images has more images to display\n        this.imageRangeStart -= this.imageChangeInterval;\n        this.imageRangeEnd -= this.imageChangeInterval;\n\n        this.openImages();\n        this.renderRegions();\n    } else if (this.imageRangeStart > 0) {\n        // fewer remaining images than interval, show remaining images\n        this.imageRangeEnd -= this.imageRangeStart;\n        this.imageRangeStart = 0;\n\n        this.openImages();\n        this.renderRegions();\n    }\n    {\n        // this.images cannot display more images of length interval\n        // request more images from the server using a negative offset\n\n        // TODO: implement getting previous offset (also in parent component)\n    }\n\n}",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Get the more images from the server by requesting the next page of results for the current resource (increase offset).</p>",
+      "summary": "<p>Get the more images from the server by requesting the next page of results for the current resource (increase offset).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 265,
+    "codeStart": 268,
+    "code": "private gotoRight() {\n\n    if (this.imageRangeEnd < this.images.length - 1) {\n        // this.images has more images to display\n\n        if (this.imageRangeEnd + this.imageChangeInterval < this.images.length) {\n            // the whole next interval can be displayed\n            console.log(`display next interval`);\n\n            this.imageRangeStart += this.imageChangeInterval;\n            this.imageRangeEnd += this.imageChangeInterval;\n        } else {\n            console.log(`display remaining images`);\n            // less than the interval can be displayed just display remaining images\n            const remainingDiff = this.images.length - this.imageRangeEnd + 1;\n\n            this.imageRangeStart += remainingDiff;\n            this.imageRangeEnd += remainingDiff;\n\n            // TODO: deactivate next button\n\n        }\n\n        this.openImages();\n        this.renderRegions();\n\n    } else if (this.images.length % this.pagingLimit === 0) { // paging always returned full result lists, so there could be more data to fetch\n        console.log(`request more images`);\n        // this.images cannot display more images of length interval\n        // request more images from the server using a positive offset\n\n        // function called when parent component loaded new images\n        const callback = (numberOfImages: number) => {\n\n            if (numberOfImages >= this.imageChangeInterval) {\n                // more images were loaded than are actually to be displayed\n\n                this.imageRangeStart += this.imageChangeInterval;\n                this.imageRangeEnd += this.imageChangeInterval;\n\n                this.openImages();\n                this.renderRegions();\n            } else if (numberOfImages > 0) {\n                // the amount of new images in less than the interval, show everything that can be shown\n\n                this.imageRangeStart += numberOfImages;\n                this.imageRangeEnd += numberOfImages;\n\n                this.openImages();\n                this.renderRegions();\n            } else {\n                // no new images could be returned, display remaining images (there are fewer than this.imageChangeInterval)\n                const remainingImages: number = this.images.length - 1 - this.imageRangeEnd;\n\n                this.imageRangeStart += remainingImages;\n                this.imageRangeEnd += remainingImages;\n\n                // TODO: no new images can be loaded -> deactivate control in GUI (note that perhaps sufficient permissions were missing, so we actually cannot be sure that higher offsets still deliver images)\n\n                this.openImages();\n                this.renderRegions();\n\n            }\n\n\n        };\n\n        const msg = new RequestStillImageRepresentations(1, callback);\n\n        this.getImages.emit(msg);\n\n    } else {\n        // no more data to fetch\n        // TODO: deactivate next button\n\n    }\n}",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Renders all regions to be found in [[this.images]].<br />\n(Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.<br />\nUse this method if additional regions were added to the resources.images)</p>",
+      "summary": "<p>Renders all regions to be found in [[this.images]].<br />\n(Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.<br />\nUse this method if additional regions were added to the resources.images)</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 346,
+    "codeStart": 351,
+    "code": "updateRegions() {\n    if (!this.viewer) {\n        this.setupViewer();\n    }\n    this.renderRegions();\n}",
+    "ctx": {
+      "type": "method",
+      "name": "updateRegions",
+      "string": "updateRegions()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Initializes the OpenSeadragon viewer</p>",
+      "summary": "<p>Initializes the OpenSeadragon viewer</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 358,
+    "codeStart": 361,
+    "code": "private setupViewer(): void {\n    const viewerContainer = this.elementRef.nativeElement.getElementsByClassName('osd-container')[0];\n    const osdOptions = {\n        element: viewerContainer,\n        sequenceMode: true,\n        showReferenceStrip: true,\n        showNavigator: true,\n        zoomInButton: 'KUI_OSD_ZOOM_IN',\n        zoomOutButton: 'KUI_OSD_ZOOM_OUT',\n        previousButton: 'KUI_OSD_PREV_PAGE',\n        nextButton: 'KUI_OSD_NEXT_PAGE',\n        homeButton: 'KUI_OSD_HOME',\n        fullPageButton: 'KUI_OSD_FULL_PAGE',\n        rotateLeftButton: 'KUI_OSD_ROTATE_LEFT',        // doesn't work yet\n        rotateRightButton: 'KUI_OSD_ROTATE_RIGHT'       // doesn't work yet\n\n    };\n    this.viewer = new OpenSeadragon.Viewer(osdOptions);\n    this.viewer.addHandler('full-screen', function (args) {\n        if (args.fullScreen) {\n            viewerContainer.classList.add('fullscreen');\n        } else {\n            viewerContainer.classList.remove('fullscreen');\n        }\n    });\n    this.viewer.addHandler('resize', function (args) {\n        args.eventSource.svgOverlay().resize();\n    });\n\n}",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Adds all images in this.images to the viewer.<br />\nImages are positioned in a horizontal row next to each other.</p>",
+      "summary": "<p>Adds all images in this.images to the viewer.<br />\nImages are positioned in a horizontal row next to each other.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 392,
+    "codeStart": 396,
+    "code": "private openImages(): void {\n    // imageXOffset controls the x coordinate of the left side of each image in the OpenSeadragon viewport coordinate system.\n    // The first image has its left side at x = 0, and all images are scaled to have a width of 1 in viewport coordinates.\n    // see also: https://openseadragon.github.io/examples/viewport-coordinates/\n\n    const fileValues: ReadStillImageFileValue[] = this.images.map(\n        (img) => {\n            return img.stillImageFileValue;\n        });\n\n    // display only the defined range of this.images\n    const tileSources: Object[] = StillImageComponent.prepareTileSourcesFromFileValues(fileValues.slice(this.imageRangeStart, this.imageRangeEnd + 1));\n\n    this.viewer.clearOverlays();\n    this.viewer.open(tileSources);\n}",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Adds a ROI-overlay to the viewer for every region of every image in this.images</p>",
+      "summary": "<p>Adds a ROI-overlay to the viewer for every region of every image in this.images</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 413,
+    "codeStart": 416,
+    "code": "private renderRegions(): void {\n    this.viewer.clearOverlays();\n\n    let imageXOffset = 0; // see documentation in this.openImages() for the usage of imageXOffset\n\n    for (const image of this.images) {\n        const aspectRatio = (image.stillImageFileValue.dimY / image.stillImageFileValue.dimX);\n\n        // collect all geometries belonging to this page\n        let geometries: GeometryForRegion[] = [];\n        image.regions.map((reg) => {\n\n            let geoms = reg.getGeometries();\n\n            geoms.map((geom) => {\n                let geomForReg = new GeometryForRegion(geom.geometry, reg.regionResource);\n\n                geometries.push(geomForReg);\n            });\n        });\n\n        // sort all geometries belonging to this page\n        geometries.sort((geom1, geom2) => {\n\n            if (geom1.geometry.type === 'rectangle' && geom2.geometry.type === 'rectangle') {\n\n                const surf1 = StillImageComponent.surfaceOfRectangularRegion(geom1.geometry);\n                const surf2 = StillImageComponent.surfaceOfRectangularRegion(geom2.geometry);\n\n                // if reg1 is smaller than reg2, return 1\n                // reg1 then comes after reg2 and thus is rendered later\n                if (surf1 < surf2) {\n                    return 1;\n                } else {\n                    return -1;\n                }\n\n            } else {\n                return 0;\n            }\n\n\n        });\n\n        // render all geometries for this page\n        for (let geom of geometries) {\n\n            let geometry = geom.geometry;\n            this.createSVGOverlay(geom.region.id, geometry, aspectRatio, imageXOffset, geom.region.label);\n\n        }\n\n        imageXOffset++;\n    }\n\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "regionIri the Iri of the region.",
+        "name": "regionIri",
+        "description": "<p>the Iri of the region.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "geometry - the geometry describing the ROI",
+        "name": "geometry",
+        "description": "<ul>\n<li>the geometry describing the ROI</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "aspectRatio -  the aspectRatio (h/w) of the image on which the geometry should be placed",
+        "name": "aspectRatio",
+        "description": "<ul>\n<li>the aspectRatio (h/w) of the image on which the geometry should be placed</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "xOffset -  the x-offset in Openseadragon viewport coordinates of the image on which the geometry should be placed",
+        "name": "xOffset",
+        "description": "<ul>\n<li>the x-offset in Openseadragon viewport coordinates of the image on which the geometry should be placed</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "toolTip -  the tooltip which should be displayed on mousehover of the svg element",
+        "name": "toolTip",
+        "description": "<ul>\n<li>the tooltip which should be displayed on mousehover of the svg element</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "<p>Creates and adds a ROI-overlay to the viewer</p>",
+      "summary": "<p>Creates and adds a ROI-overlay to the viewer</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 473,
+    "codeStart": 481,
+    "code": "private createSVGOverlay(regionIri: string, geometry: RegionGeometry, aspectRatio: number, xOffset: number, toolTip: string): void {\n    const lineColor = geometry.lineColor;\n    const lineWidth = geometry.lineWidth;\n\n    let svgElement;\n    switch (geometry.type) {\n        case 'rectangle':\n            svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');  // yes, we render rectangles as svg polygon elements\n            this.addSVGAttributesRectangle(svgElement, geometry, aspectRatio, xOffset);\n            break;\n        case 'polygon':\n            svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');\n            this.addSVGAttributesPolygon(svgElement, geometry, aspectRatio, xOffset);\n            break;\n        case 'circle':\n            svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');\n            this.addSVGAttributesCircle(svgElement, geometry, aspectRatio, xOffset);\n            break;\n        default:\n            console.log('ERROR: StillImageOSDViewerComponent.createSVGOverlay: unknown geometryType: ' + geometry.type);\n            return;\n    }\n    svgElement.id = 'roi-svgoverlay-' + Math.random() * 10000;\n    svgElement.setAttribute('class', 'roi-svgoverlay');\n    svgElement.setAttribute('style', 'stroke: ' + lineColor + '; stroke-width: ' + lineWidth + 'px;');\n\n    // event when a region is hovered (output)\n    svgElement.addEventListener('mouseover', () => {\n            this.regionHovered.emit(regionIri);\n        }, false);\n\n    const svgTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');\n    svgTitle.textContent = toolTip;\n\n    const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');\n    svgGroup.appendChild(svgTitle);\n    svgGroup.appendChild(svgElement);\n\n    const overlay = this.viewer.svgOverlay();\n    overlay.node().appendChild(svgGroup);\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "svgElement - an SVGElement (should have type 'polygon' (sic))",
+        "name": "svgElement",
+        "description": "<ul>\n<li>an SVGElement (should have type 'polygon' (sic))</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "geometry - the geometry describing the rectangle",
+        "name": "geometry",
+        "description": "<ul>\n<li>the geometry describing the rectangle</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed",
+        "name": "aspectRatio",
+        "description": "<ul>\n<li>the aspectRatio (h/w) of the image on which the circle should be placed</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed",
+        "name": "xOffset",
+        "description": "<ul>\n<li>the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "<p>Adds the necessary attributes to create a ROI-overlay of type 'rectangle' to a SVGElement</p>",
+      "summary": "<p>Adds the necessary attributes to create a ROI-overlay of type 'rectangle' to a SVGElement</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 523,
+    "codeStart": 530,
+    "code": "private addSVGAttributesRectangle(svgElement: SVGElement, geometry: RegionGeometry, aspectRatio: number, xOffset: number): void {\n    const pointA = geometry.points[0];\n    const pointB = geometry.points[1];\n\n    // geometry.points contains two diagonally opposed corners of the rectangle, but the order of the corners is arbitrary.\n    // We therefore construct the upperleft (UL), lowerright (LR), upperright (UR) and lowerleft (LL) positions of the corners with min and max operations.\n    const positionUL = new Point2D(Math.min(pointA.x, pointB.x), Math.min(pointA.y, pointB.y));\n    const positionLR = new Point2D(Math.max(pointA.x, pointB.x), Math.max(pointA.y, pointB.y));\n    const positionUR = new Point2D(Math.max(pointA.x, pointB.x), Math.min(pointA.y, pointB.y));\n    const positionLL = new Point2D(Math.min(pointA.x, pointB.x), Math.max(pointA.y, pointB.y));\n\n    const points = [positionUL, positionUR, positionLR, positionLL];\n    const viewCoordPoints = this.image2ViewPortCoords(points, aspectRatio, xOffset);\n    const pointsString = this.createSVGPolygonPointsAttribute(viewCoordPoints);\n    svgElement.setAttribute('points', pointsString);\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "svgElement - an SVGElement (should have type 'polygon')",
+        "name": "svgElement",
+        "description": "<ul>\n<li>an SVGElement (should have type 'polygon')</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "geometry - the geometry describing the polygon",
+        "name": "geometry",
+        "description": "<ul>\n<li>the geometry describing the polygon</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed",
+        "name": "aspectRatio",
+        "description": "<ul>\n<li>the aspectRatio (h/w) of the image on which the circle should be placed</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed",
+        "name": "xOffset",
+        "description": "<ul>\n<li>the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "<p>Adds the necessary attributes to create a ROI-overlay of type 'polygon' to a SVGElement</p>",
+      "summary": "<p>Adds the necessary attributes to create a ROI-overlay of type 'polygon' to a SVGElement</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 547,
+    "codeStart": 554,
+    "code": "private addSVGAttributesPolygon(svgElement: SVGElement, geometry: RegionGeometry, aspectRatio: number, xOffset: number): void {\n    const viewCoordPoints = this.image2ViewPortCoords(geometry.points, aspectRatio, xOffset);\n    const pointsString = this.createSVGPolygonPointsAttribute(viewCoordPoints);\n    svgElement.setAttribute('points', pointsString);\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "svgElement - an SVGElement (should have type 'circle')",
+        "name": "svgElement",
+        "description": "<ul>\n<li>an SVGElement (should have type 'circle')</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "geometry - the geometry describing the circle",
+        "name": "geometry",
+        "description": "<ul>\n<li>the geometry describing the circle</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "aspectRatio - the aspectRatio (h/w) of the image on which the circle should be placed",
+        "name": "aspectRatio",
+        "description": "<ul>\n<li>the aspectRatio (h/w) of the image on which the circle should be placed</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "xOffset - the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed",
+        "name": "xOffset",
+        "description": "<ul>\n<li>the x-offset in Openseadragon viewport coordinates of the image on which the circle should be placed</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "<p>Adds the necessary attributes to create a ROI-overlay of type 'circle' to a SVGElement</p>",
+      "summary": "<p>Adds the necessary attributes to create a ROI-overlay of type 'circle' to a SVGElement</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 560,
+    "codeStart": 567,
+    "code": "private addSVGAttributesCircle(svgElement: SVGElement, geometry: RegionGeometry, aspectRatio: number, xOffset: number): void {\n    const viewCoordPoints = this.image2ViewPortCoords(geometry.points, aspectRatio, xOffset);\n    const cx = String(viewCoordPoints[0].x);\n    const cy = String(viewCoordPoints[0].y);\n    // geometry.radius contains not the radius itself, but the coordinates of a (arbitrary) point on the circle.\n    // We therefore have to calculate the length of the vector geometry.radius to get the actual radius. -> sqrt(x^2 + y^2)\n    // Since geometry.radius has its y coordinate scaled to the height of the image,\n    // we need to multiply it with the aspectRatio to get to the scale used by Openseadragon, analoguous to this.image2ViewPortCoords()\n    const radius = String(Math.sqrt(geometry.radius.x * geometry.radius.x + aspectRatio * aspectRatio * geometry.radius.y * geometry.radius.y));\n    svgElement.setAttribute('cx', cx);\n    svgElement.setAttribute('cy', cy);\n    svgElement.setAttribute('r', radius);\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "points - an array of points in coordinate system relative to an image",
+        "name": "points",
+        "description": "<ul>\n<li>an array of points in coordinate system relative to an image</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "aspectRatio - the aspectRatio (h/w) of the image",
+        "name": "aspectRatio",
+        "description": "<ul>\n<li>the aspectRatio (h/w) of the image</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "param",
+        "string": "xOffset - the x-offset in viewport coordinates of the image",
+        "name": "xOffset",
+        "description": "<ul>\n<li>the x-offset in viewport coordinates of the image</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "returns",
+        "string": "- a new Point2D[] with coordinates in the viewport coordinate system of Openseadragon",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<ul>\n<li>a new Point2D[] with coordinates in the viewport coordinate system of Openseadragon</li>\n</ul>"
+      }
+    ],
+    "description": {
+      "full": "<p>Maps a Point2D[] with coordinates relative to an image to a new Point2D[] with coordinates in the viewport coordinate system of Openseadragon<br />\nsee also: https://openseadragon.github.io/examples/viewport-coordinates/</p>",
+      "summary": "<p>Maps a Point2D[] with coordinates relative to an image to a new Point2D[] with coordinates in the viewport coordinate system of Openseadragon<br />\nsee also: https://openseadragon.github.io/examples/viewport-coordinates/</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 581,
+    "codeStart": 589,
+    "code": "private image2ViewPortCoords(points: Point2D[], aspectRatio: number, xOffset: number): Point2D[] {\n    return points.map((point) => {\n        return new Point2D(point.x + xOffset, point.y * aspectRatio);\n    });\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "points - an array of points to be serialized to a string",
+        "name": "points",
+        "description": "<ul>\n<li>an array of points to be serialized to a string</li>\n</ul>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "returns",
+        "string": "- the points serialized to a string in the format expected by the 'points' attribute of a SVGElement",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<ul>\n<li>the points serialized to a string in the format expected by the 'points' attribute of a SVGElement</li>\n</ul>"
+      }
+    ],
+    "description": {
+      "full": "<p>Returns a string in the format expected by the 'points' attribute of a SVGElement</p>",
+      "summary": "<p>Returns a string in the format expected by the 'points' attribute of a SVGElement</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 595,
+    "codeStart": 600,
+    "code": "private createSVGPolygonPointsAttribute(points: Point2D[]): string {\n    let pointsString = '';\n    for (const i in points) {\n        if (points.hasOwnProperty(i)) {\n            pointsString += points[i].x;\n            pointsString += ',';\n            pointsString += points[i].y;\n            pointsString += ' ';\n        }\n    }\n    return pointsString;\n}\n}",
+    "ctx": false
+  }
+]
