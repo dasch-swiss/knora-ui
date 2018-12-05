@@ -14,20 +14,8 @@ fdescribe('ExistingNameDirective', () => {
     const existingNamesList: string[] = [
         'Ben', 'Tobias', 'André', 'Flavie', 'Ivan', 'Lucas'
     ];
-    let existingNames: [RegExp] = [
-        new RegExp('user'),
-        new RegExp('(?:^|\W)' + 'ben' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'tobias' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'andré' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'flavie' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'ivan' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'lucas' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'ben' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'tobias' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'andré' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'flavie' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'ivan' + '(?:$|\W)'),
-        new RegExp('(?:^|\W)' + 'lucas' + '(?:$|\W)')
+    const existingNames: [RegExp] = [
+        new RegExp('user')
     ];
 
     beforeEach(() => {
@@ -63,8 +51,15 @@ fdescribe('ExistingNameDirective', () => {
         expect(name.valid).toBeFalsy();
     });
 
-    it('should recognize a new name', () => {
+    fit('should recognize the new name "Benjamin"', () => {
         expect(component.dataMock).toEqual(existingNamesList);
+
+        for (const user of existingNamesList) {
+            existingNames.push(
+                new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)')
+            );
+        }
+
         expect(component.existingNames).toEqual(existingNames);
 
         let errors = {};
@@ -85,8 +80,15 @@ fdescribe('ExistingNameDirective', () => {
         expect(existingNamesValidator(existingNames));
     });
 
-    it('should recognize an existing name', () => {
+    it('should recognize the existing name "Lucas"', () => {
         expect(component.dataMock).toEqual(existingNamesList);
+
+        for (const user of existingNamesList) {
+            existingNames.push(
+                new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)')
+            );
+        }
+
         expect(component.existingNames).toEqual(existingNames);
 
         let errors = {};
