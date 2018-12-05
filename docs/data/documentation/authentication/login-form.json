@@ -1,0 +1,71 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>navigate to the defined url after login</p>",
+      "summary": "<p>navigate to the defined url after login</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 15,
+    "codeStart": 18,
+    "code": "@Input() navigate?: string;",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>set your theme color here,<br />\nit will be used in the progress-indicator</p>",
+      "summary": "<p>set your theme color here,<br />\nit will be used in the progress-indicator</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 20,
+    "codeStart": 24,
+    "code": "@Input() color?: string;\n\nreturnUrl: string;\n\n// is there already a valid session?\nloggedInUser: string;\n\n// form\nfrm: FormGroup;\n\nloading = false;\n\n// general error message\nerrorMessage: any;\n\n// specific error messages\nloginErrorUser = false;\nloginErrorPw = false;\nloginErrorServer = false;\n\n// labels for the login form\nlogin = {\n    title: 'Login',\n    name: 'Username',\n    pw: 'Password',\n    button: 'Login',\n    remember: 'Remember me',\n    forgot_pw: 'Forgot password?',\n    error: {\n        failed: 'Password or username is wrong',\n        server: 'There\\'s an error with the server connection. Try it again later or inform the Knora Team'\n    }\n};\n\n// error definitions for the following form fields\nformErrors = {\n    'email': '',\n    'password': ''\n};\n\n// error messages for the form fields defined in formErrors\nvalidationMessages = {\n    'email': {\n        'required': 'user name is required.'\n    },\n    'password': {\n        'required': 'password is required'\n    }\n};\n\n\nconstructor(private _auth: AuthenticationService,\n            private _session: SessionService,\n            private _fb: FormBuilder,\n            private _route: ActivatedRoute,\n            private _router: Router) {\n}\n\nngOnInit() {\n\n    // check if a user is already logged in\n    if (this._session.validateSession()) {\n        this.loggedInUser = JSON.parse(localStorage.getItem('session')).user.name;\n    } else {\n        this.buildForm();\n    }\n}\n\nbuildForm(): void {\n    this.frm = this._fb.group({\n        email: ['', Validators.required],\n        password: ['', Validators.required]\n    });\n\n    this.frm.valueChanges\n        .subscribe(data => this.onValueChanged(data));\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "data",
+        "name": "data",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>data</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>check for errors while using the form</p>",
+      "summary": "<p>check for errors while using the form</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 102,
+    "codeStart": 106,
+    "code": "onValueChanged(data?: any) {\n\n    if (!this.frm) {\n        return;\n    }\n\n    const form = this.frm;\n\n    Object.keys(this.formErrors).map(field => {\n        this.formErrors[field] = '';\n        const control = form.get(field);\n        if (control && control.dirty && !control.valid) {\n            const messages = this.validationMessages[field];\n            Object.keys(control.errors).map(key => {\n                this.formErrors[field] += messages[key] + ' ';\n            });\n        }\n    });\n}\n\ndoLogin() {\n\n    // reset the error messages\n    this.errorMessage = undefined;\n    this.loginErrorUser = false;\n    this.loginErrorPw = false;\n    this.loginErrorServer = false;\n\n    // make sure form values are valid\n    if (this.frm.invalid) {\n        this.loginErrorPw = true;\n        this.loginErrorUser = true;\n        return;\n    }\n\n    // Reset status\n    this.loading = true;\n\n    // Grab values from form\n    const username = this.frm.get('email').value;\n    const password = this.frm.get('password').value;\n\n    this._auth.login(username, password)\n        .subscribe(\n            (response: ApiServiceResult) => {\n\n                // we have a token; set the session now\n                this._session.setSession(response.body.token, username);\n\n                setTimeout(() => {\n                    // get return url from route parameters or default to '/'\n                    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';\n\n\n                    // go back to the previous route or to the route defined in the @Input if navigate exists\n                    if (!this.navigate) {\n                        this._router.navigate([this.returnUrl]);\n                    } else {\n                        this._router.navigate([this.navigate]);\n                    }\n\n                    this.loading = false;\n                }, 2000);\n            },\n            (error: ApiServiceError) => {\n                // error handling\n                if (error.status === 0) {\n                    this.loginErrorUser = false;\n                    this.loginErrorPw = false;\n                    this.loginErrorServer = true;\n                }\n                if (error.status === 401) {\n                    this.loginErrorUser = false;\n                    this.loginErrorPw = true;\n                    this.loginErrorServer = false;\n                }\n                if (error.status === 404) {\n                    this.loginErrorUser = true;\n                    this.loginErrorPw = false;\n                    this.loginErrorServer = false;\n                }\n                this.errorMessage = <any> error;\n                this.loading = false;\n            }\n        );\n\n}\n\nlogout() {\n    this._auth.logout();\n    location.reload(true);\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "onValueChanged",
+      "string": "onValueChanged()"
+    }
+  }
+]

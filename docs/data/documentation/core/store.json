@@ -1,0 +1,51 @@
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "rdfDataObjects",
+        "name": "rdfDataObjects",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>rdfDataObjects</p>"
+      },
+      {
+        "type": "returns",
+        "string": "{Observable<string>}",
+        "types": [
+          "Observable.<string>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<code>string</code>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<string>}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>resets the content of the triplestore</p>",
+      "summary": "<p>resets the content of the triplestore</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 15,
+    "codeStart": 21,
+    "code": "resetTriplestoreContent(rdfDataObjects: RdfDataObject[]): Observable<string> {\n\n  return this.http.post<ResetTriplestoreContentResponse>(this.config.api + '/admin/store/ResetTriplestoreContent', rdfDataObjects)\n    .pipe(\n      map(\n        (data) => {\n          const result: ResetTriplestoreContentResponse = data;\n          // console.log('StoreService - resetTriplestoreContent: ', result);\n          return result.message;\n        },\n        (error: HttpErrorResponse) => {\n          if (error.error instanceof Error) {\n            console.log('StoreService - resetTriplestoreContent - Client-side error occurred.', error);\n          } else {\n            console.log('StoreService - resetTriplestoreContent - Server-side error occurred.', error);\n          }\n          throw error;\n        }\n      ));\n\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "resetTriplestoreContent",
+      "string": "resetTriplestoreContent()"
+    }
+  }
+]

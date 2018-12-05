@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, Input } from '@angular/core';\nimport { ReadIntervalValue } from '@knora/core';\n\n@Component({\n  selector: 'kui-interval-value',\n  templateUrl: './interval-value.component.html',\n  styleUrls: ['./interval-value.component.scss']\n})\nexport class IntervalValueComponent {\n\n  @Input()\n  set valueObject(value: ReadIntervalValue) {\n    this._intervalValueObj = value;\n  }\n\n  get valueObject() {\n    return this._intervalValueObj;\n  }\n\n  private _intervalValueObj: ReadIntervalValue;\n\n  constructor() { }\n\n}",
+    "ctx": false
+  }
+]
