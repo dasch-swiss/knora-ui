@@ -23,46 +23,74 @@ die ()
 usage ()
 {
     echo "usage: <command>"
-    echo ${sep}
-#    echo "-i = InputPath"
-#    echo "-o = OutputPath"
-#    echo ${sep}
 }
+
 home=`pwd`
-inPath='./projects/knora/'
-outPath='./src/data/documentation/'
+inPath='./projects/knora'
+outPath='./src/data/documentation'
 
-declare -a modules=('action' 'authentication' 'core' 'search' 'viewer')
+jsdoc2json ()
+{
+    arr=("$@")
+    for i in "${arr[@]}"
+    do
+        IFS='/' read -ra path <<< "$i"
 
-# echo ${home}
+        # depth of path
+        num=( ${#path[@]} )
+    #    echo ${num}
+
+        # module name
+        module=( ${path[3]} )
+        echo module: ${module}
+
+        # component name
+        # get filename from path
+        pos=$(( num-1 ))
+    #    echo ${pos}
+        # filename
+        file=( ${path[${pos}]} )
+        IFS='.' read -ra names <<< "$file"
+        name=( ${names[0]} )
+        echo name: ${name}
+
+        # create json from jsdocs using dox
+        in=${i}
+        out=${outPath}/${module}/${name}.json
+
+        echo in: ${in}
+        echo out: ${out}
+
+
+        dox < ${in} > ${out}
+
+        echo ${sep}
+
+    done
+}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 1) update the documentation data from JSDocs of the ts files
 #
 
 # we should loop through the inPath to write the documentation data files as following:
-dox < projects/knora/action/src/lib/admin-image/admin-image.directive.ts > src/data/documentation/action/admin-image.json
-dox < projects/knora/action/src/lib/progress-indicator/progress-indicator.component.ts > src/data/documentation/action/progress-indicator.json
+#dox < projects/knora/action/src/lib/admin-image/admin-image.directive.ts > src/data/documentation/action/admin-image.json
 
-dox < projects/knora/core/src/lib/services/admin/users.service.ts > src/data/documentation/core/users.json
+# array of components
+components=( $(find ${inPath} -iname "*.component.ts") )
+jsdoc2json "${components[@]}"
 
+# array of services
+services=( $(find ${inPath} -iname "*.service.ts") )
+jsdoc2json "${services[@]}"
 
+# array of directive
+directives=( $(find ${inPath} -iname "*.directive.ts") )
+jsdoc2json "${directives[@]}"
 
-for m in "${modules[@]}"
-do
-    echo ${sep}
-    echo ${m}:
-
-    cd ${inPath}${m}/src/lib
-    for i in `ls`; do
-        if [ -d "$i" ]; then
-                echo ${i}
-        fi
-    done
-    cd ${home}
-done
-
-# read the files
+# array of pipes
+pipes=( $(find ${inPath} -iname "*.pipe.ts") )
+jsdoc2json "${pipes[@]}"
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -71,7 +99,3 @@ done
 
 ng build --prod=false --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
 cp docs/index.html docs/404.html
-
-#rm -rf docs/*
-#mv dist/knora-ui/* docs
-
