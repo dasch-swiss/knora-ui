@@ -20,11 +20,14 @@
         </div>
 
         <div *ngIf="item.tags.length > 0">
-            <mat-divider></mat-divider>
 
             <!-- description of each tag -->
-            <p class="bolder">{{item.ctx.string}}</p>
-            <div [innerHtml]="item.description.full"></div>
+            <div *ngIf="item.tags[0].type !== 'ignore'">
+                <mat-divider></mat-divider>
+                <p class="bolder">{{item.ctx.string}}</p>
+                <div [innerHtml]="item.description.full"></div>
+            </div>
+
 
             <!-- going through the list of tags -->
             <div *ngFor="let tag of item.tags">

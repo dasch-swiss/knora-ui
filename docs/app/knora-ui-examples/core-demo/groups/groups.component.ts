@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiServiceError, Group, GroupsService} from '@knora/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiServiceError, Group, GroupsService } from '@knora/core';
+import { AppDemo } from '../../../app.config';
 
 @Component({
     selector: 'app-groups',
@@ -7,6 +8,8 @@ import {ApiServiceError, Group, GroupsService} from '@knora/core';
     styleUrls: ['./groups.component.scss']
 })
 export class GroupsComponent implements OnInit {
+
+    module = AppDemo.coreModule;
 
     allGroups: Group[];
 

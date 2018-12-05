@@ -2,8 +2,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<p>Represents teh parameters of an extended search.</p>",
-      "summary": "<p>Represents teh parameters of an extended search.</p>",
+      "full": "<p>Represents the parameters of an extended search.</p>",
+      "summary": "<p>Represents the parameters of an extended search.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -27,9 +27,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "generateGravsearch a function the generates KnarQL.\n                      The function is expected to take the offset\n                      as a parameter and return a KnarQL query string.",
+        "string": "generateGravsearch a function that generates a Gravsearch query.\n\n                          The function takes the offset\n                          as a parameter and returns a Gravsearch query string.\n                          Returns false if not set correctly (init state).",
         "name": "generateGravsearch",
-        "description": "<p>a function the generates KnarQL.                       The function is expected to take the offset<br />\nas a parameter and return a KnarQL query string.</p>",
+        "description": "<p>a function that generates a Gravsearch query.<br />\nThe function takes the offset<br />\nas a parameter and returns a Gravsearch query string.<br />\nReturns false if not set correctly (init state).</p>",
         "types": [],
         "typesDescription": "",
         "variable": false,
@@ -49,8 +49,8 @@
     "isEvent": false,
     "ignore": false,
     "line": 10,
-    "codeStart": 16,
-    "code": "constructor(public generateGravsearch: (offset: number) => string) {\n\n}\n\n}\n\n@Injectable({\nprovidedIn: 'root'\n})",
+    "codeStart": 18,
+    "code": "constructor(public generateGravsearch: (offset: number) => string | boolean) {\n\n}\n\n}\n\n@Injectable({\nprovidedIn: 'root'\n})",
     "ctx": {
       "type": "constructor",
       "constructor": "ExtendedSearchParams",
@@ -71,9 +71,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 25,
-    "codeStart": 28,
-    "code": "export class SearchParamsService {\n\n    // init with a dummy function\n    private searchParamsMessage = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => ''));\n    currentSearchParams = this.searchParamsMessage.asObservable();\n\n    constructor() {\n    }",
+    "line": 27,
+    "codeStart": 30,
+    "code": "export class SearchParamsService {\n\n    private _currentSearchParams;\n\n    constructor() {\n        // init with a dummy function that returns false\n        // if the application is reloaded, this will be returned\n        this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => false));\n    }",
     "ctx": {
       "type": "class",
       "constructor": "SearchParamsService",
@@ -102,8 +102,8 @@
       }
     ],
     "description": {
-      "full": "<p>Update the parameters of an extended seacrh.</p>",
-      "summary": "<p>Update the parameters of an extended seacrh.</p>",
+      "full": "<p>Updates the parameters of an extended search.</p>",
+      "summary": "<p>Updates the parameters of an extended search.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -111,15 +111,53 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 37,
-    "codeStart": 42,
-    "code": "changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {\n    this.searchParamsMessage.next(searchParams);\n}\n\n}",
+    "line": 40,
+    "codeStart": 45,
+    "code": "changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {\n    this._currentSearchParams.next(searchParams);\n}",
     "ctx": {
       "type": "method",
       "constructor": "SearchParamsService",
       "cons": "SearchParamsService",
       "name": "changeSearchParamsMsg",
       "string": "SearchParamsService.prototype.changeSearchParamsMsg()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "{ExtendedSearchParams}",
+        "types": [
+          "ExtendedSearchParams"
+        ],
+        "typesDescription": "<a href=\"ExtendedSearchParams.html\">ExtendedSearchParams</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{ExtendedSearchParams}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Gets the search params of an extended search.</p>",
+      "summary": "<p>Gets the search params of an extended search.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 49,
+    "codeStart": 54,
+    "code": "getSearchParams(): ExtendedSearchParams {\n    return this._currentSearchParams.getValue();\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "SearchParamsService",
+      "cons": "SearchParamsService",
+      "name": "getSearchParams",
+      "string": "SearchParamsService.prototype.getSearchParams()"
     }
   }
 ]

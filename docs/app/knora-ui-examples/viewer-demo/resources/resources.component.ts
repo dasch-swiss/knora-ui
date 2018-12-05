@@ -10,18 +10,11 @@ import { AppDemo } from '../../../app.config';
 })
 export class ResourcesComponent implements OnInit {
 
-    partOf = AppDemo.viewerModule;
+    module = AppDemo.viewerModule;
 
     stillImage: any[];
 
-    constructor(private _route: ActivatedRoute) {
-        this._route.data
-            .subscribe(
-                (mod: any) => {
-                    this.partOf = mod.partOf;
-                }
-            );
-    }
+    constructor() { }
 
     ngOnInit() {
         this.stillImage = [

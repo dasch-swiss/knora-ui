@@ -29,26 +29,31 @@ export class AppDemo {
             {
                 name: 'sort-button',
                 label: 'SortButton',
+                type: 'Component',
                 stackblitz: true
             },
             {
                 name: 'progress-indicator',
                 label: 'ProgressIndicator',
+                type: 'Component',
                 stackblitz: true
             },
             {
                 name: 'admin-image',
                 label: 'AdminImage',
-                stackblitz: false
+                type: 'Directive',
+                stackblitz: true
             },
             {
                 name: 'existing-name',
                 label: 'ExistingName',
-                stackblitz: true
+                type: 'Directive',
+                stackblitz: false
             },
             {
                 name: 'key',
                 label: 'Key',
+                type: 'Pipe',
                 stackblitz: true
             }
         ]
@@ -57,7 +62,6 @@ export class AppDemo {
     public static coreModule: DemoModule = {
         name: 'core',
         published: true,
-        stackblitz: false,
         label: 'Core module',
         children: [
             {
@@ -110,13 +114,29 @@ export class AppDemo {
     public static authenticationModule: DemoModule = {
         name: 'authentication',
         published: true,
-        label: 'Authentication module'
+        label: 'Authentication module',
+        children: [
+            {
+                name: 'login-form',
+                label: 'LoginForm',
+                type: 'Component',
+                stackblitz: false
+            }
+        ]
     };
 
     public static searchModule: DemoModule = {
         name: 'search',
         published: true,
-        label: 'Search module'
+        label: 'Search module',
+        children: [
+            {
+                name: 'search',
+                label: 'Search',
+                type: 'Component',
+                stackblitz: false
+            }
+        ]
     };
 
     public static viewerModule: DemoModule = {
