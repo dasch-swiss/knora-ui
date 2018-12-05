@@ -3,17 +3,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 
 /**
- * Represents teh parameters of an extended search.
+ * Represents the parameters of an extended search.
  */
 export class ExtendedSearchParams {
 
     /**
      *
-     * @param generateGravsearch a function the generates KnarQL.
-     *                       The function is expected to take the offset
-     *                       as a parameter and return a KnarQL query string.
+     * @param generateGravsearch a function that generates a Gravsearch query.
+     *
+     *                           The function takes the offset
+     *                           as a parameter and returns a Gravsearch query string.
+     *                           Returns false if not set correctly (init state).
      */
-    constructor(public generateGravsearch: (offset: number) => string) {
+    constructor(public generateGravsearch: (offset: number) => string | boolean) {
 
     }
 
@@ -27,20 +29,30 @@ export class ExtendedSearchParams {
  */
 export class SearchParamsService {
 
-    // init with a dummy function
-    private searchParamsMessage = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => ''));
-    currentSearchParams = this.searchParamsMessage.asObservable();
+    private _currentSearchParams;
 
     constructor() {
+        // init with a dummy function that returns false
+        // if the application is reloaded, this will be returned
+        this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => false));
     }
 
     /**
-     * Update the parameters of an extended seacrh.
+     * Updates the parameters of an extended search.
      *
      * @param {ExtendedSearchParams} searchParams
      */
     changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {
-        this.searchParamsMessage.next(searchParams);
+        this._currentSearchParams.next(searchParams);
+    }
+
+    /**
+     * Gets the search params of an extended search.
+     *
+     * @returns {ExtendedSearchParams}
+     */
+    getSearchParams(): ExtendedSearchParams {
+        return this._currentSearchParams.getValue();
     }
 
 }
