@@ -11,7 +11,7 @@ import { Example } from '../../../app.interfaces';
 })
 export class ExistingNameComponent implements OnInit {
 
-    partOf = AppDemo.actionModule;
+    module = AppDemo.actionModule;
 
     // demo configuration incl. code to display
     existingName: Example = {

@@ -10,7 +10,7 @@ import { AppDemo } from '../../../app.config';
 })
 export class SortButtonComponent implements OnInit {
 
-    partOf = AppDemo.actionModule;
+    module = AppDemo.actionModule;
 
     sortProps: any = [{
         key: 'prename',

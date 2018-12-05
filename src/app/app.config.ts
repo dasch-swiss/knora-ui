@@ -28,18 +28,18 @@ export class AppDemo {
         children: [
             {
                 name: 'sort-button',
-                label: 'SortButton',
+                label: 'SortButtonComponent',
                 stackblitz: true
             },
             {
                 name: 'progress-indicator',
-                label: 'ProgressIndicator',
+                label: 'ProgressIndicatorComponent',
                 stackblitz: true
             },
             {
                 name: 'admin-image',
-                label: 'AdminImage',
-                stackblitz: false
+                label: 'AdminImageDirective',
+                stackblitz: true
             },
             {
                 name: 'existing-name',

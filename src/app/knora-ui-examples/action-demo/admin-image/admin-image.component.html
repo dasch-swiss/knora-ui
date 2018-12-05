@@ -1,51 +1,35 @@
 <!-- Documentation from JSDocs -->
 <app-documentation-viewer [module]="module"></app-documentation-viewer>
 
-<mat-divider></mat-divider>
 <!-- Examples with demo -->
+<h3>Example</h3>
 
-<h3>User avatar</h3>
+<h4>User avatar</h4>
 
-<h4>Default user profile image</h4>
+<h5>Default user profile image</h5>
 <p>The image source is an email, which is not registered on gravatar.com</p>
 <img kuiAdminImage [image]="imgDefaultUser" [type]="'user'" />
 
-<h4>Avatar example: 'salsah' user</h4>
+<h5>Avatar example: 'salsah' user</h5>
 <p>The image source is an email, which is registered on gravatar.com</p>
 <img kuiAdminImage [image]="imgSalsahUser" [type]="'user'" />
 
-<h4>User image on error</h4>
+<h5>User image on error</h5>
 <img kuiAdminImage [image]="null" [type]="'user'" />
 
 
-<hr>
+<mat-divider></mat-divider>
 
-<h3>Project logo</h3>
+<h4>Project logo</h4>
 
-<h4>Default project image</h4>
+<h5>Default project image</h5>
 <img kuiAdminImage [image]="imgDefaultProject" [type]="'project'" />
 
-<h4>Logo example: 'dasch' project</h4>
+<h5>Logo example: 'dasch' project</h5>
 <img kuiAdminImage [image]="imgDaschProject" [type]="'project'" />
-
-<hr>
-
-<h3>Default error image</h3>
-<p>In the case of an image source 404 error, it shows the following 'image not available'-image</p>
-<img kuiAdminImage [image]="'null'" />
 
 <mat-divider></mat-divider>
 
-<h2>Documentation</h2>
-
-<h3>
-    Admin Image
-</h3>
-
-<h4>Usage</h4>
-<p>
-    Please follow the README of
-    <a href="https://www.npmjs.com/package/@knora/action#admin-image">Knora-ui action module</a>. Then you can use the following methods from `AdminImage`:
-</p>
-
-<markdown [src]="'app/knora-ui-examples/action-demo/admin-image/README.md'"></markdown>
+<h4>Default error image</h4>
+<p>In the case of an image source 404 error, it shows the following 'image not available'-image</p>
+<img kuiAdminImage [image]="'null'" />
