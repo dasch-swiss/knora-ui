@@ -1,6 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { AppDemo } from '../../../app.config';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
     ApiServiceError,
     ApiServiceResult,
@@ -50,8 +50,9 @@ export class SearchResultComponent implements OnInit {
     errorMessage: any = undefined;
 
     offset: number = 0;
+    gravsearchParams: ExtendedSearchParams;
 
-    list: ListData = <ListData>{
+    list: ListData = <ListData> {
         title: 'Results: ',
         content: 'resource',
         restrictedBy: ''
@@ -62,18 +63,34 @@ export class SearchResultComponent implements OnInit {
         private _searchService: SearchService,
         private _cacheService: OntologyCacheService,
         private _searchParamsService: SearchParamsService,
-        private _gravSearchService: GravsearchGenerationService) {
+        private _gravSearchService: GravsearchGenerationService,
+        private _router: Router) {
     }
 
     ngOnInit() {
 
         this._route.params.subscribe((params: Params) => {
             this.list.searchMode = params['mode'];
-            this.list.restrictedBy = params['q'];
 
+            if (this.list.searchMode === 'fulltext') {
+                this.list.restrictedBy = params['q'];
+            } else if (this.list.searchMode === 'extended') {
+                this.gravsearchParams = this._searchParamsService.getSearchParams();
+                const gravsearch: string | boolean = this.gravsearchParams.generateGravsearch(this.offset);
+                if (gravsearch === false) {
+                    // no valid search params (application has been reloaded)
+                    // go to root
+                    this._router.navigate([''], { relativeTo: this._route });
+                    return;
+                } else {
+                    // assign Gravsearch query
+                    this.list.restrictedBy = <string> gravsearch;
+                }
+            }
+
+            this.result = [];
             this.rerender = true;
             this.getResult();
-            this.rerender = false;
         });
 
     }
@@ -92,7 +109,7 @@ export class SearchResultComponent implements OnInit {
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: ApiServiceError) => {
-                            this.errorMessage = <any>error;
+                            this.errorMessage = <any> error;
                             // console.log('numberOfAllResults', this.numberOfAllResults);
                         }
                     );
@@ -103,7 +120,7 @@ export class SearchResultComponent implements OnInit {
                 .subscribe(
                     this.processSearchResults, // function pointer
                     (error: ApiServiceError) => {
-                        this.errorMessage = <any>error;
+                        this.errorMessage = <any> error;
                     },
             );
 
@@ -115,32 +132,19 @@ export class SearchResultComponent implements OnInit {
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: ApiServiceError) => {
-                            this.errorMessage = <any>error;
+                            this.errorMessage = <any> error;
                         }
                     );
             }
+
             // perform the extended search
-            this._searchParamsService.currentSearchParams
-                .subscribe((extendedSearchParams: ExtendedSearchParams) => {
-                    if (this.offset === 0) {
-                        this._searchService.doExtendedSearch(this.list.restrictedBy)
-                            .subscribe(
-                                this.processSearchResults, // function pointer
-                                (error: ApiServiceError) => {
-                                    this.errorMessage = <any>error;
-                                });
-                    } else {
-                        // generate new GravSearch
-                        const gravSearch = extendedSearchParams.generateGravsearch(this.offset);
-                        this._searchService.doExtendedSearch(gravSearch)
-                            .subscribe(
-                                this.processSearchResults, // function pointer
-                                (error: ApiServiceError) => {
-                                    this.errorMessage = <any>error;
-                                }
-                            );
-                    }
-                });
+            this._searchService.doExtendedSearch(this.list.restrictedBy)
+                .subscribe(
+                    this.processSearchResults, // function pointer
+                    (error: ApiServiceError) => {
+                        this.errorMessage = <any> error;
+                    });
+
 
         } else {
             this.errorMessage = `search mode invalid: ${this.list.searchMode}`;
@@ -205,6 +209,7 @@ export class SearchResultComponent implements OnInit {
                     }
                     // append results to search results
                     this.result = this.result.concat(resources.resources);
+                    this.rerender = false;
 
                 },
                 (err) => {
