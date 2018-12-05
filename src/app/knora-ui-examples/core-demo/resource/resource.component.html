@@ -8,7 +8,7 @@
 <p>{{resource?.label}}</p>
 
 <mat-list>
-    <div mat-line *ngFor="let prop of resource?.properties | key">
+    <div mat-line *ngFor="let prop of resource?.properties | kuiKey">
 
         <span>{{ontologyInfo?.getLabelForProperty(prop.key)}}</span>
 
@@ -16,17 +16,13 @@
         <!--  some types of properties (currently StillImageFileValues) are displayed in 1 template for the whole property list. -->
         <!-- TODO: Do we have to check for subproperties of hasStillImageFileValue? -->
         <br>
-<!--        {{prop.key}}<br>
+        <!--        {{prop.key}}<br>
         {{KnoraConstants.hasStillImageFileValue}}-->
 
         <div *ngIf="prop.key === KnoraConstants.hasStillImageFileValue; else singleTemplates">
             <p>OSD viewer</p>
 
-            <kui-still-image #OSDViewer *ngIf="!loading && resource.stillImageRepresentationsToDisplay.length > 0"
-                             [images]="resource?.stillImageRepresentationsToDisplay"
-                             [imageRangeStart]="0"
-                             [imageRangeEnd]="0"
-                             [imageChangeInterval]="1">
+            <kui-still-image #OSDViewer *ngIf="!loading && resource.stillImageRepresentationsToDisplay.length > 0" [images]="resource?.stillImageRepresentationsToDisplay" [imageRangeStart]="0" [imageRangeEnd]="0" [imageChangeInterval]="1">
             </kui-still-image>
 
 
@@ -44,16 +40,15 @@
         <!--  single templates -->
         <!--  other types of properties are displayed in 1 template for each single property in the property list. -->
         <ng-template #singleTemplates>
-        <ul>
-            <li *ngFor="let val of prop.value | key">
-                <span [ngSwitch]="val.value.getClassName()">
-                    <p>we get the prop class:<br>{{val.value | json}}</p>
+            <ul>
+                <li *ngFor="let val of prop.value | kuiKey">
+                    <span [ngSwitch]="val.value.getClassName()">
+                        <p>we get the prop class:
+                            <br>{{val.value | json}}</p>
 
-                    <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value"
-                                    [calendar]="true" [era]="true"></kui-date-value>
-                    <kui-integer-value *ngSwitchCase="KnoraConstants.ReadIntegerValue"
-                                       [valueObject]="val.value"></kui-integer-value>
-                    <!--
+                        <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value>
+                        <kui-integer-value *ngSwitchCase="KnoraConstants.ReadIntegerValue" [valueObject]="val.value"></kui-integer-value>
+                        <!--
                     <read-text-value-as-html *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml"
                                              [valueObject]="val.value" [ontologyInfo]="ontologyInfo"
                                              [bindEvents]="true"></read-text-value-as-html>
@@ -84,9 +79,9 @@
                                          [valueObject]="val.value"></read-textfile-value>
                     <span *ngSwitchDefault="">Not supported {{val.value.getClassName()}}</span>
                     -->
-                </span>
-            </li>
-        </ul>
+                    </span>
+                </li>
+            </ul>
         </ng-template>
 
     </div>
@@ -96,8 +91,7 @@
         <p>Incoming Links:</p>
         <ul>
             <li *ngFor="let incomingLinkSourceRes of resource.incomingLinks">
-                <span
-                    matTooltip="{{incomingLinkSourceRes.label}} {{ontologyInfo?.getLabelForResourceClass(incomingLinkSourceRes.type)}}">
+                <span matTooltip="{{incomingLinkSourceRes.label}} {{ontologyInfo?.getLabelForResourceClass(incomingLinkSourceRes.type)}}">
                     {{incomingLinkSourceRes.label}} {{getIncomingPropertiesFromIncomingResource(incomingLinkSourceRes)}}
                 </span>
             </li>

@@ -129,7 +129,7 @@ we can use it in the template as follow:
 
 ```HTML
 <ul>
-    <li *ngFor="let item of array | key">
+    <li *ngFor="let item of array | kuiKey">
         {{item.key}}: {{item.value}}
     </li>
 </ul>
