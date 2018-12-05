@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-fdescribe('ExistingNameDirective', () => {
+describe('ExistingNameDirective', () => {
 
     let component: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
