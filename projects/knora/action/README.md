@@ -51,7 +51,7 @@ and in case of an error: the number is 400
 The sort button helps to sort a list by a selected topic. The following setup is needed:
 
 - sortProps is an array of {name, label} object and is needed for the selection.
-- the sort button returns a sortKey which is needed in the list and the pipe called sortBy
+- the sort button returns a sortKey which is needed in the list and the pipe called kuiSortBy
 
 #### html template
 ```HTML
@@ -60,7 +60,7 @@ The sort button helps to sort a list by a selected topic. The following setup is
 </kui-sort-button>
 
 <ul>
-    <li *ngFor="let item of list | sortBy: sortKey">
+    <li *ngFor="let item of list | kuiSortBy: sortKey">
         <span [class.active]="sortKey === 'prename'">
             {{item.prename}}
         </span>
