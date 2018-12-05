@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ApiServiceError, Project, ProjectsService, User } from '@knora/core';
+import { AppDemo } from '../../../app.config';
 import { Example } from '../../../app.interfaces';
 
 @Component({
@@ -9,6 +10,8 @@ import { Example } from '../../../app.interfaces';
     styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
+
+    module = AppDemo.coreModule;
 
     allProjects: Project[];
 
@@ -71,7 +74,7 @@ export class ProjectsComponent implements OnInit {
     exampleGetProjectByShortname: Example = {
         title: 'getProjectByShortname(\'incunabula\') and getProjectMembersByIri(this.project.id)',
         subtitle: 'two requests: one returns a project object defined by shortname (e.g. \'incunabula\') ' +
-        'and the second returns all members of this project defined by id of project (iri)',
+            'and the second returns all members of this project defined by id of project (iri)',
         name: 'getProjectByShortname',
         code: {
             html: `

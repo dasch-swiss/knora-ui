@@ -1,6 +1,7 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceError, List, ListNodeInfo, ListsService } from '@knora/core';
+import { AppDemo } from '../../../app.config';
 
 class ListNode {
     label: string;
@@ -14,6 +15,8 @@ class ListNode {
     styleUrls: ['./lists.component.scss']
 })
 export class ListsComponent implements OnInit {
+
+    module = AppDemo.coreModule;
 
     projectIri: string = 'http://rdfh.ch/projects/00FF';
 

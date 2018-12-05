@@ -62,6 +62,7 @@ import { OntologyCacheComponent } from './knora-ui-examples/core-demo/ontology-c
 import { OntologyComponent } from './knora-ui-examples/core-demo/ontology/ontology.component';
 import { DocumentationViewerComponent } from './partials/documentation-viewer/documentation-viewer.component';
 import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-demo/authentication-demo.component';
+import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
 
 @NgModule({
     declarations: [
@@ -104,7 +105,8 @@ import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-
         OntologyCacheComponent,
         OntologyComponent,
         DocumentationViewerComponent,
-        AuthenticationDemoComponent
+        AuthenticationDemoComponent,
+        SearchPanelComponent
     ],
     entryComponents: [
         // LoginFormComponent

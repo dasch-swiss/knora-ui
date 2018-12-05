@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AppDemo } from '../../../app.config';
 
 @Component({
-  selector: 'app-views',
-  templateUrl: './views.component.html',
-  styleUrls: ['./views.component.scss']
+    selector: 'app-views',
+    templateUrl: './views.component.html',
+    styleUrls: ['./views.component.scss']
 })
 export class ViewsComponent implements OnInit {
 
-    partOf: any;
+    module = AppDemo.viewerModule;
 
-    constructor(private _route: ActivatedRoute) {
-        this._route.data
-            .subscribe(
-                (mod: any) => {
-                    this.partOf = mod.partOf;
-                }
-            );
+    constructor() {
     }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

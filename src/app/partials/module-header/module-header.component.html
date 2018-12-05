@@ -18,7 +18,7 @@
     <br>
     <!-- title: name of component, directive, pipe or service plus link to stackblitz -->
     <div class="panel-row">
-        <h2 class="mat-title">{{demo?.label}}</h2>
+        <h2 class="mat-title">{{demo?.label}} <span *ngIf="demo.type">({{demo?.type}})</span></h2>
         <span class="fill-remaining-space"></span>
         <span>
             <a *ngIf="stackBlitzDemo" [href]="stackBlitzDemo" target="_blank">

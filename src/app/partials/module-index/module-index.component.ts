@@ -16,8 +16,4 @@ export class ModuleIndexComponent {
 
     examples: DemoModule[] = AppDemo.examples;
 
-    toggleChildren(index: number) {
-        this.curIndex = (index === this.curIndex ? undefined : index);
-    }
-
 }

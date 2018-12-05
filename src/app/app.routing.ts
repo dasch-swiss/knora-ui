@@ -6,6 +6,8 @@ import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
+import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-demo/authentication-demo.component';
+import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
 
 // / start with main-intro
 import { MainIntroComponent } from './landing-page/main-intro/main-intro.component';
@@ -88,12 +90,12 @@ const appRoutes: Routes = [
             },
             {
                 path: 'authentication',
-                component: AuthComponent,
+                component: AuthenticationDemoComponent,
                 canActivate: [AuthGuard],
                 children: [
                     {
-                        path: 'demo',
-                        component: AuthComponent
+                        path: 'login-form',
+                        component: LoginComponent
                     }
                 ]
             },
@@ -103,8 +105,14 @@ const appRoutes: Routes = [
                 data: { partOf: AppDemo.searchModule },
                 children: [
                     {
-                        path: ':mode/:q',
-                        component: SearchResultComponent
+                        path: 'search',
+                        component: SearchPanelComponent,
+                        children: [
+                            {
+                                path: ':mode/:q',
+                                component: SearchResultComponent
+                            }
+                        ]
                     }
                 ]
             },

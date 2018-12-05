@@ -1,0 +1,18 @@
+<!-- Documentation from JSDocs -->
+<app-documentation-viewer [module]="module"></app-documentation-viewer>
+
+<!-- Examples with demo -->
+<h3>Example</h3>
+
+
+
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="searchPanel"></app-example-viewer>
+
+    <div class="demo">
+        <kui-search [route]="'/modules/search/search'"></kui-search>
+    </div>
+</mat-card>
+
+<router-outlet></router-outlet>
