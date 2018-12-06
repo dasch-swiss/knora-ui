@@ -92,6 +92,9 @@ jsdoc2json "${directives[@]}"
 pipes=( $(find ${inPath} -iname "*.pipe.ts") )
 jsdoc2json "${pipes[@]}"
 
+# special files
+special=( $(find ${inPath} -iname "convert-jsonld.ts") )
+jsdoc2json "${special[@]}"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 2) build the ng-app and update the files in docs/ folder

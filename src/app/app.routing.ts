@@ -184,7 +184,7 @@ const appRoutes: Routes = [
                         component: GravsearchComponent
                     },
                     {
-                        path: 'convertjsonld',
+                        path: 'convert-jsonld',
                         component: ConvertJsonLdComponent
                     }
 

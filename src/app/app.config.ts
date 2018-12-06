@@ -105,7 +105,7 @@ export class AppDemo {
                 label: 'GravSearchService'
             },
             {
-                name: 'convertjsonld',
+                name: 'convert-jsonld',
                 label: 'ConvertJsonLD'
             }
         ]
