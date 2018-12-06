@@ -8,8 +8,7 @@ export class SortByPipe implements PipeTransform {
     /**
      * TODO: add description
      */
-
-    transform(array: Array<string>, args: string): Array<string> {
+    transform(array: Array<any>, args: string): Array<any> {
         if (array !== undefined) {
             array.sort((a: any, b: any) => {
                 if (args) {

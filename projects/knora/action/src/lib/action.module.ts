@@ -52,7 +52,6 @@ import { SortButtonComponent } from './sort-button/sort-button.component';
     exports: [
         ProgressIndicatorComponent,
         SortButtonComponent,
-        ResourceDialogComponent,
         SortByPipe,
         AdminImageDirective,
         ExistingNameDirective,
