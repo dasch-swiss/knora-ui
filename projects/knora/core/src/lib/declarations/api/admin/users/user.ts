@@ -12,6 +12,9 @@ export class User {
     @JsonProperty('email', String)
     public email: string = undefined;
 
+    @JsonProperty('username', String)
+    public username: string = undefined;
+
     @JsonProperty('password', String, true)
     public password: string = undefined;
 
