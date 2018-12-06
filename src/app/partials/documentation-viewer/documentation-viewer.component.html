@@ -19,12 +19,12 @@
             <div [innerHtml]="item.description.body | sanitizeHtml" class="bolder"></div>
         </div>
 
-        <div *ngIf="item.tags.length > 0">
+        <div *ngIf="item.tags.length > 0 && item.tags[0].type !== 'ignore'">
 
             <!-- description of each tag -->
             <div *ngIf="item.tags[0].type !== 'ignore'">
                 <mat-divider></mat-divider>
-                <p class="bolder">{{item.ctx.string}}</p>
+                <h3>{{item.ctx.string}}</h3>
                 <div [innerHtml]="item.description.full"></div>
             </div>
 
@@ -41,7 +41,7 @@
 
                     <!-- returns -->
                     <div *ngSwitchCase="'returns'">
-                        <p>Returns</p>
+                        <p><strong>Returns</strong></p>
                         <table>
                             <tr>
                                 <td>
@@ -53,18 +53,23 @@
 
                     <!-- parameter -->
                     <div *ngSwitchCase="'param'">
-                        <p>Parameter</p>
+                        <p><strong>Parameter</strong></p>
                         <table>
+                            <tr>
+                                <th class="border-right">Name</th>
+                                <th class="border-right">Type</th>
+                                <th>Description</th>
+                            </tr>
                             <tr>
                                 <td class="border-right">
                                     <p>{{tag.name}}</p>
                                 </td>
+                                <td class="border-right">
+                                    <p><span *ngFor="let type of tag.types; let last = last">
+                                            {{type}}<span *ngIf="!last">, </span>
+                                    </span></p>
+                                </td>
                                 <td>
-                                    <p>Type:
-                                        <span *ngFor="let type of tag.types; let last = last">
-                                                {{type}}<span *ngIf="!last">, </span>
-                                            </span>
-                                    </p>
                                     <div [innerHtml]="tag.description"></div>
                                 </td>
                             </tr>

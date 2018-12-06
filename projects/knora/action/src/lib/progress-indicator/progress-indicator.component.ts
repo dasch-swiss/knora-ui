@@ -14,7 +14,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProgressIndicatorComponent implements OnInit {
 
     /**
-     * @param {number} status
+     * @param {number} [status]
      *
      * [status] is a number and can be used when submitting form data:
      *
@@ -27,7 +27,7 @@ export class ProgressIndicatorComponent implements OnInit {
     @Input() status?: number;
 
     /**
-     * @param {string} color (optional)
+     * @param {string} [color=primary]
      *
      * Parameter to customize the appearance of the loader.
      * Hexadecimal color value e.g. #00ff00 or similar color values 'red', 'green' etc.

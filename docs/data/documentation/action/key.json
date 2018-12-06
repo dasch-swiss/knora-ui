@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "example",
-        "string": "<ul>\n             <li *ngFor=\"let item of list | key\">\n               {{ item.key }}: {{item.value}}\n             </li>\n</ul>",
-        "html": "<ul>\n             <li *ngFor=\"let item of list | key\">\n               {{ item.key }}: {{item.value}}\n             </li>\n</ul>"
+        "string": "\n<ul>\n    <li *ngFor=\"let item of list | key\">\n        {{ item.key }}: {{item.value}}\n    </li>\n</ul>",
+        "html": "<ul>\n    <li *ngFor=\"let item of list | key\">\n        {{ item.key }}: {{item.value}}\n    </li>\n</ul>"
       }
     ],
     "description": {
@@ -18,7 +18,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 3,
-    "codeStart": 20,
+    "codeStart": 21,
     "code": "@Pipe({\n    name: 'key'\n})\nexport class KeyPipe implements PipeTransform {",
     "ctx": false
   },
@@ -40,8 +40,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 25,
-    "codeStart": 28,
+    "line": 26,
+    "codeStart": 29,
     "code": "transform(value: any, args?: any): any {\n    const keys = [];\n    for (const key in value) {\n        if (value.hasOwnProperty(key)) {\n            keys.push({key: key, value: value[key]});\n        }\n    }\n    return keys;\n}\n}",
     "ctx": {
       "type": "method",

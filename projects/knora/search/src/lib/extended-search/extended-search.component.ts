@@ -22,6 +22,9 @@ import { SelectResourceClassComponent } from './select-resource-class/select-res
 })
 export class ExtendedSearchComponent implements OnInit {
 
+    /**
+     * @param {string} route - Route after search
+     */
     @Input() route;
 
     // trigger toggle for extended search form

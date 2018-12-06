@@ -6,9 +6,8 @@ import { AbstractControl, NG_VALIDATORS, ValidatorFn, Validators } from '@angula
     providers: [{ provide: NG_VALIDATORS, useExisting: ExistingNameDirective, multi: true }]
 })
 /**
- * With the ExistingNameDirective we could prevent to use an already existing name
+ * With the ExistingNameDirective we could prevent to use a name which already exists
  * e.g. get a list of all project shortnames, then we can use this list as existing names
- * TODO: implement projectsService.getAll
  */
 export class ExistingNameDirective implements Validators, OnChanges {
     @Input() existingName: string;
@@ -50,7 +49,7 @@ export function existingNameValidator(nameRe: RegExp): ValidatorFn {
 }
 
 /**
- * The same as above, but with an array list of existing names.
+ *  Validation of existing name value with an array list of existing names.
  *
  * @param {RegExp} nameAr
  * @returns ValidatorFn
@@ -78,7 +77,7 @@ export function existingNamesValidator(nameAr: [RegExp]): ValidatorFn {
 }
 
 /**
- * TODO: add description
+ * @ignore
  *
  * @param {RegExp} pattern
  * @param {string} regType

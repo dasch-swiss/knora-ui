@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+/**
+ * A component with a list of properties to sort a list by them.
+ */
 @Component({
     selector: 'kui-sort-button',
     templateUrl: './sort-button.component.html',
@@ -7,16 +10,29 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class SortButtonComponent implements OnInit {
 
+    /**
+     *
+     */
     @Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();
 
     menuXPos: string = 'after';
 
     activeKey: string;
 
+    /**
+     *
+     */
     @Input() sortProps: any;
 
+    /**
+     *
+     */
     @Input() position: string = 'left';
 
+    /**
+     *
+     * @param value
+     */
     @Input() sortKey(value) {
         this.activeKey = value;
     }
@@ -32,7 +48,8 @@ export class SortButtonComponent implements OnInit {
     }
 
     /**
-     * TODO: add description
+     * @ignore
+     *
      * @param {string} key
      */
     sortBy(key: string) {

@@ -53,13 +53,19 @@ table {
   max-width: 100%;
   width: 100%;
 
-  td {
+  td,
+  th {
     padding: 12px;
+    text-align: left;
     vertical-align: top;
 
     &.border-right {
       border-right: 1px solid #ddd;
     }
+  }
+
+  th {
+    border-bottom: 1px solid #ddd;
   }
 }
 

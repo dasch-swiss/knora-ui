@@ -20,14 +20,14 @@
     "tags": [
       {
         "type": "param",
-        "string": "{number} status\n\n[status] is a number and can be used when submitting form data:\n\n- not ready:    -1\n- loading:       0\n- done:          1\n\n- error:       400",
-        "name": "status",
+        "string": "{number} [status]\n\n[status] is a number and can be used when submitting form data:\n\n- not ready:    -1\n- loading:       0\n- done:          1\n\n- error:       400",
+        "name": "[status]",
         "description": "<p>[status] is a number and can be used when submitting form data:</p>\n<ul>\n<li>\n<p>not ready:    -1</p>\n</li>\n<li>\n<p>loading:       0</p>\n</li>\n<li>\n<p>done:          1</p>\n</li>\n<li>\n<p>error:       400</p>\n</li>\n</ul>",
         "types": [
           "number"
         ],
         "typesDescription": "<code>number</code>",
-        "optional": false,
+        "optional": true,
         "nullable": false,
         "nonNullable": false,
         "variable": false
@@ -52,14 +52,14 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} color (optional)\n\nParameter to customize the appearance of the loader.\nHexadecimal color value e.g. #00ff00 or similar color values 'red', 'green' etc.",
-        "name": "color",
-        "description": "<p>(optional)<br />\nParameter to customize the appearance of the loader.<br />\nHexadecimal color value e.g. #00ff00 or similar color values 'red', 'green' etc.</p>",
+        "string": "{string} [color=primary]\n\nParameter to customize the appearance of the loader.\nHexadecimal color value e.g. #00ff00 or similar color values 'red', 'green' etc.",
+        "name": "[color=primary]",
+        "description": "<p>Parameter to customize the appearance of the loader.<br />\nHexadecimal color value e.g. #00ff00 or similar color values 'red', 'green' etc.</p>",
         "types": [
           "string"
         ],
         "typesDescription": "<code>string</code>",
-        "optional": false,
+        "optional": true,
         "nullable": false,
         "nonNullable": false,
         "variable": false

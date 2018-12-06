@@ -39,7 +39,7 @@ export class UsersService extends ApiService {
     /**
      * Get user by username, email or by iri
      *
-     * @param {string} identifier
+     * @param {string} identifier - Get user by username, email or by iri
      * @returns {Observable<User>}
      */
     getUser(identifier: string): Observable<User> {

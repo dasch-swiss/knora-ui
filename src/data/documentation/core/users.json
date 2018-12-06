@@ -56,9 +56,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} identifier",
+        "string": "{string} identifier - Get user by username, email or by iri",
         "name": "identifier",
-        "description": "",
+        "description": "<ul>\n<li>Get user by username, email or by iri</li>\n</ul>",
         "types": [
           "string"
         ],
@@ -66,8 +66,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} identifier</p>"
+        "variable": false
       },
       {
         "type": "returns",
