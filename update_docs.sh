@@ -97,5 +97,5 @@ jsdoc2json "${pipes[@]}"
 # 2) build the ng-app and update the files in docs/ folder
 #
 
-ng build --prod=false --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
-cp docs/index.html docs/404.html
+# ng build --prod=false --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
+# cp docs/index.html docs/404.html
