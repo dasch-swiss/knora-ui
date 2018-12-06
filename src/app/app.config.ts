@@ -85,7 +85,7 @@ export class AppDemo {
                 label: 'ResourceService'
             },
             {
-                name: 'search-service',
+                name: 'search',
                 label: 'SearchService'
             },
             {
@@ -101,7 +101,7 @@ export class AppDemo {
                 label: 'IncomingService'
             },
             {
-                name: 'gravsearch',
+                name: 'grav-search',
                 label: 'GravSearchService'
             },
             {

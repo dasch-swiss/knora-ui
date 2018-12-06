@@ -164,7 +164,7 @@ const appRoutes: Routes = [
                         component: ResourceComponent
                     },
                     {
-                        path: 'search-service',
+                        path: 'search',
                         component: SearchComponent
                     },
                     {
@@ -180,7 +180,7 @@ const appRoutes: Routes = [
                         component: IncomingComponent
                     },
                     {
-                        path: 'gravsearch',
+                        path: 'grav-search',
                         component: GravsearchComponent
                     },
                     {
