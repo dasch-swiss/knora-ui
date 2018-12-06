@@ -3,19 +3,19 @@
     "tags": [
       {
         "type": "returns",
-        "string": "Observable of Project[]",
+        "string": "Observable<Project[]>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Project[]</p>"
+        "description": "<p>Observable&lt;Project[]&gt;</p>"
       }
     ],
     "description": {
-      "full": "<p>returns a list of all projects</p>",
-      "summary": "<p>returns a list of all projects</p>",
+      "full": "<p>Returns a list of all projects.</p>",
+      "summary": "<p>Returns a list of all projects.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -51,19 +51,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of Project",
+        "string": "Observable<Project>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Project</p>"
+        "description": "<p>Observable<Project></p>"
       }
     ],
     "description": {
-      "full": "<p>returns a project object</p>",
-      "summary": "<p>returns a project object</p>",
+      "full": "<p>Returns a project object.</p>",
+      "summary": "<p>Returns a project object.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -99,19 +99,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of Project",
+        "string": "Observable<Project>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Project</p>"
+        "description": "<p>Observable<Project></p>"
       }
     ],
     "description": {
-      "full": "<p>returns a project object</p>",
-      "summary": "<p>returns a project object</p>",
+      "full": "<p>Returns a project object.</p>",
+      "summary": "<p>Returns a project object.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -147,19 +147,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of Project",
+        "string": "Observable<Project>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Project</p>"
+        "description": "<p>Observable<Project></p>"
       }
     ],
     "description": {
-      "full": "<p>returns a project object</p>",
-      "summary": "<p>returns a project object</p>",
+      "full": "<p>Returns a project object.</p>",
+      "summary": "<p>Returns a project object.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -195,19 +195,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of Project",
+        "string": "Observable<Project>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Project</p>"
+        "description": "<p>Observable<Project></p>"
       }
     ],
     "description": {
-      "full": "<p>Helper method combining project retrieval</p>",
-      "summary": "<p>Helper method combining project retrieval</p>",
+      "full": "<p>Helper method combining project retrieval.</p>",
+      "summary": "<p>Helper method combining project retrieval.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -239,19 +239,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of User[]",
+        "string": "Observable<User[]>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of User[]</p>"
+        "description": "<p>Observable&lt;User[]&gt;</p>"
       }
     ],
     "description": {
-      "full": "<p>returns all project members<br />\nproject identifier is project id (iri)</p>",
-      "summary": "<p>returns all project members<br />\nproject identifier is project id (iri)</p>",
+      "full": "<p>Returns all project members.<br />\nProject identifier is project id (iri).</p>",
+      "summary": "<p>Returns all project members.<br />\nProject identifier is project id (iri).</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -287,19 +287,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of User[]",
+        "string": "Observable<User[]>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of User[]</p>"
+        "description": "<p>Observable&lt;User[]&gt;</p>"
       }
     ],
     "description": {
-      "full": "<p>returns all project members<br />\nproject identifier is shortname</p>",
-      "summary": "<p>returns all project members<br />\nproject identifier is shortname</p>",
+      "full": "<p>Returns all project members.<br />\nProject identifier is shortname.</p>",
+      "summary": "<p>Returns all project members.<br />\nProject identifier is shortname.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -335,22 +335,19 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<User[]>}",
-        "types": [
-          "Observable.<Array.<User>>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<code>Array</code>.&lt;<a href=\"User.html\">User</a>&gt;&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<User[]>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable&lt;User[]&gt;}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable&lt;User[]&gt;</p>"
       }
     ],
     "description": {
-      "full": "<p>returns all project members<br />\nproject identifier is shortcode</p>",
-      "summary": "<p>returns all project members<br />\nproject identifier is shortcode</p>",
+      "full": "<p>Returns all project members.<br />\nProject identifier is shortcode.</p>",
+      "summary": "<p>Returns all project members.<br />\nProject identifier is shortcode.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -386,19 +383,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of User[]",
+        "string": "Observable<User[]>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of User[]</p>"
+        "description": "<p>Observable&lt;User[]&gt;</p>"
       }
     ],
     "description": {
-      "full": "<p>Helper method combining project member retrieval</p>",
-      "summary": "<p>Helper method combining project member retrieval</p>",
+      "full": "<p>Helper method combining project member retrieval.</p>",
+      "summary": "<p>Helper method combining project member retrieval.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -430,19 +427,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of Project",
+        "string": "Observable<Project>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Project</p>"
+        "description": "<p>Observable<Project></p>"
       }
     ],
     "description": {
-      "full": "<p>create new project</p>",
-      "summary": "<p>create new project</p>",
+      "full": "<p>Create new project.</p>",
+      "summary": "<p>Create new project.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -493,19 +490,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of Project",
+        "string": "Observable<Project>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Project</p>"
+        "description": "<p>Observable<Project></p>"
       }
     ],
     "description": {
-      "full": "<p>edit project data</p>",
-      "summary": "<p>edit project data</p>",
+      "full": "<p>Edit project data.</p>",
+      "summary": "<p>Edit project data.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -541,19 +538,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of Project",
+        "string": "Observable<Project>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Project</p>"
+        "description": "<p>Observable<Project></p>"
       }
     ],
     "description": {
-      "full": "<p>activate project (if it was deleted)</p>",
-      "summary": "<p>activate project (if it was deleted)</p>",
+      "full": "<p>Activate project (if it was deleted).</p>",
+      "summary": "<p>Activate project (if it was deleted).</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -589,19 +586,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of Project",
+        "string": "Observable<Project>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Project</p>"
+        "description": "<p>Observable<Project></p>"
       }
     ],
     "description": {
-      "full": "<p>Delete (set inactive) project</p>",
-      "summary": "<p>Delete (set inactive) project</p>",
+      "full": "<p>Delete (set inactive) project.</p>",
+      "summary": "<p>Delete (set inactive) project.</p>",
       "body": ""
     },
     "isPrivate": false,

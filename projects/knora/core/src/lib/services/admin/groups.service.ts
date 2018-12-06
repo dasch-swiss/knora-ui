@@ -12,9 +12,9 @@ export class GroupsService extends ApiService {
     private path: string = '/admin/groups';
 
     /**
-     * return a list of all groups
+     * Return a list of all groups.
      *
-     * @returns Observable of Group[]
+     * @returns Observable<Group[]>
      */
     getAllGroups(): Observable<Group[]> {
         return this.httpGet(this.path).pipe(
@@ -24,10 +24,10 @@ export class GroupsService extends ApiService {
     }
 
     /**
-     * return a group object (filter by IRI)
+     * Return a group object (filter by IRI).
      *
      * @param {string} iri
-     * @returns Observable of Group
+     * @returns Observable<Group>
      */
     getGroupByIri(iri: string): Observable<Group> {
         this.path += '/' + encodeURIComponent(iri);

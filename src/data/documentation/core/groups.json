@@ -3,19 +3,19 @@
     "tags": [
       {
         "type": "returns",
-        "string": "Observable of Group[]",
+        "string": "Observable<Group[]>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Group[]</p>"
+        "description": "<p>Observable&lt;Group[]&gt;</p>"
       }
     ],
     "description": {
-      "full": "<p>return a list of all groups</p>",
-      "summary": "<p>return a list of all groups</p>",
+      "full": "<p>Return a list of all groups.</p>",
+      "summary": "<p>Return a list of all groups.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -51,19 +51,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of Group",
+        "string": "Observable<Group>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Group</p>"
+        "description": "<p>Observable<Group></p>"
       }
     ],
     "description": {
-      "full": "<p>return a group object (filter by IRI)</p>",
-      "summary": "<p>return a group object (filter by IRI)</p>",
+      "full": "<p>Return a group object (filter by IRI).</p>",
+      "summary": "<p>Return a group object (filter by IRI).</p>",
       "body": ""
     },
     "isPrivate": false,

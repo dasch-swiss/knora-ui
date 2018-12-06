@@ -3,33 +3,34 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} projectIri (optional)",
-        "name": "projectIri",
-        "description": "<p>(optional)</p>",
+        "string": "{string} [projectIri]",
+        "name": "[projectIri]",
+        "description": "",
         "types": [
           "string"
         ],
         "typesDescription": "<code>string</code>",
-        "optional": false,
+        "optional": true,
         "nullable": false,
         "nonNullable": false,
-        "variable": false
+        "variable": false,
+        "html": "<p>{string} [projectIri]</p>"
       },
       {
         "type": "returns",
-        "string": "Observable of ListNodeInfo[]",
+        "string": "Observable<ListNodeInfo[]>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of ListNodeInfo[]</p>"
+        "description": "<p>Observable&lt;ListNodeInfo[]&gt;</p>"
       }
     ],
     "description": {
-      "full": "<p>returns a list of all lists</p>",
-      "summary": "<p>returns a list of all lists</p>",
+      "full": "<p>Returns a list of all lists.</p>",
+      "summary": "<p>Returns a list of all lists.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -65,19 +66,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of List",
+        "string": "Observable<List>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of List</p>"
+        "description": "<p>Observable<List></p>"
       }
     ],
     "description": {
-      "full": "<p>return a list object</p>",
-      "summary": "<p>return a list object</p>",
+      "full": "<p>Return a list object.</p>",
+      "summary": "<p>Return a list object.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -113,19 +114,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ListInfo",
+        "string": "Observable<ListInfo>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of ListInfo</p>"
+        "description": "<p>Observable<ListInfo></p>"
       }
     ],
     "description": {
-      "full": "<p>return a list info object</p>",
-      "summary": "<p>return a list info object</p>",
+      "full": "<p>Return a list info object.</p>",
+      "summary": "<p>Return a list info object.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -161,19 +162,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ListNodeInfo",
+        "string": "Observable<ListNodeInfo>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of ListNodeInfo</p>"
+        "description": "<p>Observable<ListNodeInfo></p>"
       }
     ],
     "description": {
-      "full": "<p>return a list node info object</p>",
-      "summary": "<p>return a list node info object</p>",
+      "full": "<p>Return a list node info object.</p>",
+      "summary": "<p>Return a list node info object.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -209,19 +210,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of List",
+        "string": "Observable<List>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of List</p>"
+        "description": "<p>Observable<List></p>"
       }
     ],
     "description": {
-      "full": "<p>create new list</p>",
-      "summary": "<p>create new list</p>",
+      "full": "<p>Create new list.</p>",
+      "summary": "<p>Create new list.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -257,19 +258,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ListInfo",
+        "string": "Observable<ListInfo>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of ListInfo</p>"
+        "description": "<p>Observable<ListInfo></p>"
       }
     ],
     "description": {
-      "full": "<p>edit list data</p>",
-      "summary": "<p>edit list data</p>",
+      "full": "<p>Edit list data.</p>",
+      "summary": "<p>Edit list data.</p>",
       "body": ""
     },
     "isPrivate": false,

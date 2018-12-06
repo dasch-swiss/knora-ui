@@ -17,9 +17,9 @@ export class ProjectsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
-     * returns a list of all projects
+     * Returns a list of all projects.
      *
-     * @returns Observable of Project[]
+     * @returns Observable<Project[]>
      */
     getAllProjects(): Observable<Project[]> {
         return this.httpGet('/admin/projects').pipe(
@@ -29,10 +29,10 @@ export class ProjectsService extends ApiService {
     }
 
     /**
-     * returns a project object
+     * Returns a project object.
      *
      * @param {string} iri
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     getProjectByIri(iri: string): Observable<Project> {
         const url: string = '/admin/projects/' + encodeURIComponent(iri);
@@ -40,10 +40,10 @@ export class ProjectsService extends ApiService {
     }
 
     /**
-     * returns a project object
+     * Returns a project object.
      *
      * @param {string} shortname
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     getProjectByShortname(shortname: string): Observable<Project> {
         const url = '/admin/projects/' + shortname + '?identifier=shortname';
@@ -51,10 +51,10 @@ export class ProjectsService extends ApiService {
     }
 
     /**
-     * returns a project object
+     * Returns a project object.
      *
      * @param {string} shortcode
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     getProjectByShortcode(shortcode: string): Observable<Project> {
         const url = '/admin/projects/' + shortcode + '?identifier=shortcode';
@@ -62,10 +62,10 @@ export class ProjectsService extends ApiService {
     }
 
     /**
-     * Helper method combining project retrieval
+     * Helper method combining project retrieval.
      *
      * @param {string} url
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     protected getProject(url: string): Observable<Project> {
         return this.httpGet(url).pipe(
@@ -75,11 +75,11 @@ export class ProjectsService extends ApiService {
     }
 
     /**
-     * returns all project members
-     * project identifier is project id (iri)
+     * Returns all project members.
+     * Project identifier is project id (iri).
      *
      * @param {string} iri
-     * @returns Observable of User[]
+     * @returns Observable<User[]>
      */
     getProjectMembersByIri(iri: string): Observable<User[]> {
         const url = '/admin/projects/members/' + encodeURIComponent(iri);
@@ -87,11 +87,11 @@ export class ProjectsService extends ApiService {
     }
 
     /**
-     * returns all project members
-     * project identifier is shortname
+     * Returns all project members.
+     * Project identifier is shortname.
      *
      * @param {string} shortname
-     * @returns Observable of User[]
+     * @returns Observable<User[]>
      */
     getProjectMembersByShortname(shortname: string): Observable<User[]> {
         const url = '/admin/projects/members/' + shortname + '?identifier=shortname';
@@ -99,11 +99,11 @@ export class ProjectsService extends ApiService {
     }
 
     /**
-     * returns all project members
-     * project identifier is shortcode
+     * Returns all project members.
+     * Project identifier is shortcode.
      *
      * @param {string} shortcode
-     * @returns {Observable<User[]>}
+     * @returns Observable<User[]>
      */
     getProjectMembersByShortcode(shortcode: string): Observable<User[]> {
         const url = '/admin/projects/members/' + shortcode + '?identifier=shortcode';
@@ -111,10 +111,10 @@ export class ProjectsService extends ApiService {
     }
 
     /**
-     * Helper method combining project member retrieval
+     * Helper method combining project member retrieval.
      *
      * @param {string} url
-     * @returns Observable of User[]
+     * @returns Observable<User[]>
      */
     protected getProjectMembers(url: string): Observable<User[]> {
         return this.httpGet(url).pipe(
@@ -129,10 +129,10 @@ export class ProjectsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
-     * create new project
+     * Create new project.
      *
      * @param {any} data
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     createProject(data: any): Observable<Project> {
         const url: string = '/admin/projects';
@@ -147,11 +147,11 @@ export class ProjectsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
-     * edit project data
+     * Edit project data.
      *
      * @param {string} iri
      * @param {any} data
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     updateProject(iri: string, data: any): Observable<Project> {
         const url: string = '/admin/projects/' + encodeURIComponent(iri);
@@ -164,10 +164,10 @@ export class ProjectsService extends ApiService {
 
 
     /**
-     * activate project (if it was deleted)
+     * Activate project (if it was deleted).
      *
      * @param {string} iri
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     activateProject(iri: string): Observable<Project> {
         const data: any = {
@@ -188,10 +188,10 @@ export class ProjectsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
-     * Delete (set inactive) project
+     * Delete (set inactive) project.
      *
      * @param {string} iri
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     deleteProject(iri: string): Observable<Project> {
         const url: string = '/admin/projects/' + encodeURIComponent(iri);
