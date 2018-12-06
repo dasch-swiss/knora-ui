@@ -31,17 +31,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<ApiServiceResult>}",
-        "types": [
-          "Observable.<ApiServiceResult>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<ApiServiceResult>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
       }
     ],
     "description": {
@@ -81,17 +78,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<ApiServiceResult>}",
-        "types": [
-          "Observable.<ApiServiceResult>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<ApiServiceResult>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
       }
     ],
     "description": {
@@ -131,17 +125,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<ApiServiceResult>}",
-        "types": [
-          "Observable.<ApiServiceResult>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<ApiServiceResult>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
       }
     ],
     "description": {
@@ -181,17 +172,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<ApiServiceResult>}",
-        "types": [
-          "Observable.<ApiServiceResult>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<ApiServiceResult>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
       }
     ],
     "description": {
@@ -259,17 +247,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<ApiServiceResult>}",
-        "types": [
-          "Observable.<ApiServiceResult>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<ApiServiceResult>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
       }
     ],
     "description": {

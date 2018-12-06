@@ -9,8 +9,9 @@ export class ResourceTypesService extends ApiService {
 
   /**
      * Get all resource types defined by the vocabulary.
+     *
      * @param {string} iri Vocabulary iri
-     * @returns {Observable<any>}
+     * @returns Observable<any>
      */
   getResourceTypesByVoc(iri: string): Observable<any> {
     return this.httpGet('/v1/resourcetypes?vocabulary=' + encodeURIComponent(iri));
@@ -18,8 +19,9 @@ export class ResourceTypesService extends ApiService {
 
   /**
    * Get a specific resource type.
+   *
    * @param {string} iri resource type iri
-   * @returns {Observable<any>}
+   * @returns Observable<any>
    */
   getResourceType(iri: string): Observable<any> {
     return this.httpGet('/v1/resourcetypes/' + encodeURIComponent(iri));

@@ -102,15 +102,14 @@
       },
       {
         "type": "returns",
-        "string": "{void}",
+        "string": "void",
         "types": [],
-        "typesDescription": "<code>undefined</code>",
-        "optional": true,
-        "nullable": false,
-        "nonNullable": false,
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{void}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
       }
     ],
     "description": {
@@ -138,16 +137,14 @@
     "tags": [
       {
         "type": "returns",
-        "string": "{ExtendedSearchParams} search parameters",
-        "types": [
-          "ExtendedSearchParams"
-        ],
-        "typesDescription": "<a href=\"ExtendedSearchParams.html\">ExtendedSearchParams</a>",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "ExtendedSearchParams - search parameters",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "<p>search parameters</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>ExtendedSearchParams - search parameters</p>"
       }
     ],
     "description": {

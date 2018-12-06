@@ -36,7 +36,7 @@ export module ConvertJSONLD {
      * Gets all property names that refer to value objects.
      *
      * @param propName the name of a property to be checked.
-     * @returns Boolean indicating if the name refers to a value property.
+     * @returns boolean - indicating if the name refers to a value property.
      */
     const getPropertyNames = (propName) => {
         return propName !== '@id'
