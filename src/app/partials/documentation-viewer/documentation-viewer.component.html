@@ -30,7 +30,7 @@
 
 
             <!-- going through the list of tags -->
-            <div *ngFor="let tag of item.tags">
+            <div *ngFor="let tag of item.tags; let first = first">
 
                 <div [ngSwitch]="tag.type">
 
@@ -53,18 +53,19 @@
 
                     <!-- parameter -->
                     <div *ngSwitchCase="'param'">
-                        <p><strong>Parameter</strong></p>
+                        <p *ngIf="first"><strong>Parameters</strong></p>
                         <table>
-                            <tr>
-                                <th class="border-right">Name</th>
-                                <th class="border-right">Type</th>
+                            <tr *ngIf="first">
+                                <th class="border-right fix-width">Name</th>
+                                <th class="border-right fix-width">Type</th>
                                 <th>Description</th>
                             </tr>
                             <tr>
-                                <td class="border-right">
-                                    <p>{{tag.name}}</p>
+                                <td class="border-right fix-width">
+                                    <p *ngIf="tag.optional">{{tag.name | trimBrackets}} (optional)</p>
+                                    <p *ngIf="!tag.optional">{{tag.name}}</p>
                                 </td>
-                                <td class="border-right">
+                                <td class="border-right fix-width">
                                     <p><span *ngFor="let type of tag.types; let last = last">
                                             {{type}}<span *ngIf="!last">, </span>
                                     </span></p>

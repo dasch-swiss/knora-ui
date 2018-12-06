@@ -62,6 +62,10 @@ table {
     &.border-right {
       border-right: 1px solid #ddd;
     }
+
+    &.fix-width {
+      width: 150px;
+    }
   }
 
   th {

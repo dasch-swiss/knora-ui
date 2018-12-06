@@ -63,6 +63,7 @@ import { OntologyComponent } from './knora-ui-examples/core-demo/ontology/ontolo
 import { DocumentationViewerComponent } from './partials/documentation-viewer/documentation-viewer.component';
 import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-demo/authentication-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
+import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
 
 @NgModule({
     declarations: [
@@ -106,7 +107,8 @@ import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-pan
         OntologyComponent,
         DocumentationViewerComponent,
         AuthenticationDemoComponent,
-        SearchPanelComponent
+        SearchPanelComponent,
+        TrimBracketsPipe
     ],
     entryComponents: [
         // LoginFormComponent
