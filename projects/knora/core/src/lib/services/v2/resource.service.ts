@@ -21,15 +21,15 @@ export class ResourceService extends ApiService {
         return this.httpGet('/v2/resources/' + encodeURIComponent(iri));
     }
 
-    /*
+
     // TODO: we should use the ApiService correctly. But right now it doesn't work
-    getResource(iri): Observable<ReadResource> {
-        return this.httpGet('/v2/resources/' + encodeURIComponent(iri)).pipe(
-            map((result: ApiServiceResult) => result.getBody(ReadResource)),
-            catchError(this.handleJsonError)
-        );
-    }
-    */
+    // getResource(iri): Observable<ReadResource> {
+    //    return this.httpGet('/v2/resources/' + encodeURIComponent(iri)).pipe(
+    //        map((result: ApiServiceResult) => result.getBody(ReadResource)),
+    //        catchError(this.handleJsonError)
+    //    );
+    // }
+
 
     // TODO: post, put, delete
 }
