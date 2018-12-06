@@ -3,15 +3,17 @@
     "tags": [
       {
         "type": "param",
-        "string": "iri (Vocabulary iri)",
+        "string": "{string} iri Vocabulary iri",
         "name": "iri",
-        "description": "<p>(Vocabulary iri)</p>",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
+        "description": "<p>Vocabulary iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
         "nullable": false,
-        "optional": false
+        "nonNullable": false,
+        "variable": false
       },
       {
         "type": "returns",
@@ -29,8 +31,8 @@
       }
     ],
     "description": {
-      "full": "<p>Get all resource types defined by the vocabulary</p>",
-      "summary": "<p>Get all resource types defined by the vocabulary</p>",
+      "full": "<p>Get all resource types defined by the vocabulary.</p>",
+      "summary": "<p>Get all resource types defined by the vocabulary.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -51,15 +53,17 @@
     "tags": [
       {
         "type": "param",
-        "string": "iri   (resource type iri)",
+        "string": "{string} iri resource type iri",
         "name": "iri",
-        "description": "<p>(resource type iri)</p>",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
+        "description": "<p>resource type iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
         "nullable": false,
-        "optional": false
+        "nonNullable": false,
+        "variable": false
       },
       {
         "type": "returns",
@@ -77,8 +81,8 @@
       }
     ],
     "description": {
-      "full": "<p>Get a specific resource type</p>",
-      "summary": "<p>Get a specific resource type</p>",
+      "full": "<p>Get a specific resource type.</p>",
+      "summary": "<p>Get a specific resource type.</p>",
       "body": ""
     },
     "isPrivate": false,

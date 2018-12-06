@@ -395,7 +395,7 @@ export module ConvertJSONLD {
      * Expects JSON-LD with all Iris fully expanded.
      *
      * @param {object} resourcesResponseJSONLD a resource or a sequence of resources, represented as a JSON-LD object.
-     * @returns ReadResourcesSequence
+     * @returns ReadResourcesSequence - sequence of read resources
      */
     export function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD: object): ReadResourcesSequence {
 

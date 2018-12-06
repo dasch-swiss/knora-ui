@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class ResourceTypesService extends ApiService {
 
   /**
-     * Get all resource types defined by the vocabulary
-     * @param iri (Vocabulary iri)
+     * Get all resource types defined by the vocabulary.
+     * @param {string} iri Vocabulary iri
      * @returns {Observable<any>}
      */
   getResourceTypesByVoc(iri: string): Observable<any> {
@@ -17,8 +17,8 @@ export class ResourceTypesService extends ApiService {
   }
 
   /**
-   * Get a specific resource type
-   * @param iri   (resource type iri)
+   * Get a specific resource type.
+   * @param {string} iri resource type iri
    * @returns {Observable<any>}
    */
   getResourceType(iri: string): Observable<any> {

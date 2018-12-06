@@ -31,14 +31,17 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ApiServiceResult",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "string": "{Observable<ApiServiceResult>}",
+        "types": [
+          "Observable.<ApiServiceResult>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
         "optional": false,
-        "description": "<p>Observable of ApiServiceResult</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<ApiServiceResult>}</p>"
       }
     ],
     "description": {
@@ -78,14 +81,17 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ApiServiceResult",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "string": "{Observable<ApiServiceResult>}",
+        "types": [
+          "Observable.<ApiServiceResult>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
         "optional": false,
-        "description": "<p>Observable of ApiServiceResult</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<ApiServiceResult>}</p>"
       }
     ],
     "description": {
@@ -125,14 +131,17 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ApiServiceResult",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "string": "{Observable<ApiServiceResult>}",
+        "types": [
+          "Observable.<ApiServiceResult>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
         "optional": false,
-        "description": "<p>Observable of ApiServiceResult</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<ApiServiceResult>}</p>"
       }
     ],
     "description": {
@@ -172,14 +181,17 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ApiServiceResult",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "string": "{Observable<ApiServiceResult>}",
+        "types": [
+          "Observable.<ApiServiceResult>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
         "optional": false,
-        "description": "<p>Observable of ApiServiceResult</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<ApiServiceResult>}</p>"
       }
     ],
     "description": {
@@ -219,42 +231,45 @@
       },
       {
         "type": "param",
-        "string": "{string} resourceClassIRI restrict search to given resource class.",
-        "name": "resourceClassIRI",
+        "string": "{string} [resourceClassIRI] restrict search to given resource class.",
+        "name": "[resourceClassIRI]",
         "description": "<p>restrict search to given resource class.</p>",
         "types": [
           "string"
         ],
         "typesDescription": "<code>string</code>",
-        "optional": false,
+        "optional": true,
         "nullable": false,
         "nonNullable": false,
         "variable": false
       },
       {
         "type": "param",
-        "string": "{string} projectIri restrict search to given project.",
-        "name": "projectIri",
+        "string": "{string} [projectIri] restrict search to given project.",
+        "name": "[projectIri]",
         "description": "<p>restrict search to given project.</p>",
         "types": [
           "string"
         ],
         "typesDescription": "<code>string</code>",
-        "optional": false,
+        "optional": true,
         "nullable": false,
         "nonNullable": false,
         "variable": false
       },
       {
         "type": "returns",
-        "string": "Observable of ApiServiceResult",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "string": "{Observable<ApiServiceResult>}",
+        "types": [
+          "Observable.<ApiServiceResult>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
         "optional": false,
-        "description": "<p>Observable of ApiServiceResult</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<ApiServiceResult>}</p>"
       }
     ],
     "description": {

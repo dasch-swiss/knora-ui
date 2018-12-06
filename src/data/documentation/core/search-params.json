@@ -99,6 +99,18 @@
         "nonNullable": false,
         "variable": false,
         "html": "<p>{ExtendedSearchParams} searchParams</p>"
+      },
+      {
+        "type": "returns",
+        "string": "{void}",
+        "types": [],
+        "typesDescription": "<code>undefined</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{void}</p>"
       }
     ],
     "description": {
@@ -112,7 +124,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 40,
-    "codeStart": 45,
+    "codeStart": 46,
     "code": "changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {\n    this._currentSearchParams.next(searchParams);\n}",
     "ctx": {
       "type": "method",
@@ -126,7 +138,7 @@
     "tags": [
       {
         "type": "returns",
-        "string": "{ExtendedSearchParams}",
+        "string": "{ExtendedSearchParams} search parameters",
         "types": [
           "ExtendedSearchParams"
         ],
@@ -135,8 +147,7 @@
         "nullable": false,
         "nonNullable": false,
         "variable": false,
-        "description": "",
-        "html": "<p>{ExtendedSearchParams}</p>"
+        "description": "<p>search parameters</p>"
       }
     ],
     "description": {
@@ -149,8 +160,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 49,
-    "codeStart": 54,
+    "line": 50,
+    "codeStart": 55,
     "code": "getSearchParams(): ExtendedSearchParams {\n    return this._currentSearchParams.getValue();\n}\n\n}",
     "ctx": {
       "type": "method",

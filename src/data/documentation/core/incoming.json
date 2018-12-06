@@ -31,14 +31,17 @@
       },
       {
         "type": "returns",
-        "string": "Observable of any",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "string": "{Observable<any>}",
+        "types": [
+          "Observable.<any>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"any.html\">any</a>&gt;",
         "optional": false,
-        "description": "<p>Observable of any</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<any>}</p>"
       }
     ],
     "description": {
@@ -92,14 +95,17 @@
       },
       {
         "type": "returns",
-        "string": "Observable of any",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "string": "{Observable<any>}",
+        "types": [
+          "Observable.<any>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"any.html\">any</a>&gt;",
         "optional": false,
-        "description": "<p>Observable of any</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<any>}</p>"
       }
     ],
     "description": {
@@ -153,19 +159,22 @@
       },
       {
         "type": "returns",
-        "string": "Observable of any",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "string": "{Observable<any>}",
+        "types": [
+          "Observable.<any>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"any.html\">any</a>&gt;",
         "optional": false,
-        "description": "<p>Observable of any</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<any>}</p>"
       }
     ],
     "description": {
-      "full": "<p>Returns all incoming links for the given resource Iri<br />\nbut incoming regions and still image representations.</p>",
-      "summary": "<p>Returns all incoming links for the given resource Iri<br />\nbut incoming regions and still image representations.</p>",
+      "full": "<p>Returns all incoming links for the given resource Iri but incoming regions and still image representations.</p>",
+      "summary": "<p>Returns all incoming links for the given resource Iri but incoming regions and still image representations.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -174,7 +183,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 105,
-    "codeStart": 114,
+    "codeStart": 112,
     "code": "getIncomingLinksForResource(resourceIri: string, offset: number): Observable<any> {\n    const sparqlQueryStr = `\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?incomingRes knora-api:isMainResource true .\n\n?incomingRes ?incomingProp <${resourceIri}> .\n\n} WHERE {\n\n?incomingRes a knora-api:Resource .\n\n?incomingRes ?incomingProp <${resourceIri}> .\n\n<${resourceIri}> a knora-api:Resource .\n\n?incomingProp knora-api:objectType knora-api:Resource .\n\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isRegionOf <${resourceIri}> .\n}\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isPartOf <${resourceIri}> .\n}\n\n} OFFSET ${offset}\n`;\n\n    return this.doExtendedSearch(sparqlQueryStr);\n}\n\n}",
     "ctx": {
       "type": "method",

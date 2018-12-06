@@ -17,14 +17,17 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ApiServiceResult",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "string": "{Observable<ApiServiceResult>}",
+        "types": [
+          "Observable.<ApiServiceResult>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>&gt;",
         "optional": false,
-        "description": "<p>Observable of ApiServiceResult</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<ApiServiceResult>}</p>"
       }
     ],
     "description": {
