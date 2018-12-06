@@ -12,8 +12,8 @@
     "isEvent": false,
     "ignore": false,
     "line": 8,
-    "codeStart": 12,
-    "code": "transform(array: Array<string>, args: string): Array<string> {\n    if (array !== undefined) {\n        array.sort((a: any, b: any) => {\n            if (args) {\n                a[args] = (a[args] === null ? '' : a[args]);\n                b[args] = (b[args] === null ? '' : b[args]);\n                if (a[args].toLowerCase() < b[args].toLowerCase()) {\n                    return -1;\n                } else if (a[args].toLowerCase() > b[args].toLowerCase()) {\n                    return 1;\n                } else {\n                    return 0;\n                }\n            }\n        });\n    }\n\n    return array;\n}\n\n}",
+    "codeStart": 11,
+    "code": "transform(array: Array<any>, args: string): Array<any> {\n    if (array !== undefined) {\n        array.sort((a: any, b: any) => {\n            if (args) {\n                a[args] = (a[args] === null ? '' : a[args]);\n                b[args] = (b[args] === null ? '' : b[args]);\n                if (a[args].toLowerCase() < b[args].toLowerCase()) {\n                    return -1;\n                } else if (a[args].toLowerCase() > b[args].toLowerCase()) {\n                    return 1;\n                } else {\n                    return 0;\n                }\n            }\n        });\n    }\n\n    return array;\n}\n\n}",
     "ctx": {
       "type": "method",
       "name": "transform",
