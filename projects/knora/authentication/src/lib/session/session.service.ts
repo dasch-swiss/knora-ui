@@ -39,7 +39,7 @@ export class SessionService {
     setSession(jwt: string, username: string) {
 
         // get user information
-        this._users.getUserByEmail(username).subscribe(
+        this._users.getUser(username).subscribe(
             (result: User) => {
                 let sysAdmin: boolean = false;
 
