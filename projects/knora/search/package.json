@@ -1,7 +1,7 @@
 {
   "name": "@knora/search",
-  "version": "1.0.0-beta.1",
-  "description": "Knora ui module",
+  "version": "6.0.0",
+  "description": "Knora ui module: search",
   "repository": {
     "type": "git",
     "url": "https://github.com/dhlab-basel/Knora-ui.git"
@@ -15,10 +15,10 @@
     "dhlab basel"
   ],
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
-    "@knora/core": "^1.0.0-beta",
-    "@knora/viewer": "^0.0.1-alpha",
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@knora/core": "^6.0.0",
+    "@knora/viewer": "^6.0.0-alpha",
     "jdnconvertiblecalendardateadapter": "^0.0.7"
   }
 }

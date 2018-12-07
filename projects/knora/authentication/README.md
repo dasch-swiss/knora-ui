@@ -1,18 +1,35 @@
 # Knora-ui authentication
-![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg)](https://www.npmjs.com/package/@knora/authentication)
 
 This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
 
 The authentication module contains the login form (for standalone usage) or a complete login- / logout-button environment incl. the login form.
 
+## Prerequisites
+For help getting started with a new Angular app, check out the [Angular CLI](https://cli.angular.io/).
+
+For existing apps, follow these steps to begin using Knora-ui authentication.
+
 ## Install
-This module needs the configuration setup from [@knora/core](https://www.npmjs.com/package/@knora/core) which should also be installed.
+You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project in the examples below.
 
-`$ yarn add @knora/authentication @knora/core moment`
+### Yarn
+`$ yarn add @knora/authentication`
 
-OR
+### NPM
 
-`$ npm install @knora/authentication @knora/core moment`
+`$ npm install @knora/authentication`
+
+### Dependencies
+This module has the following package dependencies, which you also have to install.
+ - @angular/common@6.0.0
+ - @angular/core@6.0.0
+ - @angular/animations@6.0.0
+ - @angular/cdk@6.0.0
+ - @angular/material@6.0.0
+ - @knora/core@6.0.0
+ - moment@2.22.2
+
 
 ## Setup
 In your AppModule you have to define the following providers:
