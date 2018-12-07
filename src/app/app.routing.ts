@@ -144,6 +144,11 @@ const appRoutes: Routes = [
 
                 children: [
                     {
+                        path: '',
+                        component: DemoIntroComponent,
+                        data: { module: 'core' }
+                    },
+                    {
                         path: 'projects',
                         component: ProjectsComponent
                     },
