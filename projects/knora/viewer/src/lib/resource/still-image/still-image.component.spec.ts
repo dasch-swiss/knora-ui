@@ -130,8 +130,7 @@ let stillImageFullSize: ReadStillImageFileValue = new ReadStillImageFileValue(
     'http://localhost:1024/knora',
     'http://localhost:1024/knora/incunabula_0000001722.jp2/full/3428,5061/0/default.jpg',
     3428,
-    5061,
-    false
+    5061
 );
 
 let stillImagePreview: ReadStillImageFileValue = new ReadStillImageFileValue(
@@ -141,8 +140,7 @@ let stillImagePreview: ReadStillImageFileValue = new ReadStillImageFileValue(
     'http://localhost:1024/knora',
     'http://localhost:1024/knora/incunabula_0000001722.jpg/full/86,128/0/default.jpg',
     86,
-    128,
-    true
+    128
 );
 
 let testRegionRectangle: ReadResource = createTestRegionRectangle();

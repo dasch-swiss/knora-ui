@@ -236,27 +236,26 @@ describe('ReadPropertyItem', () => {
         const imageItem = new ReadStillImageFileValue(
             'http://rdfh.ch/00c650d23303/values/af68552c3626',
             'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasImage',
-            'incunabula_0000003856.jp2',
+            'incunabula_0000003856.jpg',
             'http://localhost:1024/knora',
-            'http://localhost:1024/knora/incunabula_0000003856.jp2/full/190,270/0/default.jpg',
+            'http://localhost:1024/knora/incunabula_0000003856.jpg/full/190,270/0/default.jpg',
             190,
-            270,
-            true);
+            270);
 
         expect(imageItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
         expect(imageItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#StillImageFileValue');
         expect(imageItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasImage');
         expect(imageItem.getClassName()).toEqual('ReadStillImageFileValue');
-        expect(imageItem.getContent()).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/190,270/0/default.jpg');
+        expect(imageItem.getContent()).toEqual('http://localhost:1024/knora/incunabula_0000003856.jpg/full/190,270/0/default.jpg');
 
-        expect(imageItem.imageFilename).toEqual('incunabula_0000003856.jp2');
+        expect(imageItem.imageFilename).toEqual('incunabula_0000003856.jpg');
         expect(imageItem.imageServerIIIFBaseURL).toEqual('http://localhost:1024/knora');
-        expect(imageItem.imagePath).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/190,270/0/default.jpg');
+        expect(imageItem.imagePath).toEqual('http://localhost:1024/knora/incunabula_0000003856.jpg/full/190,270/0/default.jpg');
         expect(imageItem.dimX).toEqual(190);
         expect(imageItem.dimY).toEqual(270);
         expect(imageItem.isPreview).toEqual(true);
 
-        expect(imageItem.makeIIIFUrl(10)).toEqual('http://localhost:1024/knora/incunabula_0000003856.jp2/full/190,270/0/default.jpg');
+        expect(imageItem.makeIIIFUrl(10)).toEqual('http://localhost:1024/knora/incunabula_0000003856.jpg/full/190,270/0/default.jpg');
     });
 
     it('should create a ReadTextFileValue', () => {
