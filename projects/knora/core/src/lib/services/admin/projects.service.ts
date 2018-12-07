@@ -33,7 +33,7 @@ export class ProjectsService extends ApiService {
     /**
      * Returns a project object.
      *
-     * @param {string} iri
+     * @param {string} iri identifier of the project
      * @returns Observable<Project>
      */
     getProjectByIri(iri: string): Observable<Project> {
@@ -44,7 +44,7 @@ export class ProjectsService extends ApiService {
     /**
      * Returns a project object.
      *
-     * @param {string} shortname
+     * @param {string} shortname short name that is used to identify the project
      * @returns Observable<Project>
      */
     getProjectByShortname(shortname: string): Observable<Project> {
@@ -55,7 +55,7 @@ export class ProjectsService extends ApiService {
     /**
      * Returns a project object.
      *
-     * @param {string} shortcode
+     * @param {string} shortcode hexadecimal code that uniquely identifies the project
      * @returns Observable<Project>
      */
     getProjectByShortcode(shortcode: string): Observable<Project> {
@@ -80,7 +80,7 @@ export class ProjectsService extends ApiService {
      * Returns all project members.
      * Project identifier is project id (iri).
      *
-     * @param {string} iri
+     * @param {string} iri identifier of the project
      * @returns Observable<User[]>
      */
     getProjectMembersByIri(iri: string): Observable<User[]> {
@@ -92,7 +92,7 @@ export class ProjectsService extends ApiService {
      * Returns all project members.
      * Project identifier is shortname.
      *
-     * @param {string} shortname
+     * @param {string} shortname short name that is used to identify the project
      * @returns Observable<User[]>
      */
     getProjectMembersByShortname(shortname: string): Observable<User[]> {
@@ -104,7 +104,7 @@ export class ProjectsService extends ApiService {
      * Returns all project members.
      * Project identifier is shortcode.
      *
-     * @param {string} shortcode
+     * @param {string} shortcode hexadecimal code that uniquely identifies the project
      * @returns Observable<User[]>
      */
     getProjectMembersByShortcode(shortcode: string): Observable<User[]> {
@@ -151,7 +151,7 @@ export class ProjectsService extends ApiService {
     /**
      * Edit project data.
      *
-     * @param {string} iri
+     * @param {string} iri identifier of the project
      * @param {any} data
      * @returns Observable<Project>
      */
@@ -168,7 +168,7 @@ export class ProjectsService extends ApiService {
     /**
      * Activate project (if it was deleted).
      *
-     * @param {string} iri
+     * @param {string} iri identifier of the project
      * @returns Observable<Project>
      */
     activateProject(iri: string): Observable<Project> {
@@ -192,7 +192,7 @@ export class ProjectsService extends ApiService {
     /**
      * Delete (set inactive) project.
      *
-     * @param {string} iri
+     * @param {string} iri identifier of the project
      * @returns Observable<Project>
      */
     deleteProject(iri: string): Observable<Project> {

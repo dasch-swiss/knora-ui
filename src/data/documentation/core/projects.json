@@ -53,9 +53,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} iri",
+        "string": "{string} iri identifier of the project",
         "name": "iri",
-        "description": "",
+        "description": "<p>identifier of the project</p>",
         "types": [
           "string"
         ],
@@ -63,8 +63,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} iri</p>"
+        "variable": false
       },
       {
         "type": "returns",
@@ -101,9 +100,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} shortname",
+        "string": "{string} shortname short name that is used to identify the project",
         "name": "shortname",
-        "description": "",
+        "description": "<p>short name that is used to identify the project</p>",
         "types": [
           "string"
         ],
@@ -111,8 +110,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} shortname</p>"
+        "variable": false
       },
       {
         "type": "returns",
@@ -149,9 +147,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} shortcode",
+        "string": "{string} shortcode hexadecimal code that uniquely identifies the project",
         "name": "shortcode",
-        "description": "",
+        "description": "<p>hexadecimal code that uniquely identifies the project</p>",
         "types": [
           "string"
         ],
@@ -159,8 +157,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} shortcode</p>"
+        "variable": false
       },
       {
         "type": "returns",
@@ -241,9 +238,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} iri",
+        "string": "{string} iri identifier of the project",
         "name": "iri",
-        "description": "",
+        "description": "<p>identifier of the project</p>",
         "types": [
           "string"
         ],
@@ -251,8 +248,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} iri</p>"
+        "variable": false
       },
       {
         "type": "returns",
@@ -289,9 +285,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} shortname",
+        "string": "{string} shortname short name that is used to identify the project",
         "name": "shortname",
-        "description": "",
+        "description": "<p>short name that is used to identify the project</p>",
         "types": [
           "string"
         ],
@@ -299,8 +295,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} shortname</p>"
+        "variable": false
       },
       {
         "type": "returns",
@@ -337,9 +332,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} shortcode",
+        "string": "{string} shortcode hexadecimal code that uniquely identifies the project",
         "name": "shortcode",
-        "description": "",
+        "description": "<p>hexadecimal code that uniquely identifies the project</p>",
         "types": [
           "string"
         ],
@@ -347,8 +342,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} shortcode</p>"
+        "variable": false
       },
       {
         "type": "returns",
@@ -477,9 +471,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} iri",
+        "string": "{string} iri identifier of the project",
         "name": "iri",
-        "description": "",
+        "description": "<p>identifier of the project</p>",
         "types": [
           "string"
         ],
@@ -487,8 +481,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} iri</p>"
+        "variable": false
       },
       {
         "type": "param",
@@ -540,9 +533,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} iri",
+        "string": "{string} iri identifier of the project",
         "name": "iri",
-        "description": "",
+        "description": "<p>identifier of the project</p>",
         "types": [
           "string"
         ],
@@ -550,8 +543,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} iri</p>"
+        "variable": false
       },
       {
         "type": "returns",
@@ -588,9 +580,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} iri",
+        "string": "{string} iri identifier of the project",
         "name": "iri",
-        "description": "",
+        "description": "<p>identifier of the project</p>",
         "types": [
           "string"
         ],
@@ -598,8 +590,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} iri</p>"
+        "variable": false
       },
       {
         "type": "returns",
