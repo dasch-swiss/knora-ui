@@ -29,6 +29,8 @@ home=`pwd`
 inPath='./projects/knora'
 outPath='./src/data/documentation'
 
+modules=('action' 'authentication' 'core' 'search' 'viewer')
+
 jsdoc2json ()
 {
     arr=("$@")
@@ -96,8 +98,21 @@ jsdoc2json "${pipes[@]}"
 special=( $(find ${inPath} -iname "convert-jsonld.ts") )
 jsdoc2json "${special[@]}"
 
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# 2) build the ng-app and update the files in docs/ folder
+# 2) copy all module README files into data/documentation folder
+
+for m in "${modules[@]}"
+do
+
+    echo copy module readme of ${m}
+    cp ${inPath}/${m}/README.md ${outPath}/${m}/readme.md
+
+done
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# 3) build the ng-app and update the files in docs/ folder
 #
 
 # ng build --prod=false --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
