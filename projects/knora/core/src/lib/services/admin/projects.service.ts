@@ -6,7 +6,9 @@ import { ApiServiceResult, Project, ProjectMembersResponse, ProjectResponse, Pro
 
 import { ApiService } from '../api.service';
 
-
+/**
+ * Request information about projects from Knora.
+ */
 @Injectable({
     providedIn: 'root'
 })

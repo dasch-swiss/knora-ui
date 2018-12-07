@@ -18,6 +18,9 @@ import {
 
 import { ApiService } from '../api.service';
 
+/**
+ * Request information about lists from Knora.
+ */
 @Injectable({
     providedIn: 'root'
 })

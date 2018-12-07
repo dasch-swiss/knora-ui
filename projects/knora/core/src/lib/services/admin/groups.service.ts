@@ -4,6 +4,9 @@ import { catchError, map } from 'rxjs/operators';
 import { ApiServiceResult, Group, GroupResponse, GroupsResponse } from '../../declarations/';
 import { ApiService } from '../api.service';
 
+/**
+ * Request information about group from Knora.
+ */
 @Injectable({
     providedIn: 'root'
 })
