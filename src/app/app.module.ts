@@ -47,7 +47,6 @@ import { ResourcesComponent } from './knora-ui-examples/viewer-demo/resources/re
 import { MainHeaderComponent } from './partials/main-header/main-header.component';
 import { ModuleHeaderComponent } from './partials/module-header/module-header.component';
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
-import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
 import { SanitizeUrlPipe } from './partials/pipes/sanitize-url.pipe';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
@@ -87,7 +86,6 @@ import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
         LoginComponent,
         ActionDemoComponent,
         SortButtonComponent,
-        ModuleSubHeaderComponent,
         AdminImageComponent,
         SearchDemoComponent,
         SearchResultComponent,
