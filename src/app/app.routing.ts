@@ -62,11 +62,22 @@ const appRoutes: Routes = [
             {
                 path: '',
                 component: DemoIntroComponent,
+                data: { module: 'demo' }
             },
             {
                 path: 'action',
                 component: ActionDemoComponent,
                 children: [
+                    {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: DemoIntroComponent,
+                        data: { module: 'action' }
+                    },
                     {
                         path: 'sort-button',
                         component: SortButtonComponent
@@ -92,8 +103,18 @@ const appRoutes: Routes = [
             {
                 path: 'authentication',
                 component: AuthenticationDemoComponent,
-                canActivate: [AuthGuard],
+                // canActivate: [AuthGuard],
                 children: [
+                    {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: DemoIntroComponent,
+                        data: { module: 'authentication' }
+                    },
                     {
                         path: 'login-form',
                         component: LoginComponent
@@ -105,6 +126,16 @@ const appRoutes: Routes = [
                 component: SearchDemoComponent,
                 data: { partOf: AppDemo.searchModule },
                 children: [
+                    {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: DemoIntroComponent,
+                        data: { module: 'search' }
+                    },
                     {
                         path: 'search',
                         component: SearchPanelComponent,
@@ -122,6 +153,16 @@ const appRoutes: Routes = [
                 component: ViewerDemoComponent,
                 data: { module: AppDemo.viewerModule },
                 children: [
+                    {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: DemoIntroComponent,
+                        data: { module: 'viewer' }
+                    },
                     {
                         path: 'resources',
                         component: ResourcesComponent,
@@ -151,6 +192,11 @@ const appRoutes: Routes = [
                 children: [
                     {
                         path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
                         component: DemoIntroComponent,
                         data: { module: 'core' }
                     },

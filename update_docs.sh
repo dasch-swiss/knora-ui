@@ -110,6 +110,8 @@ do
 
 done
 
+cp ./README.md ${outPath}/demo/readme.md
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 3) build the ng-app and update the files in docs/ folder
