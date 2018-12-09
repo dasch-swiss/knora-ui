@@ -71,8 +71,41 @@ jsdoc2json ()
     done
 }
 
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# 1) update the documentation data from JSDocs of the ts files
+# 1) create data documentation structure and copy all README files
+#
+# a) create data documentation folder if it doesn't exist
+echo create data documentation folder
+mkdir -p ${outPath}
+echo ${sep}
+
+# b) modules
+for m in "${modules[@]}"
+do
+    # create directory if it doesn't exist
+    echo create directory: ${m}
+    mkdir -p ${outPath}/${m}
+    echo copy module readme of ${m}
+    cp ${inPath}/${m}/README.md ${outPath}/${m}/readme.md
+
+    echo ${sep}
+
+done
+
+#
+# c) demo app
+# create directory if it doesn't exist
+echo create directory: demo
+mkdir -p ${outPath}/demo
+echo copy readme of demo app
+cp ./README.md ${outPath}/demo/readme.md
+
+echo ${sep}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# 2) update the documentation data from JSDocs of the ts files
 #
 
 # we should loop through the inPath to write the documentation data files as following:
@@ -97,21 +130,6 @@ jsdoc2json "${pipes[@]}"
 # special files
 special=( $(find ${inPath} -iname "convert-jsonld.ts") )
 jsdoc2json "${special[@]}"
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# 2) copy all module README files into data/documentation folder
-
-for m in "${modules[@]}"
-do
-
-    echo copy module readme of ${m}
-    cp ${inPath}/${m}/README.md ${outPath}/${m}/readme.md
-
-done
-
-cp ./README.md ${outPath}/demo/readme.md
-
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 3) build the ng-app and update the files in docs/ folder
