@@ -37,10 +37,6 @@ export class ResourceComponent implements OnChanges, OnInit {
     // example of a few resources:
     resources: any[] = [
         {
-            'name': 'image',
-            'iri': 'http://rdfh.ch/0001/lBz_bPC-QQyjPhIIv-lFkA'
-        },
-        {
             'name': 'region',
             'iri': 'http://rdfh.ch/fb9d11a1d403'
         },
