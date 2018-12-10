@@ -4,11 +4,11 @@
 <!-- Examples with demo -->
 <h3>Example</h3>
 
-<!-- <h3>Demo</h3>
-<h2>ProjectsService</h2> -->
+<h3>Demo</h3>
+<h2>ProjectsService</h2>
 
 <!-- getAllProjects() -->
-<!-- <mat-card class="example-viewer">
+<mat-card class="example-viewer">
     <app-example-viewer [example]="exampleGetAllProjects"></app-example-viewer>
 
     <div class="demo">
@@ -18,17 +18,16 @@
             <ul>
                 <li *ngFor="let p of allProjects">
                     <strong>{{p.shortname}}</strong>
-                    ({{p.shortcode}}):
-                    {{p.longname}}
+                    ({{p.shortcode}}): {{p.longname}}
                 </li>
             </ul>
         </div>
     </div>
 
-</mat-card> -->
+</mat-card>
 
 <!-- getProjectByShortname() -->
-<!-- <mat-card class="example-viewer">
+<mat-card class="example-viewer">
     <app-example-viewer [example]="exampleGetProjectByShortname"></app-example-viewer>
 
     <div class="demo">
@@ -37,10 +36,13 @@
 
             <div *ngIf="project && !projectsService.loading">
                 <p class="mat-card-subtitle">Shortcode / Shortname: Longname</p>
-                <p><strong>{{project.shortcode}} / {{project.shortname}}: </strong> {{project.longname}}</p>
+                <p>
+                    <strong>{{project.shortcode}} / {{project.shortname}}: </strong> {{project.longname}}</p>
                 <br>
                 <div *ngFor="let d of project.description">
-                    <p class="mat-card-subtitle">Description <span *ngIf="d.language">in {{d.language}}</span></p>
+                    <p class="mat-card-subtitle">Description
+                        <span *ngIf="d.language">in {{d.language}}</span>
+                    </p>
                     <div [innerHtml]="d.value"></div>
                 </div>
                 <br>
@@ -49,7 +51,8 @@
                     <mat-chip class="tag" *ngFor="let k of project.keywords">{{k}}</mat-chip>
                 </mat-chip-list>
             </div>
-            <br><br>
+            <br>
+            <br>
             <p class="mat-card-subtitle">All members of the project</p>
             <div *ngIf="projectMembers && !projectsService.loading">
                 <ul>
@@ -62,7 +65,7 @@
         </div>
     </div>
 
-</mat-card> -->
+</mat-card>
 
 
 <!--
