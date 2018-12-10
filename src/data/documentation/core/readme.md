@@ -37,7 +37,7 @@ On version 6 of Angular CLI they removed the shim for global and other node buil
 
 Next step is to import the core module in your app.module.ts 
 
-`import {KuiCoreConfig, KuiCoreModule} from '@knora/core';`
+`import {KuiCoreModule} from '@knora/core';`
 
 and set the api server of your environment first. In our apps we define it in the environment files. This helps to define more than one environment for various usages of the Angular app.
 
@@ -62,6 +62,7 @@ Send this configuration to the `@knora/core` module in your app.module.ts
 
 ```TypeScript
 import {environment} from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
