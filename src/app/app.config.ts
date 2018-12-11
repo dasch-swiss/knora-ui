@@ -144,7 +144,7 @@ export class AppDemo {
         published: false,
         label: 'Viewer module',
         children: [
-            {
+            /* {
                 name: 'resources',
                 label: 'Resources'
             },
@@ -155,7 +155,7 @@ export class AppDemo {
             {
                 name: 'views',
                 label: 'Views'
-            }
+            } */
         ]
     };
 
