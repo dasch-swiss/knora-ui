@@ -14,45 +14,44 @@ It is developed by the [Digital Humanities Lab](http://dhlab.unibas.ch/) at the 
 
 Knora and the Knora ui elements are [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public License](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires Knora v2.2.0-snapshot (pre-release) or later.
+This version of Knora-ui requires Knora v3.0.0 or later.
 
 ## Already published modules
 
 ### @knora/core
-![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg) 
+[![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg)](https://www.npmjs.com/package/@knora/core)
 
 The core module contains every service to use Knora's RESTful webapi.
-
+[read more...](https://dhlab-basel.github.io/Knora-ui/modules/core/readme)
 
 ### @knora/authentication
-![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg)](https://www.npmjs.com/package/@knora/authentication)
 
 The authentication module contains the login form (for standalone usage) or a complete login- / logout-button environment incl. the login form.
+[read more...](https://dhlab-basel.github.io/Knora-ui/modules/authentication/readme)
 
-
-
-### @knora/search 
-![npm (scoped)](https://img.shields.io/npm/v/@knora/search.svg)
+### @knora/search
+[![npm (scoped)](https://img.shields.io/npm/v/@knora/search.svg)](https://www.npmjs.com/package/@knora/search)
 
 Search module allows to make simple searches or extended searches in Knora. In extended search, resource class and its properties related to one specific ontology are selected to create your query.
+[read more...](https://dhlab-basel.github.io/Knora-ui/modules/search/readme)
 
-### @knora/viewer 
-![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg)
+### @knora/viewer
+[![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg)](https://www.npmjs.com/package/@knora/viewer)
 
 The viewer module contains object components to show the resource class representations from Knora, the gui-elements for the property values and different kind of view frameworks.
+[read more...](https://dhlab-basel.github.io/Knora-ui/modules/viewer/readme)
 
-### @knora/action 
-![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)
+### @knora/action
+[![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)](https://www.npmjs.com/package/@knora/action)
 
 The action module contains special buttons (e.g. to sort a list), pipes and directives.
+[read more...](https://dhlab-basel.github.io/Knora-ui/modules/action/readme)
 
-
+<!--
 ## Developers note
-Good news: Angular 6 has a built-in [library support](https://github.com/angular/angular-cli/wiki/stories-create-library). Previous we built the library with the following setup:
 
-We used [ng-packagr](https://github.com/dherges/ng-packagr) by following the [ng-packaged](https://github.com/dherges/ng-packaged)-example and this tutorial: https://medium.com/@nikolasleblanc/building-an-angular-4-component-library-with-the-angular-cli-and-ng-packagr-53b2ade0701e
-
-Now we can create a library module quite easy. Please use the following command schema:
+We create a library module quite easy. Please use the following command schema:
 
 `$ ng generate library @knora/[module-name] --prefix=kui`
 
@@ -81,41 +80,7 @@ To create new e.g. component inside existing module use the following command:
 
 `$ ng g c [component-name] --project @knora/[module-name] --styleext scss`
 
----
-
-## Knora module structure
-
-@knora/core
-<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg) -->
-* services (for API requests)
-* constants & utils (to work with Knora)
-
-@knora/action
-<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg) -->
-* buttons & buttons
-* progress-indicator
-* progress-stepper
-* message
-* directives & pipes
-* dialog
-
-@knora/authentication
-<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg) -->
-* login
-* logout
-
-@knora/search
-<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/search.svg) -->
-* search results
-* search panel incl. search action (like adding a collection)
-
-@knora/viewer
-<!-- ![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg) -->
-* object viewer (incl. video, audio, image)
-* properties (as form elements)
-* resource_class_form
-
-<!-- ---
+ ---
 
 ## Unit Testing Services
 
