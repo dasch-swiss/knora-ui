@@ -5,6 +5,8 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 
 The viewer module contains object components to show the resource class representations from Knora, the gui-elements for the property values and different kind of view frameworks.
 
+**ATTENTION: Knora-ui viewer is under development!**
+
 ## Prerequisites
 For help getting started with a new Angular app, check out the [Angular CLI](https://cli.angular.io/).
 
@@ -30,9 +32,20 @@ This module has the following package dependencies, which you also have to insta
  - @knora/core@6.0.0
 
 
-
 ## Components
-With this module, you can use the following components:
+This module contains 3 main components:
+
+### Resource
+It manages the resource of an ontology for the view.
+
+### Property
+It manages the properties for the view (displaying data in function of their type like date, text, integer, boolean etc.).
+
+### View
+It builds views by combining resource and property components in a specific layout.
+
+
+<!-- With this module, you can use the following components:
 ()
 
 
@@ -75,4 +88,4 @@ With this module, you can use the following components:
   - resourceView
   - compareView
   - graphView
-  - propertiesView
+  - propertiesView -->
