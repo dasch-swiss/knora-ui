@@ -39,13 +39,13 @@ It contains all the methods to realise simple searches, keep in memory previous 
 It sets the extended search. Here you can search by ontology, ontology's resource and specify your search one or several properties. 
 For each property, it is possible to use operators such as 'exists', 'equal to', 'like', 'less than' etc. to search matches or specific values.
 
-#### Select-ontology
+### Select-ontology
 It manages the selection of an ontology.
 
-#### Select-resource
+### Select-resource
 It manages the selection of a resource that is part of the selected ontology.
 
-#### Select-property
+### Select-property
 in the extended search form, it allows to select a property value (operator) for each property and set the value we are searching for.
 
 For example: the property is 'like' / 'equal to' / 'greater than' etc.
@@ -53,13 +53,12 @@ For example: the property is 'like' / 'equal to' / 'greater than' etc.
 
 ## Setup
 
-First step: Import the search module in your app.module.ts:
-
-`import { KuiSearchModule } from '@knora/core';`
-
-and add it to the NgModules's imports:
+Import the search module in your app.module.ts and add it to the NgModules's imports:
 
 ```TypeScript
+import { AppComponent } from './app.component';
+import { KuiSearchModule } from '@knora/core';
+
 @NgModule({
     declarations: [
         AppComponent
@@ -73,28 +72,3 @@ and add it to the NgModules's imports:
 export class AppModule {
 }
 ```
-
-## Usage
-
-To set the search bar, you have to add a <kui-search> tag wherever you want in your template.
-Customize the input '[route]' to match your own route:
-
-For example in search.component.html:
-`<kui-search [route]="'/modules/search'"></kui-search>`
-
-
-
-<!--
-The search module has the following structure:
-
-# search
-
-## extended-search
-    - extended-search
-    - select-ontology
-    - select-property
-        - specify-property-value
-    - select-resource-class
--->
-
--->
