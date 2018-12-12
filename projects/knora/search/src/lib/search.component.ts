@@ -32,7 +32,9 @@ import {
     ]
 })
 
-
+/**
+ * Contains methods to realise, reset new or previous simple searches.
+ */
 export class SearchComponent implements OnInit {
 
     @Input() route: string = '/search';
@@ -79,7 +81,7 @@ export class SearchComponent implements OnInit {
 
     /**
      * Realise a simple search
-     * @param search_ele
+     * @param {HTMLElement} search_ele
      * @returns void
      */
     doSearch(search_ele: HTMLElement): void {
@@ -112,7 +114,7 @@ export class SearchComponent implements OnInit {
 
     /**
      * Reset the search
-     * @param search_ele
+     * @param {HTMLElement} search_ele
      * @returns void
      */
     resetSearch(search_ele: HTMLElement): void {
@@ -124,7 +126,7 @@ export class SearchComponent implements OnInit {
 
     /**
      * Realise a previous search
-     * @param query
+     * @param {string} query
      * @returns void
      */
     doPrevSearch(query: string): void {
@@ -135,7 +137,7 @@ export class SearchComponent implements OnInit {
 
     /**
      * Reset previous searches - the whole previous search or specific item by name
-     * @param name
+     * @param {string} name term of the search
      * @returns void
      */
     resetPrevSearch(name: string = null): void {
@@ -166,7 +168,7 @@ export class SearchComponent implements OnInit {
     /**
      * Switch according to the focus between simple or extended search
      *
-     * @param name
+     * @param {string} name 2 cases: simpleSearch or extendedSearch
      * @returns void
      */
     toggleMenu(name: string): void {
