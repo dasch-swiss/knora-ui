@@ -1,11 +1,9 @@
-import { async, inject, TestBed, } from '@angular/core/testing';
+import { async, TestBed, } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../api.service';
 import { ResourceService } from './resource.service';
-import { ApiServiceError, ApiServiceResult, ReadResource } from '../../declarations';
+import { ReadResourcesSequence } from '../../declarations';
 import { KuiCoreModule } from '../../core.module';
-import { Observable, of } from 'rxjs';
 
 describe('ResourceService', () => {
     let httpTestingController: HttpTestingController;
@@ -53,5 +51,24 @@ describe('ResourceService', () => {
 
         httpRequest.flush(expectedResource);
     });
+
+    it('should request a resource from Knora as a sequence of ReadResource', async(() => {
+        expectedResource = require('../../test-data/resources/Testthing.json');
+
+        resourceService.getResourceAsReadResourceSequence('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw').subscribe(
+            (res: ReadResourcesSequence) => {
+
+                expect(res.numberOfResources).toEqual(1);
+                expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
+                expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+            }
+        );
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/resources/' + encodeURIComponent('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw'));
+
+        expect(httpRequest.request.method).toEqual('GET');
+
+        httpRequest.flush(expectedResource);
+    }));
 
 });
