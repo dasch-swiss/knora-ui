@@ -62,6 +62,26 @@ describe('TextValueAsStringComponent', () => {
         expect(spanNativeElement.innerText).toEqual('Natural Science');
     });
 
+    it('should handle special characters in HTML correctly', () => {
+
+        testHostComponent.stringValue = new ReadTextValueAsString('id', 'propIri', '<>&\'"');
+
+        testHostFixture.detectChanges();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const stringVal = hostCompDe.query(By.directive(TextValueAsStringComponent));
+
+        const spanDebugElement: DebugElement = stringVal.query(By.css('span'));
+
+        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
+
+        expect(spanNativeElement.innerText).toEqual('<>&\'"');
+
+        expect(spanNativeElement.innerHTML).toEqual('&lt;&gt;&amp;\'"');
+
+    });
+
 });
 
 
