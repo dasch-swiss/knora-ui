@@ -8,68 +8,50 @@ import { KuiCoreModule } from '../../core.module';
 import { Observable, of } from 'rxjs';
 
 describe('ResourceService', () => {
+    let httpTestingController: HttpTestingController;
+
     let resourceService: ResourceService;
+    let expectedResource;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
+                KuiCoreModule.forRoot({name: '', api: 'http://0.0.0.0:3333', app: '', media: ''})
             ],
             providers: [
                 ApiService,
                 ResourceService
             ]
         });
+
+        httpTestingController = TestBed.get(HttpTestingController);
         resourceService = TestBed.get(ResourceService);
     });
 
-    describe('#getResource', () => {
+    afterEach(() => {
+        // After every test, assert that there are no more pending requests.
+        httpTestingController.verify();
+    });
 
-        let expectedResource;
+    it('should be created', () => {
+        expect(resourceService).toBeTruthy();
+    });
 
-        beforeEach(() => {
-            expectedResource = require('../../test-data/resources/Testthing.json');
-        });
+    it('should request a resource from Knora', () => {
+        expectedResource = require('../../test-data/resources/Testthing.json');
 
-        it('should be created', () => {
-            expect(resourceService).toBeTruthy();
-        });
+        resourceService.getResource('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw').subscribe(
+            (res) => {
+                expect(res.body).toEqual(expectedResource);
+            }
+        );
 
-        /* // TODO: need to fix this test once the resourceService has been refactored
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/resources/' + encodeURIComponent('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw'));
 
-        fit('should return a resource', inject([ResourceService], (service: ResourceService) => {
+        expect(httpRequest.request.method).toEqual('GET');
 
-            spyOn(service, 'getResource').and.callFake(() => {
-                const result = new ApiServiceResult();
-                result.status = 200;
-                result.statusText = '';
-                result.url = '';
-                result.body = expectedResource;
-
-                return of(result);
-            });
-
-            expect(resourceService).toBeDefined();
-
-            const getResource: Observable<ApiServiceResult> = resourceService.getResource('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
-
-            const resource = [
-
-            ];
-
-            getResource.subscribe(
-                (result: any) => {
-                    expect(result.body).toEqual(resource);
-                },
-                (error: ApiServiceError) => {
-                    fail(error);
-                }
-            );
-
-        })); */
-
-
+        httpRequest.flush(expectedResource);
     });
 
 });

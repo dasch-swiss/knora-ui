@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { ExtendedSearchParams, SearchParamsService } from './search-params.service';
 
-fdescribe('SearchParamsService', () => {
+describe('SearchParamsService', () => {
     let searchParamsService: SearchParamsService;
 
     beforeEach(() => {
