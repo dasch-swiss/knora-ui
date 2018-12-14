@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@knora/authentication';
+import { ResourceViewComponent } from '@knora/viewer';
 import { AppDemo } from './app.config';
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
@@ -61,11 +62,22 @@ const appRoutes: Routes = [
             {
                 path: '',
                 component: DemoIntroComponent,
+                data: { module: 'demo' }
             },
             {
                 path: 'action',
                 component: ActionDemoComponent,
                 children: [
+                    {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: DemoIntroComponent,
+                        data: { module: 'action' }
+                    },
                     {
                         path: 'sort-button',
                         component: SortButtonComponent
@@ -91,12 +103,26 @@ const appRoutes: Routes = [
             {
                 path: 'authentication',
                 component: AuthenticationDemoComponent,
-                canActivate: [AuthGuard],
+                // canActivate: [AuthGuard],
                 children: [
+                    {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: DemoIntroComponent,
+                        data: { module: 'authentication' }
+                    },
                     {
                         path: 'login-form',
                         component: LoginComponent
-                    }
+                    },
+                    {
+                        path: 'authentication',
+                        component: AuthComponent
+                    },
                 ]
             },
             {
@@ -104,6 +130,16 @@ const appRoutes: Routes = [
                 component: SearchDemoComponent,
                 data: { partOf: AppDemo.searchModule },
                 children: [
+                    {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: DemoIntroComponent,
+                        data: { module: 'search' }
+                    },
                     {
                         path: 'search',
                         component: SearchPanelComponent,
@@ -122,9 +158,23 @@ const appRoutes: Routes = [
                 data: { module: AppDemo.viewerModule },
                 children: [
                     {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: DemoIntroComponent,
+                        data: { module: 'viewer' }
+                    },
+                    {
                         path: 'resources',
                         component: ResourcesComponent,
                         data: { partOf: AppDemo.viewerModule }
+                    },
+                    {
+                        path: 'resource/:id',
+                        component: ResourceViewComponent
                     },
                     {
                         path: 'properties',
@@ -136,6 +186,7 @@ const appRoutes: Routes = [
                         component: ViewsComponent,
                         data: { partOf: AppDemo.viewerModule }
                     }
+
                 ]
             },
             {
@@ -143,6 +194,16 @@ const appRoutes: Routes = [
                 component: CoreDemoComponent,
 
                 children: [
+                    {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: DemoIntroComponent,
+                        data: { module: 'core' }
+                    },
                     {
                         path: 'projects',
                         component: ProjectsComponent
@@ -164,7 +225,7 @@ const appRoutes: Routes = [
                         component: ResourceComponent
                     },
                     {
-                        path: 'search-service',
+                        path: 'search',
                         component: SearchComponent
                     },
                     {
@@ -180,11 +241,11 @@ const appRoutes: Routes = [
                         component: IncomingComponent
                     },
                     {
-                        path: 'gravsearch',
+                        path: 'grav-search',
                         component: GravsearchComponent
                     },
                     {
-                        path: 'convertjsonld',
+                        path: 'convert-jsonld',
                         component: ConvertJsonLdComponent
                     }
 

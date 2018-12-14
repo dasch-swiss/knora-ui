@@ -13,7 +13,7 @@
     "ignore": false,
     "line": 6,
     "codeStart": 9,
-    "code": "class GravsearchGenerationError extends Error {\n\n    constructor(msg: string) {\n        super(msg);\n    }\n}\n\n@Injectable({\n    providedIn: 'root'\n})\nexport class GravsearchGenerationService {\n\n    // map of complex knora-api value types to simple ones\n    public static typeConversionComplexToSimple = {\n        'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.xsdInteger, // use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer\n        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': KnoraConstants.xsdDecimal,\n        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.xsdBoolean,\n        'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.xsdString,\n        'http://api.knora.org/ontology/knora-api/v2#DateValue': KnoraConstants.dateSimple,\n        'http://api.knora.org/ontology/knora-api/v2#IntervalValue': KnoraConstants.intervalSimple,\n        'http://api.knora.org/ontology/knora-api/v2#GeomValue': KnoraConstants.geomSimple,\n        'http://api.knora.org/ontology/knora-api/v2#ColorValue': KnoraConstants.colorSimple,\n        'http://api.knora.org/ontology/knora-api/v2#GeonameValue': KnoraConstants.geonameSimple,\n        'http://api.knora.org/ontology/knora-api/v2#UriValue': KnoraConstants.xsdUri,\n        'http://api.knora.org/ontology/knora-api/v2#StillImageFileValue': KnoraConstants.fileSimple,\n        'http://api.knora.org/ontology/knora-api/v2#FileValue': KnoraConstants.fileSimple,\n        'http://api.knora.org/ontology/knora-api/v2#MovingImageFileValue': KnoraConstants.fileSimple,\n        'http://api.knora.org/ontology/knora-api/v2#DDDFileValue': KnoraConstants.fileSimple,\n        'http://api.knora.org/ontology/knora-api/v2#AudioFileValue': KnoraConstants.fileSimple,\n        'http://api.knora.org/ontology/knora-api/v2#DocumentFileValue': KnoraConstants.fileSimple,\n        'http://api.knora.org/ontology/knora-api/v2#TextFileValue': KnoraConstants.fileSimple,\n        'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.xsdString\n    };\n\n    constructor(private _searchParamsService: SearchParamsService) { }",
+    "code": "class GravsearchGenerationError extends Error {\n\n    constructor(msg: string) {\n        super(msg);\n    }\n}\n\n@Injectable({\n    providedIn: 'root'\n})\nexport class GravsearchGenerationService {",
     "ctx": {
       "type": "class",
       "constructor": "GravsearchGenerationError",
@@ -22,6 +22,23 @@
       "extends": "Error",
       "string": "new GravsearchGenerationError()"
     }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Map of complex knora-api value types to simple ones.<br />\nUse computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.</p>",
+      "summary": "<p>Map of complex knora-api value types to simple ones.<br />\nUse computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 21,
+    "codeStart": 25,
+    "code": "public static typeConversionComplexToSimple = {\n    'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.xsdInteger,\n    'http://api.knora.org/ontology/knora-api/v2#DecimalValue': KnoraConstants.xsdDecimal,\n    'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.xsdBoolean,\n    'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.xsdString,\n    'http://api.knora.org/ontology/knora-api/v2#DateValue': KnoraConstants.dateSimple,\n    'http://api.knora.org/ontology/knora-api/v2#IntervalValue': KnoraConstants.intervalSimple,\n    'http://api.knora.org/ontology/knora-api/v2#GeomValue': KnoraConstants.geomSimple,\n    'http://api.knora.org/ontology/knora-api/v2#ColorValue': KnoraConstants.colorSimple,\n    'http://api.knora.org/ontology/knora-api/v2#GeonameValue': KnoraConstants.geonameSimple,\n    'http://api.knora.org/ontology/knora-api/v2#UriValue': KnoraConstants.xsdUri,\n    'http://api.knora.org/ontology/knora-api/v2#StillImageFileValue': KnoraConstants.fileSimple,\n    'http://api.knora.org/ontology/knora-api/v2#FileValue': KnoraConstants.fileSimple,\n    'http://api.knora.org/ontology/knora-api/v2#MovingImageFileValue': KnoraConstants.fileSimple,\n    'http://api.knora.org/ontology/knora-api/v2#DDDFileValue': KnoraConstants.fileSimple,\n    'http://api.knora.org/ontology/knora-api/v2#AudioFileValue': KnoraConstants.fileSimple,\n    'http://api.knora.org/ontology/knora-api/v2#DocumentFileValue': KnoraConstants.fileSimple,\n    'http://api.knora.org/ontology/knora-api/v2#TextFileValue': KnoraConstants.fileSimple,\n    'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.xsdString\n};\n\nconstructor(private _searchParamsService: SearchParamsService) { }",
+    "ctx": false
   },
   {
     "tags": [
@@ -41,16 +58,14 @@
       },
       {
         "type": "returns",
-        "string": "{string} the corresponding Iri of the simple type (knora-api simple).",
-        "types": [
-          "string"
-        ],
-        "typesDescription": "<code>string</code>",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "string - the corresponding Iri of the simple type (knora-api simple).",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "<p>the corresponding Iri of the simple type (knora-api simple).</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>string - the corresponding Iri of the simple type (knora-api simple).</p>"
       }
     ],
     "description": {
@@ -63,8 +78,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 45,
-    "codeStart": 51,
+    "line": 48,
+    "codeStart": 54,
     "code": "private convertComplexTypeToSimpleType(complexType: string): string {\n\n    const simpleType: string = GravsearchGenerationService.typeConversionComplexToSimple[complexType];\n\n    if (simpleType !== undefined) {\n        return simpleType;\n    } else {\n        throw new GravsearchGenerationError(`complex type ${complexType} could not be converted to simple type.`);\n    }\n\n}",
     "ctx": false
   },
@@ -86,14 +101,14 @@
       },
       {
         "type": "param",
-        "string": "{string} mainResourceClassOption the class of the main resource, if specified.",
-        "name": "mainResourceClassOption",
+        "string": "{string} [mainResourceClassOption] the class of the main resource, if specified.",
+        "name": "[mainResourceClassOption]",
         "description": "<p>the class of the main resource, if specified.</p>",
         "types": [
           "string"
         ],
         "typesDescription": "<code>string</code>",
-        "optional": false,
+        "optional": true,
         "nullable": false,
         "nonNullable": false,
         "variable": false
@@ -114,16 +129,14 @@
       },
       {
         "type": "returns",
-        "string": "{string} a KnarQL query string.",
-        "types": [
-          "string"
-        ],
-        "typesDescription": "<code>string</code>",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "string - a KnarQL query string.",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "<p>a KnarQL query string.</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>string - a KnarQL query string.</p>"
       }
     ],
     "description": {
@@ -136,8 +149,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 63,
-    "codeStart": 71,
+    "line": 66,
+    "codeStart": 74,
     "code": "public createGravsearchQuery(properties: PropertyWithValue[], mainResourceClassOption?: string, offset: number = 0): string {\n\n    // class restriction for the resource searched for\n    let mainResourceClass = '';\n\n    // if given, create the class restriction for the main resource\n    if (mainResourceClassOption !== undefined) {\n        mainResourceClass = `?mainRes a <${Utils.convertComplexKnoraApiEntityIritoSimple(mainResourceClassOption)}> .`;\n    }\n\n    // criteria for the order by statement\n    const orderByCriteria = [];\n\n    // statements to be returned in query results\n    const returnStatements = [];\n\n    // loop over given properties and create statements and Filters and type annotations from them\n    const props: string[] = properties.map(\n        (propWithVal: PropertyWithValue, index: number) => {\n\n            const propIriSimple = Utils.convertComplexKnoraApiEntityIritoSimple(propWithVal.property.id);\n\n            let simpleType;\n            if (!propWithVal.property.isLinkProperty) {\n                simpleType = this.convertComplexTypeToSimpleType(propWithVal.property.objectType);\n            } else {\n                simpleType = KnoraConstants.resourceSimple;\n            }\n\n            // represents the object of a statement\n            let propValue;\n            if (!propWithVal.property.isLinkProperty || propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Exists') {\n                // it is not a linking property, create a variable for the value (to be used by a subsequent FILTER)\n                // OR the comparison operator Exists is used in which case we do not need to specify the object any further\n                propValue = `?propVal${index}`;\n            } else {\n                // it is a linking property and the comparison operator is not Exists, use its IRI\n                propValue = propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple);\n            }\n\n            // generate statement\n            let statement: string = `?mainRes <${propIriSimple}> ${propValue} .`;\n\n            // type annotations\n            const propTypeAnnotation = `<${propIriSimple}> knora-api:objectType <${simpleType}> .`;\n            const propValueAnnotation = `${propValue} a <${simpleType}> .`;\n\n            // check if it is a linking property that has to be wrapped in a FILTER NOT EXISTS (comparison operator NOT_EQUALS) to negate it\n            if (propWithVal.property.isLinkProperty && propWithVal.valueLiteral.comparisonOperator.getClassName() === 'NotEquals') {\n                // do not include statement in results, because the query checks for the absence of this statement\n                statement = `FILTER NOT EXISTS {\n${statement}\n${propTypeAnnotation}\n${propValueAnnotation}\n}`;\n            } else {\n                // TODO: check if statement should be returned returned in results (Boolean flag from checkbox)\n                returnStatements.push(statement);\n                statement = `\n${statement}\n${propTypeAnnotation}\n${propValueAnnotation}\n`;\n            }\n\n            // generate filter if comparison operator is not Exists\n            let filter: string = '';\n            // only create a FILTER if the comparison operator is not EXISTS and it is not a linking property\n            if (!propWithVal.property.isLinkProperty && propWithVal.valueLiteral.comparisonOperator.getClassName() !== 'Exists') {\n\n                if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Like') {\n                    // use regex function for LIKE\n                    filter = `FILTER regex(${propValue}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple)}, \"i\")`;\n                } else if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Match') {\n                    // use contains function for MATCH\n                    filter = `FILTER <${KnoraConstants.matchFunction}>(${propValue}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple)})`;\n                } else {\n                    filter = `FILTER(${propValue} ${propWithVal.valueLiteral.comparisonOperator.type} ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple)})`;\n                }\n            }\n\n            // check if current value is a sort criterion\n            if (propWithVal.isSortCriterion) orderByCriteria.push(propValue);\n\n            return `${statement}\n${filter}\n`;\n\n        });\n\n    let orderByStatement = '';\n\n    if (orderByCriteria.length > 0) {\n        orderByStatement = `\nORDER BY ${orderByCriteria.join(' ')}\n`;\n    }\n\n    // template of the KnarQL query with dynamic components\n    const gravsearchTemplate = `\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\nCONSTRUCT {\n\n?mainRes knora-api:isMainResource true .\n\n${returnStatements.join('\\n')}\n\n} WHERE {\n\n?mainRes a knora-api:Resource .\n\n${mainResourceClass}\n\n${props.join('')}\n\n}\n${orderByStatement}`;\n\n    // offset component of the KnarQL query\n    const offsetTemplate = `\nOFFSET ${offset}\n`;\n\n    // function that generates the same KnarQL query with the given offset\n    const generateGravsearchQueryWithCustomOffset = (localOffset: number): string => {\n        const offsetCustomTemplate = `\nOFFSET ${localOffset}\n`;\n\n        return gravsearchTemplate + offsetCustomTemplate;\n    };\n\n    if (offset === 0) {\n        // store the function so another KnarQL query can be created with an increased offset\n        this._searchParamsService.changeSearchParamsMsg(new ExtendedSearchParams(generateGravsearchQueryWithCustomOffset));\n    }\n\n    // console.log(knarqlTemplate + offsetTemplate);\n\n    return gravsearchTemplate + offsetTemplate;\n\n}\n\n}",
     "ctx": false
   }

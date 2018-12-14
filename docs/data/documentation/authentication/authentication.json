@@ -1,9 +1,26 @@
 [
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "function",
+        "string": "validate if a user is logged in or not\nand the session is active",
+        "html": "<p>validate if a user is logged in or not<br />\nand the session is active</p>"
+      },
+      {
+        "type": "returns",
+        "string": "boolean",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>boolean</p>"
+      }
+    ],
     "description": {
-      "full": "<p>validate if a user is logged in or not<br />\nand the session is active</p>",
-      "summary": "<p>validate if a user is logged in or not<br />\nand the session is active</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -11,8 +28,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 19,
-    "codeStart": 23,
+    "line": 18,
+    "codeStart": 25,
     "code": "session(): boolean {\n    return this._session.validateSession();\n}",
     "ctx": {
       "type": "method",
@@ -22,6 +39,11 @@
   },
   {
     "tags": [
+      {
+        "type": "function",
+        "string": "login process;\nit's used by the login component",
+        "html": "<p>login process;<br />\nit's used by the login component</p>"
+      },
       {
         "type": "param",
         "string": "identifier (email or username)",
@@ -49,20 +71,19 @@
       },
       {
         "type": "returns",
-        "string": "",
+        "string": "Observable<any>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "",
-        "html": ""
+        "description": "<p>Observable<any></p>"
       }
     ],
     "description": {
-      "full": "<p>login process;<br />\nit's used by the login component</p>",
-      "summary": "<p>login process;<br />\nit's used by the login component</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -70,9 +91,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 27,
-    "codeStart": 35,
-    "code": "login(identifier: string, password: string): Observable<any> {\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        {identifier: identifier, password: password},\n        {observe: 'response'}).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}\n\n\nlogout() {\n    // destroy the session\n    localStorage.removeItem('session');\n}",
+    "line": 29,
+    "codeStart": 38,
+    "code": "login(identifier: string, password: string): Observable<any> {\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        {identifier: identifier, password: password},\n        {observe: 'response'}).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}",
     "ctx": {
       "type": "method",
       "name": "login",
@@ -81,6 +102,38 @@
   },
   {
     "tags": [
+      {
+        "type": "function",
+        "string": "\nlogout the user by destroying the session",
+        "html": "<p>logout the user by destroying the session</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 55,
+    "codeStart": 60,
+    "code": "logout() {\n    // destroy the session\n    localStorage.removeItem('session');\n}",
+    "ctx": {
+      "type": "method",
+      "name": "logout",
+      "string": "logout()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "handle request error in case of server error",
+        "html": "<p>handle request error in case of server error</p>"
+      },
       {
         "type": "param",
         "string": "error",
@@ -108,8 +161,8 @@
       }
     ],
     "description": {
-      "full": "<p>handle request error in case of server error</p>",
-      "summary": "<p>handle request error in case of server error</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -117,8 +170,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 58,
-    "codeStart": 64,
+    "line": 66,
+    "codeStart": 73,
     "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    const serviceError = new ApiServiceError();\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}\n}",
     "ctx": false
   }

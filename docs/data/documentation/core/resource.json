@@ -17,14 +17,14 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ApiServiceResult",
+        "string": "Observable<ApiServiceResult>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of ApiServiceResult</p>"
+        "description": "<p>Observable<ApiServiceResult></p>"
       }
     ],
     "description": {
@@ -39,28 +39,11 @@
     "ignore": false,
     "line": 12,
     "codeStart": 19,
-    "code": "getResource(iri): Observable<ApiServiceResult> {\n    // console.log('IRI from resource service: ', iri);\n    return this.httpGet('/v2/resources/' + encodeURIComponent(iri));\n}",
+    "code": "getResource(iri): Observable<ApiServiceResult> {\n    // console.log('IRI from resource service: ', iri);\n    return this.httpGet('/v2/resources/' + encodeURIComponent(iri));\n}\n\n\n// TODO: we should use the ApiService correctly. But right now it doesn't work\n// getResource(iri): Observable<ReadResource> {\n//    return this.httpGet('/v2/resources/' + encodeURIComponent(iri)).pipe(\n//        map((result: ApiServiceResult) => result.getBody(ReadResource)),\n//        catchError(this.handleJsonError)\n//    );\n// }\n\n\n// TODO: post, put, delete\n}",
     "ctx": {
       "type": "method",
       "name": "getResource",
       "string": "getResource()"
     }
-  },
-  {
-    "tags": [],
-    "description": {
-      "full": "<p>// TODO: we should use the ApiService correctly. But right now it doesn't work<br />\ngetResource(iri): Observable<ReadResource> {<br />\nreturn this.httpGet('/v2/resources/' + encodeURIComponent(iri)).pipe(<br />\nmap((result: ApiServiceResult) =&gt; result.getBody(ReadResource)),<br />\ncatchError(this.handleJsonError)<br />\n);<br />\n}</p>",
-      "summary": "<p>// TODO: we should use the ApiService correctly. But right now it doesn't work<br />\ngetResource(iri): Observable<ReadResource> {<br />\nreturn this.httpGet('/v2/resources/' + encodeURIComponent(iri)).pipe(<br />\nmap((result: ApiServiceResult) =&gt; result.getBody(ReadResource)),<br />\ncatchError(this.handleJsonError)<br />\n);<br />\n}</p>",
-      "body": ""
-    },
-    "isPrivate": false,
-    "isConstructor": false,
-    "isClass": false,
-    "isEvent": false,
-    "ignore": false,
-    "line": 24,
-    "codeStart": 34,
-    "code": "// TODO: post, put, delete\n}",
-    "ctx": false
   }
 ]

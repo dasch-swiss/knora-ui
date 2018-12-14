@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
-import { ErrorInterceptor, JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
+import { JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
 import { KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
@@ -47,7 +47,6 @@ import { ResourcesComponent } from './knora-ui-examples/viewer-demo/resources/re
 import { MainHeaderComponent } from './partials/main-header/main-header.component';
 import { ModuleHeaderComponent } from './partials/module-header/module-header.component';
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
-import { ModuleSubHeaderComponent } from './partials/module-sub-header/module-sub-header.component';
 import { SanitizeHtmlPipe } from './partials/pipes/sanitize-html.pipe';
 import { SanitizeUrlPipe } from './partials/pipes/sanitize-url.pipe';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
@@ -63,6 +62,7 @@ import { OntologyComponent } from './knora-ui-examples/core-demo/ontology/ontolo
 import { DocumentationViewerComponent } from './partials/documentation-viewer/documentation-viewer.component';
 import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-demo/authentication-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
+import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
 
 @NgModule({
     declarations: [
@@ -86,7 +86,6 @@ import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-pan
         LoginComponent,
         ActionDemoComponent,
         SortButtonComponent,
-        ModuleSubHeaderComponent,
         AdminImageComponent,
         SearchDemoComponent,
         SearchResultComponent,
@@ -106,7 +105,8 @@ import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-pan
         OntologyComponent,
         DocumentationViewerComponent,
         AuthenticationDemoComponent,
-        SearchPanelComponent
+        SearchPanelComponent,
+        TrimBracketsPipe
     ],
     entryComponents: [
         // LoginFormComponent

@@ -23,6 +23,18 @@
     </div>
 </mat-card>
 
+<mat-card class="example-viewer">
+    <app-example-viewer [example]="exampleGetUser"></app-example-viewer>
+
+    <div class="demo">
+        <div *ngIf="user && !usersService.loading">
+            <p><strong>{{user.familyName}}, </strong>
+                {{user.givenName}} ({{user.email}})
+            </p>
+        </div>
+    </div>
+</mat-card>
+
 
 <mat-card class="example-viewer">
     <app-example-viewer [example]="exampleGetUser"></app-example-viewer>

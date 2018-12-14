@@ -10,6 +10,16 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 
+                <div>
+                    <mat-list-item>
+                        <button mat-button [routerLink]="item.name + '/readme'" disableRipple
+                                routerLinkActive="active-link" class="demo-nav-item">
+                            README
+                            <!--<mat-icon>keyboard_arrow_right</mat-icon>-->
+                        </button>
+                    </mat-list-item>
+                </div>
+
                 <div *ngIf="item.children">
                     <mat-list-item *ngFor="let child of item.children | sortBy: 'name'">
                         <button mat-button [routerLink]="item.name + '/' + child.name" disableRipple

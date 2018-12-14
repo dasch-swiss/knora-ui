@@ -20,14 +20,14 @@
     "tags": [
       {
         "type": "returns",
-        "string": "the metadata of all ontologies (Observable of ApiServiceResult).",
+        "string": "Observable<ApiServiceResult> - the metadata of all ontologies.",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>the metadata of all ontologies (Observable of ApiServiceResult).</p>"
+        "description": "<p>Observable<ApiServiceResult> - the metadata of all ontologies.</p>"
       }
     ],
     "description": {
@@ -67,14 +67,14 @@
       },
       {
         "type": "returns",
-        "string": "the requested ontology (Observable of ApiServiceResult).",
+        "string": "Observable<ApiServiceResult> - the requested ontology.",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>the requested ontology (Observable of ApiServiceResult).</p>"
+        "description": "<p>Observable<ApiServiceResult> - the requested ontology.</p>"
       }
     ],
     "description": {
@@ -114,14 +114,14 @@
       },
       {
         "type": "returns",
-        "string": "the requested resource class definitions (Observable of ApiServiceResult).",
+        "string": "Observable<ApiServiceResult> - the requested resource class definitions.",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>the requested resource class definitions (Observable of ApiServiceResult).</p>"
+        "description": "<p>Observable<ApiServiceResult> - the requested resource class definitions.</p>"
       }
     ],
     "description": {
@@ -161,14 +161,14 @@
       },
       {
         "type": "returns",
-        "string": "the requested properties (Observable of ApiServiceResult).",
+        "string": "Observable<ApiServiceResult> - the requested properties.",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>the requested properties (Observable of ApiServiceResult).</p>"
+        "description": "<p>Observable<ApiServiceResult> - the requested properties.</p>"
       }
     ],
     "description": {

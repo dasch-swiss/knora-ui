@@ -20,22 +20,19 @@
     "tags": [
       {
         "type": "returns",
-        "string": "{Observable<User[]>}",
-        "types": [
-          "Observable.<Array.<User>>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<code>Array</code>.&lt;<a href=\"User.html\">User</a>&gt;&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<User[]>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable&lt;User[]&gt;}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable&lt;User[]&gt;</p>"
       }
     ],
     "description": {
-      "full": "<p>returns a list of all users</p>",
-      "summary": "<p>returns a list of all users</p>",
+      "full": "<p>Returns a list of all users.</p>",
+      "summary": "<p>Returns a list of all users.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -70,22 +67,19 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<User>}",
-        "types": [
-          "Observable.<User>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<User>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<User>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
-      "full": "<p>Get user by username, email or by iri</p>",
-      "summary": "<p>Get user by username, email or by iri</p>",
+      "full": "<p>Get user by username, email or by iri.</p>",
+      "summary": "<p>Get user by username, email or by iri.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -121,17 +115,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<User>}",
-        "types": [
-          "Observable.<User>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<User>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<User>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -187,17 +178,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<User>}",
-        "types": [
-          "Observable.<User>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<User>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<User>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -253,17 +241,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<User>}",
-        "types": [
-          "Observable.<User>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<User>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<User>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -319,17 +304,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<User>}",
-        "types": [
-          "Observable.<User>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<User>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<User>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -385,19 +367,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of User",
+        "string": "Observable<User>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of User</p>"
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
-      "full": "<p>Add user to the admin system</p>",
-      "summary": "<p>Add user to the admin system</p>",
+      "full": "<p>Add user to the admin system.</p>",
+      "summary": "<p>Add user to the admin system.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -433,14 +415,14 @@
       },
       {
         "type": "returns",
-        "string": "Observable of User",
+        "string": "Observable<User>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of User</p>"
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -511,14 +493,14 @@
       },
       {
         "type": "returns",
-        "string": "Observable of User",
+        "string": "Observable<User>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of User</p>"
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -589,14 +571,14 @@
       },
       {
         "type": "returns",
-        "string": "Observable of User",
+        "string": "Observable<User>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of User</p>"
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -652,14 +634,14 @@
       },
       {
         "type": "returns",
-        "string": "Observable of User",
+        "string": "Observable<User>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of User</p>"
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -700,14 +682,14 @@
       },
       {
         "type": "returns",
-        "string": "Observable of User",
+        "string": "Observable<User>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of User</p>"
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -763,14 +745,14 @@
       },
       {
         "type": "returns",
-        "string": "Observable of User",
+        "string": "Observable<User>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of User</p>"
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {

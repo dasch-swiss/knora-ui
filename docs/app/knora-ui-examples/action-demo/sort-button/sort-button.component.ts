@@ -60,7 +60,7 @@ export class SortButtonComponent implements OnInit {
         name: 'sortbutton',
         code: {
             html: `
-    <kui-sort-button [sortProps]="sortProps" [(sortKey)]="sortKey"></kui-sort-button>
+    <kui-sort-button [sortProps]="sortProps" [(sortKey)]="sortKey" [position]="'right'"></kui-sort-button>
 
     <ul>
         <li *ngFor="let item of list | sortBy: sortKey">

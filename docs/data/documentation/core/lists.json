@@ -1,35 +1,9 @@
 [
   {
-    "tags": [
-      {
-        "type": "param",
-        "string": "{string} projectIri (optional)",
-        "name": "projectIri",
-        "description": "<p>(optional)</p>",
-        "types": [
-          "string"
-        ],
-        "typesDescription": "<code>string</code>",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
-        "variable": false
-      },
-      {
-        "type": "returns",
-        "string": "Observable of ListNodeInfo[]",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
-        "optional": false,
-        "description": "<p>Observable of ListNodeInfo[]</p>"
-      }
-    ],
+    "tags": [],
     "description": {
-      "full": "<p>returns a list of all lists</p>",
-      "summary": "<p>returns a list of all lists</p>",
+      "full": "<p>Request information about lists from Knora.</p>",
+      "summary": "<p>Request information about lists from Knora.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -37,8 +11,52 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 33,
-    "codeStart": 39,
+    "line": 21,
+    "codeStart": 24,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ListsService extends ApiService {\n\n    private path: string = '/admin/lists';\n\n\n    // ------------------------------------------------------------------------\n    // GET\n    // ------------------------------------------------------------------------",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} [projectIri]",
+        "name": "[projectIri]",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} [projectIri]</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ListNodeInfo[]>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable&lt;ListNodeInfo[]&gt;</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Returns a list of all lists.</p>",
+      "summary": "<p>Returns a list of all lists.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 36,
+    "codeStart": 42,
     "code": "getLists(projectIri?: string): Observable<ListNodeInfo[]> {\n    if (projectIri) {\n        this.path += '?projectIri=' + encodeURIComponent(projectIri);\n    }\n    return this.httpGet(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListsResponse).lists),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -65,19 +83,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of List",
+        "string": "Observable<List>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of List</p>"
+        "description": "<p>Observable<List></p>"
       }
     ],
     "description": {
-      "full": "<p>return a list object</p>",
-      "summary": "<p>return a list object</p>",
+      "full": "<p>Return a list object.</p>",
+      "summary": "<p>Return a list object.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -85,8 +103,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 49,
-    "codeStart": 55,
+    "line": 52,
+    "codeStart": 58,
     "code": "getList(listIri: string): Observable<List> {\n    return this.httpGet(this.path + '/' + encodeURIComponent(listIri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListResponse).list),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -113,19 +131,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ListInfo",
+        "string": "Observable<ListInfo>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of ListInfo</p>"
+        "description": "<p>Observable<ListInfo></p>"
       }
     ],
     "description": {
-      "full": "<p>return a list info object</p>",
-      "summary": "<p>return a list info object</p>",
+      "full": "<p>Return a list info object.</p>",
+      "summary": "<p>Return a list info object.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -133,8 +151,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 62,
-    "codeStart": 68,
+    "line": 65,
+    "codeStart": 71,
     "code": "getListInfo(listIri: string): Observable<ListInfo> {\n    this.path += '/infos/' + encodeURIComponent(listIri);\n    return this.httpGet(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -161,19 +179,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ListNodeInfo",
+        "string": "Observable<ListNodeInfo>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of ListNodeInfo</p>"
+        "description": "<p>Observable<ListNodeInfo></p>"
       }
     ],
     "description": {
-      "full": "<p>return a list node info object</p>",
-      "summary": "<p>return a list node info object</p>",
+      "full": "<p>Return a list node info object.</p>",
+      "summary": "<p>Return a list node info object.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -181,8 +199,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 76,
-    "codeStart": 82,
+    "line": 79,
+    "codeStart": 85,
     "code": "getListNodeInfo(nodeIri: string): Observable<ListNodeInfo> {\n    this.path += '/nodes/' + encodeURIComponent(nodeIri);\n    return this.httpGet(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListNodeInfoResponse).nodeinfo),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -209,19 +227,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of List",
+        "string": "Observable<List>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of List</p>"
+        "description": "<p>Observable<List></p>"
       }
     ],
     "description": {
-      "full": "<p>create new list</p>",
-      "summary": "<p>create new list</p>",
+      "full": "<p>Create new list.</p>",
+      "summary": "<p>Create new list.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -229,8 +247,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 95,
-    "codeStart": 101,
+    "line": 98,
+    "codeStart": 104,
     "code": "createList(payload: ListCreatePayload): Observable<List> {\n    return this.httpPost(this.path, payload).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListResponse).list),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// PUT\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -257,19 +275,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of ListInfo",
+        "string": "Observable<ListInfo>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of ListInfo</p>"
+        "description": "<p>Observable<ListInfo></p>"
       }
     ],
     "description": {
-      "full": "<p>edit list data</p>",
-      "summary": "<p>edit list data</p>",
+      "full": "<p>Edit list data.</p>",
+      "summary": "<p>Edit list data.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -277,8 +295,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 113,
-    "codeStart": 119,
+    "line": 116,
+    "codeStart": 122,
     "code": "updateListInfo(payload: ListInfoUpdatePayload): Observable<ListInfo> {\n    this.path += '/infos/' + encodeURIComponent(payload.listIri);\n    return this.httpPut(this.path, payload).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),\n        catchError(this.handleJsonError)\n    );\n\n}\n}",
     "ctx": {
       "type": "method",

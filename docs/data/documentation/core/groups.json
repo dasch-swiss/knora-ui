@@ -1,21 +1,9 @@
 [
   {
-    "tags": [
-      {
-        "type": "returns",
-        "string": "Observable of Group[]",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
-        "optional": false,
-        "description": "<p>Observable of Group[]</p>"
-      }
-    ],
+    "tags": [],
     "description": {
-      "full": "<p>return a list of all groups</p>",
-      "summary": "<p>return a list of all groups</p>",
+      "full": "<p>Request information about group from Knora.</p>",
+      "summary": "<p>Request information about group from Knora.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -23,8 +11,37 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 14,
-    "codeStart": 19,
+    "line": 7,
+    "codeStart": 10,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class GroupsService extends ApiService {\n\n    private path: string = '/admin/groups';",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "Observable<Group[]>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable&lt;Group[]&gt;</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Return a list of all groups.</p>",
+      "summary": "<p>Return a list of all groups.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 17,
+    "codeStart": 22,
     "code": "getAllGroups(): Observable<Group[]> {\n    return this.httpGet(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupsResponse).groups),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -51,19 +68,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable of Group",
+        "string": "Observable<Group>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable of Group</p>"
+        "description": "<p>Observable<Group></p>"
       }
     ],
     "description": {
-      "full": "<p>return a group object (filter by IRI)</p>",
-      "summary": "<p>return a group object (filter by IRI)</p>",
+      "full": "<p>Return a group object (filter by IRI).</p>",
+      "summary": "<p>Return a group object (filter by IRI).</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -71,8 +88,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 26,
-    "codeStart": 32,
+    "line": 29,
+    "codeStart": 35,
     "code": "getGroupByIri(iri: string): Observable<Group> {\n    this.path += '/' + encodeURIComponent(iri);\n\n    return this.httpGet(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}\n\n}",
     "ctx": {
       "type": "method",

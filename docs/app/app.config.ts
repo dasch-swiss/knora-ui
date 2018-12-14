@@ -42,13 +42,13 @@ export class AppDemo {
                 name: 'admin-image',
                 label: 'AdminImage',
                 type: 'Directive',
-                stackblitz: true
+                stackblitz: false
             },
             {
                 name: 'existing-name',
                 label: 'ExistingName',
                 type: 'Directive',
-                stackblitz: false
+                stackblitz: true
             },
             {
                 name: 'key',
@@ -85,7 +85,7 @@ export class AppDemo {
                 label: 'ResourceService'
             },
             {
-                name: 'search-service',
+                name: 'search',
                 label: 'SearchService'
             },
             {
@@ -101,11 +101,11 @@ export class AppDemo {
                 label: 'IncomingService'
             },
             {
-                name: 'gravsearch',
+                name: 'grav-search',
                 label: 'GravSearchService'
             },
             {
-                name: 'convertjsonld',
+                name: 'convert-jsonld',
                 label: 'ConvertJsonLD'
             }
         ]
@@ -120,6 +120,11 @@ export class AppDemo {
                 name: 'login-form',
                 label: 'LoginForm',
                 type: 'Component',
+                stackblitz: false
+            },
+            {
+                name: 'authentication',
+                label: 'AuthenticationService',
                 stackblitz: false
             }
         ]
@@ -144,7 +149,7 @@ export class AppDemo {
         published: false,
         label: 'Viewer module',
         children: [
-            {
+            /* {
                 name: 'resources',
                 label: 'Resources'
             },
@@ -155,7 +160,7 @@ export class AppDemo {
             {
                 name: 'views',
                 label: 'Views'
-            }
+            } */
         ]
     };
 

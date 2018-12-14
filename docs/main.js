@@ -4,14 +4,14 @@
 /*!**************************************************!*\
   !*** ./dist/@knora/action/fesm5/knora-action.js ***!
   \**************************************************/
-/*! exports provided: ProgressIndicatorComponent, SortButtonComponent, ResourceDialogComponent, AdminImageDirective, GndDirective, ExistingNameDirective, existingNameValidator, existingNamesValidator, notAllowed, JdnDatepickerDirective, KuiActionModule, ReversePipe, KeyPipe, SortByPipe */
+/*! exports provided: ɵa, ProgressIndicatorComponent, SortButtonComponent, AdminImageDirective, GndDirective, ExistingNameDirective, existingNameValidator, existingNamesValidator, notAllowed, JdnDatepickerDirective, KuiActionModule, ReversePipe, KeyPipe, SortByPipe */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return ResourceDialogComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProgressIndicatorComponent", function() { return ProgressIndicatorComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SortButtonComponent", function() { return SortButtonComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceDialogComponent", function() { return ResourceDialogComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminImageDirective", function() { return AdminImageDirective; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GndDirective", function() { return GndDirective; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExistingNameDirective", function() { return ExistingNameDirective; });
@@ -24,13 +24,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KeyPipe", function() { return KeyPipe; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SortByPipe", function() { return SortByPipe; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ts-md5/dist/md5 */ "./node_modules/ts-md5/dist/md5.js");
-/* harmony import */ var ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! jdnconvertiblecalendardateadapter */ "./node_modules/jdnconvertiblecalendardateadapter/fesm5/jdnconvertiblecalendardateadapter.js");
+/* harmony import */ var ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ts-md5/dist/md5 */ "./node_modules/ts-md5/dist/md5.js");
+/* harmony import */ var ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jdnconvertiblecalendardateadapter */ "./node_modules/jdnconvertiblecalendardateadapter/fesm5/jdnconvertiblecalendardateadapter.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 
@@ -54,7 +54,7 @@ var ProgressIndicatorComponent = /** @class */ /*@__PURE__*/ (function () {
      */
     function ProgressIndicatorComponent() {
         /**
-         * @param {string} color (optional)
+         * @param {string} [color=primary]
          *
          * Parameter to customize the appearance of the loader.
          * Hexadecimal color value e.g. #00ff00 or similar color values 'red', 'green' etc.
@@ -65,12 +65,25 @@ var ProgressIndicatorComponent = /** @class */ /*@__PURE__*/ (function () {
     };
     return ProgressIndicatorComponent;
 }());
+/**
+ * A component with a list of properties to sort a list by them.
+ */
 var SortButtonComponent = /** @class */ /*@__PURE__*/ (function () {
     function SortButtonComponent() {
+        /**
+         *
+         */
         this.sortKeyChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.menuXPos = 'after';
+        /**
+         *
+         */
         this.position = 'left';
     }
+    /**
+     *
+     * @param value
+     */
     SortButtonComponent.prototype.sortKey = function (value) {
         this.activeKey = value;
     };
@@ -80,63 +93,14 @@ var SortButtonComponent = /** @class */ /*@__PURE__*/ (function () {
         }
     };
     /**
-     * TODO: add description
+     * @ignore
+     *
      * @param {string} key
      */
     SortButtonComponent.prototype.sortBy = function (key) {
         this.sortKeyChange.emit(key);
     };
     return SortButtonComponent;
-}());
-var ResourceDialogComponent = /** @class */ /*@__PURE__*/ (function () {
-    function ResourceDialogComponent(_dialogRef, data) {
-        this._dialogRef = _dialogRef;
-        this.data = data;
-        this.fullSize = false;
-    }
-    /**
-     * Creates a configuration object for `MatDialog`.
-     *
-     * @param resourceIri the Iri of the resource to be displayed in a dialog.
-     * @param widthPct width of the dialog in percentage.
-     * @param heightPct height of the dialog in percentage.
-     * @returns
-     */
-    ResourceDialogComponent.createConfiguration = function (resourceIri, widthPct, heightPct) {
-        if (widthPct === void 0) {
-            widthPct = 60;
-        }
-        if (heightPct === void 0) {
-            heightPct = 60;
-        }
-        var config = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogConfig"]();
-        config.height = widthPct + "%";
-        config.width = heightPct + "%";
-        config.data = {
-            iri: resourceIri
-        };
-        config.panelClass = 'resizable';
-        return config;
-    };
-    ResourceDialogComponent.prototype.ngOnInit = function () {
-        this.fullSize = (!this.data.fullSize);
-        // start in full size
-        if (this._dialogRef) {
-            this.toggleFullSize();
-        }
-    };
-    ResourceDialogComponent.prototype.toggleFullSize = function () {
-        this.fullSize = (!this.fullSize);
-        if (this.fullSize) {
-            this._dialogRef.updateSize('100vw', '100vh');
-            this._dialogRef.updatePosition();
-        }
-        else {
-            this._dialogRef.updateSize('80vw', 'auto');
-            this._dialogRef.updatePosition();
-        }
-    };
-    return ResourceDialogComponent;
 }());
 /**
  * @ignore
@@ -187,7 +151,7 @@ var AdminImageDirective = /** @class */ /*@__PURE__*/ (function () {
                     this.source = AdminImageConfig.defaultUser;
                 }
                 else {
-                    this.source = 'http://www.gravatar.com/avatar/' + ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_2__["Md5"].hashStr(this.image) + '?d=mp';
+                    this.source = 'http://www.gravatar.com/avatar/' + ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_1__["Md5"].hashStr(this.image) + '?d=mp';
                 }
                 break;
             case 'project':
@@ -222,13 +186,13 @@ var GndDirective = /** @class */ /*@__PURE__*/ (function () {
     });
     GndDirective.prototype.ngOnChanges = function () {
         if (this.gnd.length < 30) {
-            if (this.gnd.indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].GNDPrefix) === 0) {
+            if (this.gnd.indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].GNDPrefix) === 0) {
                 // GND/IAF identifier
-                this.el.nativeElement.innerHTML = "<a href=\"" + (_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].GNDResolver + this.gnd.replace(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].GNDPrefix, '')) + "\" target=\"_blank\">" + this.gnd + "</a>";
+                this.el.nativeElement.innerHTML = "<a href=\"" + (_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].GNDResolver + this.gnd.replace(_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].GNDPrefix, '')) + "\" target=\"_blank\">" + this.gnd + "</a>";
             }
-            else if (this.gnd.indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].VIAFPrefix) === 0) {
+            else if (this.gnd.indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].VIAFPrefix) === 0) {
                 // VIAF identifier
-                this.el.nativeElement.innerHTML = "<a href=\"" + (_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].VIAFResolver + this.gnd.replace(_knora_core__WEBPACK_IMPORTED_MODULE_3__["KnoraConstants"].VIAFPrefix, '')) + "\" target=\"_blank\">" + this.gnd + "</a>";
+                this.el.nativeElement.innerHTML = "<a href=\"" + (_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].VIAFResolver + this.gnd.replace(_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].VIAFPrefix, '')) + "\" target=\"_blank\">" + this.gnd + "</a>";
             }
             else {
                 // no identifier, leave unchanged
@@ -244,7 +208,7 @@ var GndDirective = /** @class */ /*@__PURE__*/ (function () {
 }());
 var ExistingNameDirective = /** @class */ /*@__PURE__*/ (function () {
     function ExistingNameDirective() {
-        this.valFn = _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].nullValidator;
+        this.valFn = _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].nullValidator;
     }
     ExistingNameDirective.prototype.ngOnChanges = function (changes) {
         var change = changes['existingName'];
@@ -254,7 +218,7 @@ var ExistingNameDirective = /** @class */ /*@__PURE__*/ (function () {
             this.valFn = existingNameValidator(re);
         }
         else {
-            this.valFn = _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].nullValidator;
+            this.valFn = _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].nullValidator;
         }
     };
     ExistingNameDirective.prototype.validate = function (control) {
@@ -279,7 +243,7 @@ function existingNameValidator(nameRe) {
     };
 }
 /**
- * The same as above, but with an array list of existing names.
+ *  Validation of existing name value with an array list of existing names.
  *
  * @param {RegExp} nameAr
  * @returns ValidatorFn
@@ -292,7 +256,7 @@ function existingNamesValidator(nameAr) {
         }
         var no;
         try {
-            for (var nameAr_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(nameAr), nameAr_1_1 = nameAr_1.next(); !nameAr_1_1.done; nameAr_1_1 = nameAr_1.next()) {
+            for (var nameAr_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_3__["__values"])(nameAr), nameAr_1_1 = nameAr_1.next(); !nameAr_1_1.done; nameAr_1_1 = nameAr_1.next()) {
                 var existing = nameAr_1_1.value;
                 no = existing.test(name);
                 if (no) {
@@ -319,7 +283,7 @@ function existingNamesValidator(nameAr) {
     };
 }
 /**
- * TODO: add description
+ * @ignore
  *
  * @param {RegExp} pattern
  * @param {string} regType
@@ -356,10 +320,11 @@ var JdnDatepickerDirective = /** @class */ /*@__PURE__*/ (function () {
  *
  *
  * @example
+ *
  * <ul>
- *              <li *ngFor="let item of list | key">
- *                {{ item.key }}: {{item.value}}
- *              </li>
+ *     <li *ngFor="let item of list | key">
+ *         {{ item.key }}: {{item.value}}
+ *     </li>
  * </ul>
  *
  */
@@ -421,6 +386,56 @@ var SortByPipe = /** @class */ /*@__PURE__*/ (function () {
     };
     return SortByPipe;
 }());
+var ResourceDialogComponent = /** @class */ /*@__PURE__*/ (function () {
+    function ResourceDialogComponent(_dialogRef, data) {
+        this._dialogRef = _dialogRef;
+        this.data = data;
+        this.fullSize = false;
+    }
+    /**
+     * Creates a configuration object for `MatDialog`.
+     *
+     * @param resourceIri the Iri of the resource to be displayed in a dialog.
+     * @param widthPct width of the dialog in percentage.
+     * @param heightPct height of the dialog in percentage.
+     * @returns
+     */
+    ResourceDialogComponent.createConfiguration = function (resourceIri, widthPct, heightPct) {
+        if (widthPct === void 0) {
+            widthPct = 60;
+        }
+        if (heightPct === void 0) {
+            heightPct = 60;
+        }
+        var config = new _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialogConfig"]();
+        config.height = widthPct + "%";
+        config.width = heightPct + "%";
+        config.data = {
+            iri: resourceIri
+        };
+        config.panelClass = 'resizable';
+        return config;
+    };
+    ResourceDialogComponent.prototype.ngOnInit = function () {
+        this.fullSize = (!this.data.fullSize);
+        // start in full size
+        if (this._dialogRef) {
+            this.toggleFullSize();
+        }
+    };
+    ResourceDialogComponent.prototype.toggleFullSize = function () {
+        this.fullSize = (!this.fullSize);
+        if (this.fullSize) {
+            this._dialogRef.updateSize('100vw', '100vh');
+            this._dialogRef.updatePosition();
+        }
+        else {
+            this._dialogRef.updateSize('80vw', 'auto');
+            this._dialogRef.updatePosition();
+        }
+    };
+    return ResourceDialogComponent;
+}());
 /**
  * This module is part of the Knora-ui modules:
  * https://github.com/dhlab-basel/Knora-ui
@@ -458,7 +473,7 @@ var KuiActionModule = /** @class */ /*@__PURE__*/ (function () {
 /*!******************************************************!*\
   !*** ./dist/@knora/action/knora-action.ngfactory.js ***!
   \******************************************************/
-/*! exports provided: KuiActionModuleNgFactory, RenderType_ProgressIndicatorComponent, View_ProgressIndicatorComponent_0, View_ProgressIndicatorComponent_Host_0, ProgressIndicatorComponentNgFactory, RenderType_SortButtonComponent, View_SortButtonComponent_0, View_SortButtonComponent_Host_0, SortButtonComponentNgFactory, RenderType_ResourceDialogComponent, View_ResourceDialogComponent_0, View_ResourceDialogComponent_Host_0, ResourceDialogComponentNgFactory */
+/*! exports provided: KuiActionModuleNgFactory, RenderType_ProgressIndicatorComponent, View_ProgressIndicatorComponent_0, View_ProgressIndicatorComponent_Host_0, ProgressIndicatorComponentNgFactory, RenderType_SortButtonComponent, View_SortButtonComponent_0, View_SortButtonComponent_Host_0, SortButtonComponentNgFactory, RenderType_ɵa, View_ɵa_0, View_ɵa_Host_0, ɵaNgFactory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -472,10 +487,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_SortButtonComponent_0", function() { return View_SortButtonComponent_0; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_SortButtonComponent_Host_0", function() { return View_SortButtonComponent_Host_0; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SortButtonComponentNgFactory", function() { return SortButtonComponentNgFactory; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderType_ResourceDialogComponent", function() { return RenderType_ResourceDialogComponent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_ResourceDialogComponent_0", function() { return View_ResourceDialogComponent_0; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_ResourceDialogComponent_Host_0", function() { return View_ResourceDialogComponent_Host_0; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceDialogComponentNgFactory", function() { return ResourceDialogComponentNgFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderType_ɵa", function() { return RenderType_ɵa; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_ɵa_0", function() { return View_ɵa_0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_ɵa_Host_0", function() { return View_ɵa_Host_0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵaNgFactory", function() { return ɵaNgFactory; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
@@ -584,10 +599,10 @@ function View_SortButtonComponent_0(_l) {
 function View_SortButtonComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-sort-button", [], null, null, null, View_SortButtonComponent_0, RenderType_SortButtonComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_1__["SortButtonComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var SortButtonComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-sort-button", _knora_action__WEBPACK_IMPORTED_MODULE_1__["SortButtonComponent"], View_SortButtonComponent_Host_0, { sortProps: "sortProps", position: "position", sortKey: "sortKey" }, { sortKeyChange: "sortKeyChange" }, []);
 
-var styles_ResourceDialogComponent = [""];
-var RenderType_ResourceDialogComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_ResourceDialogComponent, data: {} });
+var styles_ɵa = [""];
+var RenderType_ɵa = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_ɵa, data: {} });
 
-function View_ResourceDialogComponent_0(_l) {
+function View_ɵa_0(_l) {
     return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 17, "div", [["class", "object-dialog"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 16, "div", [["class", "dialog-header"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](2, 0, null, null, 4, "span", [["class", "dialog-action-button"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, null, 3, "button", [["class", "resize-button"], ["mat-icon-button", ""]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
             var ad = true;
             var _co = _v.component;
@@ -606,8 +621,8 @@ function View_ResourceDialogComponent_0(_l) {
             return ad;
         }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_19__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_19__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](14, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_11__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_18__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](15, 0, null, 0, 2, "mat-icon", [["class", "mat-icon"], ["role", "img"]], [[2, "mat-icon-inline", null]], null, null, _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_16__["View_MatIcon_0"], _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_16__["RenderType_MatIcon"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](16, 638976, null, 0, _angular_material_icon__WEBPACK_IMPORTED_MODULE_13__["MatIcon"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_13__["MatIconRegistry"], [8, null]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, 0, ["close"]))], function (_ck, _v) { _ck(_v, 6, 0); _ck(_v, 16, 0); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).disabled || null); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._animationMode === "NoopAnimations"); _ck(_v, 3, 0, currVal_0, currVal_1); var currVal_2 = (_co.fullSize ? "call_received" : "call_made"); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 6).inline; _ck(_v, 5, 0, currVal_2, currVal_3); var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 14).disabled || null); var currVal_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 14)._animationMode === "NoopAnimations"); _ck(_v, 13, 0, currVal_4, currVal_5); var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16).inline; _ck(_v, 15, 0, currVal_6); });
 }
-function View_ResourceDialogComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-resource-dialog", [], null, null, null, View_ResourceDialogComponent_0, RenderType_ResourceDialogComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_1__["ResourceDialogComponent"], [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_20__["MatDialogRef"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_20__["MAT_DIALOG_DATA"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var ResourceDialogComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-resource-dialog", _knora_action__WEBPACK_IMPORTED_MODULE_1__["ResourceDialogComponent"], View_ResourceDialogComponent_Host_0, {}, {}, []);
+function View_ɵa_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-resource-dialog", [], null, null, null, View_ɵa_0, RenderType_ɵa)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_1__["ɵa"], [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_20__["MatDialogRef"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_20__["MAT_DIALOG_DATA"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ɵaNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-resource-dialog", _knora_action__WEBPACK_IMPORTED_MODULE_1__["ɵa"], View_ɵa_Host_0, {}, {}, []);
 
 
 
@@ -1153,30 +1168,34 @@ __webpack_require__.r(__webpack_exports__);
 var KuiCoreConfig = /** @class */ /*@__PURE__*/ (function () {
     function KuiCoreConfig() {
         /**
-         * (Salsah) name of the app
+         * name of the app e.g. 'SALSAH'
          * @type {string}
          */
         this.name = undefined;
         /**
-         * (knora) url of the api
+         * url of the app e.g. 'https://salsah.org'
+         * @type {undefined}
+         */
+        this.app = undefined;
+        /**
+         * url of the api e.g. 'https://api.knora.org'
          * @type {string}
          */
         this.api = undefined;
         /**
-         * (sipi) url of media/file server
+         * url of media/file server e.g. 'https://iiif.sipi.io'
          * @type {string}
          */
         this.media = undefined;
-        /**
-         * (salsah) url of the app
-         * @type {undefined}
-         */
-        this.app = undefined;
     }
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('name', String),
         Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
     ], KuiCoreConfig.prototype, "name", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('app', String),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+    ], KuiCoreConfig.prototype, "app", void 0);
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('api', String),
         Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
@@ -1185,10 +1204,6 @@ var KuiCoreConfig = /** @class */ /*@__PURE__*/ (function () {
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('media', String),
         Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
     ], KuiCoreConfig.prototype, "media", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-        Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('app', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
-    ], KuiCoreConfig.prototype, "app", void 0);
     KuiCoreConfig = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('KuiCoreConfig')
     ], KuiCoreConfig);
@@ -2781,6 +2796,9 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
     ApiService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["defineInjectable"])({ factory: function ApiService_Factory() { return new ApiService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])("config")); }, token: ApiService, providedIn: "root" });
     return ApiService;
 }());
+/**
+ * Request information about group from Knora.
+ */
 var GroupsService = /** @class */ /*@__PURE__*/ (function (_super) {
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(GroupsService, _super);
     function GroupsService() {
@@ -2789,18 +2807,18 @@ var GroupsService = /** @class */ /*@__PURE__*/ (function (_super) {
         return _this;
     }
     /**
-     * return a list of all groups
+     * Return a list of all groups.
      *
-     * @returns Observable of Group[]
+     * @returns Observable<Group[]>
      */
     GroupsService.prototype.getAllGroups = function () {
         return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(GroupsResponse).groups; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
-     * return a group object (filter by IRI)
+     * Return a group object (filter by IRI).
      *
      * @param {string} iri
-     * @returns Observable of Group
+     * @returns Observable<Group>
      */
     GroupsService.prototype.getGroupByIri = function (iri) {
         this.path += '/' + encodeURIComponent(iri);
@@ -2809,6 +2827,9 @@ var GroupsService = /** @class */ /*@__PURE__*/ (function (_super) {
     GroupsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["defineInjectable"])({ factory: function GroupsService_Factory() { return new GroupsService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])("config")); }, token: GroupsService, providedIn: "root" });
     return GroupsService;
 }(ApiService));
+/**
+ * Request information about lists from Knora.
+ */
 var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ListsService, _super);
     function ListsService() {
@@ -2820,10 +2841,10 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // GET
     // ------------------------------------------------------------------------
     /**
-     * returns a list of all lists
+     * Returns a list of all lists.
      *
-     * @param {string} projectIri (optional)
-     * @returns Observable of ListNodeInfo[]
+     * @param {string} [projectIri]
+     * @returns Observable<ListNodeInfo[]>
      */
     ListsService.prototype.getLists = function (projectIri) {
         if (projectIri) {
@@ -2832,29 +2853,29 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ListsResponse).lists; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
-     * return a list object
+     * Return a list object.
      *
      * @param {string} listIri
-     * @returns Observable of List
+     * @returns Observable<List>
      */
     ListsService.prototype.getList = function (listIri) {
         return this.httpGet(this.path + '/' + encodeURIComponent(listIri)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ListResponse).list; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
-     * return a list info object
+     * Return a list info object.
      *
      * @param {string} listIri
-     * @returns Observable of ListInfo
+     * @returns Observable<ListInfo>
      */
     ListsService.prototype.getListInfo = function (listIri) {
         this.path += '/infos/' + encodeURIComponent(listIri);
         return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ListInfoResponse).listinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
-     * return a list node info object
+     * Return a list node info object.
      *
      * @param {string} nodeIri
-     * @returns Observable of ListNodeInfo
+     * @returns Observable<ListNodeInfo>
      */
     ListsService.prototype.getListNodeInfo = function (nodeIri) {
         this.path += '/nodes/' + encodeURIComponent(nodeIri);
@@ -2864,10 +2885,10 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // POST
     // ------------------------------------------------------------------------
     /**
-     * create new list
+     * Create new list.
      *
      * @param {ListCreatePayload} payload
-     * @returns Observable of List
+     * @returns Observable<List>
      */
     ListsService.prototype.createList = function (payload) {
         return this.httpPost(this.path, payload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ListResponse).list; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
@@ -2876,10 +2897,10 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // PUT
     // ------------------------------------------------------------------------
     /**
-     * edit list data
+     * Edit list data.
      *
      * @param {ListInfoUpdatePayload} payload
-     * @returns Observable of ListInfo
+     * @returns Observable<ListInfo>
      */
     ListsService.prototype.updateListInfo = function (payload) {
         this.path += '/infos/' + encodeURIComponent(payload.listIri);
@@ -2888,6 +2909,9 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     ListsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["defineInjectable"])({ factory: function ListsService_Factory() { return new ListsService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])("config")); }, token: ListsService, providedIn: "root" });
     return ListsService;
 }(ApiService));
+/**
+ * Request information about projects from Knora.
+ */
 var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ProjectsService, _super);
     function ProjectsService() {
@@ -2897,90 +2921,90 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // GET
     // ------------------------------------------------------------------------
     /**
-     * returns a list of all projects
+     * Returns a list of all projects.
      *
-     * @returns Observable of Project[]
+     * @returns Observable<Project[]>
      */
     ProjectsService.prototype.getAllProjects = function () {
         return this.httpGet('/admin/projects').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ProjectsResponse).projects; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
-     * returns a project object
+     * Returns a project object.
      *
-     * @param {string} iri
-     * @returns Observable of Project
+     * @param {string} iri identifier of the project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.getProjectByIri = function (iri) {
         var url = '/admin/projects/' + encodeURIComponent(iri);
         return this.getProject(url);
     };
     /**
-     * returns a project object
+     * Returns a project object.
      *
-     * @param {string} shortname
-     * @returns Observable of Project
+     * @param {string} shortname short name that is used to identify the project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.getProjectByShortname = function (shortname) {
         var url = '/admin/projects/' + shortname + '?identifier=shortname';
         return this.getProject(url);
     };
     /**
-     * returns a project object
+     * Returns a project object.
      *
-     * @param {string} shortcode
-     * @returns Observable of Project
+     * @param {string} shortcode hexadecimal code that uniquely identifies the project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.getProjectByShortcode = function (shortcode) {
         var url = '/admin/projects/' + shortcode + '?identifier=shortcode';
         return this.getProject(url);
     };
     /**
-     * Helper method combining project retrieval
+     * Helper method combining project retrieval.
      *
      * @param {string} url
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.getProject = function (url) {
         return this.httpGet(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
-     * returns all project members
-     * project identifier is project id (iri)
+     * Returns all project members.
+     * Project identifier is project id (iri).
      *
-     * @param {string} iri
-     * @returns Observable of User[]
+     * @param {string} iri identifier of the project
+     * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembersByIri = function (iri) {
         var url = '/admin/projects/members/' + encodeURIComponent(iri);
         return this.getProjectMembers(url);
     };
     /**
-     * returns all project members
-     * project identifier is shortname
+     * Returns all project members.
+     * Project identifier is shortname.
      *
-     * @param {string} shortname
-     * @returns Observable of User[]
+     * @param {string} shortname short name that is used to identify the project
+     * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembersByShortname = function (shortname) {
         var url = '/admin/projects/members/' + shortname + '?identifier=shortname';
         return this.getProjectMembers(url);
     };
     /**
-     * returns all project members
-     * project identifier is shortcode
+     * Returns all project members.
+     * Project identifier is shortcode.
      *
-     * @param {string} shortcode
-     * @returns {Observable<User[]>}
+     * @param {string} shortcode hexadecimal code that uniquely identifies the project
+     * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembersByShortcode = function (shortcode) {
         var url = '/admin/projects/members/' + shortcode + '?identifier=shortcode';
         return this.getProjectMembers(url);
     };
     /**
-     * Helper method combining project member retrieval
+     * Helper method combining project member retrieval.
      *
      * @param {string} url
-     * @returns Observable of User[]
+     * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembers = function (url) {
         return this.httpGet(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ProjectMembersResponse).members; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
@@ -2989,10 +3013,10 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // POST
     // ------------------------------------------------------------------------
     /**
-     * create new project
+     * Create new project.
      *
      * @param {any} data
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.createProject = function (data) {
         var url = '/admin/projects';
@@ -3002,21 +3026,21 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // PUT
     // ------------------------------------------------------------------------
     /**
-     * edit project data
+     * Edit project data.
      *
-     * @param {string} iri
+     * @param {string} iri identifier of the project
      * @param {any} data
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.updateProject = function (iri, data) {
         var url = '/admin/projects/' + encodeURIComponent(iri);
         return this.httpPut(url, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
-     * activate project (if it was deleted)
+     * Activate project (if it was deleted).
      *
-     * @param {string} iri
-     * @returns Observable of Project
+     * @param {string} iri identifier of the project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.activateProject = function (iri) {
         var data = {
@@ -3029,10 +3053,10 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // DELETE
     // ------------------------------------------------------------------------
     /**
-     * Delete (set inactive) project
+     * Delete (set inactive) project.
      *
-     * @param {string} iri
-     * @returns Observable of Project
+     * @param {string} iri identifier of the project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.deleteProject = function (iri) {
         var url = '/admin/projects/' + encodeURIComponent(iri);
@@ -3055,18 +3079,18 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     // GET
     // ------------------------------------------------------------------------
     /**
-     * returns a list of all users
+     * Returns a list of all users.
      *
-     * @returns {Observable<User[]>}
+     * @returns Observable<User[]>
      */
     UsersService.prototype.getAllUsers = function () {
         return this.httpGet('/admin/users').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(UsersResponse).users; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
     };
     /**
-     * Get user by username, email or by iri
+     * Get user by username, email or by iri.
      *
      * @param {string} identifier - Get user by username, email or by iri
-     * @returns {Observable<User>}
+     * @returns Observable<User>
      */
     UsersService.prototype.getUser = function (identifier) {
         var path = '/admin/users/' + encodeURIComponent(identifier);
@@ -3079,7 +3103,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Create new user.
      *
      * @param {any} data
-     * @returns  {Observable<User>}
+     * @returns Observable<User>
      */
     UsersService.prototype.createUser = function (data) {
         var path = '/admin/users';
@@ -3090,7 +3114,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable<User>
      */
     UsersService.prototype.addUserToProject = function (userIri, projectIri) {
         var path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -3101,7 +3125,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable<User>
      */
     UsersService.prototype.addUserToProjectAdmin = function (userIri, projectIri) {
         var path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -3112,7 +3136,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromProjectAdmin = function (userIri, projectIri) {
         var path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -3122,11 +3146,11 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     // PUT
     // ------------------------------------------------------------------------
     /**
-     * Add user to the admin system
+     * Add user to the admin system.
      *
      * @param {string} userIri
      * @param {any} data
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.addUserToSystemAdmin = function (userIri, data) {
         var path = '/admin/users/' + encodeURIComponent(userIri);
@@ -3136,7 +3160,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Activate user.
      *
      * @param {string} userIri
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.activateUser = function (userIri) {
         var data = {
@@ -3150,7 +3174,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @param {string} userIri
      * @param {string} oldPassword
      * @param {string} newPassword
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.updateOwnPassword = function (userIri, oldPassword, newPassword) {
         var data = {
@@ -3165,7 +3189,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @param {string} userIri
      * @param {string} requesterPassword
      * @param {string} newPassword
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.updateUsersPassword = function (userIri, requesterPassword, newPassword) {
         var data = {
@@ -3179,7 +3203,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} userIri
      * @param {any} data
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.updateUser = function (userIri, data) {
         var path = '/admin/users/' + encodeURIComponent(userIri);
@@ -3192,7 +3216,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Delete / deactivate user.
      *
      * @param {string} userIri
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.deleteUser = function (userIri) {
         var path = '/admin/users/' + encodeURIComponent(userIri);
@@ -3203,7 +3227,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromProject = function (userIri, projectIri) {
         var path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -3258,7 +3282,7 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Requests the metadata about all existing ontologies from Knora's ontologies route.
      *
-     * @returns the metadata of all ontologies (Observable of ApiServiceResult).
+     * @returns Observable<ApiServiceResult> - the metadata of all ontologies.
      */
     OntologyService.prototype.getOntologiesMetadata = function () {
         return this.httpGet('/v2/ontologies/metadata');
@@ -3267,7 +3291,7 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Requests all entity definitions for the given ontologies from Knora's ontologies route.
      *
      * @param {string} ontologyIri the Iris of the named graphs whose resource classes are to be returned.
-     * @returns the requested ontology (Observable of ApiServiceResult).
+     * @returns Observable<ApiServiceResult> - the requested ontology.
      */
     OntologyService.prototype.getAllEntityDefinitionsForOntologies = function (ontologyIri) {
         return this.httpGet('/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri));
@@ -3276,7 +3300,7 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Requests information about the given resource classes from Knora's ontologies route.
      *
      * @param {string[]} resourceClassIris the Iris of the resource classes to be queried.
-     * @returns the requested resource class definitions (Observable of ApiServiceResult).
+     * @returns Observable<ApiServiceResult> - the requested resource class definitions.
      */
     OntologyService.prototype.getResourceClasses = function (resourceClassIris) {
         if (resourceClassIris.length === 0) {
@@ -3293,7 +3317,7 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Requests properties from Knora's ontologies route.
      *
      * @param {string[]} propertyIris the Iris of the properties to be queried.
-     * @returns the requested properties (Observable of ApiServiceResult).
+     * @returns Observable<ApiServiceResult> - the requested properties.
      */
     OntologyService.prototype.getProperties = function (propertyIris) {
         if (propertyIris.length === 0) {
@@ -3350,9 +3374,9 @@ var CardinalityOccurrence = /*@__PURE__*/ (function (CardinalityOccurrence) {
  */
 var Cardinality = /** @class */ /*@__PURE__*/ (function () {
     /**
-     * @param occurrence type of given occurrence.
-     * @param value numerical value of given occurrence.
-     * @param property the property the given occurrence applies to.
+     * @param {CardinalityOccurrence} occurrence type of given occurrence.
+     * @param {number} value numerical value of given occurrence.
+     * @param {string} property the property the given occurrence applies to.
      */
     function Cardinality(occurrence, value, property) {
         this.occurrence = occurrence;
@@ -3366,11 +3390,11 @@ var Cardinality = /** @class */ /*@__PURE__*/ (function () {
  */
 var ResourceClass = /** @class */ /*@__PURE__*/ (function () {
     /**
-     * @param id Iri identifying the resource class.
-     * @param icon path to an icon representing the resource class.
-     * @param comment comment on the resource class.
-     * @param label label describing the resource class.
-     * @param cardinalities the resource class's properties.
+     * @param {string} id Iri identifying the resource class.
+     * @param {string} icon path to an icon representing the resource class.
+     * @param {string} comment comment on the resource class.
+     * @param {string} label label describing the resource class.
+     * @param {Cardinality[]} cardinalities the resource class's properties.
      */
     function ResourceClass(id, icon, comment, label, cardinalities) {
         this.id = id;
@@ -3500,7 +3524,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns resource class definitions for ontologies.
      *
-     * @returns {ResourceClassIrisForOntology} all resource class definitions grouped by ontologies.
+     * @returns ResourceClassIrisForOntology - all resource class definitions grouped by ontologies.
      */
     OntologyInformation.prototype.getResourceClassForOntology = function () {
         return this.resourceClassesForOntology;
@@ -3508,7 +3532,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all resource classes as an object.
      *
-     * @returns {ResourceClasses} all resource class definitions as an object.
+     * @returns ResourceClasses - all resource class definitions as an object.
      */
     OntologyInformation.prototype.getResourceClasses = function () {
         return this.resourceClasses;
@@ -3516,7 +3540,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all resource classes as an array.
      *
-     * @returns Array of ResourceClass
+     * @returns ResourceClass[]
      */
     OntologyInformation.prototype.getResourceClassesAsArray = function () {
         var resClasses = [];
@@ -3531,7 +3555,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
      * Returns a resource class's label.
      *
      * @param {string} resClass resource class to query for.
-     * @returns {string} the resource class's label.
+     * @returns string - the resource class's label.
      */
     OntologyInformation.prototype.getLabelForResourceClass = function (resClass) {
         if (resClass !== undefined) {
@@ -3550,7 +3574,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all properties as an object.
      *
-     * @returns {Properties} all properties as an object.
+     * @returns Properties - all properties as an object.
      */
     OntologyInformation.prototype.getProperties = function () {
         return this.properties;
@@ -3558,7 +3582,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all properties as an array.
      *
-     * @returns Array of Property - all properties as an array.
+     * @returns Property[] - all properties as an array.
      */
     OntologyInformation.prototype.getPropertiesAsArray = function () {
         var properties = [];
@@ -3573,7 +3597,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
      * Returns a property's label.
      *
      * @param {string} property to query for.
-     * @returns {string} the property's label.
+     * @returns string - the property's label.
      */
     OntologyInformation.prototype.getLabelForProperty = function (property) {
         if (property !== undefined) {
@@ -3598,20 +3622,28 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
 var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     function OntologyCacheService(_ontologyService) {
         this._ontologyService = _ontologyService;
-        // ontologies ingored by this service
+        /**
+         * Ontologies ingored by this service.
+         * @param {string[]} excludedOntologies
+         */
         this.excludedOntologies = [KnoraConstants.SalsahGuiOntology, KnoraConstants.StandoffOntology];
-        // properties that Knora is not responsible for and
-        // that have to be ignored because they cannot be resolved at the moment
+        /**
+         * @param {string[]} excludedProperties properties that Knora is not responsible for and that have to be ignored because they cannot be resolved at the moment.
+         */
         this.excludedProperties = [KnoraConstants.RdfsLabel];
-        // class definitions that are not be treated as Knora resource classes
+        /**
+         * @param {string[]} nonResourceClasses class definitions that are not be treated as Knora resource classes
+         */
         this.nonResourceClasses = [KnoraConstants.ForbiddenResource, KnoraConstants.XMLToStandoffMapping, KnoraConstants.ListNode];
-        // central instance that caches all definitions
+        /**
+         * @param {OntologyCache} cacheOntology central instance that caches all definitions
+         */
         this.cacheOntology = new OntologyCache();
     }
     /**
      * Requests the metadata of all ontologies from Knora.
      *
-     * @returns metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
+     * @returns Observable<object> - metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
      */
     OntologyCacheService.prototype.getOntologiesMetadataFromKnora = function () {
         return this._ontologyService.getOntologiesMetadata().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["mergeMap"])(
@@ -3631,7 +3663,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Requests all entity definitions (resource classes and properties) for the given ontology from Knora.
      *
      * @param {string} ontologyIri the Iri of the requested ontology.
-     * @returns metadata for all entity definitions for ontology from Knora.
+     * @returns Observable<object> - metadata for all entity definitions for ontology from Knora.
      */
     OntologyCacheService.prototype.getAllEntityDefinitionsForOntologyFromKnora = function (ontologyIri) {
         return this._ontologyService.getAllEntityDefinitionsForOntologies(ontologyIri).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["mergeMap"])(
@@ -3661,7 +3693,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all ontologies' metadata from the cache and returns them.
      *
-     * @returns Array of OntologyMetadata - metadata of all existing ontologies.
+     * @returns Array<OntologyMetadata> - metadata of all existing ontologies.
      */
     OntologyCacheService.prototype.getAllOntologiesMetadataFromCache = function () {
         return this.cacheOntology.ontologies;
@@ -3671,7 +3703,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * `knora-api:Resource` will be excluded.
      *
      * @param {Array<object>} classDefinitions the class definitions in an ontology response.
-     * @returns {string[]} resource class Iris from the given class definitions.
+     * @returns string[] - resource class Iris from the given class definitions.
      */
     OntologyCacheService.prototype.getResourceClassIrisFromOntologyResponse = function (classDefinitions) {
         var resourceClassIris = [];
@@ -3737,7 +3769,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Returns definitions for the requested ontologies from the cache.
      *
      * @param {string[]} ontologyIris the ontologies for which definitions should be returned.
-     * @returns {OntologyInformation} the definitions for the requested ontologies.
+     * @returns Observable<OntologyInformation> - the definitions for the requested ontologies.
      */
     OntologyCacheService.prototype.getOntologyInformationFromCache = function (ontologyIris) {
         var resourceClassesForOntology = new ResourceClassIrisForOntology();
@@ -3866,7 +3898,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * The answer includes the property definitions referred to by the cardinalities of the given resource classes.
      *
      * @param {string[]} resClassIris the given resource class Iris
-     * @returns {OntologyInformation} an [[OntologyCache]] representing the requested resource classes.
+     * @returns Observable<OntologyInformation> - an [[OntologyCache]] representing the requested resource classes.
      */
     OntologyCacheService.prototype.getResourceClassDefinitionsFromCache = function (resClassIris) {
         // collect the definitions for each resource class from the cache
@@ -3944,7 +3976,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Returns property definitions from the cache.
      *
      * @param {string[]} propertyIris the property definitions to be returned.
-     * @returns {OntologyInformation} requested property defintions.
+     * @returns OntologyInformation - requested property defintions.
      */
     OntologyCacheService.prototype.getPropertyDefinitionsFromCache = function (propertyIris) {
         var _this = this;
@@ -3964,7 +3996,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns metadata about all ontologies.
      *
-     * @returns metadata about all ontologies.
+     * @returns Observable<Array<OntologyMetadata>> - metadata about all ontologies.
      */
     OntologyCacheService.prototype.getOntologiesMetadata = function () {
         var _this = this;
@@ -3987,7 +4019,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Requests the requested ontologies from Knora, adding them to the cache.
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be requested.
-     * @returns Observable of any[]
+     * @returns Observable<any[]>
      */
     OntologyCacheService.prototype.getAndCacheOntologies = function (ontologyIris) {
         var _this = this;
@@ -4011,7 +4043,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Returns the entity definitions for the requested ontologies.
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be queried.
-     * @returns Observable of OntologyInformation - all ontology metadata from the cache
+     * @returns Observable<OntologyInformation> - all ontology metadata from the cache
      */
     OntologyCacheService.prototype.getEntityDefinitionsForOntologies = function (ontologyIris) {
         var _this = this;
@@ -4037,7 +4069,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Properties contained in the cardinalities will be returned too.
      *
      * @param {string[]} resourceClassIris the given resource class Iris
-     * @returns Observable of OntologyInformation - the requested resource classes (including properties).
+     * @returns Observable<OntologyInformation> - the requested resource classes (including properties).
      */
     OntologyCacheService.prototype.getResourceClassDefinitions = function (resourceClassIris) {
         var _this = this;
@@ -4064,7 +4096,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * If the definitions are not already in the cache, the will be retrieved from Knora and cached.
      *
      * @param {string[]} propertyIris the Iris of the properties to be returned .
-     * @returns Observable of OntologyInformation - the requested property definitions.
+     * @returns Observable<OntologyInformation> - the requested property definitions.
      */
     OntologyCacheService.prototype.getPropertyDefinitions = function (propertyIris) {
         var _this = this;
@@ -4107,7 +4139,7 @@ var ResourceService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Given the Iri, requests the representation of a resource.
      *
      * @param {string} iri Iri of the resource (already URL encoded).
-     * @returns Observable of ApiServiceResult
+     * @returns Observable<ApiServiceResult>
      */
     ResourceService.prototype.getResource = function (iri) {
         // console.log('IRI from resource service: ', iri);
@@ -4126,7 +4158,7 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
-     * @returns Observable of ApiServiceResult
+     * @returns Observable<ApiServiceResult>
      */
     SearchService.prototype.doFulltextSearch = function (searchTerm, offset) {
         if (offset === void 0) {
@@ -4141,7 +4173,7 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform a fulltext search count query.
      *
      * @param {string} searchTerm the term to search for.
-     * @returns Observable of ApiServiceResult
+     * @returns Observable<ApiServiceResult>
      */
     SearchService.prototype.doFulltextSearchCountQuery = function (searchTerm) {
         if (searchTerm === undefined || searchTerm.length === 0) {
@@ -4153,7 +4185,7 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform an extended search.
      *
      * @param {string} sparqlString the Sparql query string to be sent to Knora.
-     * @returns Observable of ApiServiceResult
+     * @returns Observable<ApiServiceResult>
      */
     SearchService.prototype.doExtendedSearch = function (sparqlString) {
         if (sparqlString === undefined || sparqlString.length === 0) {
@@ -4166,7 +4198,7 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform an extended search count query.
      *
      * @param {string} sparqlString the Sparql query string to be sent to Knora.
-     * @returns Observable of ApiServiceResult
+     * @returns Observable<ApiServiceResult>
      */
     SearchService.prototype.doExtendedSearchCountQuery = function (sparqlString) {
         if (sparqlString === undefined || sparqlString.length === 0) {
@@ -4179,9 +4211,9 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform a search by a resource's rdfs:label.
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} resourceClassIRI restrict search to given resource class.
-     * @param {string} projectIri restrict search to given project.
-     * @returns Observable of ApiServiceResult
+     * @param {string} [resourceClassIRI] restrict search to given resource class.
+     * @param {string} [projectIri] restrict search to given project.
+     * @returns Observable<ApiServiceResult>
      */
     SearchService.prototype.searchByLabel = function (searchTerm, resourceClassIRI, projectIri) {
         if (searchTerm === undefined || searchTerm.length === 0) {
@@ -4214,7 +4246,7 @@ var ConvertJSONLD;
      * Gets all property names that refer to value objects.
      *
      * @param propName the name of a property to be checked.
-     * @returns Boolean indicating if the name refers to a value property.
+     * @returns boolean - indicating if the name refers to a value property.
      */
     var getPropertyNames = function (propName) {
         return propName !== '@id'
@@ -4491,7 +4523,7 @@ var ConvertJSONLD;
      * Expects JSON-LD with all Iris fully expanded.
      *
      * @param {object} resourcesResponseJSONLD a resource or a sequence of resources, represented as a JSON-LD object.
-     * @returns ReadResourcesSequence
+     * @returns ReadResourcesSequence - sequence of read resources
      */
     function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD) {
         var resources = [];
@@ -4684,7 +4716,7 @@ var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
     *
     * @param {string} resourceIRI the Iri of the resource whose Incoming regions should be returned.
     * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
-    * @returns Observable of any
+    * @returns {Observable<any>}
     */
     IncomingService.prototype.getIncomingRegions = function (resourceIRI, offset) {
         var sparqlQueryStr = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?region knora-api:isMainResource true .\n\n?region knora-api:hasGeometry ?geom .\n\n?region knora-api:hasComment ?comment .\n\n?region knora-api:hasColor ?color .\n} WHERE {\n?region a knora-api:Region .\n?region a knora-api:Resource .\n\n?region knora-api:isRegionOf <" + resourceIRI + "> .\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\n\n<" + resourceIRI + "> a knora-api:Resource .\n\n?region knora-api:hasGeometry ?geom .\nknora-api:hasGeometry knora-api:objectType knora-api:Geom .\n\n?geom a knora-api:Geom .\n\n?region knora-api:hasComment ?comment .\nknora-api:hasComment knora-api:objectType xsd:string .\n\n?comment a xsd:string .\n\n?region knora-api:hasColor ?color .\nknora-api:hasColor knora-api:objectType knora-api:Color .\n\n?color a knora-api:Color .\n} OFFSET " + offset + "\n";
@@ -4697,20 +4729,18 @@ var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} resourceIri the Iri of the resource whose StillImageRepresentations should be returned.
      * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
-     * @returns Observable of any
+     * @returns {Observable<any>}
      */
     IncomingService.prototype.getStillImageRepresentationsForCompoundResource = function (resourceIri, offset) {
         var sparqlQueryStr = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?page knora-api:isMainResource true .\n\n?page knora-api:seqnum ?seqnum .\n\n?page knora-api:hasStillImageFile ?file .\n} WHERE {\n\n?page a knora-api:StillImageRepresentation .\n?page a knora-api:Resource .\n\n?page knora-api:isPartOf <" + resourceIri + "> .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\n<" + resourceIri + "> a knora-api:Resource .\n\n?page knora-api:seqnum ?seqnum .\nknora-api:seqnum knora-api:objectType xsd:integer .\n\n?seqnum a xsd:integer .\n\n?page knora-api:hasStillImageFile ?file .\nknora-api:hasStillImageFile knora-api:objectType knora-api:File .\n\n?file a knora-api:File .\n\n} ORDER BY ?seqnum\nOFFSET " + offset + "\n";
         return this.doExtendedSearch(sparqlQueryStr);
     };
     /**
-     *
-     * Returns all incoming links for the given resource Iri
-     * but incoming regions and still image representations.
+     * Returns all incoming links for the given resource Iri but incoming regions and still image representations.
      *
      * @param {string} resourceIri the Iri of the resource whose incoming links should be returned.
      * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
-     * @returns Observable of any
+     * @returns {Observable<any>}
      */
     IncomingService.prototype.getIncomingLinksForResource = function (resourceIri, offset) {
         var sparqlQueryStr = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?incomingRes knora-api:isMainResource true .\n\n?incomingRes ?incomingProp <" + resourceIri + "> .\n\n} WHERE {\n\n?incomingRes a knora-api:Resource .\n\n?incomingRes ?incomingProp <" + resourceIri + "> .\n\n<" + resourceIri + "> a knora-api:Resource .\n\n?incomingProp knora-api:objectType knora-api:Resource .\n\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isRegionOf <" + resourceIri + "> .\n}\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isPartOf <" + resourceIri + "> .\n}\n\n} OFFSET " + offset + "\n";
@@ -4746,6 +4776,7 @@ var SearchParamsService = /** @class */ /*@__PURE__*/ (function () {
      * Updates the parameters of an extended search.
      *
      * @param {ExtendedSearchParams} searchParams
+     * @returns void
      */
     SearchParamsService.prototype.changeSearchParamsMsg = function (searchParams) {
         this._currentSearchParams.next(searchParams);
@@ -4753,7 +4784,7 @@ var SearchParamsService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Gets the search params of an extended search.
      *
-     * @returns {ExtendedSearchParams}
+     * @returns ExtendedSearchParams - search parameters
      */
     SearchParamsService.prototype.getSearchParams = function () {
         return this._currentSearchParams.getValue();
@@ -4779,7 +4810,7 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
        * Converts a complex type Iri to a simple type Iri.
        *
        * @param {string} complexType the Iri of a value type (knora-api complex).
-       * @returns {string} the corresponding Iri of the simple type (knora-api simple).
+       * @returns string - the corresponding Iri of the simple type (knora-api simple).
        */
     GravsearchGenerationService.prototype.convertComplexTypeToSimpleType = function (complexType) {
         var simpleType = GravsearchGenerationService.typeConversionComplexToSimple[complexType];
@@ -4794,9 +4825,9 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
        * Generates a Gravsearch query from the provided arguments.
        *
        * @param {PropertyWithValue[]} properties the properties specified by the user.
-       * @param {string} mainResourceClassOption the class of the main resource, if specified.
+       * @param {string} [mainResourceClassOption] the class of the main resource, if specified.
        * @param {number} offset the offset to be used (nth page of results).
-       * @returns {string} a KnarQL query string.
+       * @returns string - a KnarQL query string.
        */
     GravsearchGenerationService.prototype.createGravsearchQuery = function (properties, mainResourceClassOption, offset) {
         var _this = this;
@@ -4890,7 +4921,10 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
         // console.log(knarqlTemplate + offsetTemplate);
         return gravsearchTemplate + offsetTemplate;
     };
-    // map of complex knora-api value types to simple ones
+    /**
+     * Map of complex knora-api value types to simple ones.
+     * Use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.
+     */
     GravsearchGenerationService.typeConversionComplexToSimple = {
         'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.xsdInteger,
         'http://api.knora.org/ontology/knora-api/v2#DecimalValue': KnoraConstants.xsdDecimal,
@@ -4920,10 +4954,10 @@ var StoreService = /** @class */ /*@__PURE__*/ (function () {
         this.config = config;
     }
     /**
-       * resets the content of the triplestore
+       * Resets the content of the triplestore.
        *
        * @param rdfDataObjects
-       * @returns {Observable<string>}
+       * @returns Observable<string>
        */
     StoreService.prototype.resetTriplestoreContent = function (rdfDataObjects) {
         return this.http.post(this.config.api + '/admin/store/ResetTriplestoreContent', rdfDataObjects)
@@ -4972,17 +5006,19 @@ var ResourceTypesService = /** @class */ /*@__PURE__*/ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-       * Get all resource types defined by the vocabulary
-       * @param iri (Vocabulary iri)
-       * @returns {Observable<any>}
+       * Get all resource types defined by the vocabulary.
+       *
+       * @param {string} iri Vocabulary iri
+       * @returns Observable<any>
        */
     ResourceTypesService.prototype.getResourceTypesByVoc = function (iri) {
         return this.httpGet('/v1/resourcetypes?vocabulary=' + encodeURIComponent(iri));
     };
     /**
-     * Get a specific resource type
-     * @param iri   (resource type iri)
-     * @returns {Observable<any>}
+     * Get a specific resource type.
+     *
+     * @param {string} iri resource type iri
+     * @returns Observable<any>
      */
     ResourceTypesService.prototype.getResourceType = function (iri) {
         return this.httpGet('/v1/resourcetypes/' + encodeURIComponent(iri));
@@ -5253,6 +5289,7 @@ var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
     SearchComponent.prototype.ngOnInit = function () {
     };
     /**
+     * @ignore
      * Do search on Enter click, reset search on Escape
      * @param search_ele
      * @param event
@@ -7345,11 +7382,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm5/datepicker.es5.js");
-/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm5/datepicker.es5.js");
+/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
+
 
 
 
@@ -8360,12 +8399,15 @@ var PropertiesViewComponent = /** @class */ /*@__PURE__*/ (function () {
 }());
 var jsonld = __webpack_require__(/*! jsonld */ "./node_modules/jsonld/lib/jsonld.js");
 var ResourceViewComponent = /** @class */ /*@__PURE__*/ (function () {
-    function ResourceViewComponent(_resourceService, _cacheService, _incomingService) {
+    function ResourceViewComponent(_route, _resourceService, _cacheService, _incomingService) {
+        this._route = _route;
         this._resourceService = _resourceService;
         this._cacheService = _cacheService;
         this._incomingService = _incomingService;
         this.iri = 'http://rdfh.ch/8be1b7cf7103';
         this.KnoraConstants = _knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"];
+        var routeParams = this._route.snapshot.params;
+        this.iri = routeParams.id;
     }
     ResourceViewComponent.prototype.ngOnInit = function () {
         this.getResource(this.iri);
@@ -8629,14 +8671,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_angular_material_checkbox_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ../../../node_modules/@angular/material/checkbox/typings/index.ngfactory */ "./node_modules/@angular/material/checkbox/typings/index.ngfactory.js");
 /* harmony import */ var _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ../../../node_modules/@angular/material/list/typings/index.ngfactory */ "./node_modules/@angular/material/list/typings/index.ngfactory.js");
 /* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _angular_core,_knora_viewer,_.._.._node_modules__angular_material_dialog_typings_index.ngfactory,_.._.._node_modules__angular_material_datepicker_typings_index.ngfactory,_.._.._node_modules__angular_material_tooltip_typings_index.ngfactory,_angular_common,_angular_common_http,_angular_platform_browser,_angular_material_core,_angular_animations_browser,_angular_platform_browser_animations,_angular_animations,_angular_cdk_overlay,_angular_cdk_bidi,_angular_material_menu,_angular_material_autocomplete,_angular_cdk_observers,_angular_material_dialog,_angular_material_datepicker,_angular_cdk_platform,_angular_material_tooltip,_angular_forms,_knora_core,_angular_material_button,_angular_material_icon,_angular_cdk_portal,_angular_cdk_scrolling,_knora_action,_angular_material_card,_angular_material_checkbox,_angular_cdk_a11y,_angular_material_form_field,_angular_cdk_text_field,_angular_material_input,_angular_material_divider,_angular_material_list,_angular_material_slide_toggle,_angular_material_toolbar,_.._.._node_modules__angular_material_button_typings_index.ngfactory,_.._.._node_modules__angular_material_icon_typings_index.ngfactory,_.._.._node_modules__angular_material_toolbar_typings_index.ngfactory,_.._.._node_modules__angular_material_checkbox_typings_index.ngfactory,_.._.._node_modules__angular_material_list_typings_index.ngfactory,_.._.._node_modules__angular_material_card_typings_index.ngfactory PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _angular_core,_knora_viewer,_.._.._node_modules__angular_material_dialog_typings_index.ngfactory,_.._.._node_modules__angular_material_datepicker_typings_index.ngfactory,_.._.._node_modules__angular_material_tooltip_typings_index.ngfactory,_angular_common,_angular_common_http,_angular_platform_browser,_angular_material_core,_angular_animations_browser,_angular_platform_browser_animations,_angular_animations,_angular_cdk_overlay,_angular_cdk_bidi,_angular_material_menu,_angular_material_autocomplete,_angular_cdk_observers,_angular_material_dialog,_angular_material_datepicker,_angular_cdk_platform,_angular_material_tooltip,_angular_forms,_knora_core,_angular_material_button,_angular_material_icon,_angular_cdk_portal,_angular_cdk_scrolling,_knora_action,_angular_material_card,_angular_material_checkbox,_angular_cdk_a11y,_angular_material_form_field,_angular_cdk_text_field,_angular_material_input,_angular_material_divider,_angular_material_list,_angular_material_slide_toggle,_angular_material_toolbar,_.._.._node_modules__angular_material_button_typings_index.ngfactory,_.._.._node_modules__angular_material_icon_typings_index.ngfactory,_.._.._node_modules__angular_material_toolbar_typings_index.ngfactory,_.._.._node_modules__angular_material_checkbox_typings_index.ngfactory,_.._.._node_modules__angular_material_list_typings_index.ngfactory,_.._.._node_modules__angular_material_card_typings_index.ngfactory PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _angular_core,_knora_viewer,_.._.._node_modules__angular_material_dialog_typings_index.ngfactory,_.._.._node_modules__angular_material_datepicker_typings_index.ngfactory,_.._.._node_modules__angular_material_tooltip_typings_index.ngfactory,_angular_common,_angular_common_http,_angular_platform_browser,_angular_material_core,_angular_animations_browser,_angular_platform_browser_animations,_angular_animations,_angular_cdk_overlay,_angular_cdk_bidi,_angular_material_menu,_angular_material_autocomplete,_angular_cdk_observers,_angular_material_dialog,_angular_material_datepicker,_angular_cdk_platform,_angular_material_tooltip,_angular_forms,_knora_core,_angular_material_button,_angular_material_icon,_angular_cdk_portal,_angular_cdk_scrolling,_knora_action,_angular_material_card,_angular_material_checkbox,_angular_cdk_a11y,_angular_material_form_field,_angular_cdk_text_field,_angular_material_input,_angular_material_divider,_angular_material_list,_angular_material_slide_toggle,_angular_material_toolbar,_.._.._node_modules__angular_material_button_typings_index.ngfactory,_.._.._node_modules__angular_material_icon_typings_index.ngfactory,_.._.._node_modules__angular_material_toolbar_typings_index.ngfactory,_.._.._node_modules__angular_material_checkbox_typings_index.ngfactory,_.._.._node_modules__angular_material_list_typings_index.ngfactory,_.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_router PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _angular_core,_knora_viewer,_.._.._node_modules__angular_material_dialog_typings_index.ngfactory,_.._.._node_modules__angular_material_datepicker_typings_index.ngfactory,_.._.._node_modules__angular_material_tooltip_typings_index.ngfactory,_angular_common,_angular_common_http,_angular_platform_browser,_angular_material_core,_angular_animations_browser,_angular_platform_browser_animations,_angular_animations,_angular_cdk_overlay,_angular_cdk_bidi,_angular_material_menu,_angular_material_autocomplete,_angular_cdk_observers,_angular_material_dialog,_angular_material_datepicker,_angular_cdk_platform,_angular_material_tooltip,_angular_forms,_knora_core,_angular_material_button,_angular_material_icon,_angular_cdk_portal,_angular_cdk_scrolling,_knora_action,_angular_material_card,_angular_material_checkbox,_angular_cdk_a11y,_angular_material_form_field,_angular_cdk_text_field,_angular_material_input,_angular_material_divider,_angular_material_list,_angular_material_slide_toggle,_angular_material_toolbar,_.._.._node_modules__angular_material_button_typings_index.ngfactory,_.._.._node_modules__angular_material_icon_typings_index.ngfactory,_.._.._node_modules__angular_material_toolbar_typings_index.ngfactory,_.._.._node_modules__angular_material_checkbox_typings_index.ngfactory,_.._.._node_modules__angular_material_list_typings_index.ngfactory,_.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_router PURE_IMPORTS_END */
+
 
 
 
@@ -8962,7 +9006,7 @@ function View_ɵbe_2(_l) {
 }
 function View_ɵbe_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 6, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 5, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_42__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_42__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_35__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, 0, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](4, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_ɵbe_2)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var currVal_1 = _v.context.$implicit.value; _ck(_v, 6, 0, currVal_1); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.ontologyInfo == null) ? null : _co.ontologyInfo.getLabelForProperty(_v.context.$implicit.key)); _ck(_v, 4, 0, currVal_0); }); }
 function View_ɵbe_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_27__["KeyPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 30, "mat-card", [["class", "mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_43__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_43__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_28__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, 0, 1, "kui-still-image", [], null, null, null, View_ɵj_0, RenderType_ɵj)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](4, 770048, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵj"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](5, 0, null, 0, 1, "kui-moving-image", [], null, null, null, View_ɵg_0, RenderType_ɵg)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](6, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵg"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](7, 0, null, 0, 1, "kui-annotation", [], null, null, null, View_ɵa_0, RenderType_ɵa)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](8, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵa"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](9, 0, null, 0, 1, "kui-audio", [], null, null, null, View_ɵb_0, RenderType_ɵb)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](10, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵb"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](11, 0, null, 0, 1, "kui-collection", [], null, null, null, View_ɵc_0, RenderType_ɵc)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](12, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵc"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](13, 0, null, 0, 1, "kui-ddd", [], null, null, null, View_ɵd_0, RenderType_ɵd)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](14, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵd"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](15, 0, null, 0, 1, "kui-document", [], null, null, null, View_ɵe_0, RenderType_ɵe)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](16, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵe"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](17, 0, null, 0, 1, "kui-link-obj", [], null, null, null, View_ɵf_0, RenderType_ɵf)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](18, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵf"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](19, 0, null, 0, 1, "kui-object", [], null, null, null, View_ɵh_0, RenderType_ɵh)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](20, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵh"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](21, 0, null, 0, 1, "kui-region", [], null, null, null, View_ɵi_0, RenderType_ɵi)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](22, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵi"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](23, 0, null, 0, 1, "kui-text", [], null, null, null, View_ɵk_0, RenderType_ɵk)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](24, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵk"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](25, 0, null, 0, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](26, null, ["metadata for resource ", " (", ")"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](27, 0, null, 0, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](28, null, ["type: ", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 2, null, View_ɵbe_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](30, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵppd"](31, 1)], function (_ck, _v) { var _co = _v.component; _ck(_v, 4, 0); _ck(_v, 6, 0); _ck(_v, 8, 0); _ck(_v, 10, 0); _ck(_v, 12, 0); _ck(_v, 14, 0); _ck(_v, 16, 0); _ck(_v, 18, 0); _ck(_v, 20, 0); _ck(_v, 22, 0); _ck(_v, 24, 0); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵunv"](_v, 30, 0, _ck(_v, 31, 0, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 0), ((_co.resource == null) ? null : _co.resource.properties))); _ck(_v, 30, 0, currVal_3); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.resource == null) ? null : _co.resource.label); var currVal_1 = ((_co.resource == null) ? null : _co.resource.id); _ck(_v, 26, 0, currVal_0, currVal_1); var currVal_2 = ((_co.ontologyInfo == null) ? null : _co.ontologyInfo.getLabelForResourceClass(((_co.resource == null) ? null : _co.resource.type))); _ck(_v, 28, 0, currVal_2); }); }
-function View_ɵbe_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-resource-view", [], null, null, null, View_ɵbe_0, RenderType_ɵbe)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbe"], [_knora_core__WEBPACK_IMPORTED_MODULE_22__["ResourceService"], _knora_core__WEBPACK_IMPORTED_MODULE_22__["OntologyCacheService"], _knora_core__WEBPACK_IMPORTED_MODULE_22__["IncomingService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_ɵbe_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-resource-view", [], null, null, null, View_ɵbe_0, RenderType_ɵbe)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbe"], [_angular_router__WEBPACK_IMPORTED_MODULE_44__["ActivatedRoute"], _knora_core__WEBPACK_IMPORTED_MODULE_22__["ResourceService"], _knora_core__WEBPACK_IMPORTED_MODULE_22__["OntologyCacheService"], _knora_core__WEBPACK_IMPORTED_MODULE_22__["IncomingService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var ɵbeNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-resource-view", _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbe"], View_ɵbe_Host_0, { iri: "iri" }, {}, []);
 
 var styles_ɵbf = [".mat-form-field[_ngcontent-%COMP%]{width:320px}.fill-remaining-space[_ngcontent-%COMP%]{flex:1 1 auto}"];
@@ -11638,30 +11682,34 @@ __webpack_require__.r(__webpack_exports__);
 var KuiCoreConfig = /** @class */ /*@__PURE__*/ (function () {
     function KuiCoreConfig() {
         /**
-         * (Salsah) name of the app
+         * name of the app e.g. 'SALSAH'
          * @type {string}
          */
         this.name = undefined;
         /**
-         * (knora) url of the api
+         * url of the app e.g. 'https://salsah.org'
+         * @type {undefined}
+         */
+        this.app = undefined;
+        /**
+         * url of the api e.g. 'https://api.knora.org'
          * @type {string}
          */
         this.api = undefined;
         /**
-         * (sipi) url of media/file server
+         * url of media/file server e.g. 'https://iiif.sipi.io'
          * @type {string}
          */
         this.media = undefined;
-        /**
-         * (salsah) url of the app
-         * @type {undefined}
-         */
-        this.app = undefined;
     }
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('name', String),
         Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
     ], KuiCoreConfig.prototype, "name", void 0);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('app', String),
+        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
+    ], KuiCoreConfig.prototype, "app", void 0);
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('api', String),
         Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
@@ -11670,10 +11718,6 @@ var KuiCoreConfig = /** @class */ /*@__PURE__*/ (function () {
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('media', String),
         Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
     ], KuiCoreConfig.prototype, "media", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-        Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('app', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String)
-    ], KuiCoreConfig.prototype, "app", void 0);
     KuiCoreConfig = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('KuiCoreConfig')
     ], KuiCoreConfig);
@@ -12039,6 +12083,9 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+/**
+ * Request information about group from Knora.
+ */
 var GroupsService = /** @class */ /*@__PURE__*/ (function (_super) {
     __extends(GroupsService, _super);
     function GroupsService() {
@@ -12047,18 +12094,18 @@ var GroupsService = /** @class */ /*@__PURE__*/ (function (_super) {
         return _this;
     }
     /**
-     * return a list of all groups
+     * Return a list of all groups.
      *
-     * @returns Observable of Group[]
+     * @returns Observable<Group[]>
      */
     GroupsService.prototype.getAllGroups = function () {
         return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_1__["GroupsResponse"]).groups; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * return a group object (filter by IRI)
+     * Return a group object (filter by IRI).
      *
      * @param {string} iri
-     * @returns Observable of Group
+     * @returns Observable<Group>
      */
     GroupsService.prototype.getGroupByIri = function (iri) {
         this.path += '/' + encodeURIComponent(iri);
@@ -12138,6 +12185,9 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+/**
+ * Request information about lists from Knora.
+ */
 var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     __extends(ListsService, _super);
     function ListsService() {
@@ -12149,10 +12199,10 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // GET
     // ------------------------------------------------------------------------
     /**
-     * returns a list of all lists
+     * Returns a list of all lists.
      *
-     * @param {string} projectIri (optional)
-     * @returns Observable of ListNodeInfo[]
+     * @param {string} [projectIri]
+     * @returns Observable<ListNodeInfo[]>
      */
     ListsService.prototype.getLists = function (projectIri) {
         if (projectIri) {
@@ -12161,29 +12211,29 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations__WEBPACK_IMPORTED_MODULE_1__["ListsResponse"]).lists; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * return a list object
+     * Return a list object.
      *
      * @param {string} listIri
-     * @returns Observable of List
+     * @returns Observable<List>
      */
     ListsService.prototype.getList = function (listIri) {
         return this.httpGet(this.path + '/' + encodeURIComponent(listIri)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations__WEBPACK_IMPORTED_MODULE_1__["ListResponse"]).list; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * return a list info object
+     * Return a list info object.
      *
      * @param {string} listIri
-     * @returns Observable of ListInfo
+     * @returns Observable<ListInfo>
      */
     ListsService.prototype.getListInfo = function (listIri) {
         this.path += '/infos/' + encodeURIComponent(listIri);
         return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations__WEBPACK_IMPORTED_MODULE_1__["ListInfoResponse"]).listinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * return a list node info object
+     * Return a list node info object.
      *
      * @param {string} nodeIri
-     * @returns Observable of ListNodeInfo
+     * @returns Observable<ListNodeInfo>
      */
     ListsService.prototype.getListNodeInfo = function (nodeIri) {
         this.path += '/nodes/' + encodeURIComponent(nodeIri);
@@ -12193,10 +12243,10 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // POST
     // ------------------------------------------------------------------------
     /**
-     * create new list
+     * Create new list.
      *
      * @param {ListCreatePayload} payload
-     * @returns Observable of List
+     * @returns Observable<List>
      */
     ListsService.prototype.createList = function (payload) {
         return this.httpPost(this.path, payload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations__WEBPACK_IMPORTED_MODULE_1__["ListResponse"]).list; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
@@ -12205,10 +12255,10 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // PUT
     // ------------------------------------------------------------------------
     /**
-     * edit list data
+     * Edit list data.
      *
      * @param {ListInfoUpdatePayload} payload
-     * @returns Observable of ListInfo
+     * @returns Observable<ListInfo>
      */
     ListsService.prototype.updateListInfo = function (payload) {
         this.path += '/infos/' + encodeURIComponent(payload.listIri);
@@ -12255,6 +12305,9 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+/**
+ * Request information about projects from Knora.
+ */
 var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     __extends(ProjectsService, _super);
     function ProjectsService() {
@@ -12264,90 +12317,90 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // GET
     // ------------------------------------------------------------------------
     /**
-     * returns a list of all projects
+     * Returns a list of all projects.
      *
-     * @returns Observable of Project[]
+     * @returns Observable<Project[]>
      */
     ProjectsService.prototype.getAllProjects = function () {
         return this.httpGet('/admin/projects').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_1__["ProjectsResponse"]).projects; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * returns a project object
+     * Returns a project object.
      *
-     * @param {string} iri
-     * @returns Observable of Project
+     * @param {string} iri identifier of the project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.getProjectByIri = function (iri) {
         var url = '/admin/projects/' + encodeURIComponent(iri);
         return this.getProject(url);
     };
     /**
-     * returns a project object
+     * Returns a project object.
      *
-     * @param {string} shortname
-     * @returns Observable of Project
+     * @param {string} shortname short name that is used to identify the project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.getProjectByShortname = function (shortname) {
         var url = '/admin/projects/' + shortname + '?identifier=shortname';
         return this.getProject(url);
     };
     /**
-     * returns a project object
+     * Returns a project object.
      *
-     * @param {string} shortcode
-     * @returns Observable of Project
+     * @param {string} shortcode hexadecimal code that uniquely identifies the project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.getProjectByShortcode = function (shortcode) {
         var url = '/admin/projects/' + shortcode + '?identifier=shortcode';
         return this.getProject(url);
     };
     /**
-     * Helper method combining project retrieval
+     * Helper method combining project retrieval.
      *
      * @param {string} url
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.getProject = function (url) {
         return this.httpGet(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_1__["ProjectResponse"]).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * returns all project members
-     * project identifier is project id (iri)
+     * Returns all project members.
+     * Project identifier is project id (iri).
      *
-     * @param {string} iri
-     * @returns Observable of User[]
+     * @param {string} iri identifier of the project
+     * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembersByIri = function (iri) {
         var url = '/admin/projects/members/' + encodeURIComponent(iri);
         return this.getProjectMembers(url);
     };
     /**
-     * returns all project members
-     * project identifier is shortname
+     * Returns all project members.
+     * Project identifier is shortname.
      *
-     * @param {string} shortname
-     * @returns Observable of User[]
+     * @param {string} shortname short name that is used to identify the project
+     * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembersByShortname = function (shortname) {
         var url = '/admin/projects/members/' + shortname + '?identifier=shortname';
         return this.getProjectMembers(url);
     };
     /**
-     * returns all project members
-     * project identifier is shortcode
+     * Returns all project members.
+     * Project identifier is shortcode.
      *
-     * @param {string} shortcode
-     * @returns {Observable<User[]>}
+     * @param {string} shortcode hexadecimal code that uniquely identifies the project
+     * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembersByShortcode = function (shortcode) {
         var url = '/admin/projects/members/' + shortcode + '?identifier=shortcode';
         return this.getProjectMembers(url);
     };
     /**
-     * Helper method combining project member retrieval
+     * Helper method combining project member retrieval.
      *
      * @param {string} url
-     * @returns Observable of User[]
+     * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembers = function (url) {
         return this.httpGet(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_1__["ProjectMembersResponse"]).members; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
@@ -12356,10 +12409,10 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // POST
     // ------------------------------------------------------------------------
     /**
-     * create new project
+     * Create new project.
      *
      * @param {any} data
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.createProject = function (data) {
         var url = '/admin/projects';
@@ -12369,21 +12422,21 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // PUT
     // ------------------------------------------------------------------------
     /**
-     * edit project data
+     * Edit project data.
      *
-     * @param {string} iri
+     * @param {string} iri identifier of the project
      * @param {any} data
-     * @returns Observable of Project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.updateProject = function (iri, data) {
         var url = '/admin/projects/' + encodeURIComponent(iri);
         return this.httpPut(url, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_1__["ProjectResponse"]).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * activate project (if it was deleted)
+     * Activate project (if it was deleted).
      *
-     * @param {string} iri
-     * @returns Observable of Project
+     * @param {string} iri identifier of the project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.activateProject = function (iri) {
         var data = {
@@ -12396,10 +12449,10 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
     // DELETE
     // ------------------------------------------------------------------------
     /**
-     * Delete (set inactive) project
+     * Delete (set inactive) project.
      *
-     * @param {string} iri
-     * @returns Observable of Project
+     * @param {string} iri identifier of the project
+     * @returns Observable<Project>
      */
     ProjectsService.prototype.deleteProject = function (iri) {
         var url = '/admin/projects/' + encodeURIComponent(iri);
@@ -12505,18 +12558,18 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     // GET
     // ------------------------------------------------------------------------
     /**
-     * returns a list of all users
+     * Returns a list of all users.
      *
-     * @returns {Observable<User[]>}
+     * @returns Observable<User[]>
      */
     UsersService.prototype.getAllUsers = function () {
         return this.httpGet('/admin/users').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UsersResponse"]).users; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
-     * Get user by username, email or by iri
+     * Get user by username, email or by iri.
      *
      * @param {string} identifier - Get user by username, email or by iri
-     * @returns {Observable<User>}
+     * @returns Observable<User>
      */
     UsersService.prototype.getUser = function (identifier) {
         var path = '/admin/users/' + encodeURIComponent(identifier);
@@ -12529,7 +12582,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Create new user.
      *
      * @param {any} data
-     * @returns  {Observable<User>}
+     * @returns Observable<User>
      */
     UsersService.prototype.createUser = function (data) {
         var path = '/admin/users';
@@ -12540,7 +12593,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable<User>
      */
     UsersService.prototype.addUserToProject = function (userIri, projectIri) {
         var path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -12551,7 +12604,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable<User>
      */
     UsersService.prototype.addUserToProjectAdmin = function (userIri, projectIri) {
         var path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -12562,7 +12615,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns {Observable<User>}
+     * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromProjectAdmin = function (userIri, projectIri) {
         var path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -12572,11 +12625,11 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     // PUT
     // ------------------------------------------------------------------------
     /**
-     * Add user to the admin system
+     * Add user to the admin system.
      *
      * @param {string} userIri
      * @param {any} data
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.addUserToSystemAdmin = function (userIri, data) {
         var path = '/admin/users/' + encodeURIComponent(userIri);
@@ -12586,7 +12639,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Activate user.
      *
      * @param {string} userIri
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.activateUser = function (userIri) {
         var data = {
@@ -12600,7 +12653,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @param {string} userIri
      * @param {string} oldPassword
      * @param {string} newPassword
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.updateOwnPassword = function (userIri, oldPassword, newPassword) {
         var data = {
@@ -12615,7 +12668,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @param {string} userIri
      * @param {string} requesterPassword
      * @param {string} newPassword
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.updateUsersPassword = function (userIri, requesterPassword, newPassword) {
         var data = {
@@ -12629,7 +12682,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} userIri
      * @param {any} data
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.updateUser = function (userIri, data) {
         var path = '/admin/users/' + encodeURIComponent(userIri);
@@ -12642,7 +12695,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Delete / deactivate user.
      *
      * @param {string} userIri
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.deleteUser = function (userIri) {
         var path = '/admin/users/' + encodeURIComponent(userIri);
@@ -12653,7 +12706,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} userIri
      * @param {string} projectIri
-     * @returns Observable of User
+     * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromProject = function (userIri, projectIri) {
         var path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
@@ -13032,7 +13085,7 @@ var ConvertJSONLD;
      * Gets all property names that refer to value objects.
      *
      * @param propName the name of a property to be checked.
-     * @returns Boolean indicating if the name refers to a value property.
+     * @returns boolean - indicating if the name refers to a value property.
      */
     var getPropertyNames = function (propName) {
         return propName !== '@id'
@@ -13247,7 +13300,7 @@ var ConvertJSONLD;
      * Expects JSON-LD with all Iris fully expanded.
      *
      * @param {object} resourcesResponseJSONLD a resource or a sequence of resources, represented as a JSON-LD object.
-     * @returns ReadResourcesSequence
+     * @returns ReadResourcesSequence - sequence of read resources
      */
     function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD) {
         var resources = [];
@@ -13419,7 +13472,7 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
        * Converts a complex type Iri to a simple type Iri.
        *
        * @param {string} complexType the Iri of a value type (knora-api complex).
-       * @returns {string} the corresponding Iri of the simple type (knora-api simple).
+       * @returns string - the corresponding Iri of the simple type (knora-api simple).
        */
     GravsearchGenerationService.prototype.convertComplexTypeToSimpleType = function (complexType) {
         var simpleType = GravsearchGenerationService.typeConversionComplexToSimple[complexType];
@@ -13434,9 +13487,9 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
        * Generates a Gravsearch query from the provided arguments.
        *
        * @param {PropertyWithValue[]} properties the properties specified by the user.
-       * @param {string} mainResourceClassOption the class of the main resource, if specified.
+       * @param {string} [mainResourceClassOption] the class of the main resource, if specified.
        * @param {number} offset the offset to be used (nth page of results).
-       * @returns {string} a KnarQL query string.
+       * @returns string - a KnarQL query string.
        */
     GravsearchGenerationService.prototype.createGravsearchQuery = function (properties, mainResourceClassOption, offset) {
         var _this = this;
@@ -13530,7 +13583,10 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
         // console.log(knarqlTemplate + offsetTemplate);
         return gravsearchTemplate + offsetTemplate;
     };
-    // map of complex knora-api value types to simple ones
+    /**
+     * Map of complex knora-api value types to simple ones.
+     * Use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.
+     */
     GravsearchGenerationService.typeConversionComplexToSimple = {
         'http://api.knora.org/ontology/knora-api/v2#IntValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].xsdInteger,
         'http://api.knora.org/ontology/knora-api/v2#DecimalValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].xsdDecimal,
@@ -13598,7 +13654,7 @@ var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
     *
     * @param {string} resourceIRI the Iri of the resource whose Incoming regions should be returned.
     * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
-    * @returns Observable of any
+    * @returns {Observable<any>}
     */
     IncomingService.prototype.getIncomingRegions = function (resourceIRI, offset) {
         var sparqlQueryStr = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?region knora-api:isMainResource true .\n\n?region knora-api:hasGeometry ?geom .\n\n?region knora-api:hasComment ?comment .\n\n?region knora-api:hasColor ?color .\n} WHERE {\n?region a knora-api:Region .\n?region a knora-api:Resource .\n\n?region knora-api:isRegionOf <" + resourceIRI + "> .\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\n\n<" + resourceIRI + "> a knora-api:Resource .\n\n?region knora-api:hasGeometry ?geom .\nknora-api:hasGeometry knora-api:objectType knora-api:Geom .\n\n?geom a knora-api:Geom .\n\n?region knora-api:hasComment ?comment .\nknora-api:hasComment knora-api:objectType xsd:string .\n\n?comment a xsd:string .\n\n?region knora-api:hasColor ?color .\nknora-api:hasColor knora-api:objectType knora-api:Color .\n\n?color a knora-api:Color .\n} OFFSET " + offset + "\n";
@@ -13611,20 +13667,18 @@ var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} resourceIri the Iri of the resource whose StillImageRepresentations should be returned.
      * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
-     * @returns Observable of any
+     * @returns {Observable<any>}
      */
     IncomingService.prototype.getStillImageRepresentationsForCompoundResource = function (resourceIri, offset) {
         var sparqlQueryStr = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?page knora-api:isMainResource true .\n\n?page knora-api:seqnum ?seqnum .\n\n?page knora-api:hasStillImageFile ?file .\n} WHERE {\n\n?page a knora-api:StillImageRepresentation .\n?page a knora-api:Resource .\n\n?page knora-api:isPartOf <" + resourceIri + "> .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\n<" + resourceIri + "> a knora-api:Resource .\n\n?page knora-api:seqnum ?seqnum .\nknora-api:seqnum knora-api:objectType xsd:integer .\n\n?seqnum a xsd:integer .\n\n?page knora-api:hasStillImageFile ?file .\nknora-api:hasStillImageFile knora-api:objectType knora-api:File .\n\n?file a knora-api:File .\n\n} ORDER BY ?seqnum\nOFFSET " + offset + "\n";
         return this.doExtendedSearch(sparqlQueryStr);
     };
     /**
-     *
-     * Returns all incoming links for the given resource Iri
-     * but incoming regions and still image representations.
+     * Returns all incoming links for the given resource Iri but incoming regions and still image representations.
      *
      * @param {string} resourceIri the Iri of the resource whose incoming links should be returned.
      * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
-     * @returns Observable of any
+     * @returns {Observable<any>}
      */
     IncomingService.prototype.getIncomingLinksForResource = function (resourceIri, offset) {
         var sparqlQueryStr = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?incomingRes knora-api:isMainResource true .\n\n?incomingRes ?incomingProp <" + resourceIri + "> .\n\n} WHERE {\n\n?incomingRes a knora-api:Resource .\n\n?incomingRes ?incomingProp <" + resourceIri + "> .\n\n<" + resourceIri + "> a knora-api:Resource .\n\n?incomingProp knora-api:objectType knora-api:Resource .\n\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isRegionOf <" + resourceIri + "> .\n}\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isPartOf <" + resourceIri + "> .\n}\n\n} OFFSET " + offset + "\n";
@@ -13722,9 +13776,9 @@ var CardinalityOccurrence = /*@__PURE__*/ (function (CardinalityOccurrence) {
  */
 var Cardinality = /** @class */ /*@__PURE__*/ (function () {
     /**
-     * @param occurrence type of given occurrence.
-     * @param value numerical value of given occurrence.
-     * @param property the property the given occurrence applies to.
+     * @param {CardinalityOccurrence} occurrence type of given occurrence.
+     * @param {number} value numerical value of given occurrence.
+     * @param {string} property the property the given occurrence applies to.
      */
     function Cardinality(occurrence, value, property) {
         this.occurrence = occurrence;
@@ -13739,11 +13793,11 @@ var Cardinality = /** @class */ /*@__PURE__*/ (function () {
  */
 var ResourceClass = /** @class */ /*@__PURE__*/ (function () {
     /**
-     * @param id Iri identifying the resource class.
-     * @param icon path to an icon representing the resource class.
-     * @param comment comment on the resource class.
-     * @param label label describing the resource class.
-     * @param cardinalities the resource class's properties.
+     * @param {string} id Iri identifying the resource class.
+     * @param {string} icon path to an icon representing the resource class.
+     * @param {string} comment comment on the resource class.
+     * @param {string} label label describing the resource class.
+     * @param {Cardinality[]} cardinalities the resource class's properties.
      */
     function ResourceClass(id, icon, comment, label, cardinalities) {
         this.id = id;
@@ -13878,7 +13932,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns resource class definitions for ontologies.
      *
-     * @returns {ResourceClassIrisForOntology} all resource class definitions grouped by ontologies.
+     * @returns ResourceClassIrisForOntology - all resource class definitions grouped by ontologies.
      */
     OntologyInformation.prototype.getResourceClassForOntology = function () {
         return this.resourceClassesForOntology;
@@ -13886,7 +13940,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all resource classes as an object.
      *
-     * @returns {ResourceClasses} all resource class definitions as an object.
+     * @returns ResourceClasses - all resource class definitions as an object.
      */
     OntologyInformation.prototype.getResourceClasses = function () {
         return this.resourceClasses;
@@ -13894,7 +13948,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all resource classes as an array.
      *
-     * @returns Array of ResourceClass
+     * @returns ResourceClass[]
      */
     OntologyInformation.prototype.getResourceClassesAsArray = function () {
         var resClasses = [];
@@ -13909,7 +13963,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
      * Returns a resource class's label.
      *
      * @param {string} resClass resource class to query for.
-     * @returns {string} the resource class's label.
+     * @returns string - the resource class's label.
      */
     OntologyInformation.prototype.getLabelForResourceClass = function (resClass) {
         if (resClass !== undefined) {
@@ -13928,7 +13982,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all properties as an object.
      *
-     * @returns {Properties} all properties as an object.
+     * @returns Properties - all properties as an object.
      */
     OntologyInformation.prototype.getProperties = function () {
         return this.properties;
@@ -13936,7 +13990,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all properties as an array.
      *
-     * @returns Array of Property - all properties as an array.
+     * @returns Property[] - all properties as an array.
      */
     OntologyInformation.prototype.getPropertiesAsArray = function () {
         var properties = [];
@@ -13951,7 +14005,7 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
      * Returns a property's label.
      *
      * @param {string} property to query for.
-     * @returns {string} the property's label.
+     * @returns string - the property's label.
      */
     OntologyInformation.prototype.getLabelForProperty = function (property) {
         if (property !== undefined) {
@@ -13977,20 +14031,28 @@ var OntologyInformation = /** @class */ /*@__PURE__*/ (function () {
 var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     function OntologyCacheService(_ontologyService) {
         this._ontologyService = _ontologyService;
-        // ontologies ingored by this service
+        /**
+         * Ontologies ingored by this service.
+         * @param {string[]} excludedOntologies
+         */
         this.excludedOntologies = [_declarations__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].SalsahGuiOntology, _declarations__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].StandoffOntology];
-        // properties that Knora is not responsible for and
-        // that have to be ignored because they cannot be resolved at the moment
+        /**
+         * @param {string[]} excludedProperties properties that Knora is not responsible for and that have to be ignored because they cannot be resolved at the moment.
+         */
         this.excludedProperties = [_declarations__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].RdfsLabel];
-        // class definitions that are not be treated as Knora resource classes
+        /**
+         * @param {string[]} nonResourceClasses class definitions that are not be treated as Knora resource classes
+         */
         this.nonResourceClasses = [_declarations__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].ForbiddenResource, _declarations__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].XMLToStandoffMapping, _declarations__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].ListNode];
-        // central instance that caches all definitions
+        /**
+         * @param {OntologyCache} cacheOntology central instance that caches all definitions
+         */
         this.cacheOntology = new OntologyCache();
     }
     /**
      * Requests the metadata of all ontologies from Knora.
      *
-     * @returns metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
+     * @returns Observable<object> - metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
      */
     OntologyCacheService.prototype.getOntologiesMetadataFromKnora = function () {
         return this._ontologyService.getOntologiesMetadata().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mergeMap"])(
@@ -14010,7 +14072,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Requests all entity definitions (resource classes and properties) for the given ontology from Knora.
      *
      * @param {string} ontologyIri the Iri of the requested ontology.
-     * @returns metadata for all entity definitions for ontology from Knora.
+     * @returns Observable<object> - metadata for all entity definitions for ontology from Knora.
      */
     OntologyCacheService.prototype.getAllEntityDefinitionsForOntologyFromKnora = function (ontologyIri) {
         return this._ontologyService.getAllEntityDefinitionsForOntologies(ontologyIri).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mergeMap"])(
@@ -14040,7 +14102,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns all ontologies' metadata from the cache and returns them.
      *
-     * @returns Array of OntologyMetadata - metadata of all existing ontologies.
+     * @returns Array<OntologyMetadata> - metadata of all existing ontologies.
      */
     OntologyCacheService.prototype.getAllOntologiesMetadataFromCache = function () {
         return this.cacheOntology.ontologies;
@@ -14050,7 +14112,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * `knora-api:Resource` will be excluded.
      *
      * @param {Array<object>} classDefinitions the class definitions in an ontology response.
-     * @returns {string[]} resource class Iris from the given class definitions.
+     * @returns string[] - resource class Iris from the given class definitions.
      */
     OntologyCacheService.prototype.getResourceClassIrisFromOntologyResponse = function (classDefinitions) {
         var resourceClassIris = [];
@@ -14100,7 +14162,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Returns definitions for the requested ontologies from the cache.
      *
      * @param {string[]} ontologyIris the ontologies for which definitions should be returned.
-     * @returns {OntologyInformation} the definitions for the requested ontologies.
+     * @returns Observable<OntologyInformation> - the definitions for the requested ontologies.
      */
     OntologyCacheService.prototype.getOntologyInformationFromCache = function (ontologyIris) {
         var resourceClassesForOntology = new ResourceClassIrisForOntology();
@@ -14182,7 +14244,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * The answer includes the property definitions referred to by the cardinalities of the given resource classes.
      *
      * @param {string[]} resClassIris the given resource class Iris
-     * @returns {OntologyInformation} an [[OntologyCache]] representing the requested resource classes.
+     * @returns Observable<OntologyInformation> - an [[OntologyCache]] representing the requested resource classes.
      */
     OntologyCacheService.prototype.getResourceClassDefinitionsFromCache = function (resClassIris) {
         // collect the definitions for each resource class from the cache
@@ -14244,7 +14306,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Returns property definitions from the cache.
      *
      * @param {string[]} propertyIris the property definitions to be returned.
-     * @returns {OntologyInformation} requested property defintions.
+     * @returns OntologyInformation - requested property defintions.
      */
     OntologyCacheService.prototype.getPropertyDefinitionsFromCache = function (propertyIris) {
         var _this = this;
@@ -14264,7 +14326,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Returns metadata about all ontologies.
      *
-     * @returns metadata about all ontologies.
+     * @returns Observable<Array<OntologyMetadata>> - metadata about all ontologies.
      */
     OntologyCacheService.prototype.getOntologiesMetadata = function () {
         var _this = this;
@@ -14287,7 +14349,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Requests the requested ontologies from Knora, adding them to the cache.
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be requested.
-     * @returns Observable of any[]
+     * @returns Observable<any[]>
      */
     OntologyCacheService.prototype.getAndCacheOntologies = function (ontologyIris) {
         var _this = this;
@@ -14311,7 +14373,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Returns the entity definitions for the requested ontologies.
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be queried.
-     * @returns Observable of OntologyInformation - all ontology metadata from the cache
+     * @returns Observable<OntologyInformation> - all ontology metadata from the cache
      */
     OntologyCacheService.prototype.getEntityDefinitionsForOntologies = function (ontologyIris) {
         var _this = this;
@@ -14337,7 +14399,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * Properties contained in the cardinalities will be returned too.
      *
      * @param {string[]} resourceClassIris the given resource class Iris
-     * @returns Observable of OntologyInformation - the requested resource classes (including properties).
+     * @returns Observable<OntologyInformation> - the requested resource classes (including properties).
      */
     OntologyCacheService.prototype.getResourceClassDefinitions = function (resourceClassIris) {
         var _this = this;
@@ -14364,7 +14426,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * If the definitions are not already in the cache, the will be retrieved from Knora and cached.
      *
      * @param {string[]} propertyIris the Iris of the properties to be returned .
-     * @returns Observable of OntologyInformation - the requested property definitions.
+     * @returns Observable<OntologyInformation> - the requested property definitions.
      */
     OntologyCacheService.prototype.getPropertyDefinitions = function (propertyIris) {
         var _this = this;
@@ -14445,7 +14507,7 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Requests the metadata about all existing ontologies from Knora's ontologies route.
      *
-     * @returns the metadata of all ontologies (Observable of ApiServiceResult).
+     * @returns Observable<ApiServiceResult> - the metadata of all ontologies.
      */
     OntologyService.prototype.getOntologiesMetadata = function () {
         return this.httpGet('/v2/ontologies/metadata');
@@ -14454,7 +14516,7 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Requests all entity definitions for the given ontologies from Knora's ontologies route.
      *
      * @param {string} ontologyIri the Iris of the named graphs whose resource classes are to be returned.
-     * @returns the requested ontology (Observable of ApiServiceResult).
+     * @returns Observable<ApiServiceResult> - the requested ontology.
      */
     OntologyService.prototype.getAllEntityDefinitionsForOntologies = function (ontologyIri) {
         return this.httpGet('/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri));
@@ -14463,7 +14525,7 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Requests information about the given resource classes from Knora's ontologies route.
      *
      * @param {string[]} resourceClassIris the Iris of the resource classes to be queried.
-     * @returns the requested resource class definitions (Observable of ApiServiceResult).
+     * @returns Observable<ApiServiceResult> - the requested resource class definitions.
      */
     OntologyService.prototype.getResourceClasses = function (resourceClassIris) {
         if (resourceClassIris.length === 0) {
@@ -14480,7 +14542,7 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Requests properties from Knora's ontologies route.
      *
      * @param {string[]} propertyIris the Iris of the properties to be queried.
-     * @returns the requested properties (Observable of ApiServiceResult).
+     * @returns Observable<ApiServiceResult> - the requested properties.
      */
     OntologyService.prototype.getProperties = function (propertyIris) {
         if (propertyIris.length === 0) {
@@ -14536,17 +14598,19 @@ var ResourceTypesService = /** @class */ /*@__PURE__*/ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-       * Get all resource types defined by the vocabulary
-       * @param iri (Vocabulary iri)
-       * @returns {Observable<any>}
+       * Get all resource types defined by the vocabulary.
+       *
+       * @param {string} iri Vocabulary iri
+       * @returns Observable<any>
        */
     ResourceTypesService.prototype.getResourceTypesByVoc = function (iri) {
         return this.httpGet('/v1/resourcetypes?vocabulary=' + encodeURIComponent(iri));
     };
     /**
-     * Get a specific resource type
-     * @param iri   (resource type iri)
-     * @returns {Observable<any>}
+     * Get a specific resource type.
+     *
+     * @param {string} iri resource type iri
+     * @returns Observable<any>
      */
     ResourceTypesService.prototype.getResourceType = function (iri) {
         return this.httpGet('/v1/resourcetypes/' + encodeURIComponent(iri));
@@ -14597,7 +14661,7 @@ var ResourceService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Given the Iri, requests the representation of a resource.
      *
      * @param {string} iri Iri of the resource (already URL encoded).
-     * @returns Observable of ApiServiceResult
+     * @returns Observable<ApiServiceResult>
      */
     ResourceService.prototype.getResource = function (iri) {
         // console.log('IRI from resource service: ', iri);
@@ -14655,6 +14719,7 @@ var SearchParamsService = /** @class */ /*@__PURE__*/ (function () {
      * Updates the parameters of an extended search.
      *
      * @param {ExtendedSearchParams} searchParams
+     * @returns void
      */
     SearchParamsService.prototype.changeSearchParamsMsg = function (searchParams) {
         this._currentSearchParams.next(searchParams);
@@ -14662,7 +14727,7 @@ var SearchParamsService = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Gets the search params of an extended search.
      *
-     * @returns {ExtendedSearchParams}
+     * @returns ExtendedSearchParams - search parameters
      */
     SearchParamsService.prototype.getSearchParams = function () {
         return this._currentSearchParams.getValue();
@@ -14716,7 +14781,7 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
-     * @returns Observable of ApiServiceResult
+     * @returns Observable<ApiServiceResult>
      */
     SearchService.prototype.doFulltextSearch = function (searchTerm, offset) {
         if (offset === void 0) {
@@ -14731,7 +14796,7 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform a fulltext search count query.
      *
      * @param {string} searchTerm the term to search for.
-     * @returns Observable of ApiServiceResult
+     * @returns Observable<ApiServiceResult>
      */
     SearchService.prototype.doFulltextSearchCountQuery = function (searchTerm) {
         if (searchTerm === undefined || searchTerm.length === 0) {
@@ -14743,7 +14808,7 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform an extended search.
      *
      * @param {string} sparqlString the Sparql query string to be sent to Knora.
-     * @returns Observable of ApiServiceResult
+     * @returns Observable<ApiServiceResult>
      */
     SearchService.prototype.doExtendedSearch = function (sparqlString) {
         if (sparqlString === undefined || sparqlString.length === 0) {
@@ -14756,7 +14821,7 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform an extended search count query.
      *
      * @param {string} sparqlString the Sparql query string to be sent to Knora.
-     * @returns Observable of ApiServiceResult
+     * @returns Observable<ApiServiceResult>
      */
     SearchService.prototype.doExtendedSearchCountQuery = function (sparqlString) {
         if (sparqlString === undefined || sparqlString.length === 0) {
@@ -14769,9 +14834,9 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform a search by a resource's rdfs:label.
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} resourceClassIRI restrict search to given resource class.
-     * @param {string} projectIri restrict search to given project.
-     * @returns Observable of ApiServiceResult
+     * @param {string} [resourceClassIRI] restrict search to given resource class.
+     * @param {string} [projectIri] restrict search to given project.
+     * @returns Observable<ApiServiceResult>
      */
     SearchService.prototype.searchByLabel = function (searchTerm, resourceClassIRI, projectIri) {
         if (searchTerm === undefined || searchTerm.length === 0) {
@@ -14819,10 +14884,10 @@ var StoreService = /** @class */ /*@__PURE__*/ (function () {
         this.config = config;
     }
     /**
-       * resets the content of the triplestore
+       * Resets the content of the triplestore.
        *
        * @param rdfDataObjects
-       * @returns {Observable<string>}
+       * @returns Observable<string>
        */
     StoreService.prototype.resetTriplestoreContent = function (rdfDataObjects) {
         return this.http.post(this.config.api + '/admin/store/ResetTriplestoreContent', rdfDataObjects)
@@ -15245,13 +15310,13 @@ var AppDemo = /** @class */ /*@__PURE__*/ (function () {
                 name: 'admin-image',
                 label: 'AdminImage',
                 type: 'Directive',
-                stackblitz: true
+                stackblitz: false
             },
             {
                 name: 'existing-name',
                 label: 'ExistingName',
                 type: 'Directive',
-                stackblitz: false
+                stackblitz: true
             },
             {
                 name: 'key',
@@ -15287,7 +15352,7 @@ var AppDemo = /** @class */ /*@__PURE__*/ (function () {
                 label: 'ResourceService'
             },
             {
-                name: 'search-service',
+                name: 'search',
                 label: 'SearchService'
             },
             {
@@ -15303,11 +15368,11 @@ var AppDemo = /** @class */ /*@__PURE__*/ (function () {
                 label: 'IncomingService'
             },
             {
-                name: 'gravsearch',
+                name: 'grav-search',
                 label: 'GravSearchService'
             },
             {
-                name: 'convertjsonld',
+                name: 'convert-jsonld',
                 label: 'ConvertJsonLD'
             }
         ]
@@ -15321,6 +15386,11 @@ var AppDemo = /** @class */ /*@__PURE__*/ (function () {
                 name: 'login-form',
                 label: 'LoginForm',
                 type: 'Component',
+                stackblitz: false
+            },
+            {
+                name: 'authentication',
+                label: 'AuthenticationService',
                 stackblitz: false
             }
         ]
@@ -15342,20 +15412,7 @@ var AppDemo = /** @class */ /*@__PURE__*/ (function () {
         name: 'viewer',
         published: false,
         label: 'Viewer module',
-        children: [
-            {
-                name: 'resources',
-                label: 'Resources'
-            },
-            {
-                name: 'properties',
-                label: 'Properties'
-            },
-            {
-                name: 'views',
-                label: 'Views'
-            }
-        ]
+        children: []
     };
     /* ******************************************************************* */
     /**
@@ -15551,134 +15608,136 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _knora_ui_examples_action_demo_existing_name_existing_name_component_ngfactory__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/existing-name/existing-name.component.ngfactory */ "./src/app/knora-ui-examples/action-demo/existing-name/existing-name.component.ngfactory.js");
 /* harmony import */ var _knora_ui_examples_action_demo_key_key_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/key/key.component.ngfactory */ "./src/app/knora-ui-examples/action-demo/key/key.component.ngfactory.js");
 /* harmony import */ var _knora_ui_examples_authentication_demo_authentication_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./knora-ui-examples/authentication-demo/authentication-demo.component.ngfactory */ "./src/app/knora-ui-examples/authentication-demo/authentication-demo.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_search_demo_search_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-demo.component.ngfactory */ "./src/app/knora-ui-examples/search-demo/search-demo.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_search_demo_search_panel_search_panel_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-panel/search-panel.component.ngfactory */ "./src/app/knora-ui-examples/search-demo/search-panel/search-panel.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_search_demo_search_result_search_result_component_ngfactory__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-result/search-result.component.ngfactory */ "./src/app/knora-ui-examples/search-demo/search-result/search-result.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_viewer_demo_viewer_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/viewer-demo.component.ngfactory */ "./src/app/knora-ui-examples/viewer-demo/viewer-demo.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_viewer_demo_resources_resources_component_ngfactory__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/resources/resources.component.ngfactory */ "./src/app/knora-ui-examples/viewer-demo/resources/resources.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_viewer_demo_properties_properties_component_ngfactory__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/properties/properties.component.ngfactory */ "./src/app/knora-ui-examples/viewer-demo/properties/properties.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_viewer_demo_views_views_component_ngfactory__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/views/views.component.ngfactory */ "./src/app/knora-ui-examples/viewer-demo/views/views.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_core_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/core-demo.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/core-demo.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_projects_projects_component_ngfactory__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/projects/projects.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_users_users_component_ngfactory__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/users/users.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/users/users.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_groups_groups_component_ngfactory__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/groups/groups.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_lists_lists_component_ngfactory__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/lists/lists.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_resource_resource_component_ngfactory__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/resource/resource.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_search_search_component_ngfactory__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/search/search.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/search/search.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component_ngfactory__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_ontology_ontology_component_ngfactory__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology/ontology.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/ontology/ontology.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_incoming_incoming_component_ngfactory__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/incoming/incoming.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/incoming/incoming.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_gravsearch_gravsearch_component_ngfactory__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/gravsearch/gravsearch.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/gravsearch/gravsearch.component.ngfactory.js");
-/* harmony import */ var _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component_ngfactory__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ngfactory.js");
-/* harmony import */ var _dev_docs_doc_intro_doc_intro_component_ngfactory__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./dev-docs/doc-intro/doc-intro.component.ngfactory */ "./src/app/dev-docs/doc-intro/doc-intro.component.ngfactory.js");
-/* harmony import */ var _material_tree_tree_component_ngfactory__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./material/tree/tree.component.ngfactory */ "./src/app/material/tree/tree.component.ngfactory.js");
-/* harmony import */ var _node_modules_angular_material_dialog_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../../node_modules/@angular/material/dialog/typings/index.ngfactory */ "./node_modules/@angular/material/dialog/typings/index.ngfactory.js");
-/* harmony import */ var _node_modules_angular_material_datepicker_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ../../node_modules/@angular/material/datepicker/typings/index.ngfactory */ "./node_modules/@angular/material/datepicker/typings/index.ngfactory.js");
-/* harmony import */ var _node_modules_angular_material_tooltip_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ../../node_modules/@angular/material/tooltip/typings/index.ngfactory */ "./node_modules/@angular/material/tooltip/typings/index.ngfactory.js");
-/* harmony import */ var _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ../../dist/@knora/search/knora-search.ngfactory */ "./dist/@knora/search/knora-search.ngfactory.js");
-/* harmony import */ var _node_modules_angular_material_snack_bar_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ../../node_modules/@angular/material/snack-bar/typings/index.ngfactory */ "./node_modules/@angular/material/snack-bar/typings/index.ngfactory.js");
-/* harmony import */ var _app_component_ngfactory__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./app.component.ngfactory */ "./src/app/app.component.ngfactory.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @angular/material/core */ "./node_modules/@angular/material/esm5/core.es5.js");
-/* harmony import */ var _angular_animations_browser__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @angular/animations/browser */ "./node_modules/@angular/animations/fesm5/browser.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _knora_authentication__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! @knora/authentication */ "./dist/@knora/authentication/fesm5/knora-authentication.js");
-/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm5/animations.js");
-/* harmony import */ var _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! @angular/cdk/overlay */ "./node_modules/@angular/cdk/esm5/overlay.es5.js");
-/* harmony import */ var _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! @angular/cdk/bidi */ "./node_modules/@angular/cdk/esm5/bidi.es5.js");
-/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! @angular/material/menu */ "./node_modules/@angular/material/esm5/menu.es5.js");
-/* harmony import */ var _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! @angular/cdk/observers */ "./node_modules/@angular/cdk/esm5/observers.es5.js");
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! @angular/material/autocomplete */ "./node_modules/@angular/material/esm5/autocomplete.es5.js");
-/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm5/datepicker.es5.js");
-/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm5/select.es5.js");
-/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! @angular/material/tooltip */ "./node_modules/@angular/material/esm5/tooltip.es5.js");
-/* harmony import */ var jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! jdnconvertiblecalendardateadapter */ "./node_modules/jdnconvertiblecalendardateadapter/fesm5/jdnconvertiblecalendardateadapter.js");
-/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/esm5/paginator.es5.js");
-/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/esm5/sort.es5.js");
-/* harmony import */ var _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! @angular/cdk/a11y */ "./node_modules/@angular/cdk/esm5/a11y.es5.js");
-/* harmony import */ var _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! @angular/cdk/platform */ "./node_modules/@angular/cdk/esm5/platform.es5.js");
-/* harmony import */ var _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! @angular/cdk/tree */ "./node_modules/@angular/cdk/esm5/tree.es5.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _landing_page_main_intro_main_intro_component__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ./landing-page/main-intro/main-intro.component */ "./src/app/landing-page/main-intro/main-intro.component.ts");
-/* harmony import */ var _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./knora-ui-examples/authentication-demo/login/login.component */ "./src/app/knora-ui-examples/authentication-demo/login/login.component.ts");
-/* harmony import */ var _partials_module_index_module_index_component__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ./partials/module-index/module-index.component */ "./src/app/partials/module-index/module-index.component.ts");
-/* harmony import */ var _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! ./landing-page/demo-intro/demo-intro.component */ "./src/app/landing-page/demo-intro/demo-intro.component.ts");
-/* harmony import */ var _knora_ui_examples_action_demo_action_demo_component__WEBPACK_IMPORTED_MODULE_72__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/action-demo.component */ "./src/app/knora-ui-examples/action-demo/action-demo.component.ts");
-/* harmony import */ var _knora_ui_examples_action_demo_sort_button_sort_button_component__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/sort-button/sort-button.component */ "./src/app/knora-ui-examples/action-demo/sort-button/sort-button.component.ts");
-/* harmony import */ var _knora_ui_examples_action_demo_progress_indicator_progress_indicator_component__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/progress-indicator/progress-indicator.component */ "./src/app/knora-ui-examples/action-demo/progress-indicator/progress-indicator.component.ts");
-/* harmony import */ var _knora_ui_examples_action_demo_admin_image_admin_image_component__WEBPACK_IMPORTED_MODULE_75__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/admin-image/admin-image.component */ "./src/app/knora-ui-examples/action-demo/admin-image/admin-image.component.ts");
-/* harmony import */ var _knora_ui_examples_action_demo_existing_name_existing_name_component__WEBPACK_IMPORTED_MODULE_76__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/existing-name/existing-name.component */ "./src/app/knora-ui-examples/action-demo/existing-name/existing-name.component.ts");
-/* harmony import */ var _knora_ui_examples_action_demo_key_key_component__WEBPACK_IMPORTED_MODULE_77__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/key/key.component */ "./src/app/knora-ui-examples/action-demo/key/key.component.ts");
-/* harmony import */ var _knora_ui_examples_authentication_demo_authentication_demo_component__WEBPACK_IMPORTED_MODULE_78__ = __webpack_require__(/*! ./knora-ui-examples/authentication-demo/authentication-demo.component */ "./src/app/knora-ui-examples/authentication-demo/authentication-demo.component.ts");
-/* harmony import */ var _knora_ui_examples_search_demo_search_demo_component__WEBPACK_IMPORTED_MODULE_79__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-demo.component */ "./src/app/knora-ui-examples/search-demo/search-demo.component.ts");
-/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_80__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
-/* harmony import */ var _knora_ui_examples_search_demo_search_panel_search_panel_component__WEBPACK_IMPORTED_MODULE_81__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-panel/search-panel.component */ "./src/app/knora-ui-examples/search-demo/search-panel/search-panel.component.ts");
-/* harmony import */ var _knora_ui_examples_search_demo_search_result_search_result_component__WEBPACK_IMPORTED_MODULE_82__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-result/search-result.component */ "./src/app/knora-ui-examples/search-demo/search-result/search-result.component.ts");
-/* harmony import */ var _knora_ui_examples_viewer_demo_viewer_demo_component__WEBPACK_IMPORTED_MODULE_83__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/viewer-demo.component */ "./src/app/knora-ui-examples/viewer-demo/viewer-demo.component.ts");
-/* harmony import */ var _knora_ui_examples_viewer_demo_resources_resources_component__WEBPACK_IMPORTED_MODULE_84__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/resources/resources.component */ "./src/app/knora-ui-examples/viewer-demo/resources/resources.component.ts");
-/* harmony import */ var _knora_ui_examples_viewer_demo_properties_properties_component__WEBPACK_IMPORTED_MODULE_85__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/properties/properties.component */ "./src/app/knora-ui-examples/viewer-demo/properties/properties.component.ts");
-/* harmony import */ var _knora_ui_examples_viewer_demo_views_views_component__WEBPACK_IMPORTED_MODULE_86__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/views/views.component */ "./src/app/knora-ui-examples/viewer-demo/views/views.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_core_demo_component__WEBPACK_IMPORTED_MODULE_87__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/core-demo.component */ "./src/app/knora-ui-examples/core-demo/core-demo.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_projects_projects_component__WEBPACK_IMPORTED_MODULE_88__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/projects/projects.component */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_users_users_component__WEBPACK_IMPORTED_MODULE_89__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/users/users.component */ "./src/app/knora-ui-examples/core-demo/users/users.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_groups_groups_component__WEBPACK_IMPORTED_MODULE_90__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/groups/groups.component */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_lists_lists_component__WEBPACK_IMPORTED_MODULE_91__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/lists/lists.component */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_resource_resource_component__WEBPACK_IMPORTED_MODULE_92__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/resource/resource.component */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_search_search_component__WEBPACK_IMPORTED_MODULE_93__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/search/search.component */ "./src/app/knora-ui-examples/core-demo/search/search.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component__WEBPACK_IMPORTED_MODULE_94__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology-cache/ontology-cache.component */ "./src/app/knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_ontology_ontology_component__WEBPACK_IMPORTED_MODULE_95__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology/ontology.component */ "./src/app/knora-ui-examples/core-demo/ontology/ontology.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_incoming_incoming_component__WEBPACK_IMPORTED_MODULE_96__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/incoming/incoming.component */ "./src/app/knora-ui-examples/core-demo/incoming/incoming.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_gravsearch_gravsearch_component__WEBPACK_IMPORTED_MODULE_97__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/gravsearch/gravsearch.component */ "./src/app/knora-ui-examples/core-demo/gravsearch/gravsearch.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component__WEBPACK_IMPORTED_MODULE_98__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component */ "./src/app/knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ts");
-/* harmony import */ var _dev_docs_doc_intro_doc_intro_component__WEBPACK_IMPORTED_MODULE_99__ = __webpack_require__(/*! ./dev-docs/doc-intro/doc-intro.component */ "./src/app/dev-docs/doc-intro/doc-intro.component.ts");
-/* harmony import */ var _material_tree_tree_component__WEBPACK_IMPORTED_MODULE_100__ = __webpack_require__(/*! ./material/tree/tree.component */ "./src/app/material/tree/tree.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_101__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_102__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_103__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
-/* harmony import */ var _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_104__ = __webpack_require__(/*! @angular/cdk/portal */ "./node_modules/@angular/cdk/esm5/portal.es5.js");
-/* harmony import */ var _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_105__ = __webpack_require__(/*! @angular/cdk/scrolling */ "./node_modules/@angular/cdk/esm5/scrolling.es5.js");
-/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_106__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_107__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _angular_cdk_text_field__WEBPACK_IMPORTED_MODULE_108__ = __webpack_require__(/*! @angular/cdk/text-field */ "./node_modules/@angular/cdk/esm5/text-field.es5.js");
-/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_109__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm5/form-field.es5.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_110__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
-/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_111__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm5/checkbox.es5.js");
-/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_112__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm5/divider.es5.js");
-/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_113__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
-/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_114__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm5/slide-toggle.es5.js");
-/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_115__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
-/* harmony import */ var _knora_viewer__WEBPACK_IMPORTED_MODULE_116__ = __webpack_require__(/*! @knora/viewer */ "./dist/@knora/viewer/fesm5/knora-viewer.js");
-/* harmony import */ var _knora_search__WEBPACK_IMPORTED_MODULE_117__ = __webpack_require__(/*! @knora/search */ "./dist/@knora/search/fesm5/knora-search.js");
-/* harmony import */ var _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_118__ = __webpack_require__(/*! @angular/material/button-toggle */ "./node_modules/@angular/material/esm5/button-toggle.es5.js");
-/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_119__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/esm5/chips.es5.js");
-/* harmony import */ var _angular_cdk_table__WEBPACK_IMPORTED_MODULE_120__ = __webpack_require__(/*! @angular/cdk/table */ "./node_modules/@angular/cdk/esm5/table.es5.js");
-/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_121__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
-/* harmony import */ var _angular_cdk_accordion__WEBPACK_IMPORTED_MODULE_122__ = __webpack_require__(/*! @angular/cdk/accordion */ "./node_modules/@angular/cdk/esm5/accordion.es5.js");
-/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_123__ = __webpack_require__(/*! @angular/material/expansion */ "./node_modules/@angular/material/esm5/expansion.es5.js");
-/* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_124__ = __webpack_require__(/*! @angular/material/grid-list */ "./node_modules/@angular/material/esm5/grid-list.es5.js");
-/* harmony import */ var _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_125__ = __webpack_require__(/*! @angular/material/progress-bar */ "./node_modules/@angular/material/esm5/progress-bar.es5.js");
-/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_126__ = __webpack_require__(/*! @angular/material/progress-spinner */ "./node_modules/@angular/material/esm5/progress-spinner.es5.js");
-/* harmony import */ var _angular_material_radio__WEBPACK_IMPORTED_MODULE_127__ = __webpack_require__(/*! @angular/material/radio */ "./node_modules/@angular/material/esm5/radio.es5.js");
-/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_128__ = __webpack_require__(/*! @angular/material/sidenav */ "./node_modules/@angular/material/esm5/sidenav.es5.js");
-/* harmony import */ var _angular_material_slider__WEBPACK_IMPORTED_MODULE_129__ = __webpack_require__(/*! @angular/material/slider */ "./node_modules/@angular/material/esm5/slider.es5.js");
-/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_130__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_131__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
-/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_132__ = __webpack_require__(/*! @angular/material/tree */ "./node_modules/@angular/material/esm5/tree.es5.js");
-/* harmony import */ var _material_module__WEBPACK_IMPORTED_MODULE_133__ = __webpack_require__(/*! ./material-module */ "./src/app/material-module.ts");
-/* harmony import */ var _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_134__ = __webpack_require__(/*! @angular/cdk/keycodes */ "./node_modules/@angular/cdk/esm5/keycodes.es5.js");
+/* harmony import */ var _knora_ui_examples_authentication_demo_auth_auth_component_ngfactory__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./knora-ui-examples/authentication-demo/auth/auth.component.ngfactory */ "./src/app/knora-ui-examples/authentication-demo/auth/auth.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_search_demo_search_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-demo.component.ngfactory */ "./src/app/knora-ui-examples/search-demo/search-demo.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_search_demo_search_panel_search_panel_component_ngfactory__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-panel/search-panel.component.ngfactory */ "./src/app/knora-ui-examples/search-demo/search-panel/search-panel.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_search_demo_search_result_search_result_component_ngfactory__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-result/search-result.component.ngfactory */ "./src/app/knora-ui-examples/search-demo/search-result/search-result.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_viewer_demo_viewer_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/viewer-demo.component.ngfactory */ "./src/app/knora-ui-examples/viewer-demo/viewer-demo.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_viewer_demo_resources_resources_component_ngfactory__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/resources/resources.component.ngfactory */ "./src/app/knora-ui-examples/viewer-demo/resources/resources.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_viewer_demo_properties_properties_component_ngfactory__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/properties/properties.component.ngfactory */ "./src/app/knora-ui-examples/viewer-demo/properties/properties.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_viewer_demo_views_views_component_ngfactory__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/views/views.component.ngfactory */ "./src/app/knora-ui-examples/viewer-demo/views/views.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_core_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/core-demo.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/core-demo.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_projects_projects_component_ngfactory__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/projects/projects.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_users_users_component_ngfactory__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/users/users.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/users/users.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_groups_groups_component_ngfactory__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/groups/groups.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_lists_lists_component_ngfactory__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/lists/lists.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_resource_resource_component_ngfactory__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/resource/resource.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_search_search_component_ngfactory__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/search/search.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/search/search.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component_ngfactory__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_ontology_ontology_component_ngfactory__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology/ontology.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/ontology/ontology.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_incoming_incoming_component_ngfactory__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/incoming/incoming.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/incoming/incoming.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_gravsearch_gravsearch_component_ngfactory__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/gravsearch/gravsearch.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/gravsearch/gravsearch.component.ngfactory.js");
+/* harmony import */ var _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component_ngfactory__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ngfactory */ "./src/app/knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ngfactory.js");
+/* harmony import */ var _dev_docs_doc_intro_doc_intro_component_ngfactory__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./dev-docs/doc-intro/doc-intro.component.ngfactory */ "./src/app/dev-docs/doc-intro/doc-intro.component.ngfactory.js");
+/* harmony import */ var _material_tree_tree_component_ngfactory__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./material/tree/tree.component.ngfactory */ "./src/app/material/tree/tree.component.ngfactory.js");
+/* harmony import */ var _node_modules_angular_material_dialog_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ../../node_modules/@angular/material/dialog/typings/index.ngfactory */ "./node_modules/@angular/material/dialog/typings/index.ngfactory.js");
+/* harmony import */ var _node_modules_angular_material_datepicker_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ../../node_modules/@angular/material/datepicker/typings/index.ngfactory */ "./node_modules/@angular/material/datepicker/typings/index.ngfactory.js");
+/* harmony import */ var _node_modules_angular_material_tooltip_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ../../node_modules/@angular/material/tooltip/typings/index.ngfactory */ "./node_modules/@angular/material/tooltip/typings/index.ngfactory.js");
+/* harmony import */ var _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ../../dist/@knora/search/knora-search.ngfactory */ "./dist/@knora/search/knora-search.ngfactory.js");
+/* harmony import */ var _node_modules_angular_material_snack_bar_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ../../node_modules/@angular/material/snack-bar/typings/index.ngfactory */ "./node_modules/@angular/material/snack-bar/typings/index.ngfactory.js");
+/* harmony import */ var _app_component_ngfactory__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./app.component.ngfactory */ "./src/app/app.component.ngfactory.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @angular/material/core */ "./node_modules/@angular/material/esm5/core.es5.js");
+/* harmony import */ var _angular_animations_browser__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @angular/animations/browser */ "./node_modules/@angular/animations/fesm5/browser.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _knora_authentication__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! @knora/authentication */ "./dist/@knora/authentication/fesm5/knora-authentication.js");
+/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm5/animations.js");
+/* harmony import */ var _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! @angular/cdk/overlay */ "./node_modules/@angular/cdk/esm5/overlay.es5.js");
+/* harmony import */ var _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! @angular/cdk/bidi */ "./node_modules/@angular/cdk/esm5/bidi.es5.js");
+/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! @angular/material/menu */ "./node_modules/@angular/material/esm5/menu.es5.js");
+/* harmony import */ var _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! @angular/cdk/observers */ "./node_modules/@angular/cdk/esm5/observers.es5.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! @angular/material/autocomplete */ "./node_modules/@angular/material/esm5/autocomplete.es5.js");
+/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm5/datepicker.es5.js");
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm5/select.es5.js");
+/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! @angular/material/tooltip */ "./node_modules/@angular/material/esm5/tooltip.es5.js");
+/* harmony import */ var jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! jdnconvertiblecalendardateadapter */ "./node_modules/jdnconvertiblecalendardateadapter/fesm5/jdnconvertiblecalendardateadapter.js");
+/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/esm5/paginator.es5.js");
+/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/esm5/sort.es5.js");
+/* harmony import */ var _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! @angular/cdk/a11y */ "./node_modules/@angular/cdk/esm5/a11y.es5.js");
+/* harmony import */ var _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! @angular/cdk/platform */ "./node_modules/@angular/cdk/esm5/platform.es5.js");
+/* harmony import */ var _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! @angular/cdk/tree */ "./node_modules/@angular/cdk/esm5/tree.es5.js");
+/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
+/* harmony import */ var _landing_page_main_intro_main_intro_component__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./landing-page/main-intro/main-intro.component */ "./src/app/landing-page/main-intro/main-intro.component.ts");
+/* harmony import */ var _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ./knora-ui-examples/authentication-demo/login/login.component */ "./src/app/knora-ui-examples/authentication-demo/login/login.component.ts");
+/* harmony import */ var _partials_module_index_module_index_component__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! ./partials/module-index/module-index.component */ "./src/app/partials/module-index/module-index.component.ts");
+/* harmony import */ var _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_72__ = __webpack_require__(/*! ./landing-page/demo-intro/demo-intro.component */ "./src/app/landing-page/demo-intro/demo-intro.component.ts");
+/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
+/* harmony import */ var _knora_ui_examples_action_demo_action_demo_component__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/action-demo.component */ "./src/app/knora-ui-examples/action-demo/action-demo.component.ts");
+/* harmony import */ var _knora_ui_examples_action_demo_sort_button_sort_button_component__WEBPACK_IMPORTED_MODULE_75__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/sort-button/sort-button.component */ "./src/app/knora-ui-examples/action-demo/sort-button/sort-button.component.ts");
+/* harmony import */ var _knora_ui_examples_action_demo_progress_indicator_progress_indicator_component__WEBPACK_IMPORTED_MODULE_76__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/progress-indicator/progress-indicator.component */ "./src/app/knora-ui-examples/action-demo/progress-indicator/progress-indicator.component.ts");
+/* harmony import */ var _knora_ui_examples_action_demo_admin_image_admin_image_component__WEBPACK_IMPORTED_MODULE_77__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/admin-image/admin-image.component */ "./src/app/knora-ui-examples/action-demo/admin-image/admin-image.component.ts");
+/* harmony import */ var _knora_ui_examples_action_demo_existing_name_existing_name_component__WEBPACK_IMPORTED_MODULE_78__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/existing-name/existing-name.component */ "./src/app/knora-ui-examples/action-demo/existing-name/existing-name.component.ts");
+/* harmony import */ var _knora_ui_examples_action_demo_key_key_component__WEBPACK_IMPORTED_MODULE_79__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/key/key.component */ "./src/app/knora-ui-examples/action-demo/key/key.component.ts");
+/* harmony import */ var _knora_ui_examples_authentication_demo_authentication_demo_component__WEBPACK_IMPORTED_MODULE_80__ = __webpack_require__(/*! ./knora-ui-examples/authentication-demo/authentication-demo.component */ "./src/app/knora-ui-examples/authentication-demo/authentication-demo.component.ts");
+/* harmony import */ var _knora_ui_examples_authentication_demo_auth_auth_component__WEBPACK_IMPORTED_MODULE_81__ = __webpack_require__(/*! ./knora-ui-examples/authentication-demo/auth/auth.component */ "./src/app/knora-ui-examples/authentication-demo/auth/auth.component.ts");
+/* harmony import */ var _knora_ui_examples_search_demo_search_demo_component__WEBPACK_IMPORTED_MODULE_82__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-demo.component */ "./src/app/knora-ui-examples/search-demo/search-demo.component.ts");
+/* harmony import */ var _knora_ui_examples_search_demo_search_panel_search_panel_component__WEBPACK_IMPORTED_MODULE_83__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-panel/search-panel.component */ "./src/app/knora-ui-examples/search-demo/search-panel/search-panel.component.ts");
+/* harmony import */ var _knora_ui_examples_search_demo_search_result_search_result_component__WEBPACK_IMPORTED_MODULE_84__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-result/search-result.component */ "./src/app/knora-ui-examples/search-demo/search-result/search-result.component.ts");
+/* harmony import */ var _knora_ui_examples_viewer_demo_viewer_demo_component__WEBPACK_IMPORTED_MODULE_85__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/viewer-demo.component */ "./src/app/knora-ui-examples/viewer-demo/viewer-demo.component.ts");
+/* harmony import */ var _knora_ui_examples_viewer_demo_resources_resources_component__WEBPACK_IMPORTED_MODULE_86__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/resources/resources.component */ "./src/app/knora-ui-examples/viewer-demo/resources/resources.component.ts");
+/* harmony import */ var _knora_viewer__WEBPACK_IMPORTED_MODULE_87__ = __webpack_require__(/*! @knora/viewer */ "./dist/@knora/viewer/fesm5/knora-viewer.js");
+/* harmony import */ var _knora_ui_examples_viewer_demo_properties_properties_component__WEBPACK_IMPORTED_MODULE_88__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/properties/properties.component */ "./src/app/knora-ui-examples/viewer-demo/properties/properties.component.ts");
+/* harmony import */ var _knora_ui_examples_viewer_demo_views_views_component__WEBPACK_IMPORTED_MODULE_89__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/views/views.component */ "./src/app/knora-ui-examples/viewer-demo/views/views.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_core_demo_component__WEBPACK_IMPORTED_MODULE_90__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/core-demo.component */ "./src/app/knora-ui-examples/core-demo/core-demo.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_projects_projects_component__WEBPACK_IMPORTED_MODULE_91__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/projects/projects.component */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_users_users_component__WEBPACK_IMPORTED_MODULE_92__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/users/users.component */ "./src/app/knora-ui-examples/core-demo/users/users.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_groups_groups_component__WEBPACK_IMPORTED_MODULE_93__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/groups/groups.component */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_lists_lists_component__WEBPACK_IMPORTED_MODULE_94__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/lists/lists.component */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_resource_resource_component__WEBPACK_IMPORTED_MODULE_95__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/resource/resource.component */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_search_search_component__WEBPACK_IMPORTED_MODULE_96__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/search/search.component */ "./src/app/knora-ui-examples/core-demo/search/search.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component__WEBPACK_IMPORTED_MODULE_97__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology-cache/ontology-cache.component */ "./src/app/knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_ontology_ontology_component__WEBPACK_IMPORTED_MODULE_98__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology/ontology.component */ "./src/app/knora-ui-examples/core-demo/ontology/ontology.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_incoming_incoming_component__WEBPACK_IMPORTED_MODULE_99__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/incoming/incoming.component */ "./src/app/knora-ui-examples/core-demo/incoming/incoming.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_gravsearch_gravsearch_component__WEBPACK_IMPORTED_MODULE_100__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/gravsearch/gravsearch.component */ "./src/app/knora-ui-examples/core-demo/gravsearch/gravsearch.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component__WEBPACK_IMPORTED_MODULE_101__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component */ "./src/app/knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ts");
+/* harmony import */ var _dev_docs_doc_intro_doc_intro_component__WEBPACK_IMPORTED_MODULE_102__ = __webpack_require__(/*! ./dev-docs/doc-intro/doc-intro.component */ "./src/app/dev-docs/doc-intro/doc-intro.component.ts");
+/* harmony import */ var _material_tree_tree_component__WEBPACK_IMPORTED_MODULE_103__ = __webpack_require__(/*! ./material/tree/tree.component */ "./src/app/material/tree/tree.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_104__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_105__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_106__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
+/* harmony import */ var _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_107__ = __webpack_require__(/*! @angular/cdk/portal */ "./node_modules/@angular/cdk/esm5/portal.es5.js");
+/* harmony import */ var _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_108__ = __webpack_require__(/*! @angular/cdk/scrolling */ "./node_modules/@angular/cdk/esm5/scrolling.es5.js");
+/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_109__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_110__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _angular_cdk_text_field__WEBPACK_IMPORTED_MODULE_111__ = __webpack_require__(/*! @angular/cdk/text-field */ "./node_modules/@angular/cdk/esm5/text-field.es5.js");
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_112__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm5/form-field.es5.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_113__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_114__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm5/checkbox.es5.js");
+/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_115__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm5/divider.es5.js");
+/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_116__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
+/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_117__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm5/slide-toggle.es5.js");
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_118__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
+/* harmony import */ var _knora_search__WEBPACK_IMPORTED_MODULE_119__ = __webpack_require__(/*! @knora/search */ "./dist/@knora/search/fesm5/knora-search.js");
+/* harmony import */ var _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_120__ = __webpack_require__(/*! @angular/material/button-toggle */ "./node_modules/@angular/material/esm5/button-toggle.es5.js");
+/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_121__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/esm5/chips.es5.js");
+/* harmony import */ var _angular_cdk_table__WEBPACK_IMPORTED_MODULE_122__ = __webpack_require__(/*! @angular/cdk/table */ "./node_modules/@angular/cdk/esm5/table.es5.js");
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_123__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
+/* harmony import */ var _angular_cdk_accordion__WEBPACK_IMPORTED_MODULE_124__ = __webpack_require__(/*! @angular/cdk/accordion */ "./node_modules/@angular/cdk/esm5/accordion.es5.js");
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_125__ = __webpack_require__(/*! @angular/material/expansion */ "./node_modules/@angular/material/esm5/expansion.es5.js");
+/* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_126__ = __webpack_require__(/*! @angular/material/grid-list */ "./node_modules/@angular/material/esm5/grid-list.es5.js");
+/* harmony import */ var _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_127__ = __webpack_require__(/*! @angular/material/progress-bar */ "./node_modules/@angular/material/esm5/progress-bar.es5.js");
+/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_128__ = __webpack_require__(/*! @angular/material/progress-spinner */ "./node_modules/@angular/material/esm5/progress-spinner.es5.js");
+/* harmony import */ var _angular_material_radio__WEBPACK_IMPORTED_MODULE_129__ = __webpack_require__(/*! @angular/material/radio */ "./node_modules/@angular/material/esm5/radio.es5.js");
+/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_130__ = __webpack_require__(/*! @angular/material/sidenav */ "./node_modules/@angular/material/esm5/sidenav.es5.js");
+/* harmony import */ var _angular_material_slider__WEBPACK_IMPORTED_MODULE_131__ = __webpack_require__(/*! @angular/material/slider */ "./node_modules/@angular/material/esm5/slider.es5.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_132__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_133__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
+/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_134__ = __webpack_require__(/*! @angular/material/tree */ "./node_modules/@angular/material/esm5/tree.es5.js");
+/* harmony import */ var _material_module__WEBPACK_IMPORTED_MODULE_135__ = __webpack_require__(/*! ./material-module */ "./src/app/material-module.ts");
+/* harmony import */ var _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_136__ = __webpack_require__(/*! @angular/cdk/keycodes */ "./node_modules/@angular/cdk/esm5/keycodes.es5.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _angular_core,_app.module,_app.component,_.._node_modules__angular_router_router.ngfactory,_landing_page_main_intro_main_intro.component.ngfactory,_knora_ui_examples_authentication_demo_login_login.component.ngfactory,_partials_module_index_module_index.component.ngfactory,_landing_page_demo_intro_demo_intro.component.ngfactory,_knora_ui_examples_action_demo_action_demo.component.ngfactory,_knora_ui_examples_action_demo_sort_button_sort_button.component.ngfactory,_knora_ui_examples_action_demo_progress_indicator_progress_indicator.component.ngfactory,_knora_ui_examples_action_demo_admin_image_admin_image.component.ngfactory,_knora_ui_examples_action_demo_existing_name_existing_name.component.ngfactory,_knora_ui_examples_action_demo_key_key.component.ngfactory,_knora_ui_examples_authentication_demo_authentication_demo.component.ngfactory,_knora_ui_examples_search_demo_search_demo.component.ngfactory,_knora_ui_examples_search_demo_search_panel_search_panel.component.ngfactory,_knora_ui_examples_search_demo_search_result_search_result.component.ngfactory,_knora_ui_examples_viewer_demo_viewer_demo.component.ngfactory,_knora_ui_examples_viewer_demo_resources_resources.component.ngfactory,_knora_ui_examples_viewer_demo_properties_properties.component.ngfactory,_knora_ui_examples_viewer_demo_views_views.component.ngfactory,_knora_ui_examples_core_demo_core_demo.component.ngfactory,_knora_ui_examples_core_demo_projects_projects.component.ngfactory,_knora_ui_examples_core_demo_users_users.component.ngfactory,_knora_ui_examples_core_demo_groups_groups.component.ngfactory,_knora_ui_examples_core_demo_lists_lists.component.ngfactory,_knora_ui_examples_core_demo_resource_resource.component.ngfactory,_knora_ui_examples_core_demo_search_search.component.ngfactory,_knora_ui_examples_core_demo_ontology_cache_ontology_cache.component.ngfactory,_knora_ui_examples_core_demo_ontology_ontology.component.ngfactory,_knora_ui_examples_core_demo_incoming_incoming.component.ngfactory,_knora_ui_examples_core_demo_gravsearch_gravsearch.component.ngfactory,_knora_ui_examples_core_demo_convert_json_ld_convert_json_ld.component.ngfactory,_dev_docs_doc_intro_doc_intro.component.ngfactory,_material_tree_tree.component.ngfactory,_.._node_modules__angular_material_dialog_typings_index.ngfactory,_.._node_modules__angular_material_datepicker_typings_index.ngfactory,_.._node_modules__angular_material_tooltip_typings_index.ngfactory,_.._dist__knora_search_knora_search.ngfactory,_.._node_modules__angular_material_snack_bar_typings_index.ngfactory,_app.component.ngfactory,_angular_common,_angular_platform_browser,_angular_material_core,_angular_animations_browser,_angular_platform_browser_animations,_angular_router,_angular_common_http,_knora_authentication,_angular_animations,_angular_cdk_overlay,_angular_cdk_bidi,_angular_material_menu,_angular_cdk_observers,_angular_material_dialog,_angular_forms,_angular_material_autocomplete,_angular_material_datepicker,_angular_material_select,_angular_material_tooltip,jdnconvertiblecalendardateadapter,_angular_material_paginator,_angular_material_sort,_angular_cdk_a11y,_angular_cdk_platform,_angular_cdk_tree,ngx_markdown,_landing_page_main_intro_main_intro.component,_knora_ui_examples_authentication_demo_login_login.component,_partials_module_index_module_index.component,_landing_page_demo_intro_demo_intro.component,_knora_ui_examples_action_demo_action_demo.component,_knora_ui_examples_action_demo_sort_button_sort_button.component,_knora_ui_examples_action_demo_progress_indicator_progress_indicator.component,_knora_ui_examples_action_demo_admin_image_admin_image.component,_knora_ui_examples_action_demo_existing_name_existing_name.component,_knora_ui_examples_action_demo_key_key.component,_knora_ui_examples_authentication_demo_authentication_demo.component,_knora_ui_examples_search_demo_search_demo.component,_app.routing,_knora_ui_examples_search_demo_search_panel_search_panel.component,_knora_ui_examples_search_demo_search_result_search_result.component,_knora_ui_examples_viewer_demo_viewer_demo.component,_knora_ui_examples_viewer_demo_resources_resources.component,_knora_ui_examples_viewer_demo_properties_properties.component,_knora_ui_examples_viewer_demo_views_views.component,_knora_ui_examples_core_demo_core_demo.component,_knora_ui_examples_core_demo_projects_projects.component,_knora_ui_examples_core_demo_users_users.component,_knora_ui_examples_core_demo_groups_groups.component,_knora_ui_examples_core_demo_lists_lists.component,_knora_ui_examples_core_demo_resource_resource.component,_knora_ui_examples_core_demo_search_search.component,_knora_ui_examples_core_demo_ontology_cache_ontology_cache.component,_knora_ui_examples_core_demo_ontology_ontology.component,_knora_ui_examples_core_demo_incoming_incoming.component,_knora_ui_examples_core_demo_gravsearch_gravsearch.component,_knora_ui_examples_core_demo_convert_json_ld_convert_json_ld.component,_dev_docs_doc_intro_doc_intro.component,_material_tree_tree.component,_knora_core,_angular_material_button,_angular_material_icon,_angular_cdk_portal,_angular_cdk_scrolling,_knora_action,_angular_material_card,_angular_cdk_text_field,_angular_material_form_field,_angular_material_input,_angular_material_checkbox,_angular_material_divider,_angular_material_list,_angular_material_slide_toggle,_angular_material_toolbar,_knora_viewer,_knora_search,_angular_material_button_toggle,_angular_material_chips,_angular_cdk_table,_angular_material_table,_angular_cdk_accordion,_angular_material_expansion,_angular_material_grid_list,_angular_material_progress_bar,_angular_material_progress_spinner,_angular_material_radio,_angular_material_sidenav,_angular_material_slider,_angular_material_snack_bar,_angular_material_tabs,_angular_material_tree,_material_module,_angular_cdk_keycodes PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _angular_core,_app.module,_app.component,_.._node_modules__angular_router_router.ngfactory,_landing_page_main_intro_main_intro.component.ngfactory,_knora_ui_examples_authentication_demo_login_login.component.ngfactory,_partials_module_index_module_index.component.ngfactory,_landing_page_demo_intro_demo_intro.component.ngfactory,_knora_ui_examples_action_demo_action_demo.component.ngfactory,_knora_ui_examples_action_demo_sort_button_sort_button.component.ngfactory,_knora_ui_examples_action_demo_progress_indicator_progress_indicator.component.ngfactory,_knora_ui_examples_action_demo_admin_image_admin_image.component.ngfactory,_knora_ui_examples_action_demo_existing_name_existing_name.component.ngfactory,_knora_ui_examples_action_demo_key_key.component.ngfactory,_knora_ui_examples_authentication_demo_authentication_demo.component.ngfactory,_knora_ui_examples_search_demo_search_demo.component.ngfactory,_knora_ui_examples_search_demo_search_panel_search_panel.component.ngfactory,_knora_ui_examples_search_demo_search_result_search_result.component.ngfactory,_knora_ui_examples_viewer_demo_viewer_demo.component.ngfactory,_knora_ui_examples_viewer_demo_resources_resources.component.ngfactory,_knora_ui_examples_viewer_demo_properties_properties.component.ngfactory,_knora_ui_examples_viewer_demo_views_views.component.ngfactory,_knora_ui_examples_core_demo_core_demo.component.ngfactory,_knora_ui_examples_core_demo_projects_projects.component.ngfactory,_knora_ui_examples_core_demo_users_users.component.ngfactory,_knora_ui_examples_core_demo_groups_groups.component.ngfactory,_knora_ui_examples_core_demo_lists_lists.component.ngfactory,_knora_ui_examples_core_demo_resource_resource.component.ngfactory,_knora_ui_examples_core_demo_search_search.component.ngfactory,_knora_ui_examples_core_demo_ontology_cache_ontology_cache.component.ngfactory,_knora_ui_examples_core_demo_ontology_ontology.component.ngfactory,_knora_ui_examples_core_demo_incoming_incoming.component.ngfactory,_knora_ui_examples_core_demo_gravsearch_gravsearch.component.ngfactory,_knora_ui_examples_core_demo_convert_json_ld_convert_json_ld.component.ngfactory,_dev_docs_doc_intro_doc_intro.component.ngfactory,_material_tree_tree.component.ngfactory,_.._node_modules__angular_material_dialog_typings_index.ngfactory,_.._node_modules__angular_material_datepicker_typings_index.ngfactory,_.._node_modules__angular_material_tooltip_typings_index.ngfactory,_.._dist__knora_search_knora_search.ngfactory,_.._node_modules__angular_material_snack_bar_typings_index.ngfactory,_app.component.ngfactory,_angular_common,_angular_platform_browser,_angular_material_core,_angular_animations_browser,_angular_platform_browser_animations,_angular_router,_angular_common_http,_knora_authentication,_angular_animations,_angular_cdk_overlay,_angular_cdk_bidi,_angular_material_menu,_angular_cdk_observers,_angular_material_dialog,_angular_forms,_angular_material_autocomplete,_angular_material_datepicker,_angular_material_select,_angular_material_tooltip,jdnconvertiblecalendardateadapter,_angular_material_paginator,_angular_material_sort,_angular_cdk_a11y,_angular_cdk_platform,_angular_cdk_tree,ngx_markdown,_landing_page_main_intro_main_intro.component,_knora_ui_examples_authentication_demo_login_login.component,_partials_module_index_module_index.component,_landing_page_demo_intro_demo_intro.component,_knora_ui_examples_action_demo_action_demo.component,_knora_ui_examples_action_demo_sort_button_sort_button.component,_knora_ui_examples_action_demo_progress_indicator_progress_indicator.component,_knora_ui_examples_action_demo_admin_image_admin_image.component,_knora_ui_examples_action_demo_existing_name_existing_name.component,_knora_ui_examples_action_demo_key_key.component,_knora_ui_examples_authentication_demo_authentication_demo.component,_knora_ui_examples_search_demo_search_demo.component,_app.routing,_knora_ui_examples_search_demo_search_panel_search_panel.component,_knora_ui_examples_search_demo_search_result_search_result.component,_knora_ui_examples_viewer_demo_viewer_demo.component,_knora_ui_examples_viewer_demo_resources_resources.component,_knora_ui_examples_viewer_demo_properties_properties.component,_knora_ui_examples_viewer_demo_views_views.component,_knora_ui_examples_core_demo_core_demo.component,_knora_ui_examples_core_demo_projects_projects.component,_knora_ui_examples_core_demo_users_users.component,_knora_ui_examples_core_demo_groups_groups.component,_knora_ui_examples_core_demo_lists_lists.component,_knora_ui_examples_core_demo_resource_resource.component,_knora_ui_examples_core_demo_search_search.component,_knora_ui_examples_core_demo_ontology_cache_ontology_cache.component,_knora_ui_examples_core_demo_ontology_ontology.component,_knora_ui_examples_core_demo_incoming_incoming.component,_knora_ui_examples_core_demo_gravsearch_gravsearch.component,_knora_ui_examples_core_demo_convert_json_ld_convert_json_ld.component,_dev_docs_doc_intro_doc_intro.component,_material_tree_tree.component,_knora_core,_angular_material_button,_angular_material_icon,_angular_cdk_portal,_angular_cdk_scrolling,_knora_action,_angular_material_card,_angular_cdk_text_field,_angular_material_form_field,_angular_material_input,_angular_material_checkbox,_angular_material_divider,_angular_material_list,_angular_material_slide_toggle,_angular_material_toolbar,_knora_viewer,_knora_search,_angular_material_button_toggle,_angular_material_chips,_angular_cdk_table,_angular_material_table,_angular_cdk_accordion,_angular_material_expansion,_angular_material_grid_list,_angular_material_progress_bar,_angular_material_progress_spinner,_angular_material_radio,_angular_material_sidenav,_angular_material_slider,_angular_material_snack_bar,_angular_material_tabs,_angular_material_tree,_material_module,_angular_cdk_keycodes PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _angular_core,_app.module,_app.component,_.._node_modules__angular_router_router.ngfactory,_landing_page_main_intro_main_intro.component.ngfactory,_knora_ui_examples_authentication_demo_login_login.component.ngfactory,_partials_module_index_module_index.component.ngfactory,_landing_page_demo_intro_demo_intro.component.ngfactory,_knora_ui_examples_action_demo_action_demo.component.ngfactory,_knora_ui_examples_action_demo_sort_button_sort_button.component.ngfactory,_knora_ui_examples_action_demo_progress_indicator_progress_indicator.component.ngfactory,_knora_ui_examples_action_demo_admin_image_admin_image.component.ngfactory,_knora_ui_examples_action_demo_existing_name_existing_name.component.ngfactory,_knora_ui_examples_action_demo_key_key.component.ngfactory,_knora_ui_examples_authentication_demo_authentication_demo.component.ngfactory,_knora_ui_examples_authentication_demo_auth_auth.component.ngfactory,_knora_ui_examples_search_demo_search_demo.component.ngfactory,_knora_ui_examples_search_demo_search_panel_search_panel.component.ngfactory,_knora_ui_examples_search_demo_search_result_search_result.component.ngfactory,_knora_ui_examples_viewer_demo_viewer_demo.component.ngfactory,_knora_ui_examples_viewer_demo_resources_resources.component.ngfactory,_knora_ui_examples_viewer_demo_properties_properties.component.ngfactory,_knora_ui_examples_viewer_demo_views_views.component.ngfactory,_knora_ui_examples_core_demo_core_demo.component.ngfactory,_knora_ui_examples_core_demo_projects_projects.component.ngfactory,_knora_ui_examples_core_demo_users_users.component.ngfactory,_knora_ui_examples_core_demo_groups_groups.component.ngfactory,_knora_ui_examples_core_demo_lists_lists.component.ngfactory,_knora_ui_examples_core_demo_resource_resource.component.ngfactory,_knora_ui_examples_core_demo_search_search.component.ngfactory,_knora_ui_examples_core_demo_ontology_cache_ontology_cache.component.ngfactory,_knora_ui_examples_core_demo_ontology_ontology.component.ngfactory,_knora_ui_examples_core_demo_incoming_incoming.component.ngfactory,_knora_ui_examples_core_demo_gravsearch_gravsearch.component.ngfactory,_knora_ui_examples_core_demo_convert_json_ld_convert_json_ld.component.ngfactory,_dev_docs_doc_intro_doc_intro.component.ngfactory,_material_tree_tree.component.ngfactory,_.._node_modules__angular_material_dialog_typings_index.ngfactory,_.._node_modules__angular_material_datepicker_typings_index.ngfactory,_.._node_modules__angular_material_tooltip_typings_index.ngfactory,_.._dist__knora_search_knora_search.ngfactory,_.._node_modules__angular_material_snack_bar_typings_index.ngfactory,_app.component.ngfactory,_angular_common,_angular_platform_browser,_angular_material_core,_angular_animations_browser,_angular_platform_browser_animations,_angular_router,_angular_common_http,_knora_authentication,_angular_animations,_angular_cdk_overlay,_angular_cdk_bidi,_angular_material_menu,_angular_cdk_observers,_angular_material_dialog,_angular_forms,_angular_material_autocomplete,_angular_material_datepicker,_angular_material_select,_angular_material_tooltip,jdnconvertiblecalendardateadapter,_angular_material_paginator,_angular_material_sort,_angular_cdk_a11y,_angular_cdk_platform,_angular_cdk_tree,ngx_markdown,_landing_page_main_intro_main_intro.component,_knora_ui_examples_authentication_demo_login_login.component,_partials_module_index_module_index.component,_landing_page_demo_intro_demo_intro.component,_app.routing,_knora_ui_examples_action_demo_action_demo.component,_knora_ui_examples_action_demo_sort_button_sort_button.component,_knora_ui_examples_action_demo_progress_indicator_progress_indicator.component,_knora_ui_examples_action_demo_admin_image_admin_image.component,_knora_ui_examples_action_demo_existing_name_existing_name.component,_knora_ui_examples_action_demo_key_key.component,_knora_ui_examples_authentication_demo_authentication_demo.component,_knora_ui_examples_authentication_demo_auth_auth.component,_knora_ui_examples_search_demo_search_demo.component,_knora_ui_examples_search_demo_search_panel_search_panel.component,_knora_ui_examples_search_demo_search_result_search_result.component,_knora_ui_examples_viewer_demo_viewer_demo.component,_knora_ui_examples_viewer_demo_resources_resources.component,_knora_viewer,_knora_ui_examples_viewer_demo_properties_properties.component,_knora_ui_examples_viewer_demo_views_views.component,_knora_ui_examples_core_demo_core_demo.component,_knora_ui_examples_core_demo_projects_projects.component,_knora_ui_examples_core_demo_users_users.component,_knora_ui_examples_core_demo_groups_groups.component,_knora_ui_examples_core_demo_lists_lists.component,_knora_ui_examples_core_demo_resource_resource.component,_knora_ui_examples_core_demo_search_search.component,_knora_ui_examples_core_demo_ontology_cache_ontology_cache.component,_knora_ui_examples_core_demo_ontology_ontology.component,_knora_ui_examples_core_demo_incoming_incoming.component,_knora_ui_examples_core_demo_gravsearch_gravsearch.component,_knora_ui_examples_core_demo_convert_json_ld_convert_json_ld.component,_dev_docs_doc_intro_doc_intro.component,_material_tree_tree.component,_knora_core,_angular_material_button,_angular_material_icon,_angular_cdk_portal,_angular_cdk_scrolling,_knora_action,_angular_material_card,_angular_cdk_text_field,_angular_material_form_field,_angular_material_input,_angular_material_checkbox,_angular_material_divider,_angular_material_list,_angular_material_slide_toggle,_angular_material_toolbar,_knora_search,_angular_material_button_toggle,_angular_material_chips,_angular_cdk_table,_angular_material_table,_angular_cdk_accordion,_angular_material_expansion,_angular_material_grid_list,_angular_material_progress_bar,_angular_material_progress_spinner,_angular_material_radio,_angular_material_sidenav,_angular_material_slider,_angular_material_snack_bar,_angular_material_tabs,_angular_material_tree,_material_module,_angular_cdk_keycodes PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _angular_core,_app.module,_app.component,_.._node_modules__angular_router_router.ngfactory,_landing_page_main_intro_main_intro.component.ngfactory,_knora_ui_examples_authentication_demo_login_login.component.ngfactory,_partials_module_index_module_index.component.ngfactory,_landing_page_demo_intro_demo_intro.component.ngfactory,_knora_ui_examples_action_demo_action_demo.component.ngfactory,_knora_ui_examples_action_demo_sort_button_sort_button.component.ngfactory,_knora_ui_examples_action_demo_progress_indicator_progress_indicator.component.ngfactory,_knora_ui_examples_action_demo_admin_image_admin_image.component.ngfactory,_knora_ui_examples_action_demo_existing_name_existing_name.component.ngfactory,_knora_ui_examples_action_demo_key_key.component.ngfactory,_knora_ui_examples_authentication_demo_authentication_demo.component.ngfactory,_knora_ui_examples_authentication_demo_auth_auth.component.ngfactory,_knora_ui_examples_search_demo_search_demo.component.ngfactory,_knora_ui_examples_search_demo_search_panel_search_panel.component.ngfactory,_knora_ui_examples_search_demo_search_result_search_result.component.ngfactory,_knora_ui_examples_viewer_demo_viewer_demo.component.ngfactory,_knora_ui_examples_viewer_demo_resources_resources.component.ngfactory,_knora_ui_examples_viewer_demo_properties_properties.component.ngfactory,_knora_ui_examples_viewer_demo_views_views.component.ngfactory,_knora_ui_examples_core_demo_core_demo.component.ngfactory,_knora_ui_examples_core_demo_projects_projects.component.ngfactory,_knora_ui_examples_core_demo_users_users.component.ngfactory,_knora_ui_examples_core_demo_groups_groups.component.ngfactory,_knora_ui_examples_core_demo_lists_lists.component.ngfactory,_knora_ui_examples_core_demo_resource_resource.component.ngfactory,_knora_ui_examples_core_demo_search_search.component.ngfactory,_knora_ui_examples_core_demo_ontology_cache_ontology_cache.component.ngfactory,_knora_ui_examples_core_demo_ontology_ontology.component.ngfactory,_knora_ui_examples_core_demo_incoming_incoming.component.ngfactory,_knora_ui_examples_core_demo_gravsearch_gravsearch.component.ngfactory,_knora_ui_examples_core_demo_convert_json_ld_convert_json_ld.component.ngfactory,_dev_docs_doc_intro_doc_intro.component.ngfactory,_material_tree_tree.component.ngfactory,_.._node_modules__angular_material_dialog_typings_index.ngfactory,_.._node_modules__angular_material_datepicker_typings_index.ngfactory,_.._node_modules__angular_material_tooltip_typings_index.ngfactory,_.._dist__knora_search_knora_search.ngfactory,_.._node_modules__angular_material_snack_bar_typings_index.ngfactory,_app.component.ngfactory,_angular_common,_angular_platform_browser,_angular_material_core,_angular_animations_browser,_angular_platform_browser_animations,_angular_router,_angular_common_http,_knora_authentication,_angular_animations,_angular_cdk_overlay,_angular_cdk_bidi,_angular_material_menu,_angular_cdk_observers,_angular_material_dialog,_angular_forms,_angular_material_autocomplete,_angular_material_datepicker,_angular_material_select,_angular_material_tooltip,jdnconvertiblecalendardateadapter,_angular_material_paginator,_angular_material_sort,_angular_cdk_a11y,_angular_cdk_platform,_angular_cdk_tree,ngx_markdown,_landing_page_main_intro_main_intro.component,_knora_ui_examples_authentication_demo_login_login.component,_partials_module_index_module_index.component,_landing_page_demo_intro_demo_intro.component,_app.routing,_knora_ui_examples_action_demo_action_demo.component,_knora_ui_examples_action_demo_sort_button_sort_button.component,_knora_ui_examples_action_demo_progress_indicator_progress_indicator.component,_knora_ui_examples_action_demo_admin_image_admin_image.component,_knora_ui_examples_action_demo_existing_name_existing_name.component,_knora_ui_examples_action_demo_key_key.component,_knora_ui_examples_authentication_demo_authentication_demo.component,_knora_ui_examples_authentication_demo_auth_auth.component,_knora_ui_examples_search_demo_search_demo.component,_knora_ui_examples_search_demo_search_panel_search_panel.component,_knora_ui_examples_search_demo_search_result_search_result.component,_knora_ui_examples_viewer_demo_viewer_demo.component,_knora_ui_examples_viewer_demo_resources_resources.component,_knora_viewer,_knora_ui_examples_viewer_demo_properties_properties.component,_knora_ui_examples_viewer_demo_views_views.component,_knora_ui_examples_core_demo_core_demo.component,_knora_ui_examples_core_demo_projects_projects.component,_knora_ui_examples_core_demo_users_users.component,_knora_ui_examples_core_demo_groups_groups.component,_knora_ui_examples_core_demo_lists_lists.component,_knora_ui_examples_core_demo_resource_resource.component,_knora_ui_examples_core_demo_search_search.component,_knora_ui_examples_core_demo_ontology_cache_ontology_cache.component,_knora_ui_examples_core_demo_ontology_ontology.component,_knora_ui_examples_core_demo_incoming_incoming.component,_knora_ui_examples_core_demo_gravsearch_gravsearch.component,_knora_ui_examples_core_demo_convert_json_ld_convert_json_ld.component,_dev_docs_doc_intro_doc_intro.component,_material_tree_tree.component,_knora_core,_angular_material_button,_angular_material_icon,_angular_cdk_portal,_angular_cdk_scrolling,_knora_action,_angular_material_card,_angular_cdk_text_field,_angular_material_form_field,_angular_material_input,_angular_material_checkbox,_angular_material_divider,_angular_material_list,_angular_material_slide_toggle,_angular_material_toolbar,_knora_search,_angular_material_button_toggle,_angular_material_chips,_angular_cdk_table,_angular_material_table,_angular_cdk_accordion,_angular_material_expansion,_angular_material_grid_list,_angular_material_progress_bar,_angular_material_progress_spinner,_angular_material_radio,_angular_material_sidenav,_angular_material_slider,_angular_material_snack_bar,_angular_material_tabs,_angular_material_tree,_material_module,_angular_cdk_keycodes PURE_IMPORTS_END */
 
 
 
@@ -15814,7 +15873,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var AppModuleNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcmf"](_app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule"], [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]], function (_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmod"]([_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵCodegenComponentFactoryResolver"], [[8, [_node_modules_angular_router_router_ngfactory__WEBPACK_IMPORTED_MODULE_3__["ɵEmptyOutletComponentNgFactory"], _landing_page_main_intro_main_intro_component_ngfactory__WEBPACK_IMPORTED_MODULE_4__["MainIntroComponentNgFactory"], _knora_ui_examples_authentication_demo_login_login_component_ngfactory__WEBPACK_IMPORTED_MODULE_5__["LoginComponentNgFactory"], _partials_module_index_module_index_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__["ModuleIndexComponentNgFactory"], _landing_page_demo_intro_demo_intro_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["DemoIntroComponentNgFactory"], _knora_ui_examples_action_demo_action_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["ActionDemoComponentNgFactory"], _knora_ui_examples_action_demo_sort_button_sort_button_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["SortButtonComponentNgFactory"], _knora_ui_examples_action_demo_progress_indicator_progress_indicator_component_ngfactory__WEBPACK_IMPORTED_MODULE_10__["ProgressIndicatorComponentNgFactory"], _knora_ui_examples_action_demo_admin_image_admin_image_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["AdminImageComponentNgFactory"], _knora_ui_examples_action_demo_existing_name_existing_name_component_ngfactory__WEBPACK_IMPORTED_MODULE_12__["ExistingNameComponentNgFactory"], _knora_ui_examples_action_demo_key_key_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["KeyComponentNgFactory"], _knora_ui_examples_authentication_demo_authentication_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_14__["AuthenticationDemoComponentNgFactory"], _knora_ui_examples_search_demo_search_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_15__["SearchDemoComponentNgFactory"], _knora_ui_examples_search_demo_search_panel_search_panel_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["SearchPanelComponentNgFactory"], _knora_ui_examples_search_demo_search_result_search_result_component_ngfactory__WEBPACK_IMPORTED_MODULE_17__["SearchResultComponentNgFactory"], _knora_ui_examples_viewer_demo_viewer_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_18__["ViewerDemoComponentNgFactory"], _knora_ui_examples_viewer_demo_resources_resources_component_ngfactory__WEBPACK_IMPORTED_MODULE_19__["ResourcesComponentNgFactory"], _knora_ui_examples_viewer_demo_properties_properties_component_ngfactory__WEBPACK_IMPORTED_MODULE_20__["PropertiesComponentNgFactory"], _knora_ui_examples_viewer_demo_views_views_component_ngfactory__WEBPACK_IMPORTED_MODULE_21__["ViewsComponentNgFactory"], _knora_ui_examples_core_demo_core_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_22__["CoreDemoComponentNgFactory"], _knora_ui_examples_core_demo_projects_projects_component_ngfactory__WEBPACK_IMPORTED_MODULE_23__["ProjectsComponentNgFactory"], _knora_ui_examples_core_demo_users_users_component_ngfactory__WEBPACK_IMPORTED_MODULE_24__["UsersComponentNgFactory"], _knora_ui_examples_core_demo_groups_groups_component_ngfactory__WEBPACK_IMPORTED_MODULE_25__["GroupsComponentNgFactory"], _knora_ui_examples_core_demo_lists_lists_component_ngfactory__WEBPACK_IMPORTED_MODULE_26__["ListsComponentNgFactory"], _knora_ui_examples_core_demo_resource_resource_component_ngfactory__WEBPACK_IMPORTED_MODULE_27__["ResourceComponentNgFactory"], _knora_ui_examples_core_demo_search_search_component_ngfactory__WEBPACK_IMPORTED_MODULE_28__["SearchComponentNgFactory"], _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component_ngfactory__WEBPACK_IMPORTED_MODULE_29__["OntologyCacheComponentNgFactory"], _knora_ui_examples_core_demo_ontology_ontology_component_ngfactory__WEBPACK_IMPORTED_MODULE_30__["OntologyComponentNgFactory"], _knora_ui_examples_core_demo_incoming_incoming_component_ngfactory__WEBPACK_IMPORTED_MODULE_31__["IncomingComponentNgFactory"], _knora_ui_examples_core_demo_gravsearch_gravsearch_component_ngfactory__WEBPACK_IMPORTED_MODULE_32__["GravsearchComponentNgFactory"], _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component_ngfactory__WEBPACK_IMPORTED_MODULE_33__["ConvertJsonLdComponentNgFactory"], _dev_docs_doc_intro_doc_intro_component_ngfactory__WEBPACK_IMPORTED_MODULE_34__["DocIntroComponentNgFactory"], _material_tree_tree_component_ngfactory__WEBPACK_IMPORTED_MODULE_35__["TreeComponentNgFactory"], _node_modules_angular_material_dialog_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_36__["MatDialogContainerNgFactory"], _node_modules_angular_material_datepicker_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_37__["MatDatepickerContentNgFactory"], _node_modules_angular_material_datepicker_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_37__["MatCalendarHeaderNgFactory"], _node_modules_angular_material_tooltip_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_38__["TooltipComponentNgFactory"], _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_39__["HeaderComponentNgFactory"], _node_modules_angular_material_snack_bar_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_40__["MatSnackBarContainerNgFactory"], _node_modules_angular_material_snack_bar_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_40__["SimpleSnackBarNgFactory"], _app_component_ngfactory__WEBPACK_IMPORTED_MODULE_41__["AppComponentNgFactory"]]], [3, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"]], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModuleRef"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["LOCALE_ID"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_k"], [[3, _angular_core__WEBPACK_IMPORTED_MODULE_0__["LOCALE_ID"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common__WEBPACK_IMPORTED_MODULE_42__["NgLocalization"], _angular_common__WEBPACK_IMPORTED_MODULE_42__["NgLocaleLocalization"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["LOCALE_ID"], [2, _angular_common__WEBPACK_IMPORTED_MODULE_42__["ɵangular_packages_common_common_a"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_ID"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_f"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_i"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["KeyValueDiffers"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_j"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["DomSanitizer"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵDomSanitizerImpl"], [_angular_common__WEBPACK_IMPORTED_MODULE_42__["DOCUMENT"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_core__WEBPACK_IMPORTED_MODULE_0__["Sanitizer"], null, [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["DomSanitizer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["HAMMER_GESTURE_CONFIG"], _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["GestureConfig"], [[2, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MAT_HAMMER_OPTIONS"]], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatCommonModule"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["EVENT_MANAGER_PLUGINS"], function (p0_0, p0_1, p0_2, p1_0, p2_0, p2_1, p2_2, p2_3) { return [new _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵDomEventsPlugin"](p0_0, p0_1, p0_2), new _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵKeyEventsPlugin"](p1_0), new _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵHammerGesturesPlugin"](p2_0, p2_1, p2_2, p2_3)]; }, [_angular_common__WEBPACK_IMPORTED_MODULE_42__["DOCUMENT"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"], _angular_common__WEBPACK_IMPORTED_MODULE_42__["DOCUMENT"], _angular_common__WEBPACK_IMPORTED_MODULE_42__["DOCUMENT"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["HAMMER_GESTURE_CONFIG"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵConsole"], [2, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["HAMMER_LOADER"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["EventManager"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["EventManager"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["EVENT_MANAGER_PLUGINS"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](135680, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵDomSharedStylesHost"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵDomSharedStylesHost"], [_angular_common__WEBPACK_IMPORTED_MODULE_42__["DOCUMENT"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵDomRendererFactory2"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵDomRendererFactory2"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["EventManager"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵDomSharedStylesHost"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_animations_browser__WEBPACK_IMPORTED_MODULE_45__["AnimationDriver"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_46__["ɵangular_packages_platform_browser_animations_animations_b"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_animations_browser__WEBPACK_IMPORTED_MODULE_45__["ɵAnimationStyleNormalizer"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_46__["ɵangular_packages_platform_browser_animations_animations_c"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_animations_browser__WEBPACK_IMPORTED_MODULE_45__["ɵAnimationEngine"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_46__["ɵangular_packages_platform_browser_animations_animations_a"], [_angular_common__WEBPACK_IMPORTED_MODULE_42__["DOCUMENT"], _angular_animations_browser__WEBPACK_IMPORTED_MODULE_45__["AnimationDriver"], _angular_animations_browser__WEBPACK_IMPORTED_MODULE_45__["ɵAnimationStyleNormalizer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["RendererFactory2"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_46__["ɵangular_packages_platform_browser_animations_animations_d"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵDomRendererFactory2"], _angular_animations_browser__WEBPACK_IMPORTED_MODULE_45__["ɵAnimationEngine"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵSharedStylesHost"], null, [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵDomSharedStylesHost"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_core__WEBPACK_IMPORTED_MODULE_0__["Testability"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Testability"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_router__WEBPACK_IMPORTED_MODULE_47__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_g"], [_angular_router__WEBPACK_IMPORTED_MODULE_47__["Router"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_router__WEBPACK_IMPORTED_MODULE_47__["NoPreloading"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["NoPreloading"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_router__WEBPACK_IMPORTED_MODULE_47__["PreloadingStrategy"], null, [_angular_router__WEBPACK_IMPORTED_MODULE_47__["NoPreloading"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](135680, _angular_router__WEBPACK_IMPORTED_MODULE_47__["RouterPreloader"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["RouterPreloader"], [_angular_router__WEBPACK_IMPORTED_MODULE_47__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModuleFactoryLoader"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["PreloadingStrategy"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_router__WEBPACK_IMPORTED_MODULE_47__["PreloadAllModules"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["PreloadAllModules"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_n"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_c"], [_angular_router__WEBPACK_IMPORTED_MODULE_47__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_42__["ViewportScroller"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ROUTER_CONFIGURATION"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_router__WEBPACK_IMPORTED_MODULE_47__["ROUTER_INITIALIZER"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_j"], [_angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_h"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_BOOTSTRAP_LISTENER"], function (p0_0) { return [p0_0]; }, [_angular_router__WEBPACK_IMPORTED_MODULE_47__["ROUTER_INITIALIZER"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpXsrfTokenExtractor"], _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_g"], [_angular_common__WEBPACK_IMPORTED_MODULE_42__["DOCUMENT"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"], _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_e"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_h"], _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_h"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpXsrfTokenExtractor"], _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_f"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HTTP_INTERCEPTORS"], function (p0_0, p1_0) { return [p0_0, new _knora_authentication__WEBPACK_IMPORTED_MODULE_49__["JwtInterceptor"](p1_0)]; }, [_angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_h"], _knora_authentication__WEBPACK_IMPORTED_MODULE_49__["ɵa"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_d"], _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_d"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["XhrFactory"], null, [_angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_d"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpXhrBackend"], _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpXhrBackend"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_48__["XhrFactory"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpBackend"], null, [_angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpXhrBackend"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpHandler"], _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵHttpInterceptingHandler"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpBackend"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpClient"], _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpClient"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpHandler"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_animations__WEBPACK_IMPORTED_MODULE_50__["AnimationBuilder"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_46__["ɵBrowserAnimationBuilder"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["RendererFactory2"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["DOCUMENT"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["Overlay"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["Overlay"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["ScrollStrategyOptions"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["OverlayContainer"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["OverlayPositionBuilder"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["OverlayKeyboardDispatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_common__WEBPACK_IMPORTED_MODULE_42__["DOCUMENT"], _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_52__["Directionality"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["ɵc"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["ɵd"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_menu__WEBPACK_IMPORTED_MODULE_53__["MAT_MENU_SCROLL_STRATEGY"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_53__["ɵd23"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_54__["MutationObserverFactory"], _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_54__["MutationObserverFactory"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["ErrorStateMatcher"], _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["ErrorStateMatcher"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__["MAT_DIALOG_SCROLL_STRATEGY"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__["MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__["MatDialog"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__["MatDialog"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["Overlay"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], [2, _angular_common__WEBPACK_IMPORTED_MODULE_42__["Location"]], [2, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__["MAT_DIALOG_DEFAULT_OPTIONS"]], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__["MAT_DIALOG_SCROLL_STRATEGY"], [3, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__["MatDialog"]], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["OverlayContainer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_forms__WEBPACK_IMPORTED_MODULE_56__["FormBuilder"], _angular_forms__WEBPACK_IMPORTED_MODULE_56__["FormBuilder"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_forms__WEBPACK_IMPORTED_MODULE_56__["ɵangular_packages_forms_forms_i"], _angular_forms__WEBPACK_IMPORTED_MODULE_56__["ɵangular_packages_forms_forms_i"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_57__["MAT_AUTOCOMPLETE_SCROLL_STRATEGY"], _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_57__["MAT_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_58__["MatDatepickerIntl"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_58__["MatDatepickerIntl"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_58__["MAT_DATEPICKER_SCROLL_STRATEGY"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_58__["MAT_DATEPICKER_SCROLL_STRATEGY_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_select__WEBPACK_IMPORTED_MODULE_59__["MAT_SELECT_SCROLL_STRATEGY"], _angular_material_select__WEBPACK_IMPORTED_MODULE_59__["MAT_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_60__["MAT_TOOLTIP_SCROLL_STRATEGY"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_60__["MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["DateAdapter"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_61__["JDNConvertibleCalendarDateAdapter"], [_angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MAT_DATE_LOCALE"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_62__["MatPaginatorIntl"], _angular_material_paginator__WEBPACK_IMPORTED_MODULE_62__["MAT_PAGINATOR_INTL_PROVIDER_FACTORY"], [[3, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_62__["MatPaginatorIntl"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_sort__WEBPACK_IMPORTED_MODULE_63__["MatSortHeaderIntl"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_63__["MAT_SORT_HEADER_INTL_PROVIDER_FACTORY"], [[3, _angular_material_sort__WEBPACK_IMPORTED_MODULE_63__["MatSortHeaderIntl"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](135680, _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_64__["FocusMonitor"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_64__["FocusMonitor"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_65__["Platform"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_66__["CdkTreeNodeDef"], _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_66__["CdkTreeNodeDef"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, ngx_markdown__WEBPACK_IMPORTED_MODULE_67__["MarkdownService"], ngx_markdown__WEBPACK_IMPORTED_MODULE_67__["MarkdownService"], [[2, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpClient"]], ngx_markdown__WEBPACK_IMPORTED_MODULE_67__["MarkedOptions"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_common__WEBPACK_IMPORTED_MODULE_42__["CommonModule"], _angular_common__WEBPACK_IMPORTED_MODULE_42__["CommonModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ErrorHandler"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵangular_packages_platform_browser_platform_browser_a"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgProbeToken"], function () { return [_angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_b"]()]; }, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_h"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_h"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_INITIALIZER"], function (p0_0, p1_0) { return [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["ɵangular_packages_platform_browser_platform_browser_j"](p0_0), _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_i"](p1_0)]; }, [[2, _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgProbeToken"]], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_h"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationInitStatus"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationInitStatus"], [[2, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_INITIALIZER"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](131584, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵConsole"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ErrorHandler"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationInitStatus"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationModule"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationModule"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["BrowserModule"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["BrowserModule"], [[3, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_43__["BrowserModule"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_a"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_e"], [[3, _angular_router__WEBPACK_IMPORTED_MODULE_47__["Router"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_router__WEBPACK_IMPORTED_MODULE_47__["UrlSerializer"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["DefaultUrlSerializer"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_router__WEBPACK_IMPORTED_MODULE_47__["ChildrenOutletContexts"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ChildrenOutletContexts"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_router__WEBPACK_IMPORTED_MODULE_47__["ROUTER_CONFIGURATION"], {}, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_common__WEBPACK_IMPORTED_MODULE_42__["LocationStrategy"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_d"], [_angular_common__WEBPACK_IMPORTED_MODULE_42__["PlatformLocation"], [2, _angular_common__WEBPACK_IMPORTED_MODULE_42__["APP_BASE_HREF"]], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ROUTER_CONFIGURATION"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_common__WEBPACK_IMPORTED_MODULE_42__["Location"], _angular_common__WEBPACK_IMPORTED_MODULE_42__["Location"], [_angular_common__WEBPACK_IMPORTED_MODULE_42__["LocationStrategy"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModuleFactoryLoader"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["SystemJsNgModuleLoader"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], [2, _angular_core__WEBPACK_IMPORTED_MODULE_0__["SystemJsNgModuleLoaderConfig"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_router__WEBPACK_IMPORTED_MODULE_47__["ROUTES"], function () { return [[{ path: "", component: _landing_page_main_intro_main_intro_component__WEBPACK_IMPORTED_MODULE_68__["MainIntroComponent"] }, { path: "login", component: _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_69__["LoginComponent"] }, { path: "modules", component: _partials_module_index_module_index_component__WEBPACK_IMPORTED_MODULE_70__["ModuleIndexComponent"], children: [{ path: "", component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_71__["DemoIntroComponent"] }, { path: "action", component: _knora_ui_examples_action_demo_action_demo_component__WEBPACK_IMPORTED_MODULE_72__["ActionDemoComponent"], children: [{ path: "sort-button", component: _knora_ui_examples_action_demo_sort_button_sort_button_component__WEBPACK_IMPORTED_MODULE_73__["SortButtonComponent"] }, { path: "progress-indicator", component: _knora_ui_examples_action_demo_progress_indicator_progress_indicator_component__WEBPACK_IMPORTED_MODULE_74__["ProgressIndicatorComponent"] }, { path: "admin-image", component: _knora_ui_examples_action_demo_admin_image_admin_image_component__WEBPACK_IMPORTED_MODULE_75__["AdminImageComponent"] }, { path: "existing-name", component: _knora_ui_examples_action_demo_existing_name_existing_name_component__WEBPACK_IMPORTED_MODULE_76__["ExistingNameComponent"] }, { path: "key", component: _knora_ui_examples_action_demo_key_key_component__WEBPACK_IMPORTED_MODULE_77__["KeyComponent"] }] }, { path: "authentication", component: _knora_ui_examples_authentication_demo_authentication_demo_component__WEBPACK_IMPORTED_MODULE_78__["AuthenticationDemoComponent"], canActivate: [_knora_authentication__WEBPACK_IMPORTED_MODULE_49__["AuthGuard"]], children: [{ path: "login-form", component: _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_69__["LoginComponent"] }] }, { path: "search", component: _knora_ui_examples_search_demo_search_demo_component__WEBPACK_IMPORTED_MODULE_79__["SearchDemoComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_80__["ɵ0"], children: [{ path: "search", component: _knora_ui_examples_search_demo_search_panel_search_panel_component__WEBPACK_IMPORTED_MODULE_81__["SearchPanelComponent"], children: [{ path: ":mode/:q", component: _knora_ui_examples_search_demo_search_result_search_result_component__WEBPACK_IMPORTED_MODULE_82__["SearchResultComponent"] }] }] }, { path: "viewer", component: _knora_ui_examples_viewer_demo_viewer_demo_component__WEBPACK_IMPORTED_MODULE_83__["ViewerDemoComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_80__["ɵ1"], children: [{ path: "resources", component: _knora_ui_examples_viewer_demo_resources_resources_component__WEBPACK_IMPORTED_MODULE_84__["ResourcesComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_80__["ɵ2"] }, { path: "properties", component: _knora_ui_examples_viewer_demo_properties_properties_component__WEBPACK_IMPORTED_MODULE_85__["PropertiesComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_80__["ɵ3"] }, { path: "views", component: _knora_ui_examples_viewer_demo_views_views_component__WEBPACK_IMPORTED_MODULE_86__["ViewsComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_80__["ɵ4"] }] }, { path: "core", component: _knora_ui_examples_core_demo_core_demo_component__WEBPACK_IMPORTED_MODULE_87__["CoreDemoComponent"], children: [{ path: "projects", component: _knora_ui_examples_core_demo_projects_projects_component__WEBPACK_IMPORTED_MODULE_88__["ProjectsComponent"] }, { path: "users", component: _knora_ui_examples_core_demo_users_users_component__WEBPACK_IMPORTED_MODULE_89__["UsersComponent"] }, { path: "groups", component: _knora_ui_examples_core_demo_groups_groups_component__WEBPACK_IMPORTED_MODULE_90__["GroupsComponent"] }, { path: "lists", component: _knora_ui_examples_core_demo_lists_lists_component__WEBPACK_IMPORTED_MODULE_91__["ListsComponent"] }, { path: "resource", component: _knora_ui_examples_core_demo_resource_resource_component__WEBPACK_IMPORTED_MODULE_92__["ResourceComponent"] }, { path: "search-service", component: _knora_ui_examples_core_demo_search_search_component__WEBPACK_IMPORTED_MODULE_93__["SearchComponent"] }, { path: "ontology-cache", component: _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component__WEBPACK_IMPORTED_MODULE_94__["OntologyCacheComponent"] }, { path: "ontology", component: _knora_ui_examples_core_demo_ontology_ontology_component__WEBPACK_IMPORTED_MODULE_95__["OntologyComponent"] }, { path: "incoming", component: _knora_ui_examples_core_demo_incoming_incoming_component__WEBPACK_IMPORTED_MODULE_96__["IncomingComponent"] }, { path: "gravsearch", component: _knora_ui_examples_core_demo_gravsearch_gravsearch_component__WEBPACK_IMPORTED_MODULE_97__["GravsearchComponent"] }, { path: "convertjsonld", component: _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component__WEBPACK_IMPORTED_MODULE_98__["ConvertJsonLdComponent"] }] }] }, { path: "documentation", component: _dev_docs_doc_intro_doc_intro_component__WEBPACK_IMPORTED_MODULE_99__["DocIntroComponent"] }, { path: "test", component: _material_tree_tree_component__WEBPACK_IMPORTED_MODULE_100__["TreeComponent"] }]]; }, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_router__WEBPACK_IMPORTED_MODULE_47__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_f"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["UrlSerializer"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ChildrenOutletContexts"], _angular_common__WEBPACK_IMPORTED_MODULE_42__["Location"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModuleFactoryLoader"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ROUTES"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["ROUTER_CONFIGURATION"], [2, _angular_router__WEBPACK_IMPORTED_MODULE_47__["UrlHandlingStrategy"]], [2, _angular_router__WEBPACK_IMPORTED_MODULE_47__["RouteReuseStrategy"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_router__WEBPACK_IMPORTED_MODULE_47__["RouterModule"], _angular_router__WEBPACK_IMPORTED_MODULE_47__["RouterModule"], [[2, _angular_router__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_router_router_a"]], [2, _angular_router__WEBPACK_IMPORTED_MODULE_47__["Router"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _app_routing__WEBPACK_IMPORTED_MODULE_80__["AppRouting"], _app_routing__WEBPACK_IMPORTED_MODULE_80__["AppRouting"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpClientXsrfModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpClientXsrfModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpClientModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["HttpClientModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_core__WEBPACK_IMPORTED_MODULE_101__["KuiCoreModule"], _knora_core__WEBPACK_IMPORTED_MODULE_101__["KuiCoreModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_46__["BrowserAnimationsModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_46__["BrowserAnimationsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_52__["BidiModule"], _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_52__["BidiModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatCommonModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatCommonModule"], [[2, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MATERIAL_SANITY_CHECKS"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_65__["PlatformModule"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_65__["PlatformModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatRippleModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatRippleModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_button__WEBPACK_IMPORTED_MODULE_102__["MatButtonModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_102__["MatButtonModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_icon__WEBPACK_IMPORTED_MODULE_103__["MatIconModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_103__["MatIconModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_104__["PortalModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_104__["PortalModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_105__["ScrollDispatchModule"], _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_105__["ScrollDispatchModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["OverlayModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_51__["OverlayModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_menu__WEBPACK_IMPORTED_MODULE_53__["MatMenuModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_53__["MatMenuModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_action__WEBPACK_IMPORTED_MODULE_106__["KuiActionModule"], _knora_action__WEBPACK_IMPORTED_MODULE_106__["KuiActionModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_card__WEBPACK_IMPORTED_MODULE_107__["MatCardModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_107__["MatCardModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_text_field__WEBPACK_IMPORTED_MODULE_108__["TextFieldModule"], _angular_cdk_text_field__WEBPACK_IMPORTED_MODULE_108__["TextFieldModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_54__["ObserversModule"], _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_54__["ObserversModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_109__["MatFormFieldModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_109__["MatFormFieldModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_input__WEBPACK_IMPORTED_MODULE_110__["MatInputModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_110__["MatInputModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__["MatDialogModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__["MatDialogModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_forms__WEBPACK_IMPORTED_MODULE_56__["ɵangular_packages_forms_forms_bb"], _angular_forms__WEBPACK_IMPORTED_MODULE_56__["ɵangular_packages_forms_forms_bb"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_forms__WEBPACK_IMPORTED_MODULE_56__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_56__["ReactiveFormsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_authentication__WEBPACK_IMPORTED_MODULE_49__["KuiAuthenticationModule"], _knora_authentication__WEBPACK_IMPORTED_MODULE_49__["KuiAuthenticationModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatPseudoCheckboxModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatPseudoCheckboxModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatOptionModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatOptionModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_57__["MatAutocompleteModule"], _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_57__["MatAutocompleteModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_111__["MatCheckboxModule"], _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_111__["MatCheckboxModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_64__["A11yModule"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_64__["A11yModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_58__["MatDatepickerModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_58__["MatDatepickerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatLineModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatLineModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_divider__WEBPACK_IMPORTED_MODULE_112__["MatDividerModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_112__["MatDividerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_list__WEBPACK_IMPORTED_MODULE_113__["MatListModule"], _angular_material_list__WEBPACK_IMPORTED_MODULE_113__["MatListModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_select__WEBPACK_IMPORTED_MODULE_59__["MatSelectModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_59__["MatSelectModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_60__["MatTooltipModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_60__["MatTooltipModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_forms__WEBPACK_IMPORTED_MODULE_56__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_56__["FormsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["NativeDateModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["NativeDateModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatNativeDateModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MatNativeDateModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_114__["MatSlideToggleModule"], _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_114__["MatSlideToggleModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_115__["MatToolbarModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_115__["MatToolbarModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_viewer__WEBPACK_IMPORTED_MODULE_116__["KuiViewerModule"], _knora_viewer__WEBPACK_IMPORTED_MODULE_116__["KuiViewerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_61__["JDNConvertibleCalendarDateAdapterModule"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_61__["JDNConvertibleCalendarDateAdapterModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_61__["MatJDNConvertibleCalendarDateAdapterModule"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_61__["MatJDNConvertibleCalendarDateAdapterModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_search__WEBPACK_IMPORTED_MODULE_117__["KuiSearchModule"], _knora_search__WEBPACK_IMPORTED_MODULE_117__["KuiSearchModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_118__["MatButtonToggleModule"], _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_118__["MatButtonToggleModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_chips__WEBPACK_IMPORTED_MODULE_119__["MatChipsModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_119__["MatChipsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_table__WEBPACK_IMPORTED_MODULE_120__["CdkTableModule"], _angular_cdk_table__WEBPACK_IMPORTED_MODULE_120__["CdkTableModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_table__WEBPACK_IMPORTED_MODULE_121__["MatTableModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_121__["MatTableModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_accordion__WEBPACK_IMPORTED_MODULE_122__["CdkAccordionModule"], _angular_cdk_accordion__WEBPACK_IMPORTED_MODULE_122__["CdkAccordionModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_123__["MatExpansionModule"], _angular_material_expansion__WEBPACK_IMPORTED_MODULE_123__["MatExpansionModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_124__["MatGridListModule"], _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_124__["MatGridListModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_62__["MatPaginatorModule"], _angular_material_paginator__WEBPACK_IMPORTED_MODULE_62__["MatPaginatorModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_125__["MatProgressBarModule"], _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_125__["MatProgressBarModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_126__["MatProgressSpinnerModule"], _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_126__["MatProgressSpinnerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_radio__WEBPACK_IMPORTED_MODULE_127__["MatRadioModule"], _angular_material_radio__WEBPACK_IMPORTED_MODULE_127__["MatRadioModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_128__["MatSidenavModule"], _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_128__["MatSidenavModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_slider__WEBPACK_IMPORTED_MODULE_129__["MatSliderModule"], _angular_material_slider__WEBPACK_IMPORTED_MODULE_129__["MatSliderModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_130__["MatSnackBarModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_130__["MatSnackBarModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_sort__WEBPACK_IMPORTED_MODULE_63__["MatSortModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_63__["MatSortModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_131__["MatTabsModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_131__["MatTabsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_66__["CdkTreeModule"], _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_66__["CdkTreeModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_tree__WEBPACK_IMPORTED_MODULE_132__["MatTreeModule"], _angular_material_tree__WEBPACK_IMPORTED_MODULE_132__["MatTreeModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _material_module__WEBPACK_IMPORTED_MODULE_133__["MaterialModule"], _material_module__WEBPACK_IMPORTED_MODULE_133__["MaterialModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, ngx_markdown__WEBPACK_IMPORTED_MODULE_67__["MarkdownModule"], ngx_markdown__WEBPACK_IMPORTED_MODULE_67__["MarkdownModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule"], _app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵAPP_ROOT"], true, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_e"], "XSRF-TOKEN", []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_common_http__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_common_http_http_f"], "X-XSRF-TOKEN", []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, "config", { name: "Knora-ui Demo App", api: "http://0.0.0.0:3333", media: "http://localhost:1024", app: "http://localhost:4200" }, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_46__["ANIMATION_MODULE_TYPE"], "BrowserAnimations", []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_55__["MAT_DIALOG_DEFAULT_OPTIONS"], _app_module__WEBPACK_IMPORTED_MODULE_1__["ɵ0"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_material_core__WEBPACK_IMPORTED_MODULE_44__["MAT_DATE_FORMATS"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_61__["ɵa"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_material_chips__WEBPACK_IMPORTED_MODULE_119__["MAT_CHIPS_DEFAULT_OPTIONS"], { separatorKeyCodes: [_angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_134__["ENTER"]] }, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, ngx_markdown__WEBPACK_IMPORTED_MODULE_67__["MarkedOptions"], { gfm: true, tables: true, breaks: false, pedantic: false, sanitize: false, smartLists: true, smartypants: false }, [])]); });
+
+
+var AppModuleNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcmf"](_app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule"], [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]], function (_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmod"]([_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵCodegenComponentFactoryResolver"], [[8, [_node_modules_angular_router_router_ngfactory__WEBPACK_IMPORTED_MODULE_3__["ɵEmptyOutletComponentNgFactory"], _landing_page_main_intro_main_intro_component_ngfactory__WEBPACK_IMPORTED_MODULE_4__["MainIntroComponentNgFactory"], _knora_ui_examples_authentication_demo_login_login_component_ngfactory__WEBPACK_IMPORTED_MODULE_5__["LoginComponentNgFactory"], _partials_module_index_module_index_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__["ModuleIndexComponentNgFactory"], _landing_page_demo_intro_demo_intro_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["DemoIntroComponentNgFactory"], _knora_ui_examples_action_demo_action_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["ActionDemoComponentNgFactory"], _knora_ui_examples_action_demo_sort_button_sort_button_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["SortButtonComponentNgFactory"], _knora_ui_examples_action_demo_progress_indicator_progress_indicator_component_ngfactory__WEBPACK_IMPORTED_MODULE_10__["ProgressIndicatorComponentNgFactory"], _knora_ui_examples_action_demo_admin_image_admin_image_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["AdminImageComponentNgFactory"], _knora_ui_examples_action_demo_existing_name_existing_name_component_ngfactory__WEBPACK_IMPORTED_MODULE_12__["ExistingNameComponentNgFactory"], _knora_ui_examples_action_demo_key_key_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["KeyComponentNgFactory"], _knora_ui_examples_authentication_demo_authentication_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_14__["AuthenticationDemoComponentNgFactory"], _knora_ui_examples_authentication_demo_auth_auth_component_ngfactory__WEBPACK_IMPORTED_MODULE_15__["AuthComponentNgFactory"], _knora_ui_examples_search_demo_search_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["SearchDemoComponentNgFactory"], _knora_ui_examples_search_demo_search_panel_search_panel_component_ngfactory__WEBPACK_IMPORTED_MODULE_17__["SearchPanelComponentNgFactory"], _knora_ui_examples_search_demo_search_result_search_result_component_ngfactory__WEBPACK_IMPORTED_MODULE_18__["SearchResultComponentNgFactory"], _knora_ui_examples_viewer_demo_viewer_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_19__["ViewerDemoComponentNgFactory"], _knora_ui_examples_viewer_demo_resources_resources_component_ngfactory__WEBPACK_IMPORTED_MODULE_20__["ResourcesComponentNgFactory"], _knora_ui_examples_viewer_demo_properties_properties_component_ngfactory__WEBPACK_IMPORTED_MODULE_21__["PropertiesComponentNgFactory"], _knora_ui_examples_viewer_demo_views_views_component_ngfactory__WEBPACK_IMPORTED_MODULE_22__["ViewsComponentNgFactory"], _knora_ui_examples_core_demo_core_demo_component_ngfactory__WEBPACK_IMPORTED_MODULE_23__["CoreDemoComponentNgFactory"], _knora_ui_examples_core_demo_projects_projects_component_ngfactory__WEBPACK_IMPORTED_MODULE_24__["ProjectsComponentNgFactory"], _knora_ui_examples_core_demo_users_users_component_ngfactory__WEBPACK_IMPORTED_MODULE_25__["UsersComponentNgFactory"], _knora_ui_examples_core_demo_groups_groups_component_ngfactory__WEBPACK_IMPORTED_MODULE_26__["GroupsComponentNgFactory"], _knora_ui_examples_core_demo_lists_lists_component_ngfactory__WEBPACK_IMPORTED_MODULE_27__["ListsComponentNgFactory"], _knora_ui_examples_core_demo_resource_resource_component_ngfactory__WEBPACK_IMPORTED_MODULE_28__["ResourceComponentNgFactory"], _knora_ui_examples_core_demo_search_search_component_ngfactory__WEBPACK_IMPORTED_MODULE_29__["SearchComponentNgFactory"], _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component_ngfactory__WEBPACK_IMPORTED_MODULE_30__["OntologyCacheComponentNgFactory"], _knora_ui_examples_core_demo_ontology_ontology_component_ngfactory__WEBPACK_IMPORTED_MODULE_31__["OntologyComponentNgFactory"], _knora_ui_examples_core_demo_incoming_incoming_component_ngfactory__WEBPACK_IMPORTED_MODULE_32__["IncomingComponentNgFactory"], _knora_ui_examples_core_demo_gravsearch_gravsearch_component_ngfactory__WEBPACK_IMPORTED_MODULE_33__["GravsearchComponentNgFactory"], _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component_ngfactory__WEBPACK_IMPORTED_MODULE_34__["ConvertJsonLdComponentNgFactory"], _dev_docs_doc_intro_doc_intro_component_ngfactory__WEBPACK_IMPORTED_MODULE_35__["DocIntroComponentNgFactory"], _material_tree_tree_component_ngfactory__WEBPACK_IMPORTED_MODULE_36__["TreeComponentNgFactory"], _node_modules_angular_material_dialog_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_37__["MatDialogContainerNgFactory"], _node_modules_angular_material_datepicker_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_38__["MatDatepickerContentNgFactory"], _node_modules_angular_material_datepicker_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_38__["MatCalendarHeaderNgFactory"], _node_modules_angular_material_tooltip_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_39__["TooltipComponentNgFactory"], _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_40__["HeaderComponentNgFactory"], _node_modules_angular_material_snack_bar_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_41__["MatSnackBarContainerNgFactory"], _node_modules_angular_material_snack_bar_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_41__["SimpleSnackBarNgFactory"], _app_component_ngfactory__WEBPACK_IMPORTED_MODULE_42__["AppComponentNgFactory"]]], [3, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"]], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModuleRef"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["LOCALE_ID"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_k"], [[3, _angular_core__WEBPACK_IMPORTED_MODULE_0__["LOCALE_ID"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common__WEBPACK_IMPORTED_MODULE_43__["NgLocalization"], _angular_common__WEBPACK_IMPORTED_MODULE_43__["NgLocaleLocalization"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["LOCALE_ID"], [2, _angular_common__WEBPACK_IMPORTED_MODULE_43__["ɵangular_packages_common_common_a"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_ID"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_f"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_i"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["KeyValueDiffers"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_j"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["DomSanitizer"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵDomSanitizerImpl"], [_angular_common__WEBPACK_IMPORTED_MODULE_43__["DOCUMENT"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_core__WEBPACK_IMPORTED_MODULE_0__["Sanitizer"], null, [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["DomSanitizer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["HAMMER_GESTURE_CONFIG"], _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["GestureConfig"], [[2, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MAT_HAMMER_OPTIONS"]], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatCommonModule"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["EVENT_MANAGER_PLUGINS"], function (p0_0, p0_1, p0_2, p1_0, p2_0, p2_1, p2_2, p2_3) { return [new _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵDomEventsPlugin"](p0_0, p0_1, p0_2), new _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵKeyEventsPlugin"](p1_0), new _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵHammerGesturesPlugin"](p2_0, p2_1, p2_2, p2_3)]; }, [_angular_common__WEBPACK_IMPORTED_MODULE_43__["DOCUMENT"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"], _angular_common__WEBPACK_IMPORTED_MODULE_43__["DOCUMENT"], _angular_common__WEBPACK_IMPORTED_MODULE_43__["DOCUMENT"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["HAMMER_GESTURE_CONFIG"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵConsole"], [2, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["HAMMER_LOADER"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["EventManager"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["EventManager"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["EVENT_MANAGER_PLUGINS"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](135680, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵDomSharedStylesHost"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵDomSharedStylesHost"], [_angular_common__WEBPACK_IMPORTED_MODULE_43__["DOCUMENT"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵDomRendererFactory2"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵDomRendererFactory2"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["EventManager"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵDomSharedStylesHost"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_animations_browser__WEBPACK_IMPORTED_MODULE_46__["AnimationDriver"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_platform_browser_animations_animations_b"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_animations_browser__WEBPACK_IMPORTED_MODULE_46__["ɵAnimationStyleNormalizer"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_platform_browser_animations_animations_c"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_animations_browser__WEBPACK_IMPORTED_MODULE_46__["ɵAnimationEngine"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_platform_browser_animations_animations_a"], [_angular_common__WEBPACK_IMPORTED_MODULE_43__["DOCUMENT"], _angular_animations_browser__WEBPACK_IMPORTED_MODULE_46__["AnimationDriver"], _angular_animations_browser__WEBPACK_IMPORTED_MODULE_46__["ɵAnimationStyleNormalizer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["RendererFactory2"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_47__["ɵangular_packages_platform_browser_animations_animations_d"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵDomRendererFactory2"], _angular_animations_browser__WEBPACK_IMPORTED_MODULE_46__["ɵAnimationEngine"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵSharedStylesHost"], null, [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵDomSharedStylesHost"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_core__WEBPACK_IMPORTED_MODULE_0__["Testability"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Testability"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_router__WEBPACK_IMPORTED_MODULE_48__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_g"], [_angular_router__WEBPACK_IMPORTED_MODULE_48__["Router"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_router__WEBPACK_IMPORTED_MODULE_48__["NoPreloading"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["NoPreloading"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_router__WEBPACK_IMPORTED_MODULE_48__["PreloadingStrategy"], null, [_angular_router__WEBPACK_IMPORTED_MODULE_48__["NoPreloading"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](135680, _angular_router__WEBPACK_IMPORTED_MODULE_48__["RouterPreloader"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["RouterPreloader"], [_angular_router__WEBPACK_IMPORTED_MODULE_48__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModuleFactoryLoader"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["PreloadingStrategy"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_router__WEBPACK_IMPORTED_MODULE_48__["PreloadAllModules"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["PreloadAllModules"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_n"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_c"], [_angular_router__WEBPACK_IMPORTED_MODULE_48__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_43__["ViewportScroller"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ROUTER_CONFIGURATION"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_router__WEBPACK_IMPORTED_MODULE_48__["ROUTER_INITIALIZER"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_j"], [_angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_h"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_BOOTSTRAP_LISTENER"], function (p0_0) { return [p0_0]; }, [_angular_router__WEBPACK_IMPORTED_MODULE_48__["ROUTER_INITIALIZER"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpXsrfTokenExtractor"], _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_g"], [_angular_common__WEBPACK_IMPORTED_MODULE_43__["DOCUMENT"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"], _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_e"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_h"], _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_h"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpXsrfTokenExtractor"], _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_f"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HTTP_INTERCEPTORS"], function (p0_0, p1_0) { return [p0_0, new _knora_authentication__WEBPACK_IMPORTED_MODULE_50__["JwtInterceptor"](p1_0)]; }, [_angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_h"], _knora_authentication__WEBPACK_IMPORTED_MODULE_50__["ɵa"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_d"], _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_d"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["XhrFactory"], null, [_angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_d"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpXhrBackend"], _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpXhrBackend"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_49__["XhrFactory"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpBackend"], null, [_angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpXhrBackend"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpHandler"], _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵHttpInterceptingHandler"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpBackend"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpClient"], _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpClient"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpHandler"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_animations__WEBPACK_IMPORTED_MODULE_51__["AnimationBuilder"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_47__["ɵBrowserAnimationBuilder"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["RendererFactory2"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["DOCUMENT"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["Overlay"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["Overlay"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["ScrollStrategyOptions"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["OverlayContainer"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["OverlayPositionBuilder"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["OverlayKeyboardDispatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_common__WEBPACK_IMPORTED_MODULE_43__["DOCUMENT"], _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_53__["Directionality"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["ɵc"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["ɵd"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_menu__WEBPACK_IMPORTED_MODULE_54__["MAT_MENU_SCROLL_STRATEGY"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_54__["ɵd23"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_55__["MutationObserverFactory"], _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_55__["MutationObserverFactory"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["ErrorStateMatcher"], _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["ErrorStateMatcher"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__["MAT_DIALOG_SCROLL_STRATEGY"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__["MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__["MatDialog"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__["MatDialog"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["Overlay"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], [2, _angular_common__WEBPACK_IMPORTED_MODULE_43__["Location"]], [2, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__["MAT_DIALOG_DEFAULT_OPTIONS"]], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__["MAT_DIALOG_SCROLL_STRATEGY"], [3, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__["MatDialog"]], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["OverlayContainer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_forms__WEBPACK_IMPORTED_MODULE_57__["FormBuilder"], _angular_forms__WEBPACK_IMPORTED_MODULE_57__["FormBuilder"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_forms__WEBPACK_IMPORTED_MODULE_57__["ɵangular_packages_forms_forms_i"], _angular_forms__WEBPACK_IMPORTED_MODULE_57__["ɵangular_packages_forms_forms_i"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_58__["MAT_AUTOCOMPLETE_SCROLL_STRATEGY"], _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_58__["MAT_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_59__["MatDatepickerIntl"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_59__["MatDatepickerIntl"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_59__["MAT_DATEPICKER_SCROLL_STRATEGY"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_59__["MAT_DATEPICKER_SCROLL_STRATEGY_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_select__WEBPACK_IMPORTED_MODULE_60__["MAT_SELECT_SCROLL_STRATEGY"], _angular_material_select__WEBPACK_IMPORTED_MODULE_60__["MAT_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_61__["MAT_TOOLTIP_SCROLL_STRATEGY"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_61__["MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["DateAdapter"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_62__["JDNConvertibleCalendarDateAdapter"], [_angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MAT_DATE_LOCALE"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_63__["MatPaginatorIntl"], _angular_material_paginator__WEBPACK_IMPORTED_MODULE_63__["MAT_PAGINATOR_INTL_PROVIDER_FACTORY"], [[3, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_63__["MatPaginatorIntl"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_sort__WEBPACK_IMPORTED_MODULE_64__["MatSortHeaderIntl"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_64__["MAT_SORT_HEADER_INTL_PROVIDER_FACTORY"], [[3, _angular_material_sort__WEBPACK_IMPORTED_MODULE_64__["MatSortHeaderIntl"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](135680, _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_65__["FocusMonitor"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_65__["FocusMonitor"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_66__["Platform"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_67__["CdkTreeNodeDef"], _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_67__["CdkTreeNodeDef"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, ngx_markdown__WEBPACK_IMPORTED_MODULE_68__["MarkdownService"], ngx_markdown__WEBPACK_IMPORTED_MODULE_68__["MarkdownService"], [[2, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpClient"]], ngx_markdown__WEBPACK_IMPORTED_MODULE_68__["MarkedOptions"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_common__WEBPACK_IMPORTED_MODULE_43__["CommonModule"], _angular_common__WEBPACK_IMPORTED_MODULE_43__["CommonModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ErrorHandler"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵangular_packages_platform_browser_platform_browser_a"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgProbeToken"], function () { return [_angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_b"]()]; }, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_h"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_h"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_INITIALIZER"], function (p0_0, p1_0) { return [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["ɵangular_packages_platform_browser_platform_browser_j"](p0_0), _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_i"](p1_0)]; }, [[2, _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgProbeToken"]], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_h"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationInitStatus"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationInitStatus"], [[2, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_INITIALIZER"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](131584, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵConsole"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ErrorHandler"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationInitStatus"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationModule"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationModule"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["BrowserModule"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["BrowserModule"], [[3, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_44__["BrowserModule"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_a"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_e"], [[3, _angular_router__WEBPACK_IMPORTED_MODULE_48__["Router"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_router__WEBPACK_IMPORTED_MODULE_48__["UrlSerializer"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["DefaultUrlSerializer"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_router__WEBPACK_IMPORTED_MODULE_48__["ChildrenOutletContexts"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ChildrenOutletContexts"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_router__WEBPACK_IMPORTED_MODULE_48__["ROUTER_CONFIGURATION"], {}, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_common__WEBPACK_IMPORTED_MODULE_43__["LocationStrategy"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_d"], [_angular_common__WEBPACK_IMPORTED_MODULE_43__["PlatformLocation"], [2, _angular_common__WEBPACK_IMPORTED_MODULE_43__["APP_BASE_HREF"]], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ROUTER_CONFIGURATION"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_common__WEBPACK_IMPORTED_MODULE_43__["Location"], _angular_common__WEBPACK_IMPORTED_MODULE_43__["Location"], [_angular_common__WEBPACK_IMPORTED_MODULE_43__["LocationStrategy"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModuleFactoryLoader"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["SystemJsNgModuleLoader"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], [2, _angular_core__WEBPACK_IMPORTED_MODULE_0__["SystemJsNgModuleLoaderConfig"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_router__WEBPACK_IMPORTED_MODULE_48__["ROUTES"], function () { return [[{ path: "", component: _landing_page_main_intro_main_intro_component__WEBPACK_IMPORTED_MODULE_69__["MainIntroComponent"] }, { path: "login", component: _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_70__["LoginComponent"] }, { path: "modules", component: _partials_module_index_module_index_component__WEBPACK_IMPORTED_MODULE_71__["ModuleIndexComponent"], children: [{ path: "", component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_72__["DemoIntroComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ0"] }, { path: "action", component: _knora_ui_examples_action_demo_action_demo_component__WEBPACK_IMPORTED_MODULE_74__["ActionDemoComponent"], children: [{ path: "", redirectTo: "readme", pathMatch: "full" }, { path: "readme", component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_72__["DemoIntroComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ1"] }, { path: "sort-button", component: _knora_ui_examples_action_demo_sort_button_sort_button_component__WEBPACK_IMPORTED_MODULE_75__["SortButtonComponent"] }, { path: "progress-indicator", component: _knora_ui_examples_action_demo_progress_indicator_progress_indicator_component__WEBPACK_IMPORTED_MODULE_76__["ProgressIndicatorComponent"] }, { path: "admin-image", component: _knora_ui_examples_action_demo_admin_image_admin_image_component__WEBPACK_IMPORTED_MODULE_77__["AdminImageComponent"] }, { path: "existing-name", component: _knora_ui_examples_action_demo_existing_name_existing_name_component__WEBPACK_IMPORTED_MODULE_78__["ExistingNameComponent"] }, { path: "key", component: _knora_ui_examples_action_demo_key_key_component__WEBPACK_IMPORTED_MODULE_79__["KeyComponent"] }] }, { path: "authentication", component: _knora_ui_examples_authentication_demo_authentication_demo_component__WEBPACK_IMPORTED_MODULE_80__["AuthenticationDemoComponent"], children: [{ path: "", redirectTo: "readme", pathMatch: "full" }, { path: "readme", component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_72__["DemoIntroComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ2"] }, { path: "login-form", component: _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_70__["LoginComponent"] }, { path: "authentication", component: _knora_ui_examples_authentication_demo_auth_auth_component__WEBPACK_IMPORTED_MODULE_81__["AuthComponent"] }] }, { path: "search", component: _knora_ui_examples_search_demo_search_demo_component__WEBPACK_IMPORTED_MODULE_82__["SearchDemoComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ3"], children: [{ path: "", redirectTo: "readme", pathMatch: "full" }, { path: "readme", component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_72__["DemoIntroComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ4"] }, { path: "search", component: _knora_ui_examples_search_demo_search_panel_search_panel_component__WEBPACK_IMPORTED_MODULE_83__["SearchPanelComponent"], children: [{ path: ":mode/:q", component: _knora_ui_examples_search_demo_search_result_search_result_component__WEBPACK_IMPORTED_MODULE_84__["SearchResultComponent"] }] }] }, { path: "viewer", component: _knora_ui_examples_viewer_demo_viewer_demo_component__WEBPACK_IMPORTED_MODULE_85__["ViewerDemoComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ5"], children: [{ path: "", redirectTo: "readme", pathMatch: "full" }, { path: "readme", component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_72__["DemoIntroComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ6"] }, { path: "resources", component: _knora_ui_examples_viewer_demo_resources_resources_component__WEBPACK_IMPORTED_MODULE_86__["ResourcesComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ7"] }, { path: "resource/:id", component: _knora_viewer__WEBPACK_IMPORTED_MODULE_87__["ResourceViewComponent"] }, { path: "properties", component: _knora_ui_examples_viewer_demo_properties_properties_component__WEBPACK_IMPORTED_MODULE_88__["PropertiesComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ8"] }, { path: "views", component: _knora_ui_examples_viewer_demo_views_views_component__WEBPACK_IMPORTED_MODULE_89__["ViewsComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ9"] }] }, { path: "core", component: _knora_ui_examples_core_demo_core_demo_component__WEBPACK_IMPORTED_MODULE_90__["CoreDemoComponent"], children: [{ path: "", redirectTo: "readme", pathMatch: "full" }, { path: "readme", component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_72__["DemoIntroComponent"], data: _app_routing__WEBPACK_IMPORTED_MODULE_73__["ɵ10"] }, { path: "projects", component: _knora_ui_examples_core_demo_projects_projects_component__WEBPACK_IMPORTED_MODULE_91__["ProjectsComponent"] }, { path: "users", component: _knora_ui_examples_core_demo_users_users_component__WEBPACK_IMPORTED_MODULE_92__["UsersComponent"] }, { path: "groups", component: _knora_ui_examples_core_demo_groups_groups_component__WEBPACK_IMPORTED_MODULE_93__["GroupsComponent"] }, { path: "lists", component: _knora_ui_examples_core_demo_lists_lists_component__WEBPACK_IMPORTED_MODULE_94__["ListsComponent"] }, { path: "resource", component: _knora_ui_examples_core_demo_resource_resource_component__WEBPACK_IMPORTED_MODULE_95__["ResourceComponent"] }, { path: "search", component: _knora_ui_examples_core_demo_search_search_component__WEBPACK_IMPORTED_MODULE_96__["SearchComponent"] }, { path: "ontology-cache", component: _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component__WEBPACK_IMPORTED_MODULE_97__["OntologyCacheComponent"] }, { path: "ontology", component: _knora_ui_examples_core_demo_ontology_ontology_component__WEBPACK_IMPORTED_MODULE_98__["OntologyComponent"] }, { path: "incoming", component: _knora_ui_examples_core_demo_incoming_incoming_component__WEBPACK_IMPORTED_MODULE_99__["IncomingComponent"] }, { path: "grav-search", component: _knora_ui_examples_core_demo_gravsearch_gravsearch_component__WEBPACK_IMPORTED_MODULE_100__["GravsearchComponent"] }, { path: "convert-jsonld", component: _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component__WEBPACK_IMPORTED_MODULE_101__["ConvertJsonLdComponent"] }] }] }, { path: "documentation", component: _dev_docs_doc_intro_doc_intro_component__WEBPACK_IMPORTED_MODULE_102__["DocIntroComponent"] }, { path: "test", component: _material_tree_tree_component__WEBPACK_IMPORTED_MODULE_103__["TreeComponent"] }]]; }, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_router__WEBPACK_IMPORTED_MODULE_48__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_f"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["UrlSerializer"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ChildrenOutletContexts"], _angular_common__WEBPACK_IMPORTED_MODULE_43__["Location"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModuleFactoryLoader"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ROUTES"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["ROUTER_CONFIGURATION"], [2, _angular_router__WEBPACK_IMPORTED_MODULE_48__["UrlHandlingStrategy"]], [2, _angular_router__WEBPACK_IMPORTED_MODULE_48__["RouteReuseStrategy"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_router__WEBPACK_IMPORTED_MODULE_48__["RouterModule"], _angular_router__WEBPACK_IMPORTED_MODULE_48__["RouterModule"], [[2, _angular_router__WEBPACK_IMPORTED_MODULE_48__["ɵangular_packages_router_router_a"]], [2, _angular_router__WEBPACK_IMPORTED_MODULE_48__["Router"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _app_routing__WEBPACK_IMPORTED_MODULE_73__["AppRouting"], _app_routing__WEBPACK_IMPORTED_MODULE_73__["AppRouting"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpClientXsrfModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpClientXsrfModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpClientModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["HttpClientModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_core__WEBPACK_IMPORTED_MODULE_104__["KuiCoreModule"], _knora_core__WEBPACK_IMPORTED_MODULE_104__["KuiCoreModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_47__["BrowserAnimationsModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_47__["BrowserAnimationsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_53__["BidiModule"], _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_53__["BidiModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatCommonModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatCommonModule"], [[2, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MATERIAL_SANITY_CHECKS"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_66__["PlatformModule"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_66__["PlatformModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatRippleModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatRippleModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_button__WEBPACK_IMPORTED_MODULE_105__["MatButtonModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_105__["MatButtonModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_icon__WEBPACK_IMPORTED_MODULE_106__["MatIconModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_106__["MatIconModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_107__["PortalModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_107__["PortalModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_108__["ScrollDispatchModule"], _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_108__["ScrollDispatchModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["OverlayModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_52__["OverlayModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_menu__WEBPACK_IMPORTED_MODULE_54__["MatMenuModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_54__["MatMenuModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_action__WEBPACK_IMPORTED_MODULE_109__["KuiActionModule"], _knora_action__WEBPACK_IMPORTED_MODULE_109__["KuiActionModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_card__WEBPACK_IMPORTED_MODULE_110__["MatCardModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_110__["MatCardModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_text_field__WEBPACK_IMPORTED_MODULE_111__["TextFieldModule"], _angular_cdk_text_field__WEBPACK_IMPORTED_MODULE_111__["TextFieldModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_55__["ObserversModule"], _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_55__["ObserversModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_112__["MatFormFieldModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_112__["MatFormFieldModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_input__WEBPACK_IMPORTED_MODULE_113__["MatInputModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_113__["MatInputModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__["MatDialogModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__["MatDialogModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_forms__WEBPACK_IMPORTED_MODULE_57__["ɵangular_packages_forms_forms_bb"], _angular_forms__WEBPACK_IMPORTED_MODULE_57__["ɵangular_packages_forms_forms_bb"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_forms__WEBPACK_IMPORTED_MODULE_57__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_57__["ReactiveFormsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_authentication__WEBPACK_IMPORTED_MODULE_50__["KuiAuthenticationModule"], _knora_authentication__WEBPACK_IMPORTED_MODULE_50__["KuiAuthenticationModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatPseudoCheckboxModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatPseudoCheckboxModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatOptionModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatOptionModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_58__["MatAutocompleteModule"], _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_58__["MatAutocompleteModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_114__["MatCheckboxModule"], _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_114__["MatCheckboxModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_65__["A11yModule"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_65__["A11yModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_59__["MatDatepickerModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_59__["MatDatepickerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatLineModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatLineModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_divider__WEBPACK_IMPORTED_MODULE_115__["MatDividerModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_115__["MatDividerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_list__WEBPACK_IMPORTED_MODULE_116__["MatListModule"], _angular_material_list__WEBPACK_IMPORTED_MODULE_116__["MatListModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_select__WEBPACK_IMPORTED_MODULE_60__["MatSelectModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_60__["MatSelectModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_61__["MatTooltipModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_61__["MatTooltipModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_forms__WEBPACK_IMPORTED_MODULE_57__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_57__["FormsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["NativeDateModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["NativeDateModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatNativeDateModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MatNativeDateModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_117__["MatSlideToggleModule"], _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_117__["MatSlideToggleModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_118__["MatToolbarModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_118__["MatToolbarModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_viewer__WEBPACK_IMPORTED_MODULE_87__["KuiViewerModule"], _knora_viewer__WEBPACK_IMPORTED_MODULE_87__["KuiViewerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_62__["JDNConvertibleCalendarDateAdapterModule"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_62__["JDNConvertibleCalendarDateAdapterModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_62__["MatJDNConvertibleCalendarDateAdapterModule"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_62__["MatJDNConvertibleCalendarDateAdapterModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_search__WEBPACK_IMPORTED_MODULE_119__["KuiSearchModule"], _knora_search__WEBPACK_IMPORTED_MODULE_119__["KuiSearchModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_120__["MatButtonToggleModule"], _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_120__["MatButtonToggleModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_chips__WEBPACK_IMPORTED_MODULE_121__["MatChipsModule"], _angular_material_chips__WEBPACK_IMPORTED_MODULE_121__["MatChipsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_table__WEBPACK_IMPORTED_MODULE_122__["CdkTableModule"], _angular_cdk_table__WEBPACK_IMPORTED_MODULE_122__["CdkTableModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_table__WEBPACK_IMPORTED_MODULE_123__["MatTableModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_123__["MatTableModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_accordion__WEBPACK_IMPORTED_MODULE_124__["CdkAccordionModule"], _angular_cdk_accordion__WEBPACK_IMPORTED_MODULE_124__["CdkAccordionModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_125__["MatExpansionModule"], _angular_material_expansion__WEBPACK_IMPORTED_MODULE_125__["MatExpansionModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_126__["MatGridListModule"], _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_126__["MatGridListModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_paginator__WEBPACK_IMPORTED_MODULE_63__["MatPaginatorModule"], _angular_material_paginator__WEBPACK_IMPORTED_MODULE_63__["MatPaginatorModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_127__["MatProgressBarModule"], _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_127__["MatProgressBarModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_128__["MatProgressSpinnerModule"], _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_128__["MatProgressSpinnerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_radio__WEBPACK_IMPORTED_MODULE_129__["MatRadioModule"], _angular_material_radio__WEBPACK_IMPORTED_MODULE_129__["MatRadioModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_130__["MatSidenavModule"], _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_130__["MatSidenavModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_slider__WEBPACK_IMPORTED_MODULE_131__["MatSliderModule"], _angular_material_slider__WEBPACK_IMPORTED_MODULE_131__["MatSliderModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_132__["MatSnackBarModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_132__["MatSnackBarModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_sort__WEBPACK_IMPORTED_MODULE_64__["MatSortModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_64__["MatSortModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_133__["MatTabsModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_133__["MatTabsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_67__["CdkTreeModule"], _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_67__["CdkTreeModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_tree__WEBPACK_IMPORTED_MODULE_134__["MatTreeModule"], _angular_material_tree__WEBPACK_IMPORTED_MODULE_134__["MatTreeModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _material_module__WEBPACK_IMPORTED_MODULE_135__["MaterialModule"], _material_module__WEBPACK_IMPORTED_MODULE_135__["MaterialModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, ngx_markdown__WEBPACK_IMPORTED_MODULE_68__["MarkdownModule"], ngx_markdown__WEBPACK_IMPORTED_MODULE_68__["MarkdownModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule"], _app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵAPP_ROOT"], true, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_e"], "XSRF-TOKEN", []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_common_http__WEBPACK_IMPORTED_MODULE_49__["ɵangular_packages_common_http_http_f"], "X-XSRF-TOKEN", []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, "config", { name: "Knora-ui Demo App", api: "http://0.0.0.0:3333", media: "http://localhost:1024", app: "http://localhost:4200" }, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_47__["ANIMATION_MODULE_TYPE"], "BrowserAnimations", []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_56__["MAT_DIALOG_DEFAULT_OPTIONS"], _app_module__WEBPACK_IMPORTED_MODULE_1__["ɵ0"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_material_core__WEBPACK_IMPORTED_MODULE_45__["MAT_DATE_FORMATS"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_62__["ɵa"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_material_chips__WEBPACK_IMPORTED_MODULE_121__["MAT_CHIPS_DEFAULT_OPTIONS"], { separatorKeyCodes: [_angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_136__["ENTER"]] }, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, ngx_markdown__WEBPACK_IMPORTED_MODULE_68__["MarkedOptions"], { gfm: true, tables: true, breaks: false, pedantic: false, sanitize: false, smartLists: true, smartypants: false }, [])]); });
 
 
 
@@ -15851,7 +15912,7 @@ var AppModule = /** @class */ /*@__PURE__*/ (function () {
 /*!********************************!*\
   !*** ./src/app/app.routing.ts ***!
   \********************************/
-/*! exports provided: AppRouting, ɵ0, ɵ1, ɵ2, ɵ3, ɵ4 */
+/*! exports provided: AppRouting, ɵ0, ɵ1, ɵ2, ɵ3, ɵ4, ɵ5, ɵ6, ɵ7, ɵ8, ɵ9, ɵ10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15862,7 +15923,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ2", function() { return ɵ2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ3", function() { return ɵ3; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ4", function() { return ɵ4; });
-/* harmony import */ var _knora_authentication__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @knora/authentication */ "./dist/@knora/authentication/fesm5/knora-authentication.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ5", function() { return ɵ5; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ6", function() { return ɵ6; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ7", function() { return ɵ7; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ8", function() { return ɵ8; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ9", function() { return ɵ9; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ10", function() { return ɵ10; });
+/* harmony import */ var _knora_viewer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @knora/viewer */ "./dist/@knora/viewer/fesm5/knora-viewer.js");
 /* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.config */ "./src/app/app.config.ts");
 /* harmony import */ var _knora_ui_examples_action_demo_action_demo_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/action-demo.component */ "./src/app/knora-ui-examples/action-demo/action-demo.component.ts");
 /* harmony import */ var _knora_ui_examples_action_demo_admin_image_admin_image_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/admin-image/admin-image.component */ "./src/app/knora-ui-examples/action-demo/admin-image/admin-image.component.ts");
@@ -15876,26 +15943,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./landing-page/demo-intro/demo-intro.component */ "./src/app/landing-page/demo-intro/demo-intro.component.ts");
 /* harmony import */ var _knora_ui_examples_action_demo_progress_indicator_progress_indicator_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/progress-indicator/progress-indicator.component */ "./src/app/knora-ui-examples/action-demo/progress-indicator/progress-indicator.component.ts");
 /* harmony import */ var _knora_ui_examples_action_demo_sort_button_sort_button_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./knora-ui-examples/action-demo/sort-button/sort-button.component */ "./src/app/knora-ui-examples/action-demo/sort-button/sort-button.component.ts");
-/* harmony import */ var _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./knora-ui-examples/authentication-demo/login/login.component */ "./src/app/knora-ui-examples/authentication-demo/login/login.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_core_demo_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/core-demo.component */ "./src/app/knora-ui-examples/core-demo/core-demo.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_groups_groups_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/groups/groups.component */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_lists_lists_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/lists/lists.component */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_projects_projects_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/projects/projects.component */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_resource_resource_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/resource/resource.component */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_users_users_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/users/users.component */ "./src/app/knora-ui-examples/core-demo/users/users.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_search_search_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/search/search.component */ "./src/app/knora-ui-examples/core-demo/search/search.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology-cache/ontology-cache.component */ "./src/app/knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_ontology_ontology_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology/ontology.component */ "./src/app/knora-ui-examples/core-demo/ontology/ontology.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_incoming_incoming_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/incoming/incoming.component */ "./src/app/knora-ui-examples/core-demo/incoming/incoming.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_gravsearch_gravsearch_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/gravsearch/gravsearch.component */ "./src/app/knora-ui-examples/core-demo/gravsearch/gravsearch.component.ts");
-/* harmony import */ var _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component */ "./src/app/knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ts");
-/* harmony import */ var _knora_ui_examples_search_demo_search_demo_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-demo.component */ "./src/app/knora-ui-examples/search-demo/search-demo.component.ts");
-/* harmony import */ var _knora_ui_examples_search_demo_search_result_search_result_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-result/search-result.component */ "./src/app/knora-ui-examples/search-demo/search-result/search-result.component.ts");
-/* harmony import */ var _knora_ui_examples_viewer_demo_properties_properties_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/properties/properties.component */ "./src/app/knora-ui-examples/viewer-demo/properties/properties.component.ts");
-/* harmony import */ var _knora_ui_examples_viewer_demo_resources_resources_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/resources/resources.component */ "./src/app/knora-ui-examples/viewer-demo/resources/resources.component.ts");
-/* harmony import */ var _knora_ui_examples_viewer_demo_viewer_demo_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/viewer-demo.component */ "./src/app/knora-ui-examples/viewer-demo/viewer-demo.component.ts");
-/* harmony import */ var _knora_ui_examples_viewer_demo_views_views_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/views/views.component */ "./src/app/knora-ui-examples/viewer-demo/views/views.component.ts");
-/* harmony import */ var _material_tree_tree_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./material/tree/tree.component */ "./src/app/material/tree/tree.component.ts");
+/* harmony import */ var _knora_ui_examples_authentication_demo_auth_auth_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./knora-ui-examples/authentication-demo/auth/auth.component */ "./src/app/knora-ui-examples/authentication-demo/auth/auth.component.ts");
+/* harmony import */ var _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./knora-ui-examples/authentication-demo/login/login.component */ "./src/app/knora-ui-examples/authentication-demo/login/login.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_core_demo_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/core-demo.component */ "./src/app/knora-ui-examples/core-demo/core-demo.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_groups_groups_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/groups/groups.component */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_lists_lists_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/lists/lists.component */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_projects_projects_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/projects/projects.component */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_resource_resource_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/resource/resource.component */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_users_users_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/users/users.component */ "./src/app/knora-ui-examples/core-demo/users/users.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_search_search_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/search/search.component */ "./src/app/knora-ui-examples/core-demo/search/search.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology-cache/ontology-cache.component */ "./src/app/knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_ontology_ontology_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/ontology/ontology.component */ "./src/app/knora-ui-examples/core-demo/ontology/ontology.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_incoming_incoming_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/incoming/incoming.component */ "./src/app/knora-ui-examples/core-demo/incoming/incoming.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_gravsearch_gravsearch_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/gravsearch/gravsearch.component */ "./src/app/knora-ui-examples/core-demo/gravsearch/gravsearch.component.ts");
+/* harmony import */ var _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component */ "./src/app/knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ts");
+/* harmony import */ var _knora_ui_examples_search_demo_search_demo_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-demo.component */ "./src/app/knora-ui-examples/search-demo/search-demo.component.ts");
+/* harmony import */ var _knora_ui_examples_search_demo_search_result_search_result_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./knora-ui-examples/search-demo/search-result/search-result.component */ "./src/app/knora-ui-examples/search-demo/search-result/search-result.component.ts");
+/* harmony import */ var _knora_ui_examples_viewer_demo_properties_properties_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/properties/properties.component */ "./src/app/knora-ui-examples/viewer-demo/properties/properties.component.ts");
+/* harmony import */ var _knora_ui_examples_viewer_demo_resources_resources_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/resources/resources.component */ "./src/app/knora-ui-examples/viewer-demo/resources/resources.component.ts");
+/* harmony import */ var _knora_ui_examples_viewer_demo_viewer_demo_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/viewer-demo.component */ "./src/app/knora-ui-examples/viewer-demo/viewer-demo.component.ts");
+/* harmony import */ var _knora_ui_examples_viewer_demo_views_views_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./knora-ui-examples/viewer-demo/views/views.component */ "./src/app/knora-ui-examples/viewer-demo/views/views.component.ts");
+/* harmony import */ var _material_tree_tree_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./material/tree/tree.component */ "./src/app/material/tree/tree.component.ts");
 
 
 
@@ -15933,7 +16001,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ɵ0 = { partOf: _app_config__WEBPACK_IMPORTED_MODULE_1__["AppDemo"].searchModule }, ɵ1 = { module: _app_config__WEBPACK_IMPORTED_MODULE_1__["AppDemo"].viewerModule }, ɵ2 = { partOf: _app_config__WEBPACK_IMPORTED_MODULE_1__["AppDemo"].viewerModule }, ɵ3 = { partOf: _app_config__WEBPACK_IMPORTED_MODULE_1__["AppDemo"].viewerModule }, ɵ4 = { partOf: _app_config__WEBPACK_IMPORTED_MODULE_1__["AppDemo"].viewerModule };
+
+var ɵ0 = { module: 'demo' }, ɵ1 = { module: 'action' }, ɵ2 = { module: 'authentication' }, ɵ3 = { partOf: _app_config__WEBPACK_IMPORTED_MODULE_1__["AppDemo"].searchModule }, ɵ4 = { module: 'search' }, ɵ5 = { module: _app_config__WEBPACK_IMPORTED_MODULE_1__["AppDemo"].viewerModule }, ɵ6 = { module: 'viewer' }, ɵ7 = { partOf: _app_config__WEBPACK_IMPORTED_MODULE_1__["AppDemo"].viewerModule }, ɵ8 = { partOf: _app_config__WEBPACK_IMPORTED_MODULE_1__["AppDemo"].viewerModule }, ɵ9 = { partOf: _app_config__WEBPACK_IMPORTED_MODULE_1__["AppDemo"].viewerModule }, ɵ10 = { module: 'core' };
 var appRoutes = [
     {
         path: '',
@@ -15941,7 +16010,7 @@ var appRoutes = [
     },
     {
         path: 'login',
-        component: _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"]
+        component: _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_15__["LoginComponent"]
     },
     {
         path: 'modules',
@@ -15950,11 +16019,22 @@ var appRoutes = [
             {
                 path: '',
                 component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_11__["DemoIntroComponent"],
+                data: ɵ0
             },
             {
                 path: 'action',
                 component: _knora_ui_examples_action_demo_action_demo_component__WEBPACK_IMPORTED_MODULE_2__["ActionDemoComponent"],
                 children: [
+                    {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_11__["DemoIntroComponent"],
+                        data: ɵ1
+                    },
                     {
                         path: 'sort-button',
                         component: _knora_ui_examples_action_demo_sort_button_sort_button_component__WEBPACK_IMPORTED_MODULE_13__["SortButtonComponent"]
@@ -15980,26 +16060,50 @@ var appRoutes = [
             {
                 path: 'authentication',
                 component: _knora_ui_examples_authentication_demo_authentication_demo_component__WEBPACK_IMPORTED_MODULE_6__["AuthenticationDemoComponent"],
-                canActivate: [_knora_authentication__WEBPACK_IMPORTED_MODULE_0__["AuthGuard"]],
+                // canActivate: [AuthGuard],
                 children: [
                     {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_11__["DemoIntroComponent"],
+                        data: ɵ2
+                    },
+                    {
                         path: 'login-form',
-                        component: _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"]
-                    }
+                        component: _knora_ui_examples_authentication_demo_login_login_component__WEBPACK_IMPORTED_MODULE_15__["LoginComponent"]
+                    },
+                    {
+                        path: 'authentication',
+                        component: _knora_ui_examples_authentication_demo_auth_auth_component__WEBPACK_IMPORTED_MODULE_14__["AuthComponent"]
+                    },
                 ]
             },
             {
                 path: 'search',
-                component: _knora_ui_examples_search_demo_search_demo_component__WEBPACK_IMPORTED_MODULE_27__["SearchDemoComponent"],
-                data: ɵ0,
+                component: _knora_ui_examples_search_demo_search_demo_component__WEBPACK_IMPORTED_MODULE_28__["SearchDemoComponent"],
+                data: ɵ3,
                 children: [
+                    {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_11__["DemoIntroComponent"],
+                        data: ɵ4
+                    },
                     {
                         path: 'search',
                         component: _knora_ui_examples_search_demo_search_panel_search_panel_component__WEBPACK_IMPORTED_MODULE_7__["SearchPanelComponent"],
                         children: [
                             {
                                 path: ':mode/:q',
-                                component: _knora_ui_examples_search_demo_search_result_search_result_component__WEBPACK_IMPORTED_MODULE_28__["SearchResultComponent"]
+                                component: _knora_ui_examples_search_demo_search_result_search_result_component__WEBPACK_IMPORTED_MODULE_29__["SearchResultComponent"]
                             }
                         ]
                     }
@@ -16007,73 +16111,97 @@ var appRoutes = [
             },
             {
                 path: 'viewer',
-                component: _knora_ui_examples_viewer_demo_viewer_demo_component__WEBPACK_IMPORTED_MODULE_31__["ViewerDemoComponent"],
-                data: ɵ1,
+                component: _knora_ui_examples_viewer_demo_viewer_demo_component__WEBPACK_IMPORTED_MODULE_32__["ViewerDemoComponent"],
+                data: ɵ5,
                 children: [
                     {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_11__["DemoIntroComponent"],
+                        data: ɵ6
+                    },
+                    {
                         path: 'resources',
-                        component: _knora_ui_examples_viewer_demo_resources_resources_component__WEBPACK_IMPORTED_MODULE_30__["ResourcesComponent"],
-                        data: ɵ2
+                        component: _knora_ui_examples_viewer_demo_resources_resources_component__WEBPACK_IMPORTED_MODULE_31__["ResourcesComponent"],
+                        data: ɵ7
+                    },
+                    {
+                        path: 'resource/:id',
+                        component: _knora_viewer__WEBPACK_IMPORTED_MODULE_0__["ResourceViewComponent"]
                     },
                     {
                         path: 'properties',
-                        component: _knora_ui_examples_viewer_demo_properties_properties_component__WEBPACK_IMPORTED_MODULE_29__["PropertiesComponent"],
-                        data: ɵ3
+                        component: _knora_ui_examples_viewer_demo_properties_properties_component__WEBPACK_IMPORTED_MODULE_30__["PropertiesComponent"],
+                        data: ɵ8
                     },
                     {
                         path: 'views',
-                        component: _knora_ui_examples_viewer_demo_views_views_component__WEBPACK_IMPORTED_MODULE_32__["ViewsComponent"],
-                        data: ɵ4
+                        component: _knora_ui_examples_viewer_demo_views_views_component__WEBPACK_IMPORTED_MODULE_33__["ViewsComponent"],
+                        data: ɵ9
                     }
                 ]
             },
             {
                 path: 'core',
-                component: _knora_ui_examples_core_demo_core_demo_component__WEBPACK_IMPORTED_MODULE_15__["CoreDemoComponent"],
+                component: _knora_ui_examples_core_demo_core_demo_component__WEBPACK_IMPORTED_MODULE_16__["CoreDemoComponent"],
                 children: [
                     {
+                        path: '',
+                        redirectTo: 'readme',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'readme',
+                        component: _landing_page_demo_intro_demo_intro_component__WEBPACK_IMPORTED_MODULE_11__["DemoIntroComponent"],
+                        data: ɵ10
+                    },
+                    {
                         path: 'projects',
-                        component: _knora_ui_examples_core_demo_projects_projects_component__WEBPACK_IMPORTED_MODULE_18__["ProjectsComponent"]
+                        component: _knora_ui_examples_core_demo_projects_projects_component__WEBPACK_IMPORTED_MODULE_19__["ProjectsComponent"]
                     },
                     {
                         path: 'users',
-                        component: _knora_ui_examples_core_demo_users_users_component__WEBPACK_IMPORTED_MODULE_20__["UsersComponent"]
+                        component: _knora_ui_examples_core_demo_users_users_component__WEBPACK_IMPORTED_MODULE_21__["UsersComponent"]
                     },
                     {
                         path: 'groups',
-                        component: _knora_ui_examples_core_demo_groups_groups_component__WEBPACK_IMPORTED_MODULE_16__["GroupsComponent"]
+                        component: _knora_ui_examples_core_demo_groups_groups_component__WEBPACK_IMPORTED_MODULE_17__["GroupsComponent"]
                     },
                     {
                         path: 'lists',
-                        component: _knora_ui_examples_core_demo_lists_lists_component__WEBPACK_IMPORTED_MODULE_17__["ListsComponent"]
+                        component: _knora_ui_examples_core_demo_lists_lists_component__WEBPACK_IMPORTED_MODULE_18__["ListsComponent"]
                     },
                     {
                         path: 'resource',
-                        component: _knora_ui_examples_core_demo_resource_resource_component__WEBPACK_IMPORTED_MODULE_19__["ResourceComponent"]
+                        component: _knora_ui_examples_core_demo_resource_resource_component__WEBPACK_IMPORTED_MODULE_20__["ResourceComponent"]
                     },
                     {
-                        path: 'search-service',
-                        component: _knora_ui_examples_core_demo_search_search_component__WEBPACK_IMPORTED_MODULE_21__["SearchComponent"]
+                        path: 'search',
+                        component: _knora_ui_examples_core_demo_search_search_component__WEBPACK_IMPORTED_MODULE_22__["SearchComponent"]
                     },
                     {
                         path: 'ontology-cache',
-                        component: _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component__WEBPACK_IMPORTED_MODULE_22__["OntologyCacheComponent"]
+                        component: _knora_ui_examples_core_demo_ontology_cache_ontology_cache_component__WEBPACK_IMPORTED_MODULE_23__["OntologyCacheComponent"]
                     },
                     {
                         path: 'ontology',
-                        component: _knora_ui_examples_core_demo_ontology_ontology_component__WEBPACK_IMPORTED_MODULE_23__["OntologyComponent"]
+                        component: _knora_ui_examples_core_demo_ontology_ontology_component__WEBPACK_IMPORTED_MODULE_24__["OntologyComponent"]
                     },
                     {
                         path: 'incoming',
-                        component: _knora_ui_examples_core_demo_incoming_incoming_component__WEBPACK_IMPORTED_MODULE_24__["IncomingComponent"]
+                        component: _knora_ui_examples_core_demo_incoming_incoming_component__WEBPACK_IMPORTED_MODULE_25__["IncomingComponent"]
                     },
                     {
-                        path: 'gravsearch',
-                        component: _knora_ui_examples_core_demo_gravsearch_gravsearch_component__WEBPACK_IMPORTED_MODULE_25__["GravsearchComponent"]
+                        path: 'grav-search',
+                        component: _knora_ui_examples_core_demo_gravsearch_gravsearch_component__WEBPACK_IMPORTED_MODULE_26__["GravsearchComponent"]
                     },
                     {
-                        path: 'convertjsonld',
-                        component: _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component__WEBPACK_IMPORTED_MODULE_26__["ConvertJsonLdComponent"]
+                        path: 'convert-jsonld',
+                        component: _knora_ui_examples_core_demo_convert_json_ld_convert_json_ld_component__WEBPACK_IMPORTED_MODULE_27__["ConvertJsonLdComponent"]
                     }
                 ]
             }
@@ -16085,7 +16213,7 @@ var appRoutes = [
     },
     {
         path: 'test',
-        component: _material_tree_tree_component__WEBPACK_IMPORTED_MODULE_33__["TreeComponent"]
+        component: _material_tree_tree_component__WEBPACK_IMPORTED_MODULE_34__["TreeComponent"]
     }
     /*
         {
@@ -16305,18 +16433,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
-/* harmony import */ var _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/divider/typings/index.ngfactory */ "./node_modules/@angular/material/divider/typings/index.ngfactory.js");
-/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm5/divider.es5.js");
-/* harmony import */ var _admin_image_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./admin-image.component */ "./src/app/knora-ui-examples/action-demo/admin-image/admin-image.component.ts");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
+/* harmony import */ var _admin_image_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./admin-image.component */ "./src/app/knora-ui-examples/action-demo/admin-image/admin-image.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _admin_image.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_knora_action,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_admin_image.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _admin_image.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_knora_action,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_admin_image.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _admin_image.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_knora_action,_admin_image.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _admin_image.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_knora_action,_admin_image.component PURE_IMPORTS_END */
+
+
 
 
 
@@ -16330,9 +16462,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_AdminImageComponent = [_admin_image_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_AdminImageComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_AdminImageComponent, data: {} });
 
-function View_AdminImageComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["User avatar"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default user profile image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["The image source is an email, which is not registered on gravatar.com"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_6__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Avatar example: 'salsah' user"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["The image source is an email, which is registered on gravatar.com"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](16, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](17, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_6__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["User image on error"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_6__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](23, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_8__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Project logo"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](26, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default project image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](28, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](29, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_6__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](30, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Logo example: 'dasch' project"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](32, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](33, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_6__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](34, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](35, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_8__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](36, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default error image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](38, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["In the case of an image source 404 error, it shows the following 'image not available'-image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](40, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](41, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_6__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.imgDefaultUser; var currVal_2 = "user"; _ck(_v, 11, 0, currVal_1, currVal_2); var currVal_3 = _co.imgSalsahUser; var currVal_4 = "user"; _ck(_v, 17, 0, currVal_3, currVal_4); var currVal_5 = null; var currVal_6 = "user"; _ck(_v, 21, 0, currVal_5, currVal_6); var currVal_11 = _co.imgDefaultProject; var currVal_12 = "project"; _ck(_v, 29, 0, currVal_11, currVal_12); var currVal_13 = _co.imgDaschProject; var currVal_14 = "project"; _ck(_v, 33, 0, currVal_13, currVal_14); var currVal_19 = "null"; _ck(_v, 41, 0, currVal_19); }, function (_ck, _v) { var currVal_7 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 23).vertical ? "vertical" : "horizontal"); var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 23).vertical; var currVal_9 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 23).vertical; var currVal_10 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 23).inset; _ck(_v, 22, 0, currVal_7, currVal_8, currVal_9, currVal_10); var currVal_15 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35).vertical ? "vertical" : "horizontal"); var currVal_16 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35).vertical; var currVal_17 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35).vertical; var currVal_18 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35).inset; _ck(_v, 34, 0, currVal_15, currVal_16, currVal_17, currVal_18); }); }
-function View_AdminImageComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-admin-image-demo", [], null, null, null, View_AdminImageComponent_0, RenderType_AdminImageComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _admin_image_component__WEBPACK_IMPORTED_MODULE_9__["AdminImageComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var AdminImageComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-admin-image-demo", _admin_image_component__WEBPACK_IMPORTED_MODULE_9__["AdminImageComponent"], View_AdminImageComponent_Host_0, {}, {}, []);
+function View_AdminImageComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 26, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 22, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default user profile image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["The image source is an email, which is not registered on gravatar.com"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Avatar example: 'salsah' user"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["The image source is an email, which is registered on gravatar.com"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](21, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["User image on error"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](23, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](24, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](25, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default error image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](27, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["In the case of an image source 404 error, it shows the following 'image not available'-image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](29, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](30, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 12, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](32, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](34, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, 0, 8, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](36, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default project image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](38, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](39, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](40, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Logo example: 'dasch' project"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](42, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](43, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.userAvatar; _ck(_v, 7, 0, currVal_1); var currVal_2 = _co.imgDefaultUser; var currVal_3 = "user"; _ck(_v, 14, 0, currVal_2, currVal_3); var currVal_4 = _co.imgSalsahUser; var currVal_5 = "user"; _ck(_v, 20, 0, currVal_4, currVal_5); var currVal_6 = null; var currVal_7 = "user"; _ck(_v, 24, 0, currVal_6, currVal_7); var currVal_8 = "null"; _ck(_v, 30, 0, currVal_8); var currVal_9 = _co.projectLogo; _ck(_v, 34, 0, currVal_9); var currVal_10 = _co.imgDefaultProject; var currVal_11 = "project"; _ck(_v, 39, 0, currVal_10, currVal_11); var currVal_12 = _co.imgDaschProject; var currVal_13 = "project"; _ck(_v, 43, 0, currVal_12, currVal_13); }, null); }
+function View_AdminImageComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-admin-image-demo", [], null, null, null, View_AdminImageComponent_0, RenderType_AdminImageComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _admin_image_component__WEBPACK_IMPORTED_MODULE_11__["AdminImageComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var AdminImageComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-admin-image-demo", _admin_image_component__WEBPACK_IMPORTED_MODULE_11__["AdminImageComponent"], View_AdminImageComponent_Host_0, {}, {}, []);
 
 
 
@@ -16379,6 +16511,27 @@ __webpack_require__.r(__webpack_exports__);
 var AdminImageComponent = /** @class */ /*@__PURE__*/ (function () {
     function AdminImageComponent() {
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].actionModule;
+        // demo configuration incl. code to display
+        this.userAvatar = {
+            title: 'User Avatar',
+            subtitle: '',
+            name: 'userAvatar',
+            code: {
+                html: "\n            // Default user profile image\n            <img kuiAdminImage [image]=\"imgDefaultUser\" [type]=\"'user'\" />\n\n            // Avatar example: 'salsah' user\n            <img kuiAdminImage [image]=\"imgSalsahUser\" [type]=\"'user'\" />\n\n            // User image on error\n            <img kuiAdminImage [image]=\"null\" [type]=\"'user'\" />\n\n            // Default error image\n            <img kuiAdminImage [image]=\"'null'\" />\n            ",
+                ts: "\n            imgDefaultUser: string = 'root@example.com';\n            imgSalsahUser: string = 'salsah@milchkannen.ch';\n            ",
+                scss: ''
+            }
+        };
+        this.projectLogo = {
+            title: 'Project Logo',
+            subtitle: '',
+            name: 'projectLogo',
+            code: {
+                html: "\n            // Default project image\n            <img kuiAdminImage [image]=\"imgDefaultProject\" [type]=\"'project'\" />\n\n            // Logo example: 'dasch' project\n            <img kuiAdminImage [image]=\"imgDaschProject\" [type]=\"'project'\" />\n            ",
+                ts: "\n            imgDefaultProject: string = undefined;\n            imgDaschProject: string = 'http://dasch.swiss/content/images/2017/11/DaSCH_Logo_RGB.png';\n            ",
+                scss: ''
+            }
+        };
         this.imgDefaultProject = undefined;
         // imgSalsahProject: string = 'https://dhlab-basel.github.io/Salsah/assets/images/salsah-logo.png';
         this.imgDaschProject = 'http://dasch.swiss/content/images/2017/11/DaSCH_Logo_RGB.png';
@@ -16470,7 +16623,7 @@ var RenderType_ExistingNameComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core
 function View_ExistingNameComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 2, "mat-hint", [["class", "mat-hint"]], [[2, "mat-right", null], [1, "id", 0], [1, "align", 0]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 16384, [[5, 4]], 0, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_2__["MatHint"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, [" ", " "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).align == "end"); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).id; var currVal_2 = null; _ck(_v, 0, 0, currVal_0, currVal_1, currVal_2); var currVal_3 = _co.formErrors.name; _ck(_v, 2, 0, currVal_3); }); }
 function View_ExistingNameComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit; _ck(_v, 1, 0, currVal_0); }); }
 function View_ExistingNameComponent_0(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 31, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 27, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 26, "form", [["class", "center card"], ["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "submit"], [null, "reset"]], function (_v, en, $event) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 31, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 27, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 26, "form", [["class", "center card"], ["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "submit"], [null, "reset"]], function (_v, en, $event) {
             var ad = true;
             if (("submit" === en)) {
                 var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 11).onSubmit($event) !== false);
@@ -16694,7 +16847,7 @@ var styles_KeyComponent = [_key_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MO
 var RenderType_KeyComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_KeyComponent, data: {} });
 
 function View_KeyComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" ", ": ", " "]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.key; var currVal_1 = _v.context.$implicit.value; _ck(_v, 1, 0, currVal_0, currVal_1); }); }
-function View_KeyComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["KeyPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 3, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 2, null, View_KeyComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_11__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](13, 1)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 2, 0, currVal_0); var currVal_1 = _co.keyPipe; _ck(_v, 8, 0, currVal_1); var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 12, 0, _ck(_v, 13, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), _co.array)); _ck(_v, 12, 0, currVal_2); }, null); }
+function View_KeyComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["KeyPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 3, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 2, null, View_KeyComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_11__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](13, 1)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 2, 0, currVal_0); var currVal_1 = _co.keyPipe; _ck(_v, 8, 0, currVal_1); var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 12, 0, _ck(_v, 13, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), _co.array)); _ck(_v, 12, 0, currVal_2); }, null); }
 function View_KeyComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-key", [], null, null, null, View_KeyComponent_0, RenderType_KeyComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _key_component__WEBPACK_IMPORTED_MODULE_12__["KeyComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var KeyComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-key", _key_component__WEBPACK_IMPORTED_MODULE_12__["KeyComponent"], View_KeyComponent_Host_0, {}, {}, []);
 
@@ -16845,18 +16998,18 @@ function View_ProgressIndicatorComponent_2(_l) { return _angular_core__WEBPACK_I
 function View_ProgressIndicatorComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["submitting"]))], null, null); }
 function View_ProgressIndicatorComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["after submit (done)"]))], null, null); }
 function View_ProgressIndicatorComponent_0(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_8__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_9__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["You can use the progress indicator in two ways:"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_5__["ProgressIndicatorComponent"], [], { color: [0, "color"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 3, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ProgressIndicatorComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](23, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](25, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](26, 0, null, null, 24, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](27, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](28, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](29, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](30, 0, null, 0, 20, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 19, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](32, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, 0, 17, "mat-list-item", [["class", "mat-list-item"]], [[2, "mat-list-item-avatar", null], [2, "mat-list-item-with-avatar", null]], [[null, "focus"], [null, "blur"]], function (_v, en, $event) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_8__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_9__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["You can use the progress indicator in two ways:"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_5__["ProgressIndicatorComponent"], [], { color: [0, "color"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 3, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ProgressIndicatorComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](23, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Angular Material Icons is required. You have to import the style file into your app and add the following line in your main styling file: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](26, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](27, 0, null, null, 1, "b", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["@import url('https://fonts.googleapis.com/icon?family=Material+Icons');"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](29, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](30, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 24, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](32, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](34, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, 0, 20, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](36, 0, null, null, 19, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](37, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](38, 0, null, 0, 17, "mat-list-item", [["class", "mat-list-item"]], [[2, "mat-list-item-avatar", null], [2, "mat-list-item-with-avatar", null]], [[null, "focus"], [null, "blur"]], function (_v, en, $event) {
             var ad = true;
             if (("focus" === en)) {
-                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 34)._handleFocus() !== false);
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 39)._handleFocus() !== false);
                 ad = (pd_0 && ad);
             }
             if (("blur" === en)) {
-                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 34)._handleBlur() !== false);
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 39)._handleBlur() !== false);
                 ad = (pd_1 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatListItem_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatListItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](34, 1097728, null, 3, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatListItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatNavList"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 4, { _lines: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 5, { _avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 6, { _icon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](38, 0, null, 0, 2, "kui-progress-indicator", [["class", "mat-list-avatar"], ["color", "blue"], ["mat-list-avatar", ""]], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](39, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_5__["ProgressIndicatorComponent"], [], { status: [0, "status"], color: [1, "color"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](40, 16384, [[5, 4]], 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatListAvatarCssMatStyler"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](41, 0, null, 1, 9, "p", [["class", "mat-line"], ["mat-line", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](42, 16384, [[4, 4]], 0, _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatLine"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](43, 0, null, null, 6, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProgressIndicatorComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](45, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProgressIndicatorComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](47, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProgressIndicatorComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](49, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](50, null, [" status: ", " "]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.classicLoader; _ck(_v, 9, 0, currVal_1); var currVal_2 = "rgb(212,121,66)"; _ck(_v, 12, 0, currVal_2); var currVal_3 = _co.submitLoader; _ck(_v, 18, 0, currVal_3); var currVal_4 = _co.examples; _ck(_v, 23, 0, currVal_4); var currVal_5 = _co.dynamicExample; _ck(_v, 29, 0, currVal_5); var currVal_8 = _co.status; var currVal_9 = "blue"; _ck(_v, 39, 0, currVal_8, currVal_9); var currVal_10 = (_co.status == (0 - 1)); _ck(_v, 45, 0, currVal_10); var currVal_11 = (_co.status == 0); _ck(_v, 47, 0, currVal_11); var currVal_12 = (_co.status == 1); _ck(_v, 49, 0, currVal_12); }, function (_ck, _v) { var _co = _v.component; var currVal_6 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 34)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 34)._icon); var currVal_7 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 34)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 34)._icon); _ck(_v, 33, 0, currVal_6, currVal_7); var currVal_13 = _co.status; _ck(_v, 50, 0, currVal_13); });
+        }, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatListItem_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatListItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](39, 1097728, null, 3, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatListItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatNavList"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 4, { _lines: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 5, { _avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 6, { _icon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](43, 0, null, 0, 2, "kui-progress-indicator", [["class", "mat-list-avatar"], ["color", "blue"], ["mat-list-avatar", ""]], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](44, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_5__["ProgressIndicatorComponent"], [], { status: [0, "status"], color: [1, "color"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](45, 16384, [[5, 4]], 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatListAvatarCssMatStyler"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](46, 0, null, 1, 9, "p", [["class", "mat-line"], ["mat-line", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](47, 16384, [[4, 4]], 0, _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatLine"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](48, 0, null, null, 6, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProgressIndicatorComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](50, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProgressIndicatorComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](52, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProgressIndicatorComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](54, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](55, null, [" status: ", " "]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.classicLoader; _ck(_v, 9, 0, currVal_1); var currVal_2 = "rgb(212,121,66)"; _ck(_v, 12, 0, currVal_2); var currVal_3 = _co.submitLoader; _ck(_v, 18, 0, currVal_3); var currVal_4 = _co.examples; _ck(_v, 23, 0, currVal_4); var currVal_5 = _co.dynamicExample; _ck(_v, 34, 0, currVal_5); var currVal_8 = _co.status; var currVal_9 = "blue"; _ck(_v, 44, 0, currVal_8, currVal_9); var currVal_10 = (_co.status == (0 - 1)); _ck(_v, 50, 0, currVal_10); var currVal_11 = (_co.status == 0); _ck(_v, 52, 0, currVal_11); var currVal_12 = (_co.status == 1); _ck(_v, 54, 0, currVal_12); }, function (_ck, _v) { var _co = _v.component; var currVal_6 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 39)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 39)._icon); var currVal_7 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 39)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 39)._icon); _ck(_v, 38, 0, currVal_6, currVal_7); var currVal_13 = _co.status; _ck(_v, 55, 0, currVal_13); });
 }
 function View_ProgressIndicatorComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-progress-indicator-demo", [], null, null, null, View_ProgressIndicatorComponent_0, RenderType_ProgressIndicatorComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _progress_indicator_component__WEBPACK_IMPORTED_MODULE_16__["ProgressIndicatorComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var ProgressIndicatorComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-progress-indicator-demo", _progress_indicator_component__WEBPACK_IMPORTED_MODULE_16__["ProgressIndicatorComponent"], View_ProgressIndicatorComponent_Host_0, {}, {}, []);
@@ -17012,23 +17165,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
 /* harmony import */ var _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../../dist/@knora/action/knora-action.ngfactory */ "./dist/@knora/action/knora-action.ngfactory.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/divider/typings/index.ngfactory */ "./node_modules/@angular/material/divider/typings/index.ngfactory.js");
-/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm5/divider.es5.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _sort_button_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./sort-button.component */ "./src/app/knora-ui-examples/action-demo/sort-button/sort-button.component.ts");
+/* harmony import */ var _sort_button_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./sort-button.component */ "./src/app/knora-ui-examples/action-demo/sort-button/sort-button.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _sort_button.component.scss.shim.ngstyle,_angular_core,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_angular_common,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_sort_button.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _sort_button.component.scss.shim.ngstyle,_angular_core,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_angular_common,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_sort_button.component PURE_IMPORTS_END */
-
-
-
-
+/** PURE_IMPORTS_START _sort_button.component.scss.shim.ngstyle,_angular_core,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_angular_common,_sort_button.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _sort_button.component.scss.shim.ngstyle,_angular_core,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_angular_common,_sort_button.component PURE_IMPORTS_END */
 
 
 
@@ -17048,7 +17193,7 @@ var RenderType_SortButtonComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__
 
 function View_SortButtonComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 7, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "span", [], [[2, "active", null]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", " "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "span", [], [[2, "active", null]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, ["", " "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" by "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "span", [], [[2, "active", null]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](7, null, ["", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = (_co.sortKey === "prename"); _ck(_v, 1, 0, currVal_0); var currVal_1 = _v.context.$implicit.prename; _ck(_v, 2, 0, currVal_1); var currVal_2 = (_co.sortKey === "lastname"); _ck(_v, 3, 0, currVal_2); var currVal_3 = _v.context.$implicit.lastname; _ck(_v, 4, 0, currVal_3); var currVal_4 = (_co.sortKey === "creator"); _ck(_v, 6, 0, currVal_4); var currVal_5 = _v.context.$implicit.creator; _ck(_v, 7, 0, currVal_5); }); }
 function View_SortButtonComponent_0(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["SortByPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 12, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 8, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "kui-sort-button", [], null, [[null, "sortKeyChange"]], function (_v, en, $event) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["SortByPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 12, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 8, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "kui-sort-button", [], null, [[null, "sortKeyChange"]], function (_v, en, $event) {
             var ad = true;
             var _co = _v.component;
             if (("sortKeyChange" === en)) {
@@ -17064,10 +17209,10 @@ function View_SortButtonComponent_0(_l) {
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_SortButtonComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_SortButtonComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["SortButtonComponent"], [], { sortProps: [0, "sortProps"], position: [1, "position"], sortKey: [2, "sortKey"] }, { sortKeyChange: "sortKeyChange" }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 3, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 2, null, View_SortButtonComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_12__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](17, 2), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](19, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_14__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Documentation"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Sort button\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](26, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](28, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/@knora/action#sort-button"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui action module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [". Then you can use the following methods from `SortButton`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_15__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_15__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](32, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_16__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_16__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 2, 0, currVal_0); var currVal_1 = _co.sortButtonCode; _ck(_v, 8, 0, currVal_1); var currVal_2 = _co.sortProps; var currVal_3 = _co.sortKey; _ck(_v, 11, 0, currVal_2, currVal_3); var currVal_4 = _co.sortProps; var currVal_5 = "right"; var currVal_6 = _co.sortKey; _ck(_v, 13, 0, currVal_4, currVal_5, currVal_6); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 16, 0, _ck(_v, 17, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), _co.list, _co.sortKey)); _ck(_v, 16, 0, currVal_7); var currVal_12 = "app/knora-ui-examples/action-demo/sort-button/README.md"; _ck(_v, 32, 0, currVal_12); }, function (_ck, _v) { var currVal_8 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19).vertical ? "vertical" : "horizontal"); var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19).vertical; var currVal_10 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19).vertical; var currVal_11 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19).inset; _ck(_v, 18, 0, currVal_8, currVal_9, currVal_10, currVal_11); });
+        }, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_SortButtonComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_SortButtonComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["SortButtonComponent"], [], { sortProps: [0, "sortProps"], position: [1, "position"], sortKey: [2, "sortKey"] }, { sortKeyChange: "sortKeyChange" }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 3, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 2, null, View_SortButtonComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_12__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](17, 2), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Optional"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" It's possible to set the position of the sort button to the right or left side with the property "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, null, 1, "b", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["[position]"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [".\n"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 2, 0, currVal_0); var currVal_1 = _co.sortButtonCode; _ck(_v, 8, 0, currVal_1); var currVal_2 = _co.sortProps; var currVal_3 = _co.sortKey; _ck(_v, 11, 0, currVal_2, currVal_3); var currVal_4 = _co.sortProps; var currVal_5 = "right"; var currVal_6 = _co.sortKey; _ck(_v, 13, 0, currVal_4, currVal_5, currVal_6); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 16, 0, _ck(_v, 17, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), _co.list, _co.sortKey)); _ck(_v, 16, 0, currVal_7); }, null);
 }
-function View_SortButtonComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-sort-button", [], null, null, null, View_SortButtonComponent_0, RenderType_SortButtonComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _sort_button_component__WEBPACK_IMPORTED_MODULE_17__["SortButtonComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var SortButtonComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-sort-button", _sort_button_component__WEBPACK_IMPORTED_MODULE_17__["SortButtonComponent"], View_SortButtonComponent_Host_0, {}, {}, []);
+function View_SortButtonComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-sort-button", [], null, null, null, View_SortButtonComponent_0, RenderType_SortButtonComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _sort_button_component__WEBPACK_IMPORTED_MODULE_13__["SortButtonComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var SortButtonComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-sort-button", _sort_button_component__WEBPACK_IMPORTED_MODULE_13__["SortButtonComponent"], View_SortButtonComponent_Host_0, {}, {}, []);
 
 
 
@@ -17155,7 +17300,7 @@ var SortButtonComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: '',
             name: 'sortbutton',
             code: {
-                html: "\n    <kui-sort-button [sortProps]=\"sortProps\" [(sortKey)]=\"sortKey\"></kui-sort-button>\n\n    <ul>\n        <li *ngFor=\"let item of list | sortBy: sortKey\">\n            <span [class.active]=\"sortKey === 'prename'\">{{item.prename}} </span>\n            <span [class.active]=\"sortKey === 'lastname'\">{{item.lastname}} </span>\n            by\n            <span [class.active]=\"sortKey === 'creator'\">{{item.creator}}</span>\n        </li>\n    </ul>",
+                html: "\n    <kui-sort-button [sortProps]=\"sortProps\" [(sortKey)]=\"sortKey\" [position]=\"'right'\"></kui-sort-button>\n\n    <ul>\n        <li *ngFor=\"let item of list | sortBy: sortKey\">\n            <span [class.active]=\"sortKey === 'prename'\">{{item.prename}} </span>\n            <span [class.active]=\"sortKey === 'lastname'\">{{item.lastname}} </span>\n            by\n            <span [class.active]=\"sortKey === 'creator'\">{{item.creator}}</span>\n        </li>\n    </ul>",
                 ts: "\n            sortProps: any = [\n                {\n                    key: 'prename',\n                    label: 'Prename'\n                },\n                {\n                    key: 'lastname',\n                    label: 'Last name'\n                },\n                {\n                    key: 'creator',\n                    label: 'Creator'\n                }\n            ];\n\n            sortKey: string = 'creator';\n\n            list = [\n                {\n                    prename: 'Gaston',\n                    lastname: 'Lagaffe',\n                    creator: 'Andr\u00E9 Franquin'\n                },\n                {\n                    prename: 'Mickey',\n                    lastname: 'Mouse',\n                    creator: 'Walt Disney'\n                },\n                {\n                    prename: 'Donald',\n                    lastname: 'Duck',\n                    creator: 'Walt Disney'\n                },\n                {\n                    prename: 'Charlie',\n                    lastname: 'Brown',\n                    creator: 'Charles M. Schulz'\n                }\n            ];",
                 scss: ''
             }
@@ -17163,6 +17308,116 @@ var SortButtonComponent = /** @class */ /*@__PURE__*/ (function () {
     }
     SortButtonComponent.prototype.ngOnInit = function () { };
     return SortButtonComponent;
+}());
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/knora-ui-examples/authentication-demo/auth/auth.component.ngfactory.js":
+/*!****************************************************************************************!*\
+  !*** ./src/app/knora-ui-examples/authentication-demo/auth/auth.component.ngfactory.js ***!
+  \****************************************************************************************/
+/*! exports provided: RenderType_AuthComponent, View_AuthComponent_0, View_AuthComponent_Host_0, AuthComponentNgFactory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderType_AuthComponent", function() { return RenderType_AuthComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_AuthComponent_0", function() { return View_AuthComponent_0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_AuthComponent_Host_0", function() { return View_AuthComponent_Host_0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthComponentNgFactory", function() { return AuthComponentNgFactory; });
+/* harmony import */ var _auth_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/authentication-demo/auth/auth.component.scss.shim.ngstyle.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _auth_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./auth.component */ "./src/app/knora-ui-examples/authentication-demo/auth/auth.component.ts");
+/* harmony import */ var _knora_authentication__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @knora/authentication */ "./dist/@knora/authentication/fesm5/knora-authentication.js");
+/**
+ * @fileoverview This file was generated by the Angular template compiler. Do not edit.
+ *
+ * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
+ * tslint:disable
+ */
+/** PURE_IMPORTS_START _auth.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_auth.component,_knora_authentication PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _auth.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_auth.component,_knora_authentication PURE_IMPORTS_END */
+
+
+
+
+
+
+
+
+var styles_AuthComponent = [_auth_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
+var RenderType_AuthComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_AuthComponent, data: {} });
+
+function View_AuthComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_AuthComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-auth", [], null, null, null, View_AuthComponent_0, RenderType_AuthComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _auth_component__WEBPACK_IMPORTED_MODULE_6__["AuthComponent"], [_knora_authentication__WEBPACK_IMPORTED_MODULE_7__["AuthenticationService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var AuthComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-auth", _auth_component__WEBPACK_IMPORTED_MODULE_6__["AuthComponent"], View_AuthComponent_Host_0, {}, {}, []);
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/knora-ui-examples/authentication-demo/auth/auth.component.scss.shim.ngstyle.js":
+/*!************************************************************************************************!*\
+  !*** ./src/app/knora-ui-examples/authentication-demo/auth/auth.component.scss.shim.ngstyle.js ***!
+  \************************************************************************************************/
+/*! exports provided: styles */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/**
+ * @fileoverview This file was generated by the Angular template compiler. Do not edit.
+ *
+ * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
+ * tslint:disable
+ */
+/** PURE_IMPORTS_START  PURE_IMPORTS_END */
+/** PURE_IMPORTS_START  PURE_IMPORTS_END */
+var styles = [""];
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/knora-ui-examples/authentication-demo/auth/auth.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/knora-ui-examples/authentication-demo/auth/auth.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: AuthComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthComponent", function() { return AuthComponent; });
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../app.config */ "./src/app/app.config.ts");
+
+var AuthComponent = /** @class */ /*@__PURE__*/ (function () {
+    function AuthComponent(_auth) {
+        this._auth = _auth;
+        this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].authenticationModule;
+    }
+    AuthComponent.prototype.ngOnInit = function () {
+        console.log(this.module);
+        //        console.log(this._auth.loggedIn());
+        if (JSON.parse(localStorage.getItem('session'))) {
+            this.currentUser = JSON.parse(localStorage.getItem('session')).user;
+        }
+    };
+    AuthComponent.prototype.logout = function () {
+        this._auth.logout();
+        location.reload(true);
+    };
+    return AuthComponent;
 }());
 
 
@@ -17297,7 +17552,7 @@ __webpack_require__.r(__webpack_exports__);
 var styles_LoginComponent = [_login_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_LoginComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_LoginComponent, data: {} });
 
-function View_LoginComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_LoginComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
 function View_LoginComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-login", [], null, null, null, View_LoginComponent_0, RenderType_LoginComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var LoginComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-login", _login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"], View_LoginComponent_Host_0, {}, {}, []);
 
@@ -17376,19 +17631,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./convert-json-ld.component */ "./src/app/knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ts");
+/* harmony import */ var _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./convert-json-ld.component */ "./src/app/knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _convert_json_ld.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_convert_json_ld.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _convert_json_ld.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_convert_json_ld.component PURE_IMPORTS_END */
-
-
+/** PURE_IMPORTS_START _convert_json_ld.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_convert_json_ld.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _convert_json_ld.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_convert_json_ld.component PURE_IMPORTS_END */
 
 
 
@@ -17399,9 +17650,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_ConvertJsonLdComponent = [_convert_json_ld_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_ConvertJsonLdComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_ConvertJsonLdComponent, data: {} });
 
-function View_ConvertJsonLdComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [". Then you can use the following methods from `ConvertJsonLD`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = "app/knora-ui-examples/core-demo/convert-json-ld/README.md"; _ck(_v, 12, 0, currVal_1); }, null); }
-function View_ConvertJsonLdComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-convert-json-ld", [], null, null, null, View_ConvertJsonLdComponent_0, RenderType_ConvertJsonLdComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_8__["ConvertJsonLdComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var ConvertJsonLdComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-convert-json-ld", _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_8__["ConvertJsonLdComponent"], View_ConvertJsonLdComponent_Host_0, {}, {}, []);
+function View_ConvertJsonLdComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_ConvertJsonLdComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-convert-json-ld", [], null, null, null, View_ConvertJsonLdComponent_0, RenderType_ConvertJsonLdComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_6__["ConvertJsonLdComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ConvertJsonLdComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-convert-json-ld", _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_6__["ConvertJsonLdComponent"], View_ConvertJsonLdComponent_Host_0, {}, {}, []);
 
 
 
@@ -17570,19 +17821,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _gravsearch_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./gravsearch.component */ "./src/app/knora-ui-examples/core-demo/gravsearch/gravsearch.component.ts");
+/* harmony import */ var _gravsearch_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./gravsearch.component */ "./src/app/knora-ui-examples/core-demo/gravsearch/gravsearch.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _gravsearch.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_gravsearch.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _gravsearch.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_gravsearch.component PURE_IMPORTS_END */
-
-
+/** PURE_IMPORTS_START _gravsearch.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_gravsearch.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _gravsearch.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_gravsearch.component PURE_IMPORTS_END */
 
 
 
@@ -17593,9 +17840,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_GravsearchComponent = [_gravsearch_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_GravsearchComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_GravsearchComponent, data: {} });
 
-function View_GravsearchComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["GravSearch service"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [". Then you can use the following methods from `GravSearchService`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = "app/knora-ui-examples/core-demo/gravsearch/README.md"; _ck(_v, 14, 0, currVal_1); }, null); }
-function View_GravsearchComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-gravsearch", [], null, null, null, View_GravsearchComponent_0, RenderType_GravsearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _gravsearch_component__WEBPACK_IMPORTED_MODULE_8__["GravsearchComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var GravsearchComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-gravsearch", _gravsearch_component__WEBPACK_IMPORTED_MODULE_8__["GravsearchComponent"], View_GravsearchComponent_Host_0, {}, {}, []);
+function View_GravsearchComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_GravsearchComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-gravsearch", [], null, null, null, View_GravsearchComponent_0, RenderType_GravsearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _gravsearch_component__WEBPACK_IMPORTED_MODULE_6__["GravsearchComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var GravsearchComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-gravsearch", _gravsearch_component__WEBPACK_IMPORTED_MODULE_6__["GravsearchComponent"], View_GravsearchComponent_Host_0, {}, {}, []);
 
 
 
@@ -17668,22 +17915,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupsComponentNgFactory", function() { return GroupsComponentNgFactory; });
 /* harmony import */ var _groups_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./groups.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
-/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _groups_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./groups.component */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/divider/typings/index.ngfactory */ "./node_modules/@angular/material/divider/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm5/divider.es5.js");
+/* harmony import */ var _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../dist/@knora/action/knora-action.ngfactory */ "./dist/@knora/action/knora-action.ngfactory.js");
+/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _groups_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./groups.component */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _groups.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_groups.component,_knora_core PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _groups.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_groups.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _groups.component.scss.shim.ngstyle,_angular_core,_angular_common,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_groups.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _groups.component.scss.shim.ngstyle,_angular_core,_angular_common,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_groups.component,_knora_core PURE_IMPORTS_END */
+
+
+
+
+
 
 
 
@@ -17697,9 +17954,23 @@ __webpack_require__.r(__webpack_exports__);
 var styles_GroupsComponent = [_groups_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_GroupsComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_GroupsComponent, data: {} });
 
-function View_GroupsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Documentation"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Groups service"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Then you can use the following methods from `GroupsService`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = "app/knora-ui-examples/core-demo/groups/README.md"; _ck(_v, 16, 0, currVal_1); }, null); }
-function View_GroupsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-groups", [], null, null, null, View_GroupsComponent_0, RenderType_GroupsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _groups_component__WEBPACK_IMPORTED_MODULE_8__["GroupsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_9__["GroupsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var GroupsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-groups", _groups_component__WEBPACK_IMPORTED_MODULE_8__["GroupsComponent"], View_GroupsComponent_Host_0, {}, {}, []);
+function View_GroupsComponent_2(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "li", [["class", "link"]], null, [[null, "click"]], function (_v, en, $event) {
+            var ad = true;
+            var _co = _v.component;
+            if (("click" === en)) {
+                var pd_0 = (_co.getGroupByIri(_v.context.$implicit.id) !== false);
+                ad = (pd_0 && ad);
+            }
+            return ad;
+        }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, [" (", ") "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](5, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.name; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.project.longname; _ck(_v, 3, 0, currVal_1); var currVal_2 = _v.context.$implicit.description; _ck(_v, 5, 0, currVal_2); });
+}
+function View_GroupsComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["List of all (project specific) groups"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_GroupsComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.allGroups; _ck(_v, 5, 0, currVal_0); }, null); }
+function View_GroupsComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 25, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_4__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, ["Get group by iri (", ")"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Name: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](8, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Project: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](12, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](13, null, [" (", ")"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Selfjoin: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](16, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](17, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Status: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](21, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Description: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](25, null, ["", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical ? "vertical" : "horizontal"); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical; var currVal_2 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).inset; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3); var currVal_4 = _co.group.id; _ck(_v, 4, 0, currVal_4); var currVal_5 = _co.group.name; _ck(_v, 8, 0, currVal_5); var currVal_6 = _co.group.project.longname; _ck(_v, 12, 0, currVal_6); var currVal_7 = _co.group.project.shortname; _ck(_v, 13, 0, currVal_7); var currVal_8 = _co.group.selfjoin; _ck(_v, 17, 0, currVal_8); var currVal_9 = _co.group.status; _ck(_v, 21, 0, currVal_9); var currVal_10 = _co.group.description; _ck(_v, 25, 0, currVal_10); }); }
+function View_GroupsComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_5__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_5__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_6__["ProgressIndicatorComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_GroupsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_8__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_9__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Demo"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["GroupsService"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 5, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_GroupsComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_GroupsComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_GroupsComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](15, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = (_co.allGroups && !_co.groupsService.loading); _ck(_v, 11, 0, currVal_1); var currVal_2 = (_co.group && !_co.groupsService.loading); _ck(_v, 13, 0, currVal_2); var currVal_3 = _co.groupsService.loading; _ck(_v, 15, 0, currVal_3); }, null); }
+function View_GroupsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-groups", [], null, null, null, View_GroupsComponent_0, RenderType_GroupsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _groups_component__WEBPACK_IMPORTED_MODULE_13__["GroupsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_14__["GroupsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var GroupsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-groups", _groups_component__WEBPACK_IMPORTED_MODULE_13__["GroupsComponent"], View_GroupsComponent_Host_0, {}, {}, []);
 
 
 
@@ -17796,19 +18067,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _incoming_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./incoming.component */ "./src/app/knora-ui-examples/core-demo/incoming/incoming.component.ts");
+/* harmony import */ var _incoming_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./incoming.component */ "./src/app/knora-ui-examples/core-demo/incoming/incoming.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _incoming.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_incoming.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _incoming.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_incoming.component PURE_IMPORTS_END */
-
-
+/** PURE_IMPORTS_START _incoming.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_incoming.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _incoming.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_incoming.component PURE_IMPORTS_END */
 
 
 
@@ -17819,9 +18086,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_IncomingComponent = [_incoming_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_IncomingComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_IncomingComponent, data: {} });
 
-function View_IncomingComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Incoming service"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [". Then you can use the following methods from `IncomingService`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = "app/knora-ui-examples/core-demo/incoming/README.md"; _ck(_v, 14, 0, currVal_1); }, null); }
-function View_IncomingComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-incoming", [], null, null, null, View_IncomingComponent_0, RenderType_IncomingComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _incoming_component__WEBPACK_IMPORTED_MODULE_8__["IncomingComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var IncomingComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-incoming", _incoming_component__WEBPACK_IMPORTED_MODULE_8__["IncomingComponent"], View_IncomingComponent_Host_0, {}, {}, []);
+function View_IncomingComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_IncomingComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-incoming", [], null, null, null, View_IncomingComponent_0, RenderType_IncomingComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _incoming_component__WEBPACK_IMPORTED_MODULE_6__["IncomingComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var IncomingComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-incoming", _incoming_component__WEBPACK_IMPORTED_MODULE_6__["IncomingComponent"], View_IncomingComponent_Host_0, {}, {}, []);
 
 
 
@@ -17894,22 +18161,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListsComponentNgFactory", function() { return ListsComponentNgFactory; });
 /* harmony import */ var _lists_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lists.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
-/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _lists_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./lists.component */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/divider/typings/index.ngfactory */ "./node_modules/@angular/material/divider/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm5/divider.es5.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _lists_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./lists.component */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _lists.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_lists.component,_knora_core PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _lists.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_lists.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _lists.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_angular_common,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_lists.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _lists.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_angular_common,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_lists.component,_knora_core PURE_IMPORTS_END */
+
+
+
 
 
 
@@ -17923,9 +18196,13 @@ __webpack_require__.r(__webpack_exports__);
 var styles_ListsComponent = [_lists_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_ListsComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_ListsComponent, data: {} });
 
-function View_ListsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Documentation"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Lists service"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Then you can use the following methods from `ListsService`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = "app/knora-ui-examples/core-demo/lists/README.md"; _ck(_v, 16, 0, currVal_1); }, null); }
-function View_ListsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-lists", [], null, null, null, View_ListsComponent_0, RenderType_ListsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _lists_component__WEBPACK_IMPORTED_MODULE_8__["ListsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_9__["ListsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var ListsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-lists", _lists_component__WEBPACK_IMPORTED_MODULE_8__["ListsComponent"], View_ListsComponent_Host_0, {}, {}, []);
+function View_ListsComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.comments[0].value; _ck(_v, 1, 0, currVal_0); }); }
+function View_ListsComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_3__["MatDivider"], [], null, null)], null, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 3).vertical ? "vertical" : "horizontal"); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 3).vertical; var currVal_2 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 3).vertical; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 3).inset; _ck(_v, 2, 0, currVal_0, currVal_1, currVal_2, currVal_3); }); }
+function View_ListsComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 7, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ListsComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ListsComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_1 = (_v.context.$implicit.comments.length > 0); _ck(_v, 5, 0, currVal_1); var currVal_2 = !_v.context.last; _ck(_v, 7, 0, currVal_2); }, function (_ck, _v) { var currVal_0 = _v.context.$implicit.labels[0].value; _ck(_v, 3, 0, currVal_0); }); }
+function View_ListsComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["List of all lists from project (", ")"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ListsComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.projectLists; _ck(_v, 4, 0, currVal_1); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.projectIri; _ck(_v, 2, 0, currVal_0); }); }
+function View_ListsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_5__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_5__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_6__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_7__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_8__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Demo"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["ListsService"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 3, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_10__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ListsComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = (_co.projectLists && !_co.listsService.loading); _ck(_v, 11, 0, currVal_1); }, null); }
+function View_ListsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-lists", [], null, null, null, View_ListsComponent_0, RenderType_ListsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _lists_component__WEBPACK_IMPORTED_MODULE_11__["ListsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_12__["ListsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ListsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-lists", _lists_component__WEBPACK_IMPORTED_MODULE_11__["ListsComponent"], View_ListsComponent_Host_0, {}, {}, []);
 
 
 
@@ -18019,19 +18296,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _ontology_cache_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ontology-cache.component */ "./src/app/knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ts");
+/* harmony import */ var _ontology_cache_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ontology-cache.component */ "./src/app/knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _ontology_cache.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_ontology_cache.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _ontology_cache.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_ontology_cache.component PURE_IMPORTS_END */
-
-
+/** PURE_IMPORTS_START _ontology_cache.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_ontology_cache.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _ontology_cache.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_ontology_cache.component PURE_IMPORTS_END */
 
 
 
@@ -18042,9 +18315,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_OntologyCacheComponent = [_ontology_cache_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_OntologyCacheComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_OntologyCacheComponent, data: {} });
 
-function View_OntologyCacheComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Ontology Cache service"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [". Then you can use the following methods from `OntologyCacheService`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = "app/knora-ui-examples/core-demo/ontology-cache/README.md"; _ck(_v, 14, 0, currVal_1); }, null); }
-function View_OntologyCacheComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-ontology-cache", [], null, null, null, View_OntologyCacheComponent_0, RenderType_OntologyCacheComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _ontology_cache_component__WEBPACK_IMPORTED_MODULE_8__["OntologyCacheComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var OntologyCacheComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-ontology-cache", _ontology_cache_component__WEBPACK_IMPORTED_MODULE_8__["OntologyCacheComponent"], View_OntologyCacheComponent_Host_0, {}, {}, []);
+function View_OntologyCacheComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_OntologyCacheComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-ontology-cache", [], null, null, null, View_OntologyCacheComponent_0, RenderType_OntologyCacheComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _ontology_cache_component__WEBPACK_IMPORTED_MODULE_6__["OntologyCacheComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var OntologyCacheComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-ontology-cache", _ontology_cache_component__WEBPACK_IMPORTED_MODULE_6__["OntologyCacheComponent"], View_OntologyCacheComponent_Host_0, {}, {}, []);
 
 
 
@@ -18121,19 +18394,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _ontology_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ontology.component */ "./src/app/knora-ui-examples/core-demo/ontology/ontology.component.ts");
+/* harmony import */ var _ontology_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ontology.component */ "./src/app/knora-ui-examples/core-demo/ontology/ontology.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _ontology.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_ontology.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _ontology.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_ontology.component PURE_IMPORTS_END */
-
-
+/** PURE_IMPORTS_START _ontology.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_ontology.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _ontology.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_ontology.component PURE_IMPORTS_END */
 
 
 
@@ -18144,9 +18413,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_OntologyComponent = [_ontology_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_OntologyComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_OntologyComponent, data: {} });
 
-function View_OntologyComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Ontology service"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [". Then you can use the following methods from `OntologyService`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = "app/knora-ui-examples/core-demo/ontology/README.md"; _ck(_v, 14, 0, currVal_1); }, null); }
-function View_OntologyComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-ontology", [], null, null, null, View_OntologyComponent_0, RenderType_OntologyComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _ontology_component__WEBPACK_IMPORTED_MODULE_8__["OntologyComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var OntologyComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-ontology", _ontology_component__WEBPACK_IMPORTED_MODULE_8__["OntologyComponent"], View_OntologyComponent_Host_0, {}, {}, []);
+function View_OntologyComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_OntologyComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-ontology", [], null, null, null, View_OntologyComponent_0, RenderType_OntologyComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _ontology_component__WEBPACK_IMPORTED_MODULE_6__["OntologyComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var OntologyComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-ontology", _ontology_component__WEBPACK_IMPORTED_MODULE_6__["OntologyComponent"], View_OntologyComponent_Host_0, {}, {}, []);
 
 
 
@@ -18219,22 +18488,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProjectsComponentNgFactory", function() { return ProjectsComponentNgFactory; });
 /* harmony import */ var _projects_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projects.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
-/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _projects_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./projects.component */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/esm5/chips.es5.js");
+/* harmony import */ var _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/cdk/platform */ "./node_modules/@angular/cdk/esm5/platform.es5.js");
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/core */ "./node_modules/@angular/material/esm5/core.es5.js");
+/* harmony import */ var _node_modules_angular_material_chips_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/chips/typings/index.ngfactory */ "./node_modules/@angular/material/chips/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm5/form-field.es5.js");
+/* harmony import */ var _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/cdk/bidi */ "./node_modules/@angular/cdk/esm5/bidi.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _projects_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./projects.component */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _projects.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_projects.component,_knora_core PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _projects.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_projects.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _projects.component.scss.shim.ngstyle,_angular_core,_angular_material_card,_angular_common,_angular_material_chips,_angular_cdk_platform,_angular_material_core,_.._.._.._.._node_modules__angular_material_chips_typings_index.ngfactory,_angular_material_form_field,_angular_cdk_bidi,_angular_forms,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_projects.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _projects.component.scss.shim.ngstyle,_angular_core,_angular_material_card,_angular_common,_angular_material_chips,_angular_cdk_platform,_angular_material_core,_.._.._.._.._node_modules__angular_material_chips_typings_index.ngfactory,_angular_material_form_field,_angular_cdk_bidi,_angular_forms,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_projects.component,_knora_core PURE_IMPORTS_END */
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -18248,9 +18537,56 @@ __webpack_require__.r(__webpack_exports__);
 var styles_ProjectsComponent = [_projects_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_ProjectsComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_ProjectsComponent, data: {} });
 
-function View_ProjectsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Documentation"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Projects service"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Then you can use the following methods from `ProjectsService`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = "app/knora-ui-examples/core-demo/projects/README.md"; _ck(_v, 16, 0, currVal_1); }, null); }
-function View_ProjectsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-projects", [], null, null, null, View_ProjectsComponent_0, RenderType_ProjectsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _projects_component__WEBPACK_IMPORTED_MODULE_8__["ProjectsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_9__["ProjectsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var ProjectsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-projects", _projects_component__WEBPACK_IMPORTED_MODULE_8__["ProjectsComponent"], View_ProjectsComponent_Host_0, {}, {}, []);
+function View_ProjectsComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, [" (", "): ", " "]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.shortname; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.shortcode; var currVal_2 = _v.context.$implicit.longname; _ck(_v, 3, 0, currVal_1, currVal_2); }); }
+function View_ProjectsComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 6, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "mat-card-subtitle", [["class", "mat-card-subtitle"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCardSubtitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.allProjects; _ck(_v, 6, 0, currVal_0); }, null); }
+function View_ProjectsComponent_6(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, ["in ", ""]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.language; _ck(_v, 1, 0, currVal_0); }); }
+function View_ProjectsComponent_5(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 3, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Description "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_6)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null))], function (_ck, _v) { var currVal_0 = _v.context.$implicit.language; _ck(_v, 4, 0, currVal_0); }, function (_ck, _v) { var currVal_1 = _v.context.$implicit.value; _ck(_v, 5, 0, currVal_1); }); }
+function View_ProjectsComponent_7(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "mat-chip", [["class", "tag mat-chip"], ["role", "option"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_4__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_5__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 2, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 3, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 4, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](5, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).disabled ? null : (0 - 1)); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).selected; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).avatar; var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).removeIcon); var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).disabled; var currVal_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).disabled || null); var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).disabled.toString(); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).ariaSelected; _ck(_v, 0, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7); var currVal_8 = _v.context.$implicit; _ck(_v, 5, 0, currVal_8); });
+}
+function View_ProjectsComponent_4(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 18, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Shortcode / Shortname: Longname"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](5, null, ["", " / ", ": "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](6, null, [" ", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Keywords"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 5, "mat-chip-list", [["class", "mat-chip-list"]], [[1, "tabindex", 0], [1, "aria-describedby", 0], [1, "aria-required", 0], [1, "aria-disabled", 0], [1, "aria-invalid", 0], [1, "aria-multiselectable", 0], [1, "role", 0], [2, "mat-chip-list-disabled", null], [2, "mat-chip-list-invalid", null], [2, "mat-chip-list-required", null], [1, "aria-orientation", 0], [8, "id", 0]], [[null, "focus"], [null, "blur"], [null, "keydown"]], function (_v, en, $event) {
+            var ad = true;
+            if (("focus" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).focus() !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15)._blur() !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15)._keydown($event) !== false);
+                ad = (pd_2 && ad);
+            }
+            return ad;
+        }, _node_modules_angular_material_chips_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatChipList_0"], _node_modules_angular_material_chips_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatChipList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵprd"](6144, null, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__["MatFormFieldControl"], null, [_angular_material_chips__WEBPACK_IMPORTED_MODULE_4__["MatChipList"]]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](15, 1556480, null, 1, _angular_material_chips__WEBPACK_IMPORTED_MODULE_4__["MatChipList"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], [2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_9__["Directionality"]], [2, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["NgForm"]], [2, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormGroupDirective"]], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["ErrorStateMatcher"], [8, null]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 1, { chips: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ProjectsComponent_7)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_3 = _co.project.description; _ck(_v, 9, 0, currVal_3); _ck(_v, 15, 0); var currVal_16 = _co.project.keywords; _ck(_v, 18, 0, currVal_16); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.project.shortcode; var currVal_1 = _co.project.shortname; _ck(_v, 5, 0, currVal_0, currVal_1); var currVal_2 = _co.project.longname; _ck(_v, 6, 0, currVal_2); var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).disabled ? null : _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15)._tabIndex); var currVal_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15)._ariaDescribedby || null); var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).required.toString(); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).disabled.toString(); var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).errorState; var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).multiple; var currVal_10 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).role; var currVal_11 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).disabled; var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).errorState; var currVal_13 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).required; var currVal_14 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).ariaOrientation; var currVal_15 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15)._uid; _ck(_v, 13, 1, [currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14, currVal_15]); });
+}
+function View_ProjectsComponent_9(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", ", "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, [" ", " (", ") "]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.familyName; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.givenName; var currVal_2 = _v.context.$implicit.email; _ck(_v, 3, 0, currVal_1, currVal_2); }); }
+function View_ProjectsComponent_8(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.projectMembers; _ck(_v, 3, 0, currVal_0); }, null); }
+function View_ProjectsComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 11, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "mat-card-subtitle", [["class", "mat-card-subtitle"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCardSubtitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["All members of the project"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = (_co.project && !_co.projectsService.loading); _ck(_v, 5, 0, currVal_0); var currVal_1 = (_co.projectMembers && !_co.projectsService.loading); _ck(_v, 11, 0, currVal_1); }, null); }
+function View_ProjectsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_12__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_13__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_14__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Demo"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["ProjectsService"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_15__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_15__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_17__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_15__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_15__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_17__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGetAllProjects; _ck(_v, 11, 0, currVal_1); var currVal_2 = (_co.allProjects && !_co.projectsService.loading); _ck(_v, 14, 0, currVal_2); var currVal_3 = _co.exampleGetProjectByShortname; _ck(_v, 18, 0, currVal_3); var currVal_4 = (_co.project && !_co.projectsService.loading); _ck(_v, 21, 0, currVal_4); }, null); }
+function View_ProjectsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-projects", [], null, null, null, View_ProjectsComponent_0, RenderType_ProjectsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _projects_component__WEBPACK_IMPORTED_MODULE_18__["ProjectsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_19__["ProjectsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ProjectsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-projects", _projects_component__WEBPACK_IMPORTED_MODULE_18__["ProjectsComponent"], View_ProjectsComponent_Host_0, {}, {}, []);
 
 
 
@@ -18395,22 +18731,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceComponentNgFactory", function() { return ResourceComponentNgFactory; });
 /* harmony import */ var _resource_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./resource.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
-/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _resource_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./resource.component */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/button/typings/index.ngfactory */ "./node_modules/@angular/material/button/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
+/* harmony import */ var _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/cdk/platform */ "./node_modules/@angular/cdk/esm5/platform.es5.js");
+/* harmony import */ var _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/cdk/a11y */ "./node_modules/@angular/cdk/esm5/a11y.es5.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../dist/@knora/viewer/knora-viewer.ngfactory */ "./dist/@knora/viewer/knora-viewer.ngfactory.js");
+/* harmony import */ var _knora_viewer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @knora/viewer */ "./dist/@knora/viewer/fesm5/knora-viewer.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/core */ "./node_modules/@angular/material/esm5/core.es5.js");
+/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/tooltip */ "./node_modules/@angular/material/esm5/tooltip.es5.js");
+/* harmony import */ var _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/cdk/overlay */ "./node_modules/@angular/cdk/esm5/overlay.es5.js");
+/* harmony import */ var _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/cdk/scrolling */ "./node_modules/@angular/cdk/esm5/scrolling.es5.js");
+/* harmony import */ var _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/cdk/bidi */ "./node_modules/@angular/cdk/esm5/bidi.es5.js");
+/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/list/typings/index.ngfactory */ "./node_modules/@angular/material/list/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
+/* harmony import */ var _resource_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./resource.component */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _resource.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_resource.component,_knora_core PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _resource.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_resource.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _resource.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_button_typings_index.ngfactory,_angular_material_button,_angular_cdk_platform,_angular_cdk_a11y,_angular_platform_browser_animations,_.._.._.._.._dist__knora_viewer_knora_viewer.ngfactory,_knora_viewer,_angular_common,_angular_material_core,_angular_material_tooltip,_angular_cdk_overlay,_angular_cdk_scrolling,_angular_cdk_bidi,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_list_typings_index.ngfactory,_angular_material_list,_resource.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _resource.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_button_typings_index.ngfactory,_angular_material_button,_angular_cdk_platform,_angular_cdk_a11y,_angular_platform_browser_animations,_.._.._.._.._dist__knora_viewer_knora_viewer.ngfactory,_knora_viewer,_angular_common,_angular_material_core,_angular_material_tooltip,_angular_cdk_overlay,_angular_cdk_scrolling,_angular_cdk_bidi,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_list_typings_index.ngfactory,_angular_material_list,_resource.component,_knora_core PURE_IMPORTS_END */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -18424,9 +18788,47 @@ __webpack_require__.r(__webpack_exports__);
 var styles_ResourceComponent = [_resource_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_ResourceComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_ResourceComponent, data: {} });
 
-function View_ResourceComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](402653184, 1, { osdViewer: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Resource service"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Then you can use the following methods from `ResourceService`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](15, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 2, 0, currVal_0); var currVal_1 = "app/knora-ui-examples/core-demo/resource/README.md"; _ck(_v, 15, 0, currVal_1); }, null); }
-function View_ResourceComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-resource", [], null, null, null, View_ResourceComponent_0, RenderType_ResourceComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 638976, null, 0, _resource_component__WEBPACK_IMPORTED_MODULE_8__["ResourceComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_9__["ResourceService"], _knora_core__WEBPACK_IMPORTED_MODULE_9__["OntologyCacheService"], _knora_core__WEBPACK_IMPORTED_MODULE_9__["IncomingService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var ResourceComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-resource", _resource_component__WEBPACK_IMPORTED_MODULE_8__["ResourceComponent"], View_ResourceComponent_Host_0, {}, {}, []);
+function View_ResourceComponent_1(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 2, "button", [["mat-raised-button", ""]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
+            var ad = true;
+            var _co = _v.component;
+            if (("click" === en)) {
+                var pd_0 = (_co.openResource(_v.context.$implicit.iri) !== false);
+                ad = (pd_0 && ad);
+            }
+            return ad;
+        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_3__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_5__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, 0, ["", ""]))], null, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).disabled || null); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._animationMode === "NoopAnimations"); _ck(_v, 0, 0, currVal_0, currVal_1); var currVal_2 = _v.context.$implicit.name; _ck(_v, 2, 0, currVal_2); });
+}
+function View_ResourceComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-still-image", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_ɵj_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_ɵj"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 770048, [[1, 4], ["OSDViewer", 4]], 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_8__["ɵj"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { images: [0, "images"], imageRangeStart: [1, "imageRangeStart"], imageRangeEnd: [2, "imageRangeEnd"], imageChangeInterval: [3, "imageChangeInterval"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.resource == null) ? null : _co.resource.stillImageRepresentationsToDisplay); var currVal_1 = 0; var currVal_2 = 0; var currVal_3 = 1; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3); }, null); }
+function View_ResourceComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["OSD viewer"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ResourceComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = (!_co.loading && (_co.resource.stillImageRepresentationsToDisplay.length > 0)); _ck(_v, 4, 0, currVal_0); }, null); }
+function View_ResourceComponent_7(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-date-value", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_ɵp_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_ɵp"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_8__["ɵp"], [], { calendar: [0, "calendar"], era: [1, "era"], valueObject: [2, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = true; var currVal_1 = true; var currVal_2 = _v.parent.context.$implicit.value; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2); }, null); }
+function View_ResourceComponent_8(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-integer-value", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_ɵq_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_ɵq"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_8__["ɵq"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.value; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_ResourceComponent_6(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 11, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 10, "span", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgSwitch"], [], { ngSwitch: [0, "ngSwitch"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["we get the prop class: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](6, null, ["", ""])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["JsonPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ResourceComponent_7)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ResourceComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _v.context.$implicit.value.getClassName(); _ck(_v, 2, 0, currVal_0); var currVal_2 = _co.KnoraConstants.ReadDateValue; _ck(_v, 9, 0, currVal_2); var currVal_3 = _co.KnoraConstants.ReadIntegerValue; _ck(_v, 11, 0, currVal_3); }, function (_ck, _v) { var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 6, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 7).transform(_v.context.$implicit.value)); _ck(_v, 6, 0, currVal_1); }); }
+function View_ResourceComponent_5(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 2, null, View_ResourceComponent_6)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](3, 1)], function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 2, 0, _ck(_v, 3, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent, 0), _v.parent.context.$implicit.value)); _ck(_v, 2, 0, currVal_0); }, null); }
+function View_ResourceComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 7, "div", [["class", "mat-line"], ["mat-line", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 16384, null, 0, _angular_material_core__WEBPACK_IMPORTED_MODULE_10__["MatLine"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ResourceComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"], ngIfElse: [1, "ngIfElse"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](0, [["singleTemplates", 2]], null, 0, null, View_ResourceComponent_5))], function (_ck, _v) { var _co = _v.component; var currVal_1 = (_v.context.$implicit.key === _co.KnoraConstants.hasStillImageFileValue); var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 7); _ck(_v, 6, 0, currVal_1, currVal_2); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.ontologyInfo == null) ? null : _co.ontologyInfo.getLabelForProperty(_v.context.$implicit.key)); _ck(_v, 3, 0, currVal_0); }); }
+function View_ResourceComponent_10(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 16777216, null, null, 2, "span", [], null, [[null, "longpress"], [null, "keydown"], [null, "touchend"]], function (_v, en, $event) {
+            var ad = true;
+            if (("longpress" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).show() !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("touchend" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2)._handleTouchend() !== false);
+                ad = (pd_2 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 147456, null, 0, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_11__["MatTooltip"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_12__["Overlay"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_13__["ScrollDispatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_5__["AriaDescriber"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_5__["FocusMonitor"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_11__["MAT_TOOLTIP_SCROLL_STRATEGY"], [2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_14__["Directionality"]], [2, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_11__["MAT_TOOLTIP_DEFAULT_OPTIONS"]]], { message: [0, "message"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, [" ", " ", " "]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵinlineInterpolate"](2, "", _v.context.$implicit.label, " ", ((_co.ontologyInfo == null) ? null : _co.ontologyInfo.getLabelForResourceClass(_v.context.$implicit.type)), ""); _ck(_v, 2, 0, currVal_0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _v.context.$implicit.label; var currVal_2 = _co.getIncomingPropertiesFromIncomingResource(_v.context.$implicit); _ck(_v, 3, 0, currVal_1, currVal_2); });
+}
+function View_ResourceComponent_9(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Incoming Links:"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ResourceComponent_10)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.resource.incomingLinks; _ck(_v, 5, 0, currVal_0); }, null); }
+function View_ResourceComponent_11(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-still-image", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_ɵj_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_ɵj"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 770048, [[1, 4], ["OSDViewer", 4]], 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_8__["ɵj"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { images: [0, "images"], imageRangeStart: [1, "imageRangeStart"], imageRangeEnd: [2, "imageRangeEnd"], imageChangeInterval: [3, "imageChangeInterval"], imageCaption: [4, "imageCaption"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.resource == null) ? null : _co.resource.stillImageRepresentationsToDisplay); var currVal_1 = 0; var currVal_2 = 24; var currVal_3 = 25; var currVal_4 = _co.copyright; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4); }, null); }
+function View_ResourceComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_15__["KeyPipe"], []), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](671088640, 1, { osdViewer: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_17__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_18__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_19__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Select a resource example:"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ResourceComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](12, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](14, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 8, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_20__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_20__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_21__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 2, null, View_ResourceComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](19, 1), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ResourceComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ResourceComponent_11)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](23, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.resources; _ck(_v, 10, 0, currVal_1); var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 18, 0, _ck(_v, 19, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), ((_co.resource == null) ? null : _co.resource.properties))); _ck(_v, 18, 0, currVal_4); var currVal_5 = (((_co.resource == null) ? null : ((_co.resource.incomingLinks == null) ? null : _co.resource.incomingLinks.length)) > 0); _ck(_v, 21, 0, currVal_5); var currVal_6 = (((_co.resource == null) ? null : ((_co.resource.incomingStillImageRepresentations == null) ? null : _co.resource.incomingStillImageRepresentations.length)) > 0); _ck(_v, 23, 0, currVal_6); }, function (_ck, _v) { var _co = _v.component; var currVal_2 = ((_co.ontologyInfo == null) ? null : _co.ontologyInfo.getLabelForResourceClass(((_co.resource == null) ? null : _co.resource.type))); _ck(_v, 12, 0, currVal_2); var currVal_3 = ((_co.resource == null) ? null : _co.resource.label); _ck(_v, 14, 0, currVal_3); }); }
+function View_ResourceComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-resource", [], null, null, null, View_ResourceComponent_0, RenderType_ResourceComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 638976, null, 0, _resource_component__WEBPACK_IMPORTED_MODULE_22__["ResourceComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_23__["ResourceService"], _knora_core__WEBPACK_IMPORTED_MODULE_23__["OntologyCacheService"], _knora_core__WEBPACK_IMPORTED_MODULE_23__["IncomingService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ResourceComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-resource", _resource_component__WEBPACK_IMPORTED_MODULE_22__["ResourceComponent"], View_ResourceComponent_Host_0, {}, {}, []);
 
 
 
@@ -18520,7 +18922,7 @@ var ResourceComponent = /** @class */ /*@__PURE__*/ (function () {
         this.getResource(this.resources[0].iri);
         // for testing by user: I want to see, what's inside of the resource object
         setTimeout(function () {
-            console.log(_this.resource);
+            // console.log(this.resource);
             _this.loading = false;
         }, 3000);
     };
@@ -18838,19 +19240,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _search_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./search.component */ "./src/app/knora-ui-examples/core-demo/search/search.component.ts");
+/* harmony import */ var _search_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./search.component */ "./src/app/knora-ui-examples/core-demo/search/search.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _search.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_search.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _search.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_search.component PURE_IMPORTS_END */
-
-
+/** PURE_IMPORTS_START _search.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_search.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _search.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_search.component PURE_IMPORTS_END */
 
 
 
@@ -18861,9 +19259,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_SearchComponent = [_search_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_SearchComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_SearchComponent, data: {} });
 
-function View_SearchComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Search service"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Please follow the README of "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "a", [["href", "https://www.npmjs.com/package/%40knora%2Fcore"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Knora-ui core module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [". Then you can use the following methods from `SearchService`:\n"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_7__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = "app/knora-ui-examples/core-demo/search/README.md"; _ck(_v, 14, 0, currVal_1); }, null); }
-function View_SearchComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-search", [], null, null, null, View_SearchComponent_0, RenderType_SearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _search_component__WEBPACK_IMPORTED_MODULE_8__["SearchComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var SearchComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-search", _search_component__WEBPACK_IMPORTED_MODULE_8__["SearchComponent"], View_SearchComponent_Host_0, {}, {}, []);
+function View_SearchComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_SearchComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-search", [], null, null, null, View_SearchComponent_0, RenderType_SearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _search_component__WEBPACK_IMPORTED_MODULE_6__["SearchComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var SearchComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-search", _search_component__WEBPACK_IMPORTED_MODULE_6__["SearchComponent"], View_SearchComponent_Host_0, {}, {}, []);
 
 
 
@@ -18979,7 +19377,8 @@ function View_UsersComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODU
 function View_UsersComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 6, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "mat-card-subtitle", [["class", "mat-card-subtitle"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCardSubtitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.allUsers; _ck(_v, 6, 0, currVal_0); }, null); }
 function View_UsersComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_5__["ProgressIndicatorComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 function View_UsersComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ", "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, [" ", " (", ") "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.user.familyName; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.user.givenName; var currVal_2 = _co.user.email; _ck(_v, 4, 0, currVal_1, currVal_2); }); }
-function View_UsersComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_7__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_8__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](19, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGetAllUsers; _ck(_v, 7, 0, currVal_1); var currVal_2 = (_co.allUsers && !_co.usersService.loading); _ck(_v, 10, 0, currVal_2); var currVal_3 = _co.usersService.loading; _ck(_v, 12, 0, currVal_3); var currVal_4 = _co.exampleGetUser; _ck(_v, 16, 0, currVal_4); var currVal_5 = (_co.user && !_co.usersService.loading); _ck(_v, 19, 0, currVal_5); }, null); }
+function View_UsersComponent_5(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ", "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, [" ", " (", ") "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.user.familyName; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.user.givenName; var currVal_2 = _co.user.email; _ck(_v, 4, 0, currVal_1, currVal_2); }); }
+function View_UsersComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_7__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_8__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](19, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](23, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](26, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGetAllUsers; _ck(_v, 7, 0, currVal_1); var currVal_2 = (_co.allUsers && !_co.usersService.loading); _ck(_v, 10, 0, currVal_2); var currVal_3 = _co.usersService.loading; _ck(_v, 12, 0, currVal_3); var currVal_4 = _co.exampleGetUser; _ck(_v, 16, 0, currVal_4); var currVal_5 = (_co.user && !_co.usersService.loading); _ck(_v, 19, 0, currVal_5); var currVal_6 = _co.exampleGetUser; _ck(_v, 23, 0, currVal_6); var currVal_7 = (_co.user && !_co.usersService.loading); _ck(_v, 26, 0, currVal_7); }, null); }
 function View_UsersComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-users", [], null, null, null, View_UsersComponent_0, RenderType_UsersComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _users_component__WEBPACK_IMPORTED_MODULE_13__["UsersComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_14__["UsersService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var UsersComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-users", _users_component__WEBPACK_IMPORTED_MODULE_13__["UsersComponent"], View_UsersComponent_Host_0, {}, {}, []);
 
@@ -19234,7 +19633,7 @@ __webpack_require__.r(__webpack_exports__);
 var styles_SearchPanelComponent = [_search_panel_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_SearchPanelComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_SearchPanelComponent, data: {} });
 
-function View_SearchPanelComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "kui-search", [], null, null, null, _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_SearchComponent_0"], _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_SearchComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 114688, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_11__["SearchComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { route: [0, "route"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 16777216, null, null, 1, "router-outlet", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 212992, null, 0, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterOutlet"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["ChildrenOutletContexts"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ComponentFactoryResolver"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.searchPanel; _ck(_v, 7, 0, currVal_1); var currVal_2 = "/modules/search/search"; _ck(_v, 10, 0, currVal_2); _ck(_v, 12, 0); }, null); }
+function View_SearchPanelComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 0, "span", [], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 1, "kui-search", [], null, null, null, _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_SearchComponent_0"], _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_SearchComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 114688, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_11__["SearchComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { route: [0, "route"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 16777216, null, null, 1, "router-outlet", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](15, 212992, null, 0, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterOutlet"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["ChildrenOutletContexts"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ComponentFactoryResolver"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_2 = _co.searchPanel; _ck(_v, 10, 0, currVal_2); var currVal_3 = "/modules/search/search"; _ck(_v, 13, 0, currVal_3); _ck(_v, 15, 0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.usage; _ck(_v, 4, 0, currVal_1); }); }
 function View_SearchPanelComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-search-panel", [], null, null, null, View_SearchPanelComponent_0, RenderType_SearchPanelComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _search_panel_component__WEBPACK_IMPORTED_MODULE_12__["SearchPanelComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var SearchPanelComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-search-panel", _search_panel_component__WEBPACK_IMPORTED_MODULE_12__["SearchPanelComponent"], View_SearchPanelComponent_Host_0, {}, {}, []);
 
@@ -19283,13 +19682,14 @@ __webpack_require__.r(__webpack_exports__);
 var SearchPanelComponent = /** @class */ /*@__PURE__*/ (function () {
     function SearchPanelComponent() {
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].searchModule;
+        this.usage = "\n    To set the search bar, you have to add a <b>&lt;kui-search&gt;</b> tag wherever you want in your template. <br>Customize the input \"[route]\" to match your own route.<br>\n    For example in search.component.html:<b> &lt;kui-search [route]=\"'/modules/search'\"&gt;&lt;/kui-search&gt;</b>";
         // demo configuration incl. code to display
         this.searchPanel = {
             title: 'Search Panel',
             subtitle: '',
             name: 'searchpanel',
             code: {
-                html: "\n            <!-- param route is where the router-outlet is defined for search results --> \n            <kui-search [route]=\"'/search/'\"></kui-search>\n            \n            <router-outlet></router-outlet>",
+                html: "\n            <!-- param route is where the router-outlet is defined for search results -->\n            <kui-search [route]=\"'/search/'\"></kui-search>\n\n            <router-outlet></router-outlet>",
                 ts: '',
                 scss: ''
             }
@@ -20025,7 +20425,7 @@ __webpack_require__.r(__webpack_exports__);
 var styles_ViewsComponent = [_views_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_ViewsComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_ViewsComponent, data: {} });
 
-function View_ViewsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h4", [["class", "first"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Resource view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["The resource viewer includes the "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "i", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Properties view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" and \u2014 depending on the media type \u2014 one of the media viewers"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "kui-resource-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbe_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbe"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbe"], [_knora_core__WEBPACK_IMPORTED_MODULE_8__["ResourceService"], _knora_core__WEBPACK_IMPORTED_MODULE_8__["OntologyCacheService"], _knora_core__WEBPACK_IMPORTED_MODULE_8__["IncomingService"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["List view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "kui-list-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbb_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbb"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbb"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Grid view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 1, "kui-grid-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbc_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbc"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbc"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](21, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Table view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](23, 0, null, null, 1, "kui-table-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbd_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbd"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](24, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbd"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](25, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Compare view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](27, 0, null, null, 1, "kui-compare-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbf_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbf"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](28, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbf"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](29, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Graph view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 1, "kui-graph-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbg_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbg"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](32, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbg"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Properties view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, null, 1, "kui-properties-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbh_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbh"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](36, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbh"], [], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); _ck(_v, 12, 0); _ck(_v, 16, 0); _ck(_v, 20, 0); _ck(_v, 24, 0); _ck(_v, 28, 0); _ck(_v, 32, 0); }, null); }
+function View_ViewsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h4", [["class", "first"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Resource view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["The resource viewer includes the "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "i", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Properties view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" and \u2014 depending on the media type \u2014 one of the media viewers"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "kui-resource-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbe_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbe"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbe"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], _knora_core__WEBPACK_IMPORTED_MODULE_8__["ResourceService"], _knora_core__WEBPACK_IMPORTED_MODULE_8__["OntologyCacheService"], _knora_core__WEBPACK_IMPORTED_MODULE_8__["IncomingService"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["List view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "kui-list-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbb_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbb"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbb"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Grid view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 1, "kui-grid-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbc_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbc"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbc"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](21, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Table view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](23, 0, null, null, 1, "kui-table-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbd_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbd"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](24, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbd"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](25, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Compare view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](27, 0, null, null, 1, "kui-compare-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbf_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbf"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](28, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbf"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](29, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Graph view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 1, "kui-graph-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbg_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbg"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](32, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbg"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Properties view"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, null, 1, "kui-properties-view", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵbh_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵbh"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](36, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵbh"], [], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); _ck(_v, 12, 0); _ck(_v, 16, 0); _ck(_v, 20, 0); _ck(_v, 24, 0); _ck(_v, 28, 0); _ck(_v, 32, 0); }, null); }
 function View_ViewsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-views", [], null, null, null, View_ViewsComponent_0, RenderType_ViewsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _views_component__WEBPACK_IMPORTED_MODULE_9__["ViewsComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var ViewsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-views", _views_component__WEBPACK_IMPORTED_MODULE_9__["ViewsComponent"], View_ViewsComponent_Host_0, {}, {}, []);
 
@@ -20100,24 +20500,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DemoIntroComponentNgFactory", function() { return DemoIntroComponentNgFactory; });
 /* harmony import */ var _demo_intro_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./demo-intro.component.scss.shim.ngstyle */ "./src/app/landing-page/demo-intro/demo-intro.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _demo_intro_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./demo-intro.component */ "./src/app/landing-page/demo-intro/demo-intro.component.ts");
+/* harmony import */ var _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/ngx-markdown/ngx-markdown.ngfactory */ "./node_modules/ngx-markdown/ngx-markdown.ngfactory.js");
+/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _demo_intro_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./demo-intro.component */ "./src/app/landing-page/demo-intro/demo-intro.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _demo_intro.component.scss.shim.ngstyle,_angular_core,_demo_intro.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _demo_intro.component.scss.shim.ngstyle,_angular_core,_demo_intro.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _demo_intro.component.scss.shim.ngstyle,_angular_core,_.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_angular_common,_demo_intro.component,_angular_router PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _demo_intro.component.scss.shim.ngstyle,_angular_core,_.._.._.._node_modules_ngx_markdown_ngx_markdown.ngfactory,ngx_markdown,_angular_common,_demo_intro.component,_angular_router PURE_IMPORTS_END */
+
+
+
+
 
 
 
 var styles_DemoIntroComponent = [_demo_intro_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_DemoIntroComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_DemoIntroComponent, data: {} });
 
-function View_DemoIntroComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["This is the area where you can test the Knora-ui modules. Select one from the left hand side"]))], null, null); }
-function View_DemoIntroComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-demo-intro", [], null, null, null, View_DemoIntroComponent_0, RenderType_DemoIntroComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _demo_intro_component__WEBPACK_IMPORTED_MODULE_2__["DemoIntroComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var DemoIntroComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-demo-intro", _demo_intro_component__WEBPACK_IMPORTED_MODULE_2__["DemoIntroComponent"], View_DemoIntroComponent_Host_0, {}, {}, []);
+function View_DemoIntroComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "markdown", [], null, null, null, _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MarkdownComponent_0"], _node_modules_ngx_markdown_ngx_markdown_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MarkdownComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 4243456, null, 0, ngx_markdown__WEBPACK_IMPORTED_MODULE_3__["MarkdownComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ngx_markdown__WEBPACK_IMPORTED_MODULE_3__["MarkdownService"]], { src: [0, "src"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = (("data/documentation/" + _co.module) + "/readme.md"); _ck(_v, 1, 0, currVal_0); }, null); }
+function View_DemoIntroComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DemoIntroComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_DemoIntroComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-demo-intro", [], null, null, null, View_DemoIntroComponent_0, RenderType_DemoIntroComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 4308992, null, 0, _demo_intro_component__WEBPACK_IMPORTED_MODULE_5__["DemoIntroComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var DemoIntroComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-demo-intro", _demo_intro_component__WEBPACK_IMPORTED_MODULE_5__["DemoIntroComponent"], View_DemoIntroComponent_Host_0, { module: "module" }, {}, []);
 
 
 
@@ -20160,9 +20569,20 @@ var styles = [""];
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DemoIntroComponent", function() { return DemoIntroComponent; });
 var DemoIntroComponent = /** @class */ /*@__PURE__*/ (function () {
-    function DemoIntroComponent() {
+    function DemoIntroComponent(_route) {
+        this._route = _route;
     }
     DemoIntroComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._route
+            .data
+            .subscribe(function (data) {
+            _this.module = data.module;
+        });
+    };
+    DemoIntroComponent.prototype.ngAfterViewInit = function () {
+        var code = 'var data = 1;';
+        // this.myCode = Prism.highlight(code, Prism.languages.javascript);
     };
     return DemoIntroComponent;
 }());
@@ -20552,19 +20972,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _pipes_sanitize_html_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pipes/sanitize-html.pipe */ "./src/app/partials/pipes/sanitize-html.pipe.ts");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../module-header/module-header.component.ngfactory */ "./src/app/partials/module-header/module-header.component.ngfactory.js");
-/* harmony import */ var _module_header_module_header_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../module-header/module-header.component */ "./src/app/partials/module-header/module-header.component.ts");
-/* harmony import */ var _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
-/* harmony import */ var _services_jsdoc_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _pipes_trim_brackets_pipe__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pipes/trim-brackets.pipe */ "./src/app/partials/pipes/trim-brackets.pipe.ts");
+/* harmony import */ var _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../module-header/module-header.component.ngfactory */ "./src/app/partials/module-header/module-header.component.ngfactory.js");
+/* harmony import */ var _module_header_module_header_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../module-header/module-header.component */ "./src/app/partials/module-header/module-header.component.ts");
+/* harmony import */ var _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _services_jsdoc_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _documentation_viewer.component.scss.shim.ngstyle,_angular_core,_.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_angular_common,_pipes_sanitize_html.pipe,_angular_platform_browser,_module_header_module_header.component.ngfactory,_module_header_module_header.component,_documentation_viewer.component,_services_jsdoc.service,_angular_router PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _documentation_viewer.component.scss.shim.ngstyle,_angular_core,_.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_angular_common,_pipes_sanitize_html.pipe,_angular_platform_browser,_module_header_module_header.component.ngfactory,_module_header_module_header.component,_documentation_viewer.component,_services_jsdoc.service,_angular_router PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _documentation_viewer.component.scss.shim.ngstyle,_angular_core,_.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_angular_common,_pipes_sanitize_html.pipe,_angular_platform_browser,_pipes_trim_brackets.pipe,_module_header_module_header.component.ngfactory,_module_header_module_header.component,_documentation_viewer.component,_services_jsdoc.service,_angular_router PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _documentation_viewer.component.scss.shim.ngstyle,_angular_core,_.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_angular_common,_pipes_sanitize_html.pipe,_angular_platform_browser,_pipes_trim_brackets.pipe,_module_header_module_header.component.ngfactory,_module_header_module_header.component,_documentation_viewer.component,_services_jsdoc.service,_angular_router PURE_IMPORTS_END */
+
 
 
 
@@ -20587,19 +21009,25 @@ function View_DocumentationViewerComponent_4(_l) { return _angular_core__WEBPACK
 function View_DocumentationViewerComponent_6(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_5__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null))], null, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical ? "vertical" : "horizontal"); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical; var currVal_2 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).inset; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3); var currVal_4 = _v.parent.parent.context.$implicit.ctx.string; _ck(_v, 4, 0, currVal_4); var currVal_5 = _v.parent.parent.context.$implicit.description.full; _ck(_v, 5, 0, currVal_5); }); }
 function View_DocumentationViewerComponent_8(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "pre", [["class", "line-numbers"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["                        "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "code", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\n                    "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.string; _ck(_v, 3, 0, currVal_0); }); }
 function View_DocumentationViewerComponent_9(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 9, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Returns"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 5, "table", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 4, "tbody", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 3, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 2, "td", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](9, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.string; _ck(_v, 9, 0, currVal_0); }); }
-function View_DocumentationViewerComponent_12(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [", "]))], null, null); }
-function View_DocumentationViewerComponent_11(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" ", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_12)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_1 = !_v.context.last; _ck(_v, 3, 0, currVal_1); }, function (_ck, _v) { var currVal_0 = _v.context.$implicit; _ck(_v, 1, 0, currVal_0); }); }
-function View_DocumentationViewerComponent_10(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 22, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Parameter"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 18, "table", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 17, "tbody", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 6, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 1, "th", [["class", "border-right"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Name"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "th", [["class", "border-right"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Type"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "th", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Description"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 9, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 2, "td", [["class", "border-right"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](16, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 3, "td", [["class", "border-right"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_11)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](21, 0, null, null, 1, "td", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null))], function (_ck, _v) { var currVal_1 = _v.parent.context.$implicit.types; _ck(_v, 20, 0, currVal_1); }, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.name; _ck(_v, 16, 0, currVal_0); var currVal_2 = _v.parent.context.$implicit.description; _ck(_v, 22, 0, currVal_2); }); }
-function View_DocumentationViewerComponent_13(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](1, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 0, 0, _ck(_v, 1, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent.parent.parent, 0), _v.parent.context.$implicit.html)); _ck(_v, 0, 0, currVal_0); }); }
-function View_DocumentationViewerComponent_14(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 0, "div", [], null, null, null, null, null))], null, null); }
-function View_DocumentationViewerComponent_15(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" This type (", ") is not yet supported in the documentation view. "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.type; _ck(_v, 1, 0, currVal_0); }); }
-function View_DocumentationViewerComponent_7(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 14, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 13, "div", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"], [], { ngSwitch: [0, "ngSwitch"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_10)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_13)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_14)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_15)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchDefault"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], null, null)], function (_ck, _v) { var currVal_0 = _v.context.$implicit.type; _ck(_v, 2, 0, currVal_0); var currVal_1 = "example"; _ck(_v, 4, 0, currVal_1); var currVal_2 = "returns"; _ck(_v, 6, 0, currVal_2); var currVal_3 = "param"; _ck(_v, 8, 0, currVal_3); var currVal_4 = "type"; _ck(_v, 10, 0, currVal_4); var currVal_5 = "ignore"; _ck(_v, 12, 0, currVal_5); }, null); }
+function View_DocumentationViewerComponent_11(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Parameters"]))], null, null); }
+function View_DocumentationViewerComponent_12(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 6, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "th", [["class", "border-right fix-width"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Name"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "th", [["class", "border-right fix-width"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Type"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 1, "th", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Description"]))], null, null); }
+function View_DocumentationViewerComponent_13(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, ["", " (optional)"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](2, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 1, 0, _ck(_v, 2, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent.parent.parent.parent, 1), _v.parent.parent.context.$implicit.name)); _ck(_v, 1, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_14(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.parent.parent.context.$implicit.name; _ck(_v, 1, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_16(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [", "]))], null, null); }
+function View_DocumentationViewerComponent_15(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" ", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_16)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_1 = !_v.context.last; _ck(_v, 3, 0, currVal_1); }, function (_ck, _v) { var currVal_0 = _v.context.$implicit; _ck(_v, 1, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_10(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 18, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_11)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 15, "table", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 14, "tbody", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_12)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 11, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 4, "td", [["class", "border-right fix-width"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_13)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_14)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 3, "td", [["class", "border-right fix-width"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_15)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 1, "td", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null))], function (_ck, _v) { var currVal_0 = _v.parent.context.first; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.parent.context.first; _ck(_v, 6, 0, currVal_1); var currVal_2 = _v.parent.context.$implicit.optional; _ck(_v, 10, 0, currVal_2); var currVal_3 = !_v.parent.context.$implicit.optional; _ck(_v, 12, 0, currVal_3); var currVal_4 = _v.parent.context.$implicit.types; _ck(_v, 16, 0, currVal_4); }, function (_ck, _v) { var currVal_5 = _v.parent.context.$implicit.description; _ck(_v, 18, 0, currVal_5); }); }
+function View_DocumentationViewerComponent_17(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](1, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 0, 0, _ck(_v, 1, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent.parent.parent, 0), _v.parent.context.$implicit.html)); _ck(_v, 0, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_18(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](1, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 0, 0, _ck(_v, 1, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent.parent.parent, 0), _v.parent.context.$implicit.html)); _ck(_v, 0, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_19(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](1, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 0, 0, _ck(_v, 1, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent.parent.parent, 0), _v.parent.context.$implicit.html)); _ck(_v, 0, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_20(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 0, "div", [], null, null, null, null, null))], null, null); }
+function View_DocumentationViewerComponent_21(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" This type (", ") is not yet supported in the documentation view. "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.type; _ck(_v, 1, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_7(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 18, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 17, "div", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"], [], { ngSwitch: [0, "ngSwitch"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_10)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_17)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_18)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_19)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_20)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_21)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchDefault"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], null, null)], function (_ck, _v) { var currVal_0 = _v.context.$implicit.type; _ck(_v, 2, 0, currVal_0); var currVal_1 = "example"; _ck(_v, 4, 0, currVal_1); var currVal_2 = "returns"; _ck(_v, 6, 0, currVal_2); var currVal_3 = "param"; _ck(_v, 8, 0, currVal_3); var currVal_4 = "emits"; _ck(_v, 10, 0, currVal_4); var currVal_5 = "type"; _ck(_v, 12, 0, currVal_5); var currVal_6 = "function"; _ck(_v, 14, 0, currVal_6); var currVal_7 = "ignore"; _ck(_v, 16, 0, currVal_7); }, null); }
 function View_DocumentationViewerComponent_5(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_6)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_7)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var currVal_0 = (_v.parent.context.$implicit.tags[0].type !== "ignore"); _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.parent.context.$implicit.tags; _ck(_v, 4, 0, currVal_1); }, null); }
-function View_DocumentationViewerComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "section", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_0 = (_v.context.$implicit.tags.length === 0); _ck(_v, 2, 0, currVal_0); var currVal_1 = (_v.context.$implicit.tags.length > 0); _ck(_v, 4, 0, currVal_1); }, null); }
+function View_DocumentationViewerComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "section", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_0 = (_v.context.$implicit.tags.length === 0); _ck(_v, 2, 0, currVal_0); var currVal_1 = ((_v.context.$implicit.tags.length > 0) && (_v.context.$implicit.tags[0].type !== "ignore")); _ck(_v, 4, 0, currVal_1); }, null); }
 function View_DocumentationViewerComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [["class", "documentation"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_5__["MatDivider"], [], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.documentation; _ck(_v, 2, 0, currVal_0); }, function (_ck, _v) { var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical ? "vertical" : "horizontal"); var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_3 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).inset; _ck(_v, 3, 0, currVal_1, currVal_2, currVal_3, currVal_4); }); }
-function View_DocumentationViewerComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _pipes_sanitize_html_pipe__WEBPACK_IMPORTED_MODULE_7__["SanitizeHtmlPipe"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__["DomSanitizer"]]), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-module-header", [], null, null, null, _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ModuleHeaderComponent_0"], _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ModuleHeaderComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _module_header_module_header_component__WEBPACK_IMPORTED_MODULE_10__["ModuleHeaderComponent"], [], { module: [0, "module"], demo: [1, "demo"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_5__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; var currVal_1 = _co.currentComponent; _ck(_v, 2, 0, currVal_0, currVal_1); var currVal_6 = _co.loading; _ck(_v, 6, 0, currVal_6); var currVal_7 = (_co.documentation && !_co.loading); _ck(_v, 8, 0, currVal_7); }, function (_ck, _v) { var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical ? "vertical" : "horizontal"); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_4 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).inset; _ck(_v, 3, 0, currVal_2, currVal_3, currVal_4, currVal_5); }); }
-function View_DocumentationViewerComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, View_DocumentationViewerComponent_0, RenderType_DocumentationViewerComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_11__["DocumentationViewerComponent"], [_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_12__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_13__["ActivatedRoute"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var DocumentationViewerComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-documentation-viewer", _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_11__["DocumentationViewerComponent"], View_DocumentationViewerComponent_Host_0, { module: "module" }, {}, []);
+function View_DocumentationViewerComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _pipes_sanitize_html_pipe__WEBPACK_IMPORTED_MODULE_7__["SanitizeHtmlPipe"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__["DomSanitizer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _pipes_trim_brackets_pipe__WEBPACK_IMPORTED_MODULE_9__["TrimBracketsPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "app-module-header", [], null, null, null, _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_ModuleHeaderComponent_0"], _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_ModuleHeaderComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 114688, null, 0, _module_header_module_header_component__WEBPACK_IMPORTED_MODULE_11__["ModuleHeaderComponent"], [], { module: [0, "module"], demo: [1, "demo"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_5__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; var currVal_1 = _co.currentComponent; _ck(_v, 3, 0, currVal_0, currVal_1); var currVal_6 = _co.loading; _ck(_v, 7, 0, currVal_6); var currVal_7 = (_co.documentation && !_co.loading); _ck(_v, 9, 0, currVal_7); }, function (_ck, _v) { var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).vertical ? "vertical" : "horizontal"); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).vertical; var currVal_4 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).vertical; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).inset; _ck(_v, 4, 0, currVal_2, currVal_3, currVal_4, currVal_5); }); }
+function View_DocumentationViewerComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, View_DocumentationViewerComponent_0, RenderType_DocumentationViewerComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_12__["DocumentationViewerComponent"], [_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_13__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_14__["ActivatedRoute"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var DocumentationViewerComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-documentation-viewer", _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_12__["DocumentationViewerComponent"], View_DocumentationViewerComponent_Host_0, { module: "module" }, {}, []);
 
 
 
@@ -20624,7 +21052,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 /** PURE_IMPORTS_START  PURE_IMPORTS_END */
 /** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var styles = ["pre[_ngcontent-%COMP%], code[_ngcontent-%COMP%], tt[_ngcontent-%COMP%] {\n  font-family: Inconsolata, Consolas, Courier, \"Courier New\", \"Liberation Mono\", monospace;\n  white-space: pre-wrap;\n  border-radius: 3px;\n  line-height: 1.4;\n  font-size: 16px;\n  font-weight: 400;\n  background-color: rgba(64, 65, 69, 0.75);\n  color: #FAFAFA; }\n\npre[_ngcontent-%COMP%] {\n  background-color: #404145;\n  box-sizing: border-box;\n  margin: 0 0 1.75em 0;\n  width: 100%;\n  padding: 10px;\n  white-space: pre;\n  overflow: auto; }\n\npre[_ngcontent-%COMP%]   code[_ngcontent-%COMP%], pre[_ngcontent-%COMP%]   tt[_ngcontent-%COMP%] {\n    white-space: pre-wrap;\n    background: transparent;\n    border: none;\n    padding: 0; }\n\nblockquote[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%], li[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%], p[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%] {\n  padding: 2px 6px;\n  white-space: nowrap; }\n\n.example-container[_ngcontent-%COMP%] {\n  height: 720px;\n  width: 100%;\n  display: flex;\n  flex-direction: column; }\n\ntable[_ngcontent-%COMP%] {\n  border: 1px solid #ddd;\n  border-collapse: collapse;\n  margin-bottom: 20px;\n  max-width: 100%;\n  width: 100%; }\n\ntable[_ngcontent-%COMP%]   td[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    padding: 12px;\n    text-align: left;\n    vertical-align: top; }\n\ntable[_ngcontent-%COMP%]   td.border-right[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th.border-right[_ngcontent-%COMP%] {\n      border-right: 1px solid #ddd; }\n\ntable[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    border-bottom: 1px solid #ddd; }\n\n.documentation[_ngcontent-%COMP%] {\n  margin: 48px 0; }\n\n.documentation[_ngcontent-%COMP%]   .mat-divider[_ngcontent-%COMP%] {\n    margin: 24px 0; }"];
+var styles = ["pre[_ngcontent-%COMP%], code[_ngcontent-%COMP%], tt[_ngcontent-%COMP%] {\n  font-family: Inconsolata, Consolas, Courier, \"Courier New\", \"Liberation Mono\", monospace;\n  white-space: pre-wrap;\n  border-radius: 3px;\n  line-height: 1.4;\n  font-size: 16px;\n  font-weight: 400;\n  background-color: rgba(64, 65, 69, 0.75);\n  color: #FAFAFA; }\n\npre[_ngcontent-%COMP%] {\n  background-color: #404145;\n  box-sizing: border-box;\n  margin: 0 0 1.75em 0;\n  width: 100%;\n  padding: 10px;\n  white-space: pre;\n  overflow: auto; }\n\npre[_ngcontent-%COMP%]   code[_ngcontent-%COMP%], pre[_ngcontent-%COMP%]   tt[_ngcontent-%COMP%] {\n    white-space: pre-wrap;\n    background: transparent;\n    border: none;\n    padding: 0; }\n\nblockquote[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%], li[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%], p[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%] {\n  padding: 2px 6px;\n  white-space: nowrap; }\n\n.example-container[_ngcontent-%COMP%] {\n  height: 720px;\n  width: 100%;\n  display: flex;\n  flex-direction: column; }\n\ntable[_ngcontent-%COMP%] {\n  border: 1px solid #ddd;\n  border-collapse: collapse;\n  margin-bottom: 20px;\n  max-width: 100%;\n  width: 100%; }\n\ntable[_ngcontent-%COMP%]   td[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    padding: 12px;\n    text-align: left;\n    vertical-align: top; }\n\ntable[_ngcontent-%COMP%]   td.border-right[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th.border-right[_ngcontent-%COMP%] {\n      border-right: 1px solid #ddd; }\n\ntable[_ngcontent-%COMP%]   td.fix-width[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th.fix-width[_ngcontent-%COMP%] {\n      width: 150px; }\n\ntable[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    border-bottom: 1px solid #ddd; }\n\n.documentation[_ngcontent-%COMP%] {\n  margin: 48px 0; }\n\n.documentation[_ngcontent-%COMP%]   .mat-divider[_ngcontent-%COMP%] {\n    margin: 24px 0; }"];
 
 
 
@@ -20735,9 +21163,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_ExampleViewerComponent = [_example_viewer_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_ExampleViewerComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_ExampleViewerComponent, data: {} });
 
-function View_ExampleViewerComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 16777216, null, null, 8, "mat-tab", [["label", "HTML"]], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_3__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"]], { textLabel: [0, "textLabel"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 2, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 3, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, 0, 4, "pre", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["            "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "code", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](7, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\n        "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](0, null, null, 0))], function (_ck, _v) { var currVal_0 = "HTML"; _ck(_v, 1, 0, currVal_0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.example.code.html; _ck(_v, 7, 0, currVal_1); }); }
-function View_ExampleViewerComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 16777216, null, null, 8, "mat-tab", [["label", "TS"]], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_3__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"]], { textLabel: [0, "textLabel"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 4, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 5, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, 0, 4, "pre", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["            "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "code", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](7, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\n        "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](0, null, null, 0))], function (_ck, _v) { var currVal_0 = "TS"; _ck(_v, 1, 0, currVal_0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.example.code.ts; _ck(_v, 7, 0, currVal_1); }); }
-function View_ExampleViewerComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 16777216, null, null, 8, "mat-tab", [["label", "SCSS"]], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_3__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"]], { textLabel: [0, "textLabel"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 6, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 7, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, 0, 4, "pre", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["            "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "code", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](7, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\n        "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](0, null, null, 0))], function (_ck, _v) { var currVal_0 = "SCSS"; _ck(_v, 1, 0, currVal_0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.example.code.scss; _ck(_v, 7, 0, currVal_1); }); }
+function View_ExampleViewerComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 16777216, null, null, 7, "mat-tab", [["label", "HTML"]], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_3__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"]], { textLabel: [0, "textLabel"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 2, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 3, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, 0, 3, "pre", [["class", "language-markup"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["            "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 0, "code", [["class", "language-markup"]], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\n        "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](0, null, null, 0))], function (_ck, _v) { var currVal_0 = "HTML"; _ck(_v, 1, 0, currVal_0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.markup; _ck(_v, 6, 0, currVal_1); }); }
+function View_ExampleViewerComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 16777216, null, null, 7, "mat-tab", [["label", "TS"]], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_3__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"]], { textLabel: [0, "textLabel"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 4, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 5, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, 0, 3, "pre", [["class", "language-javascript"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["            "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 0, "code", [["class", "language-javascript"]], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\n        "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](0, null, null, 0))], function (_ck, _v) { var currVal_0 = "TS"; _ck(_v, 1, 0, currVal_0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.typescript; _ck(_v, 6, 0, currVal_1); }); }
+function View_ExampleViewerComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 16777216, null, null, 7, "mat-tab", [["label", "SCSS"]], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_3__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"]], { textLabel: [0, "textLabel"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 6, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 7, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, 0, 3, "pre", [["class", "language-css"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["            "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 0, "code", [["class", "language-css"]], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\n        "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](0, null, null, 0))], function (_ck, _v) { var currVal_0 = "SCSS"; _ck(_v, 1, 0, currVal_0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.style; _ck(_v, 6, 0, currVal_1); }); }
 function View_ExampleViewerComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 10, "mat-card-content", [["class", "full-width mat-card-content"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_4__["MatCardContent"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 8, "mat-tab-group", [["class", "example-code-group mat-tab-group"]], [[2, "mat-tab-group-dynamic-height", null], [2, "mat-tab-group-inverted-header", null]], null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatTabGroup_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatTabGroup"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 3325952, null, 1, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_3__["MatTabGroup"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 1, { _tabs: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ExampleViewerComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ExampleViewerComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ExampleViewerComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_2 = _co.example.code.html; _ck(_v, 6, 0, currVal_2); var currVal_3 = _co.example.code.ts; _ck(_v, 8, 0, currVal_3); var currVal_4 = _co.example.code.scss; _ck(_v, 10, 0, currVal_4); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 3).dynamicHeight; var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 3).headerPosition === "below"); _ck(_v, 2, 0, currVal_0, currVal_1); }); }
 function View_ExampleViewerComponent_0(_l) {
     return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 14, "mat-card-header", [["class", "example-header mat-card-header"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCardHeader_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCardHeader"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_4__["MatCardHeader"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, 1, 2, "mat-card-title", [["class", "mat-card-title"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_4__["MatCardTitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, 1, 2, "mat-card-subtitle", [["class", "mat-card-subtitle"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_4__["MatCardSubtitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](7, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 2, 6, "mat-card-actions", [["class", "action-buttons mat-card-actions"]], [[2, "mat-card-actions-align-end", null]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_4__["MatCardActions"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 4, "button", [["mat-icon-button", ""]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
@@ -20750,7 +21178,7 @@ function View_ExampleViewerComponent_0(_l) {
             return ad;
         }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_8__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_9__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_10__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_11__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, 0, 2, "mat-icon", [["class", "mat-icon"], ["role", "img"]], [[2, "mat-icon-inline", null]], null, null, _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["View_MatIcon_0"], _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["RenderType_MatIcon"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 638976, null, 0, _angular_material_icon__WEBPACK_IMPORTED_MODULE_13__["MatIcon"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_13__["MatIconRegistry"], [8, null]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, ["code"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_15__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ExampleViewerComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_15__["MatDivider"], [], null, null)], function (_ck, _v) { var _co = _v.component; _ck(_v, 13, 0); var currVal_10 = _co.showCode; _ck(_v, 18, 0, currVal_10); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.example == null) ? null : _co.example.title); _ck(_v, 4, 0, currVal_0); var currVal_1 = ((_co.example == null) ? null : _co.example.subtitle); _ck(_v, 7, 0, currVal_1); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).align === "end"); _ck(_v, 8, 0, currVal_2); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 11).disabled || null); var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 11)._animationMode === "NoopAnimations"); _ck(_v, 10, 0, currVal_3, currVal_4); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 13).inline; _ck(_v, 12, 0, currVal_5); var currVal_6 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).vertical ? "vertical" : "horizontal"); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).vertical; var currVal_8 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).vertical; var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).inset; _ck(_v, 15, 0, currVal_6, currVal_7, currVal_8, currVal_9); var currVal_11 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).vertical ? "vertical" : "horizontal"); var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).vertical; var currVal_13 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).vertical; var currVal_14 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).inset; _ck(_v, 19, 0, currVal_11, currVal_12, currVal_13, currVal_14); });
 }
-function View_ExampleViewerComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-example-viewer", [], null, null, null, View_ExampleViewerComponent_0, RenderType_ExampleViewerComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _example_viewer_component__WEBPACK_IMPORTED_MODULE_16__["ExampleViewerComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_ExampleViewerComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-example-viewer", [], null, null, null, View_ExampleViewerComponent_0, RenderType_ExampleViewerComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 4308992, null, 0, _example_viewer_component__WEBPACK_IMPORTED_MODULE_16__["ExampleViewerComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var ExampleViewerComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-example-viewer", _example_viewer_component__WEBPACK_IMPORTED_MODULE_16__["ExampleViewerComponent"], View_ExampleViewerComponent_Host_0, { example: "example" }, {}, []);
 
 
@@ -20801,6 +21229,11 @@ var ExampleViewerComponent = /** @class */ /*@__PURE__*/ (function () {
     };
     ExampleViewerComponent.prototype.toggleCode = function () {
         this.showCode = this.showCode !== true;
+    };
+    ExampleViewerComponent.prototype.ngAfterViewInit = function () {
+        this.markup = Prism.highlight(this.example.code.html, Prism.languages.markup);
+        this.typescript = Prism.highlight(this.example.code.ts, Prism.languages.javascript);
+        this.style = Prism.highlight(this.example.code.scss, Prism.languages.scss);
     };
     return ExampleViewerComponent;
 }());
@@ -21162,14 +21595,14 @@ function View_ModuleIndexComponent_3(_l) {
                 ad = (pd_1 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatListItem_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatListItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 1097728, null, 3, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatListItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatNavList"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 5, { _lines: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 6, { _avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 7, { _icon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, 2, 6, "button", [["class", "demo-nav-item"], ["disableRipple", ""], ["mat-button", ""], ["routerLinkActive", "active-link"]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
+        }, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatListItem_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatListItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 1097728, null, 3, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatListItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatNavList"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 10, { _lines: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 11, { _avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 12, { _icon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, 2, 6, "button", [["class", "demo-nav-item"], ["disableRipple", ""], ["mat-button", ""], ["routerLinkActive", "active-link"]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
             var ad = true;
             if (("click" === en)) {
                 var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 6).onClick() !== false);
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 16384, [[8, 4]], 0, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLink"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { routerLink: [0, "routerLink"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 1720320, null, 2, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLinkActive"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], { routerLinkActive: [0, "routerLinkActive"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 8, { links: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 9, { linksWithHrefs: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_6__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_7__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_8__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], { disableRipple: [0, "disableRipple"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](11, 0, [" ", " "]))], function (_ck, _v) { var currVal_4 = ((_v.parent.parent.context.$implicit.name + "/") + _v.context.$implicit.name); _ck(_v, 6, 0, currVal_4); var currVal_5 = "active-link"; _ck(_v, 7, 0, currVal_5); var currVal_6 = ""; _ck(_v, 10, 0, currVal_6); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._icon); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._icon); _ck(_v, 0, 0, currVal_0, currVal_1); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 10).disabled || null); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 10)._animationMode === "NoopAnimations"); _ck(_v, 5, 0, currVal_2, currVal_3); var currVal_7 = _v.context.$implicit.label; _ck(_v, 11, 0, currVal_7); });
+        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 16384, [[13, 4]], 0, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLink"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { routerLink: [0, "routerLink"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 1720320, null, 2, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLinkActive"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], { routerLinkActive: [0, "routerLinkActive"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 13, { links: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 14, { linksWithHrefs: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_6__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_7__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_8__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], { disableRipple: [0, "disableRipple"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](11, 0, [" ", " "]))], function (_ck, _v) { var currVal_4 = ((_v.parent.parent.context.$implicit.name + "/") + _v.context.$implicit.name); _ck(_v, 6, 0, currVal_4); var currVal_5 = "active-link"; _ck(_v, 7, 0, currVal_5); var currVal_6 = ""; _ck(_v, 10, 0, currVal_6); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._icon); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._icon); _ck(_v, 0, 0, currVal_0, currVal_1); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 10).disabled || null); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 10)._animationMode === "NoopAnimations"); _ck(_v, 5, 0, currVal_2, currVal_3); var currVal_7 = _v.context.$implicit.label; _ck(_v, 11, 0, currVal_7); });
 }
 function View_ModuleIndexComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 2, null, View_ModuleIndexComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](3, 2)], function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 2, 0, _ck(_v, 3, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent, 0), _v.parent.context.$implicit.children, "name")); _ck(_v, 2, 0, currVal_0); }, null); }
 function View_ModuleIndexComponent_4(_l) {
@@ -21184,17 +21617,17 @@ function View_ModuleIndexComponent_4(_l) {
                 ad = (pd_1 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatListItem_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatListItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 1097728, null, 3, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatListItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatNavList"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 10, { _lines: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 11, { _avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 12, { _icon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 2, 6, "button", [["class", "demo-nav-item"], ["disableRipple", ""], ["mat-button", ""], ["routerLinkActive", "active-link"]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
+        }, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatListItem_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatListItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 1097728, null, 3, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatListItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatNavList"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 15, { _lines: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 16, { _avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 17, { _icon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 2, 6, "button", [["class", "demo-nav-item"], ["disableRipple", ""], ["mat-button", ""], ["routerLinkActive", "active-link"]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
             var ad = true;
             if (("click" === en)) {
                 var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 7).onClick() !== false);
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 16384, [[13, 4]], 0, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLink"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { routerLink: [0, "routerLink"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 1720320, null, 2, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLinkActive"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], { routerLinkActive: [0, "routerLinkActive"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 13, { links: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 14, { linksWithHrefs: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_6__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_7__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_8__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], { disableRipple: [0, "disableRipple"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](12, 0, [" ", " "]))], function (_ck, _v) { var currVal_4 = _v.parent.context.$implicit.name; _ck(_v, 7, 0, currVal_4); var currVal_5 = "active-link"; _ck(_v, 8, 0, currVal_5); var currVal_6 = ""; _ck(_v, 11, 0, currVal_6); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2)._icon); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2)._icon); _ck(_v, 1, 0, currVal_0, currVal_1); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 11).disabled || null); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 11)._animationMode === "NoopAnimations"); _ck(_v, 6, 0, currVal_2, currVal_3); var currVal_7 = _v.parent.context.$implicit.name; _ck(_v, 12, 0, currVal_7); });
+        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 16384, [[18, 4]], 0, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLink"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { routerLink: [0, "routerLink"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 1720320, null, 2, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLinkActive"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], { routerLinkActive: [0, "routerLinkActive"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 18, { links: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 19, { linksWithHrefs: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_6__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_7__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_8__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], { disableRipple: [0, "disableRipple"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](12, 0, [" ", " "]))], function (_ck, _v) { var currVal_4 = _v.parent.context.$implicit.name; _ck(_v, 7, 0, currVal_4); var currVal_5 = "active-link"; _ck(_v, 8, 0, currVal_5); var currVal_6 = ""; _ck(_v, 11, 0, currVal_6); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2)._icon); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2)._icon); _ck(_v, 1, 0, currVal_0, currVal_1); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 11).disabled || null); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 11)._animationMode === "NoopAnimations"); _ck(_v, 6, 0, currVal_2, currVal_3); var currVal_7 = _v.parent.context.$implicit.name; _ck(_v, 12, 0, currVal_7); });
 }
 function View_ModuleIndexComponent_1(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 20, "mat-accordion", [["class", "mat-accordion"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 1720320, null, 1, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatAccordion"], [], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 3, { _headers: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵprd"](2048, null, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MAT_ACCORDION"], null, [_angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatAccordion"]]), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 16777216, null, null, 14, "mat-expansion-panel", [["class", "no-shadow mat-expansion-panel"], ["expanded", ""]], [[2, "mat-expanded", null], [2, "mat-expansion-panel-spacing", null]], null, null, _node_modules_angular_material_expansion_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["View_MatExpansionPanel_0"], _node_modules_angular_material_expansion_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["RenderType_MatExpansionPanel"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 1753088, null, 1, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatExpansionPanel"], [[3, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MAT_ACCORDION"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_13__["UniqueSelectionDispatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["DOCUMENT"]], { expanded: [0, "expanded"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 4, { _lazyContent: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵprd"](256, null, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MAT_ACCORDION"], undefined, []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 6, "mat-expansion-panel-header", [["class", "mat-expansion-panel-header"], ["role", "button"]], [[1, "id", 0], [1, "tabindex", 0], [1, "aria-controls", 0], [1, "aria-expanded", 0], [1, "aria-disabled", 0], [2, "mat-expanded", null], [40, "@expansionHeight", 0]], [[null, "click"], [null, "keydown"]], function (_v, en, $event) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 33, "mat-accordion", [["class", "mat-accordion"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 1720320, null, 1, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatAccordion"], [], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 3, { _headers: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵprd"](2048, null, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MAT_ACCORDION"], null, [_angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatAccordion"]]), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 16777216, null, null, 27, "mat-expansion-panel", [["class", "no-shadow mat-expansion-panel"], ["expanded", ""]], [[2, "mat-expanded", null], [2, "mat-expansion-panel-spacing", null]], null, null, _node_modules_angular_material_expansion_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["View_MatExpansionPanel_0"], _node_modules_angular_material_expansion_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["RenderType_MatExpansionPanel"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 1753088, null, 1, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatExpansionPanel"], [[3, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MAT_ACCORDION"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_13__["UniqueSelectionDispatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["DOCUMENT"]], { expanded: [0, "expanded"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 4, { _lazyContent: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵprd"](256, null, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MAT_ACCORDION"], undefined, []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 6, "mat-expansion-panel-header", [["class", "mat-expansion-panel-header"], ["role", "button"]], [[1, "id", 0], [1, "tabindex", 0], [1, "aria-controls", 0], [1, "aria-expanded", 0], [1, "aria-disabled", 0], [2, "mat-expanded", null], [40, "@expansionHeight", 0]], [[null, "click"], [null, "keydown"]], function (_v, en, $event) {
             var ad = true;
             if (("click" === en)) {
                 var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9)._toggle() !== false);
@@ -21205,7 +21638,25 @@ function View_ModuleIndexComponent_1(_l) {
                 ad = (pd_1 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_expansion_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["View_MatExpansionPanelHeader_0"], _node_modules_angular_material_expansion_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["RenderType_MatExpansionPanelHeader"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 180224, [[3, 4]], 0, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatExpansionPanelHeader"], [_angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatExpansionPanel"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_8__["FocusMonitor"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpod"](10, { collapsedHeight: 0, expandedHeight: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpod"](11, { value: 0, params: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, 0, 2, "mat-panel-title", [["class", "bolder mat-expansion-panel-header-title"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 16384, null, 0, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatExpansionPanelTitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](14, null, [" ", " "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 1, 1, null, View_ModuleIndexComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 1, 1, null, View_ModuleIndexComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_15__["MatDivider"], [], null, null)], function (_ck, _v) { var currVal_2 = ""; _ck(_v, 5, 0, currVal_2); var currVal_11 = _v.context.$implicit.children; _ck(_v, 16, 0, currVal_11); var currVal_12 = !_v.context.$implicit.children; _ck(_v, 18, 0, currVal_12); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).expanded; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5)._hasSpacing(); _ck(_v, 4, 0, currVal_0, currVal_1); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).panel._headerId; var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).disabled ? (0 - 1) : 0); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9)._getPanelId(); var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9)._isExpanded(); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).panel.disabled; var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9)._isExpanded(); var currVal_9 = _ck(_v, 11, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9)._getExpandedState(), _ck(_v, 10, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).collapsedHeight, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).expandedHeight)); _ck(_v, 8, 0, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9); var currVal_10 = _v.context.$implicit.label; _ck(_v, 14, 0, currVal_10); var currVal_13 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).vertical ? "vertical" : "horizontal"); var currVal_14 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).vertical; var currVal_15 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).vertical; var currVal_16 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).inset; _ck(_v, 19, 0, currVal_13, currVal_14, currVal_15, currVal_16); });
+        }, _node_modules_angular_material_expansion_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["View_MatExpansionPanelHeader_0"], _node_modules_angular_material_expansion_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["RenderType_MatExpansionPanelHeader"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 180224, [[3, 4]], 0, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatExpansionPanelHeader"], [_angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatExpansionPanel"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_8__["FocusMonitor"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpod"](10, { collapsedHeight: 0, expandedHeight: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpod"](11, { value: 0, params: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, 0, 2, "mat-panel-title", [["class", "bolder mat-expansion-panel-header-title"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 16384, null, 0, _angular_material_expansion__WEBPACK_IMPORTED_MODULE_11__["MatExpansionPanelTitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](14, null, [" ", " "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, 1, 12, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](16, 0, null, null, 11, "mat-list-item", [["class", "mat-list-item"]], [[2, "mat-list-item-avatar", null], [2, "mat-list-item-with-avatar", null]], [[null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("focus" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17)._handleFocus() !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17)._handleBlur() !== false);
+                ad = (pd_1 && ad);
+            }
+            return ad;
+        }, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatListItem_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatListItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](17, 1097728, null, 3, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatListItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatNavList"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 5, { _lines: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 6, { _avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 7, { _icon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](21, 0, null, 2, 6, "button", [["class", "demo-nav-item"], ["disableRipple", ""], ["mat-button", ""], ["routerLinkActive", "active-link"]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 22).onClick() !== false);
+                ad = (pd_0 && ad);
+            }
+            return ad;
+        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](22, 16384, [[8, 4]], 0, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLink"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { routerLink: [0, "routerLink"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](23, 1720320, null, 2, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterLinkActive"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], { routerLinkActive: [0, "routerLinkActive"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 8, { links: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 9, { linksWithHrefs: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](26, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_6__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_7__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_8__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], { disableRipple: [0, "disableRipple"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, [" README "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 1, 1, null, View_ModuleIndexComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](29, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 1, 1, null, View_ModuleIndexComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](31, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](32, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](33, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_15__["MatDivider"], [], null, null)], function (_ck, _v) { var currVal_2 = ""; _ck(_v, 5, 0, currVal_2); var currVal_15 = (_v.context.$implicit.name + "/readme"); _ck(_v, 22, 0, currVal_15); var currVal_16 = "active-link"; _ck(_v, 23, 0, currVal_16); var currVal_17 = ""; _ck(_v, 26, 0, currVal_17); var currVal_18 = _v.context.$implicit.children; _ck(_v, 29, 0, currVal_18); var currVal_19 = !_v.context.$implicit.children; _ck(_v, 31, 0, currVal_19); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).expanded; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5)._hasSpacing(); _ck(_v, 4, 0, currVal_0, currVal_1); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).panel._headerId; var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).disabled ? (0 - 1) : 0); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9)._getPanelId(); var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9)._isExpanded(); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).panel.disabled; var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9)._isExpanded(); var currVal_9 = _ck(_v, 11, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9)._getExpandedState(), _ck(_v, 10, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).collapsedHeight, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).expandedHeight)); _ck(_v, 8, 0, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9); var currVal_10 = _v.context.$implicit.label; _ck(_v, 14, 0, currVal_10); var currVal_11 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17)._icon); var currVal_12 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17)._icon); _ck(_v, 16, 0, currVal_11, currVal_12); var currVal_13 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 26).disabled || null); var currVal_14 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 26)._animationMode === "NoopAnimations"); _ck(_v, 21, 0, currVal_13, currVal_14); var currVal_20 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 33).vertical ? "vertical" : "horizontal"); var currVal_21 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 33).vertical; var currVal_22 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 33).vertical; var currVal_23 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 33).inset; _ck(_v, 32, 0, currVal_20, currVal_21, currVal_22, currVal_23); });
 }
 function View_ModuleIndexComponent_0(_l) {
     return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_16__["SortByPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 12, "mat-sidenav-container", [["class", "demo-container mat-drawer-container mat-sidenav-container"]], [[2, "mat-drawer-container-explicit-backdrop", null]], null, null, _node_modules_angular_material_sidenav_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_17__["View_MatSidenavContainer_0"], _node_modules_angular_material_sidenav_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_17__["RenderType_MatSidenavContainer"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 1490944, null, 2, _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_18__["MatSidenavContainer"], [[2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_19__["Directionality"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_18__["MAT_DRAWER_DEFAULT_AUTOSIZE"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 1, { _drawers: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 2, { _content: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, 0, 3, "mat-sidenav", [["class", "demo-nav-container mat-drawer mat-sidenav"], ["mode", "side"], ["opened", ""], ["tabIndex", "-1"]], [[40, "@transform", 0], [1, "align", 0], [2, "mat-drawer-end", null], [2, "mat-drawer-over", null], [2, "mat-drawer-push", null], [2, "mat-drawer-side", null], [2, "mat-sidenav-fixed", null], [4, "top", "px"], [4, "bottom", "px"]], [["component", "@transform.start"], ["component", "@transform.done"]], function (_v, en, $event) {
@@ -21297,6 +21748,31 @@ var SanitizeHtmlPipe = /** @class */ /*@__PURE__*/ (function () {
         return this._sanitizer.bypassSecurityTrustHtml(html);
     };
     return SanitizeHtmlPipe;
+}());
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/partials/pipes/trim-brackets.pipe.ts":
+/*!******************************************************!*\
+  !*** ./src/app/partials/pipes/trim-brackets.pipe.ts ***!
+  \******************************************************/
+/*! exports provided: TrimBracketsPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TrimBracketsPipe", function() { return TrimBracketsPipe; });
+var TrimBracketsPipe = /** @class */ /*@__PURE__*/ (function () {
+    function TrimBracketsPipe() {
+    }
+    TrimBracketsPipe.prototype.transform = function (value) {
+        var val = value.replace(/\[/g, '');
+        return val.replace(/\]/g, '');
+    };
+    return TrimBracketsPipe;
 }());
 
 
