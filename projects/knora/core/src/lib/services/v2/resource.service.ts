@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 
 import { ApiService } from '../api.service';
-import { ApiServiceResult, ReadResourcesSequence } from '../../declarations';
+import { ApiServiceResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
 import { map, mergeMap } from 'rxjs/operators';
 import { ConvertJSONLD } from './convert-jsonld';
+import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
+import { HttpClient } from '@angular/common/http';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -13,6 +15,12 @@ const jsonld = require('jsonld');
     providedIn: 'root'
 })
 export class ResourceService extends ApiService {
+
+    constructor(public http: HttpClient,
+                @Inject('config') public config: KuiCoreConfig,
+                public ontoCache: OntologyCacheService) {
+        super(http, config,);
+    }
 
     /**
      * Given the Iri, requests the representation of a resource.
@@ -31,14 +39,12 @@ export class ResourceService extends ApiService {
      * @param {string} iri Iri of the resource (not yet URL encoded).
      * @return {Observable<ReadResourcesSequence>}
      */
-    getResourceAsReadResourceSequence(iri: string) {
+    getReadResourceSequence(iri: string): Observable<ReadResourcesSequence> {
         const res: Observable<any> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));
 
         return res.pipe(
             mergeMap(
                 // this would return an Observable of a PromiseObservable -> combine them into one Observable
-                // http://reactivex.io/documentation/operators/flatmap.html
-                // http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap
                 (resourceResponse: ApiServiceResult) => {
                     const resPromises = jsonld.promises;
                     // compact JSON-LD using an empty context: expands all Iris
@@ -49,10 +55,25 @@ export class ResourceService extends ApiService {
                     return from(resPromise);
                 }
             ),
-            map(
+            mergeMap(
+                // return Observable of ReadResourcesSequence
                 (resourceResponse: Object) => {
+                    // convert JSON-LD into a ReadResourceSequence
                     const resSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(resourceResponse);
-                    return resSeq;
+
+                    // collect resource class Iris
+                    const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);
+
+                    // request information about resource classes
+                    return this.ontoCache.getResourceClassDefinitions(resourceClassIris).pipe(
+                        map(
+                            (ontoInfo: OntologyInformation) => {
+                                // add ontology information to ReadResourceSequence
+                                resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);
+                                return resSeq;
+                            }
+                        )
+                    );
                 }
             )
         );

@@ -4,14 +4,19 @@ import { ApiService } from '../api.service';
 import { ResourceService } from './resource.service';
 import { ReadResourcesSequence } from '../../declarations';
 import { KuiCoreModule } from '../../core.module';
+import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
+import { of } from 'rxjs';
 
 describe('ResourceService', () => {
     let httpTestingController: HttpTestingController;
+    let ontoCacheSpy: jasmine.SpyObj<OntologyCacheService>;
 
     let resourceService: ResourceService;
     let expectedResource;
 
     beforeEach(() => {
+        const spyOntoCache = jasmine.createSpyObj('OntologyCacheService', ['getResourceClassDefinitions']);
+
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
@@ -19,12 +24,25 @@ describe('ResourceService', () => {
             ],
             providers: [
                 ApiService,
-                ResourceService
+                ResourceService,
+                {provide: OntologyCacheService, useValue: spyOntoCache}
             ]
         });
 
         httpTestingController = TestBed.get(HttpTestingController);
         resourceService = TestBed.get(ResourceService);
+
+        ontoCacheSpy = TestBed.get(OntologyCacheService);
+
+        ontoCacheSpy.getResourceClassDefinitions.and.callFake(
+            () => {
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+
+                return of(new OntologyInformation({}, resourceClassesThing, propertiesThing));
+            }
+        );
+
     });
 
     afterEach(() => {
@@ -55,12 +73,20 @@ describe('ResourceService', () => {
     it('should request a resource from Knora as a sequence of ReadResource', async(() => {
         expectedResource = require('../../test-data/resources/Testthing.json');
 
-        resourceService.getResourceAsReadResourceSequence('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw').subscribe(
+        resourceService.getReadResourceSequence('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw').subscribe(
             (res: ReadResourcesSequence) => {
 
                 expect(res.numberOfResources).toEqual(1);
                 expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
                 expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+
+                expect(Object.keys(res.resources[0].properties).length).toEqual(12);
+
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+                expect(res.ontologyInformation.getProperties()).toEqual(propertiesThing);
+
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                expect(res.ontologyInformation.getResourceClasses()).toEqual(resourceClassesThing);
             }
         );
 
