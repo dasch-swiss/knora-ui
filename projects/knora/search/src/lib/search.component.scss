@@ -107,7 +107,8 @@ $search-width-small-device: 480px;
         font-size: 14pt;
         height: 38px;
         position: absolute;
-        width: calc(#{$search-width} - 80px);
+        // width: calc(#{$search-width} - 80px);
+        width: calc(100% - 80px);
 
         &:active,
         &:focus {
