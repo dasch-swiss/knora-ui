@@ -6,13 +6,26 @@ import { AbstractControl, NG_VALIDATORS, ValidatorFn, Validators } from '@angula
     providers: [{ provide: NG_VALIDATORS, useExisting: ExistingNameDirective, multi: true }]
 })
 /**
- * With the ExistingNameDirective we could prevent to use a name which already exists
- * e.g. get a list of all project shortnames, then we can use this list as existing names
+ * With the ExistingNameDirective we could prevent to use a name which has to be unique but already exists
+ * e.g. get a list of all project shortnames, then we can use this list as existing names;
+ * you can also use it for a list of blacklisted (not allowed) words
  */
 export class ExistingNameDirective implements Validators, OnChanges {
+
+    /**
+     * @ignore
+     */
     @Input() existingName: string;
+
+    /**
+     * @ignore
+     */
     private valFn = Validators.nullValidator;
 
+    /**
+     * @ignore
+     * @param changes
+     */
     ngOnChanges(changes: SimpleChanges): void {
         const change = changes['existingName'];
         if (change) {
@@ -24,18 +37,23 @@ export class ExistingNameDirective implements Validators, OnChanges {
         }
     }
 
+    /**
+     * @ignore
+     * @param control
+     */
     validate(control: AbstractControl): { [key: string]: any } {
         return this.valFn(control);
     }
 }
 
 /**
- * Validation of existing name value.
+ * Validation of existing name value. String method (only one value);
+ * Use it in a "formbuilder" group as a validator property
  *
- * @param {RegExp} nameRe
+ * @param {RegExp} nameRegexp
  * @returns ValidatorFn
  */
-export function existingNameValidator(nameRe: RegExp): ValidatorFn {
+export function existingNameValidator(nameRegexp: RegExp): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
         let name;
 
@@ -43,18 +61,20 @@ export function existingNameValidator(nameRe: RegExp): ValidatorFn {
             name = control.value.toLowerCase();
         }
 
-        const no = nameRe.test(name);
+        const no = nameRegexp.test(name);
         return no ? { 'existingName': { name } } : null;
     };
 }
 
 /**
- *  Validation of existing name value with an array list of existing names.
+ * Validation of existing name values. Array method (list of values)
+ * Use it in a "formbuilder" group as a validator property
  *
- * @param {RegExp} nameAr
+ *
+ * @param {RegExp} nameArrayRegexp
  * @returns ValidatorFn
  */
-export function existingNamesValidator(nameAr: [RegExp]): ValidatorFn {
+export function existingNamesValidator(nameArrayRegexp: [RegExp]): ValidatorFn {
 
     return (control: AbstractControl): { [key: string]: any } => {
 
@@ -65,7 +85,7 @@ export function existingNamesValidator(nameAr: [RegExp]): ValidatorFn {
         }
 
         let no;
-        for (const existing of nameAr) {
+        for (const existing of nameArrayRegexp) {
             no = existing.test(name);
             if (no) {
                 // console.log(no);

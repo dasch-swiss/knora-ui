@@ -2,8 +2,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<p>A component with a list of properties to sort a list by them.</p>",
-      "summary": "<p>A component with a list of properties to sort a list by them.</p>",
+      "full": "<p>A component with a list of properties to sort a list by one of them.<br />\nIt can be used together with the KuiSortBy pipe.</p>",
+      "summary": "<p>A component with a list of properties to sort a list by one of them.<br />\nIt can be used together with the KuiSortBy pipe.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -11,13 +11,25 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 3,
-    "codeStart": 6,
+    "line": 8,
+    "codeStart": 12,
     "code": "@Component({\n    selector: 'kui-sort-button',\n    templateUrl: './sort-button.component.html',\n    styleUrls: ['./sort-button.component.scss']\n})\nexport class SortButtonComponent implements OnInit {",
     "ctx": false
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "returns",
+        "string": "EventEmitter<string>\n    Event emitter when a user selected a sort property;\n    This is the selected key",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>EventEmitter<string>     Event emitter when a user selected a sort property;<br />\nThis is the selected key</p>"
+      }
+    ],
     "description": {
       "full": "",
       "summary": "",
@@ -28,33 +40,32 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 13,
-    "codeStart": 16,
-    "code": "@Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();\n\nmenuXPos: string = 'after';\n\nactiveKey: string;",
-    "ctx": false
-  },
-  {
-    "tags": [],
-    "description": {
-      "full": "",
-      "summary": "",
-      "body": ""
-    },
-    "isPrivate": false,
-    "isConstructor": false,
-    "isClass": false,
-    "isEvent": false,
-    "ignore": false,
-    "line": 22,
+    "line": 19,
     "codeStart": 25,
-    "code": "@Input() sortProps: any;",
+    "code": "@Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();\n\n\nmenuXPos: string = 'after';\n\nactiveKey: string;",
     "ctx": false
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "param",
+        "string": "{SortProp[]} sortProps",
+        "name": "sortProps",
+        "description": "",
+        "types": [
+          "Array.<SortProp>"
+        ],
+        "typesDescription": "<code>Array</code>.&lt;<a href=\"SortProp.html\">SortProp</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{SortProp[]} sortProps</p>"
+      }
+    ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>list of properties to sort by;<br />\nAn array of SortProp objects: { key: <string>, label: <string> }</p>",
+      "summary": "<p>list of properties to sort by;<br />\nAn array of SortProp objects: { key: <string>, label: <string> }</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -62,9 +73,41 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 27,
-    "codeStart": 30,
-    "code": "@Input() position: string = 'left';",
+    "line": 32,
+    "codeStart": 38,
+    "code": "@Input() sortProps: SortProp[];",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} (position) default value is 'left'",
+        "name": "(position)",
+        "description": "<p>default value is 'left'</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "<p>position of the sort menu: right or left</p>",
+      "summary": "<p>position of the sort menu: right or left</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 40,
+    "codeStart": 45,
+    "code": "@Input() position?: string = 'left';",
     "ctx": false
   },
   {
@@ -84,8 +127,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Active / current sort property</p>",
+      "summary": "<p>Active / current sort property</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -93,9 +136,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 32,
-    "codeStart": 36,
-    "code": "@Input() sortKey(value) {\n    this.activeKey = value;\n}\n\nconstructor() {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
+    "line": 47,
+    "codeStart": 52,
+    "code": "@Input() sortKey(value: string) {\n    this.activeKey = value;\n}\n\nconstructor() {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
     "ctx": false
   },
   {
@@ -131,8 +174,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 50,
-    "codeStart": 55,
+    "line": 66,
+    "codeStart": 71,
     "code": "sortBy(key: string) {\n    this.sortKeyChange.emit(key);\n}\n\n}",
     "ctx": {
       "type": "method",

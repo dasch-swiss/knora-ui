@@ -2,8 +2,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<p>With the ExistingNameDirective we could prevent to use a name which already exists<br />\ne.g. get a list of all project shortnames, then we can use this list as existing names</p>",
-      "summary": "<p>With the ExistingNameDirective we could prevent to use a name which already exists<br />\ne.g. get a list of all project shortnames, then we can use this list as existing names</p>",
+      "full": "<p>With the ExistingNameDirective we could prevent to use a name which has to be unique but already exists<br />\ne.g. get a list of all project shortnames, then we can use this list as existing names;<br />\nyou can also use it for a list of blacklisted (not allowed) words</p>",
+      "summary": "<p>With the ExistingNameDirective we could prevent to use a name which has to be unique but already exists<br />\ne.g. get a list of all project shortnames, then we can use this list as existing names;<br />\nyou can also use it for a list of blacklisted (not allowed) words</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -12,16 +12,142 @@
     "isEvent": false,
     "ignore": false,
     "line": 8,
-    "codeStart": 12,
-    "code": "export class ExistingNameDirective implements Validators, OnChanges {\n    @Input() existingName: string;\n    private valFn = Validators.nullValidator;\n\n    ngOnChanges(changes: SimpleChanges): void {\n        const change = changes['existingName'];\n        if (change) {\n            const val: string | RegExp = change.currentValue;\n            const re = val instanceof RegExp ? val : new RegExp(val);\n            this.valFn = existingNameValidator(re);\n        } else {\n            this.valFn = Validators.nullValidator;\n        }\n    }\n\n    validate(control: AbstractControl): { [key: string]: any } {\n        return this.valFn(control);\n    }\n}",
+    "codeStart": 13,
+    "code": "export class ExistingNameDirective implements Validators, OnChanges {",
     "ctx": false
   },
   {
     "tags": [
       {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 15,
+    "codeStart": 18,
+    "code": "@Input() existingName: string;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 20,
+    "codeStart": 23,
+    "code": "private valFn = Validators.nullValidator;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      },
+      {
         "type": "param",
-        "string": "{RegExp} nameRe",
-        "name": "nameRe",
+        "string": "changes",
+        "name": "changes",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>changes</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 25,
+    "codeStart": 29,
+    "code": "ngOnChanges(changes: SimpleChanges): void {\n    const change = changes['existingName'];\n    if (change) {\n        const val: string | RegExp = change.currentValue;\n        const re = val instanceof RegExp ? val : new RegExp(val);\n        this.valFn = existingNameValidator(re);\n    } else {\n        this.valFn = Validators.nullValidator;\n    }\n}",
+    "ctx": {
+      "type": "method",
+      "name": "ngOnChanges",
+      "string": "ngOnChanges()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      },
+      {
+        "type": "param",
+        "string": "control",
+        "name": "control",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>control</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 40,
+    "codeStart": 44,
+    "code": "validate(control: AbstractControl): { [key: string]: any } {\n    return this.valFn(control);\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "validate",
+      "string": "validate()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{RegExp} nameRegexp",
+        "name": "nameRegexp",
         "description": "",
         "types": [
           "RegExp"
@@ -31,7 +157,7 @@
         "nullable": false,
         "nonNullable": false,
         "variable": false,
-        "html": "<p>{RegExp} nameRe</p>"
+        "html": "<p>{RegExp} nameRegexp</p>"
       },
       {
         "type": "returns",
@@ -46,8 +172,8 @@
       }
     ],
     "description": {
-      "full": "<p>Validation of existing name value.</p>",
-      "summary": "<p>Validation of existing name value.</p>",
+      "full": "<p>Validation of existing name value. String method (only one value);<br />\nUse it in a &quot;formbuilder&quot; group as a validator property</p>",
+      "summary": "<p>Validation of existing name value. String method (only one value);<br />\nUse it in a &quot;formbuilder&quot; group as a validator property</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -55,9 +181,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 32,
-    "codeStart": 38,
-    "code": "export function existingNameValidator(nameRe: RegExp): ValidatorFn {\n    return (control: AbstractControl): { [key: string]: any } => {\n        let name;\n\n        if (control.value) {\n            name = control.value.toLowerCase();\n        }\n\n        const no = nameRe.test(name);\n        return no ? { 'existingName': { name } } : null;\n    };\n}",
+    "line": 49,
+    "codeStart": 56,
+    "code": "export function existingNameValidator(nameRegexp: RegExp): ValidatorFn {\n    return (control: AbstractControl): { [key: string]: any } => {\n        let name;\n\n        if (control.value) {\n            name = control.value.toLowerCase();\n        }\n\n        const no = nameRegexp.test(name);\n        return no ? { 'existingName': { name } } : null;\n    };\n}",
     "ctx": {
       "type": "function",
       "name": "existingNameValidator",
@@ -68,8 +194,8 @@
     "tags": [
       {
         "type": "param",
-        "string": "{RegExp} nameAr",
-        "name": "nameAr",
+        "string": "{RegExp} nameArrayRegexp",
+        "name": "nameArrayRegexp",
         "description": "",
         "types": [
           "RegExp"
@@ -79,7 +205,7 @@
         "nullable": false,
         "nonNullable": false,
         "variable": false,
-        "html": "<p>{RegExp} nameAr</p>"
+        "html": "<p>{RegExp} nameArrayRegexp</p>"
       },
       {
         "type": "returns",
@@ -94,8 +220,8 @@
       }
     ],
     "description": {
-      "full": "<p>Validation of existing name value with an array list of existing names.</p>",
-      "summary": "<p>Validation of existing name value with an array list of existing names.</p>",
+      "full": "<p>Validation of existing name values. Array method (list of values)<br />\nUse it in a &quot;formbuilder&quot; group as a validator property</p>",
+      "summary": "<p>Validation of existing name values. Array method (list of values)<br />\nUse it in a &quot;formbuilder&quot; group as a validator property</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -103,9 +229,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 51,
-    "codeStart": 57,
-    "code": "export function existingNamesValidator(nameAr: [RegExp]): ValidatorFn {\n\n    return (control: AbstractControl): { [key: string]: any } => {\n\n        let name;\n\n        if (control.value) {\n            name = control.value.toLowerCase();\n        }\n\n        let no;\n        for (const existing of nameAr) {\n            no = existing.test(name);\n            if (no) {\n                // console.log(no);\n                return no ? { 'existingName': { name } } : null;\n            }\n        }\n        return no ? { 'existingName': { name } } : null;\n    };\n}",
+    "line": 69,
+    "codeStart": 77,
+    "code": "export function existingNamesValidator(nameArrayRegexp: [RegExp]): ValidatorFn {\n\n    return (control: AbstractControl): { [key: string]: any } => {\n\n        let name;\n\n        if (control.value) {\n            name = control.value.toLowerCase();\n        }\n\n        let no;\n        for (const existing of nameArrayRegexp) {\n            no = existing.test(name);\n            if (no) {\n                // console.log(no);\n                return no ? { 'existingName': { name } } : null;\n            }\n        }\n        return no ? { 'existingName': { name } } : null;\n    };\n}",
     "ctx": {
       "type": "function",
       "name": "existingNamesValidator",
@@ -171,8 +297,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 79,
-    "codeStart": 86,
+    "line": 99,
+    "codeStart": 106,
     "code": "export function notAllowed(pattern: RegExp, regType: string): ValidatorFn {\n    return (control: AbstractControl): { [key: string]: any } => {\n        let name;\n\n        // console.log(regType);\n\n        if (control.value) {\n            name = control.value.toLowerCase();\n        }\n\n        // console.log(name);\n\n        const no = pattern.test(name);\n        return no ? { regType: { name } } : null;\n    };\n}",
     "ctx": {
       "type": "function",
