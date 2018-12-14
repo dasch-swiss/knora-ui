@@ -10,9 +10,7 @@
         </div>
 
         <div class="input-field">
-            <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" name="search" (keyup.esc)="resetSearch(search)"
-                (keyup)="onKey(search, $event)" (click)="setFocus()" (focus)="toggleMenu('simpleSearch')" [disabled]="focusOnExtended === 'active'"
-            />
+            <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" name="search" (keyup.esc)="resetSearch(search)" (keyup)="onKey(search, $event)" (click)="setFocus()" (focus)="toggleMenu('simpleSearch')" [disabled]="focusOnExtended === 'active'" />
         </div>
 
         <!-- switch button: on some focus we need a close button for the simple or extended panel -->
@@ -27,7 +25,7 @@
         <!-- the search panel has two "dropdown" menus: one for simple search and another one for the extended search -->
         <div class="salsah-menu simple-search" [@simpleSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch">
             <mat-list class="salsah-previous-search-list">
-                <mat-list-item *ngFor="let item of prevSearch | reverse; let i=index">
+                <mat-list-item *ngFor="let item of prevSearch | kuiReverse; let i=index">
                     <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)">{{item}}</h4>
                     <button mat-icon-button (click)="resetPrevSearch(item)">
                         <mat-icon aria-label="close">clear</mat-icon>
