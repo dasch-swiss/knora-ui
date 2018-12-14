@@ -19,15 +19,23 @@
   {
     "tags": [
       {
-        "type": "returns",
-        "string": "EventEmitter<string>\n    Event emitter when a user selected a sort property;\n    This is the selected key",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      },
+      {
+        "type": "param",
+        "string": "{string} sortKeyChange (output)\nEventEmitter when a user selected a sort property;\nThis is the selected key",
+        "name": "sortKeyChange",
+        "description": "<p>(output) EventEmitter when a user selected a sort property;<br />\nThis is the selected key</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
         "optional": false,
-        "description": "<p>EventEmitter<string>     Event emitter when a user selected a sort property;<br />\nThis is the selected key</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
       }
     ],
     "description": {
@@ -49,9 +57,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{SortProp[]} sortProps",
+        "string": "{SortProp[]} sortProps\nAn array of SortProp objects for the selection menu:\nSortProp: { key: string, label: string }",
         "name": "sortProps",
-        "description": "",
+        "description": "<p>An array of SortProp objects for the selection menu:<br />\nSortProp: { key: string, label: string }</p>",
         "types": [
           "Array.<SortProp>"
         ],
@@ -59,13 +67,12 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{SortProp[]} sortProps</p>"
+        "variable": false
       }
     ],
     "description": {
-      "full": "<p>list of properties to sort by;<br />\nAn array of SortProp objects: { key: <string>, label: <string> }</p>",
-      "summary": "<p>list of properties to sort by;<br />\nAn array of SortProp objects: { key: <string>, label: <string> }</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -74,7 +81,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 32,
-    "codeStart": 38,
+    "codeStart": 37,
     "code": "@Input() sortProps: SortProp[];",
     "ctx": false
   },
@@ -82,9 +89,41 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} (position) default value is 'left'",
-        "name": "(position)",
-        "description": "<p>default value is 'left'</p>",
+        "string": "{string} [position='left']\nOptional position of the sort menu: right or left",
+        "name": "[position='left']",
+        "description": "<p>Optional position of the sort menu: right or left</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 39,
+    "codeStart": 43,
+    "code": "@Input() position?: string = 'left';",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} sortKey\nset and get (two-way data binding) of current sort key",
+        "name": "sortKey",
+        "description": "<p>set and get (two-way data binding) of current sort key</p>",
         "types": [
           "string"
         ],
@@ -96,8 +135,8 @@
       }
     ],
     "description": {
-      "full": "<p>position of the sort menu: right or left</p>",
-      "summary": "<p>position of the sort menu: right or left</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -105,30 +144,22 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 40,
-    "codeStart": 45,
-    "code": "@Input() position?: string = 'left';",
+    "line": 45,
+    "codeStart": 49,
+    "code": "@Input() sortKey(sortKey: string) {\n    this.activeKey = sortKey;\n}",
     "ctx": false
   },
   {
     "tags": [
       {
-        "type": "param",
-        "string": "value",
-        "name": "value",
-        "description": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
-        "optional": false,
-        "html": "<p>value</p>"
+        "type": "ignore",
+        "string": "",
+        "html": ""
       }
     ],
     "description": {
-      "full": "<p>Active / current sort property</p>",
-      "summary": "<p>Active / current sort property</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -136,10 +167,14 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 47,
-    "codeStart": 52,
-    "code": "@Input() sortKey(value: string) {\n    this.activeKey = value;\n}\n\nconstructor() {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
-    "ctx": false
+    "line": 53,
+    "codeStart": 56,
+    "code": "constructor() {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
+    "ctx": {
+      "type": "constructor",
+      "name": "constructor",
+      "string": "constructor()"
+    }
   },
   {
     "tags": [

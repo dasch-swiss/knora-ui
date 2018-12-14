@@ -50,10 +50,10 @@ export class ExistingNameDirective implements Validators, OnChanges {
  * Validation of existing name value. String method (only one value);
  * Use it in a "formbuilder" group as a validator property
  *
- * @param {RegExp} nameRegexp
+ * @param {RegExp} valRegexp Only one regular expression value
  * @returns ValidatorFn
  */
-export function existingNameValidator(nameRegexp: RegExp): ValidatorFn {
+export function existingNameValidator(valRegexp: RegExp): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
         let name;
 
@@ -61,7 +61,7 @@ export function existingNameValidator(nameRegexp: RegExp): ValidatorFn {
             name = control.value.toLowerCase();
         }
 
-        const no = nameRegexp.test(name);
+        const no = valRegexp.test(name);
         return no ? { 'existingName': { name } } : null;
     };
 }
@@ -71,10 +71,10 @@ export function existingNameValidator(nameRegexp: RegExp): ValidatorFn {
  * Use it in a "formbuilder" group as a validator property
  *
  *
- * @param {RegExp} nameArrayRegexp
+ * @param {RegExp} valArrayRegexp List of regular expression values
  * @returns ValidatorFn
  */
-export function existingNamesValidator(nameArrayRegexp: [RegExp]): ValidatorFn {
+export function existingNamesValidator(valArrayRegexp: [RegExp]): ValidatorFn {
 
     return (control: AbstractControl): { [key: string]: any } => {
 
@@ -85,7 +85,7 @@ export function existingNamesValidator(nameArrayRegexp: [RegExp]): ValidatorFn {
         }
 
         let no;
-        for (const existing of nameArrayRegexp) {
+        for (const existing of valArrayRegexp) {
             no = existing.test(name);
             if (no) {
                 // console.log(no);

@@ -146,9 +146,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{RegExp} nameRegexp",
-        "name": "nameRegexp",
-        "description": "",
+        "string": "{RegExp} valRegexp Only one regular expression value",
+        "name": "valRegexp",
+        "description": "<p>Only one regular expression value</p>",
         "types": [
           "RegExp"
         ],
@@ -156,8 +156,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{RegExp} nameRegexp</p>"
+        "variable": false
       },
       {
         "type": "returns",
@@ -183,7 +182,7 @@
     "ignore": false,
     "line": 49,
     "codeStart": 56,
-    "code": "export function existingNameValidator(nameRegexp: RegExp): ValidatorFn {\n    return (control: AbstractControl): { [key: string]: any } => {\n        let name;\n\n        if (control.value) {\n            name = control.value.toLowerCase();\n        }\n\n        const no = nameRegexp.test(name);\n        return no ? { 'existingName': { name } } : null;\n    };\n}",
+    "code": "export function existingNameValidator(valRegexp: RegExp): ValidatorFn {\n    return (control: AbstractControl): { [key: string]: any } => {\n        let name;\n\n        if (control.value) {\n            name = control.value.toLowerCase();\n        }\n\n        const no = valRegexp.test(name);\n        return no ? { 'existingName': { name } } : null;\n    };\n}",
     "ctx": {
       "type": "function",
       "name": "existingNameValidator",
@@ -194,9 +193,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{RegExp} nameArrayRegexp",
-        "name": "nameArrayRegexp",
-        "description": "",
+        "string": "{RegExp} valArrayRegexp List of regular expression values",
+        "name": "valArrayRegexp",
+        "description": "<p>List of regular expression values</p>",
         "types": [
           "RegExp"
         ],
@@ -204,8 +203,7 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{RegExp} nameArrayRegexp</p>"
+        "variable": false
       },
       {
         "type": "returns",
@@ -231,7 +229,7 @@
     "ignore": false,
     "line": 69,
     "codeStart": 77,
-    "code": "export function existingNamesValidator(nameArrayRegexp: [RegExp]): ValidatorFn {\n\n    return (control: AbstractControl): { [key: string]: any } => {\n\n        let name;\n\n        if (control.value) {\n            name = control.value.toLowerCase();\n        }\n\n        let no;\n        for (const existing of nameArrayRegexp) {\n            no = existing.test(name);\n            if (no) {\n                // console.log(no);\n                return no ? { 'existingName': { name } } : null;\n            }\n        }\n        return no ? { 'existingName': { name } } : null;\n    };\n}",
+    "code": "export function existingNamesValidator(valArrayRegexp: [RegExp]): ValidatorFn {\n\n    return (control: AbstractControl): { [key: string]: any } => {\n\n        let name;\n\n        if (control.value) {\n            name = control.value.toLowerCase();\n        }\n\n        let no;\n        for (const existing of valArrayRegexp) {\n            no = existing.test(name);\n            if (no) {\n                // console.log(no);\n                return no ? { 'existingName': { name } } : null;\n            }\n        }\n        return no ? { 'existingName': { name } } : null;\n    };\n}",
     "ctx": {
       "type": "function",
       "name": "existingNamesValidator",

@@ -17,10 +17,10 @@ export interface SortProp {
 export class SortButtonComponent implements OnInit {
 
     /**
-     *
+     * @ignore
      * @param {string} sortKeyChange (output)
-     *     EventEmitter when a user selected a sort property;
-     *     This is the selected key
+     * EventEmitter when a user selected a sort property;
+     * This is the selected key
      */
     @Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();
 
@@ -30,25 +30,21 @@ export class SortButtonComponent implements OnInit {
     activeKey: string;
 
     /**
-     * List of properties to sort by;
-     *
      * @param {SortProp[]} sortProps
-     * An array of SortProp objects: { key: <string>, label: <string> }
+     * An array of SortProp objects for the selection menu:
+     * SortProp: { key: string, label: string }
      */
     @Input() sortProps: SortProp[];
 
     /**
+     * @param {string} [position='left']
      * Optional position of the sort menu: right or left
-     *
-     * @param {string} position
-     * default value is 'left'
      */
     @Input() position?: string = 'left';
 
     /**
-     * Active / current sort property
-     *
      * @param {string} sortKey
+     * set and get (two-way data binding) of current sort key
      */
     @Input() sortKey(sortKey: string) {
         this.activeKey = sortKey;

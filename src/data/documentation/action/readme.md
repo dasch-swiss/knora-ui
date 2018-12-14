@@ -32,8 +32,9 @@ This module has the following package dependencies, which you also have to insta
  
 
 ## Components
-This module contains various components:
+This module contains various components like a progress indicator, sort button and sort-by pipe, but also helper for images (in the admin interface) and existing names.
 
+<!--
 ### Progress indicator
 
 You can use the progress indicator in two ways:
@@ -88,3 +89,4 @@ In case of an object, where you don't know the labels or in case of an array wit
 The sortBy pipe is used to sort by a selected key. 
 
 [Example and demo in sort button component](https://dhlab-basel.github.io/Knora-ui/modules/action/sort-button)
+-->
