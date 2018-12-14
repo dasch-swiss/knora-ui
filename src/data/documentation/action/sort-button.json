@@ -19,23 +19,9 @@
   {
     "tags": [
       {
-        "type": "ignore",
-        "string": "",
-        "html": ""
-      },
-      {
-        "type": "param",
-        "string": "{string} sortKeyChange (output)\nEventEmitter when a user selected a sort property;\nThis is the selected key",
-        "name": "sortKeyChange",
-        "description": "<p>(output) EventEmitter when a user selected a sort property;<br />\nThis is the selected key</p>",
-        "types": [
-          "string"
-        ],
-        "typesDescription": "<code>string</code>",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
-        "variable": false
+        "type": "emits",
+        "string": "{string} sortKeyChange \nEventEmitter when a user selected a sort property;\nThis is the selected key",
+        "html": "<p>{string} sortKeyChange<br />\nEventEmitter when a user selected a sort property;<br />\nThis is the selected key</p>"
       }
     ],
     "description": {

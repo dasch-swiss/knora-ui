@@ -13,11 +13,13 @@ import { SessionService } from '../session/session.service';
 export class LoginFormComponent implements OnInit {
 
     /**
-     * navigate to the defined url after login
+     * @param {string} [navigate]
+     * navigate to the defined url after successful login
      */
     @Input() navigate?: string;
 
     /**
+     * @param {string} [color]
      * set your theme color here,
      * it will be used in the progress-indicator
      */
@@ -79,6 +81,7 @@ export class LoginFormComponent implements OnInit {
                 private _router: Router) {
     }
 
+
     ngOnInit() {
 
         // check if a user is already logged in
@@ -100,6 +103,8 @@ export class LoginFormComponent implements OnInit {
     }
 
     /**
+     * @ignore
+     *
      * check for errors while using the form
      * @param data
      */

@@ -78,7 +78,13 @@
                     </div>
 
                     <!-- type -->
+                    <div *ngSwitchCase="'emits'" [innerHtml]="tag.html | sanitizeHtml"></div>
+
+                    <!-- type -->
                     <div *ngSwitchCase="'type'" [innerHtml]="tag.html | sanitizeHtml"></div>
+
+                    <!-- function -->
+                    <div *ngSwitchCase="'function'" [innerHtml]="tag.html | sanitizeHtml"></div>
 
                     <!-- ignore (do nothing!) -->
                     <div *ngSwitchCase="'ignore'"></div>

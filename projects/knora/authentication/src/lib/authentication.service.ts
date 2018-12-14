@@ -13,24 +13,27 @@ export class AuthenticationService {
     constructor(public http: HttpClient,
                 private _session: SessionService,
                 @Inject('config') public config: KuiCoreConfig) {
-
     }
 
     /**
+     * @function
      * validate if a user is logged in or not
      * and the session is active
+     *
+     * @returns boolean
      */
     session(): boolean {
         return this._session.validateSession();
     }
 
     /**
+     * @function
      * login process;
      * it's used by the login component
      *
      * @param identifier (email or username)
      * @param password
-     * @returns
+     * @returns Observable<any>
      */
     login(identifier: string, password: string): Observable<any> {
 
@@ -49,6 +52,11 @@ export class AuthenticationService {
     }
 
 
+    /**
+     * @function
+     *
+     * logout the user by destroying the session
+     */
     logout() {
         // destroy the session
         localStorage.removeItem('session');
@@ -56,6 +64,7 @@ export class AuthenticationService {
 
 
     /**
+     * @ignore
      * handle request error in case of server error
      *
      * @param error

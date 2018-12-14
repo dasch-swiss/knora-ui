@@ -22,31 +22,31 @@ This version of Knora-ui requires Knora v3.0.0 or later.
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg)](https://www.npmjs.com/package/@knora/core)
 
 The core module contains every service to use Knora's RESTful webapi.
-[read more...](https://dhlab-basel.github.io/Knora-ui/modules/core/readme)
+[read more...](https://dhlab-basel.github.io/Knora-ui/modules/core)
 
 ### @knora/authentication
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg)](https://www.npmjs.com/package/@knora/authentication)
 
 The authentication module contains the login form (for standalone usage) or a complete login- / logout-button environment incl. the login form.
-[read more...](https://dhlab-basel.github.io/Knora-ui/modules/authentication/readme)
+[read more...](https://dhlab-basel.github.io/Knora-ui/modules/authentication)
 
 ### @knora/search
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/search.svg)](https://www.npmjs.com/package/@knora/search)
 
 Search module allows to make simple searches or extended searches in Knora. In extended search, resource class and its properties related to one specific ontology are selected to create your query.
-[read more...](https://dhlab-basel.github.io/Knora-ui/modules/search/readme)
+[read more...](https://dhlab-basel.github.io/Knora-ui/modules/search)
 
 ### @knora/viewer
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg)](https://www.npmjs.com/package/@knora/viewer)
 
 The viewer module contains object components to show the resource class representations from Knora, the gui-elements for the property values and different kind of view frameworks.
-[read more...](https://dhlab-basel.github.io/Knora-ui/modules/viewer/readme)
+[read more...](https://dhlab-basel.github.io/Knora-ui/modules/viewer)
 
 ### @knora/action
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)](https://www.npmjs.com/package/@knora/action)
 
 The action module contains special buttons (e.g. to sort a list), pipes and directives.
-[read more...](https://dhlab-basel.github.io/Knora-ui/modules/action/readme)
+[read more...](https://dhlab-basel.github.io/Knora-ui/modules/action)
 
 <!--
 ## Developers note

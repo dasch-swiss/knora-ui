@@ -118,7 +118,11 @@ const appRoutes: Routes = [
                     {
                         path: 'login-form',
                         component: LoginComponent
-                    }
+                    },
+                    {
+                        path: 'authentication',
+                        component: AuthComponent
+                    },
                 ]
             },
             {

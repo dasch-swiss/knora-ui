@@ -17,8 +17,9 @@ export interface SortProp {
 export class SortButtonComponent implements OnInit {
 
     /**
-     * @ignore
-     * @param {string} sortKeyChange (output)
+     * @ignore {string} sortKeyChange
+     * @emits TODO: this would be the correct syntax for Output eventEmitter
+     *
      * EventEmitter when a user selected a sort property;
      * This is the selected key
      */

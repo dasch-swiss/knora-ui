@@ -42,13 +42,13 @@ export class AppDemo {
                 name: 'admin-image',
                 label: 'AdminImage',
                 type: 'Directive',
-                stackblitz: true
+                stackblitz: false
             },
             {
                 name: 'existing-name',
                 label: 'ExistingName',
                 type: 'Directive',
-                stackblitz: false
+                stackblitz: true
             },
             {
                 name: 'key',
@@ -120,6 +120,11 @@ export class AppDemo {
                 name: 'login-form',
                 label: 'LoginForm',
                 type: 'Component',
+                stackblitz: false
+            },
+            {
+                name: 'authentication',
+                label: 'AuthenticationService',
                 stackblitz: false
             }
         ]
