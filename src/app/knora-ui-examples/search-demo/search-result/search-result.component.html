@@ -8,10 +8,10 @@
   <!-- show the result as a default list -->
   <div *ngFor="let res of result">
     <h3 mat-line>{{res.label}} ({{ontologyInfo?.getLabelForResourceClass(res.type)}})</h3>
-    <div mat-line *ngFor="let prop of res.properties | key">
+    <div mat-line *ngFor="let prop of res.properties | kuiKey">
       <span>{{ontologyInfo?.getLabelForProperty(prop.key)}}</span>
       <ul>
-        <li *ngFor="let val of prop.value | key">
+        <li *ngFor="let val of prop.value | kuiKey">
           <span [ngSwitch]="val.value.getClassName()">
             <!-- <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value> -->
             <kui-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString" [valueObject]="val.value"></kui-text-value-as-string>
