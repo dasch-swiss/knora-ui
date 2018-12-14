@@ -6,7 +6,7 @@ import { KnoraConstants } from '@knora/core';
  */
 @Directive({
     // tslint:disable-next-line:directive-selector
-    selector: '[gnd]'
+    selector: '[kuiGnd]'
 })
 export class GndDirective implements OnChanges {
 
