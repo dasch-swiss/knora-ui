@@ -29,7 +29,7 @@ This module has the following package dependencies, which you also have to insta
 
 ## Setup
 On version 6 of Angular CLI they removed the shim for global and other node built-ins as mentioned in [#9827 (comment)](https://github.com/angular/angular-cli/issues/9827#issuecomment-369578814). Because of the jsonld package, we have to manually shimming it inside of the polyfills.ts file of the app:
-```TypeScript
+```javascript
 // Add global to window, assigning the value of window itself.
 
  (window as any).global = window;
@@ -43,7 +43,7 @@ and set the api server of your environment first. In our apps we define it in th
 
 For local usage (developer mode) define your environment.ts as follow: 
 
-```TypeScript
+```javascript
 export const environment = {
   production: false,
   name: 'Salsah',
@@ -60,7 +60,7 @@ export const environment = {
 
 Send this configuration to the `@knora/core` module in your app.module.ts
 
-```TypeScript
+```javascript
 import {environment} from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -102,7 +102,7 @@ To get project information you have to import at least three elements from `@kno
 
 and use it as follow:
 
-```TypeScript
+```javascript
 project: Project;
 
 // ...
@@ -135,7 +135,7 @@ For data representing resources, a `ReadResourcesSequence` has to be constructed
 Given a full resource request or a list of search results, the module `ConvertJSONLD` converts them from JSON-LD to an instance of `ReadResourcesSequence`.
 Before passing the JSON-LD data to `ConvertJSONLD`, the prefixes have to be expanded using the JSON-LD processor.
 
-```typescript
+```javascript
 declare let require: any;
 let jsonld = require('jsonld');
 
@@ -167,7 +167,7 @@ For the different value types, an implementation of `ReadPropertyItem` is provid
 When processing the representation of resources, entity Iris are collected and retrieved from Knora via the service `OntologyCacheService`.
 After expanding the Iris as shown above, the resources entity Iris can be collected and the definitions requested:
 
-```typescript
+```javascript
 // get resource class Iris from response
 let resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);
 

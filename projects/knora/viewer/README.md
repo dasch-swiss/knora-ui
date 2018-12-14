@@ -35,7 +35,7 @@ This module has the following package dependencies, which you also have to insta
  
  Import the viewer module in your app.module.ts and add it to the NgModules's imports:
  
- ```TypeScript
+ ```javascript
  import { AppComponent } from './app.component';
  import { KuiViewerModule } from '@knora/viewer';
  
