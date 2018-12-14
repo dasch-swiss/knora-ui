@@ -61,7 +61,7 @@ export class AppModule { }
 ```
 
 
-## Usage
+## Usage of KuiAuthGuard
 
 The @knora/authentication module contains a guard class which will redirect a guest user to the login page. It can be used in the app routing as follow:
 
@@ -79,6 +79,8 @@ const appRoutes: Routes = [
         component: LoginFormComponent
     }
 ]
+
 ```
 
-The `LoginFormComponent` needs then only the `<kui-login-form></kui-login-form>` tag. It's also possible to define e navigation route, where the user will be redirected after successful login: `<kui-login-form [navigate]="'/dashboard'"></kui-login-form>`
+## Usage of kui-login-form
+The `LoginFormComponent` in the app needs in principle only the `<kui-login-form></kui-login-form>` tag. Additional it's also possible to define e navigation route, where the user will be redirected after successful login: `<kui-login-form [navigate]="'/dashboard'"></kui-login-form>`

@@ -30,8 +30,32 @@ This module has the following package dependencies, which you also have to insta
  - @angular/animations@6.0.0"
  - @angular/cdk@6.0.0
  - @knora/core@6.0.0
+ 
+ ## Setup
+ 
+ Import the viewer module in your app.module.ts and add it to the NgModules's imports:
+ 
+ ```TypeScript
+ import { AppComponent } from './app.component';
+ import { KuiViewerModule } from '@knora/viewer';
+ 
+ @NgModule({
+     declarations: [
+         AppComponent
+     ],
+     imports: [
+         KuiViewerModule
+     ],
+     providers: [ ],
+     bootstrap: [AppComponent]
+ })
+ export class AppModule {
+ }
+ ```
+ 
 
 
+<!--
 ## Components
 This module contains 3 main components:
 

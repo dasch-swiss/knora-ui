@@ -30,8 +30,31 @@ This module has the following package dependencies, which you also have to insta
  - jdnconvertiblecalendar@0.0.2
  - jdnconvertiblecalendardateadapter@0.0.7
  
+  
+ ## Setup
+ 
+ Import the acton module in your app.module.ts and add it to the NgModules's imports:
+ 
+ ```TypeScript
+ import { AppComponent } from './app.component';
+ import { KuiActionModule } from '@knora/action';
+ 
+ @NgModule({
+     declarations: [
+         AppComponent
+     ],
+     imports: [
+         KuiActionModule
+     ],
+     providers: [ ],
+     bootstrap: [AppComponent]
+ })
+ export class AppModule {
+ }
+ ```
+ 
 
-## Components
+## Components, Directives and Pipes
 This module contains various components like a progress indicator, sort button and sort-by pipe, but also helper for images (in the admin interface) and existing names.
 
 <!--

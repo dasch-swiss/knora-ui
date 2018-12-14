@@ -29,8 +29,9 @@ This module has the following package dependencies, which you also have to insta
  
 
 ## Components
-This module contains various components:
+This module contains various components like kui-search (a simple search bar) and kui-extended-search, which is already implemented in kui-search, but can also be used as a standalone component.
 
+<!--
 ### Search
 It sets the simple search bar. 
 It contains all the methods to realise simple searches, keep in memory previous searches and reset the list of searches. 
@@ -50,6 +51,7 @@ in the extended search form, it allows to select a property value (operator) for
 
 For example: the property is 'like' / 'equal to' / 'greater than' etc.
 
+-->
 
 ## Setup
 
@@ -57,7 +59,7 @@ Import the search module in your app.module.ts and add it to the NgModules's imp
 
 ```TypeScript
 import { AppComponent } from './app.component';
-import { KuiSearchModule } from '@knora/core';
+import { KuiSearchModule } from '@knora/search';
 
 @NgModule({
     declarations: [
@@ -72,3 +74,4 @@ import { KuiSearchModule } from '@knora/core';
 export class AppModule {
 }
 ```
+
