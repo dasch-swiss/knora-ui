@@ -1,16 +1,23 @@
 /**
  * Collection of useful utility functions.
  */
-import {KnoraConstants} from './api/knora-constants';
+import { KnoraConstants } from './api/knora-constants';
 
 // @dynamic
 export class Utils {
     /**
-     * A regex to validate Emails.
+     * A regex to validate Email address.
      *
      * @type {RegExp}
      */
     public static readonly RegexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+    /**
+     * A regex to validate Username.
+     *
+     * @type {RegExp}
+     */
+    public static readonly RegexUsername = /^[a-zA-Z0-9]+$/;
 
     /**
      * A regex to validate URLs.
@@ -58,7 +65,8 @@ export class Utils {
         // -> this means that there is no identical element before this index, hence it is not a duplicate
         // for all other elements, false is returned
         return index === self.indexOf(elem);
-    };
+
+    }
 
     /**
      * Given a Knora entity IRI, gets the ontology Iri.
