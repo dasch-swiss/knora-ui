@@ -32,7 +32,7 @@ This module has the following package dependencies, which you also have to insta
 
 
 ## Setup
-In your AppModule you have to define the following providers:
+In your AppModule you have to define the following providers (which is the same as in [@knora/core setup](/modules/core))
 
 ```Javascript
 import { ErrorInterceptor, JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
