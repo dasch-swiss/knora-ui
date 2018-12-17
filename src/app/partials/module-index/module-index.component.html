@@ -36,19 +36,21 @@
             <h3 mat-subheader>Modules in dev mode</h3>
 
             <mat-list class="demo-nav">
-                <div *ngFor="let item of examples | kuiSortBy: 'name'">
+                <div *ngFor="let item of examples | kuiSortBy: 'name'; let i = index;">
                     <div *ngIf="!item.published">
-                        <mat-list-item [class.parent]="item.children">
-                            <button mat-button [routerLink]="item.name" routerLinkActive="active-link" class="demo-nav-item">
+                        <mat-list-item [class.parent]="item.children" (click)="toggleChildren(i)">
+                            <button mat-button [routerLink]="item.name" routerLinkActive="active-link"
+                                    class="demo-nav-item">
                                 {{item.label}}
                                 <mat-icon *ngIf="!item.children">keyboard_arrow_right</mat-icon>
                                 <mat-icon *ngIf="item.children">keyboard_arrow_down</mat-icon>
                             </button>
                         </mat-list-item>
 
-                        <div *ngIf="item.children" class="demo-nav-children">
+                        <div *ngIf="item.children" class="demo-nav-children" [class.open]="curIndex === i">
                             <mat-list-item *ngFor="let child of item.children | kuiSortBy: 'name'">
-                                <button mat-button [routerLink]="item.name + '/' + child.name" routerLinkActive="active-link" class="demo-nav-item">
+                                <button mat-button [routerLink]="item.name + '/' + child.name"
+                                        routerLinkActive="active-link" class="demo-nav-item">
                                     {{child.label}}
                                     <mat-icon>keyboard_arrow_right</mat-icon>
                                 </button>
