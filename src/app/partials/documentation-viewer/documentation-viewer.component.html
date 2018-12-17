@@ -19,7 +19,7 @@
             <div [innerHtml]="item.description.body | sanitizeHtml"></div>
         </div>
 
-        <div *ngIf="item.tags.length > 0 && item.tags[0].type !== 'ignore'">
+        <div *ngIf="item.tags.length > 0 && item.tags[0].type !== 'ignore' && !item.isPrivate">
 
             <!-- description of each tag -->
             <div *ngIf="item.tags[0].type !== 'ignore'">

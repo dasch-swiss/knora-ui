@@ -4,39 +4,19 @@
 <!-- Examples with demo -->
 <h3>Example</h3>
 
-<h3>Demo</h3>
-<h2>GroupsService</h2>
-
 <mat-card class="example-viewer">
-    <div *ngIf="allGroups && !groupsService.loading">
-        <h4>List of all (project specific) groups</h4>
+
+    <app-example-viewer [example]="exampleGetAllGroups"></app-example-viewer>
+
+    <div class="demo" *ngIf="allGroups">
+        <h4>Result</h4>
 
         <ul>
-            <li class="link" *ngFor="let g of allGroups" (click)="getGroupByIri(g.id)">
+            <li class="link" *ngFor="let g of allGroups">
                 <strong>{{g.name}}</strong> ({{g.project.longname}})
                 <span>{{g.description}}</span>
             </li>
         </ul>
     </div>
 
-    <div *ngIf="group && !groupsService.loading">
-        <mat-divider></mat-divider>
-        <h4>Get group by iri ({{group.id}})</h4>
-        <p>Name:
-            <strong>{{group.name}}</strong>
-        </p>
-        <p>Project:
-            <strong>{{group.project.longname}}</strong> ({{group.project.shortname}})</p>
-        <p>Selfjoin:
-            <strong>{{group.selfjoin}}</strong>
-        </p>
-        <p>Status:
-            <strong>{{group.status}}</strong>
-        </p>
-        <p>Description:
-            <br>{{group.description}}</p>
-    </div>
 </mat-card>
-
-
-<kui-progress-indicator *ngIf="groupsService.loading"></kui-progress-indicator>
