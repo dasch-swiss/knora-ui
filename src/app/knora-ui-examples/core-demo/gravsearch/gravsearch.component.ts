@@ -12,21 +12,21 @@ export class GravsearchComponent implements OnInit {
     module = AppDemo.coreModule;
 
     exampleGravSearch: Example = {
-        title: 'getAllGroups()',
-        subtitle: 'returns a list of all (project specific) groups',
-        name: 'getAllGroups',
+        title: 'createGravsearchQuery(properties, resClass, 0)',
+        subtitle: 'returns a gravsearch query',
+        name: 'createGravsearchQuery',
         code: {
             html: ``,
             ts: `
 // iri of the resource class
 const resClass: string;
 
-// selected properties to filter by 
+// selected properties to filter by
 const properties: PropertyWithValue[];
 
 const gravsearch: string = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);
-                    
-// e.g. you can use the generated gravsearch query with the 
+
+// e.g. you can use the generated gravsearch query with the
 // searchService and the method doExtendedSearch(gravsearch)
 `,
             scss: ``

@@ -14,6 +14,9 @@ class GravsearchGenerationError extends Error {
     }
 }
 
+/**
+ * Create GravSearch queries from provided parameters.
+ */
 @Injectable({
     providedIn: 'root'
 })
