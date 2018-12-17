@@ -63,7 +63,7 @@ export class SortButtonComponent implements OnInit {
     <kui-sort-button [sortProps]="sortProps" [(sortKey)]="sortKey" [position]="'right'"></kui-sort-button>
 
     <ul>
-        <li *ngFor="let item of list | sortBy: sortKey">
+        <li *ngFor="let item of list | kuiSortBy: sortKey">
             <span [class.active]="sortKey === 'prename'">{{item.prename}} </span>
             <span [class.active]="sortKey === 'lastname'">{{item.lastname}} </span>
             by

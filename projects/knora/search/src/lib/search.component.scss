@@ -41,8 +41,10 @@ $border-color: #ebebeb;
 $border-radius: 4px;
 
 // sizes for search element
-$search-width: 720px;
+$search-width: 680px;
 $search-height: $search-width;
+
+$search-width-small-device: 480px;
 
 
 /**********************************/
@@ -87,7 +89,7 @@ $search-height: $search-width;
   display: inline-flex;
   height: 40px;
   position: relative;
-  width: 720px;
+  width: $search-width;
   z-index: 10;
 
   &:hover {
@@ -105,7 +107,8 @@ $search-height: $search-width;
         font-size: 14pt;
         height: 38px;
         position: absolute;
-        width: $search-width - (2 * 40px);
+        // width: calc(#{$search-width} - 80px);
+        width: calc(100% - 80px);
 
         &:active,
         &:focus {
@@ -169,9 +172,9 @@ $search-height: $search-width;
 
   &.simple-search,
   &.extended-search {
-    min-height: 720px;
+    min-height: $search-height;
 //    top: 12px;
-    width: 720px;
+    width: $search-width;
   }
 
   &.simple-search {
@@ -220,5 +223,45 @@ $search-height: $search-width;
 }
 
 
+@media screen and (max-width: 1024px) {
+  .search-panel {
+    width: $search-width-small-device;
 
+    div {
+
+      &.input-field {
+
+        input {
+          width: calc(#{$search-width-small-device} - 80px);
+        }
+      }
+    }
+  }
+
+  .salsah-menu.simple-search,
+  .salsah-menu.extended-search {
+    width: $search-width-small-device;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-panel {
+    width: calc(#{$search-width-small-device} - 160px);
+
+    div {
+
+      &.input-field {
+
+        input {
+          width: calc(#{$search-width-small-device} - 160px - 80px);
+        }
+      }
+    }
+  }
+
+  .salsah-menu.simple-search,
+  .salsah-menu.extended-search {
+    width: calc(#{$search-width-small-device} - 80px);
+  }
+}
 

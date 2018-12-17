@@ -21,7 +21,7 @@
                 </div>
 
                 <div *ngIf="item.children">
-                    <mat-list-item *ngFor="let child of item.children | sortBy: 'name'">
+                    <mat-list-item *ngFor="let child of item.children | kuiSortBy: 'name'">
                         <button mat-button [routerLink]="item.name + '/' + child.name" disableRipple
                                 routerLinkActive="active-link" class="demo-nav-item">
                             {{child.label}}

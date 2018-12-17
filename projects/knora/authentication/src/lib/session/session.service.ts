@@ -53,7 +53,7 @@ export class SessionService {
                 this.session = {
                     id: this.setTimestamp(),
                     user: {
-                        name: username,
+                        name: result.username,
                         jwt: jwt,
                         lang: result.lang,
                         sysAdmin: sysAdmin

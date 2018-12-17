@@ -19,7 +19,7 @@ export class KeyComponent implements OnInit {
         code: {
             html: `
             <ul>
-                <li *ngFor="let item of array | key">
+                <li *ngFor="let item of array | kuiKey">
                     {{item.key}}: {{item.value}}
                 </li>
             </ul>`,

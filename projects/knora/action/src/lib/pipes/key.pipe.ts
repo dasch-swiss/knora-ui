@@ -19,13 +19,10 @@ import { Pipe, PipeTransform } from '@angular/core';
  *
  */
 @Pipe({
-    name: 'key'
+    name: 'kuiKey'
 })
 export class KeyPipe implements PipeTransform {
 
-    /**
-     * @ignore
-     */
     transform(value: any, args?: any): any {
         const keys = [];
         for (const key in value) {

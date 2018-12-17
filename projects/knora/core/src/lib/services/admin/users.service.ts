@@ -50,6 +50,30 @@ export class UsersService extends ApiService {
         );
     }
 
+    /**
+     * Deprecated! Please use getUser(identifier: string) only!
+     * Get user by email
+     *
+     * @ignore
+     *
+     * @param {string} email
+     * @returns {Observable<User>}
+     */
+    getUserByEmail(email: string): Observable<User> {
+        return this.getUser(email);
+    }
+
+    /**
+     * Deprecated! Please use getUser(identifier: string) only!
+     *
+     * @ignore
+     *
+     * @param {string} iri
+     * @returns {Observable<User>}
+     */
+    getUserByIri(iri: string): Observable<User> {
+        return this.getUser(iri);
+    }
 
     // ------------------------------------------------------------------------
     // POST
