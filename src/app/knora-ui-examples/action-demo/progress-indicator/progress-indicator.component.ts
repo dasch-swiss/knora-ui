@@ -17,7 +17,9 @@ export class ProgressIndicatorComponent implements OnInit {
         subtitle: '',
         name: 'classicLoader',
         code: {
-            html: `<kui-progress-indicator></kui-progress-indicator>`,
+            html: `
+<kui-progress-indicator></kui-progress-indicator>
+`,
             ts: '',
             scss: ''
         }
@@ -82,7 +84,7 @@ refresh() {
         this.refresh();
     }, 2500);
 }
-            `,
+`,
             scss: ''
         }
     };
@@ -93,56 +95,58 @@ refresh() {
         subtitle: '',
         name: 'dynamicExample',
         code: {
-            html: `<mat-list>
-                      <mat-list-item>
-                        <kui-progress-indicator mat-list-avatar [status]="status" color="blue"></kui-progress-indicator>
-                        <p mat-line>
-                          <strong>
-                            <span *ngIf="status == -1">before submit (not ready)</span>
-                            <span *ngIf="status == 0">submitting</span>
-                            <span *ngIf="status == 1">after submit (done)</span>
-                          </strong>
-                          status: {{status}}
-                        </p>
-                      </mat-list-item>
-                </mat-list>`,
-            ts: `examples = [
-                    {
-                        status: -1,
-                        label: 'before submit (not ready)'
-                    },
-                    {
-                        status: 0,
-                        label: 'submitting'
-                    },
-                    {
-                        status: 1,
-                        label: 'after submit (done)'
-                    },
-                    {
-                        status: 400,
-                        label: 'in case of an error'
-                    }
-                ];
-                status = -1;
-                constructor() {
-                }
-                ngOnInit() {
-                    this.refresh();
-                }
-                // only for testing the change of status
-                refresh() {
-                    setTimeout(() => {
-                        if (this.status === 1) {
-                            this.status -= 2;
-                        } else {
-                            this.status++;
-                        }
-                        // Then recall the parent function to
-                        // create a recursive loop.
-                        this.refresh();
-                    }, 2500);
-                }`,
+            html: `
+<mat-list>
+    <mat-list-item>
+        <kui-progress-indicator mat-list-avatar [status]="status" color="blue"></kui-progress-indicator>
+        <p mat-line>
+            <strong>
+                <span *ngIf="status == -1">before submit (not ready)</span>
+                <span *ngIf="status == 0">submitting</span>
+                <span *ngIf="status == 1">after submit (done)</span>
+            </strong>
+            status: {{status}}
+        </p>
+    </mat-list-item>
+</mat-list>`,
+            ts: `
+examples = [
+    {
+        status: -1,
+        label: 'before submit (not ready)'
+    },
+    {
+        status: 0,
+        label: 'submitting'
+    },
+    {
+        status: 1,
+        label: 'after submit (done)'
+    },
+    {
+        status: 400,
+        label: 'in case of an error'
+    }
+];
+status = -1;
+constructor() {
+}
+ngOnInit() {
+    this.refresh();
+}
+// only for testing the change of status
+refresh() {
+    setTimeout(() => {
+        if (this.status === 1) {
+            this.status -= 2;
+        } else {
+            this.status++;
+        }
+        // Then recall the parent function to
+        // create a recursive loop.
+        this.refresh();
+    }, 2500);
+}`,
             scss: ''
         }
     };

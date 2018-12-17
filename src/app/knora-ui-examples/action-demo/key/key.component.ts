@@ -18,18 +18,18 @@ export class KeyComponent implements OnInit {
         name: 'keyPipe',
         code: {
             html: `
-            <ul>
-                <li *ngFor="let item of array | kuiKey">
-                    {{item.key}}: {{item.value}}
-                </li>
-            </ul>`,
+<ul>
+    <li *ngFor="let item of array | kuiKey">
+        {{item.key}}: {{item.value}}
+    </li>
+</ul>`,
             ts: `
-            array = [];
-            [...]
-            this.array['index-1'] = 'Value in index 1';
-            this.array['index-2'] = 'Value in index 2';
-            this.array['index-3'] = 'Value in index 3';
-            `,
+array = [];
+
+this.array['index-1'] = 'Value in index 1';
+this.array['index-2'] = 'Value in index 2';
+this.array['index-3'] = 'Value in index 3';
+`,
             scss: ''
         }
     };
