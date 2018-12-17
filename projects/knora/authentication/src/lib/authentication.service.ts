@@ -55,6 +55,8 @@ export class AuthenticationService {
 
     /**
      * logout the user by destroying the session
+     *
+     * @param
      */
     logout() {
         // destroy the session

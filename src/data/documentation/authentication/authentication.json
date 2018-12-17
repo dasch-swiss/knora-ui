@@ -112,7 +112,21 @@
     }
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "param",
+        "string": "",
+        "name": "",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": ""
+      }
+    ],
     "description": {
       "full": "<p>logout the user by destroying the session</p>",
       "summary": "<p>logout the user by destroying the session</p>",
@@ -124,7 +138,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 56,
-    "codeStart": 59,
+    "codeStart": 61,
     "code": "logout() {\n    // destroy the session\n    localStorage.removeItem('session');\n}",
     "ctx": {
       "type": "method",
@@ -175,8 +189,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 65,
-    "codeStart": 72,
+    "line": 67,
+    "codeStart": 74,
     "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    const serviceError = new ApiServiceError();\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}\n}",
     "ctx": false
   }
