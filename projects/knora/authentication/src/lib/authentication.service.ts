@@ -5,6 +5,9 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SessionService } from './session/session.service';
 
+/**
+ * Authentication service includes the login, logout method and a session method to check if a user is logged in or not.
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -16,9 +19,8 @@ export class AuthenticationService {
     }
 
     /**
-     * @function
      * validate if a user is logged in or not
-     * and the session is active
+     * returns true if the session is active
      *
      * @returns boolean
      */
@@ -27,12 +29,11 @@ export class AuthenticationService {
     }
 
     /**
-     * @function
      * login process;
      * it's used by the login component
      *
-     * @param identifier (email or username)
-     * @param password
+     * @param {string} identifier email or username
+     * @param {string} password
      * @returns Observable<any>
      */
     login(identifier: string, password: string): Observable<any> {
@@ -53,8 +54,6 @@ export class AuthenticationService {
 
 
     /**
-     * @function
-     *
      * logout the user by destroying the session
      */
     logout() {

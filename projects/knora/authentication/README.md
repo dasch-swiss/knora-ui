@@ -39,7 +39,7 @@ import { ErrorInterceptor, JwtInterceptor, KuiAuthenticationModule } from '@knor
 
 @NgModule({
     declarations: [
-    ...
+        ...
     ],
     imports: [
         BrowserModule,
@@ -63,7 +63,7 @@ export class AppModule { }
 
 ## Usage of KuiAuthGuard
 
-The @knora/authentication module contains a guard class which will redirect a guest user to the login page. It can be used in the app routing as follow:
+The @knora/authentication module contains a guard class which can be used in a restricted app component and will redirect a guest user to the login page. It can be used in the app routing as follow:
 
 ```Javascript
 import { AuthGuard } from '@knora/authentication';
@@ -83,4 +83,5 @@ const appRoutes: Routes = [
 ```
 
 ## Usage of kui-login-form
+
 The `LoginFormComponent` in the app needs in principle only the `<kui-login-form></kui-login-form>` tag. Additional it's also possible to define e navigation route, where the user will be redirected after successful login: `<kui-login-form [navigate]="'/dashboard'"></kui-login-form>`
