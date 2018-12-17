@@ -4,10 +4,8 @@
 <!-- Examples with demo -->
 <h3>Example</h3>
 
-<h3>Demo</h3>
-<h2>ProjectsService</h2>
-
 <!-- getAllProjects() -->
+<!--
 <mat-card class="example-viewer">
     <app-example-viewer [example]="exampleGetAllProjects"></app-example-viewer>
 
@@ -25,54 +23,84 @@
     </div>
 
 </mat-card>
+-->
 
-<!-- getProjectByShortname() -->
+<!-- getProjectByShortname() and getProjectMembersByIri-->
 <mat-card class="example-viewer">
     <app-example-viewer [example]="exampleGetProjectByShortname"></app-example-viewer>
 
     <div class="demo">
-        <div *ngIf="project && !projectsService.loading">
-            <mat-card-subtitle>Result</mat-card-subtitle>
+        <h4>Result</h4>
+        <p class="mat-card-subtitle">Shortcode / Shortname: Longname</p>
+        <p><strong>0803 / incunabula: </strong> Bilderfolgen Basler Frühdrucke</p>
+        <br>
 
-            <div *ngIf="project && !projectsService.loading">
-                <p class="mat-card-subtitle">Shortcode / Shortname: Longname</p>
-                <p>
-                    <strong>{{project.shortcode}} / {{project.shortname}}: </strong> {{project.longname}}</p>
-                <br>
-                <div *ngFor="let d of project.description">
-                    <p class="mat-card-subtitle">Description
-                        <span *ngIf="d.language">in {{d.language}}</span>
-                    </p>
-                    <div [innerHtml]="d.value"></div>
-                </div>
-                <br>
-                <p class="mat-card-subtitle">Keywords</p>
-                <mat-chip-list>
-                    <mat-chip class="tag" *ngFor="let k of project.keywords">{{k}}</mat-chip>
-                </mat-chip-list>
-            </div>
-            <br>
-            <br>
-            <p class="mat-card-subtitle">All members of the project</p>
-            <div *ngIf="projectMembers && !projectsService.loading">
-                <ul>
-                    <li *ngFor="let u of projectMembers">
-                        <strong>{{u.familyName}}, </strong>
-                        {{u.givenName}} ({{u.email}})
-                    </li>
-                </ul>
-            </div>
+        <p class="mat-card-subtitle">Description</p>
+        <div>
+            <p>Das interdisziplinäre Forschungsprojekt "<b>
+            <em>Die Bilderfolgen der Basler Frühdrucke: Spätmittelalterliche Didaxe als Bild-Text-Lektüre</em></b>" verbindet eine umfassende kunstwissenschaftliche Analyse der Bezüge zwischen den Bildern und Texten in den illustrierten Basler Inkunabeln mit der Digitalisierung der Bestände der Universitätsbibliothek und der Entwicklung einer elektronischen Edition in der Form einer neuartigen Web-0.2-Applikation.
+            </p>
+            <p>Das Projekt wird durchgeführt vom <a href="http://kunsthist.unibas.ch">Kunsthistorischen Seminar</a> der Universität Basel (Prof. B. Schellewald) und dem <a href="http://www.dhlab.unibas.ch">Digital Humanities Lab</a> der Universität Basel (PD Dr. L. Rosenthaler).
+            </p>
+            <p>
+                Das Kernstück der digitalen Edition besteht aus rund zwanzig reich bebilderten Frühdrucken aus vier verschiedenen Basler Offizinen. Viele davon sind bereits vor 1500 in mehreren Ausgaben erschienen, einige fast gleichzeitig auf Deutsch und Lateinisch. Es handelt sich um eine ausserordentlich vielfältige Produktion; neben dem Heilsspiegel finden sich ein Roman, die Melusine,  die Reisebeschreibungen des Jean de Mandeville, einige Gebets- und Erbauungsbüchlein, theologische Schriften, Fastenpredigten, die Leben der Heiligen Fridolin und Meinrad, das berühmte Narrenschiff  sowie die Exempelsammlung des Ritters vom Thurn.
+            </p>
+            Die Internetpublikation macht das digitalisierte Korpus dieser Frühdrucke  durch die Möglichkeiten nichtlinearer Verknüpfung und Kommentierung der Bilder und Texte, für die wissenschaftliche Edition sowie für die Erforschung der Bilder und Texte nutzbar machen. Auch können bereits bestehende und entstehende Online-Editionen damit verknüpft  werden , wodurch die Nutzung von Datenbanken anderer Institutionen im Hinblick auf unser Corpus optimiert wird.
+            <p></p>
         </div>
+        <br>
+
+        <p class="mat-card-subtitle">Keywords</p>
+
+        <mat-chip-list class="mat-chip-list" tabindex="0" aria-required="false" aria-disabled="false" aria-invalid="false" aria-multiselectable="false" role="listbox" aria-orientation="horizontal" id="mat-chip-list-0">
+            <div class="mat-chip-list-wrapper">
+                <mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Basel</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Basler Frühdrucke</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Bilderfolgen</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Contectualisation of images</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Inkunabel</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Kunsthistorisches Seminar Universität Basel</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Late Middle Ages</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Letterpress Printing</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Narrenschiff</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Sebastian Brant</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">Wiegendrucke</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">early print</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">incunabula</mat-chip><mat-chip class="tag mat-chip mat-primary mat-standard-chip ng-star-inserted" role="option" tabindex="-1" aria-disabled="false" aria-selected="false">ship of fools</mat-chip>
+            </div>
+        </mat-chip-list>
+
+        <br><br>
+
+        <p class="mat-card-subtitle">All members of the project</p>
+        <ul>
+            <li><strong>Test, </strong>User (user.test) </li>
+            <li><strong>Admin-alt, </strong>Administrator-alt (root-alt) </li>
+            <li><strong>User2, </strong>Test (incunabulaMemberUser) </li>
+            <li><strong>User, </strong>Multi (multiuser) </li>
+        </ul>
     </div>
 
+    <!--
+    <div class="demo">
+        <h4>Result</h4>
+
+        <div *ngIf="project && !projectsService.loading">
+            <p class="mat-card-subtitle">Shortcode / Shortname: Longname</p>
+            <p>
+                <strong>{{project.shortcode}} / {{project.shortname}}: </strong> {{project.longname}}</p>
+            <br>
+            <div *ngFor="let d of project.description">
+                <p class="mat-card-subtitle">Description
+                    <span *ngIf="d.language">in {{d.language}}</span>
+                </p>
+                <div [innerHtml]="d.value"></div>
+            </div>
+            <br>
+            <p class="mat-card-subtitle">Keywords</p>
+            <mat-chip-list>
+                <mat-chip class="tag" *ngFor="let k of project.keywords">{{k}}</mat-chip>
+            </mat-chip-list>
+        </div>
+        <br>
+        <br>
+        <p class="mat-card-subtitle">All members of the project</p>
+        <div *ngIf="projectMembers && !projectsService.loading">
+            <ul>
+                <li *ngFor="let u of projectMembers">
+                    <strong>{{u.familyName}}, </strong>{{u.givenName}} ({{u.username}})
+                </li>
+            </ul>
+        </div>
+    </div>
+    -->
+
 </mat-card>
-
-
-<!--
-<mat-divider></mat-divider>
-
-<button mat-raised-button color="primary" (click)="createNewProject(projectSimData)">
-    Create new project
-</button>
-
--->

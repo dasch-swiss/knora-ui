@@ -64,6 +64,7 @@ export class ProjectsService extends ApiService {
     }
 
     /**
+     * @private
      * Helper method combining project retrieval.
      *
      * @param {string} url
@@ -113,6 +114,7 @@ export class ProjectsService extends ApiService {
     }
 
     /**
+     * @private
      * Helper method combining project member retrieval.
      *
      * @param {string} url

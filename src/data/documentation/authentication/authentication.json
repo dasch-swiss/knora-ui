@@ -2,8 +2,8 @@
   {
     "tags": [],
     "description": {
-      "full": "<p>Authentication service includes the login, logout method and a method to check if a user is logged in or not. This can be done by session();</p>",
-      "summary": "<p>Authentication service includes the login, logout method and a method to check if a user is logged in or not. This can be done by session();</p>",
+      "full": "<p>Authentication service includes the login, logout method and a session method to check if a user is logged in or not.</p>",
+      "summary": "<p>Authentication service includes the login, logout method and a session method to check if a user is logged in or not.</p>",
       "body": ""
     },
     "isPrivate": false,

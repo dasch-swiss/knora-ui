@@ -93,8 +93,8 @@ ngOnInit() {
     }
 
     ngOnInit() {
-        this.getAllUsers();
-        this.getUser('multiuser');
+//        this.getAllUsers();
+//        this.getUser('multiuser');
     }
 
     getAllUsers() {
