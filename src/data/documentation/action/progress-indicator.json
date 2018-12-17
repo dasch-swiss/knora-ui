@@ -2,9 +2,9 @@
   {
     "tags": [],
     "description": {
-      "full": "<p>The progress indicator can be used to show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>\n<p>selector: kui-progress-indicator</p>",
+      "full": "<p>The progress indicator can be used to show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>",
       "summary": "<p>The progress indicator can be used to show the status of loading something.<br />\nThis can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).</p>",
-      "body": "<p>selector: kui-progress-indicator</p>"
+      "body": ""
     },
     "isPrivate": false,
     "isConstructor": false,
@@ -12,7 +12,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 3,
-    "codeStart": 9,
+    "codeStart": 8,
     "code": "@Component({\n    selector: 'kui-progress-indicator',\n    templateUrl: './progress-indicator.component.html',\n    styleUrls: ['./progress-indicator.component.scss']\n})\nexport class ProgressIndicatorComponent implements OnInit {",
     "ctx": false
   },
@@ -43,8 +43,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 16,
-    "codeStart": 27,
+    "line": 15,
+    "codeStart": 26,
     "code": "@Input() status?: number;",
     "ctx": false
   },
@@ -75,8 +75,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 29,
-    "codeStart": 35,
+    "line": 28,
+    "codeStart": 34,
     "code": "@Input() color?: string = 'primary';",
     "ctx": false
   },
@@ -98,8 +98,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 38,
-    "codeStart": 41,
+    "line": 37,
+    "codeStart": 40,
     "code": "constructor() {\n}\n\nngOnInit() {\n}\n\n}",
     "ctx": {
       "type": "constructor",

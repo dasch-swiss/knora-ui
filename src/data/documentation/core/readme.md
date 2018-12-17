@@ -61,7 +61,7 @@ export const environment = {
 Send this configuration to the `@knora/core` module in your app.module.ts
 
 ```javascript
-import {environment} from '../environments/environment';
+import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({

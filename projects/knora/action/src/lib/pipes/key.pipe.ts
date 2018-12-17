@@ -8,15 +8,6 @@ import { Pipe, PipeTransform } from '@angular/core';
  * When the value is an object with name and label, you get them with:
  * {{item.value.name}} and {{item.value.label}}
  *
- *
- * @example
- *
- * <ul>
- *     <li *ngFor="let item of list | key">
- *         {{ item.key }}: {{item.value}}
- *     </li>
- * </ul>
- *
  */
 @Pipe({
     name: 'kuiKey'

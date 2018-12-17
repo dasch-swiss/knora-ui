@@ -24,6 +24,8 @@ class OntologyCacheError extends Error {
 export class OntologyMetadata {
 
     /**
+     * @hideconstructor
+     *
      * @param {string} id Iri identifying the ontology.
      * @param {string} label a label describing the ontology.
      */

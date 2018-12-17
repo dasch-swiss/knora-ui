@@ -4,6 +4,7 @@ import { KnoraConstants, KnoraSchema, Utils } from '../../declarations';
 import { PropertyWithValue } from '../../declarations/api/operators';
 
 /**
+ * @ignore
  * Represents an error that occurred when generating KnarQL.
  */
 class GravsearchGenerationError extends Error {
@@ -19,6 +20,8 @@ class GravsearchGenerationError extends Error {
 export class GravsearchGenerationService {
 
     /**
+     * @ignore
+     *
      * Map of complex knora-api value types to simple ones.
      * Use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.
      */
@@ -46,6 +49,7 @@ export class GravsearchGenerationService {
     constructor(private _searchParamsService: SearchParamsService) { }
 
     /**
+       * @private
        * Converts a complex type Iri to a simple type Iri.
        *
        * @param {string} complexType the Iri of a value type (knora-api complex).
@@ -64,14 +68,14 @@ export class GravsearchGenerationService {
     }
 
     /**
-       * Generates a Gravsearch query from the provided arguments.
-       *
-       * @param {PropertyWithValue[]} properties the properties specified by the user.
-       * @param {string} [mainResourceClassOption] the class of the main resource, if specified.
-       * @param {number} offset the offset to be used (nth page of results).
-       * @returns string - a KnarQL query string.
-       */
-    public createGravsearchQuery(properties: PropertyWithValue[], mainResourceClassOption?: string, offset: number = 0): string {
+     * Generates a Gravsearch query from the provided arguments.
+     *
+     * @param {PropertyWithValue[]} properties the properties specified by the user.
+     * @param {string} [mainResourceClassOption] the class of the main resource, if specified.
+     * @param {number} offset the offset to be used (nth page of results).
+     * @returns string - a KnarQL query string.
+     */
+    createGravsearchQuery(properties: PropertyWithValue[], mainResourceClassOption?: string, offset: number = 0): string {
 
         // class restriction for the resource searched for
         let mainResourceClass = '';
