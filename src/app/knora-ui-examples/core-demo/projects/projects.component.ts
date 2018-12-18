@@ -190,7 +190,7 @@ ngOnInit() {
         this.projectsService.createProject(data)
             .subscribe(
                 (result: Project) => {
-                    console.log('createNewProject (result): ', result);
+                    // console.log('createNewProject (result): ', result);
                 },
                 (error: ApiServiceError) => {
                     console.error('createNewProject (error): ', error);

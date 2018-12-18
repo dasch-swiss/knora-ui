@@ -19,10 +19,6 @@ export class AuthComponent implements OnInit {
 
     ngOnInit() {
 
-        console.log(this.module);
-
-//        console.log(this._auth.loggedIn());
-
         if (JSON.parse(localStorage.getItem('session'))) {
             this.currentUser = JSON.parse(localStorage.getItem('session')).user;
         }

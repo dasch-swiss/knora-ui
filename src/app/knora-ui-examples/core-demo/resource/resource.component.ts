@@ -156,7 +156,7 @@ getResource(iri: string): void {
                                 },
                                 (err) => {
 
-                                    console.log('cache request failed: ' + err);
+                                    console.error('cache request failed: ' + err);
                                 });
                         } else {
                             // exactly one resource was expected, but resourceSeq.resources.length != 1
@@ -241,15 +241,15 @@ getResource(iri: string): void {
                         },
                         (err) => {
 
-                            console.log('cache request failed: ' + err);
+                            console.error('cache request failed: ' + err);
                         });
                 },
                     function (err) {
-                        console.log('JSONLD of regions request could not be expanded:' + err);
+                        console.error('JSONLD of regions request could not be expanded:' + err);
                     });
             },
             (error: ApiServiceError) => {
-                this.errorMessage = <any>error;
+                this.errorMessage = <any> error;
                 // this.loading = false;
             }
         );
@@ -268,7 +268,7 @@ getResource(iri: string): void {
         if (this.resource === undefined) return;
 
         if (offset < 0) {
-            console.log(`offset of ${offset} is invalid`);
+            console.error(`offset of ${offset} is invalid`);
             return;
         }
 
@@ -311,17 +311,17 @@ getResource(iri: string): void {
                         },
                         (err) => {
 
-                            console.log('cache request failed: ' + err);
+                            console.error('cache request failed: ' + err);
                         });
                 },
                     function (err) {
-                        console.log('JSONLD of regions request could not be expanded:' + err);
+                        console.error('JSONLD of regions request could not be expanded:' + err);
                     });
 
 
             },
             (error: ApiServiceError) => {
-                this.errorMessage = <any>error;
+                this.errorMessage = <any> error;
                 // this.loading = false;
             }
         );
@@ -359,15 +359,15 @@ getResource(iri: string): void {
                         },
                         (err) => {
 
-                            console.log('cache request failed: ' + err);
+                            console.error('cache request failed: ' + err);
                         });
                 },
                     function (err) {
-                        console.log('JSONLD of regions request could not be expanded:' + err);
+                        console.error('JSONLD of regions request could not be expanded:' + err);
                     });
             },
             (error: ApiServiceError) => {
-                this.errorMessage = <any>error;
+                this.errorMessage = <any> error;
                 // this.loading = false;
             }
         );

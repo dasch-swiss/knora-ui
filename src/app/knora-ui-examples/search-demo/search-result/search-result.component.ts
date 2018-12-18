@@ -166,7 +166,7 @@ export class SearchResultComponent implements OnInit {
         resPromise.then((compacted) => {
             this.numberOfAllResults = compacted[KnoraConstants.schemaNumberOfItems];
         }, function (err) {
-            console.log('JSONLD could not be expanded:' + err);
+            console.error('JSONLD could not be expanded:' + err);
         });
     }
 
@@ -214,13 +214,13 @@ export class SearchResultComponent implements OnInit {
                 },
                 (err) => {
 
-                    console.log('cache request failed: ' + err);
+                    console.error('cache request failed: ' + err);
                 }
             );
 
         }, function (err) {
 
-            console.log('JSONLD could not be expanded:' + err);
+            console.error('JSONLD could not be expanded:' + err);
         });
 
     }
