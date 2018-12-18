@@ -24,7 +24,7 @@ constructor(
     private _incomingService: IncomingService,
 ) {}
 
-private getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {
+getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {
     this._incomingService.getIncomingLinksForResource(this.resource.id, offset).subscribe(
         (result: ApiServiceResult) => {
             // e.g. you can then get resource class iris from the response and

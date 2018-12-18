@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SearchService } from './search.service';
 
+/**
+ * Requests incoming information (regions, links, stillImageRepresentations) from Knora.
+ */
 @Injectable({
     providedIn: 'root',
 })

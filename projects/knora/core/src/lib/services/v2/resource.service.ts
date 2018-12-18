@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { ApiService } from '../api.service';
 import { ApiServiceResult } from '../../declarations';
 
+/**
+ * Requests representation of resources from Knora.
+ */
 @Injectable({
     providedIn: 'root'
 })

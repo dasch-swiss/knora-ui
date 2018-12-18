@@ -3,6 +3,9 @@ import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
 import { ApiServiceResult } from '../../declarations';
 
+/**
+ * Performs searches (fulltext or extended) and search count queries into Knora.
+ */
 @Injectable({
     providedIn: 'root',
 })
