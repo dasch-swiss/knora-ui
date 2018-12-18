@@ -46,7 +46,6 @@ __webpack_require__.r(__webpack_exports__);
  * The progress indicator can be used to show the status of loading something.
  * This can be the simple loader or in case of submitting data it can show the status (not ready, loading, done or error).
  *
- * selector: kui-progress-indicator
  */
 var ProgressIndicatorComponent = /** @class */ /*@__PURE__*/ (function () {
     /**
@@ -66,26 +65,35 @@ var ProgressIndicatorComponent = /** @class */ /*@__PURE__*/ (function () {
     return ProgressIndicatorComponent;
 }());
 /**
- * A component with a list of properties to sort a list by them.
+ * A component with a list of properties to sort a list by one of them.
+ * It can be used together with the KuiSortBy pipe.
  */
 var SortButtonComponent = /** @class */ /*@__PURE__*/ (function () {
+    /**
+     * @ignore
+     */
     function SortButtonComponent() {
         /**
+         * @ignore {string} sortKeyChange
+         * @emits TODO: this would be the correct syntax for Output eventEmitter
          *
+         * EventEmitter when a user selected a sort property;
+         * This is the selected key
          */
         this.sortKeyChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.menuXPos = 'after';
         /**
-         *
+         * @param {string} [position='left']
+         * Optional position of the sort menu: right or left
          */
         this.position = 'left';
     }
     /**
-     *
-     * @param value
+     * @param {string} sortKey
+     * set and get (two-way data binding) of current sort key
      */
-    SortButtonComponent.prototype.sortKey = function (value) {
-        this.activeKey = value;
+    SortButtonComponent.prototype.sortKey = function (sortKey) {
+        this.activeKey = sortKey;
     };
     SortButtonComponent.prototype.ngOnInit = function () {
         if (this.position === 'right') {
@@ -208,8 +216,15 @@ var GndDirective = /** @class */ /*@__PURE__*/ (function () {
 }());
 var ExistingNameDirective = /** @class */ /*@__PURE__*/ (function () {
     function ExistingNameDirective() {
+        /**
+         * @ignore
+         */
         this.valFn = _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].nullValidator;
     }
+    /**
+     * @ignore
+     * @param changes
+     */
     ExistingNameDirective.prototype.ngOnChanges = function (changes) {
         var change = changes['existingName'];
         if (change) {
@@ -221,34 +236,41 @@ var ExistingNameDirective = /** @class */ /*@__PURE__*/ (function () {
             this.valFn = _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].nullValidator;
         }
     };
+    /**
+     * @ignore
+     * @param control
+     */
     ExistingNameDirective.prototype.validate = function (control) {
         return this.valFn(control);
     };
     return ExistingNameDirective;
 }());
 /**
- * Validation of existing name value.
+ * Validation of existing name value. String method (only one value);
+ * Use it in a "formbuilder" group as a validator property
  *
- * @param {RegExp} nameRe
+ * @param {RegExp} valRegexp Only one regular expression value
  * @returns ValidatorFn
  */
-function existingNameValidator(nameRe) {
+function existingNameValidator(valRegexp) {
     return function (control) {
         var name;
         if (control.value) {
             name = control.value.toLowerCase();
         }
-        var no = nameRe.test(name);
+        var no = valRegexp.test(name);
         return no ? { 'existingName': { name: name } } : null;
     };
 }
 /**
- *  Validation of existing name value with an array list of existing names.
+ * Validation of existing name values. Array method (list of values)
+ * Use it in a "formbuilder" group as a validator property
  *
- * @param {RegExp} nameAr
+ *
+ * @param {RegExp} valArrayRegexp List of regular expression values
  * @returns ValidatorFn
  */
-function existingNamesValidator(nameAr) {
+function existingNamesValidator(valArrayRegexp) {
     return function (control) {
         var name;
         if (control.value) {
@@ -256,8 +278,8 @@ function existingNamesValidator(nameAr) {
         }
         var no;
         try {
-            for (var nameAr_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_3__["__values"])(nameAr), nameAr_1_1 = nameAr_1.next(); !nameAr_1_1.done; nameAr_1_1 = nameAr_1.next()) {
-                var existing = nameAr_1_1.value;
+            for (var valArrayRegexp_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_3__["__values"])(valArrayRegexp), valArrayRegexp_1_1 = valArrayRegexp_1.next(); !valArrayRegexp_1_1.done; valArrayRegexp_1_1 = valArrayRegexp_1.next()) {
+                var existing = valArrayRegexp_1_1.value;
                 no = existing.test(name);
                 if (no) {
                     // console.log(no);
@@ -270,8 +292,8 @@ function existingNamesValidator(nameAr) {
         }
         finally {
             try {
-                if (nameAr_1_1 && !nameAr_1_1.done && (_a = nameAr_1.return))
-                    _a.call(nameAr_1);
+                if (valArrayRegexp_1_1 && !valArrayRegexp_1_1.done && (_a = valArrayRegexp_1.return))
+                    _a.call(valArrayRegexp_1);
             }
             finally {
                 if (e_1)
@@ -318,22 +340,10 @@ var JdnDatepickerDirective = /** @class */ /*@__PURE__*/ (function () {
  * When the value is an object with name and label, you get them with:
  * {{item.value.name}} and {{item.value.label}}
  *
- *
- * @example
- *
- * <ul>
- *     <li *ngFor="let item of list | key">
- *         {{ item.key }}: {{item.value}}
- *     </li>
- * </ul>
- *
  */
 var KeyPipe = /** @class */ /*@__PURE__*/ (function () {
     function KeyPipe() {
     }
-    /**
-     * @ignore
-     */
     KeyPipe.prototype.transform = function (value, args) {
         var keys = [];
         for (var key in value) {
@@ -633,18 +643,18 @@ var ɵaNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_M
 /*!******************************************************************!*\
   !*** ./dist/@knora/authentication/fesm5/knora-authentication.js ***!
   \******************************************************************/
-/*! exports provided: ɵa, AuthGuard, JwtInterceptor, ErrorInterceptor, LoginFormComponent, AuthenticationService, KuiAuthenticationModule */
+/*! exports provided: AuthGuard, JwtInterceptor, ErrorInterceptor, LoginFormComponent, AuthenticationService, KuiAuthenticationModule, ɵa */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return SessionService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JwtInterceptor", function() { return JwtInterceptor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorInterceptor", function() { return ErrorInterceptor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginFormComponent", function() { return LoginFormComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthenticationService", function() { return AuthenticationService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KuiAuthenticationModule", function() { return KuiAuthenticationModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return SessionService; });
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
@@ -668,6 +678,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+/** @type {?} */
 var moment = moment__WEBPACK_IMPORTED_MODULE_3__;
 var SessionService = /** @class */ /*@__PURE__*/ (function () {
     function SessionService(_http, config, _users) {
@@ -679,7 +694,7 @@ var SessionService = /** @class */ /*@__PURE__*/ (function () {
          * default value (24h): 86400000
          *
          */
-        this.MAX_SESSION_TIME = 86400000; // 1d = 24 * 60 * 60 * 1000
+        this.MAX_SESSION_TIME = 86400000;
     }
     /**
      * set the session by using the json web token (jwt) and the user object;
@@ -688,123 +703,210 @@ var SessionService = /** @class */ /*@__PURE__*/ (function () {
      * @param jwt
      * @param username
      */
-    SessionService.prototype.setSession = function (jwt, username) {
-        var _this = this;
-        // get user information
-        this._users.getUser(username).subscribe(function (result) {
-            var sysAdmin = false;
-            var permissions = result.permissions;
-            if (permissions.groupsPerProject[_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemProjectIRI]) {
-                sysAdmin = permissions.groupsPerProject[_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemProjectIRI]
-                    .indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemAdminGroupIRI) > -1;
-            }
-            // define a session id, which is the timestamp of login
-            _this.session = {
-                id: _this.setTimestamp(),
-                user: {
-                    name: username,
-                    jwt: jwt,
-                    lang: result.lang,
-                    sysAdmin: sysAdmin
+    /**
+     * set the session by using the json web token (jwt) and the user object;
+     * it will be used in the login process
+     *
+     * @param {?} jwt
+     * @param {?} username
+     * @return {?}
+     */
+    SessionService.prototype.setSession = /**
+     * set the session by using the json web token (jwt) and the user object;
+     * it will be used in the login process
+     *
+     * @param {?} jwt
+     * @param {?} username
+     * @return {?}
+     */
+        function (jwt, username) {
+            var _this = this;
+            // get user information
+            this._users.getUser(username).subscribe(function (result) {
+                /** @type {?} */
+                var sysAdmin = false;
+                /** @type {?} */
+                var permissions = result.permissions;
+                if (permissions.groupsPerProject[_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemProjectIRI]) {
+                    sysAdmin = permissions.groupsPerProject[_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemProjectIRI]
+                        .indexOf(_knora_core__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].SystemAdminGroupIRI) > -1;
                 }
-            };
-            // store in the localStorage
-            localStorage.setItem('session', JSON.stringify(_this.session));
-        }, function (error) {
-            console.error(error);
-        });
-    };
-    SessionService.prototype.setTimestamp = function () {
-        return (moment().add(0, 'second')).valueOf();
-    };
-    SessionService.prototype.getSession = function () {
-    };
-    SessionService.prototype.updateSession = function () {
-    };
-    SessionService.prototype.validateSession = function () {
-        // mix of checks with session.validation and this.authenticate
-        this.session = JSON.parse(localStorage.getItem('session'));
-        var tsNow = this.setTimestamp();
-        if (this.session) {
-            // the session exists
-            // check if the session is still valid:
-            // if session.id + MAX_SESSION_TIME > now: _session.validateSession()
-            if (this.session.id + this.MAX_SESSION_TIME < tsNow) {
-                // the internal session has expired
-                // check if the api v2/authentication is still valid
-                if (this.authenticate()) {
-                    // the api authentication is valid;
-                    // update the session.id
-                    this.session.id = tsNow;
-                    console.log('new session id', this.session.id);
-                    // localStorage.removeItem('session');
-                    localStorage.setItem('session', JSON.stringify(this.session));
-                    return true;
+                // define a session id, which is the timestamp of login
+                // define a session id, which is the timestamp of login
+                _this.session = {
+                    id: _this.setTimestamp(),
+                    user: {
+                        name: username,
+                        jwt: jwt,
+                        lang: result.lang,
+                        sysAdmin: sysAdmin
+                    }
+                };
+                // store in the localStorage
+                localStorage.setItem('session', JSON.stringify(_this.session));
+            }, function (error) {
+                console.error(error);
+            });
+        };
+    /**
+     * @return {?}
+     */
+    SessionService.prototype.setTimestamp = /**
+     * @return {?}
+     */
+        function () {
+            return (moment().add(0, 'second')).valueOf();
+        };
+    /**
+     * @return {?}
+     */
+    SessionService.prototype.getSession = /**
+     * @return {?}
+     */
+        function () {
+        };
+    /**
+     * @return {?}
+     */
+    SessionService.prototype.updateSession = /**
+     * @return {?}
+     */
+        function () {
+        };
+    /**
+     * @return {?}
+     */
+    SessionService.prototype.validateSession = /**
+     * @return {?}
+     */
+        function () {
+            // mix of checks with session.validation and this.authenticate
+            this.session = JSON.parse(localStorage.getItem('session'));
+            /** @type {?} */
+            var tsNow = this.setTimestamp();
+            if (this.session) {
+                // the session exists
+                // check if the session is still valid:
+                // if session.id + MAX_SESSION_TIME > now: _session.validateSession()
+                if (this.session.id + this.MAX_SESSION_TIME < tsNow) {
+                    // the internal session has expired
+                    // check if the api v2/authentication is still valid
+                    if (this.authenticate()) {
+                        // the api authentication is valid;
+                        // update the session.id
+                        this.session.id = tsNow;
+                        console.log('new session id', this.session.id);
+                        // localStorage.removeItem('session');
+                        localStorage.setItem('session', JSON.stringify(this.session));
+                        return true;
+                    }
+                    else {
+                        // console.error('session.service -- validateSession -- authenticate: the session expired on API side');
+                        // a user is not authenticated anymore!
+                        this.destroySession();
+                        return false;
+                    }
                 }
                 else {
-                    // console.error('session.service -- validateSession -- authenticate: the session expired on API side');
-                    // a user is not authenticated anymore!
-                    this.destroySession();
-                    return false;
+                    return true;
                 }
             }
-            else {
-                return true;
-            }
-        }
-        return false;
-    };
-    SessionService.prototype.authenticate = function () {
-        return this._http.get(this.config.api + '/v2/authentication').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) {
-            console.log('AuthenticationService - authenticate - result: ', result);
-            // return true || false
-            return result.status === 200;
-        }));
-    };
-    SessionService.prototype.destroySession = function () {
-        localStorage.removeItem('session');
-    };
-    SessionService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function SessionService_Factory() { return new SessionService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])("config"), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_knora_core__WEBPACK_IMPORTED_MODULE_2__["UsersService"])); }, token: SessionService, providedIn: "root" });
+            return false;
+        };
+    /**
+     * @return {?}
+     */
+    SessionService.prototype.authenticate = /**
+     * @return {?}
+     */
+        function () {
+            return this._http.get(this.config.api + '/v2/authentication').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) {
+                console.log('AuthenticationService - authenticate - result: ', result);
+                // return true || false
+                return result.status === 200;
+            }));
+        };
+    /**
+     * @return {?}
+     */
+    SessionService.prototype.destroySession = /**
+     * @return {?}
+     */
+        function () {
+            localStorage.removeItem('session');
+        };
+    /** @nocollapse */ SessionService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function SessionService_Factory() { return new SessionService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])("config"), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_knora_core__WEBPACK_IMPORTED_MODULE_2__["UsersService"])); }, token: SessionService, providedIn: "root" });
     return SessionService;
 }());
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
 var AuthGuard = /** @class */ /*@__PURE__*/ (function () {
     function AuthGuard(_session, _router) {
         this._session = _session;
         this._router = _router;
     }
-    AuthGuard.prototype.canActivate = function (next, state) {
-        if (!this._session.validateSession()) {
-            this._router.navigate(['login'], { queryParams: { returnUrl: state.url } });
-            return false;
-        }
-        return true;
-    };
-    AuthGuard.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function AuthGuard_Factory() { return new AuthGuard(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(SessionService), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"])); }, token: AuthGuard, providedIn: "root" });
+    /**
+     * @param {?} next
+     * @param {?} state
+     * @return {?}
+     */
+    AuthGuard.prototype.canActivate = /**
+     * @param {?} next
+     * @param {?} state
+     * @return {?}
+     */
+        function (next, state) {
+            if (!this._session.validateSession()) {
+                this._router.navigate(['login'], { queryParams: { returnUrl: state.url } });
+                return false;
+            }
+            return true;
+        };
+    /** @nocollapse */ AuthGuard.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function AuthGuard_Factory() { return new AuthGuard(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(SessionService), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"])); }, token: AuthGuard, providedIn: "root" });
     return AuthGuard;
 }());
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
 var JwtInterceptor = /** @class */ /*@__PURE__*/ (function () {
     function JwtInterceptor(_session) {
         this._session = _session;
     }
-    JwtInterceptor.prototype.intercept = function (request, next) {
-        // add authorization header with jwt token if available
-        if (this._session.validateSession()) {
-            // the session is valid (and up to date)
-            var jwt = JSON.parse(localStorage.getItem('session')).user.jwt;
-            request = request.clone({
-                setHeaders: {
-                    Authorization: "Bearer " + jwt
-                }
-            });
-        }
-        else {
-            this._session.destroySession();
-        }
-        return next.handle(request);
-    };
+    /**
+     * @param {?} request
+     * @param {?} next
+     * @return {?}
+     */
+    JwtInterceptor.prototype.intercept = /**
+     * @param {?} request
+     * @param {?} next
+     * @return {?}
+     */
+        function (request, next) {
+            // add authorization header with jwt token if available
+            if (this._session.validateSession()) {
+                /** @type {?} */
+                var jwt = JSON.parse(localStorage.getItem('session')).user.jwt;
+                request = request.clone({
+                    setHeaders: {
+                        Authorization: "Bearer " + jwt
+                    }
+                });
+            }
+            else {
+                this._session.destroySession();
+            }
+            return next.handle(request);
+        };
     return JwtInterceptor;
 }());
-// import { AuthenticationService } from './authentication.service';
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
 var ErrorInterceptor = /** @class */ /*@__PURE__*/ (function () {
     function ErrorInterceptor() {
     }
@@ -812,17 +914,32 @@ var ErrorInterceptor = /** @class */ /*@__PURE__*/ (function () {
     constructor(private _authService: AuthenticationService) {
     }
 */
-    ErrorInterceptor.prototype.intercept = function (request, next) {
-        return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            console.log('authentication -- error.interceptor', err);
-            if (err.status === 401)
-                ;
-            var error = err.error.message || err.statusText;
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["throwError"])(error);
-        }));
-    };
+    /**
+     * @param {?} request
+     * @param {?} next
+     * @return {?}
+     */
+    ErrorInterceptor.prototype.intercept = /**
+     * @param {?} request
+     * @param {?} next
+     * @return {?}
+     */
+        function (request, next) {
+            return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
+                console.log('authentication -- error.interceptor', err);
+                if (err.status === 401)
+                    ;
+                /** @type {?} */
+                var error = err.error.message || err.statusText;
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["throwError"])(error);
+            }));
+        };
     return ErrorInterceptor;
 }());
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
 var AuthenticationService = /** @class */ /*@__PURE__*/ (function () {
     function AuthenticationService(http, _session, config) {
         this.http = http;
@@ -833,9 +950,19 @@ var AuthenticationService = /** @class */ /*@__PURE__*/ (function () {
      * validate if a user is logged in or not
      * and the session is active
      */
-    AuthenticationService.prototype.session = function () {
-        return this._session.validateSession();
-    };
+    /**
+     * validate if a user is logged in or not
+     * and the session is active
+     * @return {?}
+     */
+    AuthenticationService.prototype.session = /**
+     * validate if a user is logged in or not
+     * and the session is active
+     * @return {?}
+     */
+        function () {
+            return this._session.validateSession();
+        };
     /**
      * login process;
      * it's used by the login component
@@ -844,35 +971,74 @@ var AuthenticationService = /** @class */ /*@__PURE__*/ (function () {
      * @param password
      * @returns
      */
-    AuthenticationService.prototype.login = function (identifier, password) {
-        var _this = this;
-        return this.http.post(this.config.api + '/v2/authentication', { identifier: identifier, password: password }, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
-            return response;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
-            return _this.handleRequestError(error);
-        }));
-    };
-    AuthenticationService.prototype.logout = function () {
-        // destroy the session
-        localStorage.removeItem('session');
-    };
+    /**
+     * login process;
+     * it's used by the login component
+     *
+     * @param {?} identifier (email or username)
+     * @param {?} password
+     * @return {?}
+     */
+    AuthenticationService.prototype.login = /**
+     * login process;
+     * it's used by the login component
+     *
+     * @param {?} identifier (email or username)
+     * @param {?} password
+     * @return {?}
+     */
+        function (identifier, password) {
+            var _this = this;
+            return this.http.post(this.config.api + '/v2/authentication', { identifier: identifier, password: password }, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
+                return response;
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+                return _this.handleRequestError(error);
+            }));
+        };
+    /**
+     * @return {?}
+     */
+    AuthenticationService.prototype.logout = /**
+     * @return {?}
+     */
+        function () {
+            // destroy the session
+            localStorage.removeItem('session');
+        };
     /**
      * handle request error in case of server error
      *
      * @param error
      * @returns
      */
-    AuthenticationService.prototype.handleRequestError = function (error) {
-        var serviceError = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["ApiServiceError"]();
-        serviceError.status = error.status;
-        serviceError.statusText = error.statusText;
-        serviceError.errorInfo = error.message;
-        serviceError.url = error.url;
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["throwError"])(serviceError);
-    };
-    AuthenticationService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function AuthenticationService_Factory() { return new AuthenticationService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(SessionService), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])("config")); }, token: AuthenticationService, providedIn: "root" });
+    /**
+     * handle request error in case of server error
+     *
+     * @param {?} error
+     * @return {?}
+     */
+    AuthenticationService.prototype.handleRequestError = /**
+     * handle request error in case of server error
+     *
+     * @param {?} error
+     * @return {?}
+     */
+        function (error) {
+            /** @type {?} */
+            var serviceError = new _knora_core__WEBPACK_IMPORTED_MODULE_2__["ApiServiceError"]();
+            serviceError.status = error.status;
+            serviceError.statusText = error.statusText;
+            serviceError.errorInfo = error.message;
+            serviceError.url = error.url;
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["throwError"])(serviceError);
+        };
+    /** @nocollapse */ AuthenticationService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["defineInjectable"])({ factory: function AuthenticationService_Factory() { return new AuthenticationService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])(SessionService), Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["inject"])("config")); }, token: AuthenticationService, providedIn: "root" });
     return AuthenticationService;
 }());
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
 var LoginFormComponent = /** @class */ /*@__PURE__*/ (function () {
     function LoginFormComponent(_auth, _session, _fb, _route, _router) {
         this._auth = _auth;
@@ -913,116 +1079,162 @@ var LoginFormComponent = /** @class */ /*@__PURE__*/ (function () {
             }
         };
     }
-    LoginFormComponent.prototype.ngOnInit = function () {
-        // check if a user is already logged in
-        if (this._session.validateSession()) {
-            this.loggedInUser = JSON.parse(localStorage.getItem('session')).user.name;
-        }
-        else {
-            this.buildForm();
-        }
-    };
-    LoginFormComponent.prototype.buildForm = function () {
-        var _this = this;
-        this.frm = this._fb.group({
-            email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-            password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]
-        });
-        this.frm.valueChanges
-            .subscribe(function (data) { return _this.onValueChanged(data); });
-    };
+    /**
+     * @return {?}
+     */
+    LoginFormComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+        function () {
+            // check if a user is already logged in
+            if (this._session.validateSession()) {
+                this.loggedInUser = JSON.parse(localStorage.getItem('session')).user.name;
+            }
+            else {
+                this.buildForm();
+            }
+        };
+    /**
+     * @return {?}
+     */
+    LoginFormComponent.prototype.buildForm = /**
+     * @return {?}
+     */
+        function () {
+            var _this = this;
+            this.frm = this._fb.group({
+                email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]
+            });
+            this.frm.valueChanges
+                .subscribe(function (data) { return _this.onValueChanged(data); });
+        };
     /**
      * check for errors while using the form
      * @param data
      */
-    LoginFormComponent.prototype.onValueChanged = function (data) {
-        var _this = this;
-        if (!this.frm) {
-            return;
-        }
-        var form = this.frm;
-        Object.keys(this.formErrors).map(function (field) {
-            _this.formErrors[field] = '';
-            var control = form.get(field);
-            if (control && control.dirty && !control.valid) {
-                var messages_1 = _this.validationMessages[field];
-                Object.keys(control.errors).map(function (key) {
-                    _this.formErrors[field] += messages_1[key] + ' ';
-                });
+    /**
+     * check for errors while using the form
+     * @param {?=} data
+     * @return {?}
+     */
+    LoginFormComponent.prototype.onValueChanged = /**
+     * check for errors while using the form
+     * @param {?=} data
+     * @return {?}
+     */
+        function (data) {
+            var _this = this;
+            if (!this.frm) {
+                return;
             }
-        });
-    };
-    LoginFormComponent.prototype.doLogin = function () {
-        var _this = this;
-        // reset the error messages
-        this.errorMessage = undefined;
-        this.loginErrorUser = false;
-        this.loginErrorPw = false;
-        this.loginErrorServer = false;
-        // make sure form values are valid
-        if (this.frm.invalid) {
-            this.loginErrorPw = true;
-            this.loginErrorUser = true;
-            return;
-        }
-        // Reset status
-        this.loading = true;
-        // Grab values from form
-        var username = this.frm.get('email').value;
-        var password = this.frm.get('password').value;
-        this._auth.login(username, password)
-            .subscribe(function (response) {
-            // we have a token; set the session now
-            _this._session.setSession(response.body.token, username);
-            setTimeout(function () {
-                // get return url from route parameters or default to '/'
-                _this.returnUrl = _this._route.snapshot.queryParams['returnUrl'] || '/';
-                // go back to the previous route or to the route defined in the @Input if navigate exists
-                if (!_this.navigate) {
-                    _this._router.navigate([_this.returnUrl]);
+            /** @type {?} */
+            var form = this.frm;
+            Object.keys(this.formErrors).map(function (field) {
+                _this.formErrors[field] = '';
+                /** @type {?} */
+                var control = form.get(field);
+                if (control && control.dirty && !control.valid) {
+                    /** @type {?} */
+                    var messages_1 = _this.validationMessages[field];
+                    Object.keys(control.errors).map(function (key) {
+                        _this.formErrors[field] += messages_1[key] + ' ';
+                    });
                 }
-                else {
-                    _this._router.navigate([_this.navigate]);
+            });
+        };
+    /**
+     * @return {?}
+     */
+    LoginFormComponent.prototype.doLogin = /**
+     * @return {?}
+     */
+        function () {
+            var _this = this;
+            // reset the error messages
+            this.errorMessage = undefined;
+            this.loginErrorUser = false;
+            this.loginErrorPw = false;
+            this.loginErrorServer = false;
+            // make sure form values are valid
+            if (this.frm.invalid) {
+                this.loginErrorPw = true;
+                this.loginErrorUser = true;
+                return;
+            }
+            // Reset status
+            this.loading = true;
+            /** @type {?} */
+            var username = this.frm.get('email').value;
+            /** @type {?} */
+            var password = this.frm.get('password').value;
+            this._auth.login(username, password)
+                .subscribe(function (response) {
+                // we have a token; set the session now
+                // we have a token; set the session now
+                _this._session.setSession(response.body.token, username);
+                setTimeout(function () {
+                    // get return url from route parameters or default to '/'
+                    // get return url from route parameters or default to '/'
+                    _this.returnUrl = _this._route.snapshot.queryParams['returnUrl'] || '/';
+                    // go back to the previous route or to the route defined in the @Input if navigate exists
+                    if (!_this.navigate) {
+                        _this._router.navigate([_this.returnUrl]);
+                    }
+                    else {
+                        _this._router.navigate([_this.navigate]);
+                    }
+                    _this.loading = false;
+                }, 2000);
+            }, function (error) {
+                // error handling
+                if (error.status === 0) {
+                    _this.loginErrorUser = false;
+                    _this.loginErrorPw = false;
+                    _this.loginErrorServer = true;
                 }
+                if (error.status === 401) {
+                    _this.loginErrorUser = false;
+                    _this.loginErrorPw = true;
+                    _this.loginErrorServer = false;
+                }
+                if (error.status === 404) {
+                    _this.loginErrorUser = true;
+                    _this.loginErrorPw = false;
+                    _this.loginErrorServer = false;
+                }
+                _this.errorMessage = /** @type {?} */ (error);
                 _this.loading = false;
-            }, 2000);
-        }, function (error) {
-            // error handling
-            if (error.status === 0) {
-                _this.loginErrorUser = false;
-                _this.loginErrorPw = false;
-                _this.loginErrorServer = true;
-            }
-            if (error.status === 401) {
-                _this.loginErrorUser = false;
-                _this.loginErrorPw = true;
-                _this.loginErrorServer = false;
-            }
-            if (error.status === 404) {
-                _this.loginErrorUser = true;
-                _this.loginErrorPw = false;
-                _this.loginErrorServer = false;
-            }
-            _this.errorMessage = error;
-            _this.loading = false;
-        });
-    };
-    LoginFormComponent.prototype.logout = function () {
-        this._auth.logout();
-        location.reload(true);
-    };
+            });
+        };
+    /**
+     * @return {?}
+     */
+    LoginFormComponent.prototype.logout = /**
+     * @return {?}
+     */
+        function () {
+            this._auth.logout();
+            location.reload(true);
+        };
     return LoginFormComponent;
 }());
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
 var KuiAuthenticationModule = /** @class */ /*@__PURE__*/ (function () {
     function KuiAuthenticationModule() {
     }
     return KuiAuthenticationModule;
 }());
-/*
- * Public API Surface of authentication
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 /**
- * Generated bundle index. Do not edit.
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
  */
 
 
@@ -1465,11 +1677,17 @@ var Utils = /** @class */ /*@__PURE__*/ (function () {
         return segments[0] + 'simple/v2' + KnoraConstants.PathSeparator + segments[1];
     };
     /**
-     * A regex to validate Emails.
+     * A regex to validate Email address.
      *
      * @type {RegExp}
      */
     Utils.RegexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    /**
+     * A regex to validate Username.
+     *
+     * @type {RegExp}
+     */
+    Utils.RegexUsername = /^[a-zA-Z0-9]+$/;
     /**
      * A regex to validate URLs.
      *
@@ -2959,6 +3177,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.getProject(url);
     };
     /**
+     * @private
      * Helper method combining project retrieval.
      *
      * @param {string} url
@@ -3001,6 +3220,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.getProjectMembers(url);
     };
     /**
+     * @private
      * Helper method combining project member retrieval.
      *
      * @param {string} url
@@ -3095,6 +3315,29 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     UsersService.prototype.getUser = function (identifier) {
         var path = '/admin/users/' + encodeURIComponent(identifier);
         return this.httpGet(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(this.handleJsonError));
+    };
+    /**
+     * Deprecated! Please use getUser(identifier: string) only!
+     * Get user by email
+     *
+     * @ignore
+     *
+     * @param {string} email
+     * @returns {Observable<User>}
+     */
+    UsersService.prototype.getUserByEmail = function (email) {
+        return this.getUser(email);
+    };
+    /**
+     * Deprecated! Please use getUser(identifier: string) only!
+     *
+     * @ignore
+     *
+     * @param {string} iri
+     * @returns {Observable<User>}
+     */
+    UsersService.prototype.getUserByIri = function (iri) {
+        return this.getUser(iri);
     };
     // ------------------------------------------------------------------------
     // POST
@@ -3351,6 +3594,8 @@ var OntologyCacheError = /** @class */ /*@__PURE__*/ (function (_super) {
  */
 var OntologyMetadata = /** @class */ /*@__PURE__*/ (function () {
     /**
+     * @hideconstructor
+     *
      * @param {string} id Iri identifying the ontology.
      * @param {string} label a label describing the ontology.
      */
@@ -4130,6 +4375,9 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
     OntologyCacheService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["defineInjectable"])({ factory: function OntologyCacheService_Factory() { return new OntologyCacheService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])(OntologyService)); }, token: OntologyCacheService, providedIn: "root" });
     return OntologyCacheService;
 }());
+/**
+ * Requests representation of resources from Knora.
+ */
 var ResourceService = /** @class */ /*@__PURE__*/ (function (_super) {
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ResourceService, _super);
     function ResourceService() {
@@ -4148,6 +4396,9 @@ var ResourceService = /** @class */ /*@__PURE__*/ (function (_super) {
     ResourceService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["defineInjectable"])({ factory: function ResourceService_Factory() { return new ResourceService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"])("config")); }, token: ResourceService, providedIn: "root" });
     return ResourceService;
 }(ApiService));
+/**
+ * Performs searches (fulltext or extended) and search count queries into Knora.
+ */
 var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(SearchService, _super);
     function SearchService() {
@@ -4706,6 +4957,9 @@ var ConvertJSONLD;
     }
     ConvertJSONLD.getResourceClassesFromJsonLD = getResourceClassesFromJsonLD;
 })(ConvertJSONLD || (ConvertJSONLD = {}));
+/**
+ * Requests incoming information (regions, links, stillImageRepresentations) from Knora.
+ */
 var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
     Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(IncomingService, _super);
     function IncomingService() {
@@ -4793,6 +5047,7 @@ var SearchParamsService = /** @class */ /*@__PURE__*/ (function () {
     return SearchParamsService;
 }());
 /**
+ * @ignore
  * Represents an error that occurred when generating KnarQL.
  */
 var GravsearchGenerationError = /** @class */ /*@__PURE__*/ (function (_super) {
@@ -4802,11 +5057,15 @@ var GravsearchGenerationError = /** @class */ /*@__PURE__*/ (function (_super) {
     }
     return GravsearchGenerationError;
 }(Error));
+/**
+ * Create GravSearch queries from provided parameters.
+ */
 var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
     function GravsearchGenerationService(_searchParamsService) {
         this._searchParamsService = _searchParamsService;
     }
     /**
+       * @private
        * Converts a complex type Iri to a simple type Iri.
        *
        * @param {string} complexType the Iri of a value type (knora-api complex).
@@ -4822,13 +5081,13 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
         }
     };
     /**
-       * Generates a Gravsearch query from the provided arguments.
-       *
-       * @param {PropertyWithValue[]} properties the properties specified by the user.
-       * @param {string} [mainResourceClassOption] the class of the main resource, if specified.
-       * @param {number} offset the offset to be used (nth page of results).
-       * @returns string - a KnarQL query string.
-       */
+     * Generates a Gravsearch query from the provided arguments.
+     *
+     * @param {PropertyWithValue[]} properties the properties specified by the user.
+     * @param {string} [mainResourceClassOption] the class of the main resource, if specified.
+     * @param {number} offset the offset to be used (nth page of results).
+     * @returns string - a KnarQL query string.
+     */
     GravsearchGenerationService.prototype.createGravsearchQuery = function (properties, mainResourceClassOption, offset) {
         var _this = this;
         if (offset === void 0) {
@@ -4922,6 +5181,8 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
         return gravsearchTemplate + offsetTemplate;
     };
     /**
+     * @ignore
+     *
      * Map of complex knora-api value types to simple ones.
      * Use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.
      */
@@ -5307,7 +5568,7 @@ var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
     };
     /**
      * Realise a simple search
-     * @param search_ele
+     * @param {HTMLElement} search_ele
      * @returns void
      */
     SearchComponent.prototype.doSearch = function (search_ele) {
@@ -5357,7 +5618,7 @@ var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
     };
     /**
      * Reset the search
-     * @param search_ele
+     * @param {HTMLElement} search_ele
      * @returns void
      */
     SearchComponent.prototype.resetSearch = function (search_ele) {
@@ -5368,7 +5629,7 @@ var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
     };
     /**
      * Realise a previous search
-     * @param query
+     * @param {string} query
      * @returns void
      */
     SearchComponent.prototype.doPrevSearch = function (query) {
@@ -5378,7 +5639,7 @@ var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
     };
     /**
      * Reset previous searches - the whole previous search or specific item by name
-     * @param name
+     * @param {string} name term of the search
      * @returns void
      */
     SearchComponent.prototype.resetPrevSearch = function (name) {
@@ -5410,7 +5671,7 @@ var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
     /**
      * Switch according to the focus between simple or extended search
      *
-     * @param name
+     * @param {string} name 2 cases: simpleSearch or extendedSearch
      * @returns void
      */
     SearchComponent.prototype.toggleMenu = function (name) {
@@ -6398,7 +6659,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var KuiSearchModuleNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcmf"](_knora_search__WEBPACK_IMPORTED_MODULE_1__["KuiSearchModule"], [], function (_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmod"]([_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵCodegenComponentFactoryResolver"], [[8, [_node_modules_angular_material_dialog_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["MatDialogContainerNgFactory"], _node_modules_angular_material_datepicker_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["MatDatepickerContentNgFactory"], _node_modules_angular_material_datepicker_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["MatCalendarHeaderNgFactory"], _node_modules_angular_material_tooltip_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["TooltipComponentNgFactory"], HeaderComponentNgFactory]], [3, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"]], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModuleRef"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["LOCALE_ID"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_k"], [[3, _angular_core__WEBPACK_IMPORTED_MODULE_0__["LOCALE_ID"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgLocalization"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgLocaleLocalization"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["LOCALE_ID"], [2, _angular_common__WEBPACK_IMPORTED_MODULE_5__["ɵangular_packages_common_common_a"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Compiler"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_ID"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_f"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_i"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["KeyValueDiffers"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_core_core_j"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["DomSanitizer"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵDomSanitizerImpl"], [_angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_core__WEBPACK_IMPORTED_MODULE_0__["Sanitizer"], null, [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["DomSanitizer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["HAMMER_GESTURE_CONFIG"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["GestureConfig"], [[2, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MAT_HAMMER_OPTIONS"]], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatCommonModule"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["EVENT_MANAGER_PLUGINS"], function (p0_0, p0_1, p0_2, p1_0, p2_0, p2_1, p2_2, p2_3) { return [new _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵDomEventsPlugin"](p0_0, p0_1, p0_2), new _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵKeyEventsPlugin"](p1_0), new _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵHammerGesturesPlugin"](p2_0, p2_1, p2_2, p2_3)]; }, [_angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["HAMMER_GESTURE_CONFIG"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵConsole"], [2, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["HAMMER_LOADER"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["EventManager"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["EventManager"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["EVENT_MANAGER_PLUGINS"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](135680, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵDomSharedStylesHost"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵDomSharedStylesHost"], [_angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵDomRendererFactory2"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵDomRendererFactory2"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["EventManager"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵDomSharedStylesHost"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_animations_browser__WEBPACK_IMPORTED_MODULE_8__["AnimationDriver"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ɵangular_packages_platform_browser_animations_animations_b"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_animations_browser__WEBPACK_IMPORTED_MODULE_8__["ɵAnimationStyleNormalizer"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ɵangular_packages_platform_browser_animations_animations_c"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_animations_browser__WEBPACK_IMPORTED_MODULE_8__["ɵAnimationEngine"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ɵangular_packages_platform_browser_animations_animations_a"], [_angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_animations_browser__WEBPACK_IMPORTED_MODULE_8__["AnimationDriver"], _angular_animations_browser__WEBPACK_IMPORTED_MODULE_8__["ɵAnimationStyleNormalizer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_core__WEBPACK_IMPORTED_MODULE_0__["RendererFactory2"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ɵangular_packages_platform_browser_animations_animations_d"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵDomRendererFactory2"], _angular_animations_browser__WEBPACK_IMPORTED_MODULE_8__["ɵAnimationEngine"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵSharedStylesHost"], null, [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵDomSharedStylesHost"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_core__WEBPACK_IMPORTED_MODULE_0__["Testability"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Testability"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_animations__WEBPACK_IMPORTED_MODULE_10__["AnimationBuilder"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ɵBrowserAnimationBuilder"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["RendererFactory2"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["DOCUMENT"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["ScrollStrategyOptions"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayContainer"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayPositionBuilder"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayKeyboardDispatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_12__["Directionality"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["ɵc"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["ɵd"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_13__["MAT_AUTOCOMPLETE_SCROLL_STRATEGY"], _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_13__["MAT_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_14__["MutationObserverFactory"], _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_14__["MutationObserverFactory"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_15__["MAT_DIALOG_SCROLL_STRATEGY"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_15__["MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_15__["MatDialog"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_15__["MatDialog"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], [2, _angular_common__WEBPACK_IMPORTED_MODULE_5__["Location"]], [2, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_15__["MAT_DIALOG_DEFAULT_OPTIONS"]], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_15__["MAT_DIALOG_SCROLL_STRATEGY"], [3, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_15__["MatDialog"]], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayContainer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__["MatDatepickerIntl"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__["MatDatepickerIntl"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__["MAT_DATEPICKER_SCROLL_STRATEGY"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__["MAT_DATEPICKER_SCROLL_STRATEGY_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["ErrorStateMatcher"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["ErrorStateMatcher"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_select__WEBPACK_IMPORTED_MODULE_17__["MAT_SELECT_SCROLL_STRATEGY"], _angular_material_select__WEBPACK_IMPORTED_MODULE_17__["MAT_SELECT_SCROLL_STRATEGY_PROVIDER_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_18__["MAT_TOOLTIP_SCROLL_STRATEGY"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_18__["MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_forms__WEBPACK_IMPORTED_MODULE_19__["ɵangular_packages_forms_forms_i"], _angular_forms__WEBPACK_IMPORTED_MODULE_19__["ɵangular_packages_forms_forms_i"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_forms__WEBPACK_IMPORTED_MODULE_19__["FormBuilder"], _angular_forms__WEBPACK_IMPORTED_MODULE_19__["FormBuilder"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpXsrfTokenExtractor"], _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_g"], [_angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"], _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_e"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_h"], _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_h"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpXsrfTokenExtractor"], _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_f"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HTTP_INTERCEPTORS"], function (p0_0) { return [p0_0]; }, [_angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_h"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_d"], _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_d"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["XhrFactory"], null, [_angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_d"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpXhrBackend"], _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpXhrBackend"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_20__["XhrFactory"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](6144, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpBackend"], null, [_angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpXhrBackend"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpHandler"], _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵHttpInterceptingHandler"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpBackend"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpClient"], _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpClient"], [_angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpHandler"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](5120, _angular_material_menu__WEBPACK_IMPORTED_MODULE_21__["MAT_MENU_SCROLL_STRATEGY"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_21__["ɵd23"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](4608, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["DateAdapter"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_22__["JDNConvertibleCalendarDateAdapter"], [_angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MAT_DATE_LOCALE"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ErrorHandler"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵangular_packages_platform_browser_platform_browser_a"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1024, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_INITIALIZER"], function (p0_0) { return [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["ɵangular_packages_platform_browser_platform_browser_j"](p0_0)]; }, [[2, _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgProbeToken"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](512, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationInitStatus"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationInitStatus"], [[2, _angular_core__WEBPACK_IMPORTED_MODULE_0__["APP_INITIALIZER"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](131584, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵConsole"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ErrorHandler"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationInitStatus"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationModule"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationModule"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["BrowserModule"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["BrowserModule"], [[3, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__["BrowserModule"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_12__["BidiModule"], _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_12__["BidiModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatCommonModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatCommonModule"], [[2, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MATERIAL_SANITY_CHECKS"]]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_23__["PlatformModule"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_23__["PlatformModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatRippleModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatRippleModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatPseudoCheckboxModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatPseudoCheckboxModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatOptionModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatOptionModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_24__["PortalModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_24__["PortalModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_25__["ScrollDispatchModule"], _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_25__["ScrollDispatchModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["OverlayModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_13__["MatAutocompleteModule"], _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_13__["MatAutocompleteModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_button__WEBPACK_IMPORTED_MODULE_26__["MatButtonModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_26__["MatButtonModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_14__["ObserversModule"], _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_14__["ObserversModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_27__["MatCheckboxModule"], _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_27__["MatCheckboxModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_15__["MatDialogModule"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_15__["MatDialogModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_28__["A11yModule"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_28__["A11yModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__["MatDatepickerModule"], _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_16__["MatDatepickerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_29__["MatFormFieldModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_29__["MatFormFieldModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_cdk_text_field__WEBPACK_IMPORTED_MODULE_30__["TextFieldModule"], _angular_cdk_text_field__WEBPACK_IMPORTED_MODULE_30__["TextFieldModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_input__WEBPACK_IMPORTED_MODULE_31__["MatInputModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_31__["MatInputModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_icon__WEBPACK_IMPORTED_MODULE_32__["MatIconModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_32__["MatIconModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatLineModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatLineModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_divider__WEBPACK_IMPORTED_MODULE_33__["MatDividerModule"], _angular_material_divider__WEBPACK_IMPORTED_MODULE_33__["MatDividerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_list__WEBPACK_IMPORTED_MODULE_34__["MatListModule"], _angular_material_list__WEBPACK_IMPORTED_MODULE_34__["MatListModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_select__WEBPACK_IMPORTED_MODULE_17__["MatSelectModule"], _angular_material_select__WEBPACK_IMPORTED_MODULE_17__["MatSelectModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_18__["MatTooltipModule"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_18__["MatTooltipModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_forms__WEBPACK_IMPORTED_MODULE_19__["ɵangular_packages_forms_forms_bb"], _angular_forms__WEBPACK_IMPORTED_MODULE_19__["ɵangular_packages_forms_forms_bb"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_forms__WEBPACK_IMPORTED_MODULE_19__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_19__["FormsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_forms__WEBPACK_IMPORTED_MODULE_19__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_19__["ReactiveFormsModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpClientXsrfModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpClientXsrfModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpClientModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["HttpClientModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_core__WEBPACK_IMPORTED_MODULE_35__["KuiCoreModule"], _knora_core__WEBPACK_IMPORTED_MODULE_35__["KuiCoreModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_menu__WEBPACK_IMPORTED_MODULE_21__["MatMenuModule"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_21__["MatMenuModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_action__WEBPACK_IMPORTED_MODULE_36__["KuiActionModule"], _knora_action__WEBPACK_IMPORTED_MODULE_36__["KuiActionModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_card__WEBPACK_IMPORTED_MODULE_37__["MatCardModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_37__["MatCardModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["NativeDateModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["NativeDateModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatNativeDateModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatNativeDateModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_38__["MatSlideToggleModule"], _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_38__["MatSlideToggleModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_39__["MatToolbarModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_39__["MatToolbarModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_viewer__WEBPACK_IMPORTED_MODULE_40__["KuiViewerModule"], _knora_viewer__WEBPACK_IMPORTED_MODULE_40__["KuiViewerModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_22__["JDNConvertibleCalendarDateAdapterModule"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_22__["JDNConvertibleCalendarDateAdapterModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_22__["MatJDNConvertibleCalendarDateAdapterModule"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_22__["MatJDNConvertibleCalendarDateAdapterModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](1073742336, _knora_search__WEBPACK_IMPORTED_MODULE_1__["KuiSearchModule"], _knora_search__WEBPACK_IMPORTED_MODULE_1__["KuiSearchModule"], []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵAPP_ROOT"], true, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"], "BrowserAnimations", []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_e"], "XSRF-TOKEN", []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_common_http__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_common_http_http_f"], "X-XSRF-TOKEN", []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, "config", undefined, []), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵmpd"](256, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MAT_DATE_FORMATS"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_22__["ɵa"], [])]); });
 
-var styles_SearchComponent = ["input[type=search][_ngcontent-%COMP%]::-webkit-search-cancel-button, input[type=search][_ngcontent-%COMP%]::-webkit-search-decoration, input[type=search][_ngcontent-%COMP%]::-webkit-search-results-button, input[type=search][_ngcontent-%COMP%]::-webkit-search-results-decoration{display:none}input[type=search][_ngcontent-%COMP%]{-moz-appearance:none;-webkit-appearance:none}.center[_ngcontent-%COMP%]{display:block;margin-left:auto;margin-right:auto}.close[_ngcontent-%COMP%]{right:12px}.extended-search-box[_ngcontent-%COMP%]{margin:12px}.advanced-search-button[_ngcontent-%COMP%]{margin-left:10px}.full-width[_ngcontent-%COMP%]{width:100%}.hide[_ngcontent-%COMP%]{display:none}.inactive[_ngcontent-%COMP%], .mute[_ngcontent-%COMP%]{color:#7a7a7a}.search-panel[_ngcontent-%COMP%]{background-color:#f9f9f9;border-radius:4px;display:inline-flex;height:40px;position:relative;width:720px;z-index:10}.search-panel[_ngcontent-%COMP%]:hover{box-shadow:0 1px 3px rgba(0,0,0,.5)}.search-panel[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]{flex:1}.search-panel[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]{border-style:none;font-size:14pt;height:38px;position:absolute;width:640px}.search-panel[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]:active, .search-panel[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]:focus{outline:0}.search-panel[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   .prefix[_ngcontent-%COMP%], .search-panel[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   .suffix[_ngcontent-%COMP%]{background-color:#fff;border-radius:3px;border-style:none;color:rgba(41,41,41,.4);cursor:pointer;height:38px;outline:0;position:relative;width:40px}.search-panel[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   .prefix[_ngcontent-%COMP%]:active, .search-panel[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   .suffix[_ngcontent-%COMP%]:active{color:#515151}.search-panel.active[_ngcontent-%COMP%]{box-shadow:0 1px 3px rgba(0,0,0,.5)}.salsah-menu[_ngcontent-%COMP%]{box-shadow:0 3px 5px -1px rgba(11,11,11,.2),0 6px 10px 0 rgba(11,11,11,.14),0 1px 18px 0 rgba(11,11,11,.12);background-color:#f9f9f9;border-radius:4px;position:absolute}.salsah-menu[_ngcontent-%COMP%]   .salsah-menu-header[_ngcontent-%COMP%]{background-color:#f9f9f9;border-top-left-radius:4px;border-top-right-radius:4px;display:inline-block;height:48px;width:100%}.salsah-menu[_ngcontent-%COMP%]   .salsah-menu-header[_ngcontent-%COMP%]   .salsah-menu-title[_ngcontent-%COMP%]{float:left;font-size:14px;font-weight:400;margin-top:4px;padding:12px}.salsah-menu[_ngcontent-%COMP%]   .salsah-menu-header[_ngcontent-%COMP%]   .salsah-menu-action[_ngcontent-%COMP%]{float:right;margin:4px}.salsah-menu.extended-search[_ngcontent-%COMP%], .salsah-menu.simple-search[_ngcontent-%COMP%]{min-height:720px;width:720px}.salsah-menu.simple-search[_ngcontent-%COMP%]{padding-top:60px;z-index:-1}.salsah-menu.simple-search[_ngcontent-%COMP%]   .salsah-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]{cursor:pointer}.salsah-menu.simple-search[_ngcontent-%COMP%]   .salsah-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]:hover{background-color:#f9f9f9}.salsah-menu.simple-search[_ngcontent-%COMP%]   .salsah-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]:hover   mat-icon[_ngcontent-%COMP%]{display:block}.salsah-menu.simple-search[_ngcontent-%COMP%]   .salsah-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]   mat-icon[_ngcontent-%COMP%]{display:none}.salsah-menu.simple-search[_ngcontent-%COMP%]   .right[_ngcontent-%COMP%]{margin-top:12px;margin-left:16px}.salsah-menu.extended-search[_ngcontent-%COMP%]{z-index:20}.search-bar-elements[_ngcontent-%COMP%]{display:flex}.show[_ngcontent-%COMP%]{display:block}"];
+var styles_SearchComponent = ["input[type=search][_ngcontent-%COMP%]::-webkit-search-cancel-button, input[type=search][_ngcontent-%COMP%]::-webkit-search-decoration, input[type=search][_ngcontent-%COMP%]::-webkit-search-results-button, input[type=search][_ngcontent-%COMP%]::-webkit-search-results-decoration{display:none}input[type=search][_ngcontent-%COMP%]{-moz-appearance:none;-webkit-appearance:none}.center[_ngcontent-%COMP%]{display:block;margin-left:auto;margin-right:auto}.close[_ngcontent-%COMP%]{right:12px}.extended-search-box[_ngcontent-%COMP%]{margin:12px}.advanced-search-button[_ngcontent-%COMP%]{margin-left:10px}.full-width[_ngcontent-%COMP%]{width:100%}.hide[_ngcontent-%COMP%]{display:none}.inactive[_ngcontent-%COMP%], .mute[_ngcontent-%COMP%]{color:#7a7a7a}.search-panel[_ngcontent-%COMP%]{background-color:#f9f9f9;border-radius:4px;display:inline-flex;height:40px;position:relative;width:680px;z-index:10}.search-panel[_ngcontent-%COMP%]:hover{box-shadow:0 1px 3px rgba(0,0,0,.5)}.search-panel[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]{flex:1}.search-panel[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]{border-style:none;font-size:14pt;height:38px;position:absolute;width:calc(100% - 80px)}.search-panel[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]:active, .search-panel[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]:focus{outline:0}.search-panel[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   .prefix[_ngcontent-%COMP%], .search-panel[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   .suffix[_ngcontent-%COMP%]{background-color:#fff;border-radius:3px;border-style:none;color:rgba(41,41,41,.4);cursor:pointer;height:38px;outline:0;position:relative;width:40px}.search-panel[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   .prefix[_ngcontent-%COMP%]:active, .search-panel[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   .suffix[_ngcontent-%COMP%]:active{color:#515151}.search-panel.active[_ngcontent-%COMP%]{box-shadow:0 1px 3px rgba(0,0,0,.5)}.salsah-menu[_ngcontent-%COMP%]{box-shadow:0 3px 5px -1px rgba(11,11,11,.2),0 6px 10px 0 rgba(11,11,11,.14),0 1px 18px 0 rgba(11,11,11,.12);background-color:#f9f9f9;border-radius:4px;position:absolute}.salsah-menu[_ngcontent-%COMP%]   .salsah-menu-header[_ngcontent-%COMP%]{background-color:#f9f9f9;border-top-left-radius:4px;border-top-right-radius:4px;display:inline-block;height:48px;width:100%}.salsah-menu[_ngcontent-%COMP%]   .salsah-menu-header[_ngcontent-%COMP%]   .salsah-menu-title[_ngcontent-%COMP%]{float:left;font-size:14px;font-weight:400;margin-top:4px;padding:12px}.salsah-menu[_ngcontent-%COMP%]   .salsah-menu-header[_ngcontent-%COMP%]   .salsah-menu-action[_ngcontent-%COMP%]{float:right;margin:4px}.salsah-menu.extended-search[_ngcontent-%COMP%], .salsah-menu.simple-search[_ngcontent-%COMP%]{min-height:680px;width:680px}.salsah-menu.simple-search[_ngcontent-%COMP%]{padding-top:60px;z-index:-1}.salsah-menu.simple-search[_ngcontent-%COMP%]   .salsah-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]{cursor:pointer}.salsah-menu.simple-search[_ngcontent-%COMP%]   .salsah-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]:hover{background-color:#f9f9f9}.salsah-menu.simple-search[_ngcontent-%COMP%]   .salsah-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]:hover   mat-icon[_ngcontent-%COMP%]{display:block}.salsah-menu.simple-search[_ngcontent-%COMP%]   .salsah-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]   mat-icon[_ngcontent-%COMP%]{display:none}.salsah-menu.simple-search[_ngcontent-%COMP%]   .right[_ngcontent-%COMP%]{margin-top:12px;margin-left:16px}.salsah-menu.extended-search[_ngcontent-%COMP%]{z-index:20}.search-bar-elements[_ngcontent-%COMP%]{display:flex}.show[_ngcontent-%COMP%]{display:block}@media screen and (max-width:1024px){.search-panel[_ngcontent-%COMP%]{width:480px}.search-panel[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]{width:calc(480px - 80px)}.salsah-menu.extended-search[_ngcontent-%COMP%], .salsah-menu.simple-search[_ngcontent-%COMP%]{width:480px}}@media screen and (max-width:768px){.search-panel[_ngcontent-%COMP%]{width:calc(480px - 160px)}.search-panel[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]{width:calc(480px - 160px - 80px)}.salsah-menu.extended-search[_ngcontent-%COMP%], .salsah-menu.simple-search[_ngcontent-%COMP%]{width:calc(480px - 80px)}}"];
 var RenderType_SearchComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_SearchComponent, data: { "animation": [{ type: 7, name: "simpleSearchMenu", definitions: [{ type: 0, name: "inactive", styles: { type: 6, styles: { display: "none" }, offset: null }, options: undefined }, { type: 0, name: "active", styles: { type: 6, styles: { display: "block" }, offset: null }, options: undefined }, { type: 1, expr: "inactive => true", animation: { type: 4, styles: null, timings: "100ms ease-in" }, options: null }, { type: 1, expr: "true => inactive", animation: { type: 4, styles: null, timings: "100ms ease-out" }, options: null }], options: {} }, { type: 7, name: "extendedSearchMenu", definitions: [{ type: 0, name: "inactive", styles: { type: 6, styles: { display: "none" }, offset: null }, options: undefined }, { type: 0, name: "active", styles: { type: 6, styles: { display: "block" }, offset: null }, options: undefined }, { type: 1, expr: "inactive => true", animation: { type: 4, styles: null, timings: "100ms ease-in" }, options: null }, { type: 1, expr: "true => inactive", animation: { type: 4, styles: null, timings: "100ms ease-out" }, options: null }], options: {} }] } });
 
 function View_SearchComponent_1(_l) {
@@ -6444,7 +6705,7 @@ function View_SearchComponent_4(_l) {
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_43__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_43__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](8, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_26__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_23__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_28__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](9, 0, null, 0, 2, "mat-icon", [["aria-label", "close"], ["class", "mat-icon"], ["role", "img"]], [[2, "mat-icon-inline", null]], null, null, _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_41__["View_MatIcon_0"], _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_41__["RenderType_MatIcon"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](10, 638976, null, 0, _angular_material_icon__WEBPACK_IMPORTED_MODULE_32__["MatIcon"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_32__["MatIconRegistry"], [8, null]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, 0, ["clear"]))], function (_ck, _v) { var currVal_2 = (_v.context.index < 10); _ck(_v, 6, 0, currVal_2); _ck(_v, 10, 0); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._icon); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._icon); _ck(_v, 0, 0, currVal_0, currVal_1); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).disabled || null); var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8)._animationMode === "NoopAnimations"); _ck(_v, 7, 0, currVal_3, currVal_4); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 10).inline; _ck(_v, 9, 0, currVal_5); });
+        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_43__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_43__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](8, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_26__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_23__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_28__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](9, 0, null, 0, 2, "mat-icon", [["aria-label", "close"], ["class", "mat-icon"], ["role", "img"]], [[2, "mat-icon-inline", null]], null, null, _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_41__["View_MatIcon_0"], _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_41__["RenderType_MatIcon"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](10, 638976, null, 0, _angular_material_icon__WEBPACK_IMPORTED_MODULE_32__["MatIcon"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_32__["MatIconRegistry"], [8, null]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, 0, ["close"]))], function (_ck, _v) { var currVal_2 = (_v.context.index < 10); _ck(_v, 6, 0, currVal_2); _ck(_v, 10, 0); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._icon); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._icon); _ck(_v, 0, 0, currVal_0, currVal_1); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).disabled || null); var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8)._animationMode === "NoopAnimations"); _ck(_v, 7, 0, currVal_3, currVal_4); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 10).inline; _ck(_v, 9, 0, currVal_5); });
 }
 function View_SearchComponent_6(_l) {
     return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "button", [["class", "right"], ["color", "accent"], ["mat-stroked-button", ""]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
@@ -6898,7 +7159,7 @@ var styles_DateValueComponent = [""];
 var RenderType_DateValueComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_DateValueComponent, data: {} });
 
 function View_DateValueComponent_0(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 28, "mat-form-field", [["class", "mat-form-field"]], [[2, "mat-form-field-appearance-standard", null], [2, "mat-form-field-appearance-fill", null], [2, "mat-form-field-appearance-outline", null], [2, "mat-form-field-appearance-legacy", null], [2, "mat-form-field-invalid", null], [2, "mat-form-field-can-float", null], [2, "mat-form-field-should-float", null], [2, "mat-form-field-hide-placeholder", null], [2, "mat-form-field-disabled", null], [2, "mat-form-field-autofilled", null], [2, "mat-focused", null], [2, "mat-accent", null], [2, "mat-warn", null], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null], [2, "_mat-animation-noopable", null]], null, null, _node_modules_angular_material_form_field_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_46__["View_MatFormField_0"], _node_modules_angular_material_form_field_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_46__["RenderType_MatFormField"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 7389184, null, 7, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_29__["MatFormField"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MAT_LABEL_GLOBAL_OPTIONS"]], [2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_12__["Directionality"]], [2, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_29__["MAT_FORM_FIELD_DEFAULT_OPTIONS"]], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_23__["Platform"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 1, { _control: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 2, { _placeholderChild: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 3, { _labelChild: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 4, { _errorChildren: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 5, { _hintChildren: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 6, { _prefixChildren: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 7, { _suffixChildren: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](9, 0, null, 1, 15, "jdn-datepicker", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](512, null, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["DateAdapter"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_22__["JDNConvertibleCalendarDateAdapter"], [_angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MAT_DATE_LOCALE"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](11, 16384, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_36__["JdnDatepickerDirective"], [_angular_material_core__WEBPACK_IMPORTED_MODULE_7__["DateAdapter"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](12, 0, null, null, 10, "input", [["class", "mat-input-element mat-form-field-autofill-control"], ["matInput", ""], ["placeholder", "Choose a date"]], [[1, "aria-haspopup", 0], [1, "aria-owns", 0], [1, "min", 0], [1, "max", 0], [8, "disabled", 0], [2, "mat-input-server", null], [1, "id", 0], [1, "placeholder", 0], [8, "disabled", 0], [8, "required", 0], [8, "readOnly", 0], [1, "aria-describedby", 0], [1, "aria-invalid", 0], [1, "aria-required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "change"], [null, "blur"], [null, "keydown"], [null, "compositionstart"], [null, "compositionend"], [null, "focus"]], function (_v, en, $event) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 28, "mat-form-field", [["class", "mat-form-field"]], [[2, "mat-form-field-appearance-standard", null], [2, "mat-form-field-appearance-fill", null], [2, "mat-form-field-appearance-outline", null], [2, "mat-form-field-appearance-legacy", null], [2, "mat-form-field-invalid", null], [2, "mat-form-field-can-float", null], [2, "mat-form-field-should-float", null], [2, "mat-form-field-hide-placeholder", null], [2, "mat-form-field-disabled", null], [2, "mat-form-field-autofilled", null], [2, "mat-focused", null], [2, "mat-accent", null], [2, "mat-warn", null], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null], [2, "_mat-animation-noopable", null]], null, null, _node_modules_angular_material_form_field_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_46__["View_MatFormField_0"], _node_modules_angular_material_form_field_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_46__["RenderType_MatFormField"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 7389184, null, 7, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_29__["MatFormField"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MAT_LABEL_GLOBAL_OPTIONS"]], [2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_12__["Directionality"]], [2, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_29__["MAT_FORM_FIELD_DEFAULT_OPTIONS"]], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_23__["Platform"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 1, { _control: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 2, { _placeholderChild: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 3, { _labelChild: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 4, { _errorChildren: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 5, { _hintChildren: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 6, { _prefixChildren: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 7, { _suffixChildren: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](9, 0, null, 1, 15, "kuiJdnDatepicker", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](512, null, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["DateAdapter"], jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_22__["JDNConvertibleCalendarDateAdapter"], [_angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MAT_DATE_LOCALE"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](11, 16384, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_36__["JdnDatepickerDirective"], [_angular_material_core__WEBPACK_IMPORTED_MODULE_7__["DateAdapter"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](12, 0, null, null, 10, "input", [["class", "mat-input-element mat-form-field-autofill-control"], ["matInput", ""], ["placeholder", "Choose a date"]], [[1, "aria-haspopup", 0], [1, "aria-owns", 0], [1, "min", 0], [1, "max", 0], [8, "disabled", 0], [2, "mat-input-server", null], [1, "id", 0], [1, "placeholder", 0], [8, "disabled", 0], [8, "required", 0], [8, "readOnly", 0], [1, "aria-describedby", 0], [1, "aria-invalid", 0], [1, "aria-required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "change"], [null, "blur"], [null, "keydown"], [null, "compositionstart"], [null, "compositionend"], [null, "focus"]], function (_v, en, $event) {
             var ad = true;
             if (("input" === en)) {
                 var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13)._onInput($event.target.value) !== false);
@@ -11998,11 +12259,17 @@ var Utils = /** @class */ /*@__PURE__*/ (function () {
         return segments[0] + 'simple/v2' + _api_knora_constants__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].PathSeparator + segments[1];
     };
     /**
-     * A regex to validate Emails.
+     * A regex to validate Email address.
      *
      * @type {RegExp}
      */
     Utils.RegexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    /**
+     * A regex to validate Username.
+     *
+     * @type {RegExp}
+     */
+    Utils.RegexUsername = /^[a-zA-Z0-9]+$/;
     /**
      * A regex to validate URLs.
      *
@@ -12355,6 +12622,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.getProject(url);
     };
     /**
+     * @private
      * Helper method combining project retrieval.
      *
      * @param {string} url
@@ -12397,6 +12665,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.getProjectMembers(url);
     };
     /**
+     * @private
      * Helper method combining project member retrieval.
      *
      * @param {string} url
@@ -12574,6 +12843,29 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     UsersService.prototype.getUser = function (identifier) {
         var path = '/admin/users/' + encodeURIComponent(identifier);
         return this.httpGet(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
+    };
+    /**
+     * Deprecated! Please use getUser(identifier: string) only!
+     * Get user by email
+     *
+     * @ignore
+     *
+     * @param {string} email
+     * @returns {Observable<User>}
+     */
+    UsersService.prototype.getUserByEmail = function (email) {
+        return this.getUser(email);
+    };
+    /**
+     * Deprecated! Please use getUser(identifier: string) only!
+     *
+     * @ignore
+     *
+     * @param {string} iri
+     * @returns {Observable<User>}
+     */
+    UsersService.prototype.getUserByIri = function (iri) {
+        return this.getUser(iri);
     };
     // ------------------------------------------------------------------------
     // POST
@@ -13455,6 +13747,7 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 /**
+ * @ignore
  * Represents an error that occurred when generating KnarQL.
  */
 var GravsearchGenerationError = /** @class */ /*@__PURE__*/ (function (_super) {
@@ -13464,11 +13757,15 @@ var GravsearchGenerationError = /** @class */ /*@__PURE__*/ (function (_super) {
     }
     return GravsearchGenerationError;
 }(Error));
+/**
+ * Create GravSearch queries from provided parameters.
+ */
 var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
     function GravsearchGenerationService(_searchParamsService) {
         this._searchParamsService = _searchParamsService;
     }
     /**
+       * @private
        * Converts a complex type Iri to a simple type Iri.
        *
        * @param {string} complexType the Iri of a value type (knora-api complex).
@@ -13484,13 +13781,13 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
         }
     };
     /**
-       * Generates a Gravsearch query from the provided arguments.
-       *
-       * @param {PropertyWithValue[]} properties the properties specified by the user.
-       * @param {string} [mainResourceClassOption] the class of the main resource, if specified.
-       * @param {number} offset the offset to be used (nth page of results).
-       * @returns string - a KnarQL query string.
-       */
+     * Generates a Gravsearch query from the provided arguments.
+     *
+     * @param {PropertyWithValue[]} properties the properties specified by the user.
+     * @param {string} [mainResourceClassOption] the class of the main resource, if specified.
+     * @param {number} offset the offset to be used (nth page of results).
+     * @returns string - a KnarQL query string.
+     */
     GravsearchGenerationService.prototype.createGravsearchQuery = function (properties, mainResourceClassOption, offset) {
         var _this = this;
         if (offset === void 0) {
@@ -13584,6 +13881,8 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
         return gravsearchTemplate + offsetTemplate;
     };
     /**
+     * @ignore
+     *
      * Map of complex knora-api value types to simple ones.
      * Use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.
      */
@@ -13644,6 +13943,9 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+/**
+ * Requests incoming information (regions, links, stillImageRepresentations) from Knora.
+ */
 var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
     __extends(IncomingService, _super);
     function IncomingService() {
@@ -13752,6 +14054,8 @@ var OntologyCacheError = /** @class */ /*@__PURE__*/ (function (_super) {
  */
 var OntologyMetadata = /** @class */ /*@__PURE__*/ (function () {
     /**
+     * @hideconstructor
+     *
      * @param {string} id Iri identifying the ontology.
      * @param {string} label a label describing the ontology.
      */
@@ -14652,6 +14956,9 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+/**
+ * Requests representation of resources from Knora.
+ */
 var ResourceService = /** @class */ /*@__PURE__*/ (function (_super) {
     __extends(ResourceService, _super);
     function ResourceService() {
@@ -14771,6 +15078,9 @@ var __extends = (undefined && undefined.__extends) || (function () {
 
 
 
+/**
+ * Performs searches (fulltext or extended) and search count queries into Knora.
+ */
 var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
     __extends(SearchService, _super);
     function SearchService() {
@@ -16462,7 +16772,7 @@ __webpack_require__.r(__webpack_exports__);
 var styles_AdminImageComponent = [_admin_image_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_AdminImageComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_AdminImageComponent, data: {} });
 
-function View_AdminImageComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 26, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 22, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default user profile image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["The image source is an email, which is not registered on gravatar.com"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Avatar example: 'salsah' user"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["The image source is an email, which is registered on gravatar.com"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](21, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["User image on error"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](23, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](24, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](25, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default error image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](27, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["In the case of an image source 404 error, it shows the following 'image not available'-image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](29, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](30, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 12, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](32, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](34, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, 0, 8, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](36, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default project image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](38, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](39, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](40, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Logo example: 'dasch' project"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](42, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](43, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.userAvatar; _ck(_v, 7, 0, currVal_1); var currVal_2 = _co.imgDefaultUser; var currVal_3 = "user"; _ck(_v, 14, 0, currVal_2, currVal_3); var currVal_4 = _co.imgSalsahUser; var currVal_5 = "user"; _ck(_v, 20, 0, currVal_4, currVal_5); var currVal_6 = null; var currVal_7 = "user"; _ck(_v, 24, 0, currVal_6, currVal_7); var currVal_8 = "null"; _ck(_v, 30, 0, currVal_8); var currVal_9 = _co.projectLogo; _ck(_v, 34, 0, currVal_9); var currVal_10 = _co.imgDefaultProject; var currVal_11 = "project"; _ck(_v, 39, 0, currVal_10, currVal_11); var currVal_12 = _co.imgDaschProject; var currVal_13 = "project"; _ck(_v, 43, 0, currVal_12, currVal_13); }, null); }
+function View_AdminImageComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 26, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 22, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default user profile image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["The image source is an email, which is not registered on gravatar.com"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Avatar example: 'salsah' user"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["The image source is an email, which is registered on gravatar.com"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](21, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["User image on error"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](23, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](24, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](25, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default error image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](27, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["In the case of an image source 404 error, it shows the following 'image not available'-image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](29, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](30, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 12, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](32, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](34, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, 0, 8, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](36, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Default project image"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](38, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](39, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](40, 0, null, null, 1, "h5", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Logo example: 'dasch' project"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](42, 0, null, null, 1, "img", [["kuiAdminImage", ""]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](43, 540672, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_10__["AdminImageDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { image: [0, "image"], type: [1, "type"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.userAvatar; _ck(_v, 7, 0, currVal_1); var currVal_2 = _co.imgDefaultUser; var currVal_3 = "user"; _ck(_v, 14, 0, currVal_2, currVal_3); var currVal_4 = _co.imgSalsahUser; var currVal_5 = "user"; _ck(_v, 20, 0, currVal_4, currVal_5); var currVal_6 = null; var currVal_7 = "user"; _ck(_v, 24, 0, currVal_6, currVal_7); var currVal_8 = "null"; _ck(_v, 30, 0, currVal_8); var currVal_9 = _co.projectLogo; _ck(_v, 34, 0, currVal_9); var currVal_10 = _co.imgDefaultProject; var currVal_11 = "project"; _ck(_v, 39, 0, currVal_10, currVal_11); var currVal_12 = _co.imgDaschProject; var currVal_13 = "project"; _ck(_v, 43, 0, currVal_12, currVal_13); }, null); }
 function View_AdminImageComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-admin-image-demo", [], null, null, null, View_AdminImageComponent_0, RenderType_AdminImageComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _admin_image_component__WEBPACK_IMPORTED_MODULE_11__["AdminImageComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var AdminImageComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-admin-image-demo", _admin_image_component__WEBPACK_IMPORTED_MODULE_11__["AdminImageComponent"], View_AdminImageComponent_Host_0, {}, {}, []);
 
@@ -16517,8 +16827,8 @@ var AdminImageComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: '',
             name: 'userAvatar',
             code: {
-                html: "\n            // Default user profile image\n            <img kuiAdminImage [image]=\"imgDefaultUser\" [type]=\"'user'\" />\n\n            // Avatar example: 'salsah' user\n            <img kuiAdminImage [image]=\"imgSalsahUser\" [type]=\"'user'\" />\n\n            // User image on error\n            <img kuiAdminImage [image]=\"null\" [type]=\"'user'\" />\n\n            // Default error image\n            <img kuiAdminImage [image]=\"'null'\" />\n            ",
-                ts: "\n            imgDefaultUser: string = 'root@example.com';\n            imgSalsahUser: string = 'salsah@milchkannen.ch';\n            ",
+                html: "\n// Default user profile image\n<img kuiAdminImage [image]=\"imgDefaultUser\" [type]=\"'user'\" />\n\n// Avatar example: 'salsah' user\n<img kuiAdminImage [image]=\"imgSalsahUser\" [type]=\"'user'\" />\n\n// User image on error\n<img kuiAdminImage [image]=\"null\" [type]=\"'user'\" />\n\n// Default error image\n<img kuiAdminImage [image]=\"'null'\" />\n            ",
+                ts: "\nimgDefaultUser: string = 'root@example.com';\nimgSalsahUser: string = 'salsah@milchkannen.ch';\n            ",
                 scss: ''
             }
         };
@@ -16527,8 +16837,8 @@ var AdminImageComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: '',
             name: 'projectLogo',
             code: {
-                html: "\n            // Default project image\n            <img kuiAdminImage [image]=\"imgDefaultProject\" [type]=\"'project'\" />\n\n            // Logo example: 'dasch' project\n            <img kuiAdminImage [image]=\"imgDaschProject\" [type]=\"'project'\" />\n            ",
-                ts: "\n            imgDefaultProject: string = undefined;\n            imgDaschProject: string = 'http://dasch.swiss/content/images/2017/11/DaSCH_Logo_RGB.png';\n            ",
+                html: "\n// Default project image\n<img kuiAdminImage [image]=\"imgDefaultProject\" [type]=\"'project'\" />\n\n// Logo example: 'dasch' project\n<img kuiAdminImage [image]=\"imgDaschProject\" [type]=\"'project'\" />\n            ",
+                ts: "\nimgDefaultProject: string = undefined;\nimgDaschProject: string = 'http://dasch.swiss/content/images/2017/11/DaSCH_Logo_RGB.png';\n            ",
                 scss: ''
             }
         };
@@ -16623,7 +16933,7 @@ var RenderType_ExistingNameComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core
 function View_ExistingNameComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 2, "mat-hint", [["class", "mat-hint"]], [[2, "mat-right", null], [1, "id", 0], [1, "align", 0]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 16384, [[5, 4]], 0, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_2__["MatHint"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, [" ", " "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).align == "end"); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).id; var currVal_2 = null; _ck(_v, 0, 0, currVal_0, currVal_1, currVal_2); var currVal_3 = _co.formErrors.name; _ck(_v, 2, 0, currVal_3); }); }
 function View_ExistingNameComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit; _ck(_v, 1, 0, currVal_0); }); }
 function View_ExistingNameComponent_0(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 31, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 27, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 26, "form", [["class", "center card"], ["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "submit"], [null, "reset"]], function (_v, en, $event) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 31, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 27, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 26, "form", [["class", "center card"], ["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "submit"], [null, "reset"]], function (_v, en, $event) {
             var ad = true;
             if (("submit" === en)) {
                 var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 11).onSubmit($event) !== false);
@@ -16726,8 +17036,8 @@ var ExistingNameComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: '',
             name: 'existingName',
             code: {
-                html: "\n            <form [formGroup]=\"form\" class=\"center card\">\n                <mat-form-field>\n                    <input matInput \n                           [formControl]=\"form.controls['name']\" \n                           [placeholder]=\"'Name (should be unique)'\">\n                    <mat-hint *ngIf=\"formErrors.name\">\n                        {{formErrors.name}}\n                    </mat-hint>\n                </mat-form-field>\n    \n                <button mat-button color=\"primary\" [disabled]=\"!form.valid\">\n                    Submit\n                </button>\n            </form>",
-                ts: "\n            dataMock: string[] = [\n                'Max', 'Peter', 'Paul', 'John'\n            ];\n        \n            // list of existing names\n            existingNames: [RegExp] = [\n                new RegExp('user')\n            ];\n        \n            // define your form group\n            form: FormGroup;\n        \n            // error handling on the defined fields e.g. name\n            formErrors = {\n                'name': ''\n            };\n        \n            // error message on the defined fields in formErrors\n            validationMessages = {\n                'name': {\n                    'required': 'A name is required',\n                    'existingName': 'This name exists already.'\n                }\n            };\n        \n            constructor(private _formBuilder: FormBuilder) {\n        \n            }\n        \n            ngOnInit() {\n                // create a list of names, which already exists\n                for (const user of this.dataMock) {\n                    this.existingNames.push(\n                        new RegExp('(?:^|\\W)' + user.toLowerCase() + '(?:$|\\W)')\n                    );\n                }\n        \n                // build form\n                this.form = this._formBuilder.group({\n                    'name': new FormControl({\n                        value: '', disabled: false\n                    }, [\n                        Validators.required,\n                        existingNamesValidator(this.existingNames)\n                    ])\n                });\n        \n                // detect changes in the form\n                this.form.valueChanges.subscribe(\n                    data => this.onValueChanged(data)\n                );\n        \n                this.onValueChanged();\n            }\n        \n        \n            onValueChanged(data?: any) {\n        \n                if (!this.form) {\n                    return;\n                }\n        \n                // check if the form is valid\n                Object.keys(this.formErrors).map(field => {\n                    this.formErrors[field] = '';\n                    const control = this.form.get(field);\n                    if (control && control.dirty && !control.valid) {\n                        const messages = this.validationMessages[field];\n                        Object.keys(control.errors).map(key => {\n                            this.formErrors[field] += messages[key] + ' ';\n                        });\n                    }\n                });\n            }\n            ",
+                html: "\n<form [formGroup]=\"form\" class=\"center card\">\n    <mat-form-field>\n        <input matInput \n               [formControl]=\"form.controls['name']\" \n               [placeholder]=\"'Name (should be unique)'\">\n        <mat-hint *ngIf=\"formErrors.name\">\n            {{formErrors.name}}\n        </mat-hint>\n    </mat-form-field>\n\n    <button mat-button color=\"primary\" [disabled]=\"!form.valid\">\n        Submit\n    </button>\n</form>",
+                ts: "\ndataMock: string[] = [\n    'Max', 'Peter', 'Paul', 'John'\n];\n\n// list of existing names\nexistingNames: [RegExp] = [\n    new RegExp('user')\n];\n\n// define your form group\nform: FormGroup;\n\n// error handling on the defined fields e.g. name\nformErrors = {\n    'name': ''\n};\n\n// error message on the defined fields in formErrors\nvalidationMessages = {\n    'name': {\n        'required': 'A name is required',\n        'existingName': 'This name exists already.'\n    }\n};\n\nconstructor(private _formBuilder: FormBuilder) {\n\n}\n\nngOnInit() {\n    // create a list of names, which already exists\n    for (const user of this.dataMock) {\n        this.existingNames.push(\n            new RegExp('(?:^|\\W)' + user.toLowerCase() + '(?:$|\\W)')\n        );\n    }\n\n    // build form\n    this.form = this._formBuilder.group({\n        'name': new FormControl({\n            value: '', disabled: false\n        }, [\n            Validators.required,\n            existingNamesValidator(this.existingNames)\n        ])\n    });\n\n    // detect changes in the form\n    this.form.valueChanges.subscribe(\n        data => this.onValueChanged(data)\n    );\n\n    this.onValueChanged();\n}\n\n\nonValueChanged(data?: any) {\n\n    if (!this.form) {\n        return;\n    }\n\n    // check if the form is valid\n    Object.keys(this.formErrors).map(field => {\n        this.formErrors[field] = '';\n        const control = this.form.get(field);\n        if (control && control.dirty && !control.valid) {\n            const messages = this.validationMessages[field];\n            Object.keys(control.errors).map(key => {\n                this.formErrors[field] += messages[key] + ' ';\n            });\n        }\n    });\n}",
                 scss: ''
             }
         };
@@ -16847,7 +17157,7 @@ var styles_KeyComponent = [_key_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MO
 var RenderType_KeyComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_KeyComponent, data: {} });
 
 function View_KeyComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" ", ": ", " "]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.key; var currVal_1 = _v.context.$implicit.value; _ck(_v, 1, 0, currVal_0, currVal_1); }); }
-function View_KeyComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["KeyPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 3, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 2, null, View_KeyComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_11__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](13, 1)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 2, 0, currVal_0); var currVal_1 = _co.keyPipe; _ck(_v, 8, 0, currVal_1); var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 12, 0, _ck(_v, 13, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), _co.array)); _ck(_v, 12, 0, currVal_2); }, null); }
+function View_KeyComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["KeyPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 3, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 2, null, View_KeyComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_11__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](13, 1)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 2, 0, currVal_0); var currVal_1 = _co.keyPipe; _ck(_v, 8, 0, currVal_1); var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 12, 0, _ck(_v, 13, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), _co.array)); _ck(_v, 12, 0, currVal_2); }, null); }
 function View_KeyComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-key", [], null, null, null, View_KeyComponent_0, RenderType_KeyComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _key_component__WEBPACK_IMPORTED_MODULE_12__["KeyComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var KeyComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-key", _key_component__WEBPACK_IMPORTED_MODULE_12__["KeyComponent"], View_KeyComponent_Host_0, {}, {}, []);
 
@@ -16902,8 +17212,8 @@ var KeyComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: '',
             name: 'keyPipe',
             code: {
-                html: "\n            <ul>\n                <li *ngFor=\"let item of array | key\">\n                    {{item.key}}: {{item.value}}\n                </li>\n            </ul>",
-                ts: "\n            array = [];\n            [...]\n            this.array['index-1'] = 'Value in index 1';\n            this.array['index-2'] = 'Value in index 2';\n            this.array['index-3'] = 'Value in index 3';\n            ",
+                html: "\n<ul>\n    <li *ngFor=\"let item of array | kuiKey\">\n        {{item.key}}: {{item.value}}\n    </li>\n</ul>",
+                ts: "\narray = [];\n\nthis.array['index-1'] = 'Value in index 1';\nthis.array['index-2'] = 'Value in index 2';\nthis.array['index-3'] = 'Value in index 3';\n",
                 scss: ''
             }
         };
@@ -16998,7 +17308,7 @@ function View_ProgressIndicatorComponent_2(_l) { return _angular_core__WEBPACK_I
 function View_ProgressIndicatorComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["submitting"]))], null, null); }
 function View_ProgressIndicatorComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["after submit (done)"]))], null, null); }
 function View_ProgressIndicatorComponent_0(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_8__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_9__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["You can use the progress indicator in two ways:"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_5__["ProgressIndicatorComponent"], [], { color: [0, "color"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 3, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ProgressIndicatorComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](23, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Angular Material Icons is required. You have to import the style file into your app and add the following line in your main styling file: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](26, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](27, 0, null, null, 1, "b", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["@import url('https://fonts.googleapis.com/icon?family=Material+Icons');"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](29, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](30, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 24, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](32, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](34, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, 0, 20, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](36, 0, null, null, 19, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](37, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](38, 0, null, 0, 17, "mat-list-item", [["class", "mat-list-item"]], [[2, "mat-list-item-avatar", null], [2, "mat-list-item-with-avatar", null]], [[null, "focus"], [null, "blur"]], function (_v, en, $event) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_8__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_9__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["You can use the progress indicator in two ways:"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_5__["ProgressIndicatorComponent"], [], { color: [0, "color"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 3, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ProgressIndicatorComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](23, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Angular Material Icons is required. You have to import the style file into your app and add the following line in your main styling file: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](26, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](27, 0, null, null, 1, "b", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["@import url('https://fonts.googleapis.com/icon?family=Material+Icons');"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](29, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](30, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](31, 0, null, null, 24, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](32, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](33, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](34, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_14__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, 0, 20, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](36, 0, null, null, 19, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](37, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_3__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](38, 0, null, 0, 17, "mat-list-item", [["class", "mat-list-item"]], [[2, "mat-list-item-avatar", null], [2, "mat-list-item-with-avatar", null]], [[null, "focus"], [null, "blur"]], function (_v, en, $event) {
             var ad = true;
             if (("focus" === en)) {
                 var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 39)._handleFocus() !== false);
@@ -17065,7 +17375,7 @@ var ProgressIndicatorComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: '',
             name: 'classicLoader',
             code: {
-                html: "<kui-progress-indicator></kui-progress-indicator>",
+                html: "\n<kui-progress-indicator></kui-progress-indicator>\n",
                 ts: '',
                 scss: ''
             }
@@ -17076,8 +17386,8 @@ var ProgressIndicatorComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: 'e.g. as a list style type while submitting form data',
             name: 'submitLoader',
             code: {
-                html: "<mat-list>\n                  <mat-list-item *ngFor=\"let item of examples\">\n                    <kui-progress-indicator mat-list-avatar [status]=\"item.status\">\n                    </kui-progress-indicator>\n                    <p mat-line>\n                      <strong>\n                        <span>{{item.label}}</span>\n                      </strong>\n                    </p>\n                    <p mat-line>\n                      status: {{item.status}}\n                    </p>\n                  </mat-list-item>\n                </mat-list>",
-                ts: "examples = [\n                    {\n                        status: -1,\n                        label: 'before submit (not ready)'\n                    },\n                    {\n                        status: 0,\n                        label: 'submitting'\n                    },\n                    {\n                        status: 1,\n                        label: 'after submit (done)'\n                    },\n                    {\n                        status: 400,\n                        label: 'in case of an error'\n                    }\n                ];\n                status = -1;\n                constructor() {\n                }\n                ngOnInit() {\n                    this.refresh();\n                }\n                // only for testing the change of status\n                refresh() {\n                    setTimeout(() => {\n                        if (this.status === 1) {\n                            this.status -= 2;\n                        } else {\n                            this.status++;\n                        }\n                        // Then recall the parent function to\n                        // create a recursive loop.\n                        this.refresh();\n                    }, 2500);\n                }",
+                html: "\n<mat-list>\n    <mat-list-item *ngFor=\"let item of examples\">\n        <kui-progress-indicator mat-list-avatar [status]=\"item.status\">\n        </kui-progress-indicator>\n        <p mat-line>\n          <strong>\n            <span>{{item.label}}</span>\n          </strong>\n        </p>\n        <p mat-line>\n          status: {{item.status}}\n        </p>\n    </mat-list-item>\n</mat-list>",
+                ts: "\nexamples = [\n    {\n        status: -1,\n        label: 'before submit (not ready)'\n    },\n    {\n        status: 0,\n        label: 'submitting'\n    },\n    {\n        status: 1,\n        label: 'after submit (done)'\n    },\n    {\n        status: 400,\n        label: 'in case of an error'\n    }\n];\nstatus = -1;\nconstructor() {\n}\nngOnInit() {\n    this.refresh();\n}\n// only for testing the change of status\nrefresh() {\n    setTimeout(() => {\n        if (this.status === 1) {\n            this.status -= 2;\n        } else {\n            this.status++;\n        }\n        // Then recall the parent function to\n        // create a recursive loop.\n        this.refresh();\n    }, 2500);\n}\n",
                 scss: ''
             }
         };
@@ -17087,8 +17397,8 @@ var ProgressIndicatorComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: '',
             name: 'dynamicExample',
             code: {
-                html: "<mat-list>\n                      <mat-list-item>\n                        <kui-progress-indicator mat-list-avatar [status]=\"status\" color=\"blue\"></kui-progress-indicator>\n                        <p mat-line>\n                          <strong>\n                            <span *ngIf=\"status == -1\">before submit (not ready)</span>\n                            <span *ngIf=\"status == 0\">submitting</span>\n                            <span *ngIf=\"status == 1\">after submit (done)</span>\n                          </strong>\n                          status: {{status}}\n                        </p>\n                      </mat-list-item>\n                </mat-list>",
-                ts: "examples = [\n                    {\n                        status: -1,\n                        label: 'before submit (not ready)'\n                    },\n                    {\n                        status: 0,\n                        label: 'submitting'\n                    },\n                    {\n                        status: 1,\n                        label: 'after submit (done)'\n                    },\n                    {\n                        status: 400,\n                        label: 'in case of an error'\n                    }\n                ];\n                status = -1;\n                constructor() {\n                }\n                ngOnInit() {\n                    this.refresh();\n                }\n                // only for testing the change of status\n                refresh() {\n                    setTimeout(() => {\n                        if (this.status === 1) {\n                            this.status -= 2;\n                        } else {\n                            this.status++;\n                        }\n                        // Then recall the parent function to\n                        // create a recursive loop.\n                        this.refresh();\n                    }, 2500);\n                }",
+                html: "\n<mat-list>\n    <mat-list-item>\n        <kui-progress-indicator mat-list-avatar [status]=\"status\" color=\"blue\"></kui-progress-indicator>\n        <p mat-line>\n            <strong>\n                <span *ngIf=\"status == -1\">before submit (not ready)</span>\n                <span *ngIf=\"status == 0\">submitting</span>\n                <span *ngIf=\"status == 1\">after submit (done)</span>\n            </strong>\n            status: {{status}}\n        </p>\n    </mat-list-item>\n</mat-list>",
+                ts: "\nexamples = [\n    {\n        status: -1,\n        label: 'before submit (not ready)'\n    },\n    {\n        status: 0,\n        label: 'submitting'\n    },\n    {\n        status: 1,\n        label: 'after submit (done)'\n    },\n    {\n        status: 400,\n        label: 'in case of an error'\n    }\n];\nstatus = -1;\nconstructor() {\n}\nngOnInit() {\n    this.refresh();\n}\n// only for testing the change of status\nrefresh() {\n    setTimeout(() => {\n        if (this.status === 1) {\n            this.status -= 2;\n        } else {\n            this.status++;\n        }\n        // Then recall the parent function to\n        // create a recursive loop.\n        this.refresh();\n    }, 2500);\n}",
                 scss: ''
             }
         };
@@ -17193,7 +17503,7 @@ var RenderType_SortButtonComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__
 
 function View_SortButtonComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 7, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "span", [], [[2, "active", null]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", " "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "span", [], [[2, "active", null]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, ["", " "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" by "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "span", [], [[2, "active", null]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](7, null, ["", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = (_co.sortKey === "prename"); _ck(_v, 1, 0, currVal_0); var currVal_1 = _v.context.$implicit.prename; _ck(_v, 2, 0, currVal_1); var currVal_2 = (_co.sortKey === "lastname"); _ck(_v, 3, 0, currVal_2); var currVal_3 = _v.context.$implicit.lastname; _ck(_v, 4, 0, currVal_3); var currVal_4 = (_co.sortKey === "creator"); _ck(_v, 6, 0, currVal_4); var currVal_5 = _v.context.$implicit.creator; _ck(_v, 7, 0, currVal_5); }); }
 function View_SortButtonComponent_0(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["SortByPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 12, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 8, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "kui-sort-button", [], null, [[null, "sortKeyChange"]], function (_v, en, $event) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["SortByPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 10, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_10__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 6, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "kui-sort-button", [], null, [[null, "sortKeyChange"]], function (_v, en, $event) {
             var ad = true;
             var _co = _v.component;
             if (("sortKeyChange" === en)) {
@@ -17201,15 +17511,7 @@ function View_SortButtonComponent_0(_l) {
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_SortButtonComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_SortButtonComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["SortButtonComponent"], [], { sortProps: [0, "sortProps"], sortKey: [1, "sortKey"] }, { sortKeyChange: "sortKeyChange" }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 1, "kui-sort-button", [], null, [[null, "sortKeyChange"]], function (_v, en, $event) {
-            var ad = true;
-            var _co = _v.component;
-            if (("sortKeyChange" === en)) {
-                var pd_0 = ((_co.sortKey = $event) !== false);
-                ad = (pd_0 && ad);
-            }
-            return ad;
-        }, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_SortButtonComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_SortButtonComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["SortButtonComponent"], [], { sortProps: [0, "sortProps"], position: [1, "position"], sortKey: [2, "sortKey"] }, { sortKeyChange: "sortKeyChange" }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 3, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 2, null, View_SortButtonComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_12__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](17, 2), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Optional"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" It's possible to set the position of the sort button to the right or left side with the property "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, null, 1, "b", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["[position]"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [".\n"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 2, 0, currVal_0); var currVal_1 = _co.sortButtonCode; _ck(_v, 8, 0, currVal_1); var currVal_2 = _co.sortProps; var currVal_3 = _co.sortKey; _ck(_v, 11, 0, currVal_2, currVal_3); var currVal_4 = _co.sortProps; var currVal_5 = "right"; var currVal_6 = _co.sortKey; _ck(_v, 13, 0, currVal_4, currVal_5, currVal_6); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 16, 0, _ck(_v, 17, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), _co.list, _co.sortKey)); _ck(_v, 16, 0, currVal_7); }, null);
+        }, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_SortButtonComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_SortButtonComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["SortButtonComponent"], [], { sortProps: [0, "sortProps"], position: [1, "position"], sortKey: [2, "sortKey"] }, { sortKeyChange: "sortKeyChange" }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 3, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 2, null, View_SortButtonComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_12__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](15, 2), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](16, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Optional"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" It's possible to set the position of the sort button to the right or left side with the property "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 1, "b", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["[position]"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [".\n"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 2, 0, currVal_0); var currVal_1 = _co.sortButtonCode; _ck(_v, 8, 0, currVal_1); var currVal_2 = _co.sortProps; var currVal_3 = "right"; var currVal_4 = _co.sortKey; _ck(_v, 11, 0, currVal_2, currVal_3, currVal_4); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 14, 0, _ck(_v, 15, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), _co.list, _co.sortKey)); _ck(_v, 14, 0, currVal_5); }, null);
 }
 function View_SortButtonComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-sort-button", [], null, null, null, View_SortButtonComponent_0, RenderType_SortButtonComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _sort_button_component__WEBPACK_IMPORTED_MODULE_13__["SortButtonComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var SortButtonComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-sort-button", _sort_button_component__WEBPACK_IMPORTED_MODULE_13__["SortButtonComponent"], View_SortButtonComponent_Host_0, {}, {}, []);
@@ -17300,8 +17602,8 @@ var SortButtonComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: '',
             name: 'sortbutton',
             code: {
-                html: "\n    <kui-sort-button [sortProps]=\"sortProps\" [(sortKey)]=\"sortKey\" [position]=\"'right'\"></kui-sort-button>\n\n    <ul>\n        <li *ngFor=\"let item of list | sortBy: sortKey\">\n            <span [class.active]=\"sortKey === 'prename'\">{{item.prename}} </span>\n            <span [class.active]=\"sortKey === 'lastname'\">{{item.lastname}} </span>\n            by\n            <span [class.active]=\"sortKey === 'creator'\">{{item.creator}}</span>\n        </li>\n    </ul>",
-                ts: "\n            sortProps: any = [\n                {\n                    key: 'prename',\n                    label: 'Prename'\n                },\n                {\n                    key: 'lastname',\n                    label: 'Last name'\n                },\n                {\n                    key: 'creator',\n                    label: 'Creator'\n                }\n            ];\n\n            sortKey: string = 'creator';\n\n            list = [\n                {\n                    prename: 'Gaston',\n                    lastname: 'Lagaffe',\n                    creator: 'Andr\u00E9 Franquin'\n                },\n                {\n                    prename: 'Mickey',\n                    lastname: 'Mouse',\n                    creator: 'Walt Disney'\n                },\n                {\n                    prename: 'Donald',\n                    lastname: 'Duck',\n                    creator: 'Walt Disney'\n                },\n                {\n                    prename: 'Charlie',\n                    lastname: 'Brown',\n                    creator: 'Charles M. Schulz'\n                }\n            ];",
+                html: "\n<kui-sort-button [sortProps]=\"sortProps\" [(sortKey)]=\"sortKey\" [position]=\"'right'\"></kui-sort-button>\n\n<ul>\n    <li *ngFor=\"let item of list | kuiSortBy: sortKey\">\n        <span [class.active]=\"sortKey === 'prename'\">{{item.prename}} </span>\n        <span [class.active]=\"sortKey === 'lastname'\">{{item.lastname}} </span>\n        by\n        <span [class.active]=\"sortKey === 'creator'\">{{item.creator}}</span>\n    </li>\n</ul>",
+                ts: "\nsortProps: any = [\n    {\n        key: 'prename',\n        label: 'Prename'\n    },\n    {\n        key: 'lastname',\n        label: 'Last name'\n    },\n    {\n        key: 'creator',\n        label: 'Creator'\n    }\n];\n\nsortKey: string = 'creator';\n\nlist = [\n    {\n        prename: 'Gaston',\n        lastname: 'Lagaffe',\n        creator: 'Andr\u00E9 Franquin'\n    },\n    {\n        prename: 'Mickey',\n        lastname: 'Mouse',\n        creator: 'Walt Disney'\n    },\n    {\n        prename: 'Donald',\n        lastname: 'Duck',\n        creator: 'Walt Disney'\n    },\n    {\n        prename: 'Charlie',\n        lastname: 'Brown',\n        creator: 'Charles M. Schulz'\n    }\n];",
                 scss: ''
             }
         };
@@ -17355,7 +17657,7 @@ __webpack_require__.r(__webpack_exports__);
 var styles_AuthComponent = [_auth_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_AuthComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_AuthComponent, data: {} });
 
-function View_AuthComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_AuthComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
 function View_AuthComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-auth", [], null, null, null, View_AuthComponent_0, RenderType_AuthComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _auth_component__WEBPACK_IMPORTED_MODULE_6__["AuthComponent"], [_knora_authentication__WEBPACK_IMPORTED_MODULE_7__["AuthenticationService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var AuthComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-auth", _auth_component__WEBPACK_IMPORTED_MODULE_6__["AuthComponent"], View_AuthComponent_Host_0, {}, {}, []);
 
@@ -17407,8 +17709,6 @@ var AuthComponent = /** @class */ /*@__PURE__*/ (function () {
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].authenticationModule;
     }
     AuthComponent.prototype.ngOnInit = function () {
-        console.log(this.module);
-        //        console.log(this._auth.loggedIn());
         if (JSON.parse(localStorage.getItem('session'))) {
             this.currentUser = JSON.parse(localStorage.getItem('session')).user;
         }
@@ -17533,15 +17833,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _login_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./login.component */ "./src/app/knora-ui-examples/authentication-demo/login/login.component.ts");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _login_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./login.component */ "./src/app/knora-ui-examples/authentication-demo/login/login.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _login.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_login.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _login.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_login.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _login.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_login.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _login.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_login.component PURE_IMPORTS_END */
+
+
+
+
 
 
 
@@ -17552,9 +17860,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_LoginComponent = [_login_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_LoginComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_LoginComponent, data: {} });
 
-function View_LoginComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
-function View_LoginComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-login", [], null, null, null, View_LoginComponent_0, RenderType_LoginComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var LoginComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-login", _login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"], View_LoginComponent_Host_0, {}, {}, []);
+function View_LoginComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 7, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 3, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 0, "img", [["class", "center"], ["src", "data/documentation/authentication/login-form-example.png"]], null, null, null, null, null))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.example; _ck(_v, 7, 0, currVal_1); }, null); }
+function View_LoginComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-login", [], null, null, null, View_LoginComponent_0, RenderType_LoginComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var LoginComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-login", _login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"], View_LoginComponent_Host_0, {}, {}, []);
 
 
 
@@ -17601,6 +17909,16 @@ __webpack_require__.r(__webpack_exports__);
 var LoginComponent = /** @class */ /*@__PURE__*/ (function () {
     function LoginComponent() {
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].authenticationModule;
+        this.example = {
+            title: 'kui-login-form',
+            subtitle: 'Creates a login form, if the user is not yet logged-in. Otherwise it shows a logout button',
+            name: 'loginForm',
+            code: {
+                html: "\n<kui-login-form></kui-login-form>",
+                ts: "",
+                scss: ""
+            }
+        };
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
@@ -17631,15 +17949,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./convert-json-ld.component */ "./src/app/knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ts");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./convert-json-ld.component */ "./src/app/knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _convert_json_ld.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_convert_json_ld.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _convert_json_ld.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_convert_json_ld.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _convert_json_ld.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_convert_json_ld.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _convert_json_ld.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_convert_json_ld.component PURE_IMPORTS_END */
+
+
+
+
 
 
 
@@ -17650,9 +17976,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_ConvertJsonLdComponent = [_convert_json_ld_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_ConvertJsonLdComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_ConvertJsonLdComponent, data: {} });
 
-function View_ConvertJsonLdComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
-function View_ConvertJsonLdComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-convert-json-ld", [], null, null, null, View_ConvertJsonLdComponent_0, RenderType_ConvertJsonLdComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_6__["ConvertJsonLdComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var ConvertJsonLdComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-convert-json-ld", _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_6__["ConvertJsonLdComponent"], View_ConvertJsonLdComponent_Host_0, {}, {}, []);
+function View_ConvertJsonLdComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 3, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleConvertJsonLd; _ck(_v, 7, 0, currVal_1); }, null); }
+function View_ConvertJsonLdComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-convert-json-ld", [], null, null, null, View_ConvertJsonLdComponent_0, RenderType_ConvertJsonLdComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_10__["ConvertJsonLdComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ConvertJsonLdComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-convert-json-ld", _convert_json_ld_component__WEBPACK_IMPORTED_MODULE_10__["ConvertJsonLdComponent"], View_ConvertJsonLdComponent_Host_0, {}, {}, []);
 
 
 
@@ -17699,6 +18025,16 @@ __webpack_require__.r(__webpack_exports__);
 var ConvertJsonLdComponent = /** @class */ /*@__PURE__*/ (function () {
     function ConvertJsonLdComponent() {
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].coreModule;
+        this.exampleConvertJsonLd = {
+            title: 'getResourceClassesFromJsonLD(resourcesResponseJSONLD: object)',
+            subtitle: 'get the resource classes from JsonLD with the converter',
+            name: 'getResourceClassesFromJsonLD',
+            code: {
+                html: "",
+                ts: "\nconst resPromises = jsonld.promises;\n// compact JSON-LD using an empty context: expands all Iris\nconst resPromise = resPromises.compact(searchResult.body, {});\n\nresPromise.then((compacted) => {\n\n    // get resource class Iris from response\n    const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);\n\n    // e.g. you can then request ontology information about resource class\n    // Iris (properties are implied) with the ontology cache service\n});\n",
+                scss: ""
+            }
+        };
     }
     ConvertJsonLdComponent.prototype.ngOnInit = function () {
     };
@@ -17821,15 +18157,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _gravsearch_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./gravsearch.component */ "./src/app/knora-ui-examples/core-demo/gravsearch/gravsearch.component.ts");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _gravsearch_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./gravsearch.component */ "./src/app/knora-ui-examples/core-demo/gravsearch/gravsearch.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _gravsearch.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_gravsearch.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _gravsearch.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_gravsearch.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _gravsearch.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_gravsearch.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _gravsearch.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_gravsearch.component PURE_IMPORTS_END */
+
+
+
+
 
 
 
@@ -17840,9 +18184,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_GravsearchComponent = [_gravsearch_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_GravsearchComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_GravsearchComponent, data: {} });
 
-function View_GravsearchComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
-function View_GravsearchComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-gravsearch", [], null, null, null, View_GravsearchComponent_0, RenderType_GravsearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _gravsearch_component__WEBPACK_IMPORTED_MODULE_6__["GravsearchComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var GravsearchComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-gravsearch", _gravsearch_component__WEBPACK_IMPORTED_MODULE_6__["GravsearchComponent"], View_GravsearchComponent_Host_0, {}, {}, []);
+function View_GravsearchComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 3, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGravSearch; _ck(_v, 7, 0, currVal_1); }, null); }
+function View_GravsearchComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-gravsearch", [], null, null, null, View_GravsearchComponent_0, RenderType_GravsearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _gravsearch_component__WEBPACK_IMPORTED_MODULE_10__["GravsearchComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var GravsearchComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-gravsearch", _gravsearch_component__WEBPACK_IMPORTED_MODULE_10__["GravsearchComponent"], View_GravsearchComponent_Host_0, {}, {}, []);
 
 
 
@@ -17889,6 +18233,16 @@ __webpack_require__.r(__webpack_exports__);
 var GravsearchComponent = /** @class */ /*@__PURE__*/ (function () {
     function GravsearchComponent() {
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].coreModule;
+        this.exampleGravSearch = {
+            title: 'createGravsearchQuery(properties, resClass, 0)',
+            subtitle: 'returns a gravsearch query',
+            name: 'createGravsearchQuery',
+            code: {
+                html: "",
+                ts: "\n// iri of the resource class\nconst resClass: string;\n\n// selected properties to filter by\nconst properties: PropertyWithValue[];\n\nconst gravsearch: string = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);\n\n// e.g. you can use the generated gravsearch query with the\n// searchService and the method doExtendedSearch(gravsearch)\n",
+                scss: ""
+            }
+        };
     }
     GravsearchComponent.prototype.ngOnInit = function () {
     };
@@ -17915,29 +18269,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GroupsComponentNgFactory", function() { return GroupsComponentNgFactory; });
 /* harmony import */ var _groups_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./groups.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/divider/typings/index.ngfactory */ "./node_modules/@angular/material/divider/typings/index.ngfactory.js");
-/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm5/divider.es5.js");
-/* harmony import */ var _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../dist/@knora/action/knora-action.ngfactory */ "./dist/@knora/action/knora-action.ngfactory.js");
-/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
-/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _groups_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./groups.component */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _groups_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./groups.component */ "./src/app/knora-ui-examples/core-demo/groups/groups.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _groups.component.scss.shim.ngstyle,_angular_core,_angular_common,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_groups.component,_knora_core PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _groups.component.scss.shim.ngstyle,_angular_core,_angular_common,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_groups.component,_knora_core PURE_IMPORTS_END */
-
-
+/** PURE_IMPORTS_START _groups.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_angular_common,_groups.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _groups.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_angular_common,_groups.component,_knora_core PURE_IMPORTS_END */
 
 
 
@@ -17954,23 +18304,10 @@ __webpack_require__.r(__webpack_exports__);
 var styles_GroupsComponent = [_groups_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_GroupsComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_GroupsComponent, data: {} });
 
-function View_GroupsComponent_2(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "li", [["class", "link"]], null, [[null, "click"]], function (_v, en, $event) {
-            var ad = true;
-            var _co = _v.component;
-            if (("click" === en)) {
-                var pd_0 = (_co.getGroupByIri(_v.context.$implicit.id) !== false);
-                ad = (pd_0 && ad);
-            }
-            return ad;
-        }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, [" (", ") "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](5, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.name; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.project.longname; _ck(_v, 3, 0, currVal_1); var currVal_2 = _v.context.$implicit.description; _ck(_v, 5, 0, currVal_2); });
-}
-function View_GroupsComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["List of all (project specific) groups"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_GroupsComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.allGroups; _ck(_v, 5, 0, currVal_0); }, null); }
-function View_GroupsComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 25, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_4__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, ["Get group by iri (", ")"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Name: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](8, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 4, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Project: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](12, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](13, null, [" (", ")"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Selfjoin: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](16, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](17, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Status: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](21, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Description: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](25, null, ["", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical ? "vertical" : "horizontal"); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical; var currVal_2 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).inset; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3); var currVal_4 = _co.group.id; _ck(_v, 4, 0, currVal_4); var currVal_5 = _co.group.name; _ck(_v, 8, 0, currVal_5); var currVal_6 = _co.group.project.longname; _ck(_v, 12, 0, currVal_6); var currVal_7 = _co.group.project.shortname; _ck(_v, 13, 0, currVal_7); var currVal_8 = _co.group.selfjoin; _ck(_v, 17, 0, currVal_8); var currVal_9 = _co.group.status; _ck(_v, 21, 0, currVal_9); var currVal_10 = _co.group.description; _ck(_v, 25, 0, currVal_10); }); }
-function View_GroupsComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_5__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_5__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_6__["ProgressIndicatorComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-function View_GroupsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_8__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_9__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Demo"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["GroupsService"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 5, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_12__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_GroupsComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_GroupsComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_GroupsComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](15, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = (_co.allGroups && !_co.groupsService.loading); _ck(_v, 11, 0, currVal_1); var currVal_2 = (_co.group && !_co.groupsService.loading); _ck(_v, 13, 0, currVal_2); var currVal_3 = _co.groupsService.loading; _ck(_v, 15, 0, currVal_3); }, null); }
-function View_GroupsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-groups", [], null, null, null, View_GroupsComponent_0, RenderType_GroupsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _groups_component__WEBPACK_IMPORTED_MODULE_13__["GroupsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_14__["GroupsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var GroupsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-groups", _groups_component__WEBPACK_IMPORTED_MODULE_13__["GroupsComponent"], View_GroupsComponent_Host_0, {}, {}, []);
+function View_GroupsComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 11, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 8, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Thing searcher"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" (Anything Project) A group for thing searchers. "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Image reviewer"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" (Image Collection Demo) A group for image reviewers. "]))], null, null); }
+function View_GroupsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 5, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_GroupsComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGetAllGroups; _ck(_v, 7, 0, currVal_1); var currVal_2 = _co.allGroups; _ck(_v, 9, 0, currVal_2); }, null); }
+function View_GroupsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-groups", [], null, null, null, View_GroupsComponent_0, RenderType_GroupsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _groups_component__WEBPACK_IMPORTED_MODULE_11__["GroupsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_12__["GroupsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var GroupsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-groups", _groups_component__WEBPACK_IMPORTED_MODULE_11__["GroupsComponent"], View_GroupsComponent_Host_0, {}, {}, []);
 
 
 
@@ -18018,6 +18355,16 @@ var GroupsComponent = /** @class */ /*@__PURE__*/ (function () {
     function GroupsComponent(groupsService) {
         this.groupsService = groupsService;
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].coreModule;
+        this.exampleGetAllGroups = {
+            title: 'getAllGroups()',
+            subtitle: 'returns a list of all (project specific) groups',
+            name: 'getAllGroups',
+            code: {
+                html: "\n<ul>\n    <li *ngFor=\"let g of allGroups\">\n        <strong>{{g.name}}</strong> ({{g.project.longname}})\n        <span>{{g.description}}</span>\n    </li>\n</ul>",
+                ts: "\nallGroups: Group[];\n\nconstructor(private _groupsService: GroupsService) { }\n\nngOnInit() {\n    this.groupsService.getAllGroups().subscribe(\n        (result: Group[]) => {\n            this.allGroups = result;\n        },\n        (error: ApiServiceError) => {\n            console.error(error);\n        }\n    );\n}",
+                scss: ""
+            }
+        };
     }
     GroupsComponent.prototype.ngOnInit = function () {
         this.getAllGroups();
@@ -18067,15 +18414,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _incoming_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./incoming.component */ "./src/app/knora-ui-examples/core-demo/incoming/incoming.component.ts");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _incoming_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./incoming.component */ "./src/app/knora-ui-examples/core-demo/incoming/incoming.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _incoming.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_incoming.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _incoming.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_incoming.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _incoming.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_incoming.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _incoming.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_incoming.component PURE_IMPORTS_END */
+
+
+
+
 
 
 
@@ -18086,9 +18441,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_IncomingComponent = [_incoming_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_IncomingComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_IncomingComponent, data: {} });
 
-function View_IncomingComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
-function View_IncomingComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-incoming", [], null, null, null, View_IncomingComponent_0, RenderType_IncomingComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _incoming_component__WEBPACK_IMPORTED_MODULE_6__["IncomingComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var IncomingComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-incoming", _incoming_component__WEBPACK_IMPORTED_MODULE_6__["IncomingComponent"], View_IncomingComponent_Host_0, {}, {}, []);
+function View_IncomingComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 3, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleIncoming; _ck(_v, 7, 0, currVal_1); }, null); }
+function View_IncomingComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-incoming", [], null, null, null, View_IncomingComponent_0, RenderType_IncomingComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _incoming_component__WEBPACK_IMPORTED_MODULE_10__["IncomingComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var IncomingComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-incoming", _incoming_component__WEBPACK_IMPORTED_MODULE_10__["IncomingComponent"], View_IncomingComponent_Host_0, {}, {}, []);
 
 
 
@@ -18135,6 +18490,16 @@ __webpack_require__.r(__webpack_exports__);
 var IncomingComponent = /** @class */ /*@__PURE__*/ (function () {
     function IncomingComponent() {
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].coreModule;
+        this.exampleIncoming = {
+            title: 'getIncomingLinksForResource(resourceIri, offset)',
+            subtitle: 'Returns all incoming links for the given resource Iri.',
+            name: 'getIncomingLinksForResource',
+            code: {
+                html: "",
+                ts: "\nresource: ReadResource;\n\nconstructor(\n    private _incomingService: IncomingService,\n) {}\n\ngetIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {\n    this._incomingService.getIncomingLinksForResource(this.resource.id, offset).subscribe(\n        (result: ApiServiceResult) => {\n            // e.g. you can then get resource class iris from the response and\n            // request ontology information about resource class Iris\n        }\n    );\n}\n",
+                scss: ""
+            }
+        };
     }
     IncomingComponent.prototype.ngOnInit = function () {
     };
@@ -18161,26 +18526,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListsComponentNgFactory", function() { return ListsComponentNgFactory; });
 /* harmony import */ var _lists_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lists.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/divider/typings/index.ngfactory */ "./node_modules/@angular/material/divider/typings/index.ngfactory.js");
-/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/divider */ "./node_modules/@angular/material/esm5/divider.es5.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
-/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _lists_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./lists.component */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _lists_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./lists.component */ "./src/app/knora-ui-examples/core-demo/lists/lists.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _lists.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_angular_common,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_lists.component,_knora_core PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _lists.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_divider_typings_index.ngfactory,_angular_material_divider,_angular_common,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_lists.component,_knora_core PURE_IMPORTS_END */
-
+/** PURE_IMPORTS_START _lists.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_lists.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _lists.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_lists.component,_knora_core PURE_IMPORTS_END */
 
 
 
@@ -18196,13 +18559,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_ListsComponent = [_lists_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_ListsComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_ListsComponent, data: {} });
 
-function View_ListsComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.comments[0].value; _ck(_v, 1, 0, currVal_0); }); }
-function View_ListsComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_3__["MatDivider"], [], null, null)], null, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 3).vertical ? "vertical" : "horizontal"); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 3).vertical; var currVal_2 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 3).vertical; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 3).inset; _ck(_v, 2, 0, currVal_0, currVal_1, currVal_2, currVal_3); }); }
-function View_ListsComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 7, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ListsComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ListsComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_1 = (_v.context.$implicit.comments.length > 0); _ck(_v, 5, 0, currVal_1); var currVal_2 = !_v.context.last; _ck(_v, 7, 0, currVal_2); }, function (_ck, _v) { var currVal_0 = _v.context.$implicit.labels[0].value; _ck(_v, 3, 0, currVal_0); }); }
-function View_ListsComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["List of all lists from project (", ")"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ListsComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.projectLists; _ck(_v, 4, 0, currVal_1); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.projectIri; _ck(_v, 2, 0, currVal_0); }); }
-function View_ListsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_5__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_5__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_6__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_7__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_8__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Demo"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["ListsService"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 3, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_10__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ListsComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = (_co.projectLists && !_co.listsService.loading); _ck(_v, 11, 0, currVal_1); }, null); }
-function View_ListsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-lists", [], null, null, null, View_ListsComponent_0, RenderType_ListsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _lists_component__WEBPACK_IMPORTED_MODULE_11__["ListsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_12__["ListsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var ListsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-lists", _lists_component__WEBPACK_IMPORTED_MODULE_11__["ListsComponent"], View_ListsComponent_Host_0, {}, {}, []);
+function View_ListsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 25, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 21, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](12, null, ["List of all lists from project (", ")"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 16, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 4, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Titel"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Hierarchisches Stichwortverzeichnis / Signatur der Bilder"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 4, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Bildart"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Art des Bildes oder Photographie"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 2, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](25, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Zugangsart"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](27, 0, null, null, 2, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](28, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Jahreszeit"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGetLists; _ck(_v, 7, 0, currVal_1); }, function (_ck, _v) { var _co = _v.component; var currVal_2 = _co.projectIri; _ck(_v, 12, 0, currVal_2); }); }
+function View_ListsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-lists", [], null, null, null, View_ListsComponent_0, RenderType_ListsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _lists_component__WEBPACK_IMPORTED_MODULE_10__["ListsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_11__["ListsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ListsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-lists", _lists_component__WEBPACK_IMPORTED_MODULE_10__["ListsComponent"], View_ListsComponent_Host_0, {}, {}, []);
 
 
 
@@ -18256,6 +18615,16 @@ var ListsComponent = /** @class */ /*@__PURE__*/ (function () {
         this.listsService = listsService;
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].coreModule;
         this.projectIri = 'http://rdfh.ch/projects/00FF';
+        this.exampleGetLists = {
+            title: 'getAllLists()',
+            subtitle: 'returns a list of all lists',
+            name: 'getAllLists',
+            code: {
+                html: "\n<div *ngFor=\"let item of projectLists\">\n    <p>{{item.labels[0].value}}</p>\n    <p *ngIf=\"item.comments.length > 0\">{{item.comments[0].value}}</p>\n</div>",
+                ts: "\nprojectIri: string;\n\nprojectLists: ListNodeInfo[];\n\nconstructor(public _listsService: ListsService) {}\n\nngOnInit() {\n    this._listsService.getLists(this.projectIri)\n        .subscribe(\n            (result: ListNodeInfo[]) => {\n                this.projectLists = result;\n            },\n            (error: ApiServiceError) => {\n                console.error(error);\n            }\n        );\n\n}",
+                scss: ""
+            }
+        };
     }
     ListsComponent.prototype.ngOnInit = function () {
         this.getAllLists();
@@ -18296,15 +18665,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _ontology_cache_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ontology-cache.component */ "./src/app/knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ts");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _ontology_cache_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ontology-cache.component */ "./src/app/knora-ui-examples/core-demo/ontology-cache/ontology-cache.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _ontology_cache.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_ontology_cache.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _ontology_cache.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_ontology_cache.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _ontology_cache.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_ontology_cache.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _ontology_cache.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_ontology_cache.component PURE_IMPORTS_END */
+
+
+
+
 
 
 
@@ -18315,9 +18692,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_OntologyCacheComponent = [_ontology_cache_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_OntologyCacheComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_OntologyCacheComponent, data: {} });
 
-function View_OntologyCacheComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
-function View_OntologyCacheComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-ontology-cache", [], null, null, null, View_OntologyCacheComponent_0, RenderType_OntologyCacheComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _ontology_cache_component__WEBPACK_IMPORTED_MODULE_6__["OntologyCacheComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var OntologyCacheComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-ontology-cache", _ontology_cache_component__WEBPACK_IMPORTED_MODULE_6__["OntologyCacheComponent"], View_OntologyCacheComponent_Host_0, {}, {}, []);
+function View_OntologyCacheComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 3, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleOntologyCache; _ck(_v, 7, 0, currVal_1); }, null); }
+function View_OntologyCacheComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-ontology-cache", [], null, null, null, View_OntologyCacheComponent_0, RenderType_OntologyCacheComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _ontology_cache_component__WEBPACK_IMPORTED_MODULE_10__["OntologyCacheComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var OntologyCacheComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-ontology-cache", _ontology_cache_component__WEBPACK_IMPORTED_MODULE_10__["OntologyCacheComponent"], View_OntologyCacheComponent_Host_0, {}, {}, []);
 
 
 
@@ -18364,6 +18741,16 @@ __webpack_require__.r(__webpack_exports__);
 var OntologyCacheComponent = /** @class */ /*@__PURE__*/ (function () {
     function OntologyCacheComponent() {
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].coreModule;
+        this.exampleOntologyCache = {
+            title: 'getResourceClassDefinitions(resourceClassIris)',
+            subtitle: 'Returns the definitions for the given resource class Iris.',
+            name: 'getResourceClassDefinitions',
+            code: {
+                html: "",
+                ts: "\n// resource class Iris gotten from ConvertJsonLd.getResourceClassesFromJsonLD();\nresourceClassIris: string[];\n\nconstructor(\n    private _cacheService: OntologyCacheService) {}\n\nthis._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(\n    (resourceClassInfos: any) => {\n        // e.g. initialize ontology information and request incoming resources\n    }\n",
+                scss: ""
+            }
+        };
     }
     OntologyCacheComponent.prototype.ngOnInit = function () {
     };
@@ -18394,15 +18781,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _ontology_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ontology.component */ "./src/app/knora-ui-examples/core-demo/ontology/ontology.component.ts");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _ontology_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ontology.component */ "./src/app/knora-ui-examples/core-demo/ontology/ontology.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _ontology.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_ontology.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _ontology.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_ontology.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _ontology.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_ontology.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _ontology.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_ontology.component PURE_IMPORTS_END */
+
+
+
+
 
 
 
@@ -18413,9 +18808,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_OntologyComponent = [_ontology_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_OntologyComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_OntologyComponent, data: {} });
 
-function View_OntologyComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
-function View_OntologyComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-ontology", [], null, null, null, View_OntologyComponent_0, RenderType_OntologyComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _ontology_component__WEBPACK_IMPORTED_MODULE_6__["OntologyComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var OntologyComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-ontology", _ontology_component__WEBPACK_IMPORTED_MODULE_6__["OntologyComponent"], View_OntologyComponent_Host_0, {}, {}, []);
+function View_OntologyComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 3, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleOntology; _ck(_v, 7, 0, currVal_1); }, null); }
+function View_OntologyComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-ontology", [], null, null, null, View_OntologyComponent_0, RenderType_OntologyComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _ontology_component__WEBPACK_IMPORTED_MODULE_10__["OntologyComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var OntologyComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-ontology", _ontology_component__WEBPACK_IMPORTED_MODULE_10__["OntologyComponent"], View_OntologyComponent_Host_0, {}, {}, []);
 
 
 
@@ -18462,6 +18857,16 @@ __webpack_require__.r(__webpack_exports__);
 var OntologyComponent = /** @class */ /*@__PURE__*/ (function () {
     function OntologyComponent() {
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].coreModule;
+        this.exampleOntology = {
+            title: 'getOntologiesMetadata()',
+            subtitle: 'Requests the metadata about all existing ontologies from Knora\'s ontologies route.',
+            name: 'getOntologiesMetadata()',
+            code: {
+                html: "",
+                ts: "\ngetOntologiesMetadataFromKnora(): Observable<object> {\n\n    return this._ontologyService.getOntologiesMetadata().pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable\n            // -> combine them into one Observable\n            (ontRes: ApiServiceResult) => {\n                const ontPromises = jsonld.promises;\n                // compact JSON-LD using an empty context: expands all Iris\n                const ontPromise = ontPromises.compact(ontRes.body, {});\n                // convert promise to Observable and return it\n                return from(ontPromise);\n    }));\n}\n",
+                scss: ""
+            }
+        };
     }
     OntologyComponent.prototype.ngOnInit = function () {
     };
@@ -18488,33 +18893,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProjectsComponentNgFactory", function() { return ProjectsComponentNgFactory; });
 /* harmony import */ var _projects_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projects.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/esm5/chips.es5.js");
-/* harmony import */ var _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/cdk/platform */ "./node_modules/@angular/cdk/esm5/platform.es5.js");
-/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/core */ "./node_modules/@angular/material/esm5/core.es5.js");
-/* harmony import */ var _node_modules_angular_material_chips_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/chips/typings/index.ngfactory */ "./node_modules/@angular/material/chips/typings/index.ngfactory.js");
-/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm5/form-field.es5.js");
-/* harmony import */ var _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/cdk/bidi */ "./node_modules/@angular/cdk/esm5/bidi.es5.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
-/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
-/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
-/* harmony import */ var _projects_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./projects.component */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _node_modules_angular_material_chips_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/chips/typings/index.ngfactory */ "./node_modules/@angular/material/chips/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm5/form-field.es5.js");
+/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/esm5/chips.es5.js");
+/* harmony import */ var _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/cdk/bidi */ "./node_modules/@angular/cdk/esm5/bidi.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/core */ "./node_modules/@angular/material/esm5/core.es5.js");
+/* harmony import */ var _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/cdk/platform */ "./node_modules/@angular/cdk/esm5/platform.es5.js");
+/* harmony import */ var _projects_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./projects.component */ "./src/app/knora-ui-examples/core-demo/projects/projects.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _projects.component.scss.shim.ngstyle,_angular_core,_angular_material_card,_angular_common,_angular_material_chips,_angular_cdk_platform,_angular_material_core,_.._.._.._.._node_modules__angular_material_chips_typings_index.ngfactory,_angular_material_form_field,_angular_cdk_bidi,_angular_forms,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_projects.component,_knora_core PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _projects.component.scss.shim.ngstyle,_angular_core,_angular_material_card,_angular_common,_angular_material_chips,_angular_cdk_platform,_angular_material_core,_.._.._.._.._node_modules__angular_material_chips_typings_index.ngfactory,_angular_material_form_field,_angular_cdk_bidi,_angular_forms,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_projects.component,_knora_core PURE_IMPORTS_END */
-
+/** PURE_IMPORTS_START _projects.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_.._.._.._.._node_modules__angular_material_chips_typings_index.ngfactory,_angular_material_form_field,_angular_material_chips,_angular_cdk_bidi,_angular_forms,_angular_material_core,_angular_cdk_platform,_projects.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _projects.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_.._.._.._.._node_modules__angular_material_chips_typings_index.ngfactory,_angular_material_form_field,_angular_material_chips,_angular_cdk_bidi,_angular_forms,_angular_material_core,_angular_cdk_platform,_projects.component,_knora_core PURE_IMPORTS_END */
 
 
 
@@ -18537,56 +18940,292 @@ __webpack_require__.r(__webpack_exports__);
 var styles_ProjectsComponent = [_projects_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_ProjectsComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_ProjectsComponent, data: {} });
 
-function View_ProjectsComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, [" (", "): ", " "]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.shortname; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.shortcode; var currVal_2 = _v.context.$implicit.longname; _ck(_v, 3, 0, currVal_1, currVal_2); }); }
-function View_ProjectsComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 6, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "mat-card-subtitle", [["class", "mat-card-subtitle"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCardSubtitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.allProjects; _ck(_v, 6, 0, currVal_0); }, null); }
-function View_ProjectsComponent_6(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, ["in ", ""]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.language; _ck(_v, 1, 0, currVal_0); }); }
-function View_ProjectsComponent_5(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 3, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Description "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_6)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null))], function (_ck, _v) { var currVal_0 = _v.context.$implicit.language; _ck(_v, 4, 0, currVal_0); }, function (_ck, _v) { var currVal_1 = _v.context.$implicit.value; _ck(_v, 5, 0, currVal_1); }); }
-function View_ProjectsComponent_7(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "mat-chip", [["class", "tag mat-chip"], ["role", "option"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+function View_ProjectsComponent_0(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 147, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 143, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Shortcode / Shortname: Longname"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["0803 / incunabula: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Bilderfolgen Basler Fr\u00FChdrucke"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, null, 1, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Description"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 18, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](21, 0, null, null, 5, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Das interdisziplin\u00E4re Forschungsprojekt \""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](23, 0, null, null, 2, "b", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, null, 1, "em", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Die Bilderfolgen der Basler Fr\u00FChdrucke: Sp\u00E4tmittelalterliche Didaxe als Bild-Text-Lekt\u00FCre"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\" verbindet eine umfassende kunstwissenschaftliche Analyse der Bez\u00FCge zwischen den Bildern und Texten in den illustrierten Basler Inkunabeln mit der Digitalisierung der Best\u00E4nde der Universit\u00E4tsbibliothek und der Entwicklung einer elektronischen Edition in der Form einer neuartigen Web-0.2-Applikation. "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](27, 0, null, null, 7, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Das Projekt wird durchgef\u00FChrt vom "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](29, 0, null, null, 1, "a", [["href", "http://kunsthist.unibas.ch"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Kunsthistorischen Seminar"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" der Universit\u00E4t Basel (Prof. B. Schellewald) und dem "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](32, 0, null, null, 1, "a", [["href", "http://www.dhlab.unibas.ch"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Digital Humanities Lab"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" der Universit\u00E4t Basel (PD Dr. L. Rosenthaler). "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](35, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Das Kernst\u00FCck der digitalen Edition besteht aus rund zwanzig reich bebilderten Fr\u00FChdrucken aus vier verschiedenen Basler Offizinen. Viele davon sind bereits vor 1500 in mehreren Ausgaben erschienen, einige fast gleichzeitig auf Deutsch und Lateinisch. Es handelt sich um eine ausserordentlich vielf\u00E4ltige Produktion; neben dem Heilsspiegel finden sich ein Roman, die Melusine, die Reisebeschreibungen des Jean de Mandeville, einige Gebets- und Erbauungsb\u00FCchlein, theologische Schriften, Fastenpredigten, die Leben der Heiligen Fridolin und Meinrad, das ber\u00FChmte Narrenschiff sowie die Exempelsammlung des Ritters vom Thurn. "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Die Internetpublikation macht das digitalisierte Korpus dieser Fr\u00FChdrucke durch die M\u00F6glichkeiten nichtlinearer Verkn\u00FCpfung und Kommentierung der Bilder und Texte, f\u00FCr die wissenschaftliche Edition sowie f\u00FCr die Erforschung der Bilder und Texte nutzbar machen. Auch k\u00F6nnen bereits bestehende und entstehende Online-Editionen damit verkn\u00FCpft werden , wodurch die Nutzung von Datenbanken anderer Institutionen im Hinblick auf unser Corpus optimiert wird. "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](38, 0, null, null, 0, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](39, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](40, 0, null, null, 1, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Keywords"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](42, 0, null, null, 88, "mat-chip-list", [["aria-disabled", "false"], ["aria-invalid", "false"], ["aria-multiselectable", "false"], ["aria-orientation", "horizontal"], ["aria-required", "false"], ["class", "mat-chip-list mat-chip-list"], ["id", "mat-chip-list-0"], ["role", "listbox"], ["tabindex", "0"]], [[1, "tabindex", 0], [1, "aria-describedby", 0], [1, "aria-required", 0], [1, "aria-disabled", 0], [1, "aria-invalid", 0], [1, "aria-multiselectable", 0], [1, "role", 0], [2, "mat-chip-list-disabled", null], [2, "mat-chip-list-invalid", null], [2, "mat-chip-list-required", null], [1, "aria-orientation", 0], [8, "id", 0]], [[null, "focus"], [null, "blur"], [null, "keydown"]], function (_v, en, $event) {
+            var ad = true;
+            if (("focus" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).focus() !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44)._blur() !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44)._keydown($event) !== false);
+                ad = (pd_2 && ad);
+            }
+            return ad;
+        }, _node_modules_angular_material_chips_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatChipList_0"], _node_modules_angular_material_chips_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatChipList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵprd"](6144, null, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldControl"], null, [_angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChipList"]]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](44, 1556480, null, 1, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChipList"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], [2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_13__["Directionality"]], [2, _angular_forms__WEBPACK_IMPORTED_MODULE_14__["NgForm"]], [2, _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormGroupDirective"]], _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["ErrorStateMatcher"], [8, null]], { ariaOrientation: [0, "ariaOrientation"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 1, { chips: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](46, 0, null, 0, 84, "div", [["class", "mat-chip-list-wrapper"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](47, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
             var ad = true;
             if (("click" === en)) {
-                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._handleClick($event) !== false);
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48)._handleClick($event) !== false);
                 ad = (pd_0 && ad);
             }
             if (("keydown" === en)) {
-                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._handleKeydown($event) !== false);
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48)._handleKeydown($event) !== false);
                 ad = (pd_1 && ad);
             }
             if (("focus" === en)) {
-                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).focus() !== false);
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48).focus() !== false);
                 ad = (pd_2 && ad);
             }
             if (("blur" === en)) {
-                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._blur() !== false);
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48)._blur() !== false);
                 ad = (pd_3 && ad);
             }
             return ad;
-        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_4__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_5__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 2, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 3, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 4, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](5, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).disabled ? null : (0 - 1)); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).selected; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).avatar; var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).removeIcon); var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).disabled; var currVal_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).disabled || null); var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).disabled.toString(); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).ariaSelected; _ck(_v, 0, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7); var currVal_8 = _v.context.$implicit; _ck(_v, 5, 0, currVal_8); });
-}
-function View_ProjectsComponent_4(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 18, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Shortcode / Shortname: Longname"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](5, null, ["", " / ", ": "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](6, null, [" ", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Keywords"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 5, "mat-chip-list", [["class", "mat-chip-list"]], [[1, "tabindex", 0], [1, "aria-describedby", 0], [1, "aria-required", 0], [1, "aria-disabled", 0], [1, "aria-invalid", 0], [1, "aria-multiselectable", 0], [1, "role", 0], [2, "mat-chip-list-disabled", null], [2, "mat-chip-list-invalid", null], [2, "mat-chip-list-required", null], [1, "aria-orientation", 0], [8, "id", 0]], [[null, "focus"], [null, "blur"], [null, "keydown"]], function (_v, en, $event) {
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](48, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 2, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 3, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 4, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Basel"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](53, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
             var ad = true;
-            if (("focus" === en)) {
-                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).focus() !== false);
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54)._handleClick($event) !== false);
                 ad = (pd_0 && ad);
             }
-            if (("blur" === en)) {
-                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15)._blur() !== false);
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54)._handleKeydown($event) !== false);
                 ad = (pd_1 && ad);
             }
-            if (("keydown" === en)) {
-                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15)._keydown($event) !== false);
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54).focus() !== false);
                 ad = (pd_2 && ad);
             }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
             return ad;
-        }, _node_modules_angular_material_chips_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatChipList_0"], _node_modules_angular_material_chips_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatChipList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵprd"](6144, null, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__["MatFormFieldControl"], null, [_angular_material_chips__WEBPACK_IMPORTED_MODULE_4__["MatChipList"]]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](15, 1556480, null, 1, _angular_material_chips__WEBPACK_IMPORTED_MODULE_4__["MatChipList"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], [2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_9__["Directionality"]], [2, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["NgForm"]], [2, _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormGroupDirective"]], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["ErrorStateMatcher"], [8, null]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 1, { chips: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ProjectsComponent_7)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_3 = _co.project.description; _ck(_v, 9, 0, currVal_3); _ck(_v, 15, 0); var currVal_16 = _co.project.keywords; _ck(_v, 18, 0, currVal_16); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.project.shortcode; var currVal_1 = _co.project.shortname; _ck(_v, 5, 0, currVal_0, currVal_1); var currVal_2 = _co.project.longname; _ck(_v, 6, 0, currVal_2); var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).disabled ? null : _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15)._tabIndex); var currVal_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15)._ariaDescribedby || null); var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).required.toString(); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).disabled.toString(); var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).errorState; var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).multiple; var currVal_10 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).role; var currVal_11 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).disabled; var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).errorState; var currVal_13 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).required; var currVal_14 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).ariaOrientation; var currVal_15 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15)._uid; _ck(_v, 13, 1, [currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14, currVal_15]); });
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](54, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 5, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 6, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 7, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Basler Fr\u00FChdrucke"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](59, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](60, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 8, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 9, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 10, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Bilderfolgen"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](65, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](66, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 11, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 12, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 13, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Contectualisation of images"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](71, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](72, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 14, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 15, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 16, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Inkunabel"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](77, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](78, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 17, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 18, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 19, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Kunsthistorisches Seminar Universit\u00E4t Basel"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](83, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](84, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 20, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 21, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 22, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Late Middle Ages"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](89, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](90, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 23, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 24, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 25, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Letterpress Printing"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](95, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](96, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 26, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 27, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 28, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Narrenschiff"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](101, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](102, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 29, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 30, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 31, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Sebastian Brant"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](107, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](108, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 32, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 33, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 34, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Wiegendrucke"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](113, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](114, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 35, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 36, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 37, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["early print"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](119, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](120, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 38, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 39, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 40, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["incunabula"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](125, 0, null, null, 5, "mat-chip", [["aria-disabled", "false"], ["aria-selected", "false"], ["class", "tag mat-chip mat-primary mat-standard-chip ng-star-inserted mat-chip"], ["role", "option"], ["tabindex", "-1"]], [[1, "tabindex", 0], [2, "mat-chip-selected", null], [2, "mat-chip-with-avatar", null], [2, "mat-chip-with-trailing-icon", null], [2, "mat-chip-disabled", null], [1, "disabled", 0], [1, "aria-disabled", 0], [1, "aria-selected", 0]], [[null, "click"], [null, "keydown"], [null, "focus"], [null, "blur"]], function (_v, en, $event) {
+            var ad = true;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126)._handleClick($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126).focus() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126)._blur() !== false);
+                ad = (pd_3 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](126, 147456, [[1, 4]], 3, _angular_material_chips__WEBPACK_IMPORTED_MODULE_12__["MatChip"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_16__["Platform"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_15__["MAT_RIPPLE_GLOBAL_OPTIONS"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 41, { avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 42, { trailingIcon: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](335544320, 43, { removeIcon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["ship of fools"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](131, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](132, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](133, 0, null, null, 1, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["All members of the project"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](135, 0, null, null, 16, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](136, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](137, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Test, "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["User (user.test) "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](140, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](141, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Admin-alt, "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Administrator-alt (root-alt) "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](144, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](145, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["User2, "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Test (incunabulaMemberUser) "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](148, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](149, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["User, "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Multi (multiuser) "]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGetProjectByShortname; _ck(_v, 7, 0, currVal_1); var currVal_14 = "horizontal"; _ck(_v, 44, 0, currVal_14); }, function (_ck, _v) { var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).disabled ? null : _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44)._tabIndex); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44)._ariaDescribedby || null); var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).required.toString(); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).disabled.toString(); var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).errorState; var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).multiple; var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).role; var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).disabled; var currVal_10 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).errorState; var currVal_11 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).required; var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44).ariaOrientation; var currVal_13 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 44)._uid; _ck(_v, 42, 1, [currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13]); var currVal_15 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48).disabled ? null : (0 - 1)); var currVal_16 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48).selected; var currVal_17 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48).avatar; var currVal_18 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48).removeIcon); var currVal_19 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48).disabled; var currVal_20 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48).disabled || null); var currVal_21 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48).disabled.toString(); var currVal_22 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 48).ariaSelected; _ck(_v, 47, 0, currVal_15, currVal_16, currVal_17, currVal_18, currVal_19, currVal_20, currVal_21, currVal_22); var currVal_23 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54).disabled ? null : (0 - 1)); var currVal_24 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54).selected; var currVal_25 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54).avatar; var currVal_26 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54).removeIcon); var currVal_27 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54).disabled; var currVal_28 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54).disabled || null); var currVal_29 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54).disabled.toString(); var currVal_30 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 54).ariaSelected; _ck(_v, 53, 0, currVal_23, currVal_24, currVal_25, currVal_26, currVal_27, currVal_28, currVal_29, currVal_30); var currVal_31 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).disabled ? null : (0 - 1)); var currVal_32 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).selected; var currVal_33 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).avatar; var currVal_34 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).removeIcon); var currVal_35 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).disabled; var currVal_36 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).disabled || null); var currVal_37 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).disabled.toString(); var currVal_38 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).ariaSelected; _ck(_v, 59, 0, currVal_31, currVal_32, currVal_33, currVal_34, currVal_35, currVal_36, currVal_37, currVal_38); var currVal_39 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66).disabled ? null : (0 - 1)); var currVal_40 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66).selected; var currVal_41 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66).avatar; var currVal_42 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66).removeIcon); var currVal_43 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66).disabled; var currVal_44 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66).disabled || null); var currVal_45 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66).disabled.toString(); var currVal_46 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 66).ariaSelected; _ck(_v, 65, 0, currVal_39, currVal_40, currVal_41, currVal_42, currVal_43, currVal_44, currVal_45, currVal_46); var currVal_47 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).disabled ? null : (0 - 1)); var currVal_48 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).selected; var currVal_49 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).avatar; var currVal_50 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).removeIcon); var currVal_51 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).disabled; var currVal_52 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).disabled || null); var currVal_53 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).disabled.toString(); var currVal_54 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).ariaSelected; _ck(_v, 71, 0, currVal_47, currVal_48, currVal_49, currVal_50, currVal_51, currVal_52, currVal_53, currVal_54); var currVal_55 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78).disabled ? null : (0 - 1)); var currVal_56 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78).selected; var currVal_57 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78).avatar; var currVal_58 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78).removeIcon); var currVal_59 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78).disabled; var currVal_60 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78).disabled || null); var currVal_61 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78).disabled.toString(); var currVal_62 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 78).ariaSelected; _ck(_v, 77, 0, currVal_55, currVal_56, currVal_57, currVal_58, currVal_59, currVal_60, currVal_61, currVal_62); var currVal_63 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).disabled ? null : (0 - 1)); var currVal_64 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).selected; var currVal_65 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).avatar; var currVal_66 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).removeIcon); var currVal_67 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).disabled; var currVal_68 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).disabled || null); var currVal_69 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).disabled.toString(); var currVal_70 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).ariaSelected; _ck(_v, 83, 0, currVal_63, currVal_64, currVal_65, currVal_66, currVal_67, currVal_68, currVal_69, currVal_70); var currVal_71 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90).disabled ? null : (0 - 1)); var currVal_72 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90).selected; var currVal_73 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90).avatar; var currVal_74 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90).removeIcon); var currVal_75 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90).disabled; var currVal_76 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90).disabled || null); var currVal_77 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90).disabled.toString(); var currVal_78 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 90).ariaSelected; _ck(_v, 89, 0, currVal_71, currVal_72, currVal_73, currVal_74, currVal_75, currVal_76, currVal_77, currVal_78); var currVal_79 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96).disabled ? null : (0 - 1)); var currVal_80 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96).selected; var currVal_81 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96).avatar; var currVal_82 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96).removeIcon); var currVal_83 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96).disabled; var currVal_84 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96).disabled || null); var currVal_85 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96).disabled.toString(); var currVal_86 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 96).ariaSelected; _ck(_v, 95, 0, currVal_79, currVal_80, currVal_81, currVal_82, currVal_83, currVal_84, currVal_85, currVal_86); var currVal_87 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102).disabled ? null : (0 - 1)); var currVal_88 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102).selected; var currVal_89 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102).avatar; var currVal_90 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102).removeIcon); var currVal_91 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102).disabled; var currVal_92 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102).disabled || null); var currVal_93 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102).disabled.toString(); var currVal_94 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 102).ariaSelected; _ck(_v, 101, 0, currVal_87, currVal_88, currVal_89, currVal_90, currVal_91, currVal_92, currVal_93, currVal_94); var currVal_95 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108).disabled ? null : (0 - 1)); var currVal_96 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108).selected; var currVal_97 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108).avatar; var currVal_98 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108).removeIcon); var currVal_99 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108).disabled; var currVal_100 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108).disabled || null); var currVal_101 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108).disabled.toString(); var currVal_102 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 108).ariaSelected; _ck(_v, 107, 0, currVal_95, currVal_96, currVal_97, currVal_98, currVal_99, currVal_100, currVal_101, currVal_102); var currVal_103 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114).disabled ? null : (0 - 1)); var currVal_104 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114).selected; var currVal_105 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114).avatar; var currVal_106 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114).removeIcon); var currVal_107 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114).disabled; var currVal_108 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114).disabled || null); var currVal_109 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114).disabled.toString(); var currVal_110 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 114).ariaSelected; _ck(_v, 113, 0, currVal_103, currVal_104, currVal_105, currVal_106, currVal_107, currVal_108, currVal_109, currVal_110); var currVal_111 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120).disabled ? null : (0 - 1)); var currVal_112 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120).selected; var currVal_113 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120).avatar; var currVal_114 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120).removeIcon); var currVal_115 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120).disabled; var currVal_116 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120).disabled || null); var currVal_117 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120).disabled.toString(); var currVal_118 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 120).ariaSelected; _ck(_v, 119, 0, currVal_111, currVal_112, currVal_113, currVal_114, currVal_115, currVal_116, currVal_117, currVal_118); var currVal_119 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126).disabled ? null : (0 - 1)); var currVal_120 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126).selected; var currVal_121 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126).avatar; var currVal_122 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126).trailingIcon || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126).removeIcon); var currVal_123 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126).disabled; var currVal_124 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126).disabled || null); var currVal_125 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126).disabled.toString(); var currVal_126 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 126).ariaSelected; _ck(_v, 125, 0, currVal_119, currVal_120, currVal_121, currVal_122, currVal_123, currVal_124, currVal_125, currVal_126); });
 }
-function View_ProjectsComponent_9(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", ", "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, [" ", " (", ") "]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.familyName; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.givenName; var currVal_2 = _v.context.$implicit.email; _ck(_v, 3, 0, currVal_1, currVal_2); }); }
-function View_ProjectsComponent_8(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.projectMembers; _ck(_v, 3, 0, currVal_0); }, null); }
-function View_ProjectsComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 11, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "mat-card-subtitle", [["class", "mat-card-subtitle"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCardSubtitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "p", [["class", "mat-card-subtitle"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["All members of the project"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = (_co.project && !_co.projectsService.loading); _ck(_v, 5, 0, currVal_0); var currVal_1 = (_co.projectMembers && !_co.projectsService.loading); _ck(_v, 11, 0, currVal_1); }, null); }
-function View_ProjectsComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_12__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_13__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_14__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Demo"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h2", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["ProjectsService"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_15__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_15__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_17__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_15__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_15__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_17__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ProjectsComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGetAllProjects; _ck(_v, 11, 0, currVal_1); var currVal_2 = (_co.allProjects && !_co.projectsService.loading); _ck(_v, 14, 0, currVal_2); var currVal_3 = _co.exampleGetProjectByShortname; _ck(_v, 18, 0, currVal_3); var currVal_4 = (_co.project && !_co.projectsService.loading); _ck(_v, 21, 0, currVal_4); }, null); }
-function View_ProjectsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-projects", [], null, null, null, View_ProjectsComponent_0, RenderType_ProjectsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _projects_component__WEBPACK_IMPORTED_MODULE_18__["ProjectsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_19__["ProjectsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var ProjectsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-projects", _projects_component__WEBPACK_IMPORTED_MODULE_18__["ProjectsComponent"], View_ProjectsComponent_Host_0, {}, {}, []);
+function View_ProjectsComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-projects", [], null, null, null, View_ProjectsComponent_0, RenderType_ProjectsComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _projects_component__WEBPACK_IMPORTED_MODULE_17__["ProjectsComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_18__["ProjectsService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ProjectsComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-projects", _projects_component__WEBPACK_IMPORTED_MODULE_17__["ProjectsComponent"], View_ProjectsComponent_Host_0, {}, {}, []);
 
 
 
@@ -18651,8 +19290,8 @@ var ProjectsComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: 'returns a list of all projects in Knora',
             name: 'getAllProjects',
             code: {
-                html: "\n        <div *ngIf=\"allProjects && !projectsService.loading\">\n            <mat-card-subtitle>Result</mat-card-subtitle>\n            <ul>\n                <li *ngFor=\"let p of allProjects\">\n                    ({{p.shortcode}})\n                    <strong>{{p.shortname}}: </strong>\n                    {{p.longname}}\n                </li>\n            </ul>\n        </div>",
-                ts: "\n            allProjects: Project[];\n            \n            // the services from @knora/core should be public,\n            // if you want to use the loading status in the html template\n            // --> projectsService.loading = true | false\n            constructor(public projectsService: ProjectsService) { }\n\n            [...]\n            \n            this.projectsService.getAllProjects()\n            .subscribe(\n                (result: Project[]) => {\n                    this.allProjects = result;\n                },\n                (error: ApiServiceError) => {\n                    console.error(error);\n                }\n            );",
+                html: "\n<div *ngIf=\"allProjects && !projectsService.loading\">\n    <mat-card-subtitle>Result</mat-card-subtitle>\n    <ul>\n        <li *ngFor=\"let p of allProjects\">\n            ({{p.shortcode}})\n            <strong>{{p.shortname}}: </strong>\n            {{p.longname}}\n        </li>\n    </ul>\n</div>",
+                ts: "\nallProjects: Project[];\n\n// the services from @knora/core should be public,\n// if you want to use the loading status in the html template\n// --> projectsService.loading = true | false\nconstructor(public projectsService: ProjectsService) { }\n\n\nngOnInit() {\n    this.projectsService.getAllProjects().subscribe(\n        (result: Project[]) => {\n            this.allProjects = result;\n        },\n        (error: ApiServiceError) => {\n            console.error(error);\n        }\n    )\n};",
                 scss: ""
             }
         };
@@ -18662,8 +19301,8 @@ var ProjectsComponent = /** @class */ /*@__PURE__*/ (function () {
                 'and the second returns all members of this project defined by id of project (iri)',
             name: 'getProjectByShortname',
             code: {
-                html: "\n        <div *ngIf=\"project && !projectsService.loading\">\n            <mat-card-subtitle>Result</mat-card-subtitle>\n\n            <div *ngIf=\"project && !projectsService.loading\">\n                <p class=\"mat-card-subtitle\">Shortcode / Shortname: Longname</p>\n                <p><strong>{{project.shortcode}} / {{project.shortname}}: </strong> {{project.longname}}</p>\n                <br>\n                <div *ngFor=\"let d of project.description\">\n                    <p class=\"mat-card-subtitle\">Description <span *ngIf=\"d.language\">in {{d.language}}</span></p>\n                    <div [innerHtml]=\"d.value\"></div>\n                </div>\n                <br>\n                <p class=\"mat-card-subtitle\">Keywords</p>\n                <mat-chip-list>\n                    <mat-chip class=\"tag\" *ngFor=\"let k of project.keywords\">{{k}}</mat-chip>\n                </mat-chip-list>\n            </div>\n            <br><br>\n            <p class=\"mat-card-subtitle\">All members of the project</p>\n            <div *ngIf=\"projectMembers && !projectsService.loading\">\n                <ul>\n                    <li *ngFor=\"let u of projectMembers\">\n                        <strong>{{u.familyName}}, </strong>\n                        {{u.givenName}} ({{u.email}})\n                    </li>\n                </ul>\n            </div>\n        </div>",
-                ts: "\n            project: Project;\n            projectMembers: User[];\n                        \n            // the services from @knora/core should be public,\n            // if you want to use the loading status in the html template\n            // --> projectsService.loading = true | false\n            constructor(public projectsService: ProjectsService) { }\n\n            [...]\n            \n            this.projectsService.getProjectByShortname('incunabula')\n            .subscribe(\n                (result: Project) => {\n                    this.project = result;\n                    // and get the members of the project here\n                    this.projectsService.getProjectMembersByIri(result.id)\n                        .subscribe(\n                            (result: User[]) => {\n                                this.projectMembers = result;\n                            },\n                            (error: ApiServiceError) => {\n                                console.error(error);\n                            }\n                        );\n                },\n                (error: ApiServiceError) => {\n                    console.error(error);\n                }\n            );",
+                html: "\n<div *ngIf=\"project && !projectsService.loading\">\n    <mat-card-subtitle>Result</mat-card-subtitle>\n\n    <div *ngIf=\"project && !projectsService.loading\">\n        <p class=\"mat-card-subtitle\">Shortcode / Shortname: Longname</p>\n        <p><strong>{{project.shortcode}} / {{project.shortname}}: </strong> {{project.longname}}</p>\n        <br>\n        <div *ngFor=\"let d of project.description\">\n            <p class=\"mat-card-subtitle\">Description <span *ngIf=\"d.language\">in {{d.language}}</span></p>\n            <div [innerHtml]=\"d.value\"></div>\n        </div>\n        <br>\n        <p class=\"mat-card-subtitle\">Keywords</p>\n        <mat-chip-list>\n            <mat-chip class=\"tag\" *ngFor=\"let k of project.keywords\">{{k}}</mat-chip>\n        </mat-chip-list>\n    </div>\n    <br><br>\n    <p class=\"mat-card-subtitle\">All members of the project</p>\n    <div *ngIf=\"projectMembers && !projectsService.loading\">\n        <ul>\n            <li *ngFor=\"let u of projectMembers\">\n                <strong>{{u.familyName}}, </strong>\n                {{u.givenName}} ({{u.email}})\n            </li>\n        </ul>\n    </div>\n</div>",
+                ts: "\nproject: Project;\nprojectMembers: User[];\n            \n// the services from @knora/core should be public,\n// if you want to use the loading status in the html template\n// --> projectsService.loading = true | false\nconstructor(public projectsService: ProjectsService) { }\n\nngOnInit() {\n    this.projectsService.getProjectByShortname('incunabula').subscribe(\n        (result: Project) => {\n            this.project = result;\n            \n            // and get the members of the project here\n            this.projectsService.getProjectMembersByIri(result.id).subscribe(\n                (result: User[]) => {\n                    this.projectMembers = result;\n                },\n                (errorByGettingMembers: ApiServiceError) => {\n                    console.error(errorByGettingMembers);\n                }\n            );\n        },\n        (errorByGettingProject: ApiServiceError) => {\n            console.error(errorByGettingProject);\n        }\n    );\n}",
                 scss: ""
             }
         };
@@ -18703,7 +19342,7 @@ var ProjectsComponent = /** @class */ /*@__PURE__*/ (function () {
     ProjectsComponent.prototype.createNewProject = function (data) {
         this.projectsService.createProject(data)
             .subscribe(function (result) {
-            console.log('createNewProject (result): ', result);
+            // console.log('createNewProject (result): ', result);
         }, function (error) {
             console.error('createNewProject (error): ', error);
         });
@@ -18749,18 +19388,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/list/typings/index.ngfactory */ "./node_modules/@angular/material/list/typings/index.ngfactory.js");
-/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
-/* harmony import */ var _resource_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./resource.component */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/list/typings/index.ngfactory */ "./node_modules/@angular/material/list/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
+/* harmony import */ var _resource_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./resource.component */ "./src/app/knora-ui-examples/core-demo/resource/resource.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _resource.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_button_typings_index.ngfactory,_angular_material_button,_angular_cdk_platform,_angular_cdk_a11y,_angular_platform_browser_animations,_.._.._.._.._dist__knora_viewer_knora_viewer.ngfactory,_knora_viewer,_angular_common,_angular_material_core,_angular_material_tooltip,_angular_cdk_overlay,_angular_cdk_scrolling,_angular_cdk_bidi,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_list_typings_index.ngfactory,_angular_material_list,_resource.component,_knora_core PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _resource.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_button_typings_index.ngfactory,_angular_material_button,_angular_cdk_platform,_angular_cdk_a11y,_angular_platform_browser_animations,_.._.._.._.._dist__knora_viewer_knora_viewer.ngfactory,_knora_viewer,_angular_common,_angular_material_core,_angular_material_tooltip,_angular_cdk_overlay,_angular_cdk_scrolling,_angular_cdk_bidi,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_list_typings_index.ngfactory,_angular_material_list,_resource.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _resource.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_button_typings_index.ngfactory,_angular_material_button,_angular_cdk_platform,_angular_cdk_a11y,_angular_platform_browser_animations,_.._.._.._.._dist__knora_viewer_knora_viewer.ngfactory,_knora_viewer,_angular_common,_angular_material_core,_angular_material_tooltip,_angular_cdk_overlay,_angular_cdk_scrolling,_angular_cdk_bidi,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_.._.._.._.._node_modules__angular_material_list_typings_index.ngfactory,_angular_material_list,_resource.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _resource.component.scss.shim.ngstyle,_angular_core,_.._.._.._.._node_modules__angular_material_button_typings_index.ngfactory,_angular_material_button,_angular_cdk_platform,_angular_cdk_a11y,_angular_platform_browser_animations,_.._.._.._.._dist__knora_viewer_knora_viewer.ngfactory,_knora_viewer,_angular_common,_angular_material_core,_angular_material_tooltip,_angular_cdk_overlay,_angular_cdk_scrolling,_angular_cdk_bidi,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_.._.._.._.._node_modules__angular_material_list_typings_index.ngfactory,_angular_material_list,_resource.component,_knora_core PURE_IMPORTS_END */
+
+
+
+
 
 
 
@@ -18826,9 +19473,9 @@ function View_ResourceComponent_10(_l) {
 }
 function View_ResourceComponent_9(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Incoming Links:"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ResourceComponent_10)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.resource.incomingLinks; _ck(_v, 5, 0, currVal_0); }, null); }
 function View_ResourceComponent_11(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-still-image", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_ɵj_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_ɵj"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 770048, [[1, 4], ["OSDViewer", 4]], 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_8__["ɵj"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { images: [0, "images"], imageRangeStart: [1, "imageRangeStart"], imageRangeEnd: [2, "imageRangeEnd"], imageChangeInterval: [3, "imageChangeInterval"], imageCaption: [4, "imageCaption"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.resource == null) ? null : _co.resource.stillImageRepresentationsToDisplay); var currVal_1 = 0; var currVal_2 = 24; var currVal_3 = 25; var currVal_4 = _co.copyright; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4); }, null); }
-function View_ResourceComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_15__["KeyPipe"], []), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](671088640, 1, { osdViewer: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_17__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_18__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_19__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Select a resource example:"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ResourceComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](12, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](14, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 8, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_20__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_20__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_21__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 2, null, View_ResourceComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](19, 1), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ResourceComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ResourceComponent_11)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](23, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.resources; _ck(_v, 10, 0, currVal_1); var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 18, 0, _ck(_v, 19, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), ((_co.resource == null) ? null : _co.resource.properties))); _ck(_v, 18, 0, currVal_4); var currVal_5 = (((_co.resource == null) ? null : ((_co.resource.incomingLinks == null) ? null : _co.resource.incomingLinks.length)) > 0); _ck(_v, 21, 0, currVal_5); var currVal_6 = (((_co.resource == null) ? null : ((_co.resource.incomingStillImageRepresentations == null) ? null : _co.resource.incomingStillImageRepresentations.length)) > 0); _ck(_v, 23, 0, currVal_6); }, function (_ck, _v) { var _co = _v.component; var currVal_2 = ((_co.ontologyInfo == null) ? null : _co.ontologyInfo.getLabelForResourceClass(((_co.resource == null) ? null : _co.resource.type))); _ck(_v, 12, 0, currVal_2); var currVal_3 = ((_co.resource == null) ? null : _co.resource.label); _ck(_v, 14, 0, currVal_3); }); }
-function View_ResourceComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-resource", [], null, null, null, View_ResourceComponent_0, RenderType_ResourceComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 638976, null, 0, _resource_component__WEBPACK_IMPORTED_MODULE_22__["ResourceComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_23__["ResourceService"], _knora_core__WEBPACK_IMPORTED_MODULE_23__["OntologyCacheService"], _knora_core__WEBPACK_IMPORTED_MODULE_23__["IncomingService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var ResourceComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-resource", _resource_component__WEBPACK_IMPORTED_MODULE_22__["ResourceComponent"], View_ResourceComponent_Host_0, {}, {}, []);
+function View_ResourceComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_15__["KeyPipe"], []), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](671088640, 1, { osdViewer: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_16__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_17__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_18__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_19__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 3, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_20__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_20__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_21__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_22__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_22__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_23__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Select a resource example:"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ResourceComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](16, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](18, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 8, "mat-list", [["class", "mat-list"]], null, null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_24__["View_MatList_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_24__["RenderType_MatList"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 49152, null, 0, _angular_material_list__WEBPACK_IMPORTED_MODULE_25__["MatList"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 2, null, View_ResourceComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](22, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](23, 1), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ResourceComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](25, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, 0, 1, null, View_ResourceComponent_11)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](27, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.exampleResource; _ck(_v, 9, 0, currVal_1); var currVal_2 = _co.resources; _ck(_v, 14, 0, currVal_2); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 22, 0, _ck(_v, 23, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), ((_co.resource == null) ? null : _co.resource.properties))); _ck(_v, 22, 0, currVal_5); var currVal_6 = (((_co.resource == null) ? null : ((_co.resource.incomingLinks == null) ? null : _co.resource.incomingLinks.length)) > 0); _ck(_v, 25, 0, currVal_6); var currVal_7 = (((_co.resource == null) ? null : ((_co.resource.incomingStillImageRepresentations == null) ? null : _co.resource.incomingStillImageRepresentations.length)) > 0); _ck(_v, 27, 0, currVal_7); }, function (_ck, _v) { var _co = _v.component; var currVal_3 = ((_co.ontologyInfo == null) ? null : _co.ontologyInfo.getLabelForResourceClass(((_co.resource == null) ? null : _co.resource.type))); _ck(_v, 16, 0, currVal_3); var currVal_4 = ((_co.resource == null) ? null : _co.resource.label); _ck(_v, 18, 0, currVal_4); }); }
+function View_ResourceComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-resource", [], null, null, null, View_ResourceComponent_0, RenderType_ResourceComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 638976, null, 0, _resource_component__WEBPACK_IMPORTED_MODULE_26__["ResourceComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_27__["ResourceService"], _knora_core__WEBPACK_IMPORTED_MODULE_27__["OntologyCacheService"], _knora_core__WEBPACK_IMPORTED_MODULE_27__["IncomingService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ResourceComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-resource", _resource_component__WEBPACK_IMPORTED_MODULE_26__["ResourceComponent"], View_ResourceComponent_Host_0, {}, {}, []);
 
 
 
@@ -18908,6 +19555,16 @@ var ResourceComponent = /** @class */ /*@__PURE__*/ (function () {
         this.copyright = '&copy; ' + this.year + ' | Data and Service Center for the Humantites DaSCH';
         this.loading = true;
         this.KnoraConstants = _knora_core__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"];
+        this.exampleResource = {
+            title: 'getResource(iri)',
+            subtitle: 'Get a resource and properties from the provided Iri.',
+            name: 'getResource',
+            code: {
+                html: "",
+                ts: "\nconstructor(\n    private _resourceService: ResourceService) {}\n\ngetResource(iri: string): void {\n    this._resourceService.getResource(iri)\n        .subscribe(\n            (result) => {\n                // compact JSON-LD using an empty context: expands all Iris\n                // get resource class Iris from response\n                // request ontology information about resource class Iris\n            }\n    );\n}\n",
+                scss: ""
+            }
+        };
     }
     ResourceComponent.prototype.ngOnChanges = function (changes) {
         // prevent duplicate requests. if isFirstChange resource will be requested on ngOnInit
@@ -18948,7 +19605,7 @@ var ResourceComponent = /** @class */ /*@__PURE__*/ (function () {
                         _this.resource = resourceSeq.resources[0];
                         _this.requestIncomingResources();
                     }, function (err) {
-                        console.log('cache request failed: ' + err);
+                        console.error('cache request failed: ' + err);
                     });
                 }
                 else {
@@ -19019,10 +19676,10 @@ var ResourceComponent = /** @class */ /*@__PURE__*/ (function () {
                     if (callback !== undefined)
                         callback(regions.resources.length);
                 }, function (err) {
-                    console.log('cache request failed: ' + err);
+                    console.error('cache request failed: ' + err);
                 });
             }, function (err) {
-                console.log('JSONLD of regions request could not be expanded:' + err);
+                console.error('JSONLD of regions request could not be expanded:' + err);
             });
         }, function (error) {
             _this.errorMessage = error;
@@ -19042,7 +19699,7 @@ var ResourceComponent = /** @class */ /*@__PURE__*/ (function () {
         if (this.resource === undefined)
             return;
         if (offset < 0) {
-            console.log("offset of " + offset + " is invalid");
+            console.error("offset of " + offset + " is invalid");
             return;
         }
         this._incomingService.getStillImageRepresentationsForCompoundResource(this.resource.id, offset).subscribe(function (result) {
@@ -19071,10 +19728,10 @@ var ResourceComponent = /** @class */ /*@__PURE__*/ (function () {
                     if (callback !== undefined)
                         callback(incomingImageRepresentations.resources.length);
                 }, function (err) {
-                    console.log('cache request failed: ' + err);
+                    console.error('cache request failed: ' + err);
                 });
             }, function (err) {
-                console.log('JSONLD of regions request could not be expanded:' + err);
+                console.error('JSONLD of regions request could not be expanded:' + err);
             });
         }, function (error) {
             _this.errorMessage = error;
@@ -19105,10 +19762,10 @@ var ResourceComponent = /** @class */ /*@__PURE__*/ (function () {
                     if (callback !== undefined)
                         callback(incomingResources.resources.length);
                 }, function (err) {
-                    console.log('cache request failed: ' + err);
+                    console.error('cache request failed: ' + err);
                 });
             }, function (err) {
-                console.log('JSONLD of regions request could not be expanded:' + err);
+                console.error('JSONLD of regions request could not be expanded:' + err);
             });
         }, function (error) {
             _this.errorMessage = error;
@@ -19206,11 +19863,10 @@ var ResourceComponent = /** @class */ /*@__PURE__*/ (function () {
         return "(" + propLabels.join(', ') + ")";
     };
     ResourceComponent.prototype.openResource = function (iri) {
-        var _this = this;
         this.getResource(iri);
         // for testing by user: I want to see, what's inside of the resource object
         setTimeout(function () {
-            console.log(_this.resource);
+            // console.log(this.resource);
         }, 1000);
     };
     return ResourceComponent;
@@ -19240,15 +19896,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
 /* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _search_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./search.component */ "./src/app/knora-ui-examples/core-demo/search/search.component.ts");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _search_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./search.component */ "./src/app/knora-ui-examples/core-demo/search/search.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _search.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_search.component PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _search.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_search.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _search.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_search.component PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _search.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_search.component PURE_IMPORTS_END */
+
+
+
+
 
 
 
@@ -19259,9 +19923,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_SearchComponent = [_search_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_SearchComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_SearchComponent, data: {} });
 
-function View_SearchComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); }, null); }
-function View_SearchComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-search", [], null, null, null, View_SearchComponent_0, RenderType_SearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _search_component__WEBPACK_IMPORTED_MODULE_6__["SearchComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var SearchComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-search", _search_component__WEBPACK_IMPORTED_MODULE_6__["SearchComponent"], View_SearchComponent_Host_0, {}, {}, []);
+function View_SearchComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Examples"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Number of results: 197"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 3, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleFulltextSearchCountQuery; _ck(_v, 7, 0, currVal_1); var currVal_2 = _co.exampleExtendedSearch; _ck(_v, 16, 0, currVal_2); }, null); }
+function View_SearchComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-search", [], null, null, null, View_SearchComponent_0, RenderType_SearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _search_component__WEBPACK_IMPORTED_MODULE_10__["SearchComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var SearchComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-search", _search_component__WEBPACK_IMPORTED_MODULE_10__["SearchComponent"], View_SearchComponent_Host_0, {}, {}, []);
 
 
 
@@ -19308,6 +19972,26 @@ __webpack_require__.r(__webpack_exports__);
 var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
     function SearchComponent() {
         this.module = _app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].coreModule;
+        this.exampleFulltextSearchCountQuery = {
+            title: 'doFulltextSearchCountQuery(searchTerm)',
+            subtitle: 'Perform a fulltext search count query.',
+            name: 'doFulltextSearchCountQuery',
+            code: {
+                html: "<p>Number of results: {{numberOfAllResults}}<p>",
+                ts: "\nsearchTerm: string; // provided parameters\nnumberOfAllResults: number; // total number of results (count query)\n\nconstructor(\n    private _searchService: SearchService) {}\n\ngetCountQueryResult() {\n    // perform count query\n    this._searchService.doFulltextSearchCountQuery(searchTerm)\n    .subscribe(\n        this.showNumberOfAllResults;\n    );\n}\n\n/**\n * Shows total number of results returned by a count query.\n *\n * @param {ApiServiceResult} countQueryResult the response to a count query.\n */\nprivate showNumberOfAllResults = (countQueryResult: ApiServiceResult) => {\n\n    const resPromises = jsonld.promises;\n    // compact JSON-LD using an empty context: expands all Iris\n    const resPromise = resPromises.compact(countQueryResult.body, {});\n\n    resPromise.then((compacted) => {\n        this.numberOfAllResults = compacted[KnoraConstants.schemaNumberOfItems];\n    });\n}\n",
+                scss: ""
+            }
+        };
+        this.exampleExtendedSearch = {
+            title: 'doExtendedSearch(searchTerm)',
+            subtitle: 'Perform the extended search.',
+            name: 'doExtendedSearch',
+            code: {
+                html: "",
+                ts: "\nsearchTerm: string; // provided parameters\n\nconstructor(\n    private _searchService: SearchService) {}\n\ngetExtendedSearchResult() {\n    // perform the extended search\n    this._searchService.doExtendedSearch(searchTerm)\n    .subscribe(\n        // e.g. convert search results from JSON-LD to a [[ReadResourcesSequence]]\n        // and requests information about ontology entities.\n    );\n}\n",
+                scss: ""
+            }
+        };
     }
     SearchComponent.prototype.ngOnInit = function () {
     };
@@ -19334,30 +20018,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsersComponentNgFactory", function() { return UsersComponentNgFactory; });
 /* harmony import */ var _users_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/core-demo/users/users.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../dist/@knora/action/knora-action.ngfactory */ "./dist/@knora/action/knora-action.ngfactory.js");
-/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
-/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
-/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
-/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
-/* harmony import */ var _users_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./users.component */ "./src/app/knora-ui-examples/core-demo/users/users.component.ts");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _users_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./users.component */ "./src/app/knora-ui-examples/core-demo/users/users.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-/** PURE_IMPORTS_START _users.component.scss.shim.ngstyle,_angular_core,_angular_material_card,_angular_common,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_users.component,_knora_core PURE_IMPORTS_END */
-/** PURE_IMPORTS_START _users.component.scss.shim.ngstyle,_angular_core,_angular_material_card,_angular_common,_.._.._.._.._dist__knora_action_knora_action.ngfactory,_knora_action,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_users.component,_knora_core PURE_IMPORTS_END */
-
-
-
+/** PURE_IMPORTS_START _users.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_users.component,_knora_core PURE_IMPORTS_END */
+/** PURE_IMPORTS_START _users.component.scss.shim.ngstyle,_angular_core,_.._.._partials_documentation_viewer_documentation_viewer.component.ngfactory,_.._.._partials_documentation_viewer_documentation_viewer.component,_.._.._partials_services_jsdoc.service,_angular_router,_.._.._.._.._node_modules__angular_material_card_typings_index.ngfactory,_angular_material_card,_.._.._partials_example_viewer_example_viewer.component.ngfactory,_.._.._partials_example_viewer_example_viewer.component,_users.component,_knora_core PURE_IMPORTS_END */
 
 
 
@@ -19373,14 +20051,9 @@ __webpack_require__.r(__webpack_exports__);
 var styles_UsersComponent = [_users_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_UsersComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_UsersComponent, data: {} });
 
-function View_UsersComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](2, null, ["", ", "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, [" ", " (", ") "]))], null, function (_ck, _v) { var currVal_0 = _v.context.$implicit.familyName; _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.context.$implicit.givenName; var currVal_2 = _v.context.$implicit.email; _ck(_v, 3, 0, currVal_1, currVal_2); }); }
-function View_UsersComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 6, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "mat-card-subtitle", [["class", "mat-card-subtitle"]], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCardSubtitle"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 2, "ul", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.allUsers; _ck(_v, 6, 0, currVal_0); }, null); }
-function View_UsersComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_5__["ProgressIndicatorComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-function View_UsersComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ", "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, [" ", " (", ") "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.user.familyName; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.user.givenName; var currVal_2 = _co.user.email; _ck(_v, 4, 0, currVal_1, currVal_2); }); }
-function View_UsersComponent_5(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ", "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, [" ", " (", ") "]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.user.familyName; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.user.givenName; var currVal_2 = _co.user.email; _ck(_v, 4, 0, currVal_1, currVal_2); }); }
-function View_UsersComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_7__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_8__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 8, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](13, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](19, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](20, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](21, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_2__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](22, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](23, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_12__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](24, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_UsersComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](26, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGetAllUsers; _ck(_v, 7, 0, currVal_1); var currVal_2 = (_co.allUsers && !_co.usersService.loading); _ck(_v, 10, 0, currVal_2); var currVal_3 = _co.usersService.loading; _ck(_v, 12, 0, currVal_3); var currVal_4 = _co.exampleGetUser; _ck(_v, 16, 0, currVal_4); var currVal_5 = (_co.user && !_co.usersService.loading); _ck(_v, 19, 0, currVal_5); var currVal_6 = _co.exampleGetUser; _ck(_v, 23, 0, currVal_6); var currVal_7 = (_co.user && !_co.usersService.loading); _ck(_v, 26, 0, currVal_7); }, null); }
-function View_UsersComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-users", [], null, null, null, View_UsersComponent_0, RenderType_UsersComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _users_component__WEBPACK_IMPORTED_MODULE_13__["UsersComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_14__["UsersService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var UsersComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-users", _users_component__WEBPACK_IMPORTED_MODULE_13__["UsersComponent"], View_UsersComponent_Host_0, {}, {}, []);
+function View_UsersComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 10, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, 0, 6, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Result"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["User,"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Multi (multiuser)"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.exampleGetUser; _ck(_v, 7, 0, currVal_1); }, null); }
+function View_UsersComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-users", [], null, null, null, View_UsersComponent_0, RenderType_UsersComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _users_component__WEBPACK_IMPORTED_MODULE_10__["UsersComponent"], [_knora_core__WEBPACK_IMPORTED_MODULE_11__["UsersService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var UsersComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-users", _users_component__WEBPACK_IMPORTED_MODULE_10__["UsersComponent"], View_UsersComponent_Host_0, {}, {}, []);
 
 
 
@@ -19433,8 +20106,8 @@ var UsersComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: 'returns a list of all users in Knora',
             name: 'getAllUsers',
             code: {
-                html: "\n        <div *ngIf=\"allUsers && !usersService.loading\">\n            <ul>\n                <li *ngFor=\"let u of allUsers\">\n                    <strong>{{u.familyName}}, </strong>\n                    {{u.givenName}} ({{u.email}})\n                </li>\n            </ul>\n        </div>\n            ",
-                ts: "public allUsers: User[];\n            \n            // the services from @knora/core should be public,\n            // if you want to use the loading status in the html template\n            // --> usersService.loading = true | false\n            constructor(public usersService: UsersService) { }\n\n            [...]\n            \n            this.usersService.getAllUsers()\n                .subscribe(\n                    (result: User[]) => {\n                        this.allUsers = result;\n                    },\n                    (error: ApiServiceError) => {\n                        console.error(error);\n                    }\n            );",
+                html: "\n<div *ngIf=\"allUsers && !usersService.loading\">\n    <ul>\n        <li *ngFor=\"let u of allUsers\">\n            <strong>{{u.familyName}}, </strong>\n            {{u.givenName}} ({{u.email}})\n        </li>\n    </ul>\n</div>\n            ",
+                ts: "\npublic allUsers: User[];\n\nconstructor(public usersService: UsersService) { }\n\nngOnInit() {\n\n    this.usersService.getAllUsers().subscribe(\n        (result: User[]) => {\n            this.allUsers = result;\n        },\n        (error: ApiServiceError) => {\n            console.error(error);\n        }\n    );\n}",
                 scss: ""
             }
         };
@@ -19443,20 +20116,16 @@ var UsersComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: 'returns a user object',
             name: 'getUser',
             code: {
-                html: "\n        <div *ngIf=\"user && !usersService.loading\">\n            <p><strong>{{user.familyName}}, </strong>\n                {{user.givenName}} ({{user.email}})\n            </p>\n        </div>\n            ",
-                ts: "public getUser: User;\n            \n            // the services from @knora/core should be public,\n            // if you want to use the loading status in the html template\n            // --> usersService.loading = true | false\n            constructor(public usersService: UsersService) { }\n\n            [...]\n            \n            this.usersService.getUser('root')\n                .subscribe(\n                    (result: User) => {\n                        this.user = result;\n                    },\n                    (error: ApiServiceError) => {\n                        console.error(error);\n                    }\n            );",
+                html: "\n<div *ngIf=\"user && !usersService.loading\">\n    <p><strong>{{user.familyName}},</strong> {{user.givenName}} ({{user.username}})</p>\n</div>\n            ",
+                ts: "\nusername: string = 'multiuser';\nuser: User;\n\n            \n// the services from @knora/core should be public,\n// if you want to use the loading status in the html template\n// --> usersService.loading = true || false\nconstructor(public usersService: UsersService) { }\n\nngOnInit() {            \n    this.usersService.getUser(this.username).subscribe(\n        (result: User) => {\n            this.user = result;\n        },\n        (error: ApiServiceError) => {\n            console.error(error);\n        }\n    );\n}",
                 scss: ""
             }
         };
         this.isLoggedIn = false;
     }
     UsersComponent.prototype.ngOnInit = function () {
-        this.getAllUsers();
-        this.getUserFromCache();
-        this.getUser('root@example.com');
-        this.getUser('root');
-        this.getUser('http://rdfh.ch/users/root');
-        //        this.simulateAuthentication();
+        //        this.getAllUsers();
+        //        this.getUser('multiuser');
     };
     UsersComponent.prototype.getAllUsers = function () {
         var _this = this;
@@ -19475,17 +20144,6 @@ var UsersComponent = /** @class */ /*@__PURE__*/ (function () {
         }, function (error) {
             console.error(error);
         });
-    };
-    UsersComponent.prototype.getUserFromCache = function () {
-        // key
-        var key = localStorage.getItem('session_id');
-        /*
-        this._acs.getData(key).subscribe(
-            result => {
-                console.log('get user from cache', result);
-            }
-        );
-        */
     };
     return UsersComponent;
 }());
@@ -19633,7 +20291,7 @@ __webpack_require__.r(__webpack_exports__);
 var styles_SearchPanelComponent = [_search_panel_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_SearchPanelComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_SearchPanelComponent, data: {} });
 
-function View_SearchPanelComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 0, "span", [], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 4308992, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 1, "kui-search", [], null, null, null, _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_SearchComponent_0"], _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_SearchComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 114688, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_11__["SearchComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { route: [0, "route"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 16777216, null, null, 1, "router-outlet", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](15, 212992, null, 0, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterOutlet"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["ChildrenOutletContexts"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ComponentFactoryResolver"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_2 = _co.searchPanel; _ck(_v, 10, 0, currVal_2); var currVal_3 = "/modules/search/search"; _ck(_v, 13, 0, currVal_3); _ck(_v, 15, 0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.usage; _ck(_v, 4, 0, currVal_1); }); }
+function View_SearchPanelComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_3__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_4__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Usage"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 0, "span", [], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 6, "mat-card", [["class", "example-viewer mat-card"]], null, null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_7__["MatCard"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_8__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_9__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, 0, 2, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 1, "kui-search", [], null, null, null, _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_SearchComponent_0"], _dist_knora_search_knora_search_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_SearchComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 114688, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_11__["SearchComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { route: [0, "route"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 16777216, null, null, 1, "router-outlet", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](15, 212992, null, 0, _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterOutlet"], [_angular_router__WEBPACK_IMPORTED_MODULE_5__["ChildrenOutletContexts"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ComponentFactoryResolver"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_2 = _co.searchPanel; _ck(_v, 10, 0, currVal_2); var currVal_3 = "/modules/search/search"; _ck(_v, 13, 0, currVal_3); _ck(_v, 15, 0); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = _co.usage; _ck(_v, 4, 0, currVal_1); }); }
 function View_SearchPanelComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-search-panel", [], null, null, null, View_SearchPanelComponent_0, RenderType_SearchPanelComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _search_panel_component__WEBPACK_IMPORTED_MODULE_12__["SearchPanelComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var SearchPanelComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-search-panel", _search_panel_component__WEBPACK_IMPORTED_MODULE_12__["SearchPanelComponent"], View_SearchPanelComponent_Host_0, {}, {}, []);
 
@@ -19864,7 +20522,7 @@ var SearchResultComponent = /** @class */ /*@__PURE__*/ (function () {
             resPromise.then(function (compacted) {
                 _this.numberOfAllResults = compacted[_knora_core__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].schemaNumberOfItems];
             }, function (err) {
-                console.log('JSONLD could not be expanded:' + err);
+                console.error('JSONLD could not be expanded:' + err);
             });
         };
         /**
@@ -19901,10 +20559,10 @@ var SearchResultComponent = /** @class */ /*@__PURE__*/ (function () {
                     _this.result = _this.result.concat(resources.resources);
                     _this.rerender = false;
                 }, function (err) {
-                    console.log('cache request failed: ' + err);
+                    console.error('cache request failed: ' + err);
                 });
             }, function (err) {
-                console.log('JSONLD could not be expanded:' + err);
+                console.error('JSONLD could not be expanded:' + err);
             });
         };
     }
@@ -20918,7 +21576,7 @@ var TreeComponent = /** @class */ /*@__PURE__*/ (function () {
             flatNode.type = node.type;
             flatNode.level = level;
             flatNode.expandable = !!node.children;
-            console.log(flatNode);
+            // console.log(flatNode);
             return flatNode;
         };
         this._getLevel = function (node) {
@@ -21005,7 +21663,7 @@ var styles_DocumentationViewerComponent = [_documentation_viewer_component_scss_
 var RenderType_DocumentationViewerComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_DocumentationViewerComponent, data: {} });
 
 function View_DocumentationViewerComponent_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "kui-progress-indicator", [], null, null, null, _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_ProgressIndicatorComponent_0"], _dist_knora_action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_ProgressIndicatorComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_3__["ProgressIndicatorComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-function View_DocumentationViewerComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](2, 1), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "div", [["class", "bolder"]], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](4, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 1, 0, _ck(_v, 2, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent, 0), _v.parent.context.$implicit.description.summary)); _ck(_v, 1, 0, currVal_0); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 3, 0, _ck(_v, 4, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent, 0), _v.parent.context.$implicit.description.body)); _ck(_v, 3, 0, currVal_1); }); }
+function View_DocumentationViewerComponent_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](2, 1), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](4, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 1, 0, _ck(_v, 2, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent, 0), _v.parent.context.$implicit.description.summary)); _ck(_v, 1, 0, currVal_0); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 3, 0, _ck(_v, 4, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent, 0), _v.parent.context.$implicit.description.body)); _ck(_v, 3, 0, currVal_1); }); }
 function View_DocumentationViewerComponent_6(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_5__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](4, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null))], null, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical ? "vertical" : "horizontal"); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical; var currVal_2 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).vertical; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 2).inset; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3); var currVal_4 = _v.parent.parent.context.$implicit.ctx.string; _ck(_v, 4, 0, currVal_4); var currVal_5 = _v.parent.parent.context.$implicit.description.full; _ck(_v, 5, 0, currVal_5); }); }
 function View_DocumentationViewerComponent_8(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "pre", [["class", "line-numbers"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["                        "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "code", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](3, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["\n                    "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.string; _ck(_v, 3, 0, currVal_0); }); }
 function View_DocumentationViewerComponent_9(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 9, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Returns"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 5, "table", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 4, "tbody", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](6, 0, null, null, 3, "tr", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 2, "td", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](8, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](9, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.string; _ck(_v, 9, 0, currVal_0); }); }
@@ -21020,10 +21678,11 @@ function View_DocumentationViewerComponent_17(_l) { return _angular_core__WEBPAC
 function View_DocumentationViewerComponent_18(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](1, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 0, 0, _ck(_v, 1, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent.parent.parent, 0), _v.parent.context.$implicit.html)); _ck(_v, 0, 0, currVal_0); }); }
 function View_DocumentationViewerComponent_19(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](1, 1)], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 0, 0, _ck(_v, 1, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v.parent.parent.parent.parent.parent, 0), _v.parent.context.$implicit.html)); _ck(_v, 0, 0, currVal_0); }); }
 function View_DocumentationViewerComponent_20(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 0, "div", [], null, null, null, null, null))], null, null); }
-function View_DocumentationViewerComponent_21(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" This type (", ") is not yet supported in the documentation view. "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.type; _ck(_v, 1, 0, currVal_0); }); }
-function View_DocumentationViewerComponent_7(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 18, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 17, "div", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"], [], { ngSwitch: [0, "ngSwitch"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_10)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_17)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_18)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_19)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_20)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_21)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchDefault"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], null, null)], function (_ck, _v) { var currVal_0 = _v.context.$implicit.type; _ck(_v, 2, 0, currVal_0); var currVal_1 = "example"; _ck(_v, 4, 0, currVal_1); var currVal_2 = "returns"; _ck(_v, 6, 0, currVal_2); var currVal_3 = "param"; _ck(_v, 8, 0, currVal_3); var currVal_4 = "emits"; _ck(_v, 10, 0, currVal_4); var currVal_5 = "type"; _ck(_v, 12, 0, currVal_5); var currVal_6 = "function"; _ck(_v, 14, 0, currVal_6); var currVal_7 = "ignore"; _ck(_v, 16, 0, currVal_7); }, null); }
+function View_DocumentationViewerComponent_21(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 0, "div", [], null, null, null, null, null))], null, null); }
+function View_DocumentationViewerComponent_22(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](1, null, [" This type (", ") is not yet supported in the documentation view. "]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.type; _ck(_v, 1, 0, currVal_0); }); }
+function View_DocumentationViewerComponent_7(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 20, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 19, "div", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"], [], { ngSwitch: [0, "ngSwitch"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_10)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_17)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](10, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_18)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_19)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](14, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_20)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_21)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_22)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitchDefault"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgSwitch"]], null, null)], function (_ck, _v) { var currVal_0 = _v.context.$implicit.type; _ck(_v, 2, 0, currVal_0); var currVal_1 = "example"; _ck(_v, 4, 0, currVal_1); var currVal_2 = "returns"; _ck(_v, 6, 0, currVal_2); var currVal_3 = "param"; _ck(_v, 8, 0, currVal_3); var currVal_4 = "emits"; _ck(_v, 10, 0, currVal_4); var currVal_5 = "type"; _ck(_v, 12, 0, currVal_5); var currVal_6 = "function"; _ck(_v, 14, 0, currVal_6); var currVal_7 = "ignore"; _ck(_v, 16, 0, currVal_7); var currVal_8 = "hideconstructor"; _ck(_v, 18, 0, currVal_8); }, null); }
 function View_DocumentationViewerComponent_5(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_6)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_7)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var currVal_0 = (_v.parent.context.$implicit.tags[0].type !== "ignore"); _ck(_v, 2, 0, currVal_0); var currVal_1 = _v.parent.context.$implicit.tags; _ck(_v, 4, 0, currVal_1); }, null); }
-function View_DocumentationViewerComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "section", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_0 = (_v.context.$implicit.tags.length === 0); _ck(_v, 2, 0, currVal_0); var currVal_1 = ((_v.context.$implicit.tags.length > 0) && (_v.context.$implicit.tags[0].type !== "ignore")); _ck(_v, 4, 0, currVal_1); }, null); }
+function View_DocumentationViewerComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "section", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_0 = (_v.context.$implicit.tags.length === 0); _ck(_v, 2, 0, currVal_0); var currVal_1 = (((_v.context.$implicit.tags.length > 0) && (_v.context.$implicit.tags[0].type !== "ignore")) && !_v.context.$implicit.isPrivate); _ck(_v, 4, 0, currVal_1); }, null); }
 function View_DocumentationViewerComponent_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 4, "div", [["class", "documentation"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_5__["MatDivider"], [], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.documentation; _ck(_v, 2, 0, currVal_0); }, function (_ck, _v) { var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical ? "vertical" : "horizontal"); var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_3 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).vertical; var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).inset; _ck(_v, 3, 0, currVal_1, currVal_2, currVal_3, currVal_4); }); }
 function View_DocumentationViewerComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _pipes_sanitize_html_pipe__WEBPACK_IMPORTED_MODULE_7__["SanitizeHtmlPipe"], [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__["DomSanitizer"]]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _pipes_trim_brackets_pipe__WEBPACK_IMPORTED_MODULE_9__["TrimBracketsPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 1, "app-module-header", [], null, null, null, _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_ModuleHeaderComponent_0"], _module_header_module_header_component_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_ModuleHeaderComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](3, 114688, null, 0, _module_header_module_header_component__WEBPACK_IMPORTED_MODULE_11__["ModuleHeaderComponent"], [], { module: [0, "module"], demo: [1, "demo"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_4__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](5, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_5__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](7, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_DocumentationViewerComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](9, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; var currVal_1 = _co.currentComponent; _ck(_v, 3, 0, currVal_0, currVal_1); var currVal_6 = _co.loading; _ck(_v, 7, 0, currVal_6); var currVal_7 = (_co.documentation && !_co.loading); _ck(_v, 9, 0, currVal_7); }, function (_ck, _v) { var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).vertical ? "vertical" : "horizontal"); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).vertical; var currVal_4 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).vertical; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).inset; _ck(_v, 4, 0, currVal_2, currVal_3, currVal_4, currVal_5); }); }
 function View_DocumentationViewerComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, View_DocumentationViewerComponent_0, RenderType_DocumentationViewerComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _documentation_viewer_component__WEBPACK_IMPORTED_MODULE_12__["DocumentationViewerComponent"], [_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_13__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_14__["ActivatedRoute"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
@@ -21178,7 +21837,7 @@ function View_ExampleViewerComponent_0(_l) {
             return ad;
         }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_8__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_9__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_10__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_11__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, 0, 2, "mat-icon", [["class", "mat-icon"], ["role", "img"]], [[2, "mat-icon-inline", null]], null, null, _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["View_MatIcon_0"], _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_12__["RenderType_MatIcon"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 638976, null, 0, _angular_material_icon__WEBPACK_IMPORTED_MODULE_13__["MatIcon"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_13__["MatIconRegistry"], [8, null]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, ["code"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_15__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵand"](16777216, null, null, 1, null, View_ExampleViewerComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_14__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_15__["MatDivider"], [], null, null)], function (_ck, _v) { var _co = _v.component; _ck(_v, 13, 0); var currVal_10 = _co.showCode; _ck(_v, 18, 0, currVal_10); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.example == null) ? null : _co.example.title); _ck(_v, 4, 0, currVal_0); var currVal_1 = ((_co.example == null) ? null : _co.example.subtitle); _ck(_v, 7, 0, currVal_1); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 9).align === "end"); _ck(_v, 8, 0, currVal_2); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 11).disabled || null); var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 11)._animationMode === "NoopAnimations"); _ck(_v, 10, 0, currVal_3, currVal_4); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 13).inline; _ck(_v, 12, 0, currVal_5); var currVal_6 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).vertical ? "vertical" : "horizontal"); var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).vertical; var currVal_8 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).vertical; var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).inset; _ck(_v, 15, 0, currVal_6, currVal_7, currVal_8, currVal_9); var currVal_11 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).vertical ? "vertical" : "horizontal"); var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).vertical; var currVal_13 = !_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).vertical; var currVal_14 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).inset; _ck(_v, 19, 0, currVal_11, currVal_12, currVal_13, currVal_14); });
 }
-function View_ExampleViewerComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-example-viewer", [], null, null, null, View_ExampleViewerComponent_0, RenderType_ExampleViewerComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 4308992, null, 0, _example_viewer_component__WEBPACK_IMPORTED_MODULE_16__["ExampleViewerComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_ExampleViewerComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-example-viewer", [], null, null, null, View_ExampleViewerComponent_0, RenderType_ExampleViewerComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _example_viewer_component__WEBPACK_IMPORTED_MODULE_16__["ExampleViewerComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var ExampleViewerComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-example-viewer", _example_viewer_component__WEBPACK_IMPORTED_MODULE_16__["ExampleViewerComponent"], View_ExampleViewerComponent_Host_0, { example: "example" }, {}, []);
 
 
@@ -21223,17 +21882,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExampleViewerComponent", function() { return ExampleViewerComponent; });
 var ExampleViewerComponent = /** @class */ /*@__PURE__*/ (function () {
     function ExampleViewerComponent() {
-        this.showCode = false;
+        this.showCode = true;
     }
     ExampleViewerComponent.prototype.ngOnInit = function () {
-    };
-    ExampleViewerComponent.prototype.toggleCode = function () {
-        this.showCode = this.showCode !== true;
-    };
-    ExampleViewerComponent.prototype.ngAfterViewInit = function () {
         this.markup = Prism.highlight(this.example.code.html, Prism.languages.markup);
         this.typescript = Prism.highlight(this.example.code.ts, Prism.languages.javascript);
         this.style = Prism.highlight(this.example.code.scss, Prism.languages.scss);
+    };
+    ExampleViewerComponent.prototype.toggleCode = function () {
+        this.showCode = this.showCode !== true;
     };
     return ExampleViewerComponent;
 }());
@@ -21298,7 +21955,7 @@ var styles_MainHeaderComponent = [_main_header_component_scss_shim_ngstyle__WEBP
 var RenderType_MainHeaderComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_MainHeaderComponent, data: {} });
 
 function View_MainHeaderComponent_0(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 23, "mat-toolbar", [["class", "main-header mat-toolbar"]], [[2, "mat-toolbar-multiple-rows", null], [2, "mat-toolbar-single-row", null]], null, null, _node_modules_angular_material_toolbar_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatToolbar_0"], _node_modules_angular_material_toolbar_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatToolbar"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 4243456, null, 1, _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_3__["MatToolbar"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 1, { _toolbarRows: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, 0, 14, "nav", [["class", "main-navbar"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 5, "button", [["mat-button", ""], ["routerLink", "/"]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 19, "mat-toolbar", [["class", "main-header mat-toolbar"]], [[2, "mat-toolbar-multiple-rows", null], [2, "mat-toolbar-single-row", null]], null, null, _node_modules_angular_material_toolbar_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["View_MatToolbar_0"], _node_modules_angular_material_toolbar_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__["RenderType_MatToolbar"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 4243456, null, 1, _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_3__["MatToolbar"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 1, { _toolbarRows: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, 0, 10, "nav", [["class", "main-navbar"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](4, 0, null, null, 5, "button", [["mat-button", ""], ["routerLink", "/"]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
             var ad = true;
             if (("click" === en)) {
                 var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).onClick() !== false);
@@ -21312,21 +21969,14 @@ function View_MainHeaderComponent_0(_l) {
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 16384, null, 0, _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterLink"], [_angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { routerLink: [0, "routerLink"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_8__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_9__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, [" Modules "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, null, 3, "button", [["mat-button", ""], ["routerLink", "/documentation"]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
+        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](11, 16384, null, 0, _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterLink"], [_angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { routerLink: [0, "routerLink"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_8__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_9__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, [" Modules "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](14, 0, null, 0, 0, "span", [["class", "fill-remaining-space"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, 0, 4, "a", [["href", "https://github.com/dhlab-basel/Knora-ui"], ["mat-button", ""], ["target", "_blank"]], [[1, "tabindex", 0], [1, "disabled", 0], [1, "aria-disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
             var ad = true;
             if (("click" === en)) {
-                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 15).onClick() !== false);
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16)._haltDisabledEvents($event) !== false);
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](15, 16384, null, 0, _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterLink"], [_angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"], [8, null], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { routerLink: [0, "routerLink"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_8__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_9__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, [" Dev docs "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, 0, 0, "span", [["class", "fill-remaining-space"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, 0, 4, "a", [["href", "https://github.com/dhlab-basel/Knora-ui"], ["mat-button", ""], ["target", "_blank"]], [[1, "tabindex", 0], [1, "disabled", 0], [1, "aria-disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
-            var ad = true;
-            if (("click" === en)) {
-                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20)._haltDisabledEvents($event) !== false);
-                ad = (pd_0 && ad);
-            }
-            return ad;
-        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatAnchor_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatAnchor"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_8__["MatAnchor"], [_angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_9__["FocusMonitor"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](21, 0, null, 0, 1, "mat-icon", [["class", "mat-icon"], ["role", "img"], ["svgIcon", "github-icon"]], [[2, "mat-icon-inline", null]], null, null, _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatIcon_0"], _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatIcon"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](22, 638976, null, 0, _angular_material_icon__WEBPACK_IMPORTED_MODULE_12__["MatIcon"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_12__["MatIconRegistry"], [8, null]], { svgIcon: [0, "svgIcon"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, [" GitHub "]))], function (_ck, _v) { var currVal_4 = "/"; _ck(_v, 5, 0, currVal_4); var currVal_6 = "knora-icon"; _ck(_v, 8, 0, currVal_6); var currVal_9 = "/modules"; _ck(_v, 11, 0, currVal_9); var currVal_12 = "/documentation"; _ck(_v, 15, 0, currVal_12); var currVal_18 = "github-icon"; _ck(_v, 22, 0, currVal_18); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._toolbarRows.length > 0); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._toolbarRows.length === 0); _ck(_v, 0, 0, currVal_0, currVal_1); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 6).disabled || null); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 6)._animationMode === "NoopAnimations"); _ck(_v, 4, 0, currVal_2, currVal_3); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 8).inline; _ck(_v, 7, 0, currVal_5); var currVal_7 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 12).disabled || null); var currVal_8 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 12)._animationMode === "NoopAnimations"); _ck(_v, 10, 0, currVal_7, currVal_8); var currVal_10 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).disabled || null); var currVal_11 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16)._animationMode === "NoopAnimations"); _ck(_v, 14, 0, currVal_10, currVal_11); var currVal_13 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).disabled ? (0 - 1) : (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).tabIndex || 0)); var currVal_14 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).disabled || null); var currVal_15 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20).disabled.toString(); var currVal_16 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 20)._animationMode === "NoopAnimations"); _ck(_v, 19, 0, currVal_13, currVal_14, currVal_15, currVal_16); var currVal_17 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 22).inline; _ck(_v, 21, 0, currVal_17); });
+        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_MatAnchor_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_MatAnchor"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_8__["MatAnchor"], [_angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_9__["FocusMonitor"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, 0, 1, "mat-icon", [["class", "mat-icon"], ["role", "img"], ["svgIcon", "github-icon"]], [[2, "mat-icon-inline", null]], null, null, _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["View_MatIcon_0"], _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_11__["RenderType_MatIcon"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](18, 638976, null, 0, _angular_material_icon__WEBPACK_IMPORTED_MODULE_12__["MatIcon"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_12__["MatIconRegistry"], [8, null]], { svgIcon: [0, "svgIcon"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, [" GitHub "]))], function (_ck, _v) { var currVal_4 = "/"; _ck(_v, 5, 0, currVal_4); var currVal_6 = "knora-icon"; _ck(_v, 8, 0, currVal_6); var currVal_9 = "/modules"; _ck(_v, 11, 0, currVal_9); var currVal_15 = "github-icon"; _ck(_v, 18, 0, currVal_15); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._toolbarRows.length > 0); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1)._toolbarRows.length === 0); _ck(_v, 0, 0, currVal_0, currVal_1); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 6).disabled || null); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 6)._animationMode === "NoopAnimations"); _ck(_v, 4, 0, currVal_2, currVal_3); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 8).inline; _ck(_v, 7, 0, currVal_5); var currVal_7 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 12).disabled || null); var currVal_8 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 12)._animationMode === "NoopAnimations"); _ck(_v, 10, 0, currVal_7, currVal_8); var currVal_10 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).disabled ? (0 - 1) : (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).tabIndex || 0)); var currVal_11 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).disabled || null); var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16).disabled.toString(); var currVal_13 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 16)._animationMode === "NoopAnimations"); _ck(_v, 15, 0, currVal_10, currVal_11, currVal_12, currVal_13); var currVal_14 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 18).inline; _ck(_v, 17, 0, currVal_14); });
 }
 function View_MainHeaderComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-main-header", [], null, null, null, View_MainHeaderComponent_0, RenderType_MainHeaderComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _main_header_component__WEBPACK_IMPORTED_MODULE_13__["MainHeaderComponent"], [_angular_material_icon__WEBPACK_IMPORTED_MODULE_12__["MatIconRegistry"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_14__["DomSanitizer"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var MainHeaderComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-main-header", _main_header_component__WEBPACK_IMPORTED_MODULE_13__["MainHeaderComponent"], View_MainHeaderComponent_Host_0, {}, {}, []);
@@ -21867,7 +22517,7 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].produc
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
 }
 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["platformBrowser"]().bootstrapModuleFactory(_app_app_module_ngfactory__WEBPACK_IMPORTED_MODULE_3__["AppModuleNgFactory"])
-    .catch(function (err) { return console.log(err); });
+    .catch(function (err) { return console.error(err); });
 
 
 

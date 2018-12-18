@@ -187,7 +187,7 @@ export class TreeComponent implements OnInit {
         flatNode.level = level;
         flatNode.expandable = !!node.children;
 
-        console.log(flatNode);
+        // console.log(flatNode);
         return flatNode;
     };
 

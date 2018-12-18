@@ -4,6 +4,7 @@
 <!-- Examples with demo -->
 <h3>Example</h3>
 
+<!--
 <mat-card class="example-viewer">
 
     <app-example-viewer [example]="exampleGetAllUsers"></app-example-viewer>
@@ -22,28 +23,22 @@
         <kui-progress-indicator *ngIf="usersService.loading"></kui-progress-indicator>
     </div>
 </mat-card>
-
-<mat-card class="example-viewer">
-    <app-example-viewer [example]="exampleGetUser"></app-example-viewer>
-
-    <div class="demo">
-        <div *ngIf="user && !usersService.loading">
-            <p><strong>{{user.familyName}}, </strong>
-                {{user.givenName}} ({{user.email}})
-            </p>
-        </div>
-    </div>
-</mat-card>
+-->
 
 
 <mat-card class="example-viewer">
     <app-example-viewer [example]="exampleGetUser"></app-example-viewer>
 
     <div class="demo">
+        <h4>Result</h4>
+
+        <p><strong>User,</strong> Multi (multiuser)</p>
+    </div>
+<!--
+    <div class="demo">
         <div *ngIf="user && !usersService.loading">
-            <p><strong>{{user.familyName}}, </strong>
-                {{user.givenName}} ({{user.email}})
-            </p>
+            <p><strong>{{user.familyName}},</strong> {{user.givenName}} ({{user.username}})</p>
         </div>
     </div>
+-->
 </mat-card>

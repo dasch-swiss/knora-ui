@@ -1,4 +1,4 @@
-# Action module
+# Knora-ui action module
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)](https://www.npmjs.com/package/@knora/action)
 
 This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
@@ -57,6 +57,7 @@ This module has the following package dependencies, which you also have to insta
 ## Components, Directives and Pipes
 This module contains various components like a progress indicator, sort button and sort-by pipe, but also helper for images (in the admin interface) and existing names.
 
+
 <!--
 ### Progress indicator
 
@@ -73,10 +74,10 @@ You can use the progress indicator in two ways:
 The sort button helps to sort a list by a selected topic. The following setup is needed:
 
 - sortProps is an array of {name, label} object and is needed for the selection.
-- the sort button returns a sortKey which is needed in the list and the pipe called sortBy
+- the sort button returns a sortKey which is needed in the list and the pipe called kuiSortBy
+
 
 [Example and demo](https://dhlab-basel.github.io/Knora-ui/modules/action/sort-button)
-
 
 ---
 

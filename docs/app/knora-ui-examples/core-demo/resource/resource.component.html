@@ -4,6 +4,12 @@
 <!-- Examples with demo -->
 <h3>Example</h3>
 
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="exampleResource"></app-example-viewer>
+
+</mat-card>
+
 <h4>Select a resource example:</h4>
 <p>
     <button mat-raised-button *ngFor="let res of resources" (click)="openResource(res.iri)">{{res.name}}</button>
@@ -14,7 +20,7 @@
 <p>{{resource?.label}}</p>
 
 <mat-list>
-    <div mat-line *ngFor="let prop of resource?.properties | key">
+    <div mat-line *ngFor="let prop of resource?.properties | kuiKey">
 
         <span>{{ontologyInfo?.getLabelForProperty(prop.key)}}</span>
 
@@ -47,7 +53,7 @@
         <!--  other types of properties are displayed in 1 template for each single property in the property list. -->
         <ng-template #singleTemplates>
             <ul>
-                <li *ngFor="let val of prop.value | key">
+                <li *ngFor="let val of prop.value | kuiKey">
                     <span [ngSwitch]="val.value.getClassName()">
                         <p>we get the prop class:
                             <br>{{val.value | json}}</p>

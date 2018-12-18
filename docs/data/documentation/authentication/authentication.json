@@ -1,11 +1,23 @@
 [
   {
+    "tags": [],
+    "description": {
+      "full": "<p>Authentication service includes the login, logout method and a session method to check if a user is logged in or not.</p>",
+      "summary": "<p>Authentication service includes the login, logout method and a session method to check if a user is logged in or not.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 8,
+    "codeStart": 11,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class AuthenticationService {\n\n    constructor(public http: HttpClient,\n                private _session: SessionService,\n                @Inject('config') public config: KuiCoreConfig) {\n    }",
+    "ctx": false
+  },
+  {
     "tags": [
-      {
-        "type": "function",
-        "string": "validate if a user is logged in or not\nand the session is active",
-        "html": "<p>validate if a user is logged in or not<br />\nand the session is active</p>"
-      },
       {
         "type": "returns",
         "string": "boolean",
@@ -19,8 +31,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>validate if a user is logged in or not<br />\nreturns true if the session is active</p>",
+      "summary": "<p>validate if a user is logged in or not<br />\nreturns true if the session is active</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -28,8 +40,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 18,
-    "codeStart": 25,
+    "line": 21,
+    "codeStart": 27,
     "code": "session(): boolean {\n    return this._session.validateSession();\n}",
     "ctx": {
       "type": "method",
@@ -40,34 +52,33 @@
   {
     "tags": [
       {
-        "type": "function",
-        "string": "login process;\nit's used by the login component",
-        "html": "<p>login process;<br />\nit's used by the login component</p>"
-      },
-      {
         "type": "param",
-        "string": "identifier (email or username)",
+        "string": "{string} identifier email or username",
         "name": "identifier",
-        "description": "<p>(email or username)</p>",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
+        "description": "<p>email or username</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
         "nullable": false,
-        "optional": false
+        "nonNullable": false,
+        "variable": false
       },
       {
         "type": "param",
-        "string": "password",
+        "string": "{string} password",
         "name": "password",
         "description": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
         "optional": false,
-        "html": "<p>password</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} password</p>"
       },
       {
         "type": "returns",
@@ -82,8 +93,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>login process;<br />\nit's used by the login component</p>",
+      "summary": "<p>login process;<br />\nit's used by the login component</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -91,8 +102,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 29,
-    "codeStart": 38,
+    "line": 31,
+    "codeStart": 39,
     "code": "login(identifier: string, password: string): Observable<any> {\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        {identifier: identifier, password: password},\n        {observe: 'response'}).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}",
     "ctx": {
       "type": "method",
@@ -103,14 +114,22 @@
   {
     "tags": [
       {
-        "type": "function",
-        "string": "\nlogout the user by destroying the session",
-        "html": "<p>logout the user by destroying the session</p>"
+        "type": "param",
+        "string": "",
+        "name": "",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": ""
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>logout the user by destroying the session</p>",
+      "summary": "<p>logout the user by destroying the session</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -118,8 +137,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 55,
-    "codeStart": 60,
+    "line": 56,
+    "codeStart": 61,
     "code": "logout() {\n    // destroy the session\n    localStorage.removeItem('session');\n}",
     "ctx": {
       "type": "method",
@@ -170,8 +189,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 66,
-    "codeStart": 73,
+    "line": 67,
+    "codeStart": 74,
     "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    const serviceError = new ApiServiceError();\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}\n}",
     "ctx": false
   }

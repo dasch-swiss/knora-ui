@@ -16,10 +16,10 @@
         <div *ngIf="item.tags.length === 0">
             <div [innerHtml]="item.description.summary | sanitizeHtml"></div>
 
-            <div [innerHtml]="item.description.body | sanitizeHtml" class="bolder"></div>
+            <div [innerHtml]="item.description.body | sanitizeHtml"></div>
         </div>
 
-        <div *ngIf="item.tags.length > 0 && item.tags[0].type !== 'ignore'">
+        <div *ngIf="item.tags.length > 0 && item.tags[0].type !== 'ignore' && !item.isPrivate">
 
             <!-- description of each tag -->
             <div *ngIf="item.tags[0].type !== 'ignore'">
@@ -88,6 +88,9 @@
 
                     <!-- ignore (do nothing!) -->
                     <div *ngSwitchCase="'ignore'"></div>
+
+                    <!-- hideconstructor (do nothing!) -->
+                    <div *ngSwitchCase="'hideconstructor'"></div>
 
                     <!-- default -->
                     <p *ngSwitchDefault>

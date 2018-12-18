@@ -19,6 +19,7 @@ import {
 } from '@knora/core';
 import { StillImageComponent } from '@knora/viewer';
 import { AppDemo } from '../../../app.config';
+import { Example } from '../../../app.interfaces';
 
 declare let require: any;
 const jsonld = require('jsonld');
@@ -71,6 +72,31 @@ export class ResourceComponent implements OnChanges, OnInit {
     incomingStillImageRepresentationCurrentOffset: number; // last offset requested for `this.resource.incomingStillImageRepresentations`
 
     KnoraConstants = KnoraConstants;
+
+    exampleResource: Example = {
+        title: 'getResource(iri)',
+        subtitle: 'Get a resource and properties from the provided Iri.',
+        name: 'getResource',
+        code: {
+            html: ``,
+            ts: `
+constructor(
+    private _resourceService: ResourceService) {}
+
+getResource(iri: string): void {
+    this._resourceService.getResource(iri)
+        .subscribe(
+            (result) => {
+                // compact JSON-LD using an empty context: expands all Iris
+                // get resource class Iris from response
+                // request ontology information about resource class Iris
+            }
+    );
+}
+`,
+            scss: ``
+        }
+    };
 
     constructor(private _resourceService: ResourceService,
         private _cacheService: OntologyCacheService,
@@ -130,7 +156,7 @@ export class ResourceComponent implements OnChanges, OnInit {
                                 },
                                 (err) => {
 
-                                    console.log('cache request failed: ' + err);
+                                    console.error('cache request failed: ' + err);
                                 });
                         } else {
                             // exactly one resource was expected, but resourceSeq.resources.length != 1
@@ -215,15 +241,15 @@ export class ResourceComponent implements OnChanges, OnInit {
                         },
                         (err) => {
 
-                            console.log('cache request failed: ' + err);
+                            console.error('cache request failed: ' + err);
                         });
                 },
                     function (err) {
-                        console.log('JSONLD of regions request could not be expanded:' + err);
+                        console.error('JSONLD of regions request could not be expanded:' + err);
                     });
             },
             (error: ApiServiceError) => {
-                this.errorMessage = <any>error;
+                this.errorMessage = <any> error;
                 // this.loading = false;
             }
         );
@@ -242,7 +268,7 @@ export class ResourceComponent implements OnChanges, OnInit {
         if (this.resource === undefined) return;
 
         if (offset < 0) {
-            console.log(`offset of ${offset} is invalid`);
+            console.error(`offset of ${offset} is invalid`);
             return;
         }
 
@@ -285,17 +311,17 @@ export class ResourceComponent implements OnChanges, OnInit {
                         },
                         (err) => {
 
-                            console.log('cache request failed: ' + err);
+                            console.error('cache request failed: ' + err);
                         });
                 },
                     function (err) {
-                        console.log('JSONLD of regions request could not be expanded:' + err);
+                        console.error('JSONLD of regions request could not be expanded:' + err);
                     });
 
 
             },
             (error: ApiServiceError) => {
-                this.errorMessage = <any>error;
+                this.errorMessage = <any> error;
                 // this.loading = false;
             }
         );
@@ -333,15 +359,15 @@ export class ResourceComponent implements OnChanges, OnInit {
                         },
                         (err) => {
 
-                            console.log('cache request failed: ' + err);
+                            console.error('cache request failed: ' + err);
                         });
                 },
                     function (err) {
-                        console.log('JSONLD of regions request could not be expanded:' + err);
+                        console.error('JSONLD of regions request could not be expanded:' + err);
                     });
             },
             (error: ApiServiceError) => {
-                this.errorMessage = <any>error;
+                this.errorMessage = <any> error;
                 // this.loading = false;
             }
         );
@@ -472,7 +498,7 @@ export class ResourceComponent implements OnChanges, OnInit {
 
         // for testing by user: I want to see, what's inside of the resource object
         setTimeout(() => {
-            console.log(this.resource);
+            // console.log(this.resource);
         }, 1000);
     }
 }

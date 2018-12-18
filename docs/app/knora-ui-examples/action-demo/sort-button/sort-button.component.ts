@@ -60,56 +60,56 @@ export class SortButtonComponent implements OnInit {
         name: 'sortbutton',
         code: {
             html: `
-    <kui-sort-button [sortProps]="sortProps" [(sortKey)]="sortKey" [position]="'right'"></kui-sort-button>
+<kui-sort-button [sortProps]="sortProps" [(sortKey)]="sortKey" [position]="'right'"></kui-sort-button>
 
-    <ul>
-        <li *ngFor="let item of list | sortBy: sortKey">
-            <span [class.active]="sortKey === 'prename'">{{item.prename}} </span>
-            <span [class.active]="sortKey === 'lastname'">{{item.lastname}} </span>
-            by
-            <span [class.active]="sortKey === 'creator'">{{item.creator}}</span>
-        </li>
-    </ul>`,
+<ul>
+    <li *ngFor="let item of list | kuiSortBy: sortKey">
+        <span [class.active]="sortKey === 'prename'">{{item.prename}} </span>
+        <span [class.active]="sortKey === 'lastname'">{{item.lastname}} </span>
+        by
+        <span [class.active]="sortKey === 'creator'">{{item.creator}}</span>
+    </li>
+</ul>`,
             ts: `
-            sortProps: any = [
-                {
-                    key: 'prename',
-                    label: 'Prename'
-                },
-                {
-                    key: 'lastname',
-                    label: 'Last name'
-                },
-                {
-                    key: 'creator',
-                    label: 'Creator'
-                }
-            ];
+sortProps: any = [
+    {
+        key: 'prename',
+        label: 'Prename'
+    },
+    {
+        key: 'lastname',
+        label: 'Last name'
+    },
+    {
+        key: 'creator',
+        label: 'Creator'
+    }
+];
 
-            sortKey: string = 'creator';
+sortKey: string = 'creator';
 
-            list = [
-                {
-                    prename: 'Gaston',
-                    lastname: 'Lagaffe',
-                    creator: 'André Franquin'
-                },
-                {
-                    prename: 'Mickey',
-                    lastname: 'Mouse',
-                    creator: 'Walt Disney'
-                },
-                {
-                    prename: 'Donald',
-                    lastname: 'Duck',
-                    creator: 'Walt Disney'
-                },
-                {
-                    prename: 'Charlie',
-                    lastname: 'Brown',
-                    creator: 'Charles M. Schulz'
-                }
-            ];`,
+list = [
+    {
+        prename: 'Gaston',
+        lastname: 'Lagaffe',
+        creator: 'André Franquin'
+    },
+    {
+        prename: 'Mickey',
+        lastname: 'Mouse',
+        creator: 'Walt Disney'
+    },
+    {
+        prename: 'Donald',
+        lastname: 'Duck',
+        creator: 'Walt Disney'
+    },
+    {
+        prename: 'Charlie',
+        lastname: 'Brown',
+        creator: 'Charles M. Schulz'
+    }
+];`,
             scss: ''
         }
     };

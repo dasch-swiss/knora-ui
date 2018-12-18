@@ -18,21 +18,21 @@ export class AdminImageComponent implements OnInit {
         name: 'userAvatar',
         code: {
             html: `
-            // Default user profile image
-            <img kuiAdminImage [image]="imgDefaultUser" [type]="'user'" />
+// Default user profile image
+<img kuiAdminImage [image]="imgDefaultUser" [type]="'user'" />
 
-            // Avatar example: 'salsah' user
-            <img kuiAdminImage [image]="imgSalsahUser" [type]="'user'" />
+// Avatar example: 'salsah' user
+<img kuiAdminImage [image]="imgSalsahUser" [type]="'user'" />
 
-            // User image on error
-            <img kuiAdminImage [image]="null" [type]="'user'" />
+// User image on error
+<img kuiAdminImage [image]="null" [type]="'user'" />
 
-            // Default error image
-            <img kuiAdminImage [image]="'null'" />
+// Default error image
+<img kuiAdminImage [image]="'null'" />
             `,
             ts: `
-            imgDefaultUser: string = 'root@example.com';
-            imgSalsahUser: string = 'salsah@milchkannen.ch';
+imgDefaultUser: string = 'root@example.com';
+imgSalsahUser: string = 'salsah@milchkannen.ch';
             `,
             scss: ''
         }
@@ -44,15 +44,15 @@ export class AdminImageComponent implements OnInit {
         name: 'projectLogo',
         code: {
             html: `
-            // Default project image
-            <img kuiAdminImage [image]="imgDefaultProject" [type]="'project'" />
+// Default project image
+<img kuiAdminImage [image]="imgDefaultProject" [type]="'project'" />
 
-            // Logo example: 'dasch' project
-            <img kuiAdminImage [image]="imgDaschProject" [type]="'project'" />
+// Logo example: 'dasch' project
+<img kuiAdminImage [image]="imgDaschProject" [type]="'project'" />
             `,
             ts: `
-            imgDefaultProject: string = undefined;
-            imgDaschProject: string = 'http://dasch.swiss/content/images/2017/11/DaSCH_Logo_RGB.png';
+imgDefaultProject: string = undefined;
+imgDaschProject: string = 'http://dasch.swiss/content/images/2017/11/DaSCH_Logo_RGB.png';
             `,
             scss: ''
         }
