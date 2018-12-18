@@ -112,7 +112,8 @@ getResource(iri: string): void {
     }
 
     ngOnInit() {
-        this.getResource(this.resources[0].iri);
+        // deactivated for docs
+        // this.getResource(this.resources[0].iri);
 
         // for testing by user: I want to see, what's inside of the resource object
         setTimeout(() => {

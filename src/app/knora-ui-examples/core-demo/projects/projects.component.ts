@@ -143,9 +143,11 @@ ngOnInit() {
     }
 
     ngOnInit() {
-        this.getAllProjects();
+        // deactivated for docs
+        // this.getAllProjects();
 
-        this.getProject('incunabula');
+        // deactivated for docs
+        // this.getProject('incunabula');
     }
 
 

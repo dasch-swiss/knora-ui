@@ -62,7 +62,8 @@ ngOnInit() {
     }
 
     ngOnInit() {
-        this.getAllLists();
+        // deactivated for docs
+        // this.getAllLists();
     }
 
 
