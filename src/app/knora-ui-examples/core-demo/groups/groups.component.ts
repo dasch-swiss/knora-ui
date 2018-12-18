@@ -23,14 +23,14 @@ export class GroupsComponent implements OnInit {
         code: {
             html: `
 <ul>
-    <li class="link" *ngFor="let g of allGroups">
+    <li *ngFor="let g of allGroups">
         <strong>{{g.name}}</strong> ({{g.project.longname}})
         <span>{{g.description}}</span>
     </li>
 </ul>`,
             ts: `
 allGroups: Group[];
-            
+
 constructor(private _groupsService: GroupsService) { }
 
 ngOnInit() {
