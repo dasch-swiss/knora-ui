@@ -7,7 +7,7 @@ import { JDNConvertibleCalendar } from 'jdnconvertiblecalendar';
 * JdnDatepickerDirective creates a wrapper element that provides a new adapter with each instance of the datepicker.
 */
 @Directive({
-    selector: 'jdn-datepicker',
+    selector: 'kuiJdnDatepicker',
     providers: [
         { provide: DateAdapter, useClass: JDNConvertibleCalendarDateAdapter, deps: [MAT_DATE_LOCALE] }
     ]
