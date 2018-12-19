@@ -57,6 +57,14 @@ body {
   margin-right: auto;
 }
 
+.mat-card-header-text {
+  margin: 0 !important;
+
+  .mat-card-title {
+    font-size: 18px;
+  }
+}
+
 markdown {
 
   h4 {
