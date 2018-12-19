@@ -3,10 +3,12 @@
 
 This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [Data and Service Center for Humanities DaSCH](http://dasch.swiss).
 
+The action module contains special pipes to sort lists or to get the index key in arrays, but also directives for images, sort buttons and s.o.
+
 ## Prerequisites
 For help getting started with a new Angular app, check out the [Angular CLI](https://cli.angular.io/).
 
-For existing apps, follow these steps to begin using Knora-ui authentication.
+For existing apps, follow these steps to begin using Knora-ui action.
 
 ## Install
 You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project in the examples below.
@@ -33,7 +35,7 @@ This module has the following package dependencies, which you also have to insta
   
  ## Setup
  
- Import the acton module in your app.module.ts and add it to the NgModules's imports:
+ Import the action module in your app.module.ts and add it to the NgModules's imports:
  
  ```javascript
  import { AppComponent } from './app.component';

@@ -93,8 +93,11 @@ ngOnInit() {
     }
 
     ngOnInit() {
-//        this.getAllUsers();
-//        this.getUser('multiuser');
+        // deactivated for docs
+        // this.getAllUsers();
+
+        // deactivated for docs
+        // this.getUser('multiuser');
     }
 
     getAllUsers() {

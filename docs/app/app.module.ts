@@ -1,5 +1,6 @@
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
@@ -115,6 +116,7 @@ import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
         BrowserModule,
         RouterModule,
         AppRouting,
+        FlexLayoutModule,
         KuiCoreModule.forRoot({
             name: 'Knora-ui Demo App',
             api: environment.api,

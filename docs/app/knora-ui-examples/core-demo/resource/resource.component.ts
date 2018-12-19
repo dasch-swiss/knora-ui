@@ -80,17 +80,15 @@ export class ResourceComponent implements OnChanges, OnInit {
         code: {
             html: ``,
             ts: `
-constructor(
-    private _resourceService: ResourceService) {}
+constructor(private _resourceService: ResourceService) {}
 
 getResource(iri: string): void {
-    this._resourceService.getResource(iri)
-        .subscribe(
-            (result) => {
-                // compact JSON-LD using an empty context: expands all Iris
-                // get resource class Iris from response
-                // request ontology information about resource class Iris
-            }
+    this._resourceService.getResource(iri).subscribe(
+        (result) => {
+            // compact JSON-LD using an empty context: expands all Iris
+            // get resource class Iris from response
+            // request ontology information about resource class Iris
+        }
     );
 }
 `,
@@ -114,7 +112,8 @@ getResource(iri: string): void {
     }
 
     ngOnInit() {
-        this.getResource(this.resources[0].iri);
+        // deactivated for docs
+        // this.getResource(this.resources[0].iri);
 
         // for testing by user: I want to see, what's inside of the resource object
         setTimeout(() => {

@@ -51,7 +51,8 @@ ngOnInit() {
     }
 
     ngOnInit() {
-        this.getAllGroups();
+        // deactivated for docs
+        // this.getAllGroups();
     }
 
     getAllGroups() {
