@@ -43,6 +43,7 @@ import { MainIntroComponent } from './landing-page/main-intro/main-intro.compone
 import { TreeComponent } from './material/tree/tree.component';
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
+import { PlaygroundComponent } from './playground/playground.component';
 
 const appRoutes: Routes = [
     {
@@ -52,6 +53,10 @@ const appRoutes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'playground',
+        component: PlaygroundComponent
     },
     {
         path: 'modules',

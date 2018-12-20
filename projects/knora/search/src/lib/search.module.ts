@@ -21,6 +21,8 @@ import { KuiViewerModule } from '@knora/viewer';
 import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalendardateadapter';
 
 import { SearchComponent } from './search.component';
+import { FulltextSearchComponent } from './fulltext-search/fulltext-search.component';
+import { SearchPanelComponent } from './search-panel/search-panel.component';
 import { ExtendedSearchComponent } from './extended-search/extended-search.component';
 
 import { SelectOntologyComponent } from './extended-search/select-ontology/select-ontology.component';
@@ -72,9 +74,16 @@ import { HeaderComponent } from './extended-search/select-property/specify-prope
         LinkValueComponent,
         TextValueComponent,
         UriValueComponent,
-        HeaderComponent
+        HeaderComponent,
+        FulltextSearchComponent,
+        SearchPanelComponent
     ],
-    exports: [SearchComponent],
+    exports: [
+        SearchComponent,
+        SearchPanelComponent,
+        FulltextSearchComponent,
+        ExtendedSearchComponent
+    ],
     entryComponents: [
         HeaderComponent
     ]

@@ -64,6 +64,7 @@ import { DocumentationViewerComponent } from './partials/documentation-viewer/do
 import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-demo/authentication-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
 import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
+import { PlaygroundComponent } from './playground/playground.component';
 
 @NgModule({
     declarations: [
@@ -107,7 +108,8 @@ import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
         DocumentationViewerComponent,
         AuthenticationDemoComponent,
         SearchPanelComponent,
-        TrimBracketsPipe
+        TrimBracketsPipe,
+        PlaygroundComponent
     ],
     entryComponents: [
         // LoginFormComponent
