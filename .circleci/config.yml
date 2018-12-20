@@ -7,7 +7,7 @@ general:
   branches:
     ignore:
     - gh-pages
-    - wip/dev-docs-page
+
 jobs:
   build:
     docker:
