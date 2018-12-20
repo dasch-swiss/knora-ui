@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'kui-document',\n  templateUrl: './document.component.html',\n  styleUrls: ['./document.component.scss']\n})\nexport class DocumentComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}",
+    "ctx": false
+  }
+]

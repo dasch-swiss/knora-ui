@@ -36,7 +36,7 @@ export module ConvertJSONLD {
      * Gets all property names that refer to value objects.
      *
      * @param propName the name of a property to be checked.
-     * @returns Boolean indicating if the name refers to a value property.
+     * @returns boolean - indicating if the name refers to a value property.
      */
     const getPropertyNames = (propName) => {
         return propName !== '@id'
@@ -54,8 +54,8 @@ export module ConvertJSONLD {
      * Constructs a [[ReadResource]] from JSON-LD.
      * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param resourceJSONLD an a resource and its properties serialized as JSON-LD.
-     * @returns a [[ReadResource]].
+     * @param {object} resourceJSONLD an a resource and its properties serialized as JSON-LD.
+     * @returns ReadResource
      */
     function constructReadResource(resourceJSONLD: object): ReadResource {
 
@@ -78,9 +78,9 @@ export module ConvertJSONLD {
      * taking into account the property's value type.
      * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param propValue the value serialized as JSON-LD.
-     * @param propIri the Iri of the property.
-     * @param standoffLinkValues standoffLinkValues of the resource. Text values may contain links to other resources.
+     * @param {Object} propValue the value serialized as JSON-LD.
+     * @param {string} propIri the Iri of the property.
+     * @param {ReadLinkValue[]} standoffLinkValues standoffLinkValues of the resource. Text values may contain links to other resources.
      * @returns a [[ReadPropertyItem]] or `undefined` in case the value could not be processed correctly.
      */
     function createValueSpecificProp(
@@ -315,8 +315,8 @@ export module ConvertJSONLD {
      * Construct a [[ReadProperties]] from JSON-LD.
      * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param resourceJSONLD an object describing the resource and its properties.
-     * @returns a [[ReadProperties]].
+     * @param {object} resourceJSONLD an object describing the resource and its properties.
+     * @returns ReadProperties
      */
     function constructReadProperties(resourceJSONLD: object): ReadProperties {
 
@@ -394,8 +394,8 @@ export module ConvertJSONLD {
      * Turns an API response in JSON-LD representing a sequence of resources into a [[ReadResourcesSequence]].
      * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param resourcesResponseJSONLD a resource or a sequence of resources, represented as a JSON-LD object.
-     * @returns a [[ReadResourcesSequence]].
+     * @param {object} resourcesResponseJSONLD a resource or a sequence of resources, represented as a JSON-LD object.
+     * @returns ReadResourcesSequence - sequence of read resources
      */
     export function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD: object): ReadResourcesSequence {
 
@@ -439,8 +439,8 @@ export module ConvertJSONLD {
      * Collects all the types (classes) of referred resources from a given resource (from its linking properties).
      * Expects JSON-LD with all Iris fully expanded.
      *
-     * @param {Object} resourceJSONLD JSON-LD describing one resource.
-     * @return an Array of resource class Iris (including duplicates).
+     * @param {object} resourceJSONLD JSON-LD describing one resource.
+     * @return string[] - an Array of resource class Iris (including duplicates).
      */
     function getReferredResourceClasses(resourceJSONLD: object): string[] {
 
@@ -500,7 +500,7 @@ export module ConvertJSONLD {
      * Expects JSON-LD with all Iris fully expanded.
      *
      * @param resourcesResponseJSONLD a sequence of resources, represented as a JSON-LD object.
-     * @returns {Array<String>} the resource class Iris (without duplicates).
+     * @returns string[] - the resource class Iris (without duplicates).
      */
     export function getResourceClassesFromJsonLD(resourcesResponseJSONLD: object): string[] {
 

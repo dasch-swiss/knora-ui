@@ -2,14 +2,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SearchService } from './search.service';
 
+/**
+ * Requests incoming information (regions, links, stillImageRepresentations) from Knora.
+ */
 @Injectable({
     providedIn: 'root',
 })
 export class IncomingService extends SearchService {
 
     /**
-       * Returns all incoming regions for a particular resource.
-       */
+    * Returns all incoming regions for a particular resource.
+    *
+    * @param {string} resourceIRI the Iri of the resource whose Incoming regions should be returned.
+    * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
+    * @returns {Observable<any>}
+    */
     getIncomingRegions(resourceIRI: string, offset: number): Observable<any> {
         const sparqlQueryStr = `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
@@ -55,8 +62,8 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
      * Returns all the StillImageRepresentations for the given resource, if any.
      * StillImageRepresentations link to the given resource via knora-base:isPartOf.
      *
-     * @param resourceIri the Iri of the resource whose StillImageRepresentations should be returned.
-     * @param offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
+     * @param {string} resourceIri the Iri of the resource whose StillImageRepresentations should be returned.
+     * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
      * @returns {Observable<any>}
      */
     getStillImageRepresentationsForCompoundResource(resourceIri: string, offset: number): Observable<any> {
@@ -99,12 +106,11 @@ OFFSET ${offset}
 
 
     /**
-     *
-     * Returns all incoming links for the given resource Iri
-     * but incoming regions and still image representations.
+     * Returns all incoming links for the given resource Iri but incoming regions and still image representations.
      *
      * @param {string} resourceIri the Iri of the resource whose incoming links should be returned.
-     * @param offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
+     * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
+     * @returns {Observable<any>}
      */
     getIncomingLinksForResource(resourceIri: string, offset: number): Observable<any> {
         const sparqlQueryStr = `

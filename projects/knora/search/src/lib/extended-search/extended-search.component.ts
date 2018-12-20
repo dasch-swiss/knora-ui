@@ -22,6 +22,9 @@ import { SelectResourceClassComponent } from './select-resource-class/select-res
 })
 export class ExtendedSearchComponent implements OnInit {
 
+    /**
+     * @param {string} route - Route after search
+     */
     @Input() route;
 
     // trigger toggle for extended search form
@@ -83,22 +86,25 @@ export class ExtendedSearchComponent implements OnInit {
 
     /**
      * Add a property to the search form.
+     * @returns void
      */
-    addProperty() {
+    addProperty(): void {
         this.activeProperties.push(true);
     }
 
     /**
      * Remove the last property from the search form.
+     * @returns void
      */
-    removeProperty() {
+    removeProperty(): void {
         this.activeProperties.splice(-1, 1);
     }
 
     /**
      * Gets all available ontologies for the search form.
+     * @returns void
      */
-    initializeOntologies() {
+    initializeOntologies(): void {
         this._cacheService.getOntologiesMetadata().subscribe(
             (ontologies: Array<OntologyMetadata>) => {
                 this.ontologies = ontologies;
@@ -110,6 +116,7 @@ export class ExtendedSearchComponent implements OnInit {
      * The classes and properties will be made available to the user for selection.
      *
      * @param ontologyIri Iri of the ontology chosen by the user.
+     * @returns void
      */
     getResourceClassesAndPropertiesForOntology(ontologyIri: string): void {
 
@@ -137,8 +144,9 @@ export class ExtendedSearchComponent implements OnInit {
      * The properties will be made available to the user for selection.
      *
      * @param resourceClassIri
+     * @returns void
      */
-    getPropertiesForResourceClass(resourceClassIri: string) {
+    getPropertiesForResourceClass(resourceClassIri: string): void {
 
         // reset specified properties
         this.activeProperties = [];

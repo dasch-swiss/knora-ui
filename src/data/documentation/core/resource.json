@@ -1,0 +1,66 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Requests representation of resources from Knora.</p>",
+      "summary": "<p>Requests representation of resources from Knora.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 7,
+    "codeStart": 10,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ResourceService extends ApiService {",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} iri Iri of the resource (already URL encoded).",
+        "name": "iri",
+        "description": "<p>Iri of the resource (already URL encoded).</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Given the Iri, requests the representation of a resource.</p>",
+      "summary": "<p>Given the Iri, requests the representation of a resource.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 15,
+    "codeStart": 22,
+    "code": "getResource(iri): Observable<ApiServiceResult> {\n    // console.log('IRI from resource service: ', iri);\n    return this.httpGet('/v2/resources/' + encodeURIComponent(iri));\n}\n\n\n// TODO: we should use the ApiService correctly. But right now it doesn't work\n// getResource(iri): Observable<ReadResource> {\n//    return this.httpGet('/v2/resources/' + encodeURIComponent(iri)).pipe(\n//        map((result: ApiServiceResult) => result.getBody(ReadResource)),\n//        catchError(this.handleJsonError)\n//    );\n// }\n\n\n// TODO: post, put, delete\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getResource",
+      "string": "getResource()"
+    }
+  }
+]

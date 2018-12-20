@@ -25,6 +25,9 @@ export class DemoModule {
     @JsonProperty('label', String)
     public label: string = undefined;
 
+    @JsonProperty('type', String, true)
+    public type?: string = undefined;
+
     @JsonProperty('published', Boolean, true)
     public published?: boolean = false;
 

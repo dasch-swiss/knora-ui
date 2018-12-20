@@ -1,0 +1,52 @@
+[
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "the Iri of the selected resource class or false in case no resource class is selected.",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>the Iri of the selected resource class or false in case no resource class is selected.</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the Iri of the selected resource class.</p>",
+      "summary": "<p>Returns the Iri of the selected resource class.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 43,
+    "codeStart": 48,
+    "code": "getResourceClassSelected(): any {\n    if (this.resourceClassSelected !== undefined && this.resourceClassSelected !== null) {\n        return this.resourceClassSelected;\n    } else {\n        return false;\n    }\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getResourceClassSelected",
+      "string": "getResourceClassSelected()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Initalizes the FormGroup for the resource class selection.<br />\nThe initial value is set to null.</p>",
+      "summary": "<p>Initalizes the FormGroup for the resource class selection.<br />\nThe initial value is set to null.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 56,
+    "codeStart": 60,
+    "code": "private initForm() {\n    // build a form for the resource class selection\n    this.form = this.fb.group({\n        resourceClass: [null] // resource class selection is optional\n    });\n\n    // store and emit Iri of the resource class when selected\n    this.form.valueChanges.subscribe((data) => {\n        this.resourceClassSelected = data.resourceClass;\n        this.resourceClassSelectedEvent.emit(this.resourceClassSelected);\n    });\n}\n\nngOnInit() {\n\n    this.initForm();\n\n    // add form to the parent form group\n    this.formGroup.addControl('resourceClass', this.form);\n\n}\n\nngOnChanges() {\n\n    if (this.form !== undefined) {\n\n        // resource classes have been reinitialized\n        // reset form\n        resolvedPromise.then(() => {\n\n            // remove this form from the parent form group\n            this.formGroup.removeControl('resourceClass');\n\n            this.initForm();\n\n            // add form to the parent form group\n            this.formGroup.addControl('resourceClass', this.form);\n\n        });\n\n    }\n}\n\n}",
+    "ctx": false
+  }
+]
