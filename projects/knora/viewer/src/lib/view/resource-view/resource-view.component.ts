@@ -1,101 +1,101 @@
-import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
-  ApiServiceError,
-  ApiServiceResult,
-  ConvertJSONLD,
-  ImageRegion,
-  IncomingService,
-  KnoraConstants,
-  OntologyCacheService,
-  OntologyInformation,
-  ReadLinkValue,
-  ReadPropertyItem,
-  ReadResource,
-  ReadResourcesSequence,
-  ReadStillImageFileValue,
-  ResourceService,
-  StillImageRepresentation,
-  Utils
+    ApiServiceError,
+    ApiServiceResult,
+    ConvertJSONLD,
+    IncomingService,
+    KnoraConstants,
+    OntologyCacheService,
+    OntologyInformation,
+    ReadResource,
+    ReadResourcesSequence,
+    ResourceService
 } from '@knora/core';
 
 declare let require: any;
 const jsonld = require('jsonld');
 
 @Component({
-  selector: 'kui-resource-view',
-  templateUrl: './resource-view.component.html',
-  styleUrls: ['./resource-view.component.scss']
+    selector: 'kui-resource-view',
+    templateUrl: './resource-view.component.html',
+    styleUrls: ['./resource-view.component.scss']
 })
 export class ResourceViewComponent implements OnInit {
 
-  @Input() iri: string = 'http://rdfh.ch/8be1b7cf7103';
+    @Input() iri?: string = 'http://rdfh.ch/8be1b7cf7103';
 
-  ontologyInfo: OntologyInformation; // ontology information about resource classes and properties present in the requested resource with Iri `iri`
-  resource: ReadResource; // the resource to be displayed
-  errorMessage: any;
+    ontologyInfo: OntologyInformation; // ontology information about resource classes and properties present in the requested resource with Iri `iri`
+    resource: ReadResource; // the resource to be displayed
+    errorMessage: any;
 
-  KnoraConstants = KnoraConstants;
+    KnoraConstants = KnoraConstants;
 
-  constructor(
-    private _resourceService: ResourceService,
-    private _cacheService: OntologyCacheService,
-    private _incomingService: IncomingService) { }
+    constructor(private _route: ActivatedRoute,
+                private _resourceService: ResourceService,
+                private _cacheService: OntologyCacheService,
+                private _incomingService: IncomingService) {
 
-  ngOnInit() {
-    this.getResource(this.iri);
-  }
+        const routeParams = this._route.snapshot.params;
+        this.iri = routeParams.id;
 
-  private getResource(iri: string): void {
-    this._resourceService.getResource(iri)
-      .subscribe(
-        (result: ApiServiceResult) => {
-          console.log('result: ', result.body);
-          const promises = jsonld.promises;
-          // compact JSON-LD using an empty context: expands all Iris
-          const promise = promises.compact(result.body, {});
+    }
 
-          promise.then((compacted) => {
+    ngOnInit() {
+        this.getResource(this.iri);
+    }
 
-            const resourceSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
+    private getResource(iri: string): void {
+        this._resourceService.getResource(iri)
+            .subscribe(
+                (result: ApiServiceResult) => {
+                    console.log('result: ', result.body);
+                    const promises = jsonld.promises;
+                    // compact JSON-LD using an empty context: expands all Iris
+                    const promise = promises.compact(result.body, {});
 
-            // make sure that exactly one resource is returned
-            if (resourceSeq.resources.length === 1) {
+                    promise.then((compacted) => {
 
-              // get resource class Iris from response
-              const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);
+                        const resourceSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
 
-              // request ontology information about resource class Iris (properties are implied)
-              this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
-                (resourceClassInfos: any) => {
-                  // initialize ontology information
-                  this.ontologyInfo = resourceClassInfos; // console.log('initialization of ontologyInfo: ', this.ontologyInfo); > object received
+                        // make sure that exactly one resource is returned
+                        if (resourceSeq.resources.length === 1) {
 
-                  // prepare a possibly attached image file to be displayed
-                  // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
+                            // get resource class Iris from response
+                            const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);
 
-                  this.resource = resourceSeq.resources[0];
-                  // console.log('resource: ', this.resource);
+                            // request ontology information about resource class Iris (properties are implied)
+                            this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
+                                (resourceClassInfos: any) => {
+                                    // initialize ontology information
+                                    this.ontologyInfo = resourceClassInfos; // console.log('initialization of ontologyInfo: ', this.ontologyInfo); > object received
 
-                  // this.requestIncomingResources();
+                                    // prepare a possibly attached image file to be displayed
+                                    // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
+
+                                    this.resource = resourceSeq.resources[0];
+                                    // console.log('resource: ', this.resource);
+
+                                    // this.requestIncomingResources();
+                                },
+                                (err) => {
+
+                                    console.log('cache request failed: ' + err);
+                                });
+                        } else {
+                            // exactly one resource was expected, but resourceSeq.resources.length != 1
+                            this.errorMessage = `Exactly one resource was expected, but ${resourceSeq.resources.length} resource(s) given.`;
+                        }
+                    }, function (err) {
+                        console.error('JSONLD of full resource request could not be expanded:' + err);
+                    });
+                    // this.isLoading = false;
                 },
-                (err) => {
-
-                  console.log('cache request failed: ' + err);
+                (error: ApiServiceError) => {
+                    console.error(error);
+                    // this.errorMessage = <any>error;
+                    // this.isLoading = false;
                 });
-            } else {
-              // exactly one resource was expected, but resourceSeq.resources.length != 1
-              this.errorMessage = `Exactly one resource was expected, but ${resourceSeq.resources.length} resource(s) given.`;
-            }
-          }, function (err) {
-            console.error('JSONLD of full resource request could not be expanded:' + err);
-          });
-          // this.isLoading = false;
-        },
-        (error: ApiServiceError) => {
-          console.error(error);
-          // this.errorMessage = <any>error;
-          // this.isLoading = false;
-        });
-  }
+    }
 
 }

@@ -15,7 +15,7 @@ export class OntologyService extends ApiService {
     /**
      * Requests the metadata about all existing ontologies from Knora's ontologies route.
      *
-     * @returns the metadata of all ontologies.
+     * @returns Observable<ApiServiceResult> - the metadata of all ontologies.
      */
     getOntologiesMetadata(): Observable<ApiServiceResult> {
         return this.httpGet('/v2/ontologies/metadata');
@@ -24,8 +24,8 @@ export class OntologyService extends ApiService {
     /**
      * Requests all entity definitions for the given ontologies from Knora's ontologies route.
      *
-     * @param ontologyIri the Iris of the named graphs whose resource classes are to be returned.
-     * @returns the requested ontology.
+     * @param {string} ontologyIri the Iris of the named graphs whose resource classes are to be returned.
+     * @returns Observable<ApiServiceResult> - the requested ontology.
      */
     getAllEntityDefinitionsForOntologies(ontologyIri: string): Observable<ApiServiceResult> {
         return this.httpGet('/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri));
@@ -34,8 +34,8 @@ export class OntologyService extends ApiService {
     /**
      * Requests information about the given resource classes from Knora's ontologies route.
      *
-     * @param resourceClassIris the Iris of the resource classes to be queried.
-     * @returns the requested resource class definitions.
+     * @param {string[]} resourceClassIris the Iris of the resource classes to be queried.
+     * @returns Observable<ApiServiceResult> - the requested resource class definitions.
      */
     getResourceClasses(resourceClassIris: Array<string>): Observable<ApiServiceResult> {
 
@@ -56,8 +56,8 @@ export class OntologyService extends ApiService {
     /**
      * Requests properties from Knora's ontologies route.
      *
-     * @param propertyIris the Iris of the properties to be queried.
-     * @returns the requested properties.
+     * @param {string[]} propertyIris the Iris of the properties to be queried.
+     * @returns Observable<ApiServiceResult> - the requested properties.
      */
     getProperties(propertyIris: string[]): Observable<ApiServiceResult> {
 

@@ -1,7 +1,7 @@
 {
   "name": "@knora/action",
-  "version": "0.0.14",
-  "description": "Knora ui module",
+  "version": "6.0.0",
+  "description": "Knora ui module: action",
   "repository": {
     "type": "git",
     "url": "https://github.com/dhlab-basel/Knora-ui.git"
@@ -13,11 +13,11 @@
     "dhlab basel"
   ],
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/animations": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/cdk": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/material": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/animations": "^6.0.0",
+    "@angular/cdk": "^6.0.0",
+    "@angular/material": "^6.0.0",
     "ts-md5": "^1.2.4",
     "jdnconvertiblecalendar": "^0.0.2",
     "jdnconvertiblecalendardateadapter": "^0.0.7"

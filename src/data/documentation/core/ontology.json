@@ -1,0 +1,193 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Requests ontology information from Knora.</p>",
+      "summary": "<p>Requests ontology information from Knora.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 7,
+    "codeStart": 10,
+    "code": "@Injectable({\n    providedIn: 'root',\n})\nexport class OntologyService extends ApiService {",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult> - the metadata of all ontologies.",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult> - the metadata of all ontologies.</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Requests the metadata about all existing ontologies from Knora's ontologies route.</p>",
+      "summary": "<p>Requests the metadata about all existing ontologies from Knora's ontologies route.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 15,
+    "codeStart": 20,
+    "code": "getOntologiesMetadata(): Observable<ApiServiceResult> {\n    return this.httpGet('/v2/ontologies/metadata');\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getOntologiesMetadata",
+      "string": "getOntologiesMetadata()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} ontologyIri the Iris of the named graphs whose resource classes are to be returned.",
+        "name": "ontologyIri",
+        "description": "<p>the Iris of the named graphs whose resource classes are to be returned.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult> - the requested ontology.",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult> - the requested ontology.</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Requests all entity definitions for the given ontologies from Knora's ontologies route.</p>",
+      "summary": "<p>Requests all entity definitions for the given ontologies from Knora's ontologies route.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 24,
+    "codeStart": 30,
+    "code": "getAllEntityDefinitionsForOntologies(ontologyIri: string): Observable<ApiServiceResult> {\n    return this.httpGet('/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri));\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getAllEntityDefinitionsForOntologies",
+      "string": "getAllEntityDefinitionsForOntologies()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string[]} resourceClassIris the Iris of the resource classes to be queried.",
+        "name": "resourceClassIris",
+        "description": "<p>the Iris of the resource classes to be queried.</p>",
+        "types": [
+          "Array.<string>"
+        ],
+        "typesDescription": "<code>Array</code>.&lt;<code>string</code>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult> - the requested resource class definitions.",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult> - the requested resource class definitions.</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Requests information about the given resource classes from Knora's ontologies route.</p>",
+      "summary": "<p>Requests information about the given resource classes from Knora's ontologies route.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 34,
+    "codeStart": 40,
+    "code": "getResourceClasses(resourceClassIris: Array<string>): Observable<ApiServiceResult> {\n\n    if (resourceClassIris.length === 0) {\n        // no resource class Iris are given to query for, return a failed Observer\n        return Observable.create(observer => observer.error('No resource class Iris given for call of OntologyService.getResourceClasses'));\n    }\n\n    let resClassUriEnc = '';\n\n    resourceClassIris.forEach(function (resClassIri) {\n        resClassUriEnc = resClassUriEnc + '/' + encodeURIComponent(resClassIri.toString());\n    });\n\n    return this.httpGet('/v2/ontologies/classes' + resClassUriEnc);\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getResourceClasses",
+      "string": "getResourceClasses()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string[]} propertyIris the Iris of the properties to be queried.",
+        "name": "propertyIris",
+        "description": "<p>the Iris of the properties to be queried.</p>",
+        "types": [
+          "Array.<string>"
+        ],
+        "typesDescription": "<code>Array</code>.&lt;<code>string</code>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult> - the requested properties.",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult> - the requested properties.</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Requests properties from Knora's ontologies route.</p>",
+      "summary": "<p>Requests properties from Knora's ontologies route.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 56,
+    "codeStart": 62,
+    "code": "getProperties(propertyIris: string[]): Observable<ApiServiceResult> {\n\n    if (propertyIris.length === 0) {\n        // no resource class Iris are given to query for, return a failed Observer\n        return Observable.create(observer => observer.error('No property Iris given for call of OntologyService.getProperties'));\n    }\n\n    let propertiesUriEnc = '';\n\n    propertyIris.forEach(function (resClassIri) {\n        propertiesUriEnc = propertiesUriEnc + '/' + encodeURIComponent(resClassIri.toString());\n    });\n\n    return this.httpGet('/v2/ontologies/properties' + propertiesUriEnc);\n\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getProperties",
+      "string": "getProperties()"
+    }
+  }
+]

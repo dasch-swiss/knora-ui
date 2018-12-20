@@ -13,10 +13,10 @@ export class StoreService {
   constructor(private http: HttpClient, @Inject('config') public config: KuiCoreConfig) { }
 
   /**
-     * resets the content of the triplestore
+     * Resets the content of the triplestore.
      *
      * @param rdfDataObjects
-     * @returns {Observable<string>}
+     * @returns Observable<string>
      */
   resetTriplestoreContent(rdfDataObjects: RdfDataObject[]): Observable<string> {
 

@@ -1,5 +1,5 @@
 # Progress indicator / loader
-This component is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) [action module](https://www.npmjs.com/package/%40knora%2Faction), developed by the team at the [DHLab Basel](http://dhlab.unibas.ch).
+This component is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) [action module](https://www.npmjs.com/package/%40knora%2Faction), developed by the team at the [Data and Service Center for Humanities DaSCH](http://dasch.swiss).
 
 ## How to use
 You have to add the [knora action module](https://www.npmjs.com/package/%40knora%2Faction) first, to use the progress indicator:

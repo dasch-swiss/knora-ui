@@ -1,17 +1,3 @@
-/* Copyright © 2016 Lukas Rosenthaler, André Kilchenmann, Andreas Aeschlimann,
- * Sofia Georgakopoulou, Ivan Subotic, Benjamin Geer, Tobias Schweizer.
- * This file is part of SALSAH.
- * SALSAH is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * SALSAH is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * You should have received a copy of the GNU Affero General Public
- * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
- * */
-
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -46,7 +32,9 @@ import {
     ]
 })
 
-
+/**
+ * Contains methods to realise, reset new or previous simple searches.
+ */
 export class SearchComponent implements OnInit {
 
     @Input() route: string = '/search';
@@ -74,9 +62,11 @@ export class SearchComponent implements OnInit {
     }
 
     /**
-     *
+     * @ignore
+     * Do search on Enter click, reset search on Escape
      * @param search_ele
      * @param event
+     * @returns void
      */
     onKey(search_ele: HTMLElement, event): void {
         this.focusOnSimple = 'active';
@@ -91,7 +81,8 @@ export class SearchComponent implements OnInit {
 
     /**
      * Realise a simple search
-     * @param search_ele
+     * @param {HTMLElement} search_ele
+     * @returns void
      */
     doSearch(search_ele: HTMLElement): void {
         if (this.searchQuery !== undefined && this.searchQuery !== null) {
@@ -123,7 +114,8 @@ export class SearchComponent implements OnInit {
 
     /**
      * Reset the search
-     * @param search_ele
+     * @param {HTMLElement} search_ele
+     * @returns void
      */
     resetSearch(search_ele: HTMLElement): void {
         this.searchQuery = null;
@@ -134,7 +126,8 @@ export class SearchComponent implements OnInit {
 
     /**
      * Realise a previous search
-     * @param query
+     * @param {string} query
+     * @returns void
      */
     doPrevSearch(query: string): void {
         this.searchQuery = query;
@@ -144,7 +137,8 @@ export class SearchComponent implements OnInit {
 
     /**
      * Reset previous searches - the whole previous search or specific item by name
-     * @param name
+     * @param {string} name term of the search
+     * @returns void
      */
     resetPrevSearch(name: string = null): void {
         if (name) {
@@ -162,6 +156,8 @@ export class SearchComponent implements OnInit {
 
     /**
      * Set simple focus to active
+     *
+     * @returns void
      */
     setFocus(): void {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
@@ -171,7 +167,9 @@ export class SearchComponent implements OnInit {
 
     /**
      * Switch according to the focus between simple or extended search
-     * @param name
+     *
+     * @param {string} name 2 cases: simpleSearch or extendedSearch
+     * @returns void
      */
     toggleMenu(name: string): void {
         switch (name) {

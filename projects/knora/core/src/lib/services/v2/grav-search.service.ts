@@ -4,6 +4,7 @@ import { KnoraConstants, KnoraSchema, Utils } from '../../declarations';
 import { PropertyWithValue } from '../../declarations/api/operators';
 
 /**
+ * @ignore
  * Represents an error that occurred when generating KnarQL.
  */
 class GravsearchGenerationError extends Error {
@@ -13,14 +14,22 @@ class GravsearchGenerationError extends Error {
     }
 }
 
+/**
+ * Create GravSearch queries from provided parameters.
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class GravsearchGenerationService {
 
-    // map of complex knora-api value types to simple ones
+    /**
+     * @ignore
+     *
+     * Map of complex knora-api value types to simple ones.
+     * Use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.
+     */
     public static typeConversionComplexToSimple = {
-        'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.xsdInteger, // use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer
+        'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.xsdInteger,
         'http://api.knora.org/ontology/knora-api/v2#DecimalValue': KnoraConstants.xsdDecimal,
         'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.xsdBoolean,
         'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.xsdString,
@@ -43,10 +52,11 @@ export class GravsearchGenerationService {
     constructor(private _searchParamsService: SearchParamsService) { }
 
     /**
+       * @private
        * Converts a complex type Iri to a simple type Iri.
        *
        * @param {string} complexType the Iri of a value type (knora-api complex).
-       * @returns {string} the corresponding Iri of the simple type (knora-api simple).
+       * @returns string - the corresponding Iri of the simple type (knora-api simple).
        */
     private convertComplexTypeToSimpleType(complexType: string): string {
 
@@ -61,14 +71,14 @@ export class GravsearchGenerationService {
     }
 
     /**
-       * Generates a Gravsearch query from the provided arguments.
-       *
-       * @param {PropertyWithValue[]} properties the properties specified by the user.
-       * @param {string} mainResourceClassOption the class of the main resource, if specified.
-       * @param offset the offset to be used (nth page of results).
-       * @returns {string} a KnarQL query string.
-       */
-    public createGravsearchQuery(properties: PropertyWithValue[], mainResourceClassOption?: string, offset: number = 0): string {
+     * Generates a Gravsearch query from the provided arguments.
+     *
+     * @param {PropertyWithValue[]} properties the properties specified by the user.
+     * @param {string} [mainResourceClassOption] the class of the main resource, if specified.
+     * @param {number} offset the offset to be used (nth page of results).
+     * @returns string - a KnarQL query string.
+     */
+    createGravsearchQuery(properties: PropertyWithValue[], mainResourceClassOption?: string, offset: number = 0): string {
 
         // class restriction for the resource searched for
         let mainResourceClass = '';

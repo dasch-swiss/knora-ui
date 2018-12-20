@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, Input } from '@angular/core';\nimport { ReadTextValueAsString } from '@knora/core';\n\n@Component({\n    selector: 'kui-text-value-as-string',\n    templateUrl: './text-value-as-string.component.html',\n    styleUrls: ['./text-value-as-string.component.scss']\n})\nexport class TextValueAsStringComponent {\n\n    @Input()\n    set valueObject(value: ReadTextValueAsString) {\n        this._textStringValueObj = value;\n    }\n\n    get valueObject() {\n        return this._textStringValueObj;\n    }\n\n    private _textStringValueObj: ReadTextValueAsString;\n\n    constructor() {\n    }\n\n}",
+    "ctx": false
+  }
+]

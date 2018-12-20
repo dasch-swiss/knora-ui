@@ -5,6 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortByPipe implements PipeTransform {
 
+    /**
+     * TODO: add description
+     */
     transform(array: Array<any>, args: string): Array<any> {
         if (array !== undefined) {
             array.sort((a: any, b: any) => {
