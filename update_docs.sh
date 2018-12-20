@@ -134,6 +134,6 @@ jsdoc2json "${special[@]}"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 3) build the ng-app and update the files in docs/ folder
 #
-# git rm -r docs/*
-# ng build --prod=false --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
-# cp docs/index.html docs/404.html
+git rm -r docs/*
+ng build --prod=false --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
+cp docs/index.html docs/404.html
