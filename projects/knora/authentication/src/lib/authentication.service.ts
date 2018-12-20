@@ -5,6 +5,9 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SessionService } from './session/session.service';
 
+/**
+ * Authentication service includes the login, logout method and a session method to check if a user is logged in or not.
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -13,12 +16,13 @@ export class AuthenticationService {
     constructor(public http: HttpClient,
                 private _session: SessionService,
                 @Inject('config') public config: KuiCoreConfig) {
-
     }
 
     /**
      * validate if a user is logged in or not
-     * and the session is active
+     * returns true if the session is active
+     *
+     * @returns boolean
      */
     session(): boolean {
         return this._session.validateSession();
@@ -28,9 +32,9 @@ export class AuthenticationService {
      * login process;
      * it's used by the login component
      *
-     * @param identifier (email or username)
-     * @param password
-     * @returns
+     * @param {string} identifier email or username
+     * @param {string} password
+     * @returns Observable<any>
      */
     login(identifier: string, password: string): Observable<any> {
 
@@ -49,6 +53,11 @@ export class AuthenticationService {
     }
 
 
+    /**
+     * logout the user by destroying the session
+     *
+     * @param
+     */
     logout() {
         // destroy the session
         localStorage.removeItem('session');
@@ -56,6 +65,7 @@ export class AuthenticationService {
 
 
     /**
+     * @ignore
      * handle request error in case of server error
      *
      * @param error

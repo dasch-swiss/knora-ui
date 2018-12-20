@@ -24,8 +24,9 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
+              "src/app",
               "src/assets",
-              "src/app"
+              "src/data"
             ],
             "styles": [
               "node_modules/prismjs/themes/prism-okaidia.css",
@@ -36,8 +37,7 @@
             "scripts": [
               "node_modules/marked/lib/marked.js",
               "node_modules/prismjs/prism.js",
-              "node_modules/prismjs/components/prism-csharp.min.js",
-              "node_modules/prismjs/components/prism-css.min.js",
+              "src/assets/scripts/prism.js",
               "node_modules/openseadragon/build/openseadragon/openseadragon.min.js",
               "node_modules/svg-overlay/openseadragon-svg-overlay.js"
             ]

@@ -41,6 +41,7 @@ export class SearchParamsService {
      * Updates the parameters of an extended search.
      *
      * @param {ExtendedSearchParams} searchParams
+     * @returns void
      */
     changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {
         this._currentSearchParams.next(searchParams);
@@ -49,7 +50,7 @@ export class SearchParamsService {
     /**
      * Gets the search params of an extended search.
      *
-     * @returns {ExtendedSearchParams}
+     * @returns ExtendedSearchParams - search parameters
      */
     getSearchParams(): ExtendedSearchParams {
         return this._currentSearchParams.getValue();

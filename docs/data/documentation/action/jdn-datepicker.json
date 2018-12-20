@@ -1,0 +1,19 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>JdnDatepickerDirective creates a wrapper element that provides a new adapter with each instance of the datepicker.</p>",
+      "summary": "<p>JdnDatepickerDirective creates a wrapper element that provides a new adapter with each instance of the datepicker.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 6,
+    "codeStart": 9,
+    "code": "@Directive({\n    selector: 'kuiJdnDatepicker',\n    providers: [\n        { provide: DateAdapter, useClass: JDNConvertibleCalendarDateAdapter, deps: [MAT_DATE_LOCALE] }\n    ]\n})\nexport class JdnDatepickerDirective {\n    constructor(private adapter: DateAdapter<JDNConvertibleCalendar>) { }\n}",
+    "ctx": false
+  }
+]

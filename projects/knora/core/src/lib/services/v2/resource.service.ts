@@ -11,6 +11,9 @@ import { HttpClient } from '@angular/common/http';
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
 
+/**
+ * Requests representation of resources from Knora.
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -25,8 +28,8 @@ export class ResourceService extends ApiService {
     /**
      * Given the Iri, requests the representation of a resource.
      *
-     * @param iri Iri of the resource (not yet URL encoded).
-     * @returns {Observable<any>}
+     * @param {string} iri Iri of the resource (already URL encoded).
+     * @returns Observable<ApiServiceResult>
      */
     getResource(iri): Observable<ApiServiceResult> {
         // console.log('IRI from resource service: ', iri);
