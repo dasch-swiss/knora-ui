@@ -11,7 +11,7 @@
 
     <!-- switch button: on some focus we need a close button for the simple or extended panel -->
     <div>
-        <button class="suffix" (click)="resetSearch(search)">
+        <button class="suffix" *ngIf="!showSimpleSearch" (click)="resetSearch(search)">
             <mat-icon>close</mat-icon>
         </button>
     </div>
@@ -19,7 +19,7 @@
 
 
 <!-- the search panel has two "dropdown" menus: one for simple search and another one for the extended search -->
-<div class="salsah-menu simple-search" [@fulltextSearchMenu]="showSimpleSearch ? 'active' : 'inactive'">
+<div class="salsah-menu simple-search" [@fulltextSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch">
     <mat-list class="salsah-previous-search-list">
         <mat-list-item *ngFor="let item of prevSearch | kuiReverse; let i=index">
             <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)">{{item}}</h4>

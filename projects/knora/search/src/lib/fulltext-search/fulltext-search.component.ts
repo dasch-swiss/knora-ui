@@ -9,10 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
     animations: [
         trigger('fulltextSearchMenu',
             [
-                state('inactive', style({display: 'none'})),
-                state('active', style({display: 'block'})),
-                transition('active => inactive', animate('100ms ease-in')),
-                transition('inactive => active', animate('100ms ease-out'))
+                state('inactive', style({ display: 'none' })),
+                state('active', style({ display: 'block' })),
+                transition('inactive => active', animate('100ms ease-in')),
+                transition('active => inactive', animate('100ms ease-out'))
             ]
         )
     ]
@@ -35,7 +35,7 @@ export class FulltextSearchComponent implements OnInit {
 
 
     constructor(private _route: ActivatedRoute,
-                private _router: Router) {
+        private _router: Router) {
     }
 
     ngOnInit() {
@@ -49,6 +49,7 @@ export class FulltextSearchComponent implements OnInit {
      * @returns void
      */
     onKey(search_ele: HTMLElement, event): void {
+        console.log('onKey');
         this.focusOnSimple = 'active';
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
         if (this.searchQuery && (event.key === 'Enter' || event.keyCode === 13 || event.which === 13)) {
@@ -89,10 +90,12 @@ export class FulltextSearchComponent implements OnInit {
             existingPrevSearch.push(this.searchQuery);
             localStorage.setItem('prevSearch', JSON.stringify(existingPrevSearch));
             // TODO: save the previous search queries somewhere in the user's profile
+            console.log('do search IF');
 
         } else {
             search_ele.focus();
             this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
+            console.log('do search ELSE');
         }
     }
 
@@ -106,6 +109,7 @@ export class FulltextSearchComponent implements OnInit {
         search_ele.focus();
         this.focusOnSimple = 'inactive';
         this.searchPanelFocus = !this.searchPanelFocus;
+        console.log('resetSearch');
     }
 
     /**
@@ -115,7 +119,7 @@ export class FulltextSearchComponent implements OnInit {
      */
     doPrevSearch(query: string): void {
         this.searchQuery = query;
-        this._router.navigate([this.route + '/fulltext/' + query], {relativeTo: this._route});
+        this._router.navigate([this.route + '/fulltext/' + query], { relativeTo: this._route });
         this.toggleMenu();
     }
 
@@ -147,6 +151,7 @@ export class FulltextSearchComponent implements OnInit {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
         this.focusOnSimple = 'active';
         this.searchPanelFocus = !this.searchPanelFocus;
+        console.log('setFocus');
     }
 
     /**
@@ -156,9 +161,11 @@ export class FulltextSearchComponent implements OnInit {
      */
     toggleMenu(): void {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-        // this.focusOnSimple = !this.focusOnSimple;
-            // (this.focusOnSimple === 'active' ? 'inactive' : 'active');
+        this.focusOnSimple = (this.focusOnSimple === 'active' ? 'inactive' : 'active');
+        // (this.focusOnSimple === 'active' ? 'inactive' : 'active');
         // console.log('focus on simple? ', this.focusOnSimple);
         this.showSimpleSearch = !this.showSimpleSearch;
+        console.log('toggleMenu focusOnSimple', this.focusOnSimple);
+        console.log('toggleMenu showSimpleSearch', this.showSimpleSearch);
     }
 }
