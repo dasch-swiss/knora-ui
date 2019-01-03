@@ -47,10 +47,12 @@ jobs:
       # - run: xvfb-run -a yarn ci:test
       - run: yarn ng t --project @knora/core --watch=false --browsers=ChromeHeadless
       - run: yarn ng build @knora/core
+      - run: yarn ng t --project @knora/search --watch=false --browsers=ChromeHeadless
+      - run: yarn ng build @knora/search
       - run: yarn ng t --project @knora/action --watch=false --browsers=ChromeHeadless
       - run: yarn ng build @knora/action
       - run: yarn ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
-      - run: yarn ng t --project @knora/search --watch=false --browsers=ChromeHeadless
+      - run: yarn ng build @knora/viewer
 
       # Run e2e tests!
       # - run: xvfb-run -a yarn ci:e2e
