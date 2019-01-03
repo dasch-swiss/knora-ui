@@ -13,7 +13,7 @@ import {
 import { JdnDatepickerDirective } from './jdn-datepicker.directive';
 import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateadapter';
 import { JDNConvertibleCalendar } from 'jdnconvertiblecalendar';
-import { DateValueComponent } from '../../../../search/src/lib/extended-search/select-property/specify-property-value/date-value/date-value.component';
+import { DateValueComponent } from '@knora/search';
 
 describe('JdnDatepickerDirective', () => {
     let component: DateValueComponent;
