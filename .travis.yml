@@ -32,9 +32,9 @@ before_script:
 script:
   - ng t --project @knora/core --watch=false --browsers=ChromeHeadless
   - ng build @knora/core
-  - ng t --project @knora/search --watch=false --browsers=ChromeHeadless
-  - ng build @knora/search
   - ng t --project @knora/action --watch=false --browsers=ChromeHeadless
   - ng build @knora/action
+  - ng t --project @knora/search --watch=false --browsers=ChromeHeadless
+  - ng build @knora/search
   - ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
   - ng build @knora/viewer
