@@ -80,7 +80,7 @@ describe('StillImageOSDViewerComponent', () => {
         host.resourcesHost = images;
         fixture.detectChanges();
 
-        let overlay = component['viewer'].svgOverlay();
+        const overlay = component['viewer'].svgOverlay();
 
         // first region -> polygon element (second element in <g> element)
         const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
@@ -96,6 +96,29 @@ describe('StillImageOSDViewerComponent', () => {
         fixture.detectChanges();
 
         expect(host.activeRegion).toEqual('http://rdfh.ch/b6b64a62b006');
+
+    });
+
+    it('should higglight a region', () => {
+        host.resourcesHost = images;
+        fixture.detectChanges();
+
+        component.highlightRegion('http://rdfh.ch/b6b64a62b006');
+        fixture.detectChanges();
+
+        const overlay = component['viewer'].svgOverlay();
+
+        // first region -> polygon element (second element in <g> element)
+        const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
+
+        let attr = regionSvgEle.getAttribute('class');
+        expect(attr).toEqual('roi-svgoverlay active');
+
+        component.unhighlightRegion('http://rdfh.ch/b6b64a62b006');
+        fixture.detectChanges();
+
+        attr = regionSvgEle.getAttribute('class');
+        expect(attr).toEqual('roi-svgoverlay');
 
     });
 

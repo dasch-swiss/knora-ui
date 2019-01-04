@@ -123,6 +123,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
 
     private viewer;
+    private regions = {};
 
     /**
      * Calculates the surface of a rectangular region.
@@ -356,6 +357,38 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
+     * Highlights the polygon elements associated with the given region.
+     *
+     * @param regionIri the Iri of the region whose polygon elements should be highlighted..
+     */
+    highlightRegion(regionIri) {
+        const activeRegion: SVGPolygonElement = this.regions[regionIri];
+
+        if (activeRegion !== undefined && Array.isArray(activeRegion)) {
+
+            for (const pol of activeRegion) {
+                pol.setAttribute('class', 'roi-svgoverlay active');
+            }
+        }
+    }
+
+    /**
+     * Unhighlights the polygon elements associated with the given region.
+     *
+     * @param regionIri the Iri of the region whose polygon elements should be unhighlighted..
+     */
+    unhighlightRegion(regionIri) {
+        const activeRegion: SVGPolygonElement = this.regions[regionIri];
+
+        if (activeRegion !== undefined && Array.isArray(activeRegion)) {
+
+            for (const pol of activeRegion) {
+                pol.setAttribute('class', 'roi-svgoverlay');
+            }
+        }
+    }
+
+    /**
      * Initializes the OpenSeadragon viewer
      */
     private setupViewer(): void {
@@ -415,6 +448,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
      */
     private renderRegions(): void {
         this.viewer.clearOverlays();
+        this.regions = {};
 
         let imageXOffset = 0; // see documentation in this.openImages() for the usage of imageXOffset
 
@@ -425,6 +459,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             let geometries: GeometryForRegion[] = [];
             image.regions.map((reg) => {
 
+                this.regions[reg.regionResource.id] = [];
                 let geoms = reg.getGeometries();
 
                 geoms.map((geom) => {
@@ -518,6 +553,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
         const overlay = this.viewer.svgOverlay();
         overlay.node().appendChild(svgGroup);
+
+        this.regions[regionIri].push(svgElement);
     }
 
     /**
