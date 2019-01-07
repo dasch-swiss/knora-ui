@@ -1,12 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
-
-import { ApiService } from '../api.service';
-import { ApiServiceResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
 import { map, mergeMap } from 'rxjs/operators';
+import { ApiServiceResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
+import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
-import { HttpClient } from '@angular/common/http';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -22,7 +21,7 @@ export class ResourceService extends ApiService {
     constructor(public http: HttpClient,
                 @Inject('config') public config: KuiCoreConfig,
                 public ontoCache: OntologyCacheService) {
-        super(http, config,);
+        super(http, config);
     }
 
     /**

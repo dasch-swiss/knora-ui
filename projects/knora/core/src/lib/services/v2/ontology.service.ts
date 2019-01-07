@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
-import { ApiServiceResult, UsersResponse } from '../../declarations';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { ApiServiceResult } from '../../declarations';
+import { ApiService } from '../api.service';
 
 /**
  * Requests ontology information from Knora.

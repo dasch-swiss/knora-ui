@@ -1,5 +1,5 @@
 import { ReadResource } from './read-resource';
-import { OntologyInformation } from '../../../../services';
+import { OntologyInformation } from '../../../../services/v2/ontology-cache.service';
 
 /**
  * Represents a sequence of resources.
