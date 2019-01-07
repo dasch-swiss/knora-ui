@@ -7,12 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchPanelComponent implements OnInit {
 
+  showMenu: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
   openMenu() {
-      // https://angular.io/guide/animations
+    console.log('open menu');
+    this.showMenu = !this.showMenu;
+    // https://angular.io/guide/animations
   }
 }

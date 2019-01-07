@@ -16,6 +16,27 @@ $border-color: #ebebeb;
 // general border radius
 $border-radius: 4px;
 
+// position close button
+.close {
+  right: 12px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.search-bar-elements {
+  display: flex;
+}
+
 .inactive {
   color: darken($bright, 50%);
 }
@@ -75,8 +96,6 @@ $border-radius: 4px;
 }
 }
 
-
-
 .salsah-menu {
   box-shadow: 0 3px 5px -1px $black-20-opacity, 0 6px 10px 0 $black-14-opacity, 0 1px 18px 0 $black-12-opacity;
   background-color: rgba(249, 249, 00, 1);
@@ -123,13 +142,14 @@ $border-radius: 4px;
 @media screen and (max-width: 1024px) {
   .fulltext-search-bar {
     width: $search-width-small-device;
-
+    div {
       &.input-field {
 
         input {
           width: calc(#{$search-width-small-device} - 80px);
         }
       }
+    }     
   }
 
   .salsah-menu.simple-search,
@@ -142,12 +162,14 @@ $border-radius: 4px;
   .fulltext-search-bar {
     width: calc(#{$search-width-small-device} - 160px);
 
+    div {
       &.input-field {
 
         input {
           width: calc(#{$search-width-small-device} - 160px - 80px);
         }
       }
+    }
   }
 
   .salsah-menu.simple-search {
