@@ -98,13 +98,13 @@ $border-radius: 4px;
 
 .salsah-menu {
   box-shadow: 0 3px 5px -1px $black-20-opacity, 0 6px 10px 0 $black-14-opacity, 0 1px 18px 0 $black-12-opacity;
-  background-color: rgba(249, 249, 00, 1);
+  background-color: rgba(249, 249, 249, 1);
   border-radius: $border-radius;
   position: absolute;
 
   &.simple-search {
-    min-height: $search-height;
-    width: $search-width;
+    min-height: 680px;
+    width: 680px;
   }
 
   &.simple-search {
@@ -152,8 +152,7 @@ $border-radius: 4px;
     }     
   }
 
-  .salsah-menu.simple-search,
-  .salsah-menu.extended-search {
+  .salsah-menu.simple-search {
     width: $search-width-small-device;
   }
 }

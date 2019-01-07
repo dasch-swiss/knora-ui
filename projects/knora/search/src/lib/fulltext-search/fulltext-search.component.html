@@ -1,36 +1,3 @@
-<!-- <div class="fulltext-search-bar" [class.active]="searchPanelFocus">
-    <div>
-        <button class="prefix" (click)="doSearch(search)">
-            <mat-icon>search</mat-icon>
-        </button>
-    </div>
-
-    <div class="input-field">
-        <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" name="search" (keyup.esc)="resetSearch(search)" (keyup)="onKey(search, $event)" (click)="setFocus()" (focus)="toggleMenu()" />
-    </div>
-
-    switch button: on some focus we need a close button for the simple or extended panel
-    <div>
-        <button class="suffix" *ngIf="!showSimpleSearch" (click)="resetSearch(search)">
-            <mat-icon>close</mat-icon>
-        </button>
-    </div>
-</div>
-
-
-the search panel has two "dropdown" menus: one for simple search and another one for the extended search
-<div class="salsah-menu simple-search" [@fulltextSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch">
-    <mat-list class="salsah-previous-search-list">
-        <mat-list-item *ngFor="let item of prevSearch | kuiReverse; let i=index">
-            <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)">{{item}}</h4>
-            <button mat-icon-button (click)="resetPrevSearch(item)">
-                <mat-icon aria-label="close">close</mat-icon>
-            </button>
-        </mat-list-item>
-    </mat-list>
-    <button mat-stroked-button color="accent" class="right" (click)="resetPrevSearch()" *ngIf="prevSearch">Clear</button>
-</div> -->
-
 <div class="search-bar-elements">
 
     <div class="fulltext-search-bar" [class.active]="searchPanelFocus">
@@ -55,15 +22,14 @@ the search panel has two "dropdown" menus: one for simple search and another one
         <!-- "dropdown" menu for simple search -->
         <div class="salsah-menu simple-search" [@fulltextSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch">
             <mat-list class="salsah-previous-search-list">
-                MAT LIST ITEM
                 <mat-list-item *ngFor="let item of prevSearch | kuiReverse; let i=index">
-                    <h4 mat-line *ngIf="i<10">{{item}}</h4>
-                    <button mat-icon-button>
+                    <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)">{{item}}</h4>
+                    <button mat-icon-button (click)="resetPrevSearch(item)">
                         <mat-icon aria-label="close">close</mat-icon>
                     </button>
                 </mat-list-item>
             </mat-list>
-            <!-- <button mat-stroked-button color="accent" class="right" (click)="resetPrevSearch()" *ngIf="prevSearch">Clear</button> -->
+            <button mat-stroked-button color="accent" class="right" (click)="resetPrevSearch()" *ngIf="prevSearch">Clear</button>
         </div>
 
     </div>
