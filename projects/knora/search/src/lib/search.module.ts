@@ -82,9 +82,9 @@ import { HeaderComponent } from './extended-search/select-property/specify-prope
         SearchComponent,
         SearchPanelComponent,
         FulltextSearchComponent,
-        ExtendedSearchComponent
+        ExtendedSearchComponent,
+        DateValueComponent
     ],
-    exports: [SearchComponent, DateValueComponent],
     entryComponents: [
         HeaderComponent
     ]
