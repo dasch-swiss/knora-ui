@@ -84,6 +84,7 @@ import { HeaderComponent } from './extended-search/select-property/specify-prope
         FulltextSearchComponent,
         ExtendedSearchComponent
     ],
+    exports: [SearchComponent, DateValueComponent],
     entryComponents: [
         HeaderComponent
     ]
