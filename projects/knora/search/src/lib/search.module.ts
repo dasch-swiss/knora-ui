@@ -74,7 +74,7 @@ import { HeaderComponent } from './extended-search/select-property/specify-prope
         UriValueComponent,
         HeaderComponent
     ],
-    exports: [SearchComponent],
+    exports: [SearchComponent, DateValueComponent],
     entryComponents: [
         HeaderComponent
     ]

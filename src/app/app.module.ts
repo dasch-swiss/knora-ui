@@ -64,6 +64,10 @@ import { DocumentationViewerComponent } from './partials/documentation-viewer/do
 import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-demo/authentication-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
 import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
+// playground components
+import { PlaygroundComponent } from './playground/playground.component';
+import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
+import { SearchPgComponent } from './playground/search-pg/search-pg.component';
 
 @NgModule({
     declarations: [
@@ -107,7 +111,10 @@ import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
         DocumentationViewerComponent,
         AuthenticationDemoComponent,
         SearchPanelComponent,
-        TrimBracketsPipe
+        TrimBracketsPipe,
+        PlaygroundComponent,
+        ViewerPgComponent,
+        SearchPgComponent
     ],
     entryComponents: [
         // LoginFormComponent
@@ -129,7 +136,7 @@ import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
         KuiViewerModule,
         MaterialModule,
         HttpClientModule,
-        MarkdownModule.forRoot({loader: HttpClient}),
+        MarkdownModule.forRoot({ loader: HttpClient }),
         ReactiveFormsModule
     ],
     providers: [
@@ -139,7 +146,7 @@ import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
                 hasBackdrop: false
             }
         },
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
 
     ],
