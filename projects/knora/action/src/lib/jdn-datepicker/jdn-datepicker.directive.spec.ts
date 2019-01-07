@@ -9,10 +9,11 @@ import {
     MatFormFieldModule,
     MatNativeDateModule
 } from '@angular/material';
-import { DateValueComponent } from '@knora/search';
+
 import { JdnDatepickerDirective } from './jdn-datepicker.directive';
 import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateadapter';
 import { JDNConvertibleCalendar } from 'jdnconvertiblecalendar';
+import { DateValueComponent } from '@knora/search';
 
 describe('JdnDatepickerDirective', () => {
     let component: DateValueComponent;
