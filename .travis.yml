@@ -30,7 +30,12 @@ before_script:
   - yarn install
 
 script:
+  - ng build @knora/core
+  - ng build @knora/action
+  - ng build @knora/viewer
+  - ng build @knora/search
   - ng t --project @knora/core --watch=false --browsers=ChromeHeadless
-  - ng build @knora/core && ng build @knora/action
-  - ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
+  - ng t --project @knora/action --watch=false --browsers=ChromeHeadless
   - ng t --project @knora/search --watch=false --browsers=ChromeHeadless
+  - ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
+  
