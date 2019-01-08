@@ -7,9 +7,6 @@ import { map, mergeMap } from 'rxjs/operators';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
 import { HttpClient } from '@angular/common/http';
 
-declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
-const jsonld = require('jsonld');
-
 /**
  * Performs searches (fulltext or extended) and search count queries into Knora.
  */
@@ -50,15 +47,7 @@ export class SearchService extends ApiService {
         return res.pipe(
             mergeMap(
                 // this would return an Observable of a PromiseObservable -> combine them into one Observable
-                (resourceResponse: ApiServiceResult) => {
-                    const resPromises = jsonld.promises;
-                    // compact JSON-LD using an empty context: expands all Iris
-                    const resPromise = resPromises.compact(resourceResponse.body, {});
-
-                    // convert promise to Observable and return it
-                    // https://www.learnrxjs.io/operators/creation/frompromise.html
-                    return from(resPromise);
-                }
+                this.processJSONLD
             ),
             mergeMap(
                 // return Observable of ReadResourcesSequence

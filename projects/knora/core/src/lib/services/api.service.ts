@@ -2,9 +2,12 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { ApiServiceError, ApiServiceResult, KuiCoreConfig } from '../declarations';
+import { from } from 'rxjs';
 
+declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
+const jsonld = require('jsonld');
 
 @Injectable({
     providedIn: 'root',
@@ -17,7 +20,7 @@ export abstract class ApiService {
     loading = false;
 
     protected constructor(public http: HttpClient,
-        @Inject('config') public config: KuiCoreConfig) {
+                          @Inject('config') public config: KuiCoreConfig) {
     }
 
     /**
@@ -30,7 +33,7 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        return this.http.get(this.config.api + path, { observe: 'response', params: params }).pipe(
+        return this.http.get(this.config.api + path, {observe: 'response', params: params}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -52,6 +55,25 @@ export abstract class ApiService {
     }
 
     /**
+     * Processes JSON-LD returned by Knora.
+     * Expands Iris and creates an empty context object.
+     *
+     * @param {ApiServiceResult} resourceResponse
+     */
+    processJSONLD(resourceResponse: ApiServiceResult): Observable<object> {
+        // this would return an Observable of a PromiseObservable -> combine them into one Observable
+
+        const resPromises = jsonld.promises;
+        // compact JSON-LD using an empty context: expands all Iris
+        const resPromise = resPromises.compact(resourceResponse.body, {});
+
+        // convert promise to Observable and return it
+        // https://www.learnrxjs.io/operators/creation/frompromise.html
+        return from(resPromise);
+
+    }
+
+    /**
      * POST
      *
      * @param {string} path
@@ -64,7 +86,7 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.post(this.config.api + path, body, { observe: 'response' }).pipe(
+        return this.http.post(this.config.api + path, body, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -99,7 +121,7 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.put(this.config.api + path, body, { observe: 'response' }).pipe(
+        return this.http.put(this.config.api + path, body, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -135,7 +157,7 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.delete(this.config.api + path, { observe: 'response' }).pipe(
+        return this.http.delete(this.config.api + path, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
