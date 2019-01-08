@@ -1,10 +1,68 @@
-.search-elements {
-    display: inline-block;
-}
-.fulltext-search-element {
-  float: left;
-}
+// color definitions
+$black: rgb(11, 11, 11);
+$black-12-opacity: rgba($black, .12);
+$black-14-opacity: rgba($black, .14);
+$black-20-opacity: rgba($black, .2);
+
+// general border radius
+$border-radius: 4px;
+
 .advanced-btn {
-    float: right;
-    margin-left: 16px;
+    margin-left: 12px;
+}
+
+.kui-search-panel {
+    background-color: rgba(249, 249, 249, 1);
+    border-radius: $border-radius;
+    display: inline-flex;
+    height: 40px;
+    position: relative;
+    width: 680px;
+    z-index: 10;
+}
+
+.kui-menu {
+    box-shadow: 0 3px 5px -1px $black-20-opacity, 0 6px 10px 0 $black-14-opacity, 0 1px 18px 0 $black-12-opacity;
+    background-color: rgba(249, 249, 249, 1);
+    border-radius: $border-radius;
+    position: absolute;
+
+    .kui-menu-header {
+        background-color: rgba(249, 249, 249, 1);
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+        display: inline-block;
+        height: 48px;
+        width: 100%;
+    
+        .kui-menu-title {
+          float: left;
+          font-size: 14px;
+          font-weight: 400;
+          margin-top: 4px;
+          padding: 12px;
+    
+        }
+    
+        .kui-menu-action {
+          float: right;
+          margin: 4px;
+        }
+    }
+  
+    &.extended-search {
+      min-height: 680px;
+      width: 680px;
+    }
+  
+    &.extended-search {
+      // extended search menu styling
+      z-index: 20;
+    }
+  
+  }
+
+// position of the elements inside the extended box
+.extended-search-box {
+    margin: 12px;
 }

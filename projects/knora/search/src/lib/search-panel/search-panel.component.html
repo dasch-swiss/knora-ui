@@ -1,12 +1,27 @@
-<div class="search-elements">
-    <span class="fulltext-search-element">
-        <kui-fulltext-search></kui-fulltext-search>
-    </span>
-    <span class="advanced-btn">
-        <button mat-button color="primary" (click)="openMenu()">advanced</button>
-    </span>
-</div>
+<div class="kui-search-panel">
 
-<div *ngIf="showMenu" class="extended-search-element">
-    <kui-extended-search></kui-extended-search>
+    <div class="fulltext-search">
+        <kui-fulltext-search></kui-fulltext-search>
+    </div>
+
+    <div class="advanced-btn">
+        <button mat-button color="primary" (click)="toggleMenu()">advanced</button>
+    </div>
+
+    <div *ngIf="showMenu" [@extendedSearchMenu]="focusOnExtended" class="kui-menu extended-search">
+        <div class="kui-menu-header">
+            <span class="kui-menu-title">
+                <h4>Advanced search</h4>
+            </span>
+            <span class="kui-menu-action">
+                <button mat-icon-button (click)="toggleMenu()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </span>
+        </div>
+        <div class="extended-search-box">
+            <kui-extended-search></kui-extended-search>
+        </div>
+    </div>
+
 </div>

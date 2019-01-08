@@ -1,22 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'kui-search-panel',
   templateUrl: './search-panel.component.html',
-  styleUrls: ['./search-panel.component.scss']
+  styleUrls: ['./search-panel.component.scss'],
+  animations: [
+    trigger('extendedSearchMenu',
+      [
+        state('inactive', style({ display: 'none' })),
+        state('active', style({ display: 'block' })),
+        transition('inactive => active', animate('100ms ease-in')),
+        transition('active => inactive', animate('100ms ease-out'))
+      ]
+    )
+  ]
 })
-export class SearchPanelComponent implements OnInit {
+export class SearchPanelComponent {
 
   showMenu: boolean = false;
+  focusOnExtended: string = 'inactive';
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
-  openMenu() {
-    console.log('open menu');
+  /**
+   * Show or hide the extended search menu
+   *
+   * @returns void
+   */
+  toggleMenu(): void {
     this.showMenu = !this.showMenu;
-    // https://angular.io/guide/animations
+    this.focusOnExtended = (this.focusOnExtended === 'active' ? 'inactive' : 'active');
   }
 }
