@@ -1,20 +1,21 @@
-import { async, inject, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
+import {async, TestBed} from '@angular/core/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
-import { SearchService } from './search.service';
-import { KuiCoreModule } from '../../core.module';
-import { ApiService } from '../api.service';
-import { OntologyCacheService } from './ontology-cache.service';
+import {SearchService} from './search.service';
+import {KuiCoreModule} from '../../core.module';
+import {ApiService} from '../api.service';
+import {OntologyCacheService, OntologyInformation, Properties, ResourceClasses} from './ontology-cache.service';
+import {of} from 'rxjs';
 
 describe('SearchService', () => {
     let httpTestingController: HttpTestingController;
-    let searchService: SearchService;
+    let spyOntoCache;
 
+    let searchService: SearchService;
     let expectedResources;
 
     beforeEach(() => {
-        const spyOntoCache = jasmine.createSpyObj('OntologyCacheService', ['getResourceClassDefinitions']);
+        spyOntoCache = jasmine.createSpyObj('OntologyCacheService', ['getResourceClassDefinitions']);
 
         TestBed.configureTestingModule({
             imports: [
@@ -30,6 +31,13 @@ describe('SearchService', () => {
 
         httpTestingController = TestBed.get(HttpTestingController);
         searchService = TestBed.get(SearchService);
+
+        const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+        const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+
+        const ontoInfoThing = of(new OntologyInformation({}, resourceClassesThing, propertiesThing));
+
+        spyOntoCache.getResourceClassDefinitions.and.returnValue(ontoInfoThing);
     });
 
     afterEach(() => {
@@ -40,16 +48,48 @@ describe('SearchService', () => {
         expect(searchService).toBeDefined();
     });
 
-    it('should search for the term "Narr"', async(() => {
-        expectedResources = require('../../test-data/resources/SearchResultNarr.json');
+    it('should search for the term "testding"', async(() => {
+        expectedResources = require('../../test-data/resources/Testthing.json');
 
-        searchService.doFulltextSearch('Narr').subscribe(
+        searchService.doFulltextSearch('testding').subscribe(
             (res) => {
                 expect(res.body).toEqual(expectedResources);
             }
         );
 
-        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/search/Narr?offset=0');
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/search/testding?offset=0');
+
+        expect(httpRequest.request.method).toEqual('GET');
+
+        httpRequest.flush(expectedResources);
+
+    }));
+
+    it('should search for "testding" and return a ReadResourceSequence', async(() => {
+
+        expectedResources = require('../../test-data/resources/Testthing.json');
+
+        searchService.doFullTextSearchReadResourceSequence('testding').subscribe(
+            (res) => {
+                expect(res.numberOfResources).toEqual(1);
+                expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
+                expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+
+                expect(Object.keys(res.resources[0].properties).length).toEqual(12);
+
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+                expect(res.ontologyInformation.getProperties()).toEqual(propertiesThing);
+
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                expect(res.ontologyInformation.getResourceClasses()).toEqual(resourceClassesThing);
+
+                expect(spyOntoCache.getResourceClassDefinitions.calls.count()).toBe(1);
+                expect(spyOntoCache.getResourceClassDefinitions.calls.mostRecent().args).toEqual([['http://0.0.0.0:3333/ontology/0001/anything/v2#Thing']]);
+
+            }
+        );
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/search/testding?offset=0');
 
         expect(httpRequest.request.method).toEqual('GET');
 
