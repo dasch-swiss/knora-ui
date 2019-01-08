@@ -175,19 +175,50 @@ export class SearchService extends ApiService {
     }
 
     /**
-     * Perform an extended search count query.
+     * Performs an extended search count query.
+     * TODO: mark as deprecated, use of `doExtendedSearchReadResourceSequence` recommended
      *
-     * @param {string} sparqlString the Sparql query string to be sent to Knora.
+     * @param {string} gravsearchQuery the Sparql query string to be sent to Knora.
      * @returns Observable<ApiServiceResult>
      */
-    doExtendedSearchCountQuery(sparqlString: string): Observable<ApiServiceResult> {
+    doExtendedSearchCountQuery(gravsearchQuery: string): Observable<ApiServiceResult> {
 
-        if (sparqlString === undefined || sparqlString.length === 0) {
+        if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {
             return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));
         }
 
         // return this.httpGet('/v2/searchextended/count/' + encodeURIComponent(sparqlString));
-        return this.httpPost('/v2/searchextended/count', sparqlString);
+        return this.httpPost('/v2/searchextended/count', gravsearchQuery);
+    }
+
+    /**
+     * Performs an extended search count query and turns the result into a `CountQueryResult`.
+     *
+     * @param gravsearchQuery the Sparql query string to be sent to Knora.
+     * @returns Observable<ApiServiceResult>
+     */
+    doExtendedSearchCountQueryCountQueryResult(gravsearchQuery: string): Observable<CountQueryResult> {
+
+        if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {
+            return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));
+        }
+
+        if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {
+            return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));
+        }
+
+        const res = this.httpPost('/v2/searchextended/count', gravsearchQuery);
+
+        return res.pipe(
+            mergeMap(
+                // this would return an Observable of a PromiseObservable -> combine them into one Observable
+                this.processJSONLD
+            ),
+            map(
+                // convert to a `CountQueryResult`
+                ConvertJSONLD.createCountQueryResult
+            )
+        );
     }
 
     /**

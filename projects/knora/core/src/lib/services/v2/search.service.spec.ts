@@ -218,6 +218,72 @@ OFFSET 0`;
 
     }));
 
+    it('should perform a count query for an extended search', async(() => {
 
+        const gravsearch = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+CONSTRUCT {
+    ?mainRes knora-api:isMainResource true .
+} WHERE {
+    ?mainRes a knora-api:Resource .
+
+    ?mainRes a <http://0.0.0.0:3333/ontology/0001/anything/v2#Thing> .
+
+}
+
+OFFSET 0`;
+
+        const expectedResult = require('../../test-data/resources/countQueryResult.json');
+
+        searchService.doExtendedSearchCountQuery(gravsearch).subscribe(
+            (res) => {
+                expect(res.body).toEqual(expectedResult);
+            }
+        );
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/searchextended/count');
+
+        expect(httpRequest.request.method).toEqual('POST');
+
+        expect(httpRequest.request.body).toEqual(gravsearch);
+
+        httpRequest.flush(expectedResult);
+
+    }));
+
+    it('should perform a count query for an extended search and return a CountQueryResult', async(() => {
+
+        const gravsearch = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+CONSTRUCT {
+    ?mainRes knora-api:isMainResource true .
+} WHERE {
+    ?mainRes a knora-api:Resource .
+
+    ?mainRes a <http://0.0.0.0:3333/ontology/0001/anything/v2#Thing> .
+
+}
+
+OFFSET 0`;
+
+        const expectedResult = require('../../test-data/resources/countQueryResult.json');
+
+        searchService.doExtendedSearchCountQueryCountQueryResult(gravsearch).subscribe(
+            (res) => {
+                const expectedCountQueryRes = new CountQueryResult(197);
+
+                expect(res).toEqual(expectedCountQueryRes);
+            }
+        );
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/searchextended/count');
+
+        expect(httpRequest.request.method).toEqual('POST');
+
+        expect(httpRequest.request.body).toEqual(gravsearch);
+
+        httpRequest.flush(expectedResult);
+
+    }));
 
 });
