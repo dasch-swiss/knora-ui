@@ -137,4 +137,38 @@ describe('SearchService', () => {
 
     }));
 
+    it('should perform an extended search', async(() => {
+
+        const gravsearch = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+CONSTRUCT {
+    ?mainRes knora-api:isMainResource true .
+} WHERE {
+    ?mainRes a knora-api:Resource .
+
+    ?mainRes a <http://0.0.0.0:3333/ontology/0001/anything/v2#Thing> .
+
+}
+
+OFFSET 0`;
+
+        expectedResources = require('../../test-data/resources/Testthing.json');
+
+        searchService.doExtendedSearch(gravsearch).subscribe(
+            (res) => {
+                expect(res.body).toEqual(expectedResources);
+            }
+        );
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/searchextended');
+
+        expect(httpRequest.request.method).toEqual('POST');
+
+        expect(httpRequest.request.body).toEqual(gravsearch);
+
+        httpRequest.flush(expectedResources);
+
+
+    }));
+
 });

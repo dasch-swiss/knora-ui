@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
-import { from, Observable } from 'rxjs';
-import { ApiServiceResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
+import { Observable } from 'rxjs';
+import { ApiServiceResult, CountQueryResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
 import { ConvertJSONLD } from './convert-jsonld';
 import { map, mergeMap } from 'rxjs/operators';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
@@ -17,7 +17,7 @@ export class SearchService extends ApiService {
 
     constructor(public http: HttpClient,
                 @Inject('config') public config: KuiCoreConfig,
-                public ontoCache: OntologyCacheService) {
+                private _ontologyCacheService: OntologyCacheService) {
         super(http, config);
     }
 
@@ -36,7 +36,7 @@ export class SearchService extends ApiService {
         const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);
 
         // request information about resource classes
-        return this.ontoCache.getResourceClassDefinitions(resourceClassIris).pipe(
+        return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(
             map(
                 (ontoInfo: OntologyInformation) => {
                     // add ontology information to ReadResourceSequence
@@ -97,7 +97,7 @@ export class SearchService extends ApiService {
         return this.httpGet('/v2/search/count/' + searchTerm);
     }
 
-    doFullTextSearchCountQueryCountQueryResult(searchTerm: string) {
+    doFullTextSearchCountQueryCountQueryResult(searchTerm: string): Observable<CountQueryResult> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));
