@@ -14,23 +14,29 @@ input[type="search"] {
   -webkit-appearance: none;
 }
 
+// color variables
+
 $bright: rgba(249, 249, 249, 1);
 $dark: rgba(41, 41, 41, 1);
 $black: rgb(11, 11, 11);
 $black-12-opacity: rgba($black, .12);
 $black-14-opacity: rgba($black, .14);
 $black-20-opacity: rgba($black, .2);
-$black-60-opacity: rgba($black, .6);
 
 // sizes for search element
 $search-width: 680px;
 $search-height: $search-width;
 $search-width-small-device: 480px;
 
+// general border color
 $border-color: #ebebeb;
 
 // general border radius
 $border-radius: 4px;
+
+.full-width {
+  width: 100%;
+}
 
 // position close button
 .close {
@@ -43,10 +49,6 @@ $border-radius: 4px;
 
 .show {
   display: block;
-}
-
-.full-width {
-  width: 100%;
 }
 
 .search-bar-elements {
@@ -119,8 +121,8 @@ $border-radius: 4px;
   position: absolute;
 
   &.simple-search {
-    min-height: 680px;
-    width: 680px;
+    min-height: $search-height;
+    width: $search-width;
   }
 
   &.simple-search {
