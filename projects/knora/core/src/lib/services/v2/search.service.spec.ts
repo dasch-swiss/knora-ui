@@ -102,6 +102,24 @@ describe('SearchService', () => {
 
         const expectedResult = require('../../test-data/resources/countQueryResult.json');
 
+        searchService.doFulltextSearchCountQuery('testding').subscribe(
+            (res) => {
+                expect(res.body).toEqual(expectedResult);
+            }
+        );
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/search/count/testding');
+
+        expect(httpRequest.request.method).toEqual('GET');
+
+        httpRequest.flush(expectedResult);
+
+    }));
+
+    it('should perform a count query for a fulltext search and return a count query result', async(() => {
+
+        const expectedResult = require('../../test-data/resources/countQueryResult.json');
+
         searchService.doFullTextSearchCountQueryCountQueryResult('testding').subscribe(
             (res) => {
 
