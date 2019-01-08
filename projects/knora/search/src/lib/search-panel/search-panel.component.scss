@@ -12,6 +12,10 @@ $border-radius: 4px;
 }
 
 .kui-search-panel {
+    display: flex;
+}
+
+.kui-search-bar {
     background-color: rgba(249, 249, 249, 1);
     border-radius: $border-radius;
     display: inline-flex;
