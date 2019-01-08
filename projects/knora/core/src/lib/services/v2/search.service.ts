@@ -45,10 +45,11 @@ export class SearchService extends ApiService {
                 }
             )
         );
-    };
+    }
 
     /**
-     * Perform a fulltext search.
+     * Performs a fulltext search.
+     * TODO: mark as deprecated, use of `doFullTextSearchReadResourceSequence` recommended
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
@@ -63,7 +64,14 @@ export class SearchService extends ApiService {
         return this.httpGet('/v2/search/' + searchTerm + '?offset=' + offset);
     }
 
-    doFullTextSearchReadResourceSequence(searchTerm: string, offset: number = 0) {
+    /**
+     * Performs a fulltext search and turns the result into a `ReadResourceSequence`.
+     *
+     * @param {string} searchTerm the term to search for.
+     * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @returns Observable<ApiServiceResult>
+     */
+    doFullTextSearchReadResourceSequence(searchTerm: string, offset: number = 0): Observable<ReadResourcesSequence> {
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
         }
@@ -83,9 +91,10 @@ export class SearchService extends ApiService {
     }
 
     /**
-     * Perform a fulltext search count query.
+     * Performs a fulltext search count query.
+     * TODO: mark as deprecated, use of `doFullTextSearchCountQueryCountQueryResult` recommended
      *
-     * @param {string} searchTerm the term to search for.
+     * @param searchTerm the term to search for.
      * @returns Observable<ApiServiceResult>
      */
     doFulltextSearchCountQuery(searchTerm: string): Observable<ApiServiceResult> {
@@ -97,6 +106,12 @@ export class SearchService extends ApiService {
         return this.httpGet('/v2/search/count/' + searchTerm);
     }
 
+    /**
+     * Performs a fulltext search count query and turns the result into a `CountQueryResult`.
+     *
+     * @param {string} searchTerm the term to search for.
+     * @returns Observable<CountQueryResult>
+     */
     doFullTextSearchCountQueryCountQueryResult(searchTerm: string): Observable<CountQueryResult> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
@@ -118,19 +133,44 @@ export class SearchService extends ApiService {
     }
 
     /**
-     * Perform an extended search.
+     * Performs an extended search.
+     * TODO: mark as deprecated, use of `doExtendedSearchReadResourceSequence` recommended
      *
-     * @param {string} sparqlString the Sparql query string to be sent to Knora.
+     * @param gravsearchQuery the Sparql query string to be sent to Knora.
      * @returns Observable<ApiServiceResult>
      */
-    doExtendedSearch(sparqlString: string): Observable<ApiServiceResult> {
+    doExtendedSearch(gravsearchQuery: string): Observable<ApiServiceResult> {
 
-        if (sparqlString === undefined || sparqlString.length === 0) {
+        if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {
             return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));
         }
 
         // return this.httpGet('/v2/searchextended/' + encodeURIComponent(sparqlString));
-        return this.httpPost('/v2/searchextended', sparqlString);
+        return this.httpPost('/v2/searchextended', gravsearchQuery);
+    }
+
+    /**
+     * Performs an extended search and turns the result into a `ReadResourceSequence`.
+     *
+     * @param gravsearchQuery the Sparql query string to be sent to Knora.
+     * @returns Observable<ApiServiceResult>
+     */
+    doExtendedSearchReadResourceSequence(gravsearchQuery: string): Observable<ReadResourcesSequence> {
+
+        if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {
+            return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));
+        }
+
+        const res = this.httpPost('/v2/searchextended', gravsearchQuery);
+
+        return res.pipe(
+            mergeMap(
+                this.processJSONLD
+            ),
+            mergeMap(
+                this.convertJSONLDToReadResourceSequence
+            )
+        );
 
     }
 

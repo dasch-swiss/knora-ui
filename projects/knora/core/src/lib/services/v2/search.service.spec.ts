@@ -168,7 +168,56 @@ OFFSET 0`;
 
         httpRequest.flush(expectedResources);
 
+    }));
+
+    it('should perform an extended search and return a ReadResourceSequence', async(() => {
+
+        const gravsearch = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+CONSTRUCT {
+    ?mainRes knora-api:isMainResource true .
+} WHERE {
+    ?mainRes a knora-api:Resource .
+
+    ?mainRes a <http://0.0.0.0:3333/ontology/0001/anything/v2#Thing> .
+
+}
+
+OFFSET 0`;
+
+        expectedResources = require('../../test-data/resources/Testthing.json');
+
+        searchService.doExtendedSearchReadResourceSequence(gravsearch).subscribe(
+            (res) => {
+
+                expect(res.numberOfResources).toEqual(1);
+                expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
+                expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+
+                expect(Object.keys(res.resources[0].properties).length).toEqual(12);
+
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+                expect(res.ontologyInformation.getProperties()).toEqual(propertiesThing);
+
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                expect(res.ontologyInformation.getResourceClasses()).toEqual(resourceClassesThing);
+
+                expect(spyOntoCache.getResourceClassDefinitions.calls.count()).toBe(1);
+                expect(spyOntoCache.getResourceClassDefinitions.calls.mostRecent().args).toEqual([['http://0.0.0.0:3333/ontology/0001/anything/v2#Thing']]);
+
+            }
+        );
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/searchextended');
+
+        expect(httpRequest.request.method).toEqual('POST');
+
+        expect(httpRequest.request.body).toEqual(gravsearch);
+
+        httpRequest.flush(expectedResources);
 
     }));
+
+
 
 });
