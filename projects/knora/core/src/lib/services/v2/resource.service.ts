@@ -41,7 +41,7 @@ export class ResourceService extends ApiService {
      * @param {string} iri Iri of the resource (not yet URL encoded).
      * @return {Observable<ReadResourcesSequence>}
      */
-    getReadResourceSequence(iri: string): Observable<ReadResourcesSequence> {
+    getReadResource(iri: string): Observable<ReadResourcesSequence> {
         const res: Observable<any> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));
 
         return res.pipe(

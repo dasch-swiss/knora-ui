@@ -73,7 +73,7 @@ describe('ResourceService', () => {
     it('should request a resource from Knora as a sequence of ReadResource', async(() => {
         expectedResource = require('../../test-data/resources/Testthing.json');
 
-        resourceService.getReadResourceSequence('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw').subscribe(
+        resourceService.getReadResource('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw').subscribe(
             (res: ReadResourcesSequence) => {
 
                 expect(res.numberOfResources).toEqual(1);
