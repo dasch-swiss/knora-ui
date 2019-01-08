@@ -1,6 +1,7 @@
 import { async } from '@angular/core/testing';
 import { ConvertJSONLD } from './convert-jsonld';
 import {
+    CountQueryResult,
     ReadBooleanValue,
     ReadColorValue,
     ReadDateValue,
@@ -823,6 +824,27 @@ describe('ConvertJSONLD', () => {
 
 
         });
+    }));
+
+    it('should convert a count query response', async(() => {
+
+        const jsonld = require('jsonld');
+
+        const empty = require('../../test-data/resources/countQueryResult.json');
+
+        const promises = jsonld.promises;
+        // compact JSON-LD using an empty context: expands all Iris
+        const promise = promises.compact(empty, {});
+
+        promise.then((compacted) => {
+            const countQueryRes = ConvertJSONLD.createCountQueryResult(compacted);
+
+            const expectedCountQueryRes = new CountQueryResult(197);
+
+            expect(countQueryRes).toEqual(expectedCountQueryRes);
+
+        });
+
     }));
 
 
