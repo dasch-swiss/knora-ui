@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -18,6 +18,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class SearchPanelComponent {
 
+  @Input() route: string = '/search';
   showMenu: boolean = false;
   focusOnExtended: string = 'inactive';
 

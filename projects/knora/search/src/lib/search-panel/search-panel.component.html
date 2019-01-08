@@ -1,7 +1,7 @@
 <div class="kui-search-panel">
 
     <div class="fulltext-search">
-        <kui-fulltext-search></kui-fulltext-search>
+        <kui-fulltext-search [route]="route"></kui-fulltext-search>
     </div>
 
     <div class="advanced-btn">
@@ -20,7 +20,7 @@
             </span>
         </div>
         <div class="extended-search-box">
-            <kui-extended-search></kui-extended-search>
+            <kui-extended-search [route]="route" (toggleExtendedSearchForm)="toggleMenu()"></kui-extended-search>
         </div>
     </div>
 
