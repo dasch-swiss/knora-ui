@@ -22,6 +22,32 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * Converts a JSON-LD object to a `ReadResorceSequence`.
+     * To be passed as a function pointer (arrow notation required).
+     *
+     * @param {Object} resourceResponse
+     * @returns {Observable<ReadResourcesSequence>}
+     */
+    private convertJSONLDToReadResourceSequence: (resourceResponse: Object) => Observable<ReadResourcesSequence> = (resourceResponse: Object) => {
+        // convert JSON-LD into a ReadResourceSequence
+        const resSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(resourceResponse);
+
+        // collect resource class Iris
+        const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);
+
+        // request information about resource classes
+        return this.ontoCache.getResourceClassDefinitions(resourceClassIris).pipe(
+            map(
+                (ontoInfo: OntologyInformation) => {
+                    // add ontology information to ReadResourceSequence
+                    resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);
+                    return resSeq;
+                }
+            )
+        );
+    };
+
+    /**
      * Perform a fulltext search.
      *
      * @param {string} searchTerm the term to search for.
@@ -51,24 +77,7 @@ export class SearchService extends ApiService {
             ),
             mergeMap(
                 // return Observable of ReadResourcesSequence
-                (resourceResponse: Object) => {
-                    // convert JSON-LD into a ReadResourceSequence
-                    const resSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(resourceResponse);
-
-                    // collect resource class Iris
-                    const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);
-
-                    // request information about resource classes
-                    return this.ontoCache.getResourceClassDefinitions(resourceClassIris).pipe(
-                        map(
-                            (ontoInfo: OntologyInformation) => {
-                                // add ontology information to ReadResourceSequence
-                                resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);
-                                return resSeq;
-                            }
-                        )
-                    );
-                }
+                this.convertJSONLDToReadResourceSequence
             )
         );
     }
