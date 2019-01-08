@@ -6,6 +6,7 @@ import {KuiCoreModule} from '../../core.module';
 import {ApiService} from '../api.service';
 import {OntologyCacheService, OntologyInformation, Properties, ResourceClasses} from './ontology-cache.service';
 import {of} from 'rxjs';
+import {CountQueryResult} from '../../declarations';
 
 describe('SearchService', () => {
     let httpTestingController: HttpTestingController;
@@ -94,6 +95,27 @@ describe('SearchService', () => {
         expect(httpRequest.request.method).toEqual('GET');
 
         httpRequest.flush(expectedResources);
+
+    }));
+
+    it('should perform a count query for a fulltext search', async(() => {
+
+        const expectedResult = require('../../test-data/resources/countQueryResult.json');
+
+        searchService.doFullTextSearchCountQueryCountQueryResult('testding').subscribe(
+            (res) => {
+
+                const expectedCountQueryRes = new CountQueryResult(197);
+
+                expect(res).toEqual(expectedCountQueryRes);
+            }
+        );
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/search/count/testding');
+
+        expect(httpRequest.request.method).toEqual('GET');
+
+        httpRequest.flush(expectedResult);
 
     }));
 

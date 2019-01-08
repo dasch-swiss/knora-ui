@@ -97,6 +97,26 @@ export class SearchService extends ApiService {
         return this.httpGet('/v2/search/count/' + searchTerm);
     }
 
+    doFullTextSearchCountQueryCountQueryResult(searchTerm: string) {
+
+        if (searchTerm === undefined || searchTerm.length === 0) {
+            return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));
+        }
+
+        const res = this.httpGet('/v2/search/count/' + searchTerm);
+
+        return res.pipe(
+            mergeMap(
+                // this would return an Observable of a PromiseObservable -> combine them into one Observable
+                this.processJSONLD
+            ),
+            map(
+                // convert to a `CountQueryResult`
+                ConvertJSONLD.createCountQueryResult
+            )
+        );
+    }
+
     /**
      * Perform an extended search.
      *
