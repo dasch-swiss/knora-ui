@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
@@ -26,10 +26,11 @@ export abstract class ApiService {
     /**
      * GET
      *
-     * @param {string} path
+     * @param {string} path the URL for the GET request.
+     * @param {HttpParams} params the parameters for the GET request.
      * @returns Observable of any
      */
-    httpGet(path: string, params?: any): Observable<any> {
+    httpGet(path: string, params?: HttpParams): Observable<any> {
 
         this.loading = true;
 

@@ -5,7 +5,7 @@ import { ApiServiceResult, CountQueryResult, KuiCoreConfig, ReadResourcesSequenc
 import { ConvertJSONLD } from './convert-jsonld';
 import { map, mergeMap } from 'rxjs/operators';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 /**
  * Performs searches (fulltext or extended) and search count queries into Knora.
@@ -229,18 +229,18 @@ export class SearchService extends ApiService {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
         }
 
-        const params = {};
+        let httpParams: HttpParams = new HttpParams();
 
         if (resourceClassIRI !== undefined) {
-            params['limitToResourceClass'] = resourceClassIRI;
+            httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);
         }
 
         if (projectIri !== undefined) {
-            params['limitToProject'] = projectIri;
+            httpParams = httpParams.set('limitToProject', projectIri);
         }
 
         // httpGet() expects only one argument, not 2
-        return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), params);
+        return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
 
     }
 
@@ -258,17 +258,17 @@ export class SearchService extends ApiService {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
         }
 
-        const params = {};
+        let httpParams: HttpParams = new HttpParams();
 
         if (resourceClassIRI !== undefined) {
-            params['limitToResourceClass'] = resourceClassIRI;
+            httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);
         }
 
         if (projectIri !== undefined) {
-            params['limitToProject'] = projectIri;
+            httpParams = httpParams.set('limitToProject', projectIri);
         }
 
-        const res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), params);
+        const res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
 
         return res.pipe(
             mergeMap(
