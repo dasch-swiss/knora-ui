@@ -332,6 +332,50 @@ OFFSET 0`;
 
     }));
 
+    it('should perform a search by label for "testding" restricted by resource class', async(() => {
+
+        const expectedResource = require('../../test-data/resources/Testthing.json');
+
+        searchService.searchByLabel('testding', 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing').subscribe(
+            (res) => {
+
+                expect(res.body).toEqual(expectedResource);
+            }
+        );
+
+        // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
+        const httpRequest = httpTestingController.match((request) => {
+            return request.urlWithParams === 'http://0.0.0.0:3333/v2/searchbylabel/testding?limitToResourceClass=http://0.0.0.0:3333/ontology/0001/anything/v2%23Thing';
+        });
+
+        expect(httpRequest.length).toEqual(1);
+
+        httpRequest[0].flush(expectedResource);
+
+    }));
+
+    it('should perform a search by label for "testding" restricted by project', async(() => {
+
+        const expectedResource = require('../../test-data/resources/Testthing.json');
+
+        searchService.searchByLabel('testding', undefined, 'http://rdfh.ch/projects/0001').subscribe(
+            (res) => {
+
+                expect(res.body).toEqual(expectedResource);
+            }
+        );
+
+        // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
+        const httpRequest = httpTestingController.match((request) => {
+            return request.urlWithParams === 'http://0.0.0.0:3333/v2/searchbylabel/testding?limitToProject=http://rdfh.ch/projects/0001';
+        });
+
+        expect(httpRequest.length).toEqual(1);
+
+        httpRequest[0].flush(expectedResource);
+
+    }));
+
     it('should perform a search by label for "testding"', async(() => {
 
         const expectedResource = require('../../test-data/resources/Testthing.json');
