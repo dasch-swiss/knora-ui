@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-import { ApiServiceError, ApiServiceResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
+import { ApiServiceResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
 import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';

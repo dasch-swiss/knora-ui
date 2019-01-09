@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { ApiServiceError, ApiServiceResult, KuiCoreConfig } from '../declarations';
 import { from } from 'rxjs';
 

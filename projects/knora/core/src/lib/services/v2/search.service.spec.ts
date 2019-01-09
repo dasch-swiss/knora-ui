@@ -1,12 +1,12 @@
-import {async, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import { async, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import {SearchService} from './search.service';
-import {KuiCoreModule} from '../../core.module';
-import {ApiService} from '../api.service';
-import {OntologyCacheService, OntologyInformation, Properties, ResourceClasses} from './ontology-cache.service';
-import {of} from 'rxjs';
-import {CountQueryResult} from '../../declarations';
+import { SearchService } from './search.service';
+import { KuiCoreModule } from '../../core.module';
+import { ApiService } from '../api.service';
+import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
+import { of } from 'rxjs';
+import { CountQueryResult } from '../../declarations';
 
 describe('SearchService', () => {
     let httpTestingController: HttpTestingController;

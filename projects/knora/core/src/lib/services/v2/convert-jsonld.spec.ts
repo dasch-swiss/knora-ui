@@ -698,7 +698,7 @@ describe('ConvertJSONLD', () => {
             };
 
             const expectedPage = new ReadResource('http://rdfh.ch/00505cf0a803',
-               'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page',
+                'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page',
                 'p7v',
                 [],
                 [],

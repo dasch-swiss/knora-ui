@@ -45,7 +45,7 @@ export class SearchService extends ApiService {
                 }
             )
         );
-    }
+    };
 
     /**
      * Performs a fulltext search.
