@@ -508,10 +508,10 @@ describe('ConvertJSONLD', () => {
                         'Stultifera navis (...)'
                     )
                 ],
-                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink': [
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue': [
                     new ReadLinkValue(
                         'http://rdfh.ch/50e7460a7203/values/8bdc04c8-b765-44c8-adb3-5ab536dcd051',
-                        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink',
+                        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue',
                         'http://rdfh.ch/50e7460a7203',
                         new ReadResource(
                             'http://rdfh.ch/50e7460a7203',
@@ -582,10 +582,10 @@ describe('ConvertJSONLD', () => {
                         'Stultifera navis (...)'
                     )
                 ],
-                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink': [
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue': [
                     new ReadLinkValue(
                         'http://rdfh.ch/50e7460a7203/values/8bdc04c8-b765-44c8-adb3-5ab536dcd051',
-                        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink',
+                        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue',
                         'http://rdfh.ch/50e7460a7203'
                     )
                 ]
