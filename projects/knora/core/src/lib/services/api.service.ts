@@ -60,8 +60,7 @@ export abstract class ApiService {
      *
      * @param {ApiServiceResult} resourceResponse
      */
-    processJSONLD(resourceResponse: ApiServiceResult): Observable<object> {
-        // this would return an Observable of a PromiseObservable -> combine them into one Observable
+    protected processJSONLD(resourceResponse: ApiServiceResult): Observable<object> {
 
         const resPromises = jsonld.promises;
         // compact JSON-LD using an empty context: expands all Iris

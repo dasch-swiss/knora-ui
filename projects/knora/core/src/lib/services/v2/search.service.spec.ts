@@ -48,7 +48,7 @@ describe('SearchService', () => {
         expect(searchService).toBeDefined();
     });
 
-    it('should search for the term "testding"', async(() => {
+    it('should perform a fulltext search for the term "testding"', async(() => {
         const expectedResources = require('../../test-data/resources/Testthing.json');
 
         searchService.doFulltextSearch('testding').subscribe(
@@ -58,6 +58,20 @@ describe('SearchService', () => {
         );
 
         const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/search/testding?offset=0');
+
+        expect(httpRequest.request.method).toEqual('GET');
+
+        httpRequest.flush(expectedResources);
+
+    }));
+
+    it('should perform a fulltext search for the term "testding" with offset 1', async(() => {
+
+        const expectedResources = require('../../test-data/resources/Testthing.json');
+
+        searchService.doFulltextSearch('testding', 1).subscribe();
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/search/testding?offset=1');
 
         expect(httpRequest.request.method).toEqual('GET');
 
@@ -90,6 +104,20 @@ describe('SearchService', () => {
         );
 
         const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/search/testding?offset=0');
+
+        expect(httpRequest.request.method).toEqual('GET');
+
+        httpRequest.flush(expectedResources);
+
+    }));
+
+    it('should perform a fulltext search for "testding" with offset 1 and return a ReadResourceSequence', async(() => {
+
+        const expectedResources = require('../../test-data/resources/Testthing.json');
+
+        searchService.doFullTextSearchReadResourceSequence('testding', 1).subscribe();
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/search/testding?offset=1');
 
         expect(httpRequest.request.method).toEqual('GET');
 

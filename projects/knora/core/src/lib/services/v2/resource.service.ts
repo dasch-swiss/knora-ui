@@ -48,7 +48,7 @@ export class ResourceService extends ApiService {
             ),
             mergeMap(
                 // return Observable of ReadResourcesSequence
-                (resourceResponse: Object) => {
+                (resourceResponse: object) => {
                     // convert JSON-LD into a ReadResourceSequence
                     const resSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(resourceResponse);
 
