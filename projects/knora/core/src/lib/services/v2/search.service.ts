@@ -61,7 +61,11 @@ export class SearchService extends ApiService {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
         }
 
-        return this.httpGet('/v2/search/' + searchTerm + '?offset=' + offset);
+        let httpParams = new HttpParams();
+
+        httpParams = httpParams.set('offset', offset.toString());
+
+        return this.httpGet('/v2/search/' + searchTerm, httpParams);
     }
 
     /**
@@ -76,7 +80,11 @@ export class SearchService extends ApiService {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
         }
 
-        const res: Observable<any> = this.httpGet('/v2/search/' + searchTerm + '?offset=' + offset);
+        let httpParams = new HttpParams();
+
+        httpParams = httpParams.set('offset', offset.toString());
+
+        const res: Observable<any> = this.httpGet('/v2/search/' + searchTerm, httpParams);
 
         return res.pipe(
             mergeMap(
