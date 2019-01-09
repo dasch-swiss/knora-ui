@@ -444,7 +444,7 @@ describe('OntologyCacheService', () => {
                             'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue',
                             'http://api.knora.org/ontology/knora-api/v2#LinkValue',
                             'Indicates that this resource referred to by another resource',
-                            'has incoming links',
+                            'has incoming link',
                             ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
                             false,
                             false,
