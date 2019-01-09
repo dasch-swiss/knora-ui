@@ -145,7 +145,6 @@ export class SearchService extends ApiService {
             return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));
         }
 
-        // return this.httpGet('/v2/searchextended/' + encodeURIComponent(sparqlString));
         return this.httpPost('/v2/searchextended', gravsearchQuery);
     }
 
@@ -171,7 +170,6 @@ export class SearchService extends ApiService {
                 this.convertJSONLDToReadResourceSequence
             )
         );
-
     }
 
     /**
@@ -187,7 +185,6 @@ export class SearchService extends ApiService {
             return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));
         }
 
-        // return this.httpGet('/v2/searchextended/count/' + encodeURIComponent(sparqlString));
         return this.httpPost('/v2/searchextended/count', gravsearchQuery);
     }
 
@@ -198,10 +195,6 @@ export class SearchService extends ApiService {
      * @returns Observable<ApiServiceResult>
      */
     doExtendedSearchCountQueryCountQueryResult(gravsearchQuery: string): Observable<CountQueryResult> {
-
-        if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {
-            return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));
-        }
 
         if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {
             return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));
@@ -223,6 +216,7 @@ export class SearchService extends ApiService {
 
     /**
      * Perform a search by a resource's rdfs:label.
+     * TODO: mark as deprecated, use of `searchByLabelReadResourceSequence` recommended
      *
      * @param {string} searchTerm the term to search for.
      * @param {string} [resourceClassIRI] restrict search to given resource class.
@@ -247,7 +241,42 @@ export class SearchService extends ApiService {
 
         // httpGet() expects only one argument, not 2
         return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), params);
-        // return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm));
 
+    }
+
+    /**
+     * Perform a search by a resource's rdfs:label and turns the results in a `ReadResourceSequence`.
+     *
+     * @param {string} searchTerm the term to search for.
+     * @param {string} [resourceClassIRI] restrict search to given resource class.
+     * @param {string} [projectIri] restrict search to given project.
+     * @returns Observable<ApiServiceResult>
+     */
+    searchByLabelReadResourceSequence(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ReadResourcesSequence> {
+
+        if (searchTerm === undefined || searchTerm.length === 0) {
+            return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
+        }
+
+        const params = {};
+
+        if (resourceClassIRI !== undefined) {
+            params['limitToResourceClass'] = resourceClassIRI;
+        }
+
+        if (projectIri !== undefined) {
+            params['limitToProject'] = projectIri;
+        }
+
+        const res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), params);
+
+        return res.pipe(
+            mergeMap(
+                this.processJSONLD
+            ),
+            mergeMap(
+                this.convertJSONLDToReadResourceSequence
+            )
+        );
     }
 }

@@ -13,7 +13,6 @@ describe('SearchService', () => {
     let spyOntoCache;
 
     let searchService: SearchService;
-    let expectedResources;
 
     beforeEach(() => {
         spyOntoCache = jasmine.createSpyObj('OntologyCacheService', ['getResourceClassDefinitions']);
@@ -50,7 +49,7 @@ describe('SearchService', () => {
     });
 
     it('should search for the term "testding"', async(() => {
-        expectedResources = require('../../test-data/resources/Testthing.json');
+        const expectedResources = require('../../test-data/resources/Testthing.json');
 
         searchService.doFulltextSearch('testding').subscribe(
             (res) => {
@@ -68,7 +67,7 @@ describe('SearchService', () => {
 
     it('should search for "testding" and return a ReadResourceSequence', async(() => {
 
-        expectedResources = require('../../test-data/resources/Testthing.json');
+        const expectedResources = require('../../test-data/resources/Testthing.json');
 
         searchService.doFullTextSearchReadResourceSequence('testding').subscribe(
             (res) => {
@@ -152,7 +151,7 @@ CONSTRUCT {
 
 OFFSET 0`;
 
-        expectedResources = require('../../test-data/resources/Testthing.json');
+        const expectedResources = require('../../test-data/resources/Testthing.json');
 
         searchService.doExtendedSearch(gravsearch).subscribe(
             (res) => {
@@ -185,7 +184,7 @@ CONSTRUCT {
 
 OFFSET 0`;
 
-        expectedResources = require('../../test-data/resources/Testthing.json');
+        const expectedResources = require('../../test-data/resources/Testthing.json');
 
         searchService.doExtendedSearchReadResourceSequence(gravsearch).subscribe(
             (res) => {
@@ -284,6 +283,57 @@ OFFSET 0`;
 
         httpRequest.flush(expectedResult);
 
+    }));
+
+    it('should perform a search by label for "testding"', async(() => {
+
+        const expectedResource = require('../../test-data/resources/Testthing.json');
+
+        searchService.searchByLabel('testding').subscribe(
+            (res) => {
+
+                expect(res.body).toEqual(expectedResource);
+            }
+        );
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/searchbylabel/testding');
+
+        expect(httpRequest.request.method).toEqual('GET');
+
+        httpRequest.flush(expectedResource);
+
+    }));
+
+    it('should perform a search by label for "testding"', async(() => {
+
+        const expectedResource = require('../../test-data/resources/Testthing.json');
+
+        searchService.searchByLabelReadResourceSequence('testding').subscribe(
+            (res) => {
+
+                expect(res.numberOfResources).toEqual(1);
+                expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
+                expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+
+                expect(Object.keys(res.resources[0].properties).length).toEqual(12);
+
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+                expect(res.ontologyInformation.getProperties()).toEqual(propertiesThing);
+
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                expect(res.ontologyInformation.getResourceClasses()).toEqual(resourceClassesThing);
+
+                expect(spyOntoCache.getResourceClassDefinitions.calls.count()).toBe(1);
+                expect(spyOntoCache.getResourceClassDefinitions.calls.mostRecent().args).toEqual([['http://0.0.0.0:3333/ontology/0001/anything/v2#Thing']]);
+
+            }
+        );
+
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/searchbylabel/testding');
+
+        expect(httpRequest.request.method).toEqual('GET');
+
+        httpRequest.flush(expectedResource);
     }));
 
 });
