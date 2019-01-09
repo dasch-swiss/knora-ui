@@ -376,7 +376,32 @@ OFFSET 0`;
 
     }));
 
-    it('should perform a search by label for "testding"', async(() => {
+    it('should perform a search by label for "testding" restricted by resource class and project', async(() => {
+
+        const expectedResource = require('../../test-data/resources/Testthing.json');
+
+        searchService.searchByLabel('testding', 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing', 'http://rdfh.ch/projects/0001').subscribe(
+            (res) => {
+
+                expect(res.body).toEqual(expectedResource);
+            }
+        );
+
+        // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
+        const httpRequest = httpTestingController.match((request) => {
+
+            return request.url === 'http://0.0.0.0:3333/v2/searchbylabel/testding'
+                && request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001'
+                && request.params.get('limitToResourceClass') === 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing';
+        });
+
+        expect(httpRequest.length).toEqual(1);
+
+        httpRequest[0].flush(expectedResource);
+
+    }));
+
+    it('should perform a search by label for "testding" returning a ReadResourceSequence', async(() => {
 
         const expectedResource = require('../../test-data/resources/Testthing.json');
 
