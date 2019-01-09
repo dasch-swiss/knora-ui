@@ -114,7 +114,7 @@ $border-radius: 4px;
 }
 }
 
-.salsah-menu {
+.kui-menu {
   box-shadow: 0 3px 5px -1px $black-20-opacity, 0 6px 10px 0 $black-14-opacity, 0 1px 18px 0 $black-12-opacity;
   background-color: rgba(249, 249, 249, 1);
   border-radius: $border-radius;
@@ -129,7 +129,7 @@ $border-radius: 4px;
     padding-top: 60px;
     z-index: -1;
 
-    .salsah-previous-search-list {
+    .kui-previous-search-list {
 
       .mat-list-item {
         cursor: pointer;
@@ -170,7 +170,7 @@ $border-radius: 4px;
     }     
   }
 
-  .salsah-menu.simple-search {
+  .kui-menu.simple-search {
     width: $search-width-small-device;
   }
 }
@@ -189,7 +189,7 @@ $border-radius: 4px;
     }
   }
 
-  .salsah-menu.simple-search {
+  .kui-menu.simple-search {
     width: calc(#{$search-width-small-device} - 80px);
   }
 }

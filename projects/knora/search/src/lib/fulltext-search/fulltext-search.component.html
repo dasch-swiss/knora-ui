@@ -20,8 +20,8 @@
         </div>
 
         <!-- "dropdown" menu for simple search -->
-        <div class="salsah-menu simple-search" [@fulltextSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch">
-            <mat-list class="salsah-previous-search-list">
+        <div class="kui-menu simple-search" [@fulltextSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch">
+            <mat-list class="kui-previous-search-list">
                 <mat-list-item *ngFor="let item of prevSearch | kuiReverse; let i=index">
                     <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)">{{item}}</h4>
                     <button mat-icon-button (click)="resetPrevSearch(item)">

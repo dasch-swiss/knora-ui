@@ -141,13 +141,13 @@ $search-width-small-device: 480px;
 
 }
 
-.salsah-menu {
+.kui-menu {
   box-shadow: 0 3px 5px -1px $black-20-opacity, 0 6px 10px 0 $black-14-opacity, 0 1px 18px 0 $black-12-opacity;
   background-color: rgba(249, 249, 249, 1);
   border-radius: $border-radius;
   position: absolute;
 
-  .salsah-menu-header {
+  .kui-menu-header {
     background-color: rgba(249, 249, 249, 1);
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
@@ -155,7 +155,7 @@ $search-width-small-device: 480px;
     height: 48px;
     width: 100%;
 
-    .salsah-menu-title {
+    .kui-menu-title {
       float: left;
       font-size: 14px;
       font-weight: 400;
@@ -164,7 +164,7 @@ $search-width-small-device: 480px;
 
     }
 
-    .salsah-menu-action {
+    .kui-menu-action {
       float: right;
       margin: 4px;
     }
@@ -181,7 +181,7 @@ $search-width-small-device: 480px;
     padding-top: 60px;
     z-index: -1;
 
-    .salsah-previous-search-list {
+    .kui-previous-search-list {
 
       .mat-list-item {
         cursor: pointer;
@@ -238,8 +238,8 @@ $search-width-small-device: 480px;
     }
   }
 
-  .salsah-menu.simple-search,
-  .salsah-menu.extended-search {
+  .kui-menu.simple-search,
+  .kui-menu.extended-search {
     width: $search-width-small-device;
   }
 }
@@ -259,8 +259,8 @@ $search-width-small-device: 480px;
     }
   }
 
-  .salsah-menu.simple-search,
-  .salsah-menu.extended-search {
+  .kui-menu.simple-search,
+  .kui-menu.extended-search {
     width: calc(#{$search-width-small-device} - 80px);
   }
 }
