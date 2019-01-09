@@ -433,4 +433,115 @@ OFFSET 0`;
         httpRequest.flush(expectedResource);
     }));
 
+    it('should perform a search by label for "testding" limited by resource class returning a ReadResourceSequence', async(() => {
+
+        const expectedResource = require('../../test-data/resources/Testthing.json');
+
+        searchService.searchByLabelReadResourceSequence('testding', 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing').subscribe(
+            (res) => {
+
+                expect(res.numberOfResources).toEqual(1);
+                expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
+                expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+
+                expect(Object.keys(res.resources[0].properties).length).toEqual(12);
+
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+                expect(res.ontologyInformation.getProperties()).toEqual(propertiesThing);
+
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                expect(res.ontologyInformation.getResourceClasses()).toEqual(resourceClassesThing);
+
+                expect(spyOntoCache.getResourceClassDefinitions.calls.count()).toBe(1);
+                expect(spyOntoCache.getResourceClassDefinitions.calls.mostRecent().args).toEqual([['http://0.0.0.0:3333/ontology/0001/anything/v2#Thing']]);
+
+            }
+        );
+
+        // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
+        const httpRequest = httpTestingController.match((request) => {
+
+            return request.url === 'http://0.0.0.0:3333/v2/searchbylabel/testding'
+                && request.params.get('limitToResourceClass') === 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing';
+        });
+
+        expect(httpRequest.length).toEqual(1);
+
+        httpRequest[0].flush(expectedResource);
+    }));
+
+    it('should perform a search by label for "testding" limited by project returning a ReadResourceSequence', async(() => {
+
+        const expectedResource = require('../../test-data/resources/Testthing.json');
+
+        searchService.searchByLabelReadResourceSequence('testding', undefined, 'http://rdfh.ch/projects/0001').subscribe(
+            (res) => {
+
+                expect(res.numberOfResources).toEqual(1);
+                expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
+                expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+
+                expect(Object.keys(res.resources[0].properties).length).toEqual(12);
+
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+                expect(res.ontologyInformation.getProperties()).toEqual(propertiesThing);
+
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                expect(res.ontologyInformation.getResourceClasses()).toEqual(resourceClassesThing);
+
+                expect(spyOntoCache.getResourceClassDefinitions.calls.count()).toBe(1);
+                expect(spyOntoCache.getResourceClassDefinitions.calls.mostRecent().args).toEqual([['http://0.0.0.0:3333/ontology/0001/anything/v2#Thing']]);
+
+            }
+        );
+
+        // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
+        const httpRequest = httpTestingController.match((request) => {
+
+            return request.url === 'http://0.0.0.0:3333/v2/searchbylabel/testding'
+                && request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001';
+        });
+
+        expect(httpRequest.length).toEqual(1);
+
+        httpRequest[0].flush(expectedResource);
+    }));
+
+    it('should perform a search by label for "testding" limited by resurce class and project returning a ReadResourceSequence', async(() => {
+
+        const expectedResource = require('../../test-data/resources/Testthing.json');
+
+        searchService.searchByLabelReadResourceSequence('testding', 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing', 'http://rdfh.ch/projects/0001').subscribe(
+            (res) => {
+
+                expect(res.numberOfResources).toEqual(1);
+                expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
+                expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+
+                expect(Object.keys(res.resources[0].properties).length).toEqual(12);
+
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+                expect(res.ontologyInformation.getProperties()).toEqual(propertiesThing);
+
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                expect(res.ontologyInformation.getResourceClasses()).toEqual(resourceClassesThing);
+
+                expect(spyOntoCache.getResourceClassDefinitions.calls.count()).toBe(1);
+                expect(spyOntoCache.getResourceClassDefinitions.calls.mostRecent().args).toEqual([['http://0.0.0.0:3333/ontology/0001/anything/v2#Thing']]);
+
+            }
+        );
+
+        // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
+        const httpRequest = httpTestingController.match((request) => {
+
+            return request.url === 'http://0.0.0.0:3333/v2/searchbylabel/testding'
+                && request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001'
+                && request.params.get('limitToResourceClass') === 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing';
+        });
+
+        expect(httpRequest.length).toEqual(1);
+
+        httpRequest[0].flush(expectedResource);
+    }));
 });
