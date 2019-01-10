@@ -10,10 +10,12 @@
 
 </mat-card>
 
+<!--
 <h4>Select a resource example:</h4>
 <p>
     <button mat-raised-button *ngFor="let res of resources" (click)="openResource(res.iri)">{{res.name}}</button>
 </p>
+-->
 
 <!-- <salsah-message *ngIf="errorMessage">{{errorMessage}}</salsah-message> -->
 <p>{{ontologyInfo?.getLabelForResourceClass(resource?.type)}}</p>
@@ -114,7 +116,7 @@
     <!-- Event getImages: more images are requested (previous or next set) -->
 
     <kui-still-image #OSDViewer *ngIf="resource?.incomingStillImageRepresentations?.length > 0;" [images]="resource?.stillImageRepresentationsToDisplay" [imageRangeStart]="0" [imageRangeEnd]="24" [imageChangeInterval]="25" [imageCaption]="copyright">
-        <!-- I removed the following method, which we should implement again:
+        <!-- I removed the following method, which we should implement again: -->
         <!-- (getImages)="changeOffsetForStillImageRepresentations($event)" -->
     </kui-still-image>
 
