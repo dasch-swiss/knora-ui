@@ -31,7 +31,6 @@ import { UsersComponent } from './knora-ui-examples/core-demo/users/users.compon
 
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
-import { SearchResultComponent } from './knora-ui-examples/search-demo/search-result/search-result.component';
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ResourcesComponent } from './knora-ui-examples/viewer-demo/resources/resources.component';
 
@@ -47,6 +46,7 @@ import { ModuleIndexComponent } from './partials/module-index/module-index.compo
 import { PlaygroundComponent } from './playground/playground.component';
 import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
 import { SearchPgComponent } from './playground/search-pg/search-pg.component';
+import { SearchResultComponent } from './playground/search-pg/search-result/search-result.component';
 
 const appRoutes: Routes = [
     {
@@ -145,13 +145,7 @@ const appRoutes: Routes = [
                     },
                     {
                         path: 'search',
-                        component: SearchPanelComponent,
-                        children: [
-                            {
-                                path: ':mode/:q',
-                                component: SearchResultComponent
-                            }
-                        ]
+                        component: SearchPanelComponent
                     }
                 ]
             },
@@ -266,7 +260,13 @@ const appRoutes: Routes = [
             },
             {
                 path: 'search',
-                component: SearchPgComponent
+                component: SearchPgComponent,
+                children: [
+                    {
+                        path: ':mode/:q',
+                        component: SearchResultComponent
+                    }
+                ]
             }
         ]
     },

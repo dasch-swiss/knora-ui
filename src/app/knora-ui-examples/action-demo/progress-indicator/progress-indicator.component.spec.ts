@@ -4,7 +4,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MatCardModule, MatIconModule, MatListModule, MatTabsModule } from '@angular/material';
 
 import { KuiActionModule } from '@knora/action';
-import { ModuleSubHeaderComponent } from '../../../partials/module-sub-header/module-sub-header.component';
 import { ProgressIndicatorComponent } from './progress-indicator.component';
 import { ExampleViewerComponent } from '../../../partials/example-viewer/example-viewer.component';
 
@@ -29,7 +28,6 @@ describe('ProgressIndicatorDemoComponent', () => {
             ],
             declarations: [
                 ExampleViewerComponent,
-                ModuleSubHeaderComponent,
                 ProgressIndicatorComponent
             ]
         })

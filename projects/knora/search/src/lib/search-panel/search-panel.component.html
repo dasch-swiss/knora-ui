@@ -1,0 +1,31 @@
+<div class="kui-search-panel">
+
+    <div class="kui-search-bar">
+
+        <div class="fulltext-search">
+            <kui-fulltext-search [route]="route"></kui-fulltext-search>
+        </div>
+
+        <div *ngIf="showMenu" [@extendedSearchMenu]="focusOnExtended" class="kui-menu extended-search">
+            <div class="kui-menu-header">
+                <span class="kui-menu-title">
+                    <h4>Advanced search</h4>
+                </span>
+                <span class="kui-menu-action">
+                    <button mat-icon-button (click)="toggleMenu()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </span>
+            </div>
+            <div class="extended-search-box">
+                <kui-extended-search [route]="route" (toggleExtendedSearchForm)="toggleMenu()"></kui-extended-search>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="advanced-btn">
+        <button mat-button color="primary" (click)="toggleMenu()">advanced</button>
+    </div>
+
+</div>

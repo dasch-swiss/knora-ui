@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiServiceResult } from '../../declarations';
+import { ApiServiceResult } from '../../declarations/api-service-result';
 import { ApiService } from '../api.service';
 
 /**

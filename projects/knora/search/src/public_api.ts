@@ -3,6 +3,9 @@
  */
 
 export * from './lib/search.component';
+export * from './lib/search-panel/search-panel.component';
+export * from './lib/fulltext-search/fulltext-search.component';
+
 export * from './lib/extended-search/extended-search.component';
 export * from './lib/extended-search/select-ontology/select-ontology.component';
 export * from './lib/extended-search/select-property/select-property.component';

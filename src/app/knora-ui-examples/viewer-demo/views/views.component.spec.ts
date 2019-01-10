@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewsComponent } from './views.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ModuleSubHeaderComponent } from '../../../partials/module-sub-header/module-sub-header.component';
-import { KuiViewerModule } from '../../../../../projects/knora/viewer/src/lib/viewer.module';
+
+import { KuiViewerModule } from '@knora/viewer';
 import { MatIconModule } from '@angular/material';
 
 
@@ -19,7 +19,6 @@ describe('ViewsComponent', () => {
                 RouterTestingModule
             ],
             declarations: [
-                ModuleSubHeaderComponent,
                 ViewsComponent
             ]
         })
