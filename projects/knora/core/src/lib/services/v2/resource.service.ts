@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-import { ApiServiceResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
+import { ApiServiceError, ApiServiceResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
 import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
@@ -27,7 +27,7 @@ export class ResourceService extends ApiService {
      * @param {string} iri Iri of the resource (not yet URL encoded).
      * @returns Observable<ApiServiceResult>
      */
-    getResource(iri): Observable<ApiServiceResult> {
+    getResource(iri): Observable<ApiServiceResult | ApiServiceError> {
         return this.httpGet('/v2/resources/' + encodeURIComponent(iri));
     }
 
@@ -37,8 +37,10 @@ export class ResourceService extends ApiService {
      * @param {string} iri Iri of the resource (not yet URL encoded).
      * @return {Observable<ReadResourcesSequence>}
      */
-    getReadResource(iri: string): Observable<ReadResourcesSequence> {
-        const res: Observable<any> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));
+    getReadResource(iri: string): Observable<ReadResourcesSequence | ApiServiceError> {
+        const res: Observable<ApiServiceResult | ApiServiceError> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));
+
+        // TODO: handle case of an ApiServiceError
 
         return res.pipe(
             mergeMap(

@@ -2,7 +2,7 @@ import { async, TestBed, } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from '../api.service';
 import { ResourceService } from './resource.service';
-import { ReadResourcesSequence } from '../../declarations';
+import { ApiServiceResult, ReadResourcesSequence } from '../../declarations';
 import { KuiCoreModule } from '../../core.module';
 import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
 import { of } from 'rxjs';
@@ -58,7 +58,7 @@ describe('ResourceService', () => {
         expectedResource = require('../../test-data/resources/Testthing.json');
 
         resourceService.getResource('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw').subscribe(
-            (res) => {
+            (res: ApiServiceResult) => {
                 expect(res.body).toEqual(expectedResource);
             }
         );
