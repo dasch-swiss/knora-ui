@@ -1,7 +1,6 @@
 import { ReadResource } from '../../../';
-import { KnoraConstants } from '../../knora-constants';
-
 import { OntologyInformation } from '../../../../services';
+import { KnoraConstants } from '../../knora-constants';
 import { DateRangeSalsah, DateSalsah } from '../../shared/date';
 
 /**
