@@ -34,7 +34,6 @@ import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projec
 import { ResourceComponent } from './knora-ui-examples/core-demo/resource/resource.component';
 import { UsersComponent } from './knora-ui-examples/core-demo/users/users.component';
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
-import { SearchResultComponent } from './knora-ui-examples/search-demo/search-result/search-result.component';
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
@@ -68,6 +67,7 @@ import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
 import { PlaygroundComponent } from './playground/playground.component';
 import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
 import { SearchPgComponent } from './playground/search-pg/search-pg.component';
+import { SearchResultComponent } from './playground/search-pg/search-result/search-result.component';
 
 @NgModule({
     declarations: [
