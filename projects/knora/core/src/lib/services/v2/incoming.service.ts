@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SearchService } from './search.service';
+import { ReadResourcesSequence } from '../../declarations';
 
 /**
  * Requests incoming information (regions, links, stillImageRepresentations) from Knora.
@@ -17,7 +18,7 @@ export class IncomingService extends SearchService {
     * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
     * @returns {Observable<any>}
     */
-    getIncomingRegions(resourceIRI: string, offset: number): Observable<any> {
+    getIncomingRegions(resourceIRI: string, offset: number): Observable<ReadResourcesSequence> {
         const sparqlQueryStr = `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
 
@@ -55,7 +56,7 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
 } OFFSET ${offset}
 `;
         // console.log('sparqlQueryStr ', sparqlQueryStr);
-        return this.doExtendedSearch(sparqlQueryStr);
+        return this.doExtendedSearchReadResourceSequence(sparqlQueryStr);
     }
 
     /**
@@ -66,7 +67,7 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
      * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
      * @returns {Observable<any>}
      */
-    getStillImageRepresentationsForCompoundResource(resourceIri: string, offset: number): Observable<any> {
+    getStillImageRepresentationsForCompoundResource(resourceIri: string, offset: number): Observable<ReadResourcesSequence> {
         const sparqlQueryStr = `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
 
@@ -100,7 +101,7 @@ knora-api:hasStillImageFile knora-api:objectType knora-api:File .
 OFFSET ${offset}
 `;
 
-        return this.doExtendedSearch(sparqlQueryStr);
+        return this.doExtendedSearchReadResourceSequence(sparqlQueryStr);
 
     }
 
@@ -112,7 +113,7 @@ OFFSET ${offset}
      * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
      * @returns {Observable<any>}
      */
-    getIncomingLinksForResource(resourceIri: string, offset: number): Observable<any> {
+    getIncomingLinksForResource(resourceIri: string, offset: number): Observable<ReadResourcesSequence> {
         const sparqlQueryStr = `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
 
@@ -145,7 +146,7 @@ FILTER NOT EXISTS {
 } OFFSET ${offset}
 `;
 
-        return this.doExtendedSearch(sparqlQueryStr);
+        return this.doExtendedSearchReadResourceSequence(sparqlQueryStr);
     }
 
 }

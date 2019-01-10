@@ -1,4 +1,5 @@
 import {
+    CountQueryResult,
     KnoraConstants,
     ReadBooleanValue,
     ReadColorValue,
@@ -540,5 +541,16 @@ export module ConvertJSONLD {
         // filter out duplicates
         return resourceClasses.filter(Utils.filterOutDuplicates);
 
+    }
+
+    /**
+     * Turns a JSON-LD response to a count query into a `CountQueryResult`.
+     * Expects JSON-LD with all Iris fully expanded.
+     *
+     * @param countQueryJSONLD
+     * @returns {CountQueryResult}
+     */
+    export function createCountQueryResult(countQueryJSONLD: object) {
+        return new CountQueryResult(countQueryJSONLD[KnoraConstants.schemaNumberOfItems]);
     }
 }
