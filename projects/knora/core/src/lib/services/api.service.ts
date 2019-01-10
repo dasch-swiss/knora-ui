@@ -3,7 +3,9 @@ import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
-import { ApiServiceError, ApiServiceResult, KuiCoreConfig } from '../declarations';
+import { ApiServiceError } from '../declarations/api-service-error';
+import { ApiServiceResult } from '../declarations/api-service-result';
+import { KuiCoreConfig } from '../declarations/core.config';
 import { from } from 'rxjs';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
