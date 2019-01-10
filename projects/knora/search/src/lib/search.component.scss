@@ -216,6 +216,8 @@ $search-width-small-device: 480px;
 
 .search-bar-elements {
   display: flex;
+  position: relative;
+  z-index: 100;
 }
 
 .show {

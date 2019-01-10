@@ -53,6 +53,8 @@ $border-radius: 4px;
 
 .search-bar-elements {
   display: flex;
+  position: relative;
+  z-index: 100;
 }
 
 .inactive {
