@@ -17,18 +17,17 @@ export class ResourceService extends ApiService {
 
     constructor(public http: HttpClient,
                 @Inject('config') public config: KuiCoreConfig,
-                public ontoCache: OntologyCacheService) {
+                private _ontologyCacheService: OntologyCacheService) {
         super(http, config);
     }
 
     /**
      * Given the Iri, requests the representation of a resource.
      *
-     * @param {string} iri Iri of the resource (already URL encoded).
+     * @param {string} iri Iri of the resource (not yet URL encoded).
      * @returns Observable<ApiServiceResult>
      */
     getResource(iri): Observable<ApiServiceResult> {
-        // console.log('IRI from resource service: ', iri);
         return this.httpGet('/v2/resources/' + encodeURIComponent(iri));
     }
 
@@ -56,7 +55,7 @@ export class ResourceService extends ApiService {
                     const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);
 
                     // request information about resource classes
-                    return this.ontoCache.getResourceClassDefinitions(resourceClassIris).pipe(
+                    return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(
                         map(
                             (ontoInfo: OntologyInformation) => {
                                 // add ontology information to ReadResourceSequence
