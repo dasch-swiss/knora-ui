@@ -3,8 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MatIconModule } from '@angular/material';
 
 import { PropertiesComponent } from './properties.component';
-import { ModuleSubHeaderComponent } from '../../../partials/module-sub-header/module-sub-header.component';
-import { KuiViewerModule } from '../../../../../projects/knora/viewer/src/lib/viewer.module';
+import { KuiViewerModule } from '@knora/viewer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('PropertiesComponent', () => {
@@ -20,8 +19,7 @@ describe('PropertiesComponent', () => {
                 RouterTestingModule
             ],
             declarations: [
-                PropertiesComponent,
-                ModuleSubHeaderComponent
+                PropertiesComponent
             ]
         })
             .compileComponents();
