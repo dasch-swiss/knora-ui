@@ -43,7 +43,10 @@ import { MainIntroComponent } from './landing-page/main-intro/main-intro.compone
 import { TreeComponent } from './material/tree/tree.component';
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
+// playground
 import { PlaygroundComponent } from './playground/playground.component';
+import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
+import { SearchPgComponent } from './playground/search-pg/search-pg.component';
 
 const appRoutes: Routes = [
     {
@@ -254,6 +257,20 @@ const appRoutes: Routes = [
                     }
 
                 ]
+            }
+        ]
+    },
+    {
+        path: 'playground',
+        component: PlaygroundComponent,
+        children: [
+            {
+                path: 'viewer',
+                component: ViewerPgComponent
+            },
+            {
+                path: 'search',
+                component: SearchPgComponent
             }
         ]
     },
