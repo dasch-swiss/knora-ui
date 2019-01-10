@@ -17,7 +17,7 @@ describe('IncomingService', () => {
         });
 
         incomingService = TestBed.get(IncomingService);
-        serviceSpy = spyOn(incomingService, 'doExtendedSearch').and.stub();
+        serviceSpy = spyOn(incomingService, 'doExtendedSearchReadResourceSequence').and.stub();
     });
 
     it('should be created', () => {

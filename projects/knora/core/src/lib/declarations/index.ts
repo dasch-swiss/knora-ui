@@ -88,6 +88,11 @@ export * from './api/v2/resources/read-resource';
 export * from './api/v2/resources/read-resources-sequence';
 
 /**
+ * Interface for count query response.
+ */
+export * from './api/v2/count-query/count-query-result';
+
+/**
  * Interfaces for resources
  */
 export * from './api/v2/still-image/still-image-representation';
