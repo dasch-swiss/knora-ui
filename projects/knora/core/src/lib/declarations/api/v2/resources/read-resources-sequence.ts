@@ -1,9 +1,15 @@
 import { ReadResource } from './read-resource';
+import { OntologyInformation } from '../../../../services/v2/ontology-cache.service';
 
 /**
  * Represents a sequence of resources.
  */
 export class ReadResourcesSequence {
+
+    /**
+     * Information about the entities used in the given collection of `ReadResource`.
+     */
+    public readonly ontologyInformation: OntologyInformation = new OntologyInformation({}, {}, {});
 
     /**
      *

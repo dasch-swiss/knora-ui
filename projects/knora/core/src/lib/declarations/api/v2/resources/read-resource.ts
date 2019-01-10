@@ -1,5 +1,4 @@
-import { ReadProperties } from '../../../';
-import { StillImageRepresentation } from '../still-image/still-image-representation';
+import { ReadProperties, StillImageRepresentation } from '../../../';
 
 /**
  * Represents a resource and its properties.
