@@ -58,10 +58,6 @@ const appRoutes: Routes = [
         component: LoginComponent
     },
     {
-        path: 'playground',
-        component: PlaygroundComponent
-    },
-    {
         path: 'modules',
         component: ModuleIndexComponent,
 
