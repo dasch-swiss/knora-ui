@@ -193,12 +193,12 @@ describe('SelectPropertyComponent', () => {
                 new Cardinality(
                     CardinalityOccurrence.card,
                     1,
-                    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue'
                 ),
                 new Cardinality(
                     CardinalityOccurrence.card,
                     1,
-                    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue'
                 ),
                 new Cardinality(
                     CardinalityOccurrence.card,
@@ -296,11 +296,11 @@ const initProps = {
         false,
         false,
         false),
-    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink': new Property(
-        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink',
+    'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue': new Property(
+        'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue',
         'http://api.knora.org/ontology/knora-api/v2#LinkValue',
         'Indicates that this resource referred to by another resource',
-        'has incoming links',
+        'has incoming link',
         ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
         false,
         false,

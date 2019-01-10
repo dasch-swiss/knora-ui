@@ -239,12 +239,12 @@ const initResClasses = [
             new Cardinality(
                 CardinalityOccurrence.card,
                 1,
-                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue'
             ),
             new Cardinality(
                 CardinalityOccurrence.card,
                 1,
-                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue'
             ),
             new Cardinality(
                 CardinalityOccurrence.card,
@@ -300,12 +300,12 @@ const updatedResClasses = [
             new Cardinality(
                 CardinalityOccurrence.card,
                 1,
-                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue'
             ),
             new Cardinality(
                 CardinalityOccurrence.card,
                 1,
-                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLink'
+                'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue'
             ),
             new Cardinality(
                 CardinalityOccurrence.card,
