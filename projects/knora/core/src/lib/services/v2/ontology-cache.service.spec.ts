@@ -706,7 +706,7 @@ describe('OntologyCacheService', () => {
 
         }));
 
-        fit('should get an internal representation of a resource class from the cache', inject([OntologyService], (ontoService) => {
+        it('should get an internal representation of a resource class from the cache', inject([OntologyService], (ontoService) => {
 
             // serve ontology as JSON-LD when requested
             spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake(serveOntology);
@@ -890,7 +890,7 @@ describe('OntologyCacheService', () => {
             );
         }));
 
-        fit('should sort by label resource classes and properties in asc or desc order', inject([OntologyService], (ontoService) => {
+        it('should sort by label resource classes and properties in asc or desc order', inject([OntologyService], (ontoService) => {
 
             // serve ontology as JSON-LD when requested
             spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake(serveOntology);
@@ -913,7 +913,7 @@ describe('OntologyCacheService', () => {
                     expect(resClassSortedAsc[0].label).toEqual('Archive');
                     expect(resClassSortedDesc[0].label).toEqual('Written source');
                     expect(propSortedAsc[0].label).toEqual('Additional Folium');
-                    expect(propSortedDesc[0].label).toEqual('is a part of');
+                    expect(propSortedDesc[0].label).toEqual(undefined);
 
                 });
         }));

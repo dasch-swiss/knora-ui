@@ -276,9 +276,16 @@ export class OntologyInformation {
 
         // resourceClasses order by label in ascending order
         resClasses.sort((a: ResourceClass, b: ResourceClass) => {
-            if (a.label < b.label) {
+            // dealing with 'undefined' labels
+            if (a.label === undefined) {
+                return 1;
+            } else if (b.label === undefined) {
                 return -1;
-            } else if (a.label > b.label) {
+            }
+
+            if (a.label.toLowerCase() < b.label.toLowerCase()) {
+                return -1;
+            } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
                 return 1;
             } else {
                 return 0;
@@ -343,9 +350,16 @@ export class OntologyInformation {
 
         // properties order by label in ascending order
         properties.sort((a: Property, b: Property) => {
-            if (a.label < b.label) {
+            // dealing with 'undefined' labels
+            if (a.label === undefined) {
+                return 1;
+            } else if (b.label === undefined) {
                 return -1;
-            } else if (a.label > b.label) {
+            }
+
+            if (a.label.toLowerCase() < b.label.toLowerCase()) {
+                return -1;
+            } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
                 return 1;
             } else {
                 return 0;
