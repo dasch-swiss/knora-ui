@@ -132,6 +132,17 @@ export class ExtendedSearchComponent implements OnInit {
             (ontoInfo: OntologyInformation) => {
 
                 this.resourceClasses = ontoInfo.getResourceClassesAsArray();
+                // sort resources in alphabetical order by label
+                this.resourceClasses.sort((a: ResourceClass, b: ResourceClass) => {
+                    if (a.label < b.label) {
+                        return -1;
+                    } else if (a.label > b.label) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+
+                });
                 this.properties = ontoInfo.getProperties();
 
             }
