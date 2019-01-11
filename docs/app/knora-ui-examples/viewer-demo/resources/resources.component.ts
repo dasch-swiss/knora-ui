@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { StillImageRepresentation } from '../../../../../projects/knora/core/src/lib/declarations';
 import { AppDemo } from '../../../app.config';
 
 @Component({

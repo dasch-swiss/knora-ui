@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ApiServiceResult, KnoraConstants, Utils } from '../../declarations';
+import { ApiServiceResult } from '../../declarations/api-service-result';
+import { KnoraConstants } from '../../declarations/api/knora-constants';
+import { Utils } from '../../declarations/utils';
 import { OntologyService } from './ontology.service';
 import { forkJoin, from, Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
