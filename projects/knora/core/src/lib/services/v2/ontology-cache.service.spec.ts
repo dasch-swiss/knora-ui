@@ -720,14 +720,6 @@ describe('OntologyCacheService', () => {
 
                     const resourceClasses = ontoRes.getResourceClasses();
 
-                    const resClassSortedAsc = ontoRes.getResourceClassesAsArray(true);
-
-                    const resClassSortedDesc = ontoRes.getResourceClassesAsArray(false);
-
-                    const propSortedAsc = ontoRes.getPropertiesAsArray(true);
-
-                    const propSortedDesc = ontoRes.getPropertiesAsArray(false);
-
                     const personExpected = new ResourceClass(
                         'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
                         'person.png',
@@ -894,12 +886,36 @@ describe('OntologyCacheService', () => {
                     );
 
                     expect(resourceClasses['http://0.0.0.0:3333/ontology/0801/beol/v2#person']).toEqual(personExpected);
+                }
+            );
+        }));
+
+        fit('should sort by label resource classes and properties in asc or desc order', inject([OntologyService], (ontoService) => {
+
+            // serve ontology as JSON-LD when requested
+            spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake(serveOntology);
+
+            expect(ontologyCacheService).toBeDefined();
+
+            const ontoResponseObs: Observable<OntologyInformation> = ontologyCacheService.getEntityDefinitionsForOntologies(['http://0.0.0.0:3333/ontology/0801/beol/v2']);
+
+            ontoResponseObs.subscribe(
+                (ontoRes: OntologyInformation) => {
+
+                    const resClassSortedAsc = ontoRes.getResourceClassesAsArray(true);
+
+                    const resClassSortedDesc = ontoRes.getResourceClassesAsArray(false);
+
+                    const propSortedAsc = ontoRes.getPropertiesAsArray(true);
+
+                    const propSortedDesc = ontoRes.getPropertiesAsArray(false);
+
                     expect(resClassSortedAsc[0].label).toEqual('Archive');
                     expect(resClassSortedDesc[0].label).toEqual('Written source');
                     expect(propSortedAsc[0].label).toEqual('Additional Folium');
                     expect(propSortedDesc[0].label).toEqual('is a part of');
-                }
-            );
+
+                });
         }));
 
 
