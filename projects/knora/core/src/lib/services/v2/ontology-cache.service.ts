@@ -261,9 +261,10 @@ export class OntologyInformation {
     /**
      * Returns all resource classes as an array.
      *
+     * @param {boolean} sortAsc sort resource classes by label in ascending order by default
      * @returns ResourceClass[]
      */
-    getResourceClassesAsArray(): Array<ResourceClass> {
+    getResourceClassesAsArray(sortAsc: boolean = true): Array<ResourceClass> {
 
         const resClasses: Array<ResourceClass> = [];
 
@@ -271,6 +272,22 @@ export class OntologyInformation {
         for (const resClassIri in this.resourceClasses) {
             const resClass: ResourceClass = this.resourceClasses[resClassIri];
             resClasses.push(resClass);
+        }
+
+        // resourceClasses order by label in ascending order
+        resClasses.sort((a: ResourceClass, b: ResourceClass) => {
+            if (a.label < b.label) {
+                return -1;
+            } else if (a.label > b.label) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
+        // resourceClasses order by label in descending order
+        if (!sortAsc) {
+            resClasses.reverse();
         }
 
         return resClasses;
@@ -311,9 +328,10 @@ export class OntologyInformation {
     /**
      * Returns all properties as an array.
      *
+     * @param {boolean} sortAsc sort properties by label in ascending order by default
      * @returns Property[] - all properties as an array.
      */
-    getPropertiesAsArray(): Array<Property> {
+    getPropertiesAsArray(sortAsc: boolean = true): Array<Property> {
 
         const properties: Array<Property> = [];
 
@@ -321,6 +339,22 @@ export class OntologyInformation {
         for (const propIri in this.properties) {
             const prop: Property = this.properties[propIri];
             properties.push(prop);
+        }
+
+        // properties order by label in ascending order
+        properties.sort((a: Property, b: Property) => {
+            if (a.label < b.label) {
+                return -1;
+            } else if (a.label > b.label) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
+        // properties order by label in descending order
+        if (!sortAsc) {
+            properties.reverse();
         }
 
         return properties;

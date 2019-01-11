@@ -24,7 +24,7 @@ describe('OntologyCacheService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({name: '', api: 'http://0.0.0.0:3333', app: '', media: ''})
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
             ],
             providers: [
                 ApiService,
@@ -684,7 +684,8 @@ describe('OntologyCacheService', () => {
                             true,
                             false,
                             false
-                        )};
+                        )
+                    };
 
                     const expectedProperties = new Properties();
 
@@ -701,11 +702,11 @@ describe('OntologyCacheService', () => {
                     expect(props).toEqual(expectedProperties);
 
                 }
-                );
+            );
 
         }));
 
-        it('should get an internal representation of a resource class from the cache', inject([OntologyService], (ontoService) => {
+        fit('should get an internal representation of a resource class from the cache', inject([OntologyService], (ontoService) => {
 
             // serve ontology as JSON-LD when requested
             spyOn(ontoService, 'getAllEntityDefinitionsForOntologies').and.callFake(serveOntology);
@@ -718,6 +719,14 @@ describe('OntologyCacheService', () => {
                 (ontoRes: OntologyInformation) => {
 
                     const resourceClasses = ontoRes.getResourceClasses();
+
+                    const resClassSortedAsc = ontoRes.getResourceClassesAsArray(true);
+
+                    const resClassSortedDesc = ontoRes.getResourceClassesAsArray(false);
+
+                    const propSortedAsc = ontoRes.getPropertiesAsArray(true);
+
+                    const propSortedDesc = ontoRes.getPropertiesAsArray(false);
 
                     const personExpected = new ResourceClass(
                         'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
@@ -885,11 +894,14 @@ describe('OntologyCacheService', () => {
                     );
 
                     expect(resourceClasses['http://0.0.0.0:3333/ontology/0801/beol/v2#person']).toEqual(personExpected);
-
+                    expect(resClassSortedAsc[0].label).toEqual('Archive');
+                    expect(resClassSortedDesc[0].label).toEqual('Written source');
+                    expect(propSortedAsc[0].label).toEqual('Additional Folium');
+                    expect(propSortedDesc[0].label).toEqual('is a part of');
                 }
             );
-
         }));
+
 
         it('should get an internal representation of a property from the cache', inject([OntologyService], (ontoService) => {
 
