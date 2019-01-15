@@ -199,6 +199,26 @@ export class OntologyInformation {
         private properties: Properties) {
     }
 
+    sortFunc = (a: ResourceClass | Property, b: ResourceClass | Property) => {
+        // dealing with 'undefined' labels
+        if (a.label === undefined) {
+            return 1;
+        } else if (b.label === undefined) {
+            return -1;
+        }
+
+        const labelA = a.label.toLowerCase();
+        const labelB = b.label.toLowerCase();
+
+        if (labelA < labelB) {
+            return -1;
+        } else if (labelA > labelB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     /**
      * Merge the given [[OntologyInformation]] into the current instance,
      * updating the existing information.
@@ -276,20 +296,8 @@ export class OntologyInformation {
 
         // resourceClasses order by label in ascending order
         resClasses.sort((a: ResourceClass, b: ResourceClass) => {
-            // dealing with 'undefined' labels
-            if (a.label === undefined) {
-                return 1;
-            } else if (b.label === undefined) {
-                return -1;
-            }
-
-            if (a.label.toLowerCase() < b.label.toLowerCase()) {
-                return -1;
-            } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
-                return 1;
-            } else {
-                return 0;
-            }
+            const sorting = this.sortFunc(a, b);
+            return sorting;
         });
 
         // resourceClasses order by label in descending order
@@ -350,20 +358,8 @@ export class OntologyInformation {
 
         // properties order by label in ascending order
         properties.sort((a: Property, b: Property) => {
-            // dealing with 'undefined' labels
-            if (a.label === undefined) {
-                return 1;
-            } else if (b.label === undefined) {
-                return -1;
-            }
-
-            if (a.label.toLowerCase() < b.label.toLowerCase()) {
-                return -1;
-            } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
-                return 1;
-            } else {
-                return 0;
-            }
+            const sorting = this.sortFunc(a, b);
+            return sorting;
         });
 
         // properties order by label in descending order
