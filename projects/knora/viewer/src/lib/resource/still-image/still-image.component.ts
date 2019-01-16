@@ -68,20 +68,6 @@ export class StillImageRepresentation {
 }
 
 /**
- * Sends a requests to the parent component to load more StillImageRepresentations.
- */
-export class RequestStillImageRepresentations {
-
-    /**
-     *
-     * @param offsetChange the relative change of the offset in order to get more incoming StillImageRepresentations for the resource currently being displayed. Either 1 or -1.
-     * @param whenLoadedCB a callback function that is called when more incoming StillImageRepresentations have been requested and the answer arrived from the server.
-     */
-    constructor(readonly offsetChange: number, readonly whenLoadedCB: (numberOfImages: number) => void) {
-    }
-}
-
-/**
  * Represents a geometry belonging to a specific region.
  */
 export class GeometryForRegion {
@@ -109,18 +95,9 @@ export class GeometryForRegion {
 export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
     @Input() images: StillImageRepresentation[];
-    @Input() imageRangeStart: number;  // index first image of this.images to be displayed
-    @Input() imageRangeEnd: number; // index of last image of this.images to be displayed.
-    @Input() imageChangeInterval: number; // the size of the interval when displaying more images of this.images
-
     @Input() imageCaption?: string;
 
-    @Output() getImages = new EventEmitter<RequestStillImageRepresentations>(); // sends a message to the parent component (object.component) to load the next or previous page of results (images) from the server
     @Output() regionHovered = new EventEmitter<string>();
-
-    // the paging limit should be defined in the configuration of the app
-    pagingLimit: number = 25;
-
 
     private viewer;
     private regions = {};
@@ -183,13 +160,6 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             });
 
             imageXOffset++;
-
-            // 5 images per row
-            /*
-            if (imageXOffset % 5 === 0) {
-                imageYOffset += 2;
-                imageXOffset = 0;
-            }*/
         }
 
         return tileSources;
@@ -232,119 +202,6 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Get the more images from the server by requesting the previous page of results for the current resource (decrease offset).
-     */
-    private gotoLeft() {
-
-        // TODO: move left on this.images
-        // TODO: if necessary, request more images from the server
-
-        if (this.imageRangeStart - this.imageChangeInterval >= 0) {
-            // this.images has more images to display
-            this.imageRangeStart -= this.imageChangeInterval;
-            this.imageRangeEnd -= this.imageChangeInterval;
-
-            this.openImages();
-            this.renderRegions();
-        } else if (this.imageRangeStart > 0) {
-            // fewer remaining images than interval, show remaining images
-            this.imageRangeEnd -= this.imageRangeStart;
-            this.imageRangeStart = 0;
-
-            this.openImages();
-            this.renderRegions();
-        }
-        {
-            // this.images cannot display more images of length interval
-            // request more images from the server using a negative offset
-
-            // TODO: implement getting previous offset (also in parent component)
-        }
-
-    }
-
-    /**
-     * Get the more images from the server by requesting the next page of results for the current resource (increase offset).
-     */
-    private gotoRight() {
-
-        if (this.imageRangeEnd < this.images.length - 1) {
-            // this.images has more images to display
-
-            if (this.imageRangeEnd + this.imageChangeInterval < this.images.length) {
-                // the whole next interval can be displayed
-                console.log(`display next interval`);
-
-                this.imageRangeStart += this.imageChangeInterval;
-                this.imageRangeEnd += this.imageChangeInterval;
-            } else {
-                console.log(`display remaining images`);
-                // less than the interval can be displayed just display remaining images
-                const remainingDiff = this.images.length - this.imageRangeEnd + 1;
-
-                this.imageRangeStart += remainingDiff;
-                this.imageRangeEnd += remainingDiff;
-
-                // TODO: deactivate next button
-
-            }
-
-            this.openImages();
-            this.renderRegions();
-
-        } else if (this.images.length % this.pagingLimit === 0) { // paging always returned full result lists, so there could be more data to fetch
-            console.log(`request more images`);
-            // this.images cannot display more images of length interval
-            // request more images from the server using a positive offset
-
-            // function called when parent component loaded new images
-            const callback = (numberOfImages: number) => {
-
-                if (numberOfImages >= this.imageChangeInterval) {
-                    // more images were loaded than are actually to be displayed
-
-                    this.imageRangeStart += this.imageChangeInterval;
-                    this.imageRangeEnd += this.imageChangeInterval;
-
-                    this.openImages();
-                    this.renderRegions();
-                } else if (numberOfImages > 0) {
-                    // the amount of new images in less than the interval, show everything that can be shown
-
-                    this.imageRangeStart += numberOfImages;
-                    this.imageRangeEnd += numberOfImages;
-
-                    this.openImages();
-                    this.renderRegions();
-                } else {
-                    // no new images could be returned, display remaining images (there are fewer than this.imageChangeInterval)
-                    const remainingImages: number = this.images.length - 1 - this.imageRangeEnd;
-
-                    this.imageRangeStart += remainingImages;
-                    this.imageRangeEnd += remainingImages;
-
-                    // TODO: no new images can be loaded -> deactivate control in GUI (note that perhaps sufficient permissions were missing, so we actually cannot be sure that higher offsets still deliver images)
-
-                    this.openImages();
-                    this.renderRegions();
-
-                }
-
-
-            };
-
-            const msg = new RequestStillImageRepresentations(1, callback);
-
-            this.getImages.emit(msg);
-
-        } else {
-            // no more data to fetch
-            // TODO: deactivate next button
-
-        }
-    }
-
-    /**
      * Renders all regions to be found in [[this.images]].
      * (Although this.images is a Angular Input property, the built-in change detection of Angular does not detect changes in complex objects or arrays, only reassignment of objects/arrays.
      * Use this method if additional regions were added to the resources.images)
@@ -361,7 +218,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @param regionIri the Iri of the region whose polygon elements should be highlighted..
      */
-    highlightRegion(regionIri) {
+    private highlightRegion(regionIri) {
         const activeRegion: SVGPolygonElement = this.regions[regionIri];
 
         if (activeRegion !== undefined && Array.isArray(activeRegion)) {
@@ -377,7 +234,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @param regionIri the Iri of the region whose polygon elements should be unhighlighted..
      */
-    unhighlightRegion(regionIri) {
+    private unhighlightRegion(regionIri) {
         const activeRegion: SVGPolygonElement = this.regions[regionIri];
 
         if (activeRegion !== undefined && Array.isArray(activeRegion)) {
@@ -437,7 +294,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             });
 
         // display only the defined range of this.images
-        const tileSources: Object[] = StillImageComponent.prepareTileSourcesFromFileValues(fileValues.slice(this.imageRangeStart, this.imageRangeEnd + 1));
+        const tileSources: Object[] = StillImageComponent.prepareTileSourcesFromFileValues(fileValues);
 
         this.viewer.clearOverlays();
         this.viewer.open(tileSources);
@@ -456,14 +313,14 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             const aspectRatio = (image.stillImageFileValue.dimY / image.stillImageFileValue.dimX);
 
             // collect all geometries belonging to this page
-            let geometries: GeometryForRegion[] = [];
+            const geometries: GeometryForRegion[] = [];
             image.regions.map((reg) => {
 
                 this.regions[reg.regionResource.id] = [];
-                let geoms = reg.getGeometries();
+                const geoms = reg.getGeometries();
 
                 geoms.map((geom) => {
-                    let geomForReg = new GeometryForRegion(geom.geometry, reg.regionResource);
+                    const geomForReg = new GeometryForRegion(geom.geometry, reg.regionResource);
 
                     geometries.push(geomForReg);
                 });
@@ -493,9 +350,9 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             });
 
             // render all geometries for this page
-            for (let geom of geometries) {
+            for (const geom of geometries) {
 
-                let geometry = geom.geometry;
+                const geometry = geom.geometry;
                 this.createSVGOverlay(geom.region.id, geometry, aspectRatio, imageXOffset, geom.region.label);
 
             }

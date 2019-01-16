@@ -103,7 +103,7 @@ describe('StillImageOSDViewerComponent', () => {
         host.resourcesHost = images;
         fixture.detectChanges();
 
-        component.highlightRegion('http://rdfh.ch/b6b64a62b006');
+        component['highlightRegion']('http://rdfh.ch/b6b64a62b006');
         fixture.detectChanges();
 
         const overlay = component['viewer'].svgOverlay();
@@ -114,7 +114,7 @@ describe('StillImageOSDViewerComponent', () => {
         let attr = regionSvgEle.getAttribute('class');
         expect(attr).toEqual('roi-svgoverlay active');
 
-        component.unhighlightRegion('http://rdfh.ch/b6b64a62b006');
+        component['unhighlightRegion']('http://rdfh.ch/b6b64a62b006');
         fixture.detectChanges();
 
         attr = regionSvgEle.getAttribute('class');
@@ -128,8 +128,8 @@ describe('StillImageOSDViewerComponent', () => {
 
 @Component({
     template: `
-        <kui-still-image [images]="resourcesHost" [imageRangeStart]="0" [imageRangeEnd]="0" [imageChangeInterval]="1"
-                         [imageCaption]="caption" (regionHovered)="regionActive($event)">
+        <kui-still-image [images]="resourcesHost"
+                         (regionHovered)="regionActive($event)">
         </kui-still-image>`
 })
 class TestHostComponent {
