@@ -10,6 +10,7 @@ import {
 } from '@knora/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
+import { OntologyInformation } from '@knora/core';
 
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
@@ -147,6 +148,9 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
                 }
             }
         }
+
+        // sort properties by label (ascending)
+        propsArray.sort(OntologyInformation.sortFunc);
 
         this.propertiesAsArray = propsArray;
     }
