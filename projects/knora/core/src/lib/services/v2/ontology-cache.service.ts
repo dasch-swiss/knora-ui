@@ -200,6 +200,33 @@ export class OntologyInformation {
     }
 
     /**
+     * Sorts an array of `ResourceClass` or `Property` by label.
+     *
+     * @param a first element
+     * @param b second element
+     * @return negative -1 if the first element is considered lower than the second, 1 if the second element is considered bigger, 0 if they are equal
+     */
+    static sortFunc(a: ResourceClass | Property, b: ResourceClass | Property) {
+        // dealing with 'undefined' labels
+        if (a.label === undefined) {
+            return 1;
+        } else if (b.label === undefined) {
+            return -1;
+        }
+
+        const labelA = a.label.toLowerCase();
+        const labelB = b.label.toLowerCase();
+
+        if (labelA < labelB) {
+            return -1;
+        } else if (labelA > labelB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
      * Merge the given [[OntologyInformation]] into the current instance,
      * updating the existing information.
      * This is necessary when a service like the search fetches new results
@@ -261,9 +288,10 @@ export class OntologyInformation {
     /**
      * Returns all resource classes as an array.
      *
+     * @param {boolean} sortAsc sort resource classes by label in ascending order by default
      * @returns ResourceClass[]
      */
-    getResourceClassesAsArray(): Array<ResourceClass> {
+    getResourceClassesAsArray(sortAsc: boolean = true): Array<ResourceClass> {
 
         const resClasses: Array<ResourceClass> = [];
 
@@ -271,6 +299,14 @@ export class OntologyInformation {
         for (const resClassIri in this.resourceClasses) {
             const resClass: ResourceClass = this.resourceClasses[resClassIri];
             resClasses.push(resClass);
+        }
+
+        // resourceClasses order by label in ascending order
+        resClasses.sort(OntologyInformation.sortFunc);
+
+        // resourceClasses order by label in descending order
+        if (!sortAsc) {
+            resClasses.reverse();
         }
 
         return resClasses;
@@ -311,9 +347,10 @@ export class OntologyInformation {
     /**
      * Returns all properties as an array.
      *
+     * @param {boolean} sortAsc sort properties by label in ascending order by default
      * @returns Property[] - all properties as an array.
      */
-    getPropertiesAsArray(): Array<Property> {
+    getPropertiesAsArray(sortAsc: boolean = true): Array<Property> {
 
         const properties: Array<Property> = [];
 
@@ -321,6 +358,14 @@ export class OntologyInformation {
         for (const propIri in this.properties) {
             const prop: Property = this.properties[propIri];
             properties.push(prop);
+        }
+
+        // properties order by label in ascending order
+        properties.sort(OntologyInformation.sortFunc);
+
+        // properties order by label in descending order
+        if (!sortAsc) {
+            properties.reverse();
         }
 
         return properties;
