@@ -206,7 +206,7 @@ export class OntologyInformation {
      * @param b second element
      * @return negative -1 if the first element is considered lower than the second, 1 if the second element is considered bigger, 0 if they are equal
      */
-    static sortFunc = (a: ResourceClass | Property, b: ResourceClass | Property) => {
+    static sortFunc(a: ResourceClass | Property, b: ResourceClass | Property) {
         // dealing with 'undefined' labels
         if (a.label === undefined) {
             return 1;
