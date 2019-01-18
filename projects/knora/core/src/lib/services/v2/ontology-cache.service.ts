@@ -200,6 +200,33 @@ export class OntologyInformation {
     }
 
     /**
+     * Sorts an array of `ResourceClass` or `Property` by label.
+     *
+     * @param a first element
+     * @param b second element
+     * @return negative -1 if the first element is considered lower than the second, 1 if the second element is considered bigger, 0 if they are equal
+     */
+    static sortFunc(a: ResourceClass | Property, b: ResourceClass | Property) {
+        // dealing with 'undefined' labels
+        if (a.label === undefined) {
+            return 1;
+        } else if (b.label === undefined) {
+            return -1;
+        }
+
+        const labelA = a.label.toLowerCase();
+        const labelB = b.label.toLowerCase();
+
+        if (labelA < labelB) {
+            return -1;
+        } else if (labelA > labelB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
      * Merge the given [[OntologyInformation]] into the current instance,
      * updating the existing information.
      * This is necessary when a service like the search fetches new results
@@ -275,22 +302,7 @@ export class OntologyInformation {
         }
 
         // resourceClasses order by label in ascending order
-        resClasses.sort((a: ResourceClass, b: ResourceClass) => {
-            // dealing with 'undefined' labels
-            if (a.label === undefined) {
-                return 1;
-            } else if (b.label === undefined) {
-                return -1;
-            }
-
-            if (a.label.toLowerCase() < b.label.toLowerCase()) {
-                return -1;
-            } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
-                return 1;
-            } else {
-                return 0;
-            }
-        });
+        resClasses.sort(OntologyInformation.sortFunc);
 
         // resourceClasses order by label in descending order
         if (!sortAsc) {
@@ -349,22 +361,7 @@ export class OntologyInformation {
         }
 
         // properties order by label in ascending order
-        properties.sort((a: Property, b: Property) => {
-            // dealing with 'undefined' labels
-            if (a.label === undefined) {
-                return 1;
-            } else if (b.label === undefined) {
-                return -1;
-            }
-
-            if (a.label.toLowerCase() < b.label.toLowerCase()) {
-                return -1;
-            } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
-                return 1;
-            } else {
-                return 0;
-            }
-        });
+        properties.sort(OntologyInformation.sortFunc);
 
         // properties order by label in descending order
         if (!sortAsc) {
