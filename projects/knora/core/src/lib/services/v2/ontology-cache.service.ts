@@ -199,7 +199,14 @@ export class OntologyInformation {
         private properties: Properties) {
     }
 
-    sortFunc = (a: ResourceClass | Property, b: ResourceClass | Property) => {
+    /**
+     * Sorts an array of `ResourceClass` or `Property` by label.
+     *
+     * @param a first element
+     * @param b second element
+     * @return negative -1 if the first element is considered lower than the second, 1 if the second element is considered bigger, 0 if they are equal
+     */
+    static sortFunc = (a: ResourceClass | Property, b: ResourceClass | Property) => {
         // dealing with 'undefined' labels
         if (a.label === undefined) {
             return 1;
@@ -295,10 +302,7 @@ export class OntologyInformation {
         }
 
         // resourceClasses order by label in ascending order
-        resClasses.sort((a: ResourceClass, b: ResourceClass) => {
-            const sorting = this.sortFunc(a, b);
-            return sorting;
-        });
+        resClasses.sort(OntologyInformation.sortFunc);
 
         // resourceClasses order by label in descending order
         if (!sortAsc) {
@@ -357,10 +361,7 @@ export class OntologyInformation {
         }
 
         // properties order by label in ascending order
-        properties.sort((a: Property, b: Property) => {
-            const sorting = this.sortFunc(a, b);
-            return sorting;
-        });
+        properties.sort(OntologyInformation.sortFunc);
 
         // properties order by label in descending order
         if (!sortAsc) {
