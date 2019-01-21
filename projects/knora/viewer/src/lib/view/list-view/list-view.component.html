@@ -1,3 +1,10 @@
 <p>
-  list-view works!
+  list-view still works!
 </p>
+
+<div *ngFor="let res of result">
+  <h3 mat-line>{{res.label}} ({{ontologyInfo?.getLabelForResourceClass(res.type)}})</h3>
+  <div mat-line *ngFor="let prop of res.properties | kuiKey">
+    <span>{{ontologyInfo?.getLabelForProperty(prop.key)}}</span>
+  </div>
+</div>
