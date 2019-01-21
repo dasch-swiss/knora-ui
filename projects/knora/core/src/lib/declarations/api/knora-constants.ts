@@ -60,10 +60,10 @@ export class KnoraConstants {
 
     public static RdfProperty: string = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property';
     public static RdfsSchema: string = 'http://www.w3.org/2000/01/rdf-schema' + KnoraConstants.PathSeparator;
-    public static RdfsLabel: string = KnoraConstants.RdfsSchema + '#label';
-    public static RdfsComment: string = KnoraConstants.RdfsSchema + '#comment';
-    public static RdfsSubclassOf: string = KnoraConstants.RdfsSchema + '#subClassOf';
-    public static subPropertyOf: string = KnoraConstants.RdfsSchema + '#subPropertyOf';
+    public static RdfsLabel: string = KnoraConstants.RdfsSchema + 'label';
+    public static RdfsComment: string = KnoraConstants.RdfsSchema + 'comment';
+    public static RdfsSubclassOf: string = KnoraConstants.RdfsSchema + 'subClassOf';
+    public static subPropertyOf: string = KnoraConstants.RdfsSchema + 'subPropertyOf';
 
     public static owl: string = 'http://www.w3.org/2002/07/owl';
 
