@@ -90,6 +90,25 @@ describe('SpecifyPropertyValueComponent', () => {
         expect(testHostComponent.specifyPropValueComp).toBeTruthy();
     });
 
+    it('should have a reference to the active subscription to valueChanges after initialization', () => {
+        expect(testHostComponent.specifyPropValueComp.formSubscription).toBeDefined();
+
+        expect(testHostComponent.specifyPropValueComp.formSubscription.closed).toBeFalsy();
+
+    });
+
+    it('should unsubscribe from the subscription to valueChanges when being destroyed', () => {
+        testHostComponent.specifyPropValueComp.ngOnDestroy();
+
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent.specifyPropValueComp.formSubscription).toBeDefined();
+
+        expect(testHostComponent.specifyPropValueComp.formSubscription.closed).toBeTruthy();
+
+    });
+
+
     it('should correctly set the active property from the parent component', () => {
         expect(testHostComponent.specifyPropValueComp.property).toEqual(textProperty);
 

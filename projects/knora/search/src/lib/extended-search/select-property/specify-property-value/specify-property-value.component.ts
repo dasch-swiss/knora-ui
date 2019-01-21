@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
     ComparisonOperator,
@@ -17,6 +17,7 @@ import {
     PropertyValue,
     Value
 } from '@knora/core';
+import { Subscription } from 'rxjs';
 
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
@@ -27,7 +28,7 @@ const resolvedPromise = Promise.resolve(null);
     templateUrl: './specify-property-value.component.html',
     styleUrls: ['./specify-property-value.component.scss']
 })
-export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
+export class SpecifyPropertyValueComponent implements OnInit, OnChanges, OnDestroy {
 
     KnoraConstants = KnoraConstants;
 
@@ -52,6 +53,8 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
     private _property: Property;
 
     form: FormGroup;
+
+    formSubscription: Subscription;
 
     // available comparison operators for the property
     comparisonOperators: Array<ComparisonOperator> = [];
@@ -124,8 +127,12 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
             comparisonOperator: [null, Validators.required]
         });
 
+        if (this.formSubscription !== undefined) {
+            this.formSubscription.unsubscribe();
+        }
+
         // store comparison operator when selected
-        this.form.valueChanges.subscribe((data) => {
+        this.formSubscription = this.form.valueChanges.subscribe((data) => {
             this.comparisonOperatorSelected = data.comparisonOperator;
         });
 
@@ -138,6 +145,13 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
             this.formGroup.addControl('comparisonOperator', this.form);
         });
 
+    }
+
+    ngOnDestroy() {
+
+        if (this.formSubscription !== undefined) {
+            this.formSubscription.unsubscribe();
+        }
     }
 
     /**
