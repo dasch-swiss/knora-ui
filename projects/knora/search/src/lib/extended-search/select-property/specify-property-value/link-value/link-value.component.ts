@@ -74,23 +74,11 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
         // at least 3 characters are required
         if (searchTerm.length >= 3) {
 
-            this._searchService.searchByLabel(searchTerm, this._restrictToResourceClass).subscribe(
-                (result: ApiServiceResult) => {
-                    const promises = jsonld.promises;
-                    // compact JSON-LD using an empty context: expands all Iris
-                    const promise = promises.compact(result.body, {});
-
-                    promise.then((compacted) => {
-
-                        const resourceSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
-
-                        this.resources = resourceSeq.resources;
-
-                    }, function (err) {
-
-                        console.log('JSONLD of full resource request could not be expanded:' + err);
-                    });
-
+            this._searchService.searchByLabelReadResourceSequence(searchTerm, this._restrictToResourceClass).subscribe(
+                (result: ReadResourcesSequence) => {
+                    this.resources = result.resources;
+                }, function (err) {
+                    console.log('JSONLD of full resource request could not be expanded:' + err);
                 }
             );
         } else {
