@@ -27,6 +27,7 @@ This module has the following package dependencies, which you also have to insta
  - @angular/animations@6.0.0
  - @angular/cdk@6.0.0
  - @angular/material@6.0.0
+ - @knora/action@6.0.1
  - @knora/core@6.0.0
  - moment@2.22.2
 
