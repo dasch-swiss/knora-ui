@@ -72,6 +72,24 @@ describe('SelectOntologyComponent', () => {
         expect(testHostComponent.selectOntosComp).toBeTruthy();
     });
 
+    it('should have a reference to the active subscription to valueChanges after initialization', () => {
+        expect(testHostComponent.selectOntosComp.formSubscription).toBeDefined();
+
+        expect(testHostComponent.selectOntosComp.formSubscription.closed).toBeFalsy();
+
+    });
+
+    it('should unsubscribe from the subscription to valueChanges when being destroyed', () => {
+        testHostComponent.selectOntosComp.ngOnDestroy();
+
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent.selectOntosComp.formSubscription).toBeDefined();
+
+        expect(testHostComponent.selectOntosComp.formSubscription.closed).toBeTruthy();
+
+    });
+
     it('should initialize the ontologies', () => {
         // access the test host component's child
         expect(testHostComponent.selectOntosComp).toBeTruthy();

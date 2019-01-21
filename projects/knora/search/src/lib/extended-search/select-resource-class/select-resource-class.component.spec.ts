@@ -72,6 +72,24 @@ describe('SelectResourceClassComponent', () => {
         expect(testHostComponent.selectResClassesComp).toBeTruthy();
     });
 
+    it('should have a reference to the active subscription to valueChanges after initialization', () => {
+        expect(testHostComponent.selectResClassesComp.formSubscription).toBeDefined();
+
+        expect(testHostComponent.selectResClassesComp.formSubscription.closed).toBeFalsy();
+
+    });
+
+    it('should unsubscribe from the subscription to valueChanges when being destroyed', () => {
+        testHostComponent.selectResClassesComp.ngOnDestroy();
+
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent.selectResClassesComp.formSubscription).toBeDefined();
+
+        expect(testHostComponent.selectResClassesComp.formSubscription.closed).toBeTruthy();
+
+    });
+
     it('should initialize the ontologies', () => {
         // access the test host component's child
         expect(testHostComponent.selectResClassesComp).toBeTruthy();

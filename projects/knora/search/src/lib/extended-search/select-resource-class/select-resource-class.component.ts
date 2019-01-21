@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResourceClass } from '@knora/core';
+import { Subscription } from 'rxjs';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -10,7 +11,7 @@ const resolvedPromise = Promise.resolve(null);
     templateUrl: './select-resource-class.component.html',
     styleUrls: ['./select-resource-class.component.scss']
 })
-export class SelectResourceClassComponent implements OnInit, OnChanges {
+export class SelectResourceClassComponent implements OnInit, OnChanges, OnDestroy {
 
     @Input() formGroup: FormGroup;
 
@@ -36,6 +37,8 @@ export class SelectResourceClassComponent implements OnInit, OnChanges {
     private resourceClassSelected: string;
 
     form: FormGroup;
+
+    formSubscription: Subscription;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }
@@ -64,7 +67,7 @@ export class SelectResourceClassComponent implements OnInit, OnChanges {
         });
 
         // store and emit Iri of the resource class when selected
-        this.form.valueChanges.subscribe((data) => {
+        this.formSubscription = this.form.valueChanges.subscribe((data) => {
             this.resourceClassSelected = data.resourceClass;
             this.resourceClassSelectedEvent.emit(this.resourceClassSelected);
         });
@@ -79,6 +82,13 @@ export class SelectResourceClassComponent implements OnInit, OnChanges {
 
     }
 
+    ngOnDestroy() {
+
+        if (this.formSubscription !== undefined) {
+            this.formSubscription.unsubscribe();
+        }
+    }
+
     ngOnChanges() {
 
         if (this.form !== undefined) {
@@ -86,6 +96,11 @@ export class SelectResourceClassComponent implements OnInit, OnChanges {
             // resource classes have been reinitialized
             // reset form
             resolvedPromise.then(() => {
+
+                // unsubscribe from this.form.valueChanges subscription
+                if (this.formSubscription !== undefined) {
+                    this.formSubscription.unsubscribe();
+                }
 
                 // remove this form from the parent form group
                 this.formGroup.removeControl('resourceClass');

@@ -11,6 +11,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
 import { OntologyInformation } from '@knora/core';
+import { Subscription } from 'rxjs';
 
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
@@ -63,6 +64,8 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
 
     form: FormGroup;
 
+    formSubscription: Subscription;
+
     // unique name for this property to be used in the parent FormGroup
     propIndex: string;
 
@@ -79,7 +82,7 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
         });
 
         // update the selected property
-        this.form.valueChanges.subscribe((data) => {
+        this.formSubscription = this.form.valueChanges.subscribe((data) => {
             const propIri = data.property;
             this.propertySelected = this._properties[propIri];
         });
@@ -94,6 +97,10 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+
+        if (this.formSubscription !== undefined) {
+            this.formSubscription.unsubscribe();
+        }
 
         // remove form from the parent form group
         resolvedPromise.then(() => {
