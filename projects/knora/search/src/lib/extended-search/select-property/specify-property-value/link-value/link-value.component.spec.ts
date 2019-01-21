@@ -84,8 +84,6 @@ describe('LinkValueComponent', () => {
         const labelSearchRes = require('../../../../../../../core/src/lib/test-data/search/SearchResultNarr-expanded.json');
         const result = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(labelSearchRes);
 
-        console.log(result);
-
         spyOn(searchService, 'searchByLabelReadResourceSequence').and.callFake(() => of(result));
 
         testHostComponent.linkValue.searchByLabel('Leonhard Euler');
