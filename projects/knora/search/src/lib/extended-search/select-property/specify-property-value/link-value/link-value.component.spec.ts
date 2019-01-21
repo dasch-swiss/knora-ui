@@ -73,6 +73,24 @@ describe('LinkValueComponent', () => {
         expect(testHostComponent.linkValue).toBeTruthy();
     });
 
+    it('should have a reference to the active subscription to valueChanges after initialization', () => {
+        expect(testHostComponent.linkValue.formSubscription).toBeDefined();
+
+        expect(testHostComponent.linkValue.formSubscription.closed).toBeFalsy();
+
+    });
+
+    it('should unsubscribe from the subscription to valueChanges when being destroyed', () => {
+        testHostComponent.linkValue.ngOnDestroy();
+
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent.linkValue.formSubscription).toBeDefined();
+
+        expect(testHostComponent.linkValue.formSubscription.closed).toBeTruthy();
+
+    });
+
     it('should have the correct resource class restriction', () => {
         // access the test host component's child
         expect(testHostComponent.linkValue).toBeTruthy();

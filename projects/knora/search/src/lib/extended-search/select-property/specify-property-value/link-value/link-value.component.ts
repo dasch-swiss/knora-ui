@@ -12,6 +12,7 @@ import {
     SearchService,
     Value
 } from '@knora/core';
+import {Subscription} from 'rxjs';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -32,6 +33,8 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
     type = KnoraConstants.LinkValue;
 
     form: FormGroup;
+
+    formSubscription: Subscription;
 
     resources: ReadResource[];
 
@@ -120,7 +123,7 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
             ])]
         });
 
-        this.form.valueChanges.subscribe((data) => {
+        this.formSubscription =  this.form.valueChanges.subscribe((data) => {
             this.searchByLabel(data.resource);
         });
 
@@ -131,6 +134,10 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
     }
 
     ngOnDestroy() {
+
+        if (this.formSubscription !== undefined) {
+            this.formSubscription.unsubscribe();
+        }
 
         // remove form from the parent form group
         resolvedPromise.then(() => {

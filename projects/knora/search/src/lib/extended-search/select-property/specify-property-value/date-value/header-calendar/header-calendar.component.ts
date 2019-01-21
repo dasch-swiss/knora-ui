@@ -4,6 +4,7 @@ import { KnoraConstants, PropertyValue, Value, ValueLiteral } from '@knora/core'
 import { GregorianCalendarDate, JDNConvertibleCalendar, JDNPeriod } from 'jdnconvertiblecalendar';
 import { DateAdapter, MAT_DATE_LOCALE, MatCalendar } from '@angular/material';
 import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateadapter';
+import {Subscription} from 'rxjs';
 
 /** Custom header component containing a calendar format switcher */
 @Component({
@@ -16,13 +17,15 @@ import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateada
     `,
     styleUrls: []
 })
-export class HeaderComponent<D> implements OnInit {
+export class HeaderComponent<D> implements OnInit, OnDestroy {
     constructor(@Host() private _calendar: MatCalendar<JDNConvertibleCalendar>,
         private _dateAdapter: DateAdapter<JDNConvertibleCalendar>,
         @Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     form: FormGroup;
+
+    formSubscription: Subscription;
 
     // a list of supported calendar formats (Gregorian and Julian)
     supportedCalendarFormats = JDNConvertibleCalendar.supportedCalendars;
@@ -45,11 +48,18 @@ export class HeaderComponent<D> implements OnInit {
         });
 
         // do the conversion when the user selects another calendar format
-        this.form.valueChanges.subscribe((data) => {
+        this.formSubscription = this.form.valueChanges.subscribe((data) => {
             // pass the target calendar format to the conversion method
             this.convertDate(data.calendar);
         });
 
+    }
+
+    ngOnDestroy() {
+
+        if (this.formSubscription !== undefined) {
+            this.formSubscription.unsubscribe();
+        }
     }
 
     /**

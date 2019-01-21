@@ -35,10 +35,6 @@ export class DateValueComponent implements OnInit, OnDestroy, PropertyValue {
             dateValue: [null, Validators.compose([Validators.required])]
         });
 
-        this.form.valueChanges.subscribe((data) => {
-            // console.log(data.dateValue);
-        });
-
         resolvedPromise.then(() => {
             // add form to the parent form group
             this.formGroup.addControl('propValue', this.form);
