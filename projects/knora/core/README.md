@@ -47,7 +47,7 @@ For local usage (developer mode) define your environment.ts as follow:
 export const environment = {
   production: false,
   name: 'Salsah',
-  api: 'http://0.0.0.0:3333',
+  api: 'http://localhost:3333',
   app: 'http://localhost:4200',
   media: 'http://localhost:1024'
 };
