@@ -23,12 +23,12 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 This module has the following package dependencies, which you also have to install.
  - @angular/common@6.0.0
  - @angular/core@6.0.0
- - json2typescript@1.0.5
- - jsonld@1.0.2
+ - json2typescript@1.0.6
+ - jsonld@1.1.0
 
 
 ## Setup
-On version 6 of Angular CLI they removed the shim for global and other node built-ins as mentioned in [#9827 (comment)](https://github.com/angular/angular-cli/issues/9827#issuecomment-369578814). Because of the jsonld package, we have to manually shimming it inside of the polyfills.ts file of the app:
+On version 6 of Angular CLI they removed the shim for global and other node built-ins as mentioned in [#9827 (comment)](https://github.com/angular/angular-cli/issues/9827#issuecomment-369578814). Because of the jsonld package, we have to manually shimming it inside of the **polyfills.ts** file of the app:
 ```javascript
 // Add global to window, assigning the value of window itself.
 
@@ -47,7 +47,7 @@ For local usage (developer mode) define your environment.ts as follow:
 export const environment = {
   production: false,
   name: 'Salsah',
-  api: 'http://0.0.0.0:3333',
+  api: 'http://localhost:3333',
   app: 'http://localhost:4200',
   media: 'http://localhost:1024'
 };
