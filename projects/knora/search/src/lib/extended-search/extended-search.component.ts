@@ -131,7 +131,7 @@ export class ExtendedSearchComponent implements OnInit {
         this._cacheService.getEntityDefinitionsForOntologies([ontologyIri]).subscribe(
             (ontoInfo: OntologyInformation) => {
 
-                this.resourceClasses = ontoInfo.getResourceClassesAsArray();
+                this.resourceClasses = ontoInfo.getResourceClassesAsArray(true);
                 this.properties = ontoInfo.getProperties();
 
             }
