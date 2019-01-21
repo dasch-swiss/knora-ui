@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
     ApiServiceError,
     ExtendedSearchParams,
     GravsearchGenerationService,
+    KnoraConstants,
     OntologyCacheService,
     OntologyInformation,
     ReadResource,
@@ -18,7 +19,9 @@ import { Subscription } from 'rxjs';
     templateUrl: './list-view.component.html',
     styleUrls: ['./list-view.component.scss']
 })
-export class ListViewComponent implements OnInit {
+export class ListViewComponent implements OnDestroy, OnInit {
+
+    KnoraConstants = KnoraConstants;
 
     offset: number = 0;
     gravsearchGenerator: ExtendedSearchParams;
@@ -63,6 +66,28 @@ export class ListViewComponent implements OnInit {
         });
     }
 
+    ngOnDestroy() {
+        if (this.navigationSubscription !== undefined) {
+            this.navigationSubscription.unsubscribe();
+        }
+    }
+
+    /**
+     * Generates the Gravsearch query for the current offset.
+     */
+    private generateGravsearchQuery() {
+
+        const gravsearch: string | boolean = this.gravsearchGenerator.generateGravsearch(this.offset);
+        if (gravsearch === false) {
+            // no valid search params (application has been reloaded)
+            // go to root
+            this._router.navigate([''], { relativeTo: this._route });
+            return;
+        } else {
+            this.searchQuery = <string>gravsearch;
+        }
+    }
+
     /**
        * Get search result from Knora - 2 cases: simple search and extended search
        */
@@ -85,7 +110,6 @@ export class ListViewComponent implements OnInit {
             } */
 
             // perform full text search
-            console.log('fulltext', this.searchMode);
             this._searchService.doFullTextSearchReadResourceSequence(this.searchQuery, this.offset)
                 .subscribe(
                     this.processSearchResults, // function pointer
@@ -106,7 +130,6 @@ export class ListViewComponent implements OnInit {
                         }
                     );
             } */
-            console.log('extended', this.searchMode);
             this._searchService.doExtendedSearchReadResourceSequence(this.searchQuery)
                 .subscribe(
                     this.processSearchResults, // function pointer
@@ -120,24 +143,14 @@ export class ListViewComponent implements OnInit {
     }
 
     /**
-     * Generates the Gravsearch query for the current offset.
+     *
+     * Converts search results from JSON-LD to a [[ReadResourcesSequence]] and requests information about ontology entities.
+     * This function is passed to `subscribe` as a pointer (instead of redundantly defining the same lambda function).
+     *
+     * @param {ReadResourcesSequence} searchResult the answer to a search request.
      */
-    private generateGravsearchQuery() {
-
-        const gravsearch: string | boolean = this.gravsearchGenerator.generateGravsearch(this.offset);
-        if (gravsearch === false) {
-            // no valid search params (application has been reloaded)
-            // go to root
-            this._router.navigate([''], { relativeTo: this._route });
-            return;
-        } else {
-            this.searchQuery = <string>gravsearch;
-        }
-    }
-
     private processSearchResults = (searchResult: ReadResourcesSequence) => {
 
-        console.log('process search results');
         // assign ontology information to a variable so it can be used in the component's template
         if (this.ontologyInfo === undefined) {
             // init ontology information
