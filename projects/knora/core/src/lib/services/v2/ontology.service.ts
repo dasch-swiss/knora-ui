@@ -134,7 +134,7 @@ export class OntologyService extends ApiService {
         };
 
         return this.httpPost(path, ontology).pipe(
-            map((result: ApiServiceResult) => result.getBody()),
+            map((result: ApiServiceResult) => result.body),
             catchError(this.handleJsonError)
         );
     }
