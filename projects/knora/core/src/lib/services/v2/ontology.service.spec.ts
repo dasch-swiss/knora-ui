@@ -37,7 +37,7 @@ describe('OntologyService', () => {
         httpTestingController.verify();
     });
 
-    describe('Get ontologies metadata', () => {
+    describe('Get all ontologies', () => {
         let expectedOntologiesMetadata;
 
         beforeEach(() => {
@@ -48,7 +48,7 @@ describe('OntologyService', () => {
 
             expect(ontologyService).toBeDefined();
 
-            const ontoMetadata = ontologyService.getOntologiesMetadata();
+            const ontoMetadata = ontologyService.getAllOntologies();
 
             ontoMetadata.subscribe(
                 (metadata: ApiServiceResult) => {
@@ -57,6 +57,35 @@ describe('OntologyService', () => {
             );
 
             const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/metadata');
+
+            expect(httpRequest.request.method).toEqual('GET');
+
+            httpRequest.flush(expectedOntologiesMetadata);
+
+        });
+
+    });
+
+    describe('Get all ontologies from one project', () => {
+        let expectedOntologiesMetadata;
+
+        beforeEach(() => {
+            expectedOntologiesMetadata = require('../../test-data/ontologycache/something-ontology-metadata.json');
+        });
+
+        it('Get metadata about all ontologies of "something" project', () => {
+
+            expect(ontologyService).toBeDefined();
+
+            const ontoMetadata = ontologyService.getProjectOntologies('https://rdfh.ch/projects/0001');
+
+            ontoMetadata.subscribe(
+                (metadata: ApiServiceResult) => {
+                    expect(metadata.body).toEqual(expectedOntologiesMetadata);
+                }
+            );
+
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies/metadata/https%3A%2F%2Frdfh.ch%2Fprojects%2F0001');
 
             expect(httpRequest.request.method).toEqual('GET');
 
