@@ -1,28 +1,38 @@
-<mat-list>
-    <mat-list-item *ngFor="let res of result">
-        <!-- TODO: add preview image of the resource -->
-        <mat-icon matListIcon>image_search</mat-icon>
-        <h2 matLine class="res-label">{{ontologyInfo?.getLabelForResourceClass(res.type)}} - {{res.label}}</h2>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let res of result; let i = index">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <!-- TODO: add preview image of the resource -->
+                <mat-icon matListIcon>image_search</mat-icon>
+                {{ontologyInfo?.getLabelForResourceClass(res.type)}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{res.label}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
 
+        <!-- content -->
         <div matLine *ngFor="let prop of res.properties | kuiKey">
-
             <div *ngFor="let val of prop.value | kuiKey">
                 <div [ngSwitch]="val.value.getClassName()">
-                    <!-- <span *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml" [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="false"></span> -->
+
+                    <span *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml">
+                        <kui-text-value-as-html [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="false"></kui-text-value-as-html>
+                    </span>
+
                     <span>
                         <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value>
                         <span *ngSwitchDefault="">{{val.value.getContent()}}</span>
                     </span>
                     <br>
-                    <span *ngIf="ontologyInfo?.getLabelForProperty(prop.key) !== 'Text'">
+                    <span*ngIf="ontologyInfo?.getLabelForProperty(prop.key) !== 'Text'">
                         {{ontologyInfo?.getLabelForProperty(prop.key)}}
-                    </span>
+                        </span>
                 </div>
             </div>
-
         </div>
 
-        <mat-divider></mat-divider>
+        <button mat-button color="primary">Read more &rarr;</button>
 
-    </mat-list-item>
-</mat-list>
+    </mat-expansion-panel>
+</mat-accordion>

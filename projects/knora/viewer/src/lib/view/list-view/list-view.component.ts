@@ -115,8 +115,8 @@ export class ListViewComponent implements OnDestroy, OnInit {
                     this.processSearchResults, // function pointer
                     (error: any) => {
                         this.errorMessage = <any>error;
-                    },
-            );
+                    }
+                );
 
             // EXTENDED SEARCH
         } else if (this.searchMode === 'extended') {
@@ -167,4 +167,5 @@ export class ListViewComponent implements OnDestroy, OnInit {
         this.rerender = false;
 
     }
+
 }
