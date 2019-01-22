@@ -25,9 +25,9 @@
                         <span *ngSwitchDefault="">{{val.value.getContent()}}</span>
                     </span>
                     <br>
-                    <span*ngIf="ontologyInfo?.getLabelForProperty(prop.key) !== 'Text'">
+                    <span *ngIf="ontologyInfo?.getLabelForProperty(prop.key) !== 'Text'">
                         {{ontologyInfo?.getLabelForProperty(prop.key)}}
-                        </span>
+                    </span>
                 </div>
             </div>
         </div>
