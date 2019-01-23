@@ -11,9 +11,56 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 6,
-    "codeStart": 9,
-    "code": "@Injectable({\n    providedIn: 'root',\n})\nexport class SearchService extends ApiService {",
+    "line": 10,
+    "codeStart": 13,
+    "code": "@Injectable({\n    providedIn: 'root',\n})\nexport class SearchService extends ApiService {\n\n    constructor(public http: HttpClient,\n                @Inject('config') public config: KuiCoreConfig,\n                private _ontologyCacheService: OntologyCacheService) {\n        super(http, config);\n    }",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{Object} resourceResponse",
+        "name": "resourceResponse",
+        "description": "",
+        "types": [
+          "Object"
+        ],
+        "typesDescription": "<code>Object</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{Object} resourceResponse</p>"
+      },
+      {
+        "type": "returns",
+        "string": "{Observable<ReadResourcesSequence>}",
+        "types": [
+          "Observable.<ReadResourcesSequence>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ReadResourcesSequence.html\">ReadResourcesSequence</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<ReadResourcesSequence>}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Converts a JSON-LD object to a <code>ReadResorceSequence</code>.<br />\nTo be passed as a function pointer (arrow notation required).</p>",
+      "summary": "<p>Converts a JSON-LD object to a <code>ReadResorceSequence</code>.<br />\nTo be passed as a function pointer (arrow notation required).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 24,
+    "codeStart": 31,
+    "code": "private convertJSONLDToReadResourceSequence: (resourceResponse: Object) => Observable<ReadResourcesSequence> = (resourceResponse: Object) => {\n    // convert JSON-LD into a ReadResourceSequence\n    const resSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(resourceResponse);\n\n    // collect resource class Iris\n    const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);\n\n    // request information about resource classes\n    return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(\n        map(\n            (ontoInfo: OntologyInformation) => {\n                // add ontology information to ReadResourceSequence\n                resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);\n                return resSeq;\n            }\n        )\n    );\n};",
     "ctx": false
   },
   {
@@ -59,8 +106,8 @@
       }
     ],
     "description": {
-      "full": "<p>Perform a fulltext search.</p>",
-      "summary": "<p>Perform a fulltext search.</p>",
+      "full": "<p>Performs a fulltext search.<br />\nTODO: mark as deprecated, use of <code>doFullTextSearchReadResourceSequence</code> recommended</p>",
+      "summary": "<p>Performs a fulltext search.<br />\nTODO: mark as deprecated, use of <code>doFullTextSearchReadResourceSequence</code> recommended</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -68,9 +115,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 14,
-    "codeStart": 21,
-    "code": "doFulltextSearch(searchTerm: string, offset: number = 0): Observable<ApiServiceResult> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));\n    }\n\n    return this.httpGet('/v2/search/' + searchTerm + '?offset=' + offset);\n}",
+    "line": 50,
+    "codeStart": 58,
+    "code": "doFulltextSearch(searchTerm: string, offset: number = 0): Observable<ApiServiceResult> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));\n    }\n\n    let httpParams = new HttpParams();\n\n    httpParams = httpParams.set('offset', offset.toString());\n\n    return this.httpGet('/v2/search/' + searchTerm, httpParams);\n}",
     "ctx": {
       "type": "method",
       "name": "doFulltextSearch",
@@ -94,6 +141,20 @@
         "variable": false
       },
       {
+        "type": "param",
+        "string": "{number} offset the offset to be used (for paging, first offset is 0).",
+        "name": "offset",
+        "description": "<p>the offset to be used (for paging, first offset is 0).</p>",
+        "types": [
+          "number"
+        ],
+        "typesDescription": "<code>number</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
         "type": "returns",
         "string": "Observable<ApiServiceResult>",
         "types": [],
@@ -106,8 +167,8 @@
       }
     ],
     "description": {
-      "full": "<p>Perform a fulltext search count query.</p>",
-      "summary": "<p>Perform a fulltext search count query.</p>",
+      "full": "<p>Performs a fulltext search and turns the result into a <code>ReadResourceSequence</code>.</p>",
+      "summary": "<p>Performs a fulltext search and turns the result into a <code>ReadResourceSequence</code>.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -115,8 +176,53 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 30,
-    "codeStart": 36,
+    "line": 71,
+    "codeStart": 78,
+    "code": "doFullTextSearchReadResourceSequence(searchTerm: string, offset: number = 0): Observable<ReadResourcesSequence> {\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));\n    }\n\n    let httpParams = new HttpParams();\n\n    httpParams = httpParams.set('offset', offset.toString());\n\n    const res: Observable<any> = this.httpGet('/v2/search/' + searchTerm, httpParams);\n\n    return res.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        ),\n        mergeMap(\n            // return Observable of ReadResourcesSequence\n            this.convertJSONLDToReadResourceSequence\n        )\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "doFullTextSearchReadResourceSequence",
+      "string": "doFullTextSearchReadResourceSequence()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "searchTerm the term to search for.",
+        "name": "searchTerm",
+        "description": "<p>the term to search for.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Performs a fulltext search count query.<br />\nTODO: mark as deprecated, use of <code>doFullTextSearchCountQueryCountQueryResult</code> recommended</p>",
+      "summary": "<p>Performs a fulltext search count query.<br />\nTODO: mark as deprecated, use of <code>doFullTextSearchCountQueryCountQueryResult</code> recommended</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 101,
+    "codeStart": 108,
     "code": "doFulltextSearchCountQuery(searchTerm: string): Observable<ApiServiceResult> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));\n    }\n\n    return this.httpGet('/v2/search/count/' + searchTerm);\n}",
     "ctx": {
       "type": "method",
@@ -128,9 +234,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} sparqlString the Sparql query string to be sent to Knora.",
-        "name": "sparqlString",
-        "description": "<p>the Sparql query string to be sent to Knora.</p>",
+        "string": "{string} searchTerm the term to search for.",
+        "name": "searchTerm",
+        "description": "<p>the term to search for.</p>",
         "types": [
           "string"
         ],
@@ -139,6 +245,51 @@
         "nullable": false,
         "nonNullable": false,
         "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<CountQueryResult>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<CountQueryResult></p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Performs a fulltext search count query and turns the result into a <code>CountQueryResult</code>.</p>",
+      "summary": "<p>Performs a fulltext search count query and turns the result into a <code>CountQueryResult</code>.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 117,
+    "codeStart": 123,
+    "code": "doFullTextSearchCountQueryCountQueryResult(searchTerm: string): Observable<CountQueryResult> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));\n    }\n\n    const res = this.httpGet('/v2/search/count/' + searchTerm);\n\n    return res.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        ),\n        map(\n            // convert to a `CountQueryResult`\n            ConvertJSONLD.createCountQueryResult\n        )\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "doFullTextSearchCountQueryCountQueryResult",
+      "string": "doFullTextSearchCountQueryCountQueryResult()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "gravsearchQuery the Sparql query string to be sent to Knora.",
+        "name": "gravsearchQuery",
+        "description": "<p>the Sparql query string to be sent to Knora.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
       },
       {
         "type": "returns",
@@ -153,8 +304,8 @@
       }
     ],
     "description": {
-      "full": "<p>Perform an extended search.</p>",
-      "summary": "<p>Perform an extended search.</p>",
+      "full": "<p>Performs an extended search.<br />\nTODO: mark as deprecated, use of <code>doExtendedSearchReadResourceSequence</code> recommended</p>",
+      "summary": "<p>Performs an extended search.<br />\nTODO: mark as deprecated, use of <code>doExtendedSearchReadResourceSequence</code> recommended</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -162,9 +313,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 45,
-    "codeStart": 51,
-    "code": "doExtendedSearch(sparqlString: string): Observable<ApiServiceResult> {\n\n    if (sparqlString === undefined || sparqlString.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));\n    }\n\n    // return this.httpGet('/v2/searchextended/' + encodeURIComponent(sparqlString));\n    return this.httpPost('/v2/searchextended', sparqlString);\n\n}",
+    "line": 143,
+    "codeStart": 150,
+    "code": "doExtendedSearch(gravsearchQuery: string): Observable<ApiServiceResult> {\n\n    if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));\n    }\n\n    return this.httpPost('/v2/searchextended', gravsearchQuery);\n}",
     "ctx": {
       "type": "method",
       "name": "doExtendedSearch",
@@ -175,8 +326,53 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} sparqlString the Sparql query string to be sent to Knora.",
-        "name": "sparqlString",
+        "string": "gravsearchQuery the Sparql query string to be sent to Knora.",
+        "name": "gravsearchQuery",
+        "description": "<p>the Sparql query string to be sent to Knora.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Performs an extended search and turns the result into a <code>ReadResourceSequence</code>.</p>",
+      "summary": "<p>Performs an extended search and turns the result into a <code>ReadResourceSequence</code>.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 159,
+    "codeStart": 165,
+    "code": "doExtendedSearchReadResourceSequence(gravsearchQuery: string): Observable<ReadResourcesSequence> {\n\n    if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));\n    }\n\n    const res = this.httpPost('/v2/searchextended', gravsearchQuery);\n\n    return res.pipe(\n        mergeMap(\n            this.processJSONLD\n        ),\n        mergeMap(\n            this.convertJSONLDToReadResourceSequence\n        )\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "doExtendedSearchReadResourceSequence",
+      "string": "doExtendedSearchReadResourceSequence()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} gravsearchQuery the Sparql query string to be sent to Knora.",
+        "name": "gravsearchQuery",
         "description": "<p>the Sparql query string to be sent to Knora.</p>",
         "types": [
           "string"
@@ -200,8 +396,8 @@
       }
     ],
     "description": {
-      "full": "<p>Perform an extended search count query.</p>",
-      "summary": "<p>Perform an extended search count query.</p>",
+      "full": "<p>Performs an extended search count query.<br />\nTODO: mark as deprecated, use of <code>doExtendedSearchReadResourceSequence</code> recommended</p>",
+      "summary": "<p>Performs an extended search count query.<br />\nTODO: mark as deprecated, use of <code>doExtendedSearchReadResourceSequence</code> recommended</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -209,13 +405,58 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 62,
-    "codeStart": 68,
-    "code": "doExtendedSearchCountQuery(sparqlString: string): Observable<ApiServiceResult> {\n\n    if (sparqlString === undefined || sparqlString.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));\n    }\n\n    // return this.httpGet('/v2/searchextended/count/' + encodeURIComponent(sparqlString));\n    return this.httpPost('/v2/searchextended/count', sparqlString);\n}",
+    "line": 183,
+    "codeStart": 190,
+    "code": "doExtendedSearchCountQuery(gravsearchQuery: string): Observable<ApiServiceResult> {\n\n    if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));\n    }\n\n    return this.httpPost('/v2/searchextended/count', gravsearchQuery);\n}",
     "ctx": {
       "type": "method",
       "name": "doExtendedSearchCountQuery",
       "string": "doExtendedSearchCountQuery()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "gravsearchQuery the Sparql query string to be sent to Knora.",
+        "name": "gravsearchQuery",
+        "description": "<p>the Sparql query string to be sent to Knora.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Performs an extended search count query and turns the result into a <code>CountQueryResult</code>.</p>",
+      "summary": "<p>Performs an extended search count query and turns the result into a <code>CountQueryResult</code>.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 199,
+    "codeStart": 205,
+    "code": "doExtendedSearchCountQueryCountQueryResult(gravsearchQuery: string): Observable<CountQueryResult> {\n\n    if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));\n    }\n\n    const res = this.httpPost('/v2/searchextended/count', gravsearchQuery);\n\n    return res.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        ),\n        map(\n            // convert to a `CountQueryResult`\n            ConvertJSONLD.createCountQueryResult\n        )\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "doExtendedSearchCountQueryCountQueryResult",
+      "string": "doExtendedSearchCountQueryCountQueryResult()"
     }
   },
   {
@@ -275,8 +516,8 @@
       }
     ],
     "description": {
-      "full": "<p>Perform a search by a resource's rdfs:label.</p>",
-      "summary": "<p>Perform a search by a resource's rdfs:label.</p>",
+      "full": "<p>Perform a search by a resource's rdfs:label.<br />\nTODO: mark as deprecated, use of <code>searchByLabelReadResourceSequence</code> recommended</p>",
+      "summary": "<p>Perform a search by a resource's rdfs:label.<br />\nTODO: mark as deprecated, use of <code>searchByLabelReadResourceSequence</code> recommended</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -284,13 +525,88 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 78,
-    "codeStart": 86,
-    "code": "searchByLabel(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ApiServiceResult> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));\n    }\n\n    const params = {};\n\n    if (resourceClassIRI !== undefined) {\n        params['limitToResourceClass'] = resourceClassIRI;\n    }\n\n    if (projectIri !== undefined) {\n        params['limitToProject'] = projectIri;\n    }\n\n    // httpGet() expects only one argument, not 2\n    return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), params);\n    // return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm));\n\n}\n}",
+    "line": 225,
+    "codeStart": 234,
+    "code": "searchByLabel(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ApiServiceResult> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));\n    }\n\n    let httpParams: HttpParams = new HttpParams();\n\n    if (resourceClassIRI !== undefined) {\n        httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);\n    }\n\n    if (projectIri !== undefined) {\n        httpParams = httpParams.set('limitToProject', projectIri);\n    }\n\n    // httpGet() expects only one argument, not 2\n    return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);\n\n}",
     "ctx": {
       "type": "method",
       "name": "searchByLabel",
       "string": "searchByLabel()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} searchTerm the term to search for.",
+        "name": "searchTerm",
+        "description": "<p>the term to search for.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "param",
+        "string": "{string} [resourceClassIRI] restrict search to given resource class.",
+        "name": "[resourceClassIRI]",
+        "description": "<p>restrict search to given resource class.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "param",
+        "string": "{string} [projectIri] restrict search to given project.",
+        "name": "[projectIri]",
+        "description": "<p>restrict search to given project.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Perform a search by a resource's rdfs:label and turns the results in a <code>ReadResourceSequence</code>.</p>",
+      "summary": "<p>Perform a search by a resource's rdfs:label and turns the results in a <code>ReadResourceSequence</code>.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 255,
+    "codeStart": 263,
+    "code": "searchByLabelReadResourceSequence(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ReadResourcesSequence> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));\n    }\n\n    let httpParams: HttpParams = new HttpParams();\n\n    if (resourceClassIRI !== undefined) {\n        httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);\n    }\n\n    if (projectIri !== undefined) {\n        httpParams = httpParams.set('limitToProject', projectIri);\n    }\n\n    const res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);\n\n    return res.pipe(\n        mergeMap(\n            this.processJSONLD\n        ),\n        mergeMap(\n            this.convertJSONLDToReadResourceSequence\n        )\n    );\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "searchByLabelReadResourceSequence",
+      "string": "searchByLabelReadResourceSequence()"
     }
   }
 ]

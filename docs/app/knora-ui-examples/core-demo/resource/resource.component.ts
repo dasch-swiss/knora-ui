@@ -121,6 +121,7 @@ getResource(iri: string): void {
             this.loading = false;
         }, 3000);
     }
+/*  DEPRECATED!!! since @knora/core 6.1.0
 
     private getResource(iri: string): void {
         this._resourceService.getResource(iri)
@@ -173,11 +174,11 @@ getResource(iri: string): void {
                 });
     }
 
-    /**
+    /!**
      * Requests incoming resources for [[this.resource]].
      * Incoming resources are: regions, StillImageRepresentations, and incoming links.
      *
-     **/
+     **!/
     private requestIncomingResources(): void {
 
         // make sure that this.resource has been initialized correctly
@@ -203,15 +204,16 @@ getResource(iri: string): void {
         // this.getIncomingLinks(0);
     }
 
-    /**
+    /!**
      * Gets the incoming regions for [[this.resource]].
      *
      * @param {number} offset                                   the offset to be used (needed for paging). First request uses an offset of 0.
      * @param {(numberOfResources: number) => void} callback    function to be called when new images have been loaded from the server. It takes the number of images returned as an argument.
-     */
+     *!/
     private getIncomingRegions(offset: number, callback?: (numberOfResources: number) => void): void {
         this._incomingService.getIncomingRegions(this.resource.id, offset).subscribe(
-            (result: ApiServiceResult) => {
+            (result: ReadResourcesSequence) => {
+
                 const promise = jsonld.promises.compact(result.body, {});
                 promise.then((compacted) => {
                     const regions: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
@@ -255,13 +257,13 @@ getResource(iri: string): void {
     }
 
 
-    /**
+    /!**
      * Get StillImageRepresentations pointing to [[this.resource]].
      * This method may have to called several times with an increasing offsetChange in order to get all available StillImageRepresentations.
      *
      * @param {number} offset                                   the offset to be used (needed for paging). First request uses an offset of 0.
      * @param {(numberOfResources: number) => void} callback    function to be called when new images have been loaded from the server. It takes the number of images returned as an argument.
-     */
+     *!/
     private getIncomingStillImageRepresentations(offset: number, callback?: (numberOfResources: number) => void): void {
         // make sure that this.resource has been initialized correctly
         if (this.resource === undefined) return;
@@ -327,12 +329,12 @@ getResource(iri: string): void {
     }
 
 
-    /**
+    /!**
      * Get resources pointing to [[this.resource]] with properties other than knora-api:isPartOf and knora-api:isRegionOf.
      *
      * @param {number} offset the offset to be used (needed for paging). First request uses an offset of 0.
      * @param {(numberOfResources: number) => void} callback function to be called when new images have been loaded from the server. It takes the number of images returned as an argument.
-     */
+     *!/
     private getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {
         this._incomingService.getIncomingLinksForResource(this.resource.id, offset).subscribe(
             (result: ApiServiceResult) => {
@@ -373,13 +375,13 @@ getResource(iri: string): void {
     }
 
 
-    /**
+    /!**
      * Creates a collection of [[StillImageRepresentation]] belonging to the given resource and assigns it to it.
      * Each [[StillImageRepresentation]] represents an image including regions.
      *
      * @param {ReadResource} resource          The resource to get the images for.
      * @returns {StillImageRepresentation[]}   A collection of images for the given resource.
-     */
+     *!/
     private collectImagesAndRegionsForResource(resource: ReadResource): void {
 
         const imgRepresentations: StillImageRepresentation[] = [];
@@ -445,12 +447,12 @@ getResource(iri: string): void {
         resource.stillImageRepresentationsToDisplay = imgRepresentations;
     }
 
-    /**
+    /!**
      * Gets the link value properties pointing from the incoming resource to [[this.resource]].
      *
      * @param {ReadResource} incomingResource the incoming resource.
      * @returns {string} a string containing all the labels of the link value properties.
-     */
+     *!/
     getIncomingPropertiesFromIncomingResource(incomingResource: ReadResource) {
 
         const incomingProperties = [];
@@ -492,6 +494,8 @@ getResource(iri: string): void {
 
     }
 
+
+
     openResource(iri: string) {
         this.getResource(iri);
 
@@ -500,4 +504,7 @@ getResource(iri: string): void {
             // console.log(this.resource);
         }, 1000);
     }
+
+*/
+
 }
