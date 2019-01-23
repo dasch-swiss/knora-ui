@@ -9,3 +9,44 @@
 .fill-remaining-space {
   flex: 1 1 auto;
 }
+
+/**** LIST VIEW ****/
+
+.mat-list .mat-list-item .mat-line{
+  white-space: normal !important;
+  max-width: 95%;
+}
+
+.list-view .mat-list-item {
+  height: auto;
+  min-height: 40px;
+  padding: 8px 0;
+}
+
+.lv-html-text {
+  max-height: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.lv-html-text .lv-read-more {
+  position: absolute; 
+  bottom: 0; 
+  left: 0;
+  width: 100%; 
+  text-align: center; 
+  margin: 0; padding: 30px 0; 
+  border-radius: 3px;
+  border-color: rgb(255, 255, 255);
+
+  background-image: -webkit-gradient(
+  linear,
+  left top,
+  left bottom,
+  color-stop(0, rgba(255, 255, 255, 0)),
+  color-stop(1, rgba(200, 200, 200, 1)));
+}
+
+.lv-label {
+  font-weight: bold !important;
+}
