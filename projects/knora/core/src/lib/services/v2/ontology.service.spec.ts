@@ -1,11 +1,11 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { async, TestBed } from '@angular/core/testing';
+import { KuiCoreModule } from '../../core.module';
+import { ApiServiceResult, KnoraConstants, NewOntology } from '../../declarations';
+import { ApiService } from '../api.service';
 
 import { OntologyService } from './ontology.service';
-import { HttpClient } from '@angular/common/http';
-import { KuiCoreModule } from '../../core.module';
-import { ApiService } from '../api.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ApiServiceResult } from '../../declarations';
 
 describe('OntologyService', () => {
     let httpClient: HttpClient;
@@ -127,5 +127,59 @@ describe('OntologyService', () => {
             httpRequest.flush(expectedOntologyBEOL);
 
         });
+    });
+
+    describe('Create new ontology: ', () => {
+
+        let expectedOntologiesMetadata;
+
+        const newOntologyPostData: NewOntology = {
+            projectIri: 'http://rdfh.ch/projects/0001',
+            name: 'anything-data-model-1',
+            label: 'Ontology for anything'
+        };
+
+        // request body
+        const newOntologyRequestBody = {
+            'knora-api:ontologyName': newOntologyPostData.name,
+            'knora-api:attachedToProject': {
+                '@id': newOntologyPostData.projectIri,
+            },
+            'rdfs:label': newOntologyPostData.label,
+            '@context': {
+                'rdfs': KnoraConstants.RdfsSchema,
+                'knora-api': KnoraConstants.KnoraApiV2WithValueObjectPath
+            }
+        };
+
+        beforeEach(() => {
+            expectedOntologiesMetadata = require('../../test-data/ontology/new-ontology.json');
+        });
+
+        it('Should return an Observable<ApiServiceResult> with status 200', async(() => {
+
+            expect(ontologyService).toBeDefined();
+
+            ontologyService.createOntology(newOntologyPostData).subscribe(
+                (res: any) => {
+                    expect(res).toEqual(expectedOntologiesMetadata);
+                    // expect(res.statusText).toEqual();
+                },
+                (error: any) => {
+                    console.error(error);
+                }
+            );
+
+            const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/ontologies');
+
+            expect(httpRequest.request.method).toEqual('POST');
+
+            expect(httpRequest.request.body).toEqual(newOntologyRequestBody);
+
+            httpRequest.flush(expectedOntologiesMetadata);
+
+
+        }));
+
     });
 });
