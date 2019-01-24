@@ -47,9 +47,8 @@ export module ConvertJSONLD {
             && propName !== KnoraConstants.attachedToUser
             && propName !== KnoraConstants.creationDate
             && propName !== KnoraConstants.lastModificationDate
-            && propName !== KnoraConstants.hasPermissions;
-
-        // add knora-api:arkUrl here?
+            && propName !== KnoraConstants.hasPermissions
+            && propName !== KnoraConstants.ArkUrl;
     };
 
 
