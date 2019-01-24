@@ -46,6 +46,9 @@ export class KnoraConstants {
     public static XMLToStandoffMapping: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'XMLToStandoffMapping';
     public static ListNode: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ListNode';
 
+    public static ArkUrl: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'arkUrl';
+
+
     public static ObjectType = KnoraConstants.KnoraApiV2WithValueObjectPath + 'objectType';
     public static ResourceIcon: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'resourceIcon';
     public static isEditable: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isEditable';
