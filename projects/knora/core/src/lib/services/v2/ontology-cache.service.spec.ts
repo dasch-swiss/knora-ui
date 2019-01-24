@@ -81,7 +81,6 @@ describe('OntologyCacheService', () => {
                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/biblio/v2', 'The Biblio ontology'),
                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
                 new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
-                new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
                 new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
             ];
 
@@ -204,6 +203,7 @@ describe('OntologyCacheService', () => {
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing',
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing',
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingPicture',
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingWithRepresentation',
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingWithSeqnum',
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#TrivialThing'
             ];
@@ -245,6 +245,11 @@ describe('OntologyCacheService', () => {
                     const resourceClasses: ResourceClasses = ontoRes.getResourceClasses();
 
                     const expectedCards = [
+                        new Cardinality(
+                            CardinalityOccurrence.card,
+                            1,
+                            'http://api.knora.org/ontology/knora-api/v2#arkUrl'
+                        ),
                         new Cardinality(
                             CardinalityOccurrence.card,
                             1,
@@ -413,6 +418,15 @@ describe('OntologyCacheService', () => {
                     expect(resourceClasses['http://0.0.0.0:3333/ontology/0001/something/v2#Something']).toEqual(expectedSomething);
 
                     const expectedProps = {
+                        'http://api.knora.org/ontology/knora-api/v2#arkUrl': new Property(
+                            'http://api.knora.org/ontology/knora-api/v2#arkUrl',
+                            'http://www.w3.org/2001/XMLSchema#anyURI',
+                            'Provides the ARK URL of a resource.',
+                            'ARK URL',
+                            [],
+                            false,
+                            false,
+                            false),
                         'http://api.knora.org/ontology/knora-api/v2#attachedToProject': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#attachedToProject',
                             'http://api.knora.org/ontology/knora-api/v2#knoraProject',
@@ -726,6 +740,11 @@ describe('OntologyCacheService', () => {
                         'A resource representing a person',
                         'Person',
                         [
+                            new Cardinality(
+                                CardinalityOccurrence.card,
+                                1,
+                                'http://api.knora.org/ontology/knora-api/v2#arkUrl'
+                            ),
                             new Cardinality(
                                 CardinalityOccurrence.card,
                                 1,
