@@ -1,22 +1,5 @@
 [
   {
-    "tags": [],
-    "description": {
-      "full": "<p>Contains methods to realise, reset new or previous simple searches.</p>",
-      "summary": "<p>Contains methods to realise, reset new or previous simple searches.</p>",
-      "body": ""
-    },
-    "isPrivate": false,
-    "isConstructor": false,
-    "isClass": false,
-    "isEvent": false,
-    "ignore": false,
-    "line": 35,
-    "codeStart": 38,
-    "code": "export class SearchComponent implements OnInit {\n\n    @Input() route: string = '/search';\n\n    searchQuery: string;\n\n    searchPanelFocus: boolean = false;\n\n    prevSearch: string[] = JSON.parse(localStorage.getItem('prevSearch'));\n\n    focusOnSimple: string = 'inactive';\n    focusOnExtended: string = 'inactive';\n\n    searchLabel: string = 'Search';\n\n    showSimpleSearch: boolean = true;\n\n    constructor(private _route: ActivatedRoute,\n        private _router: Router,\n        private _eleRef: ElementRef) {\n\n    }\n\n    ngOnInit() {\n    }",
-    "ctx": false
-  },
-  {
     "tags": [
       {
         "type": "ignore",
@@ -71,8 +54,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 64,
-    "codeStart": 71,
+    "line": 45,
+    "codeStart": 52,
     "code": "onKey(search_ele: HTMLElement, event): void {\n    this.focusOnSimple = 'active';\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n    if (this.searchQuery && (event.key === 'Enter' || event.keyCode === 13 || event.which === 13)) {\n        this.doSearch(search_ele);\n    }\n    if (event.key === 'Escape' || event.keyCode === 27 || event.which === 27) {\n        this.resetSearch(search_ele);\n    }\n}",
     "ctx": {
       "type": "method",
@@ -119,9 +102,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 82,
-    "codeStart": 87,
-    "code": "doSearch(search_ele: HTMLElement): void {\n    if (this.searchQuery !== undefined && this.searchQuery !== null) {\n        this.toggleMenu('simpleSearch');\n        this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);\n\n        // this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });\n\n        // push the search query into the local storage prevSearch array (previous search)\n        // to have a list of recent search requests\n        let existingPrevSearch: string[] = JSON.parse(localStorage.getItem('prevSearch'));\n        if (existingPrevSearch === null) { existingPrevSearch = []; }\n        let i: number = 0;\n        for (const entry of existingPrevSearch) {\n            // remove entry, if exists already\n            if (this.searchQuery === entry) { existingPrevSearch.splice(i, 1); }\n            i++;\n        }\n\n        existingPrevSearch.push(this.searchQuery);\n        localStorage.setItem('prevSearch', JSON.stringify(existingPrevSearch));\n        // TODO: save the previous search queries somewhere in the user's profile\n\n    } else {\n        search_ele.focus();\n        this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n    }\n}",
+    "line": 64,
+    "codeStart": 69,
+    "code": "doSearch(search_ele: HTMLElement): void {\n    if (this.searchQuery !== undefined && this.searchQuery !== null) {\n        this.toggleMenu();\n        this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);\n\n        // this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });\n\n        // push the search query into the local storage prevSearch array (previous search)\n        // to have a list of recent search requests\n        let existingPrevSearch: string[] = JSON.parse(localStorage.getItem('prevSearch'));\n        if (existingPrevSearch === null) { existingPrevSearch = []; }\n        let i: number = 0;\n        for (const entry of existingPrevSearch) {\n            // remove entry, if exists already\n            if (this.searchQuery === entry) { existingPrevSearch.splice(i, 1); }\n            i++;\n        }\n        existingPrevSearch.push(this.searchQuery);\n        localStorage.setItem('prevSearch', JSON.stringify(existingPrevSearch));\n    } else {\n        search_ele.focus();\n        this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n    }\n}",
     "ctx": {
       "type": "method",
       "name": "doSearch",
@@ -130,11 +113,6 @@
   },
   {
     "tags": [
-      {
-        "type": "ignore",
-        "string": "\nReset the search",
-        "html": "<p>Reset the search</p>"
-      },
       {
         "type": "param",
         "string": "{HTMLElement} search_ele",
@@ -163,8 +141,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Reset the search</p>",
+      "summary": "<p>Reset the search</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -172,8 +150,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 115,
-    "codeStart": 122,
+    "line": 94,
+    "codeStart": 99,
     "code": "resetSearch(search_ele: HTMLElement): void {\n    this.searchQuery = null;\n    search_ele.focus();\n    this.focusOnSimple = 'inactive';\n    this.searchPanelFocus = !this.searchPanelFocus;\n}",
     "ctx": {
       "type": "method",
@@ -184,10 +162,85 @@
   {
     "tags": [
       {
-        "type": "ignore",
-        "string": "\nRealise a previous search",
-        "html": "<p>Realise a previous search</p>"
+        "type": "param",
+        "string": "{string} name 2 cases: simpleSearch or extendedSearch",
+        "name": "name",
+        "description": "<p>2 cases: simpleSearch or extendedSearch</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
       },
+      {
+        "type": "returns",
+        "string": "void",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Switch according to the focus between simple or extended search</p>",
+      "summary": "<p>Switch according to the focus between simple or extended search</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 106,
+    "codeStart": 112,
+    "code": "toggleMenu(): void {\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n    this.focusOnSimple = (this.focusOnSimple === 'active' ? 'inactive' : 'active');\n    this.showSimpleSearch = true;\n}",
+    "ctx": {
+      "type": "method",
+      "name": "toggleMenu",
+      "string": "toggleMenu()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "void",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Set simple focus to active</p>",
+      "summary": "<p>Set simple focus to active</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 118,
+    "codeStart": 123,
+    "code": "setFocus(): void {\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n    this.focusOnSimple = 'active';\n    this.searchPanelFocus = !this.searchPanelFocus;\n}",
+    "ctx": {
+      "type": "method",
+      "name": "setFocus",
+      "string": "setFocus()"
+    }
+  },
+  {
+    "tags": [
       {
         "type": "param",
         "string": "{string} query",
@@ -216,8 +269,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Realise a previous search</p>",
+      "summary": "<p>Realise a previous search</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -226,8 +279,8 @@
     "isEvent": false,
     "ignore": false,
     "line": 129,
-    "codeStart": 136,
-    "code": "doPrevSearch(query: string): void {\n    this.searchQuery = query;\n    this._router.navigate([this.route + '/fulltext/' + query], { relativeTo: this._route });\n    this.toggleMenu('simpleSearch');\n}",
+    "codeStart": 134,
+    "code": "doPrevSearch(query: string): void {\n    this.searchQuery = query;\n    this._router.navigate([this.route + '/fulltext/' + query], { relativeTo: this._route });\n    this.toggleMenu();\n}",
     "ctx": {
       "type": "method",
       "name": "doPrevSearch",
@@ -236,11 +289,6 @@
   },
   {
     "tags": [
-      {
-        "type": "ignore",
-        "string": "\nReset previous searches - the whole previous search or specific item by name",
-        "html": "<p>Reset previous searches - the whole previous search or specific item by name</p>"
-      },
       {
         "type": "param",
         "string": "{string} name term of the search",
@@ -268,8 +316,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Reset previous searches - the whole previous search or specific item by name</p>",
+      "summary": "<p>Reset previous searches - the whole previous search or specific item by name</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -277,103 +325,13 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 142,
-    "codeStart": 149,
-    "code": "resetPrevSearch(name: string = null): void {\n    if (name) {\n        // delete only this item with the name ...\n        const i: number = this.prevSearch.indexOf(name);\n        this.prevSearch.splice(i, 1);\n        localStorage.setItem('prevSearch', JSON.stringify(this.prevSearch));\n    } else {\n        // delete the whole \"previous search\" array\n        localStorage.removeItem('prevSearch');\n    }\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n\n}",
+    "line": 140,
+    "codeStart": 145,
+    "code": "resetPrevSearch(name: string = null): void {\n    if (name) {\n        // delete only this item with the name ...\n        const i: number = this.prevSearch.indexOf(name);\n        this.prevSearch.splice(i, 1);\n        localStorage.setItem('prevSearch', JSON.stringify(this.prevSearch));\n    } else {\n        // delete the whole \"previous search\" array\n        localStorage.removeItem('prevSearch');\n    }\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n\n}\n}",
     "ctx": {
       "type": "method",
       "name": "resetPrevSearch",
       "string": "resetPrevSearch()"
-    }
-  },
-  {
-    "tags": [
-      {
-        "type": "ignore",
-        "string": "Set simple focus to active",
-        "html": "<p>Set simple focus to active</p>"
-      },
-      {
-        "type": "returns",
-        "string": "void",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
-        "optional": false,
-        "description": "<p>void</p>"
-      }
-    ],
-    "description": {
-      "full": "",
-      "summary": "",
-      "body": ""
-    },
-    "isPrivate": false,
-    "isConstructor": false,
-    "isClass": false,
-    "isEvent": false,
-    "ignore": false,
-    "line": 163,
-    "codeStart": 169,
-    "code": "setFocus(): void {\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n    this.focusOnSimple = 'active';\n    this.searchPanelFocus = !this.searchPanelFocus;\n}",
-    "ctx": {
-      "type": "method",
-      "name": "setFocus",
-      "string": "setFocus()"
-    }
-  },
-  {
-    "tags": [
-      {
-        "type": "ignore",
-        "string": "\nSwitch according to the focus between simple or extended search",
-        "html": "<p>Switch according to the focus between simple or extended search</p>"
-      },
-      {
-        "type": "param",
-        "string": "{string} name 2 cases: simpleSearch or extendedSearch",
-        "name": "name",
-        "description": "<p>2 cases: simpleSearch or extendedSearch</p>",
-        "types": [
-          "string"
-        ],
-        "typesDescription": "<code>string</code>",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
-        "variable": false
-      },
-      {
-        "type": "returns",
-        "string": "void",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
-        "optional": false,
-        "description": "<p>void</p>"
-      }
-    ],
-    "description": {
-      "full": "",
-      "summary": "",
-      "body": ""
-    },
-    "isPrivate": false,
-    "isConstructor": false,
-    "isClass": false,
-    "isEvent": false,
-    "ignore": false,
-    "line": 175,
-    "codeStart": 183,
-    "code": "toggleMenu(name: string): void {\n    switch (name) {\n        case 'simpleSearch':\n            this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n            this.focusOnSimple = (this.focusOnSimple === 'active' ? 'inactive' : 'active');\n            this.showSimpleSearch = true;\n            break;\n        case 'extendedSearch':\n            this.focusOnExtended = (this.focusOnExtended === 'active' ? 'inactive' : 'active');\n            this.showSimpleSearch = false;\n            break;\n    }\n}\n}",
-    "ctx": {
-      "type": "method",
-      "name": "toggleMenu",
-      "string": "toggleMenu()"
     }
   }
 ]

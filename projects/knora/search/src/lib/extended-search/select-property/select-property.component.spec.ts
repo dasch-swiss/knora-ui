@@ -96,7 +96,12 @@ describe('SelectPropertyComponent', () => {
 
         expect(selectPropCompInstance.properties).toEqual(initProps);
 
-        expect(selectPropCompInstance.propertiesAsArray).toEqual([initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'], initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger'], initProps['http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething']]);
+        expect(selectPropCompInstance.propertiesAsArray).toEqual(
+            [
+                initProps['http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething'],
+                initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger'],
+                initProps['http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'],
+            ]);
 
         expect(testHostComponent.selectPropertyComp.specifyPropertyValue).toBeUndefined();
     });
@@ -147,7 +152,7 @@ describe('SelectPropertyComponent', () => {
 
         testHostFixture.detectChanges();
 
-        (options[0].nativeElement as HTMLElement).click();
+        (options[2].nativeElement as HTMLElement).click();
 
         testHostFixture.detectChanges();
 

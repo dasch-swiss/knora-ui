@@ -113,6 +113,8 @@ export class SearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
+     *
      * Reset the search
      * @param {HTMLElement} search_ele
      * @returns void
@@ -125,6 +127,8 @@ export class SearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
+     *
      * Realise a previous search
      * @param {string} query
      * @returns void
@@ -136,6 +140,8 @@ export class SearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
+     *
      * Reset previous searches - the whole previous search or specific item by name
      * @param {string} name term of the search
      * @returns void
@@ -155,6 +161,7 @@ export class SearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Set simple focus to active
      *
      * @returns void
@@ -166,6 +173,8 @@ export class SearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
+     *
      * Switch according to the focus between simple or extended search
      *
      * @param {string} name 2 cases: simpleSearch or extendedSearch

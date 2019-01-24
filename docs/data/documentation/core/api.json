@@ -3,9 +3,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} path",
+        "string": "{string} path the URL for the GET request.",
         "name": "path",
-        "description": "",
+        "description": "<p>the URL for the GET request.</p>",
         "types": [
           "string"
         ],
@@ -13,8 +13,21 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} path</p>"
+        "variable": false
+      },
+      {
+        "type": "param",
+        "string": "{HttpParams} params the parameters for the GET request.",
+        "name": "params",
+        "description": "<p>the parameters for the GET request.</p>",
+        "types": [
+          "HttpParams"
+        ],
+        "typesDescription": "<a href=\"HttpParams.html\">HttpParams</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
       },
       {
         "type": "returns",
@@ -38,14 +51,47 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 23,
-    "codeStart": 29,
-    "code": "httpGet(path: string, params?: any): Observable<any> {\n\n    this.loading = true;\n\n    return this.http.get(this.config.api + path, { observe: 'response', params: params }).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            const result = new ApiServiceResult();\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n\n            return result;\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            return this.handleRequestError(error);\n        })\n    );\n\n}",
+    "line": 28,
+    "codeStart": 35,
+    "code": "httpGet(path: string, params?: HttpParams): Observable<any> {\n\n    this.loading = true;\n\n    return this.http.get(this.config.api + path, {observe: 'response', params: params}).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            const result = new ApiServiceResult();\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n\n            return result;\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            return this.handleRequestError(error);\n        })\n    );\n\n}",
     "ctx": {
       "type": "method",
       "name": "httpGet",
       "string": "httpGet()"
     }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{ApiServiceResult} resourceResponse",
+        "name": "resourceResponse",
+        "description": "",
+        "types": [
+          "ApiServiceResult"
+        ],
+        "typesDescription": "<a href=\"ApiServiceResult.html\">ApiServiceResult</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{ApiServiceResult} resourceResponse</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Processes JSON-LD returned by Knora.<br />\nExpands Iris and creates an empty context object.</p>",
+      "summary": "<p>Processes JSON-LD returned by Knora.<br />\nExpands Iris and creates an empty context object.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 60,
+    "codeStart": 66,
+    "code": "protected processJSONLD(resourceResponse: ApiServiceResult): Observable<object> {\n\n    const resPromises = jsonld.promises;\n    // compact JSON-LD using an empty context: expands all Iris\n    const resPromise = resPromises.compact(resourceResponse.body, {});\n\n    // convert promise to Observable and return it\n    // https://www.learnrxjs.io/operators/creation/frompromise.html\n    return from(resPromise);\n\n}",
+    "ctx": false
   },
   {
     "tags": [
@@ -101,9 +147,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 54,
-    "codeStart": 61,
-    "code": "httpPost(path: string, body?: any): Observable<any> {\n\n    this.loading = true;\n\n    // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication\n\n    return this.http.post(this.config.api + path, body, { observe: 'response' }).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            const result = new ApiServiceResult();\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n            return result;\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            // console.error(error);\n\n            return this.handleRequestError(error);\n        })\n    );\n\n}",
+    "line": 78,
+    "codeStart": 85,
+    "code": "httpPost(path: string, body?: any): Observable<any> {\n\n    this.loading = true;\n\n    // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication\n\n    return this.http.post(this.config.api + path, body, {observe: 'response'}).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            const result = new ApiServiceResult();\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n            return result;\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            // console.error(error);\n\n            return this.handleRequestError(error);\n        })\n    );\n\n}",
     "ctx": {
       "type": "method",
       "name": "httpPost",
@@ -164,9 +210,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 89,
-    "codeStart": 96,
-    "code": "httpPut(path: string, body?: any): Observable<any> {\n\n    this.loading = true;\n\n    // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication\n\n    return this.http.put(this.config.api + path, body, { observe: 'response' }).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            // console.log(response);\n\n            const result = new ApiServiceResult();\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n            return result;\n\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            // console.error(error);\n\n            return this.handleRequestError(error);\n        })\n    );\n}",
+    "line": 113,
+    "codeStart": 120,
+    "code": "httpPut(path: string, body?: any): Observable<any> {\n\n    this.loading = true;\n\n    // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication\n\n    return this.http.put(this.config.api + path, body, {observe: 'response'}).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            // console.log(response);\n\n            const result = new ApiServiceResult();\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n            return result;\n\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            // console.error(error);\n\n            return this.handleRequestError(error);\n        })\n    );\n}",
     "ctx": {
       "type": "method",
       "name": "httpPut",
@@ -212,9 +258,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 126,
-    "codeStart": 132,
-    "code": "httpDelete(path: string): Observable<any> {\n\n    this.loading = true;\n\n    // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication\n\n    return this.http.delete(this.config.api + path, { observe: 'response' }).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            // console.log(response);\n\n            const result = new ApiServiceResult();\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n            return result;\n\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            // console.error(error);\n\n            return this.handleRequestError(error);\n        })\n    );\n}",
+    "line": 150,
+    "codeStart": 156,
+    "code": "httpDelete(path: string): Observable<any> {\n\n    this.loading = true;\n\n    // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication\n\n    return this.http.delete(this.config.api + path, {observe: 'response'}).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            // console.log(response);\n\n            const result = new ApiServiceResult();\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n            return result;\n\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            // console.error(error);\n\n            return this.handleRequestError(error);\n        })\n    );\n}",
     "ctx": {
       "type": "method",
       "name": "httpDelete",
@@ -260,8 +306,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 163,
-    "codeStart": 169,
+    "line": 187,
+    "codeStart": 193,
     "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    // console.error(error);\n    const serviceError = new ApiServiceError();\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}",
     "ctx": false
   },
@@ -304,8 +350,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 179,
-    "codeStart": 185,
+    "line": 203,
+    "codeStart": 209,
     "code": "protected handleJsonError(error: any): Observable<ApiServiceError> {\n\n    if (error instanceof ApiServiceError) return throwError(error);\n\n    const serviceError = new ApiServiceError();\n    serviceError.status = -1;\n    serviceError.statusText = 'Invalid JSON';\n    serviceError.errorInfo = error;\n    serviceError.url = '';\n    return throwError(serviceError);\n\n}\n\n// the following method is replaced by the JwtInterceptor",
     "ctx": false
   },
@@ -321,8 +367,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 199,
-    "codeStart": 231
+    "line": 223,
+    "codeStart": 255
   },
   {
     "tags": [
@@ -365,8 +411,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 231,
-    "codeStart": 264
+    "line": 255,
+    "codeStart": 288
   },
   {
     "tags": [
@@ -409,8 +455,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 264,
-    "codeStart": 287,
+    "line": 288,
+    "codeStart": 311,
     "code": "}",
     "ctx": false
   }
