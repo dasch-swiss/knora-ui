@@ -78,7 +78,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
     /**
      * Get search result from Knora - 2 cases: simple search and extended search
      */
-    getResult() {
+    protected getResult() {
         this.isLoading = true;
 
         // FULLTEXT SEARCH
