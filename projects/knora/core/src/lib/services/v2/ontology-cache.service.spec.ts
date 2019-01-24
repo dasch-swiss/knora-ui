@@ -946,7 +946,7 @@ describe('OntologyCacheService', () => {
                     const resClassSortedAsc = ontoRes.getResourceClassesAsArray(true);
 
                     const resClassSortedDesc = ontoRes.getResourceClassesAsArray(false);
-                  
+
                     expect(resClassSortedAsc[0].label).toEqual('Archive');
                     expect(resClassSortedDesc[0].label).toEqual('Written source');
 
