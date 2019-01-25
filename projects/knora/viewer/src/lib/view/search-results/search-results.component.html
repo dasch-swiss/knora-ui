@@ -1,16 +1,32 @@
 <div *ngIf="!rerender">
-    <mat-tab-group>
-        <mat-tab label="List">
-            <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" [isLoading]="isLoading"></kui-list-view>
-        </mat-tab>
-        <mat-tab label="Grid">
-            <kui-grid-view></kui-grid-view>
-        </mat-tab>
-        <mat-tab label="Table">
-            <kui-table-view></kui-table-view>
-        </mat-tab>
-        <mat-tab label="Gravsearch">
-            <kui-graph-view></kui-graph-view>
-        </mat-tab>
-    </mat-tab-group>
+    <div *ngIf="numberOfAllResults !== 0 && result; else noResult">
+        <h4>Number of results: {{numberOfAllResults}}</h4>
+        <mat-tab-group>
+            <mat-tab label="List">
+                <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" [isLoading]="isLoading"></kui-list-view>
+            </mat-tab>
+            <mat-tab label="Grid">
+                <kui-grid-view></kui-grid-view>
+            </mat-tab>
+            <mat-tab label="Table">
+                <kui-table-view></kui-table-view>
+            </mat-tab>
+            <mat-tab label="Gravsearch">
+                <kui-graph-view></kui-graph-view>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <!-- In case of 0 result -->
+    <ng-template #noResult>
+        <p>
+            <strong>No result</strong>
+        </p>
+    </ng-template>
+
+</div>
+
+<!-- Error message -->
+<div *ngIf="errorMessage">
+    <p>There is an error: {{errorMessage}}</p>
 </div>

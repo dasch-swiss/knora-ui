@@ -1,6 +1,7 @@
 import { OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
+    CountQueryResult,
     ExtendedSearchParams,
     KnoraConstants,
     OntologyCacheService,
@@ -15,12 +16,14 @@ import { Subscription } from 'rxjs';
 export abstract class KuiView implements OnInit, OnDestroy {
 
     abstract offset: number;
+    abstract maxOffset: number;
     abstract result: ReadResource[];
     abstract ontologyInfo: OntologyInformation;
     abstract navigationSubscription: Subscription;
     abstract gravsearchGenerator: ExtendedSearchParams;
     abstract searchQuery: string;
     abstract searchMode: string;
+    abstract numberOfAllResults: number;
     abstract KnoraConstants: KnoraConstants;
     abstract rerender: boolean;
     abstract isLoading: boolean;
@@ -83,9 +86,9 @@ export abstract class KuiView implements OnInit, OnDestroy {
 
         // FULLTEXT SEARCH
         if (this.searchMode === 'fulltext') {
-            // TODO: extract countResult into the parent component SearchResult
-            /* if (this.offset === 0) {
 
+            if (this.offset === 0) {
+                // perform count query
                 this._searchService.doFullTextSearchCountQueryCountQueryResult(this.searchQuery)
                     .subscribe(
                         this.showNumberOfAllResults,
@@ -94,7 +97,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
                             // console.log('numberOfAllResults', this.numberOfAllResults);
                         }
                     );
-            } */
+            }
 
             // perform full text search
             this._searchService.doFullTextSearchReadResourceSequence(this.searchQuery, this.offset)
@@ -107,8 +110,8 @@ export abstract class KuiView implements OnInit, OnDestroy {
 
             // EXTENDED SEARCH
         } else if (this.searchMode === 'extended') {
-            // TODO: extract countResult into the parent component SearchResult
-            /* if (this.offset === 0) {
+            // perform count query
+            if (this.offset === 0) {
                 this._searchService.doExtendedSearchCountQueryCountQueryResult(this.searchQuery)
                     .subscribe(
                         this.showNumberOfAllResults,
@@ -116,7 +119,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
                             this.errorMessage = <any>error;
                         }
                     );
-            } */
+            }
             this._searchService.doExtendedSearchReadResourceSequence(this.searchQuery)
                 .subscribe(
                     this.processSearchResults, // function pointer
@@ -153,6 +156,24 @@ export abstract class KuiView implements OnInit, OnDestroy {
         this.isLoading = false;
         this.rerender = false;
 
+    }
+
+    /**
+     * Shows total number of results returned by a count query.
+     *
+     * @param {ApiServiceResult} countQueryResult the response to a count query.
+     */
+    private showNumberOfAllResults = (countQueryResult: CountQueryResult) => {
+        this.numberOfAllResults = countQueryResult.numberOfResults;
+
+        if (this.numberOfAllResults > 0) {
+            // offset is 0-based
+            // if numberOfAllResults equals the pagingLimit, the max. offset is 0
+            // this.maxOffset = Math.floor((this.numberOfAllResults - 1) / environment.pagingLimit);
+            console.log(this.maxOffset);
+        } else {
+            this.maxOffset = 0;
+        }
     }
 
 }

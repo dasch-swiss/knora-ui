@@ -23,17 +23,15 @@ import {
 export class SearchResultsComponent extends KuiView {
 
   KnoraConstants = KnoraConstants;
-
   offset: number = 0;
+  maxOffset: number = 0;
   gravsearchGenerator: ExtendedSearchParams;
-
   result: ReadResource[] = [];
   ontologyInfo: OntologyInformation;
+  numberOfAllResults: number;
   rerender: boolean = false;
-
   searchQuery: string;
   searchMode: string;
-
   isLoading = true;
   errorMessage: any = undefined;
   navigationSubscription: Subscription;
