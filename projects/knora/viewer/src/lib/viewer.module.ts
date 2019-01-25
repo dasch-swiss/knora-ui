@@ -14,6 +14,7 @@ import {
     MatListModule,
     MatNativeDateModule,
     MatSlideToggleModule,
+    MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
 } from '@angular/material';
@@ -77,6 +78,7 @@ import { SearchResultsComponent } from './view/search-results/search-results.com
         MatListModule,
         MatNativeDateModule,
         MatSlideToggleModule,
+        MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
         ReactiveFormsModule

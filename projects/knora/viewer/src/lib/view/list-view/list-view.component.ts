@@ -10,7 +10,6 @@ export class ListViewComponent {
 
     @Input() result;
     @Input() ontologyInfo;
-    @Input() rerender;
     @Input() isLoading;
 
     KnoraConstants = KnoraConstants;

@@ -1,4 +1,16 @@
-<div>
-  <h2>List view</h2>
-  <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" [rerender]="rerender" [isLoading]="isLoading"></kui-list-view>
+<div *ngIf="!rerender">
+    <mat-tab-group>
+        <mat-tab label="List">
+            <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" [isLoading]="isLoading"></kui-list-view>
+        </mat-tab>
+        <mat-tab label="Grid">
+            <kui-grid-view></kui-grid-view>
+        </mat-tab>
+        <mat-tab label="Table">
+            <kui-table-view></kui-table-view>
+        </mat-tab>
+        <mat-tab label="Gravsearch">
+            <kui-graph-view></kui-graph-view>
+        </mat-tab>
+    </mat-tab-group>
 </div>
