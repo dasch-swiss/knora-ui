@@ -85,7 +85,7 @@ describe('StillImageOSDViewerComponent', () => {
         // first region -> polygon element (second element in <g> element)
         const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
 
-        const event = new MouseEvent('mouseover', {
+        const event = new MouseEvent('click', {
             bubbles: true,
             cancelable: true,
             view: window
@@ -122,6 +122,20 @@ describe('StillImageOSDViewerComponent', () => {
 
     });
 
+    it('should highlight a region using the input "activateRegion"', () => {
+        host.resourcesHost = images;
+        host.inputActivateRegion = 'http://rdfh.ch/b6b64a62b006';
+        fixture.detectChanges();
+
+        const overlay = component['viewer'].svgOverlay();
+
+        // first region -> polygon element (second element in <g> element)
+        const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
+
+        let attr = regionSvgEle.getAttribute('class');
+        expect(attr).toEqual('roi-svgoverlay active');
+    });
+
 });
 
 // define and create host component
@@ -129,13 +143,15 @@ describe('StillImageOSDViewerComponent', () => {
 @Component({
     template: `
         <kui-still-image [images]="resourcesHost"
-                         (regionHovered)="regionActive($event)">
+                         (regionHovered)="regionActive($event)"
+                         [activateRegion]="inputActivateRegion">
         </kui-still-image>`
 })
 class TestHostComponent {
     resourcesHost: StillImageRepresentation[] = [];
     caption = 'test';
     activeRegion: string;
+    inputActivateRegion: string;
 
     @ViewChild(StillImageComponent) osdViewerComp: StillImageComponent;
 

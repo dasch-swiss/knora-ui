@@ -96,6 +96,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
     @Input() images: StillImageRepresentation[];
     @Input() imageCaption?: string;
+    @Input() activateRegion: string; // highlight a region
 
     @Output() regionHovered = new EventEmitter<string>();
 
@@ -175,6 +176,14 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         if (changes['images']) {
             this.openImages();
             this.renderRegions();
+
+            if (this.activateRegion !== undefined) {
+                this.highlightRegion(this.activateRegion);
+            }
+        } else if (changes['activateRegion']) {
+            if (this.activateRegion !== undefined) {
+                this.highlightRegion(this.activateRegion);
+            }
         }
     }
 
@@ -219,6 +228,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
      * @param regionIri the Iri of the region whose polygon elements should be highlighted..
      */
     private highlightRegion(regionIri) {
+
         const activeRegion: SVGPolygonElement = this.regions[regionIri];
 
         if (activeRegion !== undefined && Array.isArray(activeRegion)) {
@@ -396,8 +406,11 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         svgElement.setAttribute('class', 'roi-svgoverlay');
         svgElement.setAttribute('style', 'stroke: ' + lineColor + '; stroke-width: ' + lineWidth + 'px;');
 
-        // event when a region is hovered (output)
-        svgElement.addEventListener('mouseover', () => {
+        // event when a region is clicked (output)
+        svgElement.addEventListener('click', () => {
+            if (this.activateRegion !== undefined) {
+                this.unhighlightRegion(this.activateRegion);
+            }
                 this.regionHovered.emit(regionIri);
             }, false);
 
