@@ -15,6 +15,13 @@
                 <kui-graph-view></kui-graph-view>
             </mat-tab>
         </mat-tab-group>
+
+        <div class="load-panel" *ngIf="result.length > 0">
+            <button mat-flat-button color="primary" class="link center" (click)="loadMore(offset)" *ngIf="offset < maxOffset">Load more
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+        </div>
+
     </div>
 
     <!-- In case of 0 result -->

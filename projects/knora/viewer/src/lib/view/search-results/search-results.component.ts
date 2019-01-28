@@ -35,6 +35,7 @@ export class SearchResultsComponent extends KuiView {
   isLoading = true;
   errorMessage: any = undefined;
   navigationSubscription: Subscription;
+  pagingLimit: number = 25;
 
   constructor(
     protected _route: ActivatedRoute,

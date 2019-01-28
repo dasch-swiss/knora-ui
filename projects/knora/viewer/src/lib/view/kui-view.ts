@@ -28,6 +28,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
     abstract rerender: boolean;
     abstract isLoading: boolean;
     abstract errorMessage: any;
+    abstract pagingLimit: number;
 
     constructor(
         protected _route: ActivatedRoute,
@@ -169,11 +170,32 @@ export abstract class KuiView implements OnInit, OnDestroy {
         if (this.numberOfAllResults > 0) {
             // offset is 0-based
             // if numberOfAllResults equals the pagingLimit, the max. offset is 0
-            // this.maxOffset = Math.floor((this.numberOfAllResults - 1) / environment.pagingLimit);
-            console.log(this.maxOffset);
+            this.maxOffset = Math.floor((this.numberOfAllResults - 1) / this.pagingLimit);
         } else {
             this.maxOffset = 0;
         }
+    }
+
+    /**
+     * Loads the next page of results.
+     * The results will be appended to the existing ones.
+     *
+     * @param {number} offset
+     * @returns void
+     */
+    loadMore(offset: number): void {
+        // update the page offset when the end of scroll is reached to get the next page of search results
+        if (this.offset < this.maxOffset) {
+            this.offset++;
+        } else {
+            return;
+        }
+
+        if (this.searchMode === 'extended') {
+            this.generateGravsearchQuery();
+        }
+
+        this.getResult();
     }
 
 }
