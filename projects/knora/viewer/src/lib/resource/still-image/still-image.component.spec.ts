@@ -99,7 +99,7 @@ describe('StillImageOSDViewerComponent', () => {
 
     });
 
-    it('should higglight a region', () => {
+    it('should highlight a region', () => {
         host.resourcesHost = images;
         fixture.detectChanges();
 
