@@ -1,3 +1,6 @@
-<p>
-  viewer-pg works!
-</p>
+<p>Open one of the following resources:</p>
+<button mat-raised-button *ngFor="let res of resources" (click)="openResource(res.iri)">{{res.name}}</button>
+
+<router-outlet></router-outlet>
+
+

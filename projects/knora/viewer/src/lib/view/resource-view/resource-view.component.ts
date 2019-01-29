@@ -1,17 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
     ApiServiceError,
-    ApiServiceResult,
-    ConvertJSONLD,
+    ImageRegion,
     IncomingService,
     KnoraConstants,
-    OntologyCacheService,
     OntologyInformation,
     ReadResource,
     ReadResourcesSequence,
-    ResourceService
+    ReadStillImageFileValue,
+    ResourceService,
+    StillImageRepresentation
 } from '@knora/core';
+
+// import { ImageRegion, StillImageRepresentation } from '../../resource';
 
 declare let require: any;
 const jsonld = require('jsonld');
@@ -23,79 +25,216 @@ const jsonld = require('jsonld');
 })
 export class ResourceViewComponent implements OnInit {
 
-    @Input() iri?: string = 'http://rdfh.ch/8be1b7cf7103';
+    @Input() iri?: string;
 
-    ontologyInfo: OntologyInformation; // ontology information about resource classes and properties present in the requested resource with Iri `iri`
-    resource: ReadResource; // the resource to be displayed
-    errorMessage: any;
-
+    resource: ReadResourcesSequence;
+    ontologyInfo: OntologyInformation;
+    loading = true;
+    error: any;
     KnoraConstants = KnoraConstants;
 
-    constructor(private _route: ActivatedRoute,
-                private _resourceService: ResourceService,
-                private _cacheService: OntologyCacheService,
-                private _incomingService: IncomingService) {
 
-        const routeParams = this._route.snapshot.params;
-        this.iri = routeParams.id;
+    constructor(protected _route: ActivatedRoute,
+                protected _router: Router,
+                protected _resourceService: ResourceService,
+                protected _incomingService: IncomingService
+    ) {
 
     }
 
     ngOnInit() {
+        this.loading = true;
+
         this.getResource(this.iri);
+
     }
 
-    private getResource(iri: string): void {
-        this._resourceService.getResource(iri)
-            .subscribe(
-                (result: ApiServiceResult) => {
-                    console.log('result: ', result.body);
-                    const promises = jsonld.promises;
-                    // compact JSON-LD using an empty context: expands all Iris
-                    const promise = promises.compact(result.body, {});
+    getResource(id: string) {
+        this._resourceService.getReadResource(decodeURIComponent(id)).subscribe(
+            (result: ReadResourcesSequence) => {
+                console.log(result);
+                this.resource = result;
 
-                    promise.then((compacted) => {
+                this.ontologyInfo = result.ontologyInformation;
 
-                        const resourceSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);
+                // collect images and regions
+                this.collectImagesAndRegionsForResource(this.resource.resources[0]);
 
-                        // make sure that exactly one resource is returned
-                        if (resourceSeq.resources.length === 1) {
+                // get incoming resources
+                this.requestIncomingResources();
 
-                            // get resource class Iris from response
-                            const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);
 
-                            // request ontology information about resource class Iris (properties are implied)
-                            this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
-                                (resourceClassInfos: any) => {
-                                    // initialize ontology information
-                                    this.ontologyInfo = resourceClassInfos; // console.log('initialization of ontologyInfo: ', this.ontologyInfo); > object received
+                // wait until the resource is ready
+                setTimeout(() => {
+                    // console.log(this.resource);
+                    this.loading = false;
+                }, 3000);
+            },
+            (error: ApiServiceError) => {
+                console.error(error);
+            }
+        );
+    }
 
-                                    // prepare a possibly attached image file to be displayed
-                                    // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);
+    collectImagesAndRegionsForResource(resource: ReadResource): void {
 
-                                    this.resource = resourceSeq.resources[0];
-                                    // console.log('resource: ', this.resource);
+        const imgRepresentations: StillImageRepresentation[] = [];
 
-                                    // this.requestIncomingResources();
-                                },
-                                (err) => {
+        if (resource.properties[KnoraConstants.hasStillImageFileValue] !== undefined) {
+            // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
+            // resource has StillImageFileValues that are directly attached to it (properties)
 
-                                    console.log('cache request failed: ' + err);
-                                });
-                        } else {
-                            // exactly one resource was expected, but resourceSeq.resources.length != 1
-                            this.errorMessage = `Exactly one resource was expected, but ${resourceSeq.resources.length} resource(s) given.`;
-                        }
-                    }, function (err) {
-                        console.error('JSONLD of full resource request could not be expanded:' + err);
+            const fileValues: ReadStillImageFileValue[] = resource.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
+            const imagesToDisplay: ReadStillImageFileValue[] = fileValues.filter((image) => {
+                return !image.isPreview;
+            });
+
+
+            for (const img of imagesToDisplay) {
+
+                const regions: ImageRegion[] = [];
+                for (const incomingRegion of resource.incomingRegions) {
+
+                    const region = new ImageRegion(incomingRegion);
+
+                    regions.push(region);
+
+                }
+
+                const stillImage = new StillImageRepresentation(img, regions);
+                imgRepresentations.push(stillImage);
+
+            }
+
+
+        } else if (resource.incomingStillImageRepresentations.length > 0) {
+            // there are StillImageRepresentations pointing to this resource (incoming)
+
+            const readStillImageFileValues: ReadStillImageFileValue[] = resource.incomingStillImageRepresentations.map(
+                (stillImageRes: ReadResource) => {
+                    const fileValues = stillImageRes.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
+                    // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
+                    const imagesToDisplay = fileValues.filter((image) => {
+                        return !image.isPreview;
                     });
-                    // this.isLoading = false;
-                },
-                (error: ApiServiceError) => {
-                    console.error(error);
-                    // this.errorMessage = <any>error;
-                    // this.isLoading = false;
-                });
+
+                    return imagesToDisplay;
+                }
+            ).reduce(function (prev, curr) {
+                // transform ReadStillImageFileValue[][] to ReadStillImageFileValue[]
+                return prev.concat(curr);
+            });
+
+            for (const img of readStillImageFileValues) {
+
+                const regions: ImageRegion[] = [];
+                for (const incomingRegion of resource.incomingRegions) {
+
+                    const region = new ImageRegion(incomingRegion);
+                    regions.push(region);
+
+                }
+
+                const stillImage = new StillImageRepresentation(img, regions);
+                imgRepresentations.push(stillImage);
+            }
+
+        }
+
+        resource.stillImageRepresentationsToDisplay = imgRepresentations;
+
+    }
+
+    requestIncomingResources(): void {
+
+        // make sure that this.resource has been initialized correctly
+        if (this.resource === undefined) {
+            return;
+        }
+
+        // request incoming regions
+        if (this.resource.resources[0].properties[KnoraConstants.hasStillImageFileValue]) {
+            // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
+            // the resource is a StillImageRepresentation, check if there are regions pointing to it
+
+            this.getIncomingRegions(0);
+
+        } else {
+            // this resource is not a StillImageRepresentation
+            // check if there are StillImageRepresentations pointing to this resource
+
+            // this gets the first page of incoming StillImageRepresentations
+            // more pages may be requested by [[this.viewer]].
+            // TODO: for now, we begin with offset 0. This may have to be changed later (beginning somewhere in a collection)
+            // this.getIncomingStillImageRepresentations(0);
+        }
+
+        // check for incoming links for the current resource
+        this.getIncomingLinks(0);
+
+
+    }
+
+    getIncomingRegions(offset: number, callback?: (numberOfResources: number) => void): void {
+        this._incomingService.getIncomingRegions(this.resource.resources[0].id, offset).subscribe(
+            (regions: ReadResourcesSequence) => {
+                // update ontology information
+                this.ontologyInfo.updateOntologyInformation(regions.ontologyInformation);
+
+                // Append elements of regions.resources to resource.incoming
+                Array.prototype.push.apply(this.resource.resources[0].incomingRegions, regions.resources);
+
+                // prepare regions to be displayed
+                this.collectImagesAndRegionsForResource(this.resource.resources[0]);
+
+                // TODO: implement osdViewer
+                /* if (this.osdViewer) {
+                  this.osdViewer.updateRegions();
+                } */
+
+                // if callback is given, execute function with the amount of new images as the parameter
+                if (callback !== undefined) {
+                    callback(regions.resources.length);
+                }
+            },
+            (error: any) => {
+                console.error(error);
+                this.loading = false;
+            }
+        );
+    }
+
+    getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {
+
+        this.loading = true;
+
+        this._incomingService.getIncomingLinksForResource(this.resource.resources[0].id, offset).subscribe(
+            (incomingResources: ReadResourcesSequence) => {
+                // update ontology information
+                this.ontologyInfo.updateOntologyInformation(incomingResources.ontologyInformation);
+
+                // Append elements incomingResources to this.resource.incomingLinks
+                Array.prototype.push.apply(this.resource.resources[0].incomingLinks, incomingResources.resources);
+
+                // if callback is given, execute function with the amount of incoming resources as the parameter
+                if (callback !== undefined) {
+                    callback(incomingResources.resources.length);
+                }
+
+                this.loading = false;
+            },
+            (error: any) => {
+                console.error(error);
+                this.loading = false;
+            }
+        );
+    }
+
+    openLink(id: string) {
+
+        this.loading = true;
+        this._router.navigate(['/resource/' + encodeURIComponent(id)]);
+
     }
 
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ListViewComponent, ResourceViewComponent, SearchResultsComponent } from '@knora/viewer';
+import { ResourceViewComponent, SearchResultsComponent } from '@knora/viewer';
 import { AppDemo } from './app.config';
 // dev docs
 import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
@@ -44,9 +44,9 @@ import { TreeComponent } from './material/tree/tree.component';
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 // playground
 import { PlaygroundComponent } from './playground/playground.component';
-import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
+import { ResourcePgComponent } from './playground/resource-pg/resource-pg.component';
 import { SearchPgComponent } from './playground/search-pg/search-pg.component';
-import { SearchResultComponent } from './playground/search-pg/search-result/search-result.component';
+import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
 
 const appRoutes: Routes = [
     {
@@ -65,7 +65,7 @@ const appRoutes: Routes = [
             {
                 path: '',
                 component: DemoIntroComponent,
-                data: { module: 'demo' }
+                data: {module: 'demo'}
             },
             {
                 path: 'action',
@@ -79,7 +79,7 @@ const appRoutes: Routes = [
                     {
                         path: 'readme',
                         component: DemoIntroComponent,
-                        data: { module: 'action' }
+                        data: {module: 'action'}
                     },
                     {
                         path: 'sort-button',
@@ -116,7 +116,7 @@ const appRoutes: Routes = [
                     {
                         path: 'readme',
                         component: DemoIntroComponent,
-                        data: { module: 'authentication' }
+                        data: {module: 'authentication'}
                     },
                     {
                         path: 'login-form',
@@ -131,7 +131,7 @@ const appRoutes: Routes = [
             {
                 path: 'search',
                 component: SearchDemoComponent,
-                data: { partOf: AppDemo.searchModule },
+                data: {partOf: AppDemo.searchModule},
                 children: [
                     {
                         path: '',
@@ -141,7 +141,7 @@ const appRoutes: Routes = [
                     {
                         path: 'readme',
                         component: DemoIntroComponent,
-                        data: { module: 'search' }
+                        data: {module: 'search'}
                     },
                     {
                         path: 'search',
@@ -152,7 +152,7 @@ const appRoutes: Routes = [
             {
                 path: 'viewer',
                 component: ViewerDemoComponent,
-                data: { module: AppDemo.viewerModule },
+                data: {module: AppDemo.viewerModule},
                 children: [
                     {
                         path: '',
@@ -162,12 +162,12 @@ const appRoutes: Routes = [
                     {
                         path: 'readme',
                         component: DemoIntroComponent,
-                        data: { module: 'viewer' }
+                        data: {module: 'viewer'}
                     },
                     {
                         path: 'resources',
                         component: ResourcesComponent,
-                        data: { partOf: AppDemo.viewerModule }
+                        data: {partOf: AppDemo.viewerModule}
                     },
                     {
                         path: 'resource/:id',
@@ -176,12 +176,12 @@ const appRoutes: Routes = [
                     {
                         path: 'properties',
                         component: PropertiesComponent,
-                        data: { partOf: AppDemo.viewerModule }
+                        data: {partOf: AppDemo.viewerModule}
                     },
                     {
                         path: 'views',
                         component: ViewsComponent,
-                        data: { partOf: AppDemo.viewerModule }
+                        data: {partOf: AppDemo.viewerModule}
                     }
 
                 ]
@@ -199,7 +199,7 @@ const appRoutes: Routes = [
                     {
                         path: 'readme',
                         component: DemoIntroComponent,
-                        data: { module: 'core' }
+                        data: {module: 'core'}
                     },
                     {
                         path: 'projects',
@@ -256,7 +256,13 @@ const appRoutes: Routes = [
         children: [
             {
                 path: 'viewer',
-                component: ViewerPgComponent
+                component: ViewerPgComponent,
+                children: [
+                    {
+                        path: 'resource/:id',
+                        component: ResourcePgComponent
+                    }
+                ]
             },
             {
                 path: 'search',
