@@ -42,6 +42,7 @@ import { MainIntroComponent } from './landing-page/main-intro/main-intro.compone
 import { TreeComponent } from './material/tree/tree.component';
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
+import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
 // playground
 import { PlaygroundComponent } from './playground/playground.component';
 import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
@@ -257,6 +258,10 @@ const appRoutes: Routes = [
             {
                 path: 'viewer',
                 component: ViewerPgComponent
+            },
+            {
+                path: 'ontology',
+                component: OntologyPgComponent
             },
             {
                 path: 'search',
