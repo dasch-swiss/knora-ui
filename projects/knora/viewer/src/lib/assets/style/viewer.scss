@@ -43,6 +43,16 @@
   font-weight: bold !important;
 }
 
+.lv-read-more {
+  position: absolute; 
+  bottom: 0; 
+  left: 0;
+  width: 100%; 
+  text-align: center; 
+  margin: 0; padding: 30px 0; 
+  border-radius: 3px;
+}
+
 /* 
  * shading the html text 
  */
@@ -67,7 +77,7 @@
 
 /*** GRID VIEW ***/
 
-.preview {
+.gv-preview {
   margin: 6px 0;
   padding: 24px;
   word-wrap: break-word;
