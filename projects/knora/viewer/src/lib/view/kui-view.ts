@@ -95,7 +95,6 @@ export abstract class KuiView implements OnInit, OnDestroy {
                         this.showNumberOfAllResults,
                         (error: any) => {
                             this.errorMessage = <any>error;
-                            // console.log('numberOfAllResults', this.numberOfAllResults);
                         }
                     );
             }
@@ -151,7 +150,6 @@ export abstract class KuiView implements OnInit, OnDestroy {
             this.ontologyInfo.updateOntologyInformation(searchResult.ontologyInformation);
         }
         // append results to search results
-        // console.log('results 1', this.result);
         this.result = this.result.concat(searchResult.resources);
 
         this.isLoading = false;
