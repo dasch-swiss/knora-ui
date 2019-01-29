@@ -7,12 +7,14 @@ import {
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
     MatNativeDateModule,
     MatSlideToggleModule,
+    MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
 } from '@angular/material';
@@ -55,7 +57,7 @@ import { ListViewComponent } from './view/list-view/list-view.component';
 import { PropertiesViewComponent } from './view/properties-view/properties-view.component';
 import { ResourceViewComponent } from './view/resource-view/resource-view.component';
 import { TableViewComponent } from './view/table-view/table-view.component';
-
+import { SearchResultsComponent } from './view/search-results/search-results.component';
 
 
 
@@ -69,12 +71,14 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         MatCardModule,
         MatCheckboxModule,
         MatDatepickerModule,
+        MatExpansionModule,
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
         MatListModule,
         MatNativeDateModule,
         MatSlideToggleModule,
+        MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
         ReactiveFormsModule
@@ -113,7 +117,8 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         ResourceViewComponent,
         CompareViewComponent,
         GraphViewComponent,
-        PropertiesViewComponent
+        PropertiesViewComponent,
+        SearchResultsComponent
     ],
     exports: [
 
@@ -150,7 +155,8 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         ResourceViewComponent,
         CompareViewComponent,
         GraphViewComponent,
-        PropertiesViewComponent
+        PropertiesViewComponent,
+        SearchResultsComponent
     ]
 })
 export class KuiViewerModule {

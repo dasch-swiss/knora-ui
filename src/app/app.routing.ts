@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ResourceViewComponent } from '@knora/viewer';
+import { ListViewComponent, ResourceViewComponent, SearchResultsComponent } from '@knora/viewer';
 import { AppDemo } from './app.config';
 // dev docs
 import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
@@ -264,7 +264,7 @@ const appRoutes: Routes = [
                 children: [
                     {
                         path: ':mode/:q',
-                        component: SearchResultComponent
+                        component: SearchResultsComponent
                     }
                 ]
             }
