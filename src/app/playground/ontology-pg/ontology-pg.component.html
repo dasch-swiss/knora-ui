@@ -19,15 +19,15 @@
                 <tr *ngFor="let item of ontologies; let last = last;" [class.no-border]="last">
                     <!-- label -->
                     <td>
-                        <h5 class="mat-subheading-2 link" [routerLink]="'./' + item.name">
+                        <h5 class="mat-subheading-2">
                             {{item['rdfs:label']}}
                         </h5>
+                        <p class="mat-subheading-1">{{item['@id']}}</p>
                     </td>
                     <!-- action: remove -->
                     <td class="table-action">
                         <div class="hidden">
                             <button mat-icon-button
-                                    *ngIf="!disabled"
                                     (click)="removeOntology(item['@id'])"
                                     matTooltip="Delete {{item['rdfs:label']}}"
                                     matTooltipPosition="above">

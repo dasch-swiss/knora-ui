@@ -73,7 +73,7 @@ export class OntologyPgComponent implements OnInit {
     }
 
     removeOntology(id: string) {
-        console.log(id);
+        alert('This will deactivate the ontology: ' + id + '(This doesn\'t work here!)');
     }
 
     createOntology() {
