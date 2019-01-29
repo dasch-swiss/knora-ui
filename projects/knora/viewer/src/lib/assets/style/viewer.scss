@@ -37,7 +37,15 @@
   overflow: hidden;
 }
 
-.lv-html-text .lv-read-more {
+.lv-label {
+  font-weight: bold !important;
+}
+
+/* 
+ * shading the html text 
+ */
+
+/* .lv-html-text .lv-read-more {
   position: absolute; 
   bottom: 0; 
   left: 0;
@@ -53,8 +61,4 @@
   left bottom,
   color-stop(0, rgba(255, 255, 255, 0)),
   color-stop(1, rgba(200, 200, 200, 1)));
-}
-
-.lv-label {
-  font-weight: bold !important;
-}
+} */
