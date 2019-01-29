@@ -1,3 +1,35 @@
-<p>
-  list-view works!
-</p>
+<div>
+    <kui-progress-indicator *ngIf="isLoading" [color]="'#D88958'"></kui-progress-indicator>
+
+    <mat-list class="list-view" *ngFor="let res of result; let i = index; let last = last;">
+        <mat-list-item class="link">
+            <mat-icon matListIcon>image_search</mat-icon>
+            <h2 matLine class="lv-label">{{ontologyInfo?.getLabelForResourceClass(res.type)}} - {{res.label}}</h2>
+
+            <div matLine *ngFor="let prop of res.properties | kuiKey">
+                <div *ngFor="let val of prop.value | kuiKey">
+                    <div [ngSwitch]="val.value.getClassName()">
+
+                        <div matLine class="lv-html-text" *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml">
+                            <kui-text-value-as-html [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="false"></kui-text-value-as-html>
+                            <p class="lv-read-more"></p>
+                        </div>
+
+                        <span matLine>
+                            <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value>
+                            <span *ngSwitchDefault="">{{val.value.getContent()}}</span>
+                        </span>
+                        <br>
+                        <span matLine *ngIf="ontologyInfo?.getLabelForProperty(prop.key) !== 'Text'">
+                            {{ontologyInfo?.getLabelForProperty(prop.key)}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </mat-list-item>
+
+        <mat-divider *ngIf="!last"></mat-divider>
+
+    </mat-list>
+</div>
