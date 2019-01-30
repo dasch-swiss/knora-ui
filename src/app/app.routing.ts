@@ -42,6 +42,8 @@ import { MainIntroComponent } from './landing-page/main-intro/main-intro.compone
 import { TreeComponent } from './material/tree/tree.component';
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
+import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
+import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
 // playground
 import { PlaygroundComponent } from './playground/playground.component';
 import { ResourcePgComponent } from './playground/resource-pg/resource-pg.component';
@@ -255,6 +257,10 @@ const appRoutes: Routes = [
         component: PlaygroundComponent,
         children: [
             {
+                path: 'authentication',
+                component: AuthenticationPgComponent
+            },
+            {
                 path: 'viewer',
                 component: ViewerPgComponent,
                 children: [
@@ -263,6 +269,10 @@ const appRoutes: Routes = [
                         component: ResourcePgComponent
                     }
                 ]
+            },
+            {
+                path: 'ontology',
+                component: OntologyPgComponent
             },
             {
                 path: 'search',
