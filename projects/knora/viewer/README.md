@@ -27,10 +27,10 @@ This module has the following package dependencies, which you also have to insta
  - @angular/common@6.0.0
  - @angular/core@6.0.0
  - @angular/material@6.0.0
- - @angular/animations@6.0.0
- - @angular/flex-layout@6.0.0-beta.18
  - @angular/cdk@6.0.0
  - @knora/core@6.0.0
+ - @angular/animations@6.0.0
+ - @angular/flex-layout@6.0.0-beta.18
 
 
 ## Setup
