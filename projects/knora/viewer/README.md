@@ -24,13 +24,13 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 ### Dependencies
 This module has the following package dependencies, which you also have to install.
-- @angular/common@6.0.0
-- @angular/core@6.0.0
-- @angular/material@6.0.0
-- @angular/animations@6.0.0
-- @angular/cdk@6.0.0
-- @angular/flex-layout@6.0.0-beta.18
-- @knora/core@6.0.0
+ - @angular/common@6.0.0
+ - @angular/core@6.0.0
+ - @angular/material@6.0.0
+ - @angular/animations@6.0.0
+ - @angular/cdk@6.0.0
+ - @angular/flex-layout@6.0.0-beta.18
+ - @knora/core@6.0.0
 
 
 ## Setup
