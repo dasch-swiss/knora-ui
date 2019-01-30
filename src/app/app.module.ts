@@ -68,6 +68,8 @@ import { PlaygroundComponent } from './playground/playground.component';
 import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
 import { SearchPgComponent } from './playground/search-pg/search-pg.component';
 import { SearchResultComponent } from './playground/search-pg/search-result/search-result.component';
+import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
+import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
 
 @NgModule({
     declarations: [
@@ -114,7 +116,9 @@ import { SearchResultComponent } from './playground/search-pg/search-result/sear
         TrimBracketsPipe,
         PlaygroundComponent,
         ViewerPgComponent,
-        SearchPgComponent
+        SearchPgComponent,
+        OntologyPgComponent,
+        AuthenticationPgComponent
     ],
     entryComponents: [
         // LoginFormComponent
