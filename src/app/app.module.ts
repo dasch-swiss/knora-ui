@@ -69,6 +69,8 @@ import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
 import { SearchPgComponent } from './playground/search-pg/search-pg.component';
 import { SearchResultComponent } from './playground/search-pg/search-result/search-result.component';
 import { ResourcePgComponent } from './playground/resource-pg/resource-pg.component';
+import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
+import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
 
 @NgModule({
     declarations: [
@@ -117,6 +119,8 @@ import { ResourcePgComponent } from './playground/resource-pg/resource-pg.compon
         ViewerPgComponent,
         SearchPgComponent,
         ResourcePgComponent
+        OntologyPgComponent,
+        AuthenticationPgComponent
     ],
     entryComponents: [
         // LoginFormComponent

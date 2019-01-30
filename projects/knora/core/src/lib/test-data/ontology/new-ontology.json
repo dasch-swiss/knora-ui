@@ -1,0 +1,14 @@
+{
+  "@id" : "http://0.0.0.0:3333/ontology/0001/anything-data-model-1/v2",
+  "@type" : "owl:Ontology",
+  "knora-api:attachedToProject" : {
+    "@id" : "http://rdfh.ch/projects/0001"
+  },
+  "knora-api:lastModificationDate" : "2019-01-22T17:46:48.921910Z",
+  "rdfs:label" : "Ontology for anything",
+  "@context" : {
+    "knora-api" : "http://api.knora.org/ontology/knora-api/v2#",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "owl" : "http://www.w3.org/2002/07/owl#"
+  }
+}
