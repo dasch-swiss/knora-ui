@@ -85,6 +85,7 @@
   .mat-card {
     height: 160px;
     color: rgba(0, 0, 0, 0.81);
+    overflow: hidden;
 
     &:hover {
       background: rgba($primary, 0.39);

@@ -18,10 +18,10 @@
                                 <kui-text-value-as-html [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="false"></kui-text-value-as-html>
                                 <p class="lv-read-more"></p>
                             </div>
-                            <span>
+                            <div>
                                 <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value>
                                 <span *ngSwitchDefault="">{{val.value.getContent()}}</span>
-                            </span>
+                            </div>
                             <br>
                             <span *ngIf="ontologyInfo?.getLabelForProperty(prop.key) !== 'Text'">
                                 {{ontologyInfo?.getLabelForProperty(prop.key)}}
