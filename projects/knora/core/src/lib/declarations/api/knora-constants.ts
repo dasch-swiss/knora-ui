@@ -95,6 +95,8 @@ export class KnoraConstants {
     public static ReadIntegerValue: string = 'ReadIntegerValue';
     public static ReadDecimalValue: string = 'ReadDecimalValue';
     public static ReadStillImageFileValue: string = 'ReadStillImageFileValue';
+    public static ReadMovingImageFileValue: string = 'ReadMovingImageFileValue';
+    public static ReadAudioFileValue: string = 'ReadAudioFileValue';
     public static ReadTextFileValue: string = 'ReadTextFileValue';
     public static ReadGeomValue: string = 'ReadGeomValue';
     public static ReadColorValue: string = 'ReadColorValue';
