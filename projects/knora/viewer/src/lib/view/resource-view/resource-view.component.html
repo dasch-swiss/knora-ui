@@ -57,14 +57,15 @@
             <!-- Properties -->
 
             <div *ngFor="let prop of resource.properties | kuiKey">
-
+                <!--
                 <p *ngFor="let val of prop?.value">
                     <strong>getClassName: </strong> {{val.getClassName()}}
                 </p>
+                -->
 
                 <div [ngSwitch]="prop.key">
 
-                    <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue">
+                    <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media">
                         <!-- if the property is of type stillImageFileValue, show the image with osd viewer from @knora/viewer -->
                         <kui-still-image *ngIf="resource.stillImageRepresentationsToDisplay.length > 0"
                                          class="osd-viewer"
@@ -76,9 +77,25 @@
                         </kui-still-image>
                     </div>
 
-                    <div *ngSwitchDefault>
+                    <!-- TODO: switch through all other media type -->
+                    <!--
+                    <kui-moving-image></kui-moving-image>
+                    <kui-audio></kui-audio>
+                    <kui-ddd></kui-ddd>
+                    <kui-document></kui-document>
 
-                        <p>This media type ({{prop.key}}) is not yet implemented</p>
+                    <kui-collection></kui-collection>
+
+                    <kui-annotation></kui-annotation>
+                    <kui-link-obj></kui-link-obj>
+                    <kui-object></kui-object>
+                    <kui-region></kui-region>
+                    <kui-text></kui-text>
+                    -->
+
+                    <div *ngSwitchDefault class="hidden">
+
+                        <!--<p>This media type ({{prop.key}}) is not yet implemented</p>-->
                     </div>
 
 
@@ -87,48 +104,33 @@
 
             </div>
 
-                <!-- TODO: switch through the media type -->
-            <!--
-            <kui-still-image></kui-still-image>
-            <kui-moving-image></kui-moving-image>
-            <kui-annotation></kui-annotation>
-            <kui-audio></kui-audio>
-            <kui-collection></kui-collection>
-            <kui-ddd></kui-ddd>
-            <kui-document></kui-document>
-            <kui-link-obj></kui-link-obj>
-            <kui-object></kui-object>
-            <kui-region></kui-region>
-            <kui-text></kui-text>
-            -->
+            <div class="data">
+                <!-- Title -->
 
+                <h3 class="mat-subheader">{{sequence.ontologyInformation.getLabelForResourceClass(resource.type)}}</h3>
+                <h2 class="mat-title">{{resource.label}}</h2>
 
-            <!-- Title -->
+                <!-- Properties -->
+                <div *ngFor="let prop of resource.properties | kuiKey">
+                    <p>{{sequence.ontologyInformation.getLabelForProperty(prop.key)}}</p>
 
-            <h3 class="mat-subheader">{{sequence.ontologyInformation.getLabelForResourceClass(resource.type)}}</h3>
-            <h2 class="mat-title">{{resource.label}}</h2>
+                    <!-- if the property is of type stillImageFileValue, show the image with osd viewer from @knora/viewer -->
+                    <div *ngIf="prop.key === KnoraConstants.hasStillImageFileValue; else noImage" style="height: 550px;">
+                        <!--This resource has <strong>{{resource.stillImageRepresentationsToDisplay.length}} image(s)</strong>-->
+                        <br>
+                        <kui-still-image *ngIf="resource.stillImageRepresentationsToDisplay.length > 0"
+                                         class="osd-viewer"
+                                         [images]="resource.stillImageRepresentationsToDisplay"
+                                         [imageRangeStart]="0"
+                                         [imageRangeEnd]="0"
+                                         [imageChangeInterval]="1">
+                        </kui-still-image>
+                    </div>
 
-            <!-- Properties -->
-            <div *ngFor="let prop of resource.properties | kuiKey">
-                <p>{{sequence.ontologyInformation.getLabelForProperty(prop.key)}}</p>
+                    <ng-template #noImage>
 
-                <!-- if the property is of type stillImageFileValue, show the image with osd viewer from @knora/viewer -->
-                <div *ngIf="prop.key === KnoraConstants.hasStillImageFileValue; else noImage" style="height: 550px;">
-                    <!--This resource has <strong>{{resource.stillImageRepresentationsToDisplay.length}} image(s)</strong>-->
-                    <br>
-                    <kui-still-image *ngIf="resource.stillImageRepresentationsToDisplay.length > 0"
-                                     class="osd-viewer"
-                                     [images]="resource.stillImageRepresentationsToDisplay"
-                                     [imageRangeStart]="0"
-                                     [imageRangeEnd]="0"
-                                     [imageChangeInterval]="1">
-                    </kui-still-image>
-                </div>
-
-                <ng-template #noImage>
-
-                    <ul>
-                        <li *ngFor="let val of prop?.value">
+                        <ul>
+                            <li *ngFor="let val of prop?.value">
 
                         <span [ngSwitch]="val.getClassName()">
                             <kui-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString"
@@ -161,24 +163,28 @@
                             <span *ngSwitchDefault>Not supported {{val.getClassName()}}</span>
                         </span>
 
-                        </li>
-                    </ul>
-                    <mat-divider></mat-divider>
-                </ng-template>
+                            </li>
+                        </ul>
+                        <mat-divider></mat-divider>
+                    </ng-template>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div *ngIf="resource.incomingLinks?.length > 0">
+                    <p>
+                        <strong>Incoming Links:</strong>
+                    </p>
+                    <mat-list *ngFor="let incoming of resource.incomingLinks">
+                        <mat-list-item class="app-link" (click)="openLink(incoming.id)">
+                            <span>{{incoming.label}}</span>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+
             </div>
 
-            <mat-divider></mat-divider>
 
-            <div *ngIf="resource.incomingLinks?.length > 0">
-                <p>
-                    <strong>Incoming Links:</strong>
-                </p>
-                <mat-list *ngFor="let incoming of resource.incomingLinks">
-                    <mat-list-item class="app-link" (click)="openLink(incoming.id)">
-                        <span>{{incoming.label}}</span>
-                    </mat-list-item>
-                </mat-list>
-            </div>
 
             <!--
             &lt;!&ndash; Check for incoming images pointing to this resource &ndash;&gt;

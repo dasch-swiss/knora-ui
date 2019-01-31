@@ -34,6 +34,8 @@ export class ResourceViewComponent implements OnInit {
     error: any;
     KnoraConstants = KnoraConstants;
 
+    // does the resource has a file representation (media file)?
+    fileRepresentation: boolean;
 
     constructor(protected _route: ActivatedRoute,
                 protected _router: Router,
@@ -65,6 +67,9 @@ export class ResourceViewComponent implements OnInit {
                 this.requestIncomingResources();
 
 
+                this.fileRepresentation = this.sequence.resources[0].properties.indexOf(KnoraConstants.hasStillImageFileValue) > -1;
+                console.log(this.fileRepresentation);
+
                 // wait until the resource is ready
                 setTimeout(() => {
                     // console.log(this.sequence);
@@ -75,6 +80,11 @@ export class ResourceViewComponent implements OnInit {
                 console.error(error);
             }
         );
+    }
+
+
+    collectFileRepresentationsAndFileAnnotations(resource: Resource): void {
+        const fileRepresentations: any[] = [];
     }
 
     collectImagesAndRegionsForResource(resource: ReadResource): void {

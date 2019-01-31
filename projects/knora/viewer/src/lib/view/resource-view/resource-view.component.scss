@@ -1,18 +1,22 @@
 @import '../../assets/style/viewer';
 
+$width: 720px;
+
 .resource-view {
-  max-width: 720px;
+  max-width: $width;
   margin: 0 auto;
 
-
   .resource {
-    padding: 24px;
 
     .media {
+      width: $width;
+      height: calc(#{$width}/(4/3));
 
     }
 
     .data {
+
+      padding: 24px 36px;
 
       .headline {
 
@@ -32,3 +36,7 @@
   }
 }
 
+
+.hidden {
+  display: none;
+}
