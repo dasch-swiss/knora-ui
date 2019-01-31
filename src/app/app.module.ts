@@ -118,7 +118,7 @@ import { AuthenticationPgComponent } from './playground/authentication-pg/authen
         PlaygroundComponent,
         ViewerPgComponent,
         SearchPgComponent,
-        ResourcePgComponent
+        ResourcePgComponent,
         OntologyPgComponent,
         AuthenticationPgComponent
     ],
