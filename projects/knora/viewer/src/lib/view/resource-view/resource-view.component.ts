@@ -9,6 +9,7 @@ import {
     ReadResource,
     ReadResourcesSequence,
     ReadStillImageFileValue,
+    Resource,
     ResourceService,
     StillImageRepresentation
 } from '@knora/core';
@@ -67,7 +68,7 @@ export class ResourceViewComponent implements OnInit {
                 this.requestIncomingResources();
 
 
-                this.fileRepresentation = this.sequence.resources[0].properties.indexOf(KnoraConstants.hasStillImageFileValue) > -1;
+                // this.fileRepresentation = this.sequence.resources[0].properties.indexOf(KnoraConstants.hasStillImageFileValue) > -1;
                 console.log(this.fileRepresentation);
 
                 // wait until the resource is ready
@@ -83,6 +84,11 @@ export class ResourceViewComponent implements OnInit {
     }
 
 
+    /**
+     * Collect all file representations (stillImage, movingImage, audio etc.) and annotations (region, sequence etc.)
+     *
+     * @param resource
+     */
     collectFileRepresentationsAndFileAnnotations(resource: Resource): void {
         const fileRepresentations: any[] = [];
     }
