@@ -10,7 +10,7 @@ $width: 720px;
 
     .media {
       width: $width;
-      height: calc(#{$width}/(4/3));
+      height: calc(#{$width} / (4 / 3));
 
     }
 
@@ -39,4 +39,25 @@ $width: 720px;
 
 .hidden {
   display: none;
+}
+
+// list of propoerties
+.property {
+  margin-bottom: 12px;
+
+  .property-label {
+    &.border-top {
+      border-top: 1px solid rgba(21, 21, 21, .25)
+    }
+  }
+
+  .property-values {
+    padding-left: 12px;
+    .property-value-item {
+
+      &.list {
+        list-style-type: disc;
+      }
+    }
+  }
 }

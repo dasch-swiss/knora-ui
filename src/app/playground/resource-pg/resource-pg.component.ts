@@ -18,7 +18,7 @@ export class ResourcePgComponent implements OnInit {
                 protected _incomingService: IncomingService) {
         this._route.params.subscribe((params: Params) => {
             this.iri = params['id'];
-            console.log(this.iri);
+            // console.log(this.iri);
         });
     }
 

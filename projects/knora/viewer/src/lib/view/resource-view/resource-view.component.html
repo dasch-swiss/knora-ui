@@ -7,10 +7,21 @@
         <div class="resource" *ngFor="let resource of sequence.resources; let last = last">
 
             <!-- 0) Title first? -->
+            <mat-list>
 
-            <h4 class="mat-subheading-1">{{sequence.ontologyInformation.getLabelForResourceClass(resource.type)}}</h4>
-            <h3 class="mat-subheading-2">{{resource.label}}</h3>
+                <h3 class="mat-subheader">
+                    {{sequence.ontologyInformation.getLabelForResourceClass(resource.type)}}
+                </h3>
 
+                <mat-list-item>
+                    <h2 class="mat-headline">{{resource.label}}</h2>
+                </mat-list-item>
+
+            </mat-list>
+<!--
+            <h2 class="mat-title">{{sequence.ontologyInformation.getLabelForResourceClass(resource.type)}}</h2>
+            <h1 class="mat-headline">{{resource.label}}</h1>
+-->
             <!-- 1) show fileRepresentation first-->
             <div *ngFor="let prop of resource.properties | kuiKey">
                 <div [ngSwitch]="prop.key">
@@ -54,11 +65,20 @@
 
                 <mat-tab-group class="full-width">
                     <mat-tab label="Metadata">
-                        <div *ngFor="let prop of resource.properties | kuiKey">
-                            <p>{{sequence.ontologyInformation.getLabelForProperty(prop.key)}}</p>
-                            <ul>
-                                <li *ngFor="let val of prop?.value">
-                                    <span [ngSwitch]="val.getClassName()">
+                        <mat-list>
+                            <div *ngFor="let prop of resource.properties | kuiKey; let last = last"
+                                 class="property">
+                                <!-- label of the property -->
+                                <h3 mat-subheader class="property-label">
+                                    {{sequence.ontologyInformation.getLabelForProperty(prop.key)}}
+                                </h3>
+                                <!-- the value(s) of the property -->
+                                <div class="property-values" *ngFor="let val of prop?.value">
+                                    <mat-list-item [ngSwitch]="val.getClassName()"
+                                                   class="property-value-item"
+                                                   [class.list]="prop.value.length > 1">
+
+
                                         <kui-text-value-as-string
                                             *ngSwitchCase="KnoraConstants.ReadTextValueAsString"
                                             [valueObject]="val"></kui-text-value-as-string>
@@ -91,10 +111,11 @@
                                         <kui-textfile-value *ngSwitchCase="KnoraConstants.TextFileValue"
                                                             [valueObject]="val"></kui-textfile-value>
                                         <span *ngSwitchDefault>Not supported {{val.getClassName()}}</span>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
+                                    </mat-list-item>
+                                </div>
+                                <mat-divider *ngIf="!last;"></mat-divider>
+                            </div>
+                        </mat-list>
                     </mat-tab>
 
                     <mat-tab label="Annotations">

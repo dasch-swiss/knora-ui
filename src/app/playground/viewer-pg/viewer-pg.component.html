@@ -3,6 +3,8 @@
     <button mat-raised-button *ngFor="let res of resources" (click)="openResource(res.iri)">{{res.name}}</button>
 </div>
 
+<mat-divider></mat-divider>
+
 <router-outlet></router-outlet>
 
 
