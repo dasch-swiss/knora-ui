@@ -143,6 +143,7 @@ describe('StillImageOSDViewerComponent', () => {
 @Component({
     template: `
         <kui-still-image [images]="resourcesHost"
+                         [imageCaption]="caption"
                          (regionHovered)="regionActive($event)"
                          [activateRegion]="inputActivateRegion">
         </kui-still-image>`
