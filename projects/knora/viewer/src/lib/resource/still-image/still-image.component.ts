@@ -417,12 +417,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
         // event when a region is clicked (output)
         svgElement.addEventListener('click', () => {
-            if (this.activateRegion !== undefined) {
-                this.unhighlightAllRegions();
-                this.highlightRegion(regionIri);
-            }
-                this.regionHovered.emit(regionIri);
-            }, false);
+            this.regionHovered.emit(regionIri);
+        }, false);
 
         const svgTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
         svgTitle.textContent = toolTip;
