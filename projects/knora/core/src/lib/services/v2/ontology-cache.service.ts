@@ -32,7 +32,7 @@ export class OntologyMetadata {
      * @param {string} label a label describing the ontology.
      */
     constructor(readonly id: string,
-        readonly label: string) {
+                readonly label: string) {
 
     }
 
@@ -60,8 +60,8 @@ export class Cardinality {
      * @param {string} property the property the given occurrence applies to.
      */
     constructor(readonly occurrence: CardinalityOccurrence,
-        readonly value: number,
-        readonly property: string) {
+                readonly value: number,
+                readonly property: string) {
     }
 }
 
@@ -79,10 +79,10 @@ export class ResourceClass {
      * @param {Cardinality[]} cardinalities the resource class's properties.
      */
     constructor(readonly id: string,
-        readonly icon: string,
-        readonly comment: string,
-        readonly label: string,
-        readonly cardinalities: Array<Cardinality>) {
+                readonly icon: string,
+                readonly comment: string,
+                readonly label: string,
+                readonly cardinalities: Array<Cardinality>) {
 
     }
 }
@@ -112,13 +112,13 @@ export class Property {
      * @param {boolean} isLinkValueProperty indicates whether the given property refers to a link value.
      */
     constructor(readonly id: string,
-        readonly objectType: string,
-        readonly comment: string,
-        readonly label: string,
-        readonly subPropertyOf: Array<string>,
-        readonly isEditable: Boolean,
-        readonly isLinkProperty: Boolean,
-        readonly isLinkValueProperty: Boolean) {
+                readonly objectType: string,
+                readonly comment: string,
+                readonly label: string,
+                readonly subPropertyOf: Array<string>,
+                readonly isEditable: Boolean,
+                readonly isLinkProperty: Boolean,
+                readonly isLinkValueProperty: Boolean) {
 
     }
 }
@@ -323,12 +323,12 @@ export class OntologyInformation {
 
         if (resClass !== undefined) {
 
-            const resClassDef = this.resourceClasses[resClass];
+            const resClassDef: ResourceClass = this.resourceClasses[resClass];
 
             if (resClassDef !== undefined && resClassDef.label !== undefined) {
                 return resClassDef.label;
             } else {
-                return resClassDef.id;
+                console.log(`cannot get label for ${resClass}`);
             }
         } else {
             console.log('call of OntologyInformation.getLabelForResourceClass without argument resClass');
@@ -382,12 +382,12 @@ export class OntologyInformation {
 
         if (property !== undefined) {
 
-            const propDef = this.properties[property];
+            const propDef: Property = this.properties[property];
 
             if (propDef !== undefined && propDef.label !== undefined) {
                 return propDef.label;
             } else {
-                return propDef.id;
+                console.log(`cannot get label for ${property}`);
             }
         } else {
             console.log('call of OntologyInformation.getLabelForProperty without argument property');
