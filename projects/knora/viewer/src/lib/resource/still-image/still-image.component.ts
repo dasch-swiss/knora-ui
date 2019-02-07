@@ -83,6 +83,15 @@ export class GeometryForRegion {
 }
 
 /**
+ * Collection of `SVGPolygonElement` for individual regions.
+ */
+interface PolygonsForRegion {
+
+    [key: string]: SVGPolygonElement[];
+
+}
+
+/**
  * This component creates a OpenSeadragon viewer instance.
  * Accepts an array of ReadResource containing (among other resources) ReadStillImageFileValues to be rendered.
  * @member resources - resources containing (among other resources) the StillImageFileValues and incoming regions to be rendered. (Use as angular @Input data binding property.)
@@ -101,7 +110,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     @Output() regionHovered = new EventEmitter<string>();
 
     private viewer;
-    private regions = {};
+    private regions: PolygonsForRegion = {};
 
     /**
      * Calculates the surface of a rectangular region.
@@ -177,10 +186,12 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             this.openImages();
             this.renderRegions();
 
+            this.unhighlightAllRegions();
             if (this.activateRegion !== undefined) {
                 this.highlightRegion(this.activateRegion);
             }
         } else if (changes['activateRegion']) {
+            this.unhighlightAllRegions();
             if (this.activateRegion !== undefined) {
                 this.highlightRegion(this.activateRegion);
             }
@@ -229,10 +240,9 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
      */
     private highlightRegion(regionIri) {
 
-        const activeRegion: SVGPolygonElement = this.regions[regionIri];
+        const activeRegion: SVGPolygonElement[] = this.regions[regionIri];
 
-        if (activeRegion !== undefined && Array.isArray(activeRegion)) {
-
+        if (activeRegion !== undefined) {
             for (const pol of activeRegion) {
                 pol.setAttribute('class', 'roi-svgoverlay active');
             }
@@ -240,17 +250,16 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Unhighlights the polygon elements associated with the given region.
+     * Unhighlights the polygon elements of all regions.
      *
-     * @param regionIri the Iri of the region whose polygon elements should be unhighlighted..
      */
-    private unhighlightRegion(regionIri) {
-        const activeRegion: SVGPolygonElement = this.regions[regionIri];
+    private unhighlightAllRegions() {
 
-        if (activeRegion !== undefined && Array.isArray(activeRegion)) {
-
-            for (const pol of activeRegion) {
-                pol.setAttribute('class', 'roi-svgoverlay');
+        for (const reg in this.regions) {
+            if (this.regions.hasOwnProperty(reg)) {
+                for (const pol of this.regions[reg]) {
+                    pol.setAttribute('class', 'roi-svgoverlay');
+                }
             }
         }
     }
@@ -409,7 +418,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         // event when a region is clicked (output)
         svgElement.addEventListener('click', () => {
             if (this.activateRegion !== undefined) {
-                this.unhighlightRegion(this.activateRegion);
+                this.unhighlightAllRegions();
+                this.highlightRegion(regionIri);
             }
                 this.regionHovered.emit(regionIri);
             }, false);

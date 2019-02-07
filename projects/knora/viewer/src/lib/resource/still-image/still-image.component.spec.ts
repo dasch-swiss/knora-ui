@@ -114,7 +114,7 @@ describe('StillImageOSDViewerComponent', () => {
         let attr = regionSvgEle.getAttribute('class');
         expect(attr).toEqual('roi-svgoverlay active');
 
-        component['unhighlightRegion']('http://rdfh.ch/b6b64a62b006');
+        component['unhighlightAllRegions']();
         fixture.detectChanges();
 
         attr = regionSvgEle.getAttribute('class');
