@@ -73,12 +73,10 @@
                                     {{sequence.ontologyInformation.getLabelForProperty(prop.key)}}
                                 </h3>
                                 <!-- the value(s) of the property -->
-                                <div class="property-values" *ngFor="let val of prop?.value">
-                                    <mat-list-item [ngSwitch]="val.getClassName()"
-                                                   class="property-value-item"
-                                                   [class.list]="prop.value.length > 1">
-
-
+                                <mat-list-item class="property-value-item" *ngFor="let val of prop?.value; let lastItem = last">
+                                    <li [ngSwitch]="val.getClassName()"
+                                        [class.list]="prop.value.length > 1"
+                                        [class.lastItem]="lastItem">
                                         <kui-text-value-as-string
                                             *ngSwitchCase="KnoraConstants.ReadTextValueAsString"
                                             [valueObject]="val"></kui-text-value-as-string>
@@ -111,8 +109,8 @@
                                         <kui-textfile-value *ngSwitchCase="KnoraConstants.TextFileValue"
                                                             [valueObject]="val"></kui-textfile-value>
                                         <span *ngSwitchDefault>Not supported {{val.getClassName()}}</span>
-                                    </mat-list-item>
-                                </div>
+                                    </li>
+                                </mat-list-item>
                                 <mat-divider *ngIf="!last;"></mat-divider>
                             </div>
                         </mat-list>

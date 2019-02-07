@@ -41,22 +41,28 @@ $width: 720px;
   display: none;
 }
 
-// list of propoerties
+// list of properties
 .property {
   margin-bottom: 12px;
 
   .property-label {
-    &.border-top {
-      border-top: 1px solid rgba(21, 21, 21, .25)
-    }
+
   }
 
-  .property-values {
+  .property-value-item {
     padding-left: 12px;
-    .property-value-item {
+    min-height: 48px;
+    height: auto;
 
-      &.list {
-        list-style-type: disc;
+    li {
+      list-style-type: none;
+
+      &.list:before {
+        content: '-    ';
+      }
+
+      &.lastItem {
+        margin-bottom: 12px;
       }
     }
   }
