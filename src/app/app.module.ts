@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
 import { JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
-import { KuiCoreModule } from '@knora/core';
+import { KuiCoreConfig, KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
 
@@ -20,6 +20,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
 import { AppRouting } from './app.routing';
+import { AppSettings } from './app.settings';
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 // examples: demo components
@@ -70,6 +71,17 @@ import { SearchPgComponent } from './playground/search-pg/search-pg.component';
 import { SearchResultComponent } from './playground/search-pg/search-result/search-result.component';
 import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
 import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
+
+
+export function initializeApp() {
+
+    return () => <KuiCoreConfig> {
+        name: AppSettings.settings.appName,
+        api: AppSettings.settings.apiURL,
+        media: AppSettings.settings.iiifURL,
+        app: AppSettings.settings.appURL
+    };
+}
 
 @NgModule({
     declarations: [
@@ -128,12 +140,7 @@ import { AuthenticationPgComponent } from './playground/authentication-pg/authen
         RouterModule,
         AppRouting,
         FlexLayoutModule,
-        KuiCoreModule.forRoot({
-            name: 'Knora-ui Demo App',
-            api: environment.api,
-            media: environment.media,
-            app: environment.app,
-        }),
+        KuiCoreModule,
         KuiAuthenticationModule,
         KuiActionModule,
         KuiSearchModule,
@@ -144,6 +151,28 @@ import { AuthenticationPgComponent } from './playground/authentication-pg/authen
         ReactiveFormsModule
     ],
     providers: [
+        AppSettings,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: function( config: AppSettings) {
+
+                console.log('KuiCoreConfigToken factory config.settings: ', AppSettings.settings);
+
+                return( <KuiCoreConfig> {
+                    name: AppSettings.settings.appName,
+                    api: AppSettings.settings.apiURL,
+                    media: AppSettings.settings.iiifURL,
+                    app: AppSettings.settings.appURL
+                } );
+            },
+            deps: [AppSettings],
+            multi: true
+        },
+        {
+            provide: KuiCoreConfigToken,
+            useFactory: initializeApp(),
+            deps: [AppSettings],
+        },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {

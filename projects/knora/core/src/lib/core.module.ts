@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { KuiCoreConfig } from './declarations';
+
+export const KuiCoreConfigToken = new InjectionToken<KuiCoreConfig>('KuiCoreConfigToken (knora.core.config)');
 
 @NgModule({
     imports: [
@@ -31,6 +33,15 @@ export class KuiCoreModule {
             ngModule: KuiCoreModule,
             providers: [
                 {provide: 'config', useValue: config}
+            ]
+        };
+    }
+
+    static initializeApp(config: KuiCoreConfig) {
+        return {
+            ngModule: KuiCoreModule,
+            providers: [
+                {provide: KuiCoreConfigToken, useValue: config}
             ]
         };
     }
