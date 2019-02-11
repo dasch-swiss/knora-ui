@@ -499,23 +499,23 @@ describe('ConvertJSONLD', () => {
             const expectedProps: ReadProperties = {
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#title': [
                     new ReadTextValueAsString(
-                        'http://rdfh.ch/8be1b7cf7103/values/463b6498b70d',
+                        'http://rdfh.ch/0803/8be1b7cf7103/values/463b6498b70d',
                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#title',
                         '[Das] Narrenschiff (lat.)'
                     ),
                     new ReadTextValueAsString(
-                        'http://rdfh.ch/8be1b7cf7103/values/0965b7d1b70d',
+                        'http://rdfh.ch/0803/8be1b7cf7103/values/0965b7d1b70d',
                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#title',
                         'Stultifera navis (...)'
                     )
                 ],
                 'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue': [
                     new ReadLinkValue(
-                        'http://rdfh.ch/50e7460a7203/values/8bdc04c8-b765-44c8-adb3-5ab536dcd051',
+                        'http://rdfh.ch/0803/50e7460a7203/values/8bdc04c8-b765-44c8-adb3-5ab536dcd051',
                         'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue',
-                        'http://rdfh.ch/50e7460a7203',
+                        'http://rdfh.ch/0803/50e7460a7203',
                         new ReadResource(
-                            'http://rdfh.ch/50e7460a7203',
+                            'http://rdfh.ch/0803/50e7460a7203',
                             'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page',
                             'vorderer Spiegel',
                             [],
@@ -525,9 +525,9 @@ describe('ConvertJSONLD', () => {
                             {
                                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#partOfValue': [
                                     new ReadLinkValue(
-                                        'http://rdfh.ch/50e7460a7203/values/8bdc04c8-b765-44c8-adb3-5ab536dcd051',
+                                        'http://rdfh.ch/0803/50e7460a7203/values/8bdc04c8-b765-44c8-adb3-5ab536dcd051',
                                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#partOfValue',
-                                        'http://rdfh.ch/8be1b7cf7103'
+                                        'http://rdfh.ch/0803/8be1b7cf7103'
                                     )
                                 ]
                             }
@@ -537,7 +537,7 @@ describe('ConvertJSONLD', () => {
             };
 
             const BookResourceWithIncomingExpected = new ReadResource(
-                'http://rdfh.ch/8be1b7cf7103',
+                'http://rdfh.ch/0803/8be1b7cf7103',
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
                 '[Das] Narrenschiff (lat.)',
                 [],
@@ -573,27 +573,27 @@ describe('ConvertJSONLD', () => {
             const expectedProps: ReadProperties = {
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#title': [
                     new ReadTextValueAsString(
-                        'http://rdfh.ch/8be1b7cf7103/values/463b6498b70d',
+                        'http://rdfh.ch/0803/8be1b7cf7103/values/463b6498b70d',
                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#title',
                         '[Das] Narrenschiff (lat.)'
                     ),
                     new ReadTextValueAsString(
-                        'http://rdfh.ch/8be1b7cf7103/values/0965b7d1b70d',
+                        'http://rdfh.ch/0803/8be1b7cf7103/values/0965b7d1b70d',
                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#title',
                         'Stultifera navis (...)'
                     )
                 ],
                 'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue': [
                     new ReadLinkValue(
-                        'http://rdfh.ch/50e7460a7203/values/8bdc04c8-b765-44c8-adb3-5ab536dcd051',
+                        'http://rdfh.ch/0803/50e7460a7203/values/8bdc04c8-b765-44c8-adb3-5ab536dcd051',
                         'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue',
-                        'http://rdfh.ch/50e7460a7203'
+                        'http://rdfh.ch/0803/50e7460a7203'
                     )
                 ]
             };
 
             const BookResourceWithIncomingExpected = new ReadResource(
-                'http://rdfh.ch/8be1b7cf7103',
+                'http://rdfh.ch/0803/8be1b7cf7103',
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
                 '[Das] Narrenschiff (lat.)',
                 [],
@@ -612,7 +612,7 @@ describe('ConvertJSONLD', () => {
 
         const jsonld = require('jsonld');
 
-        // http://localhost:3333/v2/resources/http%3A%2F%2Frdfh.ch%2F00505cf0a803
+        // http://localhost:3333/v2/resources/http%3A%2F%2Frdfh.ch%2F0803%2F00505cf0a803
         const page: any = require('../../test-data/resources/PageWithImages.json');
 
         const promises = jsonld.promises;
@@ -628,37 +628,37 @@ describe('ConvertJSONLD', () => {
             const expectedProps: ReadProperties = {
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#description': [
                     new ReadTextValueAsString(
-                        'http://rdfh.ch/00505cf0a803/values/549527258a26',
+                        'http://rdfh.ch/0803/00505cf0a803/values/549527258a26',
                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#description',
                         'Beginn Kapitel 105.\nHolzschnitt identisch mit Kap. 95: In einer Landschaft fasst ein Narr, der ein Zepter in der Linken hält, einem Mann an die Schulter und redet auf ihn ein, er möge die Feiertage missachten, 11.7 x 8.6 cm.'
                     )
                 ],
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#origname': [
                     new ReadTextValueAsString(
-                        'http://rdfh.ch/00505cf0a803/values/47da3831980e',
+                        'http://rdfh.ch/0803/00505cf0a803/values/47da3831980e',
                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#origname',
                         'IBB_1_002758751_0241.tif'
                     )
                 ],
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page_comment': [
                     new ReadTextValueAsString(
-                        'http://rdfh.ch/00505cf0a803/values/1d9257bae428',
+                        'http://rdfh.ch/0803/00505cf0a803/values/1d9257bae428',
                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page_comment',
                         'Schramm, Bd. 22, Abb. 1200.'
                     )
                 ],
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#pagenum': [
                     new ReadTextValueAsString(
-                        'http://rdfh.ch/00505cf0a803/values/fe5c3f85970e',
+                        'http://rdfh.ch/0803/00505cf0a803/values/fe5c3f85970e',
                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#pagenum',
                         'p7v'
                     )
                 ],
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#partOfValue': [
-                    new ReadLinkValue('http://rdfh.ch/00505cf0a803/values/a2c239c3-eac5-4f9f-88e9-9411835d11ff',
+                    new ReadLinkValue('http://rdfh.ch/0803/00505cf0a803/values/a2c239c3-eac5-4f9f-88e9-9411835d11ff',
                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#partOfValue',
-                        'http://rdfh.ch/8be1b7cf7103',
-                        new ReadResource('http://rdfh.ch/8be1b7cf7103',
+                        'http://rdfh.ch/0803/8be1b7cf7103',
+                        new ReadResource('http://rdfh.ch/0803/8be1b7cf7103',
                             'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
                             '[Das] Narrenschiff (lat.)',
                             [],
@@ -670,34 +670,34 @@ describe('ConvertJSONLD', () => {
                 ],
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#seqnum': [
                     new ReadIntegerValue(
-                        'http://rdfh.ch/00505cf0a803/values/84b0e5f7970e',
+                        'http://rdfh.ch/0803/00505cf0a803/values/84b0e5f7970e',
                         'http://0.0.0.0:3333/ontology/0803/incunabula/v2#seqnum',
                         241
                     )
                 ],
                 'http://api.knora.org/ontology/knora-api/v2#hasStillImageFileValue': [
                     new ReadStillImageFileValue(
-                        'http://rdfh.ch/00505cf0a803/reps/9e73f9ac2307',
+                        'http://rdfh.ch/0803/00505cf0a803/reps/9e73f9ac2307',
                         'http://api.knora.org/ontology/knora-api/v2#hasStillImageFileValue',
                         'incunabula_0000004096.jp2',
-                        'http://localhost:1024/knora',
-                        'http://localhost:1024/knora/incunabula_0000004096.jp2/full/1954,2630/0/default.jpg',
+                        'http://0.0.0.0:1024/knora',
+                        'http://0.0.0.0:1024/knora/incunabula_0000004096.jp2/full/1954,2630/0/default.jpg',
                         1954,
                         2630
                     ),
                     new ReadStillImageFileValue(
-                        'http://rdfh.ch/00505cf0a803/reps/df4da6732307',
+                        'http://rdfh.ch/0803/00505cf0a803/reps/df4da6732307',
                         'http://api.knora.org/ontology/knora-api/v2#hasStillImageFileValue',
                         'incunabula_0000004096.jpg',
-                        'http://localhost:1024/knora',
-                        'http://localhost:1024/knora/incunabula_0000004096.jpg/full/95,128/0/default.jpg',
+                        'http://0.0.0.0:1024/knora',
+                        'http://0.0.0.0:1024/knora/incunabula_0000004096.jpg/full/95,128/0/default.jpg',
                         95,
                         128
                     )
                 ]
             };
 
-            const expectedPage = new ReadResource('http://rdfh.ch/00505cf0a803',
+            const expectedPage = new ReadResource('http://rdfh.ch/0803/00505cf0a803',
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page',
                 'p7v',
                 [],

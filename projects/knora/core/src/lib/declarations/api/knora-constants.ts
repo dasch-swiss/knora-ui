@@ -1,7 +1,7 @@
 export class KnoraConstants {
 
     public static KnoraApi: string = 'http://api.knora.org/ontology/knora-api';
-    public static PathSeparator = '#';
+    public static PathSeparator: string = '#';
 
     public static KnoraOntologyPath: string = 'http://www.knora.org/ontology';
     public static KnoraBase: string = KnoraConstants.KnoraOntologyPath + '/knora-base';
@@ -14,11 +14,11 @@ export class KnoraConstants {
     public static KnoraApiV2WithValueObjectPath: string = KnoraConstants.KnoraApi + '/v2' + KnoraConstants.PathSeparator;
     public static KnoraApiV2SimplePath: string = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
 
-    public static SalsahGuiOntology = 'http://api.knora.org/ontology/salsah-gui/v2';
+    public static SalsahGuiOntology: string = 'http://api.knora.org/ontology/salsah-gui/v2';
 
-    public static SalsahGuiOrder = KnoraConstants.SalsahGuiOntology + '#guiOrder';
+    public static SalsahGuiOrder: string = KnoraConstants.SalsahGuiOntology + '#guiOrder';
 
-    public static StandoffOntology = 'http://api.knora.org/ontology/standoff/v2';
+    public static StandoffOntology: string = 'http://api.knora.org/ontology/standoff/v2';
 
     public static Resource: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Resource';
     public static TextValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'TextValue';
@@ -46,23 +46,26 @@ export class KnoraConstants {
     public static XMLToStandoffMapping: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'XMLToStandoffMapping';
     public static ListNode: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ListNode';
 
+    public static ArkUrl: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'arkUrl';
     public static ObjectType = KnoraConstants.KnoraApiV2WithValueObjectPath + 'objectType';
+
     public static ResourceIcon: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'resourceIcon';
     public static isEditable: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isEditable';
     public static isLinkProperty: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isLinkProperty';
     public static isLinkValueProperty: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'isLinkValueProperty';
-    public static hasGeometry = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasGeometry';
+    public static hasGeometry: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasGeometry';
 
-    public static schemaName = 'http://schema.org/name';
-    public static schemaNumberOfItems = 'http://schema.org/numberOfItems';
-    public static schemaItemListElement = 'http://schema.org/itemListElement';
+    public static schemaName: string = 'http://schema.org/name';
+    public static schemaNumberOfItems: string = 'http://schema.org/numberOfItems';
+    public static schemaItemListElement: string = 'http://schema.org/itemListElement';
 
 
     public static RdfProperty: string = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property';
-    public static RdfsLabel = 'http://www.w3.org/2000/01/rdf-schema#label';
-    public static RdfsComment = 'http://www.w3.org/2000/01/rdf-schema#comment';
-    public static RdfsSubclassOf = 'http://www.w3.org/2000/01/rdf-schema#subClassOf';
-    public static subPropertyOf: string = 'http://www.w3.org/2000/01/rdf-schema#subPropertyOf';
+    public static RdfsSchema: string = 'http://www.w3.org/2000/01/rdf-schema' + KnoraConstants.PathSeparator;
+    public static RdfsLabel: string = KnoraConstants.RdfsSchema + 'label';
+    public static RdfsComment: string = KnoraConstants.RdfsSchema + 'comment';
+    public static RdfsSubclassOf: string = KnoraConstants.RdfsSchema + 'subClassOf';
+    public static subPropertyOf: string = KnoraConstants.RdfsSchema + 'subPropertyOf';
 
     public static owl: string = 'http://www.w3.org/2002/07/owl';
 
@@ -74,15 +77,15 @@ export class KnoraConstants {
     public static OwlMaxCardinality: string = KnoraConstants.owl + '#maxCardinality';
     public static OwlMinCardinality: string = KnoraConstants.owl + '#minCardinality';
     public static OwlCardinality: string = KnoraConstants.owl + '#cardinality';
-    public static OwlRestriction = KnoraConstants.owl + '#Restriction';
+    public static OwlRestriction: string = KnoraConstants.owl + '#Restriction';
 
-    public static creationDate = KnoraConstants.KnoraApiV2WithValueObjectPath + 'creationDate';
-    public static lastModificationDate = KnoraConstants.KnoraApiV2WithValueObjectPath + 'lastModificationDate';
-    public static hasPermissions = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasPermissions';
-    public static attachedToProject = KnoraConstants.KnoraApiV2WithValueObjectPath + 'attachedToProject';
-    public static attachedToUser = KnoraConstants.KnoraApiV2WithValueObjectPath + 'attachedToUser';
+    public static creationDate: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'creationDate';
+    public static lastModificationDate: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'lastModificationDate';
+    public static hasPermissions: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasPermissions';
+    public static attachedToProject: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'attachedToProject';
+    public static attachedToUser: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'attachedToUser';
 
-    public static Region = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Region';
+    public static Region: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Region';
 
     public static ReadTextValueAsHtml: string = 'ReadTextValueAsHtml';
     public static ReadTextValueAsString: string = 'ReadTextValueAsString';
@@ -104,7 +107,7 @@ export class KnoraConstants {
 
     public static textValueAsHtml: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueAsHtml';
     public static textValueAsXml: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueAsXml';
-    public static textValueHasMapping = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueHasMapping';
+    public static textValueHasMapping: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'textValueHasMapping';
 
     public static hasStandoffLinkToValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasStandoffLinkToValue';
 
@@ -112,95 +115,95 @@ export class KnoraConstants {
     public static dateValueHasEndYear: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndYear';
     public static dateValueHasStartEra: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasStartEra';
     public static dateValueHasEndEra: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndEra';
-    public static dateValueHasStartMonth = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasStartMonth';
-    public static dateValueHasEndMonth = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndMonth';
-    public static dateValueHasStartDay = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasStartDay';
-    public static dateValueHasEndDay = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndDay';
-    public static dateValueHasCalendar = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasCalendar';
+    public static dateValueHasStartMonth: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasStartMonth';
+    public static dateValueHasEndMonth: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndMonth';
+    public static dateValueHasStartDay: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasStartDay';
+    public static dateValueHasEndDay: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasEndDay';
+    public static dateValueHasCalendar: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'dateValueHasCalendar';
 
-    public static linkValueHasTarget = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasTarget';
-    public static linkValueHasSource = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasSource';
-    public static linkValueHasSourceIri = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasSourceIri';
-    public static linkValueHasTargetIri = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasTargetIri';
+    public static linkValueHasTarget: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasTarget';
+    public static linkValueHasSource: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasSource';
+    public static linkValueHasSourceIri: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasSourceIri';
+    public static linkValueHasTargetIri: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'linkValueHasTargetIri';
 
-    public static integerValueAsInteger = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intValueAsInt';
+    public static integerValueAsInteger: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intValueAsInt';
 
-    public static decimalValueAsDecimal = KnoraConstants.KnoraApiV2WithValueObjectPath + 'decimalValueAsDecimal';
+    public static decimalValueAsDecimal: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'decimalValueAsDecimal';
 
-    public static fileValueAsUrl = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueAsUrl';
-    public static fileValueIsPreview = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueIsPreview';
-    public static fileValueHasFilename = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueHasFilename';
+    public static fileValueAsUrl: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueAsUrl';
+    public static fileValueIsPreview: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueIsPreview';
+    public static fileValueHasFilename: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueHasFilename';
 
-    public static hasStillImageFileValue = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasStillImageFileValue';
+    public static hasStillImageFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasStillImageFileValue';
 
-    public static stillImageFileValueHasDimX = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasDimX';
-    public static stillImageFileValueHasDimY = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasDimY';
-    public static stillImageFileValueHasIIIFBaseUrl = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasIIIFBaseUrl';
+    public static stillImageFileValueHasDimX: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasDimX';
+    public static stillImageFileValueHasDimY: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasDimY';
+    public static stillImageFileValueHasIIIFBaseUrl: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasIIIFBaseUrl';
 
-    public static colorValueAsColor = KnoraConstants.KnoraApiV2WithValueObjectPath + 'colorValueAsColor';
-    public static geometryValueAsGeometry = KnoraConstants.KnoraApiV2WithValueObjectPath + 'geometryValueAsGeometry';
-    public static uriValueAsUri = KnoraConstants.KnoraApiV2WithValueObjectPath + 'uriValueAsUri';
-    public static booleanValueAsBoolean = KnoraConstants.KnoraApiV2WithValueObjectPath + 'booleanValueAsBoolean';
+    public static colorValueAsColor: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'colorValueAsColor';
+    public static geometryValueAsGeometry: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'geometryValueAsGeometry';
+    public static uriValueAsUri: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'uriValueAsUri';
+    public static booleanValueAsBoolean: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'booleanValueAsBoolean';
 
-    public static intervalValueHasStart = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasStart';
-    public static intervalValueHasEnd = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasEnd';
+    public static intervalValueHasStart: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasStart';
+    public static intervalValueHasEnd: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasEnd';
 
-    public static listValueAsListNode = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNode';
-    public static listValueAsListNodeLabel = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNodeLabel';
+    public static listValueAsListNode: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNode';
+    public static listValueAsListNodeLabel: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNodeLabel';
 
-    public static Xsd = 'http://www.w3.org/2001/XMLSchema#';
+    public static Xsd: string = 'http://www.w3.org/2001/XMLSchema#';
 
-    public static xsdString = KnoraConstants.Xsd + 'string';
-    public static xsdBoolean = KnoraConstants.Xsd + 'boolean';
-    public static xsdInteger = KnoraConstants.Xsd + 'integer';
-    public static xsdDecimal = KnoraConstants.Xsd + 'decimal';
-    public static xsdUri = KnoraConstants.Xsd + 'anyURI';
+    public static xsdString: string = KnoraConstants.Xsd + 'string';
+    public static xsdBoolean: string = KnoraConstants.Xsd + 'boolean';
+    public static xsdInteger: string = KnoraConstants.Xsd + 'integer';
+    public static xsdDecimal: string = KnoraConstants.Xsd + 'decimal';
+    public static xsdUri: string = KnoraConstants.Xsd + 'anyURI';
 
-    public static resourceSimple = KnoraConstants.KnoraApiV2SimplePath + 'Resource';
-    public static dateSimple = KnoraConstants.KnoraApiV2SimplePath + 'Date';
-    public static intervalSimple = KnoraConstants.KnoraApiV2SimplePath + 'Interval';
-    public static geomSimple = KnoraConstants.KnoraApiV2SimplePath + 'Geom';
-    public static colorSimple = KnoraConstants.KnoraApiV2SimplePath + 'Color';
-    public static geonameSimple = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
-    public static fileSimple = KnoraConstants.KnoraApiV2SimplePath + 'File';
+    public static resourceSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Resource';
+    public static dateSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Date';
+    public static intervalSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Interval';
+    public static geomSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Geom';
+    public static colorSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Color';
+    public static geonameSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
+    public static fileSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'File';
 
-    public static matchFunction = KnoraConstants.KnoraApiV2SimplePath + 'match';
+    public static matchFunction: string = KnoraConstants.KnoraApiV2SimplePath + 'match';
 
-    public static EqualsComparisonOperator = '=';
-    public static EqualsComparisonLabel = 'is equal to';
+    public static EqualsComparisonOperator: string = '=';
+    public static EqualsComparisonLabel: string = 'is equal to';
 
-    public static NotEqualsComparisonOperator = '!=';
-    public static NotEqualsComparisonLabel = 'is not equal to';
+    public static NotEqualsComparisonOperator: string = '!=';
+    public static NotEqualsComparisonLabel: string = 'is not equal to';
 
-    public static GreaterThanComparisonOperator = '>';
-    public static GreaterThanComparisonLabel = 'is greater than';
+    public static GreaterThanComparisonOperator: string = '>';
+    public static GreaterThanComparisonLabel: string = 'is greater than';
 
-    public static GreaterThanEqualsComparisonOperator = '>=';
-    public static GreaterThanEqualsComparisonLabel = 'is greater than equals to';
+    public static GreaterThanEqualsComparisonOperator: string = '>=';
+    public static GreaterThanEqualsComparisonLabel: string = 'is greater than equals to';
 
-    public static LessThanComparisonOperator = '<';
-    public static LessThanComparisonLabel = 'is less than';
+    public static LessThanComparisonOperator: string = '<';
+    public static LessThanComparisonLabel: string = 'is less than';
 
-    public static LessThanEqualsComparisonOperator = '<=';
-    public static LessThanQualsComparisonLabel = 'is less than equals to';
+    public static LessThanEqualsComparisonOperator: string = '<=';
+    public static LessThanQualsComparisonLabel: string = 'is less than equals to';
 
-    public static ExistsComparisonOperator = 'E';
-    public static ExistsComparisonLabel = 'exists';
+    public static ExistsComparisonOperator: string = 'E';
+    public static ExistsComparisonLabel: string = 'exists';
 
-    public static LikeComparisonOperator = 'regex';
-    public static LikeComparisonLabel = 'is like';
+    public static LikeComparisonOperator: string = 'regex';
+    public static LikeComparisonLabel: string = 'is like';
 
-    public static MatchComparisonOperator = 'contains';
-    public static MatchComparisonLabel = 'matches';
+    public static MatchComparisonOperator: string = 'contains';
+    public static MatchComparisonLabel: string = 'matches';
 
-    public static SalsahLink = 'salsah-link'; // class on an HTML <a> element that indicates a link to a Knora resource
-    public static RefMarker = 'ref-marker'; // class on an HTML element that refers to another element in the same document
+    public static SalsahLink: string = 'salsah-link'; // class on an HTML <a> element that indicates a link to a Knora resource
+    public static RefMarker: string = 'ref-marker'; // class on an HTML element that refers to another element in the same document
 
-    public static GNDPrefix = '(DE-588)';
-    public static GNDResolver = 'http://d-nb.info/gnd/';
+    public static GNDPrefix: string = '(DE-588)';
+    public static GNDResolver: string = 'http://d-nb.info/gnd/';
 
-    public static VIAFPrefix = '(VIAF)';
-    public static VIAFResolver = 'https://viaf.org/viaf/';
+    public static VIAFPrefix: string = '(VIAF)';
+    public static VIAFResolver: string = 'https://viaf.org/viaf/';
 
 }
 

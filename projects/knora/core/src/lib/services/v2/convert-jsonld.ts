@@ -47,7 +47,8 @@ export module ConvertJSONLD {
             && propName !== KnoraConstants.attachedToUser
             && propName !== KnoraConstants.creationDate
             && propName !== KnoraConstants.lastModificationDate
-            && propName !== KnoraConstants.hasPermissions;
+            && propName !== KnoraConstants.hasPermissions
+            && propName !== KnoraConstants.ArkUrl;
     };
 
 
