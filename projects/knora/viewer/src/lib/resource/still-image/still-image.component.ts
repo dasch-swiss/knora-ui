@@ -334,6 +334,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             }
         }
 
+        this.regions = {};
+
         // TODO: make this work by using osdviewer's addOverlay method
         this.viewer.clearOverlays();
     }
@@ -344,8 +346,6 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     private renderRegions(): void {
 
         this.removeOverlays();
-
-        this.regions = {};
 
         let imageXOffset = 0; // see documentation in this.openImages() for the usage of imageXOffset
 
