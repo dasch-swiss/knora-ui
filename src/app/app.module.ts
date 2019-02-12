@@ -75,6 +75,8 @@ import { AuthenticationPgComponent } from './playground/authentication-pg/authen
 
 export function initializeApp() {
 
+    console.log('initializeApp: ', AppSettings.settings);
+
     return () => <KuiCoreConfig> {
         name: AppSettings.settings.appName,
         api: AppSettings.settings.apiURL,
@@ -153,25 +155,13 @@ export function initializeApp() {
     providers: [
         AppSettings,
         {
-            provide: APP_INITIALIZER,
-            useFactory: function( config: AppSettings) {
-
-                console.log('KuiCoreConfigToken factory config.settings: ', AppSettings.settings);
-
-                return( <KuiCoreConfig> {
-                    name: AppSettings.settings.appName,
-                    api: AppSettings.settings.apiURL,
-                    media: AppSettings.settings.iiifURL,
-                    app: AppSettings.settings.appURL
-                } );
-            },
-            deps: [AppSettings],
-            multi: true
+            provide: APP_INITIALIZER, useFactory: AppSettings.initializeSettings, deps: [AppSettings], multi: true
         },
         {
             provide: KuiCoreConfigToken,
             useFactory: initializeApp(),
             deps: [AppSettings],
+            multi: true
         },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,

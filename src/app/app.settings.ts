@@ -27,6 +27,13 @@ export class AppSettings {
         AppSettings.settings = data;
     }
 
+    static initializeSettings(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            console.log(`initializeSettings: inside promise`);
+            resolve();
+        });
+    }
+
 }
 
 

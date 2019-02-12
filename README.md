@@ -62,20 +62,37 @@ The action module contains special buttons (e.g. to sort a list), pipes and dire
 
 We develop the Knora-ui modules with Angular 6, especially with Angular-cli, which requires the following tools:
 
+#### Yarn
+We use [yarn](https://yarnpkg.com/en/) instead of npm. To install yarn on macOS:
+
+```bash
+$ brew install yarn
+```
+
+For other platforms, please go to the yarn website.
+
+
 #### Node
-Install [Node](https://nodejs.org/en/download/) in version >=4 <=9. We recommend to use version 8.9.0.
+Install [Node](https://nodejs.org/en/download/) in version >=4 <=9. We recommend to use version 8.9.0. The easiest way to install node
+in the correct version is to use ['n'](https://github.com/tj/n):
 
-The easiest way to install node in the correct version is to use ['n'](https://github.com/tj/n). `yarn global add n` or `npm install -g n`
-
-#### Yarn (instead of npm)
-By installing node, you get the node package manager (npm), which will be used for the app dependency management. But we recommend to use [yarn](https://yarnpkg.com/en/) instead of npm.
-
-Install yarn by following the [instructions on their website](https://yarnpkg.com/en/docs/install).
-
+ ```bash
+ $ yarn global add n
+ $ n v8.9.0
+ ```
 
 ### First steps
 
-Install the node packages with `yarn install --prod=false` and build the libraries with `yarn build-lib`.
+Install the node packages with:
+```bash
+$ yarn install --prod=false
+```
+
+and build the libraries with:
+
+```bash
+$ yarn build-lib
+```
 
 ### Develop
 <!--
