@@ -54,40 +54,53 @@ The viewer module contains object components to show the resource class represen
 The action module contains special buttons (e.g. to sort a list), pipes and directives.
 [read more...](https://dhlab-basel.github.io/Knora-ui/modules/action)
 
-<!--
+---
+
 ## Developers note
 
-We create a library module quite easy. Please use the following command schema:
+### Prerequisites
+
+We develop the Knora-ui modules with Angular 6, especially with Angular-cli, which requires the following tools:
+
+#### Node
+Install [Node](https://nodejs.org/en/download/) in version >=4 <=9. We recommend to use version 8.9.0.
+
+The easiest way to install node in the correct version is to use ['n'](https://github.com/tj/n). `yarn global add n` or `npm install -g n`
+
+#### Yarn (instead of npm)
+By installing node, you get the node package manager (npm), which will be used for the app dependency management. But we recommend to use [yarn](https://yarnpkg.com/en/) instead of npm.
+
+Install yarn by following the [instructions on their website](https://yarnpkg.com/en/docs/install).
+
+
+### First steps
+
+Install the node packages with `yarn install --prod=false` and build the libraries with `yarn build-lib`.
+
+### Develop
+<!--
+Please use the following command schema to create a new module
 
 `$ ng generate library @knora/[module-name] --prefix=kui`
+-->
+If you want to add more components, services and so on to a module library, you can do it with:
 
-If you want to add more components, services and so on to this library, you can do it with:
-
-`$ ng generate component [path/in/your/module/][name-of-component] --project @knora/[module-name]`
+`$ ng generate component [path/in/your/module/][name-of-component] --project @knora/[module-name] --styleext scss`
 
 It puts the component or the service into `lib/` directly. Otherwise you can define a path inside of `lib/`.
 
-### Install the demo app
+Before using the module inside of the app, you have to rebuild after the changes: `ng build @knora/[module-name]`.
 
-```
-$ cd knora-ui
+### Run the demo app
 
-$ yarn install --prod=false
+Run the app with `ng s`. The demo app runs on http://localhost:4200 and we use it for documentation on [Knora-ui Github page](https://dhlab-basel.github.io/Knora-ui).
 
-$ rm -rf dist/@knora
-$ yarn build-lib
-```
-
-The demo app runs on http://localhost:4200 and we use it on this repository's [Github page](https://dhlab-basel.github.io/Knora-ui)
-
-### Developing modules
-
-To create new e.g. component inside existing module use the following command:
-
-`$ ng g c [component-name] --project @knora/[module-name] --styleext scss`
+There's a test environment for the modules on http://localhost:4200/playground
 
  ---
 
+
+<!--
 ## Unit Testing Services
 
 Testing services with HttpClient and HttpTestingController
@@ -157,6 +170,4 @@ https://www.learnrxjs.io/operators/combination/forkjoin.html
 
 ---
 
-## Required version of Knora
-
-3.0.0 or later
+## Required version of Knora: 3.0.0
