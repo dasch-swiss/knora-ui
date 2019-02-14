@@ -31,10 +31,7 @@
                         <kui-still-image *ngIf="resource.stillImageRepresentationsToDisplay.length > 0"
                                          class="osd-viewer"
                                          [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)"
-                                         [images]="resource.stillImageRepresentationsToDisplay"
-                                         [imageRangeStart]="0"
-                                         [imageRangeEnd]="0"
-                                         [imageChangeInterval]="1">
+                                         [images]="resource.stillImageRepresentationsToDisplay">
                         </kui-still-image>
                     </div>
 
