@@ -1,0 +1,9 @@
+<!--<mat-optgroup *ngFor="let node of list" [label]="node.label">
+    <mat-option *ngFor="let child of node.children" [value]="child.id">
+        {{child.label}}
+    </mat-option>
+</mat-optgroup>-->
+<mat-option *ngFor="let child of list" [value]="child.id">
+    {{child.label}}
+</mat-option>
+

@@ -16,6 +16,7 @@
               *ngSwitchCase="KnoraConstants.Resource"></link-value>
   <text-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.TextValue"></text-value>
   <uri-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.UriValue"></uri-value>
+  <list-value #propertyValue [formGroup]="form" [property]="property" *ngSwitchCase="KnoraConstants.ListValue"></list-value>
 
     <!-- TODO: Resource: handle linking properties with target class restriction: access property member to get objectClass via property() getter method -->
   <span *ngSwitchDefault="">Not supported {{propertyValueType}}</span>

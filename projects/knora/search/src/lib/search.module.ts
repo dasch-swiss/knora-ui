@@ -37,6 +37,8 @@ import { LinkValueComponent } from './extended-search/select-property/specify-pr
 import { TextValueComponent } from './extended-search/select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './extended-search/select-property/specify-property-value/uri-value/uri-value.component';
 import { HeaderComponent } from './extended-search/select-property/specify-property-value/date-value/header-calendar/header-calendar.component';
+import { ListValueComponent } from './extended-search/select-property/specify-property-value/list-value/list-value.component';
+import { ListDisplayComponent } from './extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
 
 
 @NgModule({
@@ -76,7 +78,9 @@ import { HeaderComponent } from './extended-search/select-property/specify-prope
         UriValueComponent,
         HeaderComponent,
         FulltextSearchComponent,
-        SearchPanelComponent
+        SearchPanelComponent,
+        ListValueComponent,
+        ListDisplayComponent
     ],
     exports: [
         SearchComponent,

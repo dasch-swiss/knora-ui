@@ -17,6 +17,8 @@ export class KnoraConstants {
     public static SalsahGuiOntology: string = 'http://api.knora.org/ontology/salsah-gui/v2';
 
     public static SalsahGuiOrder: string = KnoraConstants.SalsahGuiOntology + '#guiOrder';
+    public static SalsahGuiAttribute: string = KnoraConstants.SalsahGuiOntology + '#guiAttribute';
+
 
     public static StandoffOntology: string = 'http://api.knora.org/ontology/standoff/v2';
 

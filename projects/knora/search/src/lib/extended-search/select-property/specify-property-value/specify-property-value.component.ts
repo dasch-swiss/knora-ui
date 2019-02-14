@@ -97,6 +97,9 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
                 break;
 
             case KnoraConstants.ListValue:
+                this.comparisonOperators = [new Equals(), new NotEquals(), new Exists()];
+                break;
+
             case KnoraConstants.GeomValue:
             case KnoraConstants.FileValue:
             case KnoraConstants.AudioFileValue:
@@ -115,7 +118,8 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
 
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+    }
 
     ngOnChanges() {
 
