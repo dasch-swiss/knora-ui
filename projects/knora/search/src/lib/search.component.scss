@@ -88,7 +88,6 @@ $search-width-small-device: 480px;
   border-radius: 4px;
   display: inline-flex;
   height: 40px;
-  position: relative;
   width: $search-width;
   z-index: 10;
 
@@ -215,8 +214,6 @@ $search-width-small-device: 480px;
 }
 
 .search-bar-elements {
-  display: flex;
-  position: relative;
   z-index: 100;
 }
 
