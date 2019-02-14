@@ -108,7 +108,8 @@ OFFSET 1
             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
             true,
             false,
-            false
+            false,
+            []
         );
 
         const value = new ComparisonOperatorAndValue(new Like(), new ValueLiteral('Bernoulli', 'http://www.w3.org/2001/XMLSchema#string'));
@@ -160,7 +161,8 @@ OFFSET 0
             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
             true,
             false,
-            false
+            false,
+            []
         );
 
         const value = new ComparisonOperatorAndValue(new Equals(), new ValueLiteral('GREGORIAN:2018-06-12', 'http://api.knora.org/ontology/knora-api/v2#DateValue'));
@@ -213,7 +215,8 @@ OFFSET 0
             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
             true,
             false,
-            false
+            false,
+            []
         );
 
         const value = new ComparisonOperatorAndValue(new Equals(), new ValueLiteral('1.5', 'http://www.w3.org/2001/XMLSchema#decimal'));
@@ -266,7 +269,8 @@ OFFSET 0
             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
             true,
             false,
-            false
+            false,
+            []
         );
 
         const value = new ComparisonOperatorAndValue(new Equals(), new ValueLiteral('1', 'http://www.w3.org/2001/XMLSchema#integer'));
@@ -318,7 +322,8 @@ OFFSET 0
             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
             true,
             false,
-            false
+            false,
+            []
         );
 
         const value = new ComparisonOperatorAndValue(new Equals(), new ValueLiteral('true', 'http://www.w3.org/2001/XMLSchema#boolean'));
@@ -370,7 +375,8 @@ OFFSET 0
             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
             true,
             false,
-            false
+            false,
+            []
         );
 
         const value = new ComparisonOperatorAndValue(new Equals(), new ValueLiteral('http://www.google.ch', 'http://www.w3.org/2001/XMLSchema#anyURI'));
@@ -423,7 +429,8 @@ OFFSET 0
             ['http://api.knora.org/ontology/knora-api/v2#hasLinkTo'],
             false,
             true,
-            false
+            false,
+            []
         );
 
         const value = new ComparisonOperatorAndValue(new Equals(), new IRI('http://rdfh.ch/biblio/QNWEqmjxQ9W-_hTwKlKP-Q'));
@@ -475,7 +482,8 @@ OFFSET 0
             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
             true,
             false,
-            false
+            false,
+            []
         );
 
         const value = new ComparisonOperatorAndValue(new GreaterThan(), new ValueLiteral('1', 'http://www.w3.org/2001/XMLSchema#integer'));
