@@ -5,6 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 
+/**
+ * Represents a list node v2.
+ */
 export class ListNodeV2 {
 
     readonly children: ListNodeV2[];
@@ -37,7 +40,7 @@ export class ListService extends ApiService {
      * @param {object} listJSONLD the JSON-LD representation of a list node v2.
      * @return {ListNodeV2}
      */
-    private convertJSONLDToListNode = (listJSONLD: object) => {
+    private convertJSONLDToListNode: (listJSONLD: object) => ListNodeV2 = (listJSONLD: object) => {
 
         let hasRootNode;
 
