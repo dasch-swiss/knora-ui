@@ -25,6 +25,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
+import { ListValueComponent } from './list-value/list-value.component';
+import { ListDisplayComponent } from './list-value/list-display/list-display.component';
 
 describe('SpecifyPropertyValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -32,7 +34,8 @@ describe('SpecifyPropertyValueComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SpecifyPropertyValueComponent,
+            declarations: [
+                SpecifyPropertyValueComponent,
                 SpecifyPropertyValueComponent,
                 SpecifyPropertyValueComponent,
                 BooleanValueComponent,
@@ -43,7 +46,10 @@ describe('SpecifyPropertyValueComponent', () => {
                 TextValueComponent,
                 UriValueComponent,
                 JdnDatepickerDirective,
-                TestHostComponent],
+                TestHostComponent,
+                ListValueComponent,
+                ListDisplayComponent
+            ],
             imports: [
                 FormsModule,
                 ReactiveFormsModule,
@@ -188,5 +194,6 @@ const textProperty = new Property(
     ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
     true,
     false,
-    false);
+    false,
+    []);
 

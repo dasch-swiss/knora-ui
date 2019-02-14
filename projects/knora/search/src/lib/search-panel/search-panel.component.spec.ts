@@ -27,6 +27,8 @@ import { IntegerValueComponent } from '../extended-search/select-property/specif
 import { LinkValueComponent } from '../extended-search/select-property/specify-property-value/link-value/link-value.component';
 import { TextValueComponent } from '../extended-search/select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from '../extended-search/select-property/specify-property-value/uri-value/uri-value.component';
+import { ListValueComponent } from '../extended-search/select-property/specify-property-value/list-value/list-value.component';
+import { ListDisplayComponent } from '../extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
 
 describe('SearchPanelComponent', () => {
   let component: SearchPanelComponent;
@@ -63,7 +65,9 @@ describe('SearchPanelComponent', () => {
         TextValueComponent,
         UriValueComponent,
         ReversePipe,
-        JdnDatepickerDirective
+        JdnDatepickerDirective,
+        ListValueComponent,
+        ListDisplayComponent
       ],
       providers: [
         {
