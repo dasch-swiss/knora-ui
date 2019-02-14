@@ -48,9 +48,9 @@ ngOnInit() {
     };
 
     exampleGetUser: Example = {
-        title: 'getUser(username || email || iri)',
+        title: 'getUserByUsername(username)',
         subtitle: 'returns a user object',
-        name: 'getUser',
+        name: 'getUserByUsername',
         code: {
             html: `
 <div *ngIf="user && !usersService.loading">
@@ -112,8 +112,8 @@ ngOnInit() {
             );
     }
 
-    getUser(identifier: string) {
-        this.usersService.getUser(identifier)
+    getUserByUsername(username: string) {
+        this.usersService.getUserByUsername(username)
             .subscribe(
                 (result: User) => {
                     this.user = result;

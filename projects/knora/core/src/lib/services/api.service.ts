@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
@@ -23,6 +23,8 @@ export abstract class ApiService {
 
     protected constructor(public http: HttpClient,
                           @Inject('config') public config: KuiCoreConfig) {
+
+        console.log('ApiService constructor: config', config);
     }
 
     /**

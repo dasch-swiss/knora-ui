@@ -20,7 +20,6 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
 import { AppRouting } from './app.routing';
-import { AppSettings } from './app.settings';
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 // examples: demo components
@@ -71,17 +70,12 @@ import { SearchPgComponent } from './playground/search-pg/search-pg.component';
 import { SearchResultComponent } from './playground/search-pg/search-result/search-result.component';
 import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
 import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
+import { AppInitService } from './app-init.service';
 
 
-export function initializeApp() {
-
-    console.log('initializeApp: ', AppSettings.settings);
-
-    return () => <KuiCoreConfig> {
-        name: AppSettings.settings.appName,
-        api: AppSettings.settings.apiURL,
-        media: AppSettings.settings.iiifURL,
-        app: AppSettings.settings.appURL
+export function initializeApp(appInitService: AppInitService) {
+    return (): Promise<any> => {
+        return appInitService.Init();
     };
 }
 
@@ -142,7 +136,12 @@ export function initializeApp() {
         RouterModule,
         AppRouting,
         FlexLayoutModule,
-        KuiCoreModule,
+        KuiCoreModule.forRoot({
+            name: 'SALSAH',
+            app: 'http://localhost',
+            api: 'http://0.0.0.0:3333',
+            media: 'http://0.0.0.0:1024'
+        }),
         KuiAuthenticationModule,
         KuiActionModule,
         KuiSearchModule,
@@ -153,15 +152,9 @@ export function initializeApp() {
         ReactiveFormsModule
     ],
     providers: [
-        AppSettings,
+        AppInitService,
         {
-            provide: APP_INITIALIZER, useFactory: AppSettings.initializeSettings, deps: [AppSettings], multi: true
-        },
-        {
-            provide: KuiCoreConfigToken,
-            useFactory: initializeApp(),
-            deps: [AppSettings],
-            multi: true
+            provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true
         },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
@@ -175,5 +168,4 @@ export function initializeApp() {
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

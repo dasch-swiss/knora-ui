@@ -36,11 +36,11 @@ export class AuthenticationService {
      * @param {string} password
      * @returns Observable<any>
      */
-    login(identifier: string, password: string): Observable<any> {
+    login(username: string, password: string): Observable<any> {
 
         return this.http.post(
             this.config.api + '/v2/authentication',
-            {identifier: identifier, password: password},
+            {username: username, password: password},
             {observe: 'response'}).pipe(
                 map((response: HttpResponse<any>): any => {
                     return response;

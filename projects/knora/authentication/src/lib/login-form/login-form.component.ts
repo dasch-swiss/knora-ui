@@ -59,13 +59,13 @@ export class LoginFormComponent implements OnInit {
 
     // error definitions for the following form fields
     formErrors = {
-        'email': '',
+        'username': '',
         'password': ''
     };
 
     // error messages for the form fields defined in formErrors
     validationMessages = {
-        'email': {
+        'username': {
             'required': 'user name is required.'
         },
         'password': {
@@ -94,7 +94,7 @@ export class LoginFormComponent implements OnInit {
 
     buildForm(): void {
         this.frm = this._fb.group({
-            email: ['', Validators.required],
+            username: ['', Validators.required],
             password: ['', Validators.required]
         });
 
@@ -147,7 +147,7 @@ export class LoginFormComponent implements OnInit {
         this.loading = true;
 
         // Grab values from form
-        const username = this.frm.get('email').value;
+        const username = this.frm.get('username').value;
         const password = this.frm.get('password').value;
 
         this._auth.login(username, password)
