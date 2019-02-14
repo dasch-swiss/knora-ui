@@ -48,6 +48,7 @@ import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.compon
 import { PlaygroundComponent } from './playground/playground.component';
 import { SearchPgComponent } from './playground/search-pg/search-pg.component';
 import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
+import { ListPgComponent } from './playground/list-pg/list-pg.component';
 
 const appRoutes: Routes = [
     {
@@ -276,7 +277,11 @@ const appRoutes: Routes = [
                         component: SearchResultsComponent
                     }
                 ]
-            }
+            },
+            {
+                path: 'list',
+                component: ListPgComponent
+            },
         ]
     },
     {

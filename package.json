@@ -20,7 +20,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-lib": "ng build @knora/core && ng build @knora/action && ng build @knora/authentication && ng build @knora/viewer && ng build @knora/search",
+    "build-lib": "rm -rf dist/'@knora' && ng build @knora/core && ng build @knora/action && ng build @knora/authentication && ng build @knora/viewer && ng build @knora/search",
     "update-lib": "yarn install --prod=false && rm -rf dist/'@knora'/ && yarn build-lib"
   },
   "private": true,

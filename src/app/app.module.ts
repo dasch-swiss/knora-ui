@@ -70,6 +70,7 @@ import { SearchPgComponent } from './playground/search-pg/search-pg.component';
 import { SearchResultComponent } from './playground/search-pg/search-result/search-result.component';
 import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
 import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
+import { ListPgComponent } from './playground/list-pg/list-pg.component';
 
 @NgModule({
     declarations: [
@@ -118,7 +119,8 @@ import { AuthenticationPgComponent } from './playground/authentication-pg/authen
         ViewerPgComponent,
         SearchPgComponent,
         OntologyPgComponent,
-        AuthenticationPgComponent
+        AuthenticationPgComponent,
+        ListPgComponent
     ],
     entryComponents: [
         // LoginFormComponent
