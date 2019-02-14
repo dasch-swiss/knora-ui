@@ -1,6 +1,6 @@
 {
   "name": "@knora/search",
-  "version": "6.1.0",
+  "version": "6.1.2",
   "description": "Knora ui module: search",
   "repository": {
     "type": "git",
