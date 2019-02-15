@@ -1,3 +1,14 @@
-<p>
-  list-pg works!
-</p>
+<div>
+    <div>
+        <button (click)="getList()">Get List</button>
+        <div *ngIf="list !==undefined">
+            {{list.label}}
+        </div>
+    </div>
+    <div>
+        <button (click)="getListNode()">Get Node</button>
+        <div *ngIf="node !== undefined">
+            {{node.label}}
+        </div>
+    </div>
+</div>

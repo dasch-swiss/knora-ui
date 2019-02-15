@@ -48,6 +48,16 @@ export class ListService extends ApiService {
         super(http, config);
     }
 
+    private hasRootNode(listJSONLD) {
+        let hasRoot;
+
+        if (listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode'] !== undefined) {
+            hasRoot = listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode']['@id'];
+        }
+
+        return hasRoot;
+    }
+
     /**
      * Converts a JSON-LD represention of a ListNodeV2 to  a `ListNodeV2`.
      * Recursively converts child nodes.
@@ -59,11 +69,7 @@ export class ListService extends ApiService {
 
         const listNodeIri = listJSONLD['@id'];
 
-        let hasRootNode;
-
-        if (listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode'] !== undefined) {
-            hasRootNode = listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode']['@id'];
-        }
+        const hasRootNode = this.hasRootNode(listJSONLD);
 
         const listNode = new ListNodeV2(
             listNodeIri,
@@ -159,19 +165,51 @@ export class ListService extends ApiService {
      * @param {string} listNodeIri the Iri of the list node.
      * @return {Observable<object>}
      */
-    getListNode(listNodeIri: string): Observable<object> {
+    getListNode(listNodeIri: string): Observable<ListNodeV2> {
 
-        const listNode: Observable<ApiServiceResult | ApiServiceError> = this.getListNodeFromKnora(listNodeIri);
+        // check if list node is already in cache
+        if (this.listNodeIriToListNodeV2[listNodeIri] !== undefined) {
 
-        return listNode.pipe(
-            mergeMap(
-                // this would return an Observable of a PromiseObservable -> combine them into one Observable
-                this.processJSONLD
-            ),
-            map(
-                this.convertJSONLDToListNode
-            )
-        );
+            // list node is already cached
+            return of(this.listNodeIriToListNodeV2[listNodeIri]);
+
+        } else {
+
+            const listNode: Observable<ApiServiceResult | ApiServiceError> = this.getListNodeFromKnora(listNodeIri);
+
+            return listNode.pipe(
+                mergeMap(
+                    // this would return an Observable of a PromiseObservable -> combine them into one Observable
+                    this.processJSONLD
+                ),
+                mergeMap(
+                    (listNodeJSONLD: object) => {
+                        const hasRootNode = this.hasRootNode(listNodeJSONLD);
+
+                        if (hasRootNode !== undefined) {
+                            // get the whole list
+                            return this.getList(hasRootNode).pipe(
+                                map(
+                                    (completeList: ListNodeV2) => {
+                                        // get list node from cache
+                                        return this.listNodeIriToListNodeV2[listNodeIri];
+                                    })
+                            );
+                        } else {
+                            // this is the root node, get the whole list
+                            return this.getList(listNodeIri).pipe(
+                                map(
+                                    (completeList: ListNodeV2) => {
+                                        // get list node from cache
+                                        return this.listNodeIriToListNodeV2[listNodeIri];
+                                    })
+                            );
+                        }
+                    }
+                )
+            );
+
+        }
     }
 
 
