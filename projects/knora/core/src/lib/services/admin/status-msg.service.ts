@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { KuiCoreConfig } from '../../declarations';
+import { KuiCoreConfigToken } from '../../core.module';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { KuiCoreConfig } from '../../declarations';
 export class StatusMsgService {
 
   constructor(private _http: HttpClient,
-    @Inject('config') public config: KuiCoreConfig) {
+    @Inject(KuiCoreConfigToken) public config) {
   }
 
   /**

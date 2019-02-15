@@ -80,7 +80,7 @@ describe('UsersService', () => {
 
         it('should return one user by email', async(inject([UsersService], (service) => {
 
-            spyOn(service, 'getUser').and.callFake(() => {
+            spyOn(service, 'getUserByEmail').and.callFake(() => {
                 const result = new ApiServiceResult();
                 result.status = 200;
                 result.statusText = '';
@@ -92,7 +92,7 @@ describe('UsersService', () => {
 
             expect(usersService).toBeDefined();
 
-            const userByEmail: Observable<User> = usersService.getUser('images-reviewer-user@example.com');
+            const userByEmail: Observable<User> = usersService.getUserByEmail('images-reviewer-user@example.com');
 
             const user = { 'user': { 'familyName': 'User', 'givenName': 'User03', 'email': 'images-reviewer-user@example.com', 'username': 'images-reviewer-user', 'permissions': { 'groupsPerProject': { 'http://rdfh.ch/projects/00FF': ['http://rdfh.ch/groups/00FF/images-reviewer', 'http://www.knora.org/ontology/knora-base#ProjectMember']}, 'administrativePermissionsPerProject': { 'http://rdfh.ch/projects/00FF': [{ 'name': 'ProjectResourceCreateRestrictedPermission', 'additionalInformation': 'http://www.knora.org/ontology/00FF/images#bildformat', 'permissionCode': null}, { 'name': 'ProjectResourceCreateRestrictedPermission', 'additionalInformation': 'http://www.knora.org/ontology/00FF/images#bild', 'permissionCode': null}]}}, 'groups': [{ 'name': 'Image reviewer', 'project': { 'ontologies': ['http://www.knora.org/ontology/00FF/images'], 'shortname': 'images', 'description': [{ 'value': 'A demo project of a collection of images', 'language': 'en' }], 'shortcode': '00FF', 'logo': null, 'id': 'http://rdfh.ch/projects/00FF', 'status': true, 'selfjoin': false, 'keywords': ['collection', 'images'], 'longname': 'Image Collection Demo' }, 'description': 'A group for image reviewers.', 'id': 'http://rdfh.ch/groups/00FF/images-reviewer', 'status': true, 'selfjoin': false}], 'id': 'http://rdfh.ch/users/images-reviewer-user', 'status': true, 'token': null, 'sessionId': null, 'projects': [{ 'ontologies': ['http://www.knora.org/ontology/00FF/images'], 'shortname': 'images', 'description': [{ 'value': 'A demo project of a collection of images', 'language': 'en' }], 'shortcode': '00FF', 'logo': null, 'id': 'http://rdfh.ch/projects/00FF', 'status': true, 'selfjoin': false, 'keywords': ['collection', 'images'], 'longname': 'Image Collection Demo' }], 'lang': 'de', 'password': null}};
 
@@ -118,7 +118,7 @@ describe('UsersService', () => {
 
             expect(usersService).toBeDefined();
 
-            const userByIri: Observable<User> = usersService.getUser('http://rdfh.ch/users/c266a56709');
+            const userByIri: Observable<User> = usersService.getUserByIri('http://rdfh.ch/users/c266a56709');
 
             const user = { 'user': { 'familyName': 'User', 'givenName': 'User03', 'email': 'images-reviewer-user@example.com', 'username': 'images-reviewer-user', 'permissions': { 'groupsPerProject': { 'http://rdfh.ch/projects/00FF': ['http://rdfh.ch/groups/00FF/images-reviewer', 'http://www.knora.org/ontology/knora-base#ProjectMember']}, 'administrativePermissionsPerProject': { 'http://rdfh.ch/projects/00FF': [{ 'name': 'ProjectResourceCreateRestrictedPermission', 'additionalInformation': 'http://www.knora.org/ontology/00FF/images#bildformat', 'permissionCode': null}, { 'name': 'ProjectResourceCreateRestrictedPermission', 'additionalInformation': 'http://www.knora.org/ontology/00FF/images#bild', 'permissionCode': null}]}}, 'groups': [{ 'name': 'Image reviewer', 'project': { 'ontologies': ['http://www.knora.org/ontology/00FF/images'], 'shortname': 'images', 'description': [{ 'value': 'A demo project of a collection of images', 'language': 'en' }], 'shortcode': '00FF', 'logo': null, 'id': 'http://rdfh.ch/projects/00FF', 'status': true, 'selfjoin': false, 'keywords': ['collection', 'images'], 'longname': 'Image Collection Demo' }, 'description': 'A group for image reviewers.', 'id': 'http://rdfh.ch/groups/00FF/images-reviewer', 'status': true, 'selfjoin': false}], 'id': 'http://rdfh.ch/users/images-reviewer-user', 'status': true, 'token': null, 'sessionId': null, 'projects': [{ 'ontologies': ['http://www.knora.org/ontology/00FF/images'], 'shortname': 'images', 'description': [{ 'value': 'A demo project of a collection of images', 'language': 'en' }], 'shortcode': '00FF', 'logo': null, 'id': 'http://rdfh.ch/projects/00FF', 'status': true, 'selfjoin': false, 'keywords': ['collection', 'images'], 'longname': 'Image Collection Demo' }], 'lang': 'de', 'password': null}};
 
