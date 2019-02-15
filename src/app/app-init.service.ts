@@ -29,11 +29,11 @@ export class AppInitService {
     Init() {
 
         return new Promise<void>((resolve, reject) => {
-            console.log('AppInitService.init() called');
+//            console.log('AppInitService.init() called');
             // do your initialisation stuff here
 
             const data = <IAppConfig> window['tempConfigStorage'];
-            console.log('AppInitService: json', data);
+//            console.log('AppInitService: json', data);
             AppInitService.settings = data;
 
             AppInitService.coreConfig = <KuiCoreConfig> {
@@ -43,11 +43,12 @@ export class AppInitService {
                 app: AppInitService.settings.appURL
             };
 
+            resolve();
+/*
             setTimeout(() => {
                 console.log('AppInitService Finished');
-                resolve();
             }, 6000);
-
+*/
         });
     }
 }

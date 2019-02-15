@@ -38,6 +38,18 @@ export class SessionService {
      */
     setSession(jwt: string, username: string) {
 
+        this.session = {
+            id: this.setTimestamp(),
+            user: {
+                name: username,
+                jwt: jwt,
+                lang: 'en',
+                sysAdmin: false
+            }
+        };
+        // store in the localStorage
+        localStorage.setItem('session', JSON.stringify(this.session));
+
         // get user information
         this._users.getUserByUsername(username).subscribe(
             (result: User) => {
@@ -123,7 +135,7 @@ export class SessionService {
         return this._http.get(this.config.api + '/v2/authentication').pipe(
             map((result: any) => {
 
-                console.log('AuthenticationService - authenticate - result: ', result);
+                // console.log('AuthenticationService - authenticate - result: ', result);
                 // return true || false
                 return result.status === 200;
             })
