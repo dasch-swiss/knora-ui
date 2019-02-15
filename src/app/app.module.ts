@@ -79,6 +79,11 @@ export function initializeApp(appInitService: AppInitService) {
     };
 }
 
+export const KuiCoreConfigTokenProvider = {
+    provide: KuiCoreConfigToken,
+    useFactory: () => AppInitService.coreConfig
+};
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -136,12 +141,7 @@ export function initializeApp(appInitService: AppInitService) {
         RouterModule,
         AppRouting,
         FlexLayoutModule,
-        KuiCoreModule.forRoot({
-            name: 'SALSAH',
-            app: 'http://localhost',
-            api: 'http://0.0.0.0:3333',
-            media: 'http://0.0.0.0:1024'
-        }),
+        KuiCoreModule,
         KuiAuthenticationModule,
         KuiActionModule,
         KuiSearchModule,
@@ -156,6 +156,7 @@ export function initializeApp(appInitService: AppInitService) {
         {
             provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true
         },
+        KuiCoreConfigTokenProvider,
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {
@@ -169,3 +170,5 @@ export function initializeApp(appInitService: AppInitService) {
     bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+

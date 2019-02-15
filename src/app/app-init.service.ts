@@ -1,5 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
-import { BASE_URL, KuiCoreConfigToken, KuiCoreModule } from '../../projects/knora/core/src/lib/core.module';
+import { Injectable } from '@angular/core';
 import { KuiCoreConfig } from '../../projects/knora/core/src/lib/declarations';
 
 export interface IAppConfig {

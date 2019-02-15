@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiServiceError, KuiCoreConfig } from '@knora/core';
+import { ApiServiceError, KuiCoreConfigToken } from '@knora/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SessionService } from './session/session.service';
@@ -15,7 +15,7 @@ export class AuthenticationService {
 
     constructor(public http: HttpClient,
                 private _session: SessionService,
-                @Inject('config') public config: KuiCoreConfig) {
+                @Inject(KuiCoreConfigToken) public config) {
     }
 
     /**

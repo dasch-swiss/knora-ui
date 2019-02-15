@@ -71,13 +71,11 @@ export class UsersService extends ApiService {
     /**
      * Get user by username.
      *
-     * @ignore
-     *
      * @param {string} username
      * @returns {Observable<User>}
      */
-    getUserByUsername(iri: string): Observable<User> {
-        return this.getUser(iri, 'username');
+    getUserByUsername(username: string): Observable<User> {
+        return this.getUser(username, 'username');
     }
 
     // ------------------------------------------------------------------------
