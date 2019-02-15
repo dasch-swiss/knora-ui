@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
-import { JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
+import { JwtInterceptor, KuiAuthenticationModule, WithCredentialsInterceptor } from '@knora/authentication';
 import { KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
@@ -147,6 +147,7 @@ import { SearchResultComponent } from './playground/search-pg/search-result/sear
             }
         },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: WithCredentialsInterceptor, multi: true },
         // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
 
     ],
