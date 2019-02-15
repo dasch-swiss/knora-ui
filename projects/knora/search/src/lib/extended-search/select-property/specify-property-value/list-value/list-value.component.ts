@@ -21,7 +21,9 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     @Input() property: Property;
 
-    list: ListNodeV2;
+    listRootNode: ListNodeV2;
+
+    activeNode;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder, private _listService: ListService) {
     }
@@ -43,12 +45,18 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
             listValue: [null, Validators.compose([Validators.required])]
         });
 
+        this.form.valueChanges.subscribe(
+            (data) => {
+                this.activeNode = data.listValue;
+            }
+        );
+
         // get list's root node Iri
         const rootNodeIri = this.getRootNodeIri();
 
         this._listService.getList(rootNodeIri).subscribe(
             (list: ListNodeV2) => {
-                this.list = list;
+                this.listRootNode = list;
             }
         );
 

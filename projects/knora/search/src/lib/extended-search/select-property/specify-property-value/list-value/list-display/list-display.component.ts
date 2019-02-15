@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { ListNodeV2 } from '@knora/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -10,16 +10,54 @@ const resolvedPromise = Promise.resolve(null);
     templateUrl: './list-display.component.html',
     styleUrls: ['./list-display.component.scss']
 })
-export class ListDisplayComponent implements OnInit {
+export class ListDisplayComponent implements OnInit, OnDestroy {
 
-    @Input() list: ListNodeV2[];
+    // parent FormGroup
+    @Input() formGroup: FormGroup;
+
+    private _listNode: ListNodeV2;
+
+    @Input()
+    set listNode(value: ListNodeV2) {
+        console.log(value)
+        this.activeNode = undefined;
+        this._listNode = value;
+    }
+
+    get listNode() {
+        return this._listNode;
+    }
 
     form: FormGroup;
 
-    constructor() {
+    activeNode;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     ngOnInit() {
+        this.form = this.fb.group({
+            listValue: [null, Validators.compose([Validators.required])]
+        });
+
+        this.form.valueChanges.subscribe(
+            (data) => {
+                this.activeNode = data.listValue;
+            }
+        );
+
+        resolvedPromise.then(() => {
+            // add form to the parent form group
+            this.formGroup.addControl('propValue', this.form);
+        });
+    }
+
+    ngOnDestroy() {
+
+        // remove form from the parent form group
+        resolvedPromise.then(() => {
+            this.formGroup.removeControl('propValue');
+        });
 
     }
 

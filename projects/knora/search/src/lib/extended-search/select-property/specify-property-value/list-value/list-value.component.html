@@ -1,19 +1,15 @@
-<mat-form-field *ngIf="list?.children.length > 0">
-    <!--<mat-select placeholder="Pokemon" [formControl]="form.controls['listValue']">
-        <ng-template #recursiveList let-list>
-            <mat-optgroup *ngFor="let node of list?.children" [label]="node.label">
-                <mat-option *ngFor="let child of node?.children" [value]="child.id">
-                    <mat-optgroup *ngTemplateOutlet="recursiveList; context:{ $implicit: child.children }">
-
-                    </mat-optgroup>
-                </mat-option>
-            </mat-optgroup>
-        </ng-template>
-    </mat-select>-->
+<mat-form-field *ngIf="listRootNode !== undefined">
     <mat-select placeholder="List Value" [formControl]="form.controls['listValue']">
-        <!--<list-display [list]="list.children" [formGroup]="form"></list-display>-->
-        <mat-option *ngFor="let child of list.children" [value]="child.id">
+
+        <mat-option [value]="undefined">
+            No Selection
+        </mat-option>
+        <mat-option *ngFor="let child of listRootNode.children" [value]="child">
             {{child.label}}
         </mat-option>
     </mat-select>
+
+    <span *ngIf="activeNode !== undefined && activeNode.children.length > 0">
+        <list-display [listNode]="activeNode" [formGroup]="form"></list-display>
+    </span>
 </mat-form-field>
