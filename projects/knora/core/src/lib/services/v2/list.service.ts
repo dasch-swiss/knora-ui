@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ApiServiceError, ApiServiceResult, KuiCoreConfig } from '../../declarations';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 
 /**
@@ -23,10 +23,25 @@ export class ListNodeV2 {
     }
 }
 
+class ListCache {
+
+    [index: string]: ListNodeV2;
+
+}
+
+class ListNodeIriToListNodeV2 {
+
+    [index: string]: ListNodeV2;
+}
+
 @Injectable({
     providedIn: 'root'
 })
 export class ListService extends ApiService {
+
+    private listCache = new ListCache();
+
+    private listNodeIriToListNodeV2 = new ListNodeIriToListNodeV2();
 
     constructor(public http: HttpClient,
                 @Inject('config') public config: KuiCoreConfig) {
@@ -42,6 +57,8 @@ export class ListService extends ApiService {
      */
     private convertJSONLDToListNode: (listJSONLD: object) => ListNodeV2 = (listJSONLD: object) => {
 
+        const listNodeIri = listJSONLD['@id'];
+
         let hasRootNode;
 
         if (listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode'] !== undefined) {
@@ -49,7 +66,7 @@ export class ListService extends ApiService {
         }
 
         const listNode = new ListNodeV2(
-            listJSONLD['@id'],
+            listNodeIri,
             listJSONLD['http://www.w3.org/2000/01/rdf-schema#label'],
             listJSONLD['http://api.knora.org/ontology/knora-api/v2#listNodePosition'],
             hasRootNode
@@ -69,6 +86,8 @@ export class ListService extends ApiService {
             }
 
         }
+
+        this.listNodeIriToListNodeV2[listNodeIri] = listNode;
 
         return listNode;
     };
@@ -90,17 +109,38 @@ export class ListService extends ApiService {
      * @return {Observable<ListNodeV2>}
      */
     getList(rootNodeIri: string): Observable<ListNodeV2> {
-        const list: Observable<ApiServiceResult | ApiServiceError> = this.getListFromKnora(rootNodeIri);
 
-        return list.pipe(
-            mergeMap(
-                // this would return an Observable of a PromiseObservable -> combine them into one Observable
-                this.processJSONLD
-            ),
-            map(
-                this.convertJSONLDToListNode
-            )
-        );
+        // check if list is already in cache
+        if (this.listCache[rootNodeIri] !== undefined) {
+
+            // return list from cache
+            return of(this.listCache[rootNodeIri]);
+
+        } else {
+            // get list from Knora and cache it
+
+            const listJSONLD: Observable<ApiServiceResult | ApiServiceError> = this.getListFromKnora(rootNodeIri);
+
+            const listV2: Observable<ListNodeV2> = listJSONLD.pipe(
+                mergeMap(
+                    // this would return an Observable of a PromiseObservable -> combine them into one Observable
+                    this.processJSONLD
+                ),
+                map(
+                    this.convertJSONLDToListNode
+                )
+            );
+
+            return listV2.pipe(
+                map(
+                    (list: ListNodeV2) => {
+                        // write list to cache and return it
+                        this.listCache[rootNodeIri] = list;
+                        return list;
+                    }
+                )
+            );
+        }
     }
 
     /**
