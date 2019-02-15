@@ -13,7 +13,7 @@ import {
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig, ValueLiteral } from '@knora/core';
+import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
 import { JdnDatepickerDirective } from '@knora/action';
 import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalendardateadapter';
 import { GregorianCalendarDate, JDNPeriod } from 'jdnconvertiblecalendar';
@@ -49,7 +49,7 @@ describe('DateValueComponent', () => {
                     },
                 },
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
                 FormBuilder

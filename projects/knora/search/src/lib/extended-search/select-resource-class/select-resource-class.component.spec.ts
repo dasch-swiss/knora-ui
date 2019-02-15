@@ -8,7 +8,7 @@ import {
     MatIconModule,
     MatSelectModule
 } from '@angular/material';
-import { Cardinality, CardinalityOccurrence, KuiCoreConfig, ResourceClass } from '@knora/core';
+import { Cardinality, CardinalityOccurrence, KuiCoreConfig, KuiCoreConfigToken, ResourceClass } from '@knora/core';
 
 import { SelectResourceClassComponent } from './select-resource-class.component';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
@@ -49,7 +49,7 @@ describe('SelectResourceClassComponent', () => {
                     },
                 },
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
                 FormBuilder

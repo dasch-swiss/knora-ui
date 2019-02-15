@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
 import { JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
-import { KuiCoreConfig, KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
+import { KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
 
