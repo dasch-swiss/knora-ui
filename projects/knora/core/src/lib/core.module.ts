@@ -46,7 +46,7 @@ export class KuiCoreModule {
         return {
             ngModule: KuiCoreModule,
             providers: [
-                {provide: 'config', useValue: config}
+                {provide: KuiCoreConfigToken, useValue: config}
             ]
         };
     }
