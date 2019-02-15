@@ -6,10 +6,9 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig } from '../../../../../../../core/src/lib/declarations';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ValueLiteral } from '@knora/core';
+import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
 
 describe('IntegerValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -38,7 +37,10 @@ describe('IntegerValueComponent', () => {
                         params: null
                     },
                 },
-                {provide: 'config', useValue: KuiCoreConfig},
+                {
+                    provide: KuiCoreConfigToken,
+                    useValue: KuiCoreConfig
+                },
                 FormBuilder
             ]
         })

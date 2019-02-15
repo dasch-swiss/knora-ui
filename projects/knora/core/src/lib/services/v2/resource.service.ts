@@ -6,6 +6,7 @@ import { ApiServiceError, ApiServiceResult, KuiCoreConfig, ReadResourcesSequence
 import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
+import { KuiCoreConfigToken } from '../../core.module';
 
 /**
  * Requests representation of resources from Knora.
@@ -16,7 +17,7 @@ import { OntologyCacheService, OntologyInformation } from './ontology-cache.serv
 export class ResourceService extends ApiService {
 
     constructor(public http: HttpClient,
-                @Inject('config') public config: KuiCoreConfig,
+                @Inject(KuiCoreConfigToken) public config,
                 private _ontologyCacheService: OntologyCacheService) {
         super(http, config);
     }
