@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinkValueComponent } from './link-value.component';
-import { KnoraConstants, OntologyInformation, ReadLinkValue, ResourceClass, ResourceClassIrisForOntology, ResourceClasses, ReadResource } from '@knora/core';
+import { OntologyInformation, ReadLinkValue, ResourceClass, ResourceClassIrisForOntology, ResourceClasses, ReadResource } from '@knora/core';
 import { Component, OnInit, ViewChild, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 

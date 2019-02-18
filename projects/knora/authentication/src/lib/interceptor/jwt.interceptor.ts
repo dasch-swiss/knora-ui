@@ -18,7 +18,8 @@ export class JwtInterceptor implements HttpInterceptor {
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${jwt}`
-                }
+                },
+                withCredentials: true
             });
         } else {
             this._session.destroySession();
