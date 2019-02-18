@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ListNodeV2, ListService } from './list.service';
+import { ListCacheService, ListNodeV2 } from './list-cache.service';
 import { KuiCoreModule } from '../../core.module';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from '../api.service';
 
-describe('ListService', () => {
+describe('ListCacheService', () => {
     let httpTestingController: HttpTestingController;
-    let listService: ListService;
+    let listService: ListCacheService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -17,7 +17,7 @@ describe('ListService', () => {
             ],
             providers: [
                 ApiService,
-                ListService
+                ListCacheService
             ]
         })
             .compileComponents();
@@ -25,7 +25,7 @@ describe('ListService', () => {
         // Inject the http, test controller, and service-under-test
         // as they will be referenced by each test.
         httpTestingController = TestBed.get(HttpTestingController);
-        listService = TestBed.get(ListService);
+        listService = TestBed.get(ListCacheService);
     });
 
     afterEach(() => {

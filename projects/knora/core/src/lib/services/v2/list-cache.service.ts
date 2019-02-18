@@ -37,7 +37,7 @@ class ListNodeIriToListNodeV2 {
 @Injectable({
     providedIn: 'root'
 })
-export class ListService extends ApiService {
+export class ListCacheService extends ApiService {
 
     private listCache = new ListCache();
 
