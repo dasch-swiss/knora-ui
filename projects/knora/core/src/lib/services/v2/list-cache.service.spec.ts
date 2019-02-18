@@ -75,6 +75,38 @@ describe('ListCacheService', () => {
             }
         );
 
+    });
+
+    it('should get a list node and cache it', () => {
+
+        listCacheService.getListNode('http://rdfh.ch/lists/0001/treeList11').subscribe(
+            (listNode: ListNodeV2) => {
+
+                expect(listNode.id).toEqual('http://rdfh.ch/lists/0001/treeList11');
+                expect(listNode.label).toEqual('Tree list node 11');
+                expect(listNode.position).toEqual(1);
+                expect(listNode.hasRootNode).toEqual('http://rdfh.ch/lists/0001/treeList');
+
+                expect(spyListService.getListNode).toHaveBeenCalledTimes(1);
+                expect(spyListService.getListNode).toHaveBeenCalledWith('http://rdfh.ch/lists/0001/treeList11');
+
+                expect(spyListService.getList).toHaveBeenCalledTimes(1);
+                expect(spyListService.getList).toHaveBeenCalledWith('http://rdfh.ch/lists/0001/treeList');
+
+                // do the same request again (should read from cache)
+                // NOTE: the requests have to be chained and cannot be executed concurrently
+                listCacheService.getListNode('http://rdfh.ch/lists/0001/treeList11').subscribe(
+                    (list2) => {
+
+                        expect(spyListService.getListNode).toHaveBeenCalledTimes(1);
+                        expect(spyListService.getList).toHaveBeenCalledTimes(1);
+                    }
+                );
+
+
+            }
+        );
+
 
     });
 
