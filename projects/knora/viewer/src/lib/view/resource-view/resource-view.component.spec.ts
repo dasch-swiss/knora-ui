@@ -6,6 +6,7 @@ import {
     IncomingService,
     KnoraConstants,
     KuiCoreConfig,
+    KuiCoreConfigToken,
     OntologyCacheService,
     OntologyInformation,
     OntologyService,
@@ -89,7 +90,10 @@ xdescribe('ResourceViewComponent', () => {
                 OntologyCacheService,
                 OntologyService,
                 ResourceService,
-                {provide: 'config', useValue: KuiCoreConfig},
+                {
+                    provide: KuiCoreConfigToken,
+                    useValue: KuiCoreConfig
+                },
             ]
         })
             .compileComponents();

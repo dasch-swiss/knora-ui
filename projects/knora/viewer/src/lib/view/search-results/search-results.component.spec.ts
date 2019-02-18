@@ -6,7 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { KeyPipe, ProgressIndicatorComponent } from '@knora/action';
-import { KuiCoreConfig } from '@knora/core';
+import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
 import { SearchResultsComponent } from './search-results.component';
 import { ListViewComponent } from '../list-view/list-view.component';
 import { GridViewComponent } from '../grid-view/grid-view.component';
@@ -61,7 +61,7 @@ describe('SearchResultsComponent', () => {
                     }
                 },
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
                 HttpClient

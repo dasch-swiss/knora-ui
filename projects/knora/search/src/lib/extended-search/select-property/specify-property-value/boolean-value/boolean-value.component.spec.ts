@@ -7,7 +7,7 @@ import { MatCheckboxModule, MatFormFieldModule, MatIconModule } from '@angular/m
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig, ValueLiteral } from '@knora/core';
+import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
 import { By } from '@angular/platform-browser';
 
 describe('BooleanValueComponent', () => {
@@ -37,7 +37,7 @@ describe('BooleanValueComponent', () => {
                     },
                 },
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
                 FormBuilder

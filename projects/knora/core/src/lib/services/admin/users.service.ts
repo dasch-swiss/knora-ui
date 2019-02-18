@@ -16,10 +16,6 @@ import {
     providedIn: 'root'
 })
 export class UsersService extends ApiService {
-
-    usersUrl: string = this.config.api + '/admin/users';
-
-
     // ------------------------------------------------------------------------
     // GET
     // ------------------------------------------------------------------------
@@ -39,11 +35,13 @@ export class UsersService extends ApiService {
     /**
      * Get user by username, email or by iri.
      *
+     * @ignore
+     *
      * @param {string} identifier - Get user by username, email or by iri
      * @returns Observable<User>
      */
-    getUser(identifier: string): Observable<User> {
-        const path = '/admin/users/' + encodeURIComponent(identifier);
+    private getUser(identifier: string, identifierType: String): Observable<User> {
+        const path = '/admin/users/' + identifierType + '/' + encodeURIComponent(identifier);
         return this.httpGet(path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
@@ -51,28 +49,33 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * Deprecated! Please use getUser(identifier: string) only!
-     * Get user by email
-     *
-     * @ignore
-     *
-     * @param {string} email
-     * @returns {Observable<User>}
-     */
-    getUserByEmail(email: string): Observable<User> {
-        return this.getUser(email);
-    }
-
-    /**
-     * Deprecated! Please use getUser(identifier: string) only!
-     *
-     * @ignore
+     * Get user by IRI
      *
      * @param {string} iri
      * @returns {Observable<User>}
      */
     getUserByIri(iri: string): Observable<User> {
-        return this.getUser(iri);
+        return this.getUser(iri, 'iri');
+    }
+
+    /**
+     * Get user by email
+     *
+     * @param {string} email
+     * @returns {Observable<User>}
+     */
+    getUserByEmail(email: string): Observable<User> {
+        return this.getUser(email, 'email');
+    }
+
+    /**
+     * Get user by username.
+     *
+     * @param {string} username
+     * @returns {Observable<User>}
+     */
+    getUserByUsername(username: string): Observable<User> {
+        return this.getUser(username, 'username');
     }
 
     // ------------------------------------------------------------------------

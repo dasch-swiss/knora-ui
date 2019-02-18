@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { KuiCoreConfig, RdfDataObject, ResetTriplestoreContentResponse } from '../../declarations';
+import { KuiCoreConfigToken } from '../../core.module';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { KuiCoreConfig, RdfDataObject, ResetTriplestoreContentResponse } from '.
 })
 export class StoreService {
 
-  constructor(private http: HttpClient, @Inject('config') public config: KuiCoreConfig) { }
+  constructor(private http: HttpClient, @Inject(KuiCoreConfigToken) public config) { }
 
   /**
      * Resets the content of the triplestore.
