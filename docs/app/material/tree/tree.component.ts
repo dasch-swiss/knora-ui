@@ -1,7 +1,7 @@
-import {FlatTreeControl} from '@angular/cdk/tree';
-import {Component, Injectable, OnInit} from '@angular/core';
-import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
-import {BehaviorSubject, Observable, of as observableOf} from 'rxjs';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
 
 /**
  * File node data with nested structure.
@@ -130,10 +130,10 @@ export class FileDatabase {
      * The return value is the list of `FileNode`.
      */
     buildFileTree(value: any, level: number): FileNode[] {
-        let data: any[] = [];
-        for (let k in value) {
-            let v = value[k];
-            let node = new FileNode();
+        const data: any[] = [];
+        for (const k in value) {
+            const v = value[k];
+            const node = new FileNode();
             node.filename = `${k}`;
             if (v === null || v === undefined) {
                 // no action
@@ -181,7 +181,7 @@ export class TreeComponent implements OnInit {
     }
 
     transformer = (node: FileNode, level: number) => {
-        let flatNode = new FileFlatNode();
+        const flatNode = new FileFlatNode();
         flatNode.filename = node.filename;
         flatNode.type = node.type;
         flatNode.level = level;
@@ -189,21 +189,21 @@ export class TreeComponent implements OnInit {
 
         // console.log(flatNode);
         return flatNode;
-    };
+    }
 
     private _getLevel = (node: FileFlatNode) => {
         return node.level;
-    };
+    }
 
     private _isExpandable = (node: FileFlatNode) => {
         return node.expandable;
-    };
+    }
 
     private _getChildren = (node: FileNode): Observable<FileNode[]> => {
         return observableOf(node.children);
-    };
+    }
 
     hasChild = (_: number, _nodeData: FileFlatNode) => {
         return _nodeData.expandable;
-    };
+    }
 }

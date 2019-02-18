@@ -12,6 +12,8 @@ export class WithCredentialsInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with jwt token if available
 
+        console.log('WithCredentialsInterceptor - intercept - request: ', request);
+
         request = request.clone({
             withCredentials: true
         });

@@ -12,8 +12,6 @@ export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with jwt token if available
 
-        // TODO: remove after testing
-        /*
         if (this._session.validateSession()) {
             // the session is valid (and up to date)
             const jwt = JSON.parse(localStorage.getItem('session')).user.jwt;
@@ -25,7 +23,7 @@ export class JwtInterceptor implements HttpInterceptor {
         } else {
             this._session.destroySession();
         }
-        */
+
 
         return next.handle(request);
     }

@@ -109,7 +109,7 @@ ngOnInit() {
             ts: `
 project: Project;
 projectMembers: User[];
-            
+
 // the services from @knora/core should be public,
 // if you want to use the loading status in the html template
 // --> projectsService.loading = true | false
@@ -119,7 +119,7 @@ ngOnInit() {
     this.projectsService.getProjectByShortname('incunabula').subscribe(
         (result: Project) => {
             this.project = result;
-            
+
             // and get the members of the project here
             this.projectsService.getProjectMembersByIri(result.id).subscribe(
                 (result: User[]) => {

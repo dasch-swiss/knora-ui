@@ -1,8 +1,8 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {MainHeaderComponent} from './partials/main-header/main-header.component';
-import {MatIconModule, MatToolbarModule} from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MainHeaderComponent } from './partials/main-header/main-header.component';
+import { MatIconModule, MatToolbarModule } from '@angular/material';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
