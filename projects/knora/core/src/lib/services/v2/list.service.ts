@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
 import { HttpClient } from '@angular/common/http';
-import { ApiServiceError, ApiServiceResult, KuiCoreConfig } from '../../declarations';
+import { ApiServiceError, ApiServiceResult } from '../../declarations';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { KuiCoreConfigToken } from '../../core.module';
