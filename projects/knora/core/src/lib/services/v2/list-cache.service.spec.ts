@@ -30,7 +30,7 @@ describe('ListCacheService', () => {
 
         spyListService.getList.and.returnValue(of(listExpanded));
 
-        const listNodeExpanded = require('../../test-data/list/treelistNode-expanded.json');
+        const listNodeExpanded = require('../../test-data/list/treeListNode-expanded.json');
 
         spyListService.getListNode.and.returnValue(of(listNodeExpanded));
 

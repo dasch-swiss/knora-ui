@@ -59,4 +59,25 @@ describe('ListService', () => {
         httpRequest.flush(listJSONLD);
 
     });
+
+    it('should get a list node from Knora', () => {
+
+        const listNodeJSONLD = require('../../test-data/list/treeListNode.json');
+
+        const listNodeExpanded = require('../../test-data/list/treeListNode-expanded.json');
+
+        listService.getListNode('http://rdfh.ch/lists/0001/treeList11').subscribe(
+            (list: object) => {
+                expect(list).toEqual(listNodeExpanded);
+            }
+        );
+
+        // only one request to Knora is expected
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/node/' + encodeURIComponent('http://rdfh.ch/lists/0001/treeList11'));
+
+        expect(httpRequest.request.method).toEqual('GET');
+
+        httpRequest.flush(listNodeJSONLD);
+
+    });
 });
