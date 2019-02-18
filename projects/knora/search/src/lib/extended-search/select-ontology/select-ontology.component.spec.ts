@@ -13,7 +13,7 @@ import { SelectOntologyComponent } from './select-ontology.component';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { KuiCoreConfig, OntologyMetadata } from '@knora/core';
+import { KuiCoreConfig, KuiCoreConfigToken, OntologyMetadata } from '@knora/core';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
@@ -49,7 +49,7 @@ describe('SelectOntologyComponent', () => {
                     },
                 },
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
                 FormBuilder

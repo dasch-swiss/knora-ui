@@ -1,11 +1,12 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
-import { ApiServiceResult, CountQueryResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
-import { ConvertJSONLD } from './convert-jsonld';
 import { map, mergeMap } from 'rxjs/operators';
+import { KuiCoreConfigToken } from '../../core.module';
+import { ApiServiceResult, CountQueryResult, ReadResourcesSequence } from '../../declarations';
+import { ApiService } from '../api.service';
+import { ConvertJSONLD } from './convert-jsonld';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
-import {HttpClient, HttpParams} from '@angular/common/http';
 
 /**
  * Performs searches (fulltext or extended) and search count queries into Knora.
@@ -16,7 +17,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 export class SearchService extends ApiService {
 
     constructor(public http: HttpClient,
-                @Inject('config') public config: KuiCoreConfig,
+                @Inject(KuiCoreConfigToken) public config,
                 private _ontologyCacheService: OntologyCacheService) {
         super(http, config);
     }

@@ -12,7 +12,7 @@ import {
 
 import { SpecifyPropertyValueComponent } from './specify-property-value.component';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-import { Equals, Exists, KuiCoreConfig, Like, Match, NotEquals, Property } from '@knora/core';
+import { Equals, Exists, KuiCoreConfig, KuiCoreConfigToken, Like, Match, NotEquals, Property } from '@knora/core';
 import { BooleanValueComponent } from './boolean-value/boolean-value.component';
 import { DateValueComponent } from './date-value/date-value.component';
 import { DecimalValueComponent } from './decimal-value/decimal-value.component';
@@ -65,7 +65,7 @@ describe('SpecifyPropertyValueComponent', () => {
                     },
                 },
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
                 FormBuilder

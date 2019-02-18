@@ -12,7 +12,7 @@ import {
 } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ApiServiceResult, IRI, KuiCoreConfig, ReadResource, SearchService } from '@knora/core';
+import { ApiServiceResult, IRI, KuiCoreConfig, KuiCoreConfigToken, ReadResource, SearchService } from '@knora/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
@@ -51,7 +51,7 @@ describe('LinkValueComponent', () => {
                     },
                 },
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
                 FormBuilder
