@@ -11,9 +11,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 17,
-    "codeStart": 23,
-    "code": "getStatusMsg(): Observable<any> {\n\n  return this._http.get(this.config.app + '/assets/i18n/statusMsg.json')\n    .pipe(map(\n      (res: any) => {\n        return res;\n      },\n      err => {\n        console.error(err);\n      }\n    )\n    );\n\n};\n}",
+    "line": 18,
+    "codeStart": 24,
+    "code": "getStatusMsg(): Observable<any> {\n\n  return this._http.get(this.config.app + '/assets/i18n/statusMsg.json')\n    .pipe(map(\n      (res: any) => {\n        return res;\n      },\n      err => {\n        console.error(err);\n      }\n    )\n    );\n\n}\n}",
     "ctx": {
       "type": "method",
       "name": "getStatusMsg",
