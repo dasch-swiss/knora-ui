@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiServiceError, ApiServiceResult, KuiCoreConfig } from '../../declarations';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
+import { KuiCoreConfigToken } from '../../core.module';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ import { map, mergeMap } from 'rxjs/operators';
 export class ListService extends ApiService {
 
     constructor(public http: HttpClient,
-                @Inject('config') public config: KuiCoreConfig) {
+                @Inject(KuiCoreConfigToken) public config) {
         super(http, config);
     }
 
