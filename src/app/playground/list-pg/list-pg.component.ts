@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListService } from '@knora/core';
+import { ListCacheService } from '@knora/core';
 import { ListNodeV2 } from '../../../../projects/knora/core/src/lib/services';
 
 @Component({
@@ -9,7 +9,7 @@ import { ListNodeV2 } from '../../../../projects/knora/core/src/lib/services';
 })
 export class ListPgComponent implements OnInit {
 
-    constructor(private _listService: ListService) {
+    constructor(private _listCacheService: ListCacheService) {
     }
 
     private listRootNodeIri = 'http://rdfh.ch/lists/0801/subject_index';
@@ -30,7 +30,7 @@ export class ListPgComponent implements OnInit {
         };
 
         setTimeout(() => {
-            this._listService.getList(this.listRootNodeIri).subscribe(
+            this._listCacheService.getList(this.listRootNodeIri).subscribe(
                 (list: ListNodeV2) => {
                     this.list = list;
                 }
@@ -46,7 +46,7 @@ export class ListPgComponent implements OnInit {
         };
 
         setTimeout(() => {
-            this._listService.getListNode(this.listNode).subscribe(
+            this._listCacheService.getListNode(this.listNode).subscribe(
                 (node: ListNodeV2) => {
                     this.node = node;
                 }

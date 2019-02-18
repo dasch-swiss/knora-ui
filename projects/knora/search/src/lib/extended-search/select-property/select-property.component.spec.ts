@@ -12,7 +12,15 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectPropertyComponent } from './select-property.component';
 import { SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
 import { ActivatedRoute } from '@angular/router';
-import { Cardinality, CardinalityOccurrence, KuiCoreConfig, Properties, Property, ResourceClass } from '@knora/core';
+import {
+    Cardinality,
+    CardinalityOccurrence,
+    KuiCoreConfig,
+    KuiCoreConfigToken,
+    Properties,
+    Property,
+    ResourceClass
+} from '@knora/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
@@ -69,7 +77,7 @@ describe('SelectPropertyComponent', () => {
                     },
                 },
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
                 FormBuilder

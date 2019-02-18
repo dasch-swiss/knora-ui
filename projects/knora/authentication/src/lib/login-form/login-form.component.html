@@ -14,8 +14,8 @@
             <!-- Username -->
             <mat-form-field class="full-width login-field">
                 <mat-icon matPrefix>person</mat-icon>
-                <input matInput autofocus [placeholder]="login.name" autocomplete="username" formControlName="email">
-                <mat-hint *ngIf="formErrors.email" class="login-error">{{login.error.failed}}</mat-hint>
+                <input matInput autofocus [placeholder]="login.name" autocomplete="username" formControlName="username">
+                <mat-hint *ngIf="formErrors.username" class="login-error">{{login.error.failed}}</mat-hint>
             </mat-form-field>
 
             <!-- Password -->

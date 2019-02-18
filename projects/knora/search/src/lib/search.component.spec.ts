@@ -21,7 +21,7 @@ import { SelectResourceClassComponent } from './extended-search/select-resource-
 import { SelectPropertyComponent } from './extended-search/select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './extended-search/select-property/specify-property-value/specify-property-value.component';
 import { JdnDatepickerDirective, ReversePipe } from '@knora/action';
-import { KuiCoreConfig, OntologyCacheService, OntologyMetadata, OntologyService } from '@knora/core';
+import { KuiCoreConfig, KuiCoreConfigToken, OntologyCacheService, OntologyMetadata, OntologyService } from '@knora/core';
 import { BooleanValueComponent } from './extended-search/select-property/specify-property-value/boolean-value/boolean-value.component';
 import { DateValueComponent } from './extended-search/select-property/specify-property-value/date-value/date-value.component';
 import { DecimalValueComponent } from './extended-search/select-property/specify-property-value/decimal-value/decimal-value.component';
@@ -78,7 +78,7 @@ describe('SearchComponent', () => {
                 OntologyCacheService,
                 OntologyService,
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 }
             ]

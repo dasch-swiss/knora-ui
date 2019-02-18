@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiServiceError, KnoraConstants, KuiCoreConfig, Session, User, UsersService } from '@knora/core';
+import { ApiServiceError, KnoraConstants, KuiCoreConfigToken, Session, User, UsersService } from '@knora/core';
 
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
@@ -25,7 +25,7 @@ export class SessionService {
 
     constructor(
         private _http: HttpClient,
-        @Inject('config') public config: KuiCoreConfig,
+        @Inject(KuiCoreConfigToken) public config,
         private _users: UsersService) {
     }
 
@@ -38,8 +38,20 @@ export class SessionService {
      */
     setSession(jwt: string, username: string) {
 
+        this.session = {
+            id: this.setTimestamp(),
+            user: {
+                name: username,
+                jwt: jwt,
+                lang: 'en',
+                sysAdmin: false
+            }
+        };
+        // store in the localStorage
+        localStorage.setItem('session', JSON.stringify(this.session));
+
         // get user information
-        this._users.getUser(username).subscribe(
+        this._users.getUserByUsername(username).subscribe(
             (result: User) => {
                 let sysAdmin: boolean = false;
 
@@ -123,7 +135,7 @@ export class SessionService {
         return this._http.get(this.config.api + '/v2/authentication').pipe(
             map((result: any) => {
 
-                console.log('AuthenticationService - authenticate - result: ', result);
+                // console.log('AuthenticationService - authenticate - result: ', result);
                 // return true || false
                 return result.status === 200;
             })

@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
 import { JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
-import { KuiCoreModule } from '@knora/core';
+import { KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
 
@@ -71,6 +71,19 @@ import { SearchResultComponent } from './playground/search-pg/search-result/sear
 import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
 import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
 import { ListPgComponent } from './playground/list-pg/list-pg.component';
+import { AppInitService } from './app-init.service';
+
+
+export function initializeApp(appInitService: AppInitService) {
+    return (): Promise<any> => {
+        return appInitService.Init();
+    };
+}
+
+export const KuiCoreConfigTokenProvider = {
+    provide: KuiCoreConfigToken,
+    useFactory: () => AppInitService.coreConfig
+};
 
 @NgModule({
     declarations: [
@@ -130,12 +143,7 @@ import { ListPgComponent } from './playground/list-pg/list-pg.component';
         RouterModule,
         AppRouting,
         FlexLayoutModule,
-        KuiCoreModule.forRoot({
-            name: 'Knora-ui Demo App',
-            api: environment.api,
-            media: environment.media,
-            app: environment.app,
-        }),
+        KuiCoreModule,
         KuiAuthenticationModule,
         KuiActionModule,
         KuiSearchModule,
@@ -146,6 +154,11 @@ import { ListPgComponent } from './playground/list-pg/list-pg.component';
         ReactiveFormsModule
     ],
     providers: [
+        AppInitService,
+        {
+            provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true
+        },
+        KuiCoreConfigTokenProvider,
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {
@@ -158,5 +171,6 @@ import { ListPgComponent } from './playground/list-pg/list-pg.component';
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
+
+

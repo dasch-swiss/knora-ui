@@ -33,6 +33,7 @@ import {
     Cardinality,
     CardinalityOccurrence,
     KuiCoreConfig,
+    KuiCoreConfigToken,
     OntologyCacheService,
     OntologyInformation,
     OntologyMetadata,
@@ -92,7 +93,7 @@ describe('ExtendedSearchComponent', () => {
                     }
                 },
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
                 FormBuilder,

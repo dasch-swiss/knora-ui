@@ -15,7 +15,7 @@ import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalend
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig } from '@knora/core';
+import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
 import { JdnDatepickerDirective } from '@knora/action';
 import { JDNConvertibleCalendar } from 'jdnconvertiblecalendar';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
@@ -52,7 +52,7 @@ describe('HeaderComponent', () => {
                     },
                 },
                 {
-                    provide: 'config',
+                    provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
                 FormBuilder
