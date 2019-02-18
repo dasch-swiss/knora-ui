@@ -95,7 +95,7 @@ export class ListCacheService {
     };
 
     /**
-     * Gets a list.
+     * Gets a list from the cache or requests it from Knora and caches it.
      *
      * @param {string} rootNodeIri the Iri of the list's root node.
      * @return {Observable<ListNodeV2>}
@@ -132,7 +132,7 @@ export class ListCacheService {
     }
 
     /**
-     * Gets a list node.
+     * Gets a list node from the cache or requests the whole list from Knora and caches it.
      *
      * @param {string} listNodeIri the Iri of the list node.
      * @return {Observable<object>}
@@ -176,9 +176,6 @@ export class ListCacheService {
                     }
                 )
             );
-
         }
     }
-
-
 }

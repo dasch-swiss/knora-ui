@@ -25,6 +25,12 @@ export class ListService extends ApiService {
         return this.httpGet('/v2/lists/' + encodeURIComponent(rootNodeIri));
     }
 
+    /**
+     * Returns a list as expanded JSON-LD.
+     *
+     * @param {string} rootNodeIri the root node of the list.
+     * @return {Observable<object>} the expanded JSON-LD.
+     */
     getList(rootNodeIri: string): Observable<object> {
         const listJSONLD = this.getListFromKnora(rootNodeIri);
 
@@ -46,6 +52,12 @@ export class ListService extends ApiService {
         return this.httpGet('/v2/node/' + encodeURIComponent(listNodeIri));
     }
 
+    /**
+     * Returns a list node as expanded JSON-LD.
+     *
+     * @param {string} listNodeIri the Iri of the list node.
+     * @return {Observable<object>}
+     */
     getListNode(listNodeIri: string): Observable<object> {
 
         const listNodeJSONLD = this.getListNodeFromKnora(listNodeIri);
@@ -56,7 +68,5 @@ export class ListService extends ApiService {
                 this.processJSONLD
             )
         );
-
     }
-
 }
