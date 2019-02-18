@@ -1,9 +1,8 @@
-import { Inject, Injectable } from '@angular/core';
-import { ApiService } from '../api.service';
-import { ApiServiceError, ApiServiceResult, KuiCoreConfig } from '../../declarations';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ApiServiceError, ApiServiceResult } from '../../declarations';
 import { Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
+import { ListService } from './list.service';
 
 /**
  * Represents a list node v2.
@@ -37,15 +36,13 @@ class ListNodeIriToListNodeV2 {
 @Injectable({
     providedIn: 'root'
 })
-export class ListCacheService extends ApiService {
+export class ListCacheService {
 
     private listCache = new ListCache();
 
     private listNodeIriToListNodeV2 = new ListNodeIriToListNodeV2();
 
-    constructor(public http: HttpClient,
-                @Inject('config') public config: KuiCoreConfig) {
-        super(http, config);
+    constructor(private _listService: ListService) {
     }
 
     private hasRootNode(listJSONLD) {
@@ -99,16 +96,6 @@ export class ListCacheService extends ApiService {
     };
 
     /**
-     * Gets a hierarchical list from Knora.
-     *
-     * @param {string} rootNodeIri the Iri of the list's root node.
-     * @return {Observable<ApiServiceResult | ApiServiceError>}
-     */
-    private getListFromKnora(rootNodeIri: string): Observable<ApiServiceResult | ApiServiceError> {
-        return this.httpGet('/v2/lists/' + encodeURIComponent(rootNodeIri));
-    }
-
-    /**
      * Gets a list.
      *
      * @param {string} rootNodeIri the Iri of the list's root node.
@@ -125,13 +112,9 @@ export class ListCacheService extends ApiService {
         } else {
             // get list from Knora and cache it
 
-            const listJSONLD: Observable<ApiServiceResult | ApiServiceError> = this.getListFromKnora(rootNodeIri);
+            const listJSONLD = this._listService.getList(rootNodeIri);
 
             const listV2: Observable<ListNodeV2> = listJSONLD.pipe(
-                mergeMap(
-                    // this would return an Observable of a PromiseObservable -> combine them into one Observable
-                    this.processJSONLD
-                ),
                 map(
                     this.convertJSONLDToListNode
                 )
@@ -150,17 +133,7 @@ export class ListCacheService extends ApiService {
     }
 
     /**
-     * Gets a  list node from Knora.
-     *
-     * @param {string} listNodeIri the Iri of the list node.
-     * @return {Observable<ApiServiceResult | ApiServiceError>}
-     */
-    private getListNodeFromKnora(listNodeIri: string): Observable<ApiServiceResult | ApiServiceError> {
-        return this.httpGet('/v2/node/' + encodeURIComponent(listNodeIri));
-    }
-
-    /**
-     * Gets a  list node.
+     * Gets a list node.
      *
      * @param {string} listNodeIri the Iri of the list node.
      * @return {Observable<object>}
@@ -175,13 +148,9 @@ export class ListCacheService extends ApiService {
 
         } else {
 
-            const listNode: Observable<ApiServiceResult | ApiServiceError> = this.getListNodeFromKnora(listNodeIri);
+            const listNode = this._listService.getListNode(listNodeIri);
 
             return listNode.pipe(
-                mergeMap(
-                    // this would return an Observable of a PromiseObservable -> combine them into one Observable
-                    this.processJSONLD
-                ),
                 mergeMap(
                     (listNodeJSONLD: object) => {
                         const hasRootNode = this.hasRootNode(listNodeJSONLD);

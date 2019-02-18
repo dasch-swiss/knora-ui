@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { KnoraConstants, ListNodeV2, ListService, Property, PropertyValue, Value, ValueLiteral } from '@knora/core';
+import { KnoraConstants, ListNodeV2, Property, PropertyValue, Value, ValueLiteral } from '@knora/core';
+import { ListCacheService } from '@knora/core';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -25,7 +26,7 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     activeNode;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder, private _listService: ListService) {
+    constructor(@Inject(FormBuilder) private fb: FormBuilder, private _listCacheService: ListCacheService) {
     }
 
     private getRootNodeIri(): string {
@@ -54,7 +55,7 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
         // get list's root node Iri
         const rootNodeIri = this.getRootNodeIri();
 
-        this._listService.getList(rootNodeIri).subscribe(
+        this._listCacheService.getList(rootNodeIri).subscribe(
             (list: ListNodeV2) => {
                 this.listRootNode = list;
             }
