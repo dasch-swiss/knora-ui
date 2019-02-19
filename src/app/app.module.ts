@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
-import { httpInterceptorProviders, KuiAuthenticationModule } from '@knora/authentication';
+import { KuiAuthenticationModule } from '@knora/authentication';
 import { KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
@@ -161,8 +161,7 @@ export const KuiCoreConfigTokenProvider = {
             useValue: {
                 hasBackdrop: false
             }
-        },
-        httpInterceptorProviders
+        }
     ],
     bootstrap: [AppComponent]
 })

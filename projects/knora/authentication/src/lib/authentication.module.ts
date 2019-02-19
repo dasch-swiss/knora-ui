@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { KuiActionModule } from '@knora/action';
 
 import { LoginFormComponent } from './login-form/login-form.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { WithCredentialsInterceptor } from './interceptors/with-credentials.interceptor';
 
 @NgModule({
     imports: [
@@ -25,6 +27,10 @@ import { LoginFormComponent } from './login-form/login-form.component';
     ],
     exports: [
         LoginFormComponent
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: WithCredentialsInterceptor, multi: true}
     ]
 })
 export class KuiAuthenticationModule {
