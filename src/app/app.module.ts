@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
-import { JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
+import { KuiAuthenticationModule } from '@knora/authentication';
 import { KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
@@ -71,7 +71,6 @@ import { SearchResultComponent } from './playground/search-pg/search-result/sear
 import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
 import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
 import { AppInitService } from './app-init.service';
-
 
 export function initializeApp(appInitService: AppInitService) {
     return (): Promise<any> => {
@@ -162,10 +161,7 @@ export const KuiCoreConfigTokenProvider = {
             useValue: {
                 hasBackdrop: false
             }
-        },
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-
+        }
     ],
     bootstrap: [AppComponent]
 })

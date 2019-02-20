@@ -38,7 +38,7 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        return this.http.get(this.config.api + path, {observe: 'response', params: params, withCredentials: true}).pipe(
+        return this.http.get(this.config.api + path, {observe: 'response', params: params}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -90,7 +90,7 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.post(this.config.api + path, body, {observe: 'response', withCredentials: true}).pipe(
+        return this.http.post(this.config.api + path, body, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -125,7 +125,7 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.put(this.config.api + path, body, {observe: 'response', withCredentials: true}).pipe(
+        return this.http.put(this.config.api + path, body, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -161,7 +161,7 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.delete(this.config.api + path, {observe: 'response', withCredentials: true}).pipe(
+        return this.http.delete(this.config.api + path, {observe: 'response'}).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
