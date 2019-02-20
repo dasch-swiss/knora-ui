@@ -72,16 +72,17 @@ import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.compon
 import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
 import { AppInitService } from './app-init.service';
 
-export function initializeApp(appInitService: AppInitService) {
-    return (): Promise<any> => {
-        return appInitService.Init();
+const appInitializerFn = (appInit: AppInitService) => {
+    return () => {
+        return appInit.loadAppConfig();
     };
-}
-
-export const KuiCoreConfigTokenProvider = {
-    provide: KuiCoreConfigToken,
-    useFactory: () => AppInitService.coreConfig
 };
+
+export function coreConfigInitializerFn(appInit: AppInitService) {
+    console.log('initializeCoreConfig - appConfig: ', appInit.getAppConfig());
+    console.log('initializeCoreConfig - coreConfig: ', appInit.getCoreConfig());
+    return appInit.getCoreConfig();
+}
 
 @NgModule({
     declarations: [
@@ -151,11 +152,12 @@ export const KuiCoreConfigTokenProvider = {
         ReactiveFormsModule
     ],
     providers: [
-        AppInitService,
         {
-            provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true
+            provide: APP_INITIALIZER, useFactory: appInitializerFn, deps: [AppInitService], multi: true
         },
-        KuiCoreConfigTokenProvider,
+        {
+            provide: KuiCoreConfigToken, useFactory: coreConfigInitializerFn, deps: [AppInitService], multi: true
+        },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {

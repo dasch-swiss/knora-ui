@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { KuiCoreConfig } from '../../projects/knora/core/src/lib/declarations';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 export interface IAppConfig {
 
@@ -17,38 +19,39 @@ export interface IAppConfig {
     startComponent: string;
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AppInitService {
 
-    static settings: IAppConfig;
-    static coreConfig: KuiCoreConfig;
+    private appConfig: IAppConfig;
+    private coreConfig: KuiCoreConfig;
 
-    constructor() {
+    constructor(private http: HttpClient) { }
+
+    loadAppConfig() {
+        return this.http.get(`config/config.${environment.name}.json`)
+            .toPromise()
+            .then(data => {
+
+                console.log('AppInitService - loadAppConfig - data: ', data);
+
+                this.appConfig = <IAppConfig> data;
+
+                this.coreConfig = <KuiCoreConfig> {
+                    name: this.appConfig.appName,
+                    api: this.appConfig.apiURL,
+                    media: this.appConfig.iiifURL,
+                    app: this.appConfig.appURL
+                };
+            });
     }
 
-    Init() {
+    getAppConfig() {
+        return this.appConfig;
+    }
 
-        return new Promise<void>((resolve, reject) => {
-//            console.log('AppInitService.init() called');
-            // do your initialisation stuff here
-
-            const data = <IAppConfig> window['tempConfigStorage'];
-//            console.log('AppInitService: json', data);
-            AppInitService.settings = data;
-
-            AppInitService.coreConfig = <KuiCoreConfig> {
-                name: AppInitService.settings.appName,
-                api: AppInitService.settings.apiURL,
-                media: AppInitService.settings.iiifURL,
-                app: AppInitService.settings.appURL
-            };
-
-            resolve();
-/*
-            setTimeout(() => {
-                console.log('AppInitService Finished');
-            }, 6000);
-*/
-        });
+    getCoreConfig() {
+        return this.coreConfig;
     }
 }

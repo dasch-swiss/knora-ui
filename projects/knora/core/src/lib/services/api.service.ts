@@ -24,7 +24,7 @@ export abstract class ApiService {
     protected constructor(public http: HttpClient,
                           @Inject(KuiCoreConfigToken) public config) {
 
-        // console.log('ApiService constructor: config', config);
+        console.log('ApiService constructor: config', config);
     }
 
     /**
