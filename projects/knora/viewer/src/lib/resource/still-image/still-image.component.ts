@@ -140,7 +140,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
      */
     private static prepareTileSourcesFromFileValues(imagesToDisplay: ReadStillImageFileValue[]): Object[] {
         let imageXOffset = 0;
-        let imageYOffset = 0;
+        const imageYOffset = 0;
         const tileSources = [];
 
         for (const image of imagesToDisplay) {

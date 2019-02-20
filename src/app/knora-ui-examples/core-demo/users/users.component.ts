@@ -61,13 +61,13 @@ ngOnInit() {
 username: string = 'multiuser';
 user: User;
 
-            
+
 // the services from @knora/core should be public,
 // if you want to use the loading status in the html template
 // --> usersService.loading = true || false
 constructor(public usersService: UsersService) { }
 
-ngOnInit() {            
+ngOnInit() {
     this.usersService.getUser(this.username).subscribe(
         (result: User) => {
             this.user = result;
