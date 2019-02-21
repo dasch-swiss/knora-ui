@@ -16,6 +16,8 @@ export class AuthenticationService {
     constructor(public http: HttpClient,
                 private _session: SessionService,
                 @Inject(KuiCoreConfigToken) public config) {
+
+        // console.log('AuthenticationService constructor: config', config);
     }
 
     /**
@@ -37,6 +39,8 @@ export class AuthenticationService {
      * @returns Observable<any>
      */
     login(username: string, password: string): Observable<any> {
+
+        // console.log('AuthenticationService - login - api: ', this.config.api);
 
         return this.http.post(
             this.config.api + '/v2/authentication',

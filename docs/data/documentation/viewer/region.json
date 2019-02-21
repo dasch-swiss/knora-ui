@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'kui-region',\n  templateUrl: './region.component.html',\n  styleUrls: ['./region.component.scss']\n})\nexport class RegionComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}",
+    "ctx": false
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'kui-graph-view',\n  templateUrl: './graph-view.component.html',\n  styleUrls: ['./graph-view.component.scss']\n})\nexport class GraphViewComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}",
+    "ctx": false
+  }
+]

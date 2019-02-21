@@ -1,0 +1,31 @@
+<!-- Documentation from JSDocs -->
+<app-documentation-viewer [module]="module"></app-documentation-viewer>
+
+<!-- Examples with demo -->
+<h3>Example</h3>
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="existingName"></app-example-viewer>
+
+    <div class="demo">
+        <form [formGroup]="form" class="center card">
+            <mat-form-field>
+                <input matInput [formControl]="form.controls['name']" [placeholder]="'Name (should be unique)'">
+                <mat-hint *ngIf="formErrors.name">
+                    {{formErrors.name}}
+                </mat-hint>
+            </mat-form-field>
+
+            <button mat-button color="primary" [disabled]="!form.valid">
+                Submit
+            </button>
+        </form>
+    </div>
+</mat-card>
+
+
+<h3>The following names already exists</h3>
+<p>Try to use one of them in the form above and see what happens</p>
+<ul>
+    <li *ngFor="let n of dataMock">{{n}}</li>
+</ul>
