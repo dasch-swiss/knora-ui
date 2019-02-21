@@ -119,7 +119,7 @@ export class UsersService extends ApiService {
      * @returns Observable<User>
      */
     removeUserFromProject(userIri: string, projectIri: string): Observable<User> {
-        const path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-memberships/' + encodeURIComponent(projectIri);
         return this.httpDelete(path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
