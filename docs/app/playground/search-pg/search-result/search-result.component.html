@@ -1,0 +1,51 @@
+<div *ngIf="!rerender">
+
+  <!-- show the number of results found in Knora -->
+  <div *ngIf="numberOfAllResults != 0; else noResult">
+    <h4>Number of results: {{numberOfAllResults}}</h4>
+  </div>
+
+  <!-- show the result as a default list -->
+  <div *ngFor="let res of result">
+    <h3 mat-line>{{res.label}} ({{ontologyInfo?.getLabelForResourceClass(res.type)}})</h3>
+    <div mat-line *ngFor="let prop of res.properties | kuiKey">
+      <span>{{ontologyInfo?.getLabelForProperty(prop.key)}}</span>
+      <ul>
+        <li *ngFor="let val of prop.value | kuiKey">
+          <span [ngSwitch]="val.value.getClassName()">
+            <!-- <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value> -->
+            <kui-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString" [valueObject]="val.value"></kui-text-value-as-string>
+            <kui-text-value-as-html *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml" [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="true"></kui-text-value-as-html>
+            <kui-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString" [valueObject]="val.value"></kui-text-value-as-string>
+            <kui-text-value-as-xml *ngSwitchCase="KnoraConstants.ReadTextValueAsXml" [valueObject]="val.value"></kui-text-value-as-xml>
+            <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value"></kui-date-value>
+            <kui-link-value *ngSwitchCase="KnoraConstants.ReadLinkValue" [valueObject]="val.value" [ontologyInfo]="ontologyInfo"></kui-link-value>
+            <kui-integer-value *ngSwitchCase="KnoraConstants.ReadIntegerValue" [valueObject]="val.value"></kui-integer-value>
+            <kui-decimal-value *ngSwitchCase="KnoraConstants.ReadDecimalValue" [valueObject]="val.value"></kui-decimal-value>
+            <kui-geometry-value *ngSwitchCase="KnoraConstants.ReadGeomValue" [valueObject]="val.value"></kui-geometry-value>
+            <kui-color-value *ngSwitchCase="KnoraConstants.ReadColorValue" [valueObject]="val.value"></kui-color-value>
+            <kui-uri-value *ngSwitchCase="KnoraConstants.ReadUriValue" [valueObject]="val.value"></kui-uri-value>
+            <kui-boolean-value *ngSwitchCase="KnoraConstants.ReadBooleanValue" [valueObject]="val.value"></kui-boolean-value>
+            <kui-interval-value *ngSwitchCase="KnoraConstants.ReadIntervalValue" [valueObject]="val.value"></kui-interval-value>
+            <kui-list-value *ngSwitchCase="KnoraConstants.ReadListValue" [valueObject]="val.value"></kui-list-value>
+            <kui-textfile-value *ngSwitchCase="KnoraConstants.TextFileValue" [valueObject]="val.value"></kui-textfile-value>
+            <span *ngSwitchDefault="">Not supported {{val.value.getClassName()}}</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- In case of 0 result -->
+  <ng-template #noResult>
+    <br>
+    <br>
+    <b>No result</b>
+  </ng-template>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage">
+    OUPS ERROR: {{errorMessage}}
+  </div>
+
+</div>

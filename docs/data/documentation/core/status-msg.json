@@ -1,0 +1,23 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>this method get the status messages from the statusMsg.json file<br />\nwhich are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes<br />\nand here: http://www.w3schools.com/tags/ref_httpmessages.asp</p>",
+      "summary": "<p>this method get the status messages from the statusMsg.json file<br />\nwhich are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes<br />\nand here: http://www.w3schools.com/tags/ref_httpmessages.asp</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 18,
+    "codeStart": 24,
+    "code": "getStatusMsg(): Observable<any> {\n\n  return this._http.get(this.config.app + '/assets/i18n/statusMsg.json')\n    .pipe(map(\n      (res: any) => {\n        return res;\n      },\n      err => {\n        console.error(err);\n      }\n    )\n    );\n\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getStatusMsg",
+      "string": "getStatusMsg()"
+    }
+  }
+]

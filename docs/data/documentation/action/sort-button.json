@@ -1,0 +1,212 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>A component with a list of properties to sort a list by one of them.<br />\nIt can be used together with the KuiSortBy pipe.</p>",
+      "summary": "<p>A component with a list of properties to sort a list by one of them.<br />\nIt can be used together with the KuiSortBy pipe.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 8,
+    "codeStart": 12,
+    "code": "@Component({\n    selector: 'kui-sort-button',\n    templateUrl: './sort-button.component.html',\n    styleUrls: ['./sort-button.component.scss']\n})\nexport class SortButtonComponent implements OnInit {",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "{string} sortKeyChange",
+        "html": "<p>{string} sortKeyChange</p>"
+      },
+      {
+        "type": "emits",
+        "string": "TODO: this would be the correct syntax for Output eventEmitter \nEventEmitter when a user selected a sort property;\nThis is the selected key",
+        "html": "<p>TODO: this would be the correct syntax for Output eventEmitter<br />\nEventEmitter when a user selected a sort property;<br />\nThis is the selected key</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 19,
+    "codeStart": 26,
+    "code": "@Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();\n\n\nmenuXPos: string = 'after';\n\nactiveKey: string;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{SortProp[]} sortProps\nAn array of SortProp objects for the selection menu:\nSortProp: { key: string, label: string }",
+        "name": "sortProps",
+        "description": "<p>An array of SortProp objects for the selection menu:<br />\nSortProp: { key: string, label: string }</p>",
+        "types": [
+          "Array.<SortProp>"
+        ],
+        "typesDescription": "<code>Array</code>.&lt;<a href=\"SortProp.html\">SortProp</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 33,
+    "codeStart": 38,
+    "code": "@Input() sortProps: SortProp[];",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} [position='left']\nOptional position of the sort menu: right or left",
+        "name": "[position='left']",
+        "description": "<p>Optional position of the sort menu: right or left</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 40,
+    "codeStart": 44,
+    "code": "@Input() position?: string = 'left';",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} sortKey\nset and get (two-way data binding) of current sort key",
+        "name": "sortKey",
+        "description": "<p>set and get (two-way data binding) of current sort key</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 46,
+    "codeStart": 50,
+    "code": "@Input() sortKey(sortKey: string) {\n    this.activeKey = sortKey;\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 54,
+    "codeStart": 57,
+    "code": "constructor() {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
+    "ctx": {
+      "type": "constructor",
+      "name": "constructor",
+      "string": "constructor()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      },
+      {
+        "type": "param",
+        "string": "{string} key",
+        "name": "key",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} key</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 67,
+    "codeStart": 72,
+    "code": "sortBy(key: string) {\n    this.sortKeyChange.emit(key);\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "sortBy",
+      "string": "sortBy()"
+    }
+  }
+]

@@ -1,0 +1,64 @@
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "date the date to be converted.",
+        "name": "date",
+        "description": "<p>the date to be converted.</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      },
+      {
+        "type": "return",
+        "string": "DateFormatter.",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>DateFormatter.</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Converts a <code>DateSalsah</code> to a JS Date, providing necessary formatting information.<br />\nJULIAN and GREGORIAN calendar are the only available for the moment.</p>",
+      "summary": "<p>Converts a <code>DateSalsah</code> to a JS Date, providing necessary formatting information.<br />\nJULIAN and GREGORIAN calendar are the only available for the moment.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 58,
+    "codeStart": 65,
+    "code": "getJSDate(date: DateSalsah): DateFormatter {\n\n  if (date.precision === Precision.yearPrecision) {\n    return {\n      format: 'yyyy',\n      date: new Date(date.year.toString()),\n      era: date.era,\n      calendar: date.calendar\n    };\n  } else if (date.precision === Precision.monthPrecision) {\n    return {\n      format: 'MMMM ' + 'yyyy',\n      date: new Date(date.year, date.month - 1, 1), // 0 base month\n      era: date.era,\n      calendar: date.calendar\n    };\n  } else if (date.precision === Precision.dayPrecision) {\n    return {\n      format: 'longDate',\n      date: new Date(date.year, date.month - 1, date.day),  // 0 base month\n      era: date.era,\n      calendar: date.calendar\n    };\n  } else {\n    console.error('Error: incorrect precision for date');\n  }\n\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getJSDate",
+      "string": "getJSDate()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Date structure for the template</p>",
+      "summary": "<p>Date structure for the template</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 96,
+    "codeStart": 99,
+    "code": "export interface DateFormatter {\n  format: string;\n  date: Date;\n  era: string;\n  calendar: string;\n}",
+    "ctx": false
+  }
+]
