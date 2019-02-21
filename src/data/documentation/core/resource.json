@@ -11,9 +11,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10,
-    "codeStart": 13,
-    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ResourceService extends ApiService {\n\n    constructor(public http: HttpClient,\n                @Inject('config') public config: KuiCoreConfig,\n                private _ontologyCacheService: OntologyCacheService) {\n        super(http, config);\n    }",
+    "line": 11,
+    "codeStart": 14,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ResourceService extends ApiService {\n\n    constructor(public http: HttpClient,\n                @Inject(KuiCoreConfigToken) public config,\n                private _ontologyCacheService: OntologyCacheService) {\n        super(http, config);\n    }",
     "ctx": false
   },
   {
@@ -54,8 +54,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 24,
-    "codeStart": 30,
+    "line": 25,
+    "codeStart": 31,
     "code": "getResource(iri): Observable<ApiServiceResult | ApiServiceError> {\n    return this.httpGet('/v2/resources/' + encodeURIComponent(iri));\n}",
     "ctx": {
       "type": "method",
@@ -104,8 +104,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 34,
-    "codeStart": 40,
+    "line": 35,
+    "codeStart": 41,
     "code": "getReadResource(iri: string): Observable<ReadResourcesSequence | ApiServiceError> {\n    const res: Observable<ApiServiceResult | ApiServiceError> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));\n\n    // TODO: handle case of an ApiServiceError\n\n    return res.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        ),\n        mergeMap(\n            // return Observable of ReadResourcesSequence\n            (resourceResponse: object) => {\n                // convert JSON-LD into a ReadResourceSequence\n                const resSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(resourceResponse);\n\n                // collect resource class Iris\n                const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);\n\n                // request information about resource classes\n                return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(\n                    map(\n                        (ontoInfo: OntologyInformation) => {\n                            // add ontology information to ReadResourceSequence\n                            resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);\n                            return resSeq;\n                        }\n                    )\n                );\n            }\n        )\n    );\n}\n\n// TODO: post, put, delete\n}",
     "ctx": {
       "type": "method",

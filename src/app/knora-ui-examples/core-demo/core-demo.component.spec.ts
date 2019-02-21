@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import {CoreDemoComponent} from './core-demo.component';
-import {ModuleHeaderComponent} from '../../partials/module-header/module-header.component';
-import {MatIconModule} from '@angular/material';
+import { CoreDemoComponent } from './core-demo.component';
+import { ModuleHeaderComponent } from '../../partials/module-header/module-header.component';
+import { MatIconModule } from '@angular/material';
 
 describe('CoreDemoComponent', () => {
     let component: CoreDemoComponent;

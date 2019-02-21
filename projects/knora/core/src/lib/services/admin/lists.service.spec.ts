@@ -57,7 +57,7 @@ describe('ListsService', () => {
 
             const allLists: Observable<ListNodeInfo[]> = listsService.getLists(incunabulaProjectIri);
 
-            const lists = {'lists': [{'id': 'http: //rdfh.ch/lists/FFFF/ynm01', 'labels': [{'value': 'Die Ja,  Nein,  Vielleicht Liste', 'language': 'de'}, {'value': 'The Yes,  No,  Maybe List', 'language': 'en'}], 'projectIri': 'http: //www.knora.org/ontology/knora-base#SystemProject', 'isRootNode': true, 'comments': [{'value': 'Diese Liste kann von allen Projekten verwendet werden.', 'language': 'de'}, {'value': 'This list can be used by all projects.', 'language': 'en'}]}]}
+            const lists = {'lists': [{'id': 'http: //rdfh.ch/lists/FFFF/ynm01', 'labels': [{'value': 'Die Ja,  Nein,  Vielleicht Liste', 'language': 'de'}, {'value': 'The Yes,  No,  Maybe List', 'language': 'en'}], 'projectIri': 'http: //www.knora.org/ontology/knora-base#SystemProject', 'isRootNode': true, 'comments': [{'value': 'Diese Liste kann von allen Projekten verwendet werden.', 'language': 'de'}, {'value': 'This list can be used by all projects.', 'language': 'en'}]}]};
 
             /*
             const lists = {

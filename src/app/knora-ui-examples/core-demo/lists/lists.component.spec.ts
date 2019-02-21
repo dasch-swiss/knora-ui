@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {KuiCoreModule} from '@knora/core';
+import { KuiCoreModule } from '@knora/core';
 
-import {ListsComponent} from './lists.component';
+import { ListsComponent } from './lists.component';
 
 describe('ListsComponent', () => {
     let component: ListsComponent;

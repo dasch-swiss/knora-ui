@@ -1,6 +1,6 @@
 {
   "name": "@knora/search",
-  "version": "6.1.2",
+  "version": "6.5.0-beta.1",
   "description": "Knora ui module: search",
   "repository": {
     "type": "git",
@@ -17,8 +17,8 @@
   "peerDependencies": {
     "@angular/common": "^6.0.0",
     "@angular/core": "^6.0.0",
-    "@knora/core": "^6.0.0",
-    "@knora/viewer": "^6.0.0-alpha",
+    "@knora/core": "6.5.0-beta.1",
+    "@knora/viewer": "6.5.0-beta.1",
     "jdnconvertiblecalendardateadapter": "^0.0.7"
   }
 }

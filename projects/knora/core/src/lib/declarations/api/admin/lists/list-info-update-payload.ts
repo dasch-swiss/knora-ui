@@ -1,17 +1,17 @@
-import {StringLiteral} from '../../../';
+import { StringLiteral } from '../../../';
 
 
 export interface ListInfoUpdatePayload {
 
     // required
-    listIri: string
+    listIri: string;
 
     // required
-    projectIri: string
+    projectIri: string;
 
     // can be an empty array
-    labels: StringLiteral[]
+    labels: StringLiteral[];
 
     // can be an empty array
-    comments: StringLiteral[]
+    comments: StringLiteral[];
 }
