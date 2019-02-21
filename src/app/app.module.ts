@@ -1,11 +1,10 @@
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
 import { KuiAuthenticationModule } from '@knora/authentication';
@@ -15,7 +14,6 @@ import { KuiViewerModule } from '@knora/viewer';
 
 import { MarkdownModule } from 'ngx-markdown';
 // set up the environment configuration
-import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 
@@ -72,17 +70,13 @@ import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.compon
 import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
 import { AppInitService } from './app-init.service';
 
-const appInitializerFn = (appInit: AppInitService) => {
-    return () => {
-        return appInit.loadAppConfig();
-    };
-};
 
-export function coreConfigInitializerFn(appInit: AppInitService) {
-    console.log('initializeCoreConfig - appConfig: ', appInit.getAppConfig());
-    console.log('initializeCoreConfig - coreConfig: ', appInit.getCoreConfig());
-    return appInit.getCoreConfig();
+export function initializeApp(appInitService: AppInitService) {
+    return (): Promise<any> => {
+        return appInitService.Init();
+    };
 }
+
 
 @NgModule({
     declarations: [
@@ -152,11 +146,12 @@ export function coreConfigInitializerFn(appInit: AppInitService) {
         ReactiveFormsModule
     ],
     providers: [
+        AppInitService,
         {
-            provide: APP_INITIALIZER, useFactory: appInitializerFn, deps: [AppInitService], multi: true
+            provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true
         },
         {
-            provide: KuiCoreConfigToken, useFactory: coreConfigInitializerFn, deps: [AppInitService], multi: true
+            provide: KuiCoreConfigToken, useFactory: () => AppInitService.coreConfig
         },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,

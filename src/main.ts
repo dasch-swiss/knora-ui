@@ -10,6 +10,26 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .catch(err => console.error(err));
+function bootstrapFailed(result) {
+    console.error('bootstrap-fail', result);
+}
+
+fetch(`config/config.${environment.name}.json`)
+    .then(response => response.json())
+    .then(config => {
+        if (!config || !config['appName']) {
+            bootstrapFailed(config);
+            return;
+        }
+
+        // Store the response somewhere that your ConfigService can read it.
+        window['tempConfigStorage'] = config;
+
+        // console.log('config', config);
+
+
+        platformBrowserDynamic()
+            .bootstrapModule(AppModule)
+            .catch(err => bootstrapFailed(err));
+    })
+    .catch(bootstrapFailed);
