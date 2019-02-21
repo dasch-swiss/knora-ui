@@ -24047,7 +24047,7 @@ fetch("config/config." + _environments_environment__WEBPACK_IMPORTED_MODULE_1__[
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/subotic/_github.com/dhlab-basel/Knora-ui/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/ak/Code/knora-ui/src/main.ts */"./src/main.ts");
 
 
 /***/ }),
