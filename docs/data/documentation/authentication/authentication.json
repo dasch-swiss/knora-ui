@@ -1,0 +1,197 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Authentication service includes the login, logout method and a session method to check if a user is logged in or not.</p>",
+      "summary": "<p>Authentication service includes the login, logout method and a session method to check if a user is logged in or not.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 8,
+    "codeStart": 11,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class AuthenticationService {\n\n    constructor(public http: HttpClient,\n                private _session: SessionService,\n                @Inject(KuiCoreConfigToken) public config) {\n\n        // console.log('AuthenticationService constructor: config', config);\n    }",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "boolean",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>boolean</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>validate if a user is logged in or not<br />\nreturns true if the session is active</p>",
+      "summary": "<p>validate if a user is logged in or not<br />\nreturns true if the session is active</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 23,
+    "codeStart": 29,
+    "code": "session(): boolean {\n    return this._session.validateSession();\n}",
+    "ctx": {
+      "type": "method",
+      "name": "session",
+      "string": "session()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} identifier email or username",
+        "name": "identifier",
+        "description": "<p>email or username</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "param",
+        "string": "{string} password",
+        "name": "password",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} password</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable<any>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<any></p>"
+      }
+    ],
+    "description": {
+      "full": "<p>login process;<br />\nit's used by the login component</p>",
+      "summary": "<p>login process;<br />\nit's used by the login component</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 33,
+    "codeStart": 41,
+    "code": "login(username: string, password: string): Observable<any> {\n\n    // console.log('AuthenticationService - login - api: ', this.config.api);\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        {username: username, password: password},\n        {observe: 'response'}).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "login",
+      "string": "login()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "",
+        "name": "",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "<p>logout the user by destroying the session</p>",
+      "summary": "<p>logout the user by destroying the session</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 60,
+    "codeStart": 65,
+    "code": "logout() {\n    // destroy the session\n    localStorage.removeItem('session');\n}",
+    "ctx": {
+      "type": "method",
+      "name": "logout",
+      "string": "logout()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "handle request error in case of server error",
+        "html": "<p>handle request error in case of server error</p>"
+      },
+      {
+        "type": "param",
+        "string": "error",
+        "name": "error",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>error</p>"
+      },
+      {
+        "type": "returns",
+        "string": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 71,
+    "codeStart": 78,
+    "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    const serviceError = new ApiServiceError();\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}\n}",
+    "ctx": false
+  }
+]
