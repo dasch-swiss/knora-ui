@@ -1,0 +1,19 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>This directive renders a GND/IAF or a VIAF identifier as a link to the respective resolver.</p>",
+      "summary": "<p>This directive renders a GND/IAF or a VIAF identifier as a link to the respective resolver.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 4,
+    "codeStart": 7,
+    "code": "@Directive({\n    // tslint:disable-next-line:directive-selector\n    selector: '[kuiGnd]'\n})\nexport class GndDirective implements OnChanges {\n\n    @Input()\n    set kuiGnd(value: string) {\n        this._gnd = value;\n    }\n\n    get kuiGnd() {\n        return this._gnd;\n    }\n\n\n    // the GND identifier to be rendered\n    private _gnd: string;\n\n    constructor(private el: ElementRef) {\n\n    }\n\n    ngOnChanges() {\n        if (this._gnd.length < 30) {\n\n            if (this._gnd.indexOf(KnoraConstants.GNDPrefix) === 0) {\n                // GND/IAF identifier\n                this.el.nativeElement.innerHTML = `<a href=\"${KnoraConstants.GNDResolver + this._gnd.replace(KnoraConstants.GNDPrefix, '')}\" target=\"_blank\">${this._gnd}</a>`;\n            } else if (this._gnd.indexOf(KnoraConstants.VIAFPrefix) === 0) {\n                // VIAF identifier\n                this.el.nativeElement.innerHTML = `<a href=\"${KnoraConstants.VIAFResolver + this._gnd.replace(KnoraConstants.VIAFPrefix, '')}\" target=\"_blank\">${this._gnd}</a>`;\n            } else {\n                // no identifier, leave unchanged\n                this.el.nativeElement.innerHTML = this._gnd;\n            }\n\n        } else {\n            // no identifier, leave unchanged\n            this.el.nativeElement.innerHTML = this._gnd;\n        }\n\n    }\n\n\n}",
+    "ctx": false
+  }
+]

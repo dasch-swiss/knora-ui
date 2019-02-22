@@ -10,9 +10,8 @@ if (environment.production) {
   enableProdMode();
 }
 
-
-function bootstrapFailed(val) {
-    console.error('bootstrap-fail', val);
+function bootstrapFailed(result) {
+    console.error('bootstrap-fail', result);
 }
 
 fetch(`config/config.${environment.name}.json`)
@@ -34,6 +33,3 @@ fetch(`config/config.${environment.name}.json`)
             .catch(err => bootstrapFailed(err));
     })
     .catch(bootstrapFailed);
-
-// platformBrowserDynamic().bootstrapModule(AppModule)
-//  .catch(err => console.error(err));
