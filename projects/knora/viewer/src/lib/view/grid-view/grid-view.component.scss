@@ -1,1 +1,23 @@
 @import '../../assets/style/viewer';
+
+.gv-preview {
+    margin: 6px 0;
+    padding: 24px;
+    word-wrap: break-word;
+  
+    .mat-card {
+      height: 160px;
+      color: rgba(0, 0, 0, 0.81);
+      overflow: hidden;
+  
+      &:hover {
+        background: rgba($primary, 0.39);
+        color: rgba(0, 0, 0, 1);
+      }
+  
+      &:active {
+        background: rgba($primary, 0.61);
+      }
+  
+    }
+}
