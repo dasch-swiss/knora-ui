@@ -106,7 +106,7 @@ describe('UsersService', () => {
 
         it('should return one user by iri', async(inject([UsersService], (service) => {
 
-            spyOn(service, 'getUser').and.callFake(() => {
+            spyOn(service, 'getUserByIri').and.callFake(() => {
                 const result = new ApiServiceResult();
                 result.status = 200;
                 result.statusText = '';

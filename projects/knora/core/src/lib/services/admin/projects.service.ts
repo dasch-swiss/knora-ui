@@ -37,7 +37,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<Project>
      */
     getProjectByIri(iri: string): Observable<Project> {
-        const url: string = '/admin/projects/' + encodeURIComponent(iri);
+        const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);
         return this.getProject(url);
     }
 
@@ -48,7 +48,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<Project>
      */
     getProjectByShortname(shortname: string): Observable<Project> {
-        const url = '/admin/projects/' + shortname + '?identifier=shortname';
+        const url = '/admin/projects/shortname/' + shortname;
         return this.getProject(url);
     }
 
@@ -59,7 +59,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<Project>
      */
     getProjectByShortcode(shortcode: string): Observable<Project> {
-        const url = '/admin/projects/' + shortcode + '?identifier=shortcode';
+        const url = '/admin/projects/shortcode' + shortcode;
         return this.getProject(url);
     }
 
@@ -85,7 +85,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<User[]>
      */
     getProjectMembersByIri(iri: string): Observable<User[]> {
-        const url = '/admin/projects/members/' + encodeURIComponent(iri);
+        const url = '/admin/projects/iri/' + encodeURIComponent(iri) + '/members' ;
         return this.getProjectMembers(url);
     }
 
@@ -97,7 +97,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<User[]>
      */
     getProjectMembersByShortname(shortname: string): Observable<User[]> {
-        const url = '/admin/projects/members/' + shortname + '?identifier=shortname';
+        const url = '/admin/projects/shortname/' + shortname + '/members' ;
         return this.getProjectMembers(url);
     }
 
@@ -109,7 +109,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<User[]>
      */
     getProjectMembersByShortcode(shortcode: string): Observable<User[]> {
-        const url = '/admin/projects/members/' + shortcode + '?identifier=shortcode';
+        const url = '/admin/projects/shortcode/' + shortcode + '/members';
         return this.getProjectMembers(url);
     }
 
@@ -120,7 +120,7 @@ export class ProjectsService extends ApiService {
      * @param {string} url
      * @returns Observable<User[]>
      */
-    protected getProjectMembers(url: string): Observable<User[]> {
+     private getProjectMembers(url: string): Observable<User[]> {
         return this.httpGet(url).pipe(
             map((result: ApiServiceResult) => result.getBody(ProjectMembersResponse).members),
             catchError(this.handleJsonError)
@@ -158,7 +158,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<Project>
      */
     updateProject(iri: string, data: any): Observable<Project> {
-        const url: string = '/admin/projects/' + encodeURIComponent(iri);
+        const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);
 
         return this.httpPut(url, data).pipe(
             map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),
@@ -178,7 +178,7 @@ export class ProjectsService extends ApiService {
             status: true
         };
 
-        const url: string = '/admin/projects/' + encodeURIComponent(iri);
+        const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);
 
         return this.httpPut(url, data).pipe(
             map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),
@@ -198,7 +198,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<Project>
      */
     deleteProject(iri: string): Observable<Project> {
-        const url: string = '/admin/projects/' + encodeURIComponent(iri);
+        const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);
 
         return this.httpDelete(url).pipe(
             map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),
