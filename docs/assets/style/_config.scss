@@ -1,0 +1,29 @@
+// including fonts and the material icons
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+// color definitions
+$bright: rgba(249, 249, 249, 1);
+$dark: rgba(41, 41, 41, 1);
+
+$mute: rgba(128, 128, 128, 0.8);
+
+$accent: rgba(255, 196, 0, 1);
+$primary: rgba(0, 105, 92, 1);
+$warn: rgb(244, 67, 54);
+
+// general border radius
+$border-radius: 4px;
+
+// sizes for the main header and the header module
+$header-height: 64px;
+$module-header-height: 48px;
+
+// sizes for the main footer and the footer module
+$footer-height: 0px;
+$module-footer-height: $footer-height;
+
+// sizes for the sidebar
+$sidebar-width: 400px;
+
+@import 'mixins';

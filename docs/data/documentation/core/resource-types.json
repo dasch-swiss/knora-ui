@@ -1,0 +1,96 @@
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} iri Vocabulary iri",
+        "name": "iri",
+        "description": "<p>Vocabulary iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<any>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<any></p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Get all resource types defined by the vocabulary.</p>",
+      "summary": "<p>Get all resource types defined by the vocabulary.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 10,
+    "codeStart": 16,
+    "code": "getResourceTypesByVoc(iri: string): Observable<any> {\n  return this.httpGet('/v1/resourcetypes?vocabulary=' + encodeURIComponent(iri));\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getResourceTypesByVoc",
+      "string": "getResourceTypesByVoc()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} iri resource type iri",
+        "name": "iri",
+        "description": "<p>resource type iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<any>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<any></p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Get a specific resource type.</p>",
+      "summary": "<p>Get a specific resource type.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 20,
+    "codeStart": 26,
+    "code": "getResourceType(iri: string): Observable<any> {\n  return this.httpGet('/v1/resourcetypes/' + encodeURIComponent(iri));\n}\n\n\n// putResourceType(iri)\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getResourceType",
+      "string": "getResourceType()"
+    }
+  }
+]

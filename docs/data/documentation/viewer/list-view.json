@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, Input, OnDestroy, OnInit } from '@angular/core';\nimport { KnoraConstants } from '@knora/core';\n\n@Component({\n    selector: 'kui-list-view',\n    templateUrl: './list-view.component.html',\n    styleUrls: ['./list-view.component.scss']\n})\nexport class ListViewComponent {\n\n    @Input() result;\n    @Input() ontologyInfo;\n    @Input() isLoading;\n\n    KnoraConstants = KnoraConstants;\n\n    constructor() { }\n\n}",
+    "ctx": false
+  }
+]

@@ -1,11 +1,10 @@
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
 import { KuiAuthenticationModule } from '@knora/authentication';
@@ -15,7 +14,6 @@ import { KuiViewerModule } from '@knora/viewer';
 
 import { MarkdownModule } from 'ngx-markdown';
 // set up the environment configuration
-import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 
@@ -73,16 +71,13 @@ import { AuthenticationPgComponent } from './playground/authentication-pg/authen
 import { ListPgComponent } from './playground/list-pg/list-pg.component';
 import { AppInitService } from './app-init.service';
 
+
 export function initializeApp(appInitService: AppInitService) {
     return (): Promise<any> => {
         return appInitService.Init();
     };
 }
 
-export const KuiCoreConfigTokenProvider = {
-    provide: KuiCoreConfigToken,
-    useFactory: () => AppInitService.coreConfig
-};
 
 @NgModule({
     declarations: [
@@ -157,7 +152,9 @@ export const KuiCoreConfigTokenProvider = {
         {
             provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true
         },
-        KuiCoreConfigTokenProvider,
+        {
+            provide: KuiCoreConfigToken, useFactory: () => AppInitService.coreConfig
+        },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {
