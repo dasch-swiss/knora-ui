@@ -44,11 +44,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        console.log('textContent', spanNativeElement.textContent);
-        console.log('innerText', spanNativeElement.innerText);
-        console.log('innerHTML', spanNativeElement.innerHTML);
-
-        expect(spanNativeElement.innerText).toEqual('1700 CE - 1750 CE (julian)');
+        expect(spanNativeElement.innerText.trim()).toEqual('1700 CE - 1750 CE (julian)');
     });
 
     it('should contain a period with a year precision without calendar', () => {
