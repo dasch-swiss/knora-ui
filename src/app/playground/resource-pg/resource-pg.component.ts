@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { IncomingService, ResourceService } from '../../../../projects/knora/core/src/lib/services';
+import { IncomingService, ResourceService } from '@knora/core';
 
 @Component({
     selector: 'app-resource-pg',
