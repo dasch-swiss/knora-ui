@@ -29,7 +29,7 @@ describe('DateValueComponent', () => {
         expect(testHostComponent.dateValueComponent).toBeTruthy();
     });
 
-    fit('should contain a period with a year precision', () => {
+    it('should contain a period with a year precision', () => {
         expect(testHostComponent.dateValueComponent.valueObject.startYear).toEqual(1700);
         expect(testHostComponent.dateValueComponent.valueObject.endYear).toEqual(1750);
         expect(testHostComponent.dateValueComponent.valueObject.startEra).toEqual('CE');
