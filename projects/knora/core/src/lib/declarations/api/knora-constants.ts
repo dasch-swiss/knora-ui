@@ -47,6 +47,7 @@ export class KnoraConstants {
     public static ListNode: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ListNode';
 
     public static ArkUrl: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'arkUrl';
+    public static versionArkUrl: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'versionArkUrl';
     public static ObjectType = KnoraConstants.KnoraApiV2WithValueObjectPath + 'objectType';
 
     public static ResourceIcon: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'resourceIcon';
