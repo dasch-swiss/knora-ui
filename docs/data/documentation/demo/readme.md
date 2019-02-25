@@ -185,6 +185,44 @@ https://www.learnrxjs.io/operators/combination/forkjoin.html
 
 > This is why the subscription never worked, because we did not flush all necessary responses. -->
 
+
+### YALC
+> Better workflow than `npm` | `yarn` link for package authors.
+
+Yalc publishes the packages to a local store (not the npm website).
+From there, the packages can be added to your depending project.
+
+#### Install [yalc](https://github.com/whitecolor/yalc):
+
+```bash
+$ yarn global add yalc
+```
+
+#### Usage
+
+Publish library to local store:
+
+```bash
+$ yarn build-lib-prod
+$ yarn yalc-publish
+```
+
+Use them in your application:
+
+```bash
+$ yalc add @knora/action
+$ yalc add @knora/authentication
+$ yalc add @knora/core
+$ yalc add @knora/search
+$ yalc add @knora/viewer
+```
+
+To remove from the project and restore `package.json` run:
+
+```bash
+$ yalc remove --all
+```
+
 ---
 
-## Required version of Knora: 3.0.0
+## Required version of Knora: 5.0.0-3-3c4d9652 
