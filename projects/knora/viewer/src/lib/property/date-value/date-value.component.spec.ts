@@ -29,7 +29,7 @@ describe('DateValueComponent', () => {
         expect(testHostComponent.dateValueComponent).toBeTruthy();
     });
 
-    it('should contain a period with a year precision', () => {
+    fit('should contain a period with a year precision', () => {
         expect(testHostComponent.dateValueComponent.valueObject.startYear).toEqual(1700);
         expect(testHostComponent.dateValueComponent.valueObject.endYear).toEqual(1750);
         expect(testHostComponent.dateValueComponent.valueObject.startEra).toEqual('CE');
@@ -44,7 +44,11 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText.trim()).toEqual('1700 CE - 1750 CE (julian)');
+        console.log('textContent', spanNativeElement.textContent);
+        console.log('innerText', spanNativeElement.innerText);
+        console.log('innerHTML', spanNativeElement.innerHTML);
+
+        expect(spanNativeElement.innerText).toEqual('1700 CE - 1750 CE (julian)');
     });
 
     it('should contain a period with a year precision without calendar', () => {
