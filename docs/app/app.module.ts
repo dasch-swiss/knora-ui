@@ -1,21 +1,19 @@
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
-import { JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
-import { KuiCoreModule } from '@knora/core';
+import { KuiAuthenticationModule } from '@knora/authentication';
+import { KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
 
 import { MarkdownModule } from 'ngx-markdown';
 // set up the environment configuration
-import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 
@@ -68,6 +66,17 @@ import { PlaygroundComponent } from './playground/playground.component';
 import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
 import { SearchPgComponent } from './playground/search-pg/search-pg.component';
 import { SearchResultComponent } from './playground/search-pg/search-result/search-result.component';
+import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
+import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
+import { AppInitService } from './app-init.service';
+
+
+export function initializeApp(appInitService: AppInitService) {
+    return (): Promise<any> => {
+        return appInitService.Init();
+    };
+}
+
 
 @NgModule({
     declarations: [
@@ -114,7 +123,9 @@ import { SearchResultComponent } from './playground/search-pg/search-result/sear
         TrimBracketsPipe,
         PlaygroundComponent,
         ViewerPgComponent,
-        SearchPgComponent
+        SearchPgComponent,
+        OntologyPgComponent,
+        AuthenticationPgComponent
     ],
     entryComponents: [
         // LoginFormComponent
@@ -124,12 +135,7 @@ import { SearchResultComponent } from './playground/search-pg/search-result/sear
         RouterModule,
         AppRouting,
         FlexLayoutModule,
-        KuiCoreModule.forRoot({
-            name: 'Knora-ui Demo App',
-            api: environment.api,
-            media: environment.media,
-            app: environment.app,
-        }),
+        KuiCoreModule,
         KuiAuthenticationModule,
         KuiActionModule,
         KuiSearchModule,
@@ -140,17 +146,22 @@ import { SearchResultComponent } from './playground/search-pg/search-result/sear
         ReactiveFormsModule
     ],
     providers: [
+        AppInitService,
+        {
+            provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true
+        },
+        {
+            provide: KuiCoreConfigToken, useFactory: () => AppInitService.coreConfig
+        },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {
                 hasBackdrop: false
             }
-        },
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-
+        }
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
+
+

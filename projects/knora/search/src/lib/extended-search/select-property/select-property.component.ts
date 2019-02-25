@@ -125,7 +125,7 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
                     // cardinality 1 or max occurrence 1
                     return card.property === this.propertySelected.id
                         && card.value === 1
-                        && (card.occurrence === CardinalityOccurrence.card || card.occurrence === CardinalityOccurrence.maxCard)
+                        && (card.occurrence === CardinalityOccurrence.card || card.occurrence === CardinalityOccurrence.maxCard);
 
                 }
             );

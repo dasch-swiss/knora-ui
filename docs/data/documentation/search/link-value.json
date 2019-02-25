@@ -73,7 +73,7 @@
     "ignore": false,
     "line": 67,
     "codeStart": 72,
-    "code": "searchByLabel(searchTerm: string) {\n\n    // at least 3 characters are required\n    if (searchTerm.length >= 3) {\n\n        this._searchService.searchByLabel(searchTerm, this._restrictToResourceClass).subscribe(\n            (result: ApiServiceResult) => {\n                const promises = jsonld.promises;\n                // compact JSON-LD using an empty context: expands all Iris\n                const promise = promises.compact(result.body, {});\n\n                promise.then((compacted) => {\n\n                    const resourceSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);\n\n                    this.resources = resourceSeq.resources;\n\n                }, function (err) {\n\n                    console.log('JSONLD of full resource request could not be expanded:' + err);\n                });\n\n            }\n        );\n    } else {\n        // clear selection\n        this.resources = undefined;\n    }\n\n}",
+    "code": "searchByLabel(searchTerm: string) {\n\n    // at least 3 characters are required\n    if (searchTerm.length >= 3) {\n\n        this._searchService.searchByLabelReadResourceSequence(searchTerm, this._restrictToResourceClass).subscribe(\n            (result: ReadResourcesSequence) => {\n                this.resources = result.resources;\n            }, function (err) {\n                console.log('JSONLD of full resource request could not be expanded:' + err);\n            }\n        );\n    } else {\n        // clear selection\n        this.resources = undefined;\n    }\n\n}",
     "ctx": {
       "type": "method",
       "name": "searchByLabel",
@@ -117,8 +117,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 103,
-    "codeStart": 111,
+    "line": 91,
+    "codeStart": 99,
     "code": "validateResource(c: FormControl) {\n\n    const isValidResource = (c.value instanceof ReadResource);\n\n    if (isValidResource) {\n        return null;\n    } else {\n        return {\n            noResource: {\n                value: c.value\n            }\n        };\n    }\n\n}\n\nngOnInit() {\n    this.form = this.fb.group({\n        resource: [null, Validators.compose([\n            Validators.required,\n            this.validateResource\n        ])]\n    });\n\n    this.form.valueChanges.subscribe((data) => {\n        this.searchByLabel(data.resource);\n    });\n\n    resolvedPromise.then(() => {\n        // add form to the parent form group\n        this.formGroup.addControl('propValue', this.form);\n    });\n}\n\nngOnDestroy() {\n\n    // remove form from the parent form group\n    resolvedPromise.then(() => {\n        this.formGroup.removeControl('propValue');\n    });\n\n}\n\ngetValue(): Value {\n\n    return new IRI(this.form.value.resource.id);\n}\n\n}",
     "ctx": {
       "type": "method",

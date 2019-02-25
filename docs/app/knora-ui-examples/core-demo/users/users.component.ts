@@ -48,9 +48,9 @@ ngOnInit() {
     };
 
     exampleGetUser: Example = {
-        title: 'getUser(username || email || iri)',
+        title: 'getUserByUsername(username)',
         subtitle: 'returns a user object',
-        name: 'getUser',
+        name: 'getUserByUsername',
         code: {
             html: `
 <div *ngIf="user && !usersService.loading">
@@ -61,13 +61,13 @@ ngOnInit() {
 username: string = 'multiuser';
 user: User;
 
-            
+
 // the services from @knora/core should be public,
 // if you want to use the loading status in the html template
 // --> usersService.loading = true || false
 constructor(public usersService: UsersService) { }
 
-ngOnInit() {            
+ngOnInit() {
     this.usersService.getUser(this.username).subscribe(
         (result: User) => {
             this.user = result;
@@ -112,8 +112,8 @@ ngOnInit() {
             );
     }
 
-    getUser(identifier: string) {
-        this.usersService.getUser(identifier)
+    getUserByUsername(username: string) {
+        this.usersService.getUserByUsername(username)
             .subscribe(
                 (result: User) => {
                     this.user = result;

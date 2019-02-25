@@ -140,7 +140,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
      */
     private static prepareTileSourcesFromFileValues(imagesToDisplay: ReadStillImageFileValue[]): Object[] {
         let imageXOffset = 0;
-        let imageYOffset = 0;
+        const imageYOffset = 0;
         const tileSources = [];
 
         for (const image of imagesToDisplay) {
@@ -315,16 +315,37 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         // display only the defined range of this.images
         const tileSources: Object[] = StillImageComponent.prepareTileSourcesFromFileValues(fileValues);
 
-        this.viewer.clearOverlays();
+        this.removeOverlays();
         this.viewer.open(tileSources);
+    }
+
+    /**
+     * Removes SVG overlays from the DOM.
+     */
+    private removeOverlays() {
+
+        for (const reg in this.regions) {
+            if (this.regions.hasOwnProperty(reg)) {
+                for (const pol of this.regions[reg]) {
+                    if (pol instanceof SVGPolygonElement) {
+                        pol.remove();
+                    }
+                }
+            }
+        }
+
+        this.regions = {};
+
+        // TODO: make this work by using osdviewer's addOverlay method
+        this.viewer.clearOverlays();
     }
 
     /**
      * Adds a ROI-overlay to the viewer for every region of every image in this.images
      */
     private renderRegions(): void {
-        this.viewer.clearOverlays();
-        this.regions = {};
+
+        this.removeOverlays();
 
         let imageXOffset = 0; // see documentation in this.openImages() for the usage of imageXOffset
 
@@ -428,7 +449,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         svgGroup.appendChild(svgElement);
 
         const overlay = this.viewer.svgOverlay();
-        overlay.node().appendChild(svgGroup);
+        overlay.node().appendChild(svgGroup); // TODO: use method osdviewer's method addOverlay
 
         this.regions[regionIri].push(svgElement);
     }
