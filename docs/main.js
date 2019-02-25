@@ -810,7 +810,7 @@ var AuthenticationService = /** @class */ /*@__PURE__*/ (function () {
         this.http = http;
         this._session = _session;
         this.config = config;
-        // console.log('AuthenticationService constructor: config', config);
+        console.log('AuthenticationService constructor: config', config);
     }
     /**
      * validate if a user is logged in or not
@@ -830,8 +830,8 @@ var AuthenticationService = /** @class */ /*@__PURE__*/ (function () {
      * @returns Observable<any>
      */
     AuthenticationService.prototype.login = function (username, password) {
-        // console.log('AuthenticationService - login - api: ', this.config.api);
         var _this = this;
+        console.log('AuthenticationService - login - api: ', this.config.api);
         return this.http.post(this.config.api + '/v2/authentication', { username: username, password: password }, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
             return response;
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
@@ -2851,7 +2851,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         // it can be used in components
         // for progress loader element
         this.loading = false;
-        // console.log('ApiService constructor: config', config);
+        console.log('ApiService constructor: config', config);
     }
     /**
      * GET
@@ -13536,7 +13536,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<Project>
      */
     ProjectsService.prototype.getProjectByIri = function (iri) {
-        var url = '/admin/projects/' + encodeURIComponent(iri);
+        var url = '/admin/projects/iri/' + encodeURIComponent(iri);
         return this.getProject(url);
     };
     /**
@@ -13546,7 +13546,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<Project>
      */
     ProjectsService.prototype.getProjectByShortname = function (shortname) {
-        var url = '/admin/projects/' + shortname + '?identifier=shortname';
+        var url = '/admin/projects/shortname/' + shortname;
         return this.getProject(url);
     };
     /**
@@ -13556,7 +13556,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<Project>
      */
     ProjectsService.prototype.getProjectByShortcode = function (shortcode) {
-        var url = '/admin/projects/' + shortcode + '?identifier=shortcode';
+        var url = '/admin/projects/shortcode' + shortcode;
         return this.getProject(url);
     };
     /**
@@ -13577,7 +13577,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembersByIri = function (iri) {
-        var url = '/admin/projects/members/' + encodeURIComponent(iri);
+        var url = '/admin/projects/iri/' + encodeURIComponent(iri) + '/members';
         return this.getProjectMembers(url);
     };
     /**
@@ -13588,7 +13588,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembersByShortname = function (shortname) {
-        var url = '/admin/projects/members/' + shortname + '?identifier=shortname';
+        var url = '/admin/projects/shortname/' + shortname + '/members';
         return this.getProjectMembers(url);
     };
     /**
@@ -13599,7 +13599,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembersByShortcode = function (shortcode) {
-        var url = '/admin/projects/members/' + shortcode + '?identifier=shortcode';
+        var url = '/admin/projects/shortcode/' + shortcode + '/members';
         return this.getProjectMembers(url);
     };
     /**
@@ -13636,7 +13636,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<Project>
      */
     ProjectsService.prototype.updateProject = function (iri, data) {
-        var url = '/admin/projects/' + encodeURIComponent(iri);
+        var url = '/admin/projects/iri/' + encodeURIComponent(iri);
         return this.httpPut(url, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_1__["ProjectResponse"]).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
@@ -13649,7 +13649,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
         var data = {
             status: true
         };
-        var url = '/admin/projects/' + encodeURIComponent(iri);
+        var url = '/admin/projects/iri/' + encodeURIComponent(iri);
         return this.httpPut(url, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_1__["ProjectResponse"]).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
@@ -13662,7 +13662,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<Project>
      */
     ProjectsService.prototype.deleteProject = function (iri) {
-        var url = '/admin/projects/' + encodeURIComponent(iri);
+        var url = '/admin/projects/iri/' + encodeURIComponent(iri);
         return this.httpDelete(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_1__["ProjectResponse"]).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     ProjectsService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_3__["defineInjectable"]({ factory: function ProjectsService_Factory() { return new ProjectsService(_angular_core__WEBPACK_IMPORTED_MODULE_3__["inject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_3__["inject"](_core_module__WEBPACK_IMPORTED_MODULE_5__["KuiCoreConfigToken"])); }, token: ProjectsService, providedIn: "root" });
@@ -13833,8 +13833,19 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User>
      */
     UsersService.prototype.addUserToProject = function (userIri, projectIri) {
-        var path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-memberships/' + encodeURIComponent(projectIri);
         return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
+    };
+    /**
+     * Remove user from project.
+     *
+     * @param {string} userIri
+     * @param {string} projectIri
+     * @returns Observable<User>
+     */
+    UsersService.prototype.removeUserFromProject = function (userIri, projectIri) {
+        var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-memberships/' + encodeURIComponent(projectIri);
+        return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
      * Add user to an admin project.
@@ -13844,7 +13855,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User>
      */
     UsersService.prototype.addUserToProjectAdmin = function (userIri, projectIri) {
-        var path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-admin-memberships/' + encodeURIComponent(projectIri);
         return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
@@ -13855,7 +13866,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromProjectAdmin = function (userIri, projectIri) {
-        var path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-admin-memberships/' + encodeURIComponent(projectIri);
         return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
@@ -13869,7 +13880,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User>
      */
     UsersService.prototype.addUserToSystemAdmin = function (userIri, data) {
-        var path = '/admin/users/' + encodeURIComponent(userIri);
+        var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/SystemAdmin';
         return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
@@ -13879,10 +13890,11 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User>
      */
     UsersService.prototype.activateUser = function (userIri) {
+        var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Status';
         var data = {
             status: true
         };
-        return this.updateUser(userIri, data);
+        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
      * Update own password.
@@ -13893,11 +13905,12 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User>
      */
     UsersService.prototype.updateOwnPassword = function (userIri, oldPassword, newPassword) {
+        var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Password';
         var data = {
             newPassword: newPassword,
             requesterPassword: oldPassword
         };
-        return this.updateUser(userIri, data);
+        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     /**
      * Update password of another user (not own).
@@ -13908,21 +13921,11 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User>
      */
     UsersService.prototype.updateUsersPassword = function (userIri, requesterPassword, newPassword) {
+        var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Password';
         var data = {
             newPassword: newPassword,
             requesterPassword: requesterPassword
         };
-        return this.updateUser(userIri, data);
-    };
-    /**
-     * Update user data.
-     *
-     * @param {string} userIri
-     * @param {any} data
-     * @returns Observable<User>
-     */
-    UsersService.prototype.updateUser = function (userIri, data) {
-        var path = '/admin/users/' + encodeURIComponent(userIri);
         return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
@@ -13935,18 +13938,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User>
      */
     UsersService.prototype.deleteUser = function (userIri) {
-        var path = '/admin/users/' + encodeURIComponent(userIri);
-        return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
-    };
-    /**
-     * Remove user from project.
-     *
-     * @param {string} userIri
-     * @param {string} projectIri
-     * @returns Observable<User>
-     */
-    UsersService.prototype.removeUserFromProject = function (userIri, projectIri) {
-        var path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        var path = '/admin/users/iri/' + encodeURIComponent(userIri);
         return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_2__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(this.handleJsonError));
     };
     UsersService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_3__["defineInjectable"]({ factory: function UsersService_Factory() { return new UsersService(_angular_core__WEBPACK_IMPORTED_MODULE_3__["inject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_3__["inject"](_core_module__WEBPACK_IMPORTED_MODULE_5__["KuiCoreConfigToken"])); }, token: UsersService, providedIn: "root" });
@@ -24047,7 +24039,7 @@ fetch("config/config." + _environments_environment__WEBPACK_IMPORTED_MODULE_1__[
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/ak/Code/knora-ui/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/subotic/_github.com/dhlab-basel/Knora-ui/src/main.ts */"./src/main.ts");
 
 
 /***/ }),
