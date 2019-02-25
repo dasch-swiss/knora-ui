@@ -4,11 +4,13 @@
     margin: 6px 0;
     padding: 24px;
     word-wrap: break-word;
+    border-radius: 5px;
   
     .mat-card {
       height: 160px;
       color: rgba(0, 0, 0, 0.81);
       overflow: hidden;
+      padding-bottom: 25px; 
   
       &:hover {
         background: rgba($primary, 0.39);
@@ -17,6 +19,11 @@
   
       &:active {
         background: rgba($primary, 0.61);
+      }
+
+      .mat-card-title {
+        font-size: 12pt;
+        font-weight: 600;
       }
   
     }
