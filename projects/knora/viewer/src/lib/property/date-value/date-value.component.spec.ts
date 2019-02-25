@@ -44,7 +44,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('1700 CE - 1750 CE (julian)');
+        expect(spanNativeElement.innerText.trim()).toEqual('1700 CE - 1750 CE (julian)');
     });
 
     it('should contain a period with a year precision without calendar', () => {
@@ -61,7 +61,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('1700 CE - 1750 CE');
+        expect(spanNativeElement.innerText.trim()).toEqual('1700 CE - 1750 CE');
     });
 
     it('should contain a period with a year precision without era', () => {
@@ -78,7 +78,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('1700 - 1750 (julian)');
+        expect(spanNativeElement.innerText.trim()).toEqual('1700 - 1750 (julian)');
     });
 
     it('should contain a period with a year precision without era and without calendar', () => {
@@ -97,7 +97,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('1700 - 1750');
+        expect(spanNativeElement.innerText.trim()).toEqual('1700 - 1750');
     });
 
     it('should contain a period with a month precision', () => {
@@ -114,7 +114,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('March 1700 CE - November 1750 CE (julian)');
+        expect(spanNativeElement.innerText.trim()).toEqual('March 1700 CE - November 1750 CE (julian)');
 
     });
 
@@ -132,7 +132,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('April 12, 1700 CE - August 30, 1750 CE (julian)');
+        expect(spanNativeElement.innerText.trim()).toEqual('April 12, 1700 CE - August 30, 1750 CE (julian)');
     });
 
     it('should contain a period with different precisions', () => {
@@ -149,7 +149,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('1700 CE - February 1750 CE (julian)');
+        expect(spanNativeElement.innerText.trim()).toEqual('1700 CE - February 1750 CE (julian)');
     });
 
     it('should contain one date', () => {
@@ -166,7 +166,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('March 18, 1690 CE (gregorian)');
+        expect(spanNativeElement.innerText.trim()).toEqual('March 18, 1690 CE (gregorian)');
     });
 
     it('should contain one date without calendar', () => {
@@ -185,7 +185,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('March 18, 1690 CE');
+        expect(spanNativeElement.innerText.trim()).toEqual('March 18, 1690 CE');
     });
 
     it('should contain one date without era', () => {
@@ -204,7 +204,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('March 18, 1690 (gregorian)');
+        expect(spanNativeElement.innerText.trim()).toEqual('March 18, 1690 (gregorian)');
     });
 
     it('should contain one date without calendar and without era', () => {
@@ -225,7 +225,7 @@ describe('DateValueComponent', () => {
 
         const spanNativeElement: HTMLElement = divDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('March 18, 1690');
+        expect(spanNativeElement.innerText.trim()).toEqual('March 18, 1690');
     });
 
 });
