@@ -186,26 +186,26 @@ describe('ProjectsService', () => {
 
         /*
         if (environment.type === 'integration') {
-    
+
             it('should load test data [it]', async(inject(
                 [StoreService], (service) => {
-    
+
                     expect(service).toBeDefined();
-    
+
                     service.resetTriplestoreContent([])
                         .subscribe(
                             (result: string) => {
                                 expect(result).toBe('success');
                             });
-    
+
                 })), 300000);
-    
-    
+
+
             it('#getAllProjects should return all projects [it]', async(inject(
                 [ProjectsService], (service) => {
-    
+
                     expect(service).toBeDefined();
-    
+
                     service.getAllProjects()
                         .subscribe(
                             (projects: Project[]) => {
@@ -217,15 +217,15 @@ describe('ProjectsService', () => {
                                 fail(error);
                             }
                         );
-    
+
                 })));
-    
-    
+
+
             it('#getProjectByIri should return project (images) [it]', async(inject(
                 [ProjectsService], (service) => {
-    
+
                     expect(service).toBeDefined();
-    
+
                     service.getProjectByIri('http://rdfh.ch/projects/00FF')
                         .subscribe(
                             (project: Project) => {
@@ -236,14 +236,14 @@ describe('ProjectsService', () => {
                                 fail(error);
                             }
                         );
-    
+
                 })));
-    
+
             it('#getProjectByIri should return project (incunabula) [it]', async(inject(
                 [ProjectsService], (service) => {
-    
+
                     expect(service).toBeDefined();
-    
+
                     service.getProjectByIri('http://rdfh.ch/projects/77275339')
                         .subscribe(
                             (project: Project) => {
@@ -254,14 +254,14 @@ describe('ProjectsService', () => {
                                 fail(error);
                             }
                         );
-    
+
                 })));
-    
+
             it('#getProjectByIri should return project (anything) [it]', async(inject(
                 [ProjectsService], (service) => {
-    
+
                     expect(service).toBeDefined();
-    
+
                     service.getProjectByIri('http://rdfh.ch/projects/anything')
                         .subscribe(
                             (project: Project) => {
@@ -272,14 +272,14 @@ describe('ProjectsService', () => {
                                 fail(error);
                             }
                         );
-    
+
                 })));
-    
+
             it('#getProjectByShortname should return project (images) [it]', async(inject(
                 [ProjectsService], (service) => {
-    
+
                     expect(service).toBeDefined();
-    
+
                     service.getProjectByShortname('images')
                         .subscribe(
                             (project: Project) => {
@@ -290,15 +290,15 @@ describe('ProjectsService', () => {
                                 fail(error);
                             }
                         );
-    
+
                 })));
-    
-    
+
+
             it('#getProjectByShortcode should return project (images) [it]', async(inject(
                 [ProjectsService], (service) => {
-    
+
                     expect(service).toBeDefined();
-    
+
                     service.getProjectByShortcode('00FF')
                         .subscribe(
                             (project: Project) => {
@@ -309,11 +309,11 @@ describe('ProjectsService', () => {
                                 fail(error);
                             }
                         );
-    
+
                 })));
-    
-    
-    
+
+
+
         } else {
             xit('integration tests skipped. run  "ng test --env=it".');
         }

@@ -131,6 +131,11 @@
   {
     "tags": [
       {
+        "type": "ignore",
+        "string": "\nReset the search",
+        "html": "<p>Reset the search</p>"
+      },
+      {
         "type": "param",
         "string": "{HTMLElement} search_ele",
         "name": "search_ele",
@@ -158,8 +163,8 @@
       }
     ],
     "description": {
-      "full": "<p>Reset the search</p>",
-      "summary": "<p>Reset the search</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -168,7 +173,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 115,
-    "codeStart": 120,
+    "codeStart": 122,
     "code": "resetSearch(search_ele: HTMLElement): void {\n    this.searchQuery = null;\n    search_ele.focus();\n    this.focusOnSimple = 'inactive';\n    this.searchPanelFocus = !this.searchPanelFocus;\n}",
     "ctx": {
       "type": "method",
@@ -178,6 +183,11 @@
   },
   {
     "tags": [
+      {
+        "type": "ignore",
+        "string": "\nRealise a previous search",
+        "html": "<p>Realise a previous search</p>"
+      },
       {
         "type": "param",
         "string": "{string} query",
@@ -206,8 +216,8 @@
       }
     ],
     "description": {
-      "full": "<p>Realise a previous search</p>",
-      "summary": "<p>Realise a previous search</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -215,8 +225,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 127,
-    "codeStart": 132,
+    "line": 129,
+    "codeStart": 136,
     "code": "doPrevSearch(query: string): void {\n    this.searchQuery = query;\n    this._router.navigate([this.route + '/fulltext/' + query], { relativeTo: this._route });\n    this.toggleMenu('simpleSearch');\n}",
     "ctx": {
       "type": "method",
@@ -226,6 +236,11 @@
   },
   {
     "tags": [
+      {
+        "type": "ignore",
+        "string": "\nReset previous searches - the whole previous search or specific item by name",
+        "html": "<p>Reset previous searches - the whole previous search or specific item by name</p>"
+      },
       {
         "type": "param",
         "string": "{string} name term of the search",
@@ -253,8 +268,8 @@
       }
     ],
     "description": {
-      "full": "<p>Reset previous searches - the whole previous search or specific item by name</p>",
-      "summary": "<p>Reset previous searches - the whole previous search or specific item by name</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -262,8 +277,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 138,
-    "codeStart": 143,
+    "line": 142,
+    "codeStart": 149,
     "code": "resetPrevSearch(name: string = null): void {\n    if (name) {\n        // delete only this item with the name ...\n        const i: number = this.prevSearch.indexOf(name);\n        this.prevSearch.splice(i, 1);\n        localStorage.setItem('prevSearch', JSON.stringify(this.prevSearch));\n    } else {\n        // delete the whole \"previous search\" array\n        localStorage.removeItem('prevSearch');\n    }\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n\n}",
     "ctx": {
       "type": "method",
@@ -273,6 +288,11 @@
   },
   {
     "tags": [
+      {
+        "type": "ignore",
+        "string": "Set simple focus to active",
+        "html": "<p>Set simple focus to active</p>"
+      },
       {
         "type": "returns",
         "string": "void",
@@ -286,8 +306,8 @@
       }
     ],
     "description": {
-      "full": "<p>Set simple focus to active</p>",
-      "summary": "<p>Set simple focus to active</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -295,8 +315,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 157,
-    "codeStart": 162,
+    "line": 163,
+    "codeStart": 169,
     "code": "setFocus(): void {\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n    this.focusOnSimple = 'active';\n    this.searchPanelFocus = !this.searchPanelFocus;\n}",
     "ctx": {
       "type": "method",
@@ -306,6 +326,11 @@
   },
   {
     "tags": [
+      {
+        "type": "ignore",
+        "string": "\nSwitch according to the focus between simple or extended search",
+        "html": "<p>Switch according to the focus between simple or extended search</p>"
+      },
       {
         "type": "param",
         "string": "{string} name 2 cases: simpleSearch or extendedSearch",
@@ -333,8 +358,8 @@
       }
     ],
     "description": {
-      "full": "<p>Switch according to the focus between simple or extended search</p>",
-      "summary": "<p>Switch according to the focus between simple or extended search</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -342,8 +367,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 168,
-    "codeStart": 174,
+    "line": 175,
+    "codeStart": 183,
     "code": "toggleMenu(name: string): void {\n    switch (name) {\n        case 'simpleSearch':\n            this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n            this.focusOnSimple = (this.focusOnSimple === 'active' ? 'inactive' : 'active');\n            this.showSimpleSearch = true;\n            break;\n        case 'extendedSearch':\n            this.focusOnExtended = (this.focusOnExtended === 'active' ? 'inactive' : 'active');\n            this.showSimpleSearch = false;\n            break;\n    }\n}\n}",
     "ctx": {
       "type": "method",

@@ -75,7 +75,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
             this._router.navigate([''], { relativeTo: this._route });
             return;
         } else {
-            this.searchQuery = <string>gravsearch;
+            this.searchQuery = <string> gravsearch;
         }
     }
 
@@ -94,7 +94,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: any) => {
-                            this.errorMessage = <any>error;
+                            this.errorMessage = <any> error;
                         }
                     );
             }
@@ -104,7 +104,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
                 .subscribe(
                     this.processSearchResults, // function pointer
                     (error: any) => {
-                        this.errorMessage = <any>error;
+                        this.errorMessage = <any> error;
                     }
                 );
 
@@ -116,7 +116,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: any) => {
-                            this.errorMessage = <any>error;
+                            this.errorMessage = <any> error;
                         }
                     );
             }
@@ -124,7 +124,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
                 .subscribe(
                     this.processSearchResults, // function pointer
                     (error: any) => {
-                        this.errorMessage = <any>error;
+                        this.errorMessage = <any> error;
                     });
 
         } else {

@@ -1,4 +1,4 @@
-import { Component, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { OntologyInformation, ReadLinkValue } from '@knora/core';
 
 @Component({

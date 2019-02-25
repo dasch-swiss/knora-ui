@@ -22,8 +22,8 @@ export class ExistingNameComponent implements OnInit {
             html: `
 <form [formGroup]="form" class="center card">
     <mat-form-field>
-        <input matInput 
-               [formControl]="form.controls['name']" 
+        <input matInput
+               [formControl]="form.controls['name']"
                [placeholder]="'Name (should be unique)'">
         <mat-hint *ngIf="formErrors.name">
             {{formErrors.name}}

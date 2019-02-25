@@ -104,8 +104,23 @@ export class UsersService extends ApiService {
      * @returns Observable<User>
      */
     addUserToProject(userIri: string, projectIri: string): Observable<User> {
-        const path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-memberships/' + encodeURIComponent(projectIri);
         return this.httpPost(path).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    /**
+     * Remove user from project.
+     *
+     * @param {string} userIri
+     * @param {string} projectIri
+     * @returns Observable<User>
+     */
+    removeUserFromProject(userIri: string, projectIri: string): Observable<User> {
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-memberships/' + encodeURIComponent(projectIri);
+        return this.httpDelete(path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
@@ -119,7 +134,7 @@ export class UsersService extends ApiService {
      * @returns Observable<User>
      */
     addUserToProjectAdmin(userIri: string, projectIri: string): Observable<User> {
-        const path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-admin-memberships/' + encodeURIComponent(projectIri);
         return this.httpPost(path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
@@ -134,7 +149,7 @@ export class UsersService extends ApiService {
      * @returns Observable<User>
      */
     removeUserFromProjectAdmin(userIri: string, projectIri: string): Observable<User> {
-        const path = '/admin/users/projects-admin/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-admin-memberships/' + encodeURIComponent(projectIri);
         return this.httpDelete(path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
@@ -155,7 +170,7 @@ export class UsersService extends ApiService {
      * @returns Observable<User>
      */
     addUserToSystemAdmin(userIri: string, data: any): Observable<User> {
-        const path = '/admin/users/' + encodeURIComponent(userIri);
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/SystemAdmin';
         return this.httpPut(path, data).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
@@ -169,10 +184,16 @@ export class UsersService extends ApiService {
      * @returns Observable<User>
      */
     activateUser(userIri: string): Observable<User> {
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Status';
+
         const data: any = {
             status: true
         };
-        return this.updateUser(userIri, data);
+
+        return this.httpPut(path, data).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
     }
 
 
@@ -185,11 +206,17 @@ export class UsersService extends ApiService {
      * @returns Observable<User>
      */
     updateOwnPassword(userIri: string, oldPassword: string, newPassword: string): Observable<User> {
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Password';
+
         const data = {
             newPassword: newPassword,
             requesterPassword: oldPassword
         };
-        return this.updateUser(userIri, data);
+
+        return this.httpPut(path, data).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
     }
 
     /**
@@ -201,24 +228,12 @@ export class UsersService extends ApiService {
      * @returns Observable<User>
      */
     updateUsersPassword(userIri: string, requesterPassword: string, newPassword: string): Observable<User> {
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Password';
+
         const data = {
             newPassword: newPassword,
             requesterPassword: requesterPassword
         };
-        return this.updateUser(userIri, data);
-    }
-
-
-    /**
-     * Update user data.
-     *
-     * @param {string} userIri
-     * @param {any} data
-     * @returns Observable<User>
-     */
-    updateUser(userIri: string, data: any): Observable<User> {
-
-        const path = '/admin/users/' + encodeURIComponent(userIri);
 
         return this.httpPut(path, data).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
@@ -237,7 +252,7 @@ export class UsersService extends ApiService {
      * @returns Observable<User>
      */
     deleteUser(userIri: string): Observable<User> {
-        const path = '/admin/users/' + encodeURIComponent(userIri);
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri);
         return this.httpDelete(path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
@@ -245,18 +260,5 @@ export class UsersService extends ApiService {
 
     }
 
-    /**
-     * Remove user from project.
-     *
-     * @param {string} userIri
-     * @param {string} projectIri
-     * @returns Observable<User>
-     */
-    removeUserFromProject(userIri: string, projectIri: string): Observable<User> {
-        const path = '/admin/users/projects/' + encodeURIComponent(userIri) + '/' + encodeURIComponent(projectIri);
-        return this.httpDelete(path).pipe(
-            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
-            catchError(this.handleJsonError)
-        );
-    }
+
 }

@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {TreeComponent} from './tree.component';
-import {MatIconModule, MatTreeModule} from '@angular/material';
+import { TreeComponent } from './tree.component';
+import { MatIconModule, MatTreeModule } from '@angular/material';
 
 describe('TreeComponent', () => {
     let component: TreeComponent;

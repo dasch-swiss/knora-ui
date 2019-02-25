@@ -72,7 +72,7 @@ describe('StillImageOSDViewerComponent', () => {
     it('should have 5 test regions loaded (rect, circle, poylgon, circle_from_multiregion, rect_from_multiregion)', () => {
         host.resourcesHost = images;
         fixture.detectChanges();
-        let overlay = component['viewer'].svgOverlay();
+        const overlay = component['viewer'].svgOverlay();
         expect(overlay.node().childElementCount).toEqual(5);
     });
 
@@ -132,7 +132,7 @@ describe('StillImageOSDViewerComponent', () => {
         // first region -> polygon element (second element in <g> element)
         const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
 
-        let attr = regionSvgEle.getAttribute('class');
+        const attr = regionSvgEle.getAttribute('class');
         expect(attr).toEqual('roi-svgoverlay active');
     });
 
@@ -163,7 +163,7 @@ class TestHostComponent {
 
 // create test input data
 
-let stillImageFullSize: ReadStillImageFileValue = new ReadStillImageFileValue(
+const stillImageFullSize: ReadStillImageFileValue = new ReadStillImageFileValue(
     'http://data.knora.org/22cf0ce68901/reps/dd4b1264ff02',
     'http://api.knora.org/ontology/knora-api/v2#hasStillImageFileValue',
     'incunabula_0000001722.jp2',
@@ -173,7 +173,7 @@ let stillImageFullSize: ReadStillImageFileValue = new ReadStillImageFileValue(
     5061
 );
 
-let stillImagePreview: ReadStillImageFileValue = new ReadStillImageFileValue(
+const stillImagePreview: ReadStillImageFileValue = new ReadStillImageFileValue(
     'http://data.knora.org/22cf0ce68901/reps/dd4b1264ff02',
     'http://api.knora.org/ontology/knora-api/v2#hasStillImageFileValue',
     'incunabula_0000001722.jp2',
@@ -183,19 +183,19 @@ let stillImagePreview: ReadStillImageFileValue = new ReadStillImageFileValue(
     128
 );
 
-let testRegionRectangle: ReadResource = createTestRegionRectangle();
-let testRegionPolygon: ReadResource = createTestRegionPolygon();
-let testRegionCircle: ReadResource = createTestRegionCircle();
-let testRegionMulti: ReadResource = createTestRegionMulti();
+const testRegionRectangle: ReadResource = createTestRegionRectangle();
+const testRegionPolygon: ReadResource = createTestRegionPolygon();
+const testRegionCircle: ReadResource = createTestRegionCircle();
+const testRegionMulti: ReadResource = createTestRegionMulti();
 
-let images: StillImageRepresentation[] = [
+const images: StillImageRepresentation[] = [
     new StillImageRepresentation(stillImageFullSize, [new ImageRegion(testRegionRectangle), new ImageRegion(testRegionPolygon), new ImageRegion(testRegionCircle), new ImageRegion(testRegionMulti)])
 ];
 
 // utility functions
 
 function createTestRegionRectangle() {
-    let testRegionRect_compacted_json = `
+    const testRegionRect_compacted_json = `
 {
   "@id": "http://rdfh.ch/b6b64a62b006",
   "@type": "http://api.knora.org/ontology/knora-api/v2#Region",
@@ -226,13 +226,13 @@ function createTestRegionRectangle() {
   "http://www.w3.org/2000/01/rdf-schema#label": "Derselbe Holzschnitt wird auf Seite c5v verwendet."
 }
       `;
-    let testRegionRect_compacted = JSON.parse(testRegionRect_compacted_json);
-    let testRegionRect_resources: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(testRegionRect_compacted);
+    const testRegionRect_compacted = JSON.parse(testRegionRect_compacted_json);
+    const testRegionRect_resources: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(testRegionRect_compacted);
     return testRegionRect_resources.resources[0];
 }
 
 function createTestRegionPolygon() {
-    let testRegionPolygon_compacted_json = `
+    const testRegionPolygon_compacted_json = `
 {
   "@id": "http://rdfh.ch/f1b0bb27b006",
   "@type": "http://api.knora.org/ontology/knora-api/v2#Region",
@@ -263,13 +263,13 @@ function createTestRegionPolygon() {
   "http://www.w3.org/2000/01/rdf-schema#label": "Derselbe Holzschnitt wird auf Seite u1r verwendet."
 }
       `;
-    let testRegionPolygon_compacted = JSON.parse(testRegionPolygon_compacted_json);
-    let testRegionPolygon_resources: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(testRegionPolygon_compacted);
+    const testRegionPolygon_compacted = JSON.parse(testRegionPolygon_compacted_json);
+    const testRegionPolygon_resources: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(testRegionPolygon_compacted);
     return testRegionPolygon_resources.resources[0];
 }
 
 function createTestRegionCircle() {
-    let testRegionCircle_compacted_json = `
+    const testRegionCircle_compacted_json = `
 {
   "@id": "http://rdfh.ch/2357e0d64407",
   "@type": "http://api.knora.org/ontology/knora-api/v2#Region",
@@ -300,13 +300,13 @@ function createTestRegionCircle() {
   "http://www.w3.org/2000/01/rdf-schema#label": "Kolorierung in Rot"
 }
       `;
-    let testRegionCircle_compacted = JSON.parse(testRegionCircle_compacted_json);
-    let testRegionCircle_resources: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(testRegionCircle_compacted);
+    const testRegionCircle_compacted = JSON.parse(testRegionCircle_compacted_json);
+    const testRegionCircle_resources: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(testRegionCircle_compacted);
     return testRegionCircle_resources.resources[0];
 }
 
 function createTestRegionMulti() {
-    let testRegionMulti_compacted_json = `
+    const testRegionMulti_compacted_json = `
 {
   "@id": "http://rdfh.ch/29c5b0b65732",
   "@type": "http://api.knora.org/ontology/knora-api/v2#Region",
@@ -344,7 +344,7 @@ function createTestRegionMulti() {
   "http://www.w3.org/2000/01/rdf-schema#label": "TESTREGION JUNI"
 }
        `;
-    let testRegionMulti_compacted = JSON.parse(testRegionMulti_compacted_json);
-    let testRegionMulti_resources: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(testRegionMulti_compacted);
+    const testRegionMulti_compacted = JSON.parse(testRegionMulti_compacted_json);
+    const testRegionMulti_resources: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(testRegionMulti_compacted);
     return testRegionMulti_resources.resources[0];
 }

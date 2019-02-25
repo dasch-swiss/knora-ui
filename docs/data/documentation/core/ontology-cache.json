@@ -95,7 +95,7 @@
     "ignore": false,
     "line": 28,
     "codeStart": 34,
-    "code": "constructor(readonly id: string,\n    readonly label: string) {\n\n}\n\n}",
+    "code": "constructor(readonly id: string,\n            readonly label: string) {\n\n}\n\n}",
     "ctx": {
       "type": "constructor",
       "constructor": "OntologyMetadata",
@@ -202,7 +202,7 @@
     "ignore": false,
     "line": 57,
     "codeStart": 62,
-    "code": "constructor(readonly occurrence: CardinalityOccurrence,\n    readonly value: number,\n    readonly property: string) {\n}\n}",
+    "code": "constructor(readonly occurrence: CardinalityOccurrence,\n            readonly value: number,\n            readonly property: string) {\n}\n}",
     "ctx": {
       "type": "constructor",
       "constructor": "Cardinality",
@@ -320,7 +320,7 @@
     "ignore": false,
     "line": 74,
     "codeStart": 81,
-    "code": "constructor(readonly id: string,\n    readonly icon: string,\n    readonly comment: string,\n    readonly label: string,\n    readonly cardinalities: Array<Cardinality>) {\n\n}\n}",
+    "code": "constructor(readonly id: string,\n            readonly icon: string,\n            readonly comment: string,\n            readonly label: string,\n            readonly cardinalities: Array<Cardinality>) {\n\n}\n}",
     "ctx": {
       "type": "constructor",
       "constructor": "ResourceClass",
@@ -504,7 +504,7 @@
     "ignore": false,
     "line": 104,
     "codeStart": 114,
-    "code": "constructor(readonly id: string,\n    readonly objectType: string,\n    readonly comment: string,\n    readonly label: string,\n    readonly subPropertyOf: Array<string>,\n    readonly isEditable: Boolean,\n    readonly isLinkProperty: Boolean,\n    readonly isLinkValueProperty: Boolean) {\n\n}\n}",
+    "code": "constructor(readonly id: string,\n            readonly objectType: string,\n            readonly comment: string,\n            readonly label: string,\n            readonly subPropertyOf: Array<string>,\n            readonly isEditable: Boolean,\n            readonly isLinkProperty: Boolean,\n            readonly isLinkValueProperty: Boolean) {\n\n}\n}",
     "ctx": {
       "type": "constructor",
       "constructor": "Property",
@@ -1098,7 +1098,7 @@
     "ignore": false,
     "line": 316,
     "codeStart": 322,
-    "code": "getLabelForResourceClass(resClass: string): string {\n\n    if (resClass !== undefined) {\n\n        const resClassDef = this.resourceClasses[resClass];\n\n        if (resClassDef !== undefined && resClassDef.label !== undefined) {\n            return resClassDef.label;\n        } else {\n            return resClassDef.id;\n        }\n    } else {\n        console.log('call of OntologyInformation.getLabelForResourceClass without argument resClass');\n    }\n}",
+    "code": "getLabelForResourceClass(resClass: string): string {\n\n    if (resClass !== undefined) {\n\n        const resClassDef: ResourceClass = this.resourceClasses[resClass];\n\n        if (resClassDef !== undefined && resClassDef.label !== undefined) {\n            return resClassDef.label;\n        } else {\n            console.log(`cannot get label for ${resClass}`);\n        }\n    } else {\n        console.log('call of OntologyInformation.getLabelForResourceClass without argument resClass');\n    }\n}",
     "ctx": {
       "type": "method",
       "constructor": "OntologyInformation",
@@ -1231,7 +1231,7 @@
     "ignore": false,
     "line": 375,
     "codeStart": 381,
-    "code": "getLabelForProperty(property: string): string {\n\n    if (property !== undefined) {\n\n        const propDef = this.properties[property];\n\n        if (propDef !== undefined && propDef.label !== undefined) {\n            return propDef.label;\n        } else {\n            return propDef.id;\n        }\n    } else {\n        console.log('call of OntologyInformation.getLabelForProperty without argument property');\n    }\n}\n\n}",
+    "code": "getLabelForProperty(property: string): string {\n\n    if (property !== undefined) {\n\n        const propDef: Property = this.properties[property];\n\n        if (propDef !== undefined && propDef.label !== undefined) {\n            return propDef.label;\n        } else {\n            console.log(`cannot get label for ${property}`);\n        }\n    } else {\n        console.log('call of OntologyInformation.getLabelForProperty without argument property');\n    }\n}\n\n}",
     "ctx": {
       "type": "method",
       "constructor": "OntologyInformation",

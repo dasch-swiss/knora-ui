@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {AppDemo} from '../../app.config';
-import {DemoModule} from '../../app.interfaces';
+import { Component } from '@angular/core';
+import { AppDemo } from '../../app.config';
+import { DemoModule } from '../../app.interfaces';
 
 
 @Component({

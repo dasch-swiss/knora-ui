@@ -11,10 +11,43 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 6,
-    "codeStart": 9,
-    "code": "@Injectable({\n    providedIn: 'root',\n})\nexport class OntologyService extends ApiService {",
+    "line": 9,
+    "codeStart": 12,
+    "code": "@Injectable({\n    providedIn: 'root',\n})\nexport class OntologyService extends ApiService {\n\n\n    // ------------------------------------------------------------------------\n    // GET list of ontologies\n    // ------------------------------------------------------------------------",
     "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult> - the metadata of all ontologies.",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult> - the metadata of all ontologies.</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>DEPRECATED: You should use getAllOntologies()<br />\nRequests the metadata about all existing ontologies from Knora's ontologies route.</p>",
+      "summary": "<p>DEPRECATED: You should use getAllOntologies()<br />\nRequests the metadata about all existing ontologies from Knora's ontologies route.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 22,
+    "codeStart": 28,
+    "code": "getOntologiesMetadata(): Observable<ApiServiceResult> {\n    return this.httpGet('/v2/ontologies/metadata');\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getOntologiesMetadata",
+      "string": "getOntologiesMetadata()"
+    }
   },
   {
     "tags": [
@@ -40,13 +73,59 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 14,
-    "codeStart": 19,
-    "code": "getOntologiesMetadata(): Observable<ApiServiceResult> {\n    return this.httpGet('/v2/ontologies/metadata');\n}",
+    "line": 32,
+    "codeStart": 37,
+    "code": "getAllOntologies(): Observable<ApiServiceResult> {\n    return this.httpGet('/v2/ontologies/metadata');\n}",
     "ctx": {
       "type": "method",
-      "name": "getOntologiesMetadata",
-      "string": "getOntologiesMetadata()"
+      "name": "getAllOntologies",
+      "string": "getAllOntologies()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "projectIri",
+        "name": "projectIri",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>projectIri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult> - the metadata of project ontologies.",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult> - the metadata of project ontologies.</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Requests the ontologies of a specific project</p>",
+      "summary": "<p>Requests the ontologies of a specific project</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 41,
+    "codeStart": 47,
+    "code": "getProjectOntologies(projectIri: string): Observable<ApiServiceResult> {\n    return this.httpGet('/v2/ontologies/metadata/' + encodeURIComponent(projectIri));\n}\n\n\n// ------------------------------------------------------------------------\n// GET ontology\n// ------------------------------------------------------------------------",
+    "ctx": {
+      "type": "method",
+      "name": "getProjectOntologies",
+      "string": "getProjectOntologies()"
     }
   },
   {
@@ -87,8 +166,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 23,
-    "codeStart": 29,
+    "line": 56,
+    "codeStart": 62,
     "code": "getAllEntityDefinitionsForOntologies(ontologyIri: string): Observable<ApiServiceResult> {\n    return this.httpGet('/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri));\n}",
     "ctx": {
       "type": "method",
@@ -134,8 +213,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 33,
-    "codeStart": 39,
+    "line": 66,
+    "codeStart": 72,
     "code": "getResourceClasses(resourceClassIris: Array<string>): Observable<ApiServiceResult> {\n\n    if (resourceClassIris.length === 0) {\n        // no resource class Iris are given to query for, return a failed Observer\n        return Observable.create(observer => observer.error('No resource class Iris given for call of OntologyService.getResourceClasses'));\n    }\n\n    let resClassUriEnc = '';\n\n    resourceClassIris.forEach(function (resClassIri) {\n        resClassUriEnc = resClassUriEnc + '/' + encodeURIComponent(resClassIri.toString());\n    });\n\n    return this.httpGet('/v2/ontologies/classes' + resClassUriEnc);\n}",
     "ctx": {
       "type": "method",
@@ -181,13 +260,60 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 55,
-    "codeStart": 61,
-    "code": "getProperties(propertyIris: string[]): Observable<ApiServiceResult> {\n\n    if (propertyIris.length === 0) {\n        // no resource class Iris are given to query for, return a failed Observer\n        return Observable.create(observer => observer.error('No property Iris given for call of OntologyService.getProperties'));\n    }\n\n    let propertiesUriEnc = '';\n\n    propertyIris.forEach(function (resClassIri) {\n        propertiesUriEnc = propertiesUriEnc + '/' + encodeURIComponent(resClassIri.toString());\n    });\n\n    return this.httpGet('/v2/ontologies/properties' + propertiesUriEnc);\n\n}\n}",
+    "line": 88,
+    "codeStart": 94,
+    "code": "getProperties(propertyIris: string[]): Observable<ApiServiceResult> {\n\n    if (propertyIris.length === 0) {\n        // no resource class Iris are given to query for, return a failed Observer\n        return Observable.create(observer => observer.error('No property Iris given for call of OntologyService.getProperties'));\n    }\n\n    let propertiesUriEnc = '';\n\n    propertyIris.forEach(function (resClassIri) {\n        propertiesUriEnc = propertiesUriEnc + '/' + encodeURIComponent(resClassIri.toString());\n    });\n\n    return this.httpGet('/v2/ontologies/properties' + propertiesUriEnc);\n\n}\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
       "name": "getProperties",
       "string": "getProperties()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{NewOntology} data Data contains: projectIri, name, label",
+        "name": "data",
+        "description": "<p>Data contains: projectIri, name, label</p>",
+        "types": [
+          "NewOntology"
+        ],
+        "typesDescription": "<a href=\"NewOntology.html\">NewOntology</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<ApiServiceResult>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<ApiServiceResult></p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Create new ontology.</p>",
+      "summary": "<p>Create new ontology.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 115,
+    "codeStart": 121,
+    "code": "createOntology(data: NewOntology): Observable<ApiServiceResult> {\n    const path = '/v2/ontologies';\n\n    const ontology = {\n        'knora-api:ontologyName': data.name,\n        'knora-api:attachedToProject': {\n            '@id': data.projectIri,\n        },\n        'rdfs:label': data.label,\n        '@context': {\n            'rdfs': KnoraConstants.RdfsSchema,\n            'knora-api': KnoraConstants.KnoraApiV2WithValueObjectPath\n        }\n    };\n\n    return this.httpPost(path, ontology).pipe(\n        map((result: ApiServiceResult) => result.body),\n        catchError(this.handleJsonError)\n    );\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "createOntology",
+      "string": "createOntology()"
     }
   }
 ]

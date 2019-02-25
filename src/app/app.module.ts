@@ -1,21 +1,19 @@
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
-import { JwtInterceptor, KuiAuthenticationModule } from '@knora/authentication';
+import { KuiAuthenticationModule } from '@knora/authentication';
 import { KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
 
 import { MarkdownModule } from 'ngx-markdown';
 // set up the environment configuration
-import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 
@@ -80,10 +78,6 @@ export function initializeApp(appInitService: AppInitService) {
     };
 }
 
-export const KuiCoreConfigTokenProvider = {
-    provide: KuiCoreConfigToken,
-    useFactory: () => AppInitService.coreConfig
-};
 
 @NgModule({
     declarations: [
@@ -158,16 +152,15 @@ export const KuiCoreConfigTokenProvider = {
         {
             provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true
         },
-        KuiCoreConfigTokenProvider,
+        {
+            provide: KuiCoreConfigToken, useFactory: () => AppInitService.coreConfig
+        },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {
                 hasBackdrop: false
             }
-        },
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-
+        }
     ],
     bootstrap: [AppComponent]
 })

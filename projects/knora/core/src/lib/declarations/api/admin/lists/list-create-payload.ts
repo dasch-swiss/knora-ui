@@ -1,4 +1,4 @@
-import {StringLiteral} from '../../../';
+import { StringLiteral } from '../../../';
 
 
 export interface ListCreatePayload {

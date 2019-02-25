@@ -168,7 +168,7 @@
     "ignore": false,
     "line": 114,
     "codeStart": 121,
-    "code": "getResourceClassesAndPropertiesForOntology(ontologyIri: string): void {\n\n    // reset active resource class definition\n    this.activeResourceClass = undefined;\n\n    // reset specified properties\n    this.activeProperties = [];\n\n    this.activeOntology = ontologyIri;\n\n    this._cacheService.getEntityDefinitionsForOntologies([ontologyIri]).subscribe(\n        (ontoInfo: OntologyInformation) => {\n\n            this.resourceClasses = ontoInfo.getResourceClassesAsArray();\n            this.properties = ontoInfo.getProperties();\n\n        }\n    );\n\n}",
+    "code": "getResourceClassesAndPropertiesForOntology(ontologyIri: string): void {\n\n    // reset active resource class definition\n    this.activeResourceClass = undefined;\n\n    // reset specified properties\n    this.activeProperties = [];\n\n    this.activeOntology = ontologyIri;\n\n    this._cacheService.getEntityDefinitionsForOntologies([ontologyIri]).subscribe(\n        (ontoInfo: OntologyInformation) => {\n\n            this.resourceClasses = ontoInfo.getResourceClassesAsArray(true);\n            this.properties = ontoInfo.getProperties();\n\n        }\n    );\n\n}",
     "ctx": {
       "type": "method",
       "name": "getResourceClassesAndPropertiesForOntology",

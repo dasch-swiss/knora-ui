@@ -11,9 +11,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 103,
-    "codeStart": 110,
-    "code": "sortCriterion() {\n\n    // check if a resource class is selected and if the property's cardinality is 1 for the selected resource class\n    if (this._activeResourceClass !== undefined && this.propertySelected !== undefined && !this.propertySelected.isLinkProperty) {\n\n        const cardinalities: Cardinality[] = this._activeResourceClass.cardinalities.filter(\n            (card: Cardinality) => {\n                // cardinality 1 or max occurrence 1\n                return card.property === this.propertySelected.id\n                    && card.value === 1\n                    && (card.occurrence === CardinalityOccurrence.card || card.occurrence === CardinalityOccurrence.maxCard)\n\n            }\n        );\n\n        return cardinalities.length === 1;\n    } else {\n        return false;\n    }\n\n}",
+    "line": 104,
+    "codeStart": 111,
+    "code": "sortCriterion() {\n\n    // check if a resource class is selected and if the property's cardinality is 1 for the selected resource class\n    if (this._activeResourceClass !== undefined && this.propertySelected !== undefined && !this.propertySelected.isLinkProperty) {\n\n        const cardinalities: Cardinality[] = this._activeResourceClass.cardinalities.filter(\n            (card: Cardinality) => {\n                // cardinality 1 or max occurrence 1\n                return card.property === this.propertySelected.id\n                    && card.value === 1\n                    && (card.occurrence === CardinalityOccurrence.card || card.occurrence === CardinalityOccurrence.maxCard);\n\n            }\n        );\n\n        return cardinalities.length === 1;\n    } else {\n        return false;\n    }\n\n}",
     "ctx": {
       "type": "method",
       "name": "sortCriterion",
@@ -32,9 +32,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 132,
-    "codeStart": 135,
-    "code": "private updatePropertiesArray() {\n\n    // represent the properties as an array to be accessed by the template\n    const propsArray = [];\n\n    for (const propIri in this._properties) {\n        if (this._properties.hasOwnProperty(propIri)) {\n            const prop = this._properties[propIri];\n\n            // only list editable props that are not link value props\n            if (prop.isEditable && !prop.isLinkValueProperty) {\n                propsArray.push(this._properties[propIri]);\n            }\n        }\n    }\n\n    this.propertiesAsArray = propsArray;\n}",
+    "line": 133,
+    "codeStart": 136,
+    "code": "private updatePropertiesArray() {\n\n    // represent the properties as an array to be accessed by the template\n    const propsArray = [];\n\n    for (const propIri in this._properties) {\n        if (this._properties.hasOwnProperty(propIri)) {\n            const prop = this._properties[propIri];\n\n            // only list editable props that are not link value props\n            if (prop.isEditable && !prop.isLinkValueProperty) {\n                propsArray.push(this._properties[propIri]);\n            }\n        }\n    }\n\n    // sort properties by label (ascending)\n    propsArray.sort(OntologyInformation.sortFunc);\n\n    this.propertiesAsArray = propsArray;\n}",
     "ctx": false
   },
   {
@@ -49,8 +49,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 154,
-    "codeStart": 157,
+    "line": 158,
+    "codeStart": 161,
     "code": "getPropertySelectedWithValue(): PropertyWithValue {\n\n    const propVal: ComparisonOperatorAndValue = this.specifyPropertyValue.getComparisonOperatorAndValueLiteralForProperty();\n\n    let isSortCriterion = false;\n\n    // only non linking properties can be used for sorting\n    if (!this.propertySelected.isLinkProperty) {\n        isSortCriterion = this.form.value.isSortCriterion;\n    }\n\n    return new PropertyWithValue(this.propertySelected, propVal, isSortCriterion);\n\n}\n\n\n}",
     "ctx": {
       "type": "method",
