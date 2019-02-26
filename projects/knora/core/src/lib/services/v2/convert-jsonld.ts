@@ -48,7 +48,8 @@ export module ConvertJSONLD {
             && propName !== KnoraConstants.creationDate
             && propName !== KnoraConstants.lastModificationDate
             && propName !== KnoraConstants.hasPermissions
-            && propName !== KnoraConstants.ArkUrl;
+            && propName !== KnoraConstants.ArkUrl
+            && propName !== KnoraConstants.versionArkUrl;
     };
 
 
@@ -194,6 +195,7 @@ export module ConvertJSONLD {
 
                 break;
 
+            // TODO: handle movingImageFileValue and the others here...
             case KnoraConstants.StillImageFileValue:
 
                 const stillImageFileValue: ReadStillImageFileValue = new ReadStillImageFileValue(
@@ -304,7 +306,7 @@ export module ConvertJSONLD {
 
             default:
                 // unsupported value type
-                console.error('ERROR: value type not implemented yet: ' + propValue['@type']);
+                console.error('ERROR: value type not implemented yet: ' + propValue['@type'] + '(' + propValue['@id'] + ')');
                 break;
         }
 
