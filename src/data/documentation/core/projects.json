@@ -183,7 +183,7 @@
     "ignore": false,
     "line": 55,
     "codeStart": 61,
-    "code": "getProjectByShortcode(shortcode: string): Observable<Project> {\n    const url = '/admin/projects/shortcode' + shortcode;\n    return this.getProject(url);\n}",
+    "code": "getProjectByShortcode(shortcode: string): Observable<Project> {\n    const url = '/admin/projects/shortcode/' + shortcode;\n    return this.getProject(url);\n}",
     "ctx": {
       "type": "method",
       "name": "getProjectByShortcode",
