@@ -166,7 +166,7 @@ export class UsersService extends ApiService {
      * Add user to the admin system.
      *
      * @param {string} userIri
-     * @param {any} data
+     * @param {any} data            // which data do we have here? Is it necessary?
      * @returns Observable<User>
      */
     addUserToSystemAdmin(userIri: string, data: any): Observable<User> {
@@ -176,6 +176,13 @@ export class UsersService extends ApiService {
             catchError(this.handleJsonError)
         );
     }
+
+    // TODO: add user to other groups than system group
+    /*
+    addUserToGroup(userIri: string, groupIri: string): Observable<User> {
+
+    }
+    */
 
     /**
      * Activate user.
@@ -240,6 +247,13 @@ export class UsersService extends ApiService {
             catchError(this.handleJsonError)
         );
     }
+
+    // TODO: updat user profile data
+    /*
+    updateUsersData(userIri: string, data: any): Observable<User> {
+
+    }
+    */
 
     // ------------------------------------------------------------------------
     // DELETE

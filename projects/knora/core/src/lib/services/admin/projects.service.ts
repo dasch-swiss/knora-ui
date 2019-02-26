@@ -59,7 +59,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<Project>
      */
     getProjectByShortcode(shortcode: string): Observable<Project> {
-        const url = '/admin/projects/shortcode' + shortcode;
+        const url = '/admin/projects/shortcode/' + shortcode;
         return this.getProject(url);
     }
 
