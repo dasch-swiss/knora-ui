@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ApiService } from '../api.service';
 import {
-    ApiServiceResult,
+    ApiServiceResult, Group,
     User,
     UserResponse,
     UsersResponse
@@ -76,6 +76,20 @@ export class UsersService extends ApiService {
      */
     getUserByUsername(username: string): Observable<User> {
         return this.getUser(username, 'username');
+    }
+
+    /**
+     * Get all groups, where the user is member of
+     *
+     * @param userIri
+     */
+    getUsersGroupMemberships(userIri: string): Observable<Group[]> {
+        const path = '/admin/users/iri/' + userIri + '/group-memberships';
+        return this.httpGet(path).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).groups),
+            catchError(this.handleJsonError)
+        );
+
     }
 
     // ------------------------------------------------------------------------
@@ -156,6 +170,36 @@ export class UsersService extends ApiService {
         );
     }
 
+    /**
+     * add user to project specific group
+     *
+     * @param userIri
+     * @param groupIri
+     */
+    addUserToGroup(userIri: string, groupIri: string): Observable<User> {
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships/' + encodeURIComponent(groupIri);
+        return this.httpPost(path).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+
+    }
+
+    /**
+     * remove user from project specific group
+     *
+     * @param userIri
+     * @param groupIri
+     */
+    removeUserFromGroup(userIri: string, groupIri: string): Observable<User> {
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships/' + encodeURIComponent(groupIri);
+        return this.httpDelete(path).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+
+    }
+
 
     // ------------------------------------------------------------------------
     // PUT
@@ -166,12 +210,11 @@ export class UsersService extends ApiService {
      * Add user to the admin system.
      *
      * @param {string} userIri
-     * @param {any} data
      * @returns Observable<User>
      */
-    addUserToSystemAdmin(userIri: string, data: any): Observable<User> {
+    addUserToSystemAdmin(userIri: string): Observable<User> {
         const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/SystemAdmin';
-        return this.httpPut(path, data).pipe(
+        return this.httpPut(path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
@@ -234,6 +277,20 @@ export class UsersService extends ApiService {
             newPassword: newPassword,
             requesterPassword: requesterPassword
         };
+
+        return this.httpPut(path, data).pipe(
+            map((result: ApiServiceResult) => result.getBody(UserResponse).user),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    /**
+     * Update basic user information: given name, family name
+     * @param userIri
+     * @param data
+     */
+    updateUsersData(userIri: string, data: any): Observable<User> {
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/BasicUserInformation';
 
         return this.httpPut(path, data).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
