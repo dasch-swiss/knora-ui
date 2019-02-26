@@ -4459,6 +4459,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Remove user from the admin system.
      * @param userIri
+     * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromSystemAdmin = function (userIri) {
         var data = {
@@ -4473,6 +4474,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param userIri
      * @param data
+     *
+     * @returns Observable<User>
      */
     UsersService.prototype.updateUserSystemAdmin = function (userIri, data) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/SystemAdmin';
@@ -14014,6 +14017,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Remove user from the admin system.
      * @param userIri
+     * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromSystemAdmin = function (userIri) {
         var data = {
@@ -14028,6 +14032,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      *
      * @param userIri
      * @param data
+     *
+     * @returns Observable<User>
      */
     UsersService.prototype.updateUserSystemAdmin = function (userIri, data) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/SystemAdmin';
