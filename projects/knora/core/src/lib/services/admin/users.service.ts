@@ -210,23 +210,45 @@ export class UsersService extends ApiService {
      * Add user to the admin system.
      *
      * @param {string} userIri
-     * @param {any} data            // which data do we have here? Is it necessary?
      * @returns Observable<User>
      */
     addUserToSystemAdmin(userIri: string): Observable<User> {
+        const data = {
+            'newSystemAdminMembershipStatus': true
+        };
+
+        return this.updateUserSystemAdmin(userIri, data);
+
+    }
+
+    /**
+     * Remove user from the admin system.
+     * @param userIri
+     */
+    removeUserFromSystemAdmin(userIri: string): Observable<User> {
+        const data = {
+            'newSystemAdminMembershipStatus': false
+        };
+
+        return this.updateUserSystemAdmin(userIri, data);
+    }
+
+    /**
+     * Update user system admin membership
+     * @ignore
+     *
+     *
+     * @param userIri
+     * @param data
+     */
+    private updateUserSystemAdmin(userIri: string, data: any): Observable<User> {
         const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/SystemAdmin';
-        return this.httpPut(path).pipe(
+        return this.httpPut(path, data).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),
             catchError(this.handleJsonError)
         );
     }
 
-    // TODO: add user to other groups than system group
-    /*
-    addUserToGroup(userIri: string, groupIri: string): Observable<User> {
-
-    }
-    */
 
     /**
      * Activate user.
@@ -297,7 +319,7 @@ export class UsersService extends ApiService {
      * @param userIri
      * @param data
      */
-    updateUsersData(userIri: string, data: any): Observable<User> {
+    updateBasicUserInformation(userIri: string, data: any): Observable<User> {
         const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/BasicUserInformation';
 
         return this.httpPut(path, data).pipe(
