@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule, MatListModule, MatTabsModule } from '@angular/material';
+import { MatCardModule, MatIconModule, MatListModule, MatTabsModule } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -26,6 +26,7 @@ describe('SearchResultsComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
+                MatCardModule,
                 MatIconModule,
                 MatListModule,
                 MatTabsModule,
