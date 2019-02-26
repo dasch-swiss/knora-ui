@@ -181,7 +181,7 @@ describe('ProjectsService', () => {
 
             const jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
 
-            const result: ProjectsResponse = jsonConvert.deserialize(projectsResponseJson, ProjectsResponse);
+            const result: ProjectsResponse | ProjectsResponse[] = jsonConvert.deserialize(projectsResponseJson, ProjectsResponse);
             // console.log(result);
 
             expect(result).toBeTruthy();
@@ -191,7 +191,7 @@ describe('ProjectsService', () => {
 
             const jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
 
-            const result: ProjectResponse = jsonConvert.deserialize(imagesProjectResponseJson, ProjectResponse);
+            const result: ProjectResponse | ProjectResponse[] = jsonConvert.deserialize(imagesProjectResponseJson, ProjectResponse);
 
             expect(result).toBeTruthy();
         });
@@ -200,7 +200,7 @@ describe('ProjectsService', () => {
 
             const jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
 
-            const result: ProjectResponse = jsonConvert.deserialize(incunabulaProjectResponseJson, ProjectResponse);
+            const result: ProjectResponse | ProjectResponse[] = jsonConvert.deserialize(incunabulaProjectResponseJson, ProjectResponse);
 
             expect(result).toBeTruthy();
         });
@@ -209,7 +209,7 @@ describe('ProjectsService', () => {
 
             const jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
 
-            const result: ProjectResponse = jsonConvert.deserialize(anythingProjectResponseJson, ProjectResponse);
+            const result: ProjectResponse | ProjectResponse[] = jsonConvert.deserialize(anythingProjectResponseJson, ProjectResponse);
 
             expect(result).toBeTruthy();
         });

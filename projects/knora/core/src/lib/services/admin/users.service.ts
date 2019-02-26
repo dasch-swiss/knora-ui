@@ -224,6 +224,7 @@ export class UsersService extends ApiService {
     /**
      * Remove user from the admin system.
      * @param userIri
+     * @returns Observable<User>
      */
     removeUserFromSystemAdmin(userIri: string): Observable<User> {
         const data = {
@@ -240,6 +241,8 @@ export class UsersService extends ApiService {
      *
      * @param userIri
      * @param data
+     *
+     * @returns Observable<User>
      */
     private updateUserSystemAdmin(userIri: string, data: any): Observable<User> {
         const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/SystemAdmin';
