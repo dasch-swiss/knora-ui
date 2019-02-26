@@ -225,4 +225,4 @@ $ yalc remove --all
 
 ---
 
-## Required version of Knora: 5.0.0-3-3c4d9652 
+## Required version of Knora: 5.0.0-9-5995f614
