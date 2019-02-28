@@ -15,8 +15,8 @@
     "dhlab basel"
   ],
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
+    "@angular/common": "^7.2.7",
+    "@angular/core": "^7.2.7",
     "@knora/core": "6.7.0",
     "@knora/viewer": "6.7.0",
     "jdnconvertiblecalendardateadapter": "^0.0.7"
