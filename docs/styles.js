@@ -654,10 +654,10 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/subotic/_github.com/dhlab-basel/Knora-ui/node_modules/prismjs/themes/prism-okaidia.css */"./node_modules/prismjs/themes/prism-okaidia.css");
-__webpack_require__(/*! /Users/subotic/_github.com/dhlab-basel/Knora-ui/src/assets/style/mat-teal-amber.scss */"./src/assets/style/mat-teal-amber.scss");
-__webpack_require__(/*! /Users/subotic/_github.com/dhlab-basel/Knora-ui/src/assets/style/main.scss */"./src/assets/style/main.scss");
-module.exports = __webpack_require__(/*! /Users/subotic/_github.com/dhlab-basel/Knora-ui/src/styles.scss */"./src/styles.scss");
+__webpack_require__(/*! /Users/ak/Code/knora-ui/node_modules/prismjs/themes/prism-okaidia.css */"./node_modules/prismjs/themes/prism-okaidia.css");
+__webpack_require__(/*! /Users/ak/Code/knora-ui/src/assets/style/mat-teal-amber.scss */"./src/assets/style/mat-teal-amber.scss");
+__webpack_require__(/*! /Users/ak/Code/knora-ui/src/assets/style/main.scss */"./src/assets/style/main.scss");
+module.exports = __webpack_require__(/*! /Users/ak/Code/knora-ui/src/styles.scss */"./src/styles.scss");
 
 
 /***/ })

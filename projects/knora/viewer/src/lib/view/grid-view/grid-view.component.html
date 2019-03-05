@@ -1,3 +1,38 @@
-<p>
-  grid-view works!
-</p>
+<div>
+  <kui-progress-indicator *ngIf="isLoading" [color]="'#D88958'"></kui-progress-indicator>
+
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="grid">
+
+    <div fxFlex.sm="50" fxFlex.md="33.3" fxFlex.lg="20" fxFlex.xl="16.6" fxFlex="16.6" *ngFor="let res of result" class="gv-preview">
+      <mat-card class="link">
+
+        <mat-card-subtitle>{{ontologyInfo?.getLabelForResourceClass(res.type)}}</mat-card-subtitle>
+        <mat-card-title>{{res.label}}</mat-card-title>
+
+
+        <mat-card-content *ngFor="let prop of res.properties | kuiKey">
+          <!-- description -->
+          <div *ngFor="let val of prop.value | kuiKey">
+            <div [ngSwitch]="val.value.getClassName()">
+              <div class="lv-html-text" *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml">
+                <kui-text-value-as-html [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="false"></kui-text-value-as-html>
+                <p class="lv-read-more"></p>
+              </div>
+              <div>
+                <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value>
+                <span *ngSwitchDefault="">{{val.value.getContent()}}</span>
+              </div>
+              <br>
+              <span *ngIf="ontologyInfo?.getLabelForProperty(prop.key) !== 'Text'">
+                {{ontologyInfo?.getLabelForProperty(prop.key)}}
+              </span>
+            </div>
+          </div>
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+  </div>
+
+
+</div>

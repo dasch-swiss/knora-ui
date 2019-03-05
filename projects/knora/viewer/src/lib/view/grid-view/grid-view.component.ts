@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { KnoraConstants } from '@knora/core';
 
 @Component({
   selector: 'kui-grid-view',
@@ -6,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./grid-view.component.scss']
 })
 export class GridViewComponent implements OnInit {
+
+  @Input() result;
+  @Input() ontologyInfo;
+  @Input() isLoading;
+
+  KnoraConstants = KnoraConstants;
 
   constructor() { }
 
