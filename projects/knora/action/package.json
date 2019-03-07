@@ -20,6 +20,6 @@
     "@angular/material": "^7.3.3",
     "ts-md5": "^1.2.4",
     "jdnconvertiblecalendar": "^0.0.2",
-    "jdnconvertiblecalendardateadapter": "^0.0.7"
+    "jdnconvertiblecalendardateadapter": "^0.0.8"
   }
 }
