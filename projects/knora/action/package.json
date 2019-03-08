@@ -19,7 +19,7 @@
     "@angular/cdk": "^7.3.3",
     "@angular/material": "^7.3.3",
     "ts-md5": "^1.2.4",
-    "jdnconvertiblecalendar": "^0.0.2",
-    "jdnconvertiblecalendardateadapter": "^0.0.8"
+    "jdnconvertiblecalendar": "^0.0.3",
+    "jdnconvertiblecalendardateadapter": "^0.0.9"
   }
 }

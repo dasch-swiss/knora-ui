@@ -19,6 +19,6 @@
     "@angular/core": "^7.2.7",
     "@knora/core": "7.0.0",
     "@knora/viewer": "7.0.0",
-    "jdnconvertiblecalendardateadapter": "^0.0.8"
+    "jdnconvertiblecalendardateadapter": "^0.0.9"
   }
 }
