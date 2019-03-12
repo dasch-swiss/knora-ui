@@ -6,7 +6,7 @@
 
 This is the demo and developing environment for Knora ui modules.
 
-The modules helps to create a graphical user interface, a web application to use [Knora](https://knora.org) in a quick and simple way. The modules are written in typescript to use them with [Angular](https://angular.io) (version 6). We decided to style the components and directives with [material design](https://material.angular.io).
+The modules helps to create a graphical user interface, a web application to use [Knora](https://www.knora.org) in a quick and simple way. The modules are written in typescript to use them with [Angular](https://angular.io) (version 6). We decided to style the components and directives with [material design](https://material.angular.io).
 
 But you can use only @knora/core which contains almost all services for the Knora web API. Knora is a software framework for storing, sharing, and working with primary sources and data in the humanities.
 
@@ -112,7 +112,7 @@ Before using the module inside of the app, you have to rebuild after the changes
 
 Run the app with `ng s`. The demo app runs on http://localhost:4200 and we use it for documentation on [Knora-ui Github page](https://dhlab-basel.github.io/Knora-ui).
 
-There's a test environment for the modules on http://localhost:4200/playground
+There's a test environment for the modules on https://github.com/dhlab-basel/knora-ui-playground with yalc
 
  ---
 
