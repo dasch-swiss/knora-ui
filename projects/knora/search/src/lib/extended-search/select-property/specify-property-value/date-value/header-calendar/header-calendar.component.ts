@@ -2,7 +2,7 @@ import { Component, Directive, Host, Inject, Input, OnDestroy, OnInit } from '@a
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { KnoraConstants, PropertyValue, Value, ValueLiteral } from '@knora/core';
 import { GregorianCalendarDate, JDNConvertibleCalendar, JDNPeriod } from 'jdnconvertiblecalendar';
-import { DateAdapter, MAT_DATE_LOCALE, MatCalendar } from '@angular/material';
+import { DateAdapter, MAT_DATE_LOCALE, MatCalendar, MatDatepickerContent } from '@angular/material';
 import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateadapter';
 
 /** Custom header component containing a calendar format switcher */
@@ -19,6 +19,7 @@ import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateada
 export class HeaderComponent<D> implements OnInit {
     constructor(@Host() private _calendar: MatCalendar<JDNConvertibleCalendar>,
         private _dateAdapter: DateAdapter<JDNConvertibleCalendar>,
+        private _datepickerContent: MatDatepickerContent<JDNConvertibleCalendar>,
         @Inject(FormBuilder) private fb: FormBuilder) {
     }
 
@@ -68,13 +69,10 @@ export class HeaderComponent<D> implements OnInit {
             this._calendar.activeDate = convertedDate;
 
             // select the new date in the datepicker UI
-            this._calendar._dateSelected(convertedDate);
+            this._datepickerContent.datepicker.select(convertedDate);
 
             // update view after calendar format conversion
-            const view = this._calendar.currentView === 'month' ? this._calendar.monthView :
-                (this._calendar.currentView === 'year' ? this._calendar.yearView : this._calendar.multiYearView);
-
-            view.ngAfterContentInit();
+            this._calendar.updateTodaysDate();
         } else {
             console.log('date adapter is expected to be an instance of JDNConvertibleCalendarDateAdapter');
         }

@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 import { KuiActionModule } from '@knora/action';
-import { KuiCoreModule } from '@knora/core';
+import { KuiCoreConfig, KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
 
 import { LoginFormComponent } from './login-form.component';
 
@@ -28,6 +28,10 @@ describe('LoginFormComponent', () => {
                 LoginFormComponent
             ],
             providers: [
+                {
+                    provide: KuiCoreConfigToken,
+                    useValue: KuiCoreConfig
+                },
                 HttpClient
             ]
         })

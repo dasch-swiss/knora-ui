@@ -1,6 +1,6 @@
 {
   "name": "@knora/core",
-  "version": "6.7.0",
+  "version": "7.0.0",
   "description": "Knora ui module: core",
   "repository": {
     "type": "git",
@@ -15,8 +15,8 @@
     "dhlab basel"
   ],
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
+    "@angular/common": "^7.2.7",
+    "@angular/core": "^7.2.7",
     "json2typescript": "^1.0.6",
     "jsonld": "^1.1.0"
   }
