@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ApiService } from '../api.service';
 import {
-    ApiServiceResult, Group,
+    ApiServiceResult,
+    Group,
+    GroupsResponse,
     User,
     UserResponse,
     UsersResponse
@@ -82,11 +84,12 @@ export class UsersService extends ApiService {
      * Get all groups, where the user is member of
      *
      * @param userIri
+     * @returns Observable<User>
      */
     getUsersGroupMemberships(userIri: string): Observable<Group[]> {
         const path = '/admin/users/iri/' + userIri + '/group-memberships';
         return this.httpGet(path).pipe(
-            map((result: ApiServiceResult) => result.getBody(UserResponse).groups),
+            map((result: ApiServiceResult) => result.getBody(GroupsResponse).groups),
             catchError(this.handleJsonError)
         );
 
