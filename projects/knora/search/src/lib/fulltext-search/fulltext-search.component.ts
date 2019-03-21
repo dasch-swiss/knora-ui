@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Project, ProjectsService, ApiServiceError } from '@knora/core';
 
 @Component({
     selector: 'kui-fulltext-search',
@@ -21,6 +22,10 @@ export class FulltextSearchComponent implements OnInit {
 
     @Input() route: string = '/search';
 
+    @Input() projectfilter: boolean = false;
+
+    @ViewChild('search') searchField: ElementRef;
+
     searchQuery: string;
 
     showSimpleSearch: boolean = true;
@@ -33,12 +38,21 @@ export class FulltextSearchComponent implements OnInit {
 
     searchLabel: string = 'Search';
 
+    projects: Project[];
+    projectLabel: string;
+    projectIri: string;
 
     constructor(private _route: ActivatedRoute,
-        private _router: Router) {
+        private _router: Router,
+        private _projectsService: ProjectsService) {
     }
 
     ngOnInit() {
+        this.getAllProjects();
+
+        if (localStorage.getItem('currentProject') !== null) {
+            this.setProject(JSON.parse(localStorage.getItem('currentProject')));
+        }
     }
 
 
@@ -53,7 +67,7 @@ export class FulltextSearchComponent implements OnInit {
         this.focusOnSimple = 'active';
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
         if (this.searchQuery && (event.key === 'Enter' || event.keyCode === 13 || event.which === 13)) {
-            this.doSearch(search_ele);
+            this.doSearch();
         }
         if (event.key === 'Escape' || event.keyCode === 27 || event.which === 27) {
             this.resetSearch(search_ele);
@@ -66,10 +80,15 @@ export class FulltextSearchComponent implements OnInit {
      * @param {HTMLElement} search_ele
      * @returns void
      */
-    doSearch(search_ele: HTMLElement): void {
+    doSearch(): void {
         if (this.searchQuery !== undefined && this.searchQuery !== null) {
             this.toggleMenu();
-            this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);
+
+            if (this.projectIri !== undefined) {
+                this._router.navigate([this.route + '/fulltext/' + this.searchQuery + '/' + encodeURIComponent(this.projectIri)]);
+            } else {
+                this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);
+            }
 
             // this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });
 
@@ -86,7 +105,8 @@ export class FulltextSearchComponent implements OnInit {
             existingPrevSearch.push(this.searchQuery);
             localStorage.setItem('prevSearch', JSON.stringify(existingPrevSearch));
         } else {
-            search_ele.focus();
+            // search_ele.focus();
+            this.searchField.nativeElement.focus();
             this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
         }
     }
@@ -154,5 +174,37 @@ export class FulltextSearchComponent implements OnInit {
         }
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
 
+    }
+
+    getAllProjects() {
+        this._projectsService.getAllProjects().subscribe(
+            (projects: Project[]) => {
+                this.projects = projects;
+                // this.loadSystem = false;
+                if (localStorage.getItem('currentProject') !== null) {
+                    this.projectLabel = JSON.parse(
+                        localStorage.getItem('currentProject')
+                    ).shortname;
+                }
+            },
+            (error: ApiServiceError) => {
+                console.error(error);
+            }
+        );
+    }
+
+    setProject(project?: Project) {
+        this.searchField.nativeElement.focus();
+        if (!project) {
+            // set default project: all
+            this.projectLabel = 'Filter project';
+            this.projectIri = undefined;
+            localStorage.removeItem('currentProject');
+        } else {
+            this.projectLabel = project.shortname;
+            this.projectIri = project.id;
+            // get project by shortname
+            localStorage.setItem('currentProject', JSON.stringify(project));
+        }
     }
 }

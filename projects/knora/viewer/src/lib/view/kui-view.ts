@@ -23,6 +23,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
     abstract gravsearchGenerator: ExtendedSearchParams;
     abstract searchQuery: string;
     abstract searchMode: string;
+    abstract projectIri: string;
     abstract numberOfAllResults: number;
     abstract KnoraConstants: KnoraConstants;
     abstract rerender: boolean;
@@ -40,6 +41,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
     ngOnInit() {
         this.navigationSubscription = this._route.paramMap.subscribe((params: Params) => {
             this.searchMode = params.get('mode');
+            this.projectIri = params.get('project');
 
             // init offset  and result
             this.offset = 0;
@@ -87,6 +89,10 @@ export abstract class KuiView implements OnInit, OnDestroy {
 
         // FULLTEXT SEARCH
         if (this.searchMode === 'fulltext') {
+
+            if (this.projectIri !== null && this.projectIri !== undefined) {
+                this.searchQuery += '?limitToProject=' + this.projectIri;
+            }
 
             if (this.offset === 0) {
                 // perform count query

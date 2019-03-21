@@ -32,6 +32,7 @@ export class SearchResultsComponent extends KuiView {
   rerender: boolean = false;
   searchQuery: string;
   searchMode: string;
+  projectIri: string;
   isLoading = true;
   errorMessage: any = undefined;
   navigationSubscription: Subscription;
