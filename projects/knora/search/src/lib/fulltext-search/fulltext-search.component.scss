@@ -157,6 +157,14 @@ $border-radius: 4px;
         mat-icon {
           display: none;
         }
+
+        .kui-previous-search-item {
+          display: inherit;
+
+          .search-query {
+            font-weight: bold;
+          }
+        }
       }
     }
 
@@ -207,23 +215,20 @@ $border-radius: 4px;
 }
 
 // filter by project: select project
-.search-project-filter {
+.project-filter-btn {
+  font-size: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: $project-filter-width;
 
-  .project-filter-btn {
-    font-size: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: $project-filter-width;
+  .label {
+    font-weight: bold;
+  }
 
-    .label {
-      font-weight: bold;
-    }
-
-    .icon {
-      // set the icon to the same line as the text/label is
-      vertical-align: middle;
-      position: relative;
-      top: -1px
-    }
+  .icon {
+    // set the icon to the same line as the text/label is
+    vertical-align: middle;
+    position: relative;
+    top: -1px
   }
 }

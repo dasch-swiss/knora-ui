@@ -1,25 +1,35 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+    animate,
+    state,
+    style,
+    transition,
+    trigger
+} from '@angular/animations';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Project, ProjectsService, ApiServiceError } from '@knora/core';
+import { ApiServiceError, Project, ProjectsService } from '@knora/core';
+
+export interface PrevSearchItem {
+    projectIri?: string;
+    projectLabel?: string;
+    query: string;
+}
+
 
 @Component({
     selector: 'kui-fulltext-search',
     templateUrl: './fulltext-search.component.html',
     styleUrls: ['./fulltext-search.component.scss'],
     animations: [
-        trigger('fulltextSearchMenu',
-            [
-                state('inactive', style({ display: 'none' })),
-                state('active', style({ display: 'block' })),
-                transition('inactive => active', animate('100ms ease-in')),
-                transition('active => inactive', animate('100ms ease-out'))
-            ]
-        )
+        trigger('fulltextSearchMenu', [
+            state('inactive', style({ display: 'none' })),
+            state('active', style({ display: 'block' })),
+            transition('inactive => active', animate('100ms ease-in')),
+            transition('active => inactive', animate('100ms ease-out'))
+        ])
     ]
 })
 export class FulltextSearchComponent implements OnInit {
-
     @Input() route: string = '/search';
 
     @Input() projectfilter: boolean = false;
@@ -32,29 +42,33 @@ export class FulltextSearchComponent implements OnInit {
 
     searchPanelFocus: boolean = false;
 
-    prevSearch: string[] = JSON.parse(localStorage.getItem('prevSearch'));
+    prevSearch: PrevSearchItem[] = JSON.parse(localStorage.getItem('prevSearch'));
 
     focusOnSimple: string = 'inactive';
 
     searchLabel: string = 'Search';
 
     projects: Project[];
-    projectLabel: string;
+    projectLabel: string = 'Filter project';
     projectIri: string;
 
-    constructor(private _route: ActivatedRoute,
+    constructor(
+        private _route: ActivatedRoute,
         private _router: Router,
-        private _projectsService: ProjectsService) {
-    }
+        private _projectsService: ProjectsService
+    ) {}
 
     ngOnInit() {
-        this.getAllProjects();
+        if (this.projectfilter) {
+            this.getAllProjects();
 
-        if (localStorage.getItem('currentProject') !== null) {
-            this.setProject(JSON.parse(localStorage.getItem('currentProject')));
+            if (localStorage.getItem('currentProject') !== null) {
+                this.setProject(
+                    JSON.parse(localStorage.getItem('currentProject'))
+                );
+            }
         }
     }
-
 
     /**
      * @ignore
@@ -66,16 +80,25 @@ export class FulltextSearchComponent implements OnInit {
     onKey(search_ele: HTMLElement, event): void {
         this.focusOnSimple = 'active';
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-        if (this.searchQuery && (event.key === 'Enter' || event.keyCode === 13 || event.which === 13)) {
+        if (
+            this.searchQuery &&
+            (event.key === 'Enter' ||
+                event.keyCode === 13 ||
+                event.which === 13)
+        ) {
             this.doSearch();
         }
-        if (event.key === 'Escape' || event.keyCode === 27 || event.which === 27) {
+        if (
+            event.key === 'Escape' ||
+            event.keyCode === 27 ||
+            event.which === 27
+        ) {
             this.resetSearch(search_ele);
         }
     }
 
-
     /**
+     * @ignore
      * Realise a simple search
      * @param {HTMLElement} search_ele
      * @returns void
@@ -85,25 +108,56 @@ export class FulltextSearchComponent implements OnInit {
             this.toggleMenu();
 
             if (this.projectIri !== undefined) {
-                this._router.navigate([this.route + '/fulltext/' + this.searchQuery + '/' + encodeURIComponent(this.projectIri)]);
+                this._router.navigate([
+                    this.route +
+                        '/fulltext/' +
+                        this.searchQuery +
+                        '/' +
+                        encodeURIComponent(this.projectIri)
+                ]);
             } else {
-                this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);
+                this._router.navigate([
+                    this.route + '/fulltext/' + this.searchQuery
+                ]);
             }
 
             // this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });
 
             // push the search query into the local storage prevSearch array (previous search)
             // to have a list of recent search requests
-            let existingPrevSearch: string[] = JSON.parse(localStorage.getItem('prevSearch'));
-            if (existingPrevSearch === null) { existingPrevSearch = []; }
+            let existingPrevSearch: PrevSearchItem[] = JSON.parse(
+                localStorage.getItem('prevSearch')
+            );
+            if (existingPrevSearch === null) {
+                existingPrevSearch = [];
+            }
             let i: number = 0;
             for (const entry of existingPrevSearch) {
                 // remove entry, if exists already
-                if (this.searchQuery === entry) { existingPrevSearch.splice(i, 1); }
+                if (this.searchQuery === entry.query) {
+                    existingPrevSearch.splice(i, 1);
+                }
                 i++;
             }
-            existingPrevSearch.push(this.searchQuery);
-            localStorage.setItem('prevSearch', JSON.stringify(existingPrevSearch));
+
+            let currentQuery: PrevSearchItem = {
+                query: this.searchQuery
+            };
+
+            if (this.projectfilter) {
+                currentQuery = {
+                    projectIri: this.projectIri,
+                    projectLabel: this.projectLabel,
+                    query: this.searchQuery
+                };
+            }
+
+            existingPrevSearch.push(currentQuery);
+
+            localStorage.setItem(
+                'prevSearch',
+                JSON.stringify(existingPrevSearch)
+            );
         } else {
             // search_ele.focus();
             this.searchField.nativeElement.focus();
@@ -112,6 +166,7 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Reset the search
      * @param {HTMLElement} search_ele
      * @returns void
@@ -124,6 +179,7 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Switch according to the focus between simple or extended search
      *
      * @param {string} name 2 cases: simpleSearch or extendedSearch
@@ -131,11 +187,13 @@ export class FulltextSearchComponent implements OnInit {
      */
     toggleMenu(): void {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-        this.focusOnSimple = (this.focusOnSimple === 'active' ? 'inactive' : 'active');
+        this.focusOnSimple =
+            this.focusOnSimple === 'active' ? 'inactive' : 'active';
         this.showSimpleSearch = true;
     }
 
     /**
+     * @ignore
      * Set simple focus to active
      *
      * @returns void
@@ -147,17 +205,39 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Realise a previous search
      * @param {string} query
      * @returns void
      */
-    doPrevSearch(query: string): void {
-        this.searchQuery = query;
-        this._router.navigate([this.route + '/fulltext/' + query], { relativeTo: this._route });
+    doPrevSearch(search: PrevSearchItem): void {
+        // TODO: we should combine it with do search!
+        this.searchQuery = search.query;
+
+        if (search.projectIri !== undefined) {
+            this._router.navigate([
+                this.route +
+                    '/fulltext/' +
+                    this.searchQuery +
+                    '/' +
+                    encodeURIComponent(search.projectIri)
+            ]);
+        } else {
+            this._router.navigate([
+                this.route + '/fulltext/' + this.searchQuery
+            ]);
+        }
+
+        /*
+        this._router.navigate([this.route + '/fulltext/' + query], {
+            relativeTo: this._route
+        });
+        */
         this.toggleMenu();
     }
 
     /**
+     * @ignore
      * Reset previous searches - the whole previous search or specific item by name
      * @param {string} name term of the search
      * @returns void
@@ -165,7 +245,7 @@ export class FulltextSearchComponent implements OnInit {
     resetPrevSearch(name: string = null): void {
         if (name) {
             // delete only this item with the name ...
-            const i: number = this.prevSearch.indexOf(name);
+            const i: number = this.prevSearch.indexOf({query: name});
             this.prevSearch.splice(i, 1);
             localStorage.setItem('prevSearch', JSON.stringify(this.prevSearch));
         } else {
@@ -173,9 +253,12 @@ export class FulltextSearchComponent implements OnInit {
             localStorage.removeItem('prevSearch');
         }
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-
     }
 
+    /**
+     * @ignore
+     * get all projects for "filter by project" selection
+     */
     getAllProjects() {
         this._projectsService.getAllProjects().subscribe(
             (projects: Project[]) => {
@@ -193,6 +276,12 @@ export class FulltextSearchComponent implements OnInit {
         );
     }
 
+    /**
+     * @ignore
+     * set the project to use and store it in the local storage
+     *
+     * @param project
+     */
     setProject(project?: Project) {
         this.searchField.nativeElement.focus();
         if (!project) {
