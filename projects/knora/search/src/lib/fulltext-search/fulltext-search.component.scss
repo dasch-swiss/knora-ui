@@ -185,7 +185,7 @@ $border-radius: 4px;
     .input-field {
 
       input {
-        width: calc(#{$search-width-small-device} - 80px);
+        width: calc(#{$search-width-small-device} - 40px);
       }
     }
 
@@ -204,14 +204,14 @@ $border-radius: 4px;
       &.input-field {
 
         input {
-          width: calc(#{$search-width-small-device} - 160px - 80px);
+          width: calc(#{$search-width-small-device} - 160px - 40px);
         }
       }
     }
   }
 
   .kui-menu.simple-search {
-    width: calc(#{$search-width-small-device} - 80px);
+    width: calc(#{$search-width-small-device} - 40px);
   }
 }
 
