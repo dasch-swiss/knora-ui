@@ -30,9 +30,20 @@ export interface PrevSearchItem {
     ]
 })
 export class FulltextSearchComponent implements OnInit {
+    /**
+     * route to navigate, where the search result component is used
+     */
     @Input() route: string = '/search';
 
-    @Input() projectfilter: boolean = false;
+    /**
+     * if true it shows the selection of projects to filter by one
+     */
+    @Input() projectfilter?: boolean = false;
+
+    /**
+     * project iri to filter by
+     */
+    @Input() filterbyproject?: string;
 
     @ViewChild('search') searchField: ElementRef;
 
@@ -59,6 +70,9 @@ export class FulltextSearchComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        if (this.filterbyproject) {
+            this.getProject(this.filterbyproject);
+        }
         if (this.projectfilter) {
             this.getAllProjects();
 
@@ -279,6 +293,23 @@ export class FulltextSearchComponent implements OnInit {
                         localStorage.getItem('currentProject')
                     ).shortname;
                 }
+            },
+            (error: ApiServiceError) => {
+                console.error(error);
+            }
+        );
+    }
+
+    /**
+     * @ignore
+     * get project information in case of @Input project
+     *
+     * @param iri
+     */
+    getProject(iri: string) {
+        this._projectsService.getProjectByIri(iri).subscribe(
+            (project: Project) => {
+                this.setProject(project);
             },
             (error: ApiServiceError) => {
                 console.error(error);
