@@ -164,7 +164,7 @@ export class FulltextSearchComponent implements OnInit {
                 query: this.searchQuery
             };
 
-            if (this.projectfilter && this.projectIri) {
+            if (this.projectIri) {
                 currentQuery = {
                     projectIri: this.projectIri,
                     projectLabel: this.projectLabel,

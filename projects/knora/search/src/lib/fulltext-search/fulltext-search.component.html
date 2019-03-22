@@ -46,7 +46,7 @@
             <mat-list class="kui-previous-search-list">
                 <mat-list-item *ngFor="let item of prevSearch | kuiReverse; let i=index">
                     <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)" class="kui-previous-search-item">
-                        <div class="project-filter-btn" [class.not-empty]="item.projectIri">
+                        <div class="project-filter-btn" [class.not-empty]="item.projectIri" *ngIf="projectfilter">
                             <span *ngIf="item.projectIri" class="project-filter-label">{{item.projectLabel}}</span>
                         </div>
                         <div class="search-query">
