@@ -160,24 +160,28 @@ export class FulltextSearchComponent implements OnInit {
                 i++;
             }
 
-            let currentQuery: PrevSearchItem = {
-                query: this.searchQuery
-            };
-
-            if (this.projectIri) {
-                currentQuery = {
-                    projectIri: this.projectIri,
-                    projectLabel: this.projectLabel,
+            // A search value is expected to have at least length of 3
+            if (this.searchQuery.length > 2) {
+                let currentQuery: PrevSearchItem = {
                     query: this.searchQuery
                 };
+
+                if (this.projectIri) {
+                    currentQuery = {
+                        projectIri: this.projectIri,
+                        projectLabel: this.projectLabel,
+                        query: this.searchQuery
+                    };
+                }
+
+                existingPrevSearch.push(currentQuery);
+
+                localStorage.setItem(
+                    'prevSearch',
+                    JSON.stringify(existingPrevSearch)
+                );
             }
 
-            existingPrevSearch.push(currentQuery);
-
-            localStorage.setItem(
-                'prevSearch',
-                JSON.stringify(existingPrevSearch)
-            );
         } else {
             // search_ele.focus();
             this.searchField.nativeElement.focus();

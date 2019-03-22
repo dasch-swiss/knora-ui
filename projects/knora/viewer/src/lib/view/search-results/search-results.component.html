@@ -1,6 +1,6 @@
 <kui-progress-indicator *ngIf="isLoading"></kui-progress-indicator>
 
-<div *ngIf="!rerender">
+<div *ngIf="!rerender && !badRequest">
     <div *ngIf="numberOfAllResults !== 0 && result; else noResult">
         <h4>Number of results: {{numberOfAllResults}}</h4>
         <mat-tab-group animationDuration="0ms">
@@ -52,14 +52,12 @@
 
     <!-- In case of 0 result -->
     <ng-template #noResult>
-        <p>
-            <strong>No result</strong>
-        </p>
+        <p><strong>No result</strong></p>
     </ng-template>
 
 </div>
 
 <!-- Error message -->
 <div *ngIf="errorMessage">
-    <p>There is an error: {{errorMessage}}</p>
+    <p>There is an error: <br>{{errorMessage.errorInfo}}</p>
 </div>

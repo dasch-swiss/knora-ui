@@ -22,7 +22,7 @@
         </div> -->
 
         <div class="input-field">
-            <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery"
+            <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" minlength="3"
                    [class.with-project-filter]="projectfilter" name="search" (keyup.esc)="resetSearch(search)"
                    (keyup)="onKey(search, $event)" /> <!-- (click)="setFocus()" (focus)="toggleMenu()" -->
         </div>

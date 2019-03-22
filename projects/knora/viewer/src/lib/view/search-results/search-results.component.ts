@@ -3,12 +3,13 @@ import { KuiView } from '../kui-view';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {
+  ApiServiceError,
   ExtendedSearchParams,
   KnoraConstants,
   OntologyInformation,
   ReadResource,
   SearchParamsService,
-  SearchService
+  SearchService,
 } from '@knora/core';
 
 @Component({
@@ -27,10 +28,11 @@ export class SearchResultsComponent extends KuiView {
   numberOfAllResults: number;
   rerender: boolean = false;
   searchQuery: string;
+  badRequest: boolean = false;
   searchMode: string;
   projectIri: string;
   isLoading = true;
-  errorMessage: any = undefined;
+  errorMessage: ApiServiceError = new ApiServiceError();
   navigationSubscription: Subscription;
   pagingLimit: number = 25;
 
