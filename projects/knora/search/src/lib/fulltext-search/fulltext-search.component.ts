@@ -134,7 +134,13 @@ export class FulltextSearchComponent implements OnInit {
             let i: number = 0;
             for (const entry of existingPrevSearch) {
                 // remove entry, if exists already
-                if (this.searchQuery === entry.query) {
+                /*
+                console.log('searchQuery', this.searchQuery);
+                console.log('entryQuery', entry.query);
+                console.log('projectIri', this.projectIri);
+                console.log('entryIri', this.projectIri);
+                */
+                if (this.searchQuery === entry.query && this.projectIri === entry.projectIri) {
                     existingPrevSearch.splice(i, 1);
                 }
                 i++;
@@ -144,7 +150,7 @@ export class FulltextSearchComponent implements OnInit {
                 query: this.searchQuery
             };
 
-            if (this.projectfilter) {
+            if (this.projectfilter && this.projectIri) {
                 currentQuery = {
                     projectIri: this.projectIri,
                     projectLabel: this.projectLabel,
@@ -210,19 +216,23 @@ export class FulltextSearchComponent implements OnInit {
      * @param {string} query
      * @returns void
      */
-    doPrevSearch(search: PrevSearchItem): void {
-        // TODO: we should combine it with do search!
-        this.searchQuery = search.query;
+    doPrevSearch(prevSearch: PrevSearchItem): void {
 
-        if (search.projectIri !== undefined) {
+        this.searchQuery = prevSearch.query;
+
+        if (prevSearch.projectIri !== undefined) {
+            this.projectIri = prevSearch.projectIri;
+            this.projectLabel = prevSearch.projectLabel;
             this._router.navigate([
                 this.route +
                     '/fulltext/' +
                     this.searchQuery +
                     '/' +
-                    encodeURIComponent(search.projectIri)
+                    encodeURIComponent(prevSearch.projectIri)
             ]);
         } else {
+            this.projectIri = undefined;
+            this.projectLabel = 'Filter project';
             this._router.navigate([
                 this.route + '/fulltext/' + this.searchQuery
             ]);
@@ -242,10 +252,10 @@ export class FulltextSearchComponent implements OnInit {
      * @param {string} name term of the search
      * @returns void
      */
-    resetPrevSearch(name: string = null): void {
-        if (name) {
+    resetPrevSearch(prevSearch?: PrevSearchItem): void {
+        if (prevSearch) {
             // delete only this item with the name ...
-            const i: number = this.prevSearch.indexOf({query: name});
+            const i: number = this.prevSearch.indexOf(prevSearch);
             this.prevSearch.splice(i, 1);
             localStorage.setItem('prevSearch', JSON.stringify(this.prevSearch));
         } else {

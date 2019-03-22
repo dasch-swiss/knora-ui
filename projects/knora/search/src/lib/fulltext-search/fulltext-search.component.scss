@@ -17,6 +17,7 @@ input[type="search"] {
 // color variables
 
 $bright: rgba(249, 249, 249, 1);
+$grey: rgba(184, 184, 184, 1);
 $dark: rgba(41, 41, 41, 1);
 $black: rgb(11, 11, 11);
 $black-12-opacity: rgba($black, .12);
@@ -104,7 +105,7 @@ $border-radius: 4px;
 
   .prefix,
   .suffix {
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 3px;
     border-style: none;
     color: rgba($dark, .4);
@@ -127,7 +128,7 @@ $border-radius: 4px;
 
 .kui-menu {
   box-shadow: 0 3px 5px -1px $black-20-opacity, 0 6px 10px 0 $black-14-opacity, 0 1px 18px 0 $black-12-opacity;
-  background-color: rgba(249, 249, 249, 1);
+  background-color: $bright;
   border-radius: $border-radius;
   position: absolute;
 
@@ -147,7 +148,7 @@ $border-radius: 4px;
         cursor: pointer;
 
         &:hover {
-          background-color: $bright;
+          background-color: $grey;
 
           mat-icon {
             display: block;
@@ -220,6 +221,15 @@ $border-radius: 4px;
   overflow: hidden;
   text-overflow: ellipsis;
   width: $project-filter-width;
+
+  &.not-empty {
+    &::before {
+      content: "[";
+    }
+    &::after {
+      content: "]";
+    }
+  }
 
   .label {
     font-weight: bold;
