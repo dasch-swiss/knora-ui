@@ -1,16 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { KuiView } from '../kui-view';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {
-  ApiServiceError,
   ExtendedSearchParams,
-  GravsearchGenerationService,
   KnoraConstants,
-  OntologyCacheService,
   OntologyInformation,
   ReadResource,
-  ReadResourcesSequence,
   SearchParamsService,
   SearchService
 } from '@knora/core';
