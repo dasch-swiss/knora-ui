@@ -23,7 +23,12 @@
     "build-lib": "ng build @knora/core && ng build @knora/action && ng build @knora/authentication && ng build @knora/viewer && ng build @knora/search",
     "build-lib-prod": "ng build @knora/core --prod && ng build @knora/action --prod && ng build @knora/authentication --prod && ng build @knora/viewer --prod && ng build @knora/search --prod",
     "yalc-publish": "yalc publish dist/@knora/action && yalc publish dist/@knora/authentication && yalc publish dist/@knora/core && yalc publish dist/@knora/search && yalc publish dist/@knora/viewer",
-    "update-lib": "yarn install --prod=false && rm -rf dist/'@knora'/ && yarn build-lib"
+    "update-lib": "yarn install --prod=false && rm -rf dist/'@knora'/ && yarn build-lib",
+    "build-yalc-action": "ng build @knora/action && yalc publish dist/@knora/action",
+    "build-yalc-authentication": "ng build @knora/authentication && yalc publish dist/@knora/authentication",
+    "build-yalc-core": "ng build @knora/core && yalc publish dist/@knora/core",
+    "build-yalc-search": "ng build @knora/search && yalc publish dist/@knora/search",
+    "build-yalc-viewer": "ng build @knora/viewer && yalc publish dist/@knora/viewer"
   },
   "private": true,
   "dependencies": {
