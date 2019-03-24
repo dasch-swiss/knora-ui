@@ -23,7 +23,7 @@ export class KuiCoreModule {
      */
     static forRoot(config: KuiCoreConfig): ModuleWithProviders {
         // get the app environment configuration here
-        console.log('KuiCoreModule - forRoot - config: ', config);
+        // console.log('KuiCoreModule - forRoot - config: ', config);
         return {
             ngModule: KuiCoreModule,
             providers: [
