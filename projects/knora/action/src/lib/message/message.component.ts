@@ -5,6 +5,9 @@ import { ApiServiceError, StatusMsgService } from '@knora/core';
 
 import defaultMsgs from '../../assets/i18n/statusMsg.json';
 
+/**
+ * data type for messages
+ */
 export interface KuiMessageData {
     status: number;
     statusMsg?: string;
@@ -72,12 +75,12 @@ export class MessageComponent implements OnInit {
     };
 
     footnote: any = {
-        text: "If you think it's a mistake, please",
+        text: 'If you think it\'s a mistake, please',
         team: {
             knora:
-                "<a href='https://github.com/dhlab-basel/knora' target='_blank'> inform the Knora team </a>",
+                '<a href=\'https://github.com/dhlab-basel/knora\' target=\'_blank\'> inform the Knora team </a>',
             salsah:
-                "<a href='https://github.com/dhlab-basel/salsah' target='_blank'> inform the Salsah developers </a>"
+                '<a href=\'https://github.com/dhlab-basel/salsah\' target=\'_blank\'> inform the Salsah developers </a>'
         }
     };
 
@@ -89,7 +92,6 @@ export class MessageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        console.log(this.statusMsg);
 
         if (!this.message) {
             this._activatedRoute.data.subscribe((v: any) => {
@@ -142,17 +144,17 @@ export class MessageComponent implements OnInit {
             case s > 0 && s < 300:
                 // the message is a note
                 tmpMsg.type = 'note';
-                //                console.log('the message is a note');
+                // console.log('the message is a note');
                 break;
             case s >= 300 && s < 400:
                 // the message is a warning
                 tmpMsg.type = 'warning';
-                //                console.log('the message is a warning');
+                // console.log('the message is a warning');
 
                 break;
             case s >= 400 && s < 500:
-                // the message is a client side (salsah-gui) error
-                // console.log('the message is a client side (salsah-gui) error', s);
+                // the message is a client side (app) error
+                // console.log('the message is a client side (app) error', s);
                 tmpMsg.type = 'error';
                 tmpMsg.statusMsg =
                     msg.statusMsg !== undefined
@@ -168,8 +170,8 @@ export class MessageComponent implements OnInit {
 
                 break;
             case s >= 500 && s < 600:
-                // the message is a server side (knora-api) error
-                // console.log('the message is a server side (knora-api) error');
+                // the message is a server side (api) error
+                // console.log('the message is a server side (api) error');
                 tmpMsg.type = 'error';
                 tmpMsg.statusMsg =
                     msg.statusMsg !== undefined
