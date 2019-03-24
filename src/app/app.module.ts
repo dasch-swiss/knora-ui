@@ -61,14 +61,6 @@ import { DocumentationViewerComponent } from './partials/documentation-viewer/do
 import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-demo/authentication-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
 import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
-// playground components
-import { PlaygroundComponent } from './playground/playground.component';
-import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
-import { SearchPgComponent } from './playground/search-pg/search-pg.component';
-import { SearchResultComponent } from './playground/search-pg/search-result/search-result.component';
-import { ResourcePgComponent } from './playground/resource-pg/resource-pg.component';
-import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
-import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
 import { AppInitService } from './app-init.service';
 
 
@@ -103,7 +95,6 @@ export function initializeApp(appInitService: AppInitService) {
         SortButtonComponent,
         AdminImageComponent,
         SearchDemoComponent,
-        SearchResultComponent,
         ViewerDemoComponent,
         PropertiesComponent,
         ViewsComponent,
@@ -121,13 +112,7 @@ export function initializeApp(appInitService: AppInitService) {
         DocumentationViewerComponent,
         AuthenticationDemoComponent,
         SearchPanelComponent,
-        TrimBracketsPipe,
-        PlaygroundComponent,
-        ViewerPgComponent,
-        SearchPgComponent,
-        ResourcePgComponent,
-        OntologyPgComponent,
-        AuthenticationPgComponent
+        TrimBracketsPipe
     ],
     entryComponents: [
         // LoginFormComponent
@@ -164,6 +149,6 @@ export function initializeApp(appInitService: AppInitService) {
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
 
 

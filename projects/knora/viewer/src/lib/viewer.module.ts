@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
     MatAutocompleteModule,
@@ -81,7 +82,8 @@ import { SearchResultsComponent } from './view/search-results/search-results.com
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FlexLayoutModule
     ],
     declarations: [
         AnnotationComponent,

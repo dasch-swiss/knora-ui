@@ -1,7 +1,7 @@
 <div>
     <kui-progress-indicator *ngIf="isLoading" [color]="'#D88958'"></kui-progress-indicator>
 
-    <mat-list class="list-view" *ngFor="let res of result; let i = index; let last = last;">
+    <mat-list class="list-view lv-items" *ngFor="let res of result; let i = index; let last = last;">
         <mat-list-item class="link">
             <mat-icon matListIcon>image_search</mat-icon>
             <h2 matLine class="lv-label">{{ontologyInfo?.getLabelForResourceClass(res.type)}} - {{res.label}}</h2>

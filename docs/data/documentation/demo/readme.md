@@ -6,13 +6,13 @@
 
 This is the demo and developing environment for Knora ui modules.
 
-The modules helps to create a graphical user interface, a web application to use [Knora](https://knora.org) in a quick and simple way. The modules are written in typescript to use them with [Angular](https://angular.io) (version 6). We decided to style the components and directives with [material design](https://material.angular.io).
+The modules helps to create a graphical user interface, a web application to use [Knora](https://www.knora.org) in a quick and simple way. The modules are written in typescript to use them with [Angular](https://angular.io) (version 7). We decided to style the components and directives with [material design](https://material.angular.io).
 
 But you can use only @knora/core which contains almost all services for the Knora web API. Knora is a software framework for storing, sharing, and working with primary sources and data in the humanities.
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora v3.0.0](https://github.com/dhlab-basel/Knora/releases/tag/v3.0.0).
+This version of Knora-ui requires [Knora v6.0.0](https://github.com/dhlab-basel/Knora/releases/tag/v6.0.0).
 
 ## Already published modules
 
@@ -112,7 +112,7 @@ Before using the module inside of the app, you have to rebuild after the changes
 
 Run the app with `ng s`. The demo app runs on http://localhost:4200 and we use it for documentation on [Knora-ui Github page](https://dhlab-basel.github.io/Knora-ui).
 
-There's a test environment for the modules on http://localhost:4200/playground
+There's a test environment for the modules on https://github.com/dhlab-basel/knora-ui-playground with yalc
 
  ---
 
@@ -225,4 +225,4 @@ $ yalc remove --all
 
 ---
 
-## Required version of Knora: 5.0.0-3-3c4d9652 
+## Required version of Knora: 6.0.0
