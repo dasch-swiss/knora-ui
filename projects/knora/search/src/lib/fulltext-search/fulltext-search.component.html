@@ -3,15 +3,15 @@
 
     <div class="fulltext-search-bar" [class.active]="searchPanelFocus" [class.with-project-filter]="projectfilter">
         <div class="search-project-filter" *ngIf="projectfilter">
-            <button mat-button class="project-filter-btn" [matMenuTriggerFor]="selectProject" isIconButton>
+            <button mat-button class="project-filter-btn" [matMenuTriggerFor]="selectProject" #btnToSelectProject="matMenuTrigger" isIconButton>
                 <span class="label">{{projectLabel}}</span>
                 <mat-icon class="icon" matSuffix>keyboard_arrow_down</mat-icon>
             </button>
             <mat-menu #selectProject="matMenu">
-                <button mat-menu-item class="center" (click)="setProject()">All Projects</button>
+                <button mat-menu-item class="center" (click)="setProject();changeFocus()">All Projects</button>
                 <mat-divider></mat-divider>
                 <button mat-menu-item *ngFor="let project of projects"
-                        (click)="setProject(project)">{{project.shortname}}</button>
+                        (click)="setProject(project);changeFocus()">{{project.shortname}}</button>
             </mat-menu>
         </div>
 
@@ -23,7 +23,7 @@
 
         <div class="input-field">
             <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" minlength="3"
-                   [class.with-project-filter]="projectfilter" name="search" (keyup.esc)="resetSearch(search)"
+                   [class.with-project-filter]="projectfilter" name="search" (keyup.esc)="resetSearch(search)" [autofocus]="focusOnSimple === 'active'"
                    (keyup)="onKey(search, $event)" /> <!-- (click)="setFocus()" (focus)="toggleMenu()" -->
         </div>
 

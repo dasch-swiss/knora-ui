@@ -8,6 +8,7 @@ import {
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceError, Project, ProjectsService } from '@knora/core';
+import { MatMenuTrigger } from '@angular/material';
 
 export interface PrevSearchItem {
     projectIri?: string;
@@ -46,6 +47,8 @@ export class FulltextSearchComponent implements OnInit {
     @Input() filterbyproject?: string;
 
     @ViewChild('search') searchField: ElementRef;
+
+    @ViewChild('btnToSelectProject') selectProject: MatMenuTrigger;
 
     searchQuery: string;
 
@@ -328,17 +331,21 @@ export class FulltextSearchComponent implements OnInit {
      * @param project
      */
     setProject(project?: Project) {
-        this.searchField.nativeElement.focus();
         if (!project) {
             // set default project: all
             this.projectLabel = 'Filter project';
             this.projectIri = undefined;
             localStorage.removeItem('currentProject');
         } else {
+            // set current project shortname and id
             this.projectLabel = project.shortname;
             this.projectIri = project.id;
-            // get project by shortname
             localStorage.setItem('currentProject', JSON.stringify(project));
         }
+    }
+
+    changeFocus() {
+        this.selectProject.closeMenu();
+        this.searchField.nativeElement.focus();
     }
 }
