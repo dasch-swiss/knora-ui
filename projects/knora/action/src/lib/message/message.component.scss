@@ -2,62 +2,75 @@ $accent: rgba(255, 196, 0, 1);
 $primary: rgba(0, 105, 92, 1);
 $warn: rgb(244, 67, 54);
 
+.kui-panel {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: row;
+  white-space: nowrap;
+}
+
+.fill-remaining-space {
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
 .kui-error {
-    background-color: rgba($warn, .5);
-  }
+  background-color: rgba($warn, .5);
+}
 
-  .kui-warning {
-    background-color: rgba($accent, .5);
-  }
+.kui-warning {
+  background-color: rgba($accent, .5);
+}
 
-  .kui-note,
-  .kui-hint {
-    background-color: rgba($primary, .4);
-  }
+.kui-note,
+.kui-hint {
+  background-color: rgba($primary, .4);
+}
 
-  .kui-error,
-  .kui-warning,
-  .kui-note,
-  .kui-hint {
-    margin: 64px auto;
-    max-width: 640px;
+.kui-error,
+.kui-warning,
+.kui-note,
+.kui-hint {
+  margin: 64px auto;
+  max-width: 640px;
 
-    .message-subtitle {
-      padding-bottom: 12px;
+  .message-subtitle {
+    padding-bottom: 12px;
 
-      .left {
-        float: left;
-      }
-
-      .right {
-        float: right;
-      }
+    .left {
+      float: left;
     }
 
-    .message-title {
-      padding-top: 12px;
-
-    }
-
-    .message-content {
-      margin-bottom: 48px;
-      margin-top: 48px;
-
-      .link {
-        cursor: pointer;
-      }
-    }
-
-    .message-footnote {
-      padding: 24px;
+    .right {
+      float: right;
     }
   }
 
-  .kui-short-message {
-
-    .kui-short-message-text {
-      font-weight: bolder;
-      text-align: center;
-    }
+  .message-title {
+    padding-top: 12px;
 
   }
+
+  .message-content {
+    margin-bottom: 48px;
+    margin-top: 48px;
+
+    .link {
+      cursor: pointer;
+    }
+  }
+
+  .message-footnote {
+    padding: 24px;
+  }
+}
+
+.kui-short-message {
+
+  .kui-short-message-text {
+    font-weight: bolder;
+    text-align: center;
+  }
+
+}
