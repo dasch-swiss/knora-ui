@@ -27,6 +27,7 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { ProgressIndicatorComponent } from './progress-indicator/progress-indicator.component';
 import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
 import { SortButtonComponent } from './sort-button/sort-button.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
     imports: [
@@ -47,7 +48,8 @@ import { SortButtonComponent } from './sort-button/sort-button.component';
         KeyPipe,
         GndDirective,
         ResourceDialogComponent,
-        JdnDatepickerDirective
+        JdnDatepickerDirective,
+        MessageComponent
     ],
     exports: [
         ProgressIndicatorComponent,
