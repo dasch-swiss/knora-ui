@@ -24,7 +24,7 @@
         <div class="input-field">
             <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" minlength="3"
                    [class.with-project-filter]="projectfilter" name="search" (keyup.esc)="resetSearch(search)" [autofocus]="focusOnSimple === 'active'"
-                   (keyup)="onKey(search, $event)" /> <!-- (click)="setFocus()" (focus)="toggleMenu()" -->
+                   (keyup)="onKey(search, $event)" (click)="setFocus()" (focus)="toggleMenu()" />
         </div>
 
         <!-- switch button: on some focus we need a close button for the simple -->

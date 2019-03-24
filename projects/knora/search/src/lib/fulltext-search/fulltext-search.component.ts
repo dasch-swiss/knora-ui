@@ -46,8 +46,16 @@ export class FulltextSearchComponent implements OnInit {
      */
     @Input() filterbyproject?: string;
 
+    /**
+     * @ignore
+     * input field for full-text search
+     */
     @ViewChild('search') searchField: ElementRef;
 
+    /**
+     * @ignore
+     * mat menu: after select a project, the focus should switch to the input field
+     */
     @ViewChild('btnToSelectProject') selectProject: MatMenuTrigger;
 
     searchQuery: string;
@@ -344,6 +352,10 @@ export class FulltextSearchComponent implements OnInit {
         }
     }
 
+    /**
+     * @ignore
+     * switch focus from select-project-menu to input field
+     */
     changeFocus() {
         this.selectProject.closeMenu();
         this.searchField.nativeElement.focus();
