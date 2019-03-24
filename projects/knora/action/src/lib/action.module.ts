@@ -14,7 +14,7 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatIconModule, MatMenuModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatMenuModule, MatCardModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminImageDirective } from './admin-image/admin-image.directive';
 import { GndDirective } from './gnd/gnd.directive';
@@ -34,7 +34,9 @@ import { MessageComponent } from './message/message.component';
         CommonModule,
         BrowserAnimationsModule,
         MatButtonModule,
+        MatCardModule,
         MatIconModule,
+        MatListModule,
         MatMenuModule
 
     ],
@@ -60,7 +62,8 @@ import { MessageComponent } from './message/message.component';
         ReversePipe,
         KeyPipe,
         GndDirective,
-        JdnDatepickerDirective
+        JdnDatepickerDirective,
+        MessageComponent
     ]
 })
 /**
