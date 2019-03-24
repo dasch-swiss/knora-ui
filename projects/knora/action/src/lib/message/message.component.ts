@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StatusMsgService, ApiServiceError } from '@knora/core';
+import { ApiServiceError, StatusMsgService } from '@knora/core';
+
+import defaultMsgs from '../../assets/i18n/statusMsg.json';
 
 export interface KuiMessageData {
     status: number;
@@ -33,7 +35,7 @@ export class MessageComponent implements OnInit {
 
     //    message: MessageData;
 
-    statusMsg: any;
+    statusMsg: any = defaultMsgs;
 
     isLoading: boolean = true;
 
@@ -70,12 +72,12 @@ export class MessageComponent implements OnInit {
     };
 
     footnote: any = {
-        text: 'If you think it\'s a mistake, please',
+        text: "If you think it's a mistake, please",
         team: {
             knora:
-                '<a href=\'https://github.com/dhlab-basel/knora\' target=\'_blank\'> inform the Knora team </a>',
+                "<a href='https://github.com/dhlab-basel/knora' target='_blank'> inform the Knora team </a>",
             salsah:
-                '<a href=\'https://github.com/dhlab-basel/salsah\' target=\'_blank\'> inform the Salsah developers </a>'
+                "<a href='https://github.com/dhlab-basel/salsah' target='_blank'> inform the Salsah developers </a>"
         }
     };
 
@@ -87,6 +89,19 @@ export class MessageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        console.log(this.statusMsg);
+
+        if (!this.message) {
+            this._activatedRoute.data.subscribe((v: any) => {
+                this.message = <KuiMessageData>{
+                    status: v.status
+                };
+            });
+        }
+        this.message = this.setMessage(this.message);
+        this.isLoading = false;
+
+        /*
         // get the http status message from the statusMsg data json package (stored in assets/data)
         // TODO: we have to implement this data in the multilingual settings
         this._statusMsgService.getStatusMsg().subscribe(
@@ -108,6 +123,7 @@ export class MessageComponent implements OnInit {
                 console.log(error);
             }
         );
+         */
     }
 
     setMessage(msg: KuiMessageData) {
