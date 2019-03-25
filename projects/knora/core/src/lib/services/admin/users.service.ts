@@ -87,7 +87,7 @@ export class UsersService extends ApiService {
      * @returns Observable<User>
      */
     getUsersGroupMemberships(userIri: string): Observable<Group[]> {
-        const path = '/admin/users/iri/' + userIri + '/group-memberships';
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships';
         return this.httpGet(path).pipe(
             map((result: ApiServiceResult) => result.getBody(GroupsResponse).groups),
             catchError(this.handleJsonError)
