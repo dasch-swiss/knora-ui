@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiServiceError, StatusMsgService } from '@knora/core';
 
 import defaultMsgs from '../../assets/i18n/statusMsg.json';
 
@@ -85,7 +84,6 @@ export class MessageComponent implements OnInit {
     };
 
     constructor(
-        private _statusMsgService: StatusMsgService,
         private _router: Router,
         private _location: Location,
         private _activatedRoute: ActivatedRoute
