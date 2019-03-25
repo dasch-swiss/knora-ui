@@ -17,6 +17,7 @@ input[type="search"] {
 // color variables
 
 $bright: rgba(249, 249, 249, 1);
+$grey: rgba(184, 184, 184, 1);
 $dark: rgba(41, 41, 41, 1);
 $black: rgb(11, 11, 11);
 $black-12-opacity: rgba($black, .12);
@@ -24,9 +25,10 @@ $black-14-opacity: rgba($black, .14);
 $black-20-opacity: rgba($black, .2);
 
 // sizes for search element
-$search-width: 680px;
+$search-width: 480px;
 $search-height: $search-width;
-$search-width-small-device: 480px;
+$search-width-small-device: 360px;
+$project-filter-width: 160px;
 
 // general border color
 $border-color: #ebebeb;
@@ -70,12 +72,15 @@ $border-radius: 4px;
   width: $search-width;
   z-index: 10;
 
+  &.with-project-filter {
+    width: calc(#{$search-width} + #{$project-filter-width});
+  }
+
   &:hover {
     box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
   }
 
-  div {
-  &.input-field {
+  .input-field {
     flex: 1;
 
     input {
@@ -83,8 +88,13 @@ $border-radius: 4px;
       font-size: 14pt;
       height: 38px;
       position: absolute;
+      padding-left: 12px;
       // width: calc(#{$search-width} - 80px);
-      width: calc(100% - 80px);
+      width: calc(100% - 40px);
+
+      &.with-project-filter {
+        width: calc(100% - 40px - #{$project-filter-width});
+      }
 
       &:active,
       &:focus {
@@ -95,7 +105,7 @@ $border-radius: 4px;
 
   .prefix,
   .suffix {
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 3px;
     border-style: none;
     color: rgba($dark, .4);
@@ -113,23 +123,24 @@ $border-radius: 4px;
   &.active {
     box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
   }
-}
+
 }
 
 .kui-menu {
   box-shadow: 0 3px 5px -1px $black-20-opacity, 0 6px 10px 0 $black-14-opacity, 0 1px 18px 0 $black-12-opacity;
-  background-color: rgba(249, 249, 249, 1);
+  background-color: $bright;
   border-radius: $border-radius;
   position: absolute;
 
   &.simple-search {
     min-height: $search-height;
     width: $search-width;
-  }
-
-  &.simple-search {
     padding-top: 60px;
     z-index: -1;
+
+    &.with-project-filter {
+      width: calc(#{$search-width} + #{$project-filter-width});
+    }
 
     .kui-previous-search-list {
 
@@ -137,7 +148,7 @@ $border-radius: 4px;
         cursor: pointer;
 
         &:hover {
-          background-color: $bright;
+          background-color: $grey;
 
           mat-icon {
             display: block;
@@ -146,6 +157,14 @@ $border-radius: 4px;
 
         mat-icon {
           display: none;
+        }
+
+        .kui-previous-search-item {
+          display: inherit;
+
+          .search-query {
+            font-weight: bold;
+          }
         }
       }
     }
@@ -162,14 +181,14 @@ $border-radius: 4px;
 @media screen and (max-width: 1024px) {
   .fulltext-search-bar {
     width: $search-width-small-device;
-    div {
-      &.input-field {
 
-        input {
-          width: calc(#{$search-width-small-device} - 80px);
-        }
+    .input-field {
+
+      input {
+        width: calc(#{$search-width-small-device} - 40px);
       }
-    }     
+    }
+
   }
 
   .kui-menu.simple-search {
@@ -185,14 +204,41 @@ $border-radius: 4px;
       &.input-field {
 
         input {
-          width: calc(#{$search-width-small-device} - 160px - 80px);
+          width: calc(#{$search-width-small-device} - 160px - 40px);
         }
       }
     }
   }
 
   .kui-menu.simple-search {
-    width: calc(#{$search-width-small-device} - 80px);
+    width: calc(#{$search-width-small-device} - 40px);
   }
 }
 
+// filter by project: select project
+.project-filter-btn {
+  font-size: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: $project-filter-width;
+
+  &.not-empty {
+    &::before {
+      content: "[";
+    }
+    &::after {
+      content: "]";
+    }
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .icon {
+    // set the icon to the same line as the text/label is
+    vertical-align: middle;
+    position: relative;
+    top: -1px
+  }
+}
