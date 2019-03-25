@@ -26,7 +26,9 @@ export class MessageComponent implements OnInit {
      * message content
      * @type {KuiMessageData}
      */
-    @Input() message: KuiMessageData;
+    @Input() message: KuiMessageData = {
+        status: 404
+    };
 
     /**
      * show a short message only
@@ -37,7 +39,29 @@ export class MessageComponent implements OnInit {
 
     //    message: MessageData;
 
-    statusMsg: any = defaultMsgs;
+    // statusMsg: any = defaultMsgs;
+    statusMsg: any = {
+        "100": {
+            "message": "Continue",
+            "description": "The server has received the request headers, and the client should proceed to send the request body"
+        },
+        "101": {
+            "message": "Switching Protocols",
+            "description": "The requester has asked the server to switch protocols"
+        },
+        "103": {
+            "message": "Checkpoint",
+            "description": "Used in the resumable requests proposal to resume aborted PUT or POST requests"
+        },
+        "200": {
+            "message": "OK",
+            "description": "The request is OK (this is the standard response for successful HTTP requests)"
+        },
+        "404": {
+            "message": "Not Found",
+            "description": "The requested page could not be found but may be available again in the future"
+        }
+    };
 
     isLoading: boolean = true;
 
@@ -91,13 +115,14 @@ export class MessageComponent implements OnInit {
 
     ngOnInit() {
 
+        // this.statusMsg = defaultMsgs;
+
         if (!this.message) {
-            this._activatedRoute.data.subscribe((v: any) => {
-                this.message = <KuiMessageData>{
-                    status: v.status
-                };
+            this._activatedRoute.data.subscribe((data: any) => {
+                this.message.status = data.status;
             });
         }
+
         this.message = this.setMessage(this.message);
         this.isLoading = false;
 
@@ -127,7 +152,7 @@ export class MessageComponent implements OnInit {
     }
 
     setMessage(msg: KuiMessageData) {
-        const tmpMsg: KuiMessageData = <KuiMessageData>{};
+        const tmpMsg: KuiMessageData = <KuiMessageData> {};
 
         const s: number = msg.status === 0 ? 503 : msg.status;
 
@@ -191,7 +216,7 @@ export class MessageComponent implements OnInit {
         return tmpMsg;
     }
 
-    goToLocation(route) {
+    goToLocation(route: string) {
         if (route === '<--') {
             this._location.back();
         } else {
