@@ -123,9 +123,9 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * Realise a simple search
-     * @param {HTMLElement} search_ele
+     * @ignore
+     *
      * @returns void
      */
     doSearch(): void {
