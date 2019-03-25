@@ -13776,10 +13776,10 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     };
     /**
      * Get user by username, email or by iri.
-     *
      * @ignore
      *
-     * @param {string} identifier - Get user by username, email or by iri
+     * @param  {string} identifier username, email or by iri
+     * @param  {String} identifierType
      * @returns Observable<User>
      */
     UsersService.prototype.getUser = function (identifier, identifierType) {
@@ -13789,8 +13789,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Get user by IRI
      *
-     * @param {string} iri
-     * @returns {Observable<User>}
+     * @param  {string} iri
+     * @returns Observable<User>
      */
     UsersService.prototype.getUserByIri = function (iri) {
         return this.getUser(iri, 'iri');
@@ -13798,8 +13798,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Get user by email
      *
-     * @param {string} email
-     * @returns {Observable<User>}
+     * @param  {string} email
+     * @returns Observable<User>
      */
     UsersService.prototype.getUserByEmail = function (email) {
         return this.getUser(email, 'email');
@@ -13807,8 +13807,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Get user by username.
      *
-     * @param {string} username
-     * @returns {Observable<User>}
+     * @param  {string} username
+     * @returns Observable<User>
      */
     UsersService.prototype.getUserByUsername = function (username) {
         return this.getUser(username, 'username');
@@ -13817,7 +13817,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Get all groups, where the user is member of
      *
      * @param  {string} userIri
-     * @returns Observable
+     * @returns Observable<Group[]>
      */
     UsersService.prototype.getUsersGroupMemberships = function (userIri) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships';
@@ -13859,7 +13859,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_3__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleJsonError));
     };
     /**
-     * Add user to an admin project.
+     * Add user to the admin group of a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
@@ -13870,7 +13870,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_3__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleJsonError));
     };
     /**
-     * Delete user of an admin project.
+     * Delete user from the admin group of a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
@@ -13881,10 +13881,10 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (result) { return result.getBody(_declarations___WEBPACK_IMPORTED_MODULE_3__["UserResponse"]).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleJsonError));
     };
     /**
-     * add user to project specific group
+     * Add user to project specific group
      *
-     * @param userIri
-     * @param groupIri
+     * @param {string} userIri
+     * @param {string} groupIri
      * @returns Observable<User>
      */
     UsersService.prototype.addUserToGroup = function (userIri, groupIri) {
@@ -13894,8 +13894,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * remove user from project specific group
      *
-     * @param userIri
-     * @param groupIri
+     * @param {string} userIri
+     * @param {string} groupIri
      * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromGroup = function (userIri, groupIri) {
@@ -13919,7 +13919,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     };
     /**
      * Remove user from the admin system.
-     * @param userIri
+     * @param {string} userIri
      * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromSystemAdmin = function (userIri) {
@@ -13932,8 +13932,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Update user system admin membership
      * @ignore
      *
-     * @param userIri
-     * @param data
+     * @param {string} userIri
+     * @param {any} data
      *
      * @returns Observable<User>
      */

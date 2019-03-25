@@ -164,23 +164,8 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "Realise a simple search",
-        "html": "<p>Realise a simple search</p>"
-      },
-      {
-        "type": "param",
-        "string": "{HTMLElement} search_ele",
-        "name": "search_ele",
-        "description": "",
-        "types": [
-          "HTMLElement"
-        ],
-        "typesDescription": "<code>HTMLElement</code>",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
-        "variable": false,
-        "html": "<p>{HTMLElement} search_ele</p>"
+        "string": "",
+        "html": ""
       },
       {
         "type": "returns",
@@ -195,8 +180,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Realise a simple search</p>",
+      "summary": "<p>Realise a simple search</p>",
       "body": ""
     },
     "isPrivate": false,

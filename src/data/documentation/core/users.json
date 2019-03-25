@@ -58,9 +58,9 @@
       },
       {
         "type": "param",
-        "string": "{string} identifier - Get user by username, email or by iri",
+        "string": "{string} identifier username, email or by iri",
         "name": "identifier",
-        "description": "<ul>\n<li>Get user by username, email or by iri</li>\n</ul>",
+        "description": "<p>username, email or by iri</p>",
         "types": [
           "string"
         ],
@@ -69,6 +69,21 @@
         "nullable": false,
         "nonNullable": false,
         "variable": false
+      },
+      {
+        "type": "param",
+        "string": "{String} identifierType",
+        "name": "identifierType",
+        "description": "",
+        "types": [
+          "String"
+        ],
+        "typesDescription": "<code>String</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{String} identifierType</p>"
       },
       {
         "type": "returns",
@@ -116,17 +131,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<User>}",
-        "types": [
-          "Observable.<User>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<User>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<User>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -167,17 +179,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<User>}",
-        "types": [
-          "Observable.<User>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<User>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<User>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -218,17 +227,14 @@
       },
       {
         "type": "returns",
-        "string": "{Observable<User>}",
-        "types": [
-          "Observable.<User>"
-        ],
-        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"User.html\">User</a>&gt;",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
+        "string": "Observable<User>",
+        "types": [],
+        "typesDescription": "",
         "variable": false,
-        "description": "",
-        "html": "<p>{Observable<User>}</p>"
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<User></p>"
       }
     ],
     "description": {
@@ -269,14 +275,14 @@
       },
       {
         "type": "returns",
-        "string": "Observable",
+        "string": "Observable<Group[]>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable</p>"
+        "description": "<p>Observable&lt;Group[]&gt;</p>"
       }
     ],
     "description": {
@@ -517,8 +523,8 @@
       }
     ],
     "description": {
-      "full": "<p>Add user to an admin project.</p>",
-      "summary": "<p>Add user to an admin project.</p>",
+      "full": "<p>Add user to the admin group of a project.</p>",
+      "summary": "<p>Add user to the admin group of a project.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -580,8 +586,8 @@
       }
     ],
     "description": {
-      "full": "<p>Delete user of an admin project.</p>",
-      "summary": "<p>Delete user of an admin project.</p>",
+      "full": "<p>Delete user from the admin group of a project.</p>",
+      "summary": "<p>Delete user from the admin group of a project.</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -602,29 +608,33 @@
     "tags": [
       {
         "type": "param",
-        "string": "userIri",
+        "string": "{string} userIri",
         "name": "userIri",
         "description": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
         "optional": false,
-        "html": "<p>userIri</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
       },
       {
         "type": "param",
-        "string": "groupIri",
+        "string": "{string} groupIri",
         "name": "groupIri",
         "description": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
         "optional": false,
-        "html": "<p>groupIri</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} groupIri</p>"
       },
       {
         "type": "returns",
@@ -639,8 +649,8 @@
       }
     ],
     "description": {
-      "full": "<p>add user to project specific group</p>",
-      "summary": "<p>add user to project specific group</p>",
+      "full": "<p>Add user to project specific group</p>",
+      "summary": "<p>Add user to project specific group</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -661,29 +671,33 @@
     "tags": [
       {
         "type": "param",
-        "string": "userIri",
+        "string": "{string} userIri",
         "name": "userIri",
         "description": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
         "optional": false,
-        "html": "<p>userIri</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
       },
       {
         "type": "param",
-        "string": "groupIri",
+        "string": "{string} groupIri",
         "name": "groupIri",
         "description": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
         "optional": false,
-        "html": "<p>groupIri</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} groupIri</p>"
       },
       {
         "type": "returns",
@@ -768,16 +782,18 @@
     "tags": [
       {
         "type": "param",
-        "string": "userIri",
+        "string": "{string} userIri",
         "name": "userIri",
         "description": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
         "optional": false,
-        "html": "<p>userIri</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
       },
       {
         "type": "returns",
@@ -819,29 +835,33 @@
       },
       {
         "type": "param",
-        "string": "userIri",
+        "string": "{string} userIri",
         "name": "userIri",
         "description": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
         "optional": false,
-        "html": "<p>userIri</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} userIri</p>"
       },
       {
         "type": "param",
-        "string": "data",
+        "string": "{any} data",
         "name": "data",
         "description": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "types": [
+          "any"
+        ],
+        "typesDescription": "<a href=\"any.html\">any</a>",
         "optional": false,
-        "html": "<p>data</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{any} data</p>"
       },
       {
         "type": "returns",
