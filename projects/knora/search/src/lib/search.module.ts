@@ -10,7 +10,8 @@ import {
     MatIconModule, MatInputModule,
     MatListModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule
 } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -51,6 +52,7 @@ import { HeaderComponent } from './extended-search/select-property/specify-prope
         MatInputModule,
         MatIconModule,
         MatListModule,
+        MatMenuModule,
         MatSelectModule,
         MatTooltipModule,
         FormsModule,

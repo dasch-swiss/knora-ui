@@ -1,10 +1,10 @@
 import { OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
+    ApiServiceError,
     CountQueryResult,
     ExtendedSearchParams,
     KnoraConstants,
-    OntologyCacheService,
     OntologyInformation,
     ReadResource,
     ReadResourcesSequence,
@@ -22,12 +22,14 @@ export abstract class KuiView implements OnInit, OnDestroy {
     abstract navigationSubscription: Subscription;
     abstract gravsearchGenerator: ExtendedSearchParams;
     abstract searchQuery: string;
+    abstract badRequest: boolean;
     abstract searchMode: string;
+    abstract projectIri: string;
     abstract numberOfAllResults: number;
     abstract KnoraConstants: KnoraConstants;
     abstract rerender: boolean;
     abstract isLoading: boolean;
-    abstract errorMessage: any;
+    abstract errorMessage: ApiServiceError;
     abstract pagingLimit: number;
 
     constructor(
@@ -40,6 +42,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
     ngOnInit() {
         this.navigationSubscription = this._route.paramMap.subscribe((params: Params) => {
             this.searchMode = params.get('mode');
+            this.projectIri = params.get('project');
 
             // init offset  and result
             this.offset = 0;
@@ -47,6 +50,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
 
             if (this.searchMode === 'fulltext') {
                 this.searchQuery = params.get('q');
+                this.badRequest = (this.searchQuery.length < 3);
             } else if (this.searchMode === 'extended') {
                 this.gravsearchGenerator = this._searchParamsService.getSearchParams();
                 this.generateGravsearchQuery();
@@ -85,16 +89,30 @@ export abstract class KuiView implements OnInit, OnDestroy {
     protected getResult() {
         this.isLoading = true;
 
+        // reset the error message
+        this.errorMessage = undefined;
+
         // FULLTEXT SEARCH
         if (this.searchMode === 'fulltext') {
+
+            if (this.badRequest) {
+                this.rerender = true;
+                this.errorMessage = new ApiServiceError();
+                this.errorMessage.errorInfo = 'A search value is expected to have at least length of 3 characters.';
+                this.isLoading = false;
+                this.rerender = false;
+            } else {
+            if (this.projectIri !== null && this.projectIri !== undefined) {
+                this.searchQuery += '?limitToProject=' + this.projectIri;
+            }
 
             if (this.offset === 0) {
                 // perform count query
                 this._searchService.doFullTextSearchCountQueryCountQueryResult(this.searchQuery)
                     .subscribe(
                         this.showNumberOfAllResults,
-                        (error: any) => {
-                            this.errorMessage = <any> error;
+                            (error: ApiServiceError) => {
+                                this.errorMessage = <ApiServiceError> error;
                         }
                     );
             }
@@ -103,10 +121,13 @@ export abstract class KuiView implements OnInit, OnDestroy {
             this._searchService.doFullTextSearchReadResourceSequence(this.searchQuery, this.offset)
                 .subscribe(
                     this.processSearchResults, // function pointer
-                    (error: any) => {
-                        this.errorMessage = <any> error;
+                        (error: ApiServiceError) => {
+                            this.errorMessage = <ApiServiceError> error;
+                            console.log('error', error);
+                            console.log('message', this.errorMessage);
                     }
                 );
+            }
 
             // EXTENDED SEARCH
         } else if (this.searchMode === 'extended') {
@@ -115,20 +136,21 @@ export abstract class KuiView implements OnInit, OnDestroy {
                 this._searchService.doExtendedSearchCountQueryCountQueryResult(this.searchQuery)
                     .subscribe(
                         this.showNumberOfAllResults,
-                        (error: any) => {
-                            this.errorMessage = <any> error;
+                        (error: ApiServiceError) => {
+                            this.errorMessage = <ApiServiceError> error;
                         }
                     );
             }
             this._searchService.doExtendedSearchReadResourceSequence(this.searchQuery)
                 .subscribe(
                     this.processSearchResults, // function pointer
-                    (error: any) => {
-                        this.errorMessage = <any> error;
+                    (error: ApiServiceError) => {
+                        this.errorMessage = <ApiServiceError> error;
                     });
 
         } else {
-            this.errorMessage = `search mode invalid: ${this.searchMode}`;
+            this.errorMessage = new ApiServiceError();
+            this.errorMessage.errorInfo = `search mode invalid: ${this.searchMode}`;
         }
     }
 

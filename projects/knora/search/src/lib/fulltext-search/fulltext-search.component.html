@@ -1,35 +1,65 @@
 <div class="search-bar-elements">
 
-    <div class="fulltext-search-bar" [class.active]="searchPanelFocus">
-        <div>
+
+    <div class="fulltext-search-bar" [class.active]="searchPanelFocus" [class.with-project-filter]="projectfilter">
+        <div class="search-project-filter" *ngIf="projectfilter">
+            <button mat-button class="project-filter-btn" [matMenuTriggerFor]="selectProject" #btnToSelectProject="matMenuTrigger" isIconButton>
+                <span class="label">{{projectLabel}}</span>
+                <mat-icon class="icon" matSuffix>keyboard_arrow_down</mat-icon>
+            </button>
+            <mat-menu #selectProject="matMenu">
+                <button mat-menu-item class="center" (click)="setProject();changeFocus()">All Projects</button>
+                <mat-divider></mat-divider>
+                <button mat-menu-item *ngFor="let project of projects"
+                        (click)="setProject(project);changeFocus()">{{project.shortname}}</button>
+            </mat-menu>
+        </div>
+
+        <!--         <div>
             <button class="prefix" (click)="doSearch(search)">
                 <mat-icon>search</mat-icon>
             </button>
-        </div>
+        </div> -->
 
         <div class="input-field">
-            <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" name="search" (keyup.esc)="resetSearch(search)" (keyup)="onKey(search, $event)" (click)="setFocus()" (focus)="toggleMenu()" />
+            <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" minlength="3"
+                   [class.with-project-filter]="projectfilter" name="search" (keyup.esc)="resetSearch(search)" [autofocus]="focusOnSimple === 'active'"
+                   (keyup)="onKey(search, $event)" (click)="setFocus()" (focus)="toggleMenu()" />
         </div>
 
         <!-- switch button: on some focus we need a close button for the simple -->
-        <div>
+        <!-- <div>
             <button class="suffix" *ngIf="focusOnSimple === 'active'" (click)="resetSearch(search)">
                 <mat-icon>close</mat-icon>
             </button>
             <button class="suffix" *ngIf="focusOnSimple === 'inactive'"></button>
         </div>
-
+ -->
+        <div>
+            <button class="suffix" (click)="doSearch()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
         <!-- "dropdown" menu for simple search -->
-        <div class="kui-menu simple-search" [@fulltextSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch">
+        <div class="kui-menu simple-search" [@fulltextSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch"
+             [class.with-project-filter]="projectfilter">
             <mat-list class="kui-previous-search-list">
                 <mat-list-item *ngFor="let item of prevSearch | kuiReverse; let i=index">
-                    <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)">{{item}}</h4>
+                    <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)" class="kui-previous-search-item">
+                        <div class="project-filter-btn" [class.not-empty]="item.projectIri" *ngIf="projectfilter">
+                            <span *ngIf="item.projectIri" class="project-filter-label">{{item.projectLabel}}</span>
+                        </div>
+                        <div class="search-query">
+                            {{item.query}}
+                        </div>
+                    </h4>
                     <button mat-icon-button (click)="resetPrevSearch(item)">
                         <mat-icon aria-label="close">close</mat-icon>
                     </button>
                 </mat-list-item>
             </mat-list>
-            <button mat-stroked-button color="accent" class="right" (click)="resetPrevSearch()" *ngIf="prevSearch">Clear</button>
+            <button mat-stroked-button color="accent" class="right" (click)="resetPrevSearch()"
+                    *ngIf="prevSearch">Clear</button>
         </div>
 
     </div>
