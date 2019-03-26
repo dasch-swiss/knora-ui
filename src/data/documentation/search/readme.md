@@ -27,7 +27,6 @@ This module has the following package dependencies, which you also have to insta
  - @knora/viewer@7.0.0
  - jdnconvertiblecalendardateadapter@0.0.7
 
-
 ## Components
 This module contains various components like kui-search (a simple search bar) and kui-extended-search, which is already implemented in kui-search, but can also be used as a standalone component.
 
@@ -38,7 +37,7 @@ The parameter `route` defines the route where the search-results-component of th
 
 We suggest to define a route for the search-results in the app.routing
 
-```
+```typescript
         path: 'search',
         component: SearchComponent,         // --> Component with the search panel
         children: [
@@ -52,10 +51,6 @@ We suggest to define a route for the search-results in the app.routing
             }
         ]
 ```
-
-
-
-
 
 <!--
 ### Search
@@ -83,7 +78,7 @@ For example: the property is 'like' / 'equal to' / 'greater than' etc.
 
 Import the search module in your app.module.ts and add it to the NgModules's imports:
 
-```javascript
+```typescript
 import { AppComponent } from './app.component';
 import { KuiSearchModule } from '@knora/search';
 

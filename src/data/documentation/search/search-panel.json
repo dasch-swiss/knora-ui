@@ -22,17 +22,6 @@
         "type": "ignore",
         "string": "",
         "html": ""
-      },
-      {
-        "type": "returns",
-        "string": "void",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
-        "optional": false,
-        "description": "<p>void</p>"
       }
     ],
     "description": {
@@ -46,7 +35,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 38,
-    "codeStart": 44,
+    "codeStart": 43,
     "code": "toggleMenu(): void {\n    this.showMenu = !this.showMenu;\n    this.focusOnExtended =\n        this.focusOnExtended === 'active' ? 'inactive' : 'active';\n}\n}",
     "ctx": {
       "type": "method",

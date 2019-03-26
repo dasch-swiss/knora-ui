@@ -9,7 +9,6 @@ import { Example } from 'src/app/app.interfaces';
 })
 export class FulltextSearchComponent implements OnInit {
     module = AppDemo.searchModule;
-
     // demo configuration incl. code to display
     searchPanel: Example = {
         title: 'Search Panel',
@@ -18,7 +17,7 @@ export class FulltextSearchComponent implements OnInit {
         code: {
             html: `
 <!-- param route is where the router-outlet is defined for search results -->
-<kui-search [route]="'/search/'"></kui-search>
+<kui-fulltext-search [route]="'/search'"></kui-fulltext-search>
 
 <router-outlet></router-outlet>`,
             ts: '',
