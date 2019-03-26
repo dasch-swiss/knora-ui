@@ -43,14 +43,14 @@ export class FulltextSearchComponent implements OnInit {
      * projectfilter: if true it shows the
      * selection of projects to filter by one of them
      *
-     * @param  {boolean} projectfilter?
+     * @param  {boolean} [projectfilter]
      */
     @Input() projectfilter?: boolean = false;
 
     /**
      * project iri to filter full-text search by this project
      *
-     * @param  {string} filterbyproject?
+     * @param  {string} [filterbyproject]
      */
     @Input() filterbyproject?: string;
 
