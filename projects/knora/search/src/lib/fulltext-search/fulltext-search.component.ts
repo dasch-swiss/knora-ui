@@ -35,7 +35,6 @@ export class FulltextSearchComponent implements OnInit {
      * route to navigate, where the search result component is used
      *
      * @param  {string} route
-     * @returns string
      */
     @Input() route: string = '/search';
 
@@ -114,7 +113,6 @@ export class FulltextSearchComponent implements OnInit {
      *
      * @param search_ele
      * @param event
-     * @returns void
      */
     onKey(search_ele: HTMLElement, event): void {
         this.focusOnSimple = 'active';
@@ -140,7 +138,6 @@ export class FulltextSearchComponent implements OnInit {
      * Realise a simple search
      * @ignore
      *
-     * @returns void
      */
     doSearch(): void {
         if (this.searchQuery !== undefined && this.searchQuery !== null) {
@@ -173,12 +170,6 @@ export class FulltextSearchComponent implements OnInit {
             let i: number = 0;
             for (const entry of existingPrevSearch) {
                 // remove entry, if exists already
-                /*
-                console.log('searchQuery', this.searchQuery);
-                console.log('entryQuery', entry.query);
-                console.log('projectIri', this.projectIri);
-                console.log('entryIri', this.projectIri);
-                */
                 if (this.searchQuery === entry.query && this.projectIri === entry.projectIri) {
                     existingPrevSearch.splice(i, 1);
                 }
@@ -219,7 +210,6 @@ export class FulltextSearchComponent implements OnInit {
      * @ignore
      *
      * @param {HTMLElement} search_ele
-     * @returns void
      */
     resetSearch(search_ele: HTMLElement): void {
         this.searchQuery = null;
@@ -232,7 +222,6 @@ export class FulltextSearchComponent implements OnInit {
      * Switch according to the focus between simple or extended search
      * @ignore
      *
-     * @returns void
      */
     toggleMenu(): void {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
@@ -245,7 +234,6 @@ export class FulltextSearchComponent implements OnInit {
      * Set simple focus to active
      * @ignore
      *
-     * @returns void
      */
     setFocus(): void {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
@@ -258,7 +246,6 @@ export class FulltextSearchComponent implements OnInit {
      * @ignore
      *
      * @param {string} prevSearch
-     * @returns void
      */
     doPrevSearch(prevSearch: PrevSearchItem): void {
 
@@ -282,11 +269,6 @@ export class FulltextSearchComponent implements OnInit {
             ]);
         }
 
-        /*
-        this._router.navigate([this.route + '/fulltext/' + query], {
-            relativeTo: this._route
-        });
-        */
         this.toggleMenu();
     }
 
@@ -295,7 +277,6 @@ export class FulltextSearchComponent implements OnInit {
      * @ignore
      *
      * @param {string} prevSearch term of the search
-     * @returns void
      */
     resetPrevSearch(prevSearch?: PrevSearchItem): void {
         if (prevSearch) {
@@ -335,7 +316,7 @@ export class FulltextSearchComponent implements OnInit {
      * get project information in case of @Input project
      * @ignore
      *
-     * @param iri
+     * @param {string} iri
      */
     getProject(iri: string) {
         this._projectsService.getProjectByIri(iri).subscribe(
@@ -352,7 +333,7 @@ export class FulltextSearchComponent implements OnInit {
      * set the project to use and store it in the local storage
      * @ignore
      *
-     * @param project
+     * @param {Project} project
      */
     setProject(project?: Project) {
         if (!project) {
