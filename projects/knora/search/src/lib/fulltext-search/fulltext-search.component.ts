@@ -40,8 +40,7 @@ export class FulltextSearchComponent implements OnInit {
     @Input() route: string = '/search';
 
     /**
-     * projectfilter: if true it shows the
-     * selection of projects to filter by one of them
+     * projectfilter: if true it shows the selection of projects to filter by one of them
      *
      * @param  {boolean} [projectfilter]
      */
