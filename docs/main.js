@@ -4115,10 +4115,10 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     };
     /**
      * Get user by username, email or by iri.
-     *
      * @ignore
      *
-     * @param {string} identifier - Get user by username, email or by iri
+     * @param  {string} identifier username, email or by iri
+     * @param  {String} identifierType
      * @returns Observable<User>
      */
     UsersService.prototype.getUser = function (identifier, identifierType) {
@@ -4128,8 +4128,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Get user by IRI
      *
-     * @param {string} iri
-     * @returns {Observable<User>}
+     * @param  {string} iri
+     * @returns Observable<User>
      */
     UsersService.prototype.getUserByIri = function (iri) {
         return this.getUser(iri, 'iri');
@@ -4137,8 +4137,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Get user by email
      *
-     * @param {string} email
-     * @returns {Observable<User>}
+     * @param  {string} email
+     * @returns Observable<User>
      */
     UsersService.prototype.getUserByEmail = function (email) {
         return this.getUser(email, 'email');
@@ -4146,8 +4146,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Get user by username.
      *
-     * @param {string} username
-     * @returns {Observable<User>}
+     * @param  {string} username
+     * @returns Observable<User>
      */
     UsersService.prototype.getUserByUsername = function (username) {
         return this.getUser(username, 'username');
@@ -4156,7 +4156,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Get all groups, where the user is member of
      *
      * @param  {string} userIri
-     * @returns Observable
+     * @returns Observable<Group[]>
      */
     UsersService.prototype.getUsersGroupMemberships = function (userIri) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships';
@@ -4198,7 +4198,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
     };
     /**
-     * Add user to an admin project.
+     * Add user to the admin group of a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
@@ -4209,7 +4209,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
     };
     /**
-     * Delete user of an admin project.
+     * Delete user from the admin group of a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
@@ -4220,10 +4220,10 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
     };
     /**
-     * add user to project specific group
+     * Add user to project specific group
      *
-     * @param userIri
-     * @param groupIri
+     * @param {string} userIri
+     * @param {string} groupIri
      * @returns Observable<User>
      */
     UsersService.prototype.addUserToGroup = function (userIri, groupIri) {
@@ -4233,8 +4233,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * remove user from project specific group
      *
-     * @param userIri
-     * @param groupIri
+     * @param {string} userIri
+     * @param {string} groupIri
      * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromGroup = function (userIri, groupIri) {
@@ -4258,7 +4258,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
     };
     /**
      * Remove user from the admin system.
-     * @param userIri
+     * @param {string} userIri
      * @returns Observable<User>
      */
     UsersService.prototype.removeUserFromSystemAdmin = function (userIri) {
@@ -4271,8 +4271,8 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Update user system admin membership
      * @ignore
      *
-     * @param userIri
-     * @param data
+     * @param {string} userIri
+     * @param {any} data
      *
      * @returns Observable<User>
      */
@@ -5726,8 +5726,9 @@ var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
     SearchComponent.prototype.ngOnInit = function () {
     };
     /**
-     * @ignore
      * Do search on Enter click, reset search on Escape
+     * @ignore
+     *
      * @param search_ele
      * @param event
      * @returns void
@@ -5877,11 +5878,13 @@ var SearchComponent = /** @class */ /*@__PURE__*/ (function () {
 var SearchPanelComponent = /** @class */ /*@__PURE__*/ (function () {
     function SearchPanelComponent() {
         this.route = '/search';
+        this.projectfilter = false;
         this.showMenu = false;
         this.focusOnExtended = 'inactive';
     }
     /**
      * Show or hide the extended search menu
+     * @ignore
      *
      * @returns void
      */
@@ -5898,10 +5901,17 @@ var FulltextSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         this._projectsService = _projectsService;
         /**
          * route to navigate, where the search result component is used
+         *
+         * @param  {string=/search;} route
+         * @returns string
          */
         this.route = '/search';
         /**
-         * if true it shows the selection of projects to filter by one
+         * projectfilter: if true it shows the
+         * selection of projects to filter by one of them
+         *
+         * @param  {boolean=false;} projectfilter?
+         * @returns boolean
          */
         this.projectfilter = false;
         this.showSimpleSearch = true;
@@ -5923,7 +5933,7 @@ var FulltextSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         }
     };
     /**
-     * Do search on Enter click, reset search on Escape
+     * Do search on press Enter, close search menu on Escape
      * @ignore
      *
      * @param search_ele
@@ -6029,7 +6039,7 @@ var FulltextSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         }
     };
     /**
-     * Reset the search
+     * Reset the search: close the search menu; clean the input field
      * @ignore
      *
      * @param {HTMLElement} search_ele
@@ -7319,7 +7329,7 @@ function View_SearchPanelComponent_1(_l) {
         }, View_ExtendedSearchComponent_0, RenderType_ExtendedSearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](13, 114688, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["ExtendedSearchComponent"], [_angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormBuilder"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"], _knora_core__WEBPACK_IMPORTED_MODULE_36__["OntologyCacheService"], _knora_core__WEBPACK_IMPORTED_MODULE_36__["GravsearchGenerationService"]], { route: [0, "route"] }, { toggleExtendedSearchForm: "toggleExtendedSearchForm" })], function (_ck, _v) { var _co = _v.component; _ck(_v, 9, 0); var currVal_5 = _co.route; _ck(_v, 13, 0, currVal_5); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.focusOnExtended; _ck(_v, 0, 0, currVal_0); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 7).disabled || null); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 7)._animationMode === "NoopAnimations"); _ck(_v, 6, 0, currVal_1, currVal_2); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 9).inline; var currVal_4 = (((_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 9).color !== "primary") && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 9).color !== "accent")) && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 9).color !== "warn")); _ck(_v, 8, 0, currVal_3, currVal_4); });
 }
 function View_SearchPanelComponent_0(_l) {
-    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 10, "div", [["class", "kui-search-panel"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 5, "div", [["class", "kui-search-bar"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](2, 0, null, null, 2, "div", [["class", "fulltext-search"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, null, 1, "kui-fulltext-search", [], null, null, null, View_FulltextSearchComponent_0, RenderType_FulltextSearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](4, 114688, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["FulltextSearchComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"], _knora_core__WEBPACK_IMPORTED_MODULE_36__["ProjectsService"]], { route: [0, "route"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SearchPanelComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](6, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](7, 0, null, null, 3, "div", [["class", "advanced-btn"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](8, 0, null, null, 2, "button", [["color", "primary"], ["mat-button", ""]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 10, "div", [["class", "kui-search-panel"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 5, "div", [["class", "kui-search-bar"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](2, 0, null, null, 2, "div", [["class", "fulltext-search"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, null, 1, "kui-fulltext-search", [], null, null, null, View_FulltextSearchComponent_0, RenderType_FulltextSearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](4, 114688, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["FulltextSearchComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"], _knora_core__WEBPACK_IMPORTED_MODULE_36__["ProjectsService"]], { route: [0, "route"], projectfilter: [1, "projectfilter"], filterbyproject: [2, "filterbyproject"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SearchPanelComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](6, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](7, 0, null, null, 3, "div", [["class", "advanced-btn"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](8, 0, null, null, 2, "button", [["color", "primary"], ["mat-button", ""]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
             var ad = true;
             var _co = _v.component;
             if (("click" === en)) {
@@ -7327,10 +7337,10 @@ function View_SearchPanelComponent_0(_l) {
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_51__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_51__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](9, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_27__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_24__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], { color: [0, "color"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, 0, ["advanced"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.route; _ck(_v, 4, 0, currVal_0); var currVal_1 = _co.showMenu; _ck(_v, 6, 0, currVal_1); var currVal_4 = "primary"; _ck(_v, 9, 0, currVal_4); }, function (_ck, _v) { var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 9).disabled || null); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 9)._animationMode === "NoopAnimations"); _ck(_v, 8, 0, currVal_2, currVal_3); });
+        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_51__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_51__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](9, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_27__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_24__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], { color: [0, "color"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, 0, ["advanced"]))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.route; var currVal_1 = _co.projectfilter; var currVal_2 = _co.filterbyproject; _ck(_v, 4, 0, currVal_0, currVal_1, currVal_2); var currVal_3 = _co.showMenu; _ck(_v, 6, 0, currVal_3); var currVal_6 = "primary"; _ck(_v, 9, 0, currVal_6); }, function (_ck, _v) { var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 9).disabled || null); var currVal_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 9)._animationMode === "NoopAnimations"); _ck(_v, 8, 0, currVal_4, currVal_5); });
 }
 function View_SearchPanelComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-search-panel", [], null, null, null, View_SearchPanelComponent_0, RenderType_SearchPanelComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["SearchPanelComponent"], [], null, null)], null, null); }
-var SearchPanelComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-search-panel", _knora_search__WEBPACK_IMPORTED_MODULE_1__["SearchPanelComponent"], View_SearchPanelComponent_Host_0, { route: "route" }, {}, []);
+var SearchPanelComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-search-panel", _knora_search__WEBPACK_IMPORTED_MODULE_1__["SearchPanelComponent"], View_SearchPanelComponent_Host_0, { route: "route", projectfilter: "projectfilter", filterbyproject: "filterbyproject" }, {}, []);
 
 var styles_FulltextSearchComponent = ["input[type=search][_ngcontent-%COMP%]::-webkit-search-cancel-button, input[type=search][_ngcontent-%COMP%]::-webkit-search-decoration, input[type=search][_ngcontent-%COMP%]::-webkit-search-results-button, input[type=search][_ngcontent-%COMP%]::-webkit-search-results-decoration{display:none}input[type=search][_ngcontent-%COMP%]{-moz-appearance:none;-webkit-appearance:none}.full-width[_ngcontent-%COMP%]{width:100%}.close[_ngcontent-%COMP%]{right:12px}.hide[_ngcontent-%COMP%]{display:none}.show[_ngcontent-%COMP%]{display:block}.search-bar-elements[_ngcontent-%COMP%]{display:flex;position:relative;z-index:100}.inactive[_ngcontent-%COMP%]{color:#7a7a7a}.fulltext-search-bar[_ngcontent-%COMP%]{background-color:#f9f9f9;border-radius:4px;display:inline-flex;height:40px;position:relative;width:480px;z-index:10}.fulltext-search-bar.with-project-filter[_ngcontent-%COMP%]{width:calc(480px + 160px)}.fulltext-search-bar[_ngcontent-%COMP%]:hover{box-shadow:0 1px 3px rgba(0,0,0,.5)}.fulltext-search-bar[_ngcontent-%COMP%]   .input-field[_ngcontent-%COMP%]{flex:1}.fulltext-search-bar[_ngcontent-%COMP%]   .input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]{border-style:none;font-size:14pt;height:38px;position:absolute;padding-left:12px;width:calc(100% - 40px)}.fulltext-search-bar[_ngcontent-%COMP%]   .input-field[_ngcontent-%COMP%]   input.with-project-filter[_ngcontent-%COMP%]{width:calc(100% - 40px - 160px)}.fulltext-search-bar[_ngcontent-%COMP%]   .input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]:active, .fulltext-search-bar[_ngcontent-%COMP%]   .input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]:focus{outline:0}.fulltext-search-bar[_ngcontent-%COMP%]   .prefix[_ngcontent-%COMP%], .fulltext-search-bar[_ngcontent-%COMP%]   .suffix[_ngcontent-%COMP%]{background-color:#fff;border-radius:3px;border-style:none;color:rgba(41,41,41,.4);cursor:pointer;height:38px;outline:0;position:relative;width:40px}.fulltext-search-bar[_ngcontent-%COMP%]   .prefix[_ngcontent-%COMP%]:active, .fulltext-search-bar[_ngcontent-%COMP%]   .suffix[_ngcontent-%COMP%]:active{color:#515151}.fulltext-search-bar.active[_ngcontent-%COMP%]{box-shadow:0 1px 3px rgba(0,0,0,.5)}.kui-menu[_ngcontent-%COMP%]{box-shadow:0 3px 5px -1px rgba(11,11,11,.2),0 6px 10px 0 rgba(11,11,11,.14),0 1px 18px 0 rgba(11,11,11,.12);background-color:#f9f9f9;border-radius:4px;position:absolute}.kui-menu.simple-search[_ngcontent-%COMP%]{min-height:480px;width:480px;padding-top:60px;z-index:-1}.kui-menu.simple-search.with-project-filter[_ngcontent-%COMP%]{width:calc(480px + 160px)}.kui-menu.simple-search[_ngcontent-%COMP%]   .kui-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]{cursor:pointer}.kui-menu.simple-search[_ngcontent-%COMP%]   .kui-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]:hover{background-color:#b8b8b8}.kui-menu.simple-search[_ngcontent-%COMP%]   .kui-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]:hover   mat-icon[_ngcontent-%COMP%]{display:block}.kui-menu.simple-search[_ngcontent-%COMP%]   .kui-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]   mat-icon[_ngcontent-%COMP%]{display:none}.kui-menu.simple-search[_ngcontent-%COMP%]   .kui-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]   .kui-previous-search-item[_ngcontent-%COMP%]{display:inherit}.kui-menu.simple-search[_ngcontent-%COMP%]   .kui-previous-search-list[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%]   .kui-previous-search-item[_ngcontent-%COMP%]   .search-query[_ngcontent-%COMP%]{font-weight:700}.kui-menu.simple-search[_ngcontent-%COMP%]   .right[_ngcontent-%COMP%]{margin-top:12px;margin-left:16px}@media screen and (max-width:1024px){.fulltext-search-bar[_ngcontent-%COMP%]{width:360px}.fulltext-search-bar[_ngcontent-%COMP%]   .input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]{width:calc(360px - 40px)}.kui-menu.simple-search[_ngcontent-%COMP%]{width:360px}}@media screen and (max-width:768px){.fulltext-search-bar[_ngcontent-%COMP%]{width:calc(360px - 160px)}.fulltext-search-bar[_ngcontent-%COMP%]   div.input-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]{width:calc(360px - 160px - 40px)}.kui-menu.simple-search[_ngcontent-%COMP%]{width:calc(360px - 40px)}}.project-filter-btn[_ngcontent-%COMP%]{font-size:inherit;overflow:hidden;text-overflow:ellipsis;width:160px}.project-filter-btn.not-empty[_ngcontent-%COMP%]::before{content:\"[\"}.project-filter-btn.not-empty[_ngcontent-%COMP%]::after{content:\"]\"}.project-filter-btn[_ngcontent-%COMP%]   .label[_ngcontent-%COMP%]{font-weight:700}.project-filter-btn[_ngcontent-%COMP%]   .icon[_ngcontent-%COMP%]{vertical-align:middle;position:relative;top:-1px}"];
 var RenderType_FulltextSearchComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_FulltextSearchComponent, data: { "animation": [{ type: 7, name: "fulltextSearchMenu", definitions: [{ type: 0, name: "inactive", styles: { type: 6, styles: { display: "none" }, offset: null }, options: undefined }, { type: 0, name: "active", styles: { type: 6, styles: { display: "block" }, offset: null }, options: undefined }, { type: 1, expr: "inactive => active", animation: { type: 4, styles: null, timings: "100ms ease-in" }, options: null }, { type: 1, expr: "active => inactive", animation: { type: 4, styles: null, timings: "100ms ease-out" }, options: null }], options: {} }] } });

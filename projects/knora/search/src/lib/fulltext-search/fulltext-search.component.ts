@@ -34,7 +34,7 @@ export class FulltextSearchComponent implements OnInit {
     /**
      * route to navigate, where the search result component is used
      *
-     * @param  {string='/search';} route
+     * @param  {string} route
      * @returns string
      */
     @Input() route: string = '/search';
@@ -43,16 +43,14 @@ export class FulltextSearchComponent implements OnInit {
      * projectfilter: if true it shows the
      * selection of projects to filter by one of them
      *
-     * @param  {boolean=false;} projectfilter?
-     * @returns boolean
+     * @param  {boolean} projectfilter?
      */
     @Input() projectfilter?: boolean = false;
 
     /**
      * project iri to filter full-text search by this project
      *
-     * @param  {string;} filterbyproject?
-     * @returns string
+     * @param  {string} filterbyproject?
      */
     @Input() filterbyproject?: string;
 
@@ -61,8 +59,7 @@ export class FulltextSearchComponent implements OnInit {
      * input field for full-text search
      *
      * @param  {} 'search'
-     * @param  {ElementRef;} searchField
-     * @returns ElementRef
+     * @param  {ElementRef} searchField
      */
     @ViewChild('search') searchField: ElementRef;
 
@@ -71,8 +68,7 @@ export class FulltextSearchComponent implements OnInit {
      * mat menu: after select a project, the focus should switch to the input field
      *
      * @param  {} 'btnToSelectProject'
-     * @param  {MatMenuTrigger;} selectProject
-     * @returns MatMenuTrigger
+     * @param  {MatMenuTrigger} selectProject
      */
     @ViewChild('btnToSelectProject') selectProject: MatMenuTrigger;
 
