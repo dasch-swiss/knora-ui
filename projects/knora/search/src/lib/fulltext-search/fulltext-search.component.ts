@@ -96,8 +96,9 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * Do search on Enter click, reset search on Escape
+     * @ignore
+     *
      * @param search_ele
      * @param event
      * @returns void
@@ -201,8 +202,9 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * Reset the search
+     * @ignore
+     *
      * @param {HTMLElement} search_ele
      * @returns void
      */
@@ -214,10 +216,9 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * Switch according to the focus between simple or extended search
+     * @ignore
      *
-     * @param {string} name 2 cases: simpleSearch or extendedSearch
      * @returns void
      */
     toggleMenu(): void {
@@ -228,8 +229,8 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * Set simple focus to active
+     * @ignore
      *
      * @returns void
      */
@@ -240,9 +241,10 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * Realise a previous search
-     * @param {string} query
+     * @ignore
+     *
+     * @param {string} prevSearch
      * @returns void
      */
     doPrevSearch(prevSearch: PrevSearchItem): void {
@@ -276,9 +278,10 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * Reset previous searches - the whole previous search or specific item by name
-     * @param {string} name term of the search
+     * @ignore
+     *
+     * @param {string} prevSearch term of the search
      * @returns void
      */
     resetPrevSearch(prevSearch?: PrevSearchItem): void {
@@ -295,8 +298,8 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * get all projects for "filter by project" selection
+     * @ignore
      */
     getAllProjects() {
         this._projectsService.getAllProjects().subscribe(
@@ -316,8 +319,8 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * get project information in case of @Input project
+     * @ignore
      *
      * @param iri
      */
@@ -333,8 +336,8 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * set the project to use and store it in the local storage
+     * @ignore
      *
      * @param project
      */
@@ -353,8 +356,8 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * switch focus from select-project-menu to input field
+     * @ignore
      */
     changeFocus() {
         this.selectProject.closeMenu();

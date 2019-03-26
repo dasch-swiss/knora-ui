@@ -31,6 +31,9 @@ import { UsersComponent } from './knora-ui-examples/core-demo/users/users.compon
 
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
+import { ExtendedSearchComponent } from './knora-ui-examples/search-demo/extended-search/extended-search.component';
+import { FulltextSearchComponent } from './knora-ui-examples/search-demo/fulltext-search/fulltext-search.component';
+
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ResourcesComponent } from './knora-ui-examples/viewer-demo/resources/resources.component';
 
@@ -139,9 +142,17 @@ const appRoutes: Routes = [
                         data: { module: 'search' }
                     },
                     {
-                        path: 'search',
+                        path: 'search-panel',
                         component: SearchPanelComponent
-                    }
+                    },
+                    {
+                        path: 'fulltext-panel',
+                        component: FulltextSearchComponent
+                    },
+                    {
+                        path: 'extended-panel',
+                        component: ExtendedSearchComponent
+                    },
                 ]
             },
             {

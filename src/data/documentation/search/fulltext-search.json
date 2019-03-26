@@ -100,8 +100,8 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "Do search on Enter click, reset search on Escape",
-        "html": "<p>Do search on Enter click, reset search on Escape</p>"
+        "string": "",
+        "html": ""
       },
       {
         "type": "param",
@@ -142,8 +142,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Do search on Enter click, reset search on Escape</p>",
+      "summary": "<p>Do search on Enter click, reset search on Escape</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -152,7 +152,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 98,
-    "codeStart": 105,
+    "codeStart": 106,
     "code": "onKey(search_ele: HTMLElement, event): void {\n    this.focusOnSimple = 'active';\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n    if (\n        this.searchQuery &&\n        (event.key === 'Enter' ||\n            event.keyCode === 13 ||\n            event.which === 13)\n    ) {\n        this.doSearch();\n    }\n    if (\n        event.key === 'Escape' ||\n        event.keyCode === 27 ||\n        event.which === 27\n    ) {\n        this.resetSearch(search_ele);\n    }\n}",
     "ctx": {
       "type": "method",
@@ -189,8 +189,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 125,
-    "codeStart": 131,
+    "line": 126,
+    "codeStart": 132,
     "code": "doSearch(): void {\n    if (this.searchQuery !== undefined && this.searchQuery !== null) {\n        this.toggleMenu();\n\n        if (this.projectIri !== undefined) {\n            this._router.navigate([\n                this.route +\n                    '/fulltext/' +\n                    this.searchQuery +\n                    '/' +\n                    encodeURIComponent(this.projectIri)\n            ]);\n        } else {\n            this._router.navigate([\n                this.route + '/fulltext/' + this.searchQuery\n            ]);\n        }\n\n        // this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });\n\n        // push the search query into the local storage prevSearch array (previous search)\n        // to have a list of recent search requests\n        let existingPrevSearch: PrevSearchItem[] = JSON.parse(\n            localStorage.getItem('prevSearch')\n        );\n        if (existingPrevSearch === null) {\n            existingPrevSearch = [];\n        }\n        let i: number = 0;\n        for (const entry of existingPrevSearch) {\n            // remove entry, if exists already",
     "ctx": {
       "type": "method",
@@ -210,8 +210,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 162,
-    "codeStart": 168,
+    "line": 163,
+    "codeStart": 169,
     "code": "if (this.searchQuery === entry.query && this.projectIri === entry.projectIri) {\n    existingPrevSearch.splice(i, 1);\n}\ni++;\n            }\n\n            // A search value is expected to have at least length of 3\n            if (this.searchQuery.length > 2) {\nlet currentQuery: PrevSearchItem = {\n    query: this.searchQuery\n};\n\nif (this.projectIri) {\n    currentQuery = {\n        projectIri: this.projectIri,\n        projectLabel: this.projectLabel,\n        query: this.searchQuery\n    };\n}\n\nexistingPrevSearch.push(currentQuery);\n\nlocalStorage.setItem(\n    'prevSearch',\n    JSON.stringify(existingPrevSearch)\n);\n            }\n\n        } else {\n            // search_ele.focus();\n            this.searchField.nativeElement.focus();\n            this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n        }\n    }",
     "ctx": {
       "type": "method",
@@ -223,8 +223,8 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "Reset the search",
-        "html": "<p>Reset the search</p>"
+        "string": "",
+        "html": ""
       },
       {
         "type": "param",
@@ -254,8 +254,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Reset the search</p>",
+      "summary": "<p>Reset the search</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -263,8 +263,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 203,
-    "codeStart": 209,
+    "line": 204,
+    "codeStart": 211,
     "code": "resetSearch(search_ele: HTMLElement): void {\n    this.searchQuery = null;\n    search_ele.focus();\n    this.focusOnSimple = 'inactive';\n    this.searchPanelFocus = !this.searchPanelFocus;\n}",
     "ctx": {
       "type": "method",
@@ -276,22 +276,8 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "Switch according to the focus between simple or extended search",
-        "html": "<p>Switch according to the focus between simple or extended search</p>"
-      },
-      {
-        "type": "param",
-        "string": "{string} name 2 cases: simpleSearch or extendedSearch",
-        "name": "name",
-        "description": "<p>2 cases: simpleSearch or extendedSearch</p>",
-        "types": [
-          "string"
-        ],
-        "typesDescription": "<code>string</code>",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
-        "variable": false
+        "string": "",
+        "html": ""
       },
       {
         "type": "returns",
@@ -306,8 +292,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Switch according to the focus between simple or extended search</p>",
+      "summary": "<p>Switch according to the focus between simple or extended search</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -315,8 +301,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 216,
-    "codeStart": 223,
+    "line": 218,
+    "codeStart": 224,
     "code": "toggleMenu(): void {\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n    this.focusOnSimple =\n        this.focusOnSimple === 'active' ? 'inactive' : 'active';\n    this.showSimpleSearch = true;\n}",
     "ctx": {
       "type": "method",
@@ -328,8 +314,8 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "Set simple focus to active",
-        "html": "<p>Set simple focus to active</p>"
+        "string": "",
+        "html": ""
       },
       {
         "type": "returns",
@@ -344,8 +330,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Set simple focus to active</p>",
+      "summary": "<p>Set simple focus to active</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -353,8 +339,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 230,
-    "codeStart": 236,
+    "line": 231,
+    "codeStart": 237,
     "code": "setFocus(): void {\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n    this.focusOnSimple = 'active';\n    this.searchPanelFocus = !this.searchPanelFocus;\n}",
     "ctx": {
       "type": "method",
@@ -366,13 +352,13 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "Realise a previous search",
-        "html": "<p>Realise a previous search</p>"
+        "string": "",
+        "html": ""
       },
       {
         "type": "param",
-        "string": "{string} query",
-        "name": "query",
+        "string": "{string} prevSearch",
+        "name": "prevSearch",
         "description": "",
         "types": [
           "string"
@@ -382,7 +368,7 @@
         "nullable": false,
         "nonNullable": false,
         "variable": false,
-        "html": "<p>{string} query</p>"
+        "html": "<p>{string} prevSearch</p>"
       },
       {
         "type": "returns",
@@ -397,8 +383,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Realise a previous search</p>",
+      "summary": "<p>Realise a previous search</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -406,8 +392,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 242,
-    "codeStart": 248,
+    "line": 243,
+    "codeStart": 250,
     "code": "doPrevSearch(prevSearch: PrevSearchItem): void {\n\n    this.searchQuery = prevSearch.query;\n\n    if (prevSearch.projectIri !== undefined) {\n        this.projectIri = prevSearch.projectIri;\n        this.projectLabel = prevSearch.projectLabel;\n        this._router.navigate([\n            this.route +\n                '/fulltext/' +\n                this.searchQuery +\n                '/' +\n                encodeURIComponent(prevSearch.projectIri)\n        ]);\n    } else {\n        this.projectIri = undefined;\n        this.projectLabel = 'Filter project';\n        this._router.navigate([\n            this.route + '/fulltext/' + this.searchQuery\n        ]);\n    }",
     "ctx": {
       "type": "method",
@@ -427,8 +413,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 270,
-    "codeStart": 275,
+    "line": 272,
+    "codeStart": 277,
     "code": "this.toggleMenu();\n    }",
     "ctx": false
   },
@@ -436,13 +422,13 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "Reset previous searches - the whole previous search or specific item by name",
-        "html": "<p>Reset previous searches - the whole previous search or specific item by name</p>"
+        "string": "",
+        "html": ""
       },
       {
         "type": "param",
-        "string": "{string} name term of the search",
-        "name": "name",
+        "string": "{string} prevSearch term of the search",
+        "name": "prevSearch",
         "description": "<p>term of the search</p>",
         "types": [
           "string"
@@ -466,8 +452,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Reset previous searches - the whole previous search or specific item by name</p>",
+      "summary": "<p>Reset previous searches - the whole previous search or specific item by name</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -475,8 +461,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 278,
-    "codeStart": 284,
+    "line": 280,
+    "codeStart": 287,
     "code": "resetPrevSearch(prevSearch?: PrevSearchItem): void {\n    if (prevSearch) {\n        // delete only this item with the name ...\n        const i: number = this.prevSearch.indexOf(prevSearch);\n        this.prevSearch.splice(i, 1);\n        localStorage.setItem('prevSearch', JSON.stringify(this.prevSearch));\n    } else {\n        // delete the whole \"previous search\" array\n        localStorage.removeItem('prevSearch');\n    }\n    this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));\n}",
     "ctx": {
       "type": "method",
@@ -488,13 +474,13 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "get all projects for \"filter by project\" selection",
-        "html": "<p>get all projects for &quot;filter by project&quot; selection</p>"
+        "string": "",
+        "html": ""
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>get all projects for &quot;filter by project&quot; selection</p>",
+      "summary": "<p>get all projects for &quot;filter by project&quot; selection</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -502,8 +488,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 297,
-    "codeStart": 301,
+    "line": 300,
+    "codeStart": 304,
     "code": "getAllProjects() {\n    this._projectsService.getAllProjects().subscribe(\n        (projects: Project[]) => {\n            this.projects = projects;\n            // this.loadSystem = false;\n            if (localStorage.getItem('currentProject') !== null) {\n                this.projectLabel = JSON.parse(\n                    localStorage.getItem('currentProject')\n                ).shortname;\n            }\n        },\n        (error: ApiServiceError) => {\n            console.error(error);\n        }\n    );\n}",
     "ctx": {
       "type": "method",
@@ -515,8 +501,8 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "get project information in case of @Input project",
-        "html": "<p>get project information in case of @Input project</p>"
+        "string": "",
+        "html": ""
       },
       {
         "type": "param",
@@ -533,8 +519,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>get project information in case of @Input project</p>",
+      "summary": "<p>get project information in case of @Input project</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -542,8 +528,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 318,
-    "codeStart": 324,
+    "line": 321,
+    "codeStart": 327,
     "code": "getProject(iri: string) {\n    this._projectsService.getProjectByIri(iri).subscribe(\n        (project: Project) => {\n            this.setProject(project);\n        },\n        (error: ApiServiceError) => {\n            console.error(error);\n        }\n    );\n}",
     "ctx": {
       "type": "method",
@@ -555,8 +541,8 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "set the project to use and store it in the local storage",
-        "html": "<p>set the project to use and store it in the local storage</p>"
+        "string": "",
+        "html": ""
       },
       {
         "type": "param",
@@ -573,8 +559,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>set the project to use and store it in the local storage</p>",
+      "summary": "<p>set the project to use and store it in the local storage</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -582,8 +568,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 335,
-    "codeStart": 341,
+    "line": 338,
+    "codeStart": 344,
     "code": "setProject(project?: Project) {\n    if (!project) {\n        // set default project: all\n        this.projectLabel = 'Filter project';\n        this.projectIri = undefined;\n        localStorage.removeItem('currentProject');\n    } else {\n        // set current project shortname and id\n        this.projectLabel = project.shortname;\n        this.projectIri = project.id;\n        localStorage.setItem('currentProject', JSON.stringify(project));\n    }\n}",
     "ctx": {
       "type": "method",
@@ -595,13 +581,13 @@
     "tags": [
       {
         "type": "ignore",
-        "string": "switch focus from select-project-menu to input field",
-        "html": "<p>switch focus from select-project-menu to input field</p>"
+        "string": "",
+        "html": ""
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>switch focus from select-project-menu to input field</p>",
+      "summary": "<p>switch focus from select-project-menu to input field</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -609,8 +595,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 355,
-    "codeStart": 359,
+    "line": 358,
+    "codeStart": 362,
     "code": "changeFocus() {\n    this.selectProject.closeMenu();\n    this.searchField.nativeElement.focus();\n}\n}",
     "ctx": {
       "type": "method",
