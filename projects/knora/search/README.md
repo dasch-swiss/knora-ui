@@ -38,7 +38,7 @@ The parameter `route` defines the route where the search-results-component of th
 
 We suggest to define a route for the search-results in the app.routing
 
-```
+```typescript
         path: 'search',
         component: SearchComponent,         // --> Component with the search panel
         children: [
@@ -83,7 +83,7 @@ For example: the property is 'like' / 'equal to' / 'greater than' etc.
 
 Import the search module in your app.module.ts and add it to the NgModules's imports:
 
-```javascript
+```typescript
 import { AppComponent } from './app.component';
 import { KuiSearchModule } from '@knora/search';
 
