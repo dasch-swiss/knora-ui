@@ -1,5 +1,22 @@
 [
   {
+    "tags": [],
+    "description": {
+      "full": "<p>The search-panel contains the kui-fulltext-search and the kui-extended-search components.</p>",
+      "summary": "<p>The search-panel contains the kui-fulltext-search and the kui-extended-search components.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 10,
+    "codeStart": 13,
+    "code": "@Component({\n    selector: 'kui-search-panel',\n    templateUrl: './search-panel.component.html',\n    styleUrls: ['./search-panel.component.scss'],\n    animations: [\n        trigger('extendedSearchMenu', [\n            state('inactive', style({ display: 'none' })),\n            state('active', style({ display: 'block' })),\n            transition('inactive => active', animate('100ms ease-in')),\n            transition('active => inactive', animate('100ms ease-out'))\n        ])\n    ]\n})\nexport class SearchPanelComponent {\n    @Input() route: string = '/search';\n\n    @Input() projectfilter?: boolean = false;\n\n    @Input() filterbyproject?: string;\n\n    showMenu: boolean = false;\n    focusOnExtended: string = 'inactive';\n\n    constructor() {}",
+    "ctx": false
+  },
+  {
     "tags": [
       {
         "type": "ignore",
@@ -28,9 +45,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 33,
-    "codeStart": 39,
-    "code": "toggleMenu(): void {\n  this.showMenu = !this.showMenu;\n  this.focusOnExtended = (this.focusOnExtended === 'active' ? 'inactive' : 'active');\n}\n}",
+    "line": 38,
+    "codeStart": 44,
+    "code": "toggleMenu(): void {\n    this.showMenu = !this.showMenu;\n    this.focusOnExtended =\n        this.focusOnExtended === 'active' ? 'inactive' : 'active';\n}\n}",
     "ctx": {
       "type": "method",
       "name": "toggleMenu",

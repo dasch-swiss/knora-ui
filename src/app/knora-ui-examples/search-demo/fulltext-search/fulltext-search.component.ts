@@ -9,9 +9,6 @@ import { Example } from 'src/app/app.interfaces';
 })
 export class FulltextSearchComponent implements OnInit {
     module = AppDemo.searchModule;
-
-    usage = `<p>To set the search bar, you have to add a <b>&lt;kui-search&gt;</b> tag wherever you want in your template. <br>Customize the input "[route]" to match your own route.<br>For example in search.component.html:<b> &lt;kui-search [route]="'/modules/search'"&gt;&lt;/kui-search&gt;</b></p>`;
-
     // demo configuration incl. code to display
     searchPanel: Example = {
         title: 'Search Panel',

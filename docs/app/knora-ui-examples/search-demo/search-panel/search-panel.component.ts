@@ -2,16 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AppDemo } from '../../../app.config';
 import { Example } from '../../../app.interfaces';
 
-/**
- * The search-panel contains the kui-fulltext-search and the kui-extended-search components.
- */
 @Component({
     selector: 'app-search-panel',
     templateUrl: './search-panel.component.html',
     styleUrls: ['./search-panel.component.scss']
 })
 export class SearchPanelComponent implements OnInit {
-
     module = AppDemo.searchModule;
 
     // demo configuration incl. code to display
@@ -29,11 +25,7 @@ export class SearchPanelComponent implements OnInit {
         }
     };
 
-    constructor() { }
+    constructor() {}
 
-
-    ngOnInit() {
-
-    }
-
+    ngOnInit() {}
 }
