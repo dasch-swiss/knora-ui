@@ -146,11 +146,11 @@ const appRoutes: Routes = [
                         component: SearchPanelComponent
                     },
                     {
-                        path: 'fulltext-panel',
+                        path: 'fulltext-search',
                         component: FulltextSearchComponent
                     },
                     {
-                        path: 'extended-panel',
+                        path: 'extended-search',
                         component: ExtendedSearchComponent
                     },
                 ]

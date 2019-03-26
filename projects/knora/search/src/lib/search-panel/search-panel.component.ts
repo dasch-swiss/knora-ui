@@ -19,6 +19,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class SearchPanelComponent {
 
   @Input() route: string = '/search';
+
+  @Input() projectfilter?: boolean = false;
+
+  @Input() filterbyproject?: string;
+
+
   showMenu: boolean = false;
   focusOnExtended: string = 'inactive';
 
@@ -26,6 +32,7 @@ export class SearchPanelComponent {
 
   /**
    * Show or hide the extended search menu
+   * @ignore
    *
    * @returns void
    */
