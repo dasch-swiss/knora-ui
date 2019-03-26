@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AppDemo } from '../../../app.config';
 import { Example } from '../../../app.interfaces';
 
+/**
+ * The search-panel contains the kui-fulltext-search and the kui-extended-search components.
+ */
 @Component({
     selector: 'app-search-panel',
     templateUrl: './search-panel.component.html',
@@ -11,8 +14,6 @@ export class SearchPanelComponent implements OnInit {
 
     module = AppDemo.searchModule;
 
-    usage = `<p>To set the search bar, you have to add a <b>&lt;kui-search&gt;</b> tag wherever you want in your template. <br>Customize the input "[route]" to match your own route.<br>For example in search.component.html:<b> &lt;kui-search [route]="'/modules/search'"&gt;&lt;/kui-search&gt;</b></p>`;
-
     // demo configuration incl. code to display
     searchPanel: Example = {
         title: 'Search Panel',
@@ -20,8 +21,7 @@ export class SearchPanelComponent implements OnInit {
         name: 'searchpanel',
         code: {
             html: `
-<!-- param route is where the router-outlet is defined for search results -->
-<kui-search [route]="'/search/'"></kui-search>
+<kui-search-panel [route]="'/search/'"></kui-search>
 
 <router-outlet></router-outlet>`,
             ts: '',
