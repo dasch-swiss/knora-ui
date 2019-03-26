@@ -2,6 +2,11 @@
   {
     "tags": [
       {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      },
+      {
         "type": "returns",
         "string": "void",
         "types": [],
@@ -23,8 +28,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 27,
-    "codeStart": 32,
+    "line": 33,
+    "codeStart": 39,
     "code": "toggleMenu(): void {\n  this.showMenu = !this.showMenu;\n  this.focusOnExtended = (this.focusOnExtended === 'active' ? 'inactive' : 'active');\n}\n}",
     "ctx": {
       "type": "method",

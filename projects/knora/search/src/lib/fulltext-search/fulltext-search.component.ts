@@ -33,28 +33,46 @@ export interface PrevSearchItem {
 export class FulltextSearchComponent implements OnInit {
     /**
      * route to navigate, where the search result component is used
+     *
+     * @param  {string='/search';} route
+     * @returns string
      */
     @Input() route: string = '/search';
 
     /**
-     * if true it shows the selection of projects to filter by one
+     * projectfilter: if true it shows the
+     * selection of projects to filter by one of them
+     *
+     * @param  {boolean=false;} projectfilter?
+     * @returns boolean
      */
     @Input() projectfilter?: boolean = false;
 
     /**
-     * project iri to filter by
+     * project iri to filter full-text search by this project
+     *
+     * @param  {string;} filterbyproject?
+     * @returns string
      */
     @Input() filterbyproject?: string;
 
     /**
      * @ignore
      * input field for full-text search
+     *
+     * @param  {} 'search'
+     * @param  {ElementRef;} searchField
+     * @returns ElementRef
      */
     @ViewChild('search') searchField: ElementRef;
 
     /**
      * @ignore
      * mat menu: after select a project, the focus should switch to the input field
+     *
+     * @param  {} 'btnToSelectProject'
+     * @param  {MatMenuTrigger;} selectProject
+     * @returns MatMenuTrigger
      */
     @ViewChild('btnToSelectProject') selectProject: MatMenuTrigger;
 
@@ -96,7 +114,7 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * Do search on Enter click, reset search on Escape
+     * Do search on press Enter, close search menu on Escape
      * @ignore
      *
      * @param search_ele
@@ -202,7 +220,7 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     /**
-     * Reset the search
+     * Reset the search: close the search menu; clean the input field
      * @ignore
      *
      * @param {HTMLElement} search_ele
