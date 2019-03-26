@@ -18,7 +18,7 @@ export class ExtendedSearchComponent implements OnInit {
         code: {
             html: `
 <!-- param route is where the router-outlet is defined for search results -->
-<kui-search [route]="'/search/'"></kui-search>
+<kui-extended-search [route]="'/search'"></kui-search>
 
 <router-outlet></router-outlet>`,
             ts: '',
