@@ -24,10 +24,25 @@ import {
     ]
 })
 export class SearchPanelComponent {
+    /**
+     * Route to navigate after search. This route path should contain a component for search results.
+     *
+     * @param  {string} route
+     */
     @Input() route: string = '/search';
 
+    /**
+     * projectfilter: if true it shows the selection of projects to filter by one of them
+     *
+     * @param  {boolean} [projectfilter]
+     */
     @Input() projectfilter?: boolean = false;
 
+    /**
+     * If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.
+     *
+     * @param  {string} [filterbyproject]
+     */
     @Input() filterbyproject?: string;
 
     showMenu: boolean = false;

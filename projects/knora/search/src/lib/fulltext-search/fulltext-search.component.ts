@@ -16,7 +16,10 @@ export interface PrevSearchItem {
     query: string;
 }
 
-
+/**
+ * Full-text search performs queries including one or more terms or phrases and returns data that
+ match search conditions. The asterisk * can be used as a wildcard symbol.
+ */
 @Component({
     selector: 'kui-fulltext-search',
     templateUrl: './fulltext-search.component.html',
@@ -32,7 +35,7 @@ export interface PrevSearchItem {
 })
 export class FulltextSearchComponent implements OnInit {
     /**
-     * route to navigate, where the search result component is used
+     * Route to navigate after search. This route path should contain a component for search results.
      *
      * @param  {string} route
      */
@@ -46,7 +49,7 @@ export class FulltextSearchComponent implements OnInit {
     @Input() projectfilter?: boolean = false;
 
     /**
-     * project iri to filter full-text search by this project
+     * If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.
      *
      * @param  {string} [filterbyproject]
      */
