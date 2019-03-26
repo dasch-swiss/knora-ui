@@ -39,7 +39,6 @@ export class SearchPanelComponent {
      * Show or hide the extended search menu
      * @ignore
      *
-     * @returns void
      */
     toggleMenu(): void {
         this.showMenu = !this.showMenu;

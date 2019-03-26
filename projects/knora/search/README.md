@@ -27,7 +27,6 @@ This module has the following package dependencies, which you also have to insta
  - @knora/viewer@7.0.0
  - jdnconvertiblecalendardateadapter@0.0.7
 
-
 ## Components
 This module contains various components like kui-search (a simple search bar) and kui-extended-search, which is already implemented in kui-search, but can also be used as a standalone component.
 
@@ -52,10 +51,6 @@ We suggest to define a route for the search-results in the app.routing
             }
         ]
 ```
-
-
-
-
 
 <!--
 ### Search
