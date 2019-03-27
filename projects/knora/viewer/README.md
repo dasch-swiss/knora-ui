@@ -23,13 +23,13 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 ### Dependencies
 This module has the following package dependencies, which you also have to install.
-  - @angular/common@7.2.7
-  - @angular/core@7.2.7
-  - @angular/animations@7.2.7
-  - @angular/material@7.3.3
-  - @angular/cdk@7.3.3
-  - @angular/flex-layout@7.0.0-beta.22
-  - @knora/core@7.1.0
+ *  @angular/common@7.2.7
+ *  @angular/core@7.2.7
+ *  @angular/animations@7.2.7
+ *  @angular/material@7.3.3
+ *  @angular/cdk@7.3.3
+ *  @angular/flex-layout@7.0.0-beta.22
+ *  @knora/core@7.1.0
 
 ## Setup
 Import the viewer module in your app.module.ts and add it to the NgModules's imports:
