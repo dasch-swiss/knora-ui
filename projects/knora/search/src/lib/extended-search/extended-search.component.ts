@@ -14,7 +14,9 @@ import {
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
 
-
+/**
+ * The extended search allows you to filter by project, by source type (resource class), or by the metadata (properties) of source types. Each filter can be standalone or combined. The metadata field can be precisely filtered with criteria such as "contains", "like", "equals to", "exists" or in case of a date value with "before" or "after". In addition, for a metadata field that is connected to another source type, it's possible to filter by this second source type. If you are looking for the source type "Photograph" with the metadata field "Photographer", which is connected to source type "Person", you can search for photograph(s) taken by person(s) who is born before February 1970. The result of this request will be an intersection of the two source types.
+ */
 @Component({
     selector: 'kui-extended-search',
     templateUrl: './extended-search.component.html',
@@ -23,7 +25,9 @@ import { SelectResourceClassComponent } from './select-resource-class/select-res
 export class ExtendedSearchComponent implements OnInit {
 
     /**
-     * @param {string} route - Route after search
+     * Route to navigate after search. This route path should contain a component for search results.
+     *
+     * @param  {string} route
      */
     @Input() route;
 
@@ -85,6 +89,7 @@ export class ExtendedSearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Add a property to the search form.
      * @returns void
      */
@@ -93,6 +98,7 @@ export class ExtendedSearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Remove the last property from the search form.
      * @returns void
      */
@@ -101,6 +107,7 @@ export class ExtendedSearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Gets all available ontologies for the search form.
      * @returns void
      */
@@ -112,6 +119,7 @@ export class ExtendedSearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Once an ontology has been selected, gets its classes and properties.
      * The classes and properties will be made available to the user for selection.
      *
@@ -140,6 +148,7 @@ export class ExtendedSearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Once a resource class has been selected, gets its properties.
      * The properties will be made available to the user for selection.
      *
@@ -170,6 +179,7 @@ export class ExtendedSearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Validates form and returns its status (boolean).
      */
     private validateForm() {
@@ -181,6 +191,7 @@ export class ExtendedSearchComponent implements OnInit {
     }
 
     /**
+     * @ignore
      * Resets the form (selected resource class and specified properties) preserving the active ontology.
      */
     resetForm() {
@@ -191,6 +202,7 @@ export class ExtendedSearchComponent implements OnInit {
 
 
     /**
+     * @ignore
      * Creates a GravSearch query with the given form values and calls the extended search route.
      */
     submit() {

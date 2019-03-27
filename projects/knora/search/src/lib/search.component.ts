@@ -62,8 +62,9 @@ export class SearchComponent implements OnInit {
     }
 
     /**
-     * @ignore
      * Do search on Enter click, reset search on Escape
+     * @ignore
+     *
      * @param search_ele
      * @param event
      * @returns void
