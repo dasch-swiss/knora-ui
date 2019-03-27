@@ -1,4 +1,5 @@
 # Knora-ui core module
+
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg)](https://www.npmjs.com/package/@knora/core)
 
 This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [Data and Service Center for Humanities DaSCH](http://dasch.swiss).
@@ -6,29 +7,36 @@ This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modul
 The core module contains every service to use Knora's RESTful webapi v2 and admin.
 
 ## Prerequisites
+
 For help getting started with a new Angular app, check out the [Angular CLI](https://cli.angular.io/).
 
 For existing apps, follow these steps to begin using Knora-ui core.
 
 ## Install
+
 You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project in the examples below.
 
 ### Yarn
+
 `$ yarn add @knora/core`
 
 ### NPM
+
 `$ npm install --save @knora/core`
 
 ### Dependencies
-This module has the following package dependencies, which you also have to install.
- *  @angular/common@7.2.7
- *  @angular/core@7.2.7
- *  json2typescript@1.0.6
- *  jsonld@1.1.0
 
+This module has the following package dependencies, which you also have to install.
+
+-   @angular/common@7.2.7
+-   @angular/core@7.2.7
+-   json2typescript@1.0.6
+-   jsonld@1.1.0
 
 ## Setup
+
 On version 6 of Angular CLI they removed the shim for global and other node built-ins as mentioned in [#9827 (comment)](https://github.com/angular/angular-cli/issues/9827#issuecomment-369578814). Because of the jsonld package, we have to manually shimming it inside of the **polyfills.ts** file of the app:
+
 ```javascript
 // Add global to window, assigning the value of window itself.
 
@@ -53,10 +61,10 @@ export const environment = {
 };
 ```
 
-- name: Name of the app. We're using it as a title in the authentication module
-- api: set the url of the [Knora](https://www.knora.org) webapi server
-- app: on which url is this app running?
-- media: url of a specific media server. In our case it's [sipi](http://www.sipi.io)
+-   name: Name of the app. We're using it as a title in the authentication module
+-   api: set the url of the [Knora](https://www.knora.org) webapi server
+-   app: on which url is this app running?
+-   media: url of a specific media server. In our case it's [sipi](http://www.sipi.io)
 
 Send this configuration to the `@knora/core` module in your app.module.ts
 
@@ -86,11 +94,11 @@ export class AppModule {
 ```
 
 ## Usage
+
 The `@knora/core` has different services, which follows the route definiton of [knora webapi](https://docs.knora.org)
 
 Each of the services has the [json2typescript](https://www.npmjs.com/package/json2typescript) mapper implemented.
 `json2typescript` is a small package containing a helper class that maps JSON objects to an instance of a TypeScript class.
-
 
 That means that you have to import the service and the type classes into your component.
 
@@ -121,7 +129,6 @@ this.projectsService.getProjectByIri(iri)
 <!--
 ### Error handling
 -->
-
 
 ## Special usage of Knora API v2
 
@@ -183,7 +190,5 @@ this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
 ```
 
 An instance of `OntologyInformation` contains the resource class definitions and the properties the resource classes have cardinalities for.
-To facilitate this process and minimize the number of requests to be sent to Knora, the ``OntologyCacheService`` gets whole ontologies from Knora each time it encounters an unknown entity and caches them.
+To facilitate this process and minimize the number of requests to be sent to Knora, the `OntologyCacheService` gets whole ontologies from Knora each time it encounters an unknown entity and caches them.
 Once stored in  the cache, the `OntologyCacheService` can serve the information without doing an additional request to Knora.
-
-
