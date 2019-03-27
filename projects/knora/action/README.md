@@ -23,25 +23,25 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 ### Dependencies
 This module has the following package dependencies, which you also have to install.
- - @angular/common@7.2.7
- - @angular/core@7.2.7
- - @angular/animations@7.2.7
- - @angular/cdk@7.3.3
- - @angular/material@7.3.3
- - ts-md5@1.2.4
- - jdnconvertiblecalendar@0.0.2
- - jdnconvertiblecalendardateadapter@0.0.7
- 
+*  @angular/common@7.2.7
+*  @angular/core@7.2.7
+*  @angular/animations@7.2.7
+*  @angular/cdk@7.3.3
+*  @angular/material@7.3.3
+*  ts-md5@1.2.4
+*  jdnconvertiblecalendar@0.0.2
+*  jdnconvertiblecalendardateadapter@0.0.7
+
 
 
 ## Setup
- 
+
  Import the action module in your app.module.ts and add it to the NgModules's imports:
- 
+
  ```javascript
  import { AppComponent } from './app.component';
  import { KuiActionModule } from '@knora/action';
- 
+
  @NgModule({
      declarations: [
          AppComponent
@@ -55,7 +55,7 @@ This module has the following package dependencies, which you also have to insta
  export class AppModule {
  }
  ```
- 
+
 
 ## Components, Directives and Pipes
 This module contains various components like a progress indicator, sort button and sort-by pipe, but also helper for images (in the admin interface) and existing names.
@@ -67,7 +67,7 @@ This module contains various components like a progress indicator, sort button a
 You can use the progress indicator in two ways:
 
 1. classic loader
-2. submit-form-data loader 
+2. submit-form-data loader
 
 [Example and demo](https://dhlab-basel.github.io/Knora-ui/modules/action/progress-indicator)
 
@@ -88,7 +88,7 @@ The sort button helps to sort a list by a selected topic. The following setup is
 ## Directives
 
 ### Admin image
-A attribute directive for images (`<img />`) to get a user avatar, which uses the service from gravatar.com and to set a project logo. 
+A attribute directive for images (`<img />`) to get a user avatar, which uses the service from gravatar.com and to set a project logo.
 
 [Example and demo](https://dhlab-basel.github.io/Knora-ui/modules/action/admin-image)
 
@@ -107,13 +107,13 @@ This directive checks a form field to see if the value is unique. For example us
 ## Pipes
 
 ### Key
-In case of an object, where you don't know the labels or in case of an array with no numeric index, you can use the Key pipe. 
+In case of an object, where you don't know the labels or in case of an array with no numeric index, you can use the Key pipe.
 
 [Example and demo](https://dhlab-basel.github.io/Knora-ui/modules/action/key)
 
 
 ### Sort by
-The sortBy pipe is used to sort by a selected key. 
+The sortBy pipe is used to sort by a selected key.
 
 [Example and demo in sort button component](https://dhlab-basel.github.io/Knora-ui/modules/action/sort-button)
 -->

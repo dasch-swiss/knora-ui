@@ -22,14 +22,14 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 ### Dependencies
 This module has the following package dependencies, which you also have to install.
- - @angular/common@7.2.7
- - @angular/core@7.2.7
- - @angular/animations@7.2.7
- - @angular/cdk@7.3.3
- - @angular/material@7.3.3
- - @knora/action@7.1.0
- - @knora/core@7.1.0
- - moment@2.22.2
+*  @angular/common@7.2.7
+*  @angular/core@7.2.7
+*  @angular/animations@7.2.7
+*  @angular/cdk@7.3.3
+*  @angular/material@7.3.3
+*  @knora/action@7.1.0
+*  @knora/core@7.1.0
+*  moment@2.22.2
 
 
 ## Setup
