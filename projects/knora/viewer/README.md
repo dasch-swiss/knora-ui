@@ -16,7 +16,6 @@ For existing apps, follow these steps to begin using Knora-ui viewer.
 You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project in the examples below.
 
 ### Yarn
-
 `$ yarn add @knora/viewer`
 
 ### NPM
@@ -33,10 +32,9 @@ This module has the following package dependencies, which you also have to insta
  - @angular/flex-layout@7.0.0-beta.22
 
 ## Setup
-
 Import the viewer module in your app.module.ts and add it to the NgModules's imports:
 
-```javascript
+```typescript
 import { AppComponent } from './app.component';
 import { KuiViewerModule } from '@knora/viewer';
 

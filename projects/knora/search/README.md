@@ -75,7 +75,6 @@ For example: the property is 'like' / 'equal to' / 'greater than' etc.
 -->
 
 ## Setup
-
 Import the search module in your app.module.ts and add it to the NgModules's imports:
 
 ```typescript
@@ -95,4 +94,3 @@ import { KuiSearchModule } from '@knora/search';
 export class AppModule {
 }
 ```
-
