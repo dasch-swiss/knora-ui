@@ -23,8 +23,8 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 This module has the following package dependencies, which you also have to install.
  - @angular/common@7.2.7
  - @angular/core@7.2.7
- - @knora/core@7.0.0
- - @knora/viewer@7.0.0
+ - @knora/core@7.1.0
+ - @knora/viewer@7.1.0
  - jdnconvertiblecalendardateadapter@0.0.7
 
 ## Components

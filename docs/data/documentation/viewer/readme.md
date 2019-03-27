@@ -24,19 +24,18 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 ### Dependencies
 This module has the following package dependencies, which you also have to install.
-*   @angular/common@7.2.7
-*   @angular/core@7.2.7
-*   @angular/material@7.3.3
-*   @angular/cdk@7.3.3
-*   @knora/core@7.0.0
-*   @angular/animations@7.2.7
-*   @angular/flex-layout@7.0.0-beta.22
-
+ - @angular/common@7.2.7
+ - @angular/core@7.2.7
+ - @angular/material@7.3.3
+ - @angular/cdk@7.3.3
+ - @knora/core@7.1.0
+ - @angular/animations@7.2.7
+ - @angular/flex-layout@7.0.0-beta.22
 
 ## Setup
 
 Import the viewer module in your app.module.ts and add it to the NgModules's imports:
- 
+
 ```javascript
 import { AppComponent } from './app.component';
 import { KuiViewerModule } from '@knora/viewer';
