@@ -51,7 +51,6 @@ We suggest to define a route for the search-results in the app.routing
             }
         ]
 ```
-
 <!--
 ### Search
 It sets the simple search bar.
