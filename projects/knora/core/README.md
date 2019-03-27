@@ -21,10 +21,10 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 ### Dependencies
 This module has the following package dependencies, which you also have to install.
-*  @angular/common@7.2.7
-*  @angular/core@7.2.7
-*  json2typescript@1.0.6
-*  jsonld@1.1.0
+ *  @angular/common@7.2.7
+ *  @angular/core@7.2.7
+ *  json2typescript@1.0.6
+ *  jsonld@1.1.0
 
 
 ## Setup
