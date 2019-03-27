@@ -21,10 +21,10 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 ### Dependencies
 This module has the following package dependencies, which you also have to install.
- - @angular/common@7.2.7
- - @angular/core@7.2.7
- - json2typescript@1.0.6
- - jsonld@1.1.0
+ *  @angular/common@7.2.7
+ *  @angular/core@7.2.7
+ *  json2typescript@1.0.6
+ *  jsonld@1.1.0
 
 
 ## Setup
@@ -35,13 +35,13 @@ On version 6 of Angular CLI they removed the shim for global and other node buil
  (window as any).global = window;
 ```
 
-Next step is to import the core module in your app.module.ts 
+Next step is to import the core module in your app.module.ts
 
 `import {KuiCoreModule} from '@knora/core';`
 
 and set the api server of your environment first. In our apps we define it in the environment files. This helps to define more than one environment for various usages of the Angular app.
 
-For local usage (developer mode) define your environment.ts as follow: 
+For local usage (developer mode) define your environment.ts as follow:
 
 ```javascript
 export const environment = {
