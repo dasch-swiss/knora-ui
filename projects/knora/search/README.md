@@ -14,7 +14,7 @@ For existing apps, follow these steps to begin using Knora-ui search.
 You can use either the npm or yarn command-line tool to install packages. Use whichever is appropriate for your project in the examples below.
 
 ### Yarn
-`$ yarn add @knora/search` 
+`$ yarn add @knora/search`
 
 ### NPM
 `$ npm install --save @knora/search`
@@ -26,18 +26,39 @@ This module has the following package dependencies, which you also have to insta
  - @knora/core@7.0.0
  - @knora/viewer@7.0.0
  - jdnconvertiblecalendardateadapter@0.0.7
- 
 
 ## Components
 This module contains various components like kui-search (a simple search bar) and kui-extended-search, which is already implemented in kui-search, but can also be used as a standalone component.
 
+### Full-text search
+`<kui-fulltext-search [route]="/search-results"></kui-fulltext-search>`
+
+The parameter `route` defines the route where the search-results-component of the app is defined.
+
+We suggest to define a route for the search-results in the app.routing
+
+```typescript
+        path: 'search',
+        component: SearchComponent,         // --> Component with the search panel
+        children: [
+            {
+                path: ':mode/:q/:project',
+                component: SearchResultsComponent       // --> search results, in case of paramter filterByProject and/or projectFilter
+            },
+            {
+                path: ':mode/:q',
+                component: SearchResultsComponent
+            }
+        ]
+```
+
 <!--
 ### Search
-It sets the simple search bar. 
-It contains all the methods to realise simple searches, keep in memory previous searches and reset the list of searches. 
+It sets the simple search bar.
+It contains all the methods to realise simple searches, keep in memory previous searches and reset the list of searches.
 
 ### Extended-search
-It sets the extended search. Here you can search by ontology, ontology's resource and specify your search one or several properties. 
+It sets the extended search. Here you can search by ontology, ontology's resource and specify your search one or several properties.
 For each property, it is possible to use operators such as 'exists', 'equal to', 'like', 'less than' etc. to search matches or specific values.
 
 ### Select-ontology
@@ -57,7 +78,7 @@ For example: the property is 'like' / 'equal to' / 'greater than' etc.
 
 Import the search module in your app.module.ts and add it to the NgModules's imports:
 
-```javascript
+```typescript
 import { AppComponent } from './app.component';
 import { KuiSearchModule } from '@knora/search';
 

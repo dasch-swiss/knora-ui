@@ -8,10 +8,7 @@ import { Example } from '../../../app.interfaces';
     styleUrls: ['./search-panel.component.scss']
 })
 export class SearchPanelComponent implements OnInit {
-
     module = AppDemo.searchModule;
-
-    usage = `<p>To set the search bar, you have to add a <b>&lt;kui-search&gt;</b> tag wherever you want in your template. <br>Customize the input "[route]" to match your own route.<br>For example in search.component.html:<b> &lt;kui-search [route]="'/modules/search'"&gt;&lt;/kui-search&gt;</b></p>`;
 
     // demo configuration incl. code to display
     searchPanel: Example = {
@@ -20,8 +17,7 @@ export class SearchPanelComponent implements OnInit {
         name: 'searchpanel',
         code: {
             html: `
-<!-- param route is where the router-outlet is defined for search results -->
-<kui-search [route]="'/search/'"></kui-search>
+<kui-search-panel [route]="'/search/'"></kui-search>
 
 <router-outlet></router-outlet>`,
             ts: '',
@@ -29,11 +25,7 @@ export class SearchPanelComponent implements OnInit {
         }
     };
 
-    constructor() { }
+    constructor() {}
 
-
-    ngOnInit() {
-
-    }
-
+    ngOnInit() {}
 }
