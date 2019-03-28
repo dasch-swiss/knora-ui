@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {
@@ -19,6 +19,11 @@ import {
     styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
+    @Input() complexView?: boolean = false;
+
+    @Input() searchQuery?: string;
+    @Input() searchMode?: string;
+
     KnoraConstants = KnoraConstants;
     offset: number = 0;
     maxOffset: number = 0;
@@ -27,9 +32,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     ontologyInfo: OntologyInformation;
     numberOfAllResults: number;
     rerender: boolean = false;
-    searchQuery: string;
     badRequest: boolean = false;
-    searchMode: string;
     projectIri: string;
     isLoading = true;
     errorMessage: ApiServiceError = new ApiServiceError();
@@ -37,16 +40,18 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     pagingLimit: number = 25;
 
     constructor(
-        protected _route: ActivatedRoute,
-        protected _searchService: SearchService,
-        protected _searchParamsService: SearchParamsService,
-        protected _router: Router
+        private _route: ActivatedRoute,
+        private _searchService: SearchService,
+        private _searchParamsService: SearchParamsService,
+        private _router: Router
     ) {}
 
     ngOnInit() {
         this.navigationSubscription = this._route.paramMap.subscribe(
             (params: Params) => {
-                this.searchMode = params.get('mode');
+                if (!this.searchMode) {
+                    this.searchMode = params.get('mode');
+                }
                 this.projectIri = params.get('project');
 
                 // init offset  and result
@@ -58,7 +63,9 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
                     this.badRequest = this.searchQuery.length < 3;
                 } else if (this.searchMode === 'extended') {
                     this.gravsearchGenerator = this._searchParamsService.getSearchParams();
-                    this.generateGravsearchQuery();
+                    if (!this.searchQuery) {
+                      this.generateGravsearchQuery();
+                    }
                 }
 
                 this.rerender = true;
@@ -76,7 +83,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     /**
      * Generates the Gravsearch query for the current offset.
      */
-    protected generateGravsearchQuery() {
+    private generateGravsearchQuery() {
         const gravsearch:
             | string
             | boolean = this.gravsearchGenerator.generateGravsearch(
@@ -88,14 +95,14 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
             this._router.navigate([''], { relativeTo: this._route });
             return;
         } else {
-            this.searchQuery = <string>gravsearch;
+            this.searchQuery = <string> gravsearch;
         }
     }
 
     /**
      * Get search result from Knora - 2 cases: simple search and extended search
      */
-    protected getResult() {
+    private getResult() {
         this.isLoading = true;
 
         // reset the error message
