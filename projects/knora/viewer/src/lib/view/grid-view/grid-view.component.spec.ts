@@ -6,6 +6,7 @@ import { GridViewComponent } from './grid-view.component';
 import { KeyPipe, ProgressIndicatorComponent } from '@knora/action';
 import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
 import { DateValueComponent } from '../../property/date-value/date-value.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('GridViewComponent', () => {
   let component: GridViewComponent;
@@ -15,7 +16,8 @@ describe('GridViewComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MatCardModule,
-        MatIconModule
+        MatIconModule,
+        RouterTestingModule
       ],
       declarations: [
         GridViewComponent,

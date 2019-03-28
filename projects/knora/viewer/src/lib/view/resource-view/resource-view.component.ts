@@ -46,6 +46,8 @@ export class ResourceViewComponent implements OnInit {
     }
 
     private getResource(iri: string): void {
+        iri = decodeURIComponent(iri);
+
         this._resourceService.getResource(iri)
             .subscribe(
                 (result: ApiServiceResult) => {
