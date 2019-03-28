@@ -45,7 +45,7 @@ describe('Directive: AdminImageDirective', () => {
         component.type = 'user';
         fixture.detectChanges();
 
-        expect(imageEl.nativeElement.src).toBe('http://www.gravatar.com/avatar/dd74bbb106986f9ef074743e3c7fc555?d=mp');
+        expect(imageEl.nativeElement.src).toBe('http://www.gravatar.com/avatar/dd74bbb106986f9ef074743e3c7fc555?d=mp&s=256');
     });
 
     it('should display the default user logo if the image is null or undefined', () => {
