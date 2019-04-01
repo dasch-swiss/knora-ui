@@ -1,20 +1,31 @@
 @import '../../assets/style/viewer';
 
-.mat-list .mat-list-item .mat-line{
-    white-space: normal !important;
-    max-width: 95%;
-  }
-  
-  .list-view .mat-list-item {
-    height: auto;
-    min-height: 40px;
-    padding: 8px 0;
-  }
-  
-  .lv-label {
-    font-weight: bold !important;
-  }
+.mat-list .mat-list-item .mat-line {
+  white-space: normal !important;
+  max-width: 95%;
+}
 
-  .lv-items {
-    max-width: 600px;
-  }
+.list-view .mat-list-item {
+  height: auto;
+  min-height: 40px;
+  padding: 8px 0;
+}
+
+.lv-label {
+  font-weight: bold !important;
+  font-size: 16px !important;
+  line-height: 1.5;
+}
+
+.lv-res-label {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px !important;
+}
+
+.lv-prop-label {
+  font-style: italic;
+}
+
+.lv-items {
+  max-width: 600px;
+}
