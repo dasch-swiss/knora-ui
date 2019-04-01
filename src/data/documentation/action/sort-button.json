@@ -137,35 +137,8 @@
     "ignore": false,
     "line": 46,
     "codeStart": 50,
-    "code": "@Input() sortKey(sortKey: string) {\n    this.activeKey = sortKey;\n}",
+    "code": "@Input() sortKey(sortKey: string) {\n    this.activeKey = sortKey;\n}\n\nconstructor() {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
     "ctx": false
-  },
-  {
-    "tags": [
-      {
-        "type": "ignore",
-        "string": "",
-        "html": ""
-      }
-    ],
-    "description": {
-      "full": "",
-      "summary": "",
-      "body": ""
-    },
-    "isPrivate": false,
-    "isConstructor": false,
-    "isClass": false,
-    "isEvent": false,
-    "ignore": false,
-    "line": 54,
-    "codeStart": 57,
-    "code": "constructor() {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
-    "ctx": {
-      "type": "constructor",
-      "name": "constructor",
-      "string": "constructor()"
-    }
   },
   {
     "tags": [
@@ -200,8 +173,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 67,
-    "codeStart": 72,
+    "line": 64,
+    "codeStart": 69,
     "code": "sortBy(key: string) {\n    this.sortKeyChange.emit(key);\n}\n\n}",
     "ctx": {
       "type": "method",

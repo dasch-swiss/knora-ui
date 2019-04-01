@@ -1,0 +1,143 @@
+[
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "Data type for messages",
+        "html": "<p>Data type for messages</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 7,
+    "codeStart": 11,
+    "code": "export class KuiMessageData {\n    status: number;\n    statusMsg?: string;\n    statusText?: string;\n    type?: string;\n    route?: string;\n    footnote?: string;\n    errorInfo?: string;\n    url?: string;\n}",
+    "ctx": {
+      "type": "class",
+      "constructor": "KuiMessageData",
+      "cons": "KuiMessageData",
+      "name": "KuiMessageData",
+      "extends": "",
+      "string": "new KuiMessageData()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Message component to handle notes, warning and error messages.</p>",
+      "summary": "<p>Message component to handle notes, warning and error messages.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 22,
+    "codeStart": 25,
+    "code": "@Component({\n    selector: 'kui-message',\n    templateUrl: './message.component.html',\n    styleUrls: ['./message.component.scss']\n})\nexport class MessageComponent implements OnInit {",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{KuiMessageData} message",
+        "name": "message",
+        "description": "",
+        "types": [
+          "KuiMessageData"
+        ],
+        "typesDescription": "<a href=\"KuiMessageData.html\">KuiMessageData</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{KuiMessageData} message</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Message type: KuiMessageData or ApiServiceError</p>",
+      "summary": "<p>Message type: KuiMessageData or ApiServiceError</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 31,
+    "codeStart": 36,
+    "code": "@Input() message: KuiMessageData = new KuiMessageData();",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{boolean} [short]",
+        "name": "[short]",
+        "description": "",
+        "types": [
+          "boolean"
+        ],
+        "typesDescription": "<code>boolean</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{boolean} [short]</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Show short message only</p>",
+      "summary": "<p>Show short message only</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 38,
+    "codeStart": 43,
+    "code": "@Input() short?: boolean = false;\n\n//    message: MessageData;\n\n// statusMsg: any = defaultMsgs;\nstatusMsg: any;\n\nisLoading: boolean = true;\n\nshowLinks: boolean = false;\n\n// disable message\ndisable: boolean = false;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "default link list, which will be used in message content to give a user some possibilities\nwhat he can do in the case of an error",
+        "html": "<p>default link list, which will be used in message content to give a user some possibilities<br />\nwhat he can do in the case of an error</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 57,
+    "codeStart": 63,
+    "code": "links: any = {\n    title: 'You have the following possibilities now',\n    list: [\n        {\n            label: 'go to the start page',\n            route: '/',\n            icon: 'keyboard_arrow_right'\n        },\n        {\n            label: 'try to login',\n            route: '/login',\n            icon: 'keyboard_arrow_right'\n        },\n        {\n            label: 'go back',\n            route: '<--',\n            icon: 'keyboard_arrow_left'\n        }\n    ]\n};\n\nfootnote: any = {\n    text: 'If you think it\\'s a mistake, please',\n    team: {\n        knora:\n            '<a href=\\'https://github.com/dhlab-basel/knora\\' target=\\'_blank\\'> inform the Knora team </a>',\n        salsah:\n            '<a href=\\'https://github.com/dhlab-basel/salsah\\' target=\\'_blank\\'> inform the Salsah developers </a>'\n    }\n};\n\nconstructor(\n    private _router: Router,\n    private _location: Location,\n    private _activatedRoute: ActivatedRoute\n) {}\n\nngOnInit() {\n    this.statusMsg = defaultMsgs;\n\n    if (!this.message) {\n        this._activatedRoute.data.subscribe((data: any) => {\n            this.message.status = data.status;\n        });\n    }\n\n    this.message = this.setMessage(this.message);\n    this.isLoading = false;\n\n}\n\nsetMessage(msg: KuiMessageData) {\n    const tmpMsg: KuiMessageData = <KuiMessageData>{};\n\n    const s: number = msg.status === 0 ? 503 : msg.status;\n\n    tmpMsg.status = s;\n    tmpMsg.route = msg.route;\n    tmpMsg.statusMsg = msg.statusMsg;\n    tmpMsg.statusText = msg.statusText;\n    tmpMsg.route = msg.route;\n    tmpMsg.footnote = msg.footnote;\n\n    switch (true) {\n        case s > 0 && s < 300:\n            // the message is a note\n            tmpMsg.type = 'note';\n            // console.log('the message is a note');\n            break;\n        case s >= 300 && s < 400:\n            // the message is a warning\n            tmpMsg.type = 'warning';\n            // console.log('the message is a warning');\n\n            break;\n        case s >= 400 && s < 500:\n            // the message is a client side (app) error\n            // console.log('the message is a client side (app) error', s);\n            tmpMsg.type = 'error';\n            tmpMsg.statusMsg =\n                msg.statusMsg !== undefined\n                    ? msg.statusMsg\n                    : this.statusMsg[s].message;\n            tmpMsg.statusText =\n                msg.statusText !== undefined\n                    ? msg.statusText\n                    : this.statusMsg[s].description;\n            tmpMsg.footnote =\n                this.footnote.text + ' ' + this.footnote.team.salsah;\n            this.showLinks = true;\n\n            break;\n        case s >= 500 && s < 600:\n            // the message is a server side (api) error\n            // console.log('the message is a server side (api) error');\n            tmpMsg.type = 'error';\n            tmpMsg.statusMsg =\n                msg.statusMsg !== undefined\n                    ? msg.statusMsg\n                    : this.statusMsg[s].message;\n            tmpMsg.statusText =\n                msg.statusText !== undefined\n                    ? msg.statusText\n                    : this.statusMsg[s].description;\n            tmpMsg.footnote =\n                this.footnote.text + ' ' + this.footnote.team.knora;\n            this.showLinks = false;\n            break;\n        default:\n            // no default configuration?\n            break;\n    }\n\n    return tmpMsg;\n}\n\ngoToLocation(route: string) {\n    if (route === '<--') {\n        this._location.back();\n    } else {\n        this._router.navigate([route]);\n    }\n}\n\ncloseMessage() {\n    this.disable = !this.disable;\n}\n}",
+    "ctx": {
+      "type": "property",
+      "name": "links",
+      "value": "any = {",
+      "string": "links"
+    }
+  }
+]

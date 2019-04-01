@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import defaultMsgs from '../../assets/i18n/statusMsg.json';
 
 /**
+ * @ignore
  * Data type for messages
  */
 export class KuiMessageData {
@@ -28,15 +29,16 @@ export class KuiMessageData {
 })
 export class MessageComponent implements OnInit {
     /**
-     * message content
-     * @type {KuiMessageData}
+     * Message type: KuiMessageData or ApiServiceError
+     *
+     * @param  {KuiMessageData} message
      */
     @Input() message: KuiMessageData = new KuiMessageData();
 
     /**
-     * show a short message only
+     * Show short message only
      *
-     * @type {boolean}
+     * @param  {boolean} [short]
      */
     @Input() short?: boolean = false;
 
