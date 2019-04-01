@@ -66,7 +66,7 @@ export class AdminImageDirective implements OnChanges {
                 if (this.image === null || this.image === undefined) {
                     this.source = AdminImageConfig.defaultUser;
                 } else {
-                    this.source = 'http://www.gravatar.com/avatar/' + Md5.hashStr(this.image) + '?d=mp';
+                    this.source = 'http://www.gravatar.com/avatar/' + Md5.hashStr(this.image) + '?d=mp&s=256';
                 }
 
                 break;
