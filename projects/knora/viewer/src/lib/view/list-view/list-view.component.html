@@ -4,7 +4,7 @@
     <mat-list class="list-view lv-items" *ngFor="let res of result; let i = index; let last = last;">
         <mat-list-item class="link" (click)="openResource(res.id)">
             <mat-icon matListIcon>image_search</mat-icon>
-            <mat-card-subtitle matLine>{{ontologyInfo?.getLabelForResourceClass(res.type)}}</mat-card-subtitle>
+            <p matLine class="lv-res-label">{{ontologyInfo?.getLabelForResourceClass(res.type)}}</p>
             <h3 matLine class="lv-label">{{res.label}}</h3>
 
             <div matLine *ngFor="let prop of res.properties | kuiKey">
