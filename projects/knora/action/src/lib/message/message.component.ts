@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import defaultMsgs from '../../assets/i18n/statusMsg.json';
 
 /**
- * data type for messages
+ * Data type for messages
  */
 export class KuiMessageData {
     status: number;
@@ -18,6 +18,9 @@ export class KuiMessageData {
     url?: string;
 }
 
+/**
+ * Message component to handle notes, warning and error messages.
+ */
 @Component({
     selector: 'kui-message',
     templateUrl: './message.component.html',
@@ -50,7 +53,7 @@ export class MessageComponent implements OnInit {
     disable: boolean = false;
 
     /**
-     *
+     * @ignore
      * default link list, which will be used in message content to give a user some possibilities
      * what he can do in the case of an error
      *
