@@ -7,13 +7,15 @@ import defaultMsgs from '../../assets/i18n/statusMsg.json';
 /**
  * data type for messages
  */
-export interface KuiMessageData {
+export class KuiMessageData {
     status: number;
     statusMsg?: string;
     statusText?: string;
     type?: string;
     route?: string;
     footnote?: string;
+    errorInfo?: string;
+    url?: string;
 }
 
 @Component({
@@ -26,9 +28,7 @@ export class MessageComponent implements OnInit {
      * message content
      * @type {KuiMessageData}
      */
-    @Input() message: KuiMessageData = {
-        status: 404
-    };
+    @Input() message: KuiMessageData = new KuiMessageData();
 
     /**
      * show a short message only
@@ -40,28 +40,7 @@ export class MessageComponent implements OnInit {
     //    message: MessageData;
 
     // statusMsg: any = defaultMsgs;
-    statusMsg: any = {
-        "100": {
-            "message": "Continue",
-            "description": "The server has received the request headers, and the client should proceed to send the request body"
-        },
-        "101": {
-            "message": "Switching Protocols",
-            "description": "The requester has asked the server to switch protocols"
-        },
-        "103": {
-            "message": "Checkpoint",
-            "description": "Used in the resumable requests proposal to resume aborted PUT or POST requests"
-        },
-        "200": {
-            "message": "OK",
-            "description": "The request is OK (this is the standard response for successful HTTP requests)"
-        },
-        "404": {
-            "message": "Not Found",
-            "description": "The requested page could not be found but may be available again in the future"
-        }
-    };
+    statusMsg: any;
 
     isLoading: boolean = true;
 
@@ -114,8 +93,7 @@ export class MessageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-
-        // this.statusMsg = defaultMsgs;
+        this.statusMsg = defaultMsgs;
 
         if (!this.message) {
             this._activatedRoute.data.subscribe((data: any) => {
@@ -126,33 +104,10 @@ export class MessageComponent implements OnInit {
         this.message = this.setMessage(this.message);
         this.isLoading = false;
 
-        /*
-        // get the http status message from the statusMsg data json package (stored in assets/data)
-        // TODO: we have to implement this data in the multilingual settings
-        this._statusMsgService.getStatusMsg().subscribe(
-            (result: any) => {
-                this.statusMsg = result;
-                //                    this.statusMsg = result.getBody();
-
-                if (!this.message) {
-                    this._activatedRoute.data.subscribe((v: any) => {
-                        this.message = <KuiMessageData>{
-                            status: v.status
-                        };
-                    });
-                }
-                this.message = this.setMessage(this.message);
-                this.isLoading = false;
-            },
-            (error: ApiServiceError) => {
-                console.log(error);
-            }
-        );
-         */
     }
 
     setMessage(msg: KuiMessageData) {
-        const tmpMsg: KuiMessageData = <KuiMessageData> {};
+        const tmpMsg: KuiMessageData = <KuiMessageData>{};
 
         const s: number = msg.status === 0 ? 503 : msg.status;
 
