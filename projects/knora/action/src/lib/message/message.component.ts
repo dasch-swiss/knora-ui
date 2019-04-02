@@ -3,7 +3,6 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import defaultMsgs from '../../assets/i18n/statusMsg.json';
-import { ApiServiceError } from 'projects/knora/core/src/public_api.js';
 
 /**
  * @ignore
