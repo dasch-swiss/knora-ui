@@ -203,6 +203,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         }
         // append results to search results
         this.result = this.result.concat(searchResult.resources);
+        console.log('search results', this.result);
 
         this.isLoading = false;
         this.rerender = false;
