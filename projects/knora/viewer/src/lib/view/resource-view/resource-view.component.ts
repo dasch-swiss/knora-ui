@@ -93,6 +93,7 @@ export class ResourceViewComponent implements OnInit {
         const fileRepresentations: any[] = [];
     }
 
+
     collectImagesAndRegionsForResource(resource: ReadResource): void {
 
         const imgRepresentations: StillImageRepresentation[] = [];
@@ -133,6 +134,7 @@ export class ResourceViewComponent implements OnInit {
                     // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
                     const imagesToDisplay = fileValues.filter((image) => {
                         return !image.isPreview;
+
                     });
 
                     return imagesToDisplay;

@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { KnoraConstants } from '@knora/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'kui-list-view',
@@ -14,6 +15,13 @@ export class ListViewComponent {
 
     KnoraConstants = KnoraConstants;
 
-    constructor() { }
+    constructor(
+        private _router: Router
+    ) { }
+
+    openResource(id: string) {
+        const url: string = '/resource/' + encodeURIComponent(id);
+        this._router.navigate([url]);
+    }
 
 }

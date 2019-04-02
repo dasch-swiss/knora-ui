@@ -6,10 +6,13 @@
 
 .example-code-group {
   background: rgba(193, 193, 193, 0.12);
+
+  .code-example {
+    border-radius: 0;
+  }
 }
 
 .full-width {
-  width: calc(100% + 48px);
-  margin: 0 -24px;
-
+  width: calc(100% + 32px);
+  margin: 0 -16px;
 }
