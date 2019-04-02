@@ -69,11 +69,12 @@ export class Cardinality {
  */
 export class GuiOrder {
     /**
-     * @param  {string} property
      * @param  {number} value
+     * @param  {string} property
      */
-    constructor(readonly property: string,
-                readonly value: number) {
+    constructor(readonly value: number,
+                readonly property: string
+                ) {
 
     }
 }
@@ -684,7 +685,7 @@ export class OntologyCacheService {
                         // get gui order
                         let newGuiOrder;
                         if (curCard[KnoraConstants.SalsahGuiOrder] !== undefined) {
-                            newGuiOrder = new GuiOrder(curCard[KnoraConstants.OwlOnProperty]['@id'], curCard[KnoraConstants.SalsahGuiOrder]);
+                            newGuiOrder = new GuiOrder(curCard[KnoraConstants.SalsahGuiOrder], curCard[KnoraConstants.OwlOnProperty]['@id']);
                             // add gui order
                             guiOrder.push(newGuiOrder);
                         }
