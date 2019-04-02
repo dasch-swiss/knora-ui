@@ -68,7 +68,7 @@ export class ResourceViewComponent implements OnInit {
 
 
                 // this.fileRepresentation = this.sequence.resources[0].properties.indexOf(KnoraConstants.hasStillImageFileValue) > -1;
-                console.log(this.fileRepresentation);
+                // console.log(this.fileRepresentation);
 
                 // wait until the resource is ready
                 setTimeout(() => {
