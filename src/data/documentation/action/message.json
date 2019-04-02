@@ -76,7 +76,7 @@
     "ignore": false,
     "line": 34,
     "codeStart": 39,
-    "code": "@Input() message: KuiMessageData | ApiServiceError = new KuiMessageData();",
+    "code": "@Input() message: KuiMessageData = new KuiMessageData();",
     "ctx": false
   },
   {
