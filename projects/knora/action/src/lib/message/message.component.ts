@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import defaultMsgs from '../../assets/i18n/statusMsg.json';
+import { ApiServiceError } from 'projects/knora/core/src/public_api.js';
 
 /**
  * @ignore
@@ -21,6 +22,8 @@ export class KuiMessageData {
 
 /**
  * Message component to handle notes, warning and error messages.
+ * If you set the paramater `[short]="true"` it shows a smaller message. It can be used to give feedbacks in a form e.g. update process: show success or error message.
+ *
  */
 @Component({
     selector: 'kui-message',
@@ -31,9 +34,9 @@ export class MessageComponent implements OnInit {
     /**
      * Message type: KuiMessageData or ApiServiceError
      *
-     * @param  {KuiMessageData} message
+     * @param  {KuiMessageData | ApiServiceError} message This type needs at least a status number (0-511). In this case, or if type is ApiServiceError, it takes the default status messages from the list of HTTP status codes (https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
      */
-    @Input() message: KuiMessageData = new KuiMessageData();
+    @Input() message: KuiMessageData | ApiServiceError = new KuiMessageData();
 
     /**
      * Show short message only
@@ -54,7 +57,7 @@ export class MessageComponent implements OnInit {
     // disable message
     disable: boolean = false;
 
-    /**
+    /*
      * @ignore
      * default link list, which will be used in message content to give a user some possibilities
      * what he can do in the case of an error
