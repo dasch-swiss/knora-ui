@@ -68,6 +68,7 @@ describe('TextValueAsHtmlComponent', () => {
                     'book.png',
                     'A book.',
                     'book',
+                    [],
                     []
                 )
         };
