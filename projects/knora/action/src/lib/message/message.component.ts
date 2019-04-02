@@ -151,7 +151,7 @@ export class MessageComponent implements OnInit {
                         ? msg.statusText
                         : this.statusMsg[s].description;
                 tmpMsg.footnote =
-                    this.footnote.text + ' ' + this.footnote.team.salsah;
+                    this.footnote.text + ' ' + this.footnote.team.knora;
                 this.showLinks = true;
 
                 break;
