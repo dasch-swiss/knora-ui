@@ -14,7 +14,7 @@ export class MessageComponent implements OnInit {
   module = AppDemo.actionModule;
 
   noteExample: Example = {
-    title: 'Short version',
+    title: 'Success and error message, short version (= small size)',
     subtitle: '',
     name: 'kui-message',
     code: {
@@ -46,7 +46,7 @@ errorMessage: ApiServiceError = {
 };
 
 errorExample: Example = {
-  title: 'Error message',
+  title: 'Error message, default size',
   subtitle: '',
   name: 'kui-message',
   code: {
