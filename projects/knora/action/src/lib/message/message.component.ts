@@ -140,7 +140,7 @@ export class MessageComponent implements OnInit {
                 break;
             case s >= 400 && s < 500:
                 // the message is a client side (app) error
-                // console.log('the message is a client side (app) error', s);
+                // console.error('the message is a client side (app) error', s);
                 tmpMsg.type = 'error';
                 tmpMsg.statusMsg =
                     msg.statusMsg !== undefined
@@ -157,7 +157,7 @@ export class MessageComponent implements OnInit {
                 break;
             case s >= 500 && s < 600:
                 // the message is a server side (api) error
-                // console.log('the message is a server side (api) error');
+                // console.error('the message is a server side (api) error');
                 tmpMsg.type = 'error';
                 tmpMsg.statusMsg =
                     msg.statusMsg !== undefined
