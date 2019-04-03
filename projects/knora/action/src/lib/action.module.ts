@@ -14,7 +14,7 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatIconModule, MatMenuModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatMenuModule, MatCardModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminImageDirective } from './admin-image/admin-image.directive';
 import { GndDirective } from './gnd/gnd.directive';
@@ -27,13 +27,16 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { ProgressIndicatorComponent } from './progress-indicator/progress-indicator.component';
 import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
 import { SortButtonComponent } from './sort-button/sort-button.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
     imports: [
         CommonModule,
         BrowserAnimationsModule,
         MatButtonModule,
+        MatCardModule,
         MatIconModule,
+        MatListModule,
         MatMenuModule
 
     ],
@@ -47,7 +50,8 @@ import { SortButtonComponent } from './sort-button/sort-button.component';
         KeyPipe,
         GndDirective,
         ResourceDialogComponent,
-        JdnDatepickerDirective
+        JdnDatepickerDirective,
+        MessageComponent
     ],
     exports: [
         ProgressIndicatorComponent,
@@ -58,7 +62,8 @@ import { SortButtonComponent } from './sort-button/sort-button.component';
         ReversePipe,
         KeyPipe,
         GndDirective,
-        JdnDatepickerDirective
+        JdnDatepickerDirective,
+        MessageComponent
     ]
 })
 /**

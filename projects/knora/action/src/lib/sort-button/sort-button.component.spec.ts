@@ -49,7 +49,7 @@ describe('SortButtonComponent', () => {
         expect(testHostComponent.sortButtonComponent).toBeTruthy();
         expect(testHostComponent.sortKey).toBe('creator');
         expect(testHostComponent.list).toEqual(listData);
-        console.log(testHostComponent.list);
+        // console.log(testHostComponent.list);
 
         const hostCompDe = testHostFixture.debugElement;
 

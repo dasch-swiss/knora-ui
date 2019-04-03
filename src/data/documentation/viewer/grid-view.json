@@ -10,7 +10,7 @@
     "isConstructor": false,
     "line": 1,
     "codeStart": null,
-    "code": "import { Component, Input, OnInit } from '@angular/core';\nimport { KnoraConstants } from '@knora/core';\n\n@Component({\n  selector: 'kui-grid-view',\n  templateUrl: './grid-view.component.html',\n  styleUrls: ['./grid-view.component.scss']\n})\nexport class GridViewComponent implements OnInit {\n\n  @Input() result;\n  @Input() ontologyInfo;\n  @Input() isLoading;\n\n  KnoraConstants = KnoraConstants;\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}",
+    "code": "import { Component, Input, OnInit } from '@angular/core';\nimport { KnoraConstants } from '@knora/core';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'kui-grid-view',\n  templateUrl: './grid-view.component.html',\n  styleUrls: ['./grid-view.component.scss']\n})\nexport class GridViewComponent implements OnInit {\n\n  @Input() result;\n  @Input() ontologyInfo;\n  @Input() isLoading;\n\n  KnoraConstants = KnoraConstants;\n\n  constructor(\n    private _router: Router\n  ) { }\n\n  ngOnInit() {\n  }\n\n  openResource(id: string) {\n    const url: string = '/resource/' + encodeURIComponent(id);\n    this._router.navigate([url]);\n}\n}",
     "ctx": false
   }
 ]
