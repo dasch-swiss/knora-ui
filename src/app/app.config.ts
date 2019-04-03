@@ -39,6 +39,12 @@ export class AppDemo {
                 stackblitz: true
             },
             {
+                name: 'message',
+                label: 'Message',
+                type: 'Component',
+                stackblitz: false
+            },
+            {
                 name: 'admin-image',
                 label: 'AdminImage',
                 type: 'Directive',

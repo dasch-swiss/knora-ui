@@ -51,9 +51,6 @@ export class SortButtonComponent implements OnInit {
         this.activeKey = sortKey;
     }
 
-    /**
-     * @ignore
-     */
     constructor() {
     }
 
