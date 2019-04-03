@@ -23,6 +23,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
     @Input() searchQuery?: string;
     @Input() searchMode?: string;
+    @Input() projectIri?: string;
 
     KnoraConstants = KnoraConstants;
     offset: number = 0;
@@ -33,8 +34,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     numberOfAllResults: number;
     rerender: boolean = false;
     badRequest: boolean = false;
-    projectIri: string;
-    isLoading = true;
+    loading = true;
     errorMessage: ApiServiceError = new ApiServiceError();
     navigationSubscription: Subscription;
     pagingLimit: number = 25;
@@ -52,7 +52,9 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
                 if (!this.searchMode) {
                     this.searchMode = params.get('mode');
                 }
-                this.projectIri = params.get('project');
+                if (!this.projectIri) {
+                    this.projectIri = decodeURIComponent(params.get('project'));
+                }
 
                 // init offset  and result
                 this.offset = 0;
@@ -103,7 +105,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
      * Get search result from Knora - 2 cases: simple search and extended search
      */
     private getResult() {
-        this.isLoading = true;
+        this.loading = true;
 
         // reset the error message
         this.errorMessage = undefined;
@@ -115,7 +117,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
                 this.errorMessage = new ApiServiceError();
                 this.errorMessage.errorInfo =
                     'A search value is expected to have at least length of 3 characters.';
-                this.isLoading = false;
+                this.loading = false;
                 this.rerender = false;
             } else {
                 if (this.projectIri !== null && this.projectIri !== undefined) {
@@ -203,8 +205,9 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         }
         // append results to search results
         this.result = this.result.concat(searchResult.resources);
+        // console.log('search results', this.result);
 
-        this.isLoading = false;
+        this.loading = false;
         this.rerender = false;
     };
 

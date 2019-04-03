@@ -1,6 +1,6 @@
-<kui-progress-indicator *ngIf="isLoading"></kui-progress-indicator>
+<kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
 
-<div *ngIf="!rerender && !badRequest">
+<div *ngIf="!rerender && !badRequest && !loading">
 
     <div *ngIf="numberOfAllResults !== 0 && result; else noResult">
         <h4>Number of results: {{numberOfAllResults}}</h4>
@@ -11,14 +11,14 @@
                     <mat-icon class="tab-icon">view_list</mat-icon>
                     List
                 </ng-template>
-                <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" [isLoading]="isLoading"></kui-list-view>
+                <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo"></kui-list-view>
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
                     <mat-icon class="tab-icon">view_module</mat-icon>
                     Grid
                 </ng-template>
-                <kui-grid-view [result]="result" [ontologyInfo]="ontologyInfo" [isLoading]="isLoading"></kui-grid-view>
+                <kui-grid-view [result]="result" [ontologyInfo]="ontologyInfo"></kui-grid-view>
             </mat-tab>
             <!-- not yet implemented! --
             <mat-tab>
@@ -26,7 +26,7 @@
                     <mat-icon class="tab-icon">table_chart</mat-icon>
                     Table
                 </ng-template>
-                <kui-table-view [result]="result" [ontologyInfo]="ontologyInfo" [isLoading]="isLoading">
+                <kui-table-view [result]="result" [ontologyInfo]="ontologyInfo">
                 </kui-table-view>
             </mat-tab>
             -->
@@ -43,7 +43,7 @@
 
         </mat-tab-group>
 
-        <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" [isLoading]="isLoading" *ngIf="!complexView"></kui-list-view>
+        <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" *ngIf="!complexView"></kui-list-view>
 
         <div class="load-panel" *ngIf="result.length > 0">
             <button mat-flat-button color="primary" class="link center" (click)="loadMore(offset)"

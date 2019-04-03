@@ -1,17 +1,148 @@
+<div class="resource-view">
+
+    <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
+
+    <div *ngIf="!loading">
+
+        <div class="resource" *ngFor="let resource of sequence.resources; let last = last">
+
+            <!-- 0) Title first? -->
+            <mat-list>
+
+                <h3 class="mat-subheader">
+                    {{sequence.ontologyInformation.getLabelForResourceClass(resource.type)}}
+                </h3>
+
+                <mat-list-item>
+                    <h2 class="mat-headline">{{resource.label}}</h2>
+                </mat-list-item>
+
+            </mat-list>
+<!--
+            <h2 class="mat-title">{{sequence.ontologyInformation.getLabelForResourceClass(resource.type)}}</h2>
+            <h1 class="mat-headline">{{resource.label}}</h1>
+-->
+            <!-- 1) show fileRepresentation first-->
+            <div *ngFor="let prop of resource.properties | kuiKey">
+                <div [ngSwitch]="prop.key">
+
+                    <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media">
+                        <!-- if the property is of type stillImageFileValue, show the image with osd viewer from @knora/viewer TODO: the fileValue will be part of an own resource property -->
+                        <kui-still-image *ngIf="resource.stillImageRepresentationsToDisplay.length > 0"
+                                         class="osd-viewer"
+                                         [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)"
+                                         [images]="resource.stillImageRepresentationsToDisplay">
+                        </kui-still-image>
+                    </div>
+
+                    <!-- TODO: switch through all other media type -->
+                    <!--
+                    <kui-moving-image></kui-moving-image>
+                    <kui-audio></kui-audio>
+                    <kui-ddd></kui-ddd>
+                    <kui-document></kui-document>
+
+                    <kui-collection></kui-collection>
+
+                    <kui-annotation></kui-annotation>
+                    <kui-link-obj></kui-link-obj>
+                    <kui-object></kui-object>
+                    <kui-region></kui-region>
+                    <kui-text></kui-text>
+                    -->
+
+                    <div *ngSwitchDefault class="hidden">
+                        <!--<p>This media type ({{prop.key}}) is not yet implemented</p>-->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2) show properties, annotations (list of regions, sequences etc.), incomming resources (links, files) -->
+            <div class="data">
+
+                <mat-tab-group class="full-width">
+                    <mat-tab label="Metadata">
+                        <mat-list>
+                            <div *ngFor="let prop of resource.properties | kuiKey; let last = last"
+                                 class="property">
+                                <!-- label of the property -->
+                                <h3 mat-subheader class="property-label">
+                                    {{sequence.ontologyInformation.getLabelForProperty(prop.key)}}
+                                </h3>
+                                <!-- the value(s) of the property -->
+                                <mat-list-item class="property-value-item" *ngFor="let val of prop?.value; let lastItem = last">
+                                    <li [ngSwitch]="val.getClassName()"
+                                        [class.list]="prop.value.length > 1"
+                                        [class.lastItem]="lastItem">
+                                        <kui-text-value-as-string
+                                            *ngSwitchCase="KnoraConstants.ReadTextValueAsString"
+                                            [valueObject]="val"></kui-text-value-as-string>
+                                        <kui-text-value-as-xml *ngSwitchCase="KnoraConstants.ReadTextValueAsXml"
+                                                               [valueObject]="val"></kui-text-value-as-xml>
+                                        <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue"
+                                                        [valueObject]="val"
+                                                        [calendar]="true" [era]="true"></kui-date-value>
+                                        <kui-link-value class="app-link"
+                                                        *ngSwitchCase="KnoraConstants.ReadLinkValue"
+                                                        [valueObject]="val" [ontologyInfo]="ontologyInfo"
+                                                        (referredResourceClicked)="openLink(val.referredResourceIri)">
+                                        </kui-link-value>
+                                        <kui-integer-value *ngSwitchCase="KnoraConstants.ReadIntegerValue"
+                                                           [valueObject]="val"></kui-integer-value>
+                                        <kui-decimal-value *ngSwitchCase="KnoraConstants.ReadDecimalValue"
+                                                           [valueObject]="val"></kui-decimal-value>
+                                        <kui-geometry-value *ngSwitchCase="KnoraConstants.ReadGeomValue"
+                                                            [valueObject]="val"></kui-geometry-value>
+                                        <kui-color-value *ngSwitchCase="KnoraConstants.ReadColorValue"
+                                                         [valueObject]="val"></kui-color-value>
+                                        <kui-uri-value *ngSwitchCase="KnoraConstants.ReadUriValue"
+                                                       [valueObject]="val"></kui-uri-value>
+                                        <kui-boolean-value *ngSwitchCase="KnoraConstants.ReadBooleanValue"
+                                                           [valueObject]="val"></kui-boolean-value>
+                                        <kui-interval-value *ngSwitchCase="KnoraConstants.ReadIntervalValue"
+                                                            [valueObject]="val"></kui-interval-value>
+                                        <kui-list-value *ngSwitchCase="KnoraConstants.ReadListValue"
+                                                        [valueObject]="val"></kui-list-value>
+                                        <kui-textfile-value *ngSwitchCase="KnoraConstants.TextFileValue"
+                                                            [valueObject]="val"></kui-textfile-value>
+                                        <span *ngSwitchDefault>Not supported {{val.getClassName()}}</span>
+                                    </li>
+                                </mat-list-item>
+                                <mat-divider *ngIf="!last;"></mat-divider>
+                            </div>
+                        </mat-list>
+                    </mat-tab>
+
+                    <mat-tab label="Annotations">
+
+                    </mat-tab>
+
+                    <mat-tab label="Links / Connections">
+                        <div *ngIf="resource.incomingLinks?.length > 0">
+                            <mat-list *ngFor="let incoming of resource.incomingLinks">
+                                <mat-list-item class="app-link" (click)="openLink(incoming.id)">
+                                    <span>{{incoming.label}}</span>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
+                    </mat-tab>
+
+                </mat-tab-group>
+
+            </div>
+
+            <!-- in case of more than one resource -->
+            <mat-divider *ngIf="!last"></mat-divider>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- OLD / first template
 <mat-card>
 
-    <!-- TODO: switch through the media type -->
-    <kui-still-image></kui-still-image>
-    <kui-moving-image></kui-moving-image>
-    <kui-annotation></kui-annotation>
-    <kui-audio></kui-audio>
-    <kui-collection></kui-collection>
-    <kui-ddd></kui-ddd>
-    <kui-document></kui-document>
-    <kui-link-obj></kui-link-obj>
-    <kui-object></kui-object>
-    <kui-region></kui-region>
-    <kui-text></kui-text>
 
     <h2>metadata for resource {{ resource?.label}} ({{ resource?.id }})</h2>
     <h3>type: {{ontologyInfo?.getLabelForResourceClass(resource?.type)}}</h3>
@@ -21,20 +152,31 @@
             <span>{{ontologyInfo?.getLabelForProperty(prop.key)}}</span>
             <mat-list-item *ngFor="let val of prop.value">
                 <span [ngSwitch]="val.getClassName()">
-                    <kui-color-value *ngSwitchCase="KnoraConstants.ReadColorValue" [valueObject]="val"></kui-color-value>
-                    <kui-text-value-as-html *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml" [valueObject]="val" [ontologyInfo]="ontologyInfo" [bindEvents]="true"></kui-text-value-as-html>
-                    <kui-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString" [valueObject]="val"></kui-text-value-as-string>
-                    <kui-text-value-as-xml *ngSwitchCase="KnoraConstants.ReadTextValueAsXml" [valueObject]="val"></kui-text-value-as-xml>
+                    <kui-color-value *ngSwitchCase="KnoraConstants.ReadColorValue"
+                                     [valueObject]="val"></kui-color-value>
+                    <kui-text-value-as-html *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml" [valueObject]="val"
+                                            [ontologyInfo]="ontologyInfo" [bindEvents]="true"></kui-text-value-as-html>
+                    <kui-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString"
+                                              [valueObject]="val"></kui-text-value-as-string>
+                    <kui-text-value-as-xml *ngSwitchCase="KnoraConstants.ReadTextValueAsXml"
+                                           [valueObject]="val"></kui-text-value-as-xml>
                     <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val"></kui-date-value>
-                    <kui-link-value *ngSwitchCase="KnoraConstants.ReadLinkValue" [valueObject]="val" [ontologyInfo]="ontologyInfo"></kui-link-value>
-                    <kui-integer-value *ngSwitchCase="KnoraConstants.ReadIntegerValue" [valueObject]="val"></kui-integer-value>
-                    <kui-decimal-value *ngSwitchCase="KnoraConstants.ReadDecimalValue" [valueObject]="val"></kui-decimal-value>
-                    <kui-geometry-value *ngSwitchCase="KnoraConstants.ReadGeomValue" [valueObject]="val"></kui-geometry-value>
+                    <kui-link-value *ngSwitchCase="KnoraConstants.ReadLinkValue" [valueObject]="val"
+                                    [ontologyInfo]="ontologyInfo"></kui-link-value>
+                    <kui-integer-value *ngSwitchCase="KnoraConstants.ReadIntegerValue"
+                                       [valueObject]="val"></kui-integer-value>
+                    <kui-decimal-value *ngSwitchCase="KnoraConstants.ReadDecimalValue"
+                                       [valueObject]="val"></kui-decimal-value>
+                    <kui-geometry-value *ngSwitchCase="KnoraConstants.ReadGeomValue"
+                                        [valueObject]="val"></kui-geometry-value>
                     <kui-uri-value *ngSwitchCase="KnoraConstants.ReadUriValue" [valueObject]="val"></kui-uri-value>
-                    <kui-boolean-value *ngSwitchCase="KnoraConstants.ReadBooleanValue" [valueObject]="val"></kui-boolean-value>
-                    <kui-interval-value *ngSwitchCase="KnoraConstants.ReadIntervalValue" [valueObject]="val"></kui-interval-value>
+                    <kui-boolean-value *ngSwitchCase="KnoraConstants.ReadBooleanValue"
+                                       [valueObject]="val"></kui-boolean-value>
+                    <kui-interval-value *ngSwitchCase="KnoraConstants.ReadIntervalValue"
+                                        [valueObject]="val"></kui-interval-value>
                     <kui-list-value *ngSwitchCase="KnoraConstants.ReadListValue" [valueObject]="val"></kui-list-value>
-                    <kui-textfile-value *ngSwitchCase="KnoraConstants.TextFileValue" [valueObject]="val"></kui-textfile-value>
+                    <kui-textfile-value *ngSwitchCase="KnoraConstants.TextFileValue"
+                                        [valueObject]="val"></kui-textfile-value>
                     <span *ngSwitchDefault="">Not supported {{val.getClassName()}}</span>
                 </span>
             </mat-list-item>
@@ -42,3 +184,6 @@
     </div>
 
 </mat-card>
+-->
+
+
