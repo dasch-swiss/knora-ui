@@ -20,9 +20,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} route",
+        "string": "{string} route Route to navigate after search. This route path should contain a component for search results.",
         "name": "route",
-        "description": "",
+        "description": "<p>Route to navigate after search. This route path should contain a component for search results.</p>",
         "types": [
           "string"
         ],
@@ -30,13 +30,12 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} route</p>"
+        "variable": false
       }
     ],
     "description": {
-      "full": "<p>Route to navigate after search. This route path should contain a component for search results.</p>",
-      "summary": "<p>Route to navigate after search. This route path should contain a component for search results.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -45,7 +44,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 27,
-    "codeStart": 32,
+    "codeStart": 30,
     "code": "@Input() route: string = '/search';",
     "ctx": false
   },
@@ -53,9 +52,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{boolean} [projectfilter]",
+        "string": "{boolean} [projectfilter] If true it shows the selection of projects to filter by one of them",
         "name": "[projectfilter]",
-        "description": "",
+        "description": "<p>If true it shows the selection of projects to filter by one of them</p>",
         "types": [
           "boolean"
         ],
@@ -63,13 +62,12 @@
         "optional": true,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{boolean} [projectfilter]</p>"
+        "variable": false
       }
     ],
     "description": {
-      "full": "<p>projectfilter: if true it shows the selection of projects to filter by one of them</p>",
-      "summary": "<p>projectfilter: if true it shows the selection of projects to filter by one of them</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -77,8 +75,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 34,
-    "codeStart": 39,
+    "line": 32,
+    "codeStart": 35,
     "code": "@Input() projectfilter?: boolean = false;",
     "ctx": false
   },
@@ -86,9 +84,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} [filterbyproject]",
+        "string": "{string} [filterbyproject] If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.",
         "name": "[filterbyproject]",
-        "description": "",
+        "description": "<p>If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.</p>",
         "types": [
           "string"
         ],
@@ -96,13 +94,12 @@
         "optional": true,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} [filterbyproject]</p>"
+        "variable": false
       }
     ],
     "description": {
-      "full": "<p>If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.</p>",
-      "summary": "<p>If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -110,8 +107,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 41,
-    "codeStart": 46,
+    "line": 37,
+    "codeStart": 40,
     "code": "@Input() filterbyproject?: string;\n\nshowMenu: boolean = false;\nfocusOnExtended: string = 'inactive';\n\nconstructor() {}",
     "ctx": false
   },
@@ -133,8 +130,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 53,
-    "codeStart": 58,
+    "line": 47,
+    "codeStart": 52,
     "code": "toggleMenu(): void {\n    this.showMenu = !this.showMenu;\n    this.focusOnExtended =\n        this.focusOnExtended === 'active' ? 'inactive' : 'active';\n}\n}",
     "ctx": {
       "type": "method",

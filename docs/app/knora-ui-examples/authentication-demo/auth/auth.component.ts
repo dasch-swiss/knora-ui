@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '@knora/authentication';
-import { CurrentUser } from '@knora/core';
+import { AuthenticationService, CurrentUser } from '@knora/authentication';
 import { AppDemo } from '../../../app.config';
 
 @Component({
