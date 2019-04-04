@@ -64,6 +64,7 @@ import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
 import { AppInitService } from './app-init.service';
 import { FulltextSearchComponent } from './knora-ui-examples/search-demo/fulltext-search/fulltext-search.component';
 import { ExtendedSearchComponent } from './knora-ui-examples/search-demo/extended-search/extended-search.component';
+import { MessageComponent } from './knora-ui-examples/action-demo/message/message.component';
 
 
 export function initializeApp(appInitService: AppInitService) {
@@ -116,7 +117,8 @@ export function initializeApp(appInitService: AppInitService) {
         SearchPanelComponent,
         TrimBracketsPipe,
         FulltextSearchComponent,
-        ExtendedSearchComponent
+        ExtendedSearchComponent,
+        MessageComponent
     ],
     entryComponents: [
         // LoginFormComponent

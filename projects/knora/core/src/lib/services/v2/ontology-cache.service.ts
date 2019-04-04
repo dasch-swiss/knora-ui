@@ -64,7 +64,20 @@ export class Cardinality {
                 readonly property: string) {
     }
 }
+/**
+ * Property gui order
+ */
+export class GuiOrder {
+    /**
+     * @param  {number} value
+     * @param  {string} property
+     */
+    constructor(readonly value: number,
+                readonly property: string
+                ) {
 
+    }
+}
 
 /**
  * A resource class definition.
@@ -77,12 +90,14 @@ export class ResourceClass {
      * @param {string} comment comment on the resource class.
      * @param {string} label label describing the resource class.
      * @param {Cardinality[]} cardinalities the resource class's properties.
+     * @param {GuiOrder[]} guiOrder the resource class's gui-order properties.
      */
     constructor(readonly id: string,
                 readonly icon: string,
                 readonly comment: string,
                 readonly label: string,
-                readonly cardinalities: Array<Cardinality>) {
+                readonly cardinalities: Array<Cardinality>,
+                readonly guiOrder: Array<GuiOrder>) {
 
     }
 }
@@ -627,6 +642,7 @@ export class OntologyCacheService {
 
             // represents all cardinalities of this resource class
             const cardinalities: Cardinality[] = [];
+            const guiOrder: GuiOrder[] = [];
 
             if (resClass[KnoraConstants.RdfsSubclassOf] !== undefined) {
 
@@ -639,8 +655,12 @@ export class OntologyCacheService {
                     subclassOfCollection = resClass[KnoraConstants.RdfsSubclassOf];
                 }
 
+
+
                 // get cardinalities for the properties of a resource class
                 for (const curCard of subclassOfCollection) {
+
+
 
                     // make sure it is a cardinality (it could also be an Iri of a superclass)
                     if (curCard instanceof Object && curCard['@type'] !== undefined && curCard['@type'] === KnoraConstants.OwlRestriction) {
@@ -659,11 +679,18 @@ export class OntologyCacheService {
                             throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[KnoraConstants.OwlOnProperty]}`);
                         }
 
-                        // TODO: get gui order
-
-
                         // add cardinality
                         cardinalities.push(newCard);
+
+                        // get gui order
+                        let newGuiOrder;
+                        if (curCard[KnoraConstants.SalsahGuiOrder] !== undefined) {
+                            newGuiOrder = new GuiOrder(curCard[KnoraConstants.SalsahGuiOrder], curCard[KnoraConstants.OwlOnProperty]['@id']);
+                            // add gui order
+                            guiOrder.push(newGuiOrder);
+                        }
+
+
 
                     }
 
@@ -675,7 +702,8 @@ export class OntologyCacheService {
                 resClass[KnoraConstants.ResourceIcon],
                 resClass[KnoraConstants.RdfsComment],
                 resClass[KnoraConstants.RdfsLabel],
-                cardinalities
+                cardinalities,
+                guiOrder
             );
 
             // write this resource class definition to the cache object
@@ -888,7 +916,7 @@ export class OntologyCacheService {
 
             return this.getAndCacheOntologies(ontologyIrisToQuery).pipe(
                 mergeMap(
-                    results => {
+                    () => {
                         // executed once all ontologies have been cached
                         return this.getOntologyInformationFromCache(ontologyIris);
                     }
@@ -932,7 +960,7 @@ export class OntologyCacheService {
             // obtain missing resource class information
             return this.getAndCacheOntologies(ontologyIris).pipe(
                 mergeMap(
-                    results => {
+                    () => {
 
                         return this.getResourceClassDefinitionsFromCache(resourceClassIris);
                     }

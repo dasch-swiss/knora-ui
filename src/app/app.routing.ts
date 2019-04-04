@@ -5,11 +5,12 @@ import { ResourceViewComponent, SearchResultsComponent } from '@knora/viewer';
 import { AppDemo } from './app.config';
 // dev docs
 import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
+
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
-
+import { MessageComponent } from './knora-ui-examples/action-demo/message/message.component';
 import { ProgressIndicatorComponent } from './knora-ui-examples/action-demo/progress-indicator/progress-indicator.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { AuthComponent } from './knora-ui-examples/authentication-demo/auth/auth.component';
@@ -45,6 +46,7 @@ import { MainIntroComponent } from './landing-page/main-intro/main-intro.compone
 import { TreeComponent } from './material/tree/tree.component';
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
+
 
 const appRoutes: Routes = [
     {
@@ -82,6 +84,10 @@ const appRoutes: Routes = [
                     {
                         path: 'sort-button',
                         component: SortButtonComponent
+                    },
+                    {
+                        path: 'message',
+                        component: MessageComponent
                     },
                     {
                         path: 'progress-indicator',

@@ -79,6 +79,7 @@ describe('LinkValueComponent', () => {
                     'book.png',
                     'A book.',
                     'book',
+                    [],
                     []
                 )
         };

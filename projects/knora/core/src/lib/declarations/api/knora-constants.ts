@@ -83,6 +83,7 @@ export class KnoraConstants {
     public static creationDate: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'creationDate';
     public static lastModificationDate: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'lastModificationDate';
     public static hasPermissions: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasPermissions';
+    public static userHasPermission: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'userHasPermission';
     public static attachedToProject: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'attachedToProject';
     public static attachedToUser: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'attachedToUser';
 

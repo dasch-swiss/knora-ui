@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { KnoraConstants } from '@knora/core';
+import { KnoraConstants, OntologyInformation } from '@knora/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 })
 export class ListViewComponent {
 
-    @Input() result;
-    @Input() ontologyInfo;
-    @Input() isLoading;
+    @Input() result: any;
+    @Input() ontologyInfo: OntologyInformation;
+    // @Input() isLoading: boolean;
 
     KnoraConstants = KnoraConstants;
 
