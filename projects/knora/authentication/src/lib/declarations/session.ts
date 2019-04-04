@@ -1,5 +1,6 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { CurrentUser } from '../../..';
+import { CurrentUser } from './current-user';
+
 /*
 
 @JsonObject

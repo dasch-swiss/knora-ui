@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiServiceError, KnoraConstants, KuiCoreConfigToken, Session, User, UsersService } from '@knora/core';
+import { ApiServiceError, KnoraConstants, KuiCoreConfigToken, User, UsersService } from '@knora/core';
+import { Session } from '../declarations';
 
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
@@ -44,7 +45,8 @@ export class SessionService {
                 name: username,
                 jwt: jwt,
                 lang: 'en',
-                sysAdmin: false
+                sysAdmin: false,
+                projectAdmin: []
             }
         };
         // store in the localStorage
@@ -54,11 +56,18 @@ export class SessionService {
         this._users.getUserByUsername(username).subscribe(
             (result: User) => {
                 let sysAdmin: boolean = false;
+                const projectAdmin: string[] = [];
 
-                const permissions = result.permissions;
-                if (permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]) {
-                    sysAdmin = permissions.groupsPerProject[KnoraConstants.SystemProjectIRI]
-                        .indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
+                const groupsPerProjectKeys: string[] = Object.keys(result.permissions.groupsPerProject);
+
+                for (const key of groupsPerProjectKeys) {
+                    if (key === KnoraConstants.SystemProjectIRI) {
+                        sysAdmin = result.permissions.groupsPerProject[key].indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
+                    }
+
+                    if (result.permissions.groupsPerProject[key].indexOf(KnoraConstants.ProjectAdminGroupIRI) > -1) {
+                        projectAdmin.push(key);
+                    }
                 }
 
                 // define a session id, which is the timestamp of login
@@ -68,7 +77,8 @@ export class SessionService {
                         name: result.username,
                         jwt: jwt,
                         lang: result.lang,
-                        sysAdmin: sysAdmin
+                        sysAdmin: sysAdmin,
+                        projectAdmin: projectAdmin
                     }
                 };
                 // store in the localStorage

@@ -48,5 +48,4 @@ export class User {
     @JsonProperty('systemAdmin', Boolean, true)
     public systemAdmin?: boolean = false;
 
-
 }
