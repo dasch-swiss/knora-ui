@@ -36,7 +36,7 @@ This module has the following package dependencies, which you also have to insta
 -   @angular/material@7.3.3
 -   @angular/cdk@7.3.3
 -   @angular/flex-layout@7.0.0-beta.22
--   @knora/core@7.2.0
+-   @knora/core@7.3.0
 
 ## Setup
 
