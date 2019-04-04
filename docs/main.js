@@ -10272,7 +10272,7 @@ var SearchResultsComponent = /** @class */ /*@__PURE__*/ (function () {
             if (!_this.searchMode) {
                 _this.searchMode = params.get('mode');
             }
-            if (!_this.projectIri) {
+            if (params.get('project') && (_this.projectIri !== decodeURIComponent(params.get('project')))) {
                 _this.projectIri = decodeURIComponent(params.get('project'));
             }
             // init offset  and result
@@ -10286,6 +10286,9 @@ var SearchResultsComponent = /** @class */ /*@__PURE__*/ (function () {
                 _this.gravsearchGenerator = _this._searchParamsService.getSearchParams();
                 if (!_this.searchQuery) {
                     _this.generateGravsearchQuery();
+                }
+                else {
+                    _this.gravSearchQuery = _this.searchQuery;
                 }
             }
             _this.rerender = true;
@@ -10309,7 +10312,7 @@ var SearchResultsComponent = /** @class */ /*@__PURE__*/ (function () {
             return;
         }
         else {
-            this.searchQuery = gravsearch;
+            this.gravSearchQuery = gravsearch;
         }
     };
     /**
@@ -10322,8 +10325,8 @@ var SearchResultsComponent = /** @class */ /*@__PURE__*/ (function () {
         this.errorMessage = undefined;
         // FULLTEXT SEARCH
         if (this.searchMode === 'fulltext') {
+            this.rerender = true;
             if (this.badRequest) {
-                this.rerender = true;
                 this.errorMessage = new _knora_core__WEBPACK_IMPORTED_MODULE_9__["ApiServiceError"]();
                 this.errorMessage.errorInfo =
                     'A search value is expected to have at least length of 3 characters.';
@@ -10331,7 +10334,7 @@ var SearchResultsComponent = /** @class */ /*@__PURE__*/ (function () {
                 this.rerender = false;
             }
             else {
-                if (this.projectIri !== null && this.projectIri !== undefined) {
+                if (this.projectIri) {
                     this.searchQuery += '?limitToProject=' + this.projectIri;
                 }
                 if (this.offset === 0) {
@@ -10358,13 +10361,13 @@ var SearchResultsComponent = /** @class */ /*@__PURE__*/ (function () {
             // perform count query
             if (this.offset === 0) {
                 this._searchService
-                    .doExtendedSearchCountQueryCountQueryResult(this.searchQuery)
+                    .doExtendedSearchCountQueryCountQueryResult(this.gravSearchQuery)
                     .subscribe(this.showNumberOfAllResults, function (error) {
                     _this.errorMessage = error;
                 });
             }
             this._searchService
-                .doExtendedSearchReadResourceSequence(this.searchQuery)
+                .doExtendedSearchReadResourceSequence(this.gravSearchQuery)
                 .subscribe(this.processSearchResults, // function pointer
             function (error) {
                 _this.errorMessage = error;
@@ -11074,7 +11077,7 @@ function View_ɵbi_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
 function View_ɵbi_10(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, null, ["No result"]))], null, null); }
 function View_ɵbi_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 3, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_3)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"], ngIfElse: [1, "ngIfElse"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](0, [["noResult", 2]], null, 0, null, View_ɵbi_10))], function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.numberOfAllResults !== 0) && _co.result); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3); _ck(_v, 2, 0, currVal_0, currVal_1); }, null); }
 function View_ɵbi_11(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, null, ["There is an error: "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](4, null, ["", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.errorMessage.errorInfo; _ck(_v, 4, 0, currVal_0); }); }
-function View_ɵbi_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_2)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_11)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](5, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.loading; _ck(_v, 1, 0, currVal_0); var currVal_1 = ((!_co.rerender && !_co.badRequest) && !_co.loading); _ck(_v, 3, 0, currVal_1); var currVal_2 = _co.errorMessage; _ck(_v, 5, 0, currVal_2); }, null); }
+function View_ɵbi_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_2)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_11)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](5, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.loading; _ck(_v, 1, 0, currVal_0); var currVal_1 = (!_co.rerender && !_co.badRequest); _ck(_v, 3, 0, currVal_1); var currVal_2 = _co.errorMessage; _ck(_v, 5, 0, currVal_2); }, null); }
 function View_ɵbi_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-search-results", [], null, null, null, View_ɵbi_0, RenderType_ɵbi)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 245760, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbi"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _knora_core__WEBPACK_IMPORTED_MODULE_23__["SearchService"], _knora_core__WEBPACK_IMPORTED_MODULE_23__["SearchParamsService"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var ɵbiNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-search-results", _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbi"], View_ɵbi_Host_0, { complexView: "complexView", searchQuery: "searchQuery", searchMode: "searchMode", projectIri: "projectIri" }, {}, []);
 
