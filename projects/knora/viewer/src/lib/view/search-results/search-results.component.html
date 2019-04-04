@@ -1,6 +1,6 @@
 <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
 
-<div *ngIf="!rerender && !badRequest && !loading">
+<div *ngIf="!rerender && !badRequest">
 
     <div *ngIf="numberOfAllResults !== 0 && result; else noResult">
         <h4>Number of results: {{numberOfAllResults}}</h4>
