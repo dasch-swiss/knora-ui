@@ -35,23 +35,20 @@ export interface PrevSearchItem {
 })
 export class FulltextSearchComponent implements OnInit {
     /**
-     * Route to navigate after search. This route path should contain a component for search results.
      *
-     * @param  {string} route
+     * @param  {string} route Route to navigate after search. This route path should contain a component for search results.
      */
     @Input() route: string = '/search';
 
     /**
-     * projectfilter: if true it shows the selection of projects to filter by one of them
      *
-     * @param  {boolean} [projectfilter]
+     * @param  {boolean} [projectfilter] If true it shows the selection of projects to filter by one of them
      */
     @Input() projectfilter?: boolean = false;
 
     /**
-     * If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.
      *
-     * @param  {string} [filterbyproject]
+     * @param  {string} [filterbyproject] If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.
      */
     @Input() filterbyproject?: string;
 
