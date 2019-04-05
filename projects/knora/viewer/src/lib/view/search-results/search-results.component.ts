@@ -28,6 +28,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     KnoraConstants = KnoraConstants;
     offset: number = 0;
     maxOffset: number = 0;
+    gravSearchQuery: string;
     gravsearchGenerator: ExtendedSearchParams;
     result: ReadResource[] = [];
     ontologyInfo: OntologyInformation;
@@ -44,7 +45,9 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         private _searchService: SearchService,
         private _searchParamsService: SearchParamsService,
         private _router: Router
-    ) {}
+    ) {
+
+    }
 
     ngOnInit() {
         this.navigationSubscription = this._route.paramMap.subscribe(
@@ -52,7 +55,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
                 if (!this.searchMode) {
                     this.searchMode = params.get('mode');
                 }
-                if (!this.projectIri) {
+
+                if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {
                     this.projectIri = decodeURIComponent(params.get('project'));
                 }
 
@@ -65,8 +69,11 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
                     this.badRequest = this.searchQuery.length < 3;
                 } else if (this.searchMode === 'extended') {
                     this.gravsearchGenerator = this._searchParamsService.getSearchParams();
+
                     if (!this.searchQuery) {
                       this.generateGravsearchQuery();
+                    } else {
+                        this.gravSearchQuery = this.searchQuery;
                     }
                 }
 
@@ -97,7 +104,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
             this._router.navigate([''], { relativeTo: this._route });
             return;
         } else {
-            this.searchQuery = <string> gravsearch;
+            this.gravSearchQuery = <string> gravsearch;
         }
     }
 
@@ -112,15 +119,15 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
         // FULLTEXT SEARCH
         if (this.searchMode === 'fulltext') {
+            this.rerender = true;
             if (this.badRequest) {
-                this.rerender = true;
                 this.errorMessage = new ApiServiceError();
                 this.errorMessage.errorInfo =
                     'A search value is expected to have at least length of 3 characters.';
                 this.loading = false;
                 this.rerender = false;
             } else {
-                if (this.projectIri !== null && this.projectIri !== undefined) {
+                if (this.projectIri) {
                     this.searchQuery += '?limitToProject=' + this.projectIri;
                 }
 
@@ -160,7 +167,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
             if (this.offset === 0) {
                 this._searchService
                     .doExtendedSearchCountQueryCountQueryResult(
-                        this.searchQuery
+                        this.gravSearchQuery
                     )
                     .subscribe(
                         this.showNumberOfAllResults,
@@ -170,7 +177,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
                     );
             }
             this._searchService
-                .doExtendedSearchReadResourceSequence(this.searchQuery)
+                .doExtendedSearchReadResourceSequence(this.gravSearchQuery)
                 .subscribe(
                     this.processSearchResults, // function pointer
                     (error: ApiServiceError) => {

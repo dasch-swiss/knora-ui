@@ -36,8 +36,7 @@
         <div *ngIf="prop.key === KnoraConstants.hasStillImageFileValue; else singleTemplates">
             <p>OSD viewer</p>
 
-            <kui-still-image #OSDViewer *ngIf="!loading && resource.stillImageRepresentationsToDisplay.length > 0"
-                             [images]="resource?.stillImageRepresentationsToDisplay">
+            <kui-still-image #OSDViewer *ngIf="!loading && resource.stillImageRepresentationsToDisplay.length > 0" [images]="resource?.stillImageRepresentationsToDisplay">
             </kui-still-image>
 
 
