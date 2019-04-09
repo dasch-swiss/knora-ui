@@ -48,6 +48,7 @@ describe('SearchPanelComponent', () => {
         MatDatepickerModule,
         MatIconModule,
         MatListModule,
+        MatMenuModule,
         MatFormFieldModule,
         MatSelectModule,
         FormsModule,

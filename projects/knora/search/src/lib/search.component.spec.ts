@@ -7,6 +7,7 @@ import {
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatMenuModule,
     MatSelectModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -67,6 +68,7 @@ describe('SearchComponent', () => {
                 MatIconModule,
                 MatInputModule,
                 MatListModule,
+                MatMenuModule,
                 MatSelectModule,
                 ReactiveFormsModule,
                 RouterTestingModule,
