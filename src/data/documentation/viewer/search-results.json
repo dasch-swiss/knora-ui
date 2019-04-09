@@ -2,15 +2,147 @@
   {
     "tags": [],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>Generates the Gravsearch query for the current offset.</p>",
+      "summary": "<p>Generates the Gravsearch query for the current offset.</p>",
       "body": ""
     },
     "isPrivate": false,
     "isConstructor": false,
-    "line": 1,
-    "codeStart": null,
-    "code": "import { Component, OnInit } from '@angular/core';\nimport { KuiView } from '../kui-view';\nimport { ActivatedRoute, Params, Router } from '@angular/router';\nimport { Subscription } from 'rxjs';\nimport {\n  ApiServiceError,\n  ExtendedSearchParams,\n  GravsearchGenerationService,\n  KnoraConstants,\n  OntologyCacheService,\n  OntologyInformation,\n  ReadResource,\n  ReadResourcesSequence,\n  SearchParamsService,\n  SearchService\n} from '@knora/core';\n\n@Component({\n  selector: 'kui-search-results',\n  templateUrl: './search-results.component.html',\n  styleUrls: ['./search-results.component.scss']\n})\nexport class SearchResultsComponent extends KuiView {\n\n  KnoraConstants = KnoraConstants;\n  offset: number = 0;\n  maxOffset: number = 0;\n  gravsearchGenerator: ExtendedSearchParams;\n  result: ReadResource[] = [];\n  ontologyInfo: OntologyInformation;\n  numberOfAllResults: number;\n  rerender: boolean = false;\n  searchQuery: string;\n  searchMode: string;\n  isLoading = true;\n  errorMessage: any = undefined;\n  navigationSubscription: Subscription;\n  pagingLimit: number = 25;\n\n  constructor(\n    protected _route: ActivatedRoute,\n    protected _searchService: SearchService,\n    protected _searchParamsService: SearchParamsService,\n    protected _router: Router\n  ) {\n    super(_route, _searchService, _searchParamsService, _router);\n  }\n}",
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 92,
+    "codeStart": 95,
+    "code": "private generateGravsearchQuery() {\n    const gravsearch:\n        | string\n        | boolean = this.gravsearchGenerator.generateGravsearch(\n        this.offset\n    );\n    if (gravsearch === false) {\n        // no valid search params (application has been reloaded)\n        // go to root\n        this._router.navigate([''], { relativeTo: this._route });\n        return;\n    } else {\n        this.gravSearchQuery = <string> gravsearch;\n    }\n}",
     "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Get search result from Knora - 2 cases: simple search and extended search</p>",
+      "summary": "<p>Get search result from Knora - 2 cases: simple search and extended search</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 111,
+    "codeStart": 114,
+    "code": "private getResult() {\n    this.loading = true;\n\n    // reset the error message\n    this.errorMessage = undefined;\n\n    // FULLTEXT SEARCH\n    if (this.searchMode === 'fulltext') {\n        this.rerender = true;\n        if (this.badRequest) {\n            this.errorMessage = new ApiServiceError();\n            this.errorMessage.errorInfo =\n                'A search value is expected to have at least length of 3 characters.';\n            this.loading = false;\n            this.rerender = false;\n        } else {\n            if (this.projectIri) {\n                this.searchQuery += '?limitToProject=' + this.projectIri;\n            }\n\n            if (this.offset === 0) {\n                // perform count query\n                this._searchService\n                    .doFullTextSearchCountQueryCountQueryResult(\n                        this.searchQuery\n                    )\n                    .subscribe(\n                        this.showNumberOfAllResults,\n                        (error: ApiServiceError) => {\n                            this.errorMessage = <ApiServiceError>error;\n                        }\n                    );\n            }\n\n            // perform full text search\n            this._searchService\n                .doFullTextSearchReadResourceSequence(\n                    this.searchQuery,\n                    this.offset\n                )\n                .subscribe(\n                    this.processSearchResults, // function pointer\n                    (error: ApiServiceError) => {\n                        this.errorMessage = <ApiServiceError>error;\n                        console.log('error', error);\n                        console.log('message', this.errorMessage);\n                    }\n                );\n        }\n\n        // EXTENDED SEARCH\n    } else if (this.searchMode === 'extended') {\n        // perform count query\n        if (this.offset === 0) {\n            this._searchService\n                .doExtendedSearchCountQueryCountQueryResult(\n                    this.gravSearchQuery\n                )\n                .subscribe(\n                    this.showNumberOfAllResults,\n                    (error: ApiServiceError) => {\n                        this.errorMessage = <ApiServiceError>error;\n                    }\n                );\n        }\n        this._searchService\n            .doExtendedSearchReadResourceSequence(this.gravSearchQuery)\n            .subscribe(\n                this.processSearchResults, // function pointer\n                (error: ApiServiceError) => {\n                    this.errorMessage = <ApiServiceError>error;\n                }\n            );\n    } else {\n        this.errorMessage = new ApiServiceError();\n        this.errorMessage.errorInfo = `search mode invalid: ${\n            this.searchMode\n        }`;\n    }\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{ReadResourcesSequence} searchResult the answer to a search request.",
+        "name": "searchResult",
+        "description": "<p>the answer to a search request.</p>",
+        "types": [
+          "ReadResourcesSequence"
+        ],
+        "typesDescription": "<a href=\"ReadResourcesSequence.html\">ReadResourcesSequence</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "<p>Converts search results from JSON-LD to a [[ReadResourcesSequence]] and requests information about ontology entities.<br />\nThis function is passed to <code>subscribe</code> as a pointer (instead of redundantly defining the same lambda function).</p>",
+      "summary": "<p>Converts search results from JSON-LD to a [[ReadResourcesSequence]] and requests information about ontology entities.<br />\nThis function is passed to <code>subscribe</code> as a pointer (instead of redundantly defining the same lambda function).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 195,
+    "codeStart": 202,
+    "code": "private processSearchResults = (searchResult: ReadResourcesSequence) => {\n    // assign ontology information to a variable so it can be used in the component's template\n    if (this.ontologyInfo === undefined) {\n        // init ontology information\n        this.ontologyInfo = searchResult.ontologyInformation;\n    } else {\n        // update ontology information\n        this.ontologyInfo.updateOntologyInformation(\n            searchResult.ontologyInformation\n        );\n    }\n    // append results to search results\n    this.result = this.result.concat(searchResult.resources);\n    // console.log('search results', this.result);\n\n    this.loading = false;\n    this.rerender = false;\n};",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{ApiServiceResult} countQueryResult the response to a count query.",
+        "name": "countQueryResult",
+        "description": "<p>the response to a count query.</p>",
+        "types": [
+          "ApiServiceResult"
+        ],
+        "typesDescription": "<a href=\"ApiServiceResult.html\">ApiServiceResult</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "<p>Shows total number of results returned by a count query.</p>",
+      "summary": "<p>Shows total number of results returned by a count query.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 221,
+    "codeStart": 226,
+    "code": "private showNumberOfAllResults = (countQueryResult: CountQueryResult) => {\n    this.numberOfAllResults = countQueryResult.numberOfResults;\n\n    if (this.numberOfAllResults > 0) {\n        // offset is 0-based\n        // if numberOfAllResults equals the pagingLimit, the max. offset is 0\n        this.maxOffset = Math.floor(\n            (this.numberOfAllResults - 1) / this.pagingLimit\n        );\n    } else {\n        this.maxOffset = 0;\n    }\n};",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{number} offset",
+        "name": "offset",
+        "description": "",
+        "types": [
+          "number"
+        ],
+        "typesDescription": "<code>number</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{number} offset</p>"
+      },
+      {
+        "type": "returns",
+        "string": "void",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Loads the next page of results.<br />\nThe results will be appended to the existing ones.</p>",
+      "summary": "<p>Loads the next page of results.<br />\nThe results will be appended to the existing ones.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 240,
+    "codeStart": 247,
+    "code": "loadMore(offset: number): void {\n    // update the page offset when the end of scroll is reached to get the next page of search results\n    if (this.offset < this.maxOffset) {\n        this.offset++;\n    } else {\n        return;\n    }\n\n    if (this.searchMode === 'extended') {\n        this.generateGravsearchQuery();\n    }\n\n    this.getResult();\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "loadMore",
+      "string": "loadMore()"
+    }
   }
 ]

@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ApiService } from '../api.service';
 import {
-    ApiServiceResult, Group,
+    ApiServiceResult,
+    Group,
+    GroupsResponse,
     User,
     UserResponse,
     UsersResponse
@@ -34,10 +36,10 @@ export class UsersService extends ApiService {
 
     /**
      * Get user by username, email or by iri.
-     *
      * @ignore
      *
-     * @param {string} identifier - Get user by username, email or by iri
+     * @param  {string} identifier username, email or by iri
+     * @param  {String} identifierType
      * @returns Observable<User>
      */
     private getUser(identifier: string, identifierType: String): Observable<User> {
@@ -51,8 +53,8 @@ export class UsersService extends ApiService {
     /**
      * Get user by IRI
      *
-     * @param {string} iri
-     * @returns {Observable<User>}
+     * @param  {string} iri
+     * @returns Observable<User>
      */
     getUserByIri(iri: string): Observable<User> {
         return this.getUser(iri, 'iri');
@@ -61,8 +63,8 @@ export class UsersService extends ApiService {
     /**
      * Get user by email
      *
-     * @param {string} email
-     * @returns {Observable<User>}
+     * @param  {string} email
+     * @returns Observable<User>
      */
     getUserByEmail(email: string): Observable<User> {
         return this.getUser(email, 'email');
@@ -71,8 +73,8 @@ export class UsersService extends ApiService {
     /**
      * Get user by username.
      *
-     * @param {string} username
-     * @returns {Observable<User>}
+     * @param  {string} username
+     * @returns Observable<User>
      */
     getUserByUsername(username: string): Observable<User> {
         return this.getUser(username, 'username');
@@ -81,12 +83,13 @@ export class UsersService extends ApiService {
     /**
      * Get all groups, where the user is member of
      *
-     * @param userIri
+     * @param  {string} userIri
+     * @returns Observable<Group[]>
      */
     getUsersGroupMemberships(userIri: string): Observable<Group[]> {
-        const path = '/admin/users/iri/' + userIri + '/group-memberships';
+        const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships';
         return this.httpGet(path).pipe(
-            map((result: ApiServiceResult) => result.getBody(UserResponse).groups),
+            map((result: ApiServiceResult) => result.getBody(GroupsResponse).groups),
             catchError(this.handleJsonError)
         );
 
@@ -141,7 +144,7 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * Add user to an admin project.
+     * Add user to the admin group of a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
@@ -156,7 +159,7 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * Delete user of an admin project.
+     * Delete user from the admin group of a project.
      *
      * @param {string} userIri
      * @param {string} projectIri
@@ -171,10 +174,11 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * add user to project specific group
+     * Add user to project specific group
      *
-     * @param userIri
-     * @param groupIri
+     * @param {string} userIri
+     * @param {string} groupIri
+     * @returns Observable<User>
      */
     addUserToGroup(userIri: string, groupIri: string): Observable<User> {
         const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships/' + encodeURIComponent(groupIri);
@@ -188,8 +192,9 @@ export class UsersService extends ApiService {
     /**
      * remove user from project specific group
      *
-     * @param userIri
-     * @param groupIri
+     * @param {string} userIri
+     * @param {string} groupIri
+     * @returns Observable<User>
      */
     removeUserFromGroup(userIri: string, groupIri: string): Observable<User> {
         const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships/' + encodeURIComponent(groupIri);
@@ -223,7 +228,7 @@ export class UsersService extends ApiService {
 
     /**
      * Remove user from the admin system.
-     * @param userIri
+     * @param {string} userIri
      * @returns Observable<User>
      */
     removeUserFromSystemAdmin(userIri: string): Observable<User> {
@@ -238,9 +243,8 @@ export class UsersService extends ApiService {
      * Update user system admin membership
      * @ignore
      *
-     *
-     * @param userIri
-     * @param data
+     * @param {string} userIri
+     * @param {any} data
      *
      * @returns Observable<User>
      */
@@ -321,6 +325,7 @@ export class UsersService extends ApiService {
      * Update basic user information: given name, family name
      * @param userIri
      * @param data
+     * @returns Observable<User>
      */
     updateBasicUserInformation(userIri: string, data: any): Observable<User> {
         const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/BasicUserInformation';

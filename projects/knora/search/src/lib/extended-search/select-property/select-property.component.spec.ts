@@ -19,7 +19,8 @@ import {
     KuiCoreConfigToken,
     Properties,
     Property,
-    ResourceClass
+    ResourceClass,
+    GuiOrder
 } from '@knora/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -232,6 +233,12 @@ describe('SelectPropertyComponent', () => {
                     1,
                     'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
                 )
+            ],
+            [
+                new GuiOrder(
+                    2,
+                    'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+                ),
             ]
         );
 

@@ -85,6 +85,7 @@ export class KnoraConstants {
     public static creationDate: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'creationDate';
     public static lastModificationDate: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'lastModificationDate';
     public static hasPermissions: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasPermissions';
+    public static userHasPermission: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'userHasPermission';
     public static attachedToProject: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'attachedToProject';
     public static attachedToUser: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'attachedToUser';
 
@@ -98,6 +99,8 @@ export class KnoraConstants {
     public static ReadIntegerValue: string = 'ReadIntegerValue';
     public static ReadDecimalValue: string = 'ReadDecimalValue';
     public static ReadStillImageFileValue: string = 'ReadStillImageFileValue';
+    public static ReadMovingImageFileValue: string = 'ReadMovingImageFileValue';
+    public static ReadAudioFileValue: string = 'ReadAudioFileValue';
     public static ReadTextFileValue: string = 'ReadTextFileValue';
     public static ReadGeomValue: string = 'ReadGeomValue';
     public static ReadColorValue: string = 'ReadColorValue';

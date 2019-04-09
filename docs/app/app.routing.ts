@@ -5,11 +5,12 @@ import { ResourceViewComponent, SearchResultsComponent } from '@knora/viewer';
 import { AppDemo } from './app.config';
 // dev docs
 import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
+
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
-
+import { MessageComponent } from './knora-ui-examples/action-demo/message/message.component';
 import { ProgressIndicatorComponent } from './knora-ui-examples/action-demo/progress-indicator/progress-indicator.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { AuthComponent } from './knora-ui-examples/authentication-demo/auth/auth.component';
@@ -31,6 +32,9 @@ import { UsersComponent } from './knora-ui-examples/core-demo/users/users.compon
 
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
+import { ExtendedSearchComponent } from './knora-ui-examples/search-demo/extended-search/extended-search.component';
+import { FulltextSearchComponent } from './knora-ui-examples/search-demo/fulltext-search/fulltext-search.component';
+
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ResourcesComponent } from './knora-ui-examples/viewer-demo/resources/resources.component';
 
@@ -42,12 +46,7 @@ import { MainIntroComponent } from './landing-page/main-intro/main-intro.compone
 import { TreeComponent } from './material/tree/tree.component';
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
-import { AuthenticationPgComponent } from './playground/authentication-pg/authentication-pg.component';
-import { OntologyPgComponent } from './playground/ontology-pg/ontology-pg.component';
-// playground
-import { PlaygroundComponent } from './playground/playground.component';
-import { SearchPgComponent } from './playground/search-pg/search-pg.component';
-import { ViewerPgComponent } from './playground/viewer-pg/viewer-pg.component';
+
 
 const appRoutes: Routes = [
     {
@@ -66,7 +65,7 @@ const appRoutes: Routes = [
             {
                 path: '',
                 component: DemoIntroComponent,
-                data: {module: 'demo'}
+                data: { module: 'demo' }
             },
             {
                 path: 'action',
@@ -80,11 +79,15 @@ const appRoutes: Routes = [
                     {
                         path: 'readme',
                         component: DemoIntroComponent,
-                        data: {module: 'action'}
+                        data: { module: 'action' }
                     },
                     {
                         path: 'sort-button',
                         component: SortButtonComponent
+                    },
+                    {
+                        path: 'message',
+                        component: MessageComponent
                     },
                     {
                         path: 'progress-indicator',
@@ -117,7 +120,7 @@ const appRoutes: Routes = [
                     {
                         path: 'readme',
                         component: DemoIntroComponent,
-                        data: {module: 'authentication'}
+                        data: { module: 'authentication' }
                     },
                     {
                         path: 'login-form',
@@ -132,7 +135,7 @@ const appRoutes: Routes = [
             {
                 path: 'search',
                 component: SearchDemoComponent,
-                data: {partOf: AppDemo.searchModule},
+                data: { partOf: AppDemo.searchModule },
                 children: [
                     {
                         path: '',
@@ -142,18 +145,26 @@ const appRoutes: Routes = [
                     {
                         path: 'readme',
                         component: DemoIntroComponent,
-                        data: {module: 'search'}
+                        data: { module: 'search' }
                     },
                     {
-                        path: 'search',
+                        path: 'search-panel',
                         component: SearchPanelComponent
-                    }
+                    },
+                    {
+                        path: 'fulltext-search',
+                        component: FulltextSearchComponent
+                    },
+                    {
+                        path: 'extended-search',
+                        component: ExtendedSearchComponent
+                    },
                 ]
             },
             {
                 path: 'viewer',
                 component: ViewerDemoComponent,
-                data: {module: AppDemo.viewerModule},
+                data: { module: AppDemo.viewerModule },
                 children: [
                     {
                         path: '',
@@ -163,12 +174,12 @@ const appRoutes: Routes = [
                     {
                         path: 'readme',
                         component: DemoIntroComponent,
-                        data: {module: 'viewer'}
+                        data: { module: 'viewer' }
                     },
                     {
                         path: 'resources',
                         component: ResourcesComponent,
-                        data: {partOf: AppDemo.viewerModule}
+                        data: { partOf: AppDemo.viewerModule }
                     },
                     {
                         path: 'resource/:id',
@@ -177,12 +188,12 @@ const appRoutes: Routes = [
                     {
                         path: 'properties',
                         component: PropertiesComponent,
-                        data: {partOf: AppDemo.viewerModule}
+                        data: { partOf: AppDemo.viewerModule }
                     },
                     {
                         path: 'views',
                         component: ViewsComponent,
-                        data: {partOf: AppDemo.viewerModule}
+                        data: { partOf: AppDemo.viewerModule }
                     }
 
                 ]
@@ -200,7 +211,7 @@ const appRoutes: Routes = [
                     {
                         path: 'readme',
                         component: DemoIntroComponent,
-                        data: {module: 'core'}
+                        data: { module: 'core' }
                     },
                     {
                         path: 'projects',
@@ -247,34 +258,6 @@ const appRoutes: Routes = [
                         component: ConvertJsonLdComponent
                     }
 
-                ]
-            }
-        ]
-    },
-    {
-        path: 'playground',
-        component: PlaygroundComponent,
-        children: [
-            {
-                path: 'authentication',
-                component: AuthenticationPgComponent
-            },
-            {
-                path: 'viewer',
-                component: ViewerPgComponent
-            },
-            {
-                path: 'ontology',
-                component: OntologyPgComponent
-            },
-            {
-                path: 'search',
-                component: SearchPgComponent,
-                children: [
-                    {
-                        path: ':mode/:q',
-                        component: SearchResultsComponent
-                    }
                 ]
             }
         ]

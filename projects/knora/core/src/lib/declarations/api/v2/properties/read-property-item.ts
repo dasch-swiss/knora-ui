@@ -305,6 +305,55 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
 }
 
 /**
+ * Represents a moving image value object.
+ */
+export class ReadMovingImageFileValue implements ReadPropertyItem {
+
+    constructor(
+        readonly id: string,
+        readonly propIri,
+        readonly filename: string,
+        readonly mediaServerIIIFBaseURL: string,
+        readonly path: string,
+        readonly dimX: number,
+        readonly dimY: number,
+        readonly duration: number,
+        readonly fps?: number,
+        readonly aspectRatio?: string) {
+
+    }
+
+    readonly type = KnoraConstants.MovingImageFileValue;
+
+    // preview doesn't include the video file itself
+    readonly isPreview: boolean;
+
+    /*
+    makeIIIFUrl(reduceFactor: number): string {
+
+        if (this.isPreview) {
+            return this.path;
+        } else {
+            let percentage = Math.floor(100 / reduceFactor);
+
+            percentage = (percentage > 0 && percentage <= 100) ? percentage : 50;
+
+            return this.mediaServerIIIFBaseURL + '/' + this.filename + '/full/pct:' + percentage.toString() + '/0/default.jpg';
+        }
+
+    }
+    */
+
+    getClassName(): string {
+        return KnoraConstants.ReadMovingImageFileValue;
+    }
+
+    getContent() {
+        return this.path;
+    }
+}
+
+/**
  * Represents a text representation value object
  */
 export class ReadTextFileValue implements ReadPropertyItem {

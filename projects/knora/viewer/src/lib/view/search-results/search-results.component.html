@@ -1,23 +1,53 @@
-<div *ngIf="!rerender">
+<kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
+
+<div *ngIf="!rerender && !badRequest">
+
     <div *ngIf="numberOfAllResults !== 0 && result; else noResult">
         <h4>Number of results: {{numberOfAllResults}}</h4>
-        <mat-tab-group>
-            <mat-tab label="List">
-                <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" [isLoading]="isLoading"></kui-list-view>
+
+        <mat-tab-group animationDuration="0ms" *ngIf="complexView">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="tab-icon">view_list</mat-icon>
+                    List
+                </ng-template>
+                <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo"></kui-list-view>
             </mat-tab>
-            <mat-tab label="Grid">
-                <kui-grid-view [result]="result" [ontologyInfo]="ontologyInfo" [isLoading]="isLoading"></kui-grid-view>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="tab-icon">view_module</mat-icon>
+                    Grid
+                </ng-template>
+                <kui-grid-view [result]="result" [ontologyInfo]="ontologyInfo"></kui-grid-view>
             </mat-tab>
-            <mat-tab label="Table">
-                <kui-table-view [result]="result" [ontologyInfo]="ontologyInfo" [isLoading]="isLoading"></kui-table-view>
+            <!-- not yet implemented! --
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="tab-icon">table_chart</mat-icon>
+                    Table
+                </ng-template>
+                <kui-table-view [result]="result" [ontologyInfo]="ontologyInfo">
+                </kui-table-view>
             </mat-tab>
-            <mat-tab label="Gravsearch">
-                <kui-graph-view></kui-graph-view>
+            -->
+
+            <!-- the following tab we don't need anymore? The GravSearch view will be part of the export menu --
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="tab-icon">code</mat-icon>
+                    Gravsearch
+                </ng-template>
+                <kui-gravsearch-view></kui-gravsearch-view>
             </mat-tab>
+            -->
+
         </mat-tab-group>
 
+        <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" *ngIf="!complexView"></kui-list-view>
+
         <div class="load-panel" *ngIf="result.length > 0">
-            <button mat-flat-button color="primary" class="link center" (click)="loadMore(offset)" *ngIf="offset < maxOffset">Load more
+            <button mat-flat-button color="primary" class="link center" (click)="loadMore(offset)"
+                    *ngIf="offset < maxOffset">Load more
                 <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
         </div>
@@ -26,14 +56,12 @@
 
     <!-- In case of 0 result -->
     <ng-template #noResult>
-        <p>
-            <strong>No result</strong>
-        </p>
+        <p><strong>No result</strong></p>
     </ng-template>
 
 </div>
 
 <!-- Error message -->
 <div *ngIf="errorMessage">
-    <p>There is an error: {{errorMessage}}</p>
+    <p>There is an error: <br>{{errorMessage.errorInfo}}</p>
 </div>

@@ -10,7 +10,7 @@
     "isConstructor": false,
     "line": 1,
     "codeStart": null,
-    "code": "import { Component, Input, OnDestroy, OnInit } from '@angular/core';\nimport { KnoraConstants } from '@knora/core';\n\n@Component({\n    selector: 'kui-list-view',\n    templateUrl: './list-view.component.html',\n    styleUrls: ['./list-view.component.scss']\n})\nexport class ListViewComponent {\n\n    @Input() result;\n    @Input() ontologyInfo;\n    @Input() isLoading;\n\n    KnoraConstants = KnoraConstants;\n\n    constructor() { }\n\n}",
+    "code": "import { Component, Input, OnDestroy, OnInit } from '@angular/core';\nimport { KnoraConstants, OntologyInformation } from '@knora/core';\nimport { Router } from '@angular/router';\n\n@Component({\n    selector: 'kui-list-view',\n    templateUrl: './list-view.component.html',\n    styleUrls: ['./list-view.component.scss']\n})\nexport class ListViewComponent {\n\n    @Input() result: any;\n    @Input() ontologyInfo: OntologyInformation;\n    // @Input() isLoading: boolean;\n\n    KnoraConstants = KnoraConstants;\n\n    constructor(\n        private _router: Router\n    ) { }\n\n    openResource(id: string) {\n        const url: string = '/resource/' + encodeURIComponent(id);\n        this._router.navigate([url]);\n    }\n\n}",
     "ctx": false
   }
 ]

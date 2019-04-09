@@ -8,7 +8,8 @@ import {
     Cardinality, CardinalityOccurrence,
     OntologyCacheService,
     OntologyInformation, OntologyMetadata, Properties, Property, ResourceClass, ResourceClasses,
-    ResourceClassIrisForOntology
+    ResourceClassIrisForOntology,
+    GuiOrder
 } from './ontology-cache.service';
 import { OntologyService } from './ontology.service';
 import { Observable, of } from 'rxjs';
@@ -407,12 +408,93 @@ describe('OntologyCacheService', () => {
                         )
                     ];
 
+                    const expectedGuiOrder = [
+                        new GuiOrder(
+                            0,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasListItem'
+                        ),
+                        new GuiOrder(
+                            0,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherListItem'
+                        ),
+                        new GuiOrder(
+                            0,
+                            'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething'
+                        ),
+                        new GuiOrder(
+                            0,
+                            'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomethingValue'
+                        ),
+                        new GuiOrder(
+                            2,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasRichtext'
+                        ),
+                        new GuiOrder(
+                            2,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+                        ),
+                        new GuiOrder(
+                            3,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasDate'
+                        ),
+                        new GuiOrder(
+                            4,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger'
+                        ),
+                        new GuiOrder(
+                            5,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasDecimal'
+                        ),
+                        new GuiOrder(
+                            6,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBoolean'
+                        ),
+                        new GuiOrder(
+                            7,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasUri'
+                        ),
+                        new GuiOrder(
+                            9,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInterval'
+                        ),
+                        new GuiOrder(
+                            10,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasColor'
+                            ),
+                        new GuiOrder(
+                            11,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeometry'
+                        ),
+                        new GuiOrder(
+                            12,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeoname'
+                        ),
+                        new GuiOrder(
+                            13,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasThingPicture'
+                        ),
+                        new GuiOrder(
+                            13,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasThingPictureValue'
+                        ),
+                        new GuiOrder(
+                            15,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#isPartOfOtherThing'
+                        ),
+                        new GuiOrder(
+                            15,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#isPartOfOtherThingValue'
+                        )
+                    ];
+
+
                     const expectedSomething = new ResourceClass(
                         'http://0.0.0.0:3333/ontology/0001/something/v2#Something',
                         'something.png',
                         'A something is a thing.',
                         'Something',
-                        expectedCards
+                        expectedCards,
+                        expectedGuiOrder
                     );
 
                     expect(resourceClasses['http://0.0.0.0:3333/ontology/0001/something/v2#Something']).toEqual(expectedSomething);
@@ -931,7 +1013,84 @@ describe('OntologyCacheService', () => {
                                 0,
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#mentionedIn'
                             )
-
+                        ],
+                        [
+                            new GuiOrder(
+                                0,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasFamilyName'
+                            ),
+                            new GuiOrder(
+                                1,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasGivenName'
+                            ),
+                            new GuiOrder(
+                                2,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#personHasTitle'
+                            ),
+                            new GuiOrder(
+                                3,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasAlternativeName'
+                            ),
+                            new GuiOrder(
+                                4,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#beolIDs'
+                            ),
+                            new GuiOrder(
+                                5,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasIAFIdentifier'
+                            ),
+                            new GuiOrder(
+                                6,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasBirthDate'
+                            ),
+                            new GuiOrder(
+                                7,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasDeathDate'
+                            ),
+                            new GuiOrder(
+                                8,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasFloruitDate'
+                            ),
+                            new GuiOrder(
+                                9,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasMarriageDate'
+                            ),
+                            new GuiOrder(
+                                10,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasBirthPlace'
+                            ),
+                            new GuiOrder(
+                                11,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasDeathPlace'
+                            ),
+                            new GuiOrder(
+                                12,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasFloruitPlace'
+                            ),
+                            new GuiOrder(
+                                13,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasMarriagePlace'
+                            ),
+                            new GuiOrder(
+                                14,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSonValue'
+                            ),
+                            new GuiOrder(
+                                15,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSon'
+                            ),
+                            new GuiOrder(
+                                16,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#hasDictionaryEntries'
+                            ),
+                            new GuiOrder(
+                                17,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#comment'
+                            ),
+                            new GuiOrder(
+                                18,
+                                'http://0.0.0.0:3333/ontology/0801/beol/v2#mentionedIn'
+                            )
                         ]
                     );
 

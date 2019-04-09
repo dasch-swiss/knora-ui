@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     Cardinality,
     CardinalityOccurrence,
+    GuiOrder,
     KuiCoreConfig,
     KuiCoreConfigToken,
     OntologyCacheService,
@@ -40,7 +41,7 @@ import {
     Property,
     ResourceClass,
     ResourceClasses,
-    ResourceClassIrisForOntology
+    ResourceClassIrisForOntology,
 } from '@knora/core';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -265,6 +266,12 @@ describe('ExtendedSearchComponent', () => {
                             1,
                             'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
                         )
+                    ],
+                    [
+                        new GuiOrder(
+                            2,
+                            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+                        ),
                     ]
                 )
         };

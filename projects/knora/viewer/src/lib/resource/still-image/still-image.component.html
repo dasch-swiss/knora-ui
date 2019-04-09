@@ -8,8 +8,17 @@
     <!-- main content with navigation and osd viewer -->
     <div class="content">
 
-        <!-- header with image tools -->
-        <mat-toolbar class="header">
+        <!-- openseadragon (osd) viewer -->
+        <div class="osd-container"></div>
+        <!-- /openseadragon (osd) -->
+
+        <!-- footer with image caption e.g. copyright information -->
+        <div class="footer">
+            <p class="mat-caption" [innerHtml]="imageCaption"></p>
+        </div>
+
+        <!-- action panel with tools for image -->
+        <mat-toolbar class="action">
             <mat-toolbar-row>
                 <!-- home button -->
                 <span>
@@ -28,14 +37,6 @@
             </span>
             </mat-toolbar-row>
         </mat-toolbar>
-
-        <!-- openseadragon (osd) viewer -->
-        <div class="osd-container"></div>
-        <!-- /openseadragon (osd) -->
-        <!-- footer for copyright info; download button etc. -->
-        <div class="footer">
-            <p class="mat-caption" [innerHtml]="imageCaption"></p>
-        </div>
 
     </div>
 

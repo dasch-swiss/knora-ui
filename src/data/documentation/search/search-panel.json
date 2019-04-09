@@ -1,16 +1,123 @@
 [
   {
+    "tags": [],
+    "description": {
+      "full": "<p>The search-panel contains the kui-fulltext-search and the kui-extended-search components.</p>",
+      "summary": "<p>The search-panel contains the kui-fulltext-search and the kui-extended-search components.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 10,
+    "codeStart": 13,
+    "code": "@Component({\n    selector: 'kui-search-panel',\n    templateUrl: './search-panel.component.html',\n    styleUrls: ['./search-panel.component.scss'],\n    animations: [\n        trigger('extendedSearchMenu', [\n            state('inactive', style({ display: 'none' })),\n            state('active', style({ display: 'block' })),\n            transition('inactive => active', animate('100ms ease-in')),\n            transition('active => inactive', animate('100ms ease-out'))\n        ])\n    ]\n})\nexport class SearchPanelComponent {",
+    "ctx": false
+  },
+  {
     "tags": [
       {
-        "type": "returns",
-        "string": "void",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
+        "type": "param",
+        "string": "{string} route Route to navigate after search. This route path should contain a component for search results.",
+        "name": "route",
+        "description": "<p>Route to navigate after search. This route path should contain a component for search results.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
         "optional": false,
-        "description": "<p>void</p>"
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 27,
+    "codeStart": 30,
+    "code": "@Input() route: string = '/search';",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{boolean} [projectfilter] If true it shows the selection of projects to filter by one of them",
+        "name": "[projectfilter]",
+        "description": "<p>If true it shows the selection of projects to filter by one of them</p>",
+        "types": [
+          "boolean"
+        ],
+        "typesDescription": "<code>boolean</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 32,
+    "codeStart": 35,
+    "code": "@Input() projectfilter?: boolean = false;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} [filterbyproject] If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.",
+        "name": "[filterbyproject]",
+        "description": "<p>If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 37,
+    "codeStart": 40,
+    "code": "@Input() filterbyproject?: string;\n\nshowMenu: boolean = false;\nfocusOnExtended: string = 'inactive';\n\nconstructor() {}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
       }
     ],
     "description": {
@@ -23,9 +130,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 27,
-    "codeStart": 32,
-    "code": "toggleMenu(): void {\n  this.showMenu = !this.showMenu;\n  this.focusOnExtended = (this.focusOnExtended === 'active' ? 'inactive' : 'active');\n}\n}",
+    "line": 47,
+    "codeStart": 52,
+    "code": "toggleMenu(): void {\n    this.showMenu = !this.showMenu;\n    this.focusOnExtended =\n        this.focusOnExtended === 'active' ? 'inactive' : 'active';\n}\n}",
     "ctx": {
       "type": "method",
       "name": "toggleMenu",

@@ -5,6 +5,7 @@ import { ListViewComponent } from './list-view.component';
 import { KeyPipe, ProgressIndicatorComponent } from '@knora/action';
 import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
 import { DateValueComponent } from '../../property/date-value/date-value.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ListViewComponent', () => {
   let component: ListViewComponent;
@@ -12,7 +13,11 @@ describe('ListViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MatIconModule, MatListModule],
+      imports: [
+        MatIconModule,
+        MatListModule,
+        RouterTestingModule
+      ],
       declarations: [
         ListViewComponent,
         ProgressIndicatorComponent,

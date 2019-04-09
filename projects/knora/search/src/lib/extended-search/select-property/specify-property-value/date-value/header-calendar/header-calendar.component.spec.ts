@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header-calendar.component';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
     MatCalendar,
+    MatDatepickerContent,
     MatDatepickerModule,
     MatFormFieldModule,
     MatIconModule,
@@ -55,7 +56,8 @@ describe('HeaderComponent', () => {
                     provide: KuiCoreConfigToken,
                     useValue: KuiCoreConfig
                 },
-                FormBuilder
+                { provide: ElementRef, useClass: MockElementRef },
+                { provide: MatDatepickerContent, useClass: MatDatepickerContent }
             ]
         });
 
@@ -133,6 +135,10 @@ describe('HeaderComponent', () => {
 
 });
 
+class MockElementRef implements ElementRef {
+    nativeElement = {};
+}
+
 /**
  * Test host component to simulate parent component.
  */
@@ -154,6 +160,5 @@ class TestHostComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.fb.group({});
-
     }
 }

@@ -1,0 +1,25 @@
+<!-- Documentation from JSDocs -->
+<app-documentation-viewer [module]="module"></app-documentation-viewer>
+
+<!-- Examples with demo -->
+<h3>Example</h3>
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="noteExample"></app-example-viewer>
+
+    <div class="demo">
+        <kui-message [message]="shortMessage" [short]="true"></kui-message>
+        <kui-message [message]="errorMessage" [short]="true"></kui-message>
+    </div>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="errorExample"></app-example-viewer>
+
+    <div class="demo">
+        <kui-message [message]="errorMessage"></kui-message>
+    </div>
+</mat-card>

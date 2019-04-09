@@ -9,6 +9,7 @@ import {
     MatFormFieldModule,
     MatIconModule, MatInputModule,
     MatListModule,
+    MatMenuModule,
     MatSelectModule,
     MatTooltipModule
 } from '@angular/material';
@@ -40,7 +41,6 @@ import { HeaderComponent } from './extended-search/select-property/specify-prope
 import { ListValueComponent } from './extended-search/select-property/specify-property-value/list-value/list-value.component';
 import { ListDisplayComponent } from './extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
 
-
 @NgModule({
     imports: [
         CommonModule,
@@ -53,6 +53,7 @@ import { ListDisplayComponent } from './extended-search/select-property/specify-
         MatInputModule,
         MatIconModule,
         MatListModule,
+        MatMenuModule,
         MatSelectModule,
         MatTooltipModule,
         FormsModule,

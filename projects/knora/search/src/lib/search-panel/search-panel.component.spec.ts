@@ -1,18 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {
-  MatAutocompleteModule,
-  MatCheckboxModule,
-  MatDatepickerModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatListModule,
-  MatSelectModule
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatListModule,
+    MatMenuModule,
+    MatSelectModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JdnDatepickerDirective, ReversePipe } from '@knora/action';
+import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
 import { SearchPanelComponent } from './search-panel.component';
 import { FulltextSearchComponent } from '../fulltext-search/fulltext-search.component';
 import { ExtendedSearchComponent } from '../extended-search/extended-search.component';
@@ -30,9 +32,13 @@ import { UriValueComponent } from '../extended-search/select-property/specify-pr
 import { ListValueComponent } from '../extended-search/select-property/specify-property-value/list-value/list-value.component';
 import { ListDisplayComponent } from '../extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
 
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 describe('SearchPanelComponent', () => {
-  let component: SearchPanelComponent;
-  let fixture: ComponentFixture<SearchPanelComponent>;
+    let component: SearchPanelComponent;
+    let fixture: ComponentFixture<SearchPanelComponent>;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -47,7 +53,9 @@ describe('SearchPanelComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         RouterTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        HttpClientModule,
       ],
       declarations: [
         SearchPanelComponent,
@@ -71,23 +79,28 @@ describe('SearchPanelComponent', () => {
       ],
       providers: [
         {
-          provide: ActivatedRoute,
-          useValue: {
-            params: null
-          },
+            provide: KuiCoreConfigToken,
+            useValue: KuiCoreConfig
+        },
+        HttpClient,
+        {
+            provide: ActivatedRoute,
+            useValue: {
+                params: null
+            }
         }
-      ]
+    ]
     })
       .compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SearchPanelComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(SearchPanelComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

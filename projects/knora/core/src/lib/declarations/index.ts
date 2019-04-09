@@ -20,7 +20,6 @@ export * from './api/shared/date';
  */
 export * from './api/admin/authentication/authentication-request-payload';
 export * from './api/admin/authentication/authentication-response';
-export * from './api/admin/authentication/session';
 
 /**
  * Interfaces for groups
@@ -70,7 +69,7 @@ export * from './api/admin/store/reset-triplestore-content-response';
 /**
  * Interfaces for users
  */
-export * from './api/admin/users/current-user';
+
 export * from './api/admin/users/users-response';
 export * from './api/admin/users/user-response';
 export * from './api/admin/users/user';

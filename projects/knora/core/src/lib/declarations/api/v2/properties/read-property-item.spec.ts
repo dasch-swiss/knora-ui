@@ -414,6 +414,7 @@ const resClasses = {
         'book.png',
         'A book',
         'book',
+        [],
         [])
 };
 

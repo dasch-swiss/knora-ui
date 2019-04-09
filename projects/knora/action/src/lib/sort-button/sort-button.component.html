@@ -6,7 +6,7 @@
         <button mat-menu-item
                 *ngFor="let item of sortProps"
                 (click)="sortBy(item.key)"
-                [class.active]="sortKey === item.key">
+                [class.active]="activeKey === item.key">
             {{item.label}}
         </button>
     </mat-menu>
