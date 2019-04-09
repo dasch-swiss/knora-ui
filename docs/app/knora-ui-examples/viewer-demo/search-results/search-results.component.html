@@ -1,11 +1,35 @@
 <!-- Documentation from JSDocs -->
 <app-documentation-viewer [module]="module"></app-documentation-viewer>
 
-<!-- Examples with demo -->
-<h3>Example</h3>
+<!-- Example 1 with demo -->
+<h3>Simple search results example</h3>
 <mat-card class="example-viewer">
 
-  <app-example-viewer [example]="searchResults"></app-example-viewer>
+  <app-example-viewer [example]="simpleSearchResults"></app-example-viewer>
+
+  <div class="demo">
+    <!-- TODO: take screen shot example -->SCREEN SHOT
+    <!-- <img src="data/documentation/search/search-extended-example.png" class="center" /> -->
+  </div>
+</mat-card>
+
+<!-- Example 2 with demo -->
+<h3>Search results filtered by project example</h3>
+<mat-card class="example-viewer">
+
+  <app-example-viewer [example]="searchResultsByProject"></app-example-viewer>
+
+  <div class="demo">
+    <!-- TODO: take screen shot example -->SCREEN SHOT
+    <!-- <img src="data/documentation/search/search-extended-example.png" class="center" /> -->
+  </div>
+</mat-card>
+
+<!-- Example 2 with demo -->
+<h3>Search results providing search mode and query parameters example</h3>
+<mat-card class="example-viewer">
+
+  <app-example-viewer [example]="searchResultsWithModeAndParams"></app-example-viewer>
 
   <div class="demo">
     <!-- TODO: take screen shot example -->SCREEN SHOT
