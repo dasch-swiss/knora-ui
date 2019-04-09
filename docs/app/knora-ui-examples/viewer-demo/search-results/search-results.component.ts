@@ -9,13 +9,13 @@ import { Example } from 'src/app/app.interfaces';
 })
 export class SearchResultsComponent implements OnInit {
 
-  module = AppDemo.viewerModule;
+  module = AppDemo.searchModule;
 
   // demo configuration incl. code to display
   searchResults: Example = {
     title: 'Search Results',
     subtitle: '',
-    name: 'search-results',
+    name: 'searchresults',
     code: {
       html: `
 <!-- param route is where the router-outlet is defined for search results -->
