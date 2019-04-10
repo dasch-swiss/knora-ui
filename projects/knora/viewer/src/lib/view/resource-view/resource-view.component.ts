@@ -25,6 +25,9 @@ const jsonld = require('jsonld');
 })
 export class ResourceViewComponent implements OnInit {
 
+    /**
+     * @param {string} [iri] Resource iri 
+     */
     @Input() iri?: string;
 
     sequence: ReadResourcesSequence;
@@ -38,9 +41,9 @@ export class ResourceViewComponent implements OnInit {
     fileRepresentation: boolean;
 
     constructor(protected _route: ActivatedRoute,
-                protected _router: Router,
-                protected _resourceService: ResourceService,
-                protected _incomingService: IncomingService
+        protected _router: Router,
+        protected _resourceService: ResourceService,
+        protected _incomingService: IncomingService
     ) {
 
     }
@@ -52,6 +55,11 @@ export class ResourceViewComponent implements OnInit {
 
     }
 
+    /**
+     * Get a read resource sequence with ontology information and incoming resources.
+     * 
+     * @param {string} id Resource iri
+     */
     getResource(id: string) {
         this._resourceService.getReadResource(decodeURIComponent(id)).subscribe(
             (result: ReadResourcesSequence) => {
@@ -163,6 +171,9 @@ export class ResourceViewComponent implements OnInit {
 
     }
 
+    /**
+     * Get incoming resources: incoming links, incoming regions, incoming still image representations.
+     */
     requestIncomingResources(): void {
 
         // make sure that this.sequence has been initialized correctly
@@ -193,6 +204,12 @@ export class ResourceViewComponent implements OnInit {
 
     }
 
+    /**
+     * Get incoming regions for the resource.
+     * 
+     * @param offset 
+     * @param callback 
+     */
     getIncomingRegions(offset: number, callback?: (numberOfResources: number) => void): void {
         this._incomingService.getIncomingRegions(this.sequence.resources[0].id, offset).subscribe(
             (regions: ReadResourcesSequence) => {
@@ -222,6 +239,12 @@ export class ResourceViewComponent implements OnInit {
         );
     }
 
+    /**
+     * Get incoming links for a resource.
+     * 
+     * @param offset 
+     * @param callback 
+     */
     getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {
 
         this.loading = true;
@@ -248,6 +271,11 @@ export class ResourceViewComponent implements OnInit {
         );
     }
 
+    /**
+     * Navigate to the incoming resource view.
+     * 
+     * @param {string} id Incoming resource iri
+     */
     openLink(id: string) {
 
         this.loading = true;
