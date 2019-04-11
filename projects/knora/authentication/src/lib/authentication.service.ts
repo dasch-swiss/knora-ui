@@ -31,6 +31,22 @@ export class AuthenticationService {
     }
 
     /**
+     * update the session storage
+     * @param jwt
+     * @param username
+     *
+     * @returns boolean
+     */
+    updateSession(jwt: string, username: string): boolean {
+        if (jwt && username) {
+            this._session.setSession(jwt, username);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * login process;
      * it's used by the login component
      *
