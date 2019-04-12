@@ -21,7 +21,7 @@ export class DocumentationViewerComponent implements OnInit {
     currentComponent: DemoModule;
 
     constructor(private _jsdoc: JsdocService,
-                private _route: ActivatedRoute) {
+        private _route: ActivatedRoute) {
     }
 
     ngOnInit() {
