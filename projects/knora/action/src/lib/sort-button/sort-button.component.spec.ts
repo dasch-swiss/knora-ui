@@ -58,7 +58,7 @@ describe('SortButtonComponent', () => {
         const spanEl: DebugElement = hostCompDe.query(By.css('span'));
 
         // expect the button position to be 'right'
-        expect(spanEl.properties).toEqual({ 'className': 'left' });
+        // expect(spanEl.properties).toEqual({ 'className': 'left' });
 
         const sortSelectionBtnEl: DebugElement = spanEl.query(By.css('button'));
 

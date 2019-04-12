@@ -1,6 +1,21 @@
 [
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "param",
+        "string": "{any} result Search result received from SearchResultsComponent",
+        "name": "result",
+        "description": "<p>Search result received from SearchResultsComponent</p>",
+        "types": [
+          "any"
+        ],
+        "typesDescription": "<a href=\"any.html\">any</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
     "description": {
       "full": "",
       "summary": "",
@@ -8,9 +23,81 @@
     },
     "isPrivate": false,
     "isConstructor": false,
-    "line": 1,
-    "codeStart": null,
-    "code": "import { Component, Input, OnInit } from '@angular/core';\nimport { KnoraConstants, OntologyInformation } from '@knora/core';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'kui-grid-view',\n  templateUrl: './grid-view.component.html',\n  styleUrls: ['./grid-view.component.scss']\n})\nexport class GridViewComponent implements OnInit {\n\n  @Input() result: any;\n  @Input() ontologyInfo: OntologyInformation;\n  // @Input() isLoading: boolean;\n\n  KnoraConstants = KnoraConstants;\n\n  constructor(\n    private _router: Router\n  ) { }\n\n  ngOnInit() {\n  }\n\n  openResource(id: string) {\n    const url: string = '/resource/' + encodeURIComponent(id);\n    this._router.navigate([url]);\n}\n}",
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 12,
+    "codeStart": 15,
+    "code": "@Input() result: any;",
     "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{OntologyInformation} ontologyInfo Ontology information received from SearchResultsComponent",
+        "name": "ontologyInfo",
+        "description": "<p>Ontology information received from SearchResultsComponent</p>",
+        "types": [
+          "OntologyInformation"
+        ],
+        "typesDescription": "<a href=\"OntologyInformation.html\">OntologyInformation</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 17,
+    "codeStart": 20,
+    "code": "@Input() ontologyInfo: OntologyInformation;\n\n// @Input() isLoading: boolean;\n\nKnoraConstants = KnoraConstants;\n\nconstructor(\n  private _router: Router\n) { }\n\nngOnInit() {\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} id",
+        "name": "id",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} id</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Navigate to the resource viewer when clicking on one resource of the search result grid</p>",
+      "summary": "<p>Navigate to the resource viewer when clicking on one resource of the search result grid</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 33,
+    "codeStart": 37,
+    "code": "openResource(id: string) {\n  const url: string = '/resource/' + encodeURIComponent(id);\n  this._router.navigate([url]);\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "openResource",
+      "string": "openResource()"
+    }
   }
 ]

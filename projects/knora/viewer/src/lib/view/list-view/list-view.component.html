@@ -16,15 +16,20 @@
                             {{ontologyInfo?.getLabelForProperty(prop.key)}}:&nbsp;
                         </span>
 
-                        <div class="lv-html-text" *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml">
-                            <kui-text-value-as-html [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="false"></kui-text-value-as-html>
+                        <div class="lv-html-text">
+
+                            <div *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml">
+                                <kui-text-value-as-html [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="false"></kui-text-value-as-html>
+                            </div>
+
+                            <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value>
+
+                            <span *ngSwitchDefault="">{{val.value.getContent()}}</span>
+
+                            <!-- slice the end of long texts -->
                             <p class="lv-read-more"></p>
+
                         </div>
-
-                        <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value>
-
-                        <span *ngSwitchDefault="">{{val.value.getContent()}}</span>
-
 
                     </div>
 
