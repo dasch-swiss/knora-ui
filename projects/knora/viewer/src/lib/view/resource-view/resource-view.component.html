@@ -88,12 +88,12 @@
                         </mat-list>
                     </mat-tab>
 
-                    <mat-tab label="Annotations">
+                    <mat-tab label="Annotations" *ngIf="resource.annotations?.length > 0">
 
                     </mat-tab>
 
-                    <mat-tab label="Links / Connections">
-                        <div *ngIf="resource.incomingLinks?.length > 0">
+                    <mat-tab label="Links / Connections" *ngIf="resource.incomingLinks?.length > 0">
+                        <div>
                             <mat-list *ngFor="let incoming of resource.incomingLinks">
                                 <mat-list-item class="app-link" (click)="openLink(incoming.id)">
                                     <span>{{incoming.label}}</span>
