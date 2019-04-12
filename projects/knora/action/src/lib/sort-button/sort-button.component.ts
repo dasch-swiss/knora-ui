@@ -43,6 +43,16 @@ export class SortButtonComponent implements OnInit {
      */
     @Input() position?: string = 'left';
 
+
+    /**
+     * Default icon is "sort" from material design.
+     * But you can replace it with another one
+     * e.g. sort_by_alpha
+     *
+     * @param  {string} [icon='sort']
+     */
+    @Input() icon?: string = 'sort';
+
     /**
      * @param {string} sortKey
      * set and get (two-way data binding) of current sort key
