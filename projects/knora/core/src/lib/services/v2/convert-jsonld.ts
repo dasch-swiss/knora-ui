@@ -29,7 +29,6 @@ import {
  * These methods works only for instances of resources and properties, not for ontologies (data model).
  */
 export module ConvertJSONLD {
-
     /**
      * Function to be passed to a filter used on an array of property names
      * sorting out all non value property names.
@@ -39,20 +38,21 @@ export module ConvertJSONLD {
      * @param propName the name of a property to be checked.
      * @returns boolean - indicating if the name refers to a value property.
      */
-    const getPropertyNames = (propName) => {
-        return propName !== '@id'
-            && propName !== '@type'
-            && propName !== KnoraConstants.RdfsLabel
-            && propName !== KnoraConstants.attachedToProject
-            && propName !== KnoraConstants.attachedToUser
-            && propName !== KnoraConstants.creationDate
-            && propName !== KnoraConstants.lastModificationDate
-            && propName !== KnoraConstants.hasPermissions
-            && propName !== KnoraConstants.userHasPermission
-            && propName !== KnoraConstants.ArkUrl
-            && propName !== KnoraConstants.versionArkUrl;
+    const getPropertyNames = propName => {
+        return (
+            propName !== '@id' &&
+            propName !== '@type' &&
+            propName !== KnoraConstants.RdfsLabel &&
+            propName !== KnoraConstants.attachedToProject &&
+            propName !== KnoraConstants.attachedToUser &&
+            propName !== KnoraConstants.creationDate &&
+            propName !== KnoraConstants.lastModificationDate &&
+            propName !== KnoraConstants.hasPermissions &&
+            propName !== KnoraConstants.userHasPermission &&
+            propName !== KnoraConstants.ArkUrl &&
+            propName !== KnoraConstants.versionArkUrl
+        );
     };
-
 
     /**
      * Constructs a [[ReadResource]] from JSON-LD.
@@ -62,11 +62,13 @@ export module ConvertJSONLD {
      * @returns ReadResource
      */
     function constructReadResource(resourceJSONLD: object): ReadResource {
-
-        const properties: ReadProperties = constructReadProperties(resourceJSONLD);
+        const properties: ReadProperties = constructReadProperties(
+            resourceJSONLD
+        );
 
         return new ReadResource(
             resourceJSONLD['@id'],
+            resourceJSONLD[KnoraConstants.ArkUrl]['@value'],
             resourceJSONLD['@type'],
             resourceJSONLD[KnoraConstants.RdfsLabel],
             [], // to be updated once another request has been made
@@ -88,8 +90,10 @@ export module ConvertJSONLD {
      * @returns a [[ReadPropertyItem]] or `undefined` in case the value could not be processed correctly.
      */
     function createValueSpecificProp(
-        propValue: Object, propIri: string, standoffLinkValues: ReadLinkValue[]): ReadPropertyItem | undefined {
-
+        propValue: Object,
+        propIri: string,
+        standoffLinkValues: ReadLinkValue[]
+    ): ReadPropertyItem | undefined {
         // convert a JSON-LD property value to a `ReadPropertyItem`
 
         let valueSpecificProp: ReadPropertyItem;
@@ -101,36 +105,55 @@ export module ConvertJSONLD {
                 let textValue: ReadPropertyItem;
 
                 if (propValue[KnoraConstants.valueAsString] !== undefined) {
-                    textValue = new ReadTextValueAsString(propValue['@id'], propIri, propValue[KnoraConstants.valueAsString]);
-                } else if (propValue[KnoraConstants.textValueAsHtml] !== undefined) {
-
+                    textValue = new ReadTextValueAsString(
+                        propValue['@id'],
+                        propIri,
+                        propValue[KnoraConstants.valueAsString]
+                    );
+                } else if (
+                    propValue[KnoraConstants.textValueAsHtml] !== undefined
+                ) {
                     const referredResources: ReferredResourcesByStandoffLink = {};
 
                     // check for standoff links and include referred resources, if any
                     // when the user interacts with a standoff link, further information about the referred resource can be shown
                     for (const standoffLink of standoffLinkValues) {
-                        const referredRes: ReadResource = standoffLink.referredResource;
+                        const referredRes: ReadResource =
+                            standoffLink.referredResource;
                         referredResources[referredRes.id] = referredRes;
                     }
 
                     textValue = new ReadTextValueAsHtml(
-                        propValue['@id'], propIri, propValue[KnoraConstants.textValueAsHtml], referredResources
+                        propValue['@id'],
+                        propIri,
+                        propValue[KnoraConstants.textValueAsHtml],
+                        referredResources
                     );
                 } else if (
-                    propValue[KnoraConstants.textValueAsXml] !== undefined && propValue[KnoraConstants.textValueHasMapping]['@id'] !== undefined) {
+                    propValue[KnoraConstants.textValueAsXml] !== undefined &&
+                    propValue[KnoraConstants.textValueHasMapping]['@id'] !==
+                        undefined
+                ) {
                     textValue = new ReadTextValueAsXml(
-                        propValue['@id'], propIri, propValue[KnoraConstants.textValueAsXml], propValue[KnoraConstants.textValueHasMapping]['@id']
+                        propValue['@id'],
+                        propIri,
+                        propValue[KnoraConstants.textValueAsXml],
+                        propValue[KnoraConstants.textValueHasMapping]['@id']
                     );
                 } else {
                     // expected text value members not defined
-                    console.error('ERROR: Invalid text value: ' + JSON.stringify(propValue));
+                    console.error(
+                        'ERROR: Invalid text value: ' +
+                            JSON.stringify(propValue)
+                    );
                 }
 
                 valueSpecificProp = textValue;
                 break;
 
             case KnoraConstants.DateValue:
-                const dateValue = new ReadDateValue(propValue['@id'],
+                const dateValue = new ReadDateValue(
+                    propValue['@id'],
                     propIri,
                     propValue[KnoraConstants.dateValueHasCalendar],
                     propValue[KnoraConstants.dateValueHasStartYear],
@@ -140,70 +163,113 @@ export module ConvertJSONLD {
                     propValue[KnoraConstants.dateValueHasStartMonth],
                     propValue[KnoraConstants.dateValueHasEndMonth],
                     propValue[KnoraConstants.dateValueHasStartDay],
-                    propValue[KnoraConstants.dateValueHasEndDay]);
+                    propValue[KnoraConstants.dateValueHasEndDay]
+                );
 
                 valueSpecificProp = dateValue;
                 break;
 
             case KnoraConstants.LinkValue:
-
                 let linkValue: ReadLinkValue;
 
                 // check if the referred resource is given as an object or just as an IRI
-                if (propValue[KnoraConstants.linkValueHasTarget] !== undefined) {
+                if (
+                    propValue[KnoraConstants.linkValueHasTarget] !== undefined
+                ) {
                     // linkValueHasTarget contains the object
 
-                    const referredResource: ReadResource = constructReadResource(propValue[KnoraConstants.linkValueHasTarget]);
+                    const referredResource: ReadResource = constructReadResource(
+                        propValue[KnoraConstants.linkValueHasTarget]
+                    );
 
-                    linkValue = new ReadLinkValue(propValue['@id'], propIri, referredResource.id, referredResource);
-                } else if (propValue[KnoraConstants.linkValueHasTargetIri] !== undefined) {
+                    linkValue = new ReadLinkValue(
+                        propValue['@id'],
+                        propIri,
+                        referredResource.id,
+                        referredResource
+                    );
+                } else if (
+                    propValue[KnoraConstants.linkValueHasTargetIri] !==
+                    undefined
+                ) {
                     // linkValueHasTargetIri contains the resource's Iri
 
-                    const referredResourceIri = propValue[KnoraConstants.linkValueHasTargetIri]['@id'];
+                    const referredResourceIri =
+                        propValue[KnoraConstants.linkValueHasTargetIri]['@id'];
 
-                    linkValue = new ReadLinkValue(propValue['@id'], propIri, referredResourceIri);
-                } else if (propValue[KnoraConstants.linkValueHasSource] !== undefined) {
+                    linkValue = new ReadLinkValue(
+                        propValue['@id'],
+                        propIri,
+                        referredResourceIri
+                    );
+                } else if (
+                    propValue[KnoraConstants.linkValueHasSource] !== undefined
+                ) {
                     // linkValueHasSource contains the object
 
-                    const incomingResource: ReadResource = constructReadResource(propValue[KnoraConstants.linkValueHasSource]);
+                    const incomingResource: ReadResource = constructReadResource(
+                        propValue[KnoraConstants.linkValueHasSource]
+                    );
 
-                    linkValue = new ReadLinkValue(propValue['@id'], propIri, incomingResource.id, incomingResource);
-                } else if (propValue[KnoraConstants.linkValueHasSourceIri] !== undefined) {
+                    linkValue = new ReadLinkValue(
+                        propValue['@id'],
+                        propIri,
+                        incomingResource.id,
+                        incomingResource
+                    );
+                } else if (
+                    propValue[KnoraConstants.linkValueHasSourceIri] !==
+                    undefined
+                ) {
                     // linkValueHasSourceIri contains the resource's Iri
 
-                    const incomingResourceIri = propValue[KnoraConstants.linkValueHasSourceIri]['@id'];
+                    const incomingResourceIri =
+                        propValue[KnoraConstants.linkValueHasSourceIri]['@id'];
 
-                    linkValue = new ReadLinkValue(propValue['@id'], propIri, incomingResourceIri);
+                    linkValue = new ReadLinkValue(
+                        propValue['@id'],
+                        propIri,
+                        incomingResourceIri
+                    );
                 }
 
                 valueSpecificProp = linkValue;
                 break;
 
             case KnoraConstants.IntValue:
-
-                const intValue = new ReadIntegerValue(propValue['@id'], propIri, propValue[KnoraConstants.integerValueAsInteger]);
+                const intValue = new ReadIntegerValue(
+                    propValue['@id'],
+                    propIri,
+                    propValue[KnoraConstants.integerValueAsInteger]
+                );
                 valueSpecificProp = intValue;
 
                 break;
 
             case KnoraConstants.DecimalValue:
-
                 // a decimal value is represented as a string in order to preserve its precision
-                const decVal: number = parseFloat(propValue[KnoraConstants.decimalValueAsDecimal]['@value']);
+                const decVal: number = parseFloat(
+                    propValue[KnoraConstants.decimalValueAsDecimal]['@value']
+                );
 
-                const decimalValue = new ReadDecimalValue(propValue['@id'], propIri, decVal);
+                const decimalValue = new ReadDecimalValue(
+                    propValue['@id'],
+                    propIri,
+                    decVal
+                );
                 valueSpecificProp = decimalValue;
 
                 break;
 
             // TODO: handle movingImageFileValue and the others here...
             case KnoraConstants.StillImageFileValue:
-
                 const stillImageFileValue: ReadStillImageFileValue = new ReadStillImageFileValue(
                     propValue['@id'],
                     propIri,
                     propValue[KnoraConstants.fileValueHasFilename],
-                    propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl]['@value'],
+                    propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl][
+                        '@value'
+                    ],
                     propValue[KnoraConstants.fileValueAsUrl]['@value'],
                     propValue[KnoraConstants.stillImageFileValueHasDimX],
                     propValue[KnoraConstants.stillImageFileValueHasDimY]
@@ -214,7 +280,6 @@ export module ConvertJSONLD {
                 break;
 
             case KnoraConstants.TextFileValue:
-
                 const textFileValue = new ReadTextFileValue(
                     propValue['@id'],
                     propIri,
@@ -227,7 +292,6 @@ export module ConvertJSONLD {
                 break;
 
             case KnoraConstants.ColorValue:
-
                 const readColorValue: ReadColorValue = new ReadColorValue(
                     propValue['@id'],
                     propIri,
@@ -239,7 +303,6 @@ export module ConvertJSONLD {
                 break;
 
             case KnoraConstants.GeomValue:
-
                 const readGeomValue: ReadGeomValue = new ReadGeomValue(
                     propValue['@id'],
                     propIri,
@@ -251,7 +314,6 @@ export module ConvertJSONLD {
                 break;
 
             case KnoraConstants.UriValue:
-
                 const uriValue: ReadUriValue = new ReadUriValue(
                     propValue['@id'],
                     propIri,
@@ -263,7 +325,6 @@ export module ConvertJSONLD {
                 break;
 
             case KnoraConstants.BooleanValue:
-
                 const boolValue: ReadBooleanValue = new ReadBooleanValue(
                     propValue['@id'],
                     propIri,
@@ -274,12 +335,14 @@ export module ConvertJSONLD {
 
                 break;
 
-
             case KnoraConstants.IntervalValue:
-
                 // represented as strings to preserve precision
-                const intStart = parseFloat(propValue[KnoraConstants.intervalValueHasStart]['@value']);
-                const intEnd = parseFloat(propValue[KnoraConstants.intervalValueHasEnd]['@value']);
+                const intStart = parseFloat(
+                    propValue[KnoraConstants.intervalValueHasStart]['@value']
+                );
+                const intEnd = parseFloat(
+                    propValue[KnoraConstants.intervalValueHasEnd]['@value']
+                );
 
                 const intervalValue: ReadIntervalValue = new ReadIntervalValue(
                     propValue['@id'],
@@ -293,7 +356,6 @@ export module ConvertJSONLD {
                 break;
 
             case KnoraConstants.ListValue:
-
                 const listValue: ReadListValue = new ReadListValue(
                     propValue['@id'],
                     propIri,
@@ -307,14 +369,18 @@ export module ConvertJSONLD {
 
             default:
                 // unsupported value type
-                console.error('ERROR: value type not implemented yet: ' + propValue['@type'] + '(' + propValue['@id'] + ')');
+                console.error(
+                    'ERROR: value type not implemented yet: ' +
+                        propValue['@type'] +
+                        '(' +
+                        propValue['@id'] +
+                        ')'
+                );
                 break;
         }
 
         return valueSpecificProp;
-
     }
-
 
     /**
      * Construct a [[ReadProperties]] from JSON-LD.
@@ -324,27 +390,34 @@ export module ConvertJSONLD {
      * @returns ReadProperties
      */
     function constructReadProperties(resourceJSONLD: object): ReadProperties {
-
         // JSON-LD representing standoff link values
         // text values may contain standoff links
-        const standoffLinkValuesJSONLD: Object = resourceJSONLD[KnoraConstants.hasStandoffLinkToValue];
+        const standoffLinkValuesJSONLD: Object =
+            resourceJSONLD[KnoraConstants.hasStandoffLinkToValue];
 
         // to be populated with standoff link values
         const standoffLinkValues: ReadLinkValue[] = [];
 
         // convert each standoff link value JSON-LD object to a ReadLinkValue
         // in order populate the collection with all the standoff link values
-        if (standoffLinkValuesJSONLD !== undefined && Array.isArray(standoffLinkValuesJSONLD)) {
+        if (
+            standoffLinkValuesJSONLD !== undefined &&
+            Array.isArray(standoffLinkValuesJSONLD)
+        ) {
             for (const standoffLinkJSONLD of standoffLinkValuesJSONLD) {
                 const standoffVal: ReadLinkValue = createValueSpecificProp(
-                    standoffLinkJSONLD, KnoraConstants.hasStandoffLinkToValue, []
+                    standoffLinkJSONLD,
+                    KnoraConstants.hasStandoffLinkToValue,
+                    []
                 ) as ReadLinkValue;
 
                 standoffLinkValues.push(standoffVal);
             }
         } else if (standoffLinkValuesJSONLD !== undefined) {
             const standoffVal = createValueSpecificProp(
-                standoffLinkValuesJSONLD, KnoraConstants.hasStandoffLinkToValue, []
+                standoffLinkValuesJSONLD,
+                KnoraConstants.hasStandoffLinkToValue,
+                []
             ) as ReadLinkValue;
 
             standoffLinkValues.push(standoffVal);
@@ -359,7 +432,6 @@ export module ConvertJSONLD {
 
         // iterate over all the given property names
         for (const propName of propNames) {
-
             const propValues: Array<ReadPropertyItem> = [];
 
             // either an array of values or just one value is given
@@ -368,28 +440,35 @@ export module ConvertJSONLD {
 
                 // for each property name, an array of property values is given, iterate over it
                 for (const propValue of resourceJSONLD[propName]) {
-
                     // convert a JSON-LD property value to a `ReadPropertyItem`
-                    const valueSpecificProp: ReadPropertyItem = createValueSpecificProp(propValue, propName, standoffLinkValues);
+                    const valueSpecificProp: ReadPropertyItem = createValueSpecificProp(
+                        propValue,
+                        propName,
+                        standoffLinkValues
+                    );
 
                     // if it is undefined, the value could not be constructed correctly
                     // add the property value to the array of property values
-                    if (valueSpecificProp !== undefined) propValues.push(valueSpecificProp);
-
+                    if (valueSpecificProp !== undefined)
+                        propValues.push(valueSpecificProp);
                 }
             } else {
                 // only one value
 
-                const valueSpecificProp: ReadPropertyItem = createValueSpecificProp(resourceJSONLD[propName], propName, standoffLinkValues);
+                const valueSpecificProp: ReadPropertyItem = createValueSpecificProp(
+                    resourceJSONLD[propName],
+                    propName,
+                    standoffLinkValues
+                );
 
                 // if it is undefined, the value could not be constructed correctly
                 // add the property value to the array of property values
-                if (valueSpecificProp !== undefined) propValues.push(valueSpecificProp);
+                if (valueSpecificProp !== undefined)
+                    propValues.push(valueSpecificProp);
             }
 
             // add the property to the properties object
             properties[propName] = propValues;
-
         }
 
         return properties;
@@ -402,8 +481,9 @@ export module ConvertJSONLD {
      * @param {object} resourcesResponseJSONLD a resource or a sequence of resources, represented as a JSON-LD object.
      * @returns ReadResourcesSequence - sequence of read resources
      */
-    export function createReadResourcesSequenceFromJsonLD(resourcesResponseJSONLD: object): ReadResourcesSequence {
-
+    export function createReadResourcesSequenceFromJsonLD(
+        resourcesResponseJSONLD: object
+    ): ReadResourcesSequence {
         const resources: Array<ReadResource> = [];
         let numberOfResources: number;
         const resourcesGraph = resourcesResponseJSONLD['@graph'];
@@ -414,8 +494,9 @@ export module ConvertJSONLD {
             numberOfResources = resourcesGraph.length;
 
             for (const resourceJSONLD of resourcesGraph) {
-
-                const resource: ReadResource = constructReadResource(resourceJSONLD);
+                const resource: ReadResource = constructReadResource(
+                    resourceJSONLD
+                );
 
                 // add the resource to the resources array
                 resources.push(resource);
@@ -425,11 +506,12 @@ export module ConvertJSONLD {
                 // empty answer, no resources given
                 numberOfResources = 0;
             } else {
-
                 // only one resource
                 numberOfResources = 1;
 
-                const resource: ReadResource = constructReadResource(resourcesResponseJSONLD);
+                const resource: ReadResource = constructReadResource(
+                    resourcesResponseJSONLD
+                );
 
                 // add the resource to the resources array
                 resources.push(resource);
@@ -437,7 +519,6 @@ export module ConvertJSONLD {
         }
 
         return new ReadResourcesSequence(resources, numberOfResources);
-
     }
 
     /**
@@ -448,7 +529,6 @@ export module ConvertJSONLD {
      * @return string[] - an Array of resource class Iris (including duplicates).
      */
     function getReferredResourceClasses(resourceJSONLD: object): string[] {
-
         let propNames = Object.keys(resourceJSONLD);
         // filter out everything that is not a Knora property name
         propNames = propNames.filter(getPropertyNames);
@@ -456,48 +536,67 @@ export module ConvertJSONLD {
         const referredResourceClasses = [];
 
         for (const prop of propNames) {
-
             // several values given for this property
             if (Array.isArray(resourceJSONLD[prop])) {
-
                 for (const referredRes of resourceJSONLD[prop]) {
-
                     // if the property is a LinkValue and it contains an embedded resource, get its type
-                    if (referredRes['@type'] === KnoraConstants.LinkValue && referredRes[KnoraConstants.linkValueHasTarget] !== undefined) {
-
+                    if (
+                        referredRes['@type'] === KnoraConstants.LinkValue &&
+                        referredRes[KnoraConstants.linkValueHasTarget] !==
+                            undefined
+                    ) {
                         // target resource is represented
-                        referredResourceClasses.push(referredRes[KnoraConstants.linkValueHasTarget]['@type']);
+                        referredResourceClasses.push(
+                            referredRes[KnoraConstants.linkValueHasTarget][
+                                '@type'
+                            ]
+                        );
                     } else if (
-                        referredRes['@type'] === KnoraConstants.LinkValue && referredRes[KnoraConstants.linkValueHasSource] !== undefined) {
+                        referredRes['@type'] === KnoraConstants.LinkValue &&
+                        referredRes[KnoraConstants.linkValueHasSource] !==
+                            undefined
+                    ) {
                         // source resource is represented
-                        referredResourceClasses.push(referredRes[KnoraConstants.linkValueHasSource]['@type']);
+                        referredResourceClasses.push(
+                            referredRes[KnoraConstants.linkValueHasSource][
+                                '@type'
+                            ]
+                        );
                     }
-
                 }
             } else {
                 // only one value given for this property
 
                 // if the property is a LinkValue and it contains an embedded resource, get its type
                 if (
-                    resourceJSONLD[prop]['@type']
-                    === KnoraConstants.LinkValue && resourceJSONLD[prop][KnoraConstants.linkValueHasTarget]
-                    !== undefined) {
-
+                    resourceJSONLD[prop]['@type'] ===
+                        KnoraConstants.LinkValue &&
+                    resourceJSONLD[prop][KnoraConstants.linkValueHasTarget] !==
+                        undefined
+                ) {
                     // target resource is represented
-                    referredResourceClasses.push(resourceJSONLD[prop][KnoraConstants.linkValueHasTarget]['@type']);
+                    referredResourceClasses.push(
+                        resourceJSONLD[prop][KnoraConstants.linkValueHasTarget][
+                            '@type'
+                        ]
+                    );
                 } else if (
-                    resourceJSONLD[prop]['@type']
-                    === KnoraConstants.LinkValue && resourceJSONLD[prop][KnoraConstants.linkValueHasSource]
-                    !== undefined) {
+                    resourceJSONLD[prop]['@type'] ===
+                        KnoraConstants.LinkValue &&
+                    resourceJSONLD[prop][KnoraConstants.linkValueHasSource] !==
+                        undefined
+                ) {
                     // source resource is represented
-                    referredResourceClasses.push(resourceJSONLD[prop][KnoraConstants.linkValueHasSource]['@type']);
+                    referredResourceClasses.push(
+                        resourceJSONLD[prop][KnoraConstants.linkValueHasSource][
+                            '@type'
+                        ]
+                    );
                 }
             }
-
         }
 
         return referredResourceClasses;
-
     }
 
     /**
@@ -507,8 +606,9 @@ export module ConvertJSONLD {
      * @param resourcesResponseJSONLD a sequence of resources, represented as a JSON-LD object.
      * @returns string[] - the resource class Iris (without duplicates).
      */
-    export function getResourceClassesFromJsonLD(resourcesResponseJSONLD: object): string[] {
-
+    export function getResourceClassesFromJsonLD(
+        resourcesResponseJSONLD: object
+    ): string[] {
         const resourcesGraph = resourcesResponseJSONLD['@graph'];
         let resourceClasses: Array<string> = [];
 
@@ -521,12 +621,14 @@ export module ConvertJSONLD {
                 resourceClasses.push(resourceJSONLD['@type']);
 
                 // get the classes of referred resources
-                const referredResourceClasses = getReferredResourceClasses(resourceJSONLD);
+                const referredResourceClasses = getReferredResourceClasses(
+                    resourceJSONLD
+                );
 
-                resourceClasses = resourceClasses.concat(referredResourceClasses);
-
+                resourceClasses = resourceClasses.concat(
+                    referredResourceClasses
+                );
             }
-
         } else {
             // only one resource
 
@@ -536,15 +638,18 @@ export module ConvertJSONLD {
                 resourceClasses.push(resourcesResponseJSONLD['@type']);
 
                 // get the classes of referred resources
-                const referredResourceClasses = getReferredResourceClasses(resourcesResponseJSONLD);
+                const referredResourceClasses = getReferredResourceClasses(
+                    resourcesResponseJSONLD
+                );
 
-                resourceClasses = resourceClasses.concat(referredResourceClasses);
+                resourceClasses = resourceClasses.concat(
+                    referredResourceClasses
+                );
             }
         }
 
         // filter out duplicates
         return resourceClasses.filter(Utils.filterOutDuplicates);
-
     }
 
     /**
@@ -555,6 +660,8 @@ export module ConvertJSONLD {
      * @returns {CountQueryResult}
      */
     export function createCountQueryResult(countQueryJSONLD: object) {
-        return new CountQueryResult(countQueryJSONLD[KnoraConstants.schemaNumberOfItems]);
+        return new CountQueryResult(
+            countQueryJSONLD[KnoraConstants.schemaNumberOfItems]
+        );
     }
 }

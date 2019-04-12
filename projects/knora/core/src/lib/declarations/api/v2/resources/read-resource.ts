@@ -4,7 +4,6 @@ import { ReadProperties, StillImageRepresentation } from '../../../';
  * Represents a resource and its properties.
  */
 export class ReadResource {
-
     /**
      *
      * @param {string} id the resource's Iri.
@@ -18,6 +17,7 @@ export class ReadResource {
      */
     constructor(
         public readonly id: string,
+        public readonly ark: string,
         public readonly type: string,
         public readonly label: string,
         // TODO: we should use a more generic object here; or what's about incomingSequences?
@@ -28,9 +28,8 @@ export class ReadResource {
         // TODO: we should use a more generic object here, something like media or fileRepresentation
         public stillImageRepresentationsToDisplay: StillImageRepresentation[],
         // TODO: the properties should be a list: Array<ReadProperties> or not?
-        public readonly properties?: ReadProperties) {
-    }
-
+        public readonly properties?: ReadProperties
+    ) {}
 }
 
 /**
@@ -40,12 +39,13 @@ export class ReadResource {
 export class Resource {
     constructor(
         public readonly id: string,
+        public readonly ark: string,
         public readonly type: string,
         public readonly label: string,
         public incomingAnnotations: Array<Resource>,
         public incomingFileRepresentations: Array<Resource>,
         public incomingLinks: Array<ReadResource>,
         public fileRepresentationsToDisplay: Array<ReadResource>,
-        public readonly properties?: ReadProperties) {
-    }
+        public readonly properties?: ReadProperties
+    ) {}
 }
