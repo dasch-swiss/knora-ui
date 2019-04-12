@@ -57,7 +57,6 @@ export class ResourceViewComponent implements OnInit {
     getResource(id: string) {
         this._resourceService.getReadResource(decodeURIComponent(id)).subscribe(
             (result: ReadResourcesSequence) => {
-                console.log('ReadResourcesSequence result: ', result);
                 this.sequence = result;
 
                 this.ontologyInfo = result.ontologyInformation;
