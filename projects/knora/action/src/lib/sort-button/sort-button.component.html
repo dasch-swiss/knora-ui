@@ -1,6 +1,6 @@
-<span class="sort-button" [class]="position">
+<span class="sort-button" [class]="position + ' ' + icon">
     <button mat-icon-button [matMenuTriggerFor]="sortSelection">
-        <mat-icon class="optimize-direction">sort</mat-icon>
+        <mat-icon>{{icon}}</mat-icon>
     </button>
     <mat-menu #sortSelection="matMenu" [xPosition]="menuXPos">
         <button mat-menu-item
