@@ -164,9 +164,15 @@ export class AppDemo {
 
     public static viewerModule: DemoModule = {
         name: 'viewer',
-        published: false,
+        published: true,
         label: 'Viewer module',
         children: [
+            {
+                name: 'search-results',
+                label: 'Search results',
+                type: 'Component',
+                stackblitz: false
+            }
             /* {
                 name: 'resources',
                 label: 'Resources'

@@ -13,16 +13,39 @@ import {
     SearchService
 } from '@knora/core';
 
+/**
+ * The search-results gets the search mode and parameters from routes or inputs, 
+ * and returns the corresponding resources that are displayed in a list or a grid. 
+ * The results can be filtered by project.
+ */
 @Component({
     selector: 'kui-search-results',
     templateUrl: './search-results.component.html',
     styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
+    /**
+     *
+     * @param  {boolean} [complexView] If true it shows 2 ways to display the search results: list or grid.
+     */
     @Input() complexView?: boolean = false;
 
+    /**
+     *
+     * @param  {string} [searchQuery] Search parameters. It can be a gravsearch query (extended mode) or string (fulltext mode).
+     */
     @Input() searchQuery?: string;
+
+    /**
+     *
+     * @param  {string} [searchMode] Search mode: Extended or fulltext. 
+     */
     @Input() searchMode?: string;
+
+    /**
+     *
+     * @param  {string} [projectIri] Project Iri. To filter the results by project.
+     */
     @Input() projectIri?: string;
 
     KnoraConstants = KnoraConstants;
@@ -71,7 +94,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
                     this.gravsearchGenerator = this._searchParamsService.getSearchParams();
 
                     if (!this.searchQuery) {
-                      this.generateGravsearchQuery();
+                        this.generateGravsearchQuery();
                     } else {
                         this.gravSearchQuery = this.searchQuery;
                     }
@@ -91,25 +114,27 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
     /**
      * Generates the Gravsearch query for the current offset.
+     * @ignore
      */
     private generateGravsearchQuery() {
         const gravsearch:
             | string
             | boolean = this.gravsearchGenerator.generateGravsearch(
-            this.offset
-        );
+                this.offset
+            );
         if (gravsearch === false) {
             // no valid search params (application has been reloaded)
             // go to root
             this._router.navigate([''], { relativeTo: this._route });
             return;
         } else {
-            this.gravSearchQuery = <string> gravsearch;
+            this.gravSearchQuery = <string>gravsearch;
         }
     }
 
     /**
      * Get search result from Knora - 2 cases: simple search and extended search
+     * @ignore
      */
     private getResult() {
         this.loading = true;
@@ -188,7 +213,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
             this.errorMessage = new ApiServiceError();
             this.errorMessage.errorInfo = `search mode invalid: ${
                 this.searchMode
-            }`;
+                }`;
         }
     }
 
@@ -196,6 +221,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
      *
      * Converts search results from JSON-LD to a [[ReadResourcesSequence]] and requests information about ontology entities.
      * This function is passed to `subscribe` as a pointer (instead of redundantly defining the same lambda function).
+     * @ignore
      *
      * @param {ReadResourcesSequence} searchResult the answer to a search request.
      */
@@ -220,6 +246,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
     /**
      * Shows total number of results returned by a count query.
+     * @ignore
      *
      * @param {ApiServiceResult} countQueryResult the response to a count query.
      */
@@ -240,7 +267,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     /**
      * Loads the next page of results.
      * The results will be appended to the existing ones.
-     *
+     * @ignore
+     * 
      * @param {number} offset
      * @returns void
      */

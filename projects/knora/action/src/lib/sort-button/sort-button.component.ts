@@ -45,11 +45,10 @@ export class SortButtonComponent implements OnInit {
 
 
     /**
+     * @param  {string} [icon='sort']
      * Default icon is "sort" from material design.
      * But you can replace it with another one
      * e.g. sort_by_alpha
-     *
-     * @param  {string} [icon='sort']
      */
     @Input() icon?: string = 'sort';
 
