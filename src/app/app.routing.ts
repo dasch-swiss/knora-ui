@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ResourceViewComponent, SearchResultsComponent } from '@knora/viewer';
+import { ResourceViewComponent } from '@knora/viewer';
 import { AppDemo } from './app.config';
 // dev docs
 import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
@@ -40,6 +40,8 @@ import { ResourcesComponent } from './knora-ui-examples/viewer-demo/resources/re
 
 import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
+import { SearchResultsComponent } from './knora-ui-examples/viewer-demo/search-results/search-results.component';
+
 import { DemoIntroComponent } from './landing-page/demo-intro/demo-intro.component';
 // / start with main-intro
 import { MainIntroComponent } from './landing-page/main-intro/main-intro.component';
@@ -176,6 +178,10 @@ const appRoutes: Routes = [
                         data: { module: 'viewer' }
                     },
                     {
+                        path: 'search-results',
+                        component: SearchResultsComponent
+                    },
+                    {
                         path: 'resources',
                         component: ResourcesComponent,
                         data: { partOf: AppDemo.viewerModule }
@@ -194,7 +200,6 @@ const appRoutes: Routes = [
                         component: ViewsComponent,
                         data: { partOf: AppDemo.viewerModule }
                     }
-
                 ]
             },
             {

@@ -95,7 +95,7 @@
     "ignore": false,
     "line": 28,
     "codeStart": 34,
-    "code": "constructor(readonly id: string,\n            readonly label: string) {\n\n}\n\n}",
+    "code": "constructor(readonly id: string,\n    readonly label: string) {\n\n}\n\n}",
     "ctx": {
       "type": "constructor",
       "constructor": "OntologyMetadata",
@@ -202,7 +202,7 @@
     "ignore": false,
     "line": 57,
     "codeStart": 62,
-    "code": "constructor(readonly occurrence: CardinalityOccurrence,\n            readonly value: number,\n            readonly property: string) {\n}\n}",
+    "code": "constructor(readonly occurrence: CardinalityOccurrence,\n    readonly value: number,\n    readonly property: string) {\n}\n}",
     "ctx": {
       "type": "constructor",
       "constructor": "Cardinality",
@@ -280,7 +280,7 @@
     "ignore": false,
     "line": 71,
     "codeStart": 75,
-    "code": "constructor(readonly value: number,\n            readonly property: string\n            ) {\n\n}\n}",
+    "code": "constructor(readonly value: number,\n    readonly property: string\n) {\n\n}\n}",
     "ctx": {
       "type": "constructor",
       "constructor": "GuiOrder",
@@ -412,7 +412,7 @@
     "ignore": false,
     "line": 87,
     "codeStart": 95,
-    "code": "constructor(readonly id: string,\n            readonly icon: string,\n            readonly comment: string,\n            readonly label: string,\n            readonly cardinalities: Array<Cardinality>,\n            readonly guiOrder: Array<GuiOrder>) {\n\n}\n}",
+    "code": "constructor(readonly id: string,\n    readonly icon: string,\n    readonly comment: string,\n    readonly label: string,\n    readonly cardinalities: Array<Cardinality>,\n    readonly guiOrder: Array<GuiOrder>) {\n\n}\n}",
     "ctx": {
       "type": "constructor",
       "constructor": "ResourceClass",
@@ -596,7 +596,7 @@
     "ignore": false,
     "line": 119,
     "codeStart": 129,
-    "code": "constructor(readonly id: string,\n            readonly objectType: string,\n            readonly comment: string,\n            readonly label: string,\n            readonly subPropertyOf: Array<string>,\n            readonly isEditable: Boolean,\n            readonly isLinkProperty: Boolean,\n            readonly isLinkValueProperty: Boolean) {\n\n}\n}",
+    "code": "constructor(readonly id: string,\n    readonly objectType: string,\n    readonly comment: string,\n    readonly label: string,\n    readonly subPropertyOf: Array<string>,\n    readonly isEditable: Boolean,\n    readonly isLinkProperty: Boolean,\n    readonly isLinkValueProperty: Boolean) {\n\n}\n}",
     "ctx": {
       "type": "constructor",
       "constructor": "Property",
@@ -2135,7 +2135,7 @@
     "ignore": false,
     "line": 976,
     "codeStart": 983,
-    "code": "public getPropertyDefinitions(propertyIris: string[]): Observable<OntologyInformation> {\n\n    const propertiesToQuery: string[] = propertyIris.filter(\n        propIri => {\n\n            // ignore non Knora props: if propIri is contained in excludedProperties, skip this propIri\n            if (this.excludedProperties.indexOf(propIri) > -1) {\n                return false;\n            }\n\n            // return the property Iris that are not cached yet\n            return this.cacheOntology.properties[propIri] === undefined;\n        }\n    );\n\n    if (propertiesToQuery.length > 0) {\n\n        // get a set of ontology Iris that have to be queried to obtain the missing properties\n        const ontologyIris: string[] = propertiesToQuery.map(\n            propIri => {\n                return Utils.getOntologyIriFromEntityIri(propIri);\n            }\n        ).filter(Utils.filterOutDuplicates);\n\n        // obtain missing resource class information\n        return this.getAndCacheOntologies(ontologyIris).pipe(\n            map(\n                results => {\n                    if (results) {\n                        return this.getPropertyDefinitionsFromCache(propertyIris);\n                    } else {\n                        throw new Error('Problem with: return this.getPropertyDefinitionsFromCache(propertyIris);');\n                    }\n                }\n            )\n        );\n    } else {\n        return of(this.getPropertyDefinitionsFromCache(propertyIris));\n    }\n}\n}",
+    "code": "public getPropertyDefinitions(propertyIris: string[]): Observable<OntologyInformation> {\n\n    const propertiesToQuery: string[] = propertyIris.filter(\n        propIri => {\n\n            // ignore non Knora props: if propIri is contained in excludedProperties, skip this propIri\n            if (this.excludedProperties.indexOf(propIri) > -1) {\n                return false;\n            }\n\n            // return the property Iris that are not cached yet\n            return this.cacheOntology.properties[propIri] === undefined;\n        }\n    );\n\n    if (propertiesToQuery.length > 0) {\n\n        // get a set of ontology Iris that have to be queried to obtain the missing properties\n        const ontologyIris: string[] = propertiesToQuery.map(\n            propIri => {\n                return Utils.getOntologyIriFromEntityIri(propIri);\n            }\n        ).filter(Utils.filterOutDuplicates);\n\n        // obtain missing resource class information\n        return this.getAndCacheOntologies(ontologyIris).pipe(\n            map(\n                results => {\n                    if (results) {\n                        return this.getPropertyDefinitionsFromCache(propertyIris);\n                    } else {\n                        throw new Error('Problem with: return this.getPropertyDefinitionsFromCache(propertyIris);');\n                    }\n                }\n            )\n        );\n    } else {\n        return of(this.getPropertyDefinitionsFromCache(propertyIris));\n    }\n}\n\n}",
     "ctx": false
   }
 ]
