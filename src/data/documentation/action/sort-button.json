@@ -112,6 +112,39 @@
     "tags": [
       {
         "type": "param",
+        "string": "{string} [icon='sort']",
+        "name": "[icon='sort']",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} [icon='sort']</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Default icon is &quot;sort&quot; from material design.<br />\nBut you can replace it with another one<br />\ne.g. sort_by_alpha</p>",
+      "summary": "<p>Default icon is &quot;sort&quot; from material design.<br />\nBut you can replace it with another one<br />\ne.g. sort_by_alpha</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 47,
+    "codeStart": 54,
+    "code": "@Input() icon?: string = 'sort';",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
         "string": "{string} sortKey\nset and get (two-way data binding) of current sort key",
         "name": "sortKey",
         "description": "<p>set and get (two-way data binding) of current sort key</p>",
@@ -135,8 +168,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 46,
-    "codeStart": 50,
+    "line": 56,
+    "codeStart": 60,
     "code": "@Input() sortKey(sortKey: string) {\n    this.activeKey = sortKey;\n}\n\nconstructor() {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
     "ctx": false
   },
@@ -173,8 +206,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 64,
-    "codeStart": 69,
+    "line": 74,
+    "codeStart": 79,
     "code": "sortBy(key: string) {\n    this.sortKeyChange.emit(key);\n}\n\n}",
     "ctx": {
       "type": "method",
