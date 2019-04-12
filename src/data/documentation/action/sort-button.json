@@ -112,9 +112,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} [icon='sort']",
+        "string": "{string} [icon='sort']\nDefault icon is \"sort\" from material design.\nBut you can replace it with another one\ne.g. sort_by_alpha",
         "name": "[icon='sort']",
-        "description": "",
+        "description": "<p>Default icon is &quot;sort&quot; from material design.<br />\nBut you can replace it with another one<br />\ne.g. sort_by_alpha</p>",
         "types": [
           "string"
         ],
@@ -122,13 +122,12 @@
         "optional": true,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} [icon='sort']</p>"
+        "variable": false
       }
     ],
     "description": {
-      "full": "<p>Default icon is &quot;sort&quot; from material design.<br />\nBut you can replace it with another one<br />\ne.g. sort_by_alpha</p>",
-      "summary": "<p>Default icon is &quot;sort&quot; from material design.<br />\nBut you can replace it with another one<br />\ne.g. sort_by_alpha</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -137,7 +136,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 47,
-    "codeStart": 54,
+    "codeStart": 53,
     "code": "@Input() icon?: string = 'sort';",
     "ctx": false
   },
@@ -168,8 +167,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 56,
-    "codeStart": 60,
+    "line": 55,
+    "codeStart": 59,
     "code": "@Input() sortKey(sortKey: string) {\n    this.activeKey = sortKey;\n}\n\nconstructor() {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
     "ctx": false
   },
@@ -206,8 +205,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 74,
-    "codeStart": 79,
+    "line": 73,
+    "codeStart": 78,
     "code": "sortBy(key: string) {\n    this.sortKeyChange.emit(key);\n}\n\n}",
     "ctx": {
       "type": "method",
