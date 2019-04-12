@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
     ApiServiceError,
+    GuiOrder,
     ImageRegion,
     IncomingService,
     KnoraConstants,
@@ -30,6 +31,7 @@ export class ResourceViewComponent implements OnInit {
     sequence: ReadResourcesSequence;
 
     ontologyInfo: OntologyInformation;
+    guiOrder: GuiOrder[];
     loading = true;
     error: any;
     KnoraConstants = KnoraConstants;
@@ -38,9 +40,9 @@ export class ResourceViewComponent implements OnInit {
     fileRepresentation: boolean;
 
     constructor(protected _route: ActivatedRoute,
-                protected _router: Router,
-                protected _resourceService: ResourceService,
-                protected _incomingService: IncomingService
+        protected _router: Router,
+        protected _resourceService: ResourceService,
+        protected _incomingService: IncomingService
     ) {
 
     }
@@ -55,10 +57,14 @@ export class ResourceViewComponent implements OnInit {
     getResource(id: string) {
         this._resourceService.getReadResource(decodeURIComponent(id)).subscribe(
             (result: ReadResourcesSequence) => {
-                console.log(result);
+                console.log('ReadResourcesSequence result: ', result);
                 this.sequence = result;
 
                 this.ontologyInfo = result.ontologyInformation;
+
+                const resType = this.sequence.resources[0].type;
+
+                this.guiOrder = result.ontologyInformation.getResourceClasses()[resType].guiOrder;
 
                 // collect images and regions
                 this.collectImagesAndRegionsForResource(this.sequence.resources[0]);
