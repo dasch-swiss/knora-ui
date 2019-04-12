@@ -71,6 +71,12 @@ export module ConvertJSONLD {
             resourceJSONLD[KnoraConstants.ArkUrl]['@value'],
             resourceJSONLD['@type'],
             resourceJSONLD[KnoraConstants.RdfsLabel],
+            resourceJSONLD[KnoraConstants.attachedToUser]['@id'],
+            resourceJSONLD[KnoraConstants.creationDate]['@value'],
+            KnoraConstants.lastModificationDate in resourceJSONLD
+                ? resourceJSONLD[KnoraConstants.lastModificationDate]['@value']
+                : undefined,
+            resourceJSONLD[KnoraConstants.hasPermissions],
             [], // to be updated once another request has been made
             [], // to be updated once another request has been made
             [], // to be updated once another request has been made

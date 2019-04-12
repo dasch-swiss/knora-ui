@@ -398,6 +398,10 @@
     "@type": "xsd:dateTimeStamp",
     "@value": "2018-08-27T17:43:04.192Z"
   },
+  "knora-api:lastModificationDate": {
+    "@type": "xsd:dateTimeStamp",
+    "@value": "2018-08-27T17:43:05Z"
+  },
   "knora-api:hasPermissions": "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser",
   "knora-api:hasStandoffLinkToValue": [
     {

@@ -20,6 +20,10 @@ export class ReadResource {
         public readonly ark: string,
         public readonly type: string,
         public readonly label: string,
+        public readonly user: string,
+        public readonly creation: string,
+        public readonly lastModification: string,
+        public readonly permissions: string,
         // TODO: we should use a more generic object here; or what's about incomingSequences?
         public incomingRegions: Array<ReadResource>,
         // TODO: we should use a more generic object here, something like incomingMedia or incomingFileRepresentation
@@ -42,6 +46,10 @@ export class Resource {
         public readonly ark: string,
         public readonly type: string,
         public readonly label: string,
+        public readonly user: string,
+        public readonly creation: string,
+        public readonly lastModification: string,
+        public readonly permissions: string,
         public incomingAnnotations: Array<Resource>,
         public incomingFileRepresentations: Array<Resource>,
         public incomingLinks: Array<ReadResource>,
