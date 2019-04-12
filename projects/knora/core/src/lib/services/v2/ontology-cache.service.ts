@@ -1021,25 +1021,4 @@ export class OntologyCacheService {
         }
     }
 
-    /**
-    * Returns a resource class's gui order.
-    *
-    * @param {string} resClass resource class to query for.
-    * @returns string - the resource class's label.
-    */
-    public getGuiOrderForResourceClass(resClass: string): Observable<OntologyInformation> {
-
-        if (resClass !== undefined) {
-
-            const resClassDef: ResourceClass = this.cacheOntology.resourceClasses[resClass];
-
-            if (resClassDef !== undefined && resClassDef.guiOrder !== undefined) {
-                return this.resClassDef;
-            } else {
-                console.log(`cannot get gui order for ${resClass}`);
-            }
-        } else {
-            console.log('call of OntologyInformation.getGuiOrderForResourceClass without argument resClass');
-        }
-    }
 }
