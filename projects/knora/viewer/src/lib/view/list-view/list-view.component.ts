@@ -18,7 +18,7 @@ export class ListViewComponent {
      * @param  {OntologyInformation} ontologyInfo Ontology information received from SearchResultsComponent
      */
     @Input() ontologyInfo: OntologyInformation;
-    
+
     // @Input() isLoading: boolean;
 
     KnoraConstants = KnoraConstants;
@@ -29,7 +29,7 @@ export class ListViewComponent {
 
     /**
      * Navigate to the resource viewer when clicking on one resource of the search result list
-     * @param {string} id 
+     * @param {string} id
      */
     openResource(id: string) {
         const url: string = '/resource/' + encodeURIComponent(id);
