@@ -86,6 +86,8 @@ export class FulltextSearchComponent implements OnInit {
     projectLabel: string = 'Filter project';
     projectIri: string;
 
+    error: any;
+
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
@@ -308,6 +310,7 @@ export class FulltextSearchComponent implements OnInit {
             },
             (error: ApiServiceError) => {
                 console.error(error);
+                this.error = error;
             }
         );
     }
