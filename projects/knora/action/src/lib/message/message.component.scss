@@ -40,10 +40,17 @@ $warn: rgb(244, 67, 54);
 
     .left {
       float: left;
+      left: 16px;
+      position: absolute;
+      text-align: left;
     }
 
     .right {
       float: right;
+      right: 16px;
+      position: absolute;
+      text-align: right;
+
     }
   }
 

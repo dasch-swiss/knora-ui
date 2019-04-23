@@ -3,9 +3,14 @@
 <div *ngIf="!rerender && !badRequest">
 
     <div *ngIf="numberOfAllResults !== 0 && result; else noResult">
-        <h4>Number of results: {{numberOfAllResults}}</h4>
 
-        <mat-tab-group animationDuration="0ms" *ngIf="complexView">
+        <mat-tab-group animationDuration="0ms" [selectedIndex]="1">
+            <mat-tab disabled>
+                <ng-template mat-tab-label>
+                    <!-- <mat-icon class="tab-icon">hashtag</mat-icon> -->
+                    <h4 class="search-results-title">Results: {{numberOfAllResults}}</h4>
+                </ng-template>
+            </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
                     <mat-icon class="tab-icon">view_list</mat-icon>
@@ -13,7 +18,9 @@
                 </ng-template>
                 <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo"></kui-list-view>
             </mat-tab>
-            <mat-tab>
+
+            <!-- in caase of complexView: show tab to switch to grid view -->
+            <mat-tab *ngIf="complexView">
                 <ng-template mat-tab-label>
                     <mat-icon class="tab-icon">view_module</mat-icon>
                     Grid
