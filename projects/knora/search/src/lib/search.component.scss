@@ -105,6 +105,7 @@ $search-width-small-device: 480px;
         border-style: none;
         font-size: 14pt;
         height: 38px;
+        margin: 1px;
         position: absolute;
         // width: calc(#{$search-width} - 80px);
         width: calc(100% - 80px);
