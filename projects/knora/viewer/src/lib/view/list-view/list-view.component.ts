@@ -9,8 +9,16 @@ import { Router } from '@angular/router';
 })
 export class ListViewComponent {
 
+    /**
+     * @param  {any} result Search result received from SearchResultsComponent
+     */
     @Input() result: any;
+
+    /**
+     * @param  {OntologyInformation} ontologyInfo Ontology information received from SearchResultsComponent
+     */
     @Input() ontologyInfo: OntologyInformation;
+
     // @Input() isLoading: boolean;
 
     KnoraConstants = KnoraConstants;
@@ -19,6 +27,10 @@ export class ListViewComponent {
         private _router: Router
     ) { }
 
+    /**
+     * Navigate to the resource viewer when clicking on one resource of the search result list
+     * @param {string} id
+     */
     openResource(id: string) {
         const url: string = '/resource/' + encodeURIComponent(id);
         this._router.navigate([url]);

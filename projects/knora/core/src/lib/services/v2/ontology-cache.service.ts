@@ -32,7 +32,7 @@ export class OntologyMetadata {
      * @param {string} label a label describing the ontology.
      */
     constructor(readonly id: string,
-                readonly label: string) {
+        readonly label: string) {
 
     }
 
@@ -60,8 +60,8 @@ export class Cardinality {
      * @param {string} property the property the given occurrence applies to.
      */
     constructor(readonly occurrence: CardinalityOccurrence,
-                readonly value: number,
-                readonly property: string) {
+        readonly value: number,
+        readonly property: string) {
     }
 }
 /**
@@ -73,8 +73,8 @@ export class GuiOrder {
      * @param  {string} property
      */
     constructor(readonly value: number,
-                readonly property: string
-                ) {
+        readonly property: string
+    ) {
 
     }
 }
@@ -93,11 +93,11 @@ export class ResourceClass {
      * @param {GuiOrder[]} guiOrder the resource class's gui-order properties.
      */
     constructor(readonly id: string,
-                readonly icon: string,
-                readonly comment: string,
-                readonly label: string,
-                readonly cardinalities: Array<Cardinality>,
-                readonly guiOrder: Array<GuiOrder>) {
+        readonly icon: string,
+        readonly comment: string,
+        readonly label: string,
+        readonly cardinalities: Array<Cardinality>,
+        readonly guiOrder: Array<GuiOrder>) {
 
     }
 }
@@ -127,13 +127,13 @@ export class Property {
      * @param {boolean} isLinkValueProperty indicates whether the given property refers to a link value.
      */
     constructor(readonly id: string,
-                readonly objectType: string,
-                readonly comment: string,
-                readonly label: string,
-                readonly subPropertyOf: Array<string>,
-                readonly isEditable: Boolean,
-                readonly isLinkProperty: Boolean,
-                readonly isLinkValueProperty: Boolean) {
+        readonly objectType: string,
+        readonly comment: string,
+        readonly label: string,
+        readonly subPropertyOf: Array<string>,
+        readonly isEditable: Boolean,
+        readonly isLinkProperty: Boolean,
+        readonly isLinkValueProperty: Boolean) {
 
     }
 }
@@ -1020,4 +1020,5 @@ export class OntologyCacheService {
             return of(this.getPropertyDefinitionsFromCache(propertyIris));
         }
     }
+
 }
