@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
     ApiServiceError,
@@ -24,10 +24,10 @@ const jsonld = require('jsonld');
     templateUrl: './resource-view.component.html',
     styleUrls: ['./resource-view.component.scss']
 })
-export class ResourceViewComponent implements OnInit {
+export class ResourceViewComponent implements OnInit, OnChanges {
 
     /**
-     * @param {string} [iri] Resource iri 
+     * @param {string} [iri] Resource iri
      */
     @Input() iri?: string;
 
@@ -35,7 +35,7 @@ export class ResourceViewComponent implements OnInit {
 
     ontologyInfo: OntologyInformation;
     guiOrder: GuiOrder[];
-    loading = true;
+    loading: boolean;
     error: any;
     KnoraConstants = KnoraConstants;
 
@@ -51,18 +51,20 @@ export class ResourceViewComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loading = true;
-
         this.getResource(this.iri);
+    }
 
+    ngOnChanges() {
+        this.getResource(this.iri);
     }
 
     /**
      * Get a read resource sequence with ontology information and incoming resources.
-     * 
+     *
      * @param {string} id Resource iri
      */
     getResource(id: string) {
+        this.loading = true;
         this._resourceService.getReadResource(decodeURIComponent(id)).subscribe(
             (result: ReadResourcesSequence) => {
                 this.sequence = result;
@@ -87,7 +89,7 @@ export class ResourceViewComponent implements OnInit {
                 setTimeout(() => {
                     // console.log(this.sequence);
                     this.loading = false;
-                }, 3000);
+                }, 1000);
             },
             (error: ApiServiceError) => {
                 console.error(error);
@@ -211,9 +213,9 @@ export class ResourceViewComponent implements OnInit {
 
     /**
      * Get incoming regions for the resource.
-     * 
-     * @param offset 
-     * @param callback 
+     *
+     * @param offset
+     * @param callback
      */
     getIncomingRegions(offset: number, callback?: (numberOfResources: number) => void): void {
         this._incomingService.getIncomingRegions(this.sequence.resources[0].id, offset).subscribe(
@@ -246,9 +248,9 @@ export class ResourceViewComponent implements OnInit {
 
     /**
      * Get incoming links for a resource.
-     * 
-     * @param offset 
-     * @param callback 
+     *
+     * @param offset
+     * @param callback
      */
     getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {
 
@@ -278,7 +280,7 @@ export class ResourceViewComponent implements OnInit {
 
     /**
      * Navigate to the incoming resource view.
-     * 
+     *
      * @param {string} id Incoming resource iri
      */
     openLink(id: string) {

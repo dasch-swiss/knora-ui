@@ -1,8 +1,9 @@
 <div class="search-bar-elements">
 
 
-    <div class="fulltext-search-bar" [class.active]="searchPanelFocus" [class.with-project-filter]="projectfilter">
-        <div class="search-project-filter" *ngIf="projectfilter">
+    <div class="fulltext-search-bar" [class.active]="searchPanelFocus" [class.with-project-filter]="projectfilter && !error && projects?.length > 0">
+        <!-- do not show the project filter in case of an api error -->
+        <div class="search-project-filter" *ngIf="projectfilter && !error && projects?.length > 0">
             <button mat-button class="project-filter-btn" [matMenuTriggerFor]="selectProject" #btnToSelectProject="matMenuTrigger" isIconButton>
                 <span class="label">{{projectLabel}}</span>
                 <mat-icon class="icon" matSuffix>keyboard_arrow_down</mat-icon>
@@ -23,7 +24,7 @@
 
         <div class="input-field">
             <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery" minlength="3"
-                   [class.with-project-filter]="projectfilter" name="search" (keyup.esc)="resetSearch(search)" [autofocus]="focusOnSimple === 'active'"
+                   [class.with-project-filter]="projectfilter && !error && projects?.length > 0" name="search" (keyup.esc)="resetSearch(search)" [autofocus]="focusOnSimple === 'active'"
                    (keyup)="onKey(search, $event)" (click)="setFocus()" (focus)="toggleMenu()" />
         </div>
 
@@ -42,11 +43,11 @@
         </div>
         <!-- "dropdown" menu for simple search -->
         <div class="kui-menu simple-search" [@fulltextSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch"
-             [class.with-project-filter]="projectfilter">
+             [class.with-project-filter]="projectfilter && !error && projects?.length > 0">
             <mat-list class="kui-previous-search-list">
                 <mat-list-item *ngFor="let item of prevSearch | kuiReverse; let i=index">
                     <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)" class="kui-previous-search-item">
-                        <div class="project-filter-btn" [class.not-empty]="item.projectIri" *ngIf="projectfilter">
+                        <div class="project-filter-btn" [class.not-empty]="item.projectIri" *ngIf="projectfilter && !error && projects?.length > 0">
                             <span *ngIf="item.projectIri" class="project-filter-label">{{item.projectLabel}}</span>
                         </div>
                         <div class="search-query">
