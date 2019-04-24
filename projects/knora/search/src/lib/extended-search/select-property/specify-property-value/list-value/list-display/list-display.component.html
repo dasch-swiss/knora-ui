@@ -1,4 +1,4 @@
-<br>
+<!-- <br>
 <br>
 <mat-form-field *ngIf="listNode.children.length > 0">
     <mat-select placeholder="List Value" [formControl]="form.controls['listValue']">
@@ -11,5 +11,21 @@
     <span *ngIf="activeNode !== undefined && activeNode.children.length > 0">
         <list-display [listNode]="activeNode" [formGroup]="form"></list-display>
     </span>
-</mat-form-field>
+</mat-form-field> -->
 
+<mat-menu #childMenu="matMenu" [overlapTrigger]="false">
+    <span *ngFor="let child of children">
+        <span *ngIf="child.children && child.children.length > 0">
+            <button mat-menu-item [matMenuTriggerFor]="menu.childMenu" (click)="setValue(child.id)">
+                {{child.label}}
+            </button>
+            <list-display #menu [children]="child.children" (selectedNode)="setValue($event)"></list-display>
+        </span>
+
+        <span *ngIf="!child.children || child.children.length === 0">
+            <button mat-menu-item (click)="setValue(child.id)">
+                {{child.label}}
+            </button>
+        </span>
+    </span>
+</mat-menu>

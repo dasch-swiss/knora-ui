@@ -1,4 +1,4 @@
-<mat-form-field *ngIf="listRootNode !== undefined">
+<!-- <mat-form-field *ngIf="listRootNode !== undefined">
     <mat-select placeholder="List Value" [formControl]="form.controls['listValue']">
 
         <mat-option [value]="undefined">
@@ -12,4 +12,11 @@
     <span *ngIf="activeNode !== undefined && activeNode.children.length > 0">
         <list-display [listNode]="activeNode" [formGroup]="form"></list-display>
     </span>
-</mat-form-field>
+</mat-form-field> -->
+
+<span *ngIf="listRootNode !== undefined">
+    <button mat-stroked-button [matMenuTriggerFor]="menu.childMenu">
+        Select list value
+    </button>
+    <list-display #menu [children]="listRootNode?.children" (selectedNode)="getSelectedNode($event)"></list-display>
+</span>

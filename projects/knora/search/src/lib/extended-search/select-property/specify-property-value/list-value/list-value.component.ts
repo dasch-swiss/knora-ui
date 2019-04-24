@@ -14,13 +14,13 @@ const resolvedPromise = Promise.resolve(null);
 export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     // parent FormGroup
-    @Input() formGroup: FormGroup;
+    @Input() formGroup?: FormGroup;
 
     type = KnoraConstants.ListValue;
 
     form: FormGroup;
 
-    @Input() property: Property;
+    @Input() property?: Property;
 
     listRootNode: ListNodeV2;
 
@@ -54,9 +54,11 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
         // get list's root node Iri
         const rootNodeIri = this.getRootNodeIri();
+        console.log('rootNodeIri', rootNodeIri);
 
         this._listCacheService.getList(rootNodeIri).subscribe(
             (list: ListNodeV2) => {
+                console.log('list node v2: ', list);
                 this.listRootNode = list;
             }
         );
@@ -80,6 +82,10 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
     getValue(): Value {
 
         return new ValueLiteral(String(this.form.value.listValue), KnoraConstants.xsdString);
+    }
+
+    getSelectedNode(id: string) {
+        console.log('id in parent component', id);
     }
 
 }
