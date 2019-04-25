@@ -73,78 +73,51 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnInit() {
-        this.navigationSubscription = this._route.paramMap.subscribe(
-            (params: Params) => {
-                if (!this.searchMode) {
-                    this.searchMode = params.get('mode');
-                }
-
-                if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {
-                    this.projectIri = decodeURIComponent(params.get('project'));
-                }
-
-                // init offset  and result
-                this.offset = 0;
-                this.result = [];
-
-                if (this.searchMode === 'fulltext') {
-                    this.searchQuery = params.get('q');
-                    this.badRequest = this.searchQuery.length < 3;
-                } else if (this.searchMode === 'extended') {
-                    this.gravsearchGenerator = this._searchParamsService.getSearchParams();
-
-                    if (!this.searchQuery) {
-                        this.generateGravsearchQuery();
-                    } else {
-                        this.gravSearchQuery = this.searchQuery;
-                    }
-                }
-
-                this.rerender = true;
-                this.getResult();
-            }
-        );
+        this.getParams();
     }
 
     ngOnChanges() {
-        // this.getResource(this.iri);
-        this.navigationSubscription = this._route.paramMap.subscribe(
-            (params: Params) => {
-                if (!this.searchMode) {
-                    this.searchMode = params.get('mode');
-                }
-
-                if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {
-                    this.projectIri = decodeURIComponent(params.get('project'));
-                }
-
-                // init offset  and result
-                this.offset = 0;
-                this.result = [];
-
-                if (this.searchMode === 'fulltext') {
-                    this.searchQuery = params.get('q');
-                    this.badRequest = this.searchQuery.length < 3;
-                } else if (this.searchMode === 'extended') {
-                    this.gravsearchGenerator = this._searchParamsService.getSearchParams();
-
-                    if (!this.searchQuery) {
-                        this.generateGravsearchQuery();
-                    } else {
-                        this.gravSearchQuery = this.searchQuery;
-                    }
-                }
-
-                this.rerender = true;
-                this.getResult();
-            }
-        );
+        this.getParams();
     }
 
     ngOnDestroy() {
         if (this.navigationSubscription !== undefined) {
             this.navigationSubscription.unsubscribe();
         }
+    }
+
+    getParams() {
+        this.navigationSubscription = this._route.paramMap.subscribe(
+            (params: Params) => {
+                if (!this.searchMode) {
+                    this.searchMode = params.get('mode');
+                }
+
+                if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {
+                    this.projectIri = decodeURIComponent(params.get('project'));
+                }
+
+                // init offset  and result
+                this.offset = 0;
+                this.result = [];
+
+                if (this.searchMode === 'fulltext') {
+                    this.searchQuery = params.get('q');
+                    this.badRequest = this.searchQuery.length < 3;
+                } else if (this.searchMode === 'extended') {
+                    this.gravsearchGenerator = this._searchParamsService.getSearchParams();
+
+                    if (!this.searchQuery) {
+                        this.generateGravsearchQuery();
+                    } else {
+                        this.gravSearchQuery = this.searchQuery;
+                    }
+                }
+
+                this.rerender = true;
+                this.getResult();
+            }
+        );
     }
 
     /**
