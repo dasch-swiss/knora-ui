@@ -29,10 +29,13 @@ export class ExtendedSearchComponent implements OnInit {
      *
      * @param  {string} route
      */
-    @Input() route;
+    @Input() route?;
 
     // trigger toggle for extended search form
     @Output() toggleExtendedSearchForm = new EventEmitter<boolean>();
+
+    // send the gravsearch query back
+    @Output() gravsearch = new EventEmitter<string>();
 
     // all available ontologies
     ontologies: Array<OntologyMetadata> = [];
@@ -225,7 +228,12 @@ export class ExtendedSearchComponent implements OnInit {
 
         const gravsearch = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);
 
-        this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });
+        if (this.route) {
+            this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });
+        } else {
+            this.gravsearch.emit(gravsearch);
+        }
+
 
         // toggle extended search form
         this.toggleExtendedSearchForm.emit(true);
