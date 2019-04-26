@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {
@@ -14,8 +14,8 @@ import {
 } from '@knora/core';
 
 /**
- * The search-results gets the search mode and parameters from routes or inputs, 
- * and returns the corresponding resources that are displayed in a list or a grid. 
+ * The search-results gets the search mode and parameters from routes or inputs,
+ * and returns the corresponding resources that are displayed in a list or a grid.
  * The results can be filtered by project.
  */
 @Component({
@@ -23,7 +23,7 @@ import {
     templateUrl: './search-results.component.html',
     styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit, OnDestroy {
+export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
     /**
      *
      * @param  {boolean} [complexView] If true it shows 2 ways to display the search results: list or grid.
@@ -38,7 +38,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
     /**
      *
-     * @param  {string} [searchMode] Search mode: Extended or fulltext. 
+     * @param  {string} [searchMode] Search mode: Extended or fulltext.
      */
     @Input() searchMode?: string;
 
@@ -73,6 +73,20 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.getParams();
+    }
+
+    ngOnChanges() {
+        this.getParams();
+    }
+
+    ngOnDestroy() {
+        if (this.navigationSubscription !== undefined) {
+            this.navigationSubscription.unsubscribe();
+        }
+    }
+
+    getParams() {
         this.navigationSubscription = this._route.paramMap.subscribe(
             (params: Params) => {
                 if (!this.searchMode) {
@@ -104,12 +118,6 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
                 this.getResult();
             }
         );
-    }
-
-    ngOnDestroy() {
-        if (this.navigationSubscription !== undefined) {
-            this.navigationSubscription.unsubscribe();
-        }
     }
 
     /**
@@ -268,7 +276,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
      * Loads the next page of results.
      * The results will be appended to the existing ones.
      * @ignore
-     * 
+     *
      * @param {number} offset
      * @returns void
      */
