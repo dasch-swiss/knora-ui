@@ -86,6 +86,10 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
         }
     }
 
+    /**
+     * Get the parameters from the route
+     * @ignore
+     */
     getParams() {
         this.navigationSubscription = this._route.paramMap.subscribe(
             (params: Params) => {
