@@ -20,9 +20,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} route",
+        "string": "{string} route Route to navigate after search. This route path should contain a component for search results.",
         "name": "route",
-        "description": "",
+        "description": "<p>Route to navigate after search. This route path should contain a component for search results.</p>",
         "types": [
           "string"
         ],
@@ -30,13 +30,12 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} route</p>"
+        "variable": false
       }
     ],
     "description": {
-      "full": "<p>Route to navigate after search. This route path should contain a component for search results.</p>",
-      "summary": "<p>Route to navigate after search. This route path should contain a component for search results.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -45,7 +44,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 27,
-    "codeStart": 32,
+    "codeStart": 30,
     "code": "@Input() route?;",
     "ctx": false
   },
@@ -53,9 +52,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{boolean} toggleExtendedSearchForm",
+        "string": "{boolean} toggleExtendedSearchForm Trigger toggle for extended search form.",
         "name": "toggleExtendedSearchForm",
-        "description": "",
+        "description": "<p>Trigger toggle for extended search form.</p>",
         "types": [
           "boolean"
         ],
@@ -63,13 +62,12 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{boolean} toggleExtendedSearchForm</p>"
+        "variable": false
       }
     ],
     "description": {
-      "full": "<p>Trigger toggle for extended search form.</p>",
-      "summary": "<p>Trigger toggle for extended search form.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -77,8 +75,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 34,
-    "codeStart": 39,
+    "line": 32,
+    "codeStart": 35,
     "code": "@Output() toggleExtendedSearchForm = new EventEmitter<boolean>();",
     "ctx": false
   },
@@ -86,9 +84,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} gravsearch",
+        "string": "{string} gravsearch Send the gravsearch query back.",
         "name": "gravsearch",
-        "description": "",
+        "description": "<p>Send the gravsearch query back.</p>",
         "types": [
           "string"
         ],
@@ -96,13 +94,12 @@
         "optional": false,
         "nullable": false,
         "nonNullable": false,
-        "variable": false,
-        "html": "<p>{string} gravsearch</p>"
+        "variable": false
       }
     ],
     "description": {
-      "full": "<p>Send the gravsearch query back.</p>",
-      "summary": "<p>Send the gravsearch query back.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -110,8 +107,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 41,
-    "codeStart": 46,
+    "line": 37,
+    "codeStart": 40,
     "code": "@Output() gravsearch = new EventEmitter<string>();\n\n// all available ontologies\nontologies: Array<OntologyMetadata> = [];\n\n// ontology chosen by the user\nactiveOntology: string;\n\n// properties specified by the user\nactiveProperties: boolean[] = [];\n\n// resource classes for the selected ontology\nresourceClasses: Array<ResourceClass> = [];\n\n// definition of the selected resource class, if set.\nactiveResourceClass: ResourceClass;\n\n// properties for the selected ontology or selected resource class\nproperties: Properties;\n\nresult: ReadResourcesSequence = new ReadResourcesSequence([], 0);\n\n// reference to the component that controls the resource class selection\n@ViewChild('resourceClass') resourceClassComponent: SelectResourceClassComponent;\n\n// reference to the component controlling the property selection\n@ViewChildren('property') propertyComponents: QueryList<SelectPropertyComponent>;\n\n// FormGroup (used as parent for child components)\nform: FormGroup;\n\n// form validation status\nformValid = false;\n\nconstructor(@Inject(FormBuilder) private fb: FormBuilder,\n    private _route: ActivatedRoute,\n    private _router: Router,\n    private _cacheService: OntologyCacheService,\n    private _gravSearchService: GravsearchGenerationService) {\n}\n\nngOnInit() {\n\n    // parent form is empty, it gets passed to the child components\n    this.form = this.fb.group({});\n\n    // if form status changes, re-run validation\n    this.form.statusChanges.subscribe((data) => {\n        this.formValid = this.validateForm();\n        // console.log(this.form);\n    });\n\n    // initialize ontologies to be used for the ontologies selection in the search form\n    this.initializeOntologies();\n}",
     "ctx": false
   },
@@ -144,8 +141,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 102,
-    "codeStart": 107,
+    "line": 96,
+    "codeStart": 101,
     "code": "addProperty(): void {\n    this.activeProperties.push(true);\n}",
     "ctx": {
       "type": "method",
@@ -182,8 +179,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 111,
-    "codeStart": 116,
+    "line": 105,
+    "codeStart": 110,
     "code": "removeProperty(): void {\n    this.activeProperties.splice(-1, 1);\n}",
     "ctx": {
       "type": "method",
@@ -220,8 +217,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 120,
-    "codeStart": 125,
+    "line": 114,
+    "codeStart": 119,
     "code": "initializeOntologies(): void {\n    this._cacheService.getOntologiesMetadata().subscribe(\n        (ontologies: Array<OntologyMetadata>) => {\n            this.ontologies = ontologies;\n        });\n}",
     "ctx": {
       "type": "method",
@@ -270,8 +267,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 132,
-    "codeStart": 140,
+    "line": 126,
+    "codeStart": 134,
     "code": "getResourceClassesAndPropertiesForOntology(ontologyIri: string): void {\n\n    // reset active resource class definition\n    this.activeResourceClass = undefined;\n\n    // reset specified properties\n    this.activeProperties = [];\n\n    this.activeOntology = ontologyIri;\n\n    this._cacheService.getEntityDefinitionsForOntologies([ontologyIri]).subscribe(\n        (ontoInfo: OntologyInformation) => {\n\n            this.resourceClasses = ontoInfo.getResourceClassesAsArray(true);\n            this.properties = ontoInfo.getProperties();\n\n        }\n    );\n\n}",
     "ctx": {
       "type": "method",
@@ -321,8 +318,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 161,
-    "codeStart": 169,
+    "line": 155,
+    "codeStart": 163,
     "code": "getPropertiesForResourceClass(resourceClassIri: string): void {\n\n    // reset specified properties\n    this.activeProperties = [];\n\n    // if the client undoes the selection of a resource class, use the active ontology as a fallback\n    if (resourceClassIri === null) {\n        this.getResourceClassesAndPropertiesForOntology(this.activeOntology);\n    } else {\n\n        this._cacheService.getResourceClassDefinitions([resourceClassIri]).subscribe(\n            (ontoInfo: OntologyInformation) => {\n                this.properties = ontoInfo.getProperties();\n\n                this.activeResourceClass = ontoInfo.getResourceClasses()[resourceClassIri];\n\n            }\n        );\n\n    }\n\n}",
     "ctx": {
       "type": "method",
@@ -348,8 +345,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 192,
-    "codeStart": 196,
+    "line": 186,
+    "codeStart": 190,
     "code": "private validateForm() {\n\n    // check that either a resource class is selected or at least one property is specified\n    return this.form.valid &&\n        (this.propertyComponents.length > 0 || (this.resourceClassComponent !== undefined && this.resourceClassComponent.getResourceClassSelected() !== false));\n\n}",
     "ctx": false
   },
@@ -371,8 +368,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 204,
-    "codeStart": 208,
+    "line": 198,
+    "codeStart": 202,
     "code": "resetForm() {\n    if (this.activeOntology !== undefined) {\n        this.getResourceClassesAndPropertiesForOntology(this.activeOntology);\n    }\n}",
     "ctx": {
       "type": "method",
@@ -398,8 +395,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 215,
-    "codeStart": 219,
+    "line": 209,
+    "codeStart": 213,
     "code": "submit() {\n\n    if (!this.formValid) return; // check that from is valid\n\n    const resClassOption = this.resourceClassComponent.getResourceClassSelected();\n\n    let resClass;\n\n    if (resClassOption !== false) {\n        resClass = resClassOption;\n    }\n\n    const properties: PropertyWithValue[] = this.propertyComponents.map(\n        (propComp) => {\n            return propComp.getPropertySelectedWithValue();\n        }\n    );\n\n    const gravsearch = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);\n\n    if (this.route) {\n        this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });\n    } else {\n        this.gravsearch.emit(gravsearch);\n    }\n\n\n    // toggle extended search form\n    this.toggleExtendedSearchForm.emit(true);\n\n}\n\n}",
     "ctx": {
       "type": "method",
