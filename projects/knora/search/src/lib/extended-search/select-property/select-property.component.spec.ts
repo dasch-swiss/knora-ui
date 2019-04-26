@@ -5,7 +5,8 @@ import {
     MatDatepickerModule,
     MatFormFieldModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
 } from '@angular/material';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -64,6 +65,7 @@ describe('SelectPropertyComponent', () => {
                 MatFormFieldModule,
                 MatSelectModule,
                 MatIconModule,
+                MatMenuModule,
                 MatCheckboxModule,
                 MatDatepickerModule,
                 MatAutocompleteModule,
@@ -276,7 +278,7 @@ class TestHostComponent implements OnInit {
 
     @ViewChild('props') selectPropertyComp: SelectPropertyComponent;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     ngOnInit() {

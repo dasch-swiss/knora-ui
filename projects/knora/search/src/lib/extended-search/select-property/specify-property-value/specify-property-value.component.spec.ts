@@ -7,7 +7,8 @@ import {
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
 } from '@angular/material';
 
 import { SpecifyPropertyValueComponent } from './specify-property-value.component';
@@ -55,6 +56,7 @@ describe('SpecifyPropertyValueComponent', () => {
                 ReactiveFormsModule,
                 MatFormFieldModule,
                 MatInputModule,
+                MatMenuModule,
                 MatSelectModule,
                 MatIconModule,
                 MatCheckboxModule,
@@ -176,7 +178,7 @@ class TestHostComponent implements OnInit {
 
     @ViewChild('propValue') specifyPropValueComp: SpecifyPropertyValueComponent;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     ngOnInit() {

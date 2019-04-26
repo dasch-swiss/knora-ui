@@ -47,6 +47,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ListValueComponent } from './select-property/specify-property-value/list-value/list-value.component';
 import { ListDisplayComponent } from './select-property/specify-property-value/list-value/list-display/list-display.component';
+import { MatMenuModule } from '@angular/material';
 
 describe('ExtendedSearchComponent', () => {
 
@@ -80,6 +81,7 @@ describe('ExtendedSearchComponent', () => {
                 MatCheckboxModule,
                 MatIconModule,
                 MatFormFieldModule,
+                MatMenuModule,
                 MatSelectModule,
                 MatDatepickerModule,
                 MatAutocompleteModule,
