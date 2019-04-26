@@ -31,10 +31,18 @@ export class ExtendedSearchComponent implements OnInit {
      */
     @Input() route?;
 
-    // trigger toggle for extended search form
+    /**
+     * Trigger toggle for extended search form.
+     *
+     * @param  {boolean} toggleExtendedSearchForm
+     */
     @Output() toggleExtendedSearchForm = new EventEmitter<boolean>();
 
-    // send the gravsearch query back
+    /**
+     * Send the gravsearch query back.
+     *
+     * @param  {string} gravsearch
+     */
     @Output() gravsearch = new EventEmitter<string>();
 
     // all available ontologies
