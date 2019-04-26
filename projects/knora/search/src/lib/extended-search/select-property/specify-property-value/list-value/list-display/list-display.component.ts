@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnChanges, OnDestroy, OnInit, ViewChild, Output, EventEmitter, QueryList } from '@angular/core';
 import { ListNodeV2 } from '@knora/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatMenuTrigger } from '@angular/material';
+import { MatMenuTrigger, MatMenu } from '@angular/material';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -13,14 +13,14 @@ const resolvedPromise = Promise.resolve(null);
 })
 export class ListDisplayComponent implements OnInit, OnDestroy {
 
-    @Output() selectedNode: EventEmitter<any> = new EventEmitter<any>();
+    @Output() selectedNode: EventEmitter<ListNodeV2> = new EventEmitter<ListNodeV2>();
 
     // parent FormGroup
     @Input() formGroup?: FormGroup;
 
     @Input() children?: ListNodeV2;
 
-    @ViewChild('childMenu') public childMenu;
+    @ViewChild('childMenu') public childMenu: MatMenuTrigger;
 
     @ViewChild('matTrigger') public matTrigger: MatMenuTrigger;
 
@@ -32,7 +32,7 @@ export class ListDisplayComponent implements OnInit, OnDestroy {
             this.activeNode = undefined;
             this._listNode = value;
         }
-    
+
         get listNode() {
             return this._listNode;
         } */
@@ -41,7 +41,7 @@ export class ListDisplayComponent implements OnInit, OnDestroy {
 
     activeNode;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     ngOnInit() {
@@ -70,9 +70,16 @@ export class ListDisplayComponent implements OnInit, OnDestroy {
 
     }
 
-    setValue(id: string) {
-        console.log('id of the value', id);
-        this.selectedNode.emit(id);
+    setValue(item: ListNodeV2) {
+        this.selectedNode.emit(item);
     }
+    /*
+        menuClosed(ev: any) {
+            console.log('menu closed', ev);
+            if (ev) {
+                this.matTrigger.closeMenu();
+            }
+    
+        } */
 
 }

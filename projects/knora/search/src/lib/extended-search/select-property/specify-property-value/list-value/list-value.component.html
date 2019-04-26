@@ -15,8 +15,30 @@
 </mat-form-field> -->
 
 <span *ngIf="listRootNode !== undefined">
-    <button mat-stroked-button [matMenuTriggerFor]="menu.childMenu">
-        Select list value
+    <button mat-stroked-button [matMenuTriggerFor]="mainMenu">
+        <span *ngIf="!selectedNode">Select list value</span>
+        <span *ngIf="selectedNode">{{selectedNode.label}}</span>
     </button>
-    <list-display #menu [children]="listRootNode?.children" (selectedNode)="getSelectedNode($event)"></list-display>
+    <!-- <list-display #menu [children]="listRootNode?.children" (selectedNode)="getSelectedNode($event)"></list-display> -->
+    <mat-menu #mainMenu="matMenu" [overlapTrigger]="false">
+        <span *ngFor="let child of listRootNode.children">
+            <span *ngIf="child.children && child.children.length > 0">
+                <button mat-menu-item [matMenuTriggerFor]="menu.childMenu" (click)="getSelectedNode(child)">
+                    {{child.label}}
+                </button>
+                <list-display #menu [children]="child.children" (selectedNode)="getSelectedNode($event)">
+                </list-display>
+            </span>
+
+            <span *ngIf="!child.children || child.children.length === 0">
+                <button mat-menu-item (click)="getSelectedNode(child)">
+                    {{child.label}}
+                </button>
+            </span>
+        </span>
+    </mat-menu>
 </span>
+
+<mat-form-field *ngIf="selectedNode !== undefined">
+    <input matInput [formControl]="form.controls['listValue']" placeholder="text value" [value]="selectedNode.id">
+</mat-form-field>

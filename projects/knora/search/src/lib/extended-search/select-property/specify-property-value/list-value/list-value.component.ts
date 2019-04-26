@@ -1,7 +1,8 @@
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { KnoraConstants, ListNodeV2, Property, PropertyValue, Value, ValueLiteral } from '@knora/core';
 import { ListCacheService } from '@knora/core';
+import { MatMenuTrigger } from '@angular/material';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -26,7 +27,13 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     activeNode;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder, private _listCacheService: ListCacheService) {
+    selectedNode: ListNodeV2;
+
+    @ViewChild('mainMenu') public matTrigger: MatMenuTrigger;
+
+    @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
+
+    constructor (@Inject(FormBuilder) private fb: FormBuilder, private _listCacheService: ListCacheService) {
     }
 
     private getRootNodeIri(): string {
@@ -43,6 +50,26 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
     ngOnInit() {
 
         this.form = this.fb.group({
+            listValue: [null, Validators.required]
+        });
+
+        resolvedPromise.then(() => {
+            // add form to the parent form group
+            this.formGroup.addControl('propValue', this.form);
+        });
+
+        const rootNodeIri = this.getRootNodeIri();
+        // console.log('rootNodeIri', rootNodeIri);
+
+        this._listCacheService.getList(rootNodeIri).subscribe(
+            (list: ListNodeV2) => {
+                // console.log('list node v2: ', list);
+                this.listRootNode = list;
+            }
+        );
+
+        /*
+        this.form = this.fb.group({
             listValue: [null, Validators.compose([Validators.required])]
         });
 
@@ -53,20 +80,13 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
         );
 
         // get list's root node Iri
-        const rootNodeIri = this.getRootNodeIri();
-        console.log('rootNodeIri', rootNodeIri);
 
-        this._listCacheService.getList(rootNodeIri).subscribe(
-            (list: ListNodeV2) => {
-                console.log('list node v2: ', list);
-                this.listRootNode = list;
-            }
-        );
 
         resolvedPromise.then(() => {
             // add form to the parent form group
             this.formGroup.addControl('propValue', this.form);
         });
+        */
 
     }
 
@@ -84,8 +104,10 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
         return new ValueLiteral(String(this.form.value.listValue), KnoraConstants.xsdString);
     }
 
-    getSelectedNode(id: string) {
-        console.log('id in parent component', id);
+    getSelectedNode(item: ListNodeV2) {
+        this.menuTrigger.closeMenu();
+        this.selectedNode = item;
+        //        console.log('id in parent component', item);
     }
 
 }
