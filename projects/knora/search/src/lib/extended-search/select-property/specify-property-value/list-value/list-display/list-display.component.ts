@@ -13,18 +13,19 @@ const resolvedPromise = Promise.resolve(null);
 })
 export class ListDisplayComponent implements OnInit, OnDestroy {
 
+    @Input() children?: ListNodeV2;
+
     @Output() selectedNode: EventEmitter<ListNodeV2> = new EventEmitter<ListNodeV2>();
 
     // parent FormGroup
-    @Input() formGroup?: FormGroup;
-
-    @Input() children?: ListNodeV2;
+    // @Input() formGroup?: FormGroup;
 
     @ViewChild('childMenu') public childMenu: MatMenuTrigger;
+    /*
 
-    @ViewChild('matTrigger') public matTrigger: MatMenuTrigger;
+        @ViewChild('matTrigger') public matTrigger: MatMenuTrigger; */
 
-    private _listNode: ListNodeV2;
+    // private _listNode: ListNodeV2;
 
     /*     @Input()
         set listNode(value: ListNodeV2) {
@@ -37,11 +38,11 @@ export class ListDisplayComponent implements OnInit, OnDestroy {
             return this._listNode;
         } */
 
-    form: FormGroup;
+    // form: FormGroup;
 
-    activeNode;
-
-    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
+    // activeNode;
+    // @Inject(FormBuilder) private fb: FormBuilder
+    constructor () {
     }
 
     ngOnInit() {
@@ -79,7 +80,7 @@ export class ListDisplayComponent implements OnInit, OnDestroy {
             if (ev) {
                 this.matTrigger.closeMenu();
             }
-    
+
         } */
 
 }

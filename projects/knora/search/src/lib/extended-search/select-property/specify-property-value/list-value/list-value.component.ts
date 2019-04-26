@@ -25,11 +25,9 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     listRootNode: ListNodeV2;
 
-    activeNode;
+    // activeNode;
 
     selectedNode: ListNodeV2;
-
-    @ViewChild('mainMenu') public matTrigger: MatMenuTrigger;
 
     @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
 
@@ -107,7 +105,9 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
     getSelectedNode(item: ListNodeV2) {
         this.menuTrigger.closeMenu();
         this.selectedNode = item;
-        //        console.log('id in parent component', item);
+
+        this.form.controls['listValue'].setValue(item.id);
+
     }
 
 }

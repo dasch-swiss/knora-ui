@@ -62,7 +62,7 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
     // the type of the property
     propertyValueType;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     /**
