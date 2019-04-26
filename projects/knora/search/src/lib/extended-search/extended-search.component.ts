@@ -25,23 +25,17 @@ import { SelectResourceClassComponent } from './select-resource-class/select-res
 export class ExtendedSearchComponent implements OnInit {
 
     /**
-     * Route to navigate after search. This route path should contain a component for search results.
-     *
-     * @param  {string} route
+     * @param  {string} route Route to navigate after search. This route path should contain a component for search results.
      */
     @Input() route?;
 
     /**
-     * Trigger toggle for extended search form.
-     *
-     * @param  {boolean} toggleExtendedSearchForm
+     * @param  {boolean} toggleExtendedSearchForm Trigger toggle for extended search form.
      */
     @Output() toggleExtendedSearchForm = new EventEmitter<boolean>();
 
     /**
-     * Send the gravsearch query back.
-     *
-     * @param  {string} gravsearch
+     * @param  {string} gravsearch Send the gravsearch query back.
      */
     @Output() gravsearch = new EventEmitter<string>();
 
