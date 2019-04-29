@@ -5,7 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { KeyPipe, ProgressIndicatorComponent } from '@knora/action';
+import { KeyPipe, MessageComponent, ProgressIndicatorComponent } from '@knora/action';
 import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
 import { SearchResultsComponent } from './search-results.component';
 import { ListViewComponent } from '../list-view/list-view.component';
@@ -38,6 +38,7 @@ describe('SearchResultsComponent', () => {
                 DateValueComponent,
                 KeyPipe,
                 ListViewComponent,
+                MessageComponent,
                 ProgressIndicatorComponent,
                 SearchResultsComponent,
                 TextValueAsHtmlComponent,
