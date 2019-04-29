@@ -38,6 +38,7 @@ import { LinkValueComponent } from './extended-search/select-property/specify-pr
 import { TextValueComponent } from './extended-search/select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './extended-search/select-property/specify-property-value/uri-value/uri-value.component';
 import { HeaderComponent } from './extended-search/select-property/specify-property-value/date-value/header-calendar/header-calendar.component';
+import { ClickOutsideDirective } from './click-outside.directive';
 
 @NgModule({
     imports: [
@@ -77,7 +78,8 @@ import { HeaderComponent } from './extended-search/select-property/specify-prope
         UriValueComponent,
         HeaderComponent,
         FulltextSearchComponent,
-        SearchPanelComponent
+        SearchPanelComponent,
+        ClickOutsideDirective
     ],
     exports: [
         SearchComponent,

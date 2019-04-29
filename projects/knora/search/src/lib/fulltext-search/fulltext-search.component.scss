@@ -20,9 +20,9 @@ $bright: rgba(249, 249, 249, 1);
 $grey: rgba(184, 184, 184, 1);
 $dark: rgba(41, 41, 41, 1);
 $black: rgb(11, 11, 11);
-$black-12-opacity: rgba($black, .12);
-$black-14-opacity: rgba($black, .14);
-$black-20-opacity: rgba($black, .2);
+$black-12-opacity: rgba($black, 0.12);
+$black-14-opacity: rgba($black, 0.14);
+$black-20-opacity: rgba($black, 0.2);
 
 // sizes for search element
 $search-width: 480px;
@@ -77,7 +77,7 @@ $border-radius: 4px;
   }
 
   &:hover {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   }
 
   .input-field {
@@ -109,7 +109,7 @@ $border-radius: 4px;
     background-color: #ffffff;
     border-radius: 3px;
     border-style: none;
-    color: rgba($dark, .4);
+    color: rgba($dark, 0.4);
     cursor: pointer;
     height: 38px;
     outline: none;
@@ -122,9 +122,8 @@ $border-radius: 4px;
   }
 
   &.active {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   }
-
 }
 
 .kui-menu {
@@ -132,19 +131,22 @@ $border-radius: 4px;
   background-color: $bright;
   border-radius: $border-radius;
   position: absolute;
+  left: 50%;
+  margin-left: calc((#{$search-width} + #{$project-filter-width}) / -2);
 
   &.simple-search {
     min-height: $search-height;
-    width: $search-width;
-    padding-top: 60px;
+    max-height: $search-height;
+    overflow-y: auto;
+    min-width: $search-width;
+    margin-top: 48px;
     z-index: -1;
 
     &.with-project-filter {
-      width: calc(#{$search-width} + #{$project-filter-width});
+      min-width: calc(#{$search-width} + #{$project-filter-width});
     }
 
     .kui-previous-search-list {
-
       .mat-list-item {
         cursor: pointer;
 
@@ -170,13 +172,16 @@ $border-radius: 4px;
       }
     }
 
-    .right {
-      margin-top: 12px;
-      margin-left: 16px;
+    .kui-menu-action {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      .center {
+        display: block;
+        margin: 12px auto;
+      }
     }
-
   }
-
 }
 
 @media screen and (max-width: 1024px) {
@@ -184,12 +189,10 @@ $border-radius: 4px;
     width: $search-width-small-device;
 
     .input-field {
-
       input {
         width: calc(#{$search-width-small-device} - 40px);
       }
     }
-
   }
 
   .kui-menu.simple-search {
@@ -201,12 +204,9 @@ $border-radius: 4px;
   .fulltext-search-bar {
     width: calc(#{$search-width-small-device} - 160px);
 
-    div {
-      &.input-field {
-
-        input {
-          width: calc(#{$search-width-small-device} - 160px - 40px);
-        }
+    div.input-field {
+      input {
+        width: calc(#{$search-width-small-device} - 160px - 40px);
       }
     }
   }
@@ -240,6 +240,6 @@ $border-radius: 4px;
     // set the icon to the same line as the text/label is
     vertical-align: middle;
     position: relative;
-    top: -1px
+    top: -1px;
   }
 }
