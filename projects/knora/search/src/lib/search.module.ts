@@ -26,6 +26,7 @@ import { FulltextSearchComponent } from './fulltext-search/fulltext-search.compo
 import { SearchPanelComponent } from './search-panel/search-panel.component';
 import { ExtendedSearchComponent } from './extended-search/extended-search.component';
 
+
 import { SelectOntologyComponent } from './extended-search/select-ontology/select-ontology.component';
 import { SelectResourceClassComponent } from './extended-search/select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './extended-search/select-property/select-property.component';

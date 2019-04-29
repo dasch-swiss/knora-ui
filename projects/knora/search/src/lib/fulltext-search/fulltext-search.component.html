@@ -62,12 +62,11 @@
             <button class="suffix" *ngIf="focusOnSimple === 'inactive'"></button>
         </div>
  -->
-        <div>
 
-        </div>
         <!-- "dropdown" menu for simple search -->
 
         <div class="kui-menu simple-search" [@fulltextSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch"
+             kuiClickOutside (clickOutside)="focusOnSimple = 'inactive'"
              [class.with-project-filter]="projectfilter && !error && projects?.length > 0">
             <mat-list class="kui-previous-search-list">
                 <div *ngFor="let item of prevSearch | kuiReverse; let i=index">
