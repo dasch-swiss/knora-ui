@@ -131,8 +131,8 @@ $border-radius: 4px;
   background-color: $bright;
   border-radius: $border-radius;
   position: absolute;
-  left: 50%;
-  margin-left: calc((#{$search-width} + #{$project-filter-width}) / -2);
+  // left: 50%;
+  // margin-left: calc((#{$search-width} + #{$project-filter-width}) / -2);
 
   &.simple-search {
     min-height: $search-height;

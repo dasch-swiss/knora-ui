@@ -3,10 +3,12 @@
     <div class="kui-search-bar">
 
         <div class="fulltext-search">
-            <kui-fulltext-search [route]="route" [projectfilter]="projectfilter" [filterbyproject]="filterbyproject"></kui-fulltext-search>
+            <kui-fulltext-search [route]="route" [projectfilter]="projectfilter" [filterbyproject]="filterbyproject">
+            </kui-fulltext-search>
         </div>
 
-        <div *ngIf="showMenu" [@extendedSearchMenu]="focusOnExtended" class="kui-menu extended-search">
+        <div *ngIf="showMenu" [@extendedSearchMenu]="focusOnExtended" class="kui-menu extended-search" kuiClickOutside
+             (clickOutside)="focusOnExtended = 'inactive'">
             <div class="kui-menu-header">
                 <span class="kui-menu-title">
                     <h4>Advanced search</h4>

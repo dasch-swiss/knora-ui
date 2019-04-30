@@ -88,11 +88,11 @@ export class FulltextSearchComponent implements OnInit {
 
     error: any;
 
-    constructor(
+    constructor (
         private _route: ActivatedRoute,
         private _router: Router,
         private _projectsService: ProjectsService
-    ) {}
+    ) { }
 
     ngOnInit() {
         if (this.filterbyproject) {
@@ -148,10 +148,10 @@ export class FulltextSearchComponent implements OnInit {
             if (this.projectIri !== undefined) {
                 this._router.navigate([
                     this.route +
-                        '/fulltext/' +
-                        this.searchQuery +
-                        '/' +
-                        encodeURIComponent(this.projectIri)
+                    '/fulltext/' +
+                    this.searchQuery +
+                    '/' +
+                    encodeURIComponent(this.projectIri)
                 ]);
             } else {
                 this._router.navigate([
@@ -258,10 +258,10 @@ export class FulltextSearchComponent implements OnInit {
             this.projectLabel = prevSearch.projectLabel;
             this._router.navigate([
                 this.route +
-                    '/fulltext/' +
-                    this.searchQuery +
-                    '/' +
-                    encodeURIComponent(prevSearch.projectIri)
+                '/fulltext/' +
+                this.searchQuery +
+                '/' +
+                encodeURIComponent(prevSearch.projectIri)
             ]);
         } else {
             this.projectIri = undefined;

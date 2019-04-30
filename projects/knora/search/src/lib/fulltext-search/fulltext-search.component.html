@@ -1,7 +1,7 @@
 <div class="search-bar-elements">
 
-
-    <div class="fulltext-search-bar" [class.active]="searchPanelFocus"
+    <div class="fulltext-search-bar" [class.active]="searchPanelFocus" kuiClickOutside
+         (clickOutside)="focusOnSimple = 'inactive'"
          [class.with-project-filter]="projectfilter && !error && projects?.length > 0">
         <!-- do not show the project filter in case of an api error -->
         <div class="search-project-filter" *ngIf="projectfilter && !error && projects?.length > 0">
@@ -65,13 +65,12 @@
 
         <!-- "dropdown" menu for simple search -->
 
-        <div class="kui-menu simple-search" [@fulltextSearchMenu]="focusOnSimple" *ngIf="showSimpleSearch"
-             kuiClickOutside (clickOutside)="focusOnSimple = 'inactive'"
+        <div class="kui-menu simple-search" [@fulltextSearchMenu]="focusOnSimple"
              [class.with-project-filter]="projectfilter && !error && projects?.length > 0">
             <mat-list class="kui-previous-search-list">
                 <div *ngFor="let item of prevSearch | kuiReverse; let i=index">
                     <mat-list-item *ngIf="i<10">
-                        <h4 mat-line *ngIf="i<10" (click)="doPrevSearch(item)" class="kui-previous-search-item">
+                        <h4 mat-line (click)="doPrevSearch(item)" class="kui-previous-search-item">
                             <div class="project-filter-btn" [class.not-empty]="item.projectIri"
                                  *ngIf="projectfilter && !error && projects?.length > 0">
                                 <span *ngIf="item.projectIri" class="project-filter-label">{{item.projectLabel}}</span>
