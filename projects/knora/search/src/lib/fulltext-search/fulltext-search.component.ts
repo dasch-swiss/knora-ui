@@ -5,10 +5,12 @@ import {
     transition,
     trigger
 } from '@angular/animations';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, ViewContainerRef, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceError, Project, ProjectsService } from '@knora/core';
 import { MatMenuTrigger } from '@angular/material';
+import { OverlayConfig, Overlay } from '@angular/cdk/overlay';
+import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 
 export interface PrevSearchItem {
     projectIri?: string;
@@ -60,6 +62,9 @@ export class FulltextSearchComponent implements OnInit {
      * @param  {ElementRef} searchField
      */
     @ViewChild('search') searchField: ElementRef;
+    @ViewChild('fulltextSearchMenu') searchMenu: TemplateRef<any>;
+
+    // @ViewChildren(TemplatePortalDirective) templatePortals: QueryList<Portal<any>>;
 
     /**
      * @ignore
@@ -72,7 +77,7 @@ export class FulltextSearchComponent implements OnInit {
 
     searchQuery: string;
 
-    showSimpleSearch: boolean = true;
+    // showSimpleSearch: boolean = true;
 
     searchPanelFocus: boolean = false;
 
@@ -89,6 +94,8 @@ export class FulltextSearchComponent implements OnInit {
     error: any;
 
     constructor (
+        private _overlay: Overlay,
+        private _viewContainerRef: ViewContainerRef,
         private _route: ActivatedRoute,
         private _router: Router,
         private _projectsService: ProjectsService
@@ -107,6 +114,40 @@ export class FulltextSearchComponent implements OnInit {
                 );
             }
         }
+    }
+
+    openPanelWithBackdrop() {
+        const config = new OverlayConfig({
+            hasBackdrop: true,
+            backdropClass: 'cdk-overlay-transparent-backdrop',
+            positionStrategy: this._overlay.position().global().centerHorizontally()
+        });
+
+        const overlayRef = this._overlay.create(config);
+        // overlayRef.attach(this.searchMenu);
+        overlayRef.attach(new TemplatePortal(this.searchMenu, this._viewContainerRef));
+        overlayRef.backdropClick().subscribe(() => overlayRef.detach());
+    }
+
+    setOverlay(): void {
+        const config = new OverlayConfig();
+
+        config.positionStrategy = this._overlay.position()
+            .global()
+            .left('0')
+            .top('0');
+
+        // this.nextPosition += 30;
+
+        config.hasBackdrop = true;
+
+        const overlayRef = this._overlay.create(config);
+
+        overlayRef.backdropClick().subscribe(() => {
+            overlayRef.dispose();
+        });
+
+        overlayRef.attach(new TemplatePortal(this.searchMenu, this._viewContainerRef));
     }
 
     /**
@@ -229,8 +270,10 @@ export class FulltextSearchComponent implements OnInit {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
         this.focusOnSimple =
             this.focusOnSimple === 'active' ? 'inactive' : 'active';
-        this.showSimpleSearch = true;
+        // this.showSimpleSearch = true;
     }
+
+
 
     /**
      * Set simple focus to active
@@ -241,6 +284,7 @@ export class FulltextSearchComponent implements OnInit {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
         this.focusOnSimple = 'active';
         this.searchPanelFocus = !this.searchPanelFocus;
+        this.setOverlay();
     }
 
     /**
