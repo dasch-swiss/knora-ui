@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService, SearchParamsService, ExtendedSearchParams } from '@knora/core';
@@ -10,9 +10,17 @@ import { SearchService, SearchParamsService, ExtendedSearchParams } from '@knora
 })
 export class ExpertSearchComponent implements OnInit {
 
+    /**
+     * @param  {string} route Route to navigate after search. This route path should contain a component for search results.
+     */
+    @Input() route?;
+
+    /**
+     * @param gravsearch Send the gravsearch query back.
+     */
+    @Output() gravsearch = new EventEmitter();
+
     expertSearchForm: FormGroup;
-    gravsearchQuery: string;
-    route: string = '/search';
 
     constructor(
         private fb: FormBuilder,
@@ -44,13 +52,21 @@ CONSTRUCT {
     }
 
     /**
-     * Submit the gravsearch query when clicking on the RUN button.
+     * @ignore
+     * Send the gravsearch query to the result view, either through the route or by emitting the gravsearch as an output.
      */
     submitQuery() {
-        this.gravsearchQuery = this.generateGravsearch(0);
+        const gravsearch = this.generateGravsearch(0);
+
+        if (this.route) {
+            this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });
+        } else {
+            this.gravsearch.emit(gravsearch);
+        }
     }
 
     /**
+     * @ignore
      * Generate the whole gravsearch query matching the query given by the form.
      */
     private generateGravsearch(offset: number = 0): string {
