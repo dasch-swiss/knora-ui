@@ -9,6 +9,7 @@ import {
     MatFormFieldModule,
     MatIconModule, MatInputModule,
     MatListModule,
+    MatMenuModule,
     MatSelectModule,
     MatTooltipModule
 } from '@angular/material';
@@ -38,7 +39,6 @@ import { TextValueComponent } from './extended-search/select-property/specify-pr
 import { UriValueComponent } from './extended-search/select-property/specify-property-value/uri-value/uri-value.component';
 import { HeaderComponent } from './extended-search/select-property/specify-property-value/date-value/header-calendar/header-calendar.component';
 
-
 @NgModule({
     imports: [
         CommonModule,
@@ -51,6 +51,7 @@ import { HeaderComponent } from './extended-search/select-property/specify-prope
         MatInputModule,
         MatIconModule,
         MatListModule,
+        MatMenuModule,
         MatSelectModule,
         MatTooltipModule,
         FormsModule,

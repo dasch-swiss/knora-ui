@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ResourceViewComponent, SearchResultsComponent } from '@knora/viewer';
+import { ResourceViewComponent } from '@knora/viewer';
 import { AppDemo } from './app.config';
 // dev docs
 import { DocIntroComponent } from './dev-docs/doc-intro/doc-intro.component';
+
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 import { ExistingNameComponent } from './knora-ui-examples/action-demo/existing-name/existing-name.component';
 import { KeyComponent } from './knora-ui-examples/action-demo/key/key.component';
-
+import { MessageComponent } from './knora-ui-examples/action-demo/message/message.component';
 import { ProgressIndicatorComponent } from './knora-ui-examples/action-demo/progress-indicator/progress-indicator.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
 import { AuthComponent } from './knora-ui-examples/authentication-demo/auth/auth.component';
@@ -31,17 +32,23 @@ import { UsersComponent } from './knora-ui-examples/core-demo/users/users.compon
 
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
+import { ExtendedSearchComponent } from './knora-ui-examples/search-demo/extended-search/extended-search.component';
+import { FulltextSearchComponent } from './knora-ui-examples/search-demo/fulltext-search/fulltext-search.component';
+
 import { PropertiesComponent } from './knora-ui-examples/viewer-demo/properties/properties.component';
 import { ResourcesComponent } from './knora-ui-examples/viewer-demo/resources/resources.component';
 
 import { ViewerDemoComponent } from './knora-ui-examples/viewer-demo/viewer-demo.component';
 import { ViewsComponent } from './knora-ui-examples/viewer-demo/views/views.component';
+import { SearchResultsComponent } from './knora-ui-examples/viewer-demo/search-results/search-results.component';
+
 import { DemoIntroComponent } from './landing-page/demo-intro/demo-intro.component';
 // / start with main-intro
 import { MainIntroComponent } from './landing-page/main-intro/main-intro.component';
 import { TreeComponent } from './material/tree/tree.component';
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
+
 
 const appRoutes: Routes = [
     {
@@ -79,6 +86,10 @@ const appRoutes: Routes = [
                     {
                         path: 'sort-button',
                         component: SortButtonComponent
+                    },
+                    {
+                        path: 'message',
+                        component: MessageComponent
                     },
                     {
                         path: 'progress-indicator',
@@ -139,9 +150,17 @@ const appRoutes: Routes = [
                         data: { module: 'search' }
                     },
                     {
-                        path: 'search',
+                        path: 'search-panel',
                         component: SearchPanelComponent
-                    }
+                    },
+                    {
+                        path: 'fulltext-search',
+                        component: FulltextSearchComponent
+                    },
+                    {
+                        path: 'extended-search',
+                        component: ExtendedSearchComponent
+                    },
                 ]
             },
             {
@@ -158,6 +177,10 @@ const appRoutes: Routes = [
                         path: 'readme',
                         component: DemoIntroComponent,
                         data: { module: 'viewer' }
+                    },
+                    {
+                        path: 'search-results',
+                        component: SearchResultsComponent
                     },
                     {
                         path: 'resources',
@@ -178,7 +201,6 @@ const appRoutes: Routes = [
                         component: ViewsComponent,
                         data: { partOf: AppDemo.viewerModule }
                     }
-
                 ]
             },
             {

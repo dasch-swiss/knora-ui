@@ -61,8 +61,11 @@ import { DocumentationViewerComponent } from './partials/documentation-viewer/do
 import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-demo/authentication-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
 import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
-
 import { AppInitService } from './app-init.service';
+import { FulltextSearchComponent } from './knora-ui-examples/search-demo/fulltext-search/fulltext-search.component';
+import { ExtendedSearchComponent } from './knora-ui-examples/search-demo/extended-search/extended-search.component';
+import { MessageComponent } from './knora-ui-examples/action-demo/message/message.component';
+import { SearchResultsComponent } from './knora-ui-examples/viewer-demo/search-results/search-results.component';
 
 
 export function initializeApp(appInitService: AppInitService) {
@@ -113,7 +116,11 @@ export function initializeApp(appInitService: AppInitService) {
         DocumentationViewerComponent,
         AuthenticationDemoComponent,
         SearchPanelComponent,
-        TrimBracketsPipe
+        TrimBracketsPipe,
+        FulltextSearchComponent,
+        ExtendedSearchComponent,
+        MessageComponent,
+        SearchResultsComponent
     ],
     entryComponents: [
         // LoginFormComponent

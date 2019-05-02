@@ -1,1 +1,68 @@
 @import '../../assets/style/viewer';
+
+$width: 720px;
+
+.resource-view {
+  max-width: $width;
+  margin: 0 auto;
+
+  .resource {
+
+    .media {
+      width: $width;
+      height: calc(#{$width} / (4 / 3));
+
+    }
+
+    .data {
+      min-height: 700px;
+      padding: 24px 36px;
+
+      .headline {
+
+      }
+
+      .properties {
+
+      }
+    }
+
+
+    .footer {
+
+    }
+
+
+  }
+}
+
+
+.hidden {
+  display: none;
+}
+
+// list of properties
+.property {
+  margin-bottom: 12px;
+
+  .property-label {
+
+  }
+
+  .property-value-item {
+    min-height: 48px;
+    height: auto;
+
+    li {
+      list-style-type: none;
+
+      &.list:before {
+        content: '-    ';
+      }
+
+      &.lastItem {
+        margin-bottom: 12px;
+      }
+    }
+  }
+}

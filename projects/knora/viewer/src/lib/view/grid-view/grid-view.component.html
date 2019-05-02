@@ -1,10 +1,10 @@
 <div>
-  <kui-progress-indicator *ngIf="isLoading" [color]="'#D88958'"></kui-progress-indicator>
+  <!-- <kui-progress-indicator *ngIf="isLoading" [color]="'#D88958'"></kui-progress-indicator> -->
 
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="grid">
 
     <div fxFlex.sm="50" fxFlex.md="33.3" fxFlex.lg="20" fxFlex.xl="16.6" fxFlex="16.6" *ngFor="let res of result" class="gv-preview">
-      <mat-card class="link">
+      <mat-card class="link" (click)="openResource(res.id)">
 
         <mat-card-subtitle>{{ontologyInfo?.getLabelForResourceClass(res.type)}}</mat-card-subtitle>
         <mat-card-title>{{res.label}}</mat-card-title>

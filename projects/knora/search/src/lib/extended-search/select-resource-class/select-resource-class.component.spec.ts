@@ -8,7 +8,7 @@ import {
     MatIconModule,
     MatSelectModule
 } from '@angular/material';
-import { Cardinality, CardinalityOccurrence, KuiCoreConfig, KuiCoreConfigToken, ResourceClass } from '@knora/core';
+import { Cardinality, CardinalityOccurrence, KuiCoreConfig, KuiCoreConfigToken, ResourceClass, GuiOrder } from '@knora/core';
 
 import { SelectResourceClassComponent } from './select-resource-class.component';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
@@ -284,6 +284,12 @@ const initResClasses = [
                 1,
                 'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
             )
+        ],
+        [
+            new GuiOrder(
+                2,
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+            ),
         ]
     )
 ];
@@ -345,6 +351,12 @@ const updatedResClasses = [
                 1,
                 'http://api.knora.org/ontology/knora-api/v2#lastModificationDate'
             )
+        ],
+        [
+            new GuiOrder(
+                2,
+                'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText'
+            ),
         ]
     )
 ];

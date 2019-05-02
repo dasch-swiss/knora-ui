@@ -39,6 +39,12 @@ export class AppDemo {
                 stackblitz: true
             },
             {
+                name: 'message',
+                label: 'Message',
+                type: 'Component',
+                stackblitz: false
+            },
+            {
                 name: 'admin-image',
                 label: 'AdminImage',
                 type: 'Directive',
@@ -136,8 +142,20 @@ export class AppDemo {
         label: 'Search module',
         children: [
             {
-                name: 'search',
-                label: 'Search',
+                name: 'search-panel',
+                label: 'Search panel',
+                type: 'Component',
+                stackblitz: false
+            },
+            {
+                name: 'fulltext-search',
+                label: 'Full-text search',
+                type: 'Component',
+                stackblitz: false
+            },
+            {
+                name: 'extended-search',
+                label: 'Extended search',
                 type: 'Component',
                 stackblitz: false
             }
@@ -146,9 +164,15 @@ export class AppDemo {
 
     public static viewerModule: DemoModule = {
         name: 'viewer',
-        published: false,
+        published: true,
         label: 'Viewer module',
         children: [
+            {
+                name: 'search-results',
+                label: 'Search results',
+                type: 'Component',
+                stackblitz: false
+            }
             /* {
                 name: 'resources',
                 label: 'Resources'

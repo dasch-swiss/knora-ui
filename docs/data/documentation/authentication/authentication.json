@@ -53,6 +53,65 @@
     "tags": [
       {
         "type": "param",
+        "string": "jwt",
+        "name": "jwt",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>jwt</p>"
+      },
+      {
+        "type": "param",
+        "string": "username",
+        "name": "username",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>username</p>"
+      },
+      {
+        "type": "returns",
+        "string": "boolean",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>boolean</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>update the session storage</p>",
+      "summary": "<p>update the session storage</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 33,
+    "codeStart": 40,
+    "code": "updateSession(jwt: string, username: string): boolean {\n    if (jwt && username) {\n        this._session.setSession(jwt, username);\n        return true;\n    } else {\n        return false;\n    }\n}",
+    "ctx": {
+      "type": "method",
+      "name": "updateSession",
+      "string": "updateSession()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
         "string": "{string} identifier email or username",
         "name": "identifier",
         "description": "<p>email or username</p>",
@@ -102,8 +161,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 33,
-    "codeStart": 41,
+    "line": 49,
+    "codeStart": 57,
     "code": "login(username: string, password: string): Observable<any> {\n\n    // console.log('AuthenticationService - login - api: ', this.config.api);\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        {username: username, password: password},\n        {observe: 'response'}).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}",
     "ctx": {
       "type": "method",
@@ -137,8 +196,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 60,
-    "codeStart": 65,
+    "line": 76,
+    "codeStart": 81,
     "code": "logout() {\n    // destroy the session\n    localStorage.removeItem('session');\n}",
     "ctx": {
       "type": "method",
@@ -189,8 +248,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 71,
-    "codeStart": 78,
+    "line": 87,
+    "codeStart": 94,
     "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    const serviceError = new ApiServiceError();\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}\n}",
     "ctx": false
   }

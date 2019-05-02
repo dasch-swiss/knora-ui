@@ -1,6 +1,21 @@
 [
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} [iri] Resource iri",
+        "name": "[iri]",
+        "description": "<p>Resource iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
     "description": {
       "full": "",
       "summary": "",
@@ -8,9 +23,253 @@
     },
     "isPrivate": false,
     "isConstructor": false,
-    "line": 1,
-    "codeStart": null,
-    "code": "import { Component, Input, OnInit } from '@angular/core';\nimport { ActivatedRoute } from '@angular/router';\nimport {\n    ApiServiceError,\n    ApiServiceResult,\n    ConvertJSONLD,\n    IncomingService,\n    KnoraConstants,\n    OntologyCacheService,\n    OntologyInformation,\n    ReadResource,\n    ReadResourcesSequence,\n    ResourceService\n} from '@knora/core';\n\ndeclare let require: any;\nconst jsonld = require('jsonld');\n\n@Component({\n    selector: 'kui-resource-view',\n    templateUrl: './resource-view.component.html',\n    styleUrls: ['./resource-view.component.scss']\n})\nexport class ResourceViewComponent implements OnInit {\n\n    @Input() iri?: string = 'http://rdfh.ch/8be1b7cf7103';\n\n    ontologyInfo: OntologyInformation; // ontology information about resource classes and properties present in the requested resource with Iri `iri`\n    resource: ReadResource; // the resource to be displayed\n    errorMessage: any;\n\n    KnoraConstants = KnoraConstants;\n\n    constructor(private _route: ActivatedRoute,\n                private _resourceService: ResourceService,\n                private _cacheService: OntologyCacheService,\n                private _incomingService: IncomingService) {\n\n        const routeParams = this._route.snapshot.params;\n        this.iri = routeParams.id;\n\n    }\n\n    ngOnInit() {\n        this.getResource(this.iri);\n    }\n\n    private getResource(iri: string): void {\n        this._resourceService.getResource(iri)\n            .subscribe(\n                (result: ApiServiceResult) => {\n                    console.log('result: ', result.body);\n                    const promises = jsonld.promises;\n                    // compact JSON-LD using an empty context: expands all Iris\n                    const promise = promises.compact(result.body, {});\n\n                    promise.then((compacted) => {\n\n                        const resourceSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(compacted);\n\n                        // make sure that exactly one resource is returned\n                        if (resourceSeq.resources.length === 1) {\n\n                            // get resource class Iris from response\n                            const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);\n\n                            // request ontology information about resource class Iris (properties are implied)\n                            this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(\n                                (resourceClassInfos: any) => {\n                                    // initialize ontology information\n                                    this.ontologyInfo = resourceClassInfos; // console.log('initialization of ontologyInfo: ', this.ontologyInfo); > object received\n\n                                    // prepare a possibly attached image file to be displayed\n                                    // this.collectImagesAndRegionsForResource(resourceSeq.resources[0]);\n\n                                    this.resource = resourceSeq.resources[0];\n                                    // console.log('resource: ', this.resource);\n\n                                    // this.requestIncomingResources();\n                                },\n                                (err) => {\n\n                                    console.log('cache request failed: ' + err);\n                                });\n                        } else {\n                            // exactly one resource was expected, but resourceSeq.resources.length != 1\n                            this.errorMessage = `Exactly one resource was expected, but ${resourceSeq.resources.length} resource(s) given.`;\n                        }\n                    }, function (err) {\n                        console.error('JSONLD of full resource request could not be expanded:' + err);\n                    });\n                    // this.isLoading = false;\n                },\n                (error: ApiServiceError) => {\n                    console.error(error);\n                    // this.errorMessage = <any>error;\n                    // this.isLoading = false;\n                });\n    }\n\n}",
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 29,
+    "codeStart": 32,
+    "code": "@Input() iri?: string;\n\nsequence: ReadResourcesSequence;\n\nontologyInfo: OntologyInformation;\nguiOrder: GuiOrder[];\nloading: boolean;\nerror: any;\nKnoraConstants = KnoraConstants;\n\n// does the resource has a file representation (media file)?\nfileRepresentation: boolean;\n\nconstructor(protected _route: ActivatedRoute,\n    protected _router: Router,\n    protected _resourceService: ResourceService,\n    protected _incomingService: IncomingService\n) {\n\n}\n\nngOnInit() {\n    this.getResource(this.iri);\n}\n\nngOnChanges() {\n    this.getResource(this.iri);\n}",
     "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} id Resource iri",
+        "name": "id",
+        "description": "<p>Resource iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "<p>Get a read resource sequence with ontology information and incoming resources.</p>",
+      "summary": "<p>Get a read resource sequence with ontology information and incoming resources.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 61,
+    "codeStart": 66,
+    "code": "getResource(id: string) {\n    this.loading = true;\n    this._resourceService.getReadResource(decodeURIComponent(id)).subscribe(\n        (result: ReadResourcesSequence) => {\n            this.sequence = result;\n\n            this.ontologyInfo = result.ontologyInformation;\n\n            const resType = this.sequence.resources[0].type;\n\n            this.guiOrder = result.ontologyInformation.getResourceClasses()[resType].guiOrder;\n\n            // collect images and regions\n            this.collectImagesAndRegionsForResource(this.sequence.resources[0]);\n\n            // get incoming resources\n            this.requestIncomingResources();\n\n\n            // this.fileRepresentation = this.sequence.resources[0].properties.indexOf(KnoraConstants.hasStillImageFileValue) > -1;\n            // console.log(this.fileRepresentation);\n\n            // wait until the resource is ready\n            setTimeout(() => {\n                // console.log(this.sequence);\n                this.loading = false;\n            }, 1000);\n        },\n        (error: ApiServiceError) => {\n            console.error(error);\n        }\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getResource",
+      "string": "getResource()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "resource",
+        "name": "resource",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>resource</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Collect all file representations (stillImage, movingImage, audio etc.) and annotations (region, sequence etc.)</p>",
+      "summary": "<p>Collect all file representations (stillImage, movingImage, audio etc.) and annotations (region, sequence etc.)</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 101,
+    "codeStart": 106,
+    "code": "collectFileRepresentationsAndFileAnnotations(resource: ReadResource): void {\n    const fileRepresentations: any[] = [];\n}\n\n\ncollectImagesAndRegionsForResource(resource: ReadResource): void {\n\n    const imgRepresentations: StillImageRepresentation[] = [];\n\n    if (resource.properties[KnoraConstants.hasStillImageFileValue] !== undefined) {\n        // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)\n        // resource has StillImageFileValues that are directly attached to it (properties)\n\n        const fileValues: ReadStillImageFileValue[] = resource.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];\n        const imagesToDisplay: ReadStillImageFileValue[] = fileValues.filter((image) => {\n            return !image.isPreview;\n        });\n\n\n        for (const img of imagesToDisplay) {\n\n            const regions: ImageRegion[] = [];\n            for (const incomingRegion of resource.incomingRegions) {\n\n                const region = new ImageRegion(incomingRegion);\n\n                regions.push(region);\n\n            }\n\n            const stillImage = new StillImageRepresentation(img, regions);\n            imgRepresentations.push(stillImage);\n\n        }\n\n\n    } else if (resource.incomingStillImageRepresentations.length > 0) {\n        // there are StillImageRepresentations pointing to this resource (incoming)\n\n        const readStillImageFileValues: ReadStillImageFileValue[] = resource.incomingStillImageRepresentations.map(\n            (stillImageRes: ReadResource) => {\n                const fileValues = stillImageRes.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];\n                // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)\n                const imagesToDisplay = fileValues.filter((image) => {\n                    return !image.isPreview;\n\n                });\n\n                return imagesToDisplay;\n            }\n        ).reduce(function (prev, curr) {\n            // transform ReadStillImageFileValue[][] to ReadStillImageFileValue[]\n            return prev.concat(curr);\n        });\n\n        for (const img of readStillImageFileValues) {\n\n            const regions: ImageRegion[] = [];\n            for (const incomingRegion of resource.incomingRegions) {\n\n                const region = new ImageRegion(incomingRegion);\n                regions.push(region);\n\n            }\n\n            const stillImage = new StillImageRepresentation(img, regions);\n            imgRepresentations.push(stillImage);\n        }\n\n    }\n\n    resource.stillImageRepresentationsToDisplay = imgRepresentations;\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "collectFileRepresentationsAndFileAnnotations",
+      "string": "collectFileRepresentationsAndFileAnnotations()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Get incoming resources: incoming links, incoming regions, incoming still image representations.</p>",
+      "summary": "<p>Get incoming resources: incoming links, incoming regions, incoming still image representations.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 181,
+    "codeStart": 184,
+    "code": "requestIncomingResources(): void {\n\n    // make sure that this.sequence has been initialized correctly\n    if (this.sequence === undefined) {\n        return;\n    }\n\n    // request incoming regions\n    if (this.sequence.resources[0].properties[KnoraConstants.hasStillImageFileValue]) {\n        // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)\n        // the resource is a StillImageRepresentation, check if there are regions pointing to it\n\n        this.getIncomingRegions(0);\n\n    } else {\n        // this resource is not a StillImageRepresentation\n        // check if there are StillImageRepresentations pointing to this resource\n\n        // this gets the first page of incoming StillImageRepresentations\n        // more pages may be requested by [[this.viewer]].\n        // TODO: for now, we begin with offset 0. This may have to be changed later (beginning somewhere in a collection)\n        // this.getIncomingStillImageRepresentations(0);\n    }\n\n    // check for incoming links for the current resource\n    this.getIncomingLinks(0);\n\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "requestIncomingResources",
+      "string": "requestIncomingResources()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "offset",
+        "name": "offset",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>offset</p>"
+      },
+      {
+        "type": "param",
+        "string": "callback",
+        "name": "callback",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>callback</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Get incoming regions for the resource.</p>",
+      "summary": "<p>Get incoming regions for the resource.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 214,
+    "codeStart": 220,
+    "code": "getIncomingRegions(offset: number, callback?: (numberOfResources: number) => void): void {\n    this._incomingService.getIncomingRegions(this.sequence.resources[0].id, offset).subscribe(\n        (regions: ReadResourcesSequence) => {\n            // update ontology information\n            this.ontologyInfo.updateOntologyInformation(regions.ontologyInformation);\n\n            // Append elements of regions.resources to resource.incoming\n            Array.prototype.push.apply(this.sequence.resources[0].incomingRegions, regions.resources);\n\n            // prepare regions to be displayed\n            this.collectImagesAndRegionsForResource(this.sequence.resources[0]);\n\n            // TODO: implement osdViewer",
+    "ctx": {
+      "type": "method",
+      "name": "getIncomingRegions",
+      "string": "getIncomingRegions()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>if (this.osdViewer) {<br />\nthis.osdViewer.updateRegions();<br />\n}</p>",
+      "summary": "<p>if (this.osdViewer) {<br />\nthis.osdViewer.updateRegions();<br />\n}</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 233,
+    "codeStart": 237,
+    "code": "// if callback is given, execute function with the amount of new images as the parameter\nif (callback !== undefined) {\n    callback(regions.resources.length);\n}\n            },\n            (error: any) => {\nconsole.error(error);\nthis.loading = false;\n            }\n        );\n    }",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "offset",
+        "name": "offset",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>offset</p>"
+      },
+      {
+        "type": "param",
+        "string": "callback",
+        "name": "callback",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>callback</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Get incoming links for a resource.</p>",
+      "summary": "<p>Get incoming links for a resource.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 249,
+    "codeStart": 255,
+    "code": "getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {\n\n    this.loading = true;\n\n    this._incomingService.getIncomingLinksForResource(this.sequence.resources[0].id, offset).subscribe(\n        (incomingResources: ReadResourcesSequence) => {\n            // update ontology information\n            this.ontologyInfo.updateOntologyInformation(incomingResources.ontologyInformation);\n\n            // Append elements incomingResources to this.sequence.incomingLinks\n            Array.prototype.push.apply(this.sequence.resources[0].incomingLinks, incomingResources.resources);\n\n            // if callback is given, execute function with the amount of incoming resources as the parameter\n            if (callback !== undefined) {\n                callback(incomingResources.resources.length);\n            }\n\n            this.loading = false;\n        },\n        (error: any) => {\n            console.error(error);\n            this.loading = false;\n        }\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getIncomingLinks",
+      "string": "getIncomingLinks()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} id Incoming resource iri",
+        "name": "id",
+        "description": "<p>Incoming resource iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "<p>Navigate to the incoming resource view.</p>",
+      "summary": "<p>Navigate to the incoming resource view.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 281,
+    "codeStart": 286,
+    "code": "openLink(id: string) {\n\n    this.loading = true;\n    this._router.navigate(['/resource/' + encodeURIComponent(id)]);\n\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "openLink",
+      "string": "openLink()"
+    }
   }
 ]
