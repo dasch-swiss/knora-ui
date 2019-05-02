@@ -8,8 +8,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { ExpertSearchComponent } from './expert-search.component';
 import { KuiCoreConfigToken, KuiCoreConfig } from '@knora/core';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
-describe('ExpertSearchComponent', () => {
+fdescribe('ExpertSearchComponent', () => {
   let component: ExpertSearchComponent;
   let fixture: ComponentFixture<ExpertSearchComponent>;
 
@@ -52,5 +54,21 @@ describe('ExpertSearchComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should reset the form', () => {
+    const ele: DebugElement = fixture.debugElement;
+
+    const resetBtn = ele.query(By.css('button'));
+    const textarea = ele.query(By.css('textarea'));
+
+    const resetEle: HTMLElement = resetBtn.nativeElement;
+    const textareaEle: HTMLElement = textarea.nativeElement;
+
+    resetEle.click();
+
+    fixture.detectChanges();
+
+    expect(textareaEle.innerHTML).toEqual('');
   });
 });
