@@ -188,6 +188,5 @@ const textProperty = new Property(
     ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
     true,
     false,
-    false,
-    []
+    false
 );
