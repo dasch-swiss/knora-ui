@@ -282,7 +282,8 @@ describe('ExtendedSearchComponent', () => {
                 false,
                 false,
                 false,
-                []),
+                []
+            ),
             'http://api.knora.org/ontology/knora-api/v2#attachedToUser': new Property(
                 'http://api.knora.org/ontology/knora-api/v2#attachedToUser',
                 'http://api.knora.org/ontology/knora-api/v2#User',
@@ -292,7 +293,8 @@ describe('ExtendedSearchComponent', () => {
                 false,
                 false,
                 false,
-                []),
+                []
+            ),
             'http://api.knora.org/ontology/knora-api/v2#creationDate': new Property(
                 'http://api.knora.org/ontology/knora-api/v2#creationDate',
                 'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
@@ -302,7 +304,8 @@ describe('ExtendedSearchComponent', () => {
                 false,
                 false,
                 false,
-                []),
+                []
+            ),
             'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue': new Property(
                 'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue',
                 'http://api.knora.org/ontology/knora-api/v2#LinkValue',
@@ -312,7 +315,8 @@ describe('ExtendedSearchComponent', () => {
                 false,
                 false,
                 true,
-                []),
+                []
+            ),
             'http://api.knora.org/ontology/knora-api/v2#hasPermissions': new Property(
                 'http://api.knora.org/ontology/knora-api/v2#hasPermissions',
                 'http://www.w3.org/2001/XMLSchema#string',
@@ -322,7 +326,8 @@ describe('ExtendedSearchComponent', () => {
                 false,
                 false,
                 false,
-                []),
+                []
+            ),
             'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo': new Property(
                 'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo',
                 'http://api.knora.org/ontology/knora-api/v2#Resource',
@@ -332,7 +337,8 @@ describe('ExtendedSearchComponent', () => {
                 false,
                 true,
                 false,
-                []),
+                []
+            ),
             'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue': new Property(
                 'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue',
                 'http://api.knora.org/ontology/knora-api/v2#LinkValue',
@@ -342,7 +348,8 @@ describe('ExtendedSearchComponent', () => {
                 false,
                 false,
                 true,
-                []),
+                []
+            ),
             'http://api.knora.org/ontology/knora-api/v2#lastModificationDate': new Property(
                 'http://api.knora.org/ontology/knora-api/v2#lastModificationDate',
                 'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
@@ -352,7 +359,8 @@ describe('ExtendedSearchComponent', () => {
                 false,
                 false,
                 false,
-                []),
+                []
+            ),
             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText': new Property(
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText',
                 'http://api.knora.org/ontology/knora-api/v2#TextValue',
@@ -362,7 +370,8 @@ describe('ExtendedSearchComponent', () => {
                 true,
                 false,
                 false,
-                [])
+                []
+            )
         };
 
         const ontoInfo = new OntologyInformation(resClassesForOnto, resClasses, properties);
