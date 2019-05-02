@@ -18,7 +18,7 @@ export class ExpertSearchComponent implements OnInit {
     /**
      * @param gravsearch Send the gravsearch query back.
      */
-    @Output() gravsearch = new EventEmitter();
+    @Output() gravsearch = new EventEmitter<string>();
 
     expertSearchForm: FormGroup;
 
