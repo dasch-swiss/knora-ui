@@ -32,6 +32,14 @@ export class ExpertSearchComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.initForm();
+    }
+
+    /**
+     * @ignore
+     * Initiate the form with predefined Gravsearch query as example.
+     */
+    private initForm() {
         this.expertSearchForm = this.fb.group({
             gravquery: [
                 `
@@ -98,4 +106,11 @@ CONSTRUCT {
         return queryTemplate + offsetTemplate;
     }
 
+    /**
+     * @ignore
+     * Reset the form to the initial state.
+     */
+    resetForm() {
+        this.initForm();
+    }
 }
