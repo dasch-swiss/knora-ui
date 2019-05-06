@@ -49,6 +49,14 @@ export class GravsearchGenerationService {
         'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.xsdString
     };
 
+    public static complexTypeToProp = {
+        'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.integerValueAsInteger,
+        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': KnoraConstants.decimalValueAsDecimal,
+        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.booleanValueAsBoolean,
+        'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.valueAsString,
+        'http://api.knora.org/ontology/knora-api/v2#UriValue': KnoraConstants.uriValueAsUri
+    };
+
     constructor(private _searchParamsService: SearchParamsService) { }
 
     /**
@@ -85,7 +93,7 @@ export class GravsearchGenerationService {
 
         // if given, create the class restriction for the main resource
         if (mainResourceClassOption !== undefined) {
-            mainResourceClass = `?mainRes a <${Utils.convertComplexKnoraApiEntityIritoSimple(mainResourceClassOption)}> .`;
+            mainResourceClass = `?mainRes a <${mainResourceClassOption}> .`;
         }
 
         // criteria for the order by statement
@@ -98,14 +106,14 @@ export class GravsearchGenerationService {
         const props: string[] = properties.map(
             (propWithVal: PropertyWithValue, index: number) => {
 
-                const propIriSimple = Utils.convertComplexKnoraApiEntityIritoSimple(propWithVal.property.id);
+                // const propIriSimple = Utils.convertComplexKnoraApiEntityIritoSimple(propWithVal.property.id);
 
-                let simpleType;
+                /*let simpleType;
                 if (!propWithVal.property.isLinkProperty) {
                     simpleType = this.convertComplexTypeToSimpleType(propWithVal.property.objectType);
                 } else {
                     simpleType = KnoraConstants.resourceSimple;
-                }
+                }*/
 
                 // represents the object of a statement
                 let propValue;
@@ -115,15 +123,15 @@ export class GravsearchGenerationService {
                     propValue = `?propVal${index}`;
                 } else {
                     // it is a linking property and the comparison operator is not Exists, use its IRI
-                    propValue = propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple);
+                    propValue = propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex);
                 }
 
                 // generate statement
-                let statement: string = `?mainRes <${propIriSimple}> ${propValue} .`;
+                let statement: string = `?mainRes <${propWithVal.property.id}> ${propValue} .`;
 
                 // type annotations
-                const propTypeAnnotation = `<${propIriSimple}> knora-api:objectType <${simpleType}> .`;
-                const propValueAnnotation = `${propValue} a <${simpleType}> .`;
+                const propTypeAnnotation = ''; //`<${propWithVal.property.id}> knora-api:objectType <${simpleType}> .`;
+                const propValueAnnotation = ''; //`${propValue} a <${simpleType}> .`;
 
                 // check if it is a linking property that has to be wrapped in a FILTER NOT EXISTS (comparison operator NOT_EQUALS) to negate it
                 if (propWithVal.property.isLinkProperty && propWithVal.valueLiteral.comparisonOperator.getClassName() === 'NotEquals') {
@@ -147,15 +155,25 @@ ${propValueAnnotation}
                 let filter: string = '';
                 // only create a FILTER if the comparison operator is not EXISTS and it is not a linking property
                 if (!propWithVal.property.isLinkProperty && propWithVal.valueLiteral.comparisonOperator.getClassName() !== 'Exists') {
+                    // generate variable for value literal
+                    const propValueLiteral = `${propValue}Literal`;
 
                     if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Like') {
+                        // generate statement to value literal
+                        filter = `${propValue} <${GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType]}> ${propValueLiteral}` + '\n';
                         // use regex function for LIKE
-                        filter = `FILTER regex(${propValue}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple)}, "i")`;
+                        filter += `FILTER regex(${propValueLiteral}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)}, "i")`;
                     } else if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Match') {
+                        // generate statement to value literal
+                        filter = `${propValue} <${GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType]}> ${propValueLiteral}` + '\n';
                         // use contains function for MATCH
-                        filter = `FILTER <${KnoraConstants.matchFunction}>(${propValue}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple)})`;
+                        filter += `FILTER <${KnoraConstants.matchFunction}>(${propValueLiteral}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
+                    } else if (propWithVal.property.objectType === KnoraConstants.DateValue) {
+                        filter = `FILTER(knora-api:toSimpleDate(${propValue}) = ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
                     } else {
-                        filter = `FILTER(${propValue} ${propWithVal.valueLiteral.comparisonOperator.type} ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple)})`;
+                        // generate statement to value literal
+                        filter = `${propValue} <${GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType]}> ${propValueLiteral}` + '\n';
+                        filter += `FILTER(${propValueLiteral} ${propWithVal.valueLiteral.comparisonOperator.type} ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
                     }
                 }
 
@@ -178,7 +196,7 @@ ORDER BY ${orderByCriteria.join(' ')}
 
         // template of the KnarQL query with dynamic components
         const gravsearchTemplate = `
-PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/v2#>
 CONSTRUCT {
 
 ?mainRes knora-api:isMainResource true .

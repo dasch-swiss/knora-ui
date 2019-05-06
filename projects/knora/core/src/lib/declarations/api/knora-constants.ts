@@ -173,7 +173,7 @@ export class KnoraConstants {
     public static geonameSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
     public static fileSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'File';
 
-    public static matchFunction: string = KnoraConstants.KnoraApiV2SimplePath + 'match';
+    public static matchFunction: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'match';
 
     public static EqualsComparisonOperator: string = '=';
     public static EqualsComparisonLabel: string = 'is equal to';

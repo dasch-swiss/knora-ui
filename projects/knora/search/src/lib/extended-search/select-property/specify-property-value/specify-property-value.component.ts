@@ -86,7 +86,6 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
             case KnoraConstants.BooleanValue:
             case KnoraConstants.Resource:
             case KnoraConstants.UriValue:
-            case KnoraConstants.IntervalValue:
                 this.comparisonOperators = [new Equals(), new NotEquals(), new Exists()];
                 break;
 
@@ -108,6 +107,7 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
             case KnoraConstants.MovingImageFileValue:
             case KnoraConstants.TextFileValue:
             case KnoraConstants.ColorValue:
+            case KnoraConstants.IntervalValue:
                 this.comparisonOperators = [new Exists()];
                 break;
 
