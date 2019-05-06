@@ -169,7 +169,7 @@ ${propValueAnnotation}
                         // use contains function for MATCH
                         filter += `FILTER <${KnoraConstants.matchFunction}>(${propValueLiteral}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
                     } else if (propWithVal.property.objectType === KnoraConstants.DateValue) {
-                        filter = `FILTER(knora-api:toSimpleDate(${propValue}) = ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
+                        filter = `FILTER(knora-api:toSimpleDate(${propValue}) ${propWithVal.valueLiteral.comparisonOperator.type} ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
                     } else {
                         // generate statement to value literal
                         filter = `${propValue} <${GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType]}> ${propValueLiteral}` + '\n';
