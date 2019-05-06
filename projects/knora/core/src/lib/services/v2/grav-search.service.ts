@@ -54,7 +54,8 @@ export class GravsearchGenerationService {
         'http://api.knora.org/ontology/knora-api/v2#DecimalValue': KnoraConstants.decimalValueAsDecimal,
         'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.booleanValueAsBoolean,
         'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.valueAsString,
-        'http://api.knora.org/ontology/knora-api/v2#UriValue': KnoraConstants.uriValueAsUri
+        'http://api.knora.org/ontology/knora-api/v2#UriValue': KnoraConstants.uriValueAsUri,
+        'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.listValueAsListNode
     };
 
     constructor(private _searchParamsService: SearchParamsService) { }
@@ -170,6 +171,8 @@ ${propValueAnnotation}
                         filter += `FILTER <${KnoraConstants.matchFunction}>(${propValueLiteral}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
                     } else if (propWithVal.property.objectType === KnoraConstants.DateValue) {
                         filter = `FILTER(knora-api:toSimpleDate(${propValue}) ${propWithVal.valueLiteral.comparisonOperator.type} ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
+                    } else if (propWithVal.property.objectType === KnoraConstants.ListValue) {
+                        filter = `${propValue} <${GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType]}> ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)}` + '\n';
                     } else {
                         // generate statement to value literal
                         filter = `${propValue} <${GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType]}> ${propValueLiteral}` + '\n';

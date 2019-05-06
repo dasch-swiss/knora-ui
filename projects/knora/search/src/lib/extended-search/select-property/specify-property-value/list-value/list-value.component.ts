@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { KnoraConstants, ListNodeV2, Property, PropertyValue, Value, ValueLiteral } from '@knora/core';
+import { IRI, KnoraConstants, ListNodeV2, Property, PropertyValue, Value } from '@knora/core';
 import { ListCacheService } from '@knora/core';
 import { MatMenuTrigger } from '@angular/material';
 
@@ -99,7 +99,7 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     getValue(): Value {
 
-        return new ValueLiteral(String(this.form.value.listValue), KnoraConstants.xsdString);
+        return new IRI(this.form.value.listValue);
     }
 
     getSelectedNode(item: ListNodeV2) {
