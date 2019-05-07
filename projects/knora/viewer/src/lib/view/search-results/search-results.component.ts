@@ -63,7 +63,7 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
     navigationSubscription: Subscription;
     pagingLimit: number = 25;
 
-    constructor (
+    constructor(
         private _route: ActivatedRoute,
         private _searchService: SearchService,
         private _searchParamsService: SearchParamsService,
@@ -73,12 +73,10 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnInit() {
-        // console.log('search results on init');
         this.getParams();
     }
 
     ngOnChanges() {
-        // console.log('search results on change');
         this.getParams();
     }
 
@@ -97,7 +95,6 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
             (params: Params) => {
                 if (!this.searchMode) {
                     this.searchMode = params.get('mode');
-                    // console.log(this.searchMode);
                 }
 
                 if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {
@@ -206,7 +203,9 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
             // perform count query
             if (this.offset === 0) {
                 this._searchService
-                    .doExtendedSearchCountQueryCountQueryResult(this.gravSearchQuery)
+                    .doExtendedSearchCountQueryCountQueryResult(
+                        this.gravSearchQuery
+                    )
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: ApiServiceError) => {
@@ -250,9 +249,7 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
             );
         }
         // append results to search results
-        if (JSON.stringify(this.result) !== JSON.stringify(searchResult.resources)) {
-            this.result = this.result.concat(searchResult.resources);
-        }
+        this.result = this.result.concat(searchResult.resources);
         // console.log('search results', this.result);
 
         this.loading = false;
