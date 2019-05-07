@@ -1,5 +1,6 @@
 # Knora-ui modules
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a0651bcc83214a5d956555ea3c545f47)](https://app.codacy.com/app/kilchenmann/Knora-ui?utm_source=github.com&utm_medium=referral&utm_content=dhlab-basel/Knora-ui&utm_campaign=Badge_Grade_Settings)
 [![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master)
 [![Build Status](https://travis-ci.com/dhlab-basel/Knora-ui.svg?branch=master)](https://travis-ci.com/dhlab-basel/Knora-ui)
 
