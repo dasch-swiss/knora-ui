@@ -34,7 +34,6 @@
   },
   "exclude": [
     "src/test.ts",
-    "**/*.spec.ts",
-    "projects/knora/action/src/lib/resource-dialog/resource-dialog.component.scss"
+    "**/*.spec.ts"
   ]
 }

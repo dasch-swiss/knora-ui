@@ -20,4 +20,6 @@ export * from './lib/extended-search/select-property/specify-property-value/text
 export * from './lib/extended-search/select-property/specify-property-value/uri-value/uri-value.component';
 export * from './lib/extended-search/select-resource-class/select-resource-class.component';
 
+export * from './lib/expert-search/expert-search.component';
+
 export * from './lib/search.module';

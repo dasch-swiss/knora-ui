@@ -25,14 +25,19 @@ import { SelectResourceClassComponent } from './select-resource-class/select-res
 export class ExtendedSearchComponent implements OnInit {
 
     /**
-     * Route to navigate after search. This route path should contain a component for search results.
-     *
-     * @param  {string} route
+     * @param  {string} route Route to navigate after search. This route path should contain a component for search results.
      */
-    @Input() route;
+    @Input() route?;
 
-    // trigger toggle for extended search form
+    /**
+     * @param  {boolean} toggleExtendedSearchForm Trigger toggle for extended search form.
+     */
     @Output() toggleExtendedSearchForm = new EventEmitter<boolean>();
+
+    /**
+     * @param  {string} gravsearch Send the gravsearch query back.
+     */
+    @Output() gravsearch = new EventEmitter<string>();
 
     // all available ontologies
     ontologies: Array<OntologyMetadata> = [];
@@ -225,7 +230,12 @@ export class ExtendedSearchComponent implements OnInit {
 
         const gravsearch = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);
 
-        this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });
+        if (this.route) {
+            this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });
+        } else {
+            this.gravsearch.emit(gravsearch);
+        }
+
 
         // toggle extended search form
         this.toggleExtendedSearchForm.emit(true);

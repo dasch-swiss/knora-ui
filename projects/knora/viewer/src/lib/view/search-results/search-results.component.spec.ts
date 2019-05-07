@@ -5,7 +5,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { KeyPipe, ProgressIndicatorComponent } from '@knora/action';
 import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
 import { SearchResultsComponent } from './search-results.component';
 import { ListViewComponent } from '../list-view/list-view.component';
@@ -15,6 +14,7 @@ import { GraphViewComponent } from '../graph-view/graph-view.component';
 import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
 import { DateValueComponent } from '../../property/date-value/date-value.component';
 import { of } from 'rxjs';
+import { KuiActionModule } from 'projects/knora/action/src/public_api';
 
 describe('SearchResultsComponent', () => {
     let component: SearchResultsComponent;
@@ -26,6 +26,7 @@ describe('SearchResultsComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
+                KuiActionModule,
                 MatCardModule,
                 MatIconModule,
                 MatListModule,
@@ -36,9 +37,7 @@ describe('SearchResultsComponent', () => {
             ],
             declarations: [
                 DateValueComponent,
-                KeyPipe,
                 ListViewComponent,
-                ProgressIndicatorComponent,
                 SearchResultsComponent,
                 TextValueAsHtmlComponent,
                 GridViewComponent,
@@ -66,8 +65,7 @@ describe('SearchResultsComponent', () => {
                 },
                 HttpClient
             ]
-        })
-            .compileComponents();
+        }).compileComponents();
     }));
 
     beforeEach(() => {
