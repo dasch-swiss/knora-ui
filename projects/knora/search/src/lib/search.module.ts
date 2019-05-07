@@ -6,8 +6,10 @@ import {
     MatButtonModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatExpansionModule,
     MatFormFieldModule,
-    MatIconModule, MatInputModule,
+    MatIconModule,
+    MatInputModule,
     MatListModule,
     MatMenuModule,
     MatSelectModule,
@@ -40,6 +42,7 @@ import { UriValueComponent } from './extended-search/select-property/specify-pro
 import { HeaderComponent } from './extended-search/select-property/specify-property-value/date-value/header-calendar/header-calendar.component';
 import { ListValueComponent } from './extended-search/select-property/specify-property-value/list-value/list-value.component';
 import { ListDisplayComponent } from './extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
+import { ExpertSearchComponent } from './expert-search/expert-search.component';
 
 @NgModule({
     imports: [
@@ -49,6 +52,7 @@ import { ListDisplayComponent } from './extended-search/select-property/specify-
         MatButtonModule,
         MatCheckboxModule,
         MatDatepickerModule,
+        MatExpansionModule,
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
@@ -81,14 +85,16 @@ import { ListDisplayComponent } from './extended-search/select-property/specify-
         FulltextSearchComponent,
         SearchPanelComponent,
         ListValueComponent,
-        ListDisplayComponent
+        ListDisplayComponent,
+        ExpertSearchComponent
     ],
     exports: [
         SearchComponent,
         SearchPanelComponent,
         FulltextSearchComponent,
         ExtendedSearchComponent,
-        DateValueComponent
+        DateValueComponent,
+        ExpertSearchComponent
     ],
     entryComponents: [
         HeaderComponent

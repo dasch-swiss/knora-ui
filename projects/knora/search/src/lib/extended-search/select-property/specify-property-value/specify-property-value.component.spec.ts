@@ -197,5 +197,5 @@ const textProperty = new Property(
     true,
     false,
     false,
-    []);
-
+    []
+);

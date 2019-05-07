@@ -299,7 +299,8 @@ const initProps = {
         false,
         false,
         false,
-        []),
+        []
+    ),
     'http://api.knora.org/ontology/knora-api/v2#attachedToUser': new Property(
         'http://api.knora.org/ontology/knora-api/v2#attachedToUser',
         'http://api.knora.org/ontology/knora-api/v2#User',
@@ -309,7 +310,8 @@ const initProps = {
         false,
         false,
         false,
-        []),
+        []
+    ),
     'http://api.knora.org/ontology/knora-api/v2#creationDate': new Property(
         'http://api.knora.org/ontology/knora-api/v2#creationDate',
         'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
@@ -319,7 +321,8 @@ const initProps = {
         false,
         false,
         false,
-        []),
+        []
+    ),
     'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue': new Property(
         'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue',
         'http://api.knora.org/ontology/knora-api/v2#LinkValue',
@@ -329,7 +332,8 @@ const initProps = {
         false,
         false,
         true,
-        []),
+        []
+    ),
     'http://api.knora.org/ontology/knora-api/v2#hasPermissions': new Property(
         'http://api.knora.org/ontology/knora-api/v2#hasPermissions',
         'http://www.w3.org/2001/XMLSchema#string',
@@ -339,7 +343,8 @@ const initProps = {
         false,
         false,
         false,
-        []),
+        []
+    ),
     'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo': new Property(
         'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo',
         'http://api.knora.org/ontology/knora-api/v2#Resource',
@@ -349,7 +354,8 @@ const initProps = {
         false,
         true,
         false,
-        []),
+        []
+    ),
     'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue': new Property(
         'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue',
         'http://api.knora.org/ontology/knora-api/v2#LinkValue',
@@ -359,7 +365,8 @@ const initProps = {
         false,
         false,
         true,
-        []),
+        []
+    ),
     'http://api.knora.org/ontology/knora-api/v2#lastModificationDate': new Property(
         'http://api.knora.org/ontology/knora-api/v2#lastModificationDate',
         'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
@@ -369,7 +376,8 @@ const initProps = {
         false,
         false,
         false,
-        []),
+        []
+    ),
     'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText': new Property(
         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText',
         'http://api.knora.org/ontology/knora-api/v2#TextValue',
@@ -379,7 +387,8 @@ const initProps = {
         true,
         false,
         false,
-        []),
+        []
+    ),
     'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger': new Property(
         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger',
         'http://api.knora.org/ontology/knora-api/v2#IntValue',
@@ -389,7 +398,8 @@ const initProps = {
         true,
         false,
         false,
-        []),
+        []
+    ),
     'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething': new Property(
         'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething',
         'http://0.0.0.0:3333/ontology/0001/something/v2#Something',
@@ -399,7 +409,8 @@ const initProps = {
         true,
         true,
         false,
-        []),
+        []
+    ),
     'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomethingValue': new Property(
         'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomethingValue',
         'http://api.knora.org/ontology/knora-api/v2#LinkValue',
@@ -409,5 +420,7 @@ const initProps = {
         true,
         false,
         true,
-        [])
+        []
+    )
 };
+
