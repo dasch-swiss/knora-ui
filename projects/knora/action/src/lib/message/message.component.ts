@@ -44,6 +44,12 @@ export class MessageComponent implements OnInit {
      */
     @Input() short?: boolean = false;
 
+    /**
+     * @param  {boolean=false;} medium?
+     * @returns boolean
+     */
+    @Input() medium?: boolean = false;
+
     //    message: MessageData;
 
     // statusMsg: any = defaultMsgs;
@@ -93,11 +99,11 @@ export class MessageComponent implements OnInit {
         }
     };
 
-    constructor(
+    constructor (
         private _router: Router,
         private _location: Location,
         private _activatedRoute: ActivatedRoute
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.statusMsg = defaultMsgs;
@@ -129,11 +135,27 @@ export class MessageComponent implements OnInit {
             case s > 0 && s < 300:
                 // the message is a note
                 tmpMsg.type = 'note';
+                tmpMsg.statusMsg =
+                    msg.statusMsg !== undefined
+                        ? msg.statusMsg
+                        : this.statusMsg[s].message;
+                tmpMsg.statusText =
+                    msg.statusText !== undefined
+                        ? msg.statusText
+                        : this.statusMsg[s].description;
                 // console.log('the message is a note');
                 break;
             case s >= 300 && s < 400:
                 // the message is a warning
                 tmpMsg.type = 'warning';
+                tmpMsg.statusMsg =
+                    msg.statusMsg !== undefined
+                        ? msg.statusMsg
+                        : this.statusMsg[s].message;
+                tmpMsg.statusText =
+                    msg.statusText !== undefined
+                        ? msg.statusText
+                        : this.statusMsg[s].description;
                 // console.log('the message is a warning');
 
                 break;
@@ -150,8 +172,10 @@ export class MessageComponent implements OnInit {
                         ? msg.statusText
                         : this.statusMsg[s].description;
                 tmpMsg.footnote =
-                    this.footnote.text + ' ' + this.footnote.team.knora;
-                this.showLinks = true;
+                    msg.footnote !== undefined
+                        ? msg.footnote
+                        : this.footnote.text + ' ' + this.footnote.team.knora;
+                this.showLinks = !this.medium;
 
                 break;
             case s >= 500 && s < 600:
