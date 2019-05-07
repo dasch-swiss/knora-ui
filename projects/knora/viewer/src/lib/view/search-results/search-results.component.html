@@ -63,13 +63,12 @@
 
     <!-- In case of 0 result -->
     <ng-template #noResult>
-        <kui-message [message]="{status: 404, statusMsg: 'No results', statusText: 'Sorry, but we couldn\'t find any results matching your search'}"
-                     [medium]="true"></kui-message>
-        <!-- <p><strong>No result</strong></p> -->
+        <p><strong>No result</strong></p>
     </ng-template>
 
 </div>
 
 <!-- Error message -->
-<kui-message *ngIf="errorMessage" [message]="{status: 400, statusText: errorMessage.errorInfo}" [medium]="true">
-</kui-message>
+<div *ngIf="errorMessage">
+    <p>There is an error: <br>{{errorMessage.errorInfo}}</p>
+</div>
