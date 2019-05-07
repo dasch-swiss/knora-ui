@@ -38,7 +38,6 @@ import { MessageComponent } from './message/message.component';
         MatIconModule,
         MatListModule,
         MatMenuModule
-
     ],
     declarations: [
         ProgressIndicatorComponent,
