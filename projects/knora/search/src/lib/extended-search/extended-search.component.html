@@ -37,12 +37,18 @@
     </button>
   </div> -->
 
-  <button class="extended-buttons extended-search-button" mat-stroked-button color="primary" type="submit" [disabled]="!formValid">
-    Search
-  </button>
-  <button class="extended-buttons reset" mat-stroked-button type="button" (click)="resetForm()" [disabled]="this.activeOntology === undefined">
-    Reset
-  </button>
+  <div class="action-panel">
+    <button class="extended-buttons reset" mat-button type="button" (click)="resetForm()" [disabled]="this.activeOntology === undefined">
+      Reset
+    </button>
+    <span class="fill-remaining-space"></span>
+    <button class="extended-buttons extended-search-button" mat-raised-button color="primary" type="submit" [disabled]="!formValid">
+      Search
+    </button>
+  </div>
+
+
+
 
 
 </form>
