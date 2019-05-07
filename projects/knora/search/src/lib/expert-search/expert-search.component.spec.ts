@@ -11,7 +11,7 @@ import { KuiCoreConfigToken, KuiCoreConfig } from '@knora/core';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('ExpertSearchComponent', () => {
+describe('ExpertSearchComponent', () => {
   let component: ExpertSearchComponent;
   let fixture: ComponentFixture<ExpertSearchComponent>;
 
