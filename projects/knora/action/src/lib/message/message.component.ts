@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import defaultMsgs from '../../assets/i18n/statusMsg.json';
+// import defaultMsgs from '../../assets/i18n/statusMsg.json';
+import { StatusMsg } from '../../assets/i18n/statusMsg';
 
 /**
  * @ignore
@@ -102,11 +103,12 @@ export class MessageComponent implements OnInit {
     constructor (
         private _router: Router,
         private _location: Location,
-        private _activatedRoute: ActivatedRoute
+        private _activatedRoute: ActivatedRoute,
+        private _status: StatusMsg
     ) { }
 
     ngOnInit() {
-        this.statusMsg = defaultMsgs;
+        this.statusMsg = this._status.default;
 
         if (!this.message) {
             this._activatedRoute.data.subscribe((data: any) => {
