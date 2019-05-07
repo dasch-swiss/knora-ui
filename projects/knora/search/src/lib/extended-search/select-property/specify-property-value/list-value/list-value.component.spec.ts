@@ -63,7 +63,15 @@ describe('ListValueComponent', () => {
             'tree list'
         );
 
+        testList.children.push(new ListNodeV2(
+            'http://rdfh.ch/lists/0001/treeList/01',
+            'tree list 01',
+            1,
+            'http://rdfh.ch/lists/0001/treeList'
+        ));
+
         spyListCacheService.getList.and.returnValue(of(testList));
+
     }));
 
     beforeEach(() => {
@@ -77,6 +85,13 @@ describe('ListValueComponent', () => {
     it('should create', () => {
         // access the test host component's child
         expect(testHostComponent.listValue).toBeTruthy();
+    });
+
+    it('should have called ListCacheService\'s getList method', () => {
+        const listCacheService = TestBed.get(ListCacheService);
+
+        expect(listCacheService.getList).toHaveBeenCalledTimes(1);
+        expect(listCacheService.getList).toHaveBeenCalledWith('http://rdfh.ch/lists/0001/treeList');
     });
 });
 
