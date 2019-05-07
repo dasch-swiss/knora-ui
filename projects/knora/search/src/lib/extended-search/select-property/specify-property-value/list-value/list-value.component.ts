@@ -41,7 +41,7 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
             const listNodeIri = guiAttr[0].substr(7, guiAttr[0].length - (1 + 7)); // hlist=<>, get also rid of <>
             return listNodeIri;
         } else {
-            console.log('No root node Oro given for property');
+            console.log('No root node Iri given for property');
         }
     }
 
@@ -57,34 +57,12 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
         });
 
         const rootNodeIri = this.getRootNodeIri();
-        // console.log('rootNodeIri', rootNodeIri);
 
         this._listCacheService.getList(rootNodeIri).subscribe(
             (list: ListNodeV2) => {
-                // console.log('list node v2: ', list);
                 this.listRootNode = list;
             }
         );
-
-        /*
-        this.form = this.fb.group({
-            listValue: [null, Validators.compose([Validators.required])]
-        });
-
-        this.form.valueChanges.subscribe(
-            (data) => {
-                this.activeNode = data.listValue;
-            }
-        );
-
-        // get list's root node Iri
-
-
-        resolvedPromise.then(() => {
-            // add form to the parent form group
-            this.formGroup.addControl('propValue', this.form);
-        });
-        */
 
     }
 
@@ -98,7 +76,6 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
     }
 
     getValue(): Value {
-
         return new IRI(this.form.value.listValue);
     }
 
@@ -107,7 +84,6 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
         this.selectedNode = item;
 
         this.form.controls['listValue'].setValue(item.id);
-
     }
 
 }

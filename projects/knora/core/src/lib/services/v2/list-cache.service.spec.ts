@@ -44,7 +44,6 @@ describe('ListCacheService', () => {
     });
 
     it('should get a list from Knora and cache it', () => {
-        const expectedList = require('../../test-data/list/treeList.json');
 
         listCacheService.getList('http://rdfh.ch/lists/0001/treeList').subscribe(
             (list: ListNodeV2) => {
