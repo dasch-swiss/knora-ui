@@ -39,15 +39,16 @@ export class MessageComponent implements OnInit {
     @Input() message: KuiMessageData = new KuiMessageData();
 
     /**
-     * Show short message only
+     * Show short message only: it can be used in form to show if a post was successfull or not.
      *
      * @param  {boolean} [short]
      */
     @Input() short?: boolean = false;
 
     /**
-     * @param  {boolean=false;} medium?
-     * @returns boolean
+     * Show medium message: a message box without footnote and withou links.
+     *
+     * @param  {boolean} [medium]
      */
     @Input() medium?: boolean = false;
 
