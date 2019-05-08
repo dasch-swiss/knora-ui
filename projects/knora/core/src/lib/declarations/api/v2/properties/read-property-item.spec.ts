@@ -536,18 +536,21 @@ describe('ReadPropertyItem', () => {
 
 const testResource = new ReadResource(
     'http://rdfh.ch/test',
-    'http://0.0.0.0:3336/ark:/72163/1/0803/test',
     'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
     'test resource',
-    'http://rdfh.ch/users/test',
-    '2019-04-05T14:06:51.015685Z',
-    undefined,
-    'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser',
     [],
     [],
     [],
     [],
-    {}
+    {},
+    {
+        ark: 'http://0.0.0.0:3336/ark:/72163/1/0803/test',
+        user: 'http://rdfh.ch/users/test',
+        creation: '2019-04-05T14:06:51.015685Z',
+        lastModification: undefined,
+        permissions:
+            'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser'
+    }
 );
 
 const resClasses = {

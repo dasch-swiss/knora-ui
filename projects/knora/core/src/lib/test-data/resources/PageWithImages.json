@@ -49,7 +49,7 @@
       "@type": "incunabula:book",
       "knora-api:arkUrl": {
         "@type": "xsd:anyURI",
-        "@value": "http://0.0.0.0:3336/ark:/72163/1/0803/8be1b7cf7103"
+        "@value": "http://0.0.0.0:3336/ark:/72163/1/0803/8be1b7cf7103G"
       },
       "knora-api:attachedToProject": {
         "@id": "http://rdfh.ch/projects/0803"
@@ -76,7 +76,7 @@
   },
   "knora-api:arkUrl": {
     "@type": "xsd:anyURI",
-    "@value": "http://0.0.0.0:3336/ark:/72163/1/0803/00505cf0a803"
+    "@value": "http://0.0.0.0:3336/ark:/72163/1/0803/00505cf0a803D"
   },
   "knora-api:attachedToProject": {
     "@id": "http://rdfh.ch/projects/0803"

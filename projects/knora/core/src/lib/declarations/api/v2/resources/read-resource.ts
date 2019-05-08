@@ -1,6 +1,27 @@
 import { ReadProperties, StillImageRepresentation } from '../../../';
 
 /**
+ * Represents metadata of a resource.
+ */
+export class MetadataResource {
+    /**
+     *
+     * @param {string} ark the resource's Ark.
+     * @param {string} user the resource's attached user IRI.
+     * @param {string} creation the resource's creation date (an xsd:dateTimeStamp representation).
+     * @param {string} lastModification if any, the resource's last modification date (an xsd:dateTimeStamp representation).
+     * @param {string} permissions the resource's permissions literal value (as describe in Knora documentaiton).
+     */
+    constructor(
+        public readonly ark: string,
+        public readonly user: string,
+        public readonly creation: string,
+        public readonly lastModification: string,
+        public readonly permissions: string
+    ) {}
+}
+
+/**
  * Represents a resource and its properties.
  */
 export class ReadResource {
@@ -14,16 +35,12 @@ export class ReadResource {
      * @param {Array<ReadResource>} incomingLinks resources pointing to this resource, if any (possibly to be queried by additional requests).
      * @param {StillImageRepresentation[]} stillImageRepresentationsToDisplay  still image representations to be displayed for this resource, if any (possibly to be queried by additional requests).
      * @param {ReadProperties} properties the resources's properties.
+     * @param {MetadataResource} metadata the resources's metadata.
      */
     constructor(
         public readonly id: string,
-        public readonly ark: string,
         public readonly type: string,
         public readonly label: string,
-        public readonly user: string,
-        public readonly creation: string,
-        public readonly lastModification: string,
-        public readonly permissions: string,
         // TODO: we should use a more generic object here; or what's about incomingSequences?
         public incomingRegions: Array<ReadResource>,
         // TODO: we should use a more generic object here, something like incomingMedia or incomingFileRepresentation
@@ -32,7 +49,8 @@ export class ReadResource {
         // TODO: we should use a more generic object here, something like media or fileRepresentation
         public stillImageRepresentationsToDisplay: StillImageRepresentation[],
         // TODO: the properties should be a list: Array<ReadProperties> or not?
-        public readonly properties?: ReadProperties
+        public readonly properties?: ReadProperties,
+        public readonly metadata?: MetadataResource
     ) {}
 }
 

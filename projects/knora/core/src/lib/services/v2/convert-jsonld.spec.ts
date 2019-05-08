@@ -40,7 +40,8 @@ describe('ConvertJSONLD', () => {
 
         promise.then(compacted => {
             const receivedResource: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(
-                compacted
+                compacted,
+                true
             );
 
             expect(receivedResource.numberOfResources).toEqual(1);
@@ -68,13 +69,8 @@ describe('ConvertJSONLD', () => {
                         'http://rdfh.ch/0802/Vcd2vupmRuOserhk03c7Vw',
                         new ReadResource(
                             'http://rdfh.ch/0802/Vcd2vupmRuOserhk03c7Vw',
-                            'http://0.0.0.0:3336/ark:/72163/1/0802/Vcd2vupmRuOserhk03c7Vw',
                             'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
                             'Leonhard Euler',
-                            'http://rdfh.ch/users/Q-6Sssu8TBWrcCGuVJ0lVw',
-                            '2018-08-27T17:32:12.822Z',
-                            undefined,
-                            'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser',
                             [],
                             [],
                             [],
@@ -90,13 +86,8 @@ describe('ConvertJSONLD', () => {
                         'http://rdfh.ch/0802/shubb5TjTnu84MqkM6uHlA',
                         new ReadResource(
                             'http://rdfh.ch/0802/shubb5TjTnu84MqkM6uHlA',
-                            'http://0.0.0.0:3336/ark:/72163/1/0802/shubb5TjTnu84MqkM6uHlA',
                             'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
                             'Christian Goldbach',
-                            'http://rdfh.ch/users/Q-6Sssu8TBWrcCGuVJ0lVw',
-                            '2018-08-27T17:32:12.822Z',
-                            undefined,
-                            'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser',
                             [],
                             [],
                             [],
@@ -158,13 +149,8 @@ describe('ConvertJSONLD', () => {
                         {
                             'http://rdfh.ch/0801/f-2Ta0NRSBikdqXivSLuMw': new ReadResource(
                                 'http://rdfh.ch/0801/f-2Ta0NRSBikdqXivSLuMw',
-                                'http://0.0.0.0:3336/ark:/72163/1/0801/f-2Ta0NRSBikdqXivSLuMw',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#endnote',
                                 'L176 note-5',
-                                'http://rdfh.ch/users/PSGbemdjZi4kQ6GHJVkLGE',
-                                '2018-08-27T17:43:04.192Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -173,13 +159,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0801/_vmiVEfoSw-BA2_Ppz2nPQ': new ReadResource(
                                 'http://rdfh.ch/0801/_vmiVEfoSw-BA2_Ppz2nPQ',
-                                'http://0.0.0.0:3336/ark:/72163/1/0801/_vmiVEfoSw-BA2_Ppz2nPQ',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#endnote',
                                 'L176 note-3',
-                                'http://rdfh.ch/users/PSGbemdjZi4kQ6GHJVkLGE',
-                                '2018-08-27T17:43:04.192Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -188,13 +169,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0801/0m02gFutQ7yEt559a2uOlg': new ReadResource(
                                 'http://rdfh.ch/0801/0m02gFutQ7yEt559a2uOlg',
-                                'http://0.0.0.0:3336/ark:/72163/1/0801/0m02gFutQ7yEt559a2uOlg',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#endnote',
                                 'L176 note-2',
-                                'http://rdfh.ch/users/PSGbemdjZi4kQ6GHJVkLGE',
-                                '2018-08-27T17:43:04.192Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -203,13 +179,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0801/sd6JbWUlTvig8vWIqZy6-Q': new ReadResource(
                                 'http://rdfh.ch/0801/sd6JbWUlTvig8vWIqZy6-Q',
-                                'http://0.0.0.0:3336/ark:/72163/1/0801/sd6JbWUlTvig8vWIqZy6-Q',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#endnote',
                                 'L176 note-4',
-                                'http://rdfh.ch/users/PSGbemdjZi4kQ6GHJVkLGE',
-                                '2018-08-27T17:43:04.192Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -218,13 +189,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0801/2BZx-h5vTcCXaqxaSXjoXA': new ReadResource(
                                 'http://rdfh.ch/0801/2BZx-h5vTcCXaqxaSXjoXA',
-                                'http://0.0.0.0:3336/ark:/72163/1/0801/2BZx-h5vTcCXaqxaSXjoXA',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#endnote',
                                 'L176 note-6',
-                                'http://rdfh.ch/users/PSGbemdjZi4kQ6GHJVkLGE',
-                                '2018-08-27T17:43:04.192Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -233,13 +199,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0801/KPOPzTVLSdyxiScitUAyTQ': new ReadResource(
                                 'http://rdfh.ch/0801/KPOPzTVLSdyxiScitUAyTQ',
-                                'http://0.0.0.0:3336/ark:/72163/1/0801/KPOPzTVLSdyxiScitUAyTQ',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#endnote',
                                 'L176 note-1',
-                                'http://rdfh.ch/users/PSGbemdjZi4kQ6GHJVkLGE',
-                                '2018-08-27T17:43:04.192Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -248,13 +209,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0802/BqZGx2KmRS2mIMK_DUxapg': new ReadResource(
                                 'http://rdfh.ch/0802/BqZGx2KmRS2mIMK_DUxapg',
-                                'http://0.0.0.0:3336/ark:/72163/1/0802/BqZGx2KmRS2mIMK_DUxapg',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
                                 'Friedrich II.',
-                                'http://rdfh.ch/users/Q-6Sssu8TBWrcCGuVJ0lVw',
-                                '2018-08-27T17:32:12.822Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -263,13 +219,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0802/UWsNivv1R46modSygvjOLA': new ReadResource(
                                 'http://rdfh.ch/0802/UWsNivv1R46modSygvjOLA',
-                                'http://0.0.0.0:3336/ark:/72163/1/0802/UWsNivv1R46modSygvjOLA',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
                                 'Jean Neaulme',
-                                'http://rdfh.ch/users/Q-6Sssu8TBWrcCGuVJ0lVw',
-                                '2018-08-27T17:32:12.822Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -278,13 +229,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0802/CKzU513NSWyVhwe0gpbMWg': new ReadResource(
                                 'http://rdfh.ch/0802/CKzU513NSWyVhwe0gpbMWg',
-                                'http://0.0.0.0:3336/ark:/72163/1/0802/CKzU513NSWyVhwe0gpbMWg',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
                                 'Johann Carl (the Elder) Spener',
-                                'http://rdfh.ch/users/Q-6Sssu8TBWrcCGuVJ0lVw',
-                                '2018-08-27T17:32:12.822Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -293,13 +239,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0802/shgx0f71R66N_noFNc3gkg': new ReadResource(
                                 'http://rdfh.ch/0802/shgx0f71R66N_noFNc3gkg',
-                                'http://0.0.0.0:3336/ark:/72163/1/0802/shgx0f71R66N_noFNc3gkg',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
                                 'Johann Albrecht Euler',
-                                'http://rdfh.ch/users/Q-6Sssu8TBWrcCGuVJ0lVw',
-                                '2018-08-27T17:32:12.822Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -308,13 +249,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0802/iJK4gffNTW-18RsNf8JLbA': new ReadResource(
                                 'http://rdfh.ch/0802/iJK4gffNTW-18RsNf8JLbA',
-                                'http://0.0.0.0:3336/ark:/72163/1/0802/iJK4gffNTW-18RsNf8JLbA',
                                 'http://0.0.0.0:3333/ontology/0802/biblio/v2#Book',
                                 'Jordancl 1704',
-                                'http://rdfh.ch/users/Q-6Sssu8TBWrcCGuVJ0lVw',
-                                '2018-08-27T17:35:02.004Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -323,13 +259,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0802/Hju9FefOQ5KgnXUHnYqUVA': new ReadResource(
                                 'http://rdfh.ch/0802/Hju9FefOQ5KgnXUHnYqUVA',
-                                'http://0.0.0.0:3336/ark:/72163/1/0802/Hju9FefOQ5KgnXUHnYqUVA',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
                                 'Claude Jordan',
-                                'http://rdfh.ch/users/Q-6Sssu8TBWrcCGuVJ0lVw',
-                                '2018-08-27T17:32:12.822Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -338,13 +269,8 @@ describe('ConvertJSONLD', () => {
                             ),
                             'http://rdfh.ch/0802/6dLVf6BjRPCmndIwhFZLEw': new ReadResource(
                                 'http://rdfh.ch/0802/6dLVf6BjRPCmndIwhFZLEw',
-                                'http://0.0.0.0:3336/ark:/72163/1/0802/6dLVf6BjRPCmndIwhFZLEw',
                                 'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
                                 'Etienne de Bourdeaux',
-                                'http://rdfh.ch/users/Q-6Sssu8TBWrcCGuVJ0lVw',
-                                '2018-08-27T17:32:12.822Z',
-                                undefined,
-                                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser,knora-base:UnknownUser',
                                 [],
                                 [],
                                 [],
@@ -358,18 +284,22 @@ describe('ConvertJSONLD', () => {
 
             const EulerLetterResourceExpected = new ReadResource(
                 'http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg',
-                'http://0.0.0.0:3336/ark:/72163/1/0801/j4BrggcKS0CltUf1Ssl9Jg',
                 'http://0.0.0.0:3333/ontology/0801/beol/v2#letter',
                 'L176 Original',
-                'http://rdfh.ch/users/PSGbemdjZi4kQ6GHJVkLGE',
-                '2018-08-27T17:43:04.192Z',
-                '2018-08-27T17:43:05Z',
-                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                 [],
                 [],
                 [],
                 [],
-                expectedProps
+                expectedProps,
+                {
+                    ark:
+                        'http://0.0.0.0:3336/ark:/72163/1/0801/j4BrggcKS0CltUf1Ssl9Jg',
+                    user: 'http://rdfh.ch/users/PSGbemdjZi4kQ6GHJVkLGE',
+                    creation: '2018-08-27T17:43:04.192Z',
+                    lastModification: undefined,
+                    permissions:
+                        'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser'
+                }
             );
 
             expect(receivedResource.resources[0].id).toEqual(
@@ -384,20 +314,20 @@ describe('ConvertJSONLD', () => {
                 EulerLetterResourceExpected.label
             );
 
-            expect(receivedResource.resources[0].ark).toEqual(
-                EulerLetterResourceExpected.ark
+            expect(receivedResource.resources[0].metadata.ark).toEqual(
+                EulerLetterResourceExpected.metadata.ark
             );
-
-            expect(receivedResource.resources[0].creation).toEqual(
-                EulerLetterResourceExpected.creation
+            expect(receivedResource.resources[0].metadata.user).toEqual(
+                EulerLetterResourceExpected.metadata.user
             );
-
-            expect(receivedResource.resources[0].lastModification).toEqual(
-                EulerLetterResourceExpected.lastModification
+            expect(receivedResource.resources[0].metadata.creation).toEqual(
+                EulerLetterResourceExpected.metadata.creation
             );
-
-            expect(receivedResource.resources[0].permissions).toEqual(
-                EulerLetterResourceExpected.permissions
+            expect(
+                receivedResource.resources[0].metadata.lastModification
+            ).toEqual(EulerLetterResourceExpected.metadata.lastModification);
+            expect(receivedResource.resources[0].metadata.permissions).toEqual(
+                EulerLetterResourceExpected.metadata.permissions
             );
 
             expect(
@@ -554,13 +484,8 @@ describe('ConvertJSONLD', () => {
                         'http://rdfh.ch/0001/0C-0L1kORryKzJAJxxRyRQ',
                         new ReadResource(
                             'http://rdfh.ch/0001/0C-0L1kORryKzJAJxxRyRQ',
-                            'http://0.0.0.0:3336/ark:/72163/1/0001/0C-0L1kORryKzJAJxxRyRQ',
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing',
                             'Sierra',
-                            'http://rdfh.ch/users/9XBCrDV3SRa7kS1WwynB4Q',
-                            '2016-10-17T17:16:04.916Z',
-                            undefined,
-                            'V knora-base:UnknownUser|M knora-base:ProjectMember',
                             [],
                             [],
                             [],
@@ -595,13 +520,8 @@ describe('ConvertJSONLD', () => {
 
             const ThingResourceExpected = new ReadResource(
                 'http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw',
-                'http://0.0.0.0:3336/ark:/72163/1/0001/H6gBWUuJSuuO-CilHV8kQw',
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing',
                 'testding',
-                'http://rdfh.ch/users/BhkfBc3hTeS_IDo-JgXRbQ',
-                '2018-05-28T15:52:03.897Z',
-                undefined,
-                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                 [],
                 [],
                 [],
@@ -673,13 +593,8 @@ describe('ConvertJSONLD', () => {
                         'http://rdfh.ch/0803/50e7460a7203',
                         new ReadResource(
                             'http://rdfh.ch/0803/50e7460a7203',
-                            'http://0.0.0.0:3336/ark:/72163/1/0803/50e7460a7203',
                             'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page',
                             'vorderer Spiegel',
-                            'http://rdfh.ch/users/91e19f1e01',
-                            '2016-03-02T15:05:43Z',
-                            undefined,
-                            'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                             [],
                             [],
                             [],
@@ -700,13 +615,8 @@ describe('ConvertJSONLD', () => {
 
             const BookResourceWithIncomingExpected = new ReadResource(
                 'http://rdfh.ch/0803/8be1b7cf7103',
-                'http://0.0.0.0:3336/ark:/72163/1/0803/8be1b7cf7103',
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
                 '[Das] Narrenschiff (lat.)',
-                'http://rdfh.ch/users/91e19f1e01',
-                '2016-03-02T15:05:43Z',
-                undefined,
-                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                 [],
                 [],
                 [],
@@ -762,13 +672,8 @@ describe('ConvertJSONLD', () => {
 
             const BookResourceWithIncomingExpected = new ReadResource(
                 'http://rdfh.ch/0803/8be1b7cf7103',
-                'http://0.0.0.0:3336/ark:/72163/1/0803/8be1b7cf7103',
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
                 '[Das] Narrenschiff (lat.)',
-                'http://rdfh.ch/users/91e19f1e01',
-                '2016-03-02T15:05:43Z',
-                undefined,
-                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                 [],
                 [],
                 [],
@@ -835,13 +740,8 @@ describe('ConvertJSONLD', () => {
                         'http://rdfh.ch/0803/8be1b7cf7103',
                         new ReadResource(
                             'http://rdfh.ch/0803/8be1b7cf7103',
-                            'http://0.0.0.0:3336/ark:/72163/1/0803/8be1b7cf7103',
                             'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
                             '[Das] Narrenschiff (lat.)',
-                            'http://rdfh.ch/users/91e19f1e01',
-                            '2016-03-02T15:05:43Z',
-                            undefined,
-                            'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                             [],
                             [],
                             [],
@@ -881,13 +781,8 @@ describe('ConvertJSONLD', () => {
 
             const expectedPage = new ReadResource(
                 'http://rdfh.ch/0803/00505cf0a803',
-                'http://0.0.0.0:3336/ark:/72163/1/0803/00505cf0a803',
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#page',
                 'p7v',
-                'http://rdfh.ch/users/91e19f1e01',
-                '2016-03-02T15:05:46Z',
-                undefined,
-                'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser',
                 [],
                 [],
                 [],

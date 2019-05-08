@@ -1,6 +1,7 @@
 import {
     CountQueryResult,
     KnoraConstants,
+    MetadataResource,
     ReadBooleanValue,
     ReadColorValue,
     ReadDateValue,
@@ -54,6 +55,18 @@ export module ConvertJSONLD {
         );
     };
 
+    function constructMetadata(resourceJSONLD: object): MetadataResource {
+        return new MetadataResource(
+            resourceJSONLD[KnoraConstants.ArkUrl]['@value'],
+            resourceJSONLD[KnoraConstants.attachedToUser]['@id'],
+            resourceJSONLD[KnoraConstants.creationDate]['@value'],
+            KnoraConstants.lastModificationDate in resourceJSONLD
+                ? resourceJSONLD[KnoraConstants.lastModificationDate]['@value']
+                : undefined,
+            resourceJSONLD[KnoraConstants.hasPermissions]
+        );
+    }
+
     /**
      * Constructs a [[ReadResource]] from JSON-LD.
      * Expects JSON-LD with all Iris fully expanded.
@@ -61,27 +74,23 @@ export module ConvertJSONLD {
      * @param {object} resourceJSONLD an a resource and its properties serialized as JSON-LD.
      * @returns ReadResource
      */
-    function constructReadResource(resourceJSONLD: object): ReadResource {
+    function constructReadResource(
+        resourceJSONLD: object,
+        metadata = false
+    ): ReadResource {
         const properties: ReadProperties = constructReadProperties(
             resourceJSONLD
         );
-
         return new ReadResource(
             resourceJSONLD['@id'],
-            resourceJSONLD[KnoraConstants.ArkUrl]['@value'],
             resourceJSONLD['@type'],
             resourceJSONLD[KnoraConstants.RdfsLabel],
-            resourceJSONLD[KnoraConstants.attachedToUser]['@id'],
-            resourceJSONLD[KnoraConstants.creationDate]['@value'],
-            KnoraConstants.lastModificationDate in resourceJSONLD
-                ? resourceJSONLD[KnoraConstants.lastModificationDate]['@value']
-                : undefined,
-            resourceJSONLD[KnoraConstants.hasPermissions],
             [], // to be updated once another request has been made
             [], // to be updated once another request has been made
             [], // to be updated once another request has been made
             [], // to be updated once another request has been made
-            properties
+            properties,
+            metadata ? constructMetadata(resourceJSONLD) : undefined
         );
     }
 
@@ -488,7 +497,8 @@ export module ConvertJSONLD {
      * @returns ReadResourcesSequence - sequence of read resources
      */
     export function createReadResourcesSequenceFromJsonLD(
-        resourcesResponseJSONLD: object
+        resourcesResponseJSONLD: object,
+        metadata = false
     ): ReadResourcesSequence {
         const resources: Array<ReadResource> = [];
         let numberOfResources: number;
@@ -501,7 +511,8 @@ export module ConvertJSONLD {
 
             for (const resourceJSONLD of resourcesGraph) {
                 const resource: ReadResource = constructReadResource(
-                    resourceJSONLD
+                    resourceJSONLD,
+                    metadata
                 );
 
                 // add the resource to the resources array
@@ -516,7 +527,8 @@ export module ConvertJSONLD {
                 numberOfResources = 1;
 
                 const resource: ReadResource = constructReadResource(
-                    resourcesResponseJSONLD
+                    resourcesResponseJSONLD,
+                    metadata
                 );
 
                 // add the resource to the resources array
