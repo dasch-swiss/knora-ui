@@ -21,6 +21,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-lib": "rm -rf dist/'@knora'/ && ng build @knora/core && ng build @knora/action && ng build @knora/authentication && ng build @knora/viewer && ng build @knora/search",
+    "test-lib": "ng t --project @knora/core --watch=false --browsers=ChromeHeadless && ng t --project @knora/action --watch=false --browsers=ChromeHeadless && ng t --project @knora/search --watch=false --browsers=ChromeHeadless && ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless",
     "build-lib-prod": "rm -rf dist/'@knora'/ && ng build @knora/core --prod && ng build @knora/action --prod && ng build @knora/authentication --prod && ng build @knora/viewer --prod && ng build @knora/search --prod",
     "yalc-publish": "yalc publish dist/@knora/action && yalc publish dist/@knora/authentication && yalc publish dist/@knora/core && yalc publish dist/@knora/search && yalc publish dist/@knora/viewer",
     "update-lib": "yarn install --prod=false && yarn build-lib",
