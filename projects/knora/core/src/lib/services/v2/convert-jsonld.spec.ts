@@ -39,13 +39,6 @@ describe('ConvertJSONLD', () => {
         const promise = promises.compact(EulerLetter, {});
 
         promise.then(compacted => {
-            const receivedResource: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(
-                compacted,
-                true
-            );
-
-            expect(receivedResource.numberOfResources).toEqual(1);
-
             const expectedProps: ReadProperties = {
                 'http://0.0.0.0:3333/ontology/0801/beol/v2#creationDate': [
                     new ReadDateValue(
@@ -290,6 +283,17 @@ describe('ConvertJSONLD', () => {
                 [],
                 [],
                 [],
+                expectedProps
+            );
+
+            const EulerLetterResourceExpectedWithMetadata = new ReadResource(
+                'http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg',
+                'http://0.0.0.0:3333/ontology/0801/beol/v2#letter',
+                'L176 Original',
+                [],
+                [],
+                [],
+                [],
                 expectedProps,
                 {
                     ark:
@@ -301,6 +305,12 @@ describe('ConvertJSONLD', () => {
                         'CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser'
                 }
             );
+
+            const receivedResource: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(
+                compacted
+            );
+
+            expect(receivedResource.numberOfResources).toEqual(1);
 
             expect(receivedResource.resources[0].id).toEqual(
                 EulerLetterResourceExpected.id
@@ -314,21 +324,7 @@ describe('ConvertJSONLD', () => {
                 EulerLetterResourceExpected.label
             );
 
-            expect(receivedResource.resources[0].metadata.ark).toEqual(
-                EulerLetterResourceExpected.metadata.ark
-            );
-            expect(receivedResource.resources[0].metadata.user).toEqual(
-                EulerLetterResourceExpected.metadata.user
-            );
-            expect(receivedResource.resources[0].metadata.creation).toEqual(
-                EulerLetterResourceExpected.metadata.creation
-            );
-            expect(
-                receivedResource.resources[0].metadata.lastModification
-            ).toEqual(EulerLetterResourceExpected.metadata.lastModification);
-            expect(receivedResource.resources[0].metadata.permissions).toEqual(
-                EulerLetterResourceExpected.metadata.permissions
-            );
+            expect(receivedResource.resources[0].metadata).toEqual(undefined);
 
             expect(
                 receivedResource.resources[0].properties[
@@ -388,6 +384,36 @@ describe('ConvertJSONLD', () => {
                 EulerLetterResourceExpected.properties[
                     'http://0.0.0.0:3333/ontology/0801/beol/v2#hasText'
                 ]
+            );
+
+            const receivedResourceMWithMetadata: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(
+                compacted,
+                true
+            );
+            expect(receivedResourceMWithMetadata.numberOfResources).toEqual(1);
+
+            expect(
+                receivedResourceMWithMetadata.resources[0].metadata.ark
+            ).toEqual(EulerLetterResourceExpectedWithMetadata.metadata.ark);
+            expect(
+                receivedResourceMWithMetadata.resources[0].metadata.user
+            ).toEqual(EulerLetterResourceExpectedWithMetadata.metadata.user);
+            expect(
+                receivedResourceMWithMetadata.resources[0].metadata.creation
+            ).toEqual(
+                EulerLetterResourceExpectedWithMetadata.metadata.creation
+            );
+            expect(
+                receivedResourceMWithMetadata.resources[0].metadata
+                    .lastModification
+            ).toEqual(
+                EulerLetterResourceExpectedWithMetadata.metadata
+                    .lastModification
+            );
+            expect(
+                receivedResourceMWithMetadata.resources[0].metadata.permissions
+            ).toEqual(
+                EulerLetterResourceExpectedWithMetadata.metadata.permissions
             );
         });
     }));
