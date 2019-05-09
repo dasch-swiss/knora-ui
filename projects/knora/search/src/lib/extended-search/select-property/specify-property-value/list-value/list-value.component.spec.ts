@@ -11,7 +11,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ListDisplayComponent } from './list-display/list-display.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
-import { ListNodeV2 } from '@knora/core';
+import { IRI, ListNodeV2 } from '@knora/core';
 
 describe('ListValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -92,6 +92,18 @@ describe('ListValueComponent', () => {
 
         expect(listCacheService.getList).toHaveBeenCalledTimes(1);
         expect(listCacheService.getList).toHaveBeenCalledWith('http://rdfh.ch/lists/0001/treeList');
+    });
+
+    it('should get the selected list node', () => {
+
+        testHostComponent.listValue.form.setValue({'listValue': 'http://rdfh.ch/lists/0001/treeList/01'});
+
+        const expectedListNode = new IRI('http://rdfh.ch/lists/0001/treeList/01');
+
+        const listNode = testHostComponent.listValue.getValue();
+
+        expect(listNode).toEqual(expectedListNode);
+
     });
 });
 
