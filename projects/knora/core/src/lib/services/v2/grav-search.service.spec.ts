@@ -856,4 +856,60 @@ OFFSET 0
 
     });
 
+    it('should create a Gravsearch query string with an integer property matching a value and use it as a sort criterion', () => {
+
+        const prop = new Property(
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger',
+            'http://api.knora.org/ontology/knora-api/v2#IntValue',
+            'Integer',
+            'Integer',
+            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+            true,
+            false,
+            false,
+            []
+        );
+
+        const value = new ComparisonOperatorAndValue(new LessThan(), new ValueLiteral('1', 'http://www.w3.org/2001/XMLSchema#integer'));
+
+        const propWithVal = new PropertyWithValue(prop, value, true);
+
+        const gravsearch = gravSearchGenerationServ.createGravsearchQuery([propWithVal], undefined, 0);
+
+        const expectedGravsearch = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/v2#>
+CONSTRUCT {
+
+?mainRes knora-api:isMainResource true .
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger> ?propVal0 .
+
+} WHERE {
+
+?mainRes a knora-api:Resource .
+
+
+
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger> ?propVal0 .
+
+
+
+?propVal0 <http://api.knora.org/ontology/knora-api/v2#intValueAsInt> ?propVal0Literal
+FILTER(?propVal0Literal < "1"^^<http://www.w3.org/2001/XMLSchema#integer>)
+
+
+}
+
+ORDER BY ?propVal0
+
+OFFSET 0
+`;
+
+        expect(gravsearch).toEqual(expectedGravsearch);
+
+        expect(searchParamsServiceSpy.changeSearchParamsMsg.calls.count()).toEqual(1);
+
+    });
+
 });
