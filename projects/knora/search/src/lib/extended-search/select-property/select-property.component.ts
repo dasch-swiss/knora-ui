@@ -38,7 +38,7 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
     }
 
     get properties() {
-       return this._properties;
+        return this._properties;
     }
 
     _activeResourceClass: ResourceClass;
@@ -66,7 +66,7 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
     // unique name for this property to be used in the parent FormGroup
     propIndex: string;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
 
     }
 

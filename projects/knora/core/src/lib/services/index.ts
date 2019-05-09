@@ -27,3 +27,4 @@ export * from './v2/grav-search.service';
 export * from './v2/store.service';
 export * from './v2/basic-ontology.service';
 export * from './v2/resource-types.service';
+export * from './v2/list-cache.service';

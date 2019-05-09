@@ -17,6 +17,8 @@ export class KnoraConstants {
     public static SalsahGuiOntology: string = 'http://api.knora.org/ontology/salsah-gui/v2';
 
     public static SalsahGuiOrder: string = KnoraConstants.SalsahGuiOntology + '#guiOrder';
+    public static SalsahGuiAttribute: string = KnoraConstants.SalsahGuiOntology + '#guiAttribute';
+
 
     public static StandoffOntology: string = 'http://api.knora.org/ontology/standoff/v2';
 
@@ -171,7 +173,7 @@ export class KnoraConstants {
     public static geonameSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
     public static fileSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'File';
 
-    public static matchFunction: string = KnoraConstants.KnoraApiV2SimplePath + 'match';
+    public static matchFunction: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'match';
 
     public static EqualsComparisonOperator: string = '=';
     public static EqualsComparisonLabel: string = 'is equal to';

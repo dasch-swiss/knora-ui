@@ -66,6 +66,6 @@ export class DateValueComponent implements OnInit, OnDestroy, PropertyValue {
         // get the date
         const dateString = `${calendarFormat.toUpperCase()}:${calendarPeriod.periodStart.year}-${calendarPeriod.periodStart.month}-${calendarPeriod.periodStart.day}:${calendarPeriod.periodEnd.year}-${calendarPeriod.periodEnd.month}-${calendarPeriod.periodEnd.day}`;
 
-        return new ValueLiteral(String(dateString), KnoraConstants.DateValue);
+        return new ValueLiteral(String(dateString), KnoraConstants.dateSimple);
     }
 }
