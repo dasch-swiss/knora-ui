@@ -46,13 +46,22 @@ describe('ListDisplayComponent', () => {
 
         testHostFixture.detectChanges();
 
-        const buttonDe = ele.query(By.css('button'));
+        const openListButtonDe = ele.query(By.css('button'));
 
-        const buttonEle: HTMLElement = buttonDe.nativeElement;
+        const openListButtonEle: HTMLElement = openListButtonDe.nativeElement;
 
-        buttonEle.click();
+        openListButtonEle.click();
 
         testHostFixture.detectChanges();
+
+        const listNodeEle = ele.query(By.css('.mat-menu-content button'));
+
+        // select root node
+        listNodeEle.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent.selectedNode.id).toEqual('http://rdfh.ch/lists/0001/treeList');
 
     });
 });
@@ -92,10 +101,8 @@ class TestHostComponent implements OnInit {
     }
 
     getSelectedNode(item: ListNodeV2) {
-        // this.menuTrigger.closeMenu();
+        this.menuTrigger.closeMenu();
         this.selectedNode = item;
-
-        // this.form.controls['listValue'].setValue(item.id);
     }
 
     ngOnInit() {
