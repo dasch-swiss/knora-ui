@@ -1,18 +1,3 @@
-<!-- <br>
-<br>
-<mat-form-field *ngIf="listNode.children.length > 0">
-    <mat-select placeholder="List Value" [formControl]="form.controls['listValue']">
-
-        <mat-option *ngFor="let child of listNode.children" [value]="child">
-            {{child.label}}
-        </mat-option>
-    </mat-select>
-
-    <span *ngIf="activeNode !== undefined && activeNode.children.length > 0">
-        <list-display [listNode]="activeNode" [formGroup]="form"></list-display>
-    </span>
-</mat-form-field> -->
-
 <mat-menu #childMenu="matMenu" [overlapTrigger]="false">
     <span *ngFor="let child of children">
         <span *ngIf="child.children && child.children.length > 0">
