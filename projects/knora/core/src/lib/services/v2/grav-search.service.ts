@@ -35,7 +35,7 @@ export class GravsearchGenerationService {
         'http://api.knora.org/ontology/knora-api/v2#AudioFileValue': KnoraConstants.fileSimple,
         'http://api.knora.org/ontology/knora-api/v2#DocumentFileValue': KnoraConstants.fileSimple,
         'http://api.knora.org/ontology/knora-api/v2#TextFileValue': KnoraConstants.fileSimple,
-        'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.xsdString
+        'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.listNodeSimple
     };
 
     public static complexTypeToProp = {
@@ -132,6 +132,12 @@ ${statement}
                     } else if (propWithVal.property.objectType === KnoraConstants.ListValue) {
                         // handle list node
                         restriction = `${propValue} <${GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType]}> ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)}` + '\n';
+                        // check for comparison operator "not equals"
+                        if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'NotEquals') {
+                            restriction = `FILTER NOT EXISTS {
+                                ${restriction}
+                            }`;
+                        }
                     } else {
                         // generate statement to value literal
                         restriction = `${propValue} <${GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType]}> ${propValueLiteral}` + '\n';
