@@ -172,6 +172,7 @@ export class KnoraConstants {
     public static colorSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Color';
     public static geonameSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
     public static fileSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'File';
+    public static listNodeSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'ListNode';
 
     public static matchFunction: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'match';
 

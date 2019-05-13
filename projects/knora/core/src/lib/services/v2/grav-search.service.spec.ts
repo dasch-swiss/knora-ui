@@ -11,7 +11,7 @@ import {
     LessThan,
     LessThanEquals,
     Like,
-    Match,
+    Match, NotEquals,
     PropertyWithValue,
     ValueLiteral
 } from '../../declarations/api/operators';
@@ -524,6 +524,62 @@ OFFSET 0
 
     });
 
+    it('should create a Gravsearch query string with a list node property not matching a node', () => {
+
+        const prop = new Property(
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasListItem',
+            'http://api.knora.org/ontology/knora-api/v2#ListValue',
+            'date',
+            'date',
+            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+            true,
+            false,
+            false,
+            []
+        );
+
+        const value = new ComparisonOperatorAndValue(new NotEquals(), new IRI('http://rdfh.ch/lists/0001/treeList01'));
+
+        const propWithVal = new PropertyWithValue(prop, value, false);
+
+        const gravsearch = gravSearchGenerationServ.createGravsearchQuery([propWithVal], 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing', 0);
+
+        const expectedGravsearch = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/v2#>
+CONSTRUCT {
+
+?mainRes knora-api:isMainResource true .
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/v2#hasListItem> ?propVal0 .
+
+} WHERE {
+
+?mainRes a knora-api:Resource .
+
+?mainRes a <http://0.0.0.0:3333/ontology/0001/anything/v2#Thing> .
+
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/v2#hasListItem> ?propVal0 .
+
+
+
+FILTER NOT EXISTS {
+                                ?propVal0 <http://api.knora.org/ontology/knora-api/v2#listValueAsListNode> <http://rdfh.ch/lists/0001/treeList01>
+
+                            }
+
+
+}
+
+OFFSET 0
+`;
+
+        expect(gravsearch).toEqual(expectedGravsearch);
+
+        expect(searchParamsServiceSpy.changeSearchParamsMsg.calls.count()).toEqual(1);
+
+    });
+
     it('should create a Gravsearch query string with restriction to a resource class using offset 0', () => {
 
         const gravsearch = gravSearchGenerationServ.createGravsearchQuery([], 'http://0.0.0.0:3333/ontology/0801/beol/v2#letter', 0);
@@ -842,6 +898,59 @@ CONSTRUCT {
 
 
 
+
+
+
+}
+
+OFFSET 0
+`;
+
+        expect(gravsearch).toEqual(expectedGravsearch);
+
+        expect(searchParamsServiceSpy.changeSearchParamsMsg.calls.count()).toEqual(1);
+
+    });
+
+    it('should create a Gravsearch query string with a linking property not matching a specific resource', () => {
+
+        const prop = new Property(
+            'http://0.0.0.0:3333/ontology/0801/beol/v2#hasAuthor',
+            'http://0.0.0.0:3333/ontology/0801/beol/v2#person',
+            'Author',
+            'Author',
+            ['http://api.knora.org/ontology/knora-api/v2#hasLinkTo'],
+            false,
+            true,
+            false,
+            []
+        );
+
+        const value = new ComparisonOperatorAndValue(new NotEquals(), new IRI('http://rdfh.ch/biblio/QNWEqmjxQ9W-_hTwKlKP-Q'));
+
+        const propWithVal = new PropertyWithValue(prop, value, false);
+
+        const gravsearch = gravSearchGenerationServ.createGravsearchQuery([propWithVal], undefined, 0);
+
+        const expectedGravsearch = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/v2#>
+CONSTRUCT {
+
+?mainRes knora-api:isMainResource true .
+
+
+
+} WHERE {
+
+?mainRes a knora-api:Resource .
+
+
+
+FILTER NOT EXISTS {
+?mainRes <http://0.0.0.0:3333/ontology/0801/beol/v2#hasAuthor> <http://rdfh.ch/biblio/QNWEqmjxQ9W-_hTwKlKP-Q> .
+
+
+}
 
 
 
