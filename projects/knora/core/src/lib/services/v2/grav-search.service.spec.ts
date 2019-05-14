@@ -1077,4 +1077,59 @@ OFFSET 0
 
     });
 
+    it('should create a Gravsearch query string with a date property matching a value and use it as a sort criterion', () => {
+
+        const prop = new Property(
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasDate',
+            'http://api.knora.org/ontology/knora-api/v2#DateValue',
+            'date',
+            'date',
+            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+            true,
+            false,
+            false,
+            []
+        );
+
+        const value = new ComparisonOperatorAndValue(new Equals(), new ValueLiteral('GREGORIAN:2019-02-02', 'http://api.knora.org/ontology/knora-api/simple/v2#Date'));
+
+        const propWithVal = new PropertyWithValue(prop, value, true);
+
+        const gravsearch = gravSearchGenerationServ.createGravsearchQuery([propWithVal], 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing', 0);
+
+        const expectedGravsearch = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/v2#>
+CONSTRUCT {
+
+?mainRes knora-api:isMainResource true .
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/v2#hasDate> ?propVal0 .
+
+} WHERE {
+
+?mainRes a knora-api:Resource .
+
+?mainRes a <http://0.0.0.0:3333/ontology/0001/anything/v2#Thing> .
+
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/v2#hasDate> ?propVal0 .
+
+
+
+FILTER(knora-api:toSimpleDate(?propVal0) = "GREGORIAN:2019-02-02"^^<http://api.knora.org/ontology/knora-api/simple/v2#Date>)
+
+
+}
+
+ORDER BY ?propVal0
+
+OFFSET 0
+`;
+
+        expect(gravsearch).toEqual(expectedGravsearch);
+
+        expect(searchParamsServiceSpy.changeSearchParamsMsg.calls.count()).toEqual(1);
+
+    });
+
 });
