@@ -5,7 +5,7 @@ import { SearchParamsService } from './search-params.service';
 import { Property } from './ontology-cache.service';
 import {
     ComparisonOperatorAndValue,
-    Equals,
+    Equals, GreaterThan,
     GreaterThanEquals,
     IRI,
     LessThan,
@@ -1122,6 +1122,85 @@ FILTER(knora-api:toSimpleDate(?propVal0) = "GREGORIAN:2019-02-02"^^<http://api.k
 }
 
 ORDER BY ?propVal0
+
+OFFSET 0
+`;
+
+        expect(gravsearch).toEqual(expectedGravsearch);
+
+        expect(searchParamsServiceSpy.changeSearchParamsMsg.calls.count()).toEqual(1);
+
+    });
+
+    it('should create a Gravsearch query string with a date property matching a value used as a sort criterion and an integer property also used as a sort criterion', () => {
+
+        const prop1 = new Property(
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasDate',
+            'http://api.knora.org/ontology/knora-api/v2#DateValue',
+            'date',
+            'date',
+            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+            true,
+            false,
+            false,
+            []
+        );
+
+        const value1 = new ComparisonOperatorAndValue(new LessThan(), new ValueLiteral('GREGORIAN:2019-02-02', 'http://api.knora.org/ontology/knora-api/simple/v2#Date'));
+
+        const propWithVal1 = new PropertyWithValue(prop1, value1, true);
+
+        const prop2 = new Property(
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasDecimal',
+            'http://api.knora.org/ontology/knora-api/v2#DecimalValue',
+            'Decimal',
+            'Decimal',
+            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+            true,
+            false,
+            false,
+            []
+        );
+
+        const value2 = new ComparisonOperatorAndValue(new GreaterThan(), new ValueLiteral('0.1', 'http://www.w3.org/2001/XMLSchema#decimal'));
+
+        const propWithVal2 = new PropertyWithValue(prop2, value2, true);
+
+        const gravsearch = gravSearchGenerationServ.createGravsearchQuery([propWithVal1, propWithVal2], 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing', 0);
+
+        const expectedGravsearch = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/v2#>
+CONSTRUCT {
+
+?mainRes knora-api:isMainResource true .
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/v2#hasDate> ?propVal0 .
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/v2#hasDecimal> ?propVal1 .
+
+} WHERE {
+
+?mainRes a knora-api:Resource .
+
+?mainRes a <http://0.0.0.0:3333/ontology/0001/anything/v2#Thing> .
+
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/v2#hasDate> ?propVal0 .
+
+
+
+FILTER(knora-api:toSimpleDate(?propVal0) < "GREGORIAN:2019-02-02"^^<http://api.knora.org/ontology/knora-api/simple/v2#Date>)
+
+?mainRes <http://0.0.0.0:3333/ontology/0001/anything/v2#hasDecimal> ?propVal1 .
+
+
+
+?propVal1 <http://api.knora.org/ontology/knora-api/v2#decimalValueAsDecimal> ?propVal1Literal
+FILTER(?propVal1Literal > "0.1"^^<http://www.w3.org/2001/XMLSchema#decimal>)
+
+
+}
+
+ORDER BY ?propVal0 ?propVal1
 
 OFFSET 0
 `;
