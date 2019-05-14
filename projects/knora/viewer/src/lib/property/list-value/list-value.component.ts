@@ -1,24 +1,38 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ReadListValue } from '@knora/core';
+import { ListCacheService, ListNodeV2 } from '@knora/core';
 
 @Component({
-  selector: 'kui-list-value',
-  templateUrl: './list-value.component.html',
-  styleUrls: ['./list-value.component.scss']
+    selector: 'kui-list-value',
+    templateUrl: './list-value.component.html',
+    styleUrls: ['./list-value.component.scss']
 })
-export class ListValueComponent {
+export class ListValueComponent implements OnChanges {
 
-  @Input()
-  set valueObject(value: ReadListValue) {
-    this._listValueObj = value;
-  }
+    @Input()
+    set valueObject(value: ReadListValue) {
+        this._listValueObj = value;
+    }
 
-  get valueObject() {
-    return this._listValueObj;
-  }
+    get valueObject() {
+        return this._listValueObj;
+    }
 
-  private _listValueObj: ReadListValue;
+    private _listValueObj: ReadListValue;
 
-  constructor() { }
+    nodeLabel: string;
+
+    constructor(private _listCacheService: ListCacheService) {
+    }
+
+    ngOnChanges() {
+        // given the node's Iri, ask the list cache service
+        this._listCacheService.getListNode(this._listValueObj.listNodeIri).subscribe(
+            (listNode: ListNodeV2) => {
+                this.nodeLabel = listNode.label;
+            }
+        );
+
+    }
 
 }
