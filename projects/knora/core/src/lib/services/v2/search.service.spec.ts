@@ -136,6 +136,39 @@ describe('SearchService', () => {
 
     }));
 
+    it('should search for "testdin?" (wildcard) and return a ReadResourceSequence', async(() => {
+
+        const expectedResources = require('../../test-data/resources/Testthing.json');
+
+        searchService.doFullTextSearchReadResourceSequence('testdin?').subscribe(
+            (res) => {
+                expect(res.numberOfResources).toEqual(1);
+                expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
+                expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+
+                expect(Object.keys(res.resources[0].properties).length).toEqual(12);
+
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+                expect(res.ontologyInformation.getProperties()).toEqual(propertiesThing);
+
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                expect(res.ontologyInformation.getResourceClasses()).toEqual(resourceClassesThing);
+
+                expect(spyOntoCache.getResourceClassDefinitions.calls.count()).toBe(1);
+                expect(spyOntoCache.getResourceClassDefinitions.calls.mostRecent().args).toEqual([['http://0.0.0.0:3333/ontology/0001/anything/v2#Thing']]);
+
+            }
+        );
+
+        // ? has to be URL encoded
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/search/testdin%3F?offset=0');
+
+        expect(httpRequest.request.method).toEqual('GET');
+
+        httpRequest.flush(expectedResources);
+
+    }));
+
     it('should search for "testding" restricted to a project and return a ReadResourceSequence', async(() => {
 
         const expectedResources = require('../../test-data/resources/Testthing.json');
