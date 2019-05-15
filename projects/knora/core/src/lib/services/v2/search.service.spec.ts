@@ -65,6 +65,31 @@ describe('SearchService', () => {
 
     }));
 
+    it('should perform a fulltext search for the term "testding" and restrict it to a project', async(() => {
+
+        const expectedResources = require('../../test-data/resources/Testthing.json');
+
+        searchService.doFulltextSearch('testding', 0, 'http://rdfh.ch/projects/0001').subscribe(
+            (res) => {
+                expect(res.body).toEqual(expectedResources);
+            }
+        );
+
+        // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
+        const httpRequest = httpTestingController.match((request) => {
+            return request.url === 'http://0.0.0.0:3333/v2/search/testding' &&
+                request.params.get('offset') === '0' &&
+                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001';
+        });
+
+        expect(httpRequest.length).toEqual(1);
+
+        expect(httpRequest[0].request.method).toEqual('GET');
+
+        httpRequest[0].flush(expectedResources);
+
+    }));
+
     it('should perform a fulltext search for the term "testding" with offset 1', async(() => {
 
         const expectedResources = require('../../test-data/resources/Testthing.json');
@@ -111,6 +136,45 @@ describe('SearchService', () => {
 
     }));
 
+    it('should search for "testding" restricted to a project and return a ReadResourceSequence', async(() => {
+
+        const expectedResources = require('../../test-data/resources/Testthing.json');
+
+        searchService.doFullTextSearchReadResourceSequence('testding', 0, 'http://rdfh.ch/projects/0001').subscribe(
+            (res) => {
+                expect(res.numberOfResources).toEqual(1);
+                expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
+                expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+
+                expect(Object.keys(res.resources[0].properties).length).toEqual(12);
+
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+                expect(res.ontologyInformation.getProperties()).toEqual(propertiesThing);
+
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                expect(res.ontologyInformation.getResourceClasses()).toEqual(resourceClassesThing);
+
+                expect(spyOntoCache.getResourceClassDefinitions.calls.count()).toBe(1);
+                expect(spyOntoCache.getResourceClassDefinitions.calls.mostRecent().args).toEqual([['http://0.0.0.0:3333/ontology/0001/anything/v2#Thing']]);
+
+            }
+        );
+
+        // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
+        const httpRequest = httpTestingController.match((request) => {
+            return request.url === 'http://0.0.0.0:3333/v2/search/testding' &&
+                request.params.get('offset') === '0' &&
+                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001';
+        });
+
+        expect(httpRequest.length).toEqual(1);
+
+        expect(httpRequest[0].request.method).toEqual('GET');
+
+        httpRequest[0].flush(expectedResources);
+
+    }));
+
     it('should perform a fulltext search for "testding" with offset 1 and return a ReadResourceSequence', async(() => {
 
         const expectedResources = require('../../test-data/resources/Testthing.json');
@@ -143,6 +207,30 @@ describe('SearchService', () => {
 
     }));
 
+    it('should perform a count query for a fulltext search and restrict it to a project', async(() => {
+
+        const expectedResult = require('../../test-data/resources/countQueryResult.json');
+
+        searchService.doFulltextSearchCountQuery('testding', 'http://rdfh.ch/projects/0001').subscribe(
+            (res) => {
+                expect(res.body).toEqual(expectedResult);
+            }
+        );
+
+        // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
+        const httpRequest = httpTestingController.match((request) => {
+            return request.url === 'http://0.0.0.0:3333/v2/search/count/testding' &&
+                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001';
+        });
+
+        expect(httpRequest.length).toEqual(1);
+
+        expect(httpRequest[0].request.method).toEqual('GET');
+
+        httpRequest[0].flush(expectedResult);
+
+    }));
+
     it('should perform a count query for a fulltext search and return a count query result', async(() => {
 
         const expectedResult = require('../../test-data/resources/countQueryResult.json');
@@ -161,6 +249,33 @@ describe('SearchService', () => {
         expect(httpRequest.request.method).toEqual('GET');
 
         httpRequest.flush(expectedResult);
+
+    }));
+
+    it('should perform a count query for a fulltext search restricted to a project and return a count query result', async(() => {
+
+        const expectedResult = require('../../test-data/resources/countQueryResult.json');
+
+        searchService.doFullTextSearchCountQueryCountQueryResult('testding', 'http://rdfh.ch/projects/0001').subscribe(
+            (res) => {
+
+                const expectedCountQueryRes = new CountQueryResult(197);
+
+                expect(res).toEqual(expectedCountQueryRes);
+            }
+        );
+
+        // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
+        const httpRequest = httpTestingController.match((request) => {
+            return request.url === 'http://0.0.0.0:3333/v2/search/count/testding' &&
+                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001';
+        });
+
+        expect(httpRequest.length).toEqual(1);
+
+        expect(httpRequest[0].request.method).toEqual('GET');
+
+        httpRequest[0].flush(expectedResult);
 
     }));
 

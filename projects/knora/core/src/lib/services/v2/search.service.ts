@@ -54,9 +54,10 @@ export class SearchService extends ApiService {
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @param {string} projectIri restrict search to given project, if any.
      * @returns Observable<ApiServiceResult>
      */
-    doFulltextSearch(searchTerm: string, offset: number = 0): Observable<ApiServiceResult> {
+    doFulltextSearch(searchTerm: string, offset: number = 0, projectIri?: string): Observable<ApiServiceResult> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
@@ -65,6 +66,10 @@ export class SearchService extends ApiService {
         let httpParams = new HttpParams();
 
         httpParams = httpParams.set('offset', offset.toString());
+
+        if (projectIri !== undefined) {
+            httpParams = httpParams.set('limitToProject', projectIri);
+        }
 
         return this.httpGet('/v2/search/' + searchTerm, httpParams);
     }
@@ -74,9 +79,10 @@ export class SearchService extends ApiService {
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @param {string} projectIri restrict search to given project, if any.
      * @returns Observable<ApiServiceResult>
      */
-    doFullTextSearchReadResourceSequence(searchTerm: string, offset: number = 0): Observable<ReadResourcesSequence> {
+    doFullTextSearchReadResourceSequence(searchTerm: string, offset: number = 0, projectIri?: string): Observable<ReadResourcesSequence> {
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
         }
@@ -84,6 +90,10 @@ export class SearchService extends ApiService {
         let httpParams = new HttpParams();
 
         httpParams = httpParams.set('offset', offset.toString());
+
+        if (projectIri !== undefined) {
+            httpParams = httpParams.set('limitToProject', projectIri);
+        }
 
         const res: Observable<any> = this.httpGet('/v2/search/' + searchTerm, httpParams);
 
@@ -104,30 +114,44 @@ export class SearchService extends ApiService {
      * TODO: mark as deprecated, use of `doFullTextSearchCountQueryCountQueryResult` recommended
      *
      * @param searchTerm the term to search for.
+     * @param {string} projectIri restrict search to given project, if any.
      * @returns Observable<ApiServiceResult>
      */
-    doFulltextSearchCountQuery(searchTerm: string): Observable<ApiServiceResult> {
+    doFulltextSearchCountQuery(searchTerm: string, projectIri?: string): Observable<ApiServiceResult> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));
         }
 
-        return this.httpGet('/v2/search/count/' + searchTerm);
+        let httpParams = new HttpParams();
+
+        if (projectIri !== undefined) {
+            httpParams = httpParams.set('limitToProject', projectIri);
+        }
+
+        return this.httpGet('/v2/search/count/' + searchTerm, httpParams);
     }
 
     /**
      * Performs a fulltext search count query and turns the result into a `CountQueryResult`.
      *
      * @param {string} searchTerm the term to search for.
+     * @param {string} projectIri restrict search to given project, if any.
      * @returns Observable<CountQueryResult>
      */
-    doFullTextSearchCountQueryCountQueryResult(searchTerm: string): Observable<CountQueryResult> {
+    doFullTextSearchCountQueryCountQueryResult(searchTerm: string, projectIri?: string): Observable<CountQueryResult> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));
         }
 
-        const res = this.httpGet('/v2/search/count/' + searchTerm);
+        let httpParams = new HttpParams();
+
+        if (projectIri !== undefined) {
+            httpParams = httpParams.set('limitToProject', projectIri);
+        }
+
+        const res = this.httpGet('/v2/search/count/' + searchTerm, httpParams);
 
         return res.pipe(
             mergeMap(
@@ -249,7 +273,7 @@ export class SearchService extends ApiService {
         }
 
         // httpGet() expects only one argument, not 2
-        return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
+        return this.httpGet('/v2/searchbylabel/' + searchTerm, httpParams);
 
     }
 
@@ -277,7 +301,7 @@ export class SearchService extends ApiService {
             httpParams = httpParams.set('limitToProject', projectIri);
         }
 
-        const res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
+        const res = this.httpGet('/v2/searchbylabel/' + searchTerm, httpParams);
 
         return res.pipe(
             mergeMap(
