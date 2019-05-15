@@ -71,7 +71,7 @@ export class SearchService extends ApiService {
             httpParams = httpParams.set('limitToProject', projectIri);
         }
 
-        return this.httpGet('/v2/search/' + searchTerm, httpParams);
+        return this.httpGet('/v2/search/' + encodeURIComponent(searchTerm), httpParams);
     }
 
     /**
@@ -95,7 +95,7 @@ export class SearchService extends ApiService {
             httpParams = httpParams.set('limitToProject', projectIri);
         }
 
-        const res: Observable<any> = this.httpGet('/v2/search/' + searchTerm, httpParams);
+        const res: Observable<any> = this.httpGet('/v2/search/' + encodeURIComponent(searchTerm), httpParams);
 
         return res.pipe(
             mergeMap(
@@ -129,7 +129,7 @@ export class SearchService extends ApiService {
             httpParams = httpParams.set('limitToProject', projectIri);
         }
 
-        return this.httpGet('/v2/search/count/' + searchTerm, httpParams);
+        return this.httpGet('/v2/search/count/' + encodeURIComponent(searchTerm), httpParams);
     }
 
     /**
@@ -151,7 +151,7 @@ export class SearchService extends ApiService {
             httpParams = httpParams.set('limitToProject', projectIri);
         }
 
-        const res = this.httpGet('/v2/search/count/' + searchTerm, httpParams);
+        const res = this.httpGet('/v2/search/count/' + encodeURIComponent(searchTerm), httpParams);
 
         return res.pipe(
             mergeMap(
@@ -273,7 +273,7 @@ export class SearchService extends ApiService {
         }
 
         // httpGet() expects only one argument, not 2
-        return this.httpGet('/v2/searchbylabel/' + searchTerm, httpParams);
+        return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
 
     }
 
@@ -301,7 +301,7 @@ export class SearchService extends ApiService {
             httpParams = httpParams.set('limitToProject', projectIri);
         }
 
-        const res = this.httpGet('/v2/searchbylabel/' + searchTerm, httpParams);
+        const res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
 
         return res.pipe(
             mergeMap(
