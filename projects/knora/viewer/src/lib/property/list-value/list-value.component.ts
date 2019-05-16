@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ReadListValue } from '@knora/core';
 import { ListCacheService, ListNodeV2 } from '@knora/core';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'kui-list-value',
@@ -20,18 +21,14 @@ export class ListValueComponent implements OnChanges {
 
     private _listValueObj: ReadListValue;
 
-    nodeLabel: string;
+    node: Observable<ListNodeV2>;
 
     constructor(private _listCacheService: ListCacheService) {
     }
 
     ngOnChanges() {
         // given the node's Iri, ask the list cache service
-        this._listCacheService.getListNode(this._listValueObj.listNodeIri).subscribe(
-            (listNode: ListNodeV2) => {
-                this.nodeLabel = listNode.label;
-            }
-        );
+        this.node = this._listCacheService.getListNode(this._listValueObj.listNodeIri);
 
     }
 
