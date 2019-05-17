@@ -90,8 +90,7 @@
       "knora-api:hasPermissions": "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser",
       "knora-api:listValueAsListNode": {
         "@id": "http://rdfh.ch/lists/0801/other_quadratic_forms"
-      },
-      "knora-api:listValueAsListNodeLabel": "Other quadratic forms"
+      }
     },
     {
       "@id": "http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/wKbQ86WkRtSOyQomLN3-GA",
@@ -102,8 +101,7 @@
       "knora-api:hasPermissions": "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser",
       "knora-api:listValueAsListNode": {
         "@id": "http://rdfh.ch/lists/0801/berlin_academy"
-      },
-      "knora-api:listValueAsListNodeLabel": "Berlin Academy"
+      }
     },
     {
       "@id": "http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/NvANUAjVQXusdezLDIHlNg",
@@ -114,8 +112,7 @@
       "knora-api:hasPermissions": "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser",
       "knora-api:listValueAsListNode": {
         "@id": "http://rdfh.ch/lists/0801/other_professional_tasks"
-      },
-      "knora-api:listValueAsListNodeLabel": "Other professional tasks"
+      }
     },
     {
       "@id": "http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/q67xf4J3RKe4Y_wNYyVanQ",
@@ -126,8 +123,7 @@
       "knora-api:hasPermissions": "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser",
       "knora-api:listValueAsListNode": {
         "@id": "http://rdfh.ch/lists/0801/errands"
-      },
-      "knora-api:listValueAsListNodeLabel": "Errands"
+      }
     },
     {
       "@id": "http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/PePWR2aVSueUZAvryhM8RQ",
@@ -138,8 +134,7 @@
       "knora-api:hasPermissions": "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser",
       "knora-api:listValueAsListNode": {
         "@id": "http://rdfh.ch/lists/0801/book_trade_orders"
-      },
-      "knora-api:listValueAsListNodeLabel": "Book trade, orders"
+      }
     },
     {
       "@id": "http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/NoeWmFy1TVyA0CGDTPVCsA",
@@ -150,8 +145,7 @@
       "knora-api:hasPermissions": "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser",
       "knora-api:listValueAsListNode": {
         "@id": "http://rdfh.ch/lists/0801/johann_albrecht_euler"
-      },
-      "knora-api:listValueAsListNodeLabel": "Johann Albrecht Euler"
+      }
     }
   ],
   "beol:hasText": {
