@@ -156,7 +156,6 @@ export class KnoraConstants {
     public static intervalValueHasEnd: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasEnd';
 
     public static listValueAsListNode: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNode';
-    public static listValueAsListNodeLabel: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNodeLabel';
 
     public static Xsd: string = 'http://www.w3.org/2001/XMLSchema#';
 
