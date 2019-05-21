@@ -16,7 +16,7 @@ import { ApiServiceResult, IRI, KuiCoreConfig, KuiCoreConfigToken, ReadResource,
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
-import { ConvertJSONLD } from '../../../../../../../core/src/lib/services';
+import { ConvertJSONLD } from '@knora/core';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');

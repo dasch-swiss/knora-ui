@@ -512,7 +512,7 @@ describe('OntologyCacheService', () => {
                             []),
                         'http://api.knora.org/ontology/knora-api/v2#attachedToProject': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#attachedToProject',
-                            'http://api.knora.org/ontology/knora-api/v2#knoraProject',
+                            'http://api.knora.org/ontology/knora-admin/v2#knoraProject',
                             'Connects something to a project',
                             'attached to project',
                             [],
@@ -522,7 +522,7 @@ describe('OntologyCacheService', () => {
                             []),
                         'http://api.knora.org/ontology/knora-api/v2#attachedToUser': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#attachedToUser',
-                            'http://api.knora.org/ontology/knora-api/v2#User',
+                            'http://api.knora.org/ontology/knora-admin/v2#User',
                             'Connects something to a user',
                             'attached to user',
                             [],
