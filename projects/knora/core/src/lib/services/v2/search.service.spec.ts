@@ -477,7 +477,7 @@ OFFSET 0`;
             }
         );
 
-        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/searchbylabel/testding');
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/searchbylabel/testding?offset=0');
 
         expect(httpRequest.request.method).toEqual('GET');
 
@@ -489,7 +489,7 @@ OFFSET 0`;
 
         const expectedResource = require('../../test-data/resources/Testthing.json');
 
-        searchService.searchByLabel('testding', 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing').subscribe(
+        searchService.searchByLabel('testding', 0, { limitToResourceClass: 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing' }).subscribe(
             (res) => {
 
                 expect(res.body).toEqual(expectedResource);
@@ -498,7 +498,10 @@ OFFSET 0`;
 
         // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
         const httpRequest = httpTestingController.match((request) => {
-            return request.urlWithParams === 'http://0.0.0.0:3333/v2/searchbylabel/testding?limitToResourceClass=http://0.0.0.0:3333/ontology/0001/anything/v2%23Thing';
+            return request.url === 'http://0.0.0.0:3333/v2/searchbylabel/testding' &&
+                request.params.get('offset') === '0' &&
+                request.params.get('limitToResourceClass') === 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing' &&
+                request.params.keys().length === 2;
         });
 
         expect(httpRequest.length).toEqual(1);
@@ -511,7 +514,7 @@ OFFSET 0`;
 
         const expectedResource = require('../../test-data/resources/Testthing.json');
 
-        searchService.searchByLabel('testding', undefined, 'http://rdfh.ch/projects/0001').subscribe(
+        searchService.searchByLabel('testding', 0, { limitToProject: 'http://rdfh.ch/projects/0001' }).subscribe(
             (res) => {
 
                 expect(res.body).toEqual(expectedResource);
@@ -520,7 +523,10 @@ OFFSET 0`;
 
         // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
         const httpRequest = httpTestingController.match((request) => {
-            return request.urlWithParams === 'http://0.0.0.0:3333/v2/searchbylabel/testding?limitToProject=http://rdfh.ch/projects/0001';
+            return request.url === 'http://0.0.0.0:3333/v2/searchbylabel/testding' &&
+                request.params.get('offset') === '0' &&
+                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001' &&
+                request.params.keys().length === 2;
         });
 
         expect(httpRequest.length).toEqual(1);
@@ -533,7 +539,7 @@ OFFSET 0`;
 
         const expectedResource = require('../../test-data/resources/Testthing.json');
 
-        searchService.searchByLabel('testding', 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing', 'http://rdfh.ch/projects/0001').subscribe(
+        searchService.searchByLabel('testding', 0, { limitToResourceClass: 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing', limitToProject: 'http://rdfh.ch/projects/0001' }).subscribe(
             (res) => {
 
                 expect(res.body).toEqual(expectedResource);
@@ -544,8 +550,10 @@ OFFSET 0`;
         const httpRequest = httpTestingController.match((request) => {
 
             return request.url === 'http://0.0.0.0:3333/v2/searchbylabel/testding'
+                && request.params.get('offset') === '0'
                 && request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001'
-                && request.params.get('limitToResourceClass') === 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing';
+                && request.params.get('limitToResourceClass') === 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing'
+                && request.params.keys().length === 3;
         });
 
         expect(httpRequest.length).toEqual(1);
@@ -579,7 +587,7 @@ OFFSET 0`;
             }
         );
 
-        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/searchbylabel/testding');
+        const httpRequest = httpTestingController.expectOne('http://0.0.0.0:3333/v2/searchbylabel/testding?offset=0');
 
         expect(httpRequest.request.method).toEqual('GET');
 
@@ -590,7 +598,7 @@ OFFSET 0`;
 
         const expectedResource = require('../../test-data/resources/Testthing.json');
 
-        searchService.searchByLabelReadResourceSequence('testding', 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing').subscribe(
+        searchService.searchByLabelReadResourceSequence('testding', 0, { limitToResourceClass: 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing' }).subscribe(
             (res) => {
 
                 expect(res.numberOfResources).toEqual(1);
@@ -615,7 +623,9 @@ OFFSET 0`;
         const httpRequest = httpTestingController.match((request) => {
 
             return request.url === 'http://0.0.0.0:3333/v2/searchbylabel/testding'
-                && request.params.get('limitToResourceClass') === 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing';
+                && request.params.get('offset') === '0'
+                && request.params.get('limitToResourceClass') === 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing'
+                && request.params.keys().length === 2;
         });
 
         expect(httpRequest.length).toEqual(1);
@@ -627,7 +637,7 @@ OFFSET 0`;
 
         const expectedResource = require('../../test-data/resources/Testthing.json');
 
-        searchService.searchByLabelReadResourceSequence('testding', undefined, 'http://rdfh.ch/projects/0001').subscribe(
+        searchService.searchByLabelReadResourceSequence('testding', 0, { limitToProject: 'http://rdfh.ch/projects/0001' }).subscribe(
             (res) => {
 
                 expect(res.numberOfResources).toEqual(1);
@@ -652,7 +662,9 @@ OFFSET 0`;
         const httpRequest = httpTestingController.match((request) => {
 
             return request.url === 'http://0.0.0.0:3333/v2/searchbylabel/testding'
-                && request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001';
+                && request.params.get('offset') === '0'
+                && request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001'
+                && request.params.keys().length === 2;
         });
 
         expect(httpRequest.length).toEqual(1);
@@ -664,7 +676,7 @@ OFFSET 0`;
 
         const expectedResource = require('../../test-data/resources/Testthing.json');
 
-        searchService.searchByLabelReadResourceSequence('testding', 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing', 'http://rdfh.ch/projects/0001').subscribe(
+        searchService.searchByLabelReadResourceSequence('testding', 0, { limitToResourceClass: 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing', limitToProject: 'http://rdfh.ch/projects/0001' }).subscribe(
             (res) => {
 
                 expect(res.numberOfResources).toEqual(1);
@@ -689,8 +701,10 @@ OFFSET 0`;
         const httpRequest = httpTestingController.match((request) => {
 
             return request.url === 'http://0.0.0.0:3333/v2/searchbylabel/testding'
+                && request.params.get('offset') === '0'
                 && request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001'
-                && request.params.get('limitToResourceClass') === 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing';
+                && request.params.get('limitToResourceClass') === 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing'
+                && request.params.keys().length === 3;
         });
 
         expect(httpRequest.length).toEqual(1);

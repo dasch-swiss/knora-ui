@@ -22,8 +22,6 @@ export interface SearchByLabelParams {
     limitToResourceClass?: string;
 
     limitToProject?: string;
-
-    offset?: number;
 }
 
 /**
@@ -58,6 +56,25 @@ export class SearchService extends ApiService {
 
         if (params.limitToStandoffClass !== undefined) {
             httpParams = httpParams.set('limitToStandoffClass', params.limitToStandoffClass);
+        }
+
+        return httpParams;
+
+    }
+    /**
+     * Assign fulltext params to http params if not undefined
+     * @param {SearchByLabelParams} params 
+     * @param {HttpParams} httpParams 
+     * @returns {HttpParams}
+     */
+    private processSearchByLabelParams(params: SearchByLabelParams, httpParams: HttpParams): HttpParams {
+
+        if (params.limitToResourceClass !== undefined) {
+            httpParams = httpParams.set('limitToResourceClass', params.limitToResourceClass);
+        }
+
+        if (params.limitToProject !== undefined) {
+            httpParams = httpParams.set('limitToProject', params.limitToProject);
         }
 
         return httpParams;
@@ -298,7 +315,7 @@ export class SearchService extends ApiService {
      * @param {string} [projectIri] restrict search to given project.
      * @returns Observable<ApiServiceResult>
      */
-    searchByLabel(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ApiServiceResult> {
+    searchByLabel(searchTerm: string, offset: number = 0, params?: SearchByLabelParams): Observable<ApiServiceResult> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
@@ -306,12 +323,10 @@ export class SearchService extends ApiService {
 
         let httpParams: HttpParams = new HttpParams();
 
-        if (resourceClassIRI !== undefined) {
-            httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);
-        }
+        httpParams = httpParams.set('offset', offset.toString());
 
-        if (projectIri !== undefined) {
-            httpParams = httpParams.set('limitToProject', projectIri);
+        if (params !== undefined) {
+            httpParams = this.processSearchByLabelParams(params, httpParams);
         }
 
         // httpGet() expects only one argument, not 2
@@ -327,7 +342,7 @@ export class SearchService extends ApiService {
      * @param {string} [projectIri] restrict search to given project.
      * @returns Observable<ApiServiceResult>
      */
-    searchByLabelReadResourceSequence(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ReadResourcesSequence> {
+    searchByLabelReadResourceSequence(searchTerm: string, offset: number = 0, params?: SearchByLabelParams): Observable<ReadResourcesSequence> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
@@ -335,12 +350,10 @@ export class SearchService extends ApiService {
 
         let httpParams: HttpParams = new HttpParams();
 
-        if (resourceClassIRI !== undefined) {
-            httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);
-        }
+        httpParams = httpParams.set('offset', offset.toString());
 
-        if (projectIri !== undefined) {
-            httpParams = httpParams.set('limitToProject', projectIri);
+        if (params !== undefined) {
+            httpParams = this.processSearchByLabelParams(params, httpParams);
         }
 
         const res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
