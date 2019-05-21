@@ -508,7 +508,8 @@ describe('OntologyCacheService', () => {
                             [],
                             false,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#attachedToProject': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#attachedToProject',
                             'http://api.knora.org/ontology/knora-api/v2#knoraProject',
@@ -517,7 +518,8 @@ describe('OntologyCacheService', () => {
                             [],
                             false,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#attachedToUser': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#attachedToUser',
                             'http://api.knora.org/ontology/knora-api/v2#User',
@@ -526,7 +528,8 @@ describe('OntologyCacheService', () => {
                             [],
                             false,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#creationDate': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#creationDate',
                             'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
@@ -535,7 +538,8 @@ describe('OntologyCacheService', () => {
                             [],
                             false,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#hasIncomingLinkValue',
                             'http://api.knora.org/ontology/knora-api/v2#LinkValue',
@@ -544,7 +548,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
                             false,
                             false,
-                            true),
+                            true,
+                                []),
                         'http://api.knora.org/ontology/knora-api/v2#hasPermissions': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#hasPermissions',
                             'http://www.w3.org/2001/XMLSchema#string',
@@ -553,7 +558,8 @@ describe('OntologyCacheService', () => {
                             [],
                             false,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkTo',
                             'http://api.knora.org/ontology/knora-api/v2#Resource',
@@ -562,7 +568,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasLinkTo'],
                             false,
                             true,
-                            false),
+                            false,
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#hasStandoffLinkToValue',
                             'http://api.knora.org/ontology/knora-api/v2#LinkValue',
@@ -571,7 +578,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
                             false,
                             false,
-                            true),
+                            true,
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#lastModificationDate': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#lastModificationDate',
                             'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
@@ -580,7 +588,8 @@ describe('OntologyCacheService', () => {
                             [],
                             false,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasListItem': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasListItem',
                             'http://api.knora.org/ontology/knora-api/v2#ListValue',
@@ -589,7 +598,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            ['hlist=<http://rdfh.ch/lists/0001/treeList>']),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherListItem': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherListItem',
                             'http://api.knora.org/ontology/knora-api/v2#ListValue',
@@ -598,7 +608,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            ['hlist=<http://rdfh.ch/lists/0001/otherTreeList>']),
                         'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething': new Property(
                             'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomething',
                             'http://0.0.0.0:3333/ontology/0001/something/v2#Something',
@@ -607,7 +618,8 @@ describe('OntologyCacheService', () => {
                             ['http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherThing'],
                             true,
                             true,
-                            false),
+                            false,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomethingValue': new Property(
                             'http://0.0.0.0:3333/ontology/0001/something/v2#hasOtherSomethingValue',
                             'http://api.knora.org/ontology/knora-api/v2#LinkValue',
@@ -616,7 +628,8 @@ describe('OntologyCacheService', () => {
                             ['http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherThingValue'],
                             true,
                             false,
-                            true),
+                            true,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasRichtext': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasRichtext',
                             'http://api.knora.org/ontology/knora-api/v2#TextValue',
@@ -625,7 +638,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText',
                             'http://api.knora.org/ontology/knora-api/v2#TextValue',
@@ -634,7 +648,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            ['maxlength=255', 'size=80']),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasDate': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasDate',
                             'http://api.knora.org/ontology/knora-api/v2#DateValue',
@@ -643,7 +658,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInteger',
                             'http://api.knora.org/ontology/knora-api/v2#IntValue',
@@ -652,7 +668,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            ['max=-1', 'min=0']),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasDecimal': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasDecimal',
                             'http://api.knora.org/ontology/knora-api/v2#DecimalValue',
@@ -661,7 +678,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            ['maxlength=255', 'size=80']),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBoolean': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasBoolean',
                             'http://api.knora.org/ontology/knora-api/v2#BooleanValue',
@@ -670,7 +688,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasUri': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasUri',
                             'http://api.knora.org/ontology/knora-api/v2#UriValue',
@@ -679,7 +698,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            ['maxlength=255', 'size=80']),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInterval': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasInterval',
                             'http://api.knora.org/ontology/knora-api/v2#IntervalValue',
@@ -688,7 +708,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasColor': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasColor',
                             'http://api.knora.org/ontology/knora-api/v2#ColorValue',
@@ -697,7 +718,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasThingPicture': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasThingPicture',
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#ThingPicture',
@@ -706,7 +728,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasRepresentation'],
                             true,
                             true,
-                            false),
+                            false,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasThingPictureValue': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasThingPictureValue',
                             'http://api.knora.org/ontology/knora-api/v2#LinkValue',
@@ -715,7 +738,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasRepresentationValue'],
                             true,
                             false,
-                            true),
+                            true,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#isPartOfOtherThing': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#isPartOfOtherThing',
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing',
@@ -724,7 +748,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#isPartOf'],
                             true,
                             true,
-                            false),
+                            false,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#isPartOfOtherThingValue': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#isPartOfOtherThingValue',
                             'http://api.knora.org/ontology/knora-api/v2#LinkValue',
@@ -733,7 +758,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#isPartOfValue'],
                             true,
                             false,
-                            true),
+                            true,
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#deleteComment': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#deleteComment',
                             'http://www.w3.org/2001/XMLSchema#string',
@@ -742,7 +768,8 @@ describe('OntologyCacheService', () => {
                             [],
                             false,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#deleteDate': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#deleteDate',
                             'http://www.w3.org/2001/XMLSchema#dateTimeStamp',
@@ -751,7 +778,8 @@ describe('OntologyCacheService', () => {
                             [],
                             false,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#isDeleted': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#isDeleted',
                             'http://www.w3.org/2001/XMLSchema#boolean',
@@ -760,7 +788,8 @@ describe('OntologyCacheService', () => {
                             [],
                             false,
                             false,
-                            false),
+                            false,
+                            []),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeometry': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeometry',
                             'http://api.knora.org/ontology/knora-api/v2#GeomValue',
@@ -769,7 +798,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false
+                            false,
+                            []
                         ),
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeoname': new Property(
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeoname',
@@ -779,7 +809,8 @@ describe('OntologyCacheService', () => {
                             ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
                             true,
                             false,
-                            false
+                            false,
+                            []
                         )
                     };
 
@@ -1135,7 +1166,8 @@ describe('OntologyCacheService', () => {
                         ['http://api.knora.org/ontology/knora-api/v2#hasComment'],
                         true,
                         false,
-                        false
+                        false,
+                        []
                     );
 
                     expect(props['http://0.0.0.0:3333/ontology/0801/beol/v2#comment']).toEqual(commentExpected);
@@ -1148,7 +1180,8 @@ describe('OntologyCacheService', () => {
                         ['http://api.knora.org/ontology/knora-api/v2#hasLinkTo'],
                         true,
                         true,
-                        false
+                        false,
+                        []
                     );
 
                     expect(props['http://0.0.0.0:3333/ontology/0801/beol/v2#hasSon']).toEqual(sonExpected);
@@ -1161,7 +1194,8 @@ describe('OntologyCacheService', () => {
                         ['http://api.knora.org/ontology/knora-api/v2#hasLinkToValue'],
                         true,
                         false,
-                        true
+                        true,
+                        []
                     );
 
                     expect(props['http://0.0.0.0:3333/ontology/0801/beol/v2#hasSonValue']).toEqual(sonValueExpected);

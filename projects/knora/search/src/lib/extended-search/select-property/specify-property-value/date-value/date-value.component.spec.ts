@@ -75,7 +75,7 @@ describe('DateValueComponent', () => {
 
         testHostComponent.dateValue.form.setValue({'dateValue': new GregorianCalendarDate(new JDNPeriod(2458422, 2458422))});
 
-        const gregorianDate = new ValueLiteral('GREGORIAN:2018-10-30:2018-10-30', 'http://api.knora.org/ontology/knora-api/v2#DateValue');
+        const gregorianDate = new ValueLiteral('GREGORIAN:2018-10-30:2018-10-30', 'http://api.knora.org/ontology/knora-api/simple/v2#Date');
 
         const dateVal = testHostComponent.dateValue.getValue();
 

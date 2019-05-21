@@ -40,8 +40,9 @@ import { LinkValueComponent } from './extended-search/select-property/specify-pr
 import { TextValueComponent } from './extended-search/select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './extended-search/select-property/specify-property-value/uri-value/uri-value.component';
 import { HeaderComponent } from './extended-search/select-property/specify-property-value/date-value/header-calendar/header-calendar.component';
+import { ListValueComponent } from './extended-search/select-property/specify-property-value/list-value/list-value.component';
+import { ListDisplayComponent } from './extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
 import { ExpertSearchComponent } from './expert-search/expert-search.component';
-
 
 @NgModule({
     imports: [
@@ -83,6 +84,8 @@ import { ExpertSearchComponent } from './expert-search/expert-search.component';
         HeaderComponent,
         FulltextSearchComponent,
         SearchPanelComponent,
+        ListValueComponent,
+        ListDisplayComponent,
         ExpertSearchComponent
     ],
     exports: [

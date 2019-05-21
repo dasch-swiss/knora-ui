@@ -62,7 +62,7 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
     // the type of the property
     propertyValueType;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     /**
@@ -86,7 +86,6 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
             case KnoraConstants.BooleanValue:
             case KnoraConstants.Resource:
             case KnoraConstants.UriValue:
-            case KnoraConstants.IntervalValue:
                 this.comparisonOperators = [new Equals(), new NotEquals(), new Exists()];
                 break;
 
@@ -97,6 +96,9 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
                 break;
 
             case KnoraConstants.ListValue:
+                this.comparisonOperators = [new Equals(), new NotEquals(), new Exists()];
+                break;
+
             case KnoraConstants.GeomValue:
             case KnoraConstants.FileValue:
             case KnoraConstants.AudioFileValue:
@@ -105,6 +107,7 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
             case KnoraConstants.MovingImageFileValue:
             case KnoraConstants.TextFileValue:
             case KnoraConstants.ColorValue:
+            case KnoraConstants.IntervalValue:
                 this.comparisonOperators = [new Exists()];
                 break;
 
@@ -115,7 +118,8 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
 
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+    }
 
     ngOnChanges() {
 

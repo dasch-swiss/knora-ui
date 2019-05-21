@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
 import { SearchResultsComponent } from './search-results.component';
 import { ListViewComponent } from '../list-view/list-view.component';
