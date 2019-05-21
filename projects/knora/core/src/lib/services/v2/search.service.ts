@@ -40,6 +40,7 @@ export class SearchService extends ApiService {
 
     /**
      * Assign fulltext params to http params if not undefined
+     * 
      * @param {FulltextSearchParams} params 
      * @param {HttpParams} httpParams 
      * @returns {HttpParams}
@@ -62,7 +63,8 @@ export class SearchService extends ApiService {
 
     }
     /**
-     * Assign fulltext params to http params if not undefined
+     * Assign search by label params to http params if not undefined
+     * 
      * @param {SearchByLabelParams} params 
      * @param {HttpParams} httpParams 
      * @returns {HttpParams}
