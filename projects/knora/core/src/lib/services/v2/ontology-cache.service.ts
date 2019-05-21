@@ -125,16 +125,17 @@ export class Property {
      * @param {boolean} isEditable indicates whether the given property can be edited by the client.
      * @param {boolean} isLinkProperty indicates whether the given property is a linking property.
      * @param {boolean} isLinkValueProperty indicates whether the given property refers to a link value.
+     * @param {string} guiAttribute the gui attribute assigned to this property, if any.
      */
     constructor(readonly id: string,
-        readonly objectType: string,
-        readonly comment: string,
-        readonly label: string,
-        readonly subPropertyOf: Array<string>,
-        readonly isEditable: Boolean,
-        readonly isLinkProperty: Boolean,
-        readonly isLinkValueProperty: Boolean) {
-
+                readonly objectType: string,
+                readonly comment: string,
+                readonly label: string,
+                readonly subPropertyOf: Array<string>,
+                readonly isEditable: Boolean,
+                readonly isLinkProperty: Boolean,
+                readonly isLinkValueProperty: Boolean,
+                readonly guiAttribute: string[]) {
     }
 }
 
@@ -792,6 +793,17 @@ export class OntologyCacheService {
                 objectType = propDef[KnoraConstants.ObjectType]['@id'];
             }
 
+            const guiAttribute = [];
+            if (propDef[KnoraConstants.SalsahGuiAttribute] !== undefined) {
+                if (Array.isArray(propDef[KnoraConstants.SalsahGuiAttribute])) {
+                    for (const attr of propDef[KnoraConstants.SalsahGuiAttribute]) {
+                        guiAttribute.push(attr);
+                    }
+                } else {
+                    guiAttribute.push(propDef[KnoraConstants.SalsahGuiAttribute]);
+                }
+            }
+
             // cache property definition
             this.cacheOntology.properties[propIri] = new Property(
                 propIri,
@@ -801,7 +813,8 @@ export class OntologyCacheService {
                 subPropertyOf,
                 isEditable,
                 isLinkProperty,
-                isLinkValueProperty
+                isLinkValueProperty,
+                guiAttribute
             );
 
         }

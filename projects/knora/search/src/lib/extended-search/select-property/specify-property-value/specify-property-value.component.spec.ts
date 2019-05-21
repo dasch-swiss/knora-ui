@@ -7,7 +7,8 @@ import {
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
 } from '@angular/material';
 
 import { SpecifyPropertyValueComponent } from './specify-property-value.component';
@@ -25,6 +26,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
+import { ListValueComponent } from './list-value/list-value.component';
+import { ListDisplayComponent } from './list-value/list-display/list-display.component';
 
 describe('SpecifyPropertyValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -32,7 +35,8 @@ describe('SpecifyPropertyValueComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SpecifyPropertyValueComponent,
+            declarations: [
+                SpecifyPropertyValueComponent,
                 SpecifyPropertyValueComponent,
                 SpecifyPropertyValueComponent,
                 BooleanValueComponent,
@@ -43,12 +47,16 @@ describe('SpecifyPropertyValueComponent', () => {
                 TextValueComponent,
                 UriValueComponent,
                 JdnDatepickerDirective,
-                TestHostComponent],
+                TestHostComponent,
+                ListValueComponent,
+                ListDisplayComponent
+            ],
             imports: [
                 FormsModule,
                 ReactiveFormsModule,
                 MatFormFieldModule,
                 MatInputModule,
+                MatMenuModule,
                 MatSelectModule,
                 MatIconModule,
                 MatCheckboxModule,
@@ -170,7 +178,7 @@ class TestHostComponent implements OnInit {
 
     @ViewChild('propValue') specifyPropValueComp: SpecifyPropertyValueComponent;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     ngOnInit() {
@@ -188,5 +196,6 @@ const textProperty = new Property(
     ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
     true,
     false,
-    false
+    false,
+    []
 );

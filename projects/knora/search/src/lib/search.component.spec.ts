@@ -7,6 +7,7 @@ import {
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatMenuModule,
     MatSelectModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,6 +31,8 @@ import { LinkValueComponent } from './extended-search/select-property/specify-pr
 import { TextValueComponent } from './extended-search/select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './extended-search/select-property/specify-property-value/uri-value/uri-value.component';
 import { of } from 'rxjs';
+import { ListValueComponent } from './extended-search/select-property/specify-property-value/list-value/list-value.component';
+import { ListDisplayComponent } from './extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
 
 describe('SearchComponent', () => {
     let component: SearchComponent;
@@ -52,7 +55,9 @@ describe('SearchComponent', () => {
                 LinkValueComponent,
                 TextValueComponent,
                 UriValueComponent,
-                JdnDatepickerDirective
+                JdnDatepickerDirective,
+                ListValueComponent,
+                ListDisplayComponent
             ],
             imports: [
                 BrowserAnimationsModule,
@@ -63,6 +68,7 @@ describe('SearchComponent', () => {
                 MatIconModule,
                 MatInputModule,
                 MatListModule,
+                MatMenuModule,
                 MatSelectModule,
                 ReactiveFormsModule,
                 RouterTestingModule,
