@@ -39,47 +39,57 @@ export class SearchService extends ApiService {
     }
 
     /**
-     * Assign fulltext params to http params if not undefined
-     * 
-     * @param {FulltextSearchParams} params 
-     * @param {HttpParams} httpParams 
+     * Assign fulltext search params to http params.
+     *
+     * @param {FulltextSearchParams} params
+     * @param {HttpParams} httpParams
      * @returns {HttpParams}
      */
     private processFulltextSearchParams(params: FulltextSearchParams, httpParams: HttpParams): HttpParams {
 
+        // avoid reassignment to method param
+        let searchParams = httpParams;
+
+        // HttpParams is immutable, `set` returns a new instance
+
         if (params.limitToProject !== undefined) {
-            httpParams = httpParams.set('limitToProject', params.limitToProject);
+            searchParams = searchParams.set('limitToProject', params.limitToProject);
         }
 
         if (params.limitToResourceClass !== undefined) {
-            httpParams = httpParams.set('limitToResourceClass', params.limitToResourceClass);
+            searchParams = searchParams.set('limitToResourceClass', params.limitToResourceClass);
         }
 
         if (params.limitToStandoffClass !== undefined) {
-            httpParams = httpParams.set('limitToStandoffClass', params.limitToStandoffClass);
+            searchParams = searchParams.set('limitToStandoffClass', params.limitToStandoffClass);
         }
 
-        return httpParams;
+        return searchParams;
 
     }
     /**
-     * Assign search by label params to http params if not undefined
-     * 
-     * @param {SearchByLabelParams} params 
-     * @param {HttpParams} httpParams 
+     * Assign search by label search params to http params.
+     *
+     * @param {SearchByLabelParams} params
+     * @param {HttpParams} httpParams
      * @returns {HttpParams}
      */
     private processSearchByLabelParams(params: SearchByLabelParams, httpParams: HttpParams): HttpParams {
 
+        // avoid reassignment to method param
+        let searchParams = httpParams;
+
+        // HttpParams is immutable, `set` returns a new instance
+
         if (params.limitToResourceClass !== undefined) {
-            httpParams = httpParams.set('limitToResourceClass', params.limitToResourceClass);
+            searchParams = searchParams.set('limitToResourceClass', params.limitToResourceClass);
         }
 
         if (params.limitToProject !== undefined) {
-            httpParams = httpParams.set('limitToProject', params.limitToProject);
+            searchParams = searchParams.set('limitToProject', params.limitToProject);
         }
 
-        return httpParams;
+        return searchParams;
 
     }
 
@@ -115,7 +125,7 @@ export class SearchService extends ApiService {
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
-     * @param {string} projectIri restrict search to given project, if any.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
     doFulltextSearch(searchTerm: string, offset: number = 0, params?: FulltextSearchParams): Observable<ApiServiceResult> {
@@ -140,7 +150,7 @@ export class SearchService extends ApiService {
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
-     * @param {string} projectIri restrict search to given project, if any.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
     doFullTextSearchReadResourceSequence(searchTerm: string, offset: number = 0, params?: FulltextSearchParams): Observable<ReadResourcesSequence> {
@@ -175,7 +185,7 @@ export class SearchService extends ApiService {
      * TODO: mark as deprecated, use of `doFullTextSearchCountQueryCountQueryResult` recommended
      *
      * @param searchTerm the term to search for.
-     * @param {string} projectIri restrict search to given project, if any.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
     doFulltextSearchCountQuery(searchTerm: string, params?: FulltextSearchParams): Observable<ApiServiceResult> {
@@ -197,7 +207,7 @@ export class SearchService extends ApiService {
      * Performs a fulltext search count query and turns the result into a `CountQueryResult`.
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} projectIri restrict search to given project, if any.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<CountQueryResult>
      */
     doFullTextSearchCountQueryCountQueryResult(searchTerm: string, params?: FulltextSearchParams): Observable<CountQueryResult> {
@@ -313,8 +323,8 @@ export class SearchService extends ApiService {
      * TODO: mark as deprecated, use of `searchByLabelReadResourceSequence` recommended
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} [resourceClassIRI] restrict search to given resource class.
-     * @param {string} [projectIri] restrict search to given project.
+     * @param {number} offset offset to use.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
     searchByLabel(searchTerm: string, offset: number = 0, params?: SearchByLabelParams): Observable<ApiServiceResult> {
@@ -340,8 +350,8 @@ export class SearchService extends ApiService {
      * Perform a search by a resource's rdfs:label and turns the results in a `ReadResourceSequence`.
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} [resourceClassIRI] restrict search to given resource class.
-     * @param {string} [projectIri] restrict search to given project.
+     * @param {number} offset offset to use.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
     searchByLabelReadResourceSequence(searchTerm: string, offset: number = 0, params?: SearchByLabelParams): Observable<ReadResourcesSequence> {

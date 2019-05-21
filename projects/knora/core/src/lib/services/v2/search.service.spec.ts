@@ -1,12 +1,13 @@
 import { async, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { SearchService } from './search.service';
+import {FulltextSearchParams, SearchService} from './search.service';
 import { KuiCoreModule } from '../../core.module';
 import { ApiService } from '../api.service';
 import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
 import { of } from 'rxjs';
 import { CountQueryResult } from '../../declarations';
+import {HttpParams} from '@angular/common/http';
 
 describe('SearchService', () => {
     let httpTestingController: HttpTestingController;
@@ -316,6 +317,37 @@ describe('SearchService', () => {
         httpRequest[0].flush(expectedResult);
 
     }));
+
+    it('should correctly handle "FulltextSearchParams"', () => {
+
+        let searchParams: FulltextSearchParams = {
+            limitToProject: 'http://rdfh.ch/projects/0001'
+        };
+
+        let httpParams = searchService['processFulltextSearchParams'](searchParams, new HttpParams());
+
+        expect(httpParams.get('limitToProject')).toEqual('http://rdfh.ch/projects/0001');
+        expect(httpParams.keys().length).toEqual(1);
+
+        searchParams = {
+            limitToResourceClass: 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing'
+        };
+
+        httpParams = searchService['processFulltextSearchParams'](searchParams, new HttpParams());
+
+        expect(httpParams.get('limitToResourceClass')).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+        expect(httpParams.keys().length).toEqual(1);
+
+        searchParams = {
+            limitToStandoffClass: 'http://api.knora.org/ontology/standoff/v2#StandoffParagraphTag'
+        };
+
+        httpParams = searchService['processFulltextSearchParams'](searchParams, new HttpParams());
+
+        expect(httpParams.get('limitToStandoffClass')).toEqual('http://api.knora.org/ontology/standoff/v2#StandoffParagraphTag');
+        expect(httpParams.keys().length).toEqual(1);
+
+    });
 
     it('should perform an extended search', async(() => {
 
