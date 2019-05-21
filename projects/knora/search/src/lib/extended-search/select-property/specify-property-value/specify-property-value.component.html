@@ -1,13 +1,12 @@
 <mat-form-field class="search-operator-field" *ngIf="comparisonOperators?.length > 0">
-    <mat-select placeholder="Comparison Operator" [formControl]="form.controls['comparisonOperator']">
-        <mat-option *ngFor="let compOp of comparisonOperators" [value]="compOp">{{ compOp.label }}</mat-option>
-    </mat-select>
+  <mat-select placeholder="Comparison Operator" [formControl]="form.controls['comparisonOperator']">
+    <mat-option *ngFor="let compOp of comparisonOperators" [value]="compOp">{{ compOp.label }}</mat-option>
+  </mat-select>
 </mat-form-field>
 
 <!-- select apt component for value specification using a switch case statement-->
-<span
-    *ngIf="comparisonOperatorSelected !== undefined && comparisonOperatorSelected !== null && comparisonOperatorSelected.getClassName() != 'Exists'"
-    [ngSwitch]="propertyValueType">
+<span *ngIf="comparisonOperatorSelected !== undefined && comparisonOperatorSelected !== null && comparisonOperatorSelected.getClassName() != 'Exists'"
+      [ngSwitch]="propertyValueType">
   <boolean-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.BooleanValue"></boolean-value>
   <date-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.DateValue"></date-value>
   <decimal-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.DecimalValue"></decimal-value>
@@ -16,7 +15,9 @@
               *ngSwitchCase="KnoraConstants.Resource"></link-value>
   <text-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.TextValue"></text-value>
   <uri-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.UriValue"></uri-value>
+  <list-value #propertyValue [formGroup]="form" [property]="property" *ngSwitchCase="KnoraConstants.ListValue">
+  </list-value>
 
-    <!-- TODO: Resource: handle linking properties with target class restriction: access property member to get objectClass via property() getter method -->
+  <!-- TODO: Resource: handle linking properties with target class restriction: access property member to get objectClass via property() getter method -->
   <span *ngSwitchDefault="">Not supported {{propertyValueType}}</span>
 </span>

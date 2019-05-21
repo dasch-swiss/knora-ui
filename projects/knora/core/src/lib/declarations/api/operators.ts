@@ -200,7 +200,6 @@ export class ValueLiteral implements Value {
             // do not convert
             literalType = this.type;
         }
-
         return `"${this.value}"^^<${literalType}>`;
     }
 
