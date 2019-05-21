@@ -1,1 +1,1 @@
-<span>{{valueObject.listNodeLabel}}</span>
+<span *ngIf="node | async">{{(node | async )?.label}}</span>

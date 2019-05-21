@@ -524,11 +524,11 @@ export class ReadIntervalValue implements ReadPropertyItem {
 }
 
 /**
- * Represents an interval value object.
+ * Represents a list value object.
  */
 export class ReadListValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string, readonly listNodeLabel: string, ) {
+    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string) {
 
     }
 
@@ -539,7 +539,7 @@ export class ReadListValue implements ReadPropertyItem {
     }
 
     getContent() {
-        return this.listNodeLabel;
+        return this.listNodeIri;
     }
 
 }
