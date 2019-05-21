@@ -1,7 +1,7 @@
 import { async, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import {FulltextSearchParams, SearchService} from './search.service';
+import {FulltextSearchParams, SearchByLabelParams, SearchService} from './search.service';
 import { KuiCoreModule } from '../../core.module';
 import { ApiService } from '../api.service';
 import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
@@ -743,4 +743,26 @@ OFFSET 0`;
 
         httpRequest[0].flush(expectedResource);
     }));
+
+    it('should correctly handle "SearchByLabelParams"', () => {
+
+        let searchParams: SearchByLabelParams = {
+            limitToProject: 'http://rdfh.ch/projects/0001'
+        };
+
+        let httpParams = searchService['processSearchByLabelParams'](searchParams, new HttpParams());
+
+        expect(httpParams.get('limitToProject')).toEqual('http://rdfh.ch/projects/0001');
+        expect(httpParams.keys().length).toEqual(1);
+
+        searchParams = {
+            limitToResourceClass: 'http://0.0.0.0:3333/ontology/0001/anything/v2#Thing'
+        };
+
+        httpParams = searchService['processSearchByLabelParams'](searchParams, new HttpParams());
+
+        expect(httpParams.get('limitToResourceClass')).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+        expect(httpParams.keys().length).toEqual(1);
+
+    });
 });
