@@ -20,12 +20,12 @@ describe('SearchService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({name: '', api: 'http://0.0.0.0:3333', app: '', media: ''})
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
             ],
             providers: [
                 ApiService,
                 SearchService,
-                {provide: OntologyCacheService, useValue: spyOntoCache}
+                { provide: OntologyCacheService, useValue: spyOntoCache }
             ]
         });
 
@@ -69,7 +69,7 @@ describe('SearchService', () => {
 
         const expectedResources = require('../../test-data/resources/Testthing.json');
 
-        searchService.doFulltextSearch('testding', 0, 'http://rdfh.ch/projects/0001').subscribe(
+        searchService.doFulltextSearch('testding', 0, { limitToProject: 'http://rdfh.ch/projects/0001' }).subscribe(
             (res) => {
                 expect(res.body).toEqual(expectedResources);
             }
@@ -79,7 +79,9 @@ describe('SearchService', () => {
         const httpRequest = httpTestingController.match((request) => {
             return request.url === 'http://0.0.0.0:3333/v2/search/testding' &&
                 request.params.get('offset') === '0' &&
-                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001';
+                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001' &&
+                request.params.keys().length === 2;
+
         });
 
         expect(httpRequest.length).toEqual(1);
@@ -173,7 +175,7 @@ describe('SearchService', () => {
 
         const expectedResources = require('../../test-data/resources/Testthing.json');
 
-        searchService.doFullTextSearchReadResourceSequence('testding', 0, 'http://rdfh.ch/projects/0001').subscribe(
+        searchService.doFullTextSearchReadResourceSequence('testding', 0, { limitToProject: 'http://rdfh.ch/projects/0001' }).subscribe(
             (res) => {
                 expect(res.numberOfResources).toEqual(1);
                 expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
@@ -197,7 +199,8 @@ describe('SearchService', () => {
         const httpRequest = httpTestingController.match((request) => {
             return request.url === 'http://0.0.0.0:3333/v2/search/testding' &&
                 request.params.get('offset') === '0' &&
-                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001';
+                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001' &&
+                request.params.keys().length === 2;
         });
 
         expect(httpRequest.length).toEqual(1);
@@ -244,7 +247,7 @@ describe('SearchService', () => {
 
         const expectedResult = require('../../test-data/resources/countQueryResult.json');
 
-        searchService.doFulltextSearchCountQuery('testding', 'http://rdfh.ch/projects/0001').subscribe(
+        searchService.doFulltextSearchCountQuery('testding', { limitToProject: 'http://rdfh.ch/projects/0001' }).subscribe(
             (res) => {
                 expect(res.body).toEqual(expectedResult);
             }
@@ -253,7 +256,8 @@ describe('SearchService', () => {
         // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
         const httpRequest = httpTestingController.match((request) => {
             return request.url === 'http://0.0.0.0:3333/v2/search/count/testding' &&
-                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001';
+                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001' &&
+                request.params.keys().length === 1;
         });
 
         expect(httpRequest.length).toEqual(1);
@@ -289,7 +293,7 @@ describe('SearchService', () => {
 
         const expectedResult = require('../../test-data/resources/countQueryResult.json');
 
-        searchService.doFullTextSearchCountQueryCountQueryResult('testding', 'http://rdfh.ch/projects/0001').subscribe(
+        searchService.doFullTextSearchCountQueryCountQueryResult('testding', { limitToProject: 'http://rdfh.ch/projects/0001' }).subscribe(
             (res) => {
 
                 const expectedCountQueryRes = new CountQueryResult(197);
@@ -301,7 +305,8 @@ describe('SearchService', () => {
         // see https://www.ng-conf.org/2019/angulars-httpclient-testing-depth/
         const httpRequest = httpTestingController.match((request) => {
             return request.url === 'http://0.0.0.0:3333/v2/search/count/testding' &&
-                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001';
+                request.params.get('limitToProject') === 'http://rdfh.ch/projects/0001' &&
+                request.params.keys().length === 1;
         });
 
         expect(httpRequest.length).toEqual(1);
