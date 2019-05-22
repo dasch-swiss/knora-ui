@@ -165,12 +165,18 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
                 this.rerender = false;
             } else {
 
+                let searchParams;
+
+                if (this.projectIri !== undefined) {
+                    searchParams = { limitToProject: this.projectIri };
+                }
+
                 if (this.offset === 0) {
                     // perform count query
                     this._searchService
                         .doFullTextSearchCountQueryCountQueryResult(
                             this.searchQuery,
-                            { limitToProject: this.projectIri }
+                            searchParams
                         )
                         .subscribe(
                             this.showNumberOfAllResults,
@@ -185,7 +191,7 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
                     .doFullTextSearchReadResourceSequence(
                         this.searchQuery,
                         this.offset,
-                        { limitToProject: this.projectIri }
+                        searchParams
                     )
                     .subscribe(
                         this.processSearchResults, // function pointer
