@@ -30,7 +30,7 @@ export class FulltextSearchComponent implements OnInit {
      * @param  {boolean} [projectfilter] If true it shows the selection
      * of projects to filter by one of them
      */
-    @Input() projectfilter?: boolean = true;
+    @Input() projectfilter?: boolean = false;
 
     /**
      *
