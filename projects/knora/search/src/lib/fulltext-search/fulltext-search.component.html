@@ -1,101 +1,59 @@
-<div class="search-bar-elements">
+<!-- full-text search panel -->
+<div class="kui-fulltext-search-panel" [class.active]="searchPanelFocus" [class.with-project-filter]="projectfilter"
+     #fulltextSearchPanel cdkOverlayOrigin>
+    <div class="kui-project-filter" *ngIf="projectfilter">
+        <button mat-button class="kui-project-filter-button" [matMenuTriggerFor]="selectProject"
+                #btnToSelectProject="matMenuTrigger" isIconButton>
+            <span class="label">{{projectLabel}}</span>
+            <mat-icon class="icon" matSuffix>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #selectProject="matMenu" class="kui-project-filter-menu">
+            <button mat-menu-item class="center" (click)="setProject();changeFocus()">All Projects</button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item *ngFor="let project of projects"
+                    (click)="setProject(project);changeFocus()">{{project.shortname}}</button>
+        </mat-menu>
+    </div>
 
-    <div class="fulltext-search-bar" [class.active]="searchPanelFocus"
-         [class.with-project-filter]="projectfilter && !error && projects?.length > 0">
-        <!-- do not show the project filter in case of an api error -->
-        <div class="search-project-filter" *ngIf="projectfilter && !error && projects?.length > 0">
-            <button mat-button class="project-filter-btn" [matMenuTriggerFor]="selectProject"
-                    #btnToSelectProject="matMenuTrigger" isIconButton>
-                <span class="label">{{projectLabel}}</span>
-                <mat-icon class="icon" matSuffix>keyboard_arrow_down</mat-icon>
-            </button>
-            <mat-menu #selectProject="matMenu">
-                <button mat-menu-item class="center" (click)="setProject();changeFocus()">All Projects</button>
-                <mat-divider></mat-divider>
-                <button mat-menu-item *ngFor="let project of projects"
-                        (click)="setProject(project);changeFocus()">{{project.shortname}}</button>
-            </mat-menu>
+    <div class="kui-fulltext-search" [class.with-project-filter]="projectfilter">
+        <div class="kui-fulltext-search-field">
+            <input #fulltextSearchInput class="kui-fulltext-search-input" type="search" [(ngModel)]="searchQuery"
+                   name="search" minlength="3" autocomplete="off" [placeholder]="'Search'" (keyup.esc)="resetSearch()"
+                   (keyup.enter)="doSearch()" (click)="setFocus()">
         </div>
-
-        <!--         <div>
-            <button class="prefix" (click)="doSearch(search)">
-                <mat-icon>search</mat-icon>
-            </button>
-        </div> -->
-
-        <div class="input-field">
-            <input #search autocomplete="off" type="search" [placeholder]="searchLabel" [(ngModel)]="searchQuery"
-                   minlength="3" [class.with-project-filter]="projectfilter && !error && projects?.length > 0"
-                   name="search" (keyup.esc)="resetSearch(search)" [autofocus]="focusOnSimple === 'active'"
-                   (keyup)="onKey(search, $event)" (focus)="openPanelWithBackdrop()" />
-        </div>
-        <button class="suffix" (click)="doSearch()">
+        <button class="kui-fulltext-search-button suffix" (click)="doSearch()" type="submit">
             <mat-icon>search</mat-icon>
         </button>
-
-        <!--
-        <mat-menu #searchMenu="matMenu" class="fulltext-search-menu">
-            <h4 mat-menu-item *ngFor="let item of prevSearch | kuiReverse; let i=index" (click)="doPrevSearch(item)">
-                <div class="project-filter-btn" [class.not-empty]="item.projectIri"
-                     *ngIf="projectfilter && !error && projects?.length > 0">
-                    <span *ngIf="item.projectIri" class="project-filter-label">{{item.projectLabel}}</span>
-                </div>
-                <div class="search-query">
-                    {{item.query}}
-                </div>
-                <button mat-icon-button (click)="resetPrevSearch(item)">
-                    <mat-icon aria-label="close">close</mat-icon>
-                </button>
-            </h4>
-            <mat-divider></mat-divider>
-            <button mat-menu-item color="accent" class="right" (click)="resetPrevSearch()"
-                    *ngIf="prevSearch">Clear</button>
-        </mat-menu>
-    -->
-
-        <!-- switch button: on some focus we need a close button for the simple -->
-        <!-- <div>
-            <button class="suffix" *ngIf="focusOnSimple === 'active'" (click)="resetSearch(search)">
-                <mat-icon>close</mat-icon>
-            </button>
-            <button class="suffix" *ngIf="focusOnSimple === 'inactive'"></button>
-        </div>
- -->
-
-        <!-- "dropdown" menu for simple search -->
-
-        <ng-template #fulltextSearchMenu>
-            <div class="kui-menu simple-search"
-                 [class.with-project-filter]="projectfilter && !error && projects?.length > 0"
-                 [@fulltextSearchMenu]="focusOnSimple">
-                <mat-list class="kui-previous-search-list">
-                    <div *ngFor="let item of prevSearch | kuiReverse; let i=index">
-                        <mat-list-item *ngIf="i<10">
-                            <h4 mat-line (click)="doPrevSearch(item)" class="kui-previous-search-item">
-                                <div class="project-filter-btn" [class.not-empty]="item.projectIri"
-                                     *ngIf="projectfilter && !error && projects?.length > 0">
-                                    <span *ngIf="item.projectIri"
-                                          class="project-filter-label">{{item.projectLabel}}</span>
-                                </div>
-                                <div class="search-query">
-                                    {{item.query}}
-                                </div>
-                            </h4>
-                            <button mat-icon-button (click)="resetPrevSearch(item)">
-                                <mat-icon aria-label="close">close</mat-icon>
-                            </button>
-                        </mat-list-item>
-                    </div>
-                </mat-list>
-
-                <div class="kui-menu-action" *ngIf="prevSearch">
-                    <mat-divider></mat-divider>
-                    <button mat-button color="primary" class="center" (click)="resetPrevSearch()">Clear
-                        list</button>
-                </div>
-            </div>
-        </ng-template>
-
-
     </div>
+
 </div>
+
+<!-- full-text search menu -->
+<ng-template #fulltextSearchMenu>
+    <div class="kui-fulltext-search-menu" [class.with-project-filter]="projectfilter">
+        <mat-list class="kui-previous-search-list">
+            <div *ngFor="let item of prevSearch | kuiReverse; let i=index">
+                <mat-list-item *ngIf="i<10">
+                    <h4 mat-line (click)="doPrevSearch(item)" class="kui-previous-search-item">
+                        <div class="kui-project-filter-label" [class.not-empty]="item.projectIri"
+                             *ngIf="projectfilter && !error && projects?.length > 0">
+                            <span *ngIf="item.projectIri">{{item.projectLabel}}</span>
+                        </div>
+                        <div class="kui-previous-search-query">
+                            {{item.query}}
+                        </div>
+                    </h4>
+                    <button mat-icon-button (click)="resetPrevSearch(item)">
+                        <mat-icon aria-label="close">close</mat-icon>
+                    </button>
+                </mat-list-item>
+            </div>
+        </mat-list>
+
+        <div class="kui-menu-action" *ngIf="prevSearch">
+            <mat-divider></mat-divider>
+            <button mat-button color="primary" class="center" (click)="resetPrevSearch()">Clear
+                list</button>
+        </div>
+    </div>
+</ng-template>

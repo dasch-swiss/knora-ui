@@ -14,8 +14,9 @@ input[type="search"] {
   -webkit-appearance: none;
 }
 
+//
 // color variables
-
+//
 $bright: rgba(249, 249, 249, 1);
 $grey: rgba(184, 184, 184, 1);
 $dark: rgba(41, 41, 41, 1);
@@ -25,9 +26,14 @@ $black-14-opacity: rgba($black, 0.14);
 $black-20-opacity: rgba($black, 0.2);
 
 // sizes for search element
+// input field
 $search-width: 480px;
-$search-height: $search-width;
+// $search-height: $search-width;
+
+// width on smaller devices
 $search-width-small-device: 360px;
+
+// width of project filter
 $project-filter-width: 160px;
 
 // general border color
@@ -36,210 +42,198 @@ $border-color: #ebebeb;
 // general border radius
 $border-radius: 4px;
 
-.full-width {
-  width: 100%;
+.center {
+  text-align: center;
 }
 
-// position close button
-.close {
-  right: 12px;
-}
-
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
-.search-bar-elements {
+.kui-fulltext-search-panel {
+  border-radius: $border-radius;
   display: flex;
-  position: relative;
-  z-index: 100;
-}
-
-.inactive {
-  color: darken($bright, 50%);
-}
-
-.fulltext-search-bar {
-  background-color: rgba(249, 249, 249, 1);
-  border-radius: 4px;
-  display: inline-flex;
   height: 40px;
   position: relative;
   width: $search-width;
-  z-index: 10;
+  z-index: 100;
+  background-color: $bright;
+
+  // border: 1px solid red;
+
+  &.active {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
 
   &.with-project-filter {
     width: calc(#{$search-width} + #{$project-filter-width});
   }
 
-  &:hover {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  }
-
-  .input-field {
-    flex: 1;
-
-    input {
-      border-style: none;
-      font-size: 14pt;
-      height: 38px;
+  .kui-project-filter {
+    .kui-project-filter-button {
+      font-size: inherit;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: $project-filter-width;
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: 0;
       margin: 1px;
-      position: absolute;
-      padding-left: 12px;
-      // width: calc(#{$search-width} - 80px);
-      width: calc(100% - 40px);
-
-      &.with-project-filter {
-        width: calc(100% - 40px - #{$project-filter-width});
-      }
-
-      &:active,
-      &:focus {
-        outline: none;
-      }
     }
   }
 
-  .prefix,
-  .suffix {
-    background-color: #ffffff;
-    border-radius: 3px;
-    border-style: none;
-    color: rgba($dark, 0.4);
-    cursor: pointer;
-    height: 38px;
-    outline: none;
+  .kui-fulltext-search {
+    background-color: rgba(249, 249, 249, 1);
+    border-radius: $border-radius;
+    display: inline-flex;
     position: relative;
-    width: 40px;
-
-    &:active {
-      color: rgb(81, 81, 81);
-    }
-  }
-
-  &.active {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  }
-}
-
-.kui-menu {
-  box-shadow: 0 3px 5px -1px $black-20-opacity, 0 6px 10px 0 $black-14-opacity, 0 1px 18px 0 $black-12-opacity;
-  background-color: $bright;
-  border-radius: $border-radius;
-  position: absolute;
-  // left: 50%;
-  // margin-left: calc((#{$search-width} + #{$project-filter-width}) / -2);
-
-  &.simple-search {
-    min-height: $search-height;
-    max-height: $search-height;
-    overflow-y: auto;
-    min-width: $search-width;
-    margin-top: 48px;
-    z-index: -1;
+    z-index: 10;
+    border-radius: $border-radius;
 
     &.with-project-filter {
-      min-width: calc(#{$search-width} + #{$project-filter-width});
+      width: calc(#{$search-width} + #{$project-filter-width});
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
 
-    .kui-previous-search-list {
-      .mat-list-item {
+    .kui-fulltext-search-field {
+      flex: 1;
+      width: calc(#{$search-width} - 40px);
+      margin: 1px;
+
+      .kui-fulltext-search-input {
+        border-style: none;
+        font-size: 14pt;
+        height: 38px;
+        //margin: 1px;
+        position: absolute;
+        padding-left: 12px;
+        width: calc(100% - 40px);
+
+        &.with-project-filter {
+          width: calc(100% - 40px - #{$project-filter-width});
+        }
+
+        &:active,
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .suffix {
+      border-top-left-radius: 0;
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+      border-bottom-left-radius: 0;
+      margin: 1px 0 1px -3px;
+    }
+    .prefix {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: $border-radius;
+      margin: 1px 0 1px 3px;
+    }
+    .prefix,
+    .suffix {
+      // background-color: #ffffff;
+      border-style: none;
+      color: rgba($dark, 0.4);
+      cursor: pointer;
+      height: 38px;
+      outline: none;
+      position: relative;
+      width: 39px;
+
+      &.disabled {
+        cursor: auto;
+      }
+
+      &:active {
+        color: rgb(81, 81, 81);
+      }
+    }
+  }
+}
+
+// should be defined global!
+.kui-fulltext-search-menu {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  background-color: $bright;
+  border-radius: $border-radius;
+  overflow-y: auto;
+  width: calc(#{$search-width} - 32px);
+  height: $search-width;
+  margin-top: 6px; // -40px
+  padding: 16px;
+  z-index: -1;
+
+  &.with-project-filter {
+    width: calc(#{$search-width} + #{$project-filter-width} - 32px);
+  }
+
+  .kui-previous-search-list {
+    .mat-list-item {
+      .kui-previous-search-item {
         cursor: pointer;
+        padding: 12px !important;
+      }
 
-        &:hover {
-          background-color: $grey;
+      &:hover {
+        background-color: $grey;
 
-          mat-icon {
-            display: block;
+        .mat-icon {
+          display: inline-block;
+        }
+      }
+
+      .mat-icon {
+        display: none;
+      }
+
+      .kui-previous-search-item {
+        display: inherit;
+
+        .kui-project-filter-label {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: $project-filter-width;
+
+          &.not-empty {
+            &::before {
+              content: "[";
+            }
+            &::after {
+              content: "]";
+            }
           }
         }
 
-        mat-icon {
-          display: none;
-        }
-
-        .kui-previous-search-item {
-          display: inherit;
-
-          .search-query {
-            font-weight: bold;
-          }
+        .kui-previous-search-query {
+          font-weight: bold;
         }
       }
     }
-
-    .kui-menu-action {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      .center {
-        display: block;
-        margin: 12px auto;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .fulltext-search-bar {
-    width: $search-width-small-device;
-
-    .input-field {
-      input {
-        width: calc(#{$search-width-small-device} - 40px);
-      }
-    }
   }
 
-  .kui-menu.simple-search {
-    width: $search-width-small-device;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .fulltext-search-bar {
-    width: calc(#{$search-width-small-device} - 160px);
-
-    div.input-field {
-      input {
-        width: calc(#{$search-width-small-device} - 160px - 40px);
-      }
-    }
-  }
-
-  .kui-menu.simple-search {
-    width: calc(#{$search-width-small-device} - 40px);
-  }
-}
-
-// filter by project: select project
-.project-filter-btn {
-  font-size: inherit;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: $project-filter-width;
-
-  &.not-empty {
-    &::before {
-      content: "[";
-    }
-    &::after {
-      content: "]";
-    }
-  }
-
-  .label {
-    font-weight: normal;
-  }
-
-  .icon {
-    // set the icon to the same line as the text/label is
-    vertical-align: middle;
+  .kui-menu-action {
     position: relative;
-    top: -1px;
+    bottom: 0;
+    width: 100%;
+    .center {
+      display: block;
+      margin: 12px auto;
+    }
+  }
+}
+
+// simulate header, which is normally defined in the app itself; do not copy these lines
+.header {
+  width: 100%;
+  height: 64px;
+  background: #ebebeb;
+
+  .kui-fulltext-search-panel {
+    top: 12px;
+    margin: 0 auto;
+    // display: block;
   }
 }
