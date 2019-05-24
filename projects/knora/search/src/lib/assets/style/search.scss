@@ -1,0 +1,109 @@
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+input[type="search"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+//
+// color variables
+//
+$bright: rgba(249, 249, 249, 1);
+$grey: rgba(184, 184, 184, 1);
+$dark: rgba(41, 41, 41, 1);
+$black: rgb(11, 11, 11);
+$black-12-opacity: rgba($black, 0.12);
+$black-14-opacity: rgba($black, 0.14);
+$black-20-opacity: rgba($black, 0.2);
+
+// sizes for search element
+// input field
+$search-width: 480px;
+// $search-height: $search-width;
+
+// width on smaller devices
+$search-width-small-device: 360px;
+
+// width of project filter
+$project-filter-width: 160px;
+
+// general border color
+$border-color: #ebebeb;
+
+// general border radius
+$border-radius: 4px;
+
+.kui-search-menu {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  background-color: $bright;
+  border-radius: $border-radius;
+  overflow-y: auto;
+  width: calc(#{$search-width} - 32px);
+  height: $search-width;
+  margin-top: 6px; // -40px
+  padding: 16px;
+  z-index: -1;
+
+  &.with-project-filter {
+    width: calc(#{$search-width} + #{$project-filter-width} - 32px);
+  }
+
+  .kui-previous-search-list {
+    .mat-list-item {
+      .kui-previous-search-item {
+        cursor: pointer;
+        padding: 12px !important;
+      }
+
+      &:hover {
+        background-color: $grey;
+
+        .mat-icon {
+          display: inline-block;
+        }
+      }
+
+      .mat-icon {
+        display: none;
+      }
+
+      .kui-previous-search-item {
+        display: inherit;
+
+        .kui-project-filter-label {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: $project-filter-width;
+
+          &.not-empty {
+            &::before {
+              content: "[";
+            }
+            &::after {
+              content: "]";
+            }
+          }
+        }
+
+        .kui-previous-search-query {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .kui-menu-action {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    .center {
+      display: block;
+      margin: 12px auto;
+    }
+  }
+}
