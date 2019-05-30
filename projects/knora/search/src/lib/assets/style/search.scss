@@ -24,6 +24,7 @@ $black-20-opacity: rgba($black, 0.2);
 // sizes for search element
 // input field
 $search-width: 480px;
+$extended-search-width: 740px;
 // $search-height: $search-width;
 
 // width on smaller devices
@@ -38,6 +39,10 @@ $border-color: #ebebeb;
 // general border radius
 $border-radius: 4px;
 
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
 .kui-search-menu {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   background-color: $bright;
@@ -51,6 +56,24 @@ $border-radius: 4px;
 
   &.with-project-filter {
     width: calc(#{$search-width} + #{$project-filter-width} - 32px);
+  }
+
+  &.with-extended-search {
+    width: calc(#{$extended-search-width} - 32px);
+  }
+
+  .kui-menu-header {
+    background-color: rgba(249, 249, 249, 1);
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    display: inline-flex;
+    height: 48px;
+    width: 100%;
+    margin-bottom: 12px;
+
+    .kui-menu-title h4 {
+      margin: 12px;
+    }
   }
 
   .kui-previous-search-list {
@@ -105,5 +128,48 @@ $border-radius: 4px;
       display: block;
       margin: 12px auto;
     }
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .kui-search-bar {
+    width: $search-width-small-device;
+
+    div {
+
+      &.input-field {
+
+        input {
+          width: calc(#{$search-width-small-device} - 80px);
+        }
+      }
+    }
+  }
+
+  .fulltext-search,
+  .kui-menu.extended-search {
+    width: $search-width-small-device;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .kui-search-bar {
+    width: calc(#{$search-width-small-device} - 160px);
+
+    div {
+
+      &.input-field {
+
+        input {
+          width: calc(#{$search-width-small-device} - 160px - 80px);
+        }
+      }
+    }
+  }
+
+  .fulltext-search,
+  .kui-menu.extended-search {
+    width: calc(#{$search-width-small-device} - 80px);
   }
 }

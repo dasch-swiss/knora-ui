@@ -17,12 +17,13 @@
 
 <!-- full-text search menu -->
 <ng-template #extendedSearchMenu>
-    <div class="kui-search-menu" [class.with-project-filter]="projectfilter">
+    <div class="kui-search-menu with-extended-search" [class.with-project-filter]="projectfilter">
         <div class="kui-menu-header">
             <span class="kui-menu-title">
                 <h4>Advanced search</h4>
             </span>
-            <span class="kui-menu-action">
+            <span class="fill-remaining-space"></span>
+            <span class="kui-menu-close">
                 <button mat-icon-button (click)="closeMenu()">
                     <mat-icon>close</mat-icon>
                 </button>
