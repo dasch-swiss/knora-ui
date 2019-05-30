@@ -30,7 +30,7 @@
 
 <!-- full-text search menu -->
 <ng-template #fulltextSearchMenu>
-    <div class="kui-fulltext-search-menu" [class.with-project-filter]="projectfilter">
+    <div class="kui-search-menu" [class.with-project-filter]="projectfilter">
         <mat-list class="kui-previous-search-list">
             <div *ngFor="let item of prevSearch | kuiReverse; let i=index">
                 <mat-list-item *ngIf="i<10">
