@@ -1,4 +1,4 @@
-<mat-form-field class="search-operator-field" *ngIf="comparisonOperators?.length > 0">
+<mat-form-field class="search-operator-field small-field" *ngIf="comparisonOperators?.length > 0">
   <mat-select placeholder="Comparison Operator" [formControl]="form.controls['comparisonOperator']">
     <mat-option *ngFor="let compOp of comparisonOperators" [value]="compOp">{{ compOp.label }}</mat-option>
   </mat-select>

@@ -8,7 +8,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'integer-value',
     templateUrl: './integer-value.component.html',
-    styleUrls: ['./integer-value.component.scss']
+    styleUrls: ['./integer-value.component.scss', '../../../../assets/style/search.scss']
 })
 export class IntegerValueComponent implements OnInit, OnDestroy, PropertyValue {
 
@@ -19,7 +19,7 @@ export class IntegerValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     form: FormGroup;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
 
     }
 

@@ -9,15 +9,15 @@ import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateada
 @Component({
     selector: 'kui-calendar-header',
     template: `
-      <mat-select placeholder="Calendar Format" [formControl]="form.controls['calendar']">
+      <mat-select placeholder="Calendar Format" class="kui-calendar-header" [formControl]="form.controls['calendar']">
         <mat-option *ngFor="let cal of supportedCalendarFormats" [value]="cal">{{cal}}</mat-option>
       </mat-select>
       <mat-calendar-header></mat-calendar-header>
     `,
-    styleUrls: []
+    styleUrls: ['./header-calendar.component.scss']
 })
 export class HeaderComponent<D> implements OnInit {
-    constructor(@Host() private _calendar: MatCalendar<JDNConvertibleCalendar>,
+    constructor (@Host() private _calendar: MatCalendar<JDNConvertibleCalendar>,
         private _dateAdapter: DateAdapter<JDNConvertibleCalendar>,
         private _datepickerContent: MatDatepickerContent<JDNConvertibleCalendar>,
         @Inject(FormBuilder) private fb: FormBuilder) {

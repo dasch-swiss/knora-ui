@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'kui-select-ontology',
   templateUrl: './select-ontology.component.html',
-  styleUrls: ['./select-ontology.component.scss']
+  styleUrls: ['./select-ontology.component.scss', '../../assets/style/search.scss']
 })
 export class SelectOntologyComponent implements OnInit {
 

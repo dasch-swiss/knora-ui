@@ -11,7 +11,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'date-value',
     templateUrl: './date-value.component.html',
-    styleUrls: ['./date-value.component.scss']
+    styleUrls: ['./date-value.component.scss', '../../../../assets/style/search.scss']
 })
 export class DateValueComponent implements OnInit, OnDestroy, PropertyValue {
 
@@ -25,7 +25,7 @@ export class DateValueComponent implements OnInit, OnDestroy, PropertyValue {
     // custom header for the datepicker
     headerComponent = HeaderComponent;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     ngOnInit() {
