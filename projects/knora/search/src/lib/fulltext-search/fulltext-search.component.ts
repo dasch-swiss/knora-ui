@@ -14,7 +14,7 @@ export interface PrevSearchItem {
 @Component({
     selector: 'kui-fulltext-search',
     templateUrl: './fulltext-search.component.html',
-    styleUrls: ['./fulltext-search.component.scss']
+    styleUrls: ['./fulltext-search.component.scss', '../assets/style/search.scss']
 })
 export class FulltextSearchComponent implements OnInit {
 
