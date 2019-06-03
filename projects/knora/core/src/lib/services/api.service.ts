@@ -21,8 +21,8 @@ export abstract class ApiService {
     // for progress loader element
     loading = false;
 
-    protected constructor(public http: HttpClient,
-                          @Inject(KuiCoreConfigToken) public config) {
+    protected constructor (public http: HttpClient,
+        @Inject(KuiCoreConfigToken) public config) {
 
         // console.log('ApiService constructor: config', config);
     }
@@ -38,11 +38,12 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        return this.http.get(this.config.api + path, {observe: 'response', params: params}).pipe(
+        return this.http.get(this.config.api + path, { observe: 'response', params: params }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
                 const result = new ApiServiceResult();
+                result.header = { 'server': response.headers.get('Server') };
                 result.status = response.status;
                 result.statusText = response.statusText;
                 result.url = path;
@@ -90,11 +91,12 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.post(this.config.api + path, body, {observe: 'response'}).pipe(
+        return this.http.post(this.config.api + path, body, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
                 const result = new ApiServiceResult();
+                result.header = { 'server': response.headers.get('Server') };
                 result.status = response.status;
                 result.statusText = response.statusText;
                 result.url = path;
@@ -125,13 +127,14 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.put(this.config.api + path, body, {observe: 'response'}).pipe(
+        return this.http.put(this.config.api + path, body, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
                 // console.log(response);
 
                 const result = new ApiServiceResult();
+                result.header = { 'server': response.headers.get('Server') };
                 result.status = response.status;
                 result.statusText = response.statusText;
                 result.url = path;
@@ -161,13 +164,14 @@ export abstract class ApiService {
 
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
 
-        return this.http.delete(this.config.api + path, {observe: 'response'}).pipe(
+        return this.http.delete(this.config.api + path, { observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
                 // console.log(response);
 
                 const result = new ApiServiceResult();
+                result.header = { 'server': response.headers.get('Server') };
                 result.status = response.status;
                 result.statusText = response.statusText;
                 result.url = path;
@@ -195,6 +199,7 @@ export abstract class ApiService {
     protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
         // console.error(error);
         const serviceError = new ApiServiceError();
+        serviceError.header = { 'server': error.headers.get('Server') };
         serviceError.status = error.status;
         serviceError.statusText = error.statusText;
         serviceError.errorInfo = error.message;
@@ -213,6 +218,7 @@ export abstract class ApiService {
         if (error instanceof ApiServiceError) return throwError(error);
 
         const serviceError = new ApiServiceError();
+        serviceError.header = { 'server': error.headers.get('Server') };
         serviceError.status = -1;
         serviceError.statusText = 'Invalid JSON';
         serviceError.errorInfo = error;

@@ -9,6 +9,11 @@ export class ApiServiceResult {
     private static jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
 
     /**
+     * Header contains the Knora / Server version
+     */
+    header?: any;
+
+    /**
      * Status number
      */
     status = 0;
