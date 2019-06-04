@@ -7,9 +7,12 @@ import { ApiServiceError } from '../declarations/api-service-error';
 import { ApiServiceResult } from '../declarations/api-service-result';
 import { from } from 'rxjs';
 import { KuiCoreConfigToken } from '../core.module';
+import { KnoraConstants } from '../declarations';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
+
+const semver = require('semver');
 
 @Injectable({
     providedIn: 'root',
@@ -44,6 +47,7 @@ export abstract class ApiService {
 
                 const result = new ApiServiceResult();
                 result.header = { 'server': response.headers.get('Server') };
+                this.compareVersion(result.header.server);
                 result.status = response.status;
                 result.statusText = response.statusText;
                 result.url = path;
@@ -97,6 +101,7 @@ export abstract class ApiService {
 
                 const result = new ApiServiceResult();
                 result.header = { 'server': response.headers.get('Server') };
+                this.compareVersion(result.header.server);
                 result.status = response.status;
                 result.statusText = response.statusText;
                 result.url = path;
@@ -135,6 +140,7 @@ export abstract class ApiService {
 
                 const result = new ApiServiceResult();
                 result.header = { 'server': response.headers.get('Server') };
+                this.compareVersion(result.header.server);
                 result.status = response.status;
                 result.statusText = response.statusText;
                 result.url = path;
@@ -172,6 +178,7 @@ export abstract class ApiService {
 
                 const result = new ApiServiceResult();
                 result.header = { 'server': response.headers.get('Server') };
+                this.compareVersion(result.header.server);
                 result.status = response.status;
                 result.statusText = response.statusText;
                 result.url = path;
@@ -225,5 +232,20 @@ export abstract class ApiService {
         serviceError.url = '';
         return throwError(serviceError);
 
+    }
+
+    protected compareVersion(server: string): void {
+
+        // expected knora api version
+        const expected: string = KnoraConstants.KnoraVersion;
+
+        // existing knora api version
+        const versions: string[] = server.split(' ');
+        const existing: string = versions[0].split('/')[1];
+
+        // compare the two versions: expected vs existing
+        if (semver.diff(existing, expected) === 'major') {
+            console.warn('The @knora/core module should be used with Knora v ' + expected + ', but you are using it with v ' + existing);
+        }
     }
 }

@@ -32,6 +32,7 @@ This module has the following package dependencies, which you also have to insta
 -   @angular/core@7.2.7
 -   json2typescript@1.0.6
 -   jsonld@1.1.0
+-   semver@^6.1.1
 
 ## Setup
 
