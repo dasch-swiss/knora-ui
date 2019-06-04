@@ -24,7 +24,6 @@ export abstract class KuiView implements OnInit, OnDestroy {
     abstract searchQuery: string;
     abstract badRequest: boolean;
     abstract searchMode: string;
-    abstract projectIri: string;
     abstract numberOfAllResults: number;
     abstract KnoraConstants: KnoraConstants;
     abstract rerender: boolean;
@@ -42,7 +41,6 @@ export abstract class KuiView implements OnInit, OnDestroy {
     ngOnInit() {
         this.navigationSubscription = this._route.paramMap.subscribe((params: Params) => {
             this.searchMode = params.get('mode');
-            this.projectIri = params.get('project');
 
             // init offset  and result
             this.offset = 0;
@@ -79,7 +77,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
             this._router.navigate([''], { relativeTo: this._route });
             return;
         } else {
-            this.searchQuery = <string> gravsearch;
+            this.searchQuery = <string>gravsearch;
         }
     }
 
@@ -102,31 +100,28 @@ export abstract class KuiView implements OnInit, OnDestroy {
                 this.isLoading = false;
                 this.rerender = false;
             } else {
-            if (this.projectIri !== null && this.projectIri !== undefined) {
-                this.searchQuery += '?limitToProject=' + this.projectIri;
-            }
 
-            if (this.offset === 0) {
-                // perform count query
-                this._searchService.doFullTextSearchCountQueryCountQueryResult(this.searchQuery)
-                    .subscribe(
-                        this.showNumberOfAllResults,
+                if (this.offset === 0) {
+                    // perform count query
+                    this._searchService.doFullTextSearchCountQueryCountQueryResult(this.searchQuery)
+                        .subscribe(
+                            this.showNumberOfAllResults,
                             (error: ApiServiceError) => {
-                                this.errorMessage = <ApiServiceError> error;
-                        }
-                    );
-            }
+                                this.errorMessage = <ApiServiceError>error;
+                            }
+                        );
+                }
 
-            // perform full text search
-            this._searchService.doFullTextSearchReadResourceSequence(this.searchQuery, this.offset)
-                .subscribe(
-                    this.processSearchResults, // function pointer
+                // perform full text search
+                this._searchService.doFullTextSearchReadResourceSequence(this.searchQuery, this.offset)
+                    .subscribe(
+                        this.processSearchResults, // function pointer
                         (error: ApiServiceError) => {
-                            this.errorMessage = <ApiServiceError> error;
+                            this.errorMessage = <ApiServiceError>error;
                             console.log('error', error);
                             console.log('message', this.errorMessage);
-                    }
-                );
+                        }
+                    );
             }
 
             // EXTENDED SEARCH
@@ -137,7 +132,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
                     .subscribe(
                         this.showNumberOfAllResults,
                         (error: ApiServiceError) => {
-                            this.errorMessage = <ApiServiceError> error;
+                            this.errorMessage = <ApiServiceError>error;
                         }
                     );
             }
@@ -145,7 +140,7 @@ export abstract class KuiView implements OnInit, OnDestroy {
                 .subscribe(
                     this.processSearchResults, // function pointer
                     (error: ApiServiceError) => {
-                        this.errorMessage = <ApiServiceError> error;
+                        this.errorMessage = <ApiServiceError>error;
                     });
 
         } else {
