@@ -4,7 +4,7 @@ sudo: required
 language: node_js
 
 node_js:
-  - "8"
+  - "10.9.0"
 
 cache:
   yarn: true
@@ -38,4 +38,4 @@ script:
   - ng t --project @knora/action --watch=false --browsers=ChromeHeadless
   - ng t --project @knora/search --watch=false --browsers=ChromeHeadless
   - ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
-  
+
