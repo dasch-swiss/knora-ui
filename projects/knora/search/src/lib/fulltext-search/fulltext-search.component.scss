@@ -80,7 +80,7 @@ $border-radius: 4px;
   }
 
   .kui-fulltext-search {
-    background-color: rgba(249, 249, 249, 1);
+    background-color: $bright;
     border-radius: $border-radius;
     display: inline-flex;
     position: relative;
@@ -116,6 +116,10 @@ $border-radius: 4px;
           outline: none;
         }
       }
+    }
+
+    .kui-fulltext-search-button {
+      background-color: #ffffff;
     }
 
     .suffix {
