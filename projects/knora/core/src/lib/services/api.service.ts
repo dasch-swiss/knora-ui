@@ -240,13 +240,13 @@ export abstract class ApiService {
         const expected: string = KnoraConstants.KnoraVersion;
 
         // existing knora api version
-        if (server && server.length > 0) {
+        if (server) {
             const versions: string[] = server.split(' ');
             const existing: string = versions[0].split('/')[1];
 
             // compare the two versions: expected vs existing
             if (semver.diff(existing, expected) === 'major') {
-                console.warn('The @knora/core module should be used with Knora v ' + expected + ', but you are using it with v ' + existing);
+                console.warn('The version of the @knora/core module works with Knora v' + expected + ', but you are using it with Knora v' + existing);
             }
         } else {
             // console.warn('No server information from headers response');
