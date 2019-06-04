@@ -45,6 +45,7 @@ describe('GroupsService', () => {
 
             spyOn(service, 'getAllGroups').and.callFake(() => {
                 const result = new ApiServiceResult();
+                result.header = {};
                 result.status = 200;
                 result.statusText = '';
                 result.url = '';
@@ -77,6 +78,7 @@ describe('GroupsService', () => {
 
             spyOn(service, 'getGroupByIri').and.callFake(() => {
                 const result = new ApiServiceResult();
+                result.header = {};
                 result.status = 200;
                 result.statusText = '';
                 result.url = '';

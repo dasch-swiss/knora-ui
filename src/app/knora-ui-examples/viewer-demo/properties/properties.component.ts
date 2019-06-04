@@ -29,7 +29,7 @@ export class PropertiesComponent implements OnInit {
     module = AppDemo.viewerModule;
 
     referredResource = new ReadResource('http://rdfh.ch/c9824353ae06', 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book', 'Holzschnitt', [], [], [], [], {});
-    standoff = {'http://rdfh.ch/c9824353ae06': this.referredResource};
+    standoff = { 'http://rdfh.ch/c9824353ae06': this.referredResource };
 
     // set up mocked values for properties
     color = new ReadColorValue('id', 'prop', '#f06a33');
@@ -52,7 +52,7 @@ export class PropertiesComponent implements OnInit {
     textFile = new ReadTextFileValue('id', 'propIri', 'Text File Name', 'Text File URL');
     uri = new ReadUriValue('id', 'propIri', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
 
-    constructor() {
+    constructor () {
     }
 
     ngOnInit() {

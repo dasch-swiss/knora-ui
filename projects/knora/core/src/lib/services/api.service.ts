@@ -47,7 +47,7 @@ export abstract class ApiService {
 
                 const result = new ApiServiceResult();
                 result.header = { 'server': response.headers.get('Server') };
-                this.compareVersion(result.header.server);
+                this.compareVersion(response.headers.get('Server'));
                 result.status = response.status;
                 result.statusText = response.statusText;
                 result.url = path;
@@ -240,12 +240,17 @@ export abstract class ApiService {
         const expected: string = KnoraConstants.KnoraVersion;
 
         // existing knora api version
-        const versions: string[] = server.split(' ');
-        const existing: string = versions[0].split('/')[1];
+        if (server && server.length > 0) {
+            const versions: string[] = server.split(' ');
+            const existing: string = versions[0].split('/')[1];
 
-        // compare the two versions: expected vs existing
-        if (semver.diff(existing, expected) === 'major') {
-            console.warn('The @knora/core module should be used with Knora v ' + expected + ', but you are using it with v ' + existing);
+            // compare the two versions: expected vs existing
+            if (semver.diff(existing, expected) === 'major') {
+                console.warn('The @knora/core module should be used with Knora v ' + expected + ', but you are using it with v ' + existing);
+            }
+        } else {
+            // console.warn('No server information from headers response');
         }
+
     }
 }

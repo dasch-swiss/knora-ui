@@ -20,12 +20,12 @@ describe('SearchService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({name: '', api: 'http://0.0.0.0:3333', app: '', media: ''})
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
             ],
             providers: [
                 ApiService,
                 SearchService,
-                {provide: OntologyCacheService, useValue: spyOntoCache}
+                { provide: OntologyCacheService, useValue: spyOntoCache }
             ]
         });
 
@@ -507,7 +507,7 @@ OFFSET 0`;
         httpRequest[0].flush(expectedResource);
     }));
 
-    it('should perform a search by label for "testding" limited by resurce class and project returning a ReadResourceSequence', async(() => {
+    it('should perform a search by label for "testding" limited by resource class and project returning a ReadResourceSequence', async(() => {
 
         const expectedResource = require('../../test-data/resources/Testthing.json');
 
