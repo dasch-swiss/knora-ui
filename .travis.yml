@@ -38,4 +38,3 @@ script:
   - ng t --project @knora/action --watch=false --browsers=ChromeHeadless
   - ng t --project @knora/search --watch=false --browsers=ChromeHeadless
   - ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
-  
