@@ -74,7 +74,7 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
         // at least 3 characters are required
         if (searchTerm.length >= 3) {
 
-            this._searchService.searchByLabelReadResourceSequence(searchTerm, this._restrictToResourceClass).subscribe(
+            this._searchService.searchByLabelReadResourceSequence(searchTerm, 0, { limitToResourceClass: this._restrictToResourceClass }).subscribe(
                 (result: ReadResourcesSequence) => {
                     this.resources = result.resources;
                 }, function (err) {
