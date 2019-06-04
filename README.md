@@ -142,17 +142,17 @@ https://angular.io/guide/http#testing-http-requests
     return forkJoin(observables);
 
   }
-  ``` 
+  ```
 
 * Several http requests are created and pushed on an array, then they are passed to forkJoin and returned. With forkJoin, we get one Observable that we can subscribe to (executed once all Observables have been completed). Then we get the results of all Observables from within the subscription to the Observable returned by forkJoin.
 
 ```TypeScript
  it('should get all heroes', () => {
 
-      let res = heroService.getAllHeroes();   
+      let res = heroService.getAllHeroes();
 
       res.subscribe(
-        (obs) => { 
+        (obs) => {
 
           console.log("test")
 
@@ -225,4 +225,17 @@ $ yalc remove --all
 
 ---
 
-## Required version of Knora: 6.0.1
+## Publish new version
+Be sure everything is merged, before creating new release.
+
+### Required version of Knora: 6.0.1
+
+### Update the documentation and the version number
+1. Make a new branch called `docs/documentation-vX.Y.Z
+2. Update the version number (X.Y.Z) in package.json of each module
+3. Update the version number (X.Y.Z) in package.json of dependencies
+4. Update the required version number of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts`
+5. Update the documentation by running the following script in root folder: `./update_docs.sh`
+6. Commit and push all changes and make a new pull request
+7. After merging the PR, we can create a new release with the version tag X.Y.Z
+8. Build all modules with `build-lib-prod` and publish them from each folder with `npm publish`
