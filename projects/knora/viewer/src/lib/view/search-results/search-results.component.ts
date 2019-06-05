@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {
@@ -23,7 +23,7 @@ import {
     templateUrl: './search-results.component.html',
     styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnDestroy {
     /**
      *
      * @param  {boolean} [complexView] If true it shows 2 ways to display the search results: list or grid.
@@ -61,6 +61,7 @@ export class SearchResultsComponent implements OnInit {
     loading = true;
     errorMessage: ApiServiceError = new ApiServiceError();
     pagingLimit: number = 25;
+    navigationSubscription: Subscription;
 
     constructor(
         private _route: ActivatedRoute,
@@ -72,7 +73,7 @@ export class SearchResultsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._route.paramMap.subscribe(
+        this.navigationSubscription = this._route.paramMap.subscribe(
             (params: Params) => {
                 // get the search mode
                 if (!this.searchMode) {
@@ -82,6 +83,7 @@ export class SearchResultsComponent implements OnInit {
                 // get the project iri 
                 if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {
                     this.projectIri = decodeURIComponent(params.get('project'));
+                    console.log('this.projectIri', this.projectIri);
                 }
 
                 // init offset  and result
@@ -107,6 +109,13 @@ export class SearchResultsComponent implements OnInit {
             }
         );
     }
+
+    ngOnDestroy() {
+        if (this.navigationSubscription !== undefined) {
+            this.navigationSubscription.unsubscribe();
+        }
+    }
+
 
     /**
      * Generates the Gravsearch query for the current offset.
