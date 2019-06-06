@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiServiceError, CountQueryResult, ExtendedSearchParams, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, SearchParamsService, SearchService } from '@knora/core';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
     templateUrl: './search-results.component.html',
     styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
+export class SearchResultsComponent implements OnInit {
     /**
      *
      * @param  {boolean} [complexView] If true it shows 2 ways to display the search results: list or grid.
@@ -51,7 +51,6 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
     badRequest: boolean = false;
     loading = true;
     errorMessage: ApiServiceError = new ApiServiceError();
-    navigationSubscription: Subscription;
     pagingLimit: number = 25;
 
     constructor (
@@ -64,30 +63,14 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnInit() {
-        this.getParams();
-    }
-
-    ngOnChanges() {
-        this.getParams();
-    }
-
-    ngOnDestroy() {
-        if (this.navigationSubscription !== undefined) {
-            this.navigationSubscription.unsubscribe();
-        }
-    }
-
-    /**
-     * Get the parameters from the route
-     * @ignore
-     */
-    getParams() {
-        this.navigationSubscription = this._route.paramMap.subscribe(
+        this._route.paramMap.subscribe(
             (params: Params) => {
+                // get the search mode
                 if (!this.searchMode) {
                     this.searchMode = params.get('mode');
                 }
 
+                // get the project iri 
                 if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {
                     this.projectIri = decodeURIComponent(params.get('project'));
                 }
@@ -96,12 +79,12 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
                 this.offset = 0;
                 this.result = [];
 
+                // get query params depending on the search mode
                 if (this.searchMode === 'fulltext') {
                     this.searchQuery = params.get('q');
                     this.badRequest = this.searchQuery.length < 3;
                 } else if (this.searchMode === 'extended') {
                     this.gravsearchGenerator = this._searchParamsService.getSearchParams();
-
                     if (!this.searchQuery) {
                         this.generateGravsearchQuery();
                     } else {
@@ -109,11 +92,13 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
                     }
                 }
 
+                // get results
                 this.rerender = true;
                 this.getResult();
             }
         );
     }
+
 
     /**
      * Generates the Gravsearch query for the current offset.
