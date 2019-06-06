@@ -17,6 +17,8 @@ export class KnoraConstants {
     public static SalsahGuiOntology: string = 'http://api.knora.org/ontology/salsah-gui/v2';
 
     public static SalsahGuiOrder: string = KnoraConstants.SalsahGuiOntology + '#guiOrder';
+    public static SalsahGuiAttribute: string = KnoraConstants.SalsahGuiOntology + '#guiAttribute';
+
 
     public static StandoffOntology: string = 'http://api.knora.org/ontology/standoff/v2';
 
@@ -153,7 +155,6 @@ export class KnoraConstants {
     public static intervalValueHasEnd: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasEnd';
 
     public static listValueAsListNode: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNode';
-    public static listValueAsListNodeLabel: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNodeLabel';
 
     public static Xsd: string = 'http://www.w3.org/2001/XMLSchema#';
 
@@ -170,8 +171,9 @@ export class KnoraConstants {
     public static colorSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Color';
     public static geonameSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
     public static fileSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'File';
+    public static listNodeSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'ListNode';
 
-    public static matchFunction: string = KnoraConstants.KnoraApiV2SimplePath + 'match';
+    public static matchFunction: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'match';
 
     public static EqualsComparisonOperator: string = '=';
     public static EqualsComparisonLabel: string = 'is equal to';

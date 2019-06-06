@@ -93,38 +93,32 @@ describe('ConvertJSONLD', () => {
                     new ReadListValue(
                         'http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/eoyTM9yqT3maAV704FNZoQ',
                         'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSubject',
-                        'http://rdfh.ch/lists/0801/other_quadratic_forms',
-                        'Other quadratic forms'
+                        'http://rdfh.ch/lists/0801/other_quadratic_forms'
                     ),
                     new ReadListValue(
                         'http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/wKbQ86WkRtSOyQomLN3-GA',
                         'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSubject',
-                        'http://rdfh.ch/lists/0801/berlin_academy',
-                        'Berlin Academy'
+                        'http://rdfh.ch/lists/0801/berlin_academy'
                     ),
                     new ReadListValue(
                         'http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/NvANUAjVQXusdezLDIHlNg',
                         'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSubject',
-                        'http://rdfh.ch/lists/0801/other_professional_tasks',
-                        'Other professional tasks'
+                        'http://rdfh.ch/lists/0801/other_professional_tasks'
                     ),
                     new ReadListValue(
                         'http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/q67xf4J3RKe4Y_wNYyVanQ',
                         'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSubject',
-                        'http://rdfh.ch/lists/0801/errands',
-                        'Errands'
+                        'http://rdfh.ch/lists/0801/errands'
                     ),
                     new ReadListValue(
                         'http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/PePWR2aVSueUZAvryhM8RQ',
                         'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSubject',
-                        'http://rdfh.ch/lists/0801/book_trade_orders',
-                        'Book trade, orders'
+                        'http://rdfh.ch/lists/0801/book_trade_orders'
                     ),
                     new ReadListValue(
                         'http://rdfh.ch/0801/j4BrggcKS0CltUf1Ssl9Jg/values/NoeWmFy1TVyA0CGDTPVCsA',
                         'http://0.0.0.0:3333/ontology/0801/beol/v2#hasSubject',
-                        'http://rdfh.ch/lists/0801/johann_albrecht_euler',
-                        'Johann Albrecht Euler'
+                        'http://rdfh.ch/lists/0801/johann_albrecht_euler'
                     )
                 ],
                 'http://0.0.0.0:3333/ontology/0801/beol/v2#letterHasLanguage': [
@@ -491,16 +485,14 @@ describe('ConvertJSONLD', () => {
                     new ReadListValue(
                         'http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw/values/XAhEeE3kSVqM4JPGdLt4Ew',
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasListItem',
-                        'http://rdfh.ch/lists/0001/treeList01',
-                        'Tree list node 01'
+                        'http://rdfh.ch/lists/0001/treeList01'
                     )
                 ],
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherListItem': [
                     new ReadListValue(
                         'http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw/values/j8VQjbD0RsyxpyuvfFJCDA',
                         'http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherListItem',
-                        'http://rdfh.ch/lists/0001/otherTreeList01',
-                        'Other Tree list node 01'
+                        'http://rdfh.ch/lists/0001/otherTreeList01'
                     )
                 ],
                 'http://0.0.0.0:3333/ontology/0001/anything/v2#hasOtherThingValue': [

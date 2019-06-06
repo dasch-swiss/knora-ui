@@ -510,25 +510,15 @@ describe('ReadPropertyItem', () => {
         const listItem = new ReadListValue(
             'http://rdfh.ch/00c650d23303/values/af68552c3626',
             'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasListNode',
-            'http://rdfh.ch/00c650d23303/myNode',
-            'testnode'
-        );
-
-        expect(listItem.id).toEqual(
-            'http://rdfh.ch/00c650d23303/values/af68552c3626'
-        );
-        expect(listItem.type).toEqual(
-            'http://api.knora.org/ontology/knora-api/v2#ListValue'
-        );
-        expect(listItem.propIri).toEqual(
-            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasListNode'
-        );
-        expect(listItem.listNodeIri).toEqual(
             'http://rdfh.ch/00c650d23303/myNode'
         );
-        expect(listItem.listNodeLabel).toEqual('testnode');
+
+        expect(listItem.id).toEqual('http://rdfh.ch/00c650d23303/values/af68552c3626');
+        expect(listItem.type).toEqual('http://api.knora.org/ontology/knora-api/v2#ListValue');
+        expect(listItem.propIri).toEqual('http://0.0.0.0:3333/ontology/0803/incunabula/v2#hasListNode');
+        expect(listItem.listNodeIri).toEqual('http://rdfh.ch/00c650d23303/myNode');
         expect(listItem.getClassName()).toEqual('ReadListValue');
-        expect(listItem.getContent()).toEqual('testnode');
+        expect(listItem.getContent()).toEqual('http://rdfh.ch/00c650d23303/myNode');
     });
 });
 

@@ -29,6 +29,9 @@ import { IntegerValueComponent } from '../extended-search/select-property/specif
 import { LinkValueComponent } from '../extended-search/select-property/specify-property-value/link-value/link-value.component';
 import { TextValueComponent } from '../extended-search/select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from '../extended-search/select-property/specify-property-value/uri-value/uri-value.component';
+import { ListValueComponent } from '../extended-search/select-property/specify-property-value/list-value/list-value.component';
+import { ListDisplayComponent } from '../extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -36,57 +39,61 @@ describe('SearchPanelComponent', () => {
     let component: SearchPanelComponent;
     let fixture: ComponentFixture<SearchPanelComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                MatAutocompleteModule,
-                MatCheckboxModule,
-                MatDatepickerModule,
-                MatIconModule,
-                MatListModule,
-                MatMenuModule,
-                MatFormFieldModule,
-                MatSelectModule,
-                FormsModule,
-                ReactiveFormsModule,
-                RouterTestingModule,
-                BrowserAnimationsModule,
-                HttpClientTestingModule,
-                HttpClientModule,
-            ],
-            declarations: [
-                SearchPanelComponent,
-                FulltextSearchComponent,
-                ExtendedSearchComponent,
-                SelectOntologyComponent,
-                SelectPropertyComponent,
-                SelectResourceClassComponent,
-                SpecifyPropertyValueComponent,
-                BooleanValueComponent,
-                DateValueComponent,
-                DecimalValueComponent,
-                IntegerValueComponent,
-                LinkValueComponent,
-                TextValueComponent,
-                UriValueComponent,
-                ReversePipe,
-                JdnDatepickerDirective
-            ],
-            providers: [
-                {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
-                },
-                HttpClient,
-                {
-                    provide: ActivatedRoute,
-                    useValue: {
-                        params: null
-                    }
-                }
-            ]
-        }).compileComponents();
-    }));
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        MatAutocompleteModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+        MatIconModule,
+        MatListModule,
+        MatMenuModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterTestingModule,
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        HttpClientModule,
+      ],
+      declarations: [
+        SearchPanelComponent,
+        FulltextSearchComponent,
+        ExtendedSearchComponent,
+        SelectOntologyComponent,
+        SelectPropertyComponent,
+        SelectResourceClassComponent,
+        SpecifyPropertyValueComponent,
+        BooleanValueComponent,
+        DateValueComponent,
+        DecimalValueComponent,
+        IntegerValueComponent,
+        LinkValueComponent,
+        TextValueComponent,
+        UriValueComponent,
+        ReversePipe,
+        JdnDatepickerDirective,
+        ListValueComponent,
+        ListDisplayComponent
+      ],
+      providers: [
+        {
+            provide: KuiCoreConfigToken,
+            useValue: KuiCoreConfig
+        },
+        HttpClient,
+        {
+            provide: ActivatedRoute,
+            useValue: {
+                params: null
+            }
+        }
+    ]
+    })
+      .compileComponents();
+  }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SearchPanelComponent);

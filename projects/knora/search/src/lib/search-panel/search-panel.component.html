@@ -1,31 +1,30 @@
-<div class="kui-search-panel">
+<div class="kui-search-panel" #fullSearchPanel cdkOverlayOrigin>
 
-    <div class="kui-search-bar">
-
-        <div class="fulltext-search">
-            <kui-fulltext-search [route]="route" [projectfilter]="projectfilter" [filterbyproject]="filterbyproject"></kui-fulltext-search>
-        </div>
-
-        <div *ngIf="showMenu" [@extendedSearchMenu]="focusOnExtended" class="kui-menu extended-search">
-            <div class="kui-menu-header">
-                <span class="kui-menu-title">
-                    <h4>Advanced search</h4>
-                </span>
-                <span class="kui-menu-action">
-                    <button mat-icon-button (click)="toggleMenu()">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </span>
-            </div>
-            <div class="extended-search-box">
-                <kui-extended-search [route]="route" (toggleExtendedSearchForm)="toggleMenu()"></kui-extended-search>
-            </div>
-        </div>
-
-    </div>
+    <kui-fulltext-search [route]="route" [projectfilter]="projectfilter" [filterbyproject]="filterbyproject">
+    </kui-fulltext-search>
 
     <div class="advanced-btn">
-        <button mat-button color="primary" (click)="toggleMenu()">advanced</button>
+        <button mat-button color="primary" (click)="openPanelWithBackdrop()">advanced</button>
     </div>
 
 </div>
+
+<!-- full-text search menu -->
+<ng-template #extendedSearchMenu>
+    <div class="kui-search-menu with-extended-search" [class.with-project-filter]="projectfilter">
+        <div class="kui-menu-header">
+            <span class="kui-menu-title">
+                <h4>Advanced search</h4>
+            </span>
+            <span class="fill-remaining-space"></span>
+            <span class="kui-menu-close">
+                <button mat-icon-button (click)="closeMenu()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </span>
+        </div>
+        <div class="kui-menu-content">
+            <kui-extended-search [route]="route" (toggleExtendedSearchForm)="closeMenu()"></kui-extended-search>
+        </div>
+    </div>
+</ng-template>

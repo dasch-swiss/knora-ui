@@ -16,7 +16,7 @@ import { ApiServiceResult, IRI, KuiCoreConfig, KuiCoreConfigToken, ReadResource,
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
-import { ConvertJSONLD } from '../../../../../../../core/src/lib/services';
+import { ConvertJSONLD } from '@knora/core';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -90,6 +90,10 @@ describe('LinkValueComponent', () => {
 
         testHostFixture.detectChanges();
 
+        expect(searchService.searchByLabelReadResourceSequence).toHaveBeenCalledTimes(1);
+
+        expect(searchService.searchByLabelReadResourceSequence).toHaveBeenCalledWith('Leonhard Euler', 0, { limitToResourceClass: 'http://0.0.0.0:3333/ontology/0801/beol/v2#person' });
+
         expect(testHostComponent.linkValue.resources.length).toEqual(25);
 
         expect(testHostComponent.linkValue.resources[0].id).toEqual('http://rdfh.ch/00505cf0a803');
@@ -99,7 +103,7 @@ describe('LinkValueComponent', () => {
 
     it('should return a selected resource', () => {
 
-        testHostComponent.linkValue.form.setValue({'resource': new ReadResource('http://rdfh.ch/0802/VKPSBh1IRw2lLhc2r6uCfQ', 'testtype', 'testlabel', [], [], [], [], {})});
+        testHostComponent.linkValue.form.setValue({ 'resource': new ReadResource('http://rdfh.ch/0802/VKPSBh1IRw2lLhc2r6uCfQ', 'testtype', 'testlabel', [], [], [], [], {}) });
 
         testHostFixture.detectChanges();
 

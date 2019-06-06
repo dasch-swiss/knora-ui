@@ -1,28 +1,34 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()" class="kui-form-content">
 
   <div>
-    <kui-select-ontology *ngIf="ontologies.length > 0" [formGroup]="form" [ontologies]="ontologies" (ontologySelected)="getResourceClassesAndPropertiesForOntology($event)"></kui-select-ontology>
+    <kui-select-ontology *ngIf="ontologies.length > 0" [formGroup]="form" [ontologies]="ontologies"
+                         (ontologySelected)="getResourceClassesAndPropertiesForOntology($event)"></kui-select-ontology>
   </div>
 
   <div class="select-resource-class" *ngIf="resourceClasses?.length > 0">
-    <kui-select-resource-class #resourceClass [formGroup]="form" [resourceClasses]="resourceClasses" (resourceClassSelectedEvent)="getPropertiesForResourceClass($event)"></kui-select-resource-class>
+    <kui-select-resource-class #resourceClass [formGroup]="form" [resourceClasses]="resourceClasses"
+                               (resourceClassSelectedEvent)="getPropertiesForResourceClass($event)">
+    </kui-select-resource-class>
   </div>
 
   <div class="select-property" *ngIf="properties !== undefined">
     <div *ngFor="let prop of activeProperties; let i = index">
 
-      <kui-select-property #property [activeResourceClass]="activeResourceClass" [formGroup]="form" [index]="i" [properties]="properties"></kui-select-property>
+      <kui-select-property #property [activeResourceClass]="activeResourceClass" [formGroup]="form" [index]="i"
+                           [properties]="properties"></kui-select-property>
 
     </div>
   </div>
 
 
-  <div>
-    <button mat-mini-fab class="property-buttons add-property-button" color="primary" type="button" (click)="addProperty()" [disabled]="activeOntology === undefined || activeProperties.length >= 4">
+  <div class="select-property buttons">
+    <button mat-mini-fab class="property-button add-property-button" color="primary" type="button"
+            (click)="addProperty()" [disabled]="activeOntology === undefined || activeProperties.length >= 4">
       <mat-icon aria-label="add a property">add</mat-icon>
     </button>
 
-    <button mat-mini-fab class="property-buttons remove-property-button" color="primary" type="button" (click)="removeProperty()" [disabled]="activeProperties.length == 0">
+    <button mat-mini-fab class="property-button remove-property-button" color="primary" type="button"
+            (click)="removeProperty()" [disabled]="activeProperties.length == 0">
       <mat-icon aria-label="remove property">remove</mat-icon>
     </button>
   </div>
@@ -37,18 +43,14 @@
     </button>
   </div> -->
 
-  <div class="action-panel">
-    <button class="extended-buttons reset" mat-button type="button" (click)="resetForm()" [disabled]="this.activeOntology === undefined">
+  <div class="kui-form-action">
+    <button class="reset" mat-button type="button" (click)="resetForm()" [disabled]="this.activeOntology === undefined">
       Reset
     </button>
     <span class="fill-remaining-space"></span>
-    <button class="extended-buttons extended-search-button" mat-raised-button color="primary" type="submit" [disabled]="!formValid">
+    <button class="extended-search-button" mat-raised-button color="primary" type="submit" [disabled]="!formValid">
       Search
     </button>
   </div>
-
-
-
-
 
 </form>

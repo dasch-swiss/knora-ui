@@ -374,8 +374,7 @@ export module ConvertJSONLD {
                 const listValue: ReadListValue = new ReadListValue(
                     propValue['@id'],
                     propIri,
-                    propValue[KnoraConstants.listValueAsListNode]['@id'],
-                    propValue[KnoraConstants.listValueAsListNodeLabel]
+                    propValue[KnoraConstants.listValueAsListNode]['@id']
                 );
 
                 valueSpecificProp = listValue;
