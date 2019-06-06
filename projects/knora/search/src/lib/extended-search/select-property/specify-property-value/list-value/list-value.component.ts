@@ -10,7 +10,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'list-value',
     templateUrl: './list-value.component.html',
-    styleUrls: ['./list-value.component.scss']
+    styleUrls: ['./list-value.component.scss', '../../../../assets/style/search.scss']
 })
 export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 

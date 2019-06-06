@@ -8,7 +8,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'decimal-value',
     templateUrl: './decimal-value.component.html',
-    styleUrls: ['./decimal-value.component.scss']
+    styleUrls: ['./decimal-value.component.scss', '../../../../assets/style/search.scss']
 })
 export class DecimalValueComponent implements OnInit, OnDestroy, PropertyValue {
 
@@ -19,7 +19,7 @@ export class DecimalValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     form: FormGroup;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     ngOnInit() {

@@ -1,9 +1,11 @@
-<mat-form-field class="search-property-field" *ngIf="propertiesAsArray?.length > 0">
-  <mat-select placeholder="Properties" [formControl]="form.controls['property']">
+<mat-form-field class="search-property-field medium-field" *ngIf="propertiesAsArray?.length > 0">
+  <mat-select placeholder="Select Properties" [formControl]="form.controls['property']">
     <mat-option *ngFor="let prop of propertiesAsArray" [value]="prop.id">{{ prop.label }}</mat-option>
   </mat-select>
 </mat-form-field>
 
-<kui-specify-property-value #specifyPropertyValue [formGroup]="form" *ngIf="propertySelected !== undefined" [property]="propertySelected"></kui-specify-property-value>
+<kui-specify-property-value #specifyPropertyValue [formGroup]="form" *ngIf="propertySelected !== undefined"
+                            [property]="propertySelected"></kui-specify-property-value>
 
-<mat-checkbox matTooltip="Sort criterion" *ngIf="propertySelected !== undefined && sortCriterion()" [formControl]="form.controls['isSortCriterion']"></mat-checkbox>
+<mat-checkbox matTooltip="Sort criterion" *ngIf="propertySelected !== undefined && sortCriterion()"
+              [formControl]="form.controls['isSortCriterion']"></mat-checkbox>

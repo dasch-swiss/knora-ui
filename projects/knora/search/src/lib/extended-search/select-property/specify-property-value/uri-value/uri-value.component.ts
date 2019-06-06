@@ -9,7 +9,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'uri-value',
     templateUrl: './uri-value.component.html',
-    styleUrls: ['./uri-value.component.scss']
+    styleUrls: ['./uri-value.component.scss', '../../../../assets/style/search.scss']
 })
 export class UriValueComponent implements OnInit, OnDestroy, PropertyValue {
 
@@ -20,7 +20,7 @@ export class UriValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     form: FormGroup;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
 
     }
 

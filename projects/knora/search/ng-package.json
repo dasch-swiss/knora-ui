@@ -3,6 +3,13 @@
   "dest": "../../../dist/@knora/search",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "@knora/action": "@knora/action",
+      "@knora/core": "@knora/core",
+      "@knora/viewer": "@knora/viewer",
+      "jdnconvertiblecalendar": "jdnconvertiblecalendar",
+      "jdnconvertiblecalendardateadapter": "jdnconvertiblecalendardateadapter"
+    }
   }
 }

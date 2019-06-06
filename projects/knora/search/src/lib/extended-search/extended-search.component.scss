@@ -1,22 +1,16 @@
-.add-property-button {
-    margin-right: 5px;
-}
-.extended-buttons {
-    margin-top: 25px;
-}
-.extended-search-button {
-    margin-right: 5px;
-}
-.property-buttons {
-    margin-top: 25px;
+.select-resource-class {
+  margin-left: 8px;
 }
 .select-property {
-    margin-left: 22px;
-}
-.select-resource-class {
-    margin-left: 12px;
+  margin-left: 16px;
+
+  .property-button {
+    margin: 0 12px 64px 0;
+  }
 }
 
-.action-panel {
-    display: flex;
+.kui-form-content {
+  position: relative;
+  min-height: 320px;
+  height: 100%;
 }
