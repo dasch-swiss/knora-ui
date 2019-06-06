@@ -1,0 +1,172 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Represents a list node v2.</p>",
+      "summary": "<p>Represents a list node v2.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 6,
+    "codeStart": 9,
+    "code": "export class ListNodeV2 {\n\n    readonly children: ListNodeV2[];\n\n    readonly isRootNode: boolean;\n\n    constructor(readonly id: string, readonly label: string, readonly position?: number, readonly hasRootNode?: string) {\n\n        // if hasRootNode is not given, this node is the root node.\n        this.isRootNode = (hasRootNode === undefined);\n\n        this.children = [];\n    }\n}\n\nclass ListCache {\n\n    [index: string]: ListNodeV2;\n\n}\n\nclass ListNodeIriToListNodeV2 {\n\n    [index: string]: ListNodeV2;\n}\n\n@Injectable({\n    providedIn: 'root'\n})\nexport class ListCacheService {\n\n    private listCache = new ListCache();\n\n    private listNodeIriToListNodeV2 = new ListNodeIriToListNodeV2();\n\n    constructor(private _listService: ListService) {\n    }\n\n    private hasRootNode(listJSONLD) {\n        let hasRoot;\n\n        if (listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode'] !== undefined) {\n            hasRoot = listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode']['@id'];\n        }\n\n        return hasRoot;\n    }",
+    "ctx": {
+      "type": "class",
+      "constructor": "ListNodeV2",
+      "cons": "ListNodeV2",
+      "name": "ListNodeV2",
+      "extends": "",
+      "string": "new ListNodeV2()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{object} listJSONLD the JSON-LD representation of a list node v2.",
+        "name": "listJSONLD",
+        "description": "<p>the JSON-LD representation of a list node v2.</p>",
+        "types": [
+          "object"
+        ],
+        "typesDescription": "<code>object</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "return",
+        "string": "{ListNodeV2}",
+        "types": [
+          "ListNodeV2"
+        ],
+        "typesDescription": "<a href=\"ListNodeV2.html\">ListNodeV2</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{ListNodeV2}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Converts a JSON-LD represention of a ListNodeV2 to  a <code>ListNodeV2</code>.<br />\nRecursively converts child nodes.</p>",
+      "summary": "<p>Converts a JSON-LD represention of a ListNodeV2 to  a <code>ListNodeV2</code>.<br />\nRecursively converts child nodes.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 57,
+    "codeStart": 64,
+    "code": "private convertJSONLDToListNode: (listJSONLD: object) => ListNodeV2 = (listJSONLD: object) => {\n\n    const listNodeIri = listJSONLD['@id'];\n\n    const hasRootNode = this.hasRootNode(listJSONLD);\n\n    const listNode = new ListNodeV2(\n        listNodeIri,\n        listJSONLD['http://www.w3.org/2000/01/rdf-schema#label'],\n        listJSONLD['http://api.knora.org/ontology/knora-api/v2#listNodePosition'],\n        hasRootNode\n    );\n\n    // check if there are child nodes\n    if (listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode'] !== undefined) {\n\n        if (Array.isArray(listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode'])) {\n            // array of child nodes\n            for (const subListNode of listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode']) {\n                listNode.children.push(this.convertJSONLDToListNode(subListNode));\n            }\n        } else {\n            // single child node\n            listNode.children.push(this.convertJSONLDToListNode(listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode']));\n        }\n\n    }\n\n    this.listNodeIriToListNodeV2[listNodeIri] = listNode;\n\n    return listNode;\n};",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} rootNodeIri the Iri of the list's root node.",
+        "name": "rootNodeIri",
+        "description": "<p>the Iri of the list's root node.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "return",
+        "string": "{Observable<ListNodeV2>}",
+        "types": [
+          "Observable.<ListNodeV2>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ListNodeV2.html\">ListNodeV2</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<ListNodeV2>}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Gets a list from the cache or requests it from Knora and caches it.</p>",
+      "summary": "<p>Gets a list from the cache or requests it from Knora and caches it.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 97,
+    "codeStart": 103,
+    "code": "getList(rootNodeIri: string): Observable<ListNodeV2> {\n\n    // check if list is already in cache\n    if (this.listCache[rootNodeIri] !== undefined) {\n\n        // return list from cache\n        return of(this.listCache[rootNodeIri]);\n\n    } else {\n        // get list from Knora and cache it\n\n        const listJSONLD = this._listService.getList(rootNodeIri);\n\n        const listV2: Observable<ListNodeV2> = listJSONLD.pipe(\n            map(\n                this.convertJSONLDToListNode\n            )\n        );\n\n        return listV2.pipe(\n            map(\n                (list: ListNodeV2) => {\n                    // write list to cache and return it\n                    this.listCache[rootNodeIri] = list;\n                    return list;\n                }\n            )\n        );\n    }\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getList",
+      "string": "getList()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} listNodeIri the Iri of the list node.",
+        "name": "listNodeIri",
+        "description": "<p>the Iri of the list node.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "return",
+        "string": "{Observable<object>}",
+        "types": [
+          "Observable.<object>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<code>object</code>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<object>}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Gets a list node from the cache or requests the whole list from Knora and caches it.</p>",
+      "summary": "<p>Gets a list node from the cache or requests the whole list from Knora and caches it.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 134,
+    "codeStart": 140,
+    "code": "getListNode(listNodeIri: string): Observable<ListNodeV2> {\n\n    // check if list node is already in cache\n    if (this.listNodeIriToListNodeV2[listNodeIri] !== undefined) {\n\n        // list node is already cached\n        return of(this.listNodeIriToListNodeV2[listNodeIri]);\n\n    } else {\n\n        const listNode = this._listService.getListNode(listNodeIri);\n\n        return listNode.pipe(\n            mergeMap(\n                (listNodeJSONLD: object) => {\n                    const hasRootNode = this.hasRootNode(listNodeJSONLD);\n\n                    if (hasRootNode !== undefined) {\n                        // get the whole list\n                        return this.getList(hasRootNode).pipe(\n                            map(\n                                (completeList: ListNodeV2) => {\n                                    // get list node from cache\n                                    return this.listNodeIriToListNodeV2[listNodeIri];\n                                })\n                        );\n                    } else {\n                        // this is the root node, get the whole list\n                        return this.getList(listNodeIri).pipe(\n                            map(\n                                (completeList: ListNodeV2) => {\n                                    // get list node from cache\n                                    return this.listNodeIriToListNodeV2[listNodeIri];\n                                })\n                        );\n                    }\n                }\n            )\n        );\n    }\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getListNode",
+      "string": "getListNode()"
+    }
+  }
+]

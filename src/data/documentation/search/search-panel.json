@@ -11,9 +11,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10,
-    "codeStart": 13,
-    "code": "@Component({\n    selector: 'kui-search-panel',\n    templateUrl: './search-panel.component.html',\n    styleUrls: ['./search-panel.component.scss'],\n    animations: [\n        trigger('extendedSearchMenu', [\n            state('inactive', style({ display: 'none' })),\n            state('active', style({ display: 'block' })),\n            transition('inactive => active', animate('100ms ease-in')),\n            transition('active => inactive', animate('100ms ease-out'))\n        ])\n    ]\n})\nexport class SearchPanelComponent {",
+    "line": 6,
+    "codeStart": 9,
+    "code": "@Component({\n    selector: 'kui-search-panel',\n    templateUrl: './search-panel.component.html',\n    styleUrls: ['./search-panel.component.scss', '../assets/style/search.scss']\n})\nexport class SearchPanelComponent {",
     "ctx": false
   },
   {
@@ -43,8 +43,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 27,
-    "codeStart": 30,
+    "line": 15,
+    "codeStart": 18,
     "code": "@Input() route: string = '/search';",
     "ctx": false
   },
@@ -75,8 +75,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 32,
-    "codeStart": 35,
+    "line": 20,
+    "codeStart": 23,
     "code": "@Input() projectfilter?: boolean = false;",
     "ctx": false
   },
@@ -107,9 +107,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 37,
-    "codeStart": 40,
-    "code": "@Input() filterbyproject?: string;\n\nshowMenu: boolean = false;\nfocusOnExtended: string = 'inactive';\n\nconstructor() {}",
+    "line": 25,
+    "codeStart": 28,
+    "code": "@Input() filterbyproject?: string;\n\n@ViewChild('fullSearchPanel') searchPanel: ElementRef;\n@ViewChild('extendedSearchMenu') searchMenu: TemplateRef<any>;\n\nshowMenu: boolean = false;\nfocusOnExtended: string = 'inactive';\n\n// overlay reference\noverlayRef: OverlayRef;\n\nconstructor (private _overlay: Overlay,\n    private _viewContainerRef: ViewContainerRef, ) { }",
     "ctx": false
   },
   {
@@ -130,9 +130,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 47,
-    "codeStart": 52,
-    "code": "toggleMenu(): void {\n    this.showMenu = !this.showMenu;\n    this.focusOnExtended =\n        this.focusOnExtended === 'active' ? 'inactive' : 'active';\n}\n}",
+    "line": 42,
+    "codeStart": 47,
+    "code": "toggleMenu(): void {\n    this.showMenu = !this.showMenu;\n    this.focusOnExtended =\n        this.focusOnExtended === 'active' ? 'inactive' : 'active';\n}\n\nopenPanelWithBackdrop() {\n    const config = new OverlayConfig({\n        hasBackdrop: true,\n        backdropClass: 'cdk-overlay-transparent-backdrop',\n        // backdropClass: 'cdk-overlay-dark-backdrop',\n        positionStrategy: this.getOverlayPosition(),\n        scrollStrategy: this._overlay.scrollStrategies.block()\n    });\n\n    this.overlayRef = this._overlay.create(config);\n    this.overlayRef.attach(new TemplatePortal(this.searchMenu, this._viewContainerRef));\n    this.overlayRef.backdropClick().subscribe(() => {\n        this.overlayRef.detach();\n    });\n}\n\ngetOverlayPosition(): PositionStrategy {\n    const positions = [\n        new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),\n        new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' })\n    ];\n\n    const overlayPosition = this._overlay.position().flexibleConnectedTo(this.searchPanel).withPositions(positions).withLockedPosition(false);\n\n    return overlayPosition;\n}\n\ncloseMenu(): void {\n    this.overlayRef.detach();\n}\n}",
     "ctx": {
       "type": "method",
       "name": "toggleMenu",

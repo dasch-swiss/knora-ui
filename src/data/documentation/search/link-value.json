@@ -73,7 +73,7 @@
     "ignore": false,
     "line": 67,
     "codeStart": 72,
-    "code": "searchByLabel(searchTerm: string) {\n\n    // at least 3 characters are required\n    if (searchTerm.length >= 3) {\n\n        this._searchService.searchByLabelReadResourceSequence(searchTerm, this._restrictToResourceClass).subscribe(\n            (result: ReadResourcesSequence) => {\n                this.resources = result.resources;\n            }, function (err) {\n                console.log('JSONLD of full resource request could not be expanded:' + err);\n            }\n        );\n    } else {\n        // clear selection\n        this.resources = undefined;\n    }\n\n}",
+    "code": "searchByLabel(searchTerm: string) {\n\n    // at least 3 characters are required\n    if (searchTerm.length >= 3) {\n\n        this._searchService.searchByLabelReadResourceSequence(searchTerm, 0, { limitToResourceClass: this._restrictToResourceClass }).subscribe(\n            (result: ReadResourcesSequence) => {\n                this.resources = result.resources;\n            }, function (err) {\n                console.log('JSONLD of full resource request could not be expanded:' + err);\n            }\n        );\n    } else {\n        // clear selection\n        this.resources = undefined;\n    }\n\n}",
     "ctx": {
       "type": "method",
       "name": "searchByLabel",
