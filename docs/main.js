@@ -1654,7 +1654,7 @@ var KuiAuthenticationModule = /** @class */ /*@__PURE__*/ (function () {
 /*!**********************************************!*\
   !*** ./dist/@knora/core/fesm5/knora-core.js ***!
   \**********************************************/
-/*! exports provided: ɵa, KuiCoreConfigToken, KuiCoreModule, KuiCoreConfig, ApiServiceResult, ApiServiceError, Utils, KnoraConstants, KnoraSchema, StringLiteral, Precision, DateSalsah, DateRangeSalsah, AuthenticationResponse, Group, GroupResponse, GroupsResponse, List, ListInfo, ListInfoResponse, ListNode, ListNodeInfo, ListNodeInfoResponse, ListResponse, ListsResponse, OntologyInfoShort, PermissionData, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, UsersResponse, UserResponse, User, ReadTextValue, ReadTextValueAsString, ReferredResourcesByStandoffLink, ReadTextValueAsHtml, ReadTextValueAsXml, ReadDateValue, ReadLinkValue, ReadIntegerValue, ReadDecimalValue, ReadStillImageFileValue, ReadMovingImageFileValue, ReadTextFileValue, ReadColorValue, Point2D, RegionGeometry, ReadGeomValue, ReadUriValue, ReadBooleanValue, ReadIntervalValue, ReadListValue, ReadResource, Resource, ReadResourcesSequence, CountQueryResult, StillImageRepresentation, ImageRegion, Equals, NotEquals, GreaterThanEquals, GreaterThan, LessThan, LessThanEquals, Exists, Like, Match, ComparisonOperatorAndValue, ValueLiteral, IRI, PropertyWithValue, ApiService, GroupsService, ListsService, ProjectsService, UsersService, LanguageService, StatusMsgService, OntologyService, OntologyMetadata, CardinalityOccurrence, Cardinality, GuiOrder, ResourceClass, ResourceClasses, Property, Properties, ResourceClassIrisForOntology, OntologyInformation, OntologyCacheService, ResourceService, SearchService, ConvertJSONLD, IncomingService, ExtendedSearchParams, SearchParamsService, GravsearchGenerationService, StoreService, BasicOntologyService, ResourceTypesService */
+/*! exports provided: ɵa, KuiCoreConfigToken, KuiCoreModule, KuiCoreConfig, ApiServiceResult, ApiServiceError, Utils, KnoraConstants, KnoraSchema, StringLiteral, Precision, DateSalsah, DateRangeSalsah, AuthenticationResponse, Group, GroupResponse, GroupsResponse, List, ListInfo, ListInfoResponse, ListNode, ListNodeInfo, ListNodeInfoResponse, ListResponse, ListsResponse, OntologyInfoShort, PermissionData, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, UsersResponse, UserResponse, User, ReadTextValue, ReadTextValueAsString, ReferredResourcesByStandoffLink, ReadTextValueAsHtml, ReadTextValueAsXml, ReadDateValue, ReadLinkValue, ReadIntegerValue, ReadDecimalValue, ReadStillImageFileValue, ReadMovingImageFileValue, ReadTextFileValue, ReadColorValue, Point2D, RegionGeometry, ReadGeomValue, ReadUriValue, ReadBooleanValue, ReadIntervalValue, ReadListValue, ReadResource, Resource, ReadResourcesSequence, CountQueryResult, StillImageRepresentation, ImageRegion, Equals, NotEquals, GreaterThanEquals, GreaterThan, LessThan, LessThanEquals, Exists, Like, Match, ComparisonOperatorAndValue, ValueLiteral, IRI, PropertyWithValue, ApiService, GroupsService, ListsService, ProjectsService, UsersService, LanguageService, StatusMsgService, OntologyService, OntologyMetadata, CardinalityOccurrence, Cardinality, GuiOrder, ResourceClass, ResourceClasses, Property, Properties, ResourceClassIrisForOntology, OntologyInformation, OntologyCacheService, ResourceService, SearchService, ConvertJSONLD, IncomingService, ExtendedSearchParams, SearchParamsService, GravsearchGenerationService, StoreService, BasicOntologyService, ResourceTypesService, ListNodeV2, ListCacheService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1761,16 +1761,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StoreService", function() { return StoreService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BasicOntologyService", function() { return BasicOntologyService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResourceTypesService", function() { return ResourceTypesService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListNodeV2", function() { return ListNodeV2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListCacheService", function() { return ListCacheService; });
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var json2typescript__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! json2typescript */ "./node_modules/json2typescript/index.js");
 /* harmony import */ var json2typescript__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(json2typescript__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/internal/observable/throwError */ "./node_modules/rxjs/internal/observable/throwError.js");
 /* harmony import */ var rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
 
 
@@ -1779,7 +1781,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var KuiCoreConfigToken = new _angular_core__WEBPACK_IMPORTED_MODULE_6__["InjectionToken"]('KuiCoreConfigToken (knora.core.config)');
+var KuiCoreConfigToken = new _angular_core__WEBPACK_IMPORTED_MODULE_5__["InjectionToken"]('KuiCoreConfigToken (knora.core.config)');
 var KuiCoreModule = /** @class */ /*@__PURE__*/ (function () {
     function KuiCoreModule() {
     }
@@ -1829,23 +1831,23 @@ var KuiCoreConfig = /** @class */ /*@__PURE__*/ (function () {
          */
         this.media = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('name', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], KuiCoreConfig.prototype, "name", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('app', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], KuiCoreConfig.prototype, "app", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('api', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], KuiCoreConfig.prototype, "api", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('media', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], KuiCoreConfig.prototype, "media", void 0);
-    KuiCoreConfig = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    KuiCoreConfig = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('KuiCoreConfig')
     ], KuiCoreConfig);
     return KuiCoreConfig;
@@ -1920,6 +1922,7 @@ var KnoraConstants = /** @class */ /*@__PURE__*/ (function () {
     KnoraConstants.KnoraApiV2SimplePath = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
     KnoraConstants.SalsahGuiOntology = 'http://api.knora.org/ontology/salsah-gui/v2';
     KnoraConstants.SalsahGuiOrder = KnoraConstants.SalsahGuiOntology + '#guiOrder';
+    KnoraConstants.SalsahGuiAttribute = KnoraConstants.SalsahGuiOntology + '#guiAttribute';
     KnoraConstants.StandoffOntology = 'http://api.knora.org/ontology/standoff/v2';
     KnoraConstants.Resource = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Resource';
     KnoraConstants.TextValue = KnoraConstants.KnoraApiV2WithValueObjectPath + 'TextValue';
@@ -2031,7 +2034,6 @@ var KnoraConstants = /** @class */ /*@__PURE__*/ (function () {
     KnoraConstants.intervalValueHasStart = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasStart';
     KnoraConstants.intervalValueHasEnd = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasEnd';
     KnoraConstants.listValueAsListNode = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNode';
-    KnoraConstants.listValueAsListNodeLabel = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNodeLabel';
     KnoraConstants.Xsd = 'http://www.w3.org/2001/XMLSchema#';
     KnoraConstants.xsdString = KnoraConstants.Xsd + 'string';
     KnoraConstants.xsdBoolean = KnoraConstants.Xsd + 'boolean';
@@ -2045,7 +2047,8 @@ var KnoraConstants = /** @class */ /*@__PURE__*/ (function () {
     KnoraConstants.colorSimple = KnoraConstants.KnoraApiV2SimplePath + 'Color';
     KnoraConstants.geonameSimple = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
     KnoraConstants.fileSimple = KnoraConstants.KnoraApiV2SimplePath + 'File';
-    KnoraConstants.matchFunction = KnoraConstants.KnoraApiV2SimplePath + 'match';
+    KnoraConstants.listNodeSimple = KnoraConstants.KnoraApiV2SimplePath + 'ListNode';
+    KnoraConstants.matchFunction = KnoraConstants.KnoraApiV2WithValueObjectPath + 'match';
     KnoraConstants.EqualsComparisonOperator = '=';
     KnoraConstants.EqualsComparisonLabel = 'is equal to';
     KnoraConstants.NotEqualsComparisonOperator = '!=';
@@ -2170,15 +2173,15 @@ var StringLiteral = /** @class */ /*@__PURE__*/ (function () {
         this.value = undefined;
         this.language = '';
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('value', String, false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], StringLiteral.prototype, "value", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('language', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], StringLiteral.prototype, "language", void 0);
-    StringLiteral = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    StringLiteral = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('StringLiteral')
     ], StringLiteral);
     return StringLiteral;
@@ -2274,11 +2277,11 @@ var AuthenticationResponse = /** @class */ /*@__PURE__*/ (function () {
     function AuthenticationResponse() {
         this.token = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('token', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], AuthenticationResponse.prototype, "token", void 0);
-    AuthenticationResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    AuthenticationResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('AuthenticationResponse')
     ], AuthenticationResponse);
     return AuthenticationResponse;
@@ -2297,51 +2300,51 @@ var Project = /** @class */ /*@__PURE__*/ (function () {
         this.status = undefined;
         this.selfjoin = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('id', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], Project.prototype, "id", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('shortname', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], Project.prototype, "shortname", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('shortcode', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], Project.prototype, "shortcode", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('longname', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], Project.prototype, "longname", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('description', [StringLiteral], true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], Project.prototype, "description", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('keywords', [String], true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], Project.prototype, "keywords", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('logo', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], Project.prototype, "logo", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('institution', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], Project.prototype, "institution", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('ontologies', [String]),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], Project.prototype, "ontologies", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('status', Boolean),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Boolean)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Boolean)
     ], Project.prototype, "status", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('selfjoin', Boolean),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Boolean)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Boolean)
     ], Project.prototype, "selfjoin", void 0);
-    Project = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Project = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('Project')
     ], Project);
     return Project;
@@ -2355,31 +2358,31 @@ var Group = /** @class */ /*@__PURE__*/ (function () {
         this.status = undefined;
         this.selfjoin = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('id', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], Group.prototype, "id", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('name', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], Group.prototype, "name", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('description', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], Group.prototype, "description", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('project', Project, false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Project)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Project)
     ], Group.prototype, "project", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('status', Boolean),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Boolean)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Boolean)
     ], Group.prototype, "status", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('selfjoin', Boolean),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Boolean)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Boolean)
     ], Group.prototype, "selfjoin", void 0);
-    Group = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Group = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('Group')
     ], Group);
     return Group;
@@ -2388,11 +2391,11 @@ var GroupResponse = /** @class */ /*@__PURE__*/ (function () {
     function GroupResponse() {
         this.group = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('group', Group),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Group)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Group)
     ], GroupResponse.prototype, "group", void 0);
-    GroupResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    GroupResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('GroupResponse')
     ], GroupResponse);
     return GroupResponse;
@@ -2401,11 +2404,11 @@ var GroupsResponse = /** @class */ /*@__PURE__*/ (function () {
     function GroupsResponse() {
         this.groups = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('groups', [Group]),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], GroupsResponse.prototype, "groups", void 0);
-    GroupsResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    GroupsResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('GroupsResponse')
     ], GroupsResponse);
     return GroupsResponse;
@@ -2417,23 +2420,23 @@ var ListInfo = /** @class */ /*@__PURE__*/ (function () {
         this.labels = undefined;
         this.comments = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('id', String, false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], ListInfo.prototype, "id", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('projectIri', String, false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], ListInfo.prototype, "projectIri", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('labels', [StringLiteral], true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], ListInfo.prototype, "labels", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('comments', [StringLiteral], true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], ListInfo.prototype, "comments", void 0);
-    ListInfo = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    ListInfo = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('ListInfo')
     ], ListInfo);
     return ListInfo;
@@ -2449,31 +2452,31 @@ var ListNode = /** @class */ /*@__PURE__*/ (function () {
     }
     ListNode_1 = ListNode;
     var ListNode_1;
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('id', String, false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], ListNode.prototype, "id", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('name', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], ListNode.prototype, "name", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('label', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], ListNode.prototype, "label", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('children', [ListNode_1], true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], ListNode.prototype, "children", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('level', Number, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Number)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Number)
     ], ListNode.prototype, "level", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('position', Number, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Number)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Number)
     ], ListNode.prototype, "position", void 0);
-    ListNode = ListNode_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    ListNode = ListNode_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('ListNode')
     ], ListNode);
     return ListNode;
@@ -2483,15 +2486,15 @@ var List = /** @class */ /*@__PURE__*/ (function () {
         this.listinfo = undefined;
         this.children = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('listinfo', ListInfo, false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", ListInfo)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", ListInfo)
     ], List.prototype, "listinfo", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('children', [ListNode], false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], List.prototype, "children", void 0);
-    List = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    List = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('List')
     ], List);
     return List;
@@ -2500,11 +2503,11 @@ var ListInfoResponse = /** @class */ /*@__PURE__*/ (function () {
     function ListInfoResponse() {
         this.listinfo = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('listinfo', ListInfo, false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", ListInfo)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", ListInfo)
     ], ListInfoResponse.prototype, "listinfo", void 0);
-    ListInfoResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    ListInfoResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('ListInfoResponse')
     ], ListInfoResponse);
     return ListInfoResponse;
@@ -2518,31 +2521,31 @@ var ListNodeInfo = /** @class */ /*@__PURE__*/ (function () {
         this.labels = undefined;
         this.comments = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('id', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], ListNodeInfo.prototype, "id", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('name', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], ListNodeInfo.prototype, "name", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('projectIri', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], ListNodeInfo.prototype, "projectIri", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('isRootNode', Boolean, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Boolean)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Boolean)
     ], ListNodeInfo.prototype, "isRootNode", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('labels', [StringLiteral]),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], ListNodeInfo.prototype, "labels", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('comments', [StringLiteral]),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], ListNodeInfo.prototype, "comments", void 0);
-    ListNodeInfo = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    ListNodeInfo = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('ListNodeInfo')
     ], ListNodeInfo);
     return ListNodeInfo;
@@ -2551,11 +2554,11 @@ var ListNodeInfoResponse = /** @class */ /*@__PURE__*/ (function () {
     function ListNodeInfoResponse() {
         this.nodeinfo = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('nodeinfo', ListNodeInfo, false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", ListNodeInfo)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", ListNodeInfo)
     ], ListNodeInfoResponse.prototype, "nodeinfo", void 0);
-    ListNodeInfoResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    ListNodeInfoResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('ListNodeInfoResponse')
     ], ListNodeInfoResponse);
     return ListNodeInfoResponse;
@@ -2564,11 +2567,11 @@ var ListResponse = /** @class */ /*@__PURE__*/ (function () {
     function ListResponse() {
         this.list = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('list', List, false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", List)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", List)
     ], ListResponse.prototype, "list", void 0);
-    ListResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    ListResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('ListResponse')
     ], ListResponse);
     return ListResponse;
@@ -2577,11 +2580,11 @@ var ListsResponse = /** @class */ /*@__PURE__*/ (function () {
     function ListsResponse() {
         this.lists = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('lists', [ListNodeInfo], false),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], ListsResponse.prototype, "lists", void 0);
-    ListsResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    ListsResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('ListsResponse')
     ], ListsResponse);
     return ListsResponse;
@@ -2591,15 +2594,15 @@ var OntologyInfoShort = /** @class */ /*@__PURE__*/ (function () {
         this.ontologyIri = undefined;
         this.ontologyName = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('ontologyIri', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], OntologyInfoShort.prototype, "ontologyIri", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('ontologyName', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], OntologyInfoShort.prototype, "ontologyName", void 0);
-    OntologyInfoShort = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    OntologyInfoShort = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('OntologyInfoShort')
     ], OntologyInfoShort);
     return OntologyInfoShort;
@@ -2609,15 +2612,15 @@ var PermissionData = /** @class */ /*@__PURE__*/ (function () {
         this.groupsPerProject = undefined;
         this.administrativePermissionsPerProject = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('groupsPerProject', Object),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Object)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Object)
     ], PermissionData.prototype, "groupsPerProject", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('administrativePermissionsPerProject', Object),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Object)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Object)
     ], PermissionData.prototype, "administrativePermissionsPerProject", void 0);
-    PermissionData = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    PermissionData = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('PermissionData')
     ], PermissionData);
     return PermissionData;
@@ -2639,63 +2642,63 @@ var User = /** @class */ /*@__PURE__*/ (function () {
         this.permissions = undefined;
         this.systemAdmin = false;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('id', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], User.prototype, "id", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('email', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], User.prototype, "email", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('username', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], User.prototype, "username", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('password', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], User.prototype, "password", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('token', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], User.prototype, "token", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('givenName', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], User.prototype, "givenName", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('familyName', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], User.prototype, "familyName", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('status', Boolean),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Boolean)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Boolean)
     ], User.prototype, "status", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('lang', String),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], User.prototype, "lang", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('groups', [Group]),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], User.prototype, "groups", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('projects', [Project]),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], User.prototype, "projects", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('sessionId', String, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", String)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", String)
     ], User.prototype, "sessionId", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('permissions', PermissionData),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", PermissionData)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", PermissionData)
     ], User.prototype, "permissions", void 0);
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('systemAdmin', Boolean, true),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Boolean)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Boolean)
     ], User.prototype, "systemAdmin", void 0);
-    User = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    User = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('User')
     ], User);
     return User;
@@ -2704,11 +2707,11 @@ var ProjectMembersResponse = /** @class */ /*@__PURE__*/ (function () {
     function ProjectMembersResponse() {
         this.members = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('members', [User]),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], ProjectMembersResponse.prototype, "members", void 0);
-    ProjectMembersResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    ProjectMembersResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('ProjectMembersResponse')
     ], ProjectMembersResponse);
     return ProjectMembersResponse;
@@ -2717,11 +2720,11 @@ var ProjectResponse = /** @class */ /*@__PURE__*/ (function () {
     function ProjectResponse() {
         this.project = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('project', Project),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Project)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Project)
     ], ProjectResponse.prototype, "project", void 0);
-    ProjectResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    ProjectResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('ProjectResponse')
     ], ProjectResponse);
     return ProjectResponse;
@@ -2730,11 +2733,11 @@ var ProjectsResponse = /** @class */ /*@__PURE__*/ (function () {
     function ProjectsResponse() {
         this.projects = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('projects', [Project]),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], ProjectsResponse.prototype, "projects", void 0);
-    ProjectsResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    ProjectsResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('ProjectsResponse')
     ], ProjectsResponse);
     return ProjectsResponse;
@@ -2743,11 +2746,11 @@ var UsersResponse = /** @class */ /*@__PURE__*/ (function () {
     function UsersResponse() {
         this.users = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('users', [User]),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", Array)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", Array)
     ], UsersResponse.prototype, "users", void 0);
-    UsersResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    UsersResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('UsersResponse')
     ], UsersResponse);
     return UsersResponse;
@@ -2756,11 +2759,11 @@ var UserResponse = /** @class */ /*@__PURE__*/ (function () {
     function UserResponse() {
         this.user = undefined;
     }
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonProperty"])('user', User),
-        Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__metadata"])("design:type", User)
+        Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__metadata"])("design:type", User)
     ], UserResponse.prototype, "user", void 0);
-    UserResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__decorate"])([
+    UserResponse = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__decorate"])([
         Object(json2typescript__WEBPACK_IMPORTED_MODULE_1__["JsonObject"])('UserResponse')
     ], UserResponse);
     return UserResponse;
@@ -2778,7 +2781,7 @@ var ReadTextValue = /** @class */ /*@__PURE__*/ (function () {
  * Represents a text value object without markup (mere character string).
  */
 var ReadTextValueAsString = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(ReadTextValueAsString, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(ReadTextValueAsString, _super);
     function ReadTextValueAsString(id, propIri, str) {
         var _this = _super.call(this) || this;
         _this.id = id;
@@ -2806,7 +2809,7 @@ var ReferredResourcesByStandoffLink = /** @class */ /*@__PURE__*/ (function () {
  * Represents a text value object with markup that has been turned into HTML.
  */
 var ReadTextValueAsHtml = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(ReadTextValueAsHtml, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(ReadTextValueAsHtml, _super);
     function ReadTextValueAsHtml(id, propIri, html, referredResources) {
         var _this = _super.call(this) || this;
         _this.id = id;
@@ -2843,7 +2846,7 @@ var ReadTextValueAsHtml = /** @class */ /*@__PURE__*/ (function (_super) {
  * Represents a text value object with markup as XML.
  */
 var ReadTextValueAsXml = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(ReadTextValueAsXml, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(ReadTextValueAsXml, _super);
     function ReadTextValueAsXml(id, propIri, xml, mappingIri) {
         var _this = _super.call(this) || this;
         _this.id = id;
@@ -3114,7 +3117,7 @@ var ReadGeomValue = /** @class */ /*@__PURE__*/ (function () {
         var geometryJSON = JSON.parse(geometryString);
         var points = [];
         try {
-            for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(geometryJSON.points), _c = _b.next(); !_c.done; _c = _b.next()) {
+            for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(geometryJSON.points), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var point = _c.value;
                 points.push(new Point2D(point.x, point.y));
             }
@@ -3202,21 +3205,20 @@ var ReadIntervalValue = /** @class */ /*@__PURE__*/ (function () {
     return ReadIntervalValue;
 }());
 /**
- * Represents an interval value object.
+ * Represents a list value object.
  */
 var ReadListValue = /** @class */ /*@__PURE__*/ (function () {
-    function ReadListValue(id, propIri, listNodeIri, listNodeLabel) {
+    function ReadListValue(id, propIri, listNodeIri) {
         this.id = id;
         this.propIri = propIri;
         this.listNodeIri = listNodeIri;
-        this.listNodeLabel = listNodeLabel;
         this.type = KnoraConstants.ListValue;
     }
     ReadListValue.prototype.getClassName = function () {
         return KnoraConstants.ReadListValue;
     };
     ReadListValue.prototype.getContent = function () {
-        return this.listNodeLabel;
+        return this.listNodeIri;
     };
     return ReadListValue;
 }());
@@ -3293,7 +3295,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
     ApiService.prototype.httpGet = function (path, params) {
         var _this = this;
         this.loading = true;
-        return this.http.get(this.config.api + path, { observe: 'response', params: params }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
+        return this.http.get(this.config.api + path, { observe: 'response', params: params }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (response) {
             _this.loading = false;
             var result = new ApiServiceResult();
             result.status = response.status;
@@ -3301,7 +3303,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
             result.url = path;
             result.body = response.body;
             return result;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(function (error) {
             _this.loading = false;
             return _this.handleRequestError(error);
         }));
@@ -3331,7 +3333,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         var _this = this;
         this.loading = true;
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
-        return this.http.post(this.config.api + path, body, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
+        return this.http.post(this.config.api + path, body, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (response) {
             _this.loading = false;
             var result = new ApiServiceResult();
             result.status = response.status;
@@ -3339,7 +3341,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
             result.url = path;
             result.body = response.body;
             return result;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(function (error) {
             _this.loading = false;
             // console.error(error);
             return _this.handleRequestError(error);
@@ -3356,7 +3358,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         var _this = this;
         this.loading = true;
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
-        return this.http.put(this.config.api + path, body, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
+        return this.http.put(this.config.api + path, body, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (response) {
             _this.loading = false;
             // console.log(response);
             var result = new ApiServiceResult();
@@ -3365,7 +3367,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
             result.url = path;
             result.body = response.body;
             return result;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(function (error) {
             _this.loading = false;
             // console.error(error);
             return _this.handleRequestError(error);
@@ -3381,7 +3383,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         var _this = this;
         this.loading = true;
         // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
-        return this.http.delete(this.config.api + path, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
+        return this.http.delete(this.config.api + path, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (response) {
             _this.loading = false;
             // console.log(response);
             var result = new ApiServiceResult();
@@ -3390,7 +3392,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
             result.url = path;
             result.body = response.body;
             return result;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(function (error) {
             _this.loading = false;
             // console.error(error);
             return _this.handleRequestError(error);
@@ -3427,14 +3429,14 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         serviceError.url = '';
         return Object(rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_2__["throwError"])(serviceError);
     };
-    ApiService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function ApiService_Factory() { return new ApiService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken)); }, token: ApiService, providedIn: "root" });
+    ApiService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function ApiService_Factory() { return new ApiService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: ApiService, providedIn: "root" });
     return ApiService;
 }());
 /**
  * Requests ontology information from Knora.
  */
 var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(OntologyService, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(OntologyService, _super);
     function OntologyService() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -3535,9 +3537,9 @@ var OntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
                 'knora-api': KnoraConstants.KnoraApiV2WithValueObjectPath
             }
         };
-        return this.httpPost(path, ontology).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.body; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPost(path, ontology).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.body; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
-    OntologyService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function OntologyService_Factory() { return new OntologyService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken)); }, token: OntologyService, providedIn: "root" });
+    OntologyService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function OntologyService_Factory() { return new OntologyService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: OntologyService, providedIn: "root" });
     return OntologyService;
 }(ApiService));
 var jsonld$1 = __webpack_require__(/*! jsonld */ "./node_modules/jsonld/lib/jsonld.js");
@@ -3545,7 +3547,7 @@ var jsonld$1 = __webpack_require__(/*! jsonld */ "./node_modules/jsonld/lib/json
  * Represents an error occurred in OntologyCacheService.
  */
 var OntologyCacheError = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(OntologyCacheError, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(OntologyCacheError, _super);
     function OntologyCacheError(message) {
         var _this = _super.call(this, message) || this;
         _this.message = message;
@@ -3651,8 +3653,9 @@ var Property = /** @class */ /*@__PURE__*/ (function () {
      * @param {boolean} isEditable indicates whether the given property can be edited by the client.
      * @param {boolean} isLinkProperty indicates whether the given property is a linking property.
      * @param {boolean} isLinkValueProperty indicates whether the given property refers to a link value.
+     * @param {string} guiAttribute the gui attribute assigned to this property, if any.
      */
-    function Property(id, objectType, comment, label, subPropertyOf, isEditable, isLinkProperty, isLinkValueProperty) {
+    function Property(id, objectType, comment, label, subPropertyOf, isEditable, isLinkProperty, isLinkValueProperty, guiAttribute) {
         this.id = id;
         this.objectType = objectType;
         this.comment = comment;
@@ -3661,6 +3664,7 @@ var Property = /** @class */ /*@__PURE__*/ (function () {
         this.isEditable = isEditable;
         this.isLinkProperty = isLinkProperty;
         this.isLinkValueProperty = isLinkValueProperty;
+        this.guiAttribute = guiAttribute;
     }
     return Property;
 }());
@@ -3918,7 +3922,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * @returns Observable<object> - metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
      */
     OntologyCacheService.prototype.getOntologiesMetadataFromKnora = function () {
-        return this._ontologyService.getOntologiesMetadata().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(
+        return this._ontologyService.getOntologiesMetadata().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(
         // this would return an Observable of a PromiseObservable -> combine them into one Observable
         // http://reactivex.io/documentation/operators/flatmap.html
         // http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap
@@ -3938,7 +3942,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * @returns Observable<object> - metadata for all entity definitions for ontology from Knora.
      */
     OntologyCacheService.prototype.getAllEntityDefinitionsForOntologyFromKnora = function (ontologyIri) {
-        return this._ontologyService.getAllEntityDefinitionsForOntologies(ontologyIri).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(
+        return this._ontologyService.getAllEntityDefinitionsForOntologies(ontologyIri).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(
         // this would return an Observable of a PromiseObservable -> combine them into one Observable
         // http://reactivex.io/documentation/operators/flatmap.html
         // http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap
@@ -3981,7 +3985,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
         var e_1, _a;
         var resourceClassIris = [];
         try {
-            for (var classDefinitions_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(classDefinitions), classDefinitions_1_1 = classDefinitions_1.next(); !classDefinitions_1_1.done; classDefinitions_1_1 = classDefinitions_1.next()) {
+            for (var classDefinitions_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(classDefinitions), classDefinitions_1_1 = classDefinitions_1.next(); !classDefinitions_1_1.done; classDefinitions_1_1 = classDefinitions_1.next()) {
                 var classDef = classDefinitions_1_1.value;
                 var classIri = classDef['@id'];
                 // check that class name is not listed as a non resource class and that the isResourceClass flag is present and set to true
@@ -4049,7 +4053,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
         // collect resource class Iris for all requested named graphs
         var allResourceClassIris = [];
         try {
-            for (var ontologyIris_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(ontologyIris), ontologyIris_1_1 = ontologyIris_1.next(); !ontologyIris_1_1.done; ontologyIris_1_1 = ontologyIris_1.next()) {
+            for (var ontologyIris_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(ontologyIris), ontologyIris_1_1 = ontologyIris_1.next(); !ontologyIris_1_1.done; ontologyIris_1_1 = ontologyIris_1.next()) {
                 var ontologyIri = ontologyIris_1_1.value;
                 if (this.cacheOntology.resourceClassIrisForOntology[ontologyIri] === undefined) {
                     throw new OntologyCacheError("getResourceClassesForOntologiesFromCache: ontology not found in cache: " + ontologyIri);
@@ -4074,7 +4078,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
             }
         }
         // get resource class definitions for all requested ontologies
-        return this.getResourceClassDefinitions(allResourceClassIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (resClassDefs) {
+        return this.getResourceClassDefinitions(allResourceClassIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (resClassDefs) {
             return new OntologyInformation(resourceClassesForOntology, resClassDefs.getResourceClasses(), resClassDefs.getProperties());
         }));
     };
@@ -4089,7 +4093,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
         var e_3, _a, e_4, _b;
         try {
             // convert and cache each given resource class definition
-            for (var resourceClassDefinitions_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(resourceClassDefinitions), resourceClassDefinitions_1_1 = resourceClassDefinitions_1.next(); !resourceClassDefinitions_1_1.done; resourceClassDefinitions_1_1 = resourceClassDefinitions_1.next()) {
+            for (var resourceClassDefinitions_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(resourceClassDefinitions), resourceClassDefinitions_1_1 = resourceClassDefinitions_1.next(); !resourceClassDefinitions_1_1.done; resourceClassDefinitions_1_1 = resourceClassDefinitions_1.next()) {
                 var resClass = resourceClassDefinitions_1_1.value;
                 var resClassIri = resClass['@id'];
                 // represents all cardinalities of this resource class
@@ -4106,7 +4110,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
                     }
                     try {
                         // get cardinalities for the properties of a resource class
-                        for (var subclassOfCollection_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(subclassOfCollection), subclassOfCollection_1_1 = subclassOfCollection_1.next(); !subclassOfCollection_1_1.done; subclassOfCollection_1_1 = subclassOfCollection_1.next()) {
+                        for (var subclassOfCollection_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(subclassOfCollection), subclassOfCollection_1_1 = subclassOfCollection_1.next(); !subclassOfCollection_1_1.done; subclassOfCollection_1_1 = subclassOfCollection_1.next()) {
                             var curCard = subclassOfCollection_1_1.value;
                             // make sure it is a cardinality (it could also be an Iri of a superclass)
                             if (curCard instanceof Object && curCard['@type'] !== undefined && curCard['@type'] === KnoraConstants.OwlRestriction) {
@@ -4192,7 +4196,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
                 propertyIris.push(card.property);
             });
         });
-        return this.getPropertyDefinitions(propertyIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (propDefs) {
+        return this.getPropertyDefinitions(propertyIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (propDefs) {
             return new OntologyInformation(new ResourceClassIrisForOntology(), resClassDefs, propDefs.getProperties());
         }));
     };
@@ -4204,10 +4208,10 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
      * @returns void
      */
     OntologyCacheService.prototype.convertAndWriteKnoraPropertyDefinitionsToOntologyCache = function (propertyDefinitionsFromKnora) {
-        var e_5, _a;
+        var e_5, _a, e_6, _b;
         try {
             // convert and cache each given property definition
-            for (var propertyDefinitionsFromKnora_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(propertyDefinitionsFromKnora), propertyDefinitionsFromKnora_1_1 = propertyDefinitionsFromKnora_1.next(); !propertyDefinitionsFromKnora_1_1.done; propertyDefinitionsFromKnora_1_1 = propertyDefinitionsFromKnora_1.next()) {
+            for (var propertyDefinitionsFromKnora_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(propertyDefinitionsFromKnora), propertyDefinitionsFromKnora_1_1 = propertyDefinitionsFromKnora_1.next(); !propertyDefinitionsFromKnora_1_1.done; propertyDefinitionsFromKnora_1_1 = propertyDefinitionsFromKnora_1.next()) {
                 var propDef = propertyDefinitionsFromKnora_1_1.value;
                 var propIri = propDef['@id'];
                 var isEditable = false;
@@ -4233,8 +4237,35 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
                 if (propDef[KnoraConstants.ObjectType] !== undefined) {
                     objectType = propDef[KnoraConstants.ObjectType]['@id'];
                 }
+                var guiAttribute = [];
+                if (propDef[KnoraConstants.SalsahGuiAttribute] !== undefined) {
+                    if (Array.isArray(propDef[KnoraConstants.SalsahGuiAttribute])) {
+                        try {
+                            for (var _c = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(propDef[KnoraConstants.SalsahGuiAttribute]), _d = _c.next(); !_d.done; _d = _c.next()) {
+                                var attr = _d.value;
+                                guiAttribute.push(attr);
+                            }
+                        }
+                        catch (e_6_1) {
+                            e_6 = { error: e_6_1 };
+                        }
+                        finally {
+                            try {
+                                if (_d && !_d.done && (_b = _c.return))
+                                    _b.call(_c);
+                            }
+                            finally {
+                                if (e_6)
+                                    throw e_6.error;
+                            }
+                        }
+                    }
+                    else {
+                        guiAttribute.push(propDef[KnoraConstants.SalsahGuiAttribute]);
+                    }
+                }
                 // cache property definition
-                this.cacheOntology.properties[propIri] = new Property(propIri, objectType, propDef[KnoraConstants.RdfsComment], propDef[KnoraConstants.RdfsLabel], subPropertyOf, isEditable, isLinkProperty, isLinkValueProperty);
+                this.cacheOntology.properties[propIri] = new Property(propIri, objectType, propDef[KnoraConstants.RdfsComment], propDef[KnoraConstants.RdfsLabel], subPropertyOf, isEditable, isLinkProperty, isLinkValueProperty, guiAttribute);
             }
         }
         catch (e_5_1) {
@@ -4281,7 +4312,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
         var _this = this;
         if (this.cacheOntology.ontologies.length === 0) {
             // nothing in cache yet, get metadata from Knora
-            return this.getOntologiesMetadataFromKnora().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (metadata) {
+            return this.getOntologiesMetadataFromKnora().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (metadata) {
                 _this.convertAndWriteOntologiesMetadataToCache(metadata['@graph'].filter(function (onto) {
                     // ignore excluded ontologies
                     return _this.excludedOntologies.indexOf(onto['@id']) === -1;
@@ -4307,7 +4338,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
         // do a request for each ontology
         ontologyIris.forEach(function (ontologyIri) {
             // push an Observable onto `observables`
-            observables.push(_this.getAllEntityDefinitionsForOntologyFromKnora(ontologyIri).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (ontology) {
+            observables.push(_this.getAllEntityDefinitionsForOntologyFromKnora(ontologyIri).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (ontology) {
                 // write response to cache
                 _this.convertAndWriteAllEntityDefinitionsForOntologyToCache(ontology);
             })));
@@ -4332,7 +4363,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
         });
         // get ontologies that are mot cached yet
         if (ontologyIrisToQuery.length > 0) {
-            return this.getAndCacheOntologies(ontologyIrisToQuery).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () {
+            return this.getAndCacheOntologies(ontologyIrisToQuery).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(function () {
                 // executed once all ontologies have been cached
                 return _this.getOntologyInformationFromCache(ontologyIris);
             }));
@@ -4362,7 +4393,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
                 return Utils.getOntologyIriFromEntityIri(resClassIri);
             }).filter(Utils.filterOutDuplicates);
             // obtain missing resource class information
-            return this.getAndCacheOntologies(ontologyIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () {
+            return this.getAndCacheOntologies(ontologyIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(function () {
                 return _this.getResourceClassDefinitionsFromCache(resourceClassIris);
             }));
         }
@@ -4393,7 +4424,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
                 return Utils.getOntologyIriFromEntityIri(propIri);
             }).filter(Utils.filterOutDuplicates);
             // obtain missing resource class information
-            return this.getAndCacheOntologies(ontologyIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (results) {
+            return this.getAndCacheOntologies(ontologyIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (results) {
                 if (results) {
                     return _this.getPropertyDefinitionsFromCache(propertyIris);
                 }
@@ -4406,7 +4437,7 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(this.getPropertyDefinitionsFromCache(propertyIris));
         }
     };
-    OntologyCacheService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function OntologyCacheService_Factory() { return new OntologyCacheService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(OntologyService)); }, token: OntologyCacheService, providedIn: "root" });
+    OntologyCacheService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function OntologyCacheService_Factory() { return new OntologyCacheService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(OntologyService)); }, token: OntologyCacheService, providedIn: "root" });
     return OntologyCacheService;
 }());
 /**
@@ -4482,7 +4513,7 @@ var ImageRegion = /** @class */ /*@__PURE__*/ (function () {
  * Request information about group from Knora.
  */
 var GroupsService = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(GroupsService, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(GroupsService, _super);
     function GroupsService() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.path = '/admin/groups';
@@ -4494,7 +4525,7 @@ var GroupsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<Group[]>
      */
     GroupsService.prototype.getAllGroups = function () {
-        return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(GroupsResponse).groups; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(GroupsResponse).groups; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Return a group object (filter by IRI).
@@ -4504,16 +4535,16 @@ var GroupsService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     GroupsService.prototype.getGroupByIri = function (iri) {
         this.path += '/' + encodeURIComponent(iri);
-        return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(GroupResponse).group; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(GroupResponse).group; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
-    GroupsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function GroupsService_Factory() { return new GroupsService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken)); }, token: GroupsService, providedIn: "root" });
+    GroupsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function GroupsService_Factory() { return new GroupsService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: GroupsService, providedIn: "root" });
     return GroupsService;
 }(ApiService));
 /**
  * Request information about lists from Knora.
  */
 var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(ListsService, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(ListsService, _super);
     function ListsService() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.path = '/admin/lists';
@@ -4532,7 +4563,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
         if (projectIri) {
             this.path += '?projectIri=' + encodeURIComponent(projectIri);
         }
-        return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ListsResponse).lists; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ListsResponse).lists; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Return a list object.
@@ -4541,7 +4572,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<List>
      */
     ListsService.prototype.getList = function (listIri) {
-        return this.httpGet(this.path + '/' + encodeURIComponent(listIri)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ListResponse).list; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet(this.path + '/' + encodeURIComponent(listIri)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ListResponse).list; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Return a list info object.
@@ -4551,7 +4582,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     ListsService.prototype.getListInfo = function (listIri) {
         this.path += '/infos/' + encodeURIComponent(listIri);
-        return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ListInfoResponse).listinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ListInfoResponse).listinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Return a list node info object.
@@ -4561,7 +4592,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     ListsService.prototype.getListNodeInfo = function (nodeIri) {
         this.path += '/nodes/' + encodeURIComponent(nodeIri);
-        return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ListNodeInfoResponse).nodeinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet(this.path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ListNodeInfoResponse).nodeinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
     // POST
@@ -4573,7 +4604,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<List>
      */
     ListsService.prototype.createList = function (payload) {
-        return this.httpPost(this.path, payload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ListResponse).list; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPost(this.path, payload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ListResponse).list; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
     // PUT
@@ -4586,16 +4617,16 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     ListsService.prototype.updateListInfo = function (payload) {
         this.path += '/infos/' + encodeURIComponent(payload.listIri);
-        return this.httpPut(this.path, payload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ListInfoResponse).listinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPut(this.path, payload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ListInfoResponse).listinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
-    ListsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function ListsService_Factory() { return new ListsService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken)); }, token: ListsService, providedIn: "root" });
+    ListsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function ListsService_Factory() { return new ListsService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: ListsService, providedIn: "root" });
     return ListsService;
 }(ApiService));
 /**
  * Request information about projects from Knora.
  */
 var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(ProjectsService, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(ProjectsService, _super);
     function ProjectsService() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -4608,7 +4639,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<Project[]>
      */
     ProjectsService.prototype.getAllProjects = function () {
-        return this.httpGet('/admin/projects').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ProjectsResponse).projects; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet('/admin/projects').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ProjectsResponse).projects; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Returns a project object.
@@ -4648,7 +4679,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<Project>
      */
     ProjectsService.prototype.getProject = function (url) {
-        return this.httpGet(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Returns all project members.
@@ -4691,7 +4722,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User[]>
      */
     ProjectsService.prototype.getProjectMembers = function (url) {
-        return this.httpGet(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ProjectMembersResponse).members; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ProjectMembersResponse).members; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
     // POST
@@ -4704,7 +4735,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     ProjectsService.prototype.createProject = function (data) {
         var url = '/admin/projects';
-        return this.httpPost(url, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPost(url, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
     // PUT
@@ -4718,7 +4749,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     ProjectsService.prototype.updateProject = function (iri, data) {
         var url = '/admin/projects/iri/' + encodeURIComponent(iri);
-        return this.httpPut(url, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPut(url, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Activate project (if it was deleted).
@@ -4731,7 +4762,7 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
             status: true
         };
         var url = '/admin/projects/iri/' + encodeURIComponent(iri);
-        return this.httpPut(url, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPut(url, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
     // DELETE
@@ -4744,16 +4775,16 @@ var ProjectsService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     ProjectsService.prototype.deleteProject = function (iri) {
         var url = '/admin/projects/iri/' + encodeURIComponent(iri);
-        return this.httpDelete(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpDelete(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ProjectResponse).project; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
-    ProjectsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function ProjectsService_Factory() { return new ProjectsService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken)); }, token: ProjectsService, providedIn: "root" });
+    ProjectsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function ProjectsService_Factory() { return new ProjectsService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: ProjectsService, providedIn: "root" });
     return ProjectsService;
 }(ApiService));
 /**
  * This service uses the Knora admin API and handles all user data.
  */
 var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(UsersService, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(UsersService, _super);
     function UsersService() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -4766,7 +4797,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      * @returns Observable<User[]>
      */
     UsersService.prototype.getAllUsers = function () {
-        return this.httpGet('/admin/users').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UsersResponse).users; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet('/admin/users').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UsersResponse).users; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Get user by username, email or by iri.
@@ -4778,7 +4809,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.getUser = function (identifier, identifierType) {
         var path = '/admin/users/' + identifierType + '/' + encodeURIComponent(identifier);
-        return this.httpGet(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Get user by IRI
@@ -4815,7 +4846,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.getUsersGroupMemberships = function (userIri) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships';
-        return this.httpGet(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(GroupsResponse).groups; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpGet(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(GroupsResponse).groups; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
     // POST
@@ -4828,7 +4859,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.createUser = function (data) {
         var path = '/admin/users';
-        return this.httpPost(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPost(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Add user to a project.
@@ -4839,7 +4870,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.addUserToProject = function (userIri, projectIri) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-memberships/' + encodeURIComponent(projectIri);
-        return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Remove user from project.
@@ -4850,7 +4881,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.removeUserFromProject = function (userIri, projectIri) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-memberships/' + encodeURIComponent(projectIri);
-        return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Add user to the admin group of a project.
@@ -4861,7 +4892,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.addUserToProjectAdmin = function (userIri, projectIri) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-admin-memberships/' + encodeURIComponent(projectIri);
-        return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Delete user from the admin group of a project.
@@ -4872,7 +4903,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.removeUserFromProjectAdmin = function (userIri, projectIri) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-admin-memberships/' + encodeURIComponent(projectIri);
-        return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Add user to project specific group
@@ -4883,7 +4914,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.addUserToGroup = function (userIri, groupIri) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships/' + encodeURIComponent(groupIri);
-        return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPost(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * remove user from project specific group
@@ -4894,7 +4925,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.removeUserFromGroup = function (userIri, groupIri) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships/' + encodeURIComponent(groupIri);
-        return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
     // PUT
@@ -4907,7 +4938,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.addUserToSystemAdmin = function (userIri) {
         var data = {
-            'newSystemAdminMembershipStatus': true
+            'systemAdmin': true
         };
         return this.updateUserSystemAdmin(userIri, data);
     };
@@ -4918,7 +4949,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.removeUserFromSystemAdmin = function (userIri) {
         var data = {
-            'newSystemAdminMembershipStatus': false
+            'systemAdmin': false
         };
         return this.updateUserSystemAdmin(userIri, data);
     };
@@ -4933,7 +4964,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.updateUserSystemAdmin = function (userIri, data) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/SystemAdmin';
-        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Activate user.
@@ -4946,7 +4977,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
         var data = {
             status: true
         };
-        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Update own password.
@@ -4962,7 +4993,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
             newPassword: newPassword,
             requesterPassword: oldPassword
         };
-        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Update password of another user (not own).
@@ -4978,7 +5009,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
             newPassword: newPassword,
             requesterPassword: requesterPassword
         };
-        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     /**
      * Update basic user information: given name, family name
@@ -4988,7 +5019,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.updateBasicUserInformation = function (userIri, data) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/BasicUserInformation';
-        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpPut(path, data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
     // ------------------------------------------------------------------------
     // DELETE
@@ -5001,9 +5032,9 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.deleteUser = function (userIri) {
         var path = '/admin/users/iri/' + encodeURIComponent(userIri);
-        return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleJsonError));
+        return this.httpDelete(path).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(UserResponse).user; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
     };
-    UsersService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function UsersService_Factory() { return new UsersService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken)); }, token: UsersService, providedIn: "root" });
+    UsersService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function UsersService_Factory() { return new UsersService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: UsersService, providedIn: "root" });
     return UsersService;
 }(ApiService));
 var LanguageService = /** @class */ /*@__PURE__*/ (function () {
@@ -5016,7 +5047,7 @@ var LanguageService = /** @class */ /*@__PURE__*/ (function () {
     LanguageService.prototype.getLanguage = function () {
         return this.subject.asObservable();
     };
-    LanguageService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function LanguageService_Factory() { return new LanguageService(); }, token: LanguageService, providedIn: "root" });
+    LanguageService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function LanguageService_Factory() { return new LanguageService(); }, token: LanguageService, providedIn: "root" });
     return LanguageService;
 }());
 var StatusMsgService = /** @class */ /*@__PURE__*/ (function () {
@@ -5032,13 +5063,13 @@ var StatusMsgService = /** @class */ /*@__PURE__*/ (function () {
     */
     StatusMsgService.prototype.getStatusMsg = function () {
         return this._http.get(this.config.app + '/assets/i18n/statusMsg.json')
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (res) {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (res) {
             return res;
         }, function (err) {
             console.error(err);
         }));
     };
-    StatusMsgService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function StatusMsgService_Factory() { return new StatusMsgService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken)); }, token: StatusMsgService, providedIn: "root" });
+    StatusMsgService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function StatusMsgService_Factory() { return new StatusMsgService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: StatusMsgService, providedIn: "root" });
     return StatusMsgService;
 }());
 /**
@@ -5111,7 +5142,7 @@ var ConvertJSONLD;
                     try {
                         // check for standoff links and include referred resources, if any
                         // when the user interacts with a standoff link, further information about the referred resource can be shown
-                        for (var standoffLinkValues_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(standoffLinkValues), standoffLinkValues_1_1 = standoffLinkValues_1.next(); !standoffLinkValues_1_1.done; standoffLinkValues_1_1 = standoffLinkValues_1.next()) {
+                        for (var standoffLinkValues_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(standoffLinkValues), standoffLinkValues_1_1 = standoffLinkValues_1.next(); !standoffLinkValues_1_1.done; standoffLinkValues_1_1 = standoffLinkValues_1.next()) {
                             var standoffLink = standoffLinkValues_1_1.value;
                             var referredRes = standoffLink.referredResource;
                             referredResources[referredRes.id] = referredRes;
@@ -5213,7 +5244,7 @@ var ConvertJSONLD;
                 valueSpecificProp = intervalValue;
                 break;
             case KnoraConstants.ListValue:
-                var listValue = new ReadListValue(propValue['@id'], propIri, propValue[KnoraConstants.listValueAsListNode]['@id'], propValue[KnoraConstants.listValueAsListNodeLabel]);
+                var listValue = new ReadListValue(propValue['@id'], propIri, propValue[KnoraConstants.listValueAsListNode]['@id']);
                 valueSpecificProp = listValue;
                 break;
             default:
@@ -5241,7 +5272,7 @@ var ConvertJSONLD;
         // in order populate the collection with all the standoff link values
         if (standoffLinkValuesJSONLD !== undefined && Array.isArray(standoffLinkValuesJSONLD)) {
             try {
-                for (var standoffLinkValuesJSONLD_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(standoffLinkValuesJSONLD), standoffLinkValuesJSONLD_1_1 = standoffLinkValuesJSONLD_1.next(); !standoffLinkValuesJSONLD_1_1.done; standoffLinkValuesJSONLD_1_1 = standoffLinkValuesJSONLD_1.next()) {
+                for (var standoffLinkValuesJSONLD_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(standoffLinkValuesJSONLD), standoffLinkValuesJSONLD_1_1 = standoffLinkValuesJSONLD_1.next(); !standoffLinkValuesJSONLD_1_1.done; standoffLinkValuesJSONLD_1_1 = standoffLinkValuesJSONLD_1.next()) {
                     var standoffLinkJSONLD = standoffLinkValuesJSONLD_1_1.value;
                     var standoffVal = createValueSpecificProp(standoffLinkJSONLD, KnoraConstants.hasStandoffLinkToValue, []);
                     standoffLinkValues.push(standoffVal);
@@ -5271,7 +5302,7 @@ var ConvertJSONLD;
         var properties = {};
         try {
             // iterate over all the given property names
-            for (var propNames_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(propNames), propNames_1_1 = propNames_1.next(); !propNames_1_1.done; propNames_1_1 = propNames_1.next()) {
+            for (var propNames_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(propNames), propNames_1_1 = propNames_1.next(); !propNames_1_1.done; propNames_1_1 = propNames_1.next()) {
                 var propName = propNames_1_1.value;
                 var propValues = [];
                 // either an array of values or just one value is given
@@ -5279,7 +5310,7 @@ var ConvertJSONLD;
                     try {
                         // array of values
                         // for each property name, an array of property values is given, iterate over it
-                        for (var _d = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(resourceJSONLD[propName]), _e = _d.next(); !_e.done; _e = _d.next()) {
+                        for (var _d = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(resourceJSONLD[propName]), _e = _d.next(); !_e.done; _e = _d.next()) {
                             var propValue = _e.value;
                             // convert a JSON-LD property value to a `ReadPropertyItem`
                             var valueSpecificProp = createValueSpecificProp(propValue, propName, standoffLinkValues);
@@ -5347,7 +5378,7 @@ var ConvertJSONLD;
             // an array of resources
             numberOfResources = resourcesGraph.length;
             try {
-                for (var resourcesGraph_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(resourcesGraph), resourcesGraph_1_1 = resourcesGraph_1.next(); !resourcesGraph_1_1.done; resourcesGraph_1_1 = resourcesGraph_1.next()) {
+                for (var resourcesGraph_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(resourcesGraph), resourcesGraph_1_1 = resourcesGraph_1.next(); !resourcesGraph_1_1.done; resourcesGraph_1_1 = resourcesGraph_1.next()) {
                     var resourceJSONLD = resourcesGraph_1_1.value;
                     var resource = constructReadResource(resourceJSONLD);
                     // add the resource to the resources array
@@ -5398,12 +5429,12 @@ var ConvertJSONLD;
         propNames = propNames.filter(getPropertyNames);
         var referredResourceClasses = [];
         try {
-            for (var propNames_2 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(propNames), propNames_2_1 = propNames_2.next(); !propNames_2_1.done; propNames_2_1 = propNames_2.next()) {
+            for (var propNames_2 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(propNames), propNames_2_1 = propNames_2.next(); !propNames_2_1.done; propNames_2_1 = propNames_2.next()) {
                 var prop = propNames_2_1.value;
                 // several values given for this property
                 if (Array.isArray(resourceJSONLD[prop])) {
                     try {
-                        for (var _c = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(resourceJSONLD[prop]), _d = _c.next(); !_d.done; _d = _c.next()) {
+                        for (var _c = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(resourceJSONLD[prop]), _d = _c.next(); !_d.done; _d = _c.next()) {
                             var referredRes = _d.value;
                             // if the property is a LinkValue and it contains an embedded resource, get its type
                             if (referredRes['@type'] === KnoraConstants.LinkValue && referredRes[KnoraConstants.linkValueHasTarget] !== undefined) {
@@ -5478,7 +5509,7 @@ var ConvertJSONLD;
         if (resourcesGraph !== undefined) {
             try {
                 // an array of resources
-                for (var resourcesGraph_2 = Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__values"])(resourcesGraph), resourcesGraph_2_1 = resourcesGraph_2.next(); !resourcesGraph_2_1.done; resourcesGraph_2_1 = resourcesGraph_2.next()) {
+                for (var resourcesGraph_2 = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(resourcesGraph), resourcesGraph_2_1 = resourcesGraph_2.next(); !resourcesGraph_2_1.done; resourcesGraph_2_1 = resourcesGraph_2.next()) {
                     var resourceJSONLD = resourcesGraph_2_1.value;
                     // get class of the current resource
                     resourceClasses.push(resourceJSONLD['@type']);
@@ -5533,7 +5564,7 @@ var ConvertJSONLD;
  * Requests representation of resources from Knora.
  */
 var ResourceService = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(ResourceService, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(ResourceService, _super);
     function ResourceService(http, config, _ontologyCacheService) {
         var _this = _super.call(this, http, config) || this;
         _this.http = http;
@@ -5560,9 +5591,9 @@ var ResourceService = /** @class */ /*@__PURE__*/ (function (_super) {
         var _this = this;
         var res = this.httpGet('/v2/resources/' + encodeURIComponent(iri));
         // TODO: handle case of an ApiServiceError
-        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(
+        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(
         // this would return an Observable of a PromiseObservable -> combine them into one Observable
-        this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(
+        this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(
         // return Observable of ReadResourcesSequence
         function (resourceResponse) {
             // convert JSON-LD into a ReadResourceSequence
@@ -5570,21 +5601,21 @@ var ResourceService = /** @class */ /*@__PURE__*/ (function (_super) {
             // collect resource class Iris
             var resourceClassIris = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);
             // request information about resource classes
-            return _this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (ontoInfo) {
+            return _this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (ontoInfo) {
                 // add ontology information to ReadResourceSequence
                 resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);
                 return resSeq;
             }));
         }));
     };
-    ResourceService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function ResourceService_Factory() { return new ResourceService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(OntologyCacheService)); }, token: ResourceService, providedIn: "root" });
+    ResourceService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function ResourceService_Factory() { return new ResourceService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(OntologyCacheService)); }, token: ResourceService, providedIn: "root" });
     return ResourceService;
 }(ApiService));
 /**
  * Performs searches (fulltext or extended) and search count queries into Knora.
  */
 var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(SearchService, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(SearchService, _super);
     function SearchService(http, config, _ontologyCacheService) {
         var _this = _super.call(this, http, config) || this;
         _this.http = http;
@@ -5603,7 +5634,7 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
             // collect resource class Iris
             var resourceClassIris = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);
             // request information about resource classes
-            return _this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (ontoInfo) {
+            return _this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (ontoInfo) {
                 // add ontology information to ReadResourceSequence
                 resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);
                 return resSeq;
@@ -5612,44 +5643,93 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
         return _this;
     }
     /**
+     * Assign fulltext search params to http params.
+     *
+     * @param {FulltextSearchParams} params
+     * @param {HttpParams} httpParams
+     * @returns {HttpParams}
+     */
+    SearchService.prototype.processFulltextSearchParams = function (params, httpParams) {
+        // avoid reassignment to method param
+        var searchParams = httpParams;
+        // HttpParams is immutable, `set` returns a new instance
+        if (params.limitToProject !== undefined) {
+            searchParams = searchParams.set('limitToProject', params.limitToProject);
+        }
+        if (params.limitToResourceClass !== undefined) {
+            searchParams = searchParams.set('limitToResourceClass', params.limitToResourceClass);
+        }
+        if (params.limitToStandoffClass !== undefined) {
+            searchParams = searchParams.set('limitToStandoffClass', params.limitToStandoffClass);
+        }
+        return searchParams;
+    };
+    /**
+     * Assign search by label search params to http params.
+     *
+     * @param {SearchByLabelParams} params
+     * @param {HttpParams} httpParams
+     * @returns {HttpParams}
+     */
+    SearchService.prototype.processSearchByLabelParams = function (params, httpParams) {
+        // avoid reassignment to method param
+        var searchParams = httpParams;
+        // HttpParams is immutable, `set` returns a new instance
+        if (params.limitToResourceClass !== undefined) {
+            searchParams = searchParams.set('limitToResourceClass', params.limitToResourceClass);
+        }
+        if (params.limitToProject !== undefined) {
+            searchParams = searchParams.set('limitToProject', params.limitToProject);
+        }
+        return searchParams;
+    };
+    /**
      * Performs a fulltext search.
      * TODO: mark as deprecated, use of `doFullTextSearchReadResourceSequence` recommended
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    SearchService.prototype.doFulltextSearch = function (searchTerm, offset) {
+    SearchService.prototype.doFulltextSearch = function (searchTerm, offset, params) {
         if (offset === void 0) {
             offset = 0;
         }
         if (searchTerm === undefined || searchTerm.length === 0) {
             return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].create(function (observer) { return observer.error('No search term given for call of SearchService.doFulltextSearch'); });
         }
-        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpParams"]();
+        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]();
         httpParams = httpParams.set('offset', offset.toString());
-        return this.httpGet('/v2/search/' + searchTerm, httpParams);
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+        return this.httpGet('/v2/search/' + encodeURIComponent(searchTerm), httpParams);
     };
     /**
      * Performs a fulltext search and turns the result into a `ReadResourceSequence`.
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    SearchService.prototype.doFullTextSearchReadResourceSequence = function (searchTerm, offset) {
+    SearchService.prototype.doFullTextSearchReadResourceSequence = function (searchTerm, offset, params) {
         if (offset === void 0) {
             offset = 0;
         }
         if (searchTerm === undefined || searchTerm.length === 0) {
             return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].create(function (observer) { return observer.error('No search term given for call of SearchService.doFulltextSearch'); });
         }
-        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpParams"]();
+        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]();
         httpParams = httpParams.set('offset', offset.toString());
-        var res = this.httpGet('/v2/search/' + searchTerm, httpParams);
-        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+        var res = this.httpGet('/v2/search/' + encodeURIComponent(searchTerm), httpParams);
+        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(
         // this would return an Observable of a PromiseObservable -> combine them into one Observable
-        this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(
+        this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(
         // return Observable of ReadResourcesSequence
         this.convertJSONLDToReadResourceSequence));
     };
@@ -5658,28 +5738,38 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * TODO: mark as deprecated, use of `doFullTextSearchCountQueryCountQueryResult` recommended
      *
      * @param searchTerm the term to search for.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    SearchService.prototype.doFulltextSearchCountQuery = function (searchTerm) {
+    SearchService.prototype.doFulltextSearchCountQuery = function (searchTerm, params) {
         if (searchTerm === undefined || searchTerm.length === 0) {
             return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].create(function (observer) { return observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'); });
         }
-        return this.httpGet('/v2/search/count/' + searchTerm);
+        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]();
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+        return this.httpGet('/v2/search/count/' + encodeURIComponent(searchTerm), httpParams);
     };
     /**
      * Performs a fulltext search count query and turns the result into a `CountQueryResult`.
      *
      * @param {string} searchTerm the term to search for.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<CountQueryResult>
      */
-    SearchService.prototype.doFullTextSearchCountQueryCountQueryResult = function (searchTerm) {
+    SearchService.prototype.doFullTextSearchCountQueryCountQueryResult = function (searchTerm, params) {
         if (searchTerm === undefined || searchTerm.length === 0) {
             return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].create(function (observer) { return observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'); });
         }
-        var res = this.httpGet('/v2/search/count/' + searchTerm);
-        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(
+        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]();
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+        var res = this.httpGet('/v2/search/count/' + encodeURIComponent(searchTerm), httpParams);
+        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(
         // this would return an Observable of a PromiseObservable -> combine them into one Observable
-        this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(
+        this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(
         // convert to a `CountQueryResult`
         ConvertJSONLD.createCountQueryResult));
     };
@@ -5707,7 +5797,7 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
             return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].create(function (observer) { return observer.error('No Sparql string given for call of SearchService.doExtendedSearch'); });
         }
         var res = this.httpPost('/v2/searchextended', gravsearchQuery);
-        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(this.convertJSONLDToReadResourceSequence));
+        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(this.convertJSONLDToReadResourceSequence));
     };
     /**
      * Performs an extended search count query.
@@ -5733,9 +5823,9 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
             return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].create(function (observer) { return observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'); });
         }
         var res = this.httpPost('/v2/searchextended/count', gravsearchQuery);
-        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(
+        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(
         // this would return an Observable of a PromiseObservable -> combine them into one Observable
-        this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(
+        this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(
         // convert to a `CountQueryResult`
         ConvertJSONLD.createCountQueryResult));
     };
@@ -5744,20 +5834,21 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * TODO: mark as deprecated, use of `searchByLabelReadResourceSequence` recommended
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} [resourceClassIRI] restrict search to given resource class.
-     * @param {string} [projectIri] restrict search to given project.
+     * @param {number} offset offset to use.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    SearchService.prototype.searchByLabel = function (searchTerm, resourceClassIRI, projectIri) {
+    SearchService.prototype.searchByLabel = function (searchTerm, offset, params) {
+        if (offset === void 0) {
+            offset = 0;
+        }
         if (searchTerm === undefined || searchTerm.length === 0) {
             return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].create(function (observer) { return observer.error('No search term given for call of SearchService.doFulltextSearch'); });
         }
-        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpParams"]();
-        if (resourceClassIRI !== undefined) {
-            httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);
-        }
-        if (projectIri !== undefined) {
-            httpParams = httpParams.set('limitToProject', projectIri);
+        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]();
+        httpParams = httpParams.set('offset', offset.toString());
+        if (params !== undefined) {
+            httpParams = this.processSearchByLabelParams(params, httpParams);
         }
         // httpGet() expects only one argument, not 2
         return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
@@ -5766,32 +5857,33 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform a search by a resource's rdfs:label and turns the results in a `ReadResourceSequence`.
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} [resourceClassIRI] restrict search to given resource class.
-     * @param {string} [projectIri] restrict search to given project.
+     * @param {number} offset offset to use.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    SearchService.prototype.searchByLabelReadResourceSequence = function (searchTerm, resourceClassIRI, projectIri) {
+    SearchService.prototype.searchByLabelReadResourceSequence = function (searchTerm, offset, params) {
+        if (offset === void 0) {
+            offset = 0;
+        }
         if (searchTerm === undefined || searchTerm.length === 0) {
             return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].create(function (observer) { return observer.error('No search term given for call of SearchService.doFulltextSearch'); });
         }
-        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpParams"]();
-        if (resourceClassIRI !== undefined) {
-            httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);
-        }
-        if (projectIri !== undefined) {
-            httpParams = httpParams.set('limitToProject', projectIri);
+        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]();
+        httpParams = httpParams.set('offset', offset.toString());
+        if (params !== undefined) {
+            httpParams = this.processSearchByLabelParams(params, httpParams);
         }
         var res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
-        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(this.convertJSONLDToReadResourceSequence));
+        return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(this.convertJSONLDToReadResourceSequence));
     };
-    SearchService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function SearchService_Factory() { return new SearchService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(OntologyCacheService)); }, token: SearchService, providedIn: "root" });
+    SearchService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function SearchService_Factory() { return new SearchService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(OntologyCacheService)); }, token: SearchService, providedIn: "root" });
     return SearchService;
 }(ApiService));
 /**
  * Requests incoming information (regions, links, stillImageRepresentations) from Knora.
  */
 var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(IncomingService, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(IncomingService, _super);
     function IncomingService() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -5830,7 +5922,7 @@ var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
         var sparqlQueryStr = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?incomingRes knora-api:isMainResource true .\n\n?incomingRes ?incomingProp <" + resourceIri + "> .\n\n} WHERE {\n\n?incomingRes a knora-api:Resource .\n\n?incomingRes ?incomingProp <" + resourceIri + "> .\n\n<" + resourceIri + "> a knora-api:Resource .\n\n?incomingProp knora-api:objectType knora-api:Resource .\n\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isRegionOf <" + resourceIri + "> .\n}\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isPartOf <" + resourceIri + "> .\n}\n\n} OFFSET " + offset + "\n";
         return this.doExtendedSearchReadResourceSequence(sparqlQueryStr);
     };
-    IncomingService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function IncomingService_Factory() { return new IncomingService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(OntologyCacheService)); }, token: IncomingService, providedIn: "root" });
+    IncomingService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function IncomingService_Factory() { return new IncomingService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(OntologyCacheService)); }, token: IncomingService, providedIn: "root" });
     return IncomingService;
 }(SearchService));
 /**
@@ -5873,20 +5965,9 @@ var SearchParamsService = /** @class */ /*@__PURE__*/ (function () {
     SearchParamsService.prototype.getSearchParams = function () {
         return this._currentSearchParams.getValue();
     };
-    SearchParamsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function SearchParamsService_Factory() { return new SearchParamsService(); }, token: SearchParamsService, providedIn: "root" });
+    SearchParamsService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function SearchParamsService_Factory() { return new SearchParamsService(); }, token: SearchParamsService, providedIn: "root" });
     return SearchParamsService;
 }());
-/**
- * @ignore
- * Represents an error that occurred when generating KnarQL.
- */
-var GravsearchGenerationError = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(GravsearchGenerationError, _super);
-    function GravsearchGenerationError(msg) {
-        return _super.call(this, msg) || this;
-    }
-    return GravsearchGenerationError;
-}(Error));
 /**
  * Create GravSearch queries from provided parameters.
  */
@@ -5894,22 +5975,6 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
     function GravsearchGenerationService(_searchParamsService) {
         this._searchParamsService = _searchParamsService;
     }
-    /**
-       * @private
-       * Converts a complex type Iri to a simple type Iri.
-       *
-       * @param {string} complexType the Iri of a value type (knora-api complex).
-       * @returns string - the corresponding Iri of the simple type (knora-api simple).
-       */
-    GravsearchGenerationService.prototype.convertComplexTypeToSimpleType = function (complexType) {
-        var simpleType = GravsearchGenerationService.typeConversionComplexToSimple[complexType];
-        if (simpleType !== undefined) {
-            return simpleType;
-        }
-        else {
-            throw new GravsearchGenerationError("complex type " + complexType + " could not be converted to simple type.");
-        }
-    };
     /**
      * Generates a Gravsearch query from the provided arguments.
      *
@@ -5919,7 +5984,6 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
      * @returns string - a KnarQL query string.
      */
     GravsearchGenerationService.prototype.createGravsearchQuery = function (properties, mainResourceClassOption, offset) {
-        var _this = this;
         if (offset === void 0) {
             offset = 0;
         }
@@ -5927,22 +5991,14 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
         var mainResourceClass = '';
         // if given, create the class restriction for the main resource
         if (mainResourceClassOption !== undefined) {
-            mainResourceClass = "?mainRes a <" + Utils.convertComplexKnoraApiEntityIritoSimple(mainResourceClassOption) + "> .";
+            mainResourceClass = "?mainRes a <" + mainResourceClassOption + "> .";
         }
         // criteria for the order by statement
         var orderByCriteria = [];
         // statements to be returned in query results
         var returnStatements = [];
-        // loop over given properties and create statements and Filters and type annotations from them
+        // loop over given properties and create statements and filters from them
         var props = properties.map(function (propWithVal, index) {
-            var propIriSimple = Utils.convertComplexKnoraApiEntityIritoSimple(propWithVal.property.id);
-            var simpleType;
-            if (!propWithVal.property.isLinkProperty) {
-                simpleType = _this.convertComplexTypeToSimpleType(propWithVal.property.objectType);
-            }
-            else {
-                simpleType = KnoraConstants.resourceSimple;
-            }
             // represents the object of a statement
             var propValue;
             if (!propWithVal.property.isLinkProperty || propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Exists') {
@@ -5952,51 +6008,69 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
             }
             else {
                 // it is a linking property and the comparison operator is not Exists, use its IRI
-                propValue = propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple);
+                propValue = propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex);
             }
             // generate statement
-            var statement = "?mainRes <" + propIriSimple + "> " + propValue + " .";
-            // type annotations
-            var propTypeAnnotation = "<" + propIriSimple + "> knora-api:objectType <" + simpleType + "> .";
-            var propValueAnnotation = propValue + " a <" + simpleType + "> .";
+            var statement = "?mainRes <" + propWithVal.property.id + "> " + propValue + " .";
             // check if it is a linking property that has to be wrapped in a FILTER NOT EXISTS (comparison operator NOT_EQUALS) to negate it
             if (propWithVal.property.isLinkProperty && propWithVal.valueLiteral.comparisonOperator.getClassName() === 'NotEquals') {
                 // do not include statement in results, because the query checks for the absence of this statement
-                statement = "FILTER NOT EXISTS {\n" + statement + "\n" + propTypeAnnotation + "\n" + propValueAnnotation + "\n}";
+                statement = "FILTER NOT EXISTS {\n" + statement + "\n\n\n}";
             }
             else {
                 // TODO: check if statement should be returned returned in results (Boolean flag from checkbox)
                 returnStatements.push(statement);
-                statement = "\n" + statement + "\n" + propTypeAnnotation + "\n" + propValueAnnotation + "\n";
+                statement = "\n" + statement + "\n\n\n";
             }
-            // generate filter if comparison operator is not Exists
-            var filter = '';
+            // generate restricting expression (e.g., a FILTER) if comparison operator is not Exists
+            var restriction = '';
             // only create a FILTER if the comparison operator is not EXISTS and it is not a linking property
             if (!propWithVal.property.isLinkProperty && propWithVal.valueLiteral.comparisonOperator.getClassName() !== 'Exists') {
+                // generate variable for value literal
+                var propValueLiteral = propValue + "Literal";
                 if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Like') {
+                    // generate statement to value literal
+                    restriction = propValue + " <" + GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType] + "> " + propValueLiteral + '\n';
                     // use regex function for LIKE
-                    filter = "FILTER regex(" + propValue + ", " + propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple) + ", \"i\")";
+                    restriction += "FILTER regex(" + propValueLiteral + ", " + propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex) + ", \"i\")";
                 }
                 else if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Match') {
+                    // generate statement to value literal
+                    restriction = propValue + " <" + GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType] + "> " + propValueLiteral + '\n';
                     // use contains function for MATCH
-                    filter = "FILTER <" + KnoraConstants.matchFunction + ">(" + propValue + ", " + propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple) + ")";
+                    restriction += "FILTER <" + KnoraConstants.matchFunction + ">(" + propValueLiteral + ", " + propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex) + ")";
+                }
+                else if (propWithVal.property.objectType === KnoraConstants.DateValue) {
+                    // handle date property
+                    restriction = "FILTER(knora-api:toSimpleDate(" + propValue + ") " + propWithVal.valueLiteral.comparisonOperator.type + " " + propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex) + ")";
+                }
+                else if (propWithVal.property.objectType === KnoraConstants.ListValue) {
+                    // handle list node
+                    restriction = propValue + " <" + GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType] + "> " + propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex) + '\n';
+                    // check for comparison operator "not equals"
+                    if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'NotEquals') {
+                        restriction = "FILTER NOT EXISTS {\n                                " + restriction + "\n                            }";
+                    }
                 }
                 else {
-                    filter = "FILTER(" + propValue + " " + propWithVal.valueLiteral.comparisonOperator.type + " " + propWithVal.valueLiteral.value.toSparql(KnoraSchema.simple) + ")";
+                    // generate statement to value literal
+                    restriction = propValue + " <" + GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType] + "> " + propValueLiteral + '\n';
+                    // generate filter expression
+                    restriction += "FILTER(" + propValueLiteral + " " + propWithVal.valueLiteral.comparisonOperator.type + " " + propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex) + ")";
                 }
             }
             // check if current value is a sort criterion
             if (propWithVal.isSortCriterion)
                 orderByCriteria.push(propValue);
-            return statement + "\n" + filter + "\n";
+            return statement + "\n" + restriction + "\n";
         });
         var orderByStatement = '';
         if (orderByCriteria.length > 0) {
             orderByStatement = "\nORDER BY " + orderByCriteria.join(' ') + "\n";
         }
-        // template of the KnarQL query with dynamic components
-        var gravsearchTemplate = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\nCONSTRUCT {\n\n?mainRes knora-api:isMainResource true .\n\n" + returnStatements.join('\n') + "\n\n} WHERE {\n\n?mainRes a knora-api:Resource .\n\n" + mainResourceClass + "\n\n" + props.join('') + "\n\n}\n" + orderByStatement;
-        // offset component of the KnarQL query
+        // template of the Gravsearch query with dynamic components
+        var gravsearchTemplate = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/v2#>\nCONSTRUCT {\n\n?mainRes knora-api:isMainResource true .\n\n" + returnStatements.join('\n') + "\n\n} WHERE {\n\n?mainRes a knora-api:Resource .\n\n" + mainResourceClass + "\n\n" + props.join('') + "\n\n}\n" + orderByStatement;
+        // offset component of the Gravsearch query
         var offsetTemplate = "\nOFFSET " + offset + "\n";
         // function that generates the same KnarQL query with the given offset
         var generateGravsearchQueryWithCustomOffset = function (localOffset) {
@@ -6007,7 +6081,6 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
             // store the function so another KnarQL query can be created with an increased offset
             this._searchParamsService.changeSearchParamsMsg(new ExtendedSearchParams(generateGravsearchQueryWithCustomOffset));
         }
-        // console.log(knarqlTemplate + offsetTemplate);
         return gravsearchTemplate + offsetTemplate;
     };
     /**
@@ -6034,9 +6107,17 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
         'http://api.knora.org/ontology/knora-api/v2#AudioFileValue': KnoraConstants.fileSimple,
         'http://api.knora.org/ontology/knora-api/v2#DocumentFileValue': KnoraConstants.fileSimple,
         'http://api.knora.org/ontology/knora-api/v2#TextFileValue': KnoraConstants.fileSimple,
-        'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.xsdString
+        'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.listNodeSimple
     };
-    GravsearchGenerationService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function GravsearchGenerationService_Factory() { return new GravsearchGenerationService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(SearchParamsService)); }, token: GravsearchGenerationService, providedIn: "root" });
+    GravsearchGenerationService.complexTypeToProp = {
+        'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.integerValueAsInteger,
+        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': KnoraConstants.decimalValueAsDecimal,
+        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.booleanValueAsBoolean,
+        'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.valueAsString,
+        'http://api.knora.org/ontology/knora-api/v2#UriValue': KnoraConstants.uriValueAsUri,
+        'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.listValueAsListNode
+    };
+    GravsearchGenerationService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function GravsearchGenerationService_Factory() { return new GravsearchGenerationService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(SearchParamsService)); }, token: GravsearchGenerationService, providedIn: "root" });
     return GravsearchGenerationService;
 }());
 var StoreService = /** @class */ /*@__PURE__*/ (function () {
@@ -6052,7 +6133,7 @@ var StoreService = /** @class */ /*@__PURE__*/ (function () {
        */
     StoreService.prototype.resetTriplestoreContent = function (rdfDataObjects) {
         return this.http.post(this.config.api + '/admin/store/ResetTriplestoreContent', rdfDataObjects)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (data) {
             var result = data;
             // console.log('StoreService - resetTriplestoreContent: ', result);
             return result.message;
@@ -6066,11 +6147,11 @@ var StoreService = /** @class */ /*@__PURE__*/ (function () {
             throw error;
         }));
     };
-    StoreService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function StoreService_Factory() { return new StoreService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken)); }, token: StoreService, providedIn: "root" });
+    StoreService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function StoreService_Factory() { return new StoreService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: StoreService, providedIn: "root" });
     return StoreService;
 }());
 var BasicOntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(BasicOntologyService, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(BasicOntologyService, _super);
     function BasicOntologyService() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -6088,11 +6169,11 @@ var BasicOntologyService = /** @class */ /*@__PURE__*/ (function (_super) {
         return this.httpGet(url + '/data/base-data/basic-ontology.json');
         // return this.httpGet(url + '/data/base-data/basic-ontology.json', {withCredentials: false});
     };
-    BasicOntologyService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function BasicOntologyService_Factory() { return new BasicOntologyService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken)); }, token: BasicOntologyService, providedIn: "root" });
+    BasicOntologyService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function BasicOntologyService_Factory() { return new BasicOntologyService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: BasicOntologyService, providedIn: "root" });
     return BasicOntologyService;
 }(ApiService));
 var ResourceTypesService = /** @class */ /*@__PURE__*/ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_5__["__extends"])(ResourceTypesService, _super);
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(ResourceTypesService, _super);
     function ResourceTypesService() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -6114,9 +6195,206 @@ var ResourceTypesService = /** @class */ /*@__PURE__*/ (function (_super) {
     ResourceTypesService.prototype.getResourceType = function (iri) {
         return this.httpGet('/v1/resourcetypes/' + encodeURIComponent(iri));
     };
-    ResourceTypesService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"])({ factory: function ResourceTypesService_Factory() { return new ResourceTypesService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"])(KuiCoreConfigToken)); }, token: ResourceTypesService, providedIn: "root" });
+    ResourceTypesService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function ResourceTypesService_Factory() { return new ResourceTypesService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: ResourceTypesService, providedIn: "root" });
     return ResourceTypesService;
 }(ApiService));
+var ListService = /** @class */ /*@__PURE__*/ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__extends"])(ListService, _super);
+    function ListService(http, config) {
+        var _this = _super.call(this, http, config) || this;
+        _this.http = http;
+        _this.config = config;
+        return _this;
+    }
+    /**
+     * Gets a hierarchical list from Knora.
+     *
+     * @param {string} rootNodeIri the Iri of the list's root node.
+     * @return {Observable<ApiServiceResult | ApiServiceError>}
+     */
+    ListService.prototype.getListFromKnora = function (rootNodeIri) {
+        return this.httpGet('/v2/lists/' + encodeURIComponent(rootNodeIri));
+    };
+    /**
+     * Returns a list as expanded JSON-LD.
+     *
+     * @param {string} rootNodeIri the root node of the list.
+     * @return {Observable<object>} the expanded JSON-LD.
+     */
+    ListService.prototype.getList = function (rootNodeIri) {
+        var listJSONLD = this.getListFromKnora(rootNodeIri);
+        return listJSONLD.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(
+        // this would return an Observable of a PromiseObservable -> combine them into one Observable
+        this.processJSONLD));
+    };
+    /**
+     * Gets a list node from Knora.
+     *
+     * @param {string} listNodeIri the Iri of the list node.
+     * @return {Observable<ApiServiceResult | ApiServiceError>}
+     */
+    ListService.prototype.getListNodeFromKnora = function (listNodeIri) {
+        return this.httpGet('/v2/node/' + encodeURIComponent(listNodeIri));
+    };
+    /**
+     * Returns a list node as expanded JSON-LD.
+     *
+     * @param {string} listNodeIri the Iri of the list node.
+     * @return {Observable<object>}
+     */
+    ListService.prototype.getListNode = function (listNodeIri) {
+        var listNodeJSONLD = this.getListNodeFromKnora(listNodeIri);
+        return listNodeJSONLD.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(
+        // this would return an Observable of a PromiseObservable -> combine them into one Observable
+        this.processJSONLD));
+    };
+    ListService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function ListService_Factory() { return new ListService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: ListService, providedIn: "root" });
+    return ListService;
+}(ApiService));
+/**
+ * Represents a list node v2.
+ */
+var ListNodeV2 = /** @class */ /*@__PURE__*/ (function () {
+    function ListNodeV2(id, label, position, hasRootNode) {
+        this.id = id;
+        this.label = label;
+        this.position = position;
+        this.hasRootNode = hasRootNode;
+        // if hasRootNode is not given, this node is the root node.
+        this.isRootNode = (hasRootNode === undefined);
+        this.children = [];
+    }
+    return ListNodeV2;
+}());
+var ListCache = /** @class */ /*@__PURE__*/ (function () {
+    function ListCache() {
+    }
+    return ListCache;
+}());
+var ListNodeIriToListNodeV2 = /** @class */ /*@__PURE__*/ (function () {
+    function ListNodeIriToListNodeV2() {
+    }
+    return ListNodeIriToListNodeV2;
+}());
+var ListCacheService = /** @class */ /*@__PURE__*/ (function () {
+    function ListCacheService(_listService) {
+        var _this = this;
+        this._listService = _listService;
+        this.listCache = new ListCache();
+        this.listNodeIriToListNodeV2 = new ListNodeIriToListNodeV2();
+        /**
+         * Converts a JSON-LD represention of a ListNodeV2 to  a `ListNodeV2`.
+         * Recursively converts child nodes.
+         *
+         * @param {object} listJSONLD the JSON-LD representation of a list node v2.
+         * @return {ListNodeV2}
+         */
+        this.convertJSONLDToListNode = function (listJSONLD) {
+            var e_1, _a;
+            var listNodeIri = listJSONLD['@id'];
+            var hasRootNode = _this.hasRootNode(listJSONLD);
+            var listNode = new ListNodeV2(listNodeIri, listJSONLD['http://www.w3.org/2000/01/rdf-schema#label'], listJSONLD['http://api.knora.org/ontology/knora-api/v2#listNodePosition'], hasRootNode);
+            // check if there are child nodes
+            if (listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode'] !== undefined) {
+                if (Array.isArray(listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode'])) {
+                    try {
+                        // array of child nodes
+                        for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_4__["__values"])(listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode']), _c = _b.next(); !_c.done; _c = _b.next()) {
+                            var subListNode = _c.value;
+                            listNode.children.push(_this.convertJSONLDToListNode(subListNode));
+                        }
+                    }
+                    catch (e_1_1) {
+                        e_1 = { error: e_1_1 };
+                    }
+                    finally {
+                        try {
+                            if (_c && !_c.done && (_a = _b.return))
+                                _a.call(_b);
+                        }
+                        finally {
+                            if (e_1)
+                                throw e_1.error;
+                        }
+                    }
+                }
+                else {
+                    // single child node
+                    listNode.children.push(_this.convertJSONLDToListNode(listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode']));
+                }
+            }
+            _this.listNodeIriToListNodeV2[listNodeIri] = listNode;
+            return listNode;
+        };
+    }
+    ListCacheService.prototype.hasRootNode = function (listJSONLD) {
+        var hasRoot;
+        if (listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode'] !== undefined) {
+            hasRoot = listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode']['@id'];
+        }
+        return hasRoot;
+    };
+    /**
+     * Gets a list from the cache or requests it from Knora and caches it.
+     *
+     * @param {string} rootNodeIri the Iri of the list's root node.
+     * @return {Observable<ListNodeV2>}
+     */
+    ListCacheService.prototype.getList = function (rootNodeIri) {
+        var _this = this;
+        // check if list is already in cache
+        if (this.listCache[rootNodeIri] !== undefined) {
+            // return list from cache
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(this.listCache[rootNodeIri]);
+        }
+        else {
+            // get list from Knora and cache it
+            var listJSONLD = this._listService.getList(rootNodeIri);
+            var listV2 = listJSONLD.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(this.convertJSONLDToListNode));
+            return listV2.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (list) {
+                // write list to cache and return it
+                _this.listCache[rootNodeIri] = list;
+                return list;
+            }));
+        }
+    };
+    /**
+     * Gets a list node from the cache or requests the whole list from Knora and caches it.
+     *
+     * @param {string} listNodeIri the Iri of the list node.
+     * @return {Observable<object>}
+     */
+    ListCacheService.prototype.getListNode = function (listNodeIri) {
+        var _this = this;
+        // check if list node is already in cache
+        if (this.listNodeIriToListNodeV2[listNodeIri] !== undefined) {
+            // list node is already cached
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(this.listNodeIriToListNodeV2[listNodeIri]);
+        }
+        else {
+            var listNode = this._listService.getListNode(listNodeIri);
+            return listNode.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["mergeMap"])(function (listNodeJSONLD) {
+                var hasRootNode = _this.hasRootNode(listNodeJSONLD);
+                if (hasRootNode !== undefined) {
+                    // get the whole list
+                    return _this.getList(hasRootNode).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (completeList) {
+                        // get list node from cache
+                        return _this.listNodeIriToListNodeV2[listNodeIri];
+                    }));
+                }
+                else {
+                    // this is the root node, get the whole list
+                    return _this.getList(listNodeIri).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (completeList) {
+                        // get list node from cache
+                        return _this.listNodeIriToListNodeV2[listNodeIri];
+                    }));
+                }
+            }));
+        }
+    };
+    ListCacheService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function ListCacheService_Factory() { return new ListCacheService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(ListService)); }, token: ListCacheService, providedIn: "root" });
+    return ListCacheService;
+}());
 /**
  * main api services
  */
@@ -6317,11 +6595,13 @@ var PropertyWithValue = /** @class */ /*@__PURE__*/ (function () {
 /*!**************************************************!*\
   !*** ./dist/@knora/search/fesm5/knora-search.js ***!
   \**************************************************/
-/*! exports provided: SearchComponent, SearchPanelComponent, FulltextSearchComponent, ExtendedSearchComponent, SelectOntologyComponent, SelectPropertyComponent, SpecifyPropertyValueComponent, BooleanValueComponent, DateValueComponent, HeaderComponent, DecimalValueComponent, IntegerValueComponent, LinkValueComponent, TextValueComponent, UriValueComponent, SelectResourceClassComponent, ExpertSearchComponent, KuiSearchModule */
+/*! exports provided: ɵb, ɵa, SearchComponent, SearchPanelComponent, FulltextSearchComponent, ExtendedSearchComponent, SelectOntologyComponent, SelectPropertyComponent, SpecifyPropertyValueComponent, BooleanValueComponent, DateValueComponent, HeaderComponent, DecimalValueComponent, IntegerValueComponent, LinkValueComponent, TextValueComponent, UriValueComponent, SelectResourceClassComponent, ExpertSearchComponent, KuiSearchModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵb", function() { return ListDisplayComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return ListValueComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchComponent", function() { return SearchComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchPanelComponent", function() { return SearchPanelComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FulltextSearchComponent", function() { return FulltextSearchComponent; });
@@ -6345,15 +6625,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jdnconvertiblecalendar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jdnconvertiblecalendar */ "./node_modules/jdnconvertiblecalendar/dist/src/index.js");
 /* harmony import */ var jdnconvertiblecalendar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jdnconvertiblecalendar__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
-/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
-/* harmony import */ var _knora_viewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @knora/viewer */ "./dist/@knora/viewer/fesm5/knora-viewer.js");
-/* harmony import */ var jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! jdnconvertiblecalendardateadapter */ "./node_modules/jdnconvertiblecalendardateadapter/fesm5/jdnconvertiblecalendardateadapter.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
+/* harmony import */ var _knora_viewer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @knora/viewer */ "./dist/@knora/viewer/fesm5/knora-viewer.js");
+/* harmony import */ var jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! jdnconvertiblecalendardateadapter */ "./node_modules/jdnconvertiblecalendardateadapter/fesm5/jdnconvertiblecalendardateadapter.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 
 
 
@@ -6842,7 +7122,7 @@ var SelectResourceClassComponent = /** @class */ /*@__PURE__*/ (function () {
     function SelectResourceClassComponent(fb) {
         this.fb = fb;
         // event emitted to parent component once a resource class is selected by the user
-        this.resourceClassSelectedEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_4__["EventEmitter"]();
+        this.resourceClassSelectedEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_11__["EventEmitter"]();
     }
     Object.defineProperty(SelectResourceClassComponent.prototype, "resourceClasses", {
         // getter method for resource classes (used in template)
@@ -6920,18 +7200,18 @@ var ExtendedSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         /**
          * @param  {boolean} toggleExtendedSearchForm Trigger toggle for extended search form.
          */
-        this.toggleExtendedSearchForm = new _angular_core__WEBPACK_IMPORTED_MODULE_4__["EventEmitter"]();
+        this.toggleExtendedSearchForm = new _angular_core__WEBPACK_IMPORTED_MODULE_11__["EventEmitter"]();
         /**
          * @param  {string} gravsearch Send the gravsearch query back.
          */
-        this.gravsearch = new _angular_core__WEBPACK_IMPORTED_MODULE_4__["EventEmitter"]();
+        this.gravsearch = new _angular_core__WEBPACK_IMPORTED_MODULE_11__["EventEmitter"]();
         // all available ontologies
         this.ontologies = [];
         // properties specified by the user
         this.activeProperties = [];
         // resource classes for the selected ontology
         this.resourceClasses = [];
-        this.result = new _knora_core__WEBPACK_IMPORTED_MODULE_9__["ReadResourcesSequence"]([], 0);
+        this.result = new _knora_core__WEBPACK_IMPORTED_MODULE_10__["ReadResourcesSequence"]([], 0);
         // form validation status
         this.formValid = false;
     }
@@ -7065,13 +7345,13 @@ var ExtendedSearchComponent = /** @class */ /*@__PURE__*/ (function () {
 var SelectOntologyComponent = /** @class */ /*@__PURE__*/ (function () {
     function SelectOntologyComponent(fb) {
         this.fb = fb;
-        this.ontologySelected = new _angular_core__WEBPACK_IMPORTED_MODULE_4__["EventEmitter"]();
+        this.ontologySelected = new _angular_core__WEBPACK_IMPORTED_MODULE_11__["EventEmitter"]();
     }
     SelectOntologyComponent.prototype.ngOnInit = function () {
         var _this = this;
         // build a form for the named graph selection
         this.form = this.fb.group({
-            ontology: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required]
+            ontology: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]
         });
         // emit Iri of the ontology when being selected
         this.form.valueChanges.subscribe(function (data) {
@@ -7087,7 +7367,7 @@ var resolvedPromise$1 = Promise.resolve(null);
 var SpecifyPropertyValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function SpecifyPropertyValueComponent(fb) {
         this.fb = fb;
-        this.KnoraConstants = _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"];
+        this.KnoraConstants = _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"];
         // available comparison operators for the property
         this.comparisonOperators = [];
     }
@@ -7111,47 +7391,50 @@ var SpecifyPropertyValueComponent = /** @class */ /*@__PURE__*/ (function () {
     SpecifyPropertyValueComponent.prototype.resetComparisonOperators = function () {
         // depending on object class, set comparison operators and value entry field
         if (this._property.isLinkProperty) {
-            this.propertyValueType = _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].Resource;
+            this.propertyValueType = _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].Resource;
         }
         else {
             this.propertyValueType = this._property.objectType;
         }
         switch (this.propertyValueType) {
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].TextValue:
-                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_9__["Like"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["Match"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["Exists"]()];
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].TextValue:
+                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Like"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Match"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Exists"]()];
                 break;
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].BooleanValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].Resource:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].UriValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].IntervalValue:
-                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_9__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["Exists"]()];
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].BooleanValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].Resource:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].UriValue:
+                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Exists"]()];
                 break;
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].IntValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].DecimalValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].DateValue:
-                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_9__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["LessThan"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["LessThanEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["GreaterThan"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["GreaterThanEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_9__["Exists"]()];
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].IntValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].DecimalValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].DateValue:
+                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["LessThan"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["LessThanEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["GreaterThan"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["GreaterThanEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Exists"]()];
                 break;
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].ListValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].GeomValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].FileValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].AudioFileValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].StillImageFileValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].DDDFileValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].MovingImageFileValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].TextFileValue:
-            case _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].ColorValue:
-                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_9__["Exists"]()];
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].ListValue:
+                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Equals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["NotEquals"](), new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Exists"]()];
+                break;
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].GeomValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].FileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].AudioFileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].StillImageFileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].DDDFileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].MovingImageFileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].TextFileValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].ColorValue:
+            case _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].IntervalValue:
+                this.comparisonOperators = [new _knora_core__WEBPACK_IMPORTED_MODULE_10__["Exists"]()];
                 break;
             default:
                 console.log('ERROR: Unsupported value type ' + this._property.objectType);
         }
     };
-    SpecifyPropertyValueComponent.prototype.ngOnInit = function () { };
+    SpecifyPropertyValueComponent.prototype.ngOnInit = function () {
+    };
     SpecifyPropertyValueComponent.prototype.ngOnChanges = function () {
         var _this = this;
         // build a form for comparison operator selection
         this.form = this.fb.group({
-            comparisonOperator: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required]
+            comparisonOperator: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]
         });
         // store comparison operator when selected
         this.form.valueChanges.subscribe(function (data) {
@@ -7177,7 +7460,7 @@ var SpecifyPropertyValueComponent = /** @class */ /*@__PURE__*/ (function () {
             value = this.propertyValueComponent.getValue();
         }
         // return the comparison operator and the specified value
-        return new _knora_core__WEBPACK_IMPORTED_MODULE_9__["ComparisonOperatorAndValue"](this.comparisonOperatorSelected, value);
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_10__["ComparisonOperatorAndValue"](this.comparisonOperatorSelected, value);
     };
     return SpecifyPropertyValueComponent;
 }());
@@ -7212,8 +7495,8 @@ var SelectPropertyComponent = /** @class */ /*@__PURE__*/ (function () {
         var _this = this;
         // build a form for the property selection
         this.form = this.fb.group({
-            property: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required],
-            isSortCriterion: [false, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required]
+            property: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required],
+            isSortCriterion: [false, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]
         });
         // update the selected property
         this.form.valueChanges.subscribe(function (data) {
@@ -7248,7 +7531,7 @@ var SelectPropertyComponent = /** @class */ /*@__PURE__*/ (function () {
                 // cardinality 1 or max occurrence 1
                 return card.property === _this.propertySelected.id
                     && card.value === 1
-                    && (card.occurrence === _knora_core__WEBPACK_IMPORTED_MODULE_9__["CardinalityOccurrence"].card || card.occurrence === _knora_core__WEBPACK_IMPORTED_MODULE_9__["CardinalityOccurrence"].maxCard);
+                    && (card.occurrence === _knora_core__WEBPACK_IMPORTED_MODULE_10__["CardinalityOccurrence"].card || card.occurrence === _knora_core__WEBPACK_IMPORTED_MODULE_10__["CardinalityOccurrence"].maxCard);
             });
             return cardinalities.length === 1;
         }
@@ -7272,7 +7555,7 @@ var SelectPropertyComponent = /** @class */ /*@__PURE__*/ (function () {
             }
         }
         // sort properties by label (ascending)
-        propsArray.sort(_knora_core__WEBPACK_IMPORTED_MODULE_9__["OntologyInformation"].sortFunc);
+        propsArray.sort(_knora_core__WEBPACK_IMPORTED_MODULE_10__["OntologyInformation"].sortFunc);
         this.propertiesAsArray = propsArray;
     };
     /**
@@ -7285,7 +7568,7 @@ var SelectPropertyComponent = /** @class */ /*@__PURE__*/ (function () {
         if (!this.propertySelected.isLinkProperty) {
             isSortCriterion = this.form.value.isSortCriterion;
         }
-        return new _knora_core__WEBPACK_IMPORTED_MODULE_9__["PropertyWithValue"](this.propertySelected, propVal, isSortCriterion);
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_10__["PropertyWithValue"](this.propertySelected, propVal, isSortCriterion);
     };
     return SelectPropertyComponent;
 }());
@@ -7294,12 +7577,12 @@ var resolvedPromise$3 = Promise.resolve(null);
 var BooleanValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function BooleanValueComponent(fb) {
         this.fb = fb;
-        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].BooleanValue;
+        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].BooleanValue;
     }
     BooleanValueComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.form = this.fb.group({
-            booleanValue: [false, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required])]
+            booleanValue: [false, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required])]
         });
         resolvedPromise$3.then(function () {
             // add form to the parent form group
@@ -7314,7 +7597,7 @@ var BooleanValueComponent = /** @class */ /*@__PURE__*/ (function () {
         });
     };
     BooleanValueComponent.prototype.getValue = function () {
-        return new _knora_core__WEBPACK_IMPORTED_MODULE_9__["ValueLiteral"](String(this.form.value.booleanValue), _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].xsdBoolean);
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_10__["ValueLiteral"](String(this.form.value.booleanValue), _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].xsdBoolean);
     };
     return BooleanValueComponent;
 }());
@@ -7331,7 +7614,7 @@ var HeaderComponent = /** @class */ /*@__PURE__*/ (function () {
     HeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
         // get the currently active calendar format from the date adapter
-        if (this._dateAdapter instanceof jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_12__["JDNConvertibleCalendarDateAdapter"]) {
+        if (this._dateAdapter instanceof jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_8__["JDNConvertibleCalendarDateAdapter"]) {
             this.activeFormat = this._dateAdapter.activeCalendarFormat;
         }
         else {
@@ -7339,7 +7622,7 @@ var HeaderComponent = /** @class */ /*@__PURE__*/ (function () {
         }
         // build a form for the calendar format selection
         this.form = this.fb.group({
-            calendar: [this.activeFormat, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required]
+            calendar: [this.activeFormat, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]
         });
         // do the conversion when the user selects another calendar format
         this.form.valueChanges.subscribe(function (data) {
@@ -7353,7 +7636,7 @@ var HeaderComponent = /** @class */ /*@__PURE__*/ (function () {
      * @param calendar the target calendar format.
      */
     HeaderComponent.prototype.convertDate = function (calendar) {
-        if (this._dateAdapter instanceof jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_12__["JDNConvertibleCalendarDateAdapter"]) {
+        if (this._dateAdapter instanceof jdnconvertiblecalendardateadapter__WEBPACK_IMPORTED_MODULE_8__["JDNConvertibleCalendarDateAdapter"]) {
             // convert the date into the target calendar format
             var convertedDate = this._dateAdapter.convertCalendarFormat(this._calendar.activeDate, calendar);
             // set the new date
@@ -7374,7 +7657,7 @@ var resolvedPromise$4 = Promise.resolve(null);
 var DateValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function DateValueComponent(fb) {
         this.fb = fb;
-        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].DateValue;
+        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].DateValue;
         // custom header for the datepicker
         this.headerComponent = HeaderComponent;
     }
@@ -7382,7 +7665,7 @@ var DateValueComponent = /** @class */ /*@__PURE__*/ (function () {
         var _this = this;
         // init datepicker
         this.form = this.fb.group({
-            dateValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required])]
+            dateValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required])]
         });
         this.form.valueChanges.subscribe(function (data) {
             // console.log(data.dateValue);
@@ -7407,7 +7690,7 @@ var DateValueComponent = /** @class */ /*@__PURE__*/ (function () {
         var calendarPeriod = dateObj.toCalendarPeriod();
         // get the date
         var dateString = calendarFormat.toUpperCase() + ":" + calendarPeriod.periodStart.year + "-" + calendarPeriod.periodStart.month + "-" + calendarPeriod.periodStart.day + ":" + calendarPeriod.periodEnd.year + "-" + calendarPeriod.periodEnd.month + "-" + calendarPeriod.periodEnd.day;
-        return new _knora_core__WEBPACK_IMPORTED_MODULE_9__["ValueLiteral"](String(dateString), _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].DateValue);
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_10__["ValueLiteral"](String(dateString), _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].dateSimple);
     };
     return DateValueComponent;
 }());
@@ -7416,12 +7699,12 @@ var resolvedPromise$5 = Promise.resolve(null);
 var DecimalValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function DecimalValueComponent(fb) {
         this.fb = fb;
-        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].DecimalValue;
+        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].DecimalValue;
     }
     DecimalValueComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.form = this.fb.group({
-            decimalValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required])]
+            decimalValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required])]
         });
         resolvedPromise$5.then(function () {
             // add form to the parent form group
@@ -7436,7 +7719,7 @@ var DecimalValueComponent = /** @class */ /*@__PURE__*/ (function () {
         });
     };
     DecimalValueComponent.prototype.getValue = function () {
-        return new _knora_core__WEBPACK_IMPORTED_MODULE_9__["ValueLiteral"](String(this.form.value.decimalValue), _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].xsdDecimal);
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_10__["ValueLiteral"](String(this.form.value.decimalValue), _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].xsdDecimal);
     };
     return DecimalValueComponent;
 }());
@@ -7445,12 +7728,12 @@ var resolvedPromise$6 = Promise.resolve(null);
 var IntegerValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function IntegerValueComponent(fb) {
         this.fb = fb;
-        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].IntValue;
+        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].IntValue;
     }
     IntegerValueComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.form = this.fb.group({
-            integerValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].pattern(/^-?\d+$/)])] // only allow for integer values (no fractions)
+            integerValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].pattern(/^-?\d+$/)])] // only allow for integer values (no fractions)
         });
         resolvedPromise$6.then(function () {
             // add form to the parent form group
@@ -7465,7 +7748,7 @@ var IntegerValueComponent = /** @class */ /*@__PURE__*/ (function () {
         });
     };
     IntegerValueComponent.prototype.getValue = function () {
-        return new _knora_core__WEBPACK_IMPORTED_MODULE_9__["ValueLiteral"](String(this.form.value.integerValue), _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].xsdInteger);
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_10__["ValueLiteral"](String(this.form.value.integerValue), _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].xsdInteger);
     };
     return IntegerValueComponent;
 }());
@@ -7477,7 +7760,7 @@ var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
         this.fb = fb;
         this._searchService = _searchService;
         this._cacheService = _cacheService;
-        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].LinkValue;
+        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].LinkValue;
     }
     Object.defineProperty(LinkValueComponent.prototype, "restrictResourceClass", {
         get: function () {
@@ -7510,7 +7793,7 @@ var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
         var _this = this;
         // at least 3 characters are required
         if (searchTerm.length >= 3) {
-            this._searchService.searchByLabelReadResourceSequence(searchTerm, this._restrictToResourceClass).subscribe(function (result) {
+            this._searchService.searchByLabelReadResourceSequence(searchTerm, 0, { limitToResourceClass: this._restrictToResourceClass }).subscribe(function (result) {
                 _this.resources = result.resources;
             }, function (err) {
                 console.log('JSONLD of full resource request could not be expanded:' + err);
@@ -7530,7 +7813,7 @@ var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
      * @returns
      */
     LinkValueComponent.prototype.validateResource = function (c) {
-        var isValidResource = (c.value instanceof _knora_core__WEBPACK_IMPORTED_MODULE_9__["ReadResource"]);
+        var isValidResource = (c.value instanceof _knora_core__WEBPACK_IMPORTED_MODULE_10__["ReadResource"]);
         if (isValidResource) {
             return null;
         }
@@ -7545,8 +7828,8 @@ var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
     LinkValueComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.form = this.fb.group({
-            resource: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].compose([
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required,
+            resource: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].compose([
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required,
                     this.validateResource
                 ])]
         });
@@ -7566,7 +7849,7 @@ var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
         });
     };
     LinkValueComponent.prototype.getValue = function () {
-        return new _knora_core__WEBPACK_IMPORTED_MODULE_9__["IRI"](this.form.value.resource.id);
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_10__["IRI"](this.form.value.resource.id);
     };
     return LinkValueComponent;
 }());
@@ -7575,12 +7858,12 @@ var resolvedPromise$8 = Promise.resolve(null);
 var TextValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function TextValueComponent(fb) {
         this.fb = fb;
-        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].TextValue;
+        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].TextValue;
     }
     TextValueComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.form = this.fb.group({
-            textValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required]
+            textValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]
         });
         resolvedPromise$8.then(function () {
             // add form to the parent form group
@@ -7595,7 +7878,7 @@ var TextValueComponent = /** @class */ /*@__PURE__*/ (function () {
         });
     };
     TextValueComponent.prototype.getValue = function () {
-        return new _knora_core__WEBPACK_IMPORTED_MODULE_9__["ValueLiteral"](String(this.form.value.textValue), _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].xsdString);
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_10__["ValueLiteral"](String(this.form.value.textValue), _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].xsdString);
     };
     return TextValueComponent;
 }());
@@ -7604,12 +7887,12 @@ var resolvedPromise$9 = Promise.resolve(null);
 var UriValueComponent = /** @class */ /*@__PURE__*/ (function () {
     function UriValueComponent(fb) {
         this.fb = fb;
-        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].UriValue;
+        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].UriValue;
     }
     UriValueComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.form = this.fb.group({
-            uriValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].pattern(_knora_core__WEBPACK_IMPORTED_MODULE_9__["Utils"].RegexUrl)])]
+            uriValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].pattern(_knora_core__WEBPACK_IMPORTED_MODULE_10__["Utils"].RegexUrl)])]
         });
         resolvedPromise$9.then(function () {
             // add form to the parent form group
@@ -7624,7 +7907,7 @@ var UriValueComponent = /** @class */ /*@__PURE__*/ (function () {
         });
     };
     UriValueComponent.prototype.getValue = function () {
-        return new _knora_core__WEBPACK_IMPORTED_MODULE_9__["ValueLiteral"](String(this.form.value.uriValue), _knora_core__WEBPACK_IMPORTED_MODULE_9__["KnoraConstants"].xsdUri);
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_10__["ValueLiteral"](String(this.form.value.uriValue), _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].xsdUri);
     };
     return UriValueComponent;
 }());
@@ -7639,7 +7922,7 @@ var ExpertSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         /**
          * @param gravsearch Send the gravsearch query back.
          */
-        this.gravsearch = new _angular_core__WEBPACK_IMPORTED_MODULE_4__["EventEmitter"]();
+        this.gravsearch = new _angular_core__WEBPACK_IMPORTED_MODULE_11__["EventEmitter"]();
     }
     ExpertSearchComponent.prototype.ngOnInit = function () {
         this.initForm();
@@ -7652,7 +7935,7 @@ var ExpertSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         this.expertSearchForm = this.fb.group({
             gravquery: [
                 "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\nPREFIX incunabula: <" + this.config.api + "/ontology/0803/incunabula/simple/v2#>\n\nCONSTRUCT {\n    ?book knora-api:isMainResource true .\n    ?book incunabula:title ?title .\n\n} WHERE {\n    ?book a incunabula:book .\n    ?book incunabula:title ?title .\n}\n",
-                _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required
+                _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required
             ]
         });
     };
@@ -7687,7 +7970,7 @@ var ExpertSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         };
         if (offset === 0) {
             // store the function so another Gravsearch query can be created with an increased offset
-            this._searchParamsService.changeSearchParamsMsg(new _knora_core__WEBPACK_IMPORTED_MODULE_9__["ExtendedSearchParams"](generateGravsearchWithCustomOffset));
+            this._searchParamsService.changeSearchParamsMsg(new _knora_core__WEBPACK_IMPORTED_MODULE_10__["ExtendedSearchParams"](generateGravsearchWithCustomOffset));
         }
         return queryTemplate + offsetTemplate;
     };
@@ -7699,6 +7982,67 @@ var ExpertSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         this.initForm();
     };
     return ExpertSearchComponent;
+}());
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
+var resolvedPromise$a = Promise.resolve(null);
+var ListValueComponent = /** @class */ /*@__PURE__*/ (function () {
+    function ListValueComponent(fb, _listCacheService) {
+        this.fb = fb;
+        this._listCacheService = _listCacheService;
+        this.type = _knora_core__WEBPACK_IMPORTED_MODULE_10__["KnoraConstants"].ListValue;
+    }
+    ListValueComponent.prototype.getRootNodeIri = function () {
+        var guiAttr = this.property.guiAttribute;
+        if (guiAttr.length === 1 && guiAttr[0].startsWith('hlist=')) {
+            var listNodeIri = guiAttr[0].substr(7, guiAttr[0].length - (1 + 7)); // hlist=<>, get also rid of <>
+            return listNodeIri;
+        }
+        else {
+            console.log('No root node Iri given for property');
+        }
+    };
+    ListValueComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.form = this.fb.group({
+            listValue: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]
+        });
+        resolvedPromise$a.then(function () {
+            // add form to the parent form group
+            _this.formGroup.addControl('propValue', _this.form);
+        });
+        var rootNodeIri = this.getRootNodeIri();
+        this._listCacheService.getList(rootNodeIri).subscribe(function (list) {
+            _this.listRootNode = list;
+        });
+    };
+    ListValueComponent.prototype.ngOnDestroy = function () {
+        var _this = this;
+        // remove form from the parent form group
+        resolvedPromise$a.then(function () {
+            _this.formGroup.removeControl('propValue');
+        });
+    };
+    ListValueComponent.prototype.getValue = function () {
+        return new _knora_core__WEBPACK_IMPORTED_MODULE_10__["IRI"](this.form.value.listValue);
+    };
+    ListValueComponent.prototype.getSelectedNode = function (item) {
+        this.menuTrigger.closeMenu();
+        this.selectedNode = item;
+        this.form.controls['listValue'].setValue(item.id);
+    };
+    return ListValueComponent;
+}());
+var ListDisplayComponent = /** @class */ /*@__PURE__*/ (function () {
+    function ListDisplayComponent() {
+        this.selectedNode = new _angular_core__WEBPACK_IMPORTED_MODULE_11__["EventEmitter"]();
+    }
+    ListDisplayComponent.prototype.ngOnInit = function () {
+        // console.log(this.children)
+    };
+    ListDisplayComponent.prototype.setValue = function (item) {
+        this.selectedNode.emit(item);
+    };
+    return ListDisplayComponent;
 }());
 var KuiSearchModule = /** @class */ /*@__PURE__*/ (function () {
     function KuiSearchModule() {
@@ -7723,7 +8067,7 @@ var KuiSearchModule = /** @class */ /*@__PURE__*/ (function () {
 /*!******************************************************!*\
   !*** ./dist/@knora/search/knora-search.ngfactory.js ***!
   \******************************************************/
-/*! exports provided: KuiSearchModuleNgFactory, RenderType_SearchComponent, View_SearchComponent_0, View_SearchComponent_Host_0, SearchComponentNgFactory, RenderType_SearchPanelComponent, View_SearchPanelComponent_0, View_SearchPanelComponent_Host_0, SearchPanelComponentNgFactory, RenderType_FulltextSearchComponent, View_FulltextSearchComponent_0, View_FulltextSearchComponent_Host_0, FulltextSearchComponentNgFactory, RenderType_ExtendedSearchComponent, View_ExtendedSearchComponent_0, View_ExtendedSearchComponent_Host_0, ExtendedSearchComponentNgFactory, RenderType_SelectOntologyComponent, View_SelectOntologyComponent_0, View_SelectOntologyComponent_Host_0, SelectOntologyComponentNgFactory, RenderType_SelectPropertyComponent, View_SelectPropertyComponent_0, View_SelectPropertyComponent_Host_0, SelectPropertyComponentNgFactory, RenderType_SpecifyPropertyValueComponent, View_SpecifyPropertyValueComponent_0, View_SpecifyPropertyValueComponent_Host_0, SpecifyPropertyValueComponentNgFactory, RenderType_BooleanValueComponent, View_BooleanValueComponent_0, View_BooleanValueComponent_Host_0, BooleanValueComponentNgFactory, RenderType_DateValueComponent, View_DateValueComponent_0, View_DateValueComponent_Host_0, DateValueComponentNgFactory, RenderType_HeaderComponent, View_HeaderComponent_0, View_HeaderComponent_Host_0, HeaderComponentNgFactory, RenderType_DecimalValueComponent, View_DecimalValueComponent_0, View_DecimalValueComponent_Host_0, DecimalValueComponentNgFactory, RenderType_IntegerValueComponent, View_IntegerValueComponent_0, View_IntegerValueComponent_Host_0, IntegerValueComponentNgFactory, RenderType_LinkValueComponent, View_LinkValueComponent_0, View_LinkValueComponent_Host_0, LinkValueComponentNgFactory, RenderType_TextValueComponent, View_TextValueComponent_0, View_TextValueComponent_Host_0, TextValueComponentNgFactory, RenderType_UriValueComponent, View_UriValueComponent_0, View_UriValueComponent_Host_0, UriValueComponentNgFactory, RenderType_SelectResourceClassComponent, View_SelectResourceClassComponent_0, View_SelectResourceClassComponent_Host_0, SelectResourceClassComponentNgFactory, RenderType_ExpertSearchComponent, View_ExpertSearchComponent_0, View_ExpertSearchComponent_Host_0, ExpertSearchComponentNgFactory */
+/*! exports provided: KuiSearchModuleNgFactory, RenderType_SearchComponent, View_SearchComponent_0, View_SearchComponent_Host_0, SearchComponentNgFactory, RenderType_SearchPanelComponent, View_SearchPanelComponent_0, View_SearchPanelComponent_Host_0, SearchPanelComponentNgFactory, RenderType_FulltextSearchComponent, View_FulltextSearchComponent_0, View_FulltextSearchComponent_Host_0, FulltextSearchComponentNgFactory, RenderType_ExtendedSearchComponent, View_ExtendedSearchComponent_0, View_ExtendedSearchComponent_Host_0, ExtendedSearchComponentNgFactory, RenderType_SelectOntologyComponent, View_SelectOntologyComponent_0, View_SelectOntologyComponent_Host_0, SelectOntologyComponentNgFactory, RenderType_SelectPropertyComponent, View_SelectPropertyComponent_0, View_SelectPropertyComponent_Host_0, SelectPropertyComponentNgFactory, RenderType_SpecifyPropertyValueComponent, View_SpecifyPropertyValueComponent_0, View_SpecifyPropertyValueComponent_Host_0, SpecifyPropertyValueComponentNgFactory, RenderType_BooleanValueComponent, View_BooleanValueComponent_0, View_BooleanValueComponent_Host_0, BooleanValueComponentNgFactory, RenderType_DateValueComponent, View_DateValueComponent_0, View_DateValueComponent_Host_0, DateValueComponentNgFactory, RenderType_HeaderComponent, View_HeaderComponent_0, View_HeaderComponent_Host_0, HeaderComponentNgFactory, RenderType_DecimalValueComponent, View_DecimalValueComponent_0, View_DecimalValueComponent_Host_0, DecimalValueComponentNgFactory, RenderType_IntegerValueComponent, View_IntegerValueComponent_0, View_IntegerValueComponent_Host_0, IntegerValueComponentNgFactory, RenderType_LinkValueComponent, View_LinkValueComponent_0, View_LinkValueComponent_Host_0, LinkValueComponentNgFactory, RenderType_TextValueComponent, View_TextValueComponent_0, View_TextValueComponent_Host_0, TextValueComponentNgFactory, RenderType_UriValueComponent, View_UriValueComponent_0, View_UriValueComponent_Host_0, UriValueComponentNgFactory, RenderType_SelectResourceClassComponent, View_SelectResourceClassComponent_0, View_SelectResourceClassComponent_Host_0, SelectResourceClassComponentNgFactory, RenderType_ExpertSearchComponent, View_ExpertSearchComponent_0, View_ExpertSearchComponent_Host_0, ExpertSearchComponentNgFactory, RenderType_ɵa, View_ɵa_0, View_ɵa_Host_0, ɵaNgFactory, RenderType_ɵb, View_ɵb_0, View_ɵb_Host_0, ɵbNgFactory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7797,6 +8141,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_ExpertSearchComponent_0", function() { return View_ExpertSearchComponent_0; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_ExpertSearchComponent_Host_0", function() { return View_ExpertSearchComponent_Host_0; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExpertSearchComponentNgFactory", function() { return ExpertSearchComponentNgFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderType_ɵa", function() { return RenderType_ɵa; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_ɵa_0", function() { return View_ɵa_0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_ɵa_Host_0", function() { return View_ɵa_Host_0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵaNgFactory", function() { return ɵaNgFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderType_ɵb", function() { return RenderType_ɵb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_ɵb_0", function() { return View_ɵb_0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_ɵb_Host_0", function() { return View_ɵb_Host_0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵbNgFactory", function() { return ɵbNgFactory; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _knora_search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @knora/search */ "./dist/@knora/search/fesm5/knora-search.js");
 /* harmony import */ var _node_modules_angular_material_dialog_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/@angular/material/dialog/typings/index.ngfactory */ "./node_modules/@angular/material/dialog/typings/index.ngfactory.js");
@@ -8585,8 +8937,22 @@ function View_SpecifyPropertyValueComponent_10(_l) {
             return ad;
         }, View_UriValueComponent_0, RenderType_UriValueComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 540672, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormGroupDirective"], [[8, null], [8, null]], { form: [0, "form"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](2048, null, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["ControlContainer"], null, [_angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormGroupDirective"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 16384, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["NgControlStatusGroup"], [[4, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["ControlContainer"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](4, 245760, [[1, 4], ["propertyValue", 4]], 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["UriValueComponent"], [_angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormBuilder"]], { formGroup: [0, "formGroup"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_7 = _co.form; _ck(_v, 1, 0, currVal_7); var currVal_8 = _co.form; _ck(_v, 4, 0, currVal_8); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassUntouched; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassTouched; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassPristine; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassDirty; var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassValid; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassInvalid; var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassPending; _ck(_v, 0, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); });
 }
-function View_SpecifyPropertyValueComponent_11(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](1, null, ["Not supported ", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.propertyValueType; _ck(_v, 1, 0, currVal_0); }); }
-function View_SpecifyPropertyValueComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 17, "span", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"], [], { ngSwitch: [0, "ngSwitch"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](5, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_6)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](7, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_7)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](9, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](11, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](13, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_10)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](15, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_11)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](17, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchDefault"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.propertyValueType; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.KnoraConstants.BooleanValue; _ck(_v, 3, 0, currVal_1); var currVal_2 = _co.KnoraConstants.DateValue; _ck(_v, 5, 0, currVal_2); var currVal_3 = _co.KnoraConstants.DecimalValue; _ck(_v, 7, 0, currVal_3); var currVal_4 = _co.KnoraConstants.IntValue; _ck(_v, 9, 0, currVal_4); var currVal_5 = _co.KnoraConstants.Resource; _ck(_v, 11, 0, currVal_5); var currVal_6 = _co.KnoraConstants.TextValue; _ck(_v, 13, 0, currVal_6); var currVal_7 = _co.KnoraConstants.UriValue; _ck(_v, 15, 0, currVal_7); }, null); }
+function View_SpecifyPropertyValueComponent_11(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 4, "list-value", [], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "submit"], [null, "reset"]], function (_v, en, $event) {
+            var ad = true;
+            if (("submit" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).onSubmit($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("reset" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).onReset() !== false);
+                ad = (pd_1 && ad);
+            }
+            return ad;
+        }, View_ɵa_0, RenderType_ɵa)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 540672, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormGroupDirective"], [[8, null], [8, null]], { form: [0, "form"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](2048, null, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["ControlContainer"], null, [_angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormGroupDirective"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 16384, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["NgControlStatusGroup"], [[4, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["ControlContainer"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](4, 245760, [[1, 4], ["propertyValue", 4]], 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["ɵa"], [_angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormBuilder"], _knora_core__WEBPACK_IMPORTED_MODULE_38__["ListCacheService"]], { formGroup: [0, "formGroup"], property: [1, "property"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_7 = _co.form; _ck(_v, 1, 0, currVal_7); var currVal_8 = _co.form; var currVal_9 = _co.property; _ck(_v, 4, 0, currVal_8, currVal_9); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassUntouched; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassTouched; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassPristine; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassDirty; var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassValid; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassInvalid; var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).ngClassPending; _ck(_v, 0, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); });
+}
+function View_SpecifyPropertyValueComponent_12(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](1, null, ["Not supported ", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.propertyValueType; _ck(_v, 1, 0, currVal_0); }); }
+function View_SpecifyPropertyValueComponent_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 19, "span", [], null, null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"], [], { ngSwitch: [0, "ngSwitch"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_4)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_5)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](5, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_6)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](7, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_7)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](9, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_8)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](11, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_9)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](13, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_10)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](15, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_11)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](17, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_12)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](19, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchDefault"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.propertyValueType; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.KnoraConstants.BooleanValue; _ck(_v, 3, 0, currVal_1); var currVal_2 = _co.KnoraConstants.DateValue; _ck(_v, 5, 0, currVal_2); var currVal_3 = _co.KnoraConstants.DecimalValue; _ck(_v, 7, 0, currVal_3); var currVal_4 = _co.KnoraConstants.IntValue; _ck(_v, 9, 0, currVal_4); var currVal_5 = _co.KnoraConstants.Resource; _ck(_v, 11, 0, currVal_5); var currVal_6 = _co.KnoraConstants.TextValue; _ck(_v, 13, 0, currVal_6); var currVal_7 = _co.KnoraConstants.UriValue; _ck(_v, 15, 0, currVal_7); var currVal_8 = _co.KnoraConstants.ListValue; _ck(_v, 17, 0, currVal_8); }, null); }
 function View_SpecifyPropertyValueComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](671088640, 1, { propertyValueComponent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_SpecifyPropertyValueComponent_3)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = (((_co.comparisonOperators == null) ? null : _co.comparisonOperators.length) > 0); _ck(_v, 2, 0, currVal_0); var currVal_1 = (((_co.comparisonOperatorSelected !== undefined) && (_co.comparisonOperatorSelected !== null)) && (_co.comparisonOperatorSelected.getClassName() != "Exists")); _ck(_v, 4, 0, currVal_1); }, null); }
 function View_SpecifyPropertyValueComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-specify-property-value", [], null, null, null, View_SpecifyPropertyValueComponent_0, RenderType_SpecifyPropertyValueComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 638976, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["SpecifyPropertyValueComponent"], [_angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormBuilder"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var SpecifyPropertyValueComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-specify-property-value", _knora_search__WEBPACK_IMPORTED_MODULE_1__["SpecifyPropertyValueComponent"], View_SpecifyPropertyValueComponent_Host_0, { formGroup: "formGroup", property: "property" }, {}, []);
@@ -9084,6 +9450,191 @@ function View_ExpertSearchComponent_0(_l) {
 }
 function View_ExpertSearchComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-expert-search", [], null, null, null, View_ExpertSearchComponent_0, RenderType_ExpertSearchComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["ExpertSearchComponent"], [_angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormBuilder"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"], _knora_core__WEBPACK_IMPORTED_MODULE_38__["SearchService"], _knora_core__WEBPACK_IMPORTED_MODULE_38__["SearchParamsService"], _knora_core__WEBPACK_IMPORTED_MODULE_38__["KuiCoreConfigToken"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var ExpertSearchComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-expert-search", _knora_search__WEBPACK_IMPORTED_MODULE_1__["ExpertSearchComponent"], View_ExpertSearchComponent_Host_0, { route: "route" }, { gravsearch: "gravsearch" }, []);
+
+var styles_ɵa = [".hidden[_ngcontent-%COMP%]{display:none}"];
+var RenderType_ɵa = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_ɵa, data: {} });
+
+function View_ɵa_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, null, ["Select list value"]))], null, null); }
+function View_ɵa_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](1, null, ["", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.selectedNode.label; _ck(_v, 1, 0, currVal_0); }); }
+function View_ɵa_5(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 6, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 16777216, null, null, 3, "button", [["aria-haspopup", "true"], ["class", "mat-menu-item"], ["mat-menu-item", ""], ["type", "button"]], [[1, "role", 0], [2, "mat-menu-item-highlighted", null], [2, "mat-menu-item-submenu-trigger", null], [1, "tabindex", 0], [1, "aria-disabled", 0], [1, "disabled", 0], [1, "aria-expanded", 0]], [[null, "click"], [null, "mouseenter"], [null, "mousedown"], [null, "keydown"]], function (_v, en, $event) {
+            var ad = true;
+            var _co = _v.component;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._checkDisabled($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("mouseenter" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._handleMouseEnter() !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("mousedown" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3)._handleMousedown($event) !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3)._handleKeydown($event) !== false);
+                ad = (pd_3 && ad);
+            }
+            if (("click" === en)) {
+                var pd_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3)._handleClick($event) !== false);
+                ad = (pd_4 && ad);
+            }
+            if (("click" === en)) {
+                var pd_5 = (_co.getSelectedNode(_v.parent.context.$implicit) !== false);
+                ad = (pd_5 && ad);
+            }
+            return ad;
+        }, _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["View_MatMenuItem_0"], _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["RenderType_MatMenuItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 180224, [[2, 4]], 0, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"], [2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["ɵf21"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 1196032, [[1, 4]], 0, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuTrigger"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MAT_MENU_SCROLL_STRATEGY"], [2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenu"]], [6, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuItem"]], [2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_12__["Directionality"]], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"]], { menu: [0, "menu"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](4, 0, [" ", " "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](5, 0, null, null, 1, "list-display", [], null, [[null, "selectedNode"]], function (_v, en, $event) {
+            var ad = true;
+            var _co = _v.component;
+            if (("selectedNode" === en)) {
+                var pd_0 = (_co.getSelectedNode($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            return ad;
+        }, View_ɵb_0, RenderType_ɵb)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](6, 114688, [["menu", 4]], 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["ɵb"], [], { children: [0, "children"] }, { selectedNode: "selectedNode" })], function (_ck, _v) { var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 6).childMenu; _ck(_v, 3, 0, currVal_7); var currVal_9 = _v.parent.context.$implicit.children; _ck(_v, 6, 0, currVal_9); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).role; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._highlighted; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._triggersSubmenu; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._getTabIndex(); var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled.toString(); var currVal_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled || null); var currVal_6 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).menuOpen || null); _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_8 = _v.parent.context.$implicit.label; _ck(_v, 4, 0, currVal_8); });
+}
+function View_ɵa_6(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 2, "button", [["class", "mat-menu-item"], ["mat-menu-item", ""], ["type", "button"]], [[1, "role", 0], [2, "mat-menu-item-highlighted", null], [2, "mat-menu-item-submenu-trigger", null], [1, "tabindex", 0], [1, "aria-disabled", 0], [1, "disabled", 0]], [[null, "click"], [null, "mouseenter"]], function (_v, en, $event) {
+            var ad = true;
+            var _co = _v.component;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._checkDisabled($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("mouseenter" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._handleMouseEnter() !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("click" === en)) {
+                var pd_2 = (_co.getSelectedNode(_v.parent.context.$implicit) !== false);
+                ad = (pd_2 && ad);
+            }
+            return ad;
+        }, _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["View_MatMenuItem_0"], _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["RenderType_MatMenuItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 180224, [[2, 4]], 0, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"], [2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["ɵf21"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](3, 0, [" ", " "]))], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).role; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._highlighted; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._triggersSubmenu; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._getTabIndex(); var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled.toString(); var currVal_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled || null); _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5); var currVal_6 = _v.parent.context.$implicit.label; _ck(_v, 3, 0, currVal_6); });
+}
+function View_ɵa_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 4, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵa_5)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵa_6)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_0 = (_v.context.$implicit.children && (_v.context.$implicit.children.length > 0)); _ck(_v, 2, 0, currVal_0); var currVal_1 = (!_v.context.$implicit.children || (_v.context.$implicit.children.length === 0)); _ck(_v, 4, 0, currVal_1); }, null); }
+function View_ɵa_1(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 14, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 16777216, null, null, 6, "button", [["aria-haspopup", "true"], ["mat-stroked-button", ""], ["type", "button"]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null], [1, "aria-expanded", 0]], [[null, "mousedown"], [null, "keydown"], [null, "click"]], function (_v, en, $event) {
+            var ad = true;
+            if (("mousedown" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3)._handleMousedown($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3)._handleKeydown($event) !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("click" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3)._handleClick($event) !== false);
+                ad = (pd_2 && ad);
+            }
+            return ad;
+        }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_51__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_51__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_27__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_24__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 1196032, [[1, 4]], 0, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuTrigger"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MAT_MENU_SCROLL_STRATEGY"], [2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenu"]], [8, null], [2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_12__["Directionality"]], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"]], { menu: [0, "menu"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_ɵa_2)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](5, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_ɵa_3)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](7, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](8, 0, null, null, 6, "mat-menu", [], null, null, null, _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["View_MatMenu_0"], _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["RenderType_MatMenu"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](6144, null, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["ɵf21"], null, [_angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenu"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](10, 1294336, [["mainMenu", 4]], 2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenu"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MAT_MENU_DEFAULT_OPTIONS"]], { overlapTrigger: [0, "overlapTrigger"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 2, { items: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 3, { lazyContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_ɵa_4)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](14, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 10); _ck(_v, 3, 0, currVal_3); var currVal_4 = !_co.selectedNode; _ck(_v, 5, 0, currVal_4); var currVal_5 = _co.selectedNode; _ck(_v, 7, 0, currVal_5); var currVal_6 = false; _ck(_v, 10, 0, currVal_6); var currVal_7 = _co.listRootNode.children; _ck(_v, 14, 0, currVal_7); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled || null); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._animationMode === "NoopAnimations"); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).menuOpen || null); _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2); });
+}
+function View_ɵa_0(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](671088640, 1, { menuTrigger: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵa_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, null, 16, "mat-form-field", [["class", "hidden mat-form-field"]], [[2, "mat-form-field-appearance-standard", null], [2, "mat-form-field-appearance-fill", null], [2, "mat-form-field-appearance-outline", null], [2, "mat-form-field-appearance-legacy", null], [2, "mat-form-field-invalid", null], [2, "mat-form-field-can-float", null], [2, "mat-form-field-should-float", null], [2, "mat-form-field-has-label", null], [2, "mat-form-field-hide-placeholder", null], [2, "mat-form-field-disabled", null], [2, "mat-form-field-autofilled", null], [2, "mat-focused", null], [2, "mat-accent", null], [2, "mat-warn", null], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null], [2, "_mat-animation-noopable", null]], null, null, _node_modules_angular_material_form_field_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_56__["View_MatFormField_0"], _node_modules_angular_material_form_field_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_56__["RenderType_MatFormField"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](4, 7520256, null, 7, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_32__["MatFormField"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"], [2, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MAT_LABEL_GLOBAL_OPTIONS"]], [2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_12__["Directionality"]], [2, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_32__["MAT_FORM_FIELD_DEFAULT_OPTIONS"]], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_24__["Platform"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 4, { _control: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 5, { _placeholderChild: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 6, { _labelChild: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 7, { _errorChildren: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 8, { _hintChildren: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 9, { _prefixChildren: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 10, { _suffixChildren: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](12, 0, null, 1, 7, "input", [["class", "mat-input-element mat-form-field-autofill-control"], ["matInput", ""], ["placeholder", "list value"]], [[2, "mat-input-server", null], [1, "id", 0], [1, "placeholder", 0], [8, "disabled", 0], [8, "required", 0], [1, "readonly", 0], [1, "aria-describedby", 0], [1, "aria-invalid", 0], [1, "aria-required", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"], [null, "focus"]], function (_v, en, $event) {
+            var ad = true;
+            if (("input" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13)._handleInput($event.target.value) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13).onTouched() !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("compositionstart" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13)._compositionStart() !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("compositionend" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 13)._compositionEnd($event.target.value) !== false);
+                ad = (pd_3 && ad);
+            }
+            if (("blur" === en)) {
+                var pd_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17)._focusChanged(false) !== false);
+                ad = (pd_4 && ad);
+            }
+            if (("focus" === en)) {
+                var pd_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17)._focusChanged(true) !== false);
+                ad = (pd_5 && ad);
+            }
+            if (("input" === en)) {
+                var pd_6 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17)._onInput() !== false);
+                ad = (pd_6 && ad);
+            }
+            return ad;
+        }, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](13, 16384, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["DefaultValueAccessor"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], [2, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["COMPOSITION_BUFFER_MODE"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](1024, null, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["NG_VALUE_ACCESSOR"], function (p0_0) { return [p0_0]; }, [_angular_forms__WEBPACK_IMPORTED_MODULE_20__["DefaultValueAccessor"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](15, 540672, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormControlDirective"], [[8, null], [8, null], [6, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["NG_VALUE_ACCESSOR"]], [2, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["ɵangular_packages_forms_forms_k"]]], { form: [0, "form"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](2048, null, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["NgControl"], null, [_angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormControlDirective"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](17, 999424, null, 0, _angular_material_input__WEBPACK_IMPORTED_MODULE_34__["MatInput"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_24__["Platform"], [6, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["NgControl"]], [2, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["NgForm"]], [2, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormGroupDirective"]], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["ErrorStateMatcher"], [8, null], _angular_cdk_text_field__WEBPACK_IMPORTED_MODULE_33__["AutofillMonitor"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]], { placeholder: [0, "placeholder"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](18, 16384, null, 0, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["NgControlStatus"], [[4, _angular_forms__WEBPACK_IMPORTED_MODULE_20__["NgControl"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](2048, [[4, 4]], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_32__["MatFormFieldControl"], null, [_angular_material_input__WEBPACK_IMPORTED_MODULE_34__["MatInput"]])], function (_ck, _v) { var _co = _v.component; var currVal_0 = (_co.listRootNode !== undefined); _ck(_v, 2, 0, currVal_0); var currVal_39 = _co.form.controls["listValue"]; _ck(_v, 15, 0, currVal_39); var currVal_40 = "list value"; _ck(_v, 17, 0, currVal_40); }, function (_ck, _v) { var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).appearance == "standard"); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).appearance == "fill"); var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).appearance == "outline"); var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).appearance == "legacy"); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._control.errorState; var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._canLabelFloat; var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._shouldLabelFloat(); var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._hasFloatingLabel(); var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._hideControlPlaceholder(); var currVal_10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._control.disabled; var currVal_11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._control.autofilled; var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._control.focused; var currVal_13 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).color == "accent"); var currVal_14 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).color == "warn"); var currVal_15 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._shouldForward("untouched"); var currVal_16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._shouldForward("touched"); var currVal_17 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._shouldForward("pristine"); var currVal_18 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._shouldForward("dirty"); var currVal_19 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._shouldForward("valid"); var currVal_20 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._shouldForward("invalid"); var currVal_21 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._shouldForward("pending"); var currVal_22 = !_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4)._animationsEnabled; _ck(_v, 3, 1, [currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14, currVal_15, currVal_16, currVal_17, currVal_18, currVal_19, currVal_20, currVal_21, currVal_22]); var currVal_23 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17)._isServer; var currVal_24 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17).id; var currVal_25 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17).placeholder; var currVal_26 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17).disabled; var currVal_27 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17).required; var currVal_28 = ((_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17).readonly && !_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17)._isNativeSelect) || null); var currVal_29 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17)._ariaDescribedby || null); var currVal_30 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17).errorState; var currVal_31 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 17).required.toString(); var currVal_32 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 18).ngClassUntouched; var currVal_33 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 18).ngClassTouched; var currVal_34 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 18).ngClassPristine; var currVal_35 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 18).ngClassDirty; var currVal_36 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 18).ngClassValid; var currVal_37 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 18).ngClassInvalid; var currVal_38 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 18).ngClassPending; _ck(_v, 12, 1, [currVal_23, currVal_24, currVal_25, currVal_26, currVal_27, currVal_28, currVal_29, currVal_30, currVal_31, currVal_32, currVal_33, currVal_34, currVal_35, currVal_36, currVal_37, currVal_38]); });
+}
+function View_ɵa_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "list-value", [], null, null, null, View_ɵa_0, RenderType_ɵa)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 245760, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["ɵa"], [_angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormBuilder"], _knora_core__WEBPACK_IMPORTED_MODULE_38__["ListCacheService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ɵaNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("list-value", _knora_search__WEBPACK_IMPORTED_MODULE_1__["ɵa"], View_ɵa_Host_0, { formGroup: "formGroup", property: "property" }, {}, []);
+
+var styles_ɵb = [""];
+var RenderType_ɵb = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_ɵb, data: {} });
+
+function View_ɵb_2(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 6, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 16777216, null, null, 3, "button", [["aria-haspopup", "true"], ["class", "mat-menu-item"], ["mat-menu-item", ""], ["type", "button"]], [[1, "role", 0], [2, "mat-menu-item-highlighted", null], [2, "mat-menu-item-submenu-trigger", null], [1, "tabindex", 0], [1, "aria-disabled", 0], [1, "disabled", 0], [1, "aria-expanded", 0]], [[null, "click"], [null, "mouseenter"], [null, "mousedown"], [null, "keydown"]], function (_v, en, $event) {
+            var ad = true;
+            var _co = _v.component;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._checkDisabled($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("mouseenter" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._handleMouseEnter() !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("mousedown" === en)) {
+                var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3)._handleMousedown($event) !== false);
+                ad = (pd_2 && ad);
+            }
+            if (("keydown" === en)) {
+                var pd_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3)._handleKeydown($event) !== false);
+                ad = (pd_3 && ad);
+            }
+            if (("click" === en)) {
+                var pd_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3)._handleClick($event) !== false);
+                ad = (pd_4 && ad);
+            }
+            if (("click" === en)) {
+                var pd_5 = (_co.setValue(_v.parent.context.$implicit) !== false);
+                ad = (pd_5 && ad);
+            }
+            return ad;
+        }, _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["View_MatMenuItem_0"], _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["RenderType_MatMenuItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 180224, [[2, 4]], 0, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"], [2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["ɵf21"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 1196032, null, 0, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuTrigger"], [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_11__["Overlay"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MAT_MENU_SCROLL_STRATEGY"], [2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenu"]], [6, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuItem"]], [2, _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_12__["Directionality"]], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"]], { menu: [0, "menu"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](4, 0, [" ", " "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](5, 0, null, null, 1, "list-display", [], null, [[null, "selectedNode"]], function (_v, en, $event) {
+            var ad = true;
+            var _co = _v.component;
+            if (("selectedNode" === en)) {
+                var pd_0 = (_co.setValue($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            return ad;
+        }, View_ɵb_0, RenderType_ɵb)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](6, 114688, [["menu", 4]], 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["ɵb"], [], { children: [0, "children"] }, { selectedNode: "selectedNode" })], function (_ck, _v) { var currVal_7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 6).childMenu; _ck(_v, 3, 0, currVal_7); var currVal_9 = _v.parent.context.$implicit.children; _ck(_v, 6, 0, currVal_9); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).role; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._highlighted; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._triggersSubmenu; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._getTabIndex(); var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled.toString(); var currVal_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled || null); var currVal_6 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).menuOpen || null); _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_8 = _v.parent.context.$implicit.label; _ck(_v, 4, 0, currVal_8); });
+}
+function View_ɵb_3(_l) {
+    return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 2, "button", [["class", "mat-menu-item"], ["mat-menu-item", ""], ["type", "button"]], [[1, "role", 0], [2, "mat-menu-item-highlighted", null], [2, "mat-menu-item-submenu-trigger", null], [1, "tabindex", 0], [1, "aria-disabled", 0], [1, "disabled", 0]], [[null, "click"], [null, "mouseenter"]], function (_v, en, $event) {
+            var ad = true;
+            var _co = _v.component;
+            if (("click" === en)) {
+                var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._checkDisabled($event) !== false);
+                ad = (pd_0 && ad);
+            }
+            if (("mouseenter" === en)) {
+                var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._handleMouseEnter() !== false);
+                ad = (pd_1 && ad);
+            }
+            if (("click" === en)) {
+                var pd_2 = (_co.setValue(_v.parent.context.$implicit) !== false);
+                ad = (pd_2 && ad);
+            }
+            return ad;
+        }, _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["View_MatMenuItem_0"], _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["RenderType_MatMenuItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 180224, [[2, 4]], 0, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"], [2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["ɵf21"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](3, 0, [" ", " "]))], null, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).role; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._highlighted; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._triggersSubmenu; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._getTabIndex(); var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled.toString(); var currVal_5 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled || null); _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5); var currVal_6 = _v.parent.context.$implicit.label; _ck(_v, 3, 0, currVal_6); });
+}
+function View_ɵb_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 4, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵb_2)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵb_3)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](4, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_0 = (_v.context.$implicit.children && (_v.context.$implicit.children.length > 0)); _ck(_v, 2, 0, currVal_0); var currVal_1 = (!_v.context.$implicit.children || (_v.context.$implicit.children.length === 0)); _ck(_v, 4, 0, currVal_1); }, null); }
+function View_ɵb_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](402653184, 1, { childMenu: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 6, "mat-menu", [], null, null, null, _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["View_MatMenu_0"], _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_53__["RenderType_MatMenu"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵprd"](6144, null, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["ɵf21"], null, [_angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenu"]]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 1294336, [[1, 4], ["childMenu", 4]], 2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenu"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MAT_MENU_DEFAULT_OPTIONS"]], { overlapTrigger: [0, "overlapTrigger"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 2, { items: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 3, { lazyContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_ɵb_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](7, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = false; _ck(_v, 3, 0, currVal_0); var currVal_1 = _co.children; _ck(_v, 7, 0, currVal_1); }, null); }
+function View_ɵb_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "list-display", [], null, null, null, View_ɵb_0, RenderType_ɵb)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_search__WEBPACK_IMPORTED_MODULE_1__["ɵb"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var ɵbNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("list-display", _knora_search__WEBPACK_IMPORTED_MODULE_1__["ɵb"], View_ɵb_Host_0, { children: "children" }, { selectedNode: "selectedNode" }, []);
 
 
 
@@ -10024,7 +10575,8 @@ var LinkValueComponent = /** @class */ /*@__PURE__*/ (function () {
     return LinkValueComponent;
 }());
 var ListValueComponent = /** @class */ /*@__PURE__*/ (function () {
-    function ListValueComponent() {
+    function ListValueComponent(_listCacheService) {
+        this._listCacheService = _listCacheService;
     }
     Object.defineProperty(ListValueComponent.prototype, "valueObject", {
         get: function () {
@@ -10036,6 +10588,10 @@ var ListValueComponent = /** @class */ /*@__PURE__*/ (function () {
         enumerable: true,
         configurable: true
     });
+    ListValueComponent.prototype.ngOnChanges = function () {
+        // given the node's Iri, ask the list cache service
+        this.node = this._listCacheService.getListNode(this._listValueObj.listNodeIri);
+    };
     return ListValueComponent;
 }());
 var TextValueAsHtmlComponent = /** @class */ /*@__PURE__*/ (function () {
@@ -10163,6 +10719,14 @@ var UriValueComponent = /** @class */ /*@__PURE__*/ (function () {
         enumerable: true,
         configurable: true
     });
+    UriValueComponent.prototype.ngOnChanges = function () {
+        if (this.label === undefined) {
+            this.displayString = this.__uriValueObj.uri;
+        }
+        else {
+            this.displayString = this.label;
+        }
+    };
     return UriValueComponent;
 }());
 var CompareViewComponent = /** @class */ /*@__PURE__*/ (function () {
@@ -10537,32 +11101,20 @@ var SearchResultsComponent = /** @class */ /*@__PURE__*/ (function () {
         };
     }
     SearchResultsComponent.prototype.ngOnInit = function () {
-        this.getParams();
-    };
-    SearchResultsComponent.prototype.ngOnChanges = function () {
-        this.getParams();
-    };
-    SearchResultsComponent.prototype.ngOnDestroy = function () {
-        if (this.navigationSubscription !== undefined) {
-            this.navigationSubscription.unsubscribe();
-        }
-    };
-    /**
-     * Get the parameters from the route
-     * @ignore
-     */
-    SearchResultsComponent.prototype.getParams = function () {
         var _this = this;
-        this.navigationSubscription = this._route.paramMap.subscribe(function (params) {
+        this._route.paramMap.subscribe(function (params) {
+            // get the search mode
             if (!_this.searchMode) {
                 _this.searchMode = params.get('mode');
             }
+            // get the project iri 
             if (params.get('project') && (_this.projectIri !== decodeURIComponent(params.get('project')))) {
                 _this.projectIri = decodeURIComponent(params.get('project'));
             }
             // init offset  and result
             _this.offset = 0;
             _this.result = [];
+            // get query params depending on the search mode
             if (_this.searchMode === 'fulltext') {
                 _this.searchQuery = params.get('q');
                 _this.badRequest = _this.searchQuery.length < 3;
@@ -10576,6 +11128,7 @@ var SearchResultsComponent = /** @class */ /*@__PURE__*/ (function () {
                     _this.gravSearchQuery = _this.searchQuery;
                 }
             }
+            // get results
             _this.rerender = true;
             _this.getResult();
         });
@@ -10616,20 +11169,21 @@ var SearchResultsComponent = /** @class */ /*@__PURE__*/ (function () {
                 this.rerender = false;
             }
             else {
-                if (this.projectIri) {
-                    this.searchQuery += '?limitToProject=' + this.projectIri;
+                var searchParams = void 0;
+                if (this.projectIri !== undefined) {
+                    searchParams = { limitToProject: this.projectIri };
                 }
                 if (this.offset === 0) {
                     // perform count query
                     this._searchService
-                        .doFullTextSearchCountQueryCountQueryResult(this.searchQuery)
+                        .doFullTextSearchCountQueryCountQueryResult(this.searchQuery, searchParams)
                         .subscribe(this.showNumberOfAllResults, function (error) {
                         _this.errorMessage = error;
                     });
                 }
                 // perform full text search
                 this._searchService
-                    .doFullTextSearchReadResourceSequence(this.searchQuery, this.offset)
+                    .doFullTextSearchReadResourceSequence(this.searchQuery, this.offset, searchParams)
                     .subscribe(this.processSearchResults, // function pointer
                 function (error) {
                     _this.errorMessage = error;
@@ -11124,9 +11678,9 @@ var ɵsNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_M
 var styles_ɵt = [".mat-form-field[_ngcontent-%COMP%]{width:320px}.fill-remaining-space[_ngcontent-%COMP%]{flex:1 1 auto}.center[_ngcontent-%COMP%]{text-align:center}.link[_ngcontent-%COMP%]{cursor:pointer}.lv-html-text[_ngcontent-%COMP%]{max-height:60px;position:relative;overflow:hidden}.lv-read-more[_ngcontent-%COMP%]{position:absolute;bottom:0;left:0;width:100%;text-align:center;margin:0;padding:30px 0;border-radius:3px}"];
 var RenderType_ɵt = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_ɵt, data: {} });
 
-function View_ɵt_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "a", [["target", "_blank"]], [[8, "href", 4]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](1, null, ["", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵinlineInterpolate"](1, "", _co.valueObject.uri, ""); _ck(_v, 0, 0, currVal_0); var currVal_1 = _co.valueObject.uri; _ck(_v, 1, 0, currVal_1); }); }
-function View_ɵt_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-uri-value", [], null, null, null, View_ɵt_0, RenderType_ɵt)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵt"], [], null, null)], null, null); }
-var ɵtNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-uri-value", _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵt"], View_ɵt_Host_0, { valueObject: "valueObject" }, {}, []);
+function View_ɵt_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "a", [["target", "_blank"]], [[8, "href", 4]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](1, null, ["", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵinlineInterpolate"](1, "", _co.valueObject.uri, ""); _ck(_v, 0, 0, currVal_0); var currVal_1 = _co.displayString; _ck(_v, 1, 0, currVal_1); }); }
+function View_ɵt_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-uri-value", [], null, null, null, View_ɵt_0, RenderType_ɵt)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 573440, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵt"], [], null, null)], null, null); }
+var ɵtNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("   kui-uri-value", _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵt"], View_ɵt_Host_0, { valueObject: "valueObject", label: "label" }, {}, []);
 
 var styles_ɵu = [".mat-form-field[_ngcontent-%COMP%]{width:320px}.fill-remaining-space[_ngcontent-%COMP%]{flex:1 1 auto}.center[_ngcontent-%COMP%]{text-align:center}.link[_ngcontent-%COMP%]{cursor:pointer}.lv-html-text[_ngcontent-%COMP%]{max-height:60px;position:relative;overflow:hidden}.lv-read-more[_ngcontent-%COMP%]{position:absolute;bottom:0;left:0;width:100%;text-align:center;margin:0;padding:30px 0;border-radius:3px}"];
 var RenderType_ɵu = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_ɵu, data: {} });
@@ -11159,8 +11713,9 @@ var ɵxNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_M
 var styles_ɵy = [".mat-form-field[_ngcontent-%COMP%]{width:320px}.fill-remaining-space[_ngcontent-%COMP%]{flex:1 1 auto}.center[_ngcontent-%COMP%]{text-align:center}.link[_ngcontent-%COMP%]{cursor:pointer}.lv-html-text[_ngcontent-%COMP%]{max-height:60px;position:relative;overflow:hidden}.lv-read-more[_ngcontent-%COMP%]{position:absolute;bottom:0;left:0;width:100%;text-align:center;margin:0;padding:30px 0;border-radius:3px}"];
 var RenderType_ɵy = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_ɵy, data: {} });
 
-function View_ɵy_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](1, null, ["", ""]))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.valueObject.listNodeLabel; _ck(_v, 1, 0, currVal_0); }); }
-function View_ɵy_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-list-value", [], null, null, null, View_ɵy_0, RenderType_ɵy)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵy"], [], null, null)], null, null); }
+function View_ɵy_1(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](1, null, ["", ""])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵpid"](131072, _angular_common__WEBPACK_IMPORTED_MODULE_5__["AsyncPipe"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]])], null, function (_ck, _v) { var _co = _v.component; var tmp_0_0 = null; var currVal_0 = (((tmp_0_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵunv"](_v, 1, 0, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).transform(_co.node))) == null) ? null : tmp_0_0.label); _ck(_v, 1, 0, currVal_0); }); }
+function View_ɵy_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 2, null, View_ɵy_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵpid"](131072, _angular_common__WEBPACK_IMPORTED_MODULE_5__["AsyncPipe"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]])], function (_ck, _v) { var _co = _v.component; var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵunv"](_v, 1, 0, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).transform(_co.node)); _ck(_v, 1, 0, currVal_0); }, null); }
+function View_ɵy_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-list-value", [], null, null, null, View_ɵy_0, RenderType_ɵy)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 573440, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵy"], [_knora_core__WEBPACK_IMPORTED_MODULE_23__["ListCacheService"]], null, null)], null, null); }
 var ɵyNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-list-value", _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵy"], View_ɵy_Host_0, { valueObject: "valueObject" }, {}, []);
 
 var styles_ɵz = [".mat-form-field[_ngcontent-%COMP%]{width:320px}.fill-remaining-space[_ngcontent-%COMP%]{flex:1 1 auto}.center[_ngcontent-%COMP%]{text-align:center}.link[_ngcontent-%COMP%]{cursor:pointer}.lv-html-text[_ngcontent-%COMP%]{max-height:60px;position:relative;overflow:hidden}.lv-read-more[_ngcontent-%COMP%]{position:absolute;bottom:0;left:0;width:100%;text-align:center;margin:0;padding:30px 0;border-radius:3px}"];
@@ -11287,10 +11842,10 @@ function View_ɵbe_15(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
 function View_ɵbe_16(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-decimal-value", [], null, null, null, View_ɵs_0, RenderType_ɵs)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵs"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit; _ck(_v, 1, 0, currVal_0); }, null); }
 function View_ɵbe_17(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-geometry-value", [], null, null, null, View_ɵv_0, RenderType_ɵv)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵv"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit; _ck(_v, 1, 0, currVal_0); }, null); }
 function View_ɵbe_18(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-color-value", [], null, null, null, View_ɵr_0, RenderType_ɵr)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵr"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit; _ck(_v, 1, 0, currVal_0); }, null); }
-function View_ɵbe_19(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-uri-value", [], null, null, null, View_ɵt_0, RenderType_ɵt)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵt"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_ɵbe_19(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-uri-value", [], null, null, null, View_ɵt_0, RenderType_ɵt)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 573440, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵt"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit; _ck(_v, 1, 0, currVal_0); }, null); }
 function View_ɵbe_20(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-boolean-value", [], null, null, null, View_ɵu_0, RenderType_ɵu)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵu"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit; _ck(_v, 1, 0, currVal_0); }, null); }
 function View_ɵbe_21(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-interval-value", [], null, null, null, View_ɵx_0, RenderType_ɵx)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵx"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit; _ck(_v, 1, 0, currVal_0); }, null); }
-function View_ɵbe_22(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-list-value", [], null, null, null, View_ɵy_0, RenderType_ɵy)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵy"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit; _ck(_v, 1, 0, currVal_0); }, null); }
+function View_ɵbe_22(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-list-value", [], null, null, null, View_ɵy_0, RenderType_ɵy)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 573440, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵy"], [_knora_core__WEBPACK_IMPORTED_MODULE_23__["ListCacheService"]], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit; _ck(_v, 1, 0, currVal_0); }, null); }
 function View_ɵbe_23(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-textfile-value", [], null, null, null, View_ɵo_0, RenderType_ɵo)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵo"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit; _ck(_v, 1, 0, currVal_0); }, null); }
 function View_ɵbe_24(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](1, null, ["Not supported ", ""]))], null, function (_ck, _v) { var currVal_0 = _v.parent.context.$implicit.getClassName(); _ck(_v, 1, 0, currVal_0); }); }
 function View_ɵbe_10(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 34, "mat-list-item", [["class", "property-value-item mat-list-item"]], [[2, "mat-list-item-avatar", null], [2, "mat-list-item-with-avatar", null]], null, null, _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_51__["View_MatListItem_0"], _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_51__["RenderType_MatListItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 1228800, null, 3, _angular_material_list__WEBPACK_IMPORTED_MODULE_28__["MatListItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], [2, _angular_material_list__WEBPACK_IMPORTED_MODULE_28__["MatNavList"]], [2, _angular_material_list__WEBPACK_IMPORTED_MODULE_28__["MatList"]], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 7, { _lines: 1 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 8, { _avatar: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 9, { _icon: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](5, 0, null, 2, 29, "li", [], [[2, "list", null], [2, "lastItem", null]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](6, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"], [], { ngSwitch: [0, "ngSwitch"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_11)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](8, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_12)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](10, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_13)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](12, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_14)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](14, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_15)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](16, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_16)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](18, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_17)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](20, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_18)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](22, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_19)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](24, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_20)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](26, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_21)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](28, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_22)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](30, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_23)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](32, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchCase"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], { ngSwitchCase: [0, "ngSwitchCase"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbe_24)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](34, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitchDefault"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgSwitch"]], null, null)], function (_ck, _v) { var _co = _v.component; var currVal_4 = _v.context.$implicit.getClassName(); _ck(_v, 6, 0, currVal_4); var currVal_5 = _co.KnoraConstants.ReadTextValueAsString; _ck(_v, 8, 0, currVal_5); var currVal_6 = _co.KnoraConstants.ReadTextValueAsXml; _ck(_v, 10, 0, currVal_6); var currVal_7 = _co.KnoraConstants.ReadDateValue; _ck(_v, 12, 0, currVal_7); var currVal_8 = _co.KnoraConstants.ReadLinkValue; _ck(_v, 14, 0, currVal_8); var currVal_9 = _co.KnoraConstants.ReadIntegerValue; _ck(_v, 16, 0, currVal_9); var currVal_10 = _co.KnoraConstants.ReadDecimalValue; _ck(_v, 18, 0, currVal_10); var currVal_11 = _co.KnoraConstants.ReadGeomValue; _ck(_v, 20, 0, currVal_11); var currVal_12 = _co.KnoraConstants.ReadColorValue; _ck(_v, 22, 0, currVal_12); var currVal_13 = _co.KnoraConstants.ReadUriValue; _ck(_v, 24, 0, currVal_13); var currVal_14 = _co.KnoraConstants.ReadBooleanValue; _ck(_v, 26, 0, currVal_14); var currVal_15 = _co.KnoraConstants.ReadIntervalValue; _ck(_v, 28, 0, currVal_15); var currVal_16 = _co.KnoraConstants.ReadListValue; _ck(_v, 30, 0, currVal_16); var currVal_17 = _co.KnoraConstants.TextFileValue; _ck(_v, 32, 0, currVal_17); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._icon); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._icon); _ck(_v, 0, 0, currVal_0, currVal_1); var currVal_2 = (_v.parent.parent.parent.context.$implicit.properties[((_v.parent.parent.context.$implicit == null) ? null : _v.parent.parent.context.$implicit.property)].length > 1); var currVal_3 = _v.context.last; _ck(_v, 5, 0, currVal_2, currVal_3); }); }
@@ -11345,8 +11900,7 @@ function View_ɵbi_4(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
 function View_ɵbi_5(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "mat-icon", [["class", "tab-icon mat-icon notranslate"], ["role", "img"]], [[2, "mat-icon-inline", null], [2, "mat-icon-no-color", null]], null, null, _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_47__["View_MatIcon_0"], _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_47__["RenderType_MatIcon"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 9158656, null, 0, _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MatIcon"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MatIconRegistry"], [8, null], [2, _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MAT_ICON_LOCATION"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, 0, ["view_list"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, null, [" List "]))], function (_ck, _v) { _ck(_v, 1, 0); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).inline; var currVal_1 = (((_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).color !== "primary") && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).color !== "accent")) && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).color !== "warn")); _ck(_v, 0, 0, currVal_0, currVal_1); }); }
 function View_ɵbi_7(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "mat-icon", [["class", "tab-icon mat-icon notranslate"], ["role", "img"]], [[2, "mat-icon-inline", null], [2, "mat-icon-no-color", null]], null, null, _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_47__["View_MatIcon_0"], _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_47__["RenderType_MatIcon"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 9158656, null, 0, _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MatIcon"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MatIconRegistry"], [8, null], [2, _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MAT_ICON_LOCATION"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, 0, ["view_module"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, null, [" Grid "]))], function (_ck, _v) { _ck(_v, 1, 0); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).inline; var currVal_1 = (((_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).color !== "primary") && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).color !== "accent")) && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).color !== "warn")); _ck(_v, 0, 0, currVal_0, currVal_1); }); }
 function View_ɵbi_6(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 16777216, null, null, 7, "mat-tab", [], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 6, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 7, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_ɵbi_7)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](5, 16384, [[6, 4]], 0, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTabLabel"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](6, 0, null, 0, 1, "kui-grid-view", [], null, null, null, View_ɵbc_0, RenderType_ɵbc)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](7, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbc"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"]], { result: [0, "result"], ontologyInfo: [1, "ontologyInfo"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](0, null, null, 0))], function (_ck, _v) { var _co = _v.component; _ck(_v, 1, 0); var currVal_0 = _co.result; var currVal_1 = _co.ontologyInfo; _ck(_v, 7, 0, currVal_0, currVal_1); }, null); }
-function View_ɵbi_8(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-list-view", [], null, null, null, View_ɵbb_0, RenderType_ɵbb)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbb"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"]], { result: [0, "result"], ontologyInfo: [1, "ontologyInfo"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.result; var currVal_1 = _co.ontologyInfo; _ck(_v, 1, 0, currVal_0, currVal_1); }, null); }
-function View_ɵbi_10(_l) {
+function View_ɵbi_9(_l) {
     return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 5, "button", [["class", "link center"], ["color", "primary"], ["mat-flat-button", ""]], [[8, "disabled", 0], [2, "_mat-animation-noopable", null]], [[null, "click"]], function (_v, en, $event) {
             var ad = true;
             var _co = _v.component;
@@ -11357,13 +11911,13 @@ function View_ɵbi_10(_l) {
             return ad;
         }, _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_46__["View_MatButton_0"], _node_modules_angular_material_button_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_46__["RenderType_MatButton"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 180224, null, 0, _angular_material_button__WEBPACK_IMPORTED_MODULE_24__["MatButton"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_19__["Platform"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_33__["FocusMonitor"], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["ANIMATION_MODULE_TYPE"]]], { color: [0, "color"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, 0, ["Load more "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, 0, 2, "mat-icon", [["class", "mat-icon notranslate"], ["role", "img"]], [[2, "mat-icon-inline", null], [2, "mat-icon-no-color", null]], null, null, _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_47__["View_MatIcon_0"], _node_modules_angular_material_icon_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_47__["RenderType_MatIcon"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](4, 9158656, null, 0, _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MatIcon"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MatIconRegistry"], [8, null], [2, _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MAT_ICON_LOCATION"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, 0, ["keyboard_arrow_down"]))], function (_ck, _v) { var currVal_2 = "primary"; _ck(_v, 1, 0, currVal_2); _ck(_v, 4, 0); }, function (_ck, _v) { var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1).disabled || null); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 1)._animationMode === "NoopAnimations"); _ck(_v, 0, 0, currVal_0, currVal_1); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).inline; var currVal_4 = (((_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).color !== "primary") && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).color !== "accent")) && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 4).color !== "warn")); _ck(_v, 3, 0, currVal_3, currVal_4); });
 }
-function View_ɵbi_9(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "div", [["class", "load-panel"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_10)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = (_co.offset < _co.maxOffset); _ck(_v, 2, 0, currVal_0); }, null); }
-function View_ɵbi_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 23, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 18, "mat-tab-group", [["animationDuration", "0ms"], ["class", "mat-tab-group"]], [[2, "mat-tab-group-dynamic-height", null], [2, "mat-tab-group-inverted-header", null]], null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["View_MatTabGroup_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["RenderType_MatTabGroup"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 3325952, null, 1, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTabGroup"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"], [2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MAT_TABS_CONFIG"]]], { selectedIndex: [0, "selectedIndex"], animationDuration: [1, "animationDuration"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 1, { _tabs: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](4, 16777216, null, null, 5, "mat-tab", [["disabled", ""]], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](5, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]], { disabled: [0, "disabled"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 2, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 3, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_ɵbi_4)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](9, 16384, [[2, 4]], 0, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTabLabel"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](10, 16777216, null, null, 7, "mat-tab", [], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](11, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 4, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 5, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_ɵbi_5)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](15, 16384, [[4, 4]], 0, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTabLabel"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](16, 0, null, 0, 1, "kui-list-view", [], null, null, null, View_ɵbb_0, RenderType_ɵbb)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](17, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbb"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"]], { result: [0, "result"], ontologyInfo: [1, "ontologyInfo"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_6)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](19, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_8)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](21, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_9)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](23, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_2 = 1; var currVal_3 = "0ms"; _ck(_v, 2, 0, currVal_2, currVal_3); var currVal_4 = ""; _ck(_v, 5, 0, currVal_4); _ck(_v, 11, 0); var currVal_5 = _co.result; var currVal_6 = _co.ontologyInfo; _ck(_v, 17, 0, currVal_5, currVal_6); var currVal_7 = _co.complexView; _ck(_v, 19, 0, currVal_7); var currVal_8 = !_co.complexView; _ck(_v, 21, 0, currVal_8); var currVal_9 = (_co.result.length > 0); _ck(_v, 23, 0, currVal_9); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).dynamicHeight; var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).headerPosition === "below"); _ck(_v, 1, 0, currVal_0, currVal_1); }); }
-function View_ɵbi_11(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "kui-message", [], null, null, null, _action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_54__["View_MessageComponent_0"], _action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_54__["RenderType_MessageComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_31__["MessageComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["Location"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _knora_action__WEBPACK_IMPORTED_MODULE_31__["ɵa"]], { message: [0, "message"], medium: [1, "medium"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵpod"](2, { status: 0, statusMsg: 1, statusText: 2 })], function (_ck, _v) { var currVal_0 = _ck(_v, 2, 0, 404, "No results", "Sorry, but we couldn't find any results matching your search"); var currVal_1 = true; _ck(_v, 1, 0, currVal_0, currVal_1); }, null); }
-function View_ɵbi_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 3, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_3)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"], ngIfElse: [1, "ngIfElse"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](0, [["noResult", 2]], null, 0, null, View_ɵbi_11))], function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.numberOfAllResults !== 0) && _co.result); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3); _ck(_v, 2, 0, currVal_0, currVal_1); }, null); }
-function View_ɵbi_12(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "kui-message", [], null, null, null, _action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_54__["View_MessageComponent_0"], _action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_54__["RenderType_MessageComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_31__["MessageComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["Location"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _knora_action__WEBPACK_IMPORTED_MODULE_31__["ɵa"]], { message: [0, "message"], medium: [1, "medium"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵpod"](2, { status: 0, statusText: 1 })], function (_ck, _v) { var _co = _v.component; var currVal_0 = _ck(_v, 2, 0, 400, _co.errorMessage.errorInfo); var currVal_1 = true; _ck(_v, 1, 0, currVal_0, currVal_1); }, null); }
-function View_ɵbi_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_2)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_12)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](5, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.loading; _ck(_v, 1, 0, currVal_0); var currVal_1 = (!_co.rerender && !_co.badRequest); _ck(_v, 3, 0, currVal_1); var currVal_2 = _co.errorMessage; _ck(_v, 5, 0, currVal_2); }, null); }
-function View_ɵbi_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-search-results", [], null, null, null, View_ɵbi_0, RenderType_ɵbi)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 770048, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbi"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _knora_core__WEBPACK_IMPORTED_MODULE_23__["SearchService"], _knora_core__WEBPACK_IMPORTED_MODULE_23__["SearchParamsService"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+function View_ɵbi_8(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "div", [["class", "load-panel"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_9)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = (_co.offset < _co.maxOffset); _ck(_v, 2, 0, currVal_0); }, null); }
+function View_ɵbi_3(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 21, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 18, "mat-tab-group", [["animationDuration", "0ms"], ["class", "mat-tab-group"]], [[2, "mat-tab-group-dynamic-height", null], [2, "mat-tab-group-inverted-header", null]], null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["View_MatTabGroup_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["RenderType_MatTabGroup"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 3325952, null, 1, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTabGroup"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"], [2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MAT_TABS_CONFIG"]]], { selectedIndex: [0, "selectedIndex"], animationDuration: [1, "animationDuration"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](603979776, 1, { _tabs: 1 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](4, 16777216, null, null, 5, "mat-tab", [["disabled", ""]], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](5, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]], { disabled: [0, "disabled"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 2, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 3, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_ɵbi_4)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](9, 16384, [[2, 4]], 0, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTabLabel"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](10, 16777216, null, null, 7, "mat-tab", [], null, null, null, _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["View_MatTab_0"], _node_modules_angular_material_tabs_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_55__["RenderType_MatTab"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](11, 770048, [[1, 4]], 2, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTab"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 4, { templateLabel: 0 }), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵqud"](335544320, 5, { _explicitContent: 0 }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_ɵbi_5)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](15, 16384, [[4, 4]], 0, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_40__["MatTabLabel"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](16, 0, null, 0, 1, "kui-list-view", [], null, null, null, View_ɵbb_0, RenderType_ɵbb)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](17, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbb"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"]], { result: [0, "result"], ontologyInfo: [1, "ontologyInfo"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_6)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](19, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_8)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](21, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_2 = 1; var currVal_3 = "0ms"; _ck(_v, 2, 0, currVal_2, currVal_3); var currVal_4 = ""; _ck(_v, 5, 0, currVal_4); _ck(_v, 11, 0); var currVal_5 = _co.result; var currVal_6 = _co.ontologyInfo; _ck(_v, 17, 0, currVal_5, currVal_6); var currVal_7 = _co.complexView; _ck(_v, 19, 0, currVal_7); var currVal_8 = (_co.result.length > 0); _ck(_v, 21, 0, currVal_8); }, function (_ck, _v) { var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).dynamicHeight; var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).headerPosition === "below"); _ck(_v, 1, 0, currVal_0, currVal_1); }); }
+function View_ɵbi_10(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "kui-message", [], null, null, null, _action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_54__["View_MessageComponent_0"], _action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_54__["RenderType_MessageComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_31__["MessageComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["Location"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _knora_action__WEBPACK_IMPORTED_MODULE_31__["ɵa"]], { message: [0, "message"], medium: [1, "medium"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵpod"](2, { status: 0, statusMsg: 1, statusText: 2 })], function (_ck, _v) { var currVal_0 = _ck(_v, 2, 0, 404, "No results", "Sorry, but we couldn't find any results matching your search"); var currVal_1 = true; _ck(_v, 1, 0, currVal_0, currVal_1); }, null); }
+function View_ɵbi_2(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 3, "div", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_3)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"], ngIfElse: [1, "ngIfElse"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](0, [["noResult", 2]], null, 0, null, View_ɵbi_10))], function (_ck, _v) { var _co = _v.component; var currVal_0 = ((_co.numberOfAllResults !== 0) && _co.result); var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3); _ck(_v, 2, 0, currVal_0, currVal_1); }, null); }
+function View_ɵbi_11(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "kui-message", [], null, null, null, _action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_54__["View_MessageComponent_0"], _action_knora_action_ngfactory__WEBPACK_IMPORTED_MODULE_54__["RenderType_MessageComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_action__WEBPACK_IMPORTED_MODULE_31__["MessageComponent"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["Location"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _knora_action__WEBPACK_IMPORTED_MODULE_31__["ɵa"]], { message: [0, "message"], medium: [1, "medium"] }, null), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵpod"](2, { status: 0, statusText: 1 })], function (_ck, _v) { var _co = _v.component; var currVal_0 = _ck(_v, 2, 0, 400, _co.errorMessage.errorInfo); var currVal_1 = true; _ck(_v, 1, 0, currVal_0, currVal_1); }, null); }
+function View_ɵbi_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_1)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_2)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](3, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_ɵbi_11)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](5, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.loading; _ck(_v, 1, 0, currVal_0); var currVal_1 = (!_co.rerender && !_co.badRequest); _ck(_v, 3, 0, currVal_1); var currVal_2 = _co.errorMessage; _ck(_v, 5, 0, currVal_2); }, null); }
+function View_ɵbi_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "kui-search-results", [], null, null, null, View_ɵbi_0, RenderType_ɵbi)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbi"], [_angular_router__WEBPACK_IMPORTED_MODULE_52__["ActivatedRoute"], _knora_core__WEBPACK_IMPORTED_MODULE_23__["SearchService"], _knora_core__WEBPACK_IMPORTED_MODULE_23__["SearchParamsService"], _angular_router__WEBPACK_IMPORTED_MODULE_52__["Router"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var ɵbiNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("kui-search-results", _knora_viewer__WEBPACK_IMPORTED_MODULE_1__["ɵbi"], View_ɵbi_Host_0, { complexView: "complexView", searchQuery: "searchQuery", searchMode: "searchMode", projectIri: "projectIri" }, {}, []);
 
 
@@ -12790,6 +13344,7 @@ var KnoraConstants = /** @class */ /*@__PURE__*/ (function () {
     KnoraConstants.KnoraApiV2SimplePath = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
     KnoraConstants.SalsahGuiOntology = 'http://api.knora.org/ontology/salsah-gui/v2';
     KnoraConstants.SalsahGuiOrder = KnoraConstants.SalsahGuiOntology + '#guiOrder';
+    KnoraConstants.SalsahGuiAttribute = KnoraConstants.SalsahGuiOntology + '#guiAttribute';
     KnoraConstants.StandoffOntology = 'http://api.knora.org/ontology/standoff/v2';
     KnoraConstants.Resource = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Resource';
     KnoraConstants.TextValue = KnoraConstants.KnoraApiV2WithValueObjectPath + 'TextValue';
@@ -12901,7 +13456,6 @@ var KnoraConstants = /** @class */ /*@__PURE__*/ (function () {
     KnoraConstants.intervalValueHasStart = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasStart';
     KnoraConstants.intervalValueHasEnd = KnoraConstants.KnoraApiV2WithValueObjectPath + 'intervalValueHasEnd';
     KnoraConstants.listValueAsListNode = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNode';
-    KnoraConstants.listValueAsListNodeLabel = KnoraConstants.KnoraApiV2WithValueObjectPath + 'listValueAsListNodeLabel';
     KnoraConstants.Xsd = 'http://www.w3.org/2001/XMLSchema#';
     KnoraConstants.xsdString = KnoraConstants.Xsd + 'string';
     KnoraConstants.xsdBoolean = KnoraConstants.Xsd + 'boolean';
@@ -12915,7 +13469,8 @@ var KnoraConstants = /** @class */ /*@__PURE__*/ (function () {
     KnoraConstants.colorSimple = KnoraConstants.KnoraApiV2SimplePath + 'Color';
     KnoraConstants.geonameSimple = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
     KnoraConstants.fileSimple = KnoraConstants.KnoraApiV2SimplePath + 'File';
-    KnoraConstants.matchFunction = KnoraConstants.KnoraApiV2SimplePath + 'match';
+    KnoraConstants.listNodeSimple = KnoraConstants.KnoraApiV2SimplePath + 'ListNode';
+    KnoraConstants.matchFunction = KnoraConstants.KnoraApiV2WithValueObjectPath + 'match';
     KnoraConstants.EqualsComparisonOperator = '=';
     KnoraConstants.EqualsComparisonLabel = 'is equal to';
     KnoraConstants.NotEqualsComparisonOperator = '!=';
@@ -13825,21 +14380,20 @@ var ReadIntervalValue = /** @class */ /*@__PURE__*/ (function () {
 }());
 
 /**
- * Represents an interval value object.
+ * Represents a list value object.
  */
 var ReadListValue = /** @class */ /*@__PURE__*/ (function () {
-    function ReadListValue(id, propIri, listNodeIri, listNodeLabel) {
+    function ReadListValue(id, propIri, listNodeIri) {
         this.id = id;
         this.propIri = propIri;
         this.listNodeIri = listNodeIri;
-        this.listNodeLabel = listNodeLabel;
         this.type = _knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].ListValue;
     }
     ReadListValue.prototype.getClassName = function () {
         return _knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].ReadListValue;
     };
     ReadListValue.prototype.getContent = function () {
-        return this.listNodeLabel;
+        return this.listNodeIri;
     };
     return ReadListValue;
 }());
@@ -15055,7 +15609,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.addUserToSystemAdmin = function (userIri) {
         var data = {
-            'newSystemAdminMembershipStatus': true
+            'systemAdmin': true
         };
         return this.updateUserSystemAdmin(userIri, data);
     };
@@ -15066,7 +15620,7 @@ var UsersService = /** @class */ /*@__PURE__*/ (function (_super) {
      */
     UsersService.prototype.removeUserFromSystemAdmin = function (userIri) {
         var data = {
-            'newSystemAdminMembershipStatus': false
+            'systemAdmin': false
         };
         return this.updateUserSystemAdmin(userIri, data);
     };
@@ -15355,7 +15909,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
 /*!*******************************************************!*\
   !*** ./projects/knora/core/src/lib/services/index.ts ***!
   \*******************************************************/
-/*! exports provided: ApiService, GroupsService, ListsService, ProjectsService, UsersService, LanguageService, StatusMsgService, OntologyService, OntologyMetadata, CardinalityOccurrence, Cardinality, GuiOrder, ResourceClass, ResourceClasses, Property, Properties, ResourceClassIrisForOntology, OntologyInformation, OntologyCacheService, ResourceService, SearchService, ConvertJSONLD, IncomingService, ExtendedSearchParams, SearchParamsService, GravsearchGenerationService, StoreService, BasicOntologyService, ResourceTypesService */
+/*! exports provided: ApiService, GroupsService, ListsService, ProjectsService, UsersService, LanguageService, StatusMsgService, OntologyService, OntologyMetadata, CardinalityOccurrence, Cardinality, GuiOrder, ResourceClass, ResourceClasses, Property, Properties, ResourceClassIrisForOntology, OntologyInformation, OntologyCacheService, ResourceService, SearchService, ConvertJSONLD, IncomingService, ExtendedSearchParams, SearchParamsService, GravsearchGenerationService, StoreService, BasicOntologyService, ResourceTypesService, ListNodeV2, ListCacheService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15436,6 +15990,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _v2_resource_types_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./v2/resource-types.service */ "./projects/knora/core/src/lib/services/v2/resource-types.service.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ResourceTypesService", function() { return _v2_resource_types_service__WEBPACK_IMPORTED_MODULE_17__["ResourceTypesService"]; });
 
+/* harmony import */ var _v2_list_cache_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./v2/list-cache.service */ "./projects/knora/core/src/lib/services/v2/list-cache.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ListNodeV2", function() { return _v2_list_cache_service__WEBPACK_IMPORTED_MODULE_18__["ListNodeV2"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ListCacheService", function() { return _v2_list_cache_service__WEBPACK_IMPORTED_MODULE_18__["ListCacheService"]; });
+
 /**
  * main api services
  */
@@ -15452,6 +16011,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * specific services for knora v2 api
  */
+
 
 
 
@@ -15684,7 +16244,7 @@ var ConvertJSONLD;
                 valueSpecificProp = intervalValue;
                 break;
             case _declarations__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].ListValue:
-                var listValue = new _declarations__WEBPACK_IMPORTED_MODULE_0__["ReadListValue"](propValue['@id'], propIri, propValue[_declarations__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].listValueAsListNode]['@id'], propValue[_declarations__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].listValueAsListNodeLabel]);
+                var listValue = new _declarations__WEBPACK_IMPORTED_MODULE_0__["ReadListValue"](propValue['@id'], propIri, propValue[_declarations__WEBPACK_IMPORTED_MODULE_0__["KnoraConstants"].listValueAsListNode]['@id']);
                 valueSpecificProp = listValue;
                 break;
             default:
@@ -15906,26 +16466,13 @@ var ConvertJSONLD;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GravsearchGenerationService", function() { return GravsearchGenerationService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _search_params_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search-params.service */ "./projects/knora/core/src/lib/services/v2/search-params.service.ts");
-/* harmony import */ var _declarations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../declarations */ "./projects/knora/core/src/lib/declarations/index.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _search_params_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./search-params.service */ "./projects/knora/core/src/lib/services/v2/search-params.service.ts");
+/* harmony import */ var _declarations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../declarations */ "./projects/knora/core/src/lib/declarations/index.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 
 
 
 
-
-/**
- * @ignore
- * Represents an error that occurred when generating KnarQL.
- */
-var GravsearchGenerationError = /** @class */ /*@__PURE__*/ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](GravsearchGenerationError, _super);
-    function GravsearchGenerationError(msg) {
-        return _super.call(this, msg) || this;
-    }
-    return GravsearchGenerationError;
-}(Error));
 /**
  * Create GravSearch queries from provided parameters.
  */
@@ -15933,22 +16480,6 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
     function GravsearchGenerationService(_searchParamsService) {
         this._searchParamsService = _searchParamsService;
     }
-    /**
-       * @private
-       * Converts a complex type Iri to a simple type Iri.
-       *
-       * @param {string} complexType the Iri of a value type (knora-api complex).
-       * @returns string - the corresponding Iri of the simple type (knora-api simple).
-       */
-    GravsearchGenerationService.prototype.convertComplexTypeToSimpleType = function (complexType) {
-        var simpleType = GravsearchGenerationService.typeConversionComplexToSimple[complexType];
-        if (simpleType !== undefined) {
-            return simpleType;
-        }
-        else {
-            throw new GravsearchGenerationError("complex type " + complexType + " could not be converted to simple type.");
-        }
-    };
     /**
      * Generates a Gravsearch query from the provided arguments.
      *
@@ -15958,7 +16489,6 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
      * @returns string - a KnarQL query string.
      */
     GravsearchGenerationService.prototype.createGravsearchQuery = function (properties, mainResourceClassOption, offset) {
-        var _this = this;
         if (offset === void 0) {
             offset = 0;
         }
@@ -15966,22 +16496,14 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
         var mainResourceClass = '';
         // if given, create the class restriction for the main resource
         if (mainResourceClassOption !== undefined) {
-            mainResourceClass = "?mainRes a <" + _declarations__WEBPACK_IMPORTED_MODULE_2__["Utils"].convertComplexKnoraApiEntityIritoSimple(mainResourceClassOption) + "> .";
+            mainResourceClass = "?mainRes a <" + mainResourceClassOption + "> .";
         }
         // criteria for the order by statement
         var orderByCriteria = [];
         // statements to be returned in query results
         var returnStatements = [];
-        // loop over given properties and create statements and Filters and type annotations from them
+        // loop over given properties and create statements and filters from them
         var props = properties.map(function (propWithVal, index) {
-            var propIriSimple = _declarations__WEBPACK_IMPORTED_MODULE_2__["Utils"].convertComplexKnoraApiEntityIritoSimple(propWithVal.property.id);
-            var simpleType;
-            if (!propWithVal.property.isLinkProperty) {
-                simpleType = _this.convertComplexTypeToSimpleType(propWithVal.property.objectType);
-            }
-            else {
-                simpleType = _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].resourceSimple;
-            }
             // represents the object of a statement
             var propValue;
             if (!propWithVal.property.isLinkProperty || propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Exists') {
@@ -15991,51 +16513,69 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
             }
             else {
                 // it is a linking property and the comparison operator is not Exists, use its IRI
-                propValue = propWithVal.valueLiteral.value.toSparql(_declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraSchema"].simple);
+                propValue = propWithVal.valueLiteral.value.toSparql(_declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraSchema"].complex);
             }
             // generate statement
-            var statement = "?mainRes <" + propIriSimple + "> " + propValue + " .";
-            // type annotations
-            var propTypeAnnotation = "<" + propIriSimple + "> knora-api:objectType <" + simpleType + "> .";
-            var propValueAnnotation = propValue + " a <" + simpleType + "> .";
+            var statement = "?mainRes <" + propWithVal.property.id + "> " + propValue + " .";
             // check if it is a linking property that has to be wrapped in a FILTER NOT EXISTS (comparison operator NOT_EQUALS) to negate it
             if (propWithVal.property.isLinkProperty && propWithVal.valueLiteral.comparisonOperator.getClassName() === 'NotEquals') {
                 // do not include statement in results, because the query checks for the absence of this statement
-                statement = "FILTER NOT EXISTS {\n" + statement + "\n" + propTypeAnnotation + "\n" + propValueAnnotation + "\n}";
+                statement = "FILTER NOT EXISTS {\n" + statement + "\n\n\n}";
             }
             else {
                 // TODO: check if statement should be returned returned in results (Boolean flag from checkbox)
                 returnStatements.push(statement);
-                statement = "\n" + statement + "\n" + propTypeAnnotation + "\n" + propValueAnnotation + "\n";
+                statement = "\n" + statement + "\n\n\n";
             }
-            // generate filter if comparison operator is not Exists
-            var filter = '';
+            // generate restricting expression (e.g., a FILTER) if comparison operator is not Exists
+            var restriction = '';
             // only create a FILTER if the comparison operator is not EXISTS and it is not a linking property
             if (!propWithVal.property.isLinkProperty && propWithVal.valueLiteral.comparisonOperator.getClassName() !== 'Exists') {
+                // generate variable for value literal
+                var propValueLiteral = propValue + "Literal";
                 if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Like') {
+                    // generate statement to value literal
+                    restriction = propValue + " <" + GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType] + "> " + propValueLiteral + '\n';
                     // use regex function for LIKE
-                    filter = "FILTER regex(" + propValue + ", " + propWithVal.valueLiteral.value.toSparql(_declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraSchema"].simple) + ", \"i\")";
+                    restriction += "FILTER regex(" + propValueLiteral + ", " + propWithVal.valueLiteral.value.toSparql(_declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraSchema"].complex) + ", \"i\")";
                 }
                 else if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'Match') {
+                    // generate statement to value literal
+                    restriction = propValue + " <" + GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType] + "> " + propValueLiteral + '\n';
                     // use contains function for MATCH
-                    filter = "FILTER <" + _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].matchFunction + ">(" + propValue + ", " + propWithVal.valueLiteral.value.toSparql(_declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraSchema"].simple) + ")";
+                    restriction += "FILTER <" + _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].matchFunction + ">(" + propValueLiteral + ", " + propWithVal.valueLiteral.value.toSparql(_declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraSchema"].complex) + ")";
+                }
+                else if (propWithVal.property.objectType === _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].DateValue) {
+                    // handle date property
+                    restriction = "FILTER(knora-api:toSimpleDate(" + propValue + ") " + propWithVal.valueLiteral.comparisonOperator.type + " " + propWithVal.valueLiteral.value.toSparql(_declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraSchema"].complex) + ")";
+                }
+                else if (propWithVal.property.objectType === _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].ListValue) {
+                    // handle list node
+                    restriction = propValue + " <" + GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType] + "> " + propWithVal.valueLiteral.value.toSparql(_declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraSchema"].complex) + '\n';
+                    // check for comparison operator "not equals"
+                    if (propWithVal.valueLiteral.comparisonOperator.getClassName() === 'NotEquals') {
+                        restriction = "FILTER NOT EXISTS {\n                                " + restriction + "\n                            }";
+                    }
                 }
                 else {
-                    filter = "FILTER(" + propValue + " " + propWithVal.valueLiteral.comparisonOperator.type + " " + propWithVal.valueLiteral.value.toSparql(_declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraSchema"].simple) + ")";
+                    // generate statement to value literal
+                    restriction = propValue + " <" + GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType] + "> " + propValueLiteral + '\n';
+                    // generate filter expression
+                    restriction += "FILTER(" + propValueLiteral + " " + propWithVal.valueLiteral.comparisonOperator.type + " " + propWithVal.valueLiteral.value.toSparql(_declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraSchema"].complex) + ")";
                 }
             }
             // check if current value is a sort criterion
             if (propWithVal.isSortCriterion)
                 orderByCriteria.push(propValue);
-            return statement + "\n" + filter + "\n";
+            return statement + "\n" + restriction + "\n";
         });
         var orderByStatement = '';
         if (orderByCriteria.length > 0) {
             orderByStatement = "\nORDER BY " + orderByCriteria.join(' ') + "\n";
         }
-        // template of the KnarQL query with dynamic components
-        var gravsearchTemplate = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\nCONSTRUCT {\n\n?mainRes knora-api:isMainResource true .\n\n" + returnStatements.join('\n') + "\n\n} WHERE {\n\n?mainRes a knora-api:Resource .\n\n" + mainResourceClass + "\n\n" + props.join('') + "\n\n}\n" + orderByStatement;
-        // offset component of the KnarQL query
+        // template of the Gravsearch query with dynamic components
+        var gravsearchTemplate = "\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/v2#>\nCONSTRUCT {\n\n?mainRes knora-api:isMainResource true .\n\n" + returnStatements.join('\n') + "\n\n} WHERE {\n\n?mainRes a knora-api:Resource .\n\n" + mainResourceClass + "\n\n" + props.join('') + "\n\n}\n" + orderByStatement;
+        // offset component of the Gravsearch query
         var offsetTemplate = "\nOFFSET " + offset + "\n";
         // function that generates the same KnarQL query with the given offset
         var generateGravsearchQueryWithCustomOffset = function (localOffset) {
@@ -16044,9 +16584,8 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
         };
         if (offset === 0) {
             // store the function so another KnarQL query can be created with an increased offset
-            this._searchParamsService.changeSearchParamsMsg(new _search_params_service__WEBPACK_IMPORTED_MODULE_1__["ExtendedSearchParams"](generateGravsearchQueryWithCustomOffset));
+            this._searchParamsService.changeSearchParamsMsg(new _search_params_service__WEBPACK_IMPORTED_MODULE_0__["ExtendedSearchParams"](generateGravsearchQueryWithCustomOffset));
         }
-        // console.log(knarqlTemplate + offsetTemplate);
         return gravsearchTemplate + offsetTemplate;
     };
     /**
@@ -16056,26 +16595,34 @@ var GravsearchGenerationService = /** @class */ /*@__PURE__*/ (function () {
      * Use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.
      */
     GravsearchGenerationService.typeConversionComplexToSimple = {
-        'http://api.knora.org/ontology/knora-api/v2#IntValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].xsdInteger,
-        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].xsdDecimal,
-        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].xsdBoolean,
-        'http://api.knora.org/ontology/knora-api/v2#TextValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].xsdString,
-        'http://api.knora.org/ontology/knora-api/v2#DateValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].dateSimple,
-        'http://api.knora.org/ontology/knora-api/v2#IntervalValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].intervalSimple,
-        'http://api.knora.org/ontology/knora-api/v2#GeomValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].geomSimple,
-        'http://api.knora.org/ontology/knora-api/v2#ColorValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].colorSimple,
-        'http://api.knora.org/ontology/knora-api/v2#GeonameValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].geonameSimple,
-        'http://api.knora.org/ontology/knora-api/v2#UriValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].xsdUri,
-        'http://api.knora.org/ontology/knora-api/v2#StillImageFileValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].fileSimple,
-        'http://api.knora.org/ontology/knora-api/v2#FileValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].fileSimple,
-        'http://api.knora.org/ontology/knora-api/v2#MovingImageFileValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].fileSimple,
-        'http://api.knora.org/ontology/knora-api/v2#DDDFileValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].fileSimple,
-        'http://api.knora.org/ontology/knora-api/v2#AudioFileValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].fileSimple,
-        'http://api.knora.org/ontology/knora-api/v2#DocumentFileValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].fileSimple,
-        'http://api.knora.org/ontology/knora-api/v2#TextFileValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].fileSimple,
-        'http://api.knora.org/ontology/knora-api/v2#ListValue': _declarations__WEBPACK_IMPORTED_MODULE_2__["KnoraConstants"].xsdString
+        'http://api.knora.org/ontology/knora-api/v2#IntValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].xsdInteger,
+        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].xsdDecimal,
+        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].xsdBoolean,
+        'http://api.knora.org/ontology/knora-api/v2#TextValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].xsdString,
+        'http://api.knora.org/ontology/knora-api/v2#DateValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].dateSimple,
+        'http://api.knora.org/ontology/knora-api/v2#IntervalValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].intervalSimple,
+        'http://api.knora.org/ontology/knora-api/v2#GeomValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].geomSimple,
+        'http://api.knora.org/ontology/knora-api/v2#ColorValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].colorSimple,
+        'http://api.knora.org/ontology/knora-api/v2#GeonameValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].geonameSimple,
+        'http://api.knora.org/ontology/knora-api/v2#UriValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].xsdUri,
+        'http://api.knora.org/ontology/knora-api/v2#StillImageFileValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#FileValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#MovingImageFileValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#DDDFileValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#AudioFileValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#DocumentFileValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#TextFileValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].fileSimple,
+        'http://api.knora.org/ontology/knora-api/v2#ListValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].listNodeSimple
     };
-    GravsearchGenerationService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_3__["defineInjectable"]({ factory: function GravsearchGenerationService_Factory() { return new GravsearchGenerationService(_angular_core__WEBPACK_IMPORTED_MODULE_3__["inject"](_search_params_service__WEBPACK_IMPORTED_MODULE_1__["SearchParamsService"])); }, token: GravsearchGenerationService, providedIn: "root" });
+    GravsearchGenerationService.complexTypeToProp = {
+        'http://api.knora.org/ontology/knora-api/v2#IntValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].integerValueAsInteger,
+        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].decimalValueAsDecimal,
+        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].booleanValueAsBoolean,
+        'http://api.knora.org/ontology/knora-api/v2#TextValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].valueAsString,
+        'http://api.knora.org/ontology/knora-api/v2#UriValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].uriValueAsUri,
+        'http://api.knora.org/ontology/knora-api/v2#ListValue': _declarations__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].listValueAsListNode
+    };
+    GravsearchGenerationService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_2__["defineInjectable"]({ factory: function GravsearchGenerationService_Factory() { return new GravsearchGenerationService(_angular_core__WEBPACK_IMPORTED_MODULE_2__["inject"](_search_params_service__WEBPACK_IMPORTED_MODULE_0__["SearchParamsService"])); }, token: GravsearchGenerationService, providedIn: "root" });
     return GravsearchGenerationService;
 }());
 
@@ -16152,6 +16699,241 @@ var IncomingService = /** @class */ /*@__PURE__*/ (function (_super) {
     IncomingService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_2__["defineInjectable"]({ factory: function IncomingService_Factory() { return new IncomingService(_angular_core__WEBPACK_IMPORTED_MODULE_2__["inject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["inject"](_core_module__WEBPACK_IMPORTED_MODULE_4__["KuiCoreConfigToken"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["inject"](_ontology_cache_service__WEBPACK_IMPORTED_MODULE_5__["OntologyCacheService"])); }, token: IncomingService, providedIn: "root" });
     return IncomingService;
 }(_search_service__WEBPACK_IMPORTED_MODULE_1__["SearchService"]));
+
+
+
+
+/***/ }),
+
+/***/ "./projects/knora/core/src/lib/services/v2/list-cache.service.ts":
+/*!***********************************************************************!*\
+  !*** ./projects/knora/core/src/lib/services/v2/list-cache.service.ts ***!
+  \***********************************************************************/
+/*! exports provided: ListNodeV2, ListCacheService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListNodeV2", function() { return ListNodeV2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListCacheService", function() { return ListCacheService; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _list_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./list.service */ "./projects/knora/core/src/lib/services/v2/list.service.ts");
+
+
+
+
+/**
+ * Represents a list node v2.
+ */
+var ListNodeV2 = /** @class */ /*@__PURE__*/ (function () {
+    function ListNodeV2(id, label, position, hasRootNode) {
+        this.id = id;
+        this.label = label;
+        this.position = position;
+        this.hasRootNode = hasRootNode;
+        // if hasRootNode is not given, this node is the root node.
+        this.isRootNode = (hasRootNode === undefined);
+        this.children = [];
+    }
+    return ListNodeV2;
+}());
+
+var ListCache = /** @class */ /*@__PURE__*/ (function () {
+    function ListCache() {
+    }
+    return ListCache;
+}());
+var ListNodeIriToListNodeV2 = /** @class */ /*@__PURE__*/ (function () {
+    function ListNodeIriToListNodeV2() {
+    }
+    return ListNodeIriToListNodeV2;
+}());
+var ListCacheService = /** @class */ /*@__PURE__*/ (function () {
+    function ListCacheService(_listService) {
+        var _this = this;
+        this._listService = _listService;
+        this.listCache = new ListCache();
+        this.listNodeIriToListNodeV2 = new ListNodeIriToListNodeV2();
+        /**
+         * Converts a JSON-LD represention of a ListNodeV2 to  a `ListNodeV2`.
+         * Recursively converts child nodes.
+         *
+         * @param {object} listJSONLD the JSON-LD representation of a list node v2.
+         * @return {ListNodeV2}
+         */
+        this.convertJSONLDToListNode = function (listJSONLD) {
+            var listNodeIri = listJSONLD['@id'];
+            var hasRootNode = _this.hasRootNode(listJSONLD);
+            var listNode = new ListNodeV2(listNodeIri, listJSONLD['http://www.w3.org/2000/01/rdf-schema#label'], listJSONLD['http://api.knora.org/ontology/knora-api/v2#listNodePosition'], hasRootNode);
+            // check if there are child nodes
+            if (listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode'] !== undefined) {
+                if (Array.isArray(listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode'])) {
+                    // array of child nodes
+                    for (var _i = 0, _a = listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode']; _i < _a.length; _i++) {
+                        var subListNode = _a[_i];
+                        listNode.children.push(_this.convertJSONLDToListNode(subListNode));
+                    }
+                }
+                else {
+                    // single child node
+                    listNode.children.push(_this.convertJSONLDToListNode(listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode']));
+                }
+            }
+            _this.listNodeIriToListNodeV2[listNodeIri] = listNode;
+            return listNode;
+        };
+    }
+    ListCacheService.prototype.hasRootNode = function (listJSONLD) {
+        var hasRoot;
+        if (listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode'] !== undefined) {
+            hasRoot = listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasRootNode']['@id'];
+        }
+        return hasRoot;
+    };
+    /**
+     * Gets a list from the cache or requests it from Knora and caches it.
+     *
+     * @param {string} rootNodeIri the Iri of the list's root node.
+     * @return {Observable<ListNodeV2>}
+     */
+    ListCacheService.prototype.getList = function (rootNodeIri) {
+        var _this = this;
+        // check if list is already in cache
+        if (this.listCache[rootNodeIri] !== undefined) {
+            // return list from cache
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(this.listCache[rootNodeIri]);
+        }
+        else {
+            // get list from Knora and cache it
+            var listJSONLD = this._listService.getList(rootNodeIri);
+            var listV2 = listJSONLD.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(this.convertJSONLDToListNode));
+            return listV2.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (list) {
+                // write list to cache and return it
+                _this.listCache[rootNodeIri] = list;
+                return list;
+            }));
+        }
+    };
+    /**
+     * Gets a list node from the cache or requests the whole list from Knora and caches it.
+     *
+     * @param {string} listNodeIri the Iri of the list node.
+     * @return {Observable<object>}
+     */
+    ListCacheService.prototype.getListNode = function (listNodeIri) {
+        var _this = this;
+        // check if list node is already in cache
+        if (this.listNodeIriToListNodeV2[listNodeIri] !== undefined) {
+            // list node is already cached
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(this.listNodeIriToListNodeV2[listNodeIri]);
+        }
+        else {
+            var listNode = this._listService.getListNode(listNodeIri);
+            return listNode.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["mergeMap"])(function (listNodeJSONLD) {
+                var hasRootNode = _this.hasRootNode(listNodeJSONLD);
+                if (hasRootNode !== undefined) {
+                    // get the whole list
+                    return _this.getList(hasRootNode).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (completeList) {
+                        // get list node from cache
+                        return _this.listNodeIriToListNodeV2[listNodeIri];
+                    }));
+                }
+                else {
+                    // this is the root node, get the whole list
+                    return _this.getList(listNodeIri).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (completeList) {
+                        // get list node from cache
+                        return _this.listNodeIriToListNodeV2[listNodeIri];
+                    }));
+                }
+            }));
+        }
+    };
+    ListCacheService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_2__["defineInjectable"]({ factory: function ListCacheService_Factory() { return new ListCacheService(_angular_core__WEBPACK_IMPORTED_MODULE_2__["inject"](_list_service__WEBPACK_IMPORTED_MODULE_3__["ListService"])); }, token: ListCacheService, providedIn: "root" });
+    return ListCacheService;
+}());
+
+
+
+
+/***/ }),
+
+/***/ "./projects/knora/core/src/lib/services/v2/list.service.ts":
+/*!*****************************************************************!*\
+  !*** ./projects/knora/core/src/lib/services/v2/list.service.ts ***!
+  \*****************************************************************/
+/*! exports provided: ListService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListService", function() { return ListService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api.service */ "./projects/knora/core/src/lib/services/api.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _core_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core.module */ "./projects/knora/core/src/lib/core.module.ts");
+
+
+
+
+
+
+var ListService = /** @class */ /*@__PURE__*/ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ListService, _super);
+    function ListService(http, config) {
+        var _this = _super.call(this, http, config) || this;
+        _this.http = http;
+        _this.config = config;
+        return _this;
+    }
+    /**
+     * Gets a hierarchical list from Knora.
+     *
+     * @param {string} rootNodeIri the Iri of the list's root node.
+     * @return {Observable<ApiServiceResult | ApiServiceError>}
+     */
+    ListService.prototype.getListFromKnora = function (rootNodeIri) {
+        return this.httpGet('/v2/lists/' + encodeURIComponent(rootNodeIri));
+    };
+    /**
+     * Returns a list as expanded JSON-LD.
+     *
+     * @param {string} rootNodeIri the root node of the list.
+     * @return {Observable<object>} the expanded JSON-LD.
+     */
+    ListService.prototype.getList = function (rootNodeIri) {
+        var listJSONLD = this.getListFromKnora(rootNodeIri);
+        return listJSONLD.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mergeMap"])(
+        // this would return an Observable of a PromiseObservable -> combine them into one Observable
+        this.processJSONLD));
+    };
+    /**
+     * Gets a list node from Knora.
+     *
+     * @param {string} listNodeIri the Iri of the list node.
+     * @return {Observable<ApiServiceResult | ApiServiceError>}
+     */
+    ListService.prototype.getListNodeFromKnora = function (listNodeIri) {
+        return this.httpGet('/v2/node/' + encodeURIComponent(listNodeIri));
+    };
+    /**
+     * Returns a list node as expanded JSON-LD.
+     *
+     * @param {string} listNodeIri the Iri of the list node.
+     * @return {Observable<object>}
+     */
+    ListService.prototype.getListNode = function (listNodeIri) {
+        var listNodeJSONLD = this.getListNodeFromKnora(listNodeIri);
+        return listNodeJSONLD.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mergeMap"])(
+        // this would return an Observable of a PromiseObservable -> combine them into one Observable
+        this.processJSONLD));
+    };
+    ListService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_3__["defineInjectable"]({ factory: function ListService_Factory() { return new ListService(_angular_core__WEBPACK_IMPORTED_MODULE_3__["inject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_3__["inject"](_core_module__WEBPACK_IMPORTED_MODULE_5__["KuiCoreConfigToken"])); }, token: ListService, providedIn: "root" });
+    return ListService;
+}(_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]));
 
 
 
@@ -16308,8 +17090,9 @@ var Property = /** @class */ /*@__PURE__*/ (function () {
      * @param {boolean} isEditable indicates whether the given property can be edited by the client.
      * @param {boolean} isLinkProperty indicates whether the given property is a linking property.
      * @param {boolean} isLinkValueProperty indicates whether the given property refers to a link value.
+     * @param {string} guiAttribute the gui attribute assigned to this property, if any.
      */
-    function Property(id, objectType, comment, label, subPropertyOf, isEditable, isLinkProperty, isLinkValueProperty) {
+    function Property(id, objectType, comment, label, subPropertyOf, isEditable, isLinkProperty, isLinkValueProperty, guiAttribute) {
         this.id = id;
         this.objectType = objectType;
         this.comment = comment;
@@ -16318,6 +17101,7 @@ var Property = /** @class */ /*@__PURE__*/ (function () {
         this.isEditable = isEditable;
         this.isLinkProperty = isLinkProperty;
         this.isLinkValueProperty = isLinkValueProperty;
+        this.guiAttribute = guiAttribute;
     }
     return Property;
 }());
@@ -16829,8 +17613,20 @@ var OntologyCacheService = /** @class */ /*@__PURE__*/ (function () {
             if (propDef[_declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].ObjectType] !== undefined) {
                 objectType = propDef[_declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].ObjectType]['@id'];
             }
+            var guiAttribute = [];
+            if (propDef[_declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].SalsahGuiAttribute] !== undefined) {
+                if (Array.isArray(propDef[_declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].SalsahGuiAttribute])) {
+                    for (var _a = 0, _b = propDef[_declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].SalsahGuiAttribute]; _a < _b.length; _a++) {
+                        var attr = _b[_a];
+                        guiAttribute.push(attr);
+                    }
+                }
+                else {
+                    guiAttribute.push(propDef[_declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].SalsahGuiAttribute]);
+                }
+            }
             // cache property definition
-            this.cacheOntology.properties[propIri] = new Property(propIri, objectType, propDef[_declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].RdfsComment], propDef[_declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].RdfsLabel], subPropertyOf, isEditable, isLinkProperty, isLinkValueProperty);
+            this.cacheOntology.properties[propIri] = new Property(propIri, objectType, propDef[_declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].RdfsComment], propDef[_declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_1__["KnoraConstants"].RdfsLabel], subPropertyOf, isEditable, isLinkProperty, isLinkValueProperty, guiAttribute);
         }
     };
     /**
@@ -17400,14 +18196,56 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
         return _this;
     }
     /**
+     * Assign fulltext search params to http params.
+     *
+     * @param {FulltextSearchParams} params
+     * @param {HttpParams} httpParams
+     * @returns {HttpParams}
+     */
+    SearchService.prototype.processFulltextSearchParams = function (params, httpParams) {
+        // avoid reassignment to method param
+        var searchParams = httpParams;
+        // HttpParams is immutable, `set` returns a new instance
+        if (params.limitToProject !== undefined) {
+            searchParams = searchParams.set('limitToProject', params.limitToProject);
+        }
+        if (params.limitToResourceClass !== undefined) {
+            searchParams = searchParams.set('limitToResourceClass', params.limitToResourceClass);
+        }
+        if (params.limitToStandoffClass !== undefined) {
+            searchParams = searchParams.set('limitToStandoffClass', params.limitToStandoffClass);
+        }
+        return searchParams;
+    };
+    /**
+     * Assign search by label search params to http params.
+     *
+     * @param {SearchByLabelParams} params
+     * @param {HttpParams} httpParams
+     * @returns {HttpParams}
+     */
+    SearchService.prototype.processSearchByLabelParams = function (params, httpParams) {
+        // avoid reassignment to method param
+        var searchParams = httpParams;
+        // HttpParams is immutable, `set` returns a new instance
+        if (params.limitToResourceClass !== undefined) {
+            searchParams = searchParams.set('limitToResourceClass', params.limitToResourceClass);
+        }
+        if (params.limitToProject !== undefined) {
+            searchParams = searchParams.set('limitToProject', params.limitToProject);
+        }
+        return searchParams;
+    };
+    /**
      * Performs a fulltext search.
      * TODO: mark as deprecated, use of `doFullTextSearchReadResourceSequence` recommended
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    SearchService.prototype.doFulltextSearch = function (searchTerm, offset) {
+    SearchService.prototype.doFulltextSearch = function (searchTerm, offset, params) {
         if (offset === void 0) {
             offset = 0;
         }
@@ -17416,16 +18254,20 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
         }
         var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
         httpParams = httpParams.set('offset', offset.toString());
-        return this.httpGet('/v2/search/' + searchTerm, httpParams);
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+        return this.httpGet('/v2/search/' + encodeURIComponent(searchTerm), httpParams);
     };
     /**
      * Performs a fulltext search and turns the result into a `ReadResourceSequence`.
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    SearchService.prototype.doFullTextSearchReadResourceSequence = function (searchTerm, offset) {
+    SearchService.prototype.doFullTextSearchReadResourceSequence = function (searchTerm, offset, params) {
         if (offset === void 0) {
             offset = 0;
         }
@@ -17434,7 +18276,10 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
         }
         var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
         httpParams = httpParams.set('offset', offset.toString());
-        var res = this.httpGet('/v2/search/' + searchTerm, httpParams);
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+        var res = this.httpGet('/v2/search/' + encodeURIComponent(searchTerm), httpParams);
         return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mergeMap"])(
         // this would return an Observable of a PromiseObservable -> combine them into one Observable
         this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mergeMap"])(
@@ -17446,25 +18291,35 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * TODO: mark as deprecated, use of `doFullTextSearchCountQueryCountQueryResult` recommended
      *
      * @param searchTerm the term to search for.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    SearchService.prototype.doFulltextSearchCountQuery = function (searchTerm) {
+    SearchService.prototype.doFulltextSearchCountQuery = function (searchTerm, params) {
         if (searchTerm === undefined || searchTerm.length === 0) {
             return rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"].create(function (observer) { return observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'); });
         }
-        return this.httpGet('/v2/search/count/' + searchTerm);
+        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+        return this.httpGet('/v2/search/count/' + encodeURIComponent(searchTerm), httpParams);
     };
     /**
      * Performs a fulltext search count query and turns the result into a `CountQueryResult`.
      *
      * @param {string} searchTerm the term to search for.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<CountQueryResult>
      */
-    SearchService.prototype.doFullTextSearchCountQueryCountQueryResult = function (searchTerm) {
+    SearchService.prototype.doFullTextSearchCountQueryCountQueryResult = function (searchTerm, params) {
         if (searchTerm === undefined || searchTerm.length === 0) {
             return rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"].create(function (observer) { return observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'); });
         }
-        var res = this.httpGet('/v2/search/count/' + searchTerm);
+        var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+        var res = this.httpGet('/v2/search/count/' + encodeURIComponent(searchTerm), httpParams);
         return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mergeMap"])(
         // this would return an Observable of a PromiseObservable -> combine them into one Observable
         this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(
@@ -17532,20 +18387,21 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * TODO: mark as deprecated, use of `searchByLabelReadResourceSequence` recommended
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} [resourceClassIRI] restrict search to given resource class.
-     * @param {string} [projectIri] restrict search to given project.
+     * @param {number} offset offset to use.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    SearchService.prototype.searchByLabel = function (searchTerm, resourceClassIRI, projectIri) {
+    SearchService.prototype.searchByLabel = function (searchTerm, offset, params) {
+        if (offset === void 0) {
+            offset = 0;
+        }
         if (searchTerm === undefined || searchTerm.length === 0) {
             return rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"].create(function (observer) { return observer.error('No search term given for call of SearchService.doFulltextSearch'); });
         }
         var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        if (resourceClassIRI !== undefined) {
-            httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);
-        }
-        if (projectIri !== undefined) {
-            httpParams = httpParams.set('limitToProject', projectIri);
+        httpParams = httpParams.set('offset', offset.toString());
+        if (params !== undefined) {
+            httpParams = this.processSearchByLabelParams(params, httpParams);
         }
         // httpGet() expects only one argument, not 2
         return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
@@ -17554,20 +18410,21 @@ var SearchService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Perform a search by a resource's rdfs:label and turns the results in a `ReadResourceSequence`.
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} [resourceClassIRI] restrict search to given resource class.
-     * @param {string} [projectIri] restrict search to given project.
+     * @param {number} offset offset to use.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    SearchService.prototype.searchByLabelReadResourceSequence = function (searchTerm, resourceClassIRI, projectIri) {
+    SearchService.prototype.searchByLabelReadResourceSequence = function (searchTerm, offset, params) {
+        if (offset === void 0) {
+            offset = 0;
+        }
         if (searchTerm === undefined || searchTerm.length === 0) {
             return rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"].create(function (observer) { return observer.error('No search term given for call of SearchService.doFulltextSearch'); });
         }
         var httpParams = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
-        if (resourceClassIRI !== undefined) {
-            httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);
-        }
-        if (projectIri !== undefined) {
-            httpParams = httpParams.set('limitToProject', projectIri);
+        httpParams = httpParams.set('offset', offset.toString());
+        if (params !== undefined) {
+            httpParams = this.processSearchByLabelParams(params, httpParams);
         }
         var res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
         return res.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mergeMap"])(this.processJSONLD), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mergeMap"])(this.convertJSONLDToReadResourceSequence));
@@ -17639,7 +18496,7 @@ var StoreService = /** @class */ /*@__PURE__*/ (function () {
 /*!***********************************************!*\
   !*** ./projects/knora/core/src/public_api.ts ***!
   \***********************************************/
-/*! exports provided: KuiCoreConfigToken, KuiCoreModule, Equals, NotEquals, GreaterThanEquals, GreaterThan, LessThan, LessThanEquals, Exists, Like, Match, ComparisonOperatorAndValue, ValueLiteral, IRI, PropertyWithValue, KuiCoreConfig, ApiServiceResult, ApiServiceError, Utils, KnoraConstants, KnoraSchema, StringLiteral, Precision, DateSalsah, DateRangeSalsah, AuthenticationResponse, Group, GroupResponse, GroupsResponse, List, ListInfo, ListInfoResponse, ListNode, ListNodeInfo, ListNodeInfoResponse, ListResponse, ListsResponse, OntologyInfoShort, PermissionData, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, UsersResponse, UserResponse, User, ReadTextValue, ReadTextValueAsString, ReferredResourcesByStandoffLink, ReadTextValueAsHtml, ReadTextValueAsXml, ReadDateValue, ReadLinkValue, ReadIntegerValue, ReadDecimalValue, ReadStillImageFileValue, ReadMovingImageFileValue, ReadTextFileValue, ReadColorValue, Point2D, RegionGeometry, ReadGeomValue, ReadUriValue, ReadBooleanValue, ReadIntervalValue, ReadListValue, ReadResource, Resource, ReadResourcesSequence, CountQueryResult, StillImageRepresentation, ImageRegion, ApiService, GroupsService, ListsService, ProjectsService, UsersService, LanguageService, StatusMsgService, OntologyService, OntologyMetadata, CardinalityOccurrence, Cardinality, GuiOrder, ResourceClass, ResourceClasses, Property, Properties, ResourceClassIrisForOntology, OntologyInformation, OntologyCacheService, ResourceService, SearchService, ConvertJSONLD, IncomingService, ExtendedSearchParams, SearchParamsService, GravsearchGenerationService, StoreService, BasicOntologyService, ResourceTypesService */
+/*! exports provided: KuiCoreConfigToken, KuiCoreModule, Equals, NotEquals, GreaterThanEquals, GreaterThan, LessThan, LessThanEquals, Exists, Like, Match, ComparisonOperatorAndValue, ValueLiteral, IRI, PropertyWithValue, KuiCoreConfig, ApiServiceResult, ApiServiceError, Utils, KnoraConstants, KnoraSchema, StringLiteral, Precision, DateSalsah, DateRangeSalsah, AuthenticationResponse, Group, GroupResponse, GroupsResponse, List, ListInfo, ListInfoResponse, ListNode, ListNodeInfo, ListNodeInfoResponse, ListResponse, ListsResponse, OntologyInfoShort, PermissionData, Project, ProjectMembersResponse, ProjectResponse, ProjectsResponse, UsersResponse, UserResponse, User, ReadTextValue, ReadTextValueAsString, ReferredResourcesByStandoffLink, ReadTextValueAsHtml, ReadTextValueAsXml, ReadDateValue, ReadLinkValue, ReadIntegerValue, ReadDecimalValue, ReadStillImageFileValue, ReadMovingImageFileValue, ReadTextFileValue, ReadColorValue, Point2D, RegionGeometry, ReadGeomValue, ReadUriValue, ReadBooleanValue, ReadIntervalValue, ReadListValue, ReadResource, Resource, ReadResourcesSequence, CountQueryResult, StillImageRepresentation, ImageRegion, ApiService, GroupsService, ListsService, ProjectsService, UsersService, LanguageService, StatusMsgService, OntologyService, OntologyMetadata, CardinalityOccurrence, Cardinality, GuiOrder, ResourceClass, ResourceClasses, Property, Properties, ResourceClassIrisForOntology, OntologyInformation, OntologyCacheService, ResourceService, SearchService, ConvertJSONLD, IncomingService, ExtendedSearchParams, SearchParamsService, GravsearchGenerationService, StoreService, BasicOntologyService, ResourceTypesService, ListNodeV2, ListCacheService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17850,6 +18707,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ResourceTypesService", function() { return _lib_services___WEBPACK_IMPORTED_MODULE_3__["ResourceTypesService"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ListNodeV2", function() { return _lib_services___WEBPACK_IMPORTED_MODULE_3__["ListNodeV2"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ListCacheService", function() { return _lib_services___WEBPACK_IMPORTED_MODULE_3__["ListCacheService"]; });
+
 /*
  * Public API Surface of core
  */
@@ -17986,7 +18847,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = [".route-content[_ngcontent-%COMP%] {\n  position: relative;\n  top: 64px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLFNBQVMsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5yb3V0ZS1jb250ZW50IHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB0b3A6IDY0cHg7XG4gIC8vIG92ZXJmbG93OiBoaWRkZW47XG4vLyAgaGVpZ2h0OiBjYWxjKDEwMHZoIC0gNjRweCk7XG59XG4iXX0= */"];
+var styles = [".route-content[_ngcontent-%COMP%] {\n  position: relative;\n  top: 64px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsU0FBUyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnJvdXRlLWNvbnRlbnQge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogNjRweDtcbiAgLy8gb3ZlcmZsb3c6IGhpZGRlbjtcbi8vICBoZWlnaHQ6IGNhbGMoMTAwdmggLSA2NHB4KTtcbn1cbiJdfQ== */"];
 
 
 
@@ -19132,7 +19993,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = [".content-header[_ngcontent-%COMP%] {\n  text-align: center;\n  margin-top: 128px;\n  margin-bottom: 128px; }\n\n.content-text[_ngcontent-%COMP%] {\n  text-align: center; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAvZGV2LWRvY3MvZG9jLWludHJvL2RvYy1pbnRyby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsb0JBQW9CLEVBQUE7O0FBRXhCO0VBQ0ksa0JBQWtCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9kZXYtZG9jcy9kb2MtaW50cm8vZG9jLWludHJvLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRlbnQtaGVhZGVyIHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgbWFyZ2luLXRvcDogMTI4cHg7XG4gICAgbWFyZ2luLWJvdHRvbTogMTI4cHg7XG59XG4uY29udGVudC10ZXh0IHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59Il19 */"];
+var styles = [".content-header[_ngcontent-%COMP%] {\n  text-align: center;\n  margin-top: 128px;\n  margin-bottom: 128px; }\n\n.content-text[_ngcontent-%COMP%] {\n  text-align: center; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9kZXYtZG9jcy9kb2MtaW50cm8vZG9jLWludHJvLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQWtCO0VBQ2xCLGlCQUFpQjtFQUNqQixvQkFBb0IsRUFBQTs7QUFFeEI7RUFDSSxrQkFBa0IsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2Rldi1kb2NzL2RvYy1pbnRyby9kb2MtaW50cm8uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGVudC1oZWFkZXIge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBtYXJnaW4tdG9wOiAxMjhweDtcbiAgICBtYXJnaW4tYm90dG9tOiAxMjhweDtcbn1cbi5jb250ZW50LXRleHQge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iXX0= */"];
 
 
 
@@ -19321,7 +20182,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = ["img[_ngcontent-%COMP%] {\n  max-width: 256px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvYWN0aW9uLWRlbW8vYWRtaW4taW1hZ2UvYWRtaW4taW1hZ2UuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBZ0IsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2tub3JhLXVpLWV4YW1wbGVzL2FjdGlvbi1kZW1vL2FkbWluLWltYWdlL2FkbWluLWltYWdlLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW1nIHtcbiAgbWF4LXdpZHRoOiAyNTZweDtcbn1cbiJdfQ== */"];
+var styles = ["img[_ngcontent-%COMP%] {\n  max-width: 256px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy9hY3Rpb24tZGVtby9hZG1pbi1pbWFnZS9hZG1pbi1pbWFnZS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGdCQUFnQixFQUFBIiwiZmlsZSI6InNyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvYWN0aW9uLWRlbW8vYWRtaW4taW1hZ2UvYWRtaW4taW1hZ2UuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpbWcge1xuICBtYXgtd2lkdGg6IDI1NnB4O1xufVxuIl19 */"];
 
 
 
@@ -20182,7 +21043,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = [".active[_ngcontent-%COMP%] {\n  font-weight: bolder; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvYWN0aW9uLWRlbW8vc29ydC1idXR0b24vc29ydC1idXR0b24uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxtQkFBbUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2tub3JhLXVpLWV4YW1wbGVzL2FjdGlvbi1kZW1vL3NvcnQtYnV0dG9uL3NvcnQtYnV0dG9uLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmFjdGl2ZSB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkZXI7XG59XG4iXX0= */"];
+var styles = [".active[_ngcontent-%COMP%] {\n  font-weight: bolder; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy9hY3Rpb24tZGVtby9zb3J0LWJ1dHRvbi9zb3J0LWJ1dHRvbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG1CQUFtQixFQUFBIiwiZmlsZSI6InNyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvYWN0aW9uLWRlbW8vc29ydC1idXR0b24vc29ydC1idXR0b24uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYWN0aXZlIHtcbiAgZm9udC13ZWlnaHQ6IGJvbGRlcjtcbn1cbiJdfQ== */"];
 
 
 
@@ -20518,7 +21379,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = [".demo-container[_ngcontent-%COMP%] {\n  position: relative;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0; }\n  .demo-container[_ngcontent-%COMP%]   .module-content[_ngcontent-%COMP%] {\n    max-width: 840px;\n    margin: 0 auto; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvYXV0aGVudGljYXRpb24tZGVtby9sb2dpbi9sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtFQUNsQixNQUFNO0VBQ04sU0FBUztFQUNULE9BQU87RUFDUCxRQUFRLEVBQUE7RUFMVjtJQVFJLGdCQUFnQjtJQUNoQixjQUFjLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy9hdXRoZW50aWNhdGlvbi1kZW1vL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmRlbW8tY29udGFpbmVyIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB0b3A6IDA7XG4gIGJvdHRvbTogMDtcbiAgbGVmdDogMDtcbiAgcmlnaHQ6IDA7XG5cbiAgLm1vZHVsZS1jb250ZW50IHtcbiAgICBtYXgtd2lkdGg6IDg0MHB4O1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICB9XG59XG4iXX0= */"];
+var styles = [".demo-container[_ngcontent-%COMP%] {\n  position: relative;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0; }\n  .demo-container[_ngcontent-%COMP%]   .module-content[_ngcontent-%COMP%] {\n    max-width: 840px;\n    margin: 0 auto; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy9hdXRoZW50aWNhdGlvbi1kZW1vL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLE1BQU07RUFDTixTQUFTO0VBQ1QsT0FBTztFQUNQLFFBQVEsRUFBQTtFQUxWO0lBUUksZ0JBQWdCO0lBQ2hCLGNBQWMsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2tub3JhLXVpLWV4YW1wbGVzL2F1dGhlbnRpY2F0aW9uLWRlbW8vbG9naW4vbG9naW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZGVtby1jb250YWluZXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogMDtcbiAgYm90dG9tOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcblxuICAubW9kdWxlLWNvbnRlbnQge1xuICAgIG1heC13aWR0aDogODQwcHg7XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gIH1cbn1cbiJdfQ== */"];
 
 
 
@@ -21847,7 +22708,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = [".mat-divider[_ngcontent-%COMP%] {\n  margin-top: 24px;\n  margin-bottom: 24px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvY29yZS1kZW1vL3Byb2plY3RzL3Byb2plY3RzLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQWdCO0VBQ2hCLG1CQUFtQixFQUFBIiwiZmlsZSI6InNyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvY29yZS1kZW1vL3Byb2plY3RzL3Byb2plY3RzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hdC1kaXZpZGVyIHtcbiAgbWFyZ2luLXRvcDogMjRweDtcbiAgbWFyZ2luLWJvdHRvbTogMjRweDtcbn1cbiJdfQ== */"];
+var styles = [".mat-divider[_ngcontent-%COMP%] {\n  margin-top: 24px;\n  margin-bottom: 24px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy9jb3JlLWRlbW8vcHJvamVjdHMvcHJvamVjdHMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBZ0I7RUFDaEIsbUJBQW1CLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy9jb3JlLWRlbW8vcHJvamVjdHMvcHJvamVjdHMuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWF0LWRpdmlkZXIge1xuICBtYXJnaW4tdG9wOiAyNHB4O1xuICBtYXJnaW4tYm90dG9tOiAyNHB4O1xufVxuIl19 */"];
 
 
 
@@ -22896,13 +23757,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _knora_viewer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @knora/viewer */ "./dist/@knora/viewer/fesm5/knora-viewer.js");
 /* harmony import */ var _node_modules_angular_material_list_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/list/typings/index.ngfactory */ "./node_modules/@angular/material/list/typings/index.ngfactory.js");
 /* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
-/* harmony import */ var _properties_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./properties.component */ "./src/app/knora-ui-examples/viewer-demo/properties/properties.component.ts");
+/* harmony import */ var _knora_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @knora/core */ "./dist/@knora/core/fesm5/knora-core.js");
+/* harmony import */ var _properties_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./properties.component */ "./src/app/knora-ui-examples/viewer-demo/properties/properties.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
+
 
 
 
@@ -22926,17 +23789,17 @@ function View_PropertiesComponent_0(_l) {
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵz_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵz"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](60, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵz"], [], { valueObject: [0, "valueObject"] }, { referredResourceClicked: "referredResourceClicked" }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](61, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["ListValue"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](63, 0, null, null, 1, "kui-list-value", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵy_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵy"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](64, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵy"], [], { valueObject: [0, "valueObject"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](65, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["HTMLValue"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](67, 0, null, null, 1, "kui-text-value-as-html", [], null, [[null, "click"]], function (_v, en, $event) {
+        }, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵz_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵz"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](60, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵz"], [], { valueObject: [0, "valueObject"] }, { referredResourceClicked: "referredResourceClicked" }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](61, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["ListValue"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](63, 0, null, null, 1, "kui-list-value", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵy_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵy"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](64, 573440, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵy"], [_knora_core__WEBPACK_IMPORTED_MODULE_10__["ListCacheService"]], { valueObject: [0, "valueObject"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](65, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["HTMLValue"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](67, 0, null, null, 1, "kui-text-value-as-html", [], null, [[null, "click"]], function (_v, en, $event) {
             var ad = true;
             if (("click" === en)) {
                 var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 68).onClick($event.target) !== false);
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵl_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵl"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](68, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵl"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { bindEvents: [0, "bindEvents"], valueObject: [1, "valueObject"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](69, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["StringValue"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](71, 0, null, null, 1, "kui-text-value-as-string", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵm_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵm"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](72, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵm"], [], { valueObject: [0, "valueObject"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](73, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["XMLValue"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](75, 0, null, null, 1, "kui-text-value-as-xml", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵn_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵn"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](76, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵn"], [], { valueObject: [0, "valueObject"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](77, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["UriValue"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](79, 0, null, null, 1, "kui-uri-value", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵt_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵt"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](80, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵt"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.boolean; _ck(_v, 7, 0, currVal_1); var currVal_2 = _co.color; _ck(_v, 11, 0, currVal_2); var currVal_5 = true; var currVal_6 = true; var currVal_7 = _co.date; _ck(_v, 24, 0, currVal_5, currVal_6, currVal_7); var currVal_10 = true; var currVal_11 = _co.period; _ck(_v, 33, 0, currVal_10, currVal_11); var currVal_14 = _co.period2; _ck(_v, 40, 0, currVal_14); var currVal_15 = _co.decimal; _ck(_v, 44, 0, currVal_15); var currVal_16 = _co.geometry; _ck(_v, 48, 0, currVal_16); var currVal_17 = _co.integer; _ck(_v, 52, 0, currVal_17); var currVal_18 = _co.interval; _ck(_v, 56, 0, currVal_18); var currVal_19 = _co.link; _ck(_v, 60, 0, currVal_19); var currVal_20 = _co.list; _ck(_v, 64, 0, currVal_20); var currVal_21 = true; var currVal_22 = _co.html; _ck(_v, 68, 0, currVal_21, currVal_22); var currVal_23 = _co.textString; _ck(_v, 72, 0, currVal_23); var currVal_24 = _co.textXML; _ck(_v, 76, 0, currVal_24); var currVal_25 = _co.uri; _ck(_v, 80, 0, currVal_25); }, function (_ck, _v) { var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19)._icon); var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19)._icon); _ck(_v, 18, 0, currVal_3, currVal_4); var currVal_8 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 28)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 28)._icon); var currVal_9 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 28)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 28)._icon); _ck(_v, 27, 0, currVal_8, currVal_9); var currVal_12 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35)._icon); var currVal_13 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35)._icon); _ck(_v, 34, 0, currVal_12, currVal_13); });
+        }, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵl_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵl"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](68, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵl"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]], { bindEvents: [0, "bindEvents"], valueObject: [1, "valueObject"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](69, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["StringValue"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](71, 0, null, null, 1, "kui-text-value-as-string", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵm_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵm"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](72, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵm"], [], { valueObject: [0, "valueObject"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](73, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["XMLValue"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](75, 0, null, null, 1, "kui-text-value-as-xml", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵn_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵn"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](76, 49152, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵn"], [], { valueObject: [0, "valueObject"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](77, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["UriValue"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](79, 0, null, null, 1, "kui-uri-value", [], null, null, null, _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_ɵt_0"], _dist_knora_viewer_knora_viewer_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_ɵt"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](80, 573440, null, 0, _knora_viewer__WEBPACK_IMPORTED_MODULE_7__["ɵt"], [], { valueObject: [0, "valueObject"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 1, 0, currVal_0); var currVal_1 = _co.boolean; _ck(_v, 7, 0, currVal_1); var currVal_2 = _co.color; _ck(_v, 11, 0, currVal_2); var currVal_5 = true; var currVal_6 = true; var currVal_7 = _co.date; _ck(_v, 24, 0, currVal_5, currVal_6, currVal_7); var currVal_10 = true; var currVal_11 = _co.period; _ck(_v, 33, 0, currVal_10, currVal_11); var currVal_14 = _co.period2; _ck(_v, 40, 0, currVal_14); var currVal_15 = _co.decimal; _ck(_v, 44, 0, currVal_15); var currVal_16 = _co.geometry; _ck(_v, 48, 0, currVal_16); var currVal_17 = _co.integer; _ck(_v, 52, 0, currVal_17); var currVal_18 = _co.interval; _ck(_v, 56, 0, currVal_18); var currVal_19 = _co.link; _ck(_v, 60, 0, currVal_19); var currVal_20 = _co.list; _ck(_v, 64, 0, currVal_20); var currVal_21 = true; var currVal_22 = _co.html; _ck(_v, 68, 0, currVal_21, currVal_22); var currVal_23 = _co.textString; _ck(_v, 72, 0, currVal_23); var currVal_24 = _co.textXML; _ck(_v, 76, 0, currVal_24); var currVal_25 = _co.uri; _ck(_v, 80, 0, currVal_25); }, function (_ck, _v) { var currVal_3 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19)._icon); var currVal_4 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 19)._icon); _ck(_v, 18, 0, currVal_3, currVal_4); var currVal_8 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 28)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 28)._icon); var currVal_9 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 28)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 28)._icon); _ck(_v, 27, 0, currVal_8, currVal_9); var currVal_12 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35)._icon); var currVal_13 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35)._avatar || _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 35)._icon); _ck(_v, 34, 0, currVal_12, currVal_13); });
 }
-function View_PropertiesComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-properties", [], null, null, null, View_PropertiesComponent_0, RenderType_PropertiesComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _properties_component__WEBPACK_IMPORTED_MODULE_10__["PropertiesComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var PropertiesComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-properties", _properties_component__WEBPACK_IMPORTED_MODULE_10__["PropertiesComponent"], View_PropertiesComponent_Host_0, {}, {}, []);
+function View_PropertiesComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-properties", [], null, null, null, View_PropertiesComponent_0, RenderType_PropertiesComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _properties_component__WEBPACK_IMPORTED_MODULE_11__["PropertiesComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var PropertiesComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-properties", _properties_component__WEBPACK_IMPORTED_MODULE_11__["PropertiesComponent"], View_PropertiesComponent_Host_0, {}, {}, []);
 
 
 
@@ -22959,7 +23822,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = ["h4[_ngcontent-%COMP%] {\n  border-top: 1px solid #ebebeb;\n  padding-top: 24px; }\n  h4.first[_ngcontent-%COMP%] {\n    border: none; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvdmlld2VyLWRlbW8vcHJvcGVydGllcy9wcm9wZXJ0aWVzLmNvbXBvbmVudC5zY3NzIiwiL1VzZXJzL2FrL0NvZGUva25vcmEtdWkvc3JjL2Fzc2V0cy9zdHlsZS9fbWl4aW5zLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUMwQ0UsNkJBcENvQjtFREpwQixpQkFBaUIsRUFBQTtFQUZuQjtJQUtJLFlBQVksRUFBQSIsImZpbGUiOiJzcmMvYXBwL2tub3JhLXVpLWV4YW1wbGVzL3ZpZXdlci1kZW1vL3Byb3BlcnRpZXMvcHJvcGVydGllcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgJy4uLy4uLy4uLy4uL2Fzc2V0cy9zdHlsZS9taXhpbnMnO1xuXG5oNCB7XG4gIEBpbmNsdWRlIGJvcmRlci10b3AoKTtcbiAgcGFkZGluZy10b3A6IDI0cHg7XG5cbiAgJi5maXJzdCB7XG4gICAgYm9yZGVyOiBub25lO1xuICB9XG59XG4iLCIkYmxhY2s6IHJnYigxMSwgMTEsIDExKTtcbiRibGFjay0xMi1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjEyKTtcbiRibGFjay0xNC1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjE0KTtcbiRibGFjay0yMC1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjIpO1xuJGJsYWNrLTYwLW9wYWNpdHk6IHJnYmEoJGJsYWNrLCAuNik7XG5cbiR3aGl0ZTogcmdiKDI0NCwgMjQ0LCAyNDQpO1xuXG4kYm9yZGVyLWNvbG9yOiAjZWJlYmViO1xuXG5AbWl4aW4gYmFja2dyb3VuZC1jb3ZlcigkYXR0YWNobWVudDogc2Nyb2xsKSB7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgkYmxhY2stMjAtb3BhY2l0eSwgJGJsYWNrLTIwLW9wYWNpdHkpICRhdHRhY2htZW50IGNlbnRlciBjZW50ZXI7XG59XG5cbkBtaXhpbiBmb250LXNtb290aGluZygpIHtcbiAgLXdlYmtpdC1mb250LXNtb290aGluZzogYW50aWFsaWFzZWQ7XG4gIC1tb3otb3N4LWZvbnQtc21vb3RoaW5nOiBncmF5c2NhbGU7XG59XG5cbi8vIFRleHQgU2hhZG93XG5AbWl4aW4gdGV4dC1zaGFkb3coKSB7XG4gIHRleHQtc2hhZG93OiAwIDAgNHB4ICRibGFjaywgLTFweCAtMXB4ICRibGFjay02MC1vcGFjaXR5LCAxcHggMXB4ICRibGFjay02MC1vcGFjaXR5O1xufVxuXG4vLyBCb3ggU2hhZG93XG5AbWl4aW4gYm94LXNoYWRvdygkeDogMCwgJHk6IDFweCwgJGJsdXI6IDNweCwgJGFscGhhOiAuNSkge1xuICBib3gtc2hhZG93OiAkeCAkeSAkYmx1ciByZ2JhKDAsIDAsIDAsICRhbHBoYSk7XG59XG5cbkBtaXhpbiBib3gtc2hhZG93LWJvdHRvbSgkeDogMCwgJHk6IDVweCwgJGJsdXI6IDZweCwgJHNpZGU6IC02cHgsICRhbHBoYTogLjUpIHtcbiAgYm94LXNoYWRvdzogJHggJHkgJGJsdXIgJHNpZGUgcmdiYSgwLCAwLCAwLCAkYWxwaGEpO1xufVxuXG5AbWl4aW4gbWF0LWJveC1zaGFkb3ctZGVlcCgpIHtcbi8vICBib3gtc2hhZG93OiAwIDVweCA1cHggLTNweCAkYmxhY2stMjAtb3BhY2l0eSwgMCA4cHggMTBweCAxcHggJGJsYWNrLTE0LW9wYWNpdHksIDAgM3B4IDE0cHggMnB4ICRibGFjay0xMi1vcGFjaXR5O1xuICBib3gtc2hhZG93OiAwIDNweCA1cHggLTFweCAkYmxhY2stMjAtb3BhY2l0eSwgMCA2cHggMTBweCAwICRibGFjay0xNC1vcGFjaXR5LCAwIDFweCAxOHB4IDAgJGJsYWNrLTEyLW9wYWNpdHk7XG59XG5cbkBtaXhpbiBtYXQtYm94LXNoYWRvdy1mbGF0KCkge1xuICBib3gtc2hhZG93OiAwIDJweCAycHggJGJsYWNrLTIwLW9wYWNpdHksIDAgMCAycHggJGJsYWNrLTEyLW9wYWNpdHk7XG59XG5cbkBtaXhpbiBib3JkZXItdG9wKCkge1xuICBib3JkZXItdG9wOiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlci1yaWdodCgpIHtcbiAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlci1ib3R0b20oKSB7XG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gYm9yZGVyLWxlZnQoKSB7XG4gIGJvcmRlci1sZWZ0OiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlcigpIHtcbiAgYm9yZGVyOiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIHJlbC12aWV3aGVpZ2h0KCRoMTogMCwgJGgyOiAwLCAkaDM6IDApIHtcbiAgLy8gJG1pbnVzOiAkaDEgKyAkaDIgKyAkaDMgKyBweDtcbiAgLy8gaGVpZ2h0OiBjYWxjKDEwMHZoIC0gJG1pbnVzKTtcbn1cblxuXG4vLyBfZGVjaW1hbC5zY3NzIHwgTUlUIExpY2Vuc2UgfCBnaXN0LmdpdGh1Yi5jb20vdGVya2VsLzQzNzM0MjBcblxuLy8gUm91bmQgYSBudW1iZXIgdG8gc3BlY2lmaWVkIGRpZ2l0cy5cbi8vXG4vLyBAcGFyYW0gIHtOdW1iZXJ9ICRudW1iZXIgQSBudW1iZXIgdG8gcm91bmRcbi8vIEBwYXJhbSAge051bWJlcn0gWyRkaWdpdHM6MF0gRGlnaXRzIHRvIG91dHB1dFxuLy8gQHBhcmFtICB7U3RyaW5nfSBbJG1vZGU6cm91bmRdIChyb3VuZHxjZWlsfGZsb29yKSBIb3cgdG8gcm91bmQgYSBudW1iZXJcbi8vIEByZXR1cm4ge051bWJlcn0gQSByb3VuZGVkIG51bWJlclxuLy8gQGV4YW1wbGVcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuMzMzKSAgICA9PiAwXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjMzMywgMSkgPT4gMC4zXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjMzMywgMikgPT4gMC4zM1xuLy8gICAgIGRlY2ltYWwtcm91bmQoMC42NjYpICAgID0+IDFcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuNjY2LCAxKSA9PiAwLjdcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuNjY2LCAyKSA9PiAwLjY3XG4vL1xuQGZ1bmN0aW9uIGRlY2ltYWwtcm91bmQgKCRudW1iZXIsICRkaWdpdHM6IDAsICRtb2RlOiByb3VuZCkge1xuICAkbjogMTtcbiAgLy8gJG51bWJlciBtdXN0IGJlIGEgbnVtYmVyXG4gIEBpZiB0eXBlLW9mKCRudW1iZXIpICE9IG51bWJlciB7XG4gICAgQHdhcm4gJyN7ICRudW1iZXIgfSBpcyBub3QgYSBudW1iZXIuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH1cbiAgLy8gJGRpZ2l0cyBtdXN0IGJlIGEgdW5pdGxlc3MgbnVtYmVyXG4gIEBpZiB0eXBlLW9mKCRkaWdpdHMpICE9IG51bWJlciB7XG4gICAgQHdhcm4gJyN7ICRkaWdpdHMgfSBpcyBub3QgYSBudW1iZXIuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH0gQGVsc2UgaWYgbm90IHVuaXRsZXNzKCRkaWdpdHMpIHtcbiAgICBAd2FybiAnI3sgJGRpZ2l0cyB9IGhhcyBhIHVuaXQuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH1cbiAgQGlmICRkaWdpdHMgPiAwIHtcbiAgICBAZm9yICRpIGZyb20gMSB0aHJvdWdoICRkaWdpdHMge1xuICAgICAgJG46ICRuICogMTA7XG4gICAgfVxuICB9XG4gIEBpZiAkbW9kZSA9PSByb3VuZCB7XG4gICAgQHJldHVybiByb3VuZCgkbnVtYmVyICogJG4pIC8gJG47XG4gIH0gQGVsc2UgaWYgJG1vZGUgPT0gY2VpbCB7XG4gICAgQHJldHVybiBjZWlsKCRudW1iZXIgKiAkbikgLyAkbjtcbiAgfSBAZWxzZSBpZiAkbW9kZSA9PSBmbG9vciB7XG4gICAgQHJldHVybiBmbG9vcigkbnVtYmVyICogJG4pIC8gJG47XG4gIH0gQGVsc2Uge1xuICAgIEB3YXJuICcjeyAkbW9kZSB9IGlzIHVuZGVmaW5lZCBrZXl3b3JkLic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9XG59XG5cbi8vIENlaWwgYSBudW1iZXIgdG8gc3BlY2lmaWVkIGRpZ2l0cy5cbi8vXG4vLyBAcGFyYW0gIHtOdW1iZXJ9ICRudW1iZXIgQSBudW1iZXIgdG8gcm91bmRcbi8vIEBwYXJhbSAge051bWJlcn0gWyRkaWdpdHM6MF0gRGlnaXRzIHRvIG91dHB1dFxuLy8gQHJldHVybiB7TnVtYmVyfSBBIGNlaWxlZCBudW1iZXJcbi8vIEBleGFtcGxlXG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuMzMzKSAgICA9PiAxXG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuMzMzLCAxKSA9PiAwLjRcbi8vICAgICBkZWNpbWFsLWNlaWwoMC4zMzMsIDIpID0+IDAuMzRcbi8vICAgICBkZWNpbWFsLWNlaWwoMC42NjYpICAgID0+IDFcbi8vICAgICBkZWNpbWFsLWNlaWwoMC42NjYsIDEpID0+IDAuN1xuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjY2NiwgMikgPT4gMC42N1xuLy9cbkBmdW5jdGlvbiBkZWNpbWFsLWNlaWwgKCRudW1iZXIsICRkaWdpdHM6IDApIHtcbiAgQHJldHVybiBkZWNpbWFsLXJvdW5kKCRudW1iZXIsICRkaWdpdHMsIGNlaWwpO1xufVxuXG4vLyBGbG9vciBhIG51bWJlciB0byBzcGVjaWZpZWQgZGlnaXRzLlxuLy9cbi8vIEBwYXJhbSAge051bWJlcn0gJG51bWJlciBBIG51bWJlciB0byByb3VuZFxuLy8gQHBhcmFtICB7TnVtYmVyfSBbJGRpZ2l0czowXSBEaWdpdHMgdG8gb3V0cHV0XG4vLyBAcmV0dXJuIHtOdW1iZXJ9IEEgZmxvb3JlZCBudW1iZXJcbi8vIEBleGFtcGxlXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjMzMykgICAgPT4gMFxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC4zMzMsIDEpID0+IDAuM1xuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC4zMzMsIDIpID0+IDAuMzNcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuNjY2KSAgICA9PiAwXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjY2NiwgMSkgPT4gMC42XG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjY2NiwgMikgPT4gMC42NlxuLy9cbkBmdW5jdGlvbiBkZWNpbWFsLWZsb29yICgkbnVtYmVyLCAkZGlnaXRzOiAwKSB7XG4gIEByZXR1cm4gZGVjaW1hbC1yb3VuZCgkbnVtYmVyLCAkZGlnaXRzLCBmbG9vcik7XG59XG5cbiJdfQ== */"];
+var styles = ["h4[_ngcontent-%COMP%] {\n  border-top: 1px solid #ebebeb;\n  padding-top: 24px; }\n  h4.first[_ngcontent-%COMP%] {\n    border: none; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy92aWV3ZXItZGVtby9wcm9wZXJ0aWVzL3Byb3BlcnRpZXMuY29tcG9uZW50LnNjc3MiLCIvVXNlcnMvZmxhdmVucy9jb2RlL0tub3JhLXVpL3NyYy9hc3NldHMvc3R5bGUvX21peGlucy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VDMENFLDZCQXBDb0I7RURKcEIsaUJBQWlCLEVBQUE7RUFGbkI7SUFLSSxZQUFZLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy92aWV3ZXItZGVtby9wcm9wZXJ0aWVzL3Byb3BlcnRpZXMuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0ICcuLi8uLi8uLi8uLi9hc3NldHMvc3R5bGUvbWl4aW5zJztcblxuaDQge1xuICBAaW5jbHVkZSBib3JkZXItdG9wKCk7XG4gIHBhZGRpbmctdG9wOiAyNHB4O1xuXG4gICYuZmlyc3Qge1xuICAgIGJvcmRlcjogbm9uZTtcbiAgfVxufVxuIiwiJGJsYWNrOiByZ2IoMTEsIDExLCAxMSk7XG4kYmxhY2stMTItb3BhY2l0eTogcmdiYSgkYmxhY2ssIC4xMik7XG4kYmxhY2stMTQtb3BhY2l0eTogcmdiYSgkYmxhY2ssIC4xNCk7XG4kYmxhY2stMjAtb3BhY2l0eTogcmdiYSgkYmxhY2ssIC4yKTtcbiRibGFjay02MC1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjYpO1xuXG4kd2hpdGU6IHJnYigyNDQsIDI0NCwgMjQ0KTtcblxuJGJvcmRlci1jb2xvcjogI2ViZWJlYjtcblxuQG1peGluIGJhY2tncm91bmQtY292ZXIoJGF0dGFjaG1lbnQ6IHNjcm9sbCkge1xuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoJGJsYWNrLTIwLW9wYWNpdHksICRibGFjay0yMC1vcGFjaXR5KSAkYXR0YWNobWVudCBjZW50ZXIgY2VudGVyO1xufVxuXG5AbWl4aW4gZm9udC1zbW9vdGhpbmcoKSB7XG4gIC13ZWJraXQtZm9udC1zbW9vdGhpbmc6IGFudGlhbGlhc2VkO1xuICAtbW96LW9zeC1mb250LXNtb290aGluZzogZ3JheXNjYWxlO1xufVxuXG4vLyBUZXh0IFNoYWRvd1xuQG1peGluIHRleHQtc2hhZG93KCkge1xuICB0ZXh0LXNoYWRvdzogMCAwIDRweCAkYmxhY2ssIC0xcHggLTFweCAkYmxhY2stNjAtb3BhY2l0eSwgMXB4IDFweCAkYmxhY2stNjAtb3BhY2l0eTtcbn1cblxuLy8gQm94IFNoYWRvd1xuQG1peGluIGJveC1zaGFkb3coJHg6IDAsICR5OiAxcHgsICRibHVyOiAzcHgsICRhbHBoYTogLjUpIHtcbiAgYm94LXNoYWRvdzogJHggJHkgJGJsdXIgcmdiYSgwLCAwLCAwLCAkYWxwaGEpO1xufVxuXG5AbWl4aW4gYm94LXNoYWRvdy1ib3R0b20oJHg6IDAsICR5OiA1cHgsICRibHVyOiA2cHgsICRzaWRlOiAtNnB4LCAkYWxwaGE6IC41KSB7XG4gIGJveC1zaGFkb3c6ICR4ICR5ICRibHVyICRzaWRlIHJnYmEoMCwgMCwgMCwgJGFscGhhKTtcbn1cblxuQG1peGluIG1hdC1ib3gtc2hhZG93LWRlZXAoKSB7XG4vLyAgYm94LXNoYWRvdzogMCA1cHggNXB4IC0zcHggJGJsYWNrLTIwLW9wYWNpdHksIDAgOHB4IDEwcHggMXB4ICRibGFjay0xNC1vcGFjaXR5LCAwIDNweCAxNHB4IDJweCAkYmxhY2stMTItb3BhY2l0eTtcbiAgYm94LXNoYWRvdzogMCAzcHggNXB4IC0xcHggJGJsYWNrLTIwLW9wYWNpdHksIDAgNnB4IDEwcHggMCAkYmxhY2stMTQtb3BhY2l0eSwgMCAxcHggMThweCAwICRibGFjay0xMi1vcGFjaXR5O1xufVxuXG5AbWl4aW4gbWF0LWJveC1zaGFkb3ctZmxhdCgpIHtcbiAgYm94LXNoYWRvdzogMCAycHggMnB4ICRibGFjay0yMC1vcGFjaXR5LCAwIDAgMnB4ICRibGFjay0xMi1vcGFjaXR5O1xufVxuXG5AbWl4aW4gYm9yZGVyLXRvcCgpIHtcbiAgYm9yZGVyLXRvcDogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXItcmlnaHQoKSB7XG4gIGJvcmRlci1yaWdodDogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXItYm90dG9tKCkge1xuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlci1sZWZ0KCkge1xuICBib3JkZXItbGVmdDogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXIoKSB7XG4gIGJvcmRlcjogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiByZWwtdmlld2hlaWdodCgkaDE6IDAsICRoMjogMCwgJGgzOiAwKSB7XG4gIC8vICRtaW51czogJGgxICsgJGgyICsgJGgzICsgcHg7XG4gIC8vIGhlaWdodDogY2FsYygxMDB2aCAtICRtaW51cyk7XG59XG5cblxuLy8gX2RlY2ltYWwuc2NzcyB8IE1JVCBMaWNlbnNlIHwgZ2lzdC5naXRodWIuY29tL3RlcmtlbC80MzczNDIwXG5cbi8vIFJvdW5kIGEgbnVtYmVyIHRvIHNwZWNpZmllZCBkaWdpdHMuXG4vL1xuLy8gQHBhcmFtICB7TnVtYmVyfSAkbnVtYmVyIEEgbnVtYmVyIHRvIHJvdW5kXG4vLyBAcGFyYW0gIHtOdW1iZXJ9IFskZGlnaXRzOjBdIERpZ2l0cyB0byBvdXRwdXRcbi8vIEBwYXJhbSAge1N0cmluZ30gWyRtb2RlOnJvdW5kXSAocm91bmR8Y2VpbHxmbG9vcikgSG93IHRvIHJvdW5kIGEgbnVtYmVyXG4vLyBAcmV0dXJuIHtOdW1iZXJ9IEEgcm91bmRlZCBudW1iZXJcbi8vIEBleGFtcGxlXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjMzMykgICAgPT4gMFxuLy8gICAgIGRlY2ltYWwtcm91bmQoMC4zMzMsIDEpID0+IDAuM1xuLy8gICAgIGRlY2ltYWwtcm91bmQoMC4zMzMsIDIpID0+IDAuMzNcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuNjY2KSAgICA9PiAxXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjY2NiwgMSkgPT4gMC43XG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjY2NiwgMikgPT4gMC42N1xuLy9cbkBmdW5jdGlvbiBkZWNpbWFsLXJvdW5kICgkbnVtYmVyLCAkZGlnaXRzOiAwLCAkbW9kZTogcm91bmQpIHtcbiAgJG46IDE7XG4gIC8vICRudW1iZXIgbXVzdCBiZSBhIG51bWJlclxuICBAaWYgdHlwZS1vZigkbnVtYmVyKSAhPSBudW1iZXIge1xuICAgIEB3YXJuICcjeyAkbnVtYmVyIH0gaXMgbm90IGEgbnVtYmVyLic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9XG4gIC8vICRkaWdpdHMgbXVzdCBiZSBhIHVuaXRsZXNzIG51bWJlclxuICBAaWYgdHlwZS1vZigkZGlnaXRzKSAhPSBudW1iZXIge1xuICAgIEB3YXJuICcjeyAkZGlnaXRzIH0gaXMgbm90IGEgbnVtYmVyLic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9IEBlbHNlIGlmIG5vdCB1bml0bGVzcygkZGlnaXRzKSB7XG4gICAgQHdhcm4gJyN7ICRkaWdpdHMgfSBoYXMgYSB1bml0Lic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9XG4gIEBpZiAkZGlnaXRzID4gMCB7XG4gICAgQGZvciAkaSBmcm9tIDEgdGhyb3VnaCAkZGlnaXRzIHtcbiAgICAgICRuOiAkbiAqIDEwO1xuICAgIH1cbiAgfVxuICBAaWYgJG1vZGUgPT0gcm91bmQge1xuICAgIEByZXR1cm4gcm91bmQoJG51bWJlciAqICRuKSAvICRuO1xuICB9IEBlbHNlIGlmICRtb2RlID09IGNlaWwge1xuICAgIEByZXR1cm4gY2VpbCgkbnVtYmVyICogJG4pIC8gJG47XG4gIH0gQGVsc2UgaWYgJG1vZGUgPT0gZmxvb3Ige1xuICAgIEByZXR1cm4gZmxvb3IoJG51bWJlciAqICRuKSAvICRuO1xuICB9IEBlbHNlIHtcbiAgICBAd2FybiAnI3sgJG1vZGUgfSBpcyB1bmRlZmluZWQga2V5d29yZC4nO1xuICAgIEByZXR1cm4gJG51bWJlcjtcbiAgfVxufVxuXG4vLyBDZWlsIGEgbnVtYmVyIHRvIHNwZWNpZmllZCBkaWdpdHMuXG4vL1xuLy8gQHBhcmFtICB7TnVtYmVyfSAkbnVtYmVyIEEgbnVtYmVyIHRvIHJvdW5kXG4vLyBAcGFyYW0gIHtOdW1iZXJ9IFskZGlnaXRzOjBdIERpZ2l0cyB0byBvdXRwdXRcbi8vIEByZXR1cm4ge051bWJlcn0gQSBjZWlsZWQgbnVtYmVyXG4vLyBAZXhhbXBsZVxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjMzMykgICAgPT4gMVxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjMzMywgMSkgPT4gMC40XG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuMzMzLCAyKSA9PiAwLjM0XG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuNjY2KSAgICA9PiAxXG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuNjY2LCAxKSA9PiAwLjdcbi8vICAgICBkZWNpbWFsLWNlaWwoMC42NjYsIDIpID0+IDAuNjdcbi8vXG5AZnVuY3Rpb24gZGVjaW1hbC1jZWlsICgkbnVtYmVyLCAkZGlnaXRzOiAwKSB7XG4gIEByZXR1cm4gZGVjaW1hbC1yb3VuZCgkbnVtYmVyLCAkZGlnaXRzLCBjZWlsKTtcbn1cblxuLy8gRmxvb3IgYSBudW1iZXIgdG8gc3BlY2lmaWVkIGRpZ2l0cy5cbi8vXG4vLyBAcGFyYW0gIHtOdW1iZXJ9ICRudW1iZXIgQSBudW1iZXIgdG8gcm91bmRcbi8vIEBwYXJhbSAge051bWJlcn0gWyRkaWdpdHM6MF0gRGlnaXRzIHRvIG91dHB1dFxuLy8gQHJldHVybiB7TnVtYmVyfSBBIGZsb29yZWQgbnVtYmVyXG4vLyBAZXhhbXBsZVxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC4zMzMpICAgID0+IDBcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuMzMzLCAxKSA9PiAwLjNcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuMzMzLCAyKSA9PiAwLjMzXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjY2NikgICAgPT4gMFxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC42NjYsIDEpID0+IDAuNlxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC42NjYsIDIpID0+IDAuNjZcbi8vXG5AZnVuY3Rpb24gZGVjaW1hbC1mbG9vciAoJG51bWJlciwgJGRpZ2l0czogMCkge1xuICBAcmV0dXJuIGRlY2ltYWwtcm91bmQoJG51bWJlciwgJGRpZ2l0cywgZmxvb3IpO1xufVxuXG4iXX0= */"];
 
 
 
@@ -22998,7 +23861,7 @@ var PropertiesComponent = /** @class */ /*@__PURE__*/ (function () {
         this.integer = new _knora_core__WEBPACK_IMPORTED_MODULE_0__["ReadIntegerValue"]('id', 'propIri', 123);
         this.interval = new _knora_core__WEBPACK_IMPORTED_MODULE_0__["ReadIntervalValue"]('id', 'propIri', 1700, 1800);
         this.link = new _knora_core__WEBPACK_IMPORTED_MODULE_0__["ReadLinkValue"]('id', 'propIri', 'http://rdfh.ch/c9824353ae06', this.referredResource);
-        this.list = new _knora_core__WEBPACK_IMPORTED_MODULE_0__["ReadListValue"]('id', 'propIri', 'listNodeIri', 'Node Label');
+        this.list = new _knora_core__WEBPACK_IMPORTED_MODULE_0__["ReadListValue"]('id', 'propIri', 'listNodeIri');
         this.textString = new _knora_core__WEBPACK_IMPORTED_MODULE_0__["ReadTextValueAsString"]('id', 'propIri', 'Text as string');
         this.textXML = new _knora_core__WEBPACK_IMPORTED_MODULE_0__["ReadTextValueAsXml"]('id', 'propIri', '<?xml version="1.0" encoding="UTF-8"?> <text>Ich liebe die <a href="http://rdfh.ch/0001/a-thing" class="salsah-link">Dinge</a>, sie sind alles für mich.</text>', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
         this.html = new _knora_core__WEBPACK_IMPORTED_MODULE_0__["ReadTextValueAsHtml"]('id', 'propIri', '<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="salsah-link">link</a></p>', this.standoff);
@@ -23083,7 +23946,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = ["h4[_ngcontent-%COMP%] {\n  border-top: 1px solid #ebebeb;\n  padding-top: 24px; }\n  h4.first[_ngcontent-%COMP%] {\n    border: none; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvdmlld2VyLWRlbW8vcmVzb3VyY2VzL3Jlc291cmNlcy5jb21wb25lbnQuc2NzcyIsIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hc3NldHMvc3R5bGUvX21peGlucy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VDMENFLDZCQXBDb0I7RURKcEIsaUJBQWlCLEVBQUE7RUFGbkI7SUFLSSxZQUFZLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy92aWV3ZXItZGVtby9yZXNvdXJjZXMvcmVzb3VyY2VzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vLi4vLi4vLi4vYXNzZXRzL3N0eWxlL21peGlucyc7XG5cbmg0IHtcbiAgQGluY2x1ZGUgYm9yZGVyLXRvcCgpO1xuICBwYWRkaW5nLXRvcDogMjRweDtcblxuICAmLmZpcnN0IHtcbiAgICBib3JkZXI6IG5vbmU7XG4gIH1cbn1cbiIsIiRibGFjazogcmdiKDExLCAxMSwgMTEpO1xuJGJsYWNrLTEyLW9wYWNpdHk6IHJnYmEoJGJsYWNrLCAuMTIpO1xuJGJsYWNrLTE0LW9wYWNpdHk6IHJnYmEoJGJsYWNrLCAuMTQpO1xuJGJsYWNrLTIwLW9wYWNpdHk6IHJnYmEoJGJsYWNrLCAuMik7XG4kYmxhY2stNjAtb3BhY2l0eTogcmdiYSgkYmxhY2ssIC42KTtcblxuJHdoaXRlOiByZ2IoMjQ0LCAyNDQsIDI0NCk7XG5cbiRib3JkZXItY29sb3I6ICNlYmViZWI7XG5cbkBtaXhpbiBiYWNrZ3JvdW5kLWNvdmVyKCRhdHRhY2htZW50OiBzY3JvbGwpIHtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KCRibGFjay0yMC1vcGFjaXR5LCAkYmxhY2stMjAtb3BhY2l0eSkgJGF0dGFjaG1lbnQgY2VudGVyIGNlbnRlcjtcbn1cblxuQG1peGluIGZvbnQtc21vb3RoaW5nKCkge1xuICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcbiAgLW1vei1vc3gtZm9udC1zbW9vdGhpbmc6IGdyYXlzY2FsZTtcbn1cblxuLy8gVGV4dCBTaGFkb3dcbkBtaXhpbiB0ZXh0LXNoYWRvdygpIHtcbiAgdGV4dC1zaGFkb3c6IDAgMCA0cHggJGJsYWNrLCAtMXB4IC0xcHggJGJsYWNrLTYwLW9wYWNpdHksIDFweCAxcHggJGJsYWNrLTYwLW9wYWNpdHk7XG59XG5cbi8vIEJveCBTaGFkb3dcbkBtaXhpbiBib3gtc2hhZG93KCR4OiAwLCAkeTogMXB4LCAkYmx1cjogM3B4LCAkYWxwaGE6IC41KSB7XG4gIGJveC1zaGFkb3c6ICR4ICR5ICRibHVyIHJnYmEoMCwgMCwgMCwgJGFscGhhKTtcbn1cblxuQG1peGluIGJveC1zaGFkb3ctYm90dG9tKCR4OiAwLCAkeTogNXB4LCAkYmx1cjogNnB4LCAkc2lkZTogLTZweCwgJGFscGhhOiAuNSkge1xuICBib3gtc2hhZG93OiAkeCAkeSAkYmx1ciAkc2lkZSByZ2JhKDAsIDAsIDAsICRhbHBoYSk7XG59XG5cbkBtaXhpbiBtYXQtYm94LXNoYWRvdy1kZWVwKCkge1xuLy8gIGJveC1zaGFkb3c6IDAgNXB4IDVweCAtM3B4ICRibGFjay0yMC1vcGFjaXR5LCAwIDhweCAxMHB4IDFweCAkYmxhY2stMTQtb3BhY2l0eSwgMCAzcHggMTRweCAycHggJGJsYWNrLTEyLW9wYWNpdHk7XG4gIGJveC1zaGFkb3c6IDAgM3B4IDVweCAtMXB4ICRibGFjay0yMC1vcGFjaXR5LCAwIDZweCAxMHB4IDAgJGJsYWNrLTE0LW9wYWNpdHksIDAgMXB4IDE4cHggMCAkYmxhY2stMTItb3BhY2l0eTtcbn1cblxuQG1peGluIG1hdC1ib3gtc2hhZG93LWZsYXQoKSB7XG4gIGJveC1zaGFkb3c6IDAgMnB4IDJweCAkYmxhY2stMjAtb3BhY2l0eSwgMCAwIDJweCAkYmxhY2stMTItb3BhY2l0eTtcbn1cblxuQG1peGluIGJvcmRlci10b3AoKSB7XG4gIGJvcmRlci10b3A6IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gYm9yZGVyLXJpZ2h0KCkge1xuICBib3JkZXItcmlnaHQ6IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gYm9yZGVyLWJvdHRvbSgpIHtcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXItbGVmdCgpIHtcbiAgYm9yZGVyLWxlZnQ6IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gYm9yZGVyKCkge1xuICBib3JkZXI6IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gcmVsLXZpZXdoZWlnaHQoJGgxOiAwLCAkaDI6IDAsICRoMzogMCkge1xuICAvLyAkbWludXM6ICRoMSArICRoMiArICRoMyArIHB4O1xuICAvLyBoZWlnaHQ6IGNhbGMoMTAwdmggLSAkbWludXMpO1xufVxuXG5cbi8vIF9kZWNpbWFsLnNjc3MgfCBNSVQgTGljZW5zZSB8IGdpc3QuZ2l0aHViLmNvbS90ZXJrZWwvNDM3MzQyMFxuXG4vLyBSb3VuZCBhIG51bWJlciB0byBzcGVjaWZpZWQgZGlnaXRzLlxuLy9cbi8vIEBwYXJhbSAge051bWJlcn0gJG51bWJlciBBIG51bWJlciB0byByb3VuZFxuLy8gQHBhcmFtICB7TnVtYmVyfSBbJGRpZ2l0czowXSBEaWdpdHMgdG8gb3V0cHV0XG4vLyBAcGFyYW0gIHtTdHJpbmd9IFskbW9kZTpyb3VuZF0gKHJvdW5kfGNlaWx8Zmxvb3IpIEhvdyB0byByb3VuZCBhIG51bWJlclxuLy8gQHJldHVybiB7TnVtYmVyfSBBIHJvdW5kZWQgbnVtYmVyXG4vLyBAZXhhbXBsZVxuLy8gICAgIGRlY2ltYWwtcm91bmQoMC4zMzMpICAgID0+IDBcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuMzMzLCAxKSA9PiAwLjNcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuMzMzLCAyKSA9PiAwLjMzXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjY2NikgICAgPT4gMVxuLy8gICAgIGRlY2ltYWwtcm91bmQoMC42NjYsIDEpID0+IDAuN1xuLy8gICAgIGRlY2ltYWwtcm91bmQoMC42NjYsIDIpID0+IDAuNjdcbi8vXG5AZnVuY3Rpb24gZGVjaW1hbC1yb3VuZCAoJG51bWJlciwgJGRpZ2l0czogMCwgJG1vZGU6IHJvdW5kKSB7XG4gICRuOiAxO1xuICAvLyAkbnVtYmVyIG11c3QgYmUgYSBudW1iZXJcbiAgQGlmIHR5cGUtb2YoJG51bWJlcikgIT0gbnVtYmVyIHtcbiAgICBAd2FybiAnI3sgJG51bWJlciB9IGlzIG5vdCBhIG51bWJlci4nO1xuICAgIEByZXR1cm4gJG51bWJlcjtcbiAgfVxuICAvLyAkZGlnaXRzIG11c3QgYmUgYSB1bml0bGVzcyBudW1iZXJcbiAgQGlmIHR5cGUtb2YoJGRpZ2l0cykgIT0gbnVtYmVyIHtcbiAgICBAd2FybiAnI3sgJGRpZ2l0cyB9IGlzIG5vdCBhIG51bWJlci4nO1xuICAgIEByZXR1cm4gJG51bWJlcjtcbiAgfSBAZWxzZSBpZiBub3QgdW5pdGxlc3MoJGRpZ2l0cykge1xuICAgIEB3YXJuICcjeyAkZGlnaXRzIH0gaGFzIGEgdW5pdC4nO1xuICAgIEByZXR1cm4gJG51bWJlcjtcbiAgfVxuICBAaWYgJGRpZ2l0cyA+IDAge1xuICAgIEBmb3IgJGkgZnJvbSAxIHRocm91Z2ggJGRpZ2l0cyB7XG4gICAgICAkbjogJG4gKiAxMDtcbiAgICB9XG4gIH1cbiAgQGlmICRtb2RlID09IHJvdW5kIHtcbiAgICBAcmV0dXJuIHJvdW5kKCRudW1iZXIgKiAkbikgLyAkbjtcbiAgfSBAZWxzZSBpZiAkbW9kZSA9PSBjZWlsIHtcbiAgICBAcmV0dXJuIGNlaWwoJG51bWJlciAqICRuKSAvICRuO1xuICB9IEBlbHNlIGlmICRtb2RlID09IGZsb29yIHtcbiAgICBAcmV0dXJuIGZsb29yKCRudW1iZXIgKiAkbikgLyAkbjtcbiAgfSBAZWxzZSB7XG4gICAgQHdhcm4gJyN7ICRtb2RlIH0gaXMgdW5kZWZpbmVkIGtleXdvcmQuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH1cbn1cblxuLy8gQ2VpbCBhIG51bWJlciB0byBzcGVjaWZpZWQgZGlnaXRzLlxuLy9cbi8vIEBwYXJhbSAge051bWJlcn0gJG51bWJlciBBIG51bWJlciB0byByb3VuZFxuLy8gQHBhcmFtICB7TnVtYmVyfSBbJGRpZ2l0czowXSBEaWdpdHMgdG8gb3V0cHV0XG4vLyBAcmV0dXJuIHtOdW1iZXJ9IEEgY2VpbGVkIG51bWJlclxuLy8gQGV4YW1wbGVcbi8vICAgICBkZWNpbWFsLWNlaWwoMC4zMzMpICAgID0+IDFcbi8vICAgICBkZWNpbWFsLWNlaWwoMC4zMzMsIDEpID0+IDAuNFxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjMzMywgMikgPT4gMC4zNFxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjY2NikgICAgPT4gMVxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjY2NiwgMSkgPT4gMC43XG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuNjY2LCAyKSA9PiAwLjY3XG4vL1xuQGZ1bmN0aW9uIGRlY2ltYWwtY2VpbCAoJG51bWJlciwgJGRpZ2l0czogMCkge1xuICBAcmV0dXJuIGRlY2ltYWwtcm91bmQoJG51bWJlciwgJGRpZ2l0cywgY2VpbCk7XG59XG5cbi8vIEZsb29yIGEgbnVtYmVyIHRvIHNwZWNpZmllZCBkaWdpdHMuXG4vL1xuLy8gQHBhcmFtICB7TnVtYmVyfSAkbnVtYmVyIEEgbnVtYmVyIHRvIHJvdW5kXG4vLyBAcGFyYW0gIHtOdW1iZXJ9IFskZGlnaXRzOjBdIERpZ2l0cyB0byBvdXRwdXRcbi8vIEByZXR1cm4ge051bWJlcn0gQSBmbG9vcmVkIG51bWJlclxuLy8gQGV4YW1wbGVcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuMzMzKSAgICA9PiAwXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjMzMywgMSkgPT4gMC4zXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjMzMywgMikgPT4gMC4zM1xuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC42NjYpICAgID0+IDBcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuNjY2LCAxKSA9PiAwLjZcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuNjY2LCAyKSA9PiAwLjY2XG4vL1xuQGZ1bmN0aW9uIGRlY2ltYWwtZmxvb3IgKCRudW1iZXIsICRkaWdpdHM6IDApIHtcbiAgQHJldHVybiBkZWNpbWFsLXJvdW5kKCRudW1iZXIsICRkaWdpdHMsIGZsb29yKTtcbn1cblxuIl19 */"];
+var styles = ["h4[_ngcontent-%COMP%] {\n  border-top: 1px solid #ebebeb;\n  padding-top: 24px; }\n  h4.first[_ngcontent-%COMP%] {\n    border: none; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy92aWV3ZXItZGVtby9yZXNvdXJjZXMvcmVzb3VyY2VzLmNvbXBvbmVudC5zY3NzIiwiL1VzZXJzL2ZsYXZlbnMvY29kZS9Lbm9yYS11aS9zcmMvYXNzZXRzL3N0eWxlL19taXhpbnMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQzBDRSw2QkFwQ29CO0VESnBCLGlCQUFpQixFQUFBO0VBRm5CO0lBS0ksWUFBWSxFQUFBIiwiZmlsZSI6InNyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvdmlld2VyLWRlbW8vcmVzb3VyY2VzL3Jlc291cmNlcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgJy4uLy4uLy4uLy4uL2Fzc2V0cy9zdHlsZS9taXhpbnMnO1xuXG5oNCB7XG4gIEBpbmNsdWRlIGJvcmRlci10b3AoKTtcbiAgcGFkZGluZy10b3A6IDI0cHg7XG5cbiAgJi5maXJzdCB7XG4gICAgYm9yZGVyOiBub25lO1xuICB9XG59XG4iLCIkYmxhY2s6IHJnYigxMSwgMTEsIDExKTtcbiRibGFjay0xMi1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjEyKTtcbiRibGFjay0xNC1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjE0KTtcbiRibGFjay0yMC1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjIpO1xuJGJsYWNrLTYwLW9wYWNpdHk6IHJnYmEoJGJsYWNrLCAuNik7XG5cbiR3aGl0ZTogcmdiKDI0NCwgMjQ0LCAyNDQpO1xuXG4kYm9yZGVyLWNvbG9yOiAjZWJlYmViO1xuXG5AbWl4aW4gYmFja2dyb3VuZC1jb3ZlcigkYXR0YWNobWVudDogc2Nyb2xsKSB7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgkYmxhY2stMjAtb3BhY2l0eSwgJGJsYWNrLTIwLW9wYWNpdHkpICRhdHRhY2htZW50IGNlbnRlciBjZW50ZXI7XG59XG5cbkBtaXhpbiBmb250LXNtb290aGluZygpIHtcbiAgLXdlYmtpdC1mb250LXNtb290aGluZzogYW50aWFsaWFzZWQ7XG4gIC1tb3otb3N4LWZvbnQtc21vb3RoaW5nOiBncmF5c2NhbGU7XG59XG5cbi8vIFRleHQgU2hhZG93XG5AbWl4aW4gdGV4dC1zaGFkb3coKSB7XG4gIHRleHQtc2hhZG93OiAwIDAgNHB4ICRibGFjaywgLTFweCAtMXB4ICRibGFjay02MC1vcGFjaXR5LCAxcHggMXB4ICRibGFjay02MC1vcGFjaXR5O1xufVxuXG4vLyBCb3ggU2hhZG93XG5AbWl4aW4gYm94LXNoYWRvdygkeDogMCwgJHk6IDFweCwgJGJsdXI6IDNweCwgJGFscGhhOiAuNSkge1xuICBib3gtc2hhZG93OiAkeCAkeSAkYmx1ciByZ2JhKDAsIDAsIDAsICRhbHBoYSk7XG59XG5cbkBtaXhpbiBib3gtc2hhZG93LWJvdHRvbSgkeDogMCwgJHk6IDVweCwgJGJsdXI6IDZweCwgJHNpZGU6IC02cHgsICRhbHBoYTogLjUpIHtcbiAgYm94LXNoYWRvdzogJHggJHkgJGJsdXIgJHNpZGUgcmdiYSgwLCAwLCAwLCAkYWxwaGEpO1xufVxuXG5AbWl4aW4gbWF0LWJveC1zaGFkb3ctZGVlcCgpIHtcbi8vICBib3gtc2hhZG93OiAwIDVweCA1cHggLTNweCAkYmxhY2stMjAtb3BhY2l0eSwgMCA4cHggMTBweCAxcHggJGJsYWNrLTE0LW9wYWNpdHksIDAgM3B4IDE0cHggMnB4ICRibGFjay0xMi1vcGFjaXR5O1xuICBib3gtc2hhZG93OiAwIDNweCA1cHggLTFweCAkYmxhY2stMjAtb3BhY2l0eSwgMCA2cHggMTBweCAwICRibGFjay0xNC1vcGFjaXR5LCAwIDFweCAxOHB4IDAgJGJsYWNrLTEyLW9wYWNpdHk7XG59XG5cbkBtaXhpbiBtYXQtYm94LXNoYWRvdy1mbGF0KCkge1xuICBib3gtc2hhZG93OiAwIDJweCAycHggJGJsYWNrLTIwLW9wYWNpdHksIDAgMCAycHggJGJsYWNrLTEyLW9wYWNpdHk7XG59XG5cbkBtaXhpbiBib3JkZXItdG9wKCkge1xuICBib3JkZXItdG9wOiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlci1yaWdodCgpIHtcbiAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlci1ib3R0b20oKSB7XG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gYm9yZGVyLWxlZnQoKSB7XG4gIGJvcmRlci1sZWZ0OiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlcigpIHtcbiAgYm9yZGVyOiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIHJlbC12aWV3aGVpZ2h0KCRoMTogMCwgJGgyOiAwLCAkaDM6IDApIHtcbiAgLy8gJG1pbnVzOiAkaDEgKyAkaDIgKyAkaDMgKyBweDtcbiAgLy8gaGVpZ2h0OiBjYWxjKDEwMHZoIC0gJG1pbnVzKTtcbn1cblxuXG4vLyBfZGVjaW1hbC5zY3NzIHwgTUlUIExpY2Vuc2UgfCBnaXN0LmdpdGh1Yi5jb20vdGVya2VsLzQzNzM0MjBcblxuLy8gUm91bmQgYSBudW1iZXIgdG8gc3BlY2lmaWVkIGRpZ2l0cy5cbi8vXG4vLyBAcGFyYW0gIHtOdW1iZXJ9ICRudW1iZXIgQSBudW1iZXIgdG8gcm91bmRcbi8vIEBwYXJhbSAge051bWJlcn0gWyRkaWdpdHM6MF0gRGlnaXRzIHRvIG91dHB1dFxuLy8gQHBhcmFtICB7U3RyaW5nfSBbJG1vZGU6cm91bmRdIChyb3VuZHxjZWlsfGZsb29yKSBIb3cgdG8gcm91bmQgYSBudW1iZXJcbi8vIEByZXR1cm4ge051bWJlcn0gQSByb3VuZGVkIG51bWJlclxuLy8gQGV4YW1wbGVcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuMzMzKSAgICA9PiAwXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjMzMywgMSkgPT4gMC4zXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjMzMywgMikgPT4gMC4zM1xuLy8gICAgIGRlY2ltYWwtcm91bmQoMC42NjYpICAgID0+IDFcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuNjY2LCAxKSA9PiAwLjdcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuNjY2LCAyKSA9PiAwLjY3XG4vL1xuQGZ1bmN0aW9uIGRlY2ltYWwtcm91bmQgKCRudW1iZXIsICRkaWdpdHM6IDAsICRtb2RlOiByb3VuZCkge1xuICAkbjogMTtcbiAgLy8gJG51bWJlciBtdXN0IGJlIGEgbnVtYmVyXG4gIEBpZiB0eXBlLW9mKCRudW1iZXIpICE9IG51bWJlciB7XG4gICAgQHdhcm4gJyN7ICRudW1iZXIgfSBpcyBub3QgYSBudW1iZXIuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH1cbiAgLy8gJGRpZ2l0cyBtdXN0IGJlIGEgdW5pdGxlc3MgbnVtYmVyXG4gIEBpZiB0eXBlLW9mKCRkaWdpdHMpICE9IG51bWJlciB7XG4gICAgQHdhcm4gJyN7ICRkaWdpdHMgfSBpcyBub3QgYSBudW1iZXIuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH0gQGVsc2UgaWYgbm90IHVuaXRsZXNzKCRkaWdpdHMpIHtcbiAgICBAd2FybiAnI3sgJGRpZ2l0cyB9IGhhcyBhIHVuaXQuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH1cbiAgQGlmICRkaWdpdHMgPiAwIHtcbiAgICBAZm9yICRpIGZyb20gMSB0aHJvdWdoICRkaWdpdHMge1xuICAgICAgJG46ICRuICogMTA7XG4gICAgfVxuICB9XG4gIEBpZiAkbW9kZSA9PSByb3VuZCB7XG4gICAgQHJldHVybiByb3VuZCgkbnVtYmVyICogJG4pIC8gJG47XG4gIH0gQGVsc2UgaWYgJG1vZGUgPT0gY2VpbCB7XG4gICAgQHJldHVybiBjZWlsKCRudW1iZXIgKiAkbikgLyAkbjtcbiAgfSBAZWxzZSBpZiAkbW9kZSA9PSBmbG9vciB7XG4gICAgQHJldHVybiBmbG9vcigkbnVtYmVyICogJG4pIC8gJG47XG4gIH0gQGVsc2Uge1xuICAgIEB3YXJuICcjeyAkbW9kZSB9IGlzIHVuZGVmaW5lZCBrZXl3b3JkLic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9XG59XG5cbi8vIENlaWwgYSBudW1iZXIgdG8gc3BlY2lmaWVkIGRpZ2l0cy5cbi8vXG4vLyBAcGFyYW0gIHtOdW1iZXJ9ICRudW1iZXIgQSBudW1iZXIgdG8gcm91bmRcbi8vIEBwYXJhbSAge051bWJlcn0gWyRkaWdpdHM6MF0gRGlnaXRzIHRvIG91dHB1dFxuLy8gQHJldHVybiB7TnVtYmVyfSBBIGNlaWxlZCBudW1iZXJcbi8vIEBleGFtcGxlXG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuMzMzKSAgICA9PiAxXG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuMzMzLCAxKSA9PiAwLjRcbi8vICAgICBkZWNpbWFsLWNlaWwoMC4zMzMsIDIpID0+IDAuMzRcbi8vICAgICBkZWNpbWFsLWNlaWwoMC42NjYpICAgID0+IDFcbi8vICAgICBkZWNpbWFsLWNlaWwoMC42NjYsIDEpID0+IDAuN1xuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjY2NiwgMikgPT4gMC42N1xuLy9cbkBmdW5jdGlvbiBkZWNpbWFsLWNlaWwgKCRudW1iZXIsICRkaWdpdHM6IDApIHtcbiAgQHJldHVybiBkZWNpbWFsLXJvdW5kKCRudW1iZXIsICRkaWdpdHMsIGNlaWwpO1xufVxuXG4vLyBGbG9vciBhIG51bWJlciB0byBzcGVjaWZpZWQgZGlnaXRzLlxuLy9cbi8vIEBwYXJhbSAge051bWJlcn0gJG51bWJlciBBIG51bWJlciB0byByb3VuZFxuLy8gQHBhcmFtICB7TnVtYmVyfSBbJGRpZ2l0czowXSBEaWdpdHMgdG8gb3V0cHV0XG4vLyBAcmV0dXJuIHtOdW1iZXJ9IEEgZmxvb3JlZCBudW1iZXJcbi8vIEBleGFtcGxlXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjMzMykgICAgPT4gMFxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC4zMzMsIDEpID0+IDAuM1xuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC4zMzMsIDIpID0+IDAuMzNcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuNjY2KSAgICA9PiAwXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjY2NiwgMSkgPT4gMC42XG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjY2NiwgMikgPT4gMC42NlxuLy9cbkBmdW5jdGlvbiBkZWNpbWFsLWZsb29yICgkbnVtYmVyLCAkZGlnaXRzOiAwKSB7XG4gIEByZXR1cm4gZGVjaW1hbC1yb3VuZCgkbnVtYmVyLCAkZGlnaXRzLCBmbG9vcik7XG59XG5cbiJdfQ== */"];
 
 
 
@@ -23427,7 +24290,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = ["h4[_ngcontent-%COMP%] {\n  border-top: 1px solid #ebebeb;\n  padding-top: 24px; }\n  h4.first[_ngcontent-%COMP%] {\n    border: none; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvdmlld2VyLWRlbW8vdmlld3Mvdmlld3MuY29tcG9uZW50LnNjc3MiLCIvVXNlcnMvYWsvQ29kZS9rbm9yYS11aS9zcmMvYXNzZXRzL3N0eWxlL19taXhpbnMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQzBDRSw2QkFwQ29CO0VESnBCLGlCQUFpQixFQUFBO0VBRm5CO0lBS0ksWUFBWSxFQUFBIiwiZmlsZSI6InNyYy9hcHAva25vcmEtdWktZXhhbXBsZXMvdmlld2VyLWRlbW8vdmlld3Mvdmlld3MuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0ICcuLi8uLi8uLi8uLi9hc3NldHMvc3R5bGUvbWl4aW5zJztcblxuaDQge1xuICBAaW5jbHVkZSBib3JkZXItdG9wKCk7XG4gIHBhZGRpbmctdG9wOiAyNHB4O1xuXG4gICYuZmlyc3Qge1xuICAgIGJvcmRlcjogbm9uZTtcbiAgfVxufVxuIiwiJGJsYWNrOiByZ2IoMTEsIDExLCAxMSk7XG4kYmxhY2stMTItb3BhY2l0eTogcmdiYSgkYmxhY2ssIC4xMik7XG4kYmxhY2stMTQtb3BhY2l0eTogcmdiYSgkYmxhY2ssIC4xNCk7XG4kYmxhY2stMjAtb3BhY2l0eTogcmdiYSgkYmxhY2ssIC4yKTtcbiRibGFjay02MC1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjYpO1xuXG4kd2hpdGU6IHJnYigyNDQsIDI0NCwgMjQ0KTtcblxuJGJvcmRlci1jb2xvcjogI2ViZWJlYjtcblxuQG1peGluIGJhY2tncm91bmQtY292ZXIoJGF0dGFjaG1lbnQ6IHNjcm9sbCkge1xuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoJGJsYWNrLTIwLW9wYWNpdHksICRibGFjay0yMC1vcGFjaXR5KSAkYXR0YWNobWVudCBjZW50ZXIgY2VudGVyO1xufVxuXG5AbWl4aW4gZm9udC1zbW9vdGhpbmcoKSB7XG4gIC13ZWJraXQtZm9udC1zbW9vdGhpbmc6IGFudGlhbGlhc2VkO1xuICAtbW96LW9zeC1mb250LXNtb290aGluZzogZ3JheXNjYWxlO1xufVxuXG4vLyBUZXh0IFNoYWRvd1xuQG1peGluIHRleHQtc2hhZG93KCkge1xuICB0ZXh0LXNoYWRvdzogMCAwIDRweCAkYmxhY2ssIC0xcHggLTFweCAkYmxhY2stNjAtb3BhY2l0eSwgMXB4IDFweCAkYmxhY2stNjAtb3BhY2l0eTtcbn1cblxuLy8gQm94IFNoYWRvd1xuQG1peGluIGJveC1zaGFkb3coJHg6IDAsICR5OiAxcHgsICRibHVyOiAzcHgsICRhbHBoYTogLjUpIHtcbiAgYm94LXNoYWRvdzogJHggJHkgJGJsdXIgcmdiYSgwLCAwLCAwLCAkYWxwaGEpO1xufVxuXG5AbWl4aW4gYm94LXNoYWRvdy1ib3R0b20oJHg6IDAsICR5OiA1cHgsICRibHVyOiA2cHgsICRzaWRlOiAtNnB4LCAkYWxwaGE6IC41KSB7XG4gIGJveC1zaGFkb3c6ICR4ICR5ICRibHVyICRzaWRlIHJnYmEoMCwgMCwgMCwgJGFscGhhKTtcbn1cblxuQG1peGluIG1hdC1ib3gtc2hhZG93LWRlZXAoKSB7XG4vLyAgYm94LXNoYWRvdzogMCA1cHggNXB4IC0zcHggJGJsYWNrLTIwLW9wYWNpdHksIDAgOHB4IDEwcHggMXB4ICRibGFjay0xNC1vcGFjaXR5LCAwIDNweCAxNHB4IDJweCAkYmxhY2stMTItb3BhY2l0eTtcbiAgYm94LXNoYWRvdzogMCAzcHggNXB4IC0xcHggJGJsYWNrLTIwLW9wYWNpdHksIDAgNnB4IDEwcHggMCAkYmxhY2stMTQtb3BhY2l0eSwgMCAxcHggMThweCAwICRibGFjay0xMi1vcGFjaXR5O1xufVxuXG5AbWl4aW4gbWF0LWJveC1zaGFkb3ctZmxhdCgpIHtcbiAgYm94LXNoYWRvdzogMCAycHggMnB4ICRibGFjay0yMC1vcGFjaXR5LCAwIDAgMnB4ICRibGFjay0xMi1vcGFjaXR5O1xufVxuXG5AbWl4aW4gYm9yZGVyLXRvcCgpIHtcbiAgYm9yZGVyLXRvcDogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXItcmlnaHQoKSB7XG4gIGJvcmRlci1yaWdodDogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXItYm90dG9tKCkge1xuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlci1sZWZ0KCkge1xuICBib3JkZXItbGVmdDogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXIoKSB7XG4gIGJvcmRlcjogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiByZWwtdmlld2hlaWdodCgkaDE6IDAsICRoMjogMCwgJGgzOiAwKSB7XG4gIC8vICRtaW51czogJGgxICsgJGgyICsgJGgzICsgcHg7XG4gIC8vIGhlaWdodDogY2FsYygxMDB2aCAtICRtaW51cyk7XG59XG5cblxuLy8gX2RlY2ltYWwuc2NzcyB8IE1JVCBMaWNlbnNlIHwgZ2lzdC5naXRodWIuY29tL3RlcmtlbC80MzczNDIwXG5cbi8vIFJvdW5kIGEgbnVtYmVyIHRvIHNwZWNpZmllZCBkaWdpdHMuXG4vL1xuLy8gQHBhcmFtICB7TnVtYmVyfSAkbnVtYmVyIEEgbnVtYmVyIHRvIHJvdW5kXG4vLyBAcGFyYW0gIHtOdW1iZXJ9IFskZGlnaXRzOjBdIERpZ2l0cyB0byBvdXRwdXRcbi8vIEBwYXJhbSAge1N0cmluZ30gWyRtb2RlOnJvdW5kXSAocm91bmR8Y2VpbHxmbG9vcikgSG93IHRvIHJvdW5kIGEgbnVtYmVyXG4vLyBAcmV0dXJuIHtOdW1iZXJ9IEEgcm91bmRlZCBudW1iZXJcbi8vIEBleGFtcGxlXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjMzMykgICAgPT4gMFxuLy8gICAgIGRlY2ltYWwtcm91bmQoMC4zMzMsIDEpID0+IDAuM1xuLy8gICAgIGRlY2ltYWwtcm91bmQoMC4zMzMsIDIpID0+IDAuMzNcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuNjY2KSAgICA9PiAxXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjY2NiwgMSkgPT4gMC43XG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjY2NiwgMikgPT4gMC42N1xuLy9cbkBmdW5jdGlvbiBkZWNpbWFsLXJvdW5kICgkbnVtYmVyLCAkZGlnaXRzOiAwLCAkbW9kZTogcm91bmQpIHtcbiAgJG46IDE7XG4gIC8vICRudW1iZXIgbXVzdCBiZSBhIG51bWJlclxuICBAaWYgdHlwZS1vZigkbnVtYmVyKSAhPSBudW1iZXIge1xuICAgIEB3YXJuICcjeyAkbnVtYmVyIH0gaXMgbm90IGEgbnVtYmVyLic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9XG4gIC8vICRkaWdpdHMgbXVzdCBiZSBhIHVuaXRsZXNzIG51bWJlclxuICBAaWYgdHlwZS1vZigkZGlnaXRzKSAhPSBudW1iZXIge1xuICAgIEB3YXJuICcjeyAkZGlnaXRzIH0gaXMgbm90IGEgbnVtYmVyLic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9IEBlbHNlIGlmIG5vdCB1bml0bGVzcygkZGlnaXRzKSB7XG4gICAgQHdhcm4gJyN7ICRkaWdpdHMgfSBoYXMgYSB1bml0Lic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9XG4gIEBpZiAkZGlnaXRzID4gMCB7XG4gICAgQGZvciAkaSBmcm9tIDEgdGhyb3VnaCAkZGlnaXRzIHtcbiAgICAgICRuOiAkbiAqIDEwO1xuICAgIH1cbiAgfVxuICBAaWYgJG1vZGUgPT0gcm91bmQge1xuICAgIEByZXR1cm4gcm91bmQoJG51bWJlciAqICRuKSAvICRuO1xuICB9IEBlbHNlIGlmICRtb2RlID09IGNlaWwge1xuICAgIEByZXR1cm4gY2VpbCgkbnVtYmVyICogJG4pIC8gJG47XG4gIH0gQGVsc2UgaWYgJG1vZGUgPT0gZmxvb3Ige1xuICAgIEByZXR1cm4gZmxvb3IoJG51bWJlciAqICRuKSAvICRuO1xuICB9IEBlbHNlIHtcbiAgICBAd2FybiAnI3sgJG1vZGUgfSBpcyB1bmRlZmluZWQga2V5d29yZC4nO1xuICAgIEByZXR1cm4gJG51bWJlcjtcbiAgfVxufVxuXG4vLyBDZWlsIGEgbnVtYmVyIHRvIHNwZWNpZmllZCBkaWdpdHMuXG4vL1xuLy8gQHBhcmFtICB7TnVtYmVyfSAkbnVtYmVyIEEgbnVtYmVyIHRvIHJvdW5kXG4vLyBAcGFyYW0gIHtOdW1iZXJ9IFskZGlnaXRzOjBdIERpZ2l0cyB0byBvdXRwdXRcbi8vIEByZXR1cm4ge051bWJlcn0gQSBjZWlsZWQgbnVtYmVyXG4vLyBAZXhhbXBsZVxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjMzMykgICAgPT4gMVxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjMzMywgMSkgPT4gMC40XG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuMzMzLCAyKSA9PiAwLjM0XG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuNjY2KSAgICA9PiAxXG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuNjY2LCAxKSA9PiAwLjdcbi8vICAgICBkZWNpbWFsLWNlaWwoMC42NjYsIDIpID0+IDAuNjdcbi8vXG5AZnVuY3Rpb24gZGVjaW1hbC1jZWlsICgkbnVtYmVyLCAkZGlnaXRzOiAwKSB7XG4gIEByZXR1cm4gZGVjaW1hbC1yb3VuZCgkbnVtYmVyLCAkZGlnaXRzLCBjZWlsKTtcbn1cblxuLy8gRmxvb3IgYSBudW1iZXIgdG8gc3BlY2lmaWVkIGRpZ2l0cy5cbi8vXG4vLyBAcGFyYW0gIHtOdW1iZXJ9ICRudW1iZXIgQSBudW1iZXIgdG8gcm91bmRcbi8vIEBwYXJhbSAge051bWJlcn0gWyRkaWdpdHM6MF0gRGlnaXRzIHRvIG91dHB1dFxuLy8gQHJldHVybiB7TnVtYmVyfSBBIGZsb29yZWQgbnVtYmVyXG4vLyBAZXhhbXBsZVxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC4zMzMpICAgID0+IDBcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuMzMzLCAxKSA9PiAwLjNcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuMzMzLCAyKSA9PiAwLjMzXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjY2NikgICAgPT4gMFxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC42NjYsIDEpID0+IDAuNlxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC42NjYsIDIpID0+IDAuNjZcbi8vXG5AZnVuY3Rpb24gZGVjaW1hbC1mbG9vciAoJG51bWJlciwgJGRpZ2l0czogMCkge1xuICBAcmV0dXJuIGRlY2ltYWwtcm91bmQoJG51bWJlciwgJGRpZ2l0cywgZmxvb3IpO1xufVxuXG4iXX0= */"];
+var styles = ["h4[_ngcontent-%COMP%] {\n  border-top: 1px solid #ebebeb;\n  padding-top: 24px; }\n  h4.first[_ngcontent-%COMP%] {\n    border: none; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9rbm9yYS11aS1leGFtcGxlcy92aWV3ZXItZGVtby92aWV3cy92aWV3cy5jb21wb25lbnQuc2NzcyIsIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2Fzc2V0cy9zdHlsZS9fbWl4aW5zLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUMwQ0UsNkJBcENvQjtFREpwQixpQkFBaUIsRUFBQTtFQUZuQjtJQUtJLFlBQVksRUFBQSIsImZpbGUiOiJzcmMvYXBwL2tub3JhLXVpLWV4YW1wbGVzL3ZpZXdlci1kZW1vL3ZpZXdzL3ZpZXdzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vLi4vLi4vLi4vYXNzZXRzL3N0eWxlL21peGlucyc7XG5cbmg0IHtcbiAgQGluY2x1ZGUgYm9yZGVyLXRvcCgpO1xuICBwYWRkaW5nLXRvcDogMjRweDtcblxuICAmLmZpcnN0IHtcbiAgICBib3JkZXI6IG5vbmU7XG4gIH1cbn1cbiIsIiRibGFjazogcmdiKDExLCAxMSwgMTEpO1xuJGJsYWNrLTEyLW9wYWNpdHk6IHJnYmEoJGJsYWNrLCAuMTIpO1xuJGJsYWNrLTE0LW9wYWNpdHk6IHJnYmEoJGJsYWNrLCAuMTQpO1xuJGJsYWNrLTIwLW9wYWNpdHk6IHJnYmEoJGJsYWNrLCAuMik7XG4kYmxhY2stNjAtb3BhY2l0eTogcmdiYSgkYmxhY2ssIC42KTtcblxuJHdoaXRlOiByZ2IoMjQ0LCAyNDQsIDI0NCk7XG5cbiRib3JkZXItY29sb3I6ICNlYmViZWI7XG5cbkBtaXhpbiBiYWNrZ3JvdW5kLWNvdmVyKCRhdHRhY2htZW50OiBzY3JvbGwpIHtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KCRibGFjay0yMC1vcGFjaXR5LCAkYmxhY2stMjAtb3BhY2l0eSkgJGF0dGFjaG1lbnQgY2VudGVyIGNlbnRlcjtcbn1cblxuQG1peGluIGZvbnQtc21vb3RoaW5nKCkge1xuICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcbiAgLW1vei1vc3gtZm9udC1zbW9vdGhpbmc6IGdyYXlzY2FsZTtcbn1cblxuLy8gVGV4dCBTaGFkb3dcbkBtaXhpbiB0ZXh0LXNoYWRvdygpIHtcbiAgdGV4dC1zaGFkb3c6IDAgMCA0cHggJGJsYWNrLCAtMXB4IC0xcHggJGJsYWNrLTYwLW9wYWNpdHksIDFweCAxcHggJGJsYWNrLTYwLW9wYWNpdHk7XG59XG5cbi8vIEJveCBTaGFkb3dcbkBtaXhpbiBib3gtc2hhZG93KCR4OiAwLCAkeTogMXB4LCAkYmx1cjogM3B4LCAkYWxwaGE6IC41KSB7XG4gIGJveC1zaGFkb3c6ICR4ICR5ICRibHVyIHJnYmEoMCwgMCwgMCwgJGFscGhhKTtcbn1cblxuQG1peGluIGJveC1zaGFkb3ctYm90dG9tKCR4OiAwLCAkeTogNXB4LCAkYmx1cjogNnB4LCAkc2lkZTogLTZweCwgJGFscGhhOiAuNSkge1xuICBib3gtc2hhZG93OiAkeCAkeSAkYmx1ciAkc2lkZSByZ2JhKDAsIDAsIDAsICRhbHBoYSk7XG59XG5cbkBtaXhpbiBtYXQtYm94LXNoYWRvdy1kZWVwKCkge1xuLy8gIGJveC1zaGFkb3c6IDAgNXB4IDVweCAtM3B4ICRibGFjay0yMC1vcGFjaXR5LCAwIDhweCAxMHB4IDFweCAkYmxhY2stMTQtb3BhY2l0eSwgMCAzcHggMTRweCAycHggJGJsYWNrLTEyLW9wYWNpdHk7XG4gIGJveC1zaGFkb3c6IDAgM3B4IDVweCAtMXB4ICRibGFjay0yMC1vcGFjaXR5LCAwIDZweCAxMHB4IDAgJGJsYWNrLTE0LW9wYWNpdHksIDAgMXB4IDE4cHggMCAkYmxhY2stMTItb3BhY2l0eTtcbn1cblxuQG1peGluIG1hdC1ib3gtc2hhZG93LWZsYXQoKSB7XG4gIGJveC1zaGFkb3c6IDAgMnB4IDJweCAkYmxhY2stMjAtb3BhY2l0eSwgMCAwIDJweCAkYmxhY2stMTItb3BhY2l0eTtcbn1cblxuQG1peGluIGJvcmRlci10b3AoKSB7XG4gIGJvcmRlci10b3A6IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gYm9yZGVyLXJpZ2h0KCkge1xuICBib3JkZXItcmlnaHQ6IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gYm9yZGVyLWJvdHRvbSgpIHtcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXItbGVmdCgpIHtcbiAgYm9yZGVyLWxlZnQ6IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gYm9yZGVyKCkge1xuICBib3JkZXI6IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gcmVsLXZpZXdoZWlnaHQoJGgxOiAwLCAkaDI6IDAsICRoMzogMCkge1xuICAvLyAkbWludXM6ICRoMSArICRoMiArICRoMyArIHB4O1xuICAvLyBoZWlnaHQ6IGNhbGMoMTAwdmggLSAkbWludXMpO1xufVxuXG5cbi8vIF9kZWNpbWFsLnNjc3MgfCBNSVQgTGljZW5zZSB8IGdpc3QuZ2l0aHViLmNvbS90ZXJrZWwvNDM3MzQyMFxuXG4vLyBSb3VuZCBhIG51bWJlciB0byBzcGVjaWZpZWQgZGlnaXRzLlxuLy9cbi8vIEBwYXJhbSAge051bWJlcn0gJG51bWJlciBBIG51bWJlciB0byByb3VuZFxuLy8gQHBhcmFtICB7TnVtYmVyfSBbJGRpZ2l0czowXSBEaWdpdHMgdG8gb3V0cHV0XG4vLyBAcGFyYW0gIHtTdHJpbmd9IFskbW9kZTpyb3VuZF0gKHJvdW5kfGNlaWx8Zmxvb3IpIEhvdyB0byByb3VuZCBhIG51bWJlclxuLy8gQHJldHVybiB7TnVtYmVyfSBBIHJvdW5kZWQgbnVtYmVyXG4vLyBAZXhhbXBsZVxuLy8gICAgIGRlY2ltYWwtcm91bmQoMC4zMzMpICAgID0+IDBcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuMzMzLCAxKSA9PiAwLjNcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuMzMzLCAyKSA9PiAwLjMzXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjY2NikgICAgPT4gMVxuLy8gICAgIGRlY2ltYWwtcm91bmQoMC42NjYsIDEpID0+IDAuN1xuLy8gICAgIGRlY2ltYWwtcm91bmQoMC42NjYsIDIpID0+IDAuNjdcbi8vXG5AZnVuY3Rpb24gZGVjaW1hbC1yb3VuZCAoJG51bWJlciwgJGRpZ2l0czogMCwgJG1vZGU6IHJvdW5kKSB7XG4gICRuOiAxO1xuICAvLyAkbnVtYmVyIG11c3QgYmUgYSBudW1iZXJcbiAgQGlmIHR5cGUtb2YoJG51bWJlcikgIT0gbnVtYmVyIHtcbiAgICBAd2FybiAnI3sgJG51bWJlciB9IGlzIG5vdCBhIG51bWJlci4nO1xuICAgIEByZXR1cm4gJG51bWJlcjtcbiAgfVxuICAvLyAkZGlnaXRzIG11c3QgYmUgYSB1bml0bGVzcyBudW1iZXJcbiAgQGlmIHR5cGUtb2YoJGRpZ2l0cykgIT0gbnVtYmVyIHtcbiAgICBAd2FybiAnI3sgJGRpZ2l0cyB9IGlzIG5vdCBhIG51bWJlci4nO1xuICAgIEByZXR1cm4gJG51bWJlcjtcbiAgfSBAZWxzZSBpZiBub3QgdW5pdGxlc3MoJGRpZ2l0cykge1xuICAgIEB3YXJuICcjeyAkZGlnaXRzIH0gaGFzIGEgdW5pdC4nO1xuICAgIEByZXR1cm4gJG51bWJlcjtcbiAgfVxuICBAaWYgJGRpZ2l0cyA+IDAge1xuICAgIEBmb3IgJGkgZnJvbSAxIHRocm91Z2ggJGRpZ2l0cyB7XG4gICAgICAkbjogJG4gKiAxMDtcbiAgICB9XG4gIH1cbiAgQGlmICRtb2RlID09IHJvdW5kIHtcbiAgICBAcmV0dXJuIHJvdW5kKCRudW1iZXIgKiAkbikgLyAkbjtcbiAgfSBAZWxzZSBpZiAkbW9kZSA9PSBjZWlsIHtcbiAgICBAcmV0dXJuIGNlaWwoJG51bWJlciAqICRuKSAvICRuO1xuICB9IEBlbHNlIGlmICRtb2RlID09IGZsb29yIHtcbiAgICBAcmV0dXJuIGZsb29yKCRudW1iZXIgKiAkbikgLyAkbjtcbiAgfSBAZWxzZSB7XG4gICAgQHdhcm4gJyN7ICRtb2RlIH0gaXMgdW5kZWZpbmVkIGtleXdvcmQuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH1cbn1cblxuLy8gQ2VpbCBhIG51bWJlciB0byBzcGVjaWZpZWQgZGlnaXRzLlxuLy9cbi8vIEBwYXJhbSAge051bWJlcn0gJG51bWJlciBBIG51bWJlciB0byByb3VuZFxuLy8gQHBhcmFtICB7TnVtYmVyfSBbJGRpZ2l0czowXSBEaWdpdHMgdG8gb3V0cHV0XG4vLyBAcmV0dXJuIHtOdW1iZXJ9IEEgY2VpbGVkIG51bWJlclxuLy8gQGV4YW1wbGVcbi8vICAgICBkZWNpbWFsLWNlaWwoMC4zMzMpICAgID0+IDFcbi8vICAgICBkZWNpbWFsLWNlaWwoMC4zMzMsIDEpID0+IDAuNFxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjMzMywgMikgPT4gMC4zNFxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjY2NikgICAgPT4gMVxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjY2NiwgMSkgPT4gMC43XG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuNjY2LCAyKSA9PiAwLjY3XG4vL1xuQGZ1bmN0aW9uIGRlY2ltYWwtY2VpbCAoJG51bWJlciwgJGRpZ2l0czogMCkge1xuICBAcmV0dXJuIGRlY2ltYWwtcm91bmQoJG51bWJlciwgJGRpZ2l0cywgY2VpbCk7XG59XG5cbi8vIEZsb29yIGEgbnVtYmVyIHRvIHNwZWNpZmllZCBkaWdpdHMuXG4vL1xuLy8gQHBhcmFtICB7TnVtYmVyfSAkbnVtYmVyIEEgbnVtYmVyIHRvIHJvdW5kXG4vLyBAcGFyYW0gIHtOdW1iZXJ9IFskZGlnaXRzOjBdIERpZ2l0cyB0byBvdXRwdXRcbi8vIEByZXR1cm4ge051bWJlcn0gQSBmbG9vcmVkIG51bWJlclxuLy8gQGV4YW1wbGVcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuMzMzKSAgICA9PiAwXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjMzMywgMSkgPT4gMC4zXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjMzMywgMikgPT4gMC4zM1xuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC42NjYpICAgID0+IDBcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuNjY2LCAxKSA9PiAwLjZcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuNjY2LCAyKSA9PiAwLjY2XG4vL1xuQGZ1bmN0aW9uIGRlY2ltYWwtZmxvb3IgKCRudW1iZXIsICRkaWdpdHM6IDApIHtcbiAgQHJldHVybiBkZWNpbWFsLXJvdW5kKCRudW1iZXIsICRkaWdpdHMsIGZsb29yKTtcbn1cblxuIl19 */"];
 
 
 
@@ -23652,7 +24515,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = [".landing-page[_ngcontent-%COMP%] {\n  max-width: 800px;\n  width: 80%;\n  margin: 0 auto; }\n  .landing-page[_ngcontent-%COMP%]   section[_ngcontent-%COMP%] {\n    padding: 48px 0; }\n  .landing-page[_ngcontent-%COMP%]   .introduction[_ngcontent-%COMP%]   .content-header[_ngcontent-%COMP%] {\n    text-align: center;\n    margin-top: 80px;\n    margin-bottom: 80px; }\n  .landing-page[_ngcontent-%COMP%]   .features[_ngcontent-%COMP%]   .content-header[_ngcontent-%COMP%] {\n    text-align: center; }\n  .module-card[_ngcontent-%COMP%] {\n  margin: 10px; }\n  .module-card[_ngcontent-%COMP%]   .mat-card-actions[_ngcontent-%COMP%] {\n    height: 30px; }\n  .module-card[_ngcontent-%COMP%]   .mat-card-actions[_ngcontent-%COMP%]   .mat-button[_ngcontent-%COMP%] {\n      position: absolute;\n      bottom: 5px;\n      right: 10px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAvbGFuZGluZy1wYWdlL21haW4taW50cm8vbWFpbi1pbnRyby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGdCQUFnQjtFQUNoQixVQUFVO0VBQ1YsY0FBYyxFQUFBO0VBSGhCO0lBTUksZUFBZSxFQUFBO0VBTm5CO0lBWU0sa0JBQWtCO0lBQ2xCLGdCQUFnQjtJQUNoQixtQkFBbUIsRUFBQTtFQWR6QjtJQXFCTSxrQkFBa0IsRUFBQTtFQVV4QjtFQUNFLFlBQVksRUFBQTtFQURkO0lBSUksWUFBWSxFQUFBO0VBSmhCO01BT00sa0JBQWtCO01BQ2xCLFdBQVc7TUFDWCxXQUFXLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9sYW5kaW5nLXBhZ2UvbWFpbi1pbnRyby9tYWluLWludHJvLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmxhbmRpbmctcGFnZSB7XG4gIG1heC13aWR0aDogODAwcHg7XG4gIHdpZHRoOiA4MCU7XG4gIG1hcmdpbjogMCBhdXRvO1xuXG4gIHNlY3Rpb24ge1xuICAgIHBhZGRpbmc6IDQ4cHggMDtcbiAgfVxuXG4gIC5pbnRyb2R1Y3Rpb24ge1xuXG4gICAgLmNvbnRlbnQtaGVhZGVyIHtcbiAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgIG1hcmdpbi10b3A6IDgwcHg7XG4gICAgICBtYXJnaW4tYm90dG9tOiA4MHB4O1xuICAgIH1cbiAgfVxuXG4gIC5mZWF0dXJlcyB7XG5cbiAgICAuY29udGVudC1oZWFkZXIge1xuICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIH1cblxuICB9XG5cbiAgLmNvbnRlbnQtdGV4dCB7XG5cbiAgfVxufVxuXG4ubW9kdWxlLWNhcmQge1xuICBtYXJnaW46IDEwcHg7XG5cbiAgLm1hdC1jYXJkLWFjdGlvbnMge1xuICAgIGhlaWdodDogMzBweDtcblxuICAgIC5tYXQtYnV0dG9uIHtcbiAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICAgIGJvdHRvbTogNXB4O1xuICAgICAgcmlnaHQ6IDEwcHg7XG4gICAgfVxuICB9XG59XG4iXX0= */"];
+var styles = [".landing-page[_ngcontent-%COMP%] {\n  max-width: 800px;\n  width: 80%;\n  margin: 0 auto; }\n  .landing-page[_ngcontent-%COMP%]   section[_ngcontent-%COMP%] {\n    padding: 48px 0; }\n  .landing-page[_ngcontent-%COMP%]   .introduction[_ngcontent-%COMP%]   .content-header[_ngcontent-%COMP%] {\n    text-align: center;\n    margin-top: 80px;\n    margin-bottom: 80px; }\n  .landing-page[_ngcontent-%COMP%]   .features[_ngcontent-%COMP%]   .content-header[_ngcontent-%COMP%] {\n    text-align: center; }\n  .module-card[_ngcontent-%COMP%] {\n  margin: 10px; }\n  .module-card[_ngcontent-%COMP%]   .mat-card-actions[_ngcontent-%COMP%] {\n    height: 30px; }\n  .module-card[_ngcontent-%COMP%]   .mat-card-actions[_ngcontent-%COMP%]   .mat-button[_ngcontent-%COMP%] {\n      position: absolute;\n      bottom: 5px;\n      right: 10px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9sYW5kaW5nLXBhZ2UvbWFpbi1pbnRyby9tYWluLWludHJvLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQWdCO0VBQ2hCLFVBQVU7RUFDVixjQUFjLEVBQUE7RUFIaEI7SUFNSSxlQUFlLEVBQUE7RUFObkI7SUFZTSxrQkFBa0I7SUFDbEIsZ0JBQWdCO0lBQ2hCLG1CQUFtQixFQUFBO0VBZHpCO0lBcUJNLGtCQUFrQixFQUFBO0VBVXhCO0VBQ0UsWUFBWSxFQUFBO0VBRGQ7SUFJSSxZQUFZLEVBQUE7RUFKaEI7TUFPTSxrQkFBa0I7TUFDbEIsV0FBVztNQUNYLFdBQVcsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2xhbmRpbmctcGFnZS9tYWluLWludHJvL21haW4taW50cm8uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubGFuZGluZy1wYWdlIHtcbiAgbWF4LXdpZHRoOiA4MDBweDtcbiAgd2lkdGg6IDgwJTtcbiAgbWFyZ2luOiAwIGF1dG87XG5cbiAgc2VjdGlvbiB7XG4gICAgcGFkZGluZzogNDhweCAwO1xuICB9XG5cbiAgLmludHJvZHVjdGlvbiB7XG5cbiAgICAuY29udGVudC1oZWFkZXIge1xuICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICAgbWFyZ2luLXRvcDogODBweDtcbiAgICAgIG1hcmdpbi1ib3R0b206IDgwcHg7XG4gICAgfVxuICB9XG5cbiAgLmZlYXR1cmVzIHtcblxuICAgIC5jb250ZW50LWhlYWRlciB7XG4gICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgfVxuXG4gIH1cblxuICAuY29udGVudC10ZXh0IHtcblxuICB9XG59XG5cbi5tb2R1bGUtY2FyZCB7XG4gIG1hcmdpbjogMTBweDtcblxuICAubWF0LWNhcmQtYWN0aW9ucyB7XG4gICAgaGVpZ2h0OiAzMHB4O1xuXG4gICAgLm1hdC1idXR0b24ge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiA1cHg7XG4gICAgICByaWdodDogMTBweDtcbiAgICB9XG4gIH1cbn1cbiJdfQ== */"];
 
 
 
@@ -24074,7 +24937,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = ["pre[_ngcontent-%COMP%], code[_ngcontent-%COMP%], tt[_ngcontent-%COMP%] {\n  font-family: Inconsolata, Consolas, Courier, \"Courier New\", \"Liberation Mono\", monospace;\n  white-space: pre-wrap;\n  border-radius: 3px;\n  line-height: 1.4;\n  font-size: 16px;\n  font-weight: 400;\n  background-color: rgba(64, 65, 69, 0.75);\n  color: #FAFAFA; }\n\npre[_ngcontent-%COMP%] {\n  background-color: #404145;\n  box-sizing: border-box;\n  margin: 0 0 1.75em 0;\n  width: 100%;\n  padding: 10px;\n  white-space: pre;\n  overflow: auto; }\n\npre[_ngcontent-%COMP%]   code[_ngcontent-%COMP%], pre[_ngcontent-%COMP%]   tt[_ngcontent-%COMP%] {\n    white-space: pre-wrap;\n    background: transparent;\n    border: none;\n    padding: 0; }\n\nblockquote[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%], li[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%], p[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%] {\n  padding: 2px 6px;\n  white-space: nowrap; }\n\n.example-container[_ngcontent-%COMP%] {\n  height: 720px;\n  width: 100%;\n  display: flex;\n  flex-direction: column; }\n\ntable[_ngcontent-%COMP%] {\n  border: 1px solid #ddd;\n  border-collapse: collapse;\n  margin-bottom: 20px;\n  max-width: 100%;\n  width: 100%; }\n\ntable[_ngcontent-%COMP%]   td[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    padding: 12px;\n    text-align: left;\n    vertical-align: top; }\n\ntable[_ngcontent-%COMP%]   td.border-right[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th.border-right[_ngcontent-%COMP%] {\n      border-right: 1px solid #ddd; }\n\ntable[_ngcontent-%COMP%]   td.fix-width[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th.fix-width[_ngcontent-%COMP%] {\n      width: 150px; }\n\ntable[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    border-bottom: 1px solid #ddd; }\n\n.documentation[_ngcontent-%COMP%] {\n  margin: 48px 0; }\n\n.documentation[_ngcontent-%COMP%]   .mat-divider[_ngcontent-%COMP%] {\n    margin: 24px 0; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAvcGFydGlhbHMvZG9jdW1lbnRhdGlvbi12aWV3ZXIvZG9jdW1lbnRhdGlvbi12aWV3ZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSx3RkFBd0Y7RUFFeEYscUJBQXFCO0VBQ3JCLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQix3Q0FWZ0I7RUFXaEIsY0FWZ0IsRUFBQTs7QUFjbEI7RUFDRSx5QkFoQmdCO0VBaUJoQixzQkFBc0I7RUFDdEIsb0JBQW9CO0VBQ3BCLFdBQVc7RUFDWCxhQUFhO0VBRWIsZ0JBQWdCO0VBQ2hCLGNBQWMsRUFBQTs7QUFSaEI7SUFZSSxxQkFBcUI7SUFDckIsdUJBQXVCO0lBQ3ZCLFlBQVk7SUFDWixVQUNGLEVBQUE7O0FBR0Y7OztFQUdFLGdCQUFnQjtFQUNoQixtQkFBbUIsRUFBQTs7QUFHckI7RUFDRSxhQUFhO0VBQ2IsV0FBVztFQUNYLGFBQWE7RUFDYixzQkFBc0IsRUFBQTs7QUFHeEI7RUFDRSxzQkFBc0I7RUFDdEIseUJBQXlCO0VBQ3pCLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2YsV0FBVyxFQUFBOztBQUxiOztJQVNJLGFBQWE7SUFDYixnQkFBZ0I7SUFDaEIsbUJBQW1CLEVBQUE7O0FBWHZCOztNQWNNLDRCQUE0QixFQUFBOztBQWRsQzs7TUFrQk0sWUFBWSxFQUFBOztBQWxCbEI7SUF1QkksNkJBQTZCLEVBQUE7O0FBSWpDO0VBQ0UsY0FBYyxFQUFBOztBQURoQjtJQUlJLGNBQWMsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3BhcnRpYWxzL2RvY3VtZW50YXRpb24tdmlld2VyL2RvY3VtZW50YXRpb24tdmlld2VyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiJGJnLWNvbG9yOiAjNDA0MTQ1O1xuJGZnLWNvbG9yOiAjRkFGQUZBO1xucHJlLCBjb2RlLCB0dCB7XG4gIGZvbnQtZmFtaWx5OiBJbmNvbnNvbGF0YSwgQ29uc29sYXMsIENvdXJpZXIsIFwiQ291cmllciBOZXdcIiwgXCJMaWJlcmF0aW9uIE1vbm9cIiwgbW9ub3NwYWNlO1xuICAvL2ZvbnQtc2l6ZTogMC44NWVtO1xuICB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7XG4gIGJvcmRlci1yYWRpdXM6IDNweDtcbiAgbGluZS1oZWlnaHQ6IDEuNDtcbiAgZm9udC1zaXplOiAxNnB4O1xuICBmb250LXdlaWdodDogNDAwO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKCRiZy1jb2xvciwgLjc1KTtcbiAgY29sb3I6ICRmZy1jb2xvcjtcbn1cblxuXG5wcmUge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAkYmctY29sb3I7XG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gIG1hcmdpbjogMCAwIDEuNzVlbSAwO1xuICB3aWR0aDogMTAwJTtcbiAgcGFkZGluZzogMTBweDtcbiAgLy9mb250LXNpemU6IDAuOWVtO1xuICB3aGl0ZS1zcGFjZTogcHJlO1xuICBvdmVyZmxvdzogYXV0bztcblxuICBjb2RlLCB0dCB7XG4gICAgLy9mb250LXNpemU6IGluaGVyaXQ7XG4gICAgd2hpdGUtc3BhY2U6IHByZS13cmFwO1xuICAgIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICAgIGJvcmRlcjogbm9uZTtcbiAgICBwYWRkaW5nOiAwXG4gIH1cbn1cblxuYmxvY2txdW90ZSA+IGNvZGUsXG5saSA+IGNvZGUsXG5wID4gY29kZSB7XG4gIHBhZGRpbmc6IDJweCA2cHg7XG4gIHdoaXRlLXNwYWNlOiBub3dyYXA7XG59XG5cbi5leGFtcGxlLWNvbnRhaW5lciB7XG4gIGhlaWdodDogNzIwcHg7XG4gIHdpZHRoOiAxMDAlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xufVxuXG50YWJsZSB7XG4gIGJvcmRlcjogMXB4IHNvbGlkICNkZGQ7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG4gIG1heC13aWR0aDogMTAwJTtcbiAgd2lkdGg6IDEwMCU7XG5cbiAgdGQsXG4gIHRoIHtcbiAgICBwYWRkaW5nOiAxMnB4O1xuICAgIHRleHQtYWxpZ246IGxlZnQ7XG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcblxuICAgICYuYm9yZGVyLXJpZ2h0IHtcbiAgICAgIGJvcmRlci1yaWdodDogMXB4IHNvbGlkICNkZGQ7XG4gICAgfVxuXG4gICAgJi5maXgtd2lkdGgge1xuICAgICAgd2lkdGg6IDE1MHB4O1xuICAgIH1cbiAgfVxuXG4gIHRoIHtcbiAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgI2RkZDtcbiAgfVxufVxuXG4uZG9jdW1lbnRhdGlvbiB7XG4gIG1hcmdpbjogNDhweCAwO1xuXG4gIC5tYXQtZGl2aWRlciB7XG4gICAgbWFyZ2luOiAyNHB4IDA7XG4gIH1cbn1cbiJdfQ== */"];
+var styles = ["pre[_ngcontent-%COMP%], code[_ngcontent-%COMP%], tt[_ngcontent-%COMP%] {\n  font-family: Inconsolata, Consolas, Courier, \"Courier New\", \"Liberation Mono\", monospace;\n  white-space: pre-wrap;\n  border-radius: 3px;\n  line-height: 1.4;\n  font-size: 16px;\n  font-weight: 400;\n  background-color: rgba(64, 65, 69, 0.75);\n  color: #FAFAFA; }\n\npre[_ngcontent-%COMP%] {\n  background-color: #404145;\n  box-sizing: border-box;\n  margin: 0 0 1.75em 0;\n  width: 100%;\n  padding: 10px;\n  white-space: pre;\n  overflow: auto; }\n\npre[_ngcontent-%COMP%]   code[_ngcontent-%COMP%], pre[_ngcontent-%COMP%]   tt[_ngcontent-%COMP%] {\n    white-space: pre-wrap;\n    background: transparent;\n    border: none;\n    padding: 0; }\n\nblockquote[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%], li[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%], p[_ngcontent-%COMP%]    > code[_ngcontent-%COMP%] {\n  padding: 2px 6px;\n  white-space: nowrap; }\n\n.example-container[_ngcontent-%COMP%] {\n  height: 720px;\n  width: 100%;\n  display: flex;\n  flex-direction: column; }\n\ntable[_ngcontent-%COMP%] {\n  border: 1px solid #ddd;\n  border-collapse: collapse;\n  margin-bottom: 20px;\n  max-width: 100%;\n  width: 100%; }\n\ntable[_ngcontent-%COMP%]   td[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    padding: 12px;\n    text-align: left;\n    vertical-align: top; }\n\ntable[_ngcontent-%COMP%]   td.border-right[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th.border-right[_ngcontent-%COMP%] {\n      border-right: 1px solid #ddd; }\n\ntable[_ngcontent-%COMP%]   td.fix-width[_ngcontent-%COMP%], table[_ngcontent-%COMP%]   th.fix-width[_ngcontent-%COMP%] {\n      width: 150px; }\n\ntable[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    border-bottom: 1px solid #ddd; }\n\n.documentation[_ngcontent-%COMP%] {\n  margin: 48px 0; }\n\n.documentation[_ngcontent-%COMP%]   .mat-divider[_ngcontent-%COMP%] {\n    margin: 24px 0; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9wYXJ0aWFscy9kb2N1bWVudGF0aW9uLXZpZXdlci9kb2N1bWVudGF0aW9uLXZpZXdlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNFLHdGQUF3RjtFQUV4RixxQkFBcUI7RUFDckIsa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixlQUFlO0VBQ2YsZ0JBQWdCO0VBQ2hCLHdDQVZnQjtFQVdoQixjQVZnQixFQUFBOztBQWNsQjtFQUNFLHlCQWhCZ0I7RUFpQmhCLHNCQUFzQjtFQUN0QixvQkFBb0I7RUFDcEIsV0FBVztFQUNYLGFBQWE7RUFFYixnQkFBZ0I7RUFDaEIsY0FBYyxFQUFBOztBQVJoQjtJQVlJLHFCQUFxQjtJQUNyQix1QkFBdUI7SUFDdkIsWUFBWTtJQUNaLFVBQ0YsRUFBQTs7QUFHRjs7O0VBR0UsZ0JBQWdCO0VBQ2hCLG1CQUFtQixFQUFBOztBQUdyQjtFQUNFLGFBQWE7RUFDYixXQUFXO0VBQ1gsYUFBYTtFQUNiLHNCQUFzQixFQUFBOztBQUd4QjtFQUNFLHNCQUFzQjtFQUN0Qix5QkFBeUI7RUFDekIsbUJBQW1CO0VBQ25CLGVBQWU7RUFDZixXQUFXLEVBQUE7O0FBTGI7O0lBU0ksYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixtQkFBbUIsRUFBQTs7QUFYdkI7O01BY00sNEJBQTRCLEVBQUE7O0FBZGxDOztNQWtCTSxZQUFZLEVBQUE7O0FBbEJsQjtJQXVCSSw2QkFBNkIsRUFBQTs7QUFJakM7RUFDRSxjQUFjLEVBQUE7O0FBRGhCO0lBSUksY0FBYyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvcGFydGlhbHMvZG9jdW1lbnRhdGlvbi12aWV3ZXIvZG9jdW1lbnRhdGlvbi12aWV3ZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIkYmctY29sb3I6ICM0MDQxNDU7XG4kZmctY29sb3I6ICNGQUZBRkE7XG5wcmUsIGNvZGUsIHR0IHtcbiAgZm9udC1mYW1pbHk6IEluY29uc29sYXRhLCBDb25zb2xhcywgQ291cmllciwgXCJDb3VyaWVyIE5ld1wiLCBcIkxpYmVyYXRpb24gTW9ub1wiLCBtb25vc3BhY2U7XG4gIC8vZm9udC1zaXplOiAwLjg1ZW07XG4gIHdoaXRlLXNwYWNlOiBwcmUtd3JhcDtcbiAgYm9yZGVyLXJhZGl1czogM3B4O1xuICBsaW5lLWhlaWdodDogMS40O1xuICBmb250LXNpemU6IDE2cHg7XG4gIGZvbnQtd2VpZ2h0OiA0MDA7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoJGJnLWNvbG9yLCAuNzUpO1xuICBjb2xvcjogJGZnLWNvbG9yO1xufVxuXG5cbnByZSB7XG4gIGJhY2tncm91bmQtY29sb3I6ICRiZy1jb2xvcjtcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbiAgbWFyZ2luOiAwIDAgMS43NWVtIDA7XG4gIHdpZHRoOiAxMDAlO1xuICBwYWRkaW5nOiAxMHB4O1xuICAvL2ZvbnQtc2l6ZTogMC45ZW07XG4gIHdoaXRlLXNwYWNlOiBwcmU7XG4gIG92ZXJmbG93OiBhdXRvO1xuXG4gIGNvZGUsIHR0IHtcbiAgICAvL2ZvbnQtc2l6ZTogaW5oZXJpdDtcbiAgICB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7XG4gICAgYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7XG4gICAgYm9yZGVyOiBub25lO1xuICAgIHBhZGRpbmc6IDBcbiAgfVxufVxuXG5ibG9ja3F1b3RlID4gY29kZSxcbmxpID4gY29kZSxcbnAgPiBjb2RlIHtcbiAgcGFkZGluZzogMnB4IDZweDtcbiAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbn1cblxuLmV4YW1wbGUtY29udGFpbmVyIHtcbiAgaGVpZ2h0OiA3MjBweDtcbiAgd2lkdGg6IDEwMCU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG59XG5cbnRhYmxlIHtcbiAgYm9yZGVyOiAxcHggc29saWQgI2RkZDtcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgbWF4LXdpZHRoOiAxMDAlO1xuICB3aWR0aDogMTAwJTtcblxuICB0ZCxcbiAgdGgge1xuICAgIHBhZGRpbmc6IDEycHg7XG4gICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xuXG4gICAgJi5ib3JkZXItcmlnaHQge1xuICAgICAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgI2RkZDtcbiAgICB9XG5cbiAgICAmLmZpeC13aWR0aCB7XG4gICAgICB3aWR0aDogMTUwcHg7XG4gICAgfVxuICB9XG5cbiAgdGgge1xuICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZGRkO1xuICB9XG59XG5cbi5kb2N1bWVudGF0aW9uIHtcbiAgbWFyZ2luOiA0OHB4IDA7XG5cbiAgLm1hdC1kaXZpZGVyIHtcbiAgICBtYXJnaW46IDI0cHggMDtcbiAgfVxufVxuIl19 */"];
 
 
 
@@ -24222,7 +25085,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = [".action-buttons[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 36px;\n  top: 0; }\n\n.example-code-group[_ngcontent-%COMP%] {\n  background: rgba(193, 193, 193, 0.12); }\n\n.example-code-group[_ngcontent-%COMP%]   .code-example[_ngcontent-%COMP%] {\n    border-radius: 0; }\n\n.full-width[_ngcontent-%COMP%] {\n  width: calc(100% + 32px);\n  margin: 0 -16px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAvcGFydGlhbHMvZXhhbXBsZS12aWV3ZXIvZXhhbXBsZS12aWV3ZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLE1BQU0sRUFBQTs7QUFHVjtFQUNFLHFDQUFxQyxFQUFBOztBQUR2QztJQUlJLGdCQUFnQixFQUFBOztBQUlwQjtFQUNFLHdCQUF3QjtFQUN4QixlQUFlLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9wYXJ0aWFscy9leGFtcGxlLXZpZXdlci9leGFtcGxlLXZpZXdlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5hY3Rpb24tYnV0dG9ucyB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHJpZ2h0OiAzNnB4O1xuICAgIHRvcDogMDtcbn1cblxuLmV4YW1wbGUtY29kZS1ncm91cCB7XG4gIGJhY2tncm91bmQ6IHJnYmEoMTkzLCAxOTMsIDE5MywgMC4xMik7XG5cbiAgLmNvZGUtZXhhbXBsZSB7XG4gICAgYm9yZGVyLXJhZGl1czogMDtcbiAgfVxufVxuXG4uZnVsbC13aWR0aCB7XG4gIHdpZHRoOiBjYWxjKDEwMCUgKyAzMnB4KTtcbiAgbWFyZ2luOiAwIC0xNnB4O1xufSJdfQ== */"];
+var styles = [".action-buttons[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 36px;\n  top: 0; }\n\n.example-code-group[_ngcontent-%COMP%] {\n  background: rgba(193, 193, 193, 0.12); }\n\n.example-code-group[_ngcontent-%COMP%]   .code-example[_ngcontent-%COMP%] {\n    border-radius: 0; }\n\n.full-width[_ngcontent-%COMP%] {\n  width: calc(100% + 32px);\n  margin: 0 -16px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9wYXJ0aWFscy9leGFtcGxlLXZpZXdlci9leGFtcGxlLXZpZXdlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsTUFBTSxFQUFBOztBQUdWO0VBQ0UscUNBQXFDLEVBQUE7O0FBRHZDO0lBSUksZ0JBQWdCLEVBQUE7O0FBSXBCO0VBQ0Usd0JBQXdCO0VBQ3hCLGVBQWUsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3BhcnRpYWxzL2V4YW1wbGUtdmlld2VyL2V4YW1wbGUtdmlld2VyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmFjdGlvbi1idXR0b25zIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgcmlnaHQ6IDM2cHg7XG4gICAgdG9wOiAwO1xufVxuXG4uZXhhbXBsZS1jb2RlLWdyb3VwIHtcbiAgYmFja2dyb3VuZDogcmdiYSgxOTMsIDE5MywgMTkzLCAwLjEyKTtcblxuICAuY29kZS1leGFtcGxlIHtcbiAgICBib3JkZXItcmFkaXVzOiAwO1xuICB9XG59XG5cbi5mdWxsLXdpZHRoIHtcbiAgd2lkdGg6IGNhbGMoMTAwJSArIDMycHgpO1xuICBtYXJnaW46IDAgLTE2cHg7XG59Il19 */"];
 
 
 
@@ -24359,7 +25222,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = [".main-header[_ngcontent-%COMP%] {\n  position: fixed;\n  top: 0;\n  right: 0;\n  left: 0;\n  z-index: 500;\n  box-shadow: 0 5px 6px -6px rgba(0, 0, 0, 0.5); }\n  .main-header[_ngcontent-%COMP%]   .main-navbar[_ngcontent-%COMP%] {\n    display: flex;\n    flex-wrap: wrap;\n    align-items: center;\n    padding: 8px 16px; }\n  .main-header[_ngcontent-%COMP%]   .mat-button[_ngcontent-%COMP%] {\n    font-weight: bolder; }\n  .main-header[_ngcontent-%COMP%]   .mat-button[_ngcontent-%COMP%]   .mat-icon[_ngcontent-%COMP%] {\n      margin-right: 6px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAvcGFydGlhbHMvbWFpbi1oZWFkZXIvbWFpbi1oZWFkZXIuY29tcG9uZW50LnNjc3MiLCIvVXNlcnMvYWsvQ29kZS9rbm9yYS11aS9zcmMvYXNzZXRzL3N0eWxlL19taXhpbnMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNFLGVBQWU7RUFDZixNQUFNO0VBQ04sUUFBUTtFQUNSLE9BQU87RUFDUCxZQUFZO0VDd0JaLDZDQUFtRCxFQUFBO0VEN0JyRDtJQVVJLGFBQWE7SUFDYixlQUFlO0lBQ2YsbUJBQW1CO0lBQ25CLGlCQUFpQixFQUFBO0VBYnJCO0lBa0JJLG1CQUFtQixFQUFBO0VBbEJ2QjtNQXFCTSxpQkFBaUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3BhcnRpYWxzL21haW4taGVhZGVyL21haW4taGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCAnLi4vLi4vLi4vYXNzZXRzL3N0eWxlL21peGlucyc7XG5cbi5tYWluLWhlYWRlciB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgdG9wOiAwO1xuICByaWdodDogMDtcbiAgbGVmdDogMDtcbiAgei1pbmRleDogNTAwO1xuXG4gIEBpbmNsdWRlIGJveC1zaGFkb3ctYm90dG9tKCk7XG5cbiAgLm1haW4tbmF2YmFyIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtd3JhcDogd3JhcDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIHBhZGRpbmc6IDhweCAxNnB4O1xuICB9XG5cbiAgLm1hdC1idXR0b24ge1xuLy8gICAgZm9udC1zaXplOiBsYXJnZTtcbiAgICBmb250LXdlaWdodDogYm9sZGVyO1xuXG4gICAgLm1hdC1pY29uIHtcbiAgICAgIG1hcmdpbi1yaWdodDogNnB4O1xuICAgIH1cbiAgfVxuXG59XG4iLCIkYmxhY2s6IHJnYigxMSwgMTEsIDExKTtcbiRibGFjay0xMi1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjEyKTtcbiRibGFjay0xNC1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjE0KTtcbiRibGFjay0yMC1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjIpO1xuJGJsYWNrLTYwLW9wYWNpdHk6IHJnYmEoJGJsYWNrLCAuNik7XG5cbiR3aGl0ZTogcmdiKDI0NCwgMjQ0LCAyNDQpO1xuXG4kYm9yZGVyLWNvbG9yOiAjZWJlYmViO1xuXG5AbWl4aW4gYmFja2dyb3VuZC1jb3ZlcigkYXR0YWNobWVudDogc2Nyb2xsKSB7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgkYmxhY2stMjAtb3BhY2l0eSwgJGJsYWNrLTIwLW9wYWNpdHkpICRhdHRhY2htZW50IGNlbnRlciBjZW50ZXI7XG59XG5cbkBtaXhpbiBmb250LXNtb290aGluZygpIHtcbiAgLXdlYmtpdC1mb250LXNtb290aGluZzogYW50aWFsaWFzZWQ7XG4gIC1tb3otb3N4LWZvbnQtc21vb3RoaW5nOiBncmF5c2NhbGU7XG59XG5cbi8vIFRleHQgU2hhZG93XG5AbWl4aW4gdGV4dC1zaGFkb3coKSB7XG4gIHRleHQtc2hhZG93OiAwIDAgNHB4ICRibGFjaywgLTFweCAtMXB4ICRibGFjay02MC1vcGFjaXR5LCAxcHggMXB4ICRibGFjay02MC1vcGFjaXR5O1xufVxuXG4vLyBCb3ggU2hhZG93XG5AbWl4aW4gYm94LXNoYWRvdygkeDogMCwgJHk6IDFweCwgJGJsdXI6IDNweCwgJGFscGhhOiAuNSkge1xuICBib3gtc2hhZG93OiAkeCAkeSAkYmx1ciByZ2JhKDAsIDAsIDAsICRhbHBoYSk7XG59XG5cbkBtaXhpbiBib3gtc2hhZG93LWJvdHRvbSgkeDogMCwgJHk6IDVweCwgJGJsdXI6IDZweCwgJHNpZGU6IC02cHgsICRhbHBoYTogLjUpIHtcbiAgYm94LXNoYWRvdzogJHggJHkgJGJsdXIgJHNpZGUgcmdiYSgwLCAwLCAwLCAkYWxwaGEpO1xufVxuXG5AbWl4aW4gbWF0LWJveC1zaGFkb3ctZGVlcCgpIHtcbi8vICBib3gtc2hhZG93OiAwIDVweCA1cHggLTNweCAkYmxhY2stMjAtb3BhY2l0eSwgMCA4cHggMTBweCAxcHggJGJsYWNrLTE0LW9wYWNpdHksIDAgM3B4IDE0cHggMnB4ICRibGFjay0xMi1vcGFjaXR5O1xuICBib3gtc2hhZG93OiAwIDNweCA1cHggLTFweCAkYmxhY2stMjAtb3BhY2l0eSwgMCA2cHggMTBweCAwICRibGFjay0xNC1vcGFjaXR5LCAwIDFweCAxOHB4IDAgJGJsYWNrLTEyLW9wYWNpdHk7XG59XG5cbkBtaXhpbiBtYXQtYm94LXNoYWRvdy1mbGF0KCkge1xuICBib3gtc2hhZG93OiAwIDJweCAycHggJGJsYWNrLTIwLW9wYWNpdHksIDAgMCAycHggJGJsYWNrLTEyLW9wYWNpdHk7XG59XG5cbkBtaXhpbiBib3JkZXItdG9wKCkge1xuICBib3JkZXItdG9wOiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlci1yaWdodCgpIHtcbiAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlci1ib3R0b20oKSB7XG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAkYm9yZGVyLWNvbG9yO1xufVxuXG5AbWl4aW4gYm9yZGVyLWxlZnQoKSB7XG4gIGJvcmRlci1sZWZ0OiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlcigpIHtcbiAgYm9yZGVyOiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIHJlbC12aWV3aGVpZ2h0KCRoMTogMCwgJGgyOiAwLCAkaDM6IDApIHtcbiAgLy8gJG1pbnVzOiAkaDEgKyAkaDIgKyAkaDMgKyBweDtcbiAgLy8gaGVpZ2h0OiBjYWxjKDEwMHZoIC0gJG1pbnVzKTtcbn1cblxuXG4vLyBfZGVjaW1hbC5zY3NzIHwgTUlUIExpY2Vuc2UgfCBnaXN0LmdpdGh1Yi5jb20vdGVya2VsLzQzNzM0MjBcblxuLy8gUm91bmQgYSBudW1iZXIgdG8gc3BlY2lmaWVkIGRpZ2l0cy5cbi8vXG4vLyBAcGFyYW0gIHtOdW1iZXJ9ICRudW1iZXIgQSBudW1iZXIgdG8gcm91bmRcbi8vIEBwYXJhbSAge051bWJlcn0gWyRkaWdpdHM6MF0gRGlnaXRzIHRvIG91dHB1dFxuLy8gQHBhcmFtICB7U3RyaW5nfSBbJG1vZGU6cm91bmRdIChyb3VuZHxjZWlsfGZsb29yKSBIb3cgdG8gcm91bmQgYSBudW1iZXJcbi8vIEByZXR1cm4ge051bWJlcn0gQSByb3VuZGVkIG51bWJlclxuLy8gQGV4YW1wbGVcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuMzMzKSAgICA9PiAwXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjMzMywgMSkgPT4gMC4zXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjMzMywgMikgPT4gMC4zM1xuLy8gICAgIGRlY2ltYWwtcm91bmQoMC42NjYpICAgID0+IDFcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuNjY2LCAxKSA9PiAwLjdcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuNjY2LCAyKSA9PiAwLjY3XG4vL1xuQGZ1bmN0aW9uIGRlY2ltYWwtcm91bmQgKCRudW1iZXIsICRkaWdpdHM6IDAsICRtb2RlOiByb3VuZCkge1xuICAkbjogMTtcbiAgLy8gJG51bWJlciBtdXN0IGJlIGEgbnVtYmVyXG4gIEBpZiB0eXBlLW9mKCRudW1iZXIpICE9IG51bWJlciB7XG4gICAgQHdhcm4gJyN7ICRudW1iZXIgfSBpcyBub3QgYSBudW1iZXIuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH1cbiAgLy8gJGRpZ2l0cyBtdXN0IGJlIGEgdW5pdGxlc3MgbnVtYmVyXG4gIEBpZiB0eXBlLW9mKCRkaWdpdHMpICE9IG51bWJlciB7XG4gICAgQHdhcm4gJyN7ICRkaWdpdHMgfSBpcyBub3QgYSBudW1iZXIuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH0gQGVsc2UgaWYgbm90IHVuaXRsZXNzKCRkaWdpdHMpIHtcbiAgICBAd2FybiAnI3sgJGRpZ2l0cyB9IGhhcyBhIHVuaXQuJztcbiAgICBAcmV0dXJuICRudW1iZXI7XG4gIH1cbiAgQGlmICRkaWdpdHMgPiAwIHtcbiAgICBAZm9yICRpIGZyb20gMSB0aHJvdWdoICRkaWdpdHMge1xuICAgICAgJG46ICRuICogMTA7XG4gICAgfVxuICB9XG4gIEBpZiAkbW9kZSA9PSByb3VuZCB7XG4gICAgQHJldHVybiByb3VuZCgkbnVtYmVyICogJG4pIC8gJG47XG4gIH0gQGVsc2UgaWYgJG1vZGUgPT0gY2VpbCB7XG4gICAgQHJldHVybiBjZWlsKCRudW1iZXIgKiAkbikgLyAkbjtcbiAgfSBAZWxzZSBpZiAkbW9kZSA9PSBmbG9vciB7XG4gICAgQHJldHVybiBmbG9vcigkbnVtYmVyICogJG4pIC8gJG47XG4gIH0gQGVsc2Uge1xuICAgIEB3YXJuICcjeyAkbW9kZSB9IGlzIHVuZGVmaW5lZCBrZXl3b3JkLic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9XG59XG5cbi8vIENlaWwgYSBudW1iZXIgdG8gc3BlY2lmaWVkIGRpZ2l0cy5cbi8vXG4vLyBAcGFyYW0gIHtOdW1iZXJ9ICRudW1iZXIgQSBudW1iZXIgdG8gcm91bmRcbi8vIEBwYXJhbSAge051bWJlcn0gWyRkaWdpdHM6MF0gRGlnaXRzIHRvIG91dHB1dFxuLy8gQHJldHVybiB7TnVtYmVyfSBBIGNlaWxlZCBudW1iZXJcbi8vIEBleGFtcGxlXG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuMzMzKSAgICA9PiAxXG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuMzMzLCAxKSA9PiAwLjRcbi8vICAgICBkZWNpbWFsLWNlaWwoMC4zMzMsIDIpID0+IDAuMzRcbi8vICAgICBkZWNpbWFsLWNlaWwoMC42NjYpICAgID0+IDFcbi8vICAgICBkZWNpbWFsLWNlaWwoMC42NjYsIDEpID0+IDAuN1xuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjY2NiwgMikgPT4gMC42N1xuLy9cbkBmdW5jdGlvbiBkZWNpbWFsLWNlaWwgKCRudW1iZXIsICRkaWdpdHM6IDApIHtcbiAgQHJldHVybiBkZWNpbWFsLXJvdW5kKCRudW1iZXIsICRkaWdpdHMsIGNlaWwpO1xufVxuXG4vLyBGbG9vciBhIG51bWJlciB0byBzcGVjaWZpZWQgZGlnaXRzLlxuLy9cbi8vIEBwYXJhbSAge051bWJlcn0gJG51bWJlciBBIG51bWJlciB0byByb3VuZFxuLy8gQHBhcmFtICB7TnVtYmVyfSBbJGRpZ2l0czowXSBEaWdpdHMgdG8gb3V0cHV0XG4vLyBAcmV0dXJuIHtOdW1iZXJ9IEEgZmxvb3JlZCBudW1iZXJcbi8vIEBleGFtcGxlXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjMzMykgICAgPT4gMFxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC4zMzMsIDEpID0+IDAuM1xuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC4zMzMsIDIpID0+IDAuMzNcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuNjY2KSAgICA9PiAwXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjY2NiwgMSkgPT4gMC42XG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjY2NiwgMikgPT4gMC42NlxuLy9cbkBmdW5jdGlvbiBkZWNpbWFsLWZsb29yICgkbnVtYmVyLCAkZGlnaXRzOiAwKSB7XG4gIEByZXR1cm4gZGVjaW1hbC1yb3VuZCgkbnVtYmVyLCAkZGlnaXRzLCBmbG9vcik7XG59XG5cbiJdfQ== */"];
+var styles = [".main-header[_ngcontent-%COMP%] {\n  position: fixed;\n  top: 0;\n  right: 0;\n  left: 0;\n  z-index: 500;\n  box-shadow: 0 5px 6px -6px rgba(0, 0, 0, 0.5); }\n  .main-header[_ngcontent-%COMP%]   .main-navbar[_ngcontent-%COMP%] {\n    display: flex;\n    flex-wrap: wrap;\n    align-items: center;\n    padding: 8px 16px; }\n  .main-header[_ngcontent-%COMP%]   .mat-button[_ngcontent-%COMP%] {\n    font-weight: bolder; }\n  .main-header[_ngcontent-%COMP%]   .mat-button[_ngcontent-%COMP%]   .mat-icon[_ngcontent-%COMP%] {\n      margin-right: 6px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9wYXJ0aWFscy9tYWluLWhlYWRlci9tYWluLWhlYWRlci5jb21wb25lbnQuc2NzcyIsIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2Fzc2V0cy9zdHlsZS9fbWl4aW5zLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSxlQUFlO0VBQ2YsTUFBTTtFQUNOLFFBQVE7RUFDUixPQUFPO0VBQ1AsWUFBWTtFQ3dCWiw2Q0FBbUQsRUFBQTtFRDdCckQ7SUFVSSxhQUFhO0lBQ2IsZUFBZTtJQUNmLG1CQUFtQjtJQUNuQixpQkFBaUIsRUFBQTtFQWJyQjtJQWtCSSxtQkFBbUIsRUFBQTtFQWxCdkI7TUFxQk0saUJBQWlCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9wYXJ0aWFscy9tYWluLWhlYWRlci9tYWluLWhlYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgJy4uLy4uLy4uL2Fzc2V0cy9zdHlsZS9taXhpbnMnO1xuXG4ubWFpbi1oZWFkZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIHRvcDogMDtcbiAgcmlnaHQ6IDA7XG4gIGxlZnQ6IDA7XG4gIHotaW5kZXg6IDUwMDtcblxuICBAaW5jbHVkZSBib3gtc2hhZG93LWJvdHRvbSgpO1xuXG4gIC5tYWluLW5hdmJhciB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBwYWRkaW5nOiA4cHggMTZweDtcbiAgfVxuXG4gIC5tYXQtYnV0dG9uIHtcbi8vICAgIGZvbnQtc2l6ZTogbGFyZ2U7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGRlcjtcblxuICAgIC5tYXQtaWNvbiB7XG4gICAgICBtYXJnaW4tcmlnaHQ6IDZweDtcbiAgICB9XG4gIH1cblxufVxuIiwiJGJsYWNrOiByZ2IoMTEsIDExLCAxMSk7XG4kYmxhY2stMTItb3BhY2l0eTogcmdiYSgkYmxhY2ssIC4xMik7XG4kYmxhY2stMTQtb3BhY2l0eTogcmdiYSgkYmxhY2ssIC4xNCk7XG4kYmxhY2stMjAtb3BhY2l0eTogcmdiYSgkYmxhY2ssIC4yKTtcbiRibGFjay02MC1vcGFjaXR5OiByZ2JhKCRibGFjaywgLjYpO1xuXG4kd2hpdGU6IHJnYigyNDQsIDI0NCwgMjQ0KTtcblxuJGJvcmRlci1jb2xvcjogI2ViZWJlYjtcblxuQG1peGluIGJhY2tncm91bmQtY292ZXIoJGF0dGFjaG1lbnQ6IHNjcm9sbCkge1xuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoJGJsYWNrLTIwLW9wYWNpdHksICRibGFjay0yMC1vcGFjaXR5KSAkYXR0YWNobWVudCBjZW50ZXIgY2VudGVyO1xufVxuXG5AbWl4aW4gZm9udC1zbW9vdGhpbmcoKSB7XG4gIC13ZWJraXQtZm9udC1zbW9vdGhpbmc6IGFudGlhbGlhc2VkO1xuICAtbW96LW9zeC1mb250LXNtb290aGluZzogZ3JheXNjYWxlO1xufVxuXG4vLyBUZXh0IFNoYWRvd1xuQG1peGluIHRleHQtc2hhZG93KCkge1xuICB0ZXh0LXNoYWRvdzogMCAwIDRweCAkYmxhY2ssIC0xcHggLTFweCAkYmxhY2stNjAtb3BhY2l0eSwgMXB4IDFweCAkYmxhY2stNjAtb3BhY2l0eTtcbn1cblxuLy8gQm94IFNoYWRvd1xuQG1peGluIGJveC1zaGFkb3coJHg6IDAsICR5OiAxcHgsICRibHVyOiAzcHgsICRhbHBoYTogLjUpIHtcbiAgYm94LXNoYWRvdzogJHggJHkgJGJsdXIgcmdiYSgwLCAwLCAwLCAkYWxwaGEpO1xufVxuXG5AbWl4aW4gYm94LXNoYWRvdy1ib3R0b20oJHg6IDAsICR5OiA1cHgsICRibHVyOiA2cHgsICRzaWRlOiAtNnB4LCAkYWxwaGE6IC41KSB7XG4gIGJveC1zaGFkb3c6ICR4ICR5ICRibHVyICRzaWRlIHJnYmEoMCwgMCwgMCwgJGFscGhhKTtcbn1cblxuQG1peGluIG1hdC1ib3gtc2hhZG93LWRlZXAoKSB7XG4vLyAgYm94LXNoYWRvdzogMCA1cHggNXB4IC0zcHggJGJsYWNrLTIwLW9wYWNpdHksIDAgOHB4IDEwcHggMXB4ICRibGFjay0xNC1vcGFjaXR5LCAwIDNweCAxNHB4IDJweCAkYmxhY2stMTItb3BhY2l0eTtcbiAgYm94LXNoYWRvdzogMCAzcHggNXB4IC0xcHggJGJsYWNrLTIwLW9wYWNpdHksIDAgNnB4IDEwcHggMCAkYmxhY2stMTQtb3BhY2l0eSwgMCAxcHggMThweCAwICRibGFjay0xMi1vcGFjaXR5O1xufVxuXG5AbWl4aW4gbWF0LWJveC1zaGFkb3ctZmxhdCgpIHtcbiAgYm94LXNoYWRvdzogMCAycHggMnB4ICRibGFjay0yMC1vcGFjaXR5LCAwIDAgMnB4ICRibGFjay0xMi1vcGFjaXR5O1xufVxuXG5AbWl4aW4gYm9yZGVyLXRvcCgpIHtcbiAgYm9yZGVyLXRvcDogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXItcmlnaHQoKSB7XG4gIGJvcmRlci1yaWdodDogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXItYm90dG9tKCkge1xuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgJGJvcmRlci1jb2xvcjtcbn1cblxuQG1peGluIGJvcmRlci1sZWZ0KCkge1xuICBib3JkZXItbGVmdDogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiBib3JkZXIoKSB7XG4gIGJvcmRlcjogMXB4IHNvbGlkICRib3JkZXItY29sb3I7XG59XG5cbkBtaXhpbiByZWwtdmlld2hlaWdodCgkaDE6IDAsICRoMjogMCwgJGgzOiAwKSB7XG4gIC8vICRtaW51czogJGgxICsgJGgyICsgJGgzICsgcHg7XG4gIC8vIGhlaWdodDogY2FsYygxMDB2aCAtICRtaW51cyk7XG59XG5cblxuLy8gX2RlY2ltYWwuc2NzcyB8IE1JVCBMaWNlbnNlIHwgZ2lzdC5naXRodWIuY29tL3RlcmtlbC80MzczNDIwXG5cbi8vIFJvdW5kIGEgbnVtYmVyIHRvIHNwZWNpZmllZCBkaWdpdHMuXG4vL1xuLy8gQHBhcmFtICB7TnVtYmVyfSAkbnVtYmVyIEEgbnVtYmVyIHRvIHJvdW5kXG4vLyBAcGFyYW0gIHtOdW1iZXJ9IFskZGlnaXRzOjBdIERpZ2l0cyB0byBvdXRwdXRcbi8vIEBwYXJhbSAge1N0cmluZ30gWyRtb2RlOnJvdW5kXSAocm91bmR8Y2VpbHxmbG9vcikgSG93IHRvIHJvdW5kIGEgbnVtYmVyXG4vLyBAcmV0dXJuIHtOdW1iZXJ9IEEgcm91bmRlZCBudW1iZXJcbi8vIEBleGFtcGxlXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjMzMykgICAgPT4gMFxuLy8gICAgIGRlY2ltYWwtcm91bmQoMC4zMzMsIDEpID0+IDAuM1xuLy8gICAgIGRlY2ltYWwtcm91bmQoMC4zMzMsIDIpID0+IDAuMzNcbi8vICAgICBkZWNpbWFsLXJvdW5kKDAuNjY2KSAgICA9PiAxXG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjY2NiwgMSkgPT4gMC43XG4vLyAgICAgZGVjaW1hbC1yb3VuZCgwLjY2NiwgMikgPT4gMC42N1xuLy9cbkBmdW5jdGlvbiBkZWNpbWFsLXJvdW5kICgkbnVtYmVyLCAkZGlnaXRzOiAwLCAkbW9kZTogcm91bmQpIHtcbiAgJG46IDE7XG4gIC8vICRudW1iZXIgbXVzdCBiZSBhIG51bWJlclxuICBAaWYgdHlwZS1vZigkbnVtYmVyKSAhPSBudW1iZXIge1xuICAgIEB3YXJuICcjeyAkbnVtYmVyIH0gaXMgbm90IGEgbnVtYmVyLic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9XG4gIC8vICRkaWdpdHMgbXVzdCBiZSBhIHVuaXRsZXNzIG51bWJlclxuICBAaWYgdHlwZS1vZigkZGlnaXRzKSAhPSBudW1iZXIge1xuICAgIEB3YXJuICcjeyAkZGlnaXRzIH0gaXMgbm90IGEgbnVtYmVyLic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9IEBlbHNlIGlmIG5vdCB1bml0bGVzcygkZGlnaXRzKSB7XG4gICAgQHdhcm4gJyN7ICRkaWdpdHMgfSBoYXMgYSB1bml0Lic7XG4gICAgQHJldHVybiAkbnVtYmVyO1xuICB9XG4gIEBpZiAkZGlnaXRzID4gMCB7XG4gICAgQGZvciAkaSBmcm9tIDEgdGhyb3VnaCAkZGlnaXRzIHtcbiAgICAgICRuOiAkbiAqIDEwO1xuICAgIH1cbiAgfVxuICBAaWYgJG1vZGUgPT0gcm91bmQge1xuICAgIEByZXR1cm4gcm91bmQoJG51bWJlciAqICRuKSAvICRuO1xuICB9IEBlbHNlIGlmICRtb2RlID09IGNlaWwge1xuICAgIEByZXR1cm4gY2VpbCgkbnVtYmVyICogJG4pIC8gJG47XG4gIH0gQGVsc2UgaWYgJG1vZGUgPT0gZmxvb3Ige1xuICAgIEByZXR1cm4gZmxvb3IoJG51bWJlciAqICRuKSAvICRuO1xuICB9IEBlbHNlIHtcbiAgICBAd2FybiAnI3sgJG1vZGUgfSBpcyB1bmRlZmluZWQga2V5d29yZC4nO1xuICAgIEByZXR1cm4gJG51bWJlcjtcbiAgfVxufVxuXG4vLyBDZWlsIGEgbnVtYmVyIHRvIHNwZWNpZmllZCBkaWdpdHMuXG4vL1xuLy8gQHBhcmFtICB7TnVtYmVyfSAkbnVtYmVyIEEgbnVtYmVyIHRvIHJvdW5kXG4vLyBAcGFyYW0gIHtOdW1iZXJ9IFskZGlnaXRzOjBdIERpZ2l0cyB0byBvdXRwdXRcbi8vIEByZXR1cm4ge051bWJlcn0gQSBjZWlsZWQgbnVtYmVyXG4vLyBAZXhhbXBsZVxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjMzMykgICAgPT4gMVxuLy8gICAgIGRlY2ltYWwtY2VpbCgwLjMzMywgMSkgPT4gMC40XG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuMzMzLCAyKSA9PiAwLjM0XG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuNjY2KSAgICA9PiAxXG4vLyAgICAgZGVjaW1hbC1jZWlsKDAuNjY2LCAxKSA9PiAwLjdcbi8vICAgICBkZWNpbWFsLWNlaWwoMC42NjYsIDIpID0+IDAuNjdcbi8vXG5AZnVuY3Rpb24gZGVjaW1hbC1jZWlsICgkbnVtYmVyLCAkZGlnaXRzOiAwKSB7XG4gIEByZXR1cm4gZGVjaW1hbC1yb3VuZCgkbnVtYmVyLCAkZGlnaXRzLCBjZWlsKTtcbn1cblxuLy8gRmxvb3IgYSBudW1iZXIgdG8gc3BlY2lmaWVkIGRpZ2l0cy5cbi8vXG4vLyBAcGFyYW0gIHtOdW1iZXJ9ICRudW1iZXIgQSBudW1iZXIgdG8gcm91bmRcbi8vIEBwYXJhbSAge051bWJlcn0gWyRkaWdpdHM6MF0gRGlnaXRzIHRvIG91dHB1dFxuLy8gQHJldHVybiB7TnVtYmVyfSBBIGZsb29yZWQgbnVtYmVyXG4vLyBAZXhhbXBsZVxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC4zMzMpICAgID0+IDBcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuMzMzLCAxKSA9PiAwLjNcbi8vICAgICBkZWNpbWFsLWZsb29yKDAuMzMzLCAyKSA9PiAwLjMzXG4vLyAgICAgZGVjaW1hbC1mbG9vcigwLjY2NikgICAgPT4gMFxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC42NjYsIDEpID0+IDAuNlxuLy8gICAgIGRlY2ltYWwtZmxvb3IoMC42NjYsIDIpID0+IDAuNjZcbi8vXG5AZnVuY3Rpb24gZGVjaW1hbC1mbG9vciAoJG51bWJlciwgJGRpZ2l0czogMCkge1xuICBAcmV0dXJuIGRlY2ltYWwtcm91bmQoJG51bWJlciwgJGRpZ2l0cywgZmxvb3IpO1xufVxuXG4iXX0= */"];
 
 
 
@@ -24477,7 +25340,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = [".middle[_ngcontent-%COMP%] {\n  margin-top: auto;\n  margin-bottom: auto; }\n\n.small-button[_ngcontent-%COMP%] {\n  color: inherit;\n  margin-top: -2px;\n  height: 24px;\n  line-height: 0; }\n\nul.module-navbar[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  padding: 0; }\n\nul.module-navbar[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\n    list-style: none;\n    display: inline; }\n\na[_ngcontent-%COMP%] {\n  color: #333; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAvcGFydGlhbHMvbW9kdWxlLWhlYWRlci9tb2R1bGUtaGVhZGVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQWdCO0VBQ2hCLG1CQUFtQixFQUFBOztBQUdyQjtFQUNFLGNBQWM7RUFDZCxnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLGNBQWMsRUFBQTs7QUFHaEI7RUFDRSxhQUFhO0VBQ2IsZUFBZTtFQUNmLFVBQVUsRUFBQTs7QUFIWjtJQU1JLGdCQUFnQjtJQUNoQixlQUFlLEVBQUE7O0FBS25CO0VBQ0UsV0FBVyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvcGFydGlhbHMvbW9kdWxlLWhlYWRlci9tb2R1bGUtaGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1pZGRsZSB7XG4gIG1hcmdpbi10b3A6IGF1dG87XG4gIG1hcmdpbi1ib3R0b206IGF1dG87XG59XG5cbi5zbWFsbC1idXR0b24ge1xuICBjb2xvcjogaW5oZXJpdDtcbiAgbWFyZ2luLXRvcDogLTJweDtcbiAgaGVpZ2h0OiAyNHB4O1xuICBsaW5lLWhlaWdodDogMDtcbn1cblxudWwubW9kdWxlLW5hdmJhciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtd3JhcDogd3JhcDtcbiAgcGFkZGluZzogMDtcblxuICBsaSB7XG4gICAgbGlzdC1zdHlsZTogbm9uZTtcbiAgICBkaXNwbGF5OiBpbmxpbmU7XG4gIH1cblxufVxuXG5hIHtcbiAgY29sb3I6ICMzMzM7XG59XG4iXX0= */"];
+var styles = [".middle[_ngcontent-%COMP%] {\n  margin-top: auto;\n  margin-bottom: auto; }\n\n.small-button[_ngcontent-%COMP%] {\n  color: inherit;\n  margin-top: -2px;\n  height: 24px;\n  line-height: 0; }\n\nul.module-navbar[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  padding: 0; }\n\nul.module-navbar[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] {\n    list-style: none;\n    display: inline; }\n\na[_ngcontent-%COMP%] {\n  color: #333; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9wYXJ0aWFscy9tb2R1bGUtaGVhZGVyL21vZHVsZS1oZWFkZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBZ0I7RUFDaEIsbUJBQW1CLEVBQUE7O0FBR3JCO0VBQ0UsY0FBYztFQUNkLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osY0FBYyxFQUFBOztBQUdoQjtFQUNFLGFBQWE7RUFDYixlQUFlO0VBQ2YsVUFBVSxFQUFBOztBQUhaO0lBTUksZ0JBQWdCO0lBQ2hCLGVBQWUsRUFBQTs7QUFLbkI7RUFDRSxXQUFXLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9wYXJ0aWFscy9tb2R1bGUtaGVhZGVyL21vZHVsZS1oZWFkZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWlkZGxlIHtcbiAgbWFyZ2luLXRvcDogYXV0bztcbiAgbWFyZ2luLWJvdHRvbTogYXV0bztcbn1cblxuLnNtYWxsLWJ1dHRvbiB7XG4gIGNvbG9yOiBpbmhlcml0O1xuICBtYXJnaW4tdG9wOiAtMnB4O1xuICBoZWlnaHQ6IDI0cHg7XG4gIGxpbmUtaGVpZ2h0OiAwO1xufVxuXG51bC5tb2R1bGUtbmF2YmFyIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xuICBwYWRkaW5nOiAwO1xuXG4gIGxpIHtcbiAgICBsaXN0LXN0eWxlOiBub25lO1xuICAgIGRpc3BsYXk6IGlubGluZTtcbiAgfVxuXG59XG5cbmEge1xuICBjb2xvcjogIzMzMztcbn1cbiJdfQ== */"];
 
 
 
@@ -24664,7 +25527,7 @@ __webpack_require__.r(__webpack_exports__);
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles = [".demo-container[_ngcontent-%COMP%] {\n  position: relative;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0; }\n  .demo-container[_ngcontent-%COMP%]   .module-content[_ngcontent-%COMP%] {\n    max-width: 840px;\n    margin: 0 auto; }\n  .mat-sidenav-content[_ngcontent-%COMP%] {\n  padding: 48px;\n  height: calc(100vh - 96px - 64px);\n  overflow: auto; }\n  .demo-nav[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%] {\n  width: 220px; }\n  .demo-nav[_ngcontent-%COMP%]   .demo-nav-children[_ngcontent-%COMP%] {\n  padding-left: 24px;\n  display: none; }\n  .demo-nav[_ngcontent-%COMP%]   .demo-nav-children.open[_ngcontent-%COMP%] {\n    display: block; }\n  .demo-nav[_ngcontent-%COMP%]   .demo-nav-children[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%] {\n    width: 196px; }\n  .demo-nav-item[_ngcontent-%COMP%] {\n  width: 200px;\n  text-align: left; }\n  .mat-icon[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 0;\n  top: 6px;\n  display: none; }\n  .active-link[_ngcontent-%COMP%] {\n  background: rgba(33, 33, 33, 0.2); }\n  .active-link[_ngcontent-%COMP%]   .mat-icon[_ngcontent-%COMP%] {\n    display: block; }\n  h1[_ngcontent-%COMP%] {\n  font-size: 1.4em; }\n  h2[_ngcontent-%COMP%] {\n  font-size: 1.2em; }\n  mat-list-item[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  padding-left: 24px;\n  padding-right: 24px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hay9Db2RlL2tub3JhLXVpL3NyYy9hcHAvcGFydGlhbHMvbW9kdWxlLWluZGV4L21vZHVsZS1pbmRleC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtFQUNsQixNQUFNO0VBQ04sU0FBUztFQUNULE9BQU87RUFDUCxRQUFRLEVBQUE7RUFMVjtJQVFJLGdCQUFnQjtJQUNoQixjQUFjLEVBQUE7RUFRbEI7RUFDRSxhQUFhO0VBQ2IsaUNBQWlDO0VBQ2pDLGNBQWMsRUFBQTtFQUdoQjtFQUdJLFlBQVksRUFBQTtFQUhoQjtFQU9JLGtCQUFrQjtFQUVsQixhQUFhLEVBQUE7RUFUakI7SUFZTSxjQUFjLEVBQUE7RUFacEI7SUFnQk0sWUFBWSxFQUFBO0VBTWxCO0VBQ0UsWUFBWTtFQUNaLGdCQUFnQixFQUFBO0VBR2xCO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixRQUFRO0VBQ1IsYUFBYSxFQUFBO0VBR2Y7RUFDRSxpQ0FBNkIsRUFBQTtFQUQvQjtJQUlJLGNBQWMsRUFBQTtFQUtsQjtFQUNFLGdCQUFnQixFQUFBO0VBRWxCO0VBQ0UsZ0JBQWdCLEVBQUE7RUFJbEI7RUFFSSxrQkFBa0I7RUFDbEIsbUJBQW1CLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9wYXJ0aWFscy9tb2R1bGUtaW5kZXgvbW9kdWxlLWluZGV4LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmRlbW8tY29udGFpbmVyIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB0b3A6IDA7XG4gIGJvdHRvbTogMDtcbiAgbGVmdDogMDtcbiAgcmlnaHQ6IDA7XG5cbiAgLm1vZHVsZS1jb250ZW50IHtcbiAgICBtYXgtd2lkdGg6IDg0MHB4O1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICB9XG59XG5cbi5kZW1vLW5hdi1jb250YWluZXIge1xuICAvLyBwYWRkaW5nOiAyNHB4O1xufVxuXG4ubWF0LXNpZGVuYXYtY29udGVudCB7XG4gIHBhZGRpbmc6IDQ4cHg7XG4gIGhlaWdodDogY2FsYygxMDB2aCAtIDk2cHggLSA2NHB4KTtcbiAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbi5kZW1vLW5hdiB7XG5cbiAgLm1hdC1saXN0LWl0ZW0ge1xuICAgIHdpZHRoOiAyMjBweDtcbiAgfVxuXG4gIC5kZW1vLW5hdi1jaGlsZHJlbiB7XG4gICAgcGFkZGluZy1sZWZ0OiAyNHB4O1xuXG4gICAgZGlzcGxheTogbm9uZTtcblxuICAgICYub3BlbiB7XG4gICAgICBkaXNwbGF5OiBibG9jaztcbiAgICB9XG5cbiAgICAubWF0LWxpc3QtaXRlbSB7XG4gICAgICB3aWR0aDogMTk2cHg7XG4gICAgfVxuXG4gIH1cbn1cblxuLmRlbW8tbmF2LWl0ZW0ge1xuICB3aWR0aDogMjAwcHg7XG4gIHRleHQtYWxpZ246IGxlZnQ7XG59XG5cbi5tYXQtaWNvbiB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgcmlnaHQ6IDA7XG4gIHRvcDogNnB4O1xuICBkaXNwbGF5OiBub25lO1xufVxuXG4uYWN0aXZlLWxpbmsge1xuICBiYWNrZ3JvdW5kOiByZ2JhKDMzLDMzLDMzLC4yKTtcblxuICAubWF0LWljb24ge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG5cbn1cblxuaDEge1xuICBmb250LXNpemU6IDEuNGVtO1xufVxuaDIge1xuICBmb250LXNpemU6IDEuMmVtO1xufVxuXG5cbm1hdC1saXN0LWl0ZW0ge1xuICBzcGFuIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDI0cHg7XG4gICAgcGFkZGluZy1yaWdodDogMjRweDtcbiAgfVxufVxuIl19 */"];
+var styles = [".demo-container[_ngcontent-%COMP%] {\n  position: relative;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0; }\n  .demo-container[_ngcontent-%COMP%]   .module-content[_ngcontent-%COMP%] {\n    max-width: 840px;\n    margin: 0 auto; }\n  .mat-sidenav-content[_ngcontent-%COMP%] {\n  padding: 48px;\n  height: calc(100vh - 96px - 64px);\n  overflow: auto; }\n  .demo-nav[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%] {\n  width: 220px; }\n  .demo-nav[_ngcontent-%COMP%]   .demo-nav-children[_ngcontent-%COMP%] {\n  padding-left: 24px;\n  display: none; }\n  .demo-nav[_ngcontent-%COMP%]   .demo-nav-children.open[_ngcontent-%COMP%] {\n    display: block; }\n  .demo-nav[_ngcontent-%COMP%]   .demo-nav-children[_ngcontent-%COMP%]   .mat-list-item[_ngcontent-%COMP%] {\n    width: 196px; }\n  .demo-nav-item[_ngcontent-%COMP%] {\n  width: 200px;\n  text-align: left; }\n  .mat-icon[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 0;\n  top: 6px;\n  display: none; }\n  .active-link[_ngcontent-%COMP%] {\n  background: rgba(33, 33, 33, 0.2); }\n  .active-link[_ngcontent-%COMP%]   .mat-icon[_ngcontent-%COMP%] {\n    display: block; }\n  h1[_ngcontent-%COMP%] {\n  font-size: 1.4em; }\n  h2[_ngcontent-%COMP%] {\n  font-size: 1.2em; }\n  mat-list-item[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  padding-left: 24px;\n  padding-right: 24px; }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mbGF2ZW5zL2NvZGUvS25vcmEtdWkvc3JjL2FwcC9wYXJ0aWFscy9tb2R1bGUtaW5kZXgvbW9kdWxlLWluZGV4LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLE1BQU07RUFDTixTQUFTO0VBQ1QsT0FBTztFQUNQLFFBQVEsRUFBQTtFQUxWO0lBUUksZ0JBQWdCO0lBQ2hCLGNBQWMsRUFBQTtFQVFsQjtFQUNFLGFBQWE7RUFDYixpQ0FBaUM7RUFDakMsY0FBYyxFQUFBO0VBR2hCO0VBR0ksWUFBWSxFQUFBO0VBSGhCO0VBT0ksa0JBQWtCO0VBRWxCLGFBQWEsRUFBQTtFQVRqQjtJQVlNLGNBQWMsRUFBQTtFQVpwQjtJQWdCTSxZQUFZLEVBQUE7RUFNbEI7RUFDRSxZQUFZO0VBQ1osZ0JBQWdCLEVBQUE7RUFHbEI7RUFDRSxrQkFBa0I7RUFDbEIsUUFBUTtFQUNSLFFBQVE7RUFDUixhQUFhLEVBQUE7RUFHZjtFQUNFLGlDQUE2QixFQUFBO0VBRC9CO0lBSUksY0FBYyxFQUFBO0VBS2xCO0VBQ0UsZ0JBQWdCLEVBQUE7RUFFbEI7RUFDRSxnQkFBZ0IsRUFBQTtFQUlsQjtFQUVJLGtCQUFrQjtFQUNsQixtQkFBbUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3BhcnRpYWxzL21vZHVsZS1pbmRleC9tb2R1bGUtaW5kZXguY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZGVtby1jb250YWluZXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogMDtcbiAgYm90dG9tOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcblxuICAubW9kdWxlLWNvbnRlbnQge1xuICAgIG1heC13aWR0aDogODQwcHg7XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gIH1cbn1cblxuLmRlbW8tbmF2LWNvbnRhaW5lciB7XG4gIC8vIHBhZGRpbmc6IDI0cHg7XG59XG5cbi5tYXQtc2lkZW5hdi1jb250ZW50IHtcbiAgcGFkZGluZzogNDhweDtcbiAgaGVpZ2h0OiBjYWxjKDEwMHZoIC0gOTZweCAtIDY0cHgpO1xuICBvdmVyZmxvdzogYXV0bztcbn1cblxuLmRlbW8tbmF2IHtcblxuICAubWF0LWxpc3QtaXRlbSB7XG4gICAgd2lkdGg6IDIyMHB4O1xuICB9XG5cbiAgLmRlbW8tbmF2LWNoaWxkcmVuIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDI0cHg7XG5cbiAgICBkaXNwbGF5OiBub25lO1xuXG4gICAgJi5vcGVuIHtcbiAgICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgIH1cblxuICAgIC5tYXQtbGlzdC1pdGVtIHtcbiAgICAgIHdpZHRoOiAxOTZweDtcbiAgICB9XG5cbiAgfVxufVxuXG4uZGVtby1uYXYtaXRlbSB7XG4gIHdpZHRoOiAyMDBweDtcbiAgdGV4dC1hbGlnbjogbGVmdDtcbn1cblxuLm1hdC1pY29uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICByaWdodDogMDtcbiAgdG9wOiA2cHg7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG5cbi5hY3RpdmUtbGluayB7XG4gIGJhY2tncm91bmQ6IHJnYmEoMzMsMzMsMzMsLjIpO1xuXG4gIC5tYXQtaWNvbiB7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gIH1cblxufVxuXG5oMSB7XG4gIGZvbnQtc2l6ZTogMS40ZW07XG59XG5oMiB7XG4gIGZvbnQtc2l6ZTogMS4yZW07XG59XG5cblxubWF0LWxpc3QtaXRlbSB7XG4gIHNwYW4ge1xuICAgIHBhZGRpbmctbGVmdDogMjRweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAyNHB4O1xuICB9XG59XG4iXX0= */"];
 
 
 
@@ -24863,7 +25726,7 @@ fetch("config/config." + _environments_environment__WEBPACK_IMPORTED_MODULE_1__[
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/ak/Code/knora-ui/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/flavens/code/Knora-ui/src/main.ts */"./src/main.ts");
 
 
 /***/ }),

@@ -771,7 +771,7 @@
     "ignore": false,
     "line": 214,
     "codeStart": 220,
-    "code": "addUserToSystemAdmin(userIri: string): Observable<User> {\n    const data = {\n        'newSystemAdminMembershipStatus': true\n    };\n\n    return this.updateUserSystemAdmin(userIri, data);\n\n}",
+    "code": "addUserToSystemAdmin(userIri: string): Observable<User> {\n    const data = {\n        'systemAdmin': true\n    };\n\n    return this.updateUserSystemAdmin(userIri, data);\n\n}",
     "ctx": {
       "type": "method",
       "name": "addUserToSystemAdmin",
@@ -819,7 +819,7 @@
     "ignore": false,
     "line": 229,
     "codeStart": 234,
-    "code": "removeUserFromSystemAdmin(userIri: string): Observable<User> {\n    const data = {\n        'newSystemAdminMembershipStatus': false\n    };\n\n    return this.updateUserSystemAdmin(userIri, data);\n}",
+    "code": "removeUserFromSystemAdmin(userIri: string): Observable<User> {\n    const data = {\n        'systemAdmin': false\n    };\n\n    return this.updateUserSystemAdmin(userIri, data);\n}",
     "ctx": {
       "type": "method",
       "name": "removeUserFromSystemAdmin",

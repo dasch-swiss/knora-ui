@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';\nimport { ListNodeV2 } from '@knora/core';\nimport { MatMenuTrigger } from '@angular/material';\n\n@Component({\n    selector: 'list-display',\n    templateUrl: './list-display.component.html',\n    styleUrls: ['./list-display.component.scss']\n})\nexport class ListDisplayComponent implements OnInit {\n\n    @Input() children: ListNodeV2[];\n\n    @Output() selectedNode: EventEmitter<ListNodeV2> = new EventEmitter<ListNodeV2>();\n\n    @ViewChild('childMenu') public childMenu: MatMenuTrigger;\n\n    constructor () {\n    }\n\n    ngOnInit() {\n        // console.log(this.children)\n    }\n\n    setValue(item: ListNodeV2) {\n        this.selectedNode.emit(item);\n    }\n\n}",
+    "ctx": false
+  }
+]

@@ -13,7 +13,7 @@
     "ignore": false,
     "line": 17,
     "codeStart": 20,
-    "code": "@Component({\n    selector: 'kui-extended-search',\n    templateUrl: './extended-search.component.html',\n    styleUrls: ['./extended-search.component.scss']\n})\nexport class ExtendedSearchComponent implements OnInit {",
+    "code": "@Component({\n    selector: 'kui-extended-search',\n    templateUrl: './extended-search.component.html',\n    styleUrls: ['./extended-search.component.scss', '../assets/style/search.scss']\n})\nexport class ExtendedSearchComponent implements OnInit {",
     "ctx": false
   },
   {
