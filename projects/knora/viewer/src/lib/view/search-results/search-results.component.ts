@@ -1,17 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ApiServiceError, CountQueryResult, ExtendedSearchParams, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, SearchParamsService, SearchService } from '@knora/core';
 import { Subscription } from 'rxjs';
-import {
-    ApiServiceError,
-    CountQueryResult,
-    ExtendedSearchParams,
-    KnoraConstants,
-    OntologyInformation,
-    ReadResource,
-    ReadResourcesSequence,
-    SearchParamsService,
-    SearchService
-} from '@knora/core';
 
 /**
  * The search-results gets the search mode and parameters from routes or inputs,
@@ -27,6 +17,7 @@ export class SearchResultsComponent implements OnInit {
     /**
      *
      * @param  {boolean} [complexView] If true it shows 2 ways to display the search results: list or grid.
+     *
      */
     @Input() complexView?: boolean = false;
 
@@ -62,7 +53,7 @@ export class SearchResultsComponent implements OnInit {
     errorMessage: ApiServiceError = new ApiServiceError();
     pagingLimit: number = 25;
 
-    constructor(
+    constructor (
         private _route: ActivatedRoute,
         private _searchService: SearchService,
         private _searchParamsService: SearchParamsService,
@@ -244,7 +235,7 @@ export class SearchResultsComponent implements OnInit {
 
         this.loading = false;
         this.rerender = false;
-    };
+    }
 
     /**
      * Shows total number of results returned by a count query.
@@ -264,7 +255,7 @@ export class SearchResultsComponent implements OnInit {
         } else {
             this.maxOffset = 0;
         }
-    };
+    }
 
     /**
      * Loads the next page of results.

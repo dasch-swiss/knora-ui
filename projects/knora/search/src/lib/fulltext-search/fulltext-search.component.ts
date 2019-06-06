@@ -1,12 +1,7 @@
-import {
-    animate,
-    state,
-    style,
-    transition,
-    trigger
-} from '@angular/animations';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ConnectionPositionPair, Overlay, OverlayConfig, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiServiceError, Project, ProjectsService } from '@knora/core';
 import { MatMenuTrigger } from '@angular/material';
 
@@ -16,88 +11,78 @@ export interface PrevSearchItem {
     query: string;
 }
 
-/**
- * Full-text search performs queries including one or more terms or phrases and returns data that
- match search conditions. The asterisk * can be used as a wildcard symbol.
- */
 @Component({
     selector: 'kui-fulltext-search',
     templateUrl: './fulltext-search.component.html',
-    styleUrls: ['./fulltext-search.component.scss'],
-    animations: [
-        trigger('fulltextSearchMenu', [
-            state('inactive', style({ display: 'none' })),
-            state('active', style({ display: 'block' })),
-            transition('inactive => active', animate('100ms ease-in')),
-            transition('active => inactive', animate('100ms ease-out'))
-        ])
-    ]
+    styleUrls: ['./fulltext-search.component.scss', '../assets/style/search.scss']
 })
 export class FulltextSearchComponent implements OnInit {
+
     /**
      *
-     * @param  {string} route Route to navigate after search. This route path should contain a component for search results.
+     * @param  {string} route Route to navigate after search.
+     * This route path should contain a component for search results.
      */
     @Input() route: string = '/search';
 
     /**
      *
-     * @param  {boolean} [projectfilter] If true it shows the selection of projects to filter by one of them
+     * @param  {boolean} [projectfilter] If true it shows the selection
+     * of projects to filter by one of them
      */
     @Input() projectfilter?: boolean = false;
 
     /**
      *
-     * @param  {string} [filterbyproject] If your full-text search should be filtered by one project, you can define it with project iri in the parameter filterbyproject.
+     * @param  {string} [filterbyproject] If the full-text search should be
+     * filtered by one project, you can define it with project iri.
      */
     @Input() filterbyproject?: string;
 
-    /**
-     * @ignore
-     * input field for full-text search
-     *
-     * @param  {} 'search'
-     * @param  {ElementRef} searchField
-     */
-    @ViewChild('search') searchField: ElementRef;
+    @ViewChild('fulltextSearchPanel') searchPanel: ElementRef;
+    @ViewChild('fulltextSearchInput') searchInput: ElementRef;
+    @ViewChild('fulltextSearchMenu') searchMenu: TemplateRef<any>;
 
-    /**
-     * @ignore
-     * mat menu: after select a project, the focus should switch to the input field
-     *
-     * @param  {} 'btnToSelectProject'
-     * @param  {MatMenuTrigger} selectProject
-     */
     @ViewChild('btnToSelectProject') selectProject: MatMenuTrigger;
 
+    // search query
     searchQuery: string;
 
-    showSimpleSearch: boolean = true;
-
-    searchPanelFocus: boolean = false;
-
+    // previous search = full-text search history
     prevSearch: PrevSearchItem[] = JSON.parse(localStorage.getItem('prevSearch'));
 
-    focusOnSimple: string = 'inactive';
-
-    searchLabel: string = 'Search';
-
+    // list of projects, in case of filterproject is true
     projects: Project[];
+
+    // selected project, in case of filterbyproject and/or projectfilter is true
+    project: Project;
     projectLabel: string = 'Filter project';
     projectIri: string;
 
+    // in case of an (api) error
     error: any;
 
-    constructor(
-        private _route: ActivatedRoute,
+    // is search panel focused?
+    searchPanelFocus: boolean = false;
+
+    // overlay reference
+    overlayRef: OverlayRef;
+
+    constructor (
+        private _overlay: Overlay,
         private _router: Router,
+        private _viewContainerRef: ViewContainerRef,
         private _projectsService: ProjectsService
-    ) {}
+    ) { }
 
     ngOnInit() {
+
+        // this.setFocus();
+
         if (this.filterbyproject) {
             this.getProject(this.filterbyproject);
         }
+
         if (this.projectfilter) {
             this.getAllProjects();
 
@@ -109,58 +94,93 @@ export class FulltextSearchComponent implements OnInit {
         }
     }
 
-    /**
-     * Do search on press Enter, close search menu on Escape
-     * @ignore
-     *
-     * @param search_ele
-     * @param event
-     */
-    onKey(search_ele: HTMLElement, event): void {
-        this.focusOnSimple = 'active';
-        this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-        if (
-            this.searchQuery &&
-            (event.key === 'Enter' ||
-                event.keyCode === 13 ||
-                event.which === 13)
-        ) {
-            this.doSearch();
-        }
-        if (
-            event.key === 'Escape' ||
-            event.keyCode === 27 ||
-            event.which === 27
-        ) {
-            this.resetSearch(search_ele);
+    openPanelWithBackdrop() {
+        const config = new OverlayConfig({
+            hasBackdrop: true,
+            backdropClass: 'cdk-overlay-transparent-backdrop',
+            // backdropClass: 'cdk-overlay-dark-backdrop',
+            positionStrategy: this.getOverlayPosition(),
+            scrollStrategy: this._overlay.scrollStrategies.block()
+        });
+
+        this.overlayRef = this._overlay.create(config);
+        this.overlayRef.attach(new TemplatePortal(this.searchMenu, this._viewContainerRef));
+        this.overlayRef.backdropClick().subscribe(() => {
+            this.searchPanelFocus = false;
+            this.overlayRef.detach();
+        });
+    }
+
+    getOverlayPosition(): PositionStrategy {
+        const positions = [
+            new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),
+            new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' })
+        ];
+
+        const overlayPosition = this._overlay.position().flexibleConnectedTo(this.searchPanel).withPositions(positions).withLockedPosition(false);
+
+        return overlayPosition;
+    }
+
+    getAllProjects(): void {
+        this._projectsService.getAllProjects().subscribe(
+            (projects: Project[]) => {
+                this.projects = projects;
+                // this.loadSystem = false;
+                if (localStorage.getItem('currentProject') !== null) {
+                    this.project = JSON.parse(
+                        localStorage.getItem('currentProject')
+                    );
+                }
+            },
+            (error: ApiServiceError) => {
+                console.error(error);
+                this.error = error;
+            }
+        );
+    }
+
+    getProject(id: string): void {
+        this._projectsService.getProjectByIri(id).subscribe(
+            (project: Project) => {
+                this.setProject(project);
+            },
+            (error: ApiServiceError) => {
+                console.error(error);
+            }
+        );
+    }
+
+    // set current project and switch focus to input field
+    setProject(project?: Project): void {
+        if (!project) {
+            // set default project: all
+            this.projectLabel = 'Filter project';
+            this.projectIri = undefined;
+            localStorage.removeItem('currentProject');
+        } else {
+            // set current project shortname and id
+            this.projectLabel = project.shortname;
+            this.projectIri = project.id;
+            localStorage.setItem('currentProject', JSON.stringify(project));
         }
     }
 
-    /**
-     * Realise a simple search
-     * @ignore
-     *
-     */
     doSearch(): void {
         if (this.searchQuery !== undefined && this.searchQuery !== null) {
-            this.toggleMenu();
-
             if (this.projectIri !== undefined) {
                 this._router.navigate([
                     this.route +
-                        '/fulltext/' +
-                        this.searchQuery +
-                        '/' +
-                        encodeURIComponent(this.projectIri)
+                    '/fulltext/' +
+                    this.searchQuery +
+                    '/' +
+                    encodeURIComponent(this.projectIri)
                 ]);
             } else {
                 this._router.navigate([
                     this.route + '/fulltext/' + this.searchQuery
                 ]);
             }
-
-            // this._router.navigate(['/search/fulltext/' + this.searchQuery], { relativeTo: this._route });
-
             // push the search query into the local storage prevSearch array (previous search)
             // to have a list of recent search requests
             let existingPrevSearch: PrevSearchItem[] = JSON.parse(
@@ -199,87 +219,40 @@ export class FulltextSearchComponent implements OnInit {
                     JSON.stringify(existingPrevSearch)
                 );
             }
-
-        } else {
-            // search_ele.focus();
-            this.searchField.nativeElement.focus();
-            this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
         }
+        this.resetSearch();
+        this.overlayRef.detach();
     }
 
-    /**
-     * Reset the search: close the search menu; clean the input field
-     * @ignore
-     *
-     * @param {HTMLElement} search_ele
-     */
-    resetSearch(search_ele: HTMLElement): void {
-        this.searchQuery = null;
-        search_ele.focus();
-        this.focusOnSimple = 'inactive';
-        this.searchPanelFocus = !this.searchPanelFocus;
+    resetSearch(): void {
+        this.searchPanelFocus = false;
+        this.searchInput.nativeElement.blur();
+        this.overlayRef.detach();
     }
 
-    /**
-     * Switch according to the focus between simple or extended search
-     * @ignore
-     *
-     */
-    toggleMenu(): void {
-        this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-        this.focusOnSimple =
-            this.focusOnSimple === 'active' ? 'inactive' : 'active';
-        this.showSimpleSearch = true;
-    }
-
-    /**
-     * Set simple focus to active
-     * @ignore
-     *
-     */
     setFocus(): void {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-        this.focusOnSimple = 'active';
-        this.searchPanelFocus = !this.searchPanelFocus;
+        this.searchPanelFocus = true;
+        this.openPanelWithBackdrop();
     }
 
-    /**
-     * Realise a previous search
-     * @ignore
-     *
-     * @param {string} prevSearch
-     */
     doPrevSearch(prevSearch: PrevSearchItem): void {
-
         this.searchQuery = prevSearch.query;
 
         if (prevSearch.projectIri !== undefined) {
             this.projectIri = prevSearch.projectIri;
             this.projectLabel = prevSearch.projectLabel;
-            this._router.navigate([
-                this.route +
-                    '/fulltext/' +
-                    this.searchQuery +
-                    '/' +
-                    encodeURIComponent(prevSearch.projectIri)
-            ]);
+            this._router.navigate([this.route + '/fulltext/' + this.searchQuery + '/' + encodeURIComponent(prevSearch.projectIri)]);
         } else {
             this.projectIri = undefined;
             this.projectLabel = 'Filter project';
-            this._router.navigate([
-                this.route + '/fulltext/' + this.searchQuery
-            ]);
+            this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);
         }
 
-        this.toggleMenu();
+        this.resetSearch();
+        this.overlayRef.detach();
     }
 
-    /**
-     * Reset previous searches - the whole previous search or specific item by name
-     * @ignore
-     *
-     * @param {string} prevSearch term of the search
-     */
     resetPrevSearch(prevSearch?: PrevSearchItem): void {
         if (prevSearch) {
             // delete only this item with the name ...
@@ -293,71 +266,9 @@ export class FulltextSearchComponent implements OnInit {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
     }
 
-    /**
-     * get all projects for "filter by project" selection
-     * @ignore
-     */
-    getAllProjects() {
-        this._projectsService.getAllProjects().subscribe(
-            (projects: Project[]) => {
-                this.projects = projects;
-                // this.loadSystem = false;
-                if (localStorage.getItem('currentProject') !== null) {
-                    this.projectLabel = JSON.parse(
-                        localStorage.getItem('currentProject')
-                    ).shortname;
-                }
-            },
-            (error: ApiServiceError) => {
-                console.error(error);
-                this.error = error;
-            }
-        );
-    }
-
-    /**
-     * get project information in case of @Input project
-     * @ignore
-     *
-     * @param {string} iri
-     */
-    getProject(iri: string) {
-        this._projectsService.getProjectByIri(iri).subscribe(
-            (project: Project) => {
-                this.setProject(project);
-            },
-            (error: ApiServiceError) => {
-                console.error(error);
-            }
-        );
-    }
-
-    /**
-     * set the project to use and store it in the local storage
-     * @ignore
-     *
-     * @param {Project} project
-     */
-    setProject(project?: Project) {
-        if (!project) {
-            // set default project: all
-            this.projectLabel = 'Filter project';
-            this.projectIri = undefined;
-            localStorage.removeItem('currentProject');
-        } else {
-            // set current project shortname and id
-            this.projectLabel = project.shortname;
-            this.projectIri = project.id;
-            localStorage.setItem('currentProject', JSON.stringify(project));
-        }
-    }
-
-    /**
-     * switch focus from select-project-menu to input field
-     * @ignore
-     */
     changeFocus() {
         this.selectProject.closeMenu();
-        this.searchField.nativeElement.focus();
+        this.searchInput.nativeElement.focus();
+        this.setFocus();
     }
 }

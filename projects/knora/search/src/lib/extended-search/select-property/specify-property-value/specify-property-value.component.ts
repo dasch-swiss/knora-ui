@@ -25,7 +25,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'kui-specify-property-value',
     templateUrl: './specify-property-value.component.html',
-    styleUrls: ['./specify-property-value.component.scss']
+    styleUrls: ['./specify-property-value.component.scss', '../../../assets/style/search.scss']
 })
 export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
 
