@@ -49,7 +49,6 @@ import { TreeComponent } from './material/tree/tree.component';
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 
-
 const appRoutes: Routes = [
     {
         path: '',

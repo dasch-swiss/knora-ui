@@ -83,8 +83,7 @@
     "knora-api:hasPermissions": "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser",
     "knora-api:listValueAsListNode": {
       "@id": "http://rdfh.ch/lists/0001/treeList01"
-    },
-    "knora-api:listValueAsListNodeLabel": "Tree list node 01"
+    }
   },
   "anything:hasOtherListItem": {
     "@id": "http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw/values/j8VQjbD0RsyxpyuvfFJCDA",
@@ -95,8 +94,7 @@
     "knora-api:hasPermissions": "CR knora-base:Creator|M knora-base:ProjectMember|V knora-base:KnownUser|RV knora-base:UnknownUser",
     "knora-api:listValueAsListNode": {
       "@id": "http://rdfh.ch/lists/0001/otherTreeList01"
-    },
-    "knora-api:listValueAsListNodeLabel": "Other Tree list node 01"
+    }
   },
   "anything:hasOtherThingValue": {
     "@id": "http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw/values/uvRVxzL1RD-t9VIQ1TpfUw",

@@ -20,7 +20,7 @@ import { SelectResourceClassComponent } from './select-resource-class/select-res
 @Component({
     selector: 'kui-extended-search',
     templateUrl: './extended-search.component.html',
-    styleUrls: ['./extended-search.component.scss']
+    styleUrls: ['./extended-search.component.scss', '../assets/style/search.scss']
 })
 export class ExtendedSearchComponent implements OnInit {
 

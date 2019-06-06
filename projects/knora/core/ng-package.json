@@ -3,6 +3,9 @@
   "dest": "../../../dist/@knora/core",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "json2typescript": "json2typescript"
+    }
   }
 }
