@@ -255,5 +255,6 @@ Bug fixes:
 Comments: blabla
 ```
 
- 9. Build all modules with `build-lib-prod`
- 10. Publish them from each module folder with `npm publish`
+ 9. Checkout **Master** branch
+ 10. Build all modules with `build-lib-prod`
+ 11. Publish them from each module folder with `npm publish`
