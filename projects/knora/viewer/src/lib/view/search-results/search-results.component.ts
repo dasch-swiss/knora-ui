@@ -1,17 +1,7 @@
-import { Component, OnDestroy, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ApiServiceError, CountQueryResult, ExtendedSearchParams, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, SearchParamsService, SearchService } from '@knora/core';
 import { Subscription } from 'rxjs';
-import {
-    ApiServiceError,
-    CountQueryResult,
-    ExtendedSearchParams,
-    KnoraConstants,
-    OntologyInformation,
-    ReadResource,
-    ReadResourcesSequence,
-    SearchParamsService,
-    SearchService
-} from '@knora/core';
 
 /**
  * The search-results gets the search mode and parameters from routes or inputs,
@@ -23,10 +13,11 @@ import {
     templateUrl: './search-results.component.html',
     styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
+export class SearchResultsComponent implements OnInit {
     /**
      *
      * @param  {boolean} [complexView] If true it shows 2 ways to display the search results: list or grid.
+     *
      */
     @Input() complexView?: boolean = false;
 
@@ -60,10 +51,9 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
     badRequest: boolean = false;
     loading = true;
     errorMessage: ApiServiceError = new ApiServiceError();
-    navigationSubscription: Subscription;
     pagingLimit: number = 25;
 
-    constructor(
+    constructor (
         private _route: ActivatedRoute,
         private _searchService: SearchService,
         private _searchParamsService: SearchParamsService,
@@ -73,30 +63,14 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnInit() {
-        this.getParams();
-    }
-
-    ngOnChanges() {
-        this.getParams();
-    }
-
-    ngOnDestroy() {
-        if (this.navigationSubscription !== undefined) {
-            this.navigationSubscription.unsubscribe();
-        }
-    }
-
-    /**
-     * Get the parameters from the route
-     * @ignore
-     */
-    getParams() {
-        this.navigationSubscription = this._route.paramMap.subscribe(
+        this._route.paramMap.subscribe(
             (params: Params) => {
+                // get the search mode
                 if (!this.searchMode) {
                     this.searchMode = params.get('mode');
                 }
 
+                // get the project iri 
                 if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {
                     this.projectIri = decodeURIComponent(params.get('project'));
                 }
@@ -105,12 +79,12 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
                 this.offset = 0;
                 this.result = [];
 
+                // get query params depending on the search mode
                 if (this.searchMode === 'fulltext') {
                     this.searchQuery = params.get('q');
                     this.badRequest = this.searchQuery.length < 3;
                 } else if (this.searchMode === 'extended') {
                     this.gravsearchGenerator = this._searchParamsService.getSearchParams();
-
                     if (!this.searchQuery) {
                         this.generateGravsearchQuery();
                     } else {
@@ -118,11 +92,13 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
                     }
                 }
 
+                // get results
                 this.rerender = true;
                 this.getResult();
             }
         );
     }
+
 
     /**
      * Generates the Gravsearch query for the current offset.
@@ -259,7 +235,7 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
 
         this.loading = false;
         this.rerender = false;
-    };
+    }
 
     /**
      * Shows total number of results returned by a count query.
@@ -279,7 +255,7 @@ export class SearchResultsComponent implements OnInit, OnChanges, OnDestroy {
         } else {
             this.maxOffset = 0;
         }
-    };
+    }
 
     /**
      * Loads the next page of results.

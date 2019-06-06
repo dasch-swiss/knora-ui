@@ -19,7 +19,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'kui-select-property',
     templateUrl: './select-property.component.html',
-    styleUrls: ['./select-property.component.scss']
+    styleUrls: ['./select-property.component.scss', '../../assets/style/search.scss']
 })
 export class SelectPropertyComponent implements OnInit, OnDestroy {
 
