@@ -67,6 +67,26 @@ describe('UriValueComponent', () => {
 
         expect(hrefAttribute).toEqual('http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
     });
+    // the new uri with label has been made up!!
+    it('should be equal to the label value MyLabel', () => {
+        testHostComponent.uriValue = new ReadUriValue('id', 'propIri', 'http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
+        testHostComponent.label = 'MyLabel';
+        testHostFixture.detectChanges();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const uriVal = hostCompDe.query(By.directive(UriValueComponent));
+
+        const spanDebugElement: DebugElement = uriVal.query(By.css('a'));
+
+        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
+
+        const hrefAttribute = spanNativeElement.getAttribute('href');
+
+        expect(spanNativeElement.innerText).toEqual('MyLabel');
+
+        expect(hrefAttribute).toEqual('http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
+    });
 });
 
 
@@ -75,13 +95,14 @@ describe('UriValueComponent', () => {
  */
 @Component({
     template: `
-        <kui-uri-value #uriVal [valueObject]="uriValue"></kui-uri-value>`
+        <kui-uri-value #uriVal [valueObject]="uriValue" [label]="label"></kui-uri-value>`
 })
 class TestHostComponent implements OnInit {
 
     @ViewChild('uriVal') uriValueComponent: UriValueComponent;
 
     uriValue;
+    label;
 
     constructor() {
     }

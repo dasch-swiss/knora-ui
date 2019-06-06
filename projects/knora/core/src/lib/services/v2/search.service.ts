@@ -8,6 +8,22 @@ import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
 
+export interface FulltextSearchParams {
+
+    limitToResourceClass?: string;
+
+    limitToProject?: string;
+
+    limitToStandoffClass?: string;
+}
+
+export interface SearchByLabelParams {
+
+    limitToResourceClass?: string;
+
+    limitToProject?: string;
+}
+
 /**
  * Performs searches (fulltext or extended) and search count queries into Knora.
  */
@@ -17,9 +33,64 @@ import { OntologyCacheService, OntologyInformation } from './ontology-cache.serv
 export class SearchService extends ApiService {
 
     constructor(public http: HttpClient,
-                @Inject(KuiCoreConfigToken) public config,
-                private _ontologyCacheService: OntologyCacheService) {
+        @Inject(KuiCoreConfigToken) public config,
+        private _ontologyCacheService: OntologyCacheService) {
         super(http, config);
+    }
+
+    /**
+     * Assign fulltext search params to http params.
+     *
+     * @param {FulltextSearchParams} params
+     * @param {HttpParams} httpParams
+     * @returns {HttpParams}
+     */
+    private processFulltextSearchParams(params: FulltextSearchParams, httpParams: HttpParams): HttpParams {
+
+        // avoid reassignment to method param
+        let searchParams = httpParams;
+
+        // HttpParams is immutable, `set` returns a new instance
+
+        if (params.limitToProject !== undefined) {
+            searchParams = searchParams.set('limitToProject', params.limitToProject);
+        }
+
+        if (params.limitToResourceClass !== undefined) {
+            searchParams = searchParams.set('limitToResourceClass', params.limitToResourceClass);
+        }
+
+        if (params.limitToStandoffClass !== undefined) {
+            searchParams = searchParams.set('limitToStandoffClass', params.limitToStandoffClass);
+        }
+
+        return searchParams;
+
+    }
+    /**
+     * Assign search by label search params to http params.
+     *
+     * @param {SearchByLabelParams} params
+     * @param {HttpParams} httpParams
+     * @returns {HttpParams}
+     */
+    private processSearchByLabelParams(params: SearchByLabelParams, httpParams: HttpParams): HttpParams {
+
+        // avoid reassignment to method param
+        let searchParams = httpParams;
+
+        // HttpParams is immutable, `set` returns a new instance
+
+        if (params.limitToResourceClass !== undefined) {
+            searchParams = searchParams.set('limitToResourceClass', params.limitToResourceClass);
+        }
+
+        if (params.limitToProject !== undefined) {
+            searchParams = searchParams.set('limitToProject', params.limitToProject);
+        }
+
+        return searchParams;
+
     }
 
     /**
@@ -54,9 +125,10 @@ export class SearchService extends ApiService {
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    doFulltextSearch(searchTerm: string, offset: number = 0): Observable<ApiServiceResult> {
+    doFulltextSearch(searchTerm: string, offset: number = 0, params?: FulltextSearchParams): Observable<ApiServiceResult> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
@@ -66,7 +138,11 @@ export class SearchService extends ApiService {
 
         httpParams = httpParams.set('offset', offset.toString());
 
-        return this.httpGet('/v2/search/' + searchTerm, httpParams);
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+
+        return this.httpGet('/v2/search/' + encodeURIComponent(searchTerm), httpParams);
     }
 
     /**
@@ -74,9 +150,10 @@ export class SearchService extends ApiService {
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    doFullTextSearchReadResourceSequence(searchTerm: string, offset: number = 0): Observable<ReadResourcesSequence> {
+    doFullTextSearchReadResourceSequence(searchTerm: string, offset: number = 0, params?: FulltextSearchParams): Observable<ReadResourcesSequence> {
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
         }
@@ -85,7 +162,11 @@ export class SearchService extends ApiService {
 
         httpParams = httpParams.set('offset', offset.toString());
 
-        const res: Observable<any> = this.httpGet('/v2/search/' + searchTerm, httpParams);
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+
+        const res: Observable<any> = this.httpGet('/v2/search/' + encodeURIComponent(searchTerm), httpParams);
 
         return res.pipe(
             mergeMap(
@@ -104,30 +185,44 @@ export class SearchService extends ApiService {
      * TODO: mark as deprecated, use of `doFullTextSearchCountQueryCountQueryResult` recommended
      *
      * @param searchTerm the term to search for.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    doFulltextSearchCountQuery(searchTerm: string): Observable<ApiServiceResult> {
+    doFulltextSearchCountQuery(searchTerm: string, params?: FulltextSearchParams): Observable<ApiServiceResult> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));
         }
 
-        return this.httpGet('/v2/search/count/' + searchTerm);
+        let httpParams = new HttpParams();
+
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+
+        return this.httpGet('/v2/search/count/' + encodeURIComponent(searchTerm), httpParams);
     }
 
     /**
      * Performs a fulltext search count query and turns the result into a `CountQueryResult`.
      *
      * @param {string} searchTerm the term to search for.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<CountQueryResult>
      */
-    doFullTextSearchCountQueryCountQueryResult(searchTerm: string): Observable<CountQueryResult> {
+    doFullTextSearchCountQueryCountQueryResult(searchTerm: string, params?: FulltextSearchParams): Observable<CountQueryResult> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));
         }
 
-        const res = this.httpGet('/v2/search/count/' + searchTerm);
+        let httpParams = new HttpParams();
+
+        if (params !== undefined) {
+            httpParams = this.processFulltextSearchParams(params, httpParams);
+        }
+
+        const res = this.httpGet('/v2/search/count/' + encodeURIComponent(searchTerm), httpParams);
 
         return res.pipe(
             mergeMap(
@@ -228,11 +323,11 @@ export class SearchService extends ApiService {
      * TODO: mark as deprecated, use of `searchByLabelReadResourceSequence` recommended
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} [resourceClassIRI] restrict search to given resource class.
-     * @param {string} [projectIri] restrict search to given project.
+     * @param {number} offset offset to use.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    searchByLabel(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ApiServiceResult> {
+    searchByLabel(searchTerm: string, offset: number = 0, params?: SearchByLabelParams): Observable<ApiServiceResult> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
@@ -240,12 +335,10 @@ export class SearchService extends ApiService {
 
         let httpParams: HttpParams = new HttpParams();
 
-        if (resourceClassIRI !== undefined) {
-            httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);
-        }
+        httpParams = httpParams.set('offset', offset.toString());
 
-        if (projectIri !== undefined) {
-            httpParams = httpParams.set('limitToProject', projectIri);
+        if (params !== undefined) {
+            httpParams = this.processSearchByLabelParams(params, httpParams);
         }
 
         // httpGet() expects only one argument, not 2
@@ -257,11 +350,11 @@ export class SearchService extends ApiService {
      * Perform a search by a resource's rdfs:label and turns the results in a `ReadResourceSequence`.
      *
      * @param {string} searchTerm the term to search for.
-     * @param {string} [resourceClassIRI] restrict search to given resource class.
-     * @param {string} [projectIri] restrict search to given project.
+     * @param {number} offset offset to use.
+     * @param {FulltextSearchParams} params restrictions, if any.
      * @returns Observable<ApiServiceResult>
      */
-    searchByLabelReadResourceSequence(searchTerm: string, resourceClassIRI?: string, projectIri?: string): Observable<ReadResourcesSequence> {
+    searchByLabelReadResourceSequence(searchTerm: string, offset: number = 0, params?: SearchByLabelParams): Observable<ReadResourcesSequence> {
 
         if (searchTerm === undefined || searchTerm.length === 0) {
             return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));
@@ -269,12 +362,10 @@ export class SearchService extends ApiService {
 
         let httpParams: HttpParams = new HttpParams();
 
-        if (resourceClassIRI !== undefined) {
-            httpParams = httpParams.set('limitToResourceClass', resourceClassIRI);
-        }
+        httpParams = httpParams.set('offset', offset.toString());
 
-        if (projectIri !== undefined) {
-            httpParams = httpParams.set('limitToProject', projectIri);
+        if (params !== undefined) {
+            httpParams = this.processSearchByLabelParams(params, httpParams);
         }
 
         const res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);
