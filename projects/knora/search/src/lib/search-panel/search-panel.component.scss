@@ -1,14 +1,3 @@
-// color definitions
-$black: rgb(11, 11, 11);
-$black-12-opacity: rgba($black, .12);
-$black-14-opacity: rgba($black, .14);
-$black-20-opacity: rgba($black, .2);
-
-// general border radius
-$border-radius: 4px;
-
-$search-width-small-device: 480px;
-
 .advanced-btn {
   margin-left: 10px;
 }
@@ -19,104 +8,7 @@ $search-width-small-device: 480px;
   z-index: 100;
 }
 
-.kui-search-bar {
-  background-color: rgba(249, 249, 249, 1);
-  border-radius: $border-radius;
-  display: inline-flex;
-  height: 40px;
-  position: relative;
-  // width: 680px;
-  z-index: 10;
-
-  &:hover {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
-  }
-}
-
-.kui-menu {
-  box-shadow: 0 3px 5px -1px $black-20-opacity, 0 6px 10px 0 $black-14-opacity, 0 1px 18px 0 $black-12-opacity;
-  background-color: rgba(249, 249, 249, 1);
-  border-radius: $border-radius;
-  position: absolute;
-
-  .kui-menu-header {
-    background-color: rgba(249, 249, 249, 1);
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
-    display: inline-block;
-    height: 48px;
-    width: 100%;
-
-    .kui-menu-title {
-      float: left;
-      font-size: 14px;
-      font-weight: 400;
-      margin-top: 4px;
-      padding: 12px;
-
-    }
-
-    .kui-menu-action {
-      float: right;
-      margin: 4px;
-    }
-  }
-
-  &.extended-search {
-    min-height: 680px;
-    width: 680px;
-  }
-
-  &.extended-search {
-    // extended search menu styling
-    z-index: 200;
-  }
-
-}
-
 // position of the elements inside the extended box
 .extended-search-box {
   margin: 12px;
-}
-
-@media screen and (max-width: 1024px) {
-  .kui-search-bar {
-    width: $search-width-small-device;
-
-    div {
-
-      &.input-field {
-
-        input {
-          width: calc(#{$search-width-small-device} - 80px);
-        }
-      }
-    }
-  }
-
-  .fulltext-search,
-  .kui-menu.extended-search {
-    width: $search-width-small-device;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .kui-search-bar {
-    width: calc(#{$search-width-small-device} - 160px);
-
-    div {
-
-      &.input-field {
-
-        input {
-          width: calc(#{$search-width-small-device} - 160px - 80px);
-        }
-      }
-    }
-  }
-
-  .fulltext-search,
-  .kui-menu.extended-search {
-    width: calc(#{$search-width-small-device} - 80px);
-  }
 }

@@ -8,7 +8,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'kui-select-resource-class',
     templateUrl: './select-resource-class.component.html',
-    styleUrls: ['./select-resource-class.component.scss']
+    styleUrls: ['./select-resource-class.component.scss', '../../assets/style/search.scss']
 })
 export class SelectResourceClassComponent implements OnInit, OnChanges {
 

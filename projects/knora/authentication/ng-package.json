@@ -3,6 +3,12 @@
   "dest": "../../../dist/@knora/authentication",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "@knora/action": "@knora/action",
+      "@knora/core": "@knora/core",
+      "json2typescript": "json2typescript",
+      "moment": "moment"
+    }
   }
 }

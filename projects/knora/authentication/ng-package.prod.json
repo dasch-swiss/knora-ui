@@ -2,6 +2,12 @@
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../../dist/@knora/authentication",
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "@knora/action": "@knora/action",
+      "@knora/core": "@knora/core",
+      "json2typescript": "json2typescript",
+      "moment": "moment"
+    }
   }
 }
