@@ -219,7 +219,7 @@ export class UsersService extends ApiService {
      */
     addUserToSystemAdmin(userIri: string): Observable<User> {
         const data = {
-            'newSystemAdminMembershipStatus': true
+            'systemAdmin': true
         };
 
         return this.updateUserSystemAdmin(userIri, data);
@@ -233,7 +233,7 @@ export class UsersService extends ApiService {
      */
     removeUserFromSystemAdmin(userIri: string): Observable<User> {
         const data = {
-            'newSystemAdminMembershipStatus': false
+            'systemAdmin': false
         };
 
         return this.updateUserSystemAdmin(userIri, data);
