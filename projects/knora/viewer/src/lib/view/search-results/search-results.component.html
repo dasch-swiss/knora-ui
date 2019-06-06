@@ -49,12 +49,13 @@
             -->
 
         </mat-tab-group>
-
-        <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" *ngIf="!complexView"></kui-list-view>
+        <!-- <div>
+            <p>List view n°2</p>
+            <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" *ngIf="!complexView"></kui-list-view>
+        </div> -->
 
         <div class="load-panel" *ngIf="result.length > 0">
-            <button mat-flat-button color="primary" class="link center" (click)="loadMore(offset)"
-                    *ngIf="offset < maxOffset">Load more
+            <button mat-flat-button color="primary" class="link center" (click)="loadMore(offset)" *ngIf="offset < maxOffset">Load more
                 <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
         </div>
@@ -63,8 +64,7 @@
 
     <!-- In case of 0 result -->
     <ng-template #noResult>
-        <kui-message [message]="{status: 404, statusMsg: 'No results', statusText: 'Sorry, but we couldn\'t find any results matching your search'}"
-                     [medium]="true"></kui-message>
+        <kui-message [message]="{status: 404, statusMsg: 'No results', statusText: 'Sorry, but we couldn\'t find any results matching your search'}" [medium]="true"></kui-message>
         <!-- <p><strong>No result</strong></p> -->
     </ng-template>
 
