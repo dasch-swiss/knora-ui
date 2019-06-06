@@ -231,12 +231,12 @@ Be sure everything is merged, before creating new release.
 ### Required version of Knora: 6.0.1
 
 ### Update the documentation and the version number
-1. Make a new branch called `release/version-X.Y.Z
-2. Update the version number (X.Y.Z) in package.json of each module
-3. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json files
-4. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts`
-5. Update the documentation by running the following script from root folder: `./update_docs.sh`
-6. Commit and push all changes and make a new pull request: Release X.Y.Z
-7. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
-8. Build all modules with `build-lib-prod`
-9. Publish them from each module folder with `npm publish`
+ 1. Make a new branch called `release/version-X.Y.Z
+ 2. Update the version number (X.Y.Z) in package.json of each module
+ 3. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json files
+ 4. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts`
+ 5. Update the documentation by running the following script from root folder: `./update_docs.sh`
+ 6. Commit and push all changes and make a new pull request: Release X.Y.Z
+ 7. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
+ 8. Build all modules with `build-lib-prod`
+ 9. Publish them from each module folder with `npm publish`
