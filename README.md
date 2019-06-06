@@ -238,5 +238,22 @@ Be sure everything is merged, before creating new release.
  5. Update the documentation by running the following script from root folder: `./update_docs.sh`
  6. Commit and push all changes and make a new pull request: Release X.Y.Z
  7. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
- 8. Build all modules with `build-lib-prod`
- 9. Publish them from each module folder with `npm publish`
+ 8. Add description to the release by using the following template
+ ```
+Version: x.y.z
+
+Knora version: x.y.z
+
+List of features:
+- feature 1 (#PR123)
+-feature 2 (#PR345)
+
+Bug fixes:
+- bug 1 (#issue4)
+- bug 2 (#issue44)
+
+Comments: blabla
+```
+
+ 9. Build all modules with `build-lib-prod`
+ 10. Publish them from each module folder with `npm publish`
