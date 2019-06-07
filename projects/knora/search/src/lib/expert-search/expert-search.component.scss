@@ -1,32 +1,31 @@
 .expert-search-container {
-    min-height: 100%;
+  min-height: 100%;
 
-    .expert-search-form {
-        min-width: 150px;
-        width: 100%;
-        margin: auto;
+  .expert-search-form {
+    min-width: 150px;
+    width: 100%;
+    margin: auto;
 
-        .textarea-field {
-            width: 100%;
-        }
-
-        .form-panel {
-            width: 100%;
-        }
+    .textarea-field {
+      width: 100%;
+      display: block;
     }
+
+    .form-panel {
+      width: 100%;
+    }
+  }
 }
 
 .mat-input-element {
-    font-family: 'Courier New', Courier, monospace
+  font-family: "Courier New", Courier, monospace;
 }
 
 .form-content {
-    margin: 24px auto;
-    width: 472px;
+  margin: 24px auto;
+  width: 472px;
 
-    .large-field {
-        min-width: 472px;
-    }
+  .large-field {
+    min-width: 472px;
+  }
 }
-
-

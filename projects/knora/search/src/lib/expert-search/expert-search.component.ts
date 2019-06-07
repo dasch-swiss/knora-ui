@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output, } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ExtendedSearchParams, KuiCoreConfigToken, SearchService, SearchParamsService } from '@knora/core';
+import { ExtendedSearchParams, KuiCoreConfigToken, SearchParamsService, SearchService } from '@knora/core';
 
 @Component({
     selector: 'kui-expert-search',
     templateUrl: './expert-search.component.html',
-    styleUrls: ['./expert-search.component.scss']
+    styleUrls: ['./expert-search.component.scss', '../assets/style/search.scss']
 })
 export class ExpertSearchComponent implements OnInit {
 
@@ -22,7 +22,7 @@ export class ExpertSearchComponent implements OnInit {
 
     expertSearchForm: FormGroup;
 
-    constructor(
+    constructor (
         private fb: FormBuilder,
         private _route: ActivatedRoute,
         private _router: Router,
