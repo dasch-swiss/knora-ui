@@ -11,6 +11,9 @@ export interface PrevSearchItem {
     query: string;
 }
 
+/**
+ * @deprecated
+ */
 @Component({
     selector: 'kui-fulltext-search',
     templateUrl: './fulltext-search.component.html',
