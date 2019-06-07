@@ -8,11 +8,12 @@ export class KnoraConstants {
 
     public static KnoraOntologyPath: string = 'http://www.knora.org/ontology';
     public static KnoraBase: string = KnoraConstants.KnoraOntologyPath + '/knora-base';
+    public static KnoraAdmin: string = KnoraConstants.KnoraOntologyPath + '/knora-admin';
 
-    public static SystemProjectIRI: string = KnoraConstants.KnoraBase + '#SystemProject';
-    public static SystemAdminGroupIRI: string = KnoraConstants.KnoraBase + '#SystemAdmin';
-    public static ProjectAdminGroupIRI: string = KnoraConstants.KnoraBase + '#ProjectAdmin';
-    public static ProjectMemberGroupIRI: string = KnoraConstants.KnoraBase + '#ProjectMember';
+    public static SystemProjectIRI: string = KnoraConstants.KnoraAdmin + '#SystemProject';
+    public static SystemAdminGroupIRI: string = KnoraConstants.KnoraAdmin + '#SystemAdmin';
+    public static ProjectAdminGroupIRI: string = KnoraConstants.KnoraAdmin + '#ProjectAdmin';
+    public static ProjectMemberGroupIRI: string = KnoraConstants.KnoraAdmin + '#ProjectMember';
 
     public static KnoraApiV2WithValueObjectPath: string = KnoraConstants.KnoraApi + '/v2' + KnoraConstants.PathSeparator;
     public static KnoraApiV2SimplePath: string = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
