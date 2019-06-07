@@ -3,18 +3,36 @@
     <kui-fulltext-search [route]="route" [projectfilter]="projectfilter" [filterbyproject]="filterbyproject">
     </kui-fulltext-search>
 
-    <div class="advanced-btn">
-        <button mat-button color="primary" (click)="openPanelWithBackdrop()">advanced</button>
-    </div>
+    <!-- advanced search button: if advanced === true -->
+    <button mat-button *ngIf="advanced && !expert" color="primary"
+            (click)="openPanelWithBackdrop('advanced')">advanced</button>
+
+    <!-- expert search button: if expert === true -->
+    <button mat-button *ngIf="!advanced && expert" color="primary"
+            (click)="openPanelWithBackdrop('expert')">expert</button>
+
+    <!-- button to select advanced or expert search: if advanced AND expert === true; open menu to select -->
+    <button mat-button *ngIf="advanced && expert" [matMenuTriggerFor]="selectSearch">
+        <mat-icon>filter_list</mat-icon>
+    </button>
+    <mat-menu #selectSearch="matMenu">
+        <button mat-menu-item (click)="openPanelWithBackdrop('advanced')">
+            <span>Advanced</span>
+        </button>
+        <button mat-menu-item (click)="openPanelWithBackdrop('expert')">
+            <span>Expert</span>
+        </button>
+    </mat-menu>
 
 </div>
 
 <!-- full-text search menu -->
-<ng-template #extendedSearchMenu>
+<ng-template #searchMenu>
     <div class="kui-search-menu with-extended-search" [class.with-project-filter]="projectfilter">
         <div class="kui-menu-header">
             <span class="kui-menu-title">
-                <h4>Advanced search</h4>
+                <h4 *ngIf="showAdvanced">Advanced search</h4>
+                <h4 *ngIf="!showAdvanced">Expert search</h4>
             </span>
             <span class="fill-remaining-space"></span>
             <span class="kui-menu-close">
@@ -24,7 +42,10 @@
             </span>
         </div>
         <div class="kui-menu-content">
-            <kui-extended-search [route]="route" (toggleExtendedSearchForm)="closeMenu()"></kui-extended-search>
+            <kui-extended-search *ngIf="showAdvanced" [route]="route" (toggleExtendedSearchForm)="closeMenu()">
+            </kui-extended-search>
+            <kui-expert-search *ngIf="!showAdvanced" [route]="route" (toggleExtendedSearchForm)="closeMenu()">
+            </kui-expert-search>
         </div>
     </div>
 </ng-template>
