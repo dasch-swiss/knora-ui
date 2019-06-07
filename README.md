@@ -242,11 +242,12 @@ Be sure everything is merged, before creating new release.
  1. Make a new branch called `release/version-X.Y.Z
  2. Update the version number (X.Y.Z) in package.json of each module
  3. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json files
- 4. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts`
- 5. Update the documentation by running the following script from root folder: `./update_docs.sh`
- 6. Commit and push all changes and make a new pull request: Release X.Y.Z
- 7. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
- 8. Add description to the release by using the following template
+ 4. Update the version number (X.Y.Z) in the main package.json
+ 5. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts`
+ 6. Update the documentation by running the following script from root folder: `./update_docs.sh`
+ 7. Commit and push all changes and make a new pull request: Release X.Y.Z
+ 8. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
+ 9. Add description to the release by using the following template
  ```
 Version: x.y.z
 
@@ -263,6 +264,6 @@ Bug fixes:
 Comments: blabla
 ```
 
- 9. Checkout **Master** branch
- 10. Build all modules with `build-lib-prod`
- 11. Publish them from each module folder with `npm publish`
+ 10. Checkout **Master** branch
+ 11. Build all modules with `build-lib-prod`
+ 12. Publish them from each module folder with `npm publish`
