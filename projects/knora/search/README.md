@@ -47,7 +47,7 @@ Fully customizable panel. You can set the following parameters in kui-search-pan
 - advanced: boolean; additional menu with advanced / extended search
 - expert: boolean;  additional menu with expert search / gravsearch "editor"
 
-If everything is set to false or undefined the search-panel is a simple full-text search. [Read more](search-panel)
+If everything is set to false or undefined the search-panel is a simple full-text search. [Read more](modules/search/search-panel)
 
 ### Full-text search (Deprecated)
 
@@ -73,7 +73,7 @@ We suggest to define a route for the search-results in the app.routing
 ```
 
 ### Extended / advanced search
-Generic search filter tool to limit search results to ontology and resource class and / or properties. [Read more](extended-search)
+Generic search filter tool to limit search results to ontology and resource class and / or properties. [Read more](modules/search/extended-search)
 
 <!-- ### Expert search -->
 
