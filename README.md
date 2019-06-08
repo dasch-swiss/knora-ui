@@ -239,6 +239,7 @@ Be sure everything is merged, before creating new release.
 ### Required version of Knora: 6.0.1
 
 ### Update the documentation and the version number
+
   1. Make a new branch called `release/version-X.Y.Z
   1. Update the version number (X.Y.Z) in package.json of each module
   1. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json files
@@ -264,6 +265,9 @@ Be sure everything is merged, before creating new release.
 
   Comments: blabla
 ```
+
+### Publish new version on NPM
+
   1. Checkout **Master** branch
   1. Build all modules with `build-lib-prod`
   1. Publish them from each module folder with `npm publish`
