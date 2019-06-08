@@ -27,3 +27,5 @@ exclude_paths:
   - '*.min.js'
   - '**/tests/**'
   - 'prism.js'
+  - 'docs/**/*'
+  - 'src/data/**/*'
