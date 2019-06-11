@@ -59,7 +59,8 @@ export class FulltextSearchComponent implements OnInit {
 
     // selected project, in case of filterbyproject and/or projectfilter is true
     project: Project;
-    projectLabel: string = 'Filter project';
+    defaultProjectLabel: string = 'All projects';
+    projectLabel: string = this.defaultProjectLabel;
     projectIri: string;
 
     // in case of an (api) error
@@ -158,7 +159,7 @@ export class FulltextSearchComponent implements OnInit {
     setProject(project?: Project): void {
         if (!project) {
             // set default project: all
-            this.projectLabel = 'Filter project';
+            this.projectLabel = this.defaultProjectLabel;
             this.projectIri = undefined;
             localStorage.removeItem('currentProject');
         } else {
@@ -248,7 +249,7 @@ export class FulltextSearchComponent implements OnInit {
             this._router.navigate([this.route + '/fulltext/' + this.searchQuery + '/' + encodeURIComponent(prevSearch.projectIri)]);
         } else {
             this.projectIri = undefined;
-            this.projectLabel = 'Filter project';
+            this.projectLabel = this.defaultProjectLabel;
             this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);
         }
 
