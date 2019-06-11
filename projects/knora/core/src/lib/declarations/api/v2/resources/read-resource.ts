@@ -16,7 +16,7 @@ export class ReadResource {
      * @param {StillImageRepresentation[]} stillImageRepresentationsToDisplay  still image representations to be displayed for this resource, if any (possibly to be queried by additional requests).
      * @param {ReadProperties} properties the resources's properties.
      */
-    constructor(
+    constructor (
         public readonly id: string,
         public readonly type: string,
         public readonly label: string,
@@ -38,14 +38,14 @@ export class ReadResource {
  * When it works, we will merge it with the ReadResource object
  */
 export class Resource {
-    constructor(
+    constructor (
         public readonly id: string,
         public readonly type: string,
         public readonly label: string,
         public incomingAnnotations: Array<Resource>,
         public incomingFileRepresentations: Array<Resource>,
         public incomingLinks: Array<ReadResource>,
-        public fileRepresentationsToDisplay: Array<ReadResource>,
+        // public fileRepresentationsToDisplay: Array<FileRepresentation>,      TODO: create generic FileRepresentation
         public readonly properties?: ReadProperties) {
     }
 }
