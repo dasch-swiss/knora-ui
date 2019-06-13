@@ -59,7 +59,7 @@ export abstract class ReadTextValue implements ReadPropertyItem {
  */
 export class ReadTextValueAsString extends ReadTextValue {
 
-    constructor(readonly id: string, readonly propIri, readonly str: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly str: string) {
         super();
     }
 
@@ -84,7 +84,7 @@ export class ReferredResourcesByStandoffLink {
  */
 export class ReadTextValueAsHtml extends ReadTextValue {
 
-    constructor(readonly id: string, readonly propIri, readonly html: string, readonly referredResources: ReferredResourcesByStandoffLink) {
+    constructor (readonly id: string, readonly propIri: string, readonly html: string, readonly referredResources: ReferredResourcesByStandoffLink) {
         super();
     }
 
@@ -124,7 +124,7 @@ export class ReadTextValueAsHtml extends ReadTextValue {
  */
 export class ReadTextValueAsXml extends ReadTextValue {
 
-    constructor(readonly id: string, readonly propIri, readonly xml: string, readonly mappingIri: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly xml: string, readonly mappingIri: string) {
         super();
     }
 
@@ -144,9 +144,9 @@ export class ReadTextValueAsXml extends ReadTextValue {
  */
 export class ReadDateValue implements ReadPropertyItem {
 
-    constructor(
+    constructor (
         readonly id: string,
-        readonly propIri,
+        readonly propIri: string,
         readonly calendar: string,
         readonly startYear: number,
         readonly endYear: number,
@@ -187,7 +187,7 @@ export class ReadDateValue implements ReadPropertyItem {
  */
 export class ReadLinkValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly referredResourceIri: string, readonly referredResource?: ReadResource) {
+    constructor (readonly id: string, readonly propIri: string, readonly referredResourceIri: string, readonly referredResource?: ReadResource) {
 
     }
 
@@ -222,7 +222,7 @@ export class ReadLinkValue implements ReadPropertyItem {
  */
 export class ReadIntegerValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly integer: number) {
+    constructor (readonly id: string, readonly propIri: string, readonly integer: number) {
 
     }
 
@@ -243,7 +243,7 @@ export class ReadIntegerValue implements ReadPropertyItem {
  */
 export class ReadDecimalValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly decimal: number) {
+    constructor (readonly id: string, readonly propIri: string, readonly decimal: number) {
 
     }
 
@@ -263,9 +263,9 @@ export class ReadDecimalValue implements ReadPropertyItem {
  */
 export class ReadStillImageFileValue implements ReadPropertyItem {
 
-    constructor(
+    constructor (
         readonly id: string,
-        readonly propIri,
+        readonly propIri: string,
         readonly imageFilename: string,
         readonly imageServerIIIFBaseURL: string,
         readonly imagePath: string,
@@ -309,9 +309,9 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
  */
 export class ReadMovingImageFileValue implements ReadPropertyItem {
 
-    constructor(
+    constructor (
         readonly id: string,
-        readonly propIri,
+        readonly propIri: string,
         readonly filename: string,
         readonly mediaServerIIIFBaseURL: string,
         readonly path: string,
@@ -358,7 +358,7 @@ export class ReadMovingImageFileValue implements ReadPropertyItem {
  */
 export class ReadTextFileValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly textFilename: string, readonly textFileURL: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly textFilename: string, readonly textFileURL: string) {
 
     }
 
@@ -379,8 +379,8 @@ export class ReadTextFileValue implements ReadPropertyItem {
  */
 export class ReadColorValue implements ReadPropertyItem {
 
-    constructor(readonly id: string,
-        readonly propIri,
+    constructor (readonly id: string,
+        readonly propIri: string,
         readonly colorHex: string) {
     }
 
@@ -399,7 +399,7 @@ export class ReadColorValue implements ReadPropertyItem {
  * Represents a point in a 2D-coordinate system (for geometry values).
  */
 export class Point2D {
-    constructor(public x: number, public y: number) {
+    constructor (public x: number, public y: number) {
     }
 }
 
@@ -407,7 +407,7 @@ export class Point2D {
  * Represents a geometry value parsed from JSON.
  */
 export class RegionGeometry {
-    constructor(public status: string,
+    constructor (public status: string,
         public lineColor: string,
         public lineWidth: number,
         public points: Point2D[],
@@ -422,7 +422,7 @@ export class RegionGeometry {
  */
 export class ReadGeomValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly geometryString: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly geometryString: string) {
 
         const geometryJSON = JSON.parse(geometryString);
 
@@ -465,7 +465,7 @@ export class ReadGeomValue implements ReadPropertyItem {
  */
 export class ReadUriValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly uri: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly uri: string) {
 
     }
 
@@ -486,7 +486,7 @@ export class ReadUriValue implements ReadPropertyItem {
  */
 export class ReadBooleanValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly bool: boolean) {
+    constructor (readonly id: string, readonly propIri: string, readonly bool: boolean) {
 
     }
 
@@ -507,7 +507,7 @@ export class ReadBooleanValue implements ReadPropertyItem {
  */
 export class ReadIntervalValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly intervalStart: number, readonly intervalEnd: number) {
+    constructor (readonly id: string, readonly propIri: string, readonly intervalStart: number, readonly intervalEnd: number) {
 
     }
 
@@ -528,7 +528,7 @@ export class ReadIntervalValue implements ReadPropertyItem {
  */
 export class ReadListValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly listNodeIri: string) {
 
     }
 
