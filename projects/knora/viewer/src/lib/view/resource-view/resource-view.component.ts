@@ -281,16 +281,4 @@ export class ResourceViewComponent implements OnInit, OnChanges {
         );
     }
 
-    /**
-     * Navigate to the incoming resource view.
-     *
-     * @param {string} id Incoming resource iri
-     */
-    openLink(id: string) {
-
-        this.loading = true;
-        this._router.navigate(['/resource/' + encodeURIComponent(id)]);
-
-    }
-
 }

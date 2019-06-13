@@ -25,7 +25,10 @@
 
                     <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media">
                         <!-- if the property is of type stillImageFileValue, show the image with osd viewer from @knora/viewer TODO: the fileValue will be part of an own resource property -->
-                        <kui-still-image *ngIf="resource.stillImageRepresentationsToDisplay.length > 0" class="osd-viewer" [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)" [images]="resource.stillImageRepresentationsToDisplay">
+                        <kui-still-image *ngIf="resource.stillImageRepresentationsToDisplay.length > 0"
+                                         class="osd-viewer"
+                                         [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)"
+                                         [images]="resource.stillImageRepresentationsToDisplay">
                         </kui-still-image>
                     </div>
 
@@ -35,9 +38,9 @@
                     <kui-audio></kui-audio>
                     <kui-ddd></kui-ddd>
                     <kui-document></kui-document>
-  
+
                     <kui-collection></kui-collection>
-  
+
                     <kui-annotation></kui-annotation>
                     <kui-link-obj></kui-link-obj>
                     <kui-object></kui-object>
@@ -53,57 +56,9 @@
 
             <!-- 2) show properties, annotations (list of regions, sequences etc.), incomming resources (links, files) -->
             <div class="data">
-
-                <mat-tab-group class="full-width">
-                    <mat-tab label="Metadata">
-                        <mat-list>
-                            <div *ngFor="let prop of guiOrder; let last = last" class="property">
-                                <div *ngIf="resource.properties[prop?.property]">
-                                    <!-- label of the property -->
-                                    <h3 mat-subheader class="property-label">
-                                        {{sequence.ontologyInformation.getLabelForProperty(prop?.property)}}
-                                    </h3>
-                                    <!-- the value(s) of the property -->
-                                    <mat-list-item class="property-value-item" *ngFor="let val of resource.properties[prop?.property]; let lastItem = last">
-                                        <li [ngSwitch]="val.getClassName()" [class.list]="resource.properties[prop?.property].length > 1" [class.lastItem]="lastItem">
-                                            <kui-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString" [valueObject]="val"></kui-text-value-as-string>
-                                            <kui-text-value-as-xml *ngSwitchCase="KnoraConstants.ReadTextValueAsXml" [valueObject]="val"></kui-text-value-as-xml>
-                                            <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val" [calendar]="true" [era]="true"></kui-date-value>
-                                            <kui-link-value class="app-link" *ngSwitchCase="KnoraConstants.ReadLinkValue" [valueObject]="val" [ontologyInfo]="ontologyInfo" (referredResourceClicked)="openLink(val.referredResourceIri)">
-                                            </kui-link-value>
-                                            <kui-integer-value *ngSwitchCase="KnoraConstants.ReadIntegerValue" [valueObject]="val"></kui-integer-value>
-                                            <kui-decimal-value *ngSwitchCase="KnoraConstants.ReadDecimalValue" [valueObject]="val"></kui-decimal-value>
-                                            <kui-geometry-value *ngSwitchCase="KnoraConstants.ReadGeomValue" [valueObject]="val"></kui-geometry-value>
-                                            <kui-color-value *ngSwitchCase="KnoraConstants.ReadColorValue" [valueObject]="val"></kui-color-value>
-                                            <kui-uri-value *ngSwitchCase="KnoraConstants.ReadUriValue" [valueObject]="val"></kui-uri-value>
-                                            <kui-boolean-value *ngSwitchCase="KnoraConstants.ReadBooleanValue" [valueObject]="val"></kui-boolean-value>
-                                            <kui-interval-value *ngSwitchCase="KnoraConstants.ReadIntervalValue" [valueObject]="val"></kui-interval-value>
-                                            <kui-list-value *ngSwitchCase="KnoraConstants.ReadListValue" [valueObject]="val"></kui-list-value>
-                                            <kui-textfile-value *ngSwitchCase="KnoraConstants.TextFileValue" [valueObject]="val"></kui-textfile-value>
-                                            <span *ngSwitchDefault>Not supported {{val.getClassName()}}</span>
-                                        </li>
-                                    </mat-list-item>
-                                </div>
-                            </div>
-                        </mat-list>
-                    </mat-tab>
-
-                    <mat-tab label="Annotations" *ngIf="resource.annotations?.length > 0">
-
-                    </mat-tab>
-
-                    <mat-tab label="Links / Connections" *ngIf="resource.incomingLinks?.length > 0">
-                        <div>
-                            <mat-list *ngFor="let incoming of resource.incomingLinks">
-                                <mat-list-item class="app-link" (click)="openLink(incoming.id)">
-                                    <span>{{incoming.label}}</span>
-                                </mat-list-item>
-                            </mat-list>
-                        </div>
-                    </mat-tab>
-
-                </mat-tab-group>
-
+                <kui-properties-view [properties]="resource.properties" [guiOrder]="guiOrder"
+                                     [ontologyInfo]="ontologyInfo" [incomingLinks]="resource.incomingLinks">
+                </kui-properties-view>
             </div>
 
             <!-- in case of more than one resource -->
@@ -117,11 +72,11 @@
 
 <!-- OLD / first template
   <mat-card>
-  
-  
+
+
     <h2>metadata for resource {{ resource?.label}} ({{ resource?.id }})</h2>
     <h3>type: {{ontologyInfo?.getLabelForResourceClass(resource?.type)}}</h3>
-  
+
     <div *ngFor="let prop of resource?.properties | kuiKey">
         <mat-list>
             <span>{{ontologyInfo?.getLabelForProperty(prop.key)}}</span>
@@ -157,6 +112,6 @@
             </mat-list-item>
         </mat-list>
     </div>
-  
+
   </mat-card>
   -->
