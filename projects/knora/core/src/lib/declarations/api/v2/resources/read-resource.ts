@@ -1,4 +1,5 @@
 import { ReadProperties, StillImageRepresentation } from '../../../';
+import { FileRepresentation } from '../representations/fileRepresentation';
 
 /**
  * Represents a resource and its properties.
@@ -44,8 +45,8 @@ export class Resource {
         public readonly label: string,
         public incomingAnnotations: Array<Resource>,
         public incomingFileRepresentations: Array<Resource>,
-        public incomingLinks: Array<ReadResource>,
-        // public fileRepresentationsToDisplay: Array<FileRepresentation>,      TODO: create generic FileRepresentation
+        public incomingLinks: Array<Resource>,
+        public fileRepresentationsToDisplay: Array<FileRepresentation>,     //  TODO: create generic FileRepresentation
         public readonly properties?: ReadProperties) {
     }
 }

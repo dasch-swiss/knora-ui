@@ -258,10 +258,27 @@ export class ReadDecimalValue implements ReadPropertyItem {
     }
 }
 
+
+/**
+ * Abstract class for file representations like stillImage, movingImage, audio etc.
+ */
+export abstract class FileValue implements ReadPropertyItem {
+
+    abstract id: string;
+
+    readonly type: string;
+
+    abstract propIri: string;
+
+    abstract getClassName(): string;
+
+    abstract getContent(): string;
+}
+
 /**
  * Represents a still image value object.
  */
-export class ReadStillImageFileValue implements ReadPropertyItem {
+export class ReadStillImageFileValue extends FileValue {
 
     constructor (
         readonly id: string,
@@ -271,10 +288,7 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
         readonly imagePath: string,
         readonly dimX: number,
         readonly dimY: number) {
-
-        // if the image is a jpeg, it is a preview image
-        this.isPreview = imageFilename.endsWith('.jpg');
-
+        super();
     }
 
     readonly type = KnoraConstants.StillImageFileValue;
@@ -307,42 +321,26 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
 /**
  * Represents a moving image value object.
  */
-export class ReadMovingImageFileValue implements ReadPropertyItem {
+export class ReadMovingImageFileValue extends FileValue {
 
     constructor (
         readonly id: string,
         readonly propIri: string,
         readonly filename: string,
-        readonly mediaServerIIIFBaseURL: string,
+        readonly fileServerIIIFBaseURL: string,
         readonly path: string,
         readonly dimX: number,
         readonly dimY: number,
         readonly duration: number,
         readonly fps?: number,
         readonly aspectRatio?: string) {
-
+        super();
     }
 
     readonly type = KnoraConstants.MovingImageFileValue;
 
     // preview doesn't include the video file itself
     readonly isPreview: boolean;
-
-    /*
-    makeIIIFUrl(reduceFactor: number): string {
-
-        if (this.isPreview) {
-            return this.path;
-        } else {
-            let percentage = Math.floor(100 / reduceFactor);
-
-            percentage = (percentage > 0 && percentage <= 100) ? percentage : 50;
-
-            return this.mediaServerIIIFBaseURL + '/' + this.filename + '/full/pct:' + percentage.toString() + '/0/default.jpg';
-        }
-
-    }
-    */
 
     getClassName(): string {
         return KnoraConstants.ReadMovingImageFileValue;

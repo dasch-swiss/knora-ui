@@ -1,19 +1,6 @@
-import { Component, Input, OnInit, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-    ApiServiceError,
-    GuiOrder,
-    ImageRegion,
-    IncomingService,
-    KnoraConstants,
-    OntologyInformation,
-    ReadResource,
-    ReadResourcesSequence,
-    ReadStillImageFileValue,
-    Resource,
-    ResourceService,
-    StillImageRepresentation
-} from '@knora/core';
+import { ApiServiceError, GuiOrder, ImageRegion, IncomingService, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, ReadStillImageFileValue, Resource, ResourceService, StillImageRepresentation } from '@knora/core';
 
 // import { ImageRegion, StillImageRepresentation } from '../../resource';
 
