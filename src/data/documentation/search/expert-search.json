@@ -58,7 +58,7 @@
     "ignore": false,
     "line": 18,
     "codeStart": 21,
-    "code": "@Output() gravsearch = new EventEmitter<string>();\n\nexpertSearchForm: FormGroup;\n\nconstructor(\n    private fb: FormBuilder,\n    private _route: ActivatedRoute,\n    private _router: Router,\n    private _searchService: SearchService,\n    private _searchParamsService: SearchParamsService,\n    @Inject(KuiCoreConfigToken) public config\n) { }\n\nngOnInit() {\n    this.initForm();\n}",
+    "code": "@Output() gravsearch = new EventEmitter<string>();\n\nexpertSearchForm: FormGroup;\n\nconstructor (\n    private fb: FormBuilder,\n    private _route: ActivatedRoute,\n    private _router: Router,\n    private _searchService: SearchService,\n    private _searchParamsService: SearchParamsService,\n    @Inject(KuiCoreConfigToken) public config\n) { }\n\nngOnInit() {\n    this.initForm();\n}",
     "ctx": false
   },
   {

@@ -109,20 +109,29 @@
     "ignore": false,
     "line": 25,
     "codeStart": 28,
-    "code": "@Input() filterbyproject?: string;\n\n@ViewChild('fullSearchPanel') searchPanel: ElementRef;\n@ViewChild('extendedSearchMenu') searchMenu: TemplateRef<any>;\n\nshowMenu: boolean = false;\nfocusOnExtended: string = 'inactive';\n\n// overlay reference\noverlayRef: OverlayRef;\n\nconstructor (private _overlay: Overlay,\n    private _viewContainerRef: ViewContainerRef, ) { }",
+    "code": "@Input() filterbyproject?: string;",
     "ctx": false
   },
   {
     "tags": [
       {
-        "type": "ignore",
-        "string": "",
-        "html": ""
+        "type": "param",
+        "string": "{boolean} [advanced] Adds the extended / advanced search to the panel",
+        "name": "[advanced]",
+        "description": "<p>Adds the extended / advanced search to the panel</p>",
+        "types": [
+          "boolean"
+        ],
+        "typesDescription": "<code>boolean</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
       }
     ],
     "description": {
-      "full": "<p>Show or hide the extended search menu</p>",
-      "summary": "<p>Show or hide the extended search menu</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -130,13 +139,41 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 42,
-    "codeStart": 47,
-    "code": "toggleMenu(): void {\n    this.showMenu = !this.showMenu;\n    this.focusOnExtended =\n        this.focusOnExtended === 'active' ? 'inactive' : 'active';\n}\n\nopenPanelWithBackdrop() {\n    const config = new OverlayConfig({\n        hasBackdrop: true,\n        backdropClass: 'cdk-overlay-transparent-backdrop',\n        // backdropClass: 'cdk-overlay-dark-backdrop',\n        positionStrategy: this.getOverlayPosition(),\n        scrollStrategy: this._overlay.scrollStrategies.block()\n    });\n\n    this.overlayRef = this._overlay.create(config);\n    this.overlayRef.attach(new TemplatePortal(this.searchMenu, this._viewContainerRef));\n    this.overlayRef.backdropClick().subscribe(() => {\n        this.overlayRef.detach();\n    });\n}\n\ngetOverlayPosition(): PositionStrategy {\n    const positions = [\n        new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),\n        new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' })\n    ];\n\n    const overlayPosition = this._overlay.position().flexibleConnectedTo(this.searchPanel).withPositions(positions).withLockedPosition(false);\n\n    return overlayPosition;\n}\n\ncloseMenu(): void {\n    this.overlayRef.detach();\n}\n}",
-    "ctx": {
-      "type": "method",
-      "name": "toggleMenu",
-      "string": "toggleMenu()"
-    }
+    "line": 30,
+    "codeStart": 33,
+    "code": "@Input() advanced?: boolean = false;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{boolean} [expert] Adds the expert search / gravsearch editor to the panel",
+        "name": "[expert]",
+        "description": "<p>Adds the expert search / gravsearch editor to the panel</p>",
+        "types": [
+          "boolean"
+        ],
+        "typesDescription": "<code>boolean</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 35,
+    "codeStart": 38,
+    "code": "@Input() expert?: boolean = false;\n\n@ViewChild('fullSearchPanel') searchPanel: ElementRef;\n\n@ViewChild('searchMenu') searchMenu: TemplateRef<any>;\n//    @ViewChild('expertSearchMenu') expertMenu: TemplateRef<any>;\n\n// overlay reference\noverlayRef: OverlayRef;\n\n// show advanced or expert search\nshowAdvanced: boolean;\n\nconstructor (private _overlay: Overlay,\n    private _viewContainerRef: ViewContainerRef, ) { }\n\nopenPanelWithBackdrop(type: string) {\n\n    this.showAdvanced = (type === 'advanced');\n\n    const config = new OverlayConfig({\n        hasBackdrop: true,\n        backdropClass: 'cdk-overlay-transparent-backdrop',\n        // backdropClass: 'cdk-overlay-dark-backdrop',\n        positionStrategy: this.getOverlayPosition(),\n        scrollStrategy: this._overlay.scrollStrategies.block()\n    });\n\n    this.overlayRef = this._overlay.create(config);\n    this.overlayRef.attach(new TemplatePortal(this.searchMenu, this._viewContainerRef));\n    this.overlayRef.backdropClick().subscribe(() => {\n        this.overlayRef.detach();\n    });\n}\n\ngetOverlayPosition(): PositionStrategy {\n    const positions = [\n        new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),\n        new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' })\n    ];\n\n    const overlayPosition = this._overlay.position().flexibleConnectedTo(this.searchPanel).withPositions(positions).withLockedPosition(false);\n\n    return overlayPosition;\n}\n\ncloseMenu(): void {\n    this.overlayRef.detach();\n}\n}",
+    "ctx": false
   }
 ]

@@ -17,7 +17,12 @@ export class SearchPanelComponent implements OnInit {
         name: 'searchpanel',
         code: {
             html: `
-<kui-search-panel [route]="'/search/'"></kui-search>
+<kui-search-panel
+    [filterbyproject]="http://rdfh.ch/projects/0001"
+    [projectfilter]="true"
+    [advanced]="true"
+    [expert]="true">
+</kui-search-panel>
 
 <router-outlet></router-outlet>`,
             ts: '',
@@ -25,7 +30,7 @@ export class SearchPanelComponent implements OnInit {
         }
     };
 
-    constructor() {}
+    constructor () { }
 
-    ngOnInit() {}
+    ngOnInit() { }
 }

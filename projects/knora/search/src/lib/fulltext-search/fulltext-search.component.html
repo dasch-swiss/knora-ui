@@ -8,7 +8,7 @@
             <mat-icon class="icon" matSuffix>keyboard_arrow_down</mat-icon>
         </button>
         <mat-menu #selectProject="matMenu" class="kui-project-filter-menu">
-            <button mat-menu-item class="center" (click)="setProject();changeFocus()">All Projects</button>
+            <button mat-menu-item class="center" (click)="setProject();changeFocus()">{{defaultProjectLabel}}</button>
             <mat-divider></mat-divider>
             <button mat-menu-item *ngFor="let project of projects"
                     (click)="setProject(project);changeFocus()">{{project.shortname}}</button>

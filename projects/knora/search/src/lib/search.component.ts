@@ -33,6 +33,7 @@ import {
 })
 
 /**
+ * @deprecated
  * Contains methods to realise, reset new or previous simple searches.
  */
 export class SearchComponent implements OnInit {
@@ -52,7 +53,7 @@ export class SearchComponent implements OnInit {
 
     showSimpleSearch: boolean = true;
 
-    constructor(private _route: ActivatedRoute,
+    constructor (private _route: ActivatedRoute,
         private _router: Router,
         private _eleRef: ElementRef) {
 
