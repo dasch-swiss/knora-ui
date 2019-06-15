@@ -58,6 +58,7 @@
     "openseadragon": "^2.4.0",
     "prismjs": "^1.15.0",
     "rxjs": "^6.2.2",
+    "semver": "^6.1.1",
     "svg-overlay": "github:openseadragon/svg-overlay",
     "ts-md5": "^1.2.4",
     "zone.js": "^0.8.26"

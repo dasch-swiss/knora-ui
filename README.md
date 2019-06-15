@@ -234,4 +234,41 @@ $ yalc remove --all
 
 * * *
 
-## Required version of Knora: 6.0.1
+## Publish new version
+Be sure everything is merged, before creating new release.
+
+### Required version of Knora: 6.0.1
+
+### Update the documentation and the version number
+
+  1. Make a new branch called `release/version-X.Y.Z
+  1. Update the version number (X.Y.Z) in package.json of each module
+  1. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json files
+  1. Update the version number (X.Y.Z) in the main package.json
+  1. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts`
+  1. Update the documentation by running the following script from root folder: `./update_docs.sh`
+  1. Commit and push all changes and make a new pull request: Release X.Y.Z
+  1. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
+  1. Add description to the release by using the following template
+
+ ```markdown
+  Version: x.y.z
+
+  Knora version: x.y.z
+
+  List of features:
+  - feature 1 (#PR123)
+  -feature 2 (#PR345)
+
+  Bug fixes:
+  - bug 1 (#issue4)
+  - bug 2 (#issue44)
+
+  Comments: blabla
+```
+
+### Publish new version on NPM
+
+  1. Checkout **Master** branch
+  1. Build all modules with `build-lib-prod`
+  1. Publish them from each module folder with `npm publish`

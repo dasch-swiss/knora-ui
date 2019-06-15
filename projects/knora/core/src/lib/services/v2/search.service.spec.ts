@@ -704,7 +704,7 @@ OFFSET 0`;
         httpRequest[0].flush(expectedResource);
     }));
 
-    it('should perform a search by label for "testding" limited by resurce class and project returning a ReadResourceSequence', async(() => {
+    it('should perform a search by label for "testding" limited by resource class and project returning a ReadResourceSequence', async(() => {
 
         const expectedResource = require('../../test-data/resources/Testthing.json');
 

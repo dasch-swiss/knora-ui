@@ -59,6 +59,7 @@ describe('OntologyCacheService', () => {
             // serve ontology as JSON-LD when requested
             spyOn(ontoService, 'getOntologiesMetadata').and.callFake(() => {
                 const result = new ApiServiceResult();
+                result.header = {};
                 result.status = 200;
                 result.statusText = '';
                 result.url = '';
@@ -144,6 +145,7 @@ describe('OntologyCacheService', () => {
                 }
 
                 const result = new ApiServiceResult();
+                result.header = {};
                 result.status = 200;
                 result.statusText = '';
                 result.url = '';
@@ -460,7 +462,7 @@ describe('OntologyCacheService', () => {
                         new GuiOrder(
                             10,
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasColor'
-                            ),
+                        ),
                         new GuiOrder(
                             11,
                             'http://0.0.0.0:3333/ontology/0001/anything/v2#hasGeometry'
@@ -549,7 +551,7 @@ describe('OntologyCacheService', () => {
                             false,
                             false,
                             true,
-                                []),
+                            []),
                         'http://api.knora.org/ontology/knora-api/v2#hasPermissions': new Property(
                             'http://api.knora.org/ontology/knora-api/v2#hasPermissions',
                             'http://www.w3.org/2001/XMLSchema#string',
