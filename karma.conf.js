@@ -14,7 +14,7 @@ module.exports = function (config) {
             require('karma-spec-reporter'),
             require('@angular/cli/plugins/karma')
         ],
-        client:{
+        client: {
             captureConsole: true,
             clearContext: false // leave Jasmine Spec Runner output visible in browser
         },
@@ -30,10 +30,10 @@ module.exports = function (config) {
             './src/test.ts': ['@angular/cli']
         },
         mime: {
-            'text/x-typescript': ['ts','tsx']
+            'text/x-typescript': ['ts', 'tsx']
         },
         coverageIstanbulReporter: {
-            reports: [ 'html', 'lcovonly' ],
+            reports: ['html', 'lcovonly'],
             fixWebpackSourcePaths: true
         },
         logLevel: config.LOG_LOG,

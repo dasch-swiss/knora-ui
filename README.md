@@ -1,8 +1,9 @@
 # Knora-ui modules
 
-[![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c9f3050a573f4198bc4129d618d40d6e)](https://www.codacy.com/app/dhlab-basel/Knora-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dhlab-basel/Knora-ui&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.com/dhlab-basel/Knora-ui.svg?branch=master)](https://travis-ci.com/dhlab-basel/Knora-ui)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f3a4a40b35d040718377aef57bd15205)](https://www.codacy.com/app/dhlab-basel/Knora-ui?utm_source=github.com&utm_medium=referral&utm_content=dhlab-basel/Knora-ui&utm_campaign=Badge_Grade)
+[![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master)
+
 
 This is the demo and developing environment for Knora ui modules.
 

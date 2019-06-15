@@ -26,4 +26,7 @@ exclude_paths:
   - 'benchmarks/**/*'
   - '*.min.js'
   - '**/tests/**'
-  - 'prism.js'
+  - 'docs/**'
+  - 'src/data/**'
+  - 'src/assets/scripts/prism.js'
+  - '**/karma.conf.js'

@@ -11,7 +11,6 @@
 #
 set -e
 
-dir=`pwd`
 sep='---------------------------------'
 
 die ()
@@ -25,7 +24,6 @@ usage ()
     echo "usage: <command>"
 }
 
-home=`pwd`
 inPath='./projects/knora'
 outPath='./src/data/documentation'
 
