@@ -289,6 +289,10 @@ export class ReadStillImageFileValue extends FileValue {
         readonly dimX: number,
         readonly dimY: number) {
         super();
+
+        // if the image is a jpeg, it is a preview image
+        this.isPreview = imageFilename.endsWith('.jpg');
+
     }
 
     readonly type = KnoraConstants.StillImageFileValue;
