@@ -29,3 +29,4 @@ exclude_paths:
   - 'docs/**'
   - 'src/data/**'
   - 'prism.js'
+  - 'karma.conf.js'
