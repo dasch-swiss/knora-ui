@@ -251,20 +251,20 @@ Be sure everything is merged, before creating new release.
   1. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
   1. Add description to the release by using the following template
 
- ```markdown
-  Version: x.y.z
+```markdown
+Version: x.y.z
 
-  Knora version: x.y.z
+Knora version: x.y.z
 
-  List of features:
-  - feature 1 (#PR123)
-  - feature 2 (#PR345)
+List of features:
+- feature 1 (#PR123)
+- feature 2 (#PR345)
 
-  Bug fixes:
-  - bug 1 (#issue4)
-  - bug 2 (#issue44)
+Bug fixes:
+- bug 1 (#issue4)
+- bug 2 (#issue44)
 
-  Comments: blabla
+Comments: blabla
 ```
 
 ### Publish new version on NPM
