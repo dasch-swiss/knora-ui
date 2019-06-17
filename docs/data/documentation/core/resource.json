@@ -13,7 +13,7 @@
     "ignore": false,
     "line": 11,
     "codeStart": 14,
-    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ResourceService extends ApiService {\n\n    constructor(public http: HttpClient,\n                @Inject(KuiCoreConfigToken) public config,\n                private _ontologyCacheService: OntologyCacheService) {\n        super(http, config);\n    }",
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ResourceService extends ApiService {\n\n    constructor (public http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config,\n        private _ontologyCacheService: OntologyCacheService) {\n        super(http, config);\n    }",
     "ctx": false
   },
   {

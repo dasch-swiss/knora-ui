@@ -13,7 +13,7 @@ But you can use only @knora/core which contains almost all services for the Knor
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora v6.0.1](https://github.com/dhlab-basel/Knora/releases/tag/v6.0.1).
+This version of Knora-ui requires [Knora v8.0.0](https://github.com/dhlab-basel/Knora/releases/tag/v8.0.0).
 
 ## Already published modules
 
@@ -237,34 +237,34 @@ $ yalc remove --all
 ## Publish new version
 Be sure everything is merged, before creating new release.
 
-### Required version of Knora: 6.0.1
+### Required version of Knora: 8.0.0
 
 ### Update the documentation and the version number
 
-  1. Make a new branch called `release/version-X.Y.Z
+  1. Make a new branch called `pre-release/version-X.Y.Z
   1. Update the version number (X.Y.Z) in package.json of each module
-  1. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json files
+  1. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json and README files
   1. Update the version number (X.Y.Z) in the main package.json
-  1. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts`
+  1. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts` and the README files of each module
   1. Update the documentation by running the following script from root folder: `./update_docs.sh`
   1. Commit and push all changes and make a new pull request: Release X.Y.Z
   1. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
   1. Add description to the release by using the following template
 
- ```markdown
-  Version: x.y.z
+```markdown
+Version: x.y.z
 
-  Knora version: x.y.z
+Knora version: x.y.z
 
-  List of features:
-  - feature 1 (#PR123)
-  -feature 2 (#PR345)
+List of features:
+- feature 1 (#PR123)
+- feature 2 (#PR345)
 
-  Bug fixes:
-  - bug 1 (#issue4)
-  - bug 2 (#issue44)
+Bug fixes:
+- bug 1 (#issue4)
+- bug 2 (#issue44)
 
-  Comments: blabla
+Comments: blabla
 ```
 
 ### Publish new version on NPM

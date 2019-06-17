@@ -1445,6 +1445,7 @@ var AuthenticationService = /** @class */ /*@__PURE__*/ (function () {
      */
     AuthenticationService.prototype.handleRequestError = function (error) {
         var serviceError = new _knora_core__WEBPACK_IMPORTED_MODULE_4__["ApiServiceError"]();
+        serviceError.header = { 'server': error.headers.get('Server') };
         serviceError.status = error.status;
         serviceError.statusText = error.statusText;
         serviceError.errorInfo = error.message;
@@ -1911,6 +1912,8 @@ var ApiServiceError = /** @class */ /*@__PURE__*/ (function () {
 var KnoraConstants = /** @class */ /*@__PURE__*/ (function () {
     function KnoraConstants() {
     }
+    // The following version of Knora is needed to work properly with this module
+    KnoraConstants.KnoraVersion = '8.0.0';
     KnoraConstants.KnoraApi = 'http://api.knora.org/ontology/knora-api';
     KnoraConstants.PathSeparator = '#';
     KnoraConstants.KnoraOntologyPath = 'http://www.knora.org/ontology';
@@ -3277,6 +3280,7 @@ var Resource = /** @class */ /*@__PURE__*/ (function () {
     return Resource;
 }());
 var jsonld = __webpack_require__(/*! jsonld */ "./node_modules/jsonld/lib/jsonld.js");
+var semver = __webpack_require__(/*! semver */ "./node_modules/semver/semver.js");
 var ApiService = /** @class */ /*@__PURE__*/ (function () {
     function ApiService(http, config) {
         this.http = http;
@@ -3300,6 +3304,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         return this.http.get(this.config.api + path, { observe: 'response', params: params }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (response) {
             _this.loading = false;
             var result = new ApiServiceResult();
+            result.header = { 'server': response.headers.get('Server') };
+            _this.compareVersion(response.headers.get('Server'));
             result.status = response.status;
             result.statusText = response.statusText;
             result.url = path;
@@ -3338,6 +3344,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         return this.http.post(this.config.api + path, body, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (response) {
             _this.loading = false;
             var result = new ApiServiceResult();
+            result.header = { 'server': response.headers.get('Server') };
+            _this.compareVersion(result.header.server);
             result.status = response.status;
             result.statusText = response.statusText;
             result.url = path;
@@ -3364,6 +3372,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
             _this.loading = false;
             // console.log(response);
             var result = new ApiServiceResult();
+            result.header = { 'server': response.headers.get('Server') };
+            _this.compareVersion(result.header.server);
             result.status = response.status;
             result.statusText = response.statusText;
             result.url = path;
@@ -3389,6 +3399,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
             _this.loading = false;
             // console.log(response);
             var result = new ApiServiceResult();
+            result.header = { 'server': response.headers.get('Server') };
+            _this.compareVersion(result.header.server);
             result.status = response.status;
             result.statusText = response.statusText;
             result.url = path;
@@ -3409,6 +3421,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
     ApiService.prototype.handleRequestError = function (error) {
         // console.error(error);
         var serviceError = new ApiServiceError();
+        serviceError.header = { 'server': error.headers.get('Server') };
         serviceError.status = error.status;
         serviceError.statusText = error.statusText;
         serviceError.errorInfo = error.message;
@@ -3425,11 +3438,25 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         if (error instanceof ApiServiceError)
             return Object(rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
         var serviceError = new ApiServiceError();
+        serviceError.header = { 'server': error.headers.get('Server') };
         serviceError.status = -1;
         serviceError.statusText = 'Invalid JSON';
         serviceError.errorInfo = error;
         serviceError.url = '';
         return Object(rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_2__["throwError"])(serviceError);
+    };
+    ApiService.prototype.compareVersion = function (server) {
+        // expected knora api version
+        var expected = KnoraConstants.KnoraVersion;
+        // existing knora api version
+        if (server) {
+            var versions = server.split(' ');
+            var existing = versions[0].split('/')[1];
+            // compare the two versions: expected vs existing
+            if (semver.diff(existing, expected) === 'major') {
+                console.warn('The version of the @knora/core module works with Knora v' + expected + ', but you are using it with Knora v' + existing);
+            }
+        }
     };
     ApiService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"])({ factory: function ApiService_Factory() { return new ApiService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(KuiCoreConfigToken)); }, token: ApiService, providedIn: "root" });
     return ApiService;
@@ -6673,7 +6700,8 @@ var FulltextSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         this.projectfilter = false;
         // previous search = full-text search history
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
-        this.projectLabel = 'Filter project';
+        this.defaultProjectLabel = 'All projects';
+        this.projectLabel = this.defaultProjectLabel;
         // is search panel focused?
         this.searchPanelFocus = false;
     }
@@ -6738,7 +6766,7 @@ var FulltextSearchComponent = /** @class */ /*@__PURE__*/ (function () {
     FulltextSearchComponent.prototype.setProject = function (project) {
         if (!project) {
             // set default project: all
-            this.projectLabel = 'Filter project';
+            this.projectLabel = this.defaultProjectLabel;
             this.projectIri = undefined;
             localStorage.removeItem('currentProject');
         }
@@ -6834,7 +6862,7 @@ var FulltextSearchComponent = /** @class */ /*@__PURE__*/ (function () {
         }
         else {
             this.projectIri = undefined;
-            this.projectLabel = 'Filter project';
+            this.projectLabel = this.defaultProjectLabel;
             this._router.navigate([this.route + '/fulltext/' + this.searchQuery]);
         }
         this.resetSearch();
@@ -8126,7 +8154,7 @@ function View_FulltextSearchComponent_1(_l) {
                 ad = (pd_2 && ad);
             }
             return ad;
-        }, _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_49__["View_MatMenuItem_0"], _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_49__["RenderType_MatMenuItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](16, 180224, [[5, 4]], 0, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"], [2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["ɵf21"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](-1, 0, ["All Projects"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](18, 0, null, 0, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_52__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_52__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](19, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_36__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_FulltextSearchComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](21, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 11); _ck(_v, 3, 0, currVal_3); _ck(_v, 8, 0); var currVal_7 = "kui-project-filter-menu"; _ck(_v, 11, 0, currVal_7); var currVal_18 = _co.projects; _ck(_v, 21, 0, currVal_18); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled || null); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._animationMode === "NoopAnimations"); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).menuOpen || null); _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2); var currVal_4 = _co.projectLabel; _ck(_v, 5, 0, currVal_4); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).inline; var currVal_6 = (((_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).color !== "primary") && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).color !== "accent")) && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).color !== "warn")); _ck(_v, 6, 0, currVal_5, currVal_6); var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16).role; var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16)._highlighted; var currVal_10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16)._triggersSubmenu; var currVal_11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16)._getTabIndex(); var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16).disabled.toString(); var currVal_13 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16).disabled || null); _ck(_v, 15, 0, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13); var currVal_14 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 19).vertical ? "vertical" : "horizontal"); var currVal_15 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 19).vertical; var currVal_16 = !_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 19).vertical; var currVal_17 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 19).inset; _ck(_v, 18, 0, currVal_14, currVal_15, currVal_16, currVal_17); });
+        }, _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_49__["View_MatMenuItem_0"], _node_modules_angular_material_menu_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_49__["RenderType_MatMenuItem"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](16, 180224, [[5, 4]], 0, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["MatMenuItem"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DOCUMENT"], _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_29__["FocusMonitor"], [2, _angular_material_menu__WEBPACK_IMPORTED_MODULE_17__["ɵf21"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](17, 0, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](18, 0, null, 0, 1, "mat-divider", [["class", "mat-divider"], ["role", "separator"]], [[1, "aria-orientation", 0], [2, "mat-divider-vertical", null], [2, "mat-divider-horizontal", null], [2, "mat-divider-inset", null]], null, null, _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_52__["View_MatDivider_0"], _node_modules_angular_material_divider_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_52__["RenderType_MatDivider"])), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](19, 49152, null, 0, _angular_material_divider__WEBPACK_IMPORTED_MODULE_36__["MatDivider"], [], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, 0, 1, null, View_FulltextSearchComponent_2)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](21, 278528, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"]], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) { var _co = _v.component; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 11); _ck(_v, 3, 0, currVal_3); _ck(_v, 8, 0); var currVal_7 = "kui-project-filter-menu"; _ck(_v, 11, 0, currVal_7); var currVal_19 = _co.projects; _ck(_v, 21, 0, currVal_19); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2).disabled || null); var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 2)._animationMode === "NoopAnimations"); var currVal_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 3).menuOpen || null); _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2); var currVal_4 = _co.projectLabel; _ck(_v, 5, 0, currVal_4); var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).inline; var currVal_6 = (((_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).color !== "primary") && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).color !== "accent")) && (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 8).color !== "warn")); _ck(_v, 6, 0, currVal_5, currVal_6); var currVal_8 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16).role; var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16)._highlighted; var currVal_10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16)._triggersSubmenu; var currVal_11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16)._getTabIndex(); var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16).disabled.toString(); var currVal_13 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 16).disabled || null); _ck(_v, 15, 0, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13); var currVal_14 = _co.defaultProjectLabel; _ck(_v, 17, 0, currVal_14); var currVal_15 = (_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 19).vertical ? "vertical" : "horizontal"); var currVal_16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 19).vertical; var currVal_17 = !_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 19).vertical; var currVal_18 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵnov"](_v, 19).inset; _ck(_v, 18, 0, currVal_15, currVal_16, currVal_17, currVal_18); });
 }
 function View_FulltextSearchComponent_7(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](1, null, ["", ""]))], null, function (_ck, _v) { var currVal_0 = _v.parent.parent.parent.context.$implicit.projectLabel; _ck(_v, 1, 0, currVal_0); }); }
 function View_FulltextSearchComponent_6(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 2, "div", [["class", "kui-project-filter-label"]], [[2, "not-empty", null]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵand"](16777216, null, null, 1, null, View_FulltextSearchComponent_7)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](2, 16384, null, 0, _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) { var currVal_1 = _v.parent.parent.context.$implicit.projectIri; _ck(_v, 2, 0, currVal_1); }, function (_ck, _v) { var currVal_0 = _v.parent.parent.context.$implicit.projectIri; _ck(_v, 0, 0, currVal_0); }); }
@@ -13058,6 +13086,8 @@ __webpack_require__.r(__webpack_exports__);
 var KnoraConstants = /** @class */ /*@__PURE__*/ (function () {
     function KnoraConstants() {
     }
+    // The following version of Knora is needed to work properly with this module
+    KnoraConstants.KnoraVersion = '8.0.0';
     KnoraConstants.KnoraApi = 'http://api.knora.org/ontology/knora-api';
     KnoraConstants.PathSeparator = '#';
     KnoraConstants.KnoraOntologyPath = 'http://www.knora.org/ontology';
@@ -15457,9 +15487,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _declarations_api_service_error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../declarations/api-service-error */ "./projects/knora/core/src/lib/declarations/api-service-error.ts");
 /* harmony import */ var _declarations_api_service_result__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../declarations/api-service-result */ "./projects/knora/core/src/lib/declarations/api-service-result.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _core_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core.module */ "./projects/knora/core/src/lib/core.module.ts");
+/* harmony import */ var _declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../declarations/api/knora-constants */ "./projects/knora/core/src/lib/declarations/api/knora-constants.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _core_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core.module */ "./projects/knora/core/src/lib/core.module.ts");
+
 
 
 
@@ -15469,6 +15501,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var jsonld = __webpack_require__(/*! jsonld */ "./node_modules/jsonld/lib/jsonld.js");
+var semver = __webpack_require__(/*! semver */ "./node_modules/semver/semver.js");
 var ApiService = /** @class */ /*@__PURE__*/ (function () {
     function ApiService(http, config) {
         this.http = http;
@@ -15492,6 +15525,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         return this.http.get(this.config.api + path, { observe: 'response', params: params }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (response) {
             _this.loading = false;
             var result = new _declarations_api_service_result__WEBPACK_IMPORTED_MODULE_3__["ApiServiceResult"]();
+            result.header = { 'server': response.headers.get('Server') };
+            _this.compareVersion(response.headers.get('Server'));
             result.status = response.status;
             result.statusText = response.statusText;
             result.url = path;
@@ -15530,6 +15565,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         return this.http.post(this.config.api + path, body, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (response) {
             _this.loading = false;
             var result = new _declarations_api_service_result__WEBPACK_IMPORTED_MODULE_3__["ApiServiceResult"]();
+            result.header = { 'server': response.headers.get('Server') };
+            _this.compareVersion(result.header.server);
             result.status = response.status;
             result.statusText = response.statusText;
             result.url = path;
@@ -15556,6 +15593,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
             _this.loading = false;
             // console.log(response);
             var result = new _declarations_api_service_result__WEBPACK_IMPORTED_MODULE_3__["ApiServiceResult"]();
+            result.header = { 'server': response.headers.get('Server') };
+            _this.compareVersion(result.header.server);
             result.status = response.status;
             result.statusText = response.statusText;
             result.url = path;
@@ -15581,6 +15620,8 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
             _this.loading = false;
             // console.log(response);
             var result = new _declarations_api_service_result__WEBPACK_IMPORTED_MODULE_3__["ApiServiceResult"]();
+            result.header = { 'server': response.headers.get('Server') };
+            _this.compareVersion(result.header.server);
             result.status = response.status;
             result.statusText = response.statusText;
             result.url = path;
@@ -15601,6 +15642,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
     ApiService.prototype.handleRequestError = function (error) {
         // console.error(error);
         var serviceError = new _declarations_api_service_error__WEBPACK_IMPORTED_MODULE_2__["ApiServiceError"]();
+        serviceError.header = { 'server': error.headers.get('Server') };
         serviceError.status = error.status;
         serviceError.statusText = error.statusText;
         serviceError.errorInfo = error.message;
@@ -15617,13 +15659,30 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
         if (error instanceof _declarations_api_service_error__WEBPACK_IMPORTED_MODULE_2__["ApiServiceError"])
             return Object(rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_0__["throwError"])(error);
         var serviceError = new _declarations_api_service_error__WEBPACK_IMPORTED_MODULE_2__["ApiServiceError"]();
+        serviceError.header = { 'server': error.headers.get('Server') };
         serviceError.status = -1;
         serviceError.statusText = 'Invalid JSON';
         serviceError.errorInfo = error;
         serviceError.url = '';
         return Object(rxjs_internal_observable_throwError__WEBPACK_IMPORTED_MODULE_0__["throwError"])(serviceError);
     };
-    ApiService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_5__["defineInjectable"]({ factory: function ApiService_Factory() { return new ApiService(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"](_core_module__WEBPACK_IMPORTED_MODULE_7__["KuiCoreConfigToken"])); }, token: ApiService, providedIn: "root" });
+    ApiService.prototype.compareVersion = function (server) {
+        // expected knora api version
+        var expected = _declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].KnoraVersion;
+        // existing knora api version
+        if (server) {
+            var versions = server.split(' ');
+            var existing = versions[0].split('/')[1];
+            // compare the two versions: expected vs existing
+            if (semver.diff(existing, expected) === 'major') {
+                console.warn('The version of the @knora/core module works with Knora v' + expected + ', but you are using it with Knora v' + existing);
+            }
+        }
+        else {
+            // console.warn('No server information from headers response');
+        }
+    };
+    ApiService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_6__["defineInjectable"]({ factory: function ApiService_Factory() { return new ApiService(_angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["inject"](_core_module__WEBPACK_IMPORTED_MODULE_8__["KuiCoreConfigToken"])); }, token: ApiService, providedIn: "root" });
     return ApiService;
 }());
 

@@ -34,6 +34,8 @@ This module has the following package dependencies, which you also have to insta
 -   jsonld@1.1.0
 -   semver@^6.1.1
 
+### Required version of Knora: 8.0.0
+
 ## Setup
 
 On version 6 of Angular CLI they removed the shim for global and other node built-ins as mentioned in [#9827 (comment)](https://github.com/angular/angular-cli/issues/9827#issuecomment-369578814). Because of the jsonld package, we have to manually shimming it inside of the **polyfills.ts** file of the app:
