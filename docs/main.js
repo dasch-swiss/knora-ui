@@ -1913,7 +1913,7 @@ var KnoraConstants = /** @class */ /*@__PURE__*/ (function () {
     function KnoraConstants() {
     }
     // The following version of Knora is needed to work properly with this module
-    KnoraConstants.KnoraVersion = '6.0.0';
+    KnoraConstants.KnoraVersion = '8.0.0';
     KnoraConstants.KnoraApi = 'http://api.knora.org/ontology/knora-api';
     KnoraConstants.PathSeparator = '#';
     KnoraConstants.KnoraOntologyPath = 'http://www.knora.org/ontology';
@@ -15487,7 +15487,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _declarations_api_service_error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../declarations/api-service-error */ "./projects/knora/core/src/lib/declarations/api-service-error.ts");
 /* harmony import */ var _declarations_api_service_result__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../declarations/api-service-result */ "./projects/knora/core/src/lib/declarations/api-service-result.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _declarations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../declarations */ "./projects/knora/core/src/lib/declarations/index.ts");
+/* harmony import */ var _declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../declarations/api/knora-constants */ "./projects/knora/core/src/lib/declarations/api/knora-constants.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _core_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core.module */ "./projects/knora/core/src/lib/core.module.ts");
@@ -15668,7 +15668,7 @@ var ApiService = /** @class */ /*@__PURE__*/ (function () {
     };
     ApiService.prototype.compareVersion = function (server) {
         // expected knora api version
-        var expected = _declarations__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].KnoraVersion;
+        var expected = _declarations_api_knora_constants__WEBPACK_IMPORTED_MODULE_5__["KnoraConstants"].KnoraVersion;
         // existing knora api version
         if (server) {
             var versions = server.split(' ');
