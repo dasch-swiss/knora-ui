@@ -1,8 +1,9 @@
 # Knora-ui modules
 
-[![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c9f3050a573f4198bc4129d618d40d6e)](https://www.codacy.com/app/dhlab-basel/Knora-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dhlab-basel/Knora-ui&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.com/dhlab-basel/Knora-ui.svg?branch=master)](https://travis-ci.com/dhlab-basel/Knora-ui)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f3a4a40b35d040718377aef57bd15205)](https://www.codacy.com/app/dhlab-basel/Knora-ui?utm_source=github.com&utm_medium=referral&utm_content=dhlab-basel/Knora-ui&utm_campaign=Badge_Grade)
+[![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master)
+
 
 This is the demo and developing environment for Knora ui modules.
 
@@ -12,7 +13,7 @@ But you can use only @knora/core which contains almost all services for the Knor
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora v6.0.1](https://github.com/dhlab-basel/Knora/releases/tag/v6.0.1).
+This version of Knora-ui requires [Knora v8.0.0](https://github.com/dhlab-basel/Knora/releases/tag/v8.0.0).
 
 ## Already published modules
 
@@ -233,4 +234,41 @@ $ yalc remove --all
 
 * * *
 
-## Required version of Knora: 6.0.1
+## Publish new version
+Be sure everything is merged, before creating new release.
+
+### Required version of Knora: 8.0.0
+
+### Update the documentation and the version number
+
+  1. Make a new branch called `pre-release/version-X.Y.Z
+  1. Update the version number (X.Y.Z) in package.json of each module
+  1. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json and README files
+  1. Update the version number (X.Y.Z) in the main package.json
+  1. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts` and the README files of each module
+  1. Update the documentation by running the following script from root folder: `./update_docs.sh`
+  1. Commit and push all changes and make a new pull request: Release X.Y.Z
+  1. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
+  1. Add description to the release by using the following template
+
+ ```markdown
+  Version: x.y.z
+
+  Knora version: x.y.z
+
+  List of features:
+  - feature 1 (#PR123)
+  - feature 2 (#PR345)
+
+  Bug fixes:
+  - bug 1 (#issue4)
+  - bug 2 (#issue44)
+
+  Comments: blabla
+```
+
+### Publish new version on NPM
+
+  1. Checkout **Master** branch
+  1. Build all modules with `build-lib-prod`
+  1. Publish them from each module folder with `npm publish`
