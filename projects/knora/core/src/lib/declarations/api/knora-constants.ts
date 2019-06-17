@@ -1,7 +1,7 @@
 export class KnoraConstants {
 
     // The following version of Knora is needed to work properly with this module
-    public static KnoraVersion: string = '6.0.0';
+    public static KnoraVersion: string = '8.0.0';
 
     public static KnoraApi: string = 'http://api.knora.org/ontology/knora-api';
     public static PathSeparator: string = '#';
