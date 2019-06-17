@@ -269,6 +269,6 @@ Comments: blabla
 
 ### Publish new version on NPM
 
-  1. Checkout **Master** branch
-  1. Build all modules with `build-lib-prod`
-  1. Publish them from each module folder with `npm publish`
+1. Checkout **Master** branch
+1. Build all modules with `build-lib-prod`
+1. Publish them from each module folder with `npm publish`
