@@ -241,15 +241,15 @@ Be sure everything is merged, before creating new release.
 
 ### Update the documentation and the version number
 
-  1. Make a new branch called `pre-release/version-X.Y.Z
-  1. Update the version number (X.Y.Z) in package.json of each module
-  1. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json and README files
-  1. Update the version number (X.Y.Z) in the main package.json
-  1. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts` and the README files of each module
-  1. Update the documentation by running the following script from root folder: `./update_docs.sh`
-  1. Commit and push all changes and make a new pull request: Release X.Y.Z
-  1. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
-  1. Add description to the release by using the following template
+1. Make a new branch called `pre-release/version-X.Y.Z
+1. Update the version number (X.Y.Z) in package.json of each module
+1. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json and README files
+1. Update the version number (X.Y.Z) in the main package.json
+1. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts` and the README files of each module
+1. Update the documentation by running the following script from root folder: `./update_docs.sh`
+1. Commit and push all changes and make a new pull request: Release X.Y.Z
+1. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
+1. Add description to the release by using the following template
 
 ```markdown
 Version: x.y.z
