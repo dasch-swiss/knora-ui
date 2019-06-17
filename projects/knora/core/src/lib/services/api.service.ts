@@ -7,7 +7,8 @@ import { ApiServiceError } from '../declarations/api-service-error';
 import { ApiServiceResult } from '../declarations/api-service-result';
 import { from } from 'rxjs';
 import { KuiCoreConfigToken } from '../core.module';
-import { KnoraConstants } from '../declarations';
+import { KnoraConstants } from '../declarations/api/knora-constants';
+
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
