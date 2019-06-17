@@ -3428,7 +3428,7 @@ window.global = window;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/flavens/code/Knora-ui/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /Users/ak/Code/knora-ui/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })

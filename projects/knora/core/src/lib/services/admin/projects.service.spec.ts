@@ -52,6 +52,7 @@ describe('ProjectsService', () => {
 
             spyOn(service, 'getAllProjects').and.callFake(() => {
                 const result = new ApiServiceResult();
+                result.header = {};
                 result.status = 200;
                 result.statusText = '';
                 result.url = '';
@@ -84,6 +85,7 @@ describe('ProjectsService', () => {
 
             spyOn(service, 'getProjectByIri').and.callFake(() => {
                 const result = new ApiServiceResult();
+                result.header = {};
                 result.status = 200;
                 result.statusText = '';
                 result.url = '';
@@ -117,6 +119,7 @@ describe('ProjectsService', () => {
 
             spyOn(service, 'getProjectByShortname').and.callFake(() => {
                 const result = new ApiServiceResult();
+                result.header = {};
                 result.status = 200;
                 result.statusText = '';
                 result.url = '';
@@ -148,6 +151,7 @@ describe('ProjectsService', () => {
 
             spyOn(service, 'getProjectByShortcode').and.callFake(() => {
                 const result = new ApiServiceResult();
+                result.header = {};
                 result.status = 200;
                 result.statusText = '';
                 result.url = '';
@@ -165,9 +169,9 @@ describe('ProjectsService', () => {
             };
 
             projectByShortcode.subscribe((result: any) => {
-                    const projectsResult = result.body;
-                    expect(projectsResult).toEqual(projectIncunabula);
-                },
+                const projectsResult = result.body;
+                expect(projectsResult).toEqual(projectIncunabula);
+            },
                 (error: ApiServiceError) => {
                     fail(error);
                 }

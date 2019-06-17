@@ -37,6 +37,8 @@ This module has the following package dependencies, which you also have to insta
 -   jdnconvertiblecalendar@0.0.2
 -   jdnconvertiblecalendardateadapter@0.0.7
 
+### Required version of Knora: 8.0.0
+
 ## Setup
 
  Import the action module in your app.module.ts and add it to the NgModules's imports:

@@ -1,15 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MatExpansionModule, MatFormFieldModule, MatInputModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
 import { ExpertSearchComponent } from './expert-search.component';
-import { KuiCoreConfigToken, KuiCoreConfig } from '@knora/core';
-import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 describe('ExpertSearchComponent', () => {
   let component: ExpertSearchComponent;

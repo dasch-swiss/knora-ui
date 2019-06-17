@@ -13,9 +13,9 @@ import { SessionService } from './session/session.service';
 })
 export class AuthenticationService {
 
-    constructor(public http: HttpClient,
-                private _session: SessionService,
-                @Inject(KuiCoreConfigToken) public config) {
+    constructor (public http: HttpClient,
+        private _session: SessionService,
+        @Inject(KuiCoreConfigToken) public config) {
 
         // console.log('AuthenticationService constructor: config', config);
     }
@@ -60,8 +60,8 @@ export class AuthenticationService {
 
         return this.http.post(
             this.config.api + '/v2/authentication',
-            {username: username, password: password},
-            {observe: 'response'}).pipe(
+            { username: username, password: password },
+            { observe: 'response' }).pipe(
                 map((response: HttpResponse<any>): any => {
                     return response;
                 }),
@@ -93,6 +93,7 @@ export class AuthenticationService {
      */
     protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
         const serviceError = new ApiServiceError();
+        serviceError.header = { 'server': error.headers.get('Server') };
         serviceError.status = error.status;
         serviceError.statusText = error.statusText;
         serviceError.errorInfo = error.message;

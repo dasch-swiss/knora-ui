@@ -27,30 +27,34 @@ export class SearchPanelComponent {
      */
     @Input() filterbyproject?: string;
 
-    @ViewChild('fullSearchPanel') searchPanel: ElementRef;
-    @ViewChild('extendedSearchMenu') searchMenu: TemplateRef<any>;
+    /**
+     * @param  {boolean} [advanced] Adds the extended / advanced search to the panel
+     */
+    @Input() advanced?: boolean = false;
 
-    showMenu: boolean = false;
-    focusOnExtended: string = 'inactive';
+    /**
+     * @param  {boolean} [expert] Adds the expert search / gravsearch editor to the panel
+     */
+    @Input() expert?: boolean = false;
+
+    @ViewChild('fullSearchPanel') searchPanel: ElementRef;
+
+    @ViewChild('searchMenu') searchMenu: TemplateRef<any>;
+    //    @ViewChild('expertSearchMenu') expertMenu: TemplateRef<any>;
 
     // overlay reference
     overlayRef: OverlayRef;
 
+    // show advanced or expert search
+    showAdvanced: boolean;
+
     constructor (private _overlay: Overlay,
         private _viewContainerRef: ViewContainerRef, ) { }
 
-    /**
-     * Show or hide the extended search menu
-     * @ignore
-     *
-     */
-    toggleMenu(): void {
-        this.showMenu = !this.showMenu;
-        this.focusOnExtended =
-            this.focusOnExtended === 'active' ? 'inactive' : 'active';
-    }
+    openPanelWithBackdrop(type: string) {
 
-    openPanelWithBackdrop() {
+        this.showAdvanced = (type === 'advanced');
+
         const config = new OverlayConfig({
             hasBackdrop: true,
             backdropClass: 'cdk-overlay-transparent-backdrop',

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { KuiCoreModule } from '../core.module';
-
 import { ApiService } from './api.service';
+
 
 describe('ApiService', () => {
     let httpClient: HttpClient;
@@ -15,7 +15,7 @@ describe('ApiService', () => {
             // Import the HttpClient mocking services
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({name: '', api: 'http://0.0.0.0:3333', app: '', media: ''})
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
             ],
             // Provide the service-under-test and its dependencies
             providers: [
