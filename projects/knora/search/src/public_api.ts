@@ -2,11 +2,14 @@
  * Public API Surface of search
  */
 
-export * from './lib/search.component';
-export * from './lib/search-panel/search-panel.component';
+// export * from './lib/search.component';
+// deprecated
 export * from './lib/fulltext-search/fulltext-search.component';
 
+export * from './lib/search-panel/search-panel.component';
 export * from './lib/extended-search/extended-search.component';
+export * from './lib/expert-search/expert-search.component';
+
 export * from './lib/extended-search/select-ontology/select-ontology.component';
 export * from './lib/extended-search/select-property/select-property.component';
 export * from './lib/extended-search/select-property/specify-property-value/specify-property-value.component';
@@ -20,6 +23,5 @@ export * from './lib/extended-search/select-property/specify-property-value/text
 export * from './lib/extended-search/select-property/specify-property-value/uri-value/uri-value.component';
 export * from './lib/extended-search/select-resource-class/select-resource-class.component';
 
-export * from './lib/expert-search/expert-search.component';
 
 export * from './lib/search.module';

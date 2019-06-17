@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {
-    MatAutocompleteModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatListModule,
-    MatMenuModule,
-    MatSelectModule
+  MatAutocompleteModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatListModule,
+  MatMenuModule,
+  MatSelectModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
@@ -34,10 +34,11 @@ import { ListDisplayComponent } from '../extended-search/select-property/specify
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ExpertSearchComponent } from '../expert-search/expert-search.component';
 
 describe('SearchPanelComponent', () => {
-    let component: SearchPanelComponent;
-    let fixture: ComponentFixture<SearchPanelComponent>;
+  let component: SearchPanelComponent;
+  let fixture: ComponentFixture<SearchPanelComponent>;
 
 
   beforeEach(async(() => {
@@ -62,6 +63,7 @@ describe('SearchPanelComponent', () => {
         SearchPanelComponent,
         FulltextSearchComponent,
         ExtendedSearchComponent,
+        ExpertSearchComponent,
         SelectOntologyComponent,
         SelectPropertyComponent,
         SelectResourceClassComponent,
@@ -80,28 +82,28 @@ describe('SearchPanelComponent', () => {
       ],
       providers: [
         {
-            provide: KuiCoreConfigToken,
-            useValue: KuiCoreConfig
+          provide: KuiCoreConfigToken,
+          useValue: KuiCoreConfig
         },
         HttpClient,
         {
-            provide: ActivatedRoute,
-            useValue: {
-                params: null
-            }
+          provide: ActivatedRoute,
+          useValue: {
+            params: null
+          }
         }
-    ]
+      ]
     })
       .compileComponents();
   }));
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(SearchPanelComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SearchPanelComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

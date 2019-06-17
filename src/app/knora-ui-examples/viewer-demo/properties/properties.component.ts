@@ -52,7 +52,7 @@ export class PropertiesComponent implements OnInit {
     textFile = new ReadTextFileValue('id', 'propIri', 'Text File Name', 'Text File URL');
     uri = new ReadUriValue('id', 'propIri', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
 
-    constructor() {
+    constructor () {
     }
 
     ngOnInit() {

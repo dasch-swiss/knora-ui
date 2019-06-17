@@ -13,7 +13,7 @@
     "ignore": false,
     "line": 8,
     "codeStart": 11,
-    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class AuthenticationService {\n\n    constructor(public http: HttpClient,\n                private _session: SessionService,\n                @Inject(KuiCoreConfigToken) public config) {\n\n        // console.log('AuthenticationService constructor: config', config);\n    }",
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class AuthenticationService {\n\n    constructor (public http: HttpClient,\n        private _session: SessionService,\n        @Inject(KuiCoreConfigToken) public config) {\n\n        // console.log('AuthenticationService constructor: config', config);\n    }",
     "ctx": false
   },
   {
@@ -163,7 +163,7 @@
     "ignore": false,
     "line": 49,
     "codeStart": 57,
-    "code": "login(username: string, password: string): Observable<any> {\n\n    // console.log('AuthenticationService - login - api: ', this.config.api);\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        {username: username, password: password},\n        {observe: 'response'}).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}",
+    "code": "login(username: string, password: string): Observable<any> {\n\n    // console.log('AuthenticationService - login - api: ', this.config.api);\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        { username: username, password: password },\n        { observe: 'response' }).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}",
     "ctx": {
       "type": "method",
       "name": "login",
@@ -250,7 +250,7 @@
     "ignore": false,
     "line": 87,
     "codeStart": 94,
-    "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    const serviceError = new ApiServiceError();\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}\n}",
+    "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    const serviceError = new ApiServiceError();\n    serviceError.header = { 'server': error.headers.get('Server') };\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}\n}",
     "ctx": false
   }
 ]
