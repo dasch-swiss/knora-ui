@@ -23,11 +23,10 @@ import { KuiViewerModule } from '@knora/viewer';
 
 import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalendardateadapter';
 
-import { SearchComponent } from './search.component';
-import { FulltextSearchComponent } from './fulltext-search/fulltext-search.component';
 import { SearchPanelComponent } from './search-panel/search-panel.component';
+import { FulltextSearchComponent } from './fulltext-search/fulltext-search.component';
 import { ExtendedSearchComponent } from './extended-search/extended-search.component';
-
+import { ExpertSearchComponent } from './expert-search/expert-search.component';
 
 import { SelectOntologyComponent } from './extended-search/select-ontology/select-ontology.component';
 import { SelectResourceClassComponent } from './extended-search/select-resource-class/select-resource-class.component';
@@ -43,7 +42,6 @@ import { UriValueComponent } from './extended-search/select-property/specify-pro
 import { HeaderComponent } from './extended-search/select-property/specify-property-value/date-value/header-calendar/header-calendar.component';
 import { ListValueComponent } from './extended-search/select-property/specify-property-value/list-value/list-value.component';
 import { ListDisplayComponent } from './extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
-import { ExpertSearchComponent } from './expert-search/expert-search.component';
 
 @NgModule({
     imports: [
@@ -69,7 +67,6 @@ import { ExpertSearchComponent } from './expert-search/expert-search.component';
         MatJDNConvertibleCalendarDateAdapterModule
     ],
     declarations: [
-        SearchComponent,
         SelectOntologyComponent,
         ExtendedSearchComponent,
         SelectResourceClassComponent,
@@ -90,12 +87,11 @@ import { ExpertSearchComponent } from './expert-search/expert-search.component';
         ExpertSearchComponent
     ],
     exports: [
-        SearchComponent,
         SearchPanelComponent,
         FulltextSearchComponent,
         ExtendedSearchComponent,
-        DateValueComponent,
-        ExpertSearchComponent
+        ExpertSearchComponent,
+        DateValueComponent
     ],
     entryComponents: [
         HeaderComponent

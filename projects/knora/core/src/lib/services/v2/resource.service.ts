@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-import { ApiServiceError, ApiServiceResult, KuiCoreConfig, ReadResourcesSequence } from '../../declarations';
+import { KuiCoreConfigToken } from '../../core.module';
+import { ApiServiceError, ApiServiceResult, ReadResourcesSequence } from '../../declarations';
 import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
-import { KuiCoreConfigToken } from '../../core.module';
 
 /**
  * Requests representation of resources from Knora.
@@ -16,9 +16,9 @@ import { KuiCoreConfigToken } from '../../core.module';
 })
 export class ResourceService extends ApiService {
 
-    constructor(public http: HttpClient,
-                @Inject(KuiCoreConfigToken) public config,
-                private _ontologyCacheService: OntologyCacheService) {
+    constructor (public http: HttpClient,
+        @Inject(KuiCoreConfigToken) public config,
+        private _ontologyCacheService: OntologyCacheService) {
         super(http, config);
     }
 
