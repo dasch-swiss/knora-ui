@@ -10,6 +10,7 @@ import {
     ReadIntervalValue,
     ReadLinkValue,
     ReadListValue,
+    ReadMovingImageFileValue,
     ReadProperties,
     ReadPropertyItem,
     ReadResource,
@@ -196,6 +197,8 @@ export module ConvertJSONLD {
 
                 break;
 
+
+
             // TODO: handle movingImageFileValue and the others here...
             case KnoraConstants.StillImageFileValue:
 
@@ -212,6 +215,67 @@ export module ConvertJSONLD {
                 valueSpecificProp = stillImageFileValue;
 
                 break;
+
+            case KnoraConstants.MovingImageFileValue:
+
+                const movingImageFileValue: ReadMovingImageFileValue = new ReadMovingImageFileValue(
+                    propValue['@id'],
+                    propIri,
+                    propValue[KnoraConstants.fileValueHasFilename],
+                    propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl]['@value'],
+                    propValue[KnoraConstants.fileValueAsUrl]['@value'],
+                    propValue[KnoraConstants.stillImageFileValueHasDimX],
+                    propValue[KnoraConstants.stillImageFileValueHasDimY],
+                    propValue[KnoraConstants.fileValueHasDuration],
+                    propValue[KnoraConstants.movingImageFileValueHasFps],
+                    propValue[KnoraConstants.movingImageFileValueHasAspectRatio]
+                );
+
+                valueSpecificProp = movingImageFileValue;
+
+                break;
+
+            /* TEST REFACTORING - case KnoraConstants.FileValue:
+
+                let fileValue: ReadPropertyItem;
+
+                // StillImageFileValue
+                if (propValue[KnoraConstants.StillImageFileValue] !== undefined) {
+                    fileValue = new ReadStillImageFileValue(
+                        propValue['@id'],
+                        propIri,
+                        propValue[KnoraConstants.fileValueHasFilename],
+                        propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl]['@value'],
+                        propValue[KnoraConstants.fileValueAsUrl]['@value'],
+                        propValue[KnoraConstants.stillImageFileValueHasDimX],
+                        propValue[KnoraConstants.stillImageFileValueHasDimY]
+                    );
+                    console.log('stillImageFileValue in convert-json', fileValue);
+                }
+                // MovingImageFileValue§
+                else if (propValue[KnoraConstants.MovingImageFileValue] !== undefined) {
+                    fileValue = new ReadMovingImageFileValue(
+                        propValue['@id'],
+                        propIri,
+                        propValue[KnoraConstants.fileValueHasFilename],
+                        propValue[KnoraConstants.stillImageFileValueHasIIIFBaseUrl]['@value'],
+                        propValue[KnoraConstants.fileValueAsUrl]['@value'],
+                        propValue[KnoraConstants.stillImageFileValueHasDimX],
+                        propValue[KnoraConstants.stillImageFileValueHasDimY],
+                        propValue[KnoraConstants.fileValueHasDuration],
+                        propValue[KnoraConstants.movingImageFileValueHasFps],
+                        propValue[KnoraConstants.movingImageFileValueHasAspectRatio]
+                    );
+                    console.log('stillImageFileValue in convert-json', fileValue);
+                } else {
+                    // expected text value members not defined
+                    console.error('ERROR: Invalid text value: ' + JSON.stringify(propValue));
+                }
+
+                valueSpecificProp = fileValue;
+                console.log('valueSpecificProp', valueSpecificProp);
+
+                break; */
 
             case KnoraConstants.TextFileValue:
 

@@ -30,7 +30,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     // does the resource has a file representation (media file)?
     fileRepresentation: boolean;
 
-    constructor (protected _route: ActivatedRoute,
+    constructor(protected _route: ActivatedRoute,
         protected _router: Router,
         protected _resourceService: ResourceService,
         protected _incomingService: IncomingService
@@ -72,7 +72,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
                 // this.fileRepresentation = this.sequence.resources[0].properties.indexOf(KnoraConstants.hasStillImageFileValue) > -1;
 
-                console.log('fileRepresentation', this.fileRepresentation);
+                console.log('fileRepresentation', this.sequence.resources[0].stillImageRepresentationsToDisplay[0].stillImageFileValue);
                 console.log('sequence', this.sequence);
 
                 // wait until the resource is ready
@@ -129,6 +129,8 @@ export class ResourceViewComponent implements OnInit, OnChanges {
             }
 
 
+        } else if (resource.properties[KnoraConstants.hasMovingImageFileValue] !== undefined) {
+            console.log('get moving image');
         } else if (resource.incomingStillImageRepresentations.length > 0) {
             // there are StillImageRepresentations pointing to this resource (incoming)
 

@@ -145,10 +145,14 @@ export class KnoraConstants {
     public static fileValueHasFilename: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueHasFilename';
 
     public static hasStillImageFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasStillImageFileValue';
+    public static hasMovingImageFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasMovingImageFileValue';
 
     public static stillImageFileValueHasDimX: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasDimX';
     public static stillImageFileValueHasDimY: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasDimY';
     public static stillImageFileValueHasIIIFBaseUrl: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasIIIFBaseUrl';
+    public static fileValueHasDuration: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueHasDuration';
+    public static movingImageFileValueHasFps: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'movingImageFileValueHasFps';
+    public static movingImageFileValueHasAspectRatio: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'movingImageFileValueHasAspectRatio';
 
     public static colorValueAsColor: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'colorValueAsColor';
     public static geometryValueAsGeometry: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'geometryValueAsGeometry';
