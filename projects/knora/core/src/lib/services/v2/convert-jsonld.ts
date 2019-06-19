@@ -1,10 +1,13 @@
 import {
     CountQueryResult,
     KnoraConstants,
+    ReadAudioFileValue,
     ReadBooleanValue,
     ReadColorValue,
     ReadDateValue,
     ReadDecimalValue,
+    ReadDDDFileValue,
+    ReadDocumentFileValue,
     ReadGeomValue,
     ReadIntegerValue,
     ReadIntervalValue,
@@ -198,8 +201,6 @@ export module ConvertJSONLD {
                 break;
 
 
-
-            // TODO: handle movingImageFileValue and the others here...
             case KnoraConstants.StillImageFileValue:
 
                 const stillImageFileValue: ReadStillImageFileValue = new ReadStillImageFileValue(
@@ -230,6 +231,46 @@ export module ConvertJSONLD {
                 );
 
                 valueSpecificProp = movingImageFileValue;
+
+                break;
+
+            case KnoraConstants.AudioFileValue:
+
+                const audioFileValue: ReadAudioFileValue = new ReadAudioFileValue(
+                    propValue['@id'],
+                    propIri,
+                    propValue[KnoraConstants.fileValueHasFilename],
+                    propValue[KnoraConstants.fileValueAsUrl]['@value'],
+                    propValue[KnoraConstants.audioFileValueHasDuration]
+                );
+
+                valueSpecificProp = audioFileValue;
+
+                break;
+
+            case KnoraConstants.DDDFileValue:
+
+                const dddFileValue: ReadDDDFileValue = new ReadDDDFileValue(
+                    propValue['@id'],
+                    propIri,
+                    propValue[KnoraConstants.fileValueHasFilename],
+                    propValue[KnoraConstants.fileValueAsUrl]['@value']
+                );
+
+                valueSpecificProp = dddFileValue;
+
+                break;
+
+            case KnoraConstants.DocumentFileValue:
+
+                const documentFileValue: ReadDocumentFileValue = new ReadDocumentFileValue(
+                    propValue['@id'],
+                    propIri,
+                    propValue[KnoraConstants.fileValueHasFilename],
+                    propValue[KnoraConstants.fileValueAsUrl]['@value']
+                );
+
+                valueSpecificProp = documentFileValue;
 
                 break;
 

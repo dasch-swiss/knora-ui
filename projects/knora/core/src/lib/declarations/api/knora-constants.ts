@@ -104,6 +104,8 @@ export class KnoraConstants {
     public static ReadMovingImageFileValue: string = 'ReadMovingImageFileValue';
     public static ReadAudioFileValue: string = 'ReadAudioFileValue';
     public static ReadTextFileValue: string = 'ReadTextFileValue';
+    public static ReadDDDFileValue: string = 'ReadDDDFileValue';
+    public static ReadDocumentFileValue: string = 'ReadDocumentFileValue';
     public static ReadGeomValue: string = 'ReadGeomValue';
     public static ReadColorValue: string = 'ReadColorValue';
     public static ReadUriValue: string = 'ReadUriValue';
@@ -152,6 +154,13 @@ export class KnoraConstants {
     public static movingImageFileValueHasDimY: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'movingImageFileValueHasDimY';
     public static movingImageFileValueHasDuration: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'movingImageFileValueHasDuration';
     public static movingImageFileValueHasFps: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'movingImageFileValueHasFps';
+
+    public static hasAudioFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasAudioFileValue';
+    public static audioFileValueHasDuration: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'audioFileValueHasDuration';
+
+    public static hasDocumentFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasDocumentFileValue';
+
+    public static hasDDDFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasDDDFileValue';
 
     public static colorValueAsColor: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'colorValueAsColor';
     public static geometryValueAsGeometry: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'geometryValueAsGeometry';

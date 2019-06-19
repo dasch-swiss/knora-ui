@@ -354,6 +354,85 @@ export class ReadMovingImageFileValue extends FileValue {
 }
 
 /**
+ * Represents an audio value object.
+ */
+export class ReadAudioFileValue extends FileValue {
+
+    constructor(
+        readonly id: string,
+        readonly propIri: string,
+        readonly filename: string,
+        readonly path: string,
+        readonly duration: number) {
+        super();
+    }
+
+    readonly type = KnoraConstants.AudioFileValue;
+
+    getClassName(): string {
+        return KnoraConstants.ReadAudioFileValue;
+    }
+
+    getContent() {
+        return this.path;
+    }
+}
+
+/**
+ * Represents a DDD value object.
+ */
+export class ReadDDDFileValue extends FileValue {
+
+    constructor(
+        readonly id: string,
+        readonly propIri: string,
+        readonly filename: string,
+        readonly path: string) {
+        super();
+    }
+
+    readonly type = KnoraConstants.DDDFileValue;
+
+    // preview doesn't include the DDD file itself
+    readonly isPreview: boolean;
+
+    getClassName(): string {
+        return KnoraConstants.ReadDDDFileValue;
+    }
+
+    getContent() {
+        return this.path;
+    }
+}
+
+/**
+ * Represents a Document value object.
+ */
+export class ReadDocumentFileValue extends FileValue {
+
+    constructor(
+        readonly id: string,
+        readonly propIri: string,
+        readonly filename: string,
+        readonly path: string) {
+        super();
+    }
+
+    readonly type = KnoraConstants.DocumentFileValue;
+
+    // preview doesn't include the DDD file itself
+    readonly isPreview: boolean;
+
+    getClassName(): string {
+        return KnoraConstants.ReadDocumentFileValue;
+    }
+
+    getContent() {
+        return this.path;
+    }
+}
+
+/**
  * Represents a text representation value object
  */
 export class ReadTextFileValue implements ReadPropertyItem {
