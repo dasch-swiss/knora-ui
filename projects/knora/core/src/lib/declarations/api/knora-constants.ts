@@ -23,7 +23,6 @@ export class KnoraConstants {
     public static SalsahGuiOrder: string = KnoraConstants.SalsahGuiOntology + '#guiOrder';
     public static SalsahGuiAttribute: string = KnoraConstants.SalsahGuiOntology + '#guiAttribute';
 
-
     public static StandoffOntology: string = 'http://api.knora.org/ontology/standoff/v2';
 
     public static Resource: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Resource';
@@ -65,7 +64,6 @@ export class KnoraConstants {
     public static schemaName: string = 'http://schema.org/name';
     public static schemaNumberOfItems: string = 'http://schema.org/numberOfItems';
     public static schemaItemListElement: string = 'http://schema.org/itemListElement';
-
 
     public static RdfProperty: string = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property';
     public static RdfsSchema: string = 'http://www.w3.org/2000/01/rdf-schema' + KnoraConstants.PathSeparator;
@@ -145,14 +143,15 @@ export class KnoraConstants {
     public static fileValueHasFilename: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueHasFilename';
 
     public static hasStillImageFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasStillImageFileValue';
-    public static hasMovingImageFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasMovingImageFileValue';
-
     public static stillImageFileValueHasDimX: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasDimX';
     public static stillImageFileValueHasDimY: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasDimY';
     public static stillImageFileValueHasIIIFBaseUrl: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'stillImageFileValueHasIIIFBaseUrl';
-    public static fileValueHasDuration: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'fileValueHasDuration';
+
+    public static hasMovingImageFileValue: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasMovingImageFileValue';
+    public static movingImageFileValueHasDimX: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'movingImageFileValueHasDimX';
+    public static movingImageFileValueHasDimY: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'movingImageFileValueHasDimY';
+    public static movingImageFileValueHasDuration: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'movingImageFileValueHasDuration';
     public static movingImageFileValueHasFps: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'movingImageFileValueHasFps';
-    public static movingImageFileValueHasAspectRatio: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'movingImageFileValueHasAspectRatio';
 
     public static colorValueAsColor: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'colorValueAsColor';
     public static geometryValueAsGeometry: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'geometryValueAsGeometry';
