@@ -129,8 +129,6 @@ export class ResourceViewComponent implements OnInit, OnChanges {
             }
 
 
-        } else if (resource.properties[KnoraConstants.hasMovingImageFileValue] !== undefined) {
-            console.log('get moving image');
         } else if (resource.incomingStillImageRepresentations.length > 0) {
             // there are StillImageRepresentations pointing to this resource (incoming)
 
