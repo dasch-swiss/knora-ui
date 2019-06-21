@@ -20,6 +20,12 @@ export class ExpertSearchComponent implements OnInit {
      */
     @Output() gravsearch = new EventEmitter<string>();
 
+
+    /**
+     * @param  {boolean} toggleExtendedSearchForm Trigger toggle for extended search form.
+     */
+    @Output() toggleExpertSearchForm = new EventEmitter<boolean>();
+
     expertSearchForm: FormGroup;
 
     constructor (
@@ -72,6 +78,9 @@ CONSTRUCT {
         } else {
             this.gravsearch.emit(gravsearch);
         }
+
+        // toggle expert search form
+        this.toggleExpertSearchForm.emit(true);
     }
 
     /**
