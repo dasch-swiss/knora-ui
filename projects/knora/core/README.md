@@ -46,10 +46,187 @@ On version 6 of Angular CLI they removed the shim for global and other node buil
  (window as any).global = window;
 ```
 
-Next step is to import the core module in your app.module.ts
+For the environment configuration like URL to the Knora API, to Sipi a.s.o. we have to create the following configuration files and serverices:
 
-`import {KuiCoreModule} from '@knora/core';`
+```shell
+mkdir src/config
+touch src/config/config.dev.json
+touch src/config/config.prod.json
 
+ng g s app-init.service.ts
+```
+
+The `config.dev.json` should look as follow:
+
+```json
+{
+  "env": {
+    "name": "dev"
+  },
+  "apiURL": "http://0.0.0.0:3333",
+  "iiifURL": "http://0.0.0.0:1024",
+  "appURL": "http://localhost:4200",
+  "appName": "Name of the app"
+}
+```
+
+The `config.prod.json` looks similar, the env.name is "prod" and the urls have to be defined. The config files have to been integrated in `angular.json` in each "assets"-section:
+
+```json
+"assets": [
+    "src/favicon.ico",
+    "src/assets",
+    "src/config"
+]
+```
+
+
+It's possible to have different configuration files. The depending on the environment definition in `src/environments/`. The name defined in environment is used to take the correct `config.xyz.json` file.
+
+environment.ts
+
+```typescript
+export const environment = {
+    name: 'dev',
+    production: false
+};
+```
+
+To load the correct configuration you have to write an `app-init.service.ts`:
+
+```typescript
+import { Injectable } from '@angular/core';
+import { KuiCoreConfig } from '@knora/core';
+
+
+export interface IAppConfig {
+
+    env: {
+        name: string;
+    };
+    ontologyIRI: string;
+    apiURL: string;
+    externalApiURL: string;
+    iiifURL: string;
+    appURL: string;
+    appName: string;
+    localData: string;
+    pagingLimit: number;
+    startComponent: string;
+}
+
+@Injectable()
+export class AppInitService {
+
+    static settings: IAppConfig;
+    static coreConfig: KuiCoreConfig;
+
+    constructor() {
+    }
+
+    Init() {
+
+        return new Promise<void>((resolve, reject) => {
+            // console.log('AppInitService.init() called');
+            // do your initialisation stuff here
+
+            const data = <IAppConfig> window['tempConfigStorage'];
+            // console.log('AppInitService: json', data);
+            AppInitService.settings = data;
+
+            AppInitService.coreConfig = <KuiCoreConfig> {
+                name: AppInitService.settings.appName,
+                api: AppInitService.settings.apiURL,
+                media: AppInitService.settings.iiifURL,
+                app: AppInitService.settings.appURL
+            };
+
+            // console.log('AppInitService: finished');
+
+            resolve();
+        });
+    }
+}
+```
+
+This service will be loaded in `src/app/app.module.ts`:
+
+```typescript
+import {KuiCoreModule} from '@knora/core';
+import { AppInitService } from './app-init.service';
+
+export function initializeApp(appInitService: AppInitService) {
+    return (): Promise<any> => {
+        return appInitService.Init();
+    };
+}
+
+@NgModule({
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        KuiCoreModule
+    ],
+    providers: [
+        AppInitService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeApp,
+            deps: [AppInitService],
+            multi: true
+        },
+        {
+            provide: KuiCoreConfigToken,
+            useFactory: () => AppInitService.coreConfig
+        }
+    ],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+Additional you have to update the `src/main.ts` file:
+
+```typescript
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+import 'hammerjs';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+function bootstrapFailed(result) {
+    console.error('bootstrap-fail', result);
+}
+
+fetch(`config/config.${environment.name}.json`)
+    .then(response => response.json())
+    .then(config => {
+        if (!config || !config['appName']) {
+            bootstrapFailed(config);
+            return;
+        }
+
+        // Store the response somewhere that your ConfigService can read it.
+        window['tempConfigStorage'] = config;
+
+        // console.log('config', config);
+
+
+        platformBrowserDynamic()
+            .bootstrapModule(AppModule)
+            .catch(err => bootstrapFailed(err));
+    })
+    .catch(bootstrapFailed);
+```
+
+<!--
 and set the api server of your environment first. In our apps we define it in the environment files. This helps to define more than one environment for various usages of the Angular app.
 
 For local usage (developer mode) define your environment.ts as follow:
@@ -95,6 +272,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class AppModule {
 }
 ```
+-->
 
 ## Usage
 
