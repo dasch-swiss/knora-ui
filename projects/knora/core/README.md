@@ -80,7 +80,6 @@ The `config.prod.json` looks similar, the env.name is "prod" and the urls have t
 ]
 ```
 
-
 It's possible to have different configuration files. The depending on the environment definition in `src/environments/`. The name defined in environment is used to take the correct `config.xyz.json` file.
 
 environment.ts
