@@ -71,7 +71,7 @@ export class ExtendedSearchComponent implements OnInit {
     // form validation status
     formValid = false;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder,
+    constructor (@Inject(FormBuilder) private fb: FormBuilder,
         private _route: ActivatedRoute,
         private _router: Router,
         private _cacheService: OntologyCacheService,
@@ -235,7 +235,6 @@ export class ExtendedSearchComponent implements OnInit {
         } else {
             this.gravsearch.emit(gravsearch);
         }
-
 
         // toggle extended search form
         this.toggleExtendedSearchForm.emit(true);
