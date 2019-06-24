@@ -1,30 +1,19 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCardModule, MatIconModule, MatListModule, MatTabsModule } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-    KuiCoreConfig,
-    KuiCoreConfigToken,
-    SearchService,
-    ExtendedSearchParams,
-    SearchParamsService,
-    CountQueryResult,
-    ConvertJSONLD,
-    ResourceClasses,
-    Properties,
-    OntologyInformation
-} from '@knora/core';
-import { SearchResultsComponent } from './search-results.component';
-import { ListViewComponent } from '../list-view/list-view.component';
-import { GridViewComponent } from '../grid-view/grid-view.component';
-import { TableViewComponent } from '../table-view/table-view.component';
-import { GraphViewComponent } from '../graph-view/graph-view.component';
-import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
-import { DateValueComponent } from '../../property/date-value/date-value.component';
-import { of, BehaviorSubject } from 'rxjs';
+import { ConvertJSONLD, CountQueryResult, ExtendedSearchParams, KuiCoreConfig, KuiCoreConfigToken, OntologyInformation, Properties, ResourceClasses, SearchParamsService, SearchService } from '@knora/core';
 import { KuiActionModule } from 'projects/knora/action/src/public_api';
+import { BehaviorSubject, of } from 'rxjs';
+import { DateValueComponent } from '../../property/date-value/date-value.component';
+import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
+import { GraphViewComponent } from '../graph-view/graph-view.component';
+import { GridViewComponent } from '../grid-view/grid-view.component';
+import { ListViewComponent } from '../list-view/list-view.component';
+import { TableViewComponent } from '../table-view/table-view.component';
+import { SearchResultsComponent } from './search-results.component';
 
 describe('SearchResultsComponent', () => {
     let component: SearchResultsComponent;
@@ -74,14 +63,13 @@ describe('SearchResultsComponent', () => {
                             get: (param: string) => {
                                 if (param === 'q') {
                                     return q;
-                                } else if (param == 'project') {
+                                } else if (param === 'project') {
                                     if (project !== undefined) {
                                         return project;
                                     } else {
                                         return null;
                                     }
-                                }
-                                else {
+                                } else {
                                     return mode;
                                 }
                             }
@@ -170,6 +158,9 @@ describe('SearchResultsComponent', () => {
         });
 
         it('should perform a count query', () => {
+
+            component.ngOnChanges();
+
             expect(searchServiceSpy.doExtendedSearchCountQueryCountQueryResult).toHaveBeenCalledTimes(1);
 
             expect(searchServiceSpy.doExtendedSearchCountQueryCountQueryResult).toHaveBeenCalledWith('testquery0');
@@ -178,6 +169,9 @@ describe('SearchResultsComponent', () => {
         });
 
         it('should perform a gravsearch query', () => {
+
+            component.ngOnChanges();
+
             expect(searchServiceSpy.doExtendedSearchReadResourceSequence).toHaveBeenCalledTimes(1);
 
             expect(searchServiceSpy.doExtendedSearchReadResourceSequence).toHaveBeenCalledWith('testquery0');
@@ -199,6 +193,9 @@ describe('SearchResultsComponent', () => {
         });
 
         it('should perform a count query', () => {
+
+            component.ngOnChanges();
+
             expect(searchServiceSpy.doFullTextSearchCountQueryCountQueryResult).toHaveBeenCalledTimes(1);
 
             expect(searchServiceSpy.doFullTextSearchCountQueryCountQueryResult).toHaveBeenCalledWith('test', undefined);
@@ -207,6 +204,9 @@ describe('SearchResultsComponent', () => {
         });
 
         it('should perform a fulltext query', () => {
+
+            component.ngOnChanges();
+
             expect(searchServiceSpy.doFullTextSearchReadResourceSequence).toHaveBeenCalledTimes(1);
 
             expect(searchServiceSpy.doFullTextSearchReadResourceSequence).toHaveBeenCalledWith('test', 0, undefined);
@@ -229,6 +229,9 @@ describe('SearchResultsComponent', () => {
         });
 
         it('should perform a count query', () => {
+
+            component.ngOnChanges();
+
             expect(searchServiceSpy.doFullTextSearchCountQueryCountQueryResult).toHaveBeenCalledTimes(1);
 
             expect(searchServiceSpy.doFullTextSearchCountQueryCountQueryResult).toHaveBeenCalledWith('test', { limitToProject: 'http://rdfh.ch/projects/0001' });
@@ -237,6 +240,9 @@ describe('SearchResultsComponent', () => {
         });
 
         it('should perform a fulltext query', () => {
+
+            component.ngOnChanges();
+
             expect(searchServiceSpy.doFullTextSearchReadResourceSequence).toHaveBeenCalledTimes(1);
 
             expect(searchServiceSpy.doFullTextSearchReadResourceSequence).toHaveBeenCalledWith('test', 0, { limitToProject: 'http://rdfh.ch/projects/0001' });
@@ -250,7 +256,7 @@ class MockSearchParamsService {
 
     private _currentSearchParams: BehaviorSubject<any>;
 
-    constructor() {
+    constructor () {
         this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => 'testquery' + offset));
     }
 
