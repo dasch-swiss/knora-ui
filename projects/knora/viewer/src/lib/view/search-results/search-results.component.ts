@@ -1,7 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiServiceError, CountQueryResult, ExtendedSearchParams, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, SearchParamsService, SearchService } from '@knora/core';
-import { Subscription } from 'rxjs';
 
 /**
  * The search-results gets the search mode and parameters from routes or inputs,
@@ -13,7 +12,7 @@ import { Subscription } from 'rxjs';
     templateUrl: './search-results.component.html',
     styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnChanges {
     /**
      *
      * @param  {boolean} [complexView] If true it shows 2 ways to display the search results: list or grid.
@@ -47,7 +46,7 @@ export class SearchResultsComponent implements OnInit {
     result: ReadResource[] = [];
     ontologyInfo: OntologyInformation;
     numberOfAllResults: number;
-    rerender: boolean = false;
+    // rerender: boolean = false;
     badRequest: boolean = false;
     loading = true;
     errorMessage: ApiServiceError = new ApiServiceError();
@@ -63,6 +62,10 @@ export class SearchResultsComponent implements OnInit {
     }
 
     ngOnInit() {
+
+    }
+
+    ngOnChanges() {
         this._route.paramMap.subscribe(
             (params: Params) => {
                 // get the search mode
@@ -70,7 +73,7 @@ export class SearchResultsComponent implements OnInit {
                     this.searchMode = params.get('mode');
                 }
 
-                // get the project iri 
+                // get the project iri
                 if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {
                     this.projectIri = decodeURIComponent(params.get('project'));
                 }
@@ -93,7 +96,7 @@ export class SearchResultsComponent implements OnInit {
                 }
 
                 // get results
-                this.rerender = true;
+                // this.rerender = true;
                 this.getResult();
             }
         );
@@ -132,13 +135,13 @@ export class SearchResultsComponent implements OnInit {
 
         // FULLTEXT SEARCH
         if (this.searchMode === 'fulltext') {
-            this.rerender = true;
+            // this.rerender = true;
             if (this.badRequest) {
                 this.errorMessage = new ApiServiceError();
                 this.errorMessage.errorInfo =
                     'A search value is expected to have at least length of 3 characters.';
                 this.loading = false;
-                this.rerender = false;
+                // this.rerender = false;
             } else {
 
                 let searchParams;
@@ -234,7 +237,7 @@ export class SearchResultsComponent implements OnInit {
         // console.log('search results', this.result);
 
         this.loading = false;
-        this.rerender = false;
+        // this.rerender = false;
     }
 
     /**
