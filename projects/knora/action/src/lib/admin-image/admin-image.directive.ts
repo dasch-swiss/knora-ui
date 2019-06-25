@@ -49,8 +49,8 @@ export class AdminImageDirective implements OnChanges {
     /**
      * @ignore
      */
-    constructor(private _renderer: Renderer2,
-                private _ele: ElementRef) {
+    constructor (private _renderer: Renderer2,
+        private _ele: ElementRef) {
     }
 
     /**
@@ -63,6 +63,8 @@ export class AdminImageDirective implements OnChanges {
         switch (this.type) {
 
             case 'user':
+                this.onError = AdminImageConfig.defaultUser;
+
                 if (this.image === null || this.image === undefined) {
                     this.source = AdminImageConfig.defaultUser;
                 } else {
@@ -72,6 +74,7 @@ export class AdminImageDirective implements OnChanges {
                 break;
 
             case 'project':
+                this.onError = AdminImageConfig.defaultProject;
 
                 if (this.image === null || this.image === undefined) {
 
