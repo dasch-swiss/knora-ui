@@ -168,6 +168,10 @@ $border-radius: 4px;
       .kui-previous-search-query {
         overflow: hidden;
         text-overflow: ellipsis;
+
+        &.fix-width {
+          width: calc(100% - #{$project-filter-width});
+        }
       }
     }
   }

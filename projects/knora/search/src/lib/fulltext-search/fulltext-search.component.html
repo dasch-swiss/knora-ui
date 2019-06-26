@@ -46,7 +46,7 @@
                                  *ngIf="projectfilter && !error && projects?.length > 0">
                                 <span *ngIf="item.projectIri">{{item.projectLabel}}</span>
                             </div>
-                            <div class="kui-previous-search-query">
+                            <div class="kui-previous-search-query" [class.fix-width]="projectfilter">
                                 {{item.query}}
                             </div>
                         </h4>
