@@ -2,7 +2,7 @@ import { ConnectionPositionPair, Overlay, OverlayConfig, OverlayRef, PositionStr
 import { TemplatePortal } from '@angular/cdk/portal';
 import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiServiceError, Project, ProjectsService } from '@knora/core';
+import { ApiServiceError, Project, ProjectsService, KnoraConstants } from '@knora/core';
 import { MatMenuTrigger } from '@angular/material';
 
 export interface PrevSearchItem {
@@ -71,6 +71,12 @@ export class FulltextSearchComponent implements OnInit {
 
     // overlay reference
     overlayRef: OverlayRef;
+
+    // do not show the following projects: default system projects from knora
+    doNotDisplay: string[] = [
+        KnoraConstants.SystemProjectIRI,
+        KnoraConstants.DefaultSharedOntologyIRI
+    ];
 
     constructor (
         private _overlay: Overlay,
@@ -275,4 +281,6 @@ export class FulltextSearchComponent implements OnInit {
         this.searchInput.nativeElement.focus();
         this.setFocus();
     }
+
+
 }
