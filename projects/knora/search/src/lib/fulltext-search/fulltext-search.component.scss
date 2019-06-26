@@ -157,3 +157,15 @@ $border-radius: 4px;
     }
   }
 }
+
+.kui-search-menu {
+  height: 100%;
+
+  .kui-menu-content {
+    display: contents;
+
+    .mat-list {
+      padding-bottom: 8px;
+    }
+  }
+}
