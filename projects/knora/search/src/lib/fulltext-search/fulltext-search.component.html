@@ -7,11 +7,17 @@
             <span class="label">{{projectLabel}}</span>
             <mat-icon class="icon" matSuffix>keyboard_arrow_down</mat-icon>
         </button>
-        <mat-menu #selectProject="matMenu" class="kui-project-filter-menu">
-            <button mat-menu-item class="center" (click)="setProject();changeFocus()">{{defaultProjectLabel}}</button>
-            <mat-divider></mat-divider>
-            <button mat-menu-item *ngFor="let project of projects"
-                    (click)="setProject(project);changeFocus()">{{project.shortname}}</button>
+        <mat-menu #selectProject="matMenu">
+            <div class="kui-project-filter-menu">
+                <button mat-menu-item class="center"
+                        (click)="setProject();changeFocus()">{{defaultProjectLabel}}</button>
+                <mat-divider></mat-divider>
+                <span *ngFor="let project of projects | kuiSortBy: 'shortname'">
+                    <button mat-menu-item *ngIf="!doNotDisplay.includes(project.id)"
+                            (click)="setProject(project);changeFocus()" [matTooltip]="project.longname"
+                            [matTooltipPosition]="'after'">{{project.shortname}}</button>
+                </span>
+            </div>
         </mat-menu>
     </div>
 
@@ -31,24 +37,26 @@
 <!-- full-text search menu -->
 <ng-template #fulltextSearchMenu>
     <div class="kui-search-menu" [class.with-project-filter]="projectfilter">
-        <mat-list class="kui-previous-search-list">
-            <div *ngFor="let item of prevSearch | kuiReverse; let i=index">
-                <mat-list-item *ngIf="i<10">
-                    <h4 mat-line (click)="doPrevSearch(item)" class="kui-previous-search-item">
-                        <div class="kui-project-filter-label" [class.not-empty]="item.projectIri"
-                             *ngIf="projectfilter && !error && projects?.length > 0">
-                            <span *ngIf="item.projectIri">{{item.projectLabel}}</span>
-                        </div>
-                        <div class="kui-previous-search-query">
-                            {{item.query}}
-                        </div>
-                    </h4>
-                    <button mat-icon-button (click)="resetPrevSearch(item)">
-                        <mat-icon aria-label="close">close</mat-icon>
-                    </button>
-                </mat-list-item>
-            </div>
-        </mat-list>
+        <div class="kui-menu-content">
+            <mat-list class="kui-previous-search-list">
+                <div *ngFor="let item of prevSearch | kuiReverse; let i=index">
+                    <mat-list-item *ngIf="i<10">
+                        <h4 mat-line (click)="doPrevSearch(item)" class="kui-previous-search-item">
+                            <div class="kui-project-filter-label" [class.not-empty]="item.projectIri"
+                                 *ngIf="projectfilter && !error && projects?.length > 0">
+                                <span *ngIf="item.projectIri">{{item.projectLabel}}</span>
+                            </div>
+                            <div class="kui-previous-search-query" [class.fix-width]="projectfilter">
+                                {{item.query}}
+                            </div>
+                        </h4>
+                        <button mat-icon-button (click)="resetPrevSearch(item)">
+                            <mat-icon aria-label="close">close</mat-icon>
+                        </button>
+                    </mat-list-item>
+                </div>
+            </mat-list>
+        </div>
 
         <div class="kui-menu-action" *ngIf="prevSearch">
             <mat-divider></mat-divider>
