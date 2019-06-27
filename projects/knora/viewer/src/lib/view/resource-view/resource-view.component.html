@@ -25,8 +25,8 @@
 
                     <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media">
                         <!-- if the property is of type stillImageFileValue, show the image with osd viewer from @knora/viewer TODO: the fileValue will be part of an own resource property -->
-                        <kui-still-image *ngIf="resource.stillImageRepresentationsToDisplay.length > 0" class="osd-viewer" [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)" [images]="resource.stillImageRepresentationsToDisplay">
-                        </kui-still-image>
+                        <!--                         <kui-still-image *ngIf="resource.stillImageRepresentationsToDisplay.length > 0" class="osd-viewer" [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)" [images]="resource.stillImageRepresentationsToDisplay">
+                        </kui-still-image> -->
                     </div>
 
                     <div *ngSwitchCase="KnoraConstants.hasMovingImageFileValue" class="media">
@@ -57,7 +57,8 @@
 
             <!-- 2) show properties, annotations (list of regions, sequences etc.), incomming resources (links, files) -->
             <div class="data">
-                <kui-properties-view [properties]="resource.properties" [guiOrder]="guiOrder" [ontologyInfo]="ontologyInfo" [incomingLinks]="resource.incomingLinks">
+                <kui-properties-view [properties]="resource.properties" [guiOrder]="guiOrder"
+                                     [ontologyInfo]="ontologyInfo" [incomingLinks]="resource.incomingLinks">
                 </kui-properties-view>
             </div>
 

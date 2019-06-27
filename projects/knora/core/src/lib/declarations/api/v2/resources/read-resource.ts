@@ -46,7 +46,7 @@ export class Resource {
         public incomingAnnotations: Array<Resource>,
         public incomingFileRepresentations: Array<Resource>,
         public incomingLinks: Array<Resource>,
-        public fileRepresentationsToDisplay: Array<FileRepresentation>,     //  TODO: create generic FileRepresentation
+        public fileRepresentationsToDisplay: Array<FileRepresentation>,
         public readonly properties?: ReadProperties) {
     }
 }

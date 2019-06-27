@@ -1,32 +1,4 @@
-import {
-    CountQueryResult,
-    KnoraConstants,
-    ReadAudioFileValue,
-    ReadBooleanValue,
-    ReadColorValue,
-    ReadDateValue,
-    ReadDecimalValue,
-    ReadDDDFileValue,
-    ReadDocumentFileValue,
-    ReadGeomValue,
-    ReadIntegerValue,
-    ReadIntervalValue,
-    ReadLinkValue,
-    ReadListValue,
-    ReadMovingImageFileValue,
-    ReadProperties,
-    ReadPropertyItem,
-    ReadResource,
-    ReadResourcesSequence,
-    ReadStillImageFileValue,
-    ReadTextFileValue,
-    ReadTextValueAsHtml,
-    ReadTextValueAsString,
-    ReadTextValueAsXml,
-    ReadUriValue,
-    ReferredResourcesByStandoffLink,
-    Utils
-} from '../../declarations';
+import { CountQueryResult, KnoraConstants, ReadAudioFileValue, ReadBooleanValue, ReadColorValue, ReadDateValue, ReadDDDFileValue, ReadDecimalValue, ReadDocumentFileValue, ReadGeomValue, ReadIntegerValue, ReadIntervalValue, ReadLinkValue, ReadListValue, ReadMovingImageFileValue, ReadProperties, ReadPropertyItem, ReadResource, ReadResourcesSequence, ReadStillImageFileValue, ReadTextFileValue, ReadTextValueAsHtml, ReadTextValueAsString, ReadTextValueAsXml, ReadUriValue, ReferredResourcesByStandoffLink, Resource, Utils, ResourcesSequence } from '../../declarations';
 
 /**
  * Contains methods to convert JSON-LD representing resources and properties to classes.
@@ -70,6 +42,22 @@ export module ConvertJSONLD {
         const properties: ReadProperties = constructReadProperties(resourceJSONLD);
 
         return new ReadResource(
+            resourceJSONLD['@id'],
+            resourceJSONLD['@type'],
+            resourceJSONLD[KnoraConstants.RdfsLabel],
+            [], // to be updated once another request has been made
+            [], // to be updated once another request has been made
+            [], // to be updated once another request has been made
+            [], // to be updated once another request has been made
+            properties
+        );
+    }
+
+    function constructResource(resourceJSONLD: object): Resource {
+
+        const properties: ReadProperties = constructReadProperties(resourceJSONLD);
+
+        return new Resource(
             resourceJSONLD['@id'],
             resourceJSONLD['@type'],
             resourceJSONLD[KnoraConstants.RdfsLabel],
@@ -497,6 +485,44 @@ export module ConvertJSONLD {
         }
 
         return new ReadResourcesSequence(resources, numberOfResources);
+
+    }
+
+    export function createResourcesSequenceFromJsonLD(resourcesResponseJSONLD: object): ResourcesSequence {
+
+        const resources: Array<Resource> = [];
+        let numberOfResources: number;
+        const resourcesGraph = resourcesResponseJSONLD['@graph'];
+
+        // either an array of resources or just one resource is given
+        if (resourcesGraph !== undefined) {
+            // an array of resources
+            numberOfResources = resourcesGraph.length;
+
+            for (const resourceJSONLD of resourcesGraph) {
+
+                const resource: Resource = constructResource(resourceJSONLD);
+
+                // add the resource to the resources array
+                resources.push(resource);
+            }
+        } else {
+            if (Object.keys(resourcesResponseJSONLD).length === 0) {
+                // empty answer, no resources given
+                numberOfResources = 0;
+            } else {
+
+                // only one resource
+                numberOfResources = 1;
+
+                const resource: Resource = constructResource(resourcesResponseJSONLD);
+
+                // add the resource to the resources array
+                resources.push(resource);
+            }
+        }
+
+        return new ResourcesSequence(resources, numberOfResources);
 
     }
 

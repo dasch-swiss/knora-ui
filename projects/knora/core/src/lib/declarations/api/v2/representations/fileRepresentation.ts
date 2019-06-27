@@ -4,9 +4,14 @@ import { Sequence } from './sequence';
 
 
 /**
- * Represents an image including its regions or sequences
+ * Represents one of the following media file types:
+ * - still-image including its regions
+ * - moving-image including its sequences
+ * - audio including its sequences
+ * - text
+ * - ddd rti
+ * - document
  */
-
 export class FileRepresentation {
 
     /**
