@@ -11,8 +11,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 6,
-    "codeStart": 9,
+    "line": 5,
+    "codeStart": 8,
     "code": "@Component({\n    selector: 'kui-search-panel',\n    templateUrl: './search-panel.component.html',\n    styleUrls: ['./search-panel.component.scss', '../assets/style/search.scss']\n})\nexport class SearchPanelComponent {",
     "ctx": false
   },
@@ -43,8 +43,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 15,
-    "codeStart": 18,
+    "line": 14,
+    "codeStart": 17,
     "code": "@Input() route: string = '/search';",
     "ctx": false
   },
@@ -75,8 +75,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 20,
-    "codeStart": 23,
+    "line": 19,
+    "codeStart": 22,
     "code": "@Input() projectfilter?: boolean = false;",
     "ctx": false
   },
@@ -107,8 +107,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 25,
-    "codeStart": 28,
+    "line": 24,
+    "codeStart": 27,
     "code": "@Input() filterbyproject?: string;",
     "ctx": false
   },
@@ -139,8 +139,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 30,
-    "codeStart": 33,
+    "line": 29,
+    "codeStart": 32,
     "code": "@Input() advanced?: boolean = false;",
     "ctx": false
   },
@@ -171,8 +171,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 35,
-    "codeStart": 38,
+    "line": 34,
+    "codeStart": 37,
     "code": "@Input() expert?: boolean = false;\n\n@ViewChild('fullSearchPanel') searchPanel: ElementRef;\n\n@ViewChild('searchMenu') searchMenu: TemplateRef<any>;\n//    @ViewChild('expertSearchMenu') expertMenu: TemplateRef<any>;\n\n// overlay reference\noverlayRef: OverlayRef;\n\n// show advanced or expert search\nshowAdvanced: boolean;\n\nconstructor (private _overlay: Overlay,\n    private _viewContainerRef: ViewContainerRef, ) { }\n\nopenPanelWithBackdrop(type: string) {\n\n    this.showAdvanced = (type === 'advanced');\n\n    const config = new OverlayConfig({\n        hasBackdrop: true,\n        backdropClass: 'cdk-overlay-transparent-backdrop',\n        // backdropClass: 'cdk-overlay-dark-backdrop',\n        positionStrategy: this.getOverlayPosition(),\n        scrollStrategy: this._overlay.scrollStrategies.block()\n    });\n\n    this.overlayRef = this._overlay.create(config);\n    this.overlayRef.attach(new TemplatePortal(this.searchMenu, this._viewContainerRef));\n    this.overlayRef.backdropClick().subscribe(() => {\n        this.overlayRef.detach();\n    });\n}\n\ngetOverlayPosition(): PositionStrategy {\n    const positions = [\n        new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),\n        new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' })\n    ];\n\n    const overlayPosition = this._overlay.position().flexibleConnectedTo(this.searchPanel).withPositions(positions).withLockedPosition(false);\n\n    return overlayPosition;\n}\n\ncloseMenu(): void {\n    this.overlayRef.detach();\n}\n}",
     "ctx": false
   }

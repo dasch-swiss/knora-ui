@@ -30,9 +30,6 @@
               "src/data"
             ],
             "styles": [
-              "node_modules/prismjs/themes/prism-okaidia.css",
-              "src/assets/style/mat-teal-amber.scss",
-              "src/assets/style/main.scss",
               "src/styles.scss"
             ],
             "scripts": [

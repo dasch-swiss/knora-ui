@@ -1,7 +1,6 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ConnectionPositionPair, Overlay, OverlayConfig, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { Component, Input, TemplateRef, ViewChild, ViewContainerRef, ElementRef } from '@angular/core';
+import { Component, ElementRef, Input, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 
 /**
  * The search-panel contains the kui-fulltext-search and the kui-extended-search components.

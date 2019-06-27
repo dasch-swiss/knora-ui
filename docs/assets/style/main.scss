@@ -1,17 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
-@import 'config';
-@import 'code';
-//@import 'pygments';
- @import 'prism';
+@import "font";
+@import "config";
+@import "code";
+@import "prism";
 
 body {
-  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
   margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
 }
 
 .panel {
@@ -70,12 +64,10 @@ body {
 }
 
 markdown {
-
   h4 {
     border-top: 1px solid #323232;
     padding-top: 24px;
   }
-
 }
 
 .right {
