@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { GuiOrder, KnoraConstants, OntologyInformation, Properties, ReadResource, ReadProperties } from '@knora/core';
 import { Router } from '@angular/router';
+import { GuiOrder, KnoraConstants, OntologyInformation, ReadProperties, ReadResource } from '@knora/core';
 
 /**
- * Deprecated!?
+ * Shows all metadata (properties) in the resource viewer
+ *
  */
 @Component({
     selector: 'kui-properties-view',

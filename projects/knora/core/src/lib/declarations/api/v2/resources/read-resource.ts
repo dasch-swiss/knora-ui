@@ -2,6 +2,8 @@ import { ReadProperties, StillImageRepresentation } from '../../../';
 import { FileRepresentation } from '../representations/fileRepresentation';
 
 /**
+ * @deprecated Use **Resource** instead
+ *
  * Represents a resource and its properties.
  */
 export class ReadResource {
@@ -36,17 +38,45 @@ export class ReadResource {
 
 /**
  * This is a temporary class, to test a new resource setup.
- * When it works, we will merge it with the ReadResource object
+ * When it works, we will replace the ReadResource object
  */
 export class Resource {
     constructor (
         public readonly id: string,
         public readonly type: string,
         public readonly label: string,
-        public incomingAnnotations: Array<Resource>,
-        public incomingFileRepresentations: Array<Resource>,
+        public incomingAnnotations: Array<Resource>,    // = incomingRegions in ReadResource
+        public incomingFileRepresentations: Array<Resource>,    // = incomingStillImageRepresentations in ReadResource
         public incomingLinks: Array<Resource>,
-        public fileRepresentationsToDisplay: Array<FileRepresentation>,
+        public fileRepresentationsToDisplay: Array<FileRepresentation>,  // = stillImageRepresentationsToDisplay in ReadResource
         public readonly properties?: ReadProperties) {
     }
 }
+
+/*
+fileRepresentationsToDisplay ==> what is the main media file to display?
+
+in case of
+
+property.hasStillImageFile
+property.hasMovingImageFile
+property.hasAudioFile
+property.hasTextFile
+property.hasDocumentFile
+property.hasDDDImageFile
+
+show this media file.
+
+Otherwise:
+
+resource.incomingStillImageRepresentations?
+resource.incomingMovingImageRepresentations?
+resource.incomingAudioRepresentations?
+resource.incomingTextRepresentations?
+resource.incomingDocumentRepresentations?
+resource.incomingDDDImageRepresentations?
+
+A resource can have more than one incomingRepresentation
+
+
+*/

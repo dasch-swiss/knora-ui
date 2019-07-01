@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SearchService } from './search.service';
-import { ReadResourcesSequence } from '../../declarations';
+import { ReadResourcesSequence, ResourcesSequence } from '../../declarations';
 
 /**
  * Requests incoming information (regions, links, stillImageRepresentations) from Knora.
@@ -10,6 +10,11 @@ import { ReadResourcesSequence } from '../../declarations';
     providedIn: 'root',
 })
 export class IncomingService extends SearchService {
+
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    // (incoming) annotations like region and sequences
+    // ------------------------------------------------------------------------
 
     /**
     * Returns all incoming regions for a particular resource.
@@ -59,6 +64,11 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
         return this.doExtendedSearchReadResourceSequence(sparqlQueryStr);
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    // (incoming) file representations e.g. incomingStillImages in case of book
+    // ------------------------------------------------------------------------
+
     /**
      * Returns all the StillImageRepresentations for the given resource, if any.
      * StillImageRepresentations link to the given resource via knora-base:isPartOf.
@@ -105,8 +115,14 @@ OFFSET ${offset}
 
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    // incoming links
+    // ------------------------------------------------------------------------
 
     /**
+     * @deprecated
+     *
      * Returns all incoming links for the given resource Iri but incoming regions and still image representations.
      *
      * @param {string} resourceIri the Iri of the resource whose incoming links should be returned.
@@ -147,6 +163,51 @@ FILTER NOT EXISTS {
 `;
 
         return this.doExtendedSearchReadResourceSequence(sparqlQueryStr);
+    }
+
+
+
+    /**
+     * Returns all incoming links for the given resource Iri.
+     *
+     * @param {string} resourceIri the Iri of the resource whose incoming links should be returned.
+     * @param {number} offset the offset to be used for paging. 0 is the default and is used to get the first page of results.
+     * @returns {Observable<any>}
+     */
+    getIncomingLinks(resourceIri: string, offset: number): Observable<ResourcesSequence> {
+        const sparqlQueryStr = `
+PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
+
+CONSTRUCT {
+?incomingRes knora-api:isMainResource true .
+
+?incomingRes ?incomingProp <${resourceIri}> .
+
+} WHERE {
+
+?incomingRes a knora-api:Resource .
+
+?incomingRes ?incomingProp <${resourceIri}> .
+
+<${resourceIri}> a knora-api:Resource .
+
+?incomingProp knora-api:objectType knora-api:Resource .
+
+knora-api:isRegionOf knora-api:objectType knora-api:Resource .
+knora-api:isPartOf knora-api:objectType knora-api:Resource .
+
+FILTER NOT EXISTS {
+ ?incomingRes  knora-api:isRegionOf <${resourceIri}> .
+}
+
+FILTER NOT EXISTS {
+ ?incomingRes  knora-api:isPartOf <${resourceIri}> .
+}
+
+} OFFSET ${offset}
+`;
+
+        return this.doExtendedSearchResourcesSequence(sparqlQueryStr);
     }
 
 }

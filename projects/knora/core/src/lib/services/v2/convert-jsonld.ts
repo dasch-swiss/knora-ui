@@ -31,6 +31,8 @@ export module ConvertJSONLD {
 
 
     /**
+     * @deprecated Use **constructResource** instead
+     *
      * Constructs a [[ReadResource]] from JSON-LD.
      * Expects JSON-LD with all Iris fully expanded.
      *
@@ -61,10 +63,10 @@ export module ConvertJSONLD {
             resourceJSONLD['@id'],
             resourceJSONLD['@type'],
             resourceJSONLD[KnoraConstants.RdfsLabel],
-            [], // to be updated once another request has been made
-            [], // to be updated once another request has been made
-            [], // to be updated once another request has been made
-            [], // to be updated once another request has been made
+            [], // incomingAnnotations; to be updated once another request has been made
+            [], // incomingFileRepresentations, to be updated once another request has been made
+            [], // incomingLinks; to be updated once another request has been made
+            [], // fileRepresentationsToDisplay; to be updated once another request has been made
             properties
         );
     }

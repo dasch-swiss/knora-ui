@@ -2,6 +2,8 @@ import { ReadResource, Resource } from './read-resource';
 import { OntologyInformation } from '../../../../services/v2/ontology-cache.service';
 
 /**
+ * @deprecated Use **ResourceSequence** instead
+ *
  * Represents a sequence of resources.
  */
 export class ReadResourcesSequence {

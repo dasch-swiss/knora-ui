@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { KuiCoreConfigToken } from '../../core.module';
-import { ApiServiceResult, CountQueryResult, ReadResourcesSequence } from '../../declarations';
+import { ApiServiceResult, CountQueryResult, ReadResourcesSequence, ResourcesSequence } from '../../declarations';
 import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
@@ -32,7 +32,7 @@ export interface SearchByLabelParams {
 })
 export class SearchService extends ApiService {
 
-    constructor(public http: HttpClient,
+    constructor (public http: HttpClient,
         @Inject(KuiCoreConfigToken) public config,
         private _ontologyCacheService: OntologyCacheService) {
         super(http, config);
@@ -94,6 +94,8 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated
+     *
      * Converts a JSON-LD object to a `ReadResorceSequence`.
      * To be passed as a function pointer (arrow notation required).
      *
@@ -112,6 +114,29 @@ export class SearchService extends ApiService {
             map(
                 (ontoInfo: OntologyInformation) => {
                     // add ontology information to ReadResourceSequence
+                    resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);
+                    return resSeq;
+                }
+            )
+        );
+    }
+    /**
+     * Converts a JSON-LD object to a `ResourcesSequence`
+     *
+     * @param  {Object} resourceResponse
+     */
+    private convertJSONLDToResourcesSequence: (resourceResponse: Object) => Observable<ResourcesSequence> = (resourceResponse: Object) => {
+        // convert JSON-LD into a ResourcesSequence
+        const resSeq: ResourcesSequence = ConvertJSONLD.createResourcesSequenceFromJsonLD(resourceResponse);
+
+        // collect resource class Iris
+        const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);
+
+        // request information about resource classes
+        return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(
+            map(
+                (ontoInfo: OntologyInformation) => {
+                    // add ontology information to ResourcesSequence
                     resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);
                     return resSeq;
                 }
@@ -253,6 +278,7 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated
      * Performs an extended search and turns the result into a `ReadResourceSequence`.
      *
      * @param gravsearchQuery the Sparql query string to be sent to Knora.
@@ -272,6 +298,29 @@ export class SearchService extends ApiService {
             ),
             mergeMap(
                 this.convertJSONLDToReadResourceSequence
+            )
+        );
+    }
+    /**
+     * Performs an extended search and turns the result into a `ResourcesSequence`.
+     *
+     * @param  {string} gravsearchQuery
+     * @returns Observable
+     */
+    doExtendedSearchResourcesSequence(gravsearchQuery: string): Observable<ResourcesSequence> {
+
+        if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {
+            return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));
+        }
+
+        const res = this.httpPost('/v2/searchextended', gravsearchQuery);
+
+        return res.pipe(
+            mergeMap(
+                this.processJSONLD
+            ),
+            mergeMap(
+                this.convertJSONLDToResourcesSequence
             )
         );
     }
