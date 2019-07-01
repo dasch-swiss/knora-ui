@@ -4304,6 +4304,18 @@ jasminewd2@^2.1.0:
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
   integrity sha1-43zwsX8ZnM4jvqcbIDk5Uka07E4=
 
+jdnconvertiblecalendar@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/jdnconvertiblecalendar/-/jdnconvertiblecalendar-0.0.3.tgz#a4e6106340b27bc06bf08cd00912960c666693cc"
+  integrity sha512-AxqmzIkHLE/iEZuej5S9zTqXOAvtHJIk6iMPM3tLBha9UBclxXqXGeqJtclMflVHuvpzm06e0zJ2YVCSA8vtQg==
+
+jdnconvertiblecalendardateadapter@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/jdnconvertiblecalendardateadapter/-/jdnconvertiblecalendardateadapter-0.0.9.tgz#b02f044139b28cfa0e631f779caa270a91e67ddf"
+  integrity sha512-LnAlZ6pE9lOa5eSWydpLAeBJ297z2HaWIp2GB5AQgackPkl/LNdP/zBpa5rvUOywpuuuKFfocLwIL1UVMn8xtA==
+  dependencies:
+    tslib "^1.9.0"
+
 jquery@^3.0.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
@@ -5559,7 +5571,7 @@ open@6.2.0:
   dependencies:
     is-wsl "^1.1.0"
 
-openseadragon@^2.4.0:
+openseadragon@^2.0.0, openseadragon@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/openseadragon/-/openseadragon-2.4.0.tgz#d0b28b37a953602c82432a0dbd8a3779dadf756f"
   integrity sha512-e2fsoEiCDkmwc3vyrv396lkYu4c9CGlpbSX4kYE07eW0ZlEF5DnLbeY2PhqPTskkC1jlsPu2TGZwaZ9VhaAn/w==
@@ -7570,6 +7582,12 @@ supports-color@^6.0.0, supports-color@^6.1.0:
   integrity sha512-qe1jfm1Mg7Nq/NSh6XE24gPXROEVsWHxC1LIx//XNlD9iw7YZQGjZNjYN7xGaEG6iKdA8EtNFW6R0gjnVXp+wQ==
   dependencies:
     has-flag "^3.0.0"
+
+"svg-overlay@github:openseadragon/svg-overlay":
+  version "0.0.5"
+  resolved "https://codeload.github.com/openseadragon/svg-overlay/tar.gz/33add271889e92c8bc17ee760306b935bdc78aff"
+  dependencies:
+    openseadragon "^2.0.0"
 
 symbol-observable@1.2.0:
   version "1.2.0"
