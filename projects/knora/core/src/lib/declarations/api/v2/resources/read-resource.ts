@@ -1,5 +1,7 @@
 import { ReadProperties, StillImageRepresentation } from '../../../';
 import { FileRepresentation } from '../representations/fileRepresentation';
+import { MovingImageRepresentation } from '../moving-image/moving-image-representation';
+import { ReadPropertyItem } from '@knora/core/public_api';
 
 /**
  * @deprecated Use **Resource** instead
@@ -48,7 +50,7 @@ export class Resource {
         public incomingAnnotations: Array<Resource>,    // = incomingRegions in ReadResource
         public incomingFileRepresentations: Array<Resource>,    // = incomingStillImageRepresentations in ReadResource
         public incomingLinks: Array<Resource>,
-        public fileRepresentationsToDisplay: Array<FileRepresentation>,  // = stillImageRepresentationsToDisplay in ReadResource
+        public fileRepresentationsToDisplay: Array<StillImageRepresentation | MovingImageRepresentation | ReadPropertyItem>,  // = stillImageRepresentationsToDisplay in ReadResource
         public readonly properties?: ReadProperties) {
     }
 }

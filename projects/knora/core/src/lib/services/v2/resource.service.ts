@@ -3,11 +3,11 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { KuiCoreConfigToken } from '../../core.module';
-import { ApiServiceError, ApiServiceResult, ReadResourcesSequence, ResourcesSequence } from '../../declarations';
+import { ApiServiceError, ApiServiceResult, ImageRegion, KnoraConstants, ReadResourcesSequence, ReadStillImageFileValue, ResourcesSequence, StillImageRepresentation } from '../../declarations';
 import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
-import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
 import { IncomingService } from './incoming.service';
+import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
 
 /**
  * Requests representation of resources from Knora.
@@ -34,14 +34,152 @@ export class ResourceService extends ApiService {
     // it includes a property: FileRepresentation to display with the parameters for the media type viewer
     getResource(iri: string): Observable<ResourcesSequence | ApiServiceError> {
 
-        let resSeq: Observable<ResourcesSequence>;
+        const res: Observable<ApiServiceResult | ApiServiceError> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));
 
+
+
+        return res.pipe(
+            mergeMap(
+                // this would return an Observable of a PromiseObservable -> combine them into one Observable
+                this.processJSONLD
+            ),
+            mergeMap(
+                // return Observable of ReadResourcesSequence
+                (resourceResponse: object) => {
+                    // convert JSON-LD into a ReadResourceSequence
+                    const resSeq: ResourcesSequence = ConvertJSONLD.createResourcesSequenceFromJsonLD(resourceResponse);
+
+                    // collect resource class Iris
+                    const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);
+
+                    const res = resSeq.resources[0];
+
+                    // set file representation to display
+                    console.log(Object.keys(res.properties));
+
+                    const propKeys: string[] = Object.keys(res.properties);
+                    switch (true) {
+                        case propKeys.includes(KnoraConstants.hasStillImageFileValue):
+                            // res.fileRepresentationsToDisplay[0] = res.properties[KnoraConstants.hasStillImageFileValue];
+
+                            const imgRepresentations: StillImageRepresentation[] = [];
+
+                            const fileValues: ReadStillImageFileValue[] = res.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
+                            const imagesToDisplay: ReadStillImageFileValue[] = fileValues.filter((image) => {
+                                return !image.isPreview;
+                            });
+
+                            for (const img of imagesToDisplay) {
+
+                                const regions: ImageRegion[] = [];
+                                for (const incomingRegion of res.incomingAnnotations) {
+
+                                    // TODO: change return type in ImageRegion from ReadResource into Resource
+                                    // const region = new ImageRegion(incomingRegion);
+
+                                    // regions.push(region);
+
+                                }
+
+                                const stillImage = new StillImageRepresentation(img, regions);
+                                imgRepresentations.push(stillImage);
+
+                            }
+
+                            res.fileRepresentationsToDisplay = imgRepresentations;
+
+                            break;
+                        case propKeys.includes(KnoraConstants.hasMovingImageFileValue):
+                            res.fileRepresentationsToDisplay = res.properties[KnoraConstants.hasMovingImageFileValue];
+                            break;
+                        case propKeys.includes(KnoraConstants.hasAudioFileValue):
+                            res.fileRepresentationsToDisplay = res.properties[KnoraConstants.hasAudioFileValue];
+                            break;
+                        case propKeys.includes(KnoraConstants.hasDocumentFileValue):
+                            res.fileRepresentationsToDisplay = res.properties[KnoraConstants.hasDocumentFileValue];
+                            break;
+                        case propKeys.includes(KnoraConstants.hasDDDFileValue):
+                            res.fileRepresentationsToDisplay = res.properties[KnoraConstants.hasDDDFileValue];
+                            break;
+
+                        // NYI / TODO: TextFileValue
+
+                        default:
+                            // look for incoming fileRepresentation to display
+                            // e.g. looking for incoming stillImage files
+                            this._incomingService.getStillImageRepresentationsForCompoundResource(res.id, 0).subscribe(
+                                (incomingImageRepresentations: ReadResourcesSequence) => {
+
+                                    if (incomingImageRepresentations.resources.length > 0) {
+                                        // update ontology information
+                                        resSeq.ontologyInformation.updateOntologyInformation(incomingImageRepresentations.ontologyInformation);
+
+                                        // set current offset
+                                        // this.incomingStillImageRepresentationCurrentOffset = offset;
+
+                                        // TODO: implement prepending of StillImageRepresentations when moving to the left (getting previous pages)
+                                        // TODO: append existing images to response and then assign response to `this.resource.incomingStillImageRepresentations`
+                                        // TODO: maybe we have to support non consecutive arrays (sparse arrays)
+
+                                        // append incomingImageRepresentations.resources to this.resource.incomingStillImageRepresentations
+                                        Array.prototype.push.apply(resSeq.resources[0].incomingFileRepresentations, incomingImageRepresentations.resources);
+
+                                        // prepare attached image files to be displayed
+                                        // BeolResource.collectImagesAndRegionsForResource(this.resource);
+                                    }
+                                },
+                                (error: any) => {
+                                    console.error(error);
+                                }
+                            );
+                            console.log('incoming file representations to display');
+                    }
+
+
+                    // resource.properties[KnoraConstants.hasStillImageFileValue]
+
+
+                    // get incoming links
+                    this._incomingService.getIncomingLinks(resSeq.resources[0].id, 0).subscribe(
+                        (incomingRes: ResourcesSequence) => {
+                            // update ontology information
+                            resSeq.ontologyInformation.updateOntologyInformation(incomingRes.ontologyInformation);
+
+                            // Append elements incomingResources to this.sequence.incomingLinks
+                            Array.prototype.push.apply(resSeq.resources[0].incomingLinks, incomingRes.resources);
+                        }
+                    );
+
+                    // get incoming annotations
+
+
+                    // request information about resource classes
+                    return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(
+                        map(
+                            (ontoInfo: OntologyInformation) => {
+                                // add ontology information to ReadResourceSequence
+                                resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);
+
+                                console.log('resSeq -- resourceServie', resSeq);
+
+                                return resSeq;
+                            }
+                        )
+                    );
+                }
+
+            )
+        );
+
+        // let resSeq: Observable<ResourcesSequence>;
+
+        /*
         this.getResourcesSequence(iri).subscribe(
             (sequence: ResourcesSequence) => {
 
                 // resSeq = sequence;
 
-                pipe(
+                /* pipe(
                     map((result: ApiServiceResult) => result.getBody(GroupsResponse).groups),
                     catchError(this.handleJsonError)
                 );
@@ -49,7 +187,7 @@ export class ResourceService extends ApiService {
                 resSeq.pipe(
                     map((seq: ResourcesSequence) => sequence),
                     catchError(this.handleJsonError)
-                );
+                ); *
 
                 // get incoming links
                 this._incomingService.getIncomingLinks(sequence.resources[0].id, 0).subscribe(
@@ -65,7 +203,7 @@ export class ResourceService extends ApiService {
                         if (callback !== undefined) {
                             callback(incomingResources.resources.length);
                         }
-                        */
+                        *
 
                     },
                     (error: any) => {
@@ -88,6 +226,7 @@ export class ResourceService extends ApiService {
 
 
         return resSeq;
+        */
 
 
     }
@@ -134,12 +273,14 @@ export class ResourceService extends ApiService {
             return;
         }
 
-        // request incoming regions
+        // request incoming sequences in case of movingImage and audio
+
+        // request incoming regions in case of stillImage and dddImage
         if (sequence.resources[0].properties[KnoraConstants.hasStillImageFileValue]) {
             // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
             // the resource is a StillImageRepresentation, check if there are regions pointing to it
 
-            this.getIncomingRegions(0);
+            // this.getIncomingRegions(0);
 
         } else {
             // this resource is not a StillImageRepresentation
@@ -152,13 +293,13 @@ export class ResourceService extends ApiService {
         }
 
         // check for incoming links for the current resource
-        this.getIncomingLinks(0);
+        // this.getIncomingLinks(0);
 
 
     }
 
     /**
-     * @deprecated
+     * @deprecated Use **getResourcesSequence** instead
      *
      * Given the Iri, requests the representation of a resource as a `ReadResourceSequence`.
      *

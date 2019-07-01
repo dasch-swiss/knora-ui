@@ -1,4 +1,4 @@
-import { ReadMovingImageFileValue } from '../../../';
+import { KnoraConstants, ReadMovingImageFileValue } from '../../../';
 import { MovingImageSequence } from './moving-image-sequence';
 
 /**
@@ -12,7 +12,7 @@ export class MovingImageRepresentation {
      * @param {ReadMovingImageFileValue} movingImageFileValue a [[ReadMovingImageFileValue]] representing a moving-image.
      * @param {MovingImageSequence[]} sequences the sequences belonging to the moving-image.
      */
-    constructor(readonly movingImageFileValue: ReadMovingImageFileValue, readonly sequences: MovingImageSequence[]) {
+    constructor (readonly movingImageFileValue: ReadMovingImageFileValue, readonly sequences: MovingImageSequence[], readonly type: string = KnoraConstants.MovingImageFileValue) {
 
     }
 

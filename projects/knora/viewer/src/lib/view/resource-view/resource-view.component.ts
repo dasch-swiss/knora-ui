@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiServiceError, GuiOrder, IncomingService, KnoraConstants, OntologyInformation, ReadStillImageFileValue, Resource, ResourceService, ResourcesSequence } from '@knora/core';
+import { ApiServiceError, GuiOrder, IncomingService, KnoraConstants, OntologyInformation, ReadResourcesSequence, ResourceService, ResourcesSequence } from '@knora/core';
 
 // import { ImageRegion, StillImageRepresentation } from '../../resource';
 
@@ -55,6 +55,8 @@ export class ResourceViewComponent implements OnInit, OnChanges {
         this.loading = true;
         this._resourceService.getResource(decodeURIComponent(id)).subscribe(
             (result: ResourcesSequence) => {
+
+                console.log('getResource result', result);
 
 
                 // result with resources only and WITHOUT incoming stuff
@@ -202,7 +204,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
             // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
             // the resource is a StillImageRepresentation, check if there are regions pointing to it
 
-            this.getIncomingRegions(0);
+            // this.getIncomingRegions(0);
 
         } else {
             // this resource is not a StillImageRepresentation
