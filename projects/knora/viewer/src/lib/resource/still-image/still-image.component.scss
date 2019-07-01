@@ -65,7 +65,7 @@ $bright: #ccc;
  Overlay styling
  */
 
-/deep/ .roi-svgoverlay {
+ ::ng-deep .roi-svgoverlay {
   filter: alpha(opacity=40);
   opacity: 0.4;
   fill: transparent;
@@ -74,12 +74,12 @@ $bright: #ccc;
   vector-effect: non-scaling-stroke;
 }
 
-/deep/ .roi-svgoverlay:hover, .roi-svgoverlay:focus {
+::ng-deep .roi-svgoverlay:hover, .roi-svgoverlay:focus {
   filter: alpha(opacity=100);
   opacity: 1.0;
 }
 
-/deep/ .roi-svgoverlay.active {
+::ng-deep .roi-svgoverlay.active {
   filter: alpha(opacity=100);
   opacity: 1.0;
 }
