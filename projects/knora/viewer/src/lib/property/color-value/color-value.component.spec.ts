@@ -78,7 +78,7 @@ describe('ColorValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('colorVal') colorValueComponent: ColorValueComponent;
+    @ViewChild('colorVal', { static: false }) colorValueComponent: ColorValueComponent;
 
     colorValue;
 

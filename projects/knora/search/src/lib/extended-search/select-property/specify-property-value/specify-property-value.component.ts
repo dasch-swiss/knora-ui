@@ -34,7 +34,7 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
     // parent FormGroup
     @Input() formGroup: FormGroup;
 
-    @ViewChild('propertyValue') propertyValueComponent: PropertyValue;
+    @ViewChild('propertyValue', { static: false }) propertyValueComponent: PropertyValue;
 
     // setter method for the property chosen by the user
     @Input()
@@ -62,7 +62,7 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
     // the type of the property
     propertyValueType;
 
-    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     /**

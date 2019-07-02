@@ -60,7 +60,7 @@ export class ExtendedSearchComponent implements OnInit {
     result: ReadResourcesSequence = new ReadResourcesSequence([], 0);
 
     // reference to the component that controls the resource class selection
-    @ViewChild('resourceClass') resourceClassComponent: SelectResourceClassComponent;
+    @ViewChild('resourceClass', { static: false }) resourceClassComponent: SelectResourceClassComponent;
 
     // reference to the component controlling the property selection
     @ViewChildren('property') propertyComponents: QueryList<SelectPropertyComponent>;
@@ -71,7 +71,7 @@ export class ExtendedSearchComponent implements OnInit {
     // form validation status
     formValid = false;
 
-    constructor (@Inject(FormBuilder) private fb: FormBuilder,
+    constructor(@Inject(FormBuilder) private fb: FormBuilder,
         private _route: ActivatedRoute,
         private _router: Router,
         private _cacheService: OntologyCacheService,

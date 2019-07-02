@@ -99,7 +99,7 @@ describe('UriValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('uriVal') uriValueComponent: UriValueComponent;
+    @ViewChild('uriVal', { static: false }) uriValueComponent: UriValueComponent;
 
     uriValue;
     label;
