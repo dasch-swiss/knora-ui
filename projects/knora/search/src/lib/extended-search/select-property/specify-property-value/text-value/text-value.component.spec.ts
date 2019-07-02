@@ -1,7 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TextValueComponent } from './text-value.component';
-import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -74,7 +77,7 @@ describe('TextValueComponent', () => {
 
         matInput.nativeElement.value = 'test';
 
-        matInput.triggerEventHandler('input', {target: matInput.nativeElement});
+        matInput.triggerEventHandler('input', { target: matInput.nativeElement });
 
         testHostFixture.detectChanges();
 
@@ -95,7 +98,7 @@ class TestHostComponent implements OnInit {
 
     form;
 
-    @ViewChild('textVal') textValue: TextValueComponent;
+    @ViewChild('textVal', { static: false }) textValue: TextValueComponent;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }

@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MatCardModule, MatCheckboxModule, MatIconModule, MatListModule, MatToolbarModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { GndDirective, KeyPipe } from '@knora/action';
 import {
     IncomingService,

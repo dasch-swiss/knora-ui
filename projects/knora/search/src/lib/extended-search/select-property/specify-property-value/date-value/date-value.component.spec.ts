@@ -3,13 +3,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateValueComponent } from './date-value.component';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule
-} from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
@@ -73,7 +71,7 @@ describe('DateValueComponent', () => {
 
     it('should get a date', () => {
 
-        testHostComponent.dateValue.form.setValue({'dateValue': new GregorianCalendarDate(new JDNPeriod(2458422, 2458422))});
+        testHostComponent.dateValue.form.setValue({ 'dateValue': new GregorianCalendarDate(new JDNPeriod(2458422, 2458422)) });
 
         const gregorianDate = new ValueLiteral('GREGORIAN:2018-10-30:2018-10-30', 'http://api.knora.org/ontology/knora-api/simple/v2#Date');
 
@@ -96,7 +94,7 @@ class TestHostComponent implements OnInit {
 
     form;
 
-    @ViewChild('dateVal') dateValue: DateValueComponent;
+    @ViewChild('dateVal', { static: false }) dateValue: DateValueComponent;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }

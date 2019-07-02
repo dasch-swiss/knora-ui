@@ -3,13 +3,11 @@ import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing'
 import { LinkValueComponent } from './link-value.component';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-    MatAutocompleteModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ApiServiceResult, IRI, KuiCoreConfig, KuiCoreConfigToken, ReadResource, SearchService } from '@knora/core';
@@ -124,7 +122,7 @@ class TestHostComponent implements OnInit {
 
     form;
 
-    @ViewChild('linkVal') linkValue: LinkValueComponent;
+    @ViewChild('linkVal', { static: false }) linkValue: LinkValueComponent;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }

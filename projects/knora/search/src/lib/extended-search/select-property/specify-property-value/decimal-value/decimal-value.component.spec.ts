@@ -3,7 +3,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DecimalValueComponent } from './decimal-value.component';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
@@ -74,7 +77,7 @@ describe('DecimalValueComponent', () => {
 
         matInput.nativeElement.value = '1.1';
 
-        matInput.triggerEventHandler('input', {target: matInput.nativeElement});
+        matInput.triggerEventHandler('input', { target: matInput.nativeElement });
 
         testHostFixture.detectChanges();
 
@@ -95,7 +98,7 @@ class TestHostComponent implements OnInit {
 
     form;
 
-    @ViewChild('decimalVal') decimalValue: DecimalValueComponent;
+    @ViewChild('decimalVal', { static: false }) decimalValue: DecimalValueComponent;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }

@@ -3,15 +3,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header-calendar.component';
 import { Component, Inject, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-    MatCalendar,
-    MatDatepickerContent,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule
-} from '@angular/material';
+import { MatCalendar, MatDatepickerContent, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalendardateadapter';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -153,7 +149,7 @@ class TestHostComponent implements OnInit {
 
     headerComponent = HeaderComponent;
 
-    @ViewChild('cal') calendar: MatCalendar<JDNConvertibleCalendar>;
+    @ViewChild('cal', { static: false }) calendar: MatCalendar<JDNConvertibleCalendar>;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }

@@ -3,14 +3,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-    MatAutocompleteModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatSelectModule
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ExtendedSearchComponent } from './extended-search.component';
 import { SelectOntologyComponent } from './select-ontology/select-ontology.component';
@@ -47,7 +45,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ListValueComponent } from './select-property/specify-property-value/list-value/list-value.component';
 import { ListDisplayComponent } from './select-property/specify-property-value/list-value/list-display/list-display.component';
-import { MatMenuModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
 
 describe('ExtendedSearchComponent', () => {
 

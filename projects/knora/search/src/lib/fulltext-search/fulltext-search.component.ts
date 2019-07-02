@@ -3,7 +3,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiServiceError, Project, ProjectsService, KnoraConstants } from '@knora/core';
-import { MatMenuTrigger } from '@angular/material';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 export interface PrevSearchItem {
     projectIri?: string;
@@ -42,11 +42,11 @@ export class FulltextSearchComponent implements OnInit {
      */
     @Input() filterbyproject?: string;
 
-    @ViewChild('fulltextSearchPanel') searchPanel: ElementRef;
-    @ViewChild('fulltextSearchInput') searchInput: ElementRef;
-    @ViewChild('fulltextSearchMenu') searchMenu: TemplateRef<any>;
+    @ViewChild('fulltextSearchPanel', { static: false }) searchPanel: ElementRef;
+    @ViewChild('fulltextSearchInput', { static: false }) searchInput: ElementRef;
+    @ViewChild('fulltextSearchMenu', { static: false }) searchMenu: TemplateRef<any>;
 
-    @ViewChild('btnToSelectProject') selectProject: MatMenuTrigger;
+    @ViewChild('btnToSelectProject', { static: false }) selectProject: MatMenuTrigger;
 
     // search query
     searchQuery: string;
@@ -78,7 +78,7 @@ export class FulltextSearchComponent implements OnInit {
         KnoraConstants.DefaultSharedOntologyIRI
     ];
 
-    constructor (
+    constructor(
         private _overlay: Overlay,
         private _router: Router,
         private _viewContainerRef: ViewContainerRef,
