@@ -20,22 +20,40 @@
             </mat-list>
 
             <!-- 1) show fileRepresentation first-->
+            <div *ngIf="resource.fileRepresentationsToDisplay.length > 0">
+                <!-- show file representation -->
+                <div [ngSwitch]="resource.fileRepresentationsToDisplay[0].type">
+                    <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media">
+                        <kui-still-image *ngIf="resource.fileRepresentationsToDisplay[0].stillImageFileValue.length > 0"
+                                         class="osd-viewer"
+                                         [images]="resource.fileRepresentationsToDisplay[0].stillImageFileValue">
+                        </kui-still-image>
+                        <!-- [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)" -->
+                    </div>
+
+
+                    <div *ngSwitchCase="KnoraConstants.hasMovingImageFileValue" class="media">
+                        <kui-moving-image></kui-moving-image>
+                    </div>
+
+                    <div *ngSwitchDefault>
+                        <p>This media type {{resource.fileRepresentationsToDisplay[0].type}} is not yet implemented</p>
+                    </div>
+                </div>
+
+            </div>
+
+
             <div *ngFor="let prop of resource.properties | kuiKey">
                 <div [ngSwitch]="prop.key">
                     <p>{{prop.key}}</p>
 
                     <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media">
                         <!-- if the property is of type stillImageFileValue, show the image with osd viewer from @knora/viewer TODO: the fileValue will be part of an own resource property -->
-                        <kui-still-image *ngIf="prop.value.length > 0" class="osd-viewer"
-                                         [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)"
-                                         [images]="prop.value">
-                        </kui-still-image>
+
 
                     </div>
 
-                    <div *ngSwitchCase="KnoraConstants.hasMovingImageFileValue" class="media">
-                        <kui-moving-image></kui-moving-image>
-                    </div>
 
                     <!-- TODO: switch through all other media type -->
                     <!--
