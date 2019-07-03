@@ -49,7 +49,6 @@ describe('StillImageOSDViewerComponent', () => {
     it('should have initialized viewer after resources change', () => {
         host.resourcesHost = images;
         fixture.detectChanges();
-
         expect(component['viewer']).toBeTruthy();
     });
 
@@ -155,7 +154,7 @@ class TestHostComponent {
     activeRegion: string;
     inputActivateRegion: string;
 
-    @ViewChild(StillImageComponent, { static: false }) osdViewerComp: StillImageComponent;
+    @ViewChild(StillImageComponent, { static: true }) osdViewerComp: StillImageComponent;
 
     regionActive(regionIri: string) {
         this.activeRegion = regionIri;
