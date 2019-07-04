@@ -1,4 +1,5 @@
-import { ReadGeomValue, ReadResource } from '../../../';
+import { ReadGeomValue } from '../properties/read-property-item';
+import { ReadResource } from '../resources/read-resource';
 import { KnoraConstants } from '../../knora-constants';
 
 /**
