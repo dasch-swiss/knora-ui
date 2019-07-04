@@ -22,10 +22,11 @@
             <!-- 1) show fileRepresentation first-->
             <div *ngIf="resource.fileRepresentationsToDisplay.length > 0">
                 <!-- show file representation -->
-                <div [ngSwitch]="resource.fileRepresentationsToDisplay[0].type">
-                    <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media">
-                        <kui-still-image *ngIf="resource.fileRepresentationsToDisplay[0].stillImageFileValue.length > 0"
-                                         class="osd-viewer"
+                <div [ngSwitch]="resource.fileRepresentationsToDisplay[0].type" class="media">
+                    <p>type: {{resource.fileRepresentationsToDisplay[0].type}}</p>
+                    <p>KC: {{KnoraConstants.StillImageFileValue}}</p>
+                    <div *ngSwitchCase="KnoraConstants.StillImageFileValue">
+                        <kui-still-image class="osd-viewer"
                                          [images]="resource.fileRepresentationsToDisplay[0].stillImageFileValue">
                         </kui-still-image>
                         <!-- [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)" -->
@@ -43,16 +44,16 @@
 
             </div>
 
-
+<!--
             <div *ngFor="let prop of resource.properties | kuiKey">
                 <div [ngSwitch]="prop.key">
-                    <p>{{prop.key}}</p>
+                    <!-- <p>{{prop.key}}</p> -->
 
-                    <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media">
+                    <!-- <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media"> -->
                         <!-- if the property is of type stillImageFileValue, show the image with osd viewer from @knora/viewer TODO: the fileValue will be part of an own resource property -->
 
 
-                    </div>
+                    <!-- </div> -->
 
 
                     <!-- TODO: switch through all other media type -->
@@ -70,13 +71,13 @@
                     <kui-region></kui-region>
                     <kui-text></kui-text>
                     -->
-
+<!--
                     <div *ngSwitchDefault>
                         <p>This media type ({{prop.key}}) is not yet implemented</p>
                     </div>
                 </div>
             </div>
-
+        -->
             <!-- 2) show properties, annotations (list of regions, sequences etc.), incomming resources (links, files) -->
             <div class="data">
                 <kui-properties-view [properties]="resource.properties" [guiOrder]="guiOrder"

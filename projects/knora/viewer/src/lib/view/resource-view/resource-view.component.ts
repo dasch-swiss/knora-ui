@@ -62,6 +62,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
                 // result with resources only and WITHOUT incoming stuff
                 this.sequence = result;
 
+
                 // this.ontologyInfo = result.ontologyInformation;
 
                 // const resType = this.sequence.resources[0].type;

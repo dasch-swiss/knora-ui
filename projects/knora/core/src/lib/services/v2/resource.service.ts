@@ -114,6 +114,8 @@ export class ResourceService extends ApiService {
                                         // update ontology information
                                         resSeq.ontologyInformation.updateOntologyInformation(incomingImageRepresentations.ontologyInformation);
 
+
+
                                         // set current offset
                                         // this.incomingStillImageRepresentationCurrentOffset = offset;
 
@@ -123,6 +125,38 @@ export class ResourceService extends ApiService {
 
                                         // append incomingImageRepresentations.resources to this.resource.incomingStillImageRepresentations
                                         Array.prototype.push.apply(resSeq.resources[0].incomingFileRepresentations, incomingImageRepresentations.resources);
+                                        // Array.prototype.push.apply(resSeq.resources[0].incomingFileRepresentations, incomingImageRepresentations.resources);
+
+                                        const imgRepresentations: StillImageRepresentation[] = [];
+
+                                        for (let inRes of resSeq.resources[0].incomingFileRepresentations) {
+
+                                            const fileValues: ReadStillImageFileValue[] = inRes.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
+                                            const imagesToDisplay: ReadStillImageFileValue[] = fileValues.filter((image) => {
+                                                return !image.isPreview;
+                                            });
+
+                                            for (const img of imagesToDisplay) {
+
+                                                const regions: ImageRegion[] = [];
+                                                for (const incomingRegion of res.incomingAnnotations) {
+
+                                                    // TODO: change return type in ImageRegion from ReadResource into Resource
+                                                    // const region = new ImageRegion(incomingRegion);
+
+                                                    // regions.push(region);
+
+                                                }
+
+                                                const stillImage = new StillImageRepresentation(img, regions);
+                                                imgRepresentations.push(stillImage);
+
+                                            }
+
+                                            res.fileRepresentationsToDisplay = imgRepresentations;
+
+                                        }
+
 
                                         // prepare attached image files to be displayed
                                         // BeolResource.collectImagesAndRegionsForResource(this.resource);
