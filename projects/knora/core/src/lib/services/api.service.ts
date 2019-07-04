@@ -79,8 +79,6 @@ export abstract class ApiService {
         // compact JSON-LD using an empty context: expands all Iris
         const resPromise = resPromises.compact(resourceResponse.body, {});
 
-        console.log('resPromises', resPromises);
-
         // convert promise to Observable and return it
         // https://www.learnrxjs.io/operators/creation/frompromise.html
         return from(resPromise);

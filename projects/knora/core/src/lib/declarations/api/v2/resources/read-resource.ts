@@ -1,7 +1,7 @@
 import { ReadProperties, StillImageRepresentation } from '../../../';
 import { FileRepresentation } from '../representations/fileRepresentation';
 import { MovingImageRepresentation } from '../moving-image/moving-image-representation';
-import { ReadPropertyItem } from '@knora/core/public_api';
+import { ReadPropertyItem } from '../properties/read-property-item';
 
 /**
  * @deprecated Use **Resource** instead

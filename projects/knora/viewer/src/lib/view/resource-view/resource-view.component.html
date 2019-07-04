@@ -23,8 +23,6 @@
             <div *ngIf="resource.fileRepresentationsToDisplay.length > 0">
                 <!-- show file representation -->
                 <div [ngSwitch]="resource.fileRepresentationsToDisplay[0].type" class="media">
-                    <p>type: {{resource.fileRepresentationsToDisplay[0].type}}</p>
-                    <p>KC: {{KnoraConstants.StillImageFileValue}}</p>
                     <div *ngSwitchCase="KnoraConstants.StillImageFileValue">
                         <kui-still-image class="osd-viewer"
                                          [images]="resource.fileRepresentationsToDisplay[0].stillImageFileValue">

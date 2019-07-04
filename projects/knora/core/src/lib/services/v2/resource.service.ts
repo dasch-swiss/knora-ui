@@ -36,8 +36,6 @@ export class ResourceService extends ApiService {
 
         const res: Observable<ApiServiceResult | ApiServiceError> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));
 
-
-
         return res.pipe(
             mergeMap(
                 // this would return an Observable of a PromiseObservable -> combine them into one Observable
@@ -52,19 +50,18 @@ export class ResourceService extends ApiService {
                     // collect resource class Iris
                     const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);
 
-                    const res = resSeq.resources[0];
+                    const res0 = resSeq.resources[0];
 
                     // set file representation to display
-                    console.log(Object.keys(res.properties));
 
-                    const propKeys: string[] = Object.keys(res.properties);
+                    const propKeys: string[] = Object.keys(res0.properties);
                     switch (true) {
                         case propKeys.includes(KnoraConstants.hasStillImageFileValue):
                             // res.fileRepresentationsToDisplay[0] = res.properties[KnoraConstants.hasStillImageFileValue];
 
                             const imgRepresentations: StillImageRepresentation[] = [];
 
-                            const fileValues: ReadStillImageFileValue[] = res.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
+                            const fileValues: ReadStillImageFileValue[] = res0.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
                             const imagesToDisplay: ReadStillImageFileValue[] = fileValues.filter((image) => {
                                 return !image.isPreview;
                             });
@@ -72,7 +69,7 @@ export class ResourceService extends ApiService {
                             for (const img of imagesToDisplay) {
 
                                 const regions: ImageRegion[] = [];
-                                for (const incomingRegion of res.incomingAnnotations) {
+                                for (const incomingRegion of res0.incomingAnnotations) {
 
                                     // TODO: change return type in ImageRegion from ReadResource into Resource
                                     // const region = new ImageRegion(incomingRegion);
@@ -86,35 +83,33 @@ export class ResourceService extends ApiService {
 
                             }
 
-                            res.fileRepresentationsToDisplay = imgRepresentations;
+                            res0.fileRepresentationsToDisplay = imgRepresentations;
 
                             break;
                         case propKeys.includes(KnoraConstants.hasMovingImageFileValue):
-                            res.fileRepresentationsToDisplay = res.properties[KnoraConstants.hasMovingImageFileValue];
+                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasMovingImageFileValue];
                             break;
                         case propKeys.includes(KnoraConstants.hasAudioFileValue):
-                            res.fileRepresentationsToDisplay = res.properties[KnoraConstants.hasAudioFileValue];
+                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasAudioFileValue];
                             break;
                         case propKeys.includes(KnoraConstants.hasDocumentFileValue):
-                            res.fileRepresentationsToDisplay = res.properties[KnoraConstants.hasDocumentFileValue];
+                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDocumentFileValue];
                             break;
                         case propKeys.includes(KnoraConstants.hasDDDFileValue):
-                            res.fileRepresentationsToDisplay = res.properties[KnoraConstants.hasDDDFileValue];
+                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDDDFileValue];
                             break;
 
                         // NYI / TODO: TextFileValue
 
                         default:
                             // look for incoming fileRepresentation to display
-                            // e.g. looking for incoming stillImage files
-                            this._incomingService.getStillImageRepresentationsForCompoundResource(res.id, 0).subscribe(
+                            // get incoming stillImage files
+                            this._incomingService.getStillImageRepresentationsForCompoundResource(res0.id, 0).subscribe(
                                 (incomingImageRepresentations: ReadResourcesSequence) => {
 
                                     if (incomingImageRepresentations.resources.length > 0) {
                                         // update ontology information
                                         resSeq.ontologyInformation.updateOntologyInformation(incomingImageRepresentations.ontologyInformation);
-
-
 
                                         // set current offset
                                         // this.incomingStillImageRepresentationCurrentOffset = offset;
@@ -127,19 +122,19 @@ export class ResourceService extends ApiService {
                                         Array.prototype.push.apply(resSeq.resources[0].incomingFileRepresentations, incomingImageRepresentations.resources);
                                         // Array.prototype.push.apply(resSeq.resources[0].incomingFileRepresentations, incomingImageRepresentations.resources);
 
-                                        const imgRepresentations: StillImageRepresentation[] = [];
+                                        const incomingImgRepresentations: StillImageRepresentation[] = [];
 
-                                        for (let inRes of resSeq.resources[0].incomingFileRepresentations) {
+                                        for (const inRes of resSeq.resources[0].incomingFileRepresentations) {
 
-                                            const fileValues: ReadStillImageFileValue[] = inRes.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
-                                            const imagesToDisplay: ReadStillImageFileValue[] = fileValues.filter((image) => {
+                                            const incomingFileValues: ReadStillImageFileValue[] = inRes.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
+                                            const incomingImagesToDisplay: ReadStillImageFileValue[] = incomingFileValues.filter((image) => {
                                                 return !image.isPreview;
                                             });
 
-                                            for (const img of imagesToDisplay) {
+                                            for (const img of incomingImagesToDisplay) {
 
                                                 const regions: ImageRegion[] = [];
-                                                for (const incomingRegion of res.incomingAnnotations) {
+                                                for (const incomingRegion of inRes.incomingAnnotations) {
 
                                                     // TODO: change return type in ImageRegion from ReadResource into Resource
                                                     // const region = new ImageRegion(incomingRegion);
@@ -149,11 +144,11 @@ export class ResourceService extends ApiService {
                                                 }
 
                                                 const stillImage = new StillImageRepresentation(img, regions);
-                                                imgRepresentations.push(stillImage);
+                                                incomingImgRepresentations.push(stillImage);
 
                                             }
 
-                                            res.fileRepresentationsToDisplay = imgRepresentations;
+                                            res0.fileRepresentationsToDisplay = incomingImgRepresentations;
 
                                         }
 
@@ -166,7 +161,17 @@ export class ResourceService extends ApiService {
                                     console.error(error);
                                 }
                             );
-                            console.log('incoming file representations to display');
+
+                            // do the same for all other incoming file representations
+                            // TODO: get incoming movingImage files
+
+                            // TODO: get incoming audio files
+
+                            // TODO: get incoming document files
+
+                            // TODO: get incoming text files
+
+                            // TODO: get ddd images files
                     }
 
 
