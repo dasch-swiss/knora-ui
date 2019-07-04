@@ -35,7 +35,7 @@ describe('ListDisplayComponent', () => {
 
     it('should create', () => {
         // access the test host component's child
-        expect(testHostComponent.listDisplay).toBeTruthy();
+        expect(testHostComponent.childMenu).toBeTruthy();
     });
 
     it('should open the menu for child nodes', () => {
@@ -73,18 +73,34 @@ describe('ListDisplayComponent', () => {
 @Component({
     selector: `host-component`,
     template: `
-        <button mat-stroked-button [matMenuTriggerFor]="mainMenu" type="button">
-            <span *ngIf="!selectedNode">Select list value</span>
-            <span *ngIf="selectedNode">{{selectedNode.label}}</span>
-        </button>
+    <button mat-stroked-button [matMenuTriggerFor]="mainMenu" type="button">
+        <span *ngIf="!selectedNode">Select list value</span>
+        <span *ngIf="selectedNode">{{selectedNode.label}}</span>
+    </button>
         
-        <mat-menu #mainMenu="matMenu" [overlapTrigger]="false">
-        <button mat-menu-item [matMenuTriggerFor]="listDispl.childMenu" (click)="getSelectedNode(testList)"
+    <mat-menu #mainMenu="matMenu" [overlapTrigger]="false">
+        <button mat-menu-item [matMenuTriggerFor]="childMenu" (click)="getSelectedNode(testList)"
                 type="button">
             {{testList.label}}
         </button>
-        <list-display #listDispl [children]="testList.children" (selectedNode)="getSelectedNode($event)">
-        </list-display>
+        
+        <mat-menu #childMenu="matMenu" [overlapTrigger]="false">
+            <span *ngFor="let child of children">
+                <span *ngIf="child.children && child.children.length > 0">
+                    <button mat-menu-item [matMenuTriggerFor]="menu.childMenu" (click)="setValue(child)" type="button">
+                        {{child.label}}
+                    </button>
+                    <list-display #menu [children]="child.children" (selectedNode)="setValue($event)"></list-display>
+                </span>
+        
+                <span *ngIf="!child.children || child.children.length === 0">
+                    <button mat-menu-item (click)="setValue(child)" type="button">
+                        {{child.label}}
+                    </button>
+                </span>
+            </span>
+        </mat-menu>
+
     </mat-menu>`
 })
 class TestHostComponent implements OnInit {
@@ -93,9 +109,11 @@ class TestHostComponent implements OnInit {
 
     selectedNode: ListNodeV2;
 
-    @ViewChild('listDispl', { static: false }) listDisplay: ListDisplayComponent;
+    children: ListNodeV2[];
 
     @ViewChild(MatMenuTrigger, { static: false }) menuTrigger: MatMenuTrigger;
+
+    @ViewChild('childMenu', { static: false }) public childMenu: MatMenuTrigger;
 
     constructor() {
     }
