@@ -1,4 +1,4 @@
-import { ReadResource } from '../../../';
+import { ReadResource } from '../resources/read-resource';
 import { OntologyInformation } from '../../../../services';
 import { KnoraConstants } from '../../knora-constants';
 import { DateRangeSalsah, DateSalsah } from '../../shared/date';

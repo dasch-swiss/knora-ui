@@ -1,5 +1,5 @@
-import { ReadStillImageFileValue } from '../../../';
 import { KnoraConstants } from '../../knora-constants';
+import { ReadStillImageFileValue } from '../properties/read-property-item';
 import { ImageRegion } from './image-region';
 
 /**
