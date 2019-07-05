@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { KuiCoreConfigToken } from '../../core.module';
-import { ApiServiceError, ApiServiceResult, Region, KnoraConstants, ReadResourcesSequence, ReadStillImageFileValue, ResourcesSequence, StillImageRepresentation } from '../../declarations';
+import { ApiServiceError, ApiServiceResult, KnoraConstants, ReadResourcesSequence, ReadStillImageFileValue, Region, ResourcesSequence, StillImageRepresentation } from '../../declarations';
 import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
 import { IncomingService } from './incoming.service';
@@ -83,20 +83,20 @@ export class ResourceService extends ApiService {
 
                             }
 
-                            res0.fileRepresentationsToDisplay = imgRepresentations;
+                            res0.fileRepresentationsToDisplay.stillImage = imgRepresentations;
 
                             break;
                         case propKeys.includes(KnoraConstants.hasMovingImageFileValue):
-//                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasMovingImageFileValue];
+                            //                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasMovingImageFileValue];
                             break;
                         case propKeys.includes(KnoraConstants.hasAudioFileValue):
-//                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasAudioFileValue];
+                            //                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasAudioFileValue];
                             break;
                         case propKeys.includes(KnoraConstants.hasDocumentFileValue):
-//                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDocumentFileValue];
+                            //                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDocumentFileValue];
                             break;
                         case propKeys.includes(KnoraConstants.hasDDDFileValue):
-//                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDDDFileValue];
+                            //                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDDDFileValue];
                             break;
 
                         // TODO: TextFileValue
@@ -107,9 +107,12 @@ export class ResourceService extends ApiService {
                             this._incomingService.getStillImageRepresentationsForCompoundResource(res0.id, 0).subscribe(
                                 (incomingFiles: ReadResourcesSequence) => {
 
+                                    console.log('incomingFiles', incomingFiles);
+
                                     if (incomingFiles.resources.length > 0) {
                                         // update ontology information
                                         resSeq.ontologyInformation.updateOntologyInformation(incomingFiles.ontologyInformation);
+
 
                                         // set current offset
                                         // this.incomingStillImageRepresentationCurrentOffset = offset;
@@ -119,6 +122,7 @@ export class ResourceService extends ApiService {
                                         // TODO: maybe we have to support non consecutive arrays (sparse arrays)
 
                                         // append incomingImageRepresentations.resources to this.resource.incomingStillImageRepresentations
+
                                         Array.prototype.push.apply(res0.incomingFileRepresentations, incomingFiles.resources);
                                         // Array.prototype.push.apply(resSeq.resources[0].incomingFileRepresentations, incomingImageRepresentations.resources);
 
@@ -126,7 +130,7 @@ export class ResourceService extends ApiService {
 
                                         for (const inRes of incomingFiles.resources) {
 
-                                            console.log('inRes', inRes);
+
 
                                             const incomingFileValues: ReadStillImageFileValue[] = inRes.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
                                             const incomingImagesToDisplay: ReadStillImageFileValue[] = incomingFileValues.filter((image) => {
@@ -154,7 +158,7 @@ export class ResourceService extends ApiService {
 
                                             }
 
-                                            res0.fileRepresentationsToDisplay = incomingImgRepresentations;
+                                            res0.fileRepresentationsToDisplay.stillImage = incomingImgRepresentations;
 
                                         }
 
@@ -168,16 +172,16 @@ export class ResourceService extends ApiService {
                                 }
                             );
 
-                            // do the same for all other incoming file representations
-                            // TODO: get incoming movingImage files
+                        // do the same for all other incoming file representations
+                        // TODO: get incoming movingImage files
 
-                            // TODO: get incoming audio files
+                        // TODO: get incoming audio files
 
-                            // TODO: get incoming document files
+                        // TODO: get incoming document files
 
-                            // TODO: get incoming text files
+                        // TODO: get incoming text files
 
-                            // TODO: get ddd images files
+                        // TODO: get ddd images files
                     }
 
 

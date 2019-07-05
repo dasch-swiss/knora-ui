@@ -33,10 +33,17 @@ export class oldFileRepresentation {
 export class FileRepresentation {
 
     constructor (
-        readonly stillImage?: StillImageRepresentation[],
-        readonly movingImage?: MovingImageRepresentation[],
-        readonly audio?: AudioRepresentation[]) {
+        public stillImage?: StillImageRepresentation[],
+        public movingImage?: MovingImageRepresentation[],
+        public audio?: AudioRepresentation[]) {
 
     }
+
+    // TODO: create the following properties:
+    /*
+        readonly text?: TextRepresentation[],
+        readonly document?: DocumentRepresentation[],
+        readonly dddImage?: DDDImageRepresentation[],
+    */
 
 }

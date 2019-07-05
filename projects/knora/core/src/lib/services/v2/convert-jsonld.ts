@@ -66,7 +66,7 @@ export module ConvertJSONLD {
             [], // incomingAnnotations; to be updated once another request has been made
             [], // incomingFileRepresentations, to be updated once another request has been made
             [], // incomingLinks; to be updated once another request has been made
-            [], // fileRepresentationsToDisplay; to be updated once another request has been made
+            {}, // fileRepresentationsToDisplay; to be updated once another request has been made
             properties
         );
     }

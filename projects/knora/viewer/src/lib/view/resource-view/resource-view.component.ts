@@ -70,6 +70,8 @@ export class ResourceViewComponent implements OnInit, OnChanges {
                 this.guiOrder = result.ontologyInformation.getResourceClasses()[this.sequence.resources[0].type].guiOrder;
 
 
+                console.log('resourcs sequence in resource-view', this.sequence);
+                this.loading = false;
 
                 // collect all filerepresentations to display including annotations
                 // --> for the first resource only...
@@ -90,8 +92,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
                 // wait until the resource is ready
                 setTimeout(() => {
                     // console.log(this.sequence);
-                    console.log('sequence', this.sequence);
-                    this.loading = false;
+
                 }, 1000);
             },
             (error: ApiServiceError) => {

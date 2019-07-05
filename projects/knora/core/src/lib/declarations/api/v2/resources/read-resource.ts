@@ -49,9 +49,9 @@ export class Resource {
         public readonly type: string,
         public readonly label: string,
         public incomingAnnotations: Array<Resource>,    // = incomingRegions in ReadResource
-        public incomingFileRepresentations: Array<FileRepresentation>,    // = incomingStillImageRepresentations in ReadResource
+        public incomingFileRepresentations: Array<ReadResource>,    // = incomingStillImageRepresentations in ReadResource
         public incomingLinks: Array<Resource>,
-        public fileRepresentationsToDisplay: Array<StillImageRepresentation | MovingImageRepresentation | AudioRepresentation>,  // = stillImageRepresentationsToDisplay in ReadResource
+        public fileRepresentationsToDisplay: FileRepresentation,  // = stillImageRepresentationsToDisplay in ReadResource
         public readonly properties?: ReadProperties) {
     }
 }

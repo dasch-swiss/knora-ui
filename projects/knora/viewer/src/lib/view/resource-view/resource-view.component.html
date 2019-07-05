@@ -2,7 +2,7 @@
 
     <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
 
-    <div *ngIf="!loading">
+    <div *ngIf="!loading && sequence.resources.length > 0">
 
         <div class="resource" *ngFor="let resource of sequence.resources; let last = last">
 
@@ -20,14 +20,18 @@
             </mat-list>
 
             <!-- 1) show fileRepresentation first-->
-            <div *ngIf="resource.fileRepresentationsToDisplay.length > 0">
+            <div *ngIf="resource?.fileRepresentationsToDisplay">
                 <!-- show file representation -->
+                <div *ngIf="resource?.fileRepresentationsToDisplay?.stillImage.length > 0" class="media">
+                    <kui-still-image class="osd-viewer" [images]="resource.fileRepresentationsToDisplay.stillImage">
+                    </kui-still-image>
+                </div>
+                <!--
                 <div [ngSwitch]="resource.fileRepresentationsToDisplay[0].type" class="media">
                     <div *ngSwitchCase="KnoraConstants.StillImageFileValue">
-                        <kui-still-image class="osd-viewer"
-                                         [images]="resource.fileRepresentationsToDisplay[0].stillImageFileValue">
-                        </kui-still-image>
-                        <!-- [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)" -->
+                        <!-- TODO: fix: this shows only the first image, not all stillImages from fileRepresentationsToDisplay --
+
+                        <!-- [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)" --
                     </div>
 
 
@@ -39,23 +43,24 @@
                         <p>This media type {{resource.fileRepresentationsToDisplay[0].type}} is not yet implemented</p>
                     </div>
                 </div>
+                -->
 
             </div>
 
-<!--
+            <!--
             <div *ngFor="let prop of resource.properties | kuiKey">
                 <div [ngSwitch]="prop.key">
                     <!-- <p>{{prop.key}}</p> -->
 
-                    <!-- <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media"> -->
-                        <!-- if the property is of type stillImageFileValue, show the image with osd viewer from @knora/viewer TODO: the fileValue will be part of an own resource property -->
+            <!-- <div *ngSwitchCase="KnoraConstants.hasStillImageFileValue" class="media"> -->
+            <!-- if the property is of type stillImageFileValue, show the image with osd viewer from @knora/viewer TODO: the fileValue will be part of an own resource property -->
 
 
-                    <!-- </div> -->
+            <!-- </div> -->
 
 
-                    <!-- TODO: switch through all other media type -->
-                    <!--
+            <!-- TODO: switch through all other media type -->
+            <!--
                     <kui-moving-image></kui-moving-image>
                     <kui-audio></kui-audio>
                     <kui-ddd></kui-ddd>
@@ -69,7 +74,7 @@
                     <kui-region></kui-region>
                     <kui-text></kui-text>
                     -->
-<!--
+            <!--
                     <div *ngSwitchDefault>
                         <p>This media type ({{prop.key}}) is not yet implemented</p>
                     </div>
