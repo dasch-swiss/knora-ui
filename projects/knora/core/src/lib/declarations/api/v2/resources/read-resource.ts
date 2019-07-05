@@ -1,7 +1,8 @@
-import { ReadProperties, StillImageRepresentation } from '../../../';
+import { ReadProperties } from '../properties/read-properties';
+import { AudioRepresentation } from '../representations/audio-representation';
 import { FileRepresentation } from '../representations/fileRepresentation';
-import { MovingImageRepresentation } from '../moving-image/moving-image-representation';
-import { ReadPropertyItem } from '../properties/read-property-item';
+import { MovingImageRepresentation } from '../representations/moving-image-representation';
+import { StillImageRepresentation } from '../representations/still-image-representation';
 
 /**
  * @deprecated Use **Resource** instead
@@ -48,9 +49,9 @@ export class Resource {
         public readonly type: string,
         public readonly label: string,
         public incomingAnnotations: Array<Resource>,    // = incomingRegions in ReadResource
-        public incomingFileRepresentations: Array<Resource>,    // = incomingStillImageRepresentations in ReadResource
+        public incomingFileRepresentations: Array<FileRepresentation>,    // = incomingStillImageRepresentations in ReadResource
         public incomingLinks: Array<Resource>,
-        public fileRepresentationsToDisplay: Array<StillImageRepresentation | MovingImageRepresentation | ReadPropertyItem>,  // = stillImageRepresentationsToDisplay in ReadResource
+        public fileRepresentationsToDisplay: Array<StillImageRepresentation | MovingImageRepresentation | AudioRepresentation>,  // = stillImageRepresentationsToDisplay in ReadResource
         public readonly properties?: ReadProperties) {
     }
 }

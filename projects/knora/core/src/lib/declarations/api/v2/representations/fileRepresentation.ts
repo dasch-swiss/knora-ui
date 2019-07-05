@@ -1,6 +1,9 @@
 import { FileValue } from '../properties/read-property-item';
+import { AudioRepresentation } from './audio-representation';
+import { MovingImageRepresentation } from './moving-image-representation';
 import { Region } from './region';
 import { Sequence } from './sequence';
+import { StillImageRepresentation } from './still-image-representation';
 
 
 /**
@@ -12,7 +15,7 @@ import { Sequence } from './sequence';
  * - ddd rti
  * - document
  */
-export class FileRepresentation {
+export class oldFileRepresentation {
 
     /**
      *
@@ -21,6 +24,18 @@ export class FileRepresentation {
      * @param {Sequence[]} [sequences] the sequences belonging to the time-based media.
      */
     constructor (readonly fileValue: FileValue, readonly regions?: Region[], readonly sequences?: Sequence[]) {
+
+    }
+
+}
+
+
+export class FileRepresentation {
+
+    constructor (
+        readonly stillImage?: StillImageRepresentation[],
+        readonly movingImage?: MovingImageRepresentation[],
+        readonly audio?: AudioRepresentation[]) {
 
     }
 

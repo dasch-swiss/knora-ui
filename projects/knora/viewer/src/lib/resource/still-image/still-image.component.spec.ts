@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ViewChild } from '@angular/core';
 import {
     ConvertJSONLD,
-    ImageRegion,
+    Region,
     ReadResource,
     ReadResourcesSequence,
     ReadStillImageFileValue,
@@ -189,7 +189,7 @@ const testRegionCircle: ReadResource = createTestRegionCircle();
 const testRegionMulti: ReadResource = createTestRegionMulti();
 
 const images: StillImageRepresentation[] = [
-    new StillImageRepresentation(stillImageFullSize, [new ImageRegion(testRegionRectangle), new ImageRegion(testRegionPolygon), new ImageRegion(testRegionCircle), new ImageRegion(testRegionMulti)])
+    new StillImageRepresentation(stillImageFullSize, [new Region(testRegionRectangle), new Region(testRegionPolygon), new Region(testRegionCircle), new Region(testRegionMulti)])
 ];
 
 // utility functions

@@ -1,22 +1,5 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnChanges,
-    OnDestroy,
-    OnInit,
-    Output,
-    SimpleChange
-} from '@angular/core';
-import {
-    KnoraConstants,
-    Point2D,
-    ReadGeomValue,
-    ReadResource,
-    ReadStillImageFileValue,
-    RegionGeometry
-} from '@knora/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChange } from '@angular/core';
+import { KnoraConstants, Point2D, ReadGeomValue, ReadResource, ReadStillImageFileValue, Region, RegionGeometry } from '@knora/core';
 
 
 // This component needs the openseadragon library itself, as well as the openseadragon plugin openseadragon-svg-overlay
@@ -61,7 +44,7 @@ export class StillImageRepresentation {
      * @param stillImageFileValue a [[ReadStillImageFileValue]] representing an image.
      * @param regions the regions belonging to the image.
      */
-    constructor(readonly stillImageFileValue: ReadStillImageFileValue, readonly regions: ImageRegion[]) {
+    constructor(readonly stillImageFileValue: ReadStillImageFileValue, readonly regions: Region[]) {
 
     }
 

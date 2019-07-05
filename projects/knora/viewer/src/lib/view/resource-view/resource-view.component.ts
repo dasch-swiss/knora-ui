@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceError, GuiOrder, IncomingService, KnoraConstants, OntologyInformation, ReadResourcesSequence, ResourceService, ResourcesSequence } from '@knora/core';
 
-// import { ImageRegion, StillImageRepresentation } from '../../resource';
+// import { Region, StillImageRepresentation } from '../../resource';
 
 declare let require: any;
 const jsonld = require('jsonld');
