@@ -113,7 +113,7 @@ class TestHostComponent implements OnInit {
 
     @ViewChild(MatMenuTrigger, { static: false }) menuTrigger: MatMenuTrigger;
 
-    @ViewChild('childMenu', { static: false }) public childMenu: MatMenuTrigger;
+    @ViewChild('childMenu', { static: true }) public childMenu: MatMenuTrigger;
 
     constructor() {
     }
