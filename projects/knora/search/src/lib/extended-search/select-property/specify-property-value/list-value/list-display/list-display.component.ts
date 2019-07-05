@@ -13,7 +13,7 @@ export class ListDisplayComponent implements OnInit {
 
     @Output() selectedNode: EventEmitter<ListNodeV2> = new EventEmitter<ListNodeV2>();
 
-    @ViewChild('childMenu', { static: false }) public childMenu: MatMenuTrigger;
+    @ViewChild('childMenu', { static: true }) public childMenu: MatMenuTrigger;
 
     constructor() {
     }
