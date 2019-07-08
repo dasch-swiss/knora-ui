@@ -1,13 +1,13 @@
 import { async, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import {FulltextSearchParams, SearchByLabelParams, SearchService} from './search.service';
+import { FulltextSearchParams, SearchByLabelParams, SearchService } from './search.service';
 import { KuiCoreModule } from '../../core.module';
 import { ApiService } from '../api.service';
 import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
 import { of } from 'rxjs';
 import { CountQueryResult } from '../../declarations';
-import {HttpParams} from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 
 describe('SearchService', () => {
     let httpTestingController: HttpTestingController;
@@ -21,7 +21,7 @@ describe('SearchService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
             ],
             providers: [
                 ApiService,
