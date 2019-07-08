@@ -28,7 +28,7 @@ export class ExpertSearchComponent implements OnInit {
 
     expertSearchForm: FormGroup;
 
-    constructor (
+    constructor(
         private fb: FormBuilder,
         private _route: ActivatedRoute,
         private _router: Router,
@@ -50,7 +50,7 @@ export class ExpertSearchComponent implements OnInit {
             gravquery: [
                 `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
-PREFIX incunabula: <${this.config.api}/ontology/0803/incunabula/simple/v2#>
+PREFIX incunabula: <${this.config.ontologyIRI}/ontology/0803/incunabula/simple/v2#>
 
 CONSTRUCT {
     ?book knora-api:isMainResource true .

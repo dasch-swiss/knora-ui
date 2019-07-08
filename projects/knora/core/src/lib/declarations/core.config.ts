@@ -37,4 +37,11 @@ export class KuiCoreConfig {
     @JsonProperty('media', String)
     public media: string = undefined;
 
+    /**
+     * url of the ontology e.g. 'http://api.02.unibas.dasch.swiss'
+     * @type {string}
+     */
+    @JsonProperty('ontologyIRI', String)
+    public ontologyIRI: string = undefined;
+
 }
