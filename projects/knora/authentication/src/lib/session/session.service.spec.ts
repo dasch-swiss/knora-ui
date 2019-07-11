@@ -9,7 +9,7 @@ describe('SessionService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientModule,
-                KuiCoreModule.forRoot({name: '', api: '', app: '', media: ''})
+                KuiCoreModule.forRoot({ name: '', api: '', app: '', media: '', ontologyIRI: '' })
             ],
             providers: [
                 SessionService,
