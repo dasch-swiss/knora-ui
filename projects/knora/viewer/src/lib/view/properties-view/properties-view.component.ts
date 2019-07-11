@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { GuiOrder, KnoraConstants, OntologyInformation, ReadProperties, ReadResource } from '@knora/core';
 
@@ -24,6 +24,8 @@ export class PropertiesViewComponent {
 
     @Input() ontologyInfo: OntologyInformation;
 
+    // @Output() routeChanged: EventEmitter<string> = new EventEmitter<string>();
+
     constructor (protected _router: Router) { }
 
     /**
@@ -34,6 +36,7 @@ export class PropertiesViewComponent {
     openLink(id: string) {
 
         this.loading = true;
+        // this.routeChanged.emit(id);
         this._router.navigate(['/resource/' + encodeURIComponent(id)]);
 
     }

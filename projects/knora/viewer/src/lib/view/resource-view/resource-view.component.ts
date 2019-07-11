@@ -69,8 +69,6 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
                 this.guiOrder = result.ontologyInformation.getResourceClasses()[this.sequence.resources[0].type].guiOrder;
 
-
-                console.log('resourcs sequence in resource-view', this.sequence);
                 this.loading = false;
 
                 // collect all filerepresentations to display including annotations

@@ -2,7 +2,7 @@
  * general style file for the @knora/viewer module
  */
 
- $primary: rgba(0, 105, 92, 1);
+$primary: rgba(0, 105, 92, 1);
 
 .mat-form-field {
   width: 320px;
@@ -16,7 +16,7 @@
   text-align: center;
 }
 
-.link {
+.kui-link {
   cursor: pointer;
 }
 
@@ -27,26 +27,27 @@
 }
 
 .lv-read-more {
-  position: absolute; 
-  bottom: 0; 
+  position: absolute;
+  bottom: 0;
   left: 0;
-  width: 100%; 
-  text-align: center; 
-  margin: 0; padding: 30px 0; 
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 30px 0;
   border-radius: 3px;
 }
 
-/* 
- * shading the html text 
+/*
+ * shading the html text
  */
 
 /* .lv-html-text .lv-read-more {
-  position: absolute; 
-  bottom: 0; 
+  position: absolute;
+  bottom: 0;
   left: 0;
-  width: 100%; 
-  text-align: center; 
-  margin: 0; padding: 30px 0; 
+  width: 100%;
+  text-align: center;
+  margin: 0; padding: 30px 0;
   border-radius: 3px;
   border-color: rgb(255, 255, 255);
 

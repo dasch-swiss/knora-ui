@@ -139,8 +139,6 @@ export class ResourceService extends ApiService {
 
                                             for (const img of incomingImagesToDisplay) {
 
-                                                console.log('img', img);
-
                                                 const regions: Region[] = [];
                                                 /*
                                                 for (const incomingRegion of inRes.incomingAnnotations) {

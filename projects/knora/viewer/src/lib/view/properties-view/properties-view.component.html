@@ -56,7 +56,7 @@
     <mat-tab label="Links / Connections" *ngIf="incomingLinks?.length > 0">
         <div>
             <mat-list *ngFor="let incoming of incomingLinks">
-                <mat-list-item class="app-link" (click)="openLink(incoming.id)">
+                <mat-list-item class="kui-link" (click)="openLink(incoming.id)">
                     <span>{{incoming.label}}</span>
                 </mat-list-item>
             </mat-list>

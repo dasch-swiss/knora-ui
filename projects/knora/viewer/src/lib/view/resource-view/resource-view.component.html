@@ -22,7 +22,8 @@
             <!-- 1) show fileRepresentation first-->
             <div *ngIf="resource?.fileRepresentationsToDisplay">
                 <!-- show file representation -->
-                <div *ngIf="resource?.fileRepresentationsToDisplay?.stillImage.length > 0" class="media">
+                <div *ngIf="resource.fileRepresentationsToDisplay?.stillImage && resource.fileRepresentationsToDisplay?.stillImage.length > 0"
+                     class="media">
                     <kui-still-image class="osd-viewer" [images]="resource.fileRepresentationsToDisplay.stillImage">
                     </kui-still-image>
                 </div>

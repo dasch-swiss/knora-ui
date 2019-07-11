@@ -44,7 +44,7 @@ describe('LinkValueComponent', () => {
 
         expect(spanNativeElement.innerText).toEqual('http://rdfh.ch/test');
 
-        expect(spanNativeElement.getAttribute('class')).toEqual('salsah-link');
+        expect(spanNativeElement.getAttribute('class')).toEqual('kui-link');
 
         spanNativeElement.click();
 
@@ -103,7 +103,7 @@ describe('LinkValueComponent', () => {
 
         expect(spanNativeElement.innerText).toEqual('test book label');
 
-        expect(spanNativeElement.getAttribute('class')).toEqual('salsah-link');
+        expect(spanNativeElement.getAttribute('class')).toEqual('kui-link');
 
         spanNativeElement.click();
 
@@ -131,7 +131,7 @@ class TestHostComponent implements OnInit {
 
     refResClickedIri: string;
 
-    constructor() {
+    constructor () {
     }
 
     refResClicked(linkValue: ReadLinkValue) {
