@@ -11,7 +11,7 @@ describe('AuthGuard', () => {
             imports: [
                 HttpClientModule,
                 RouterTestingModule,
-                KuiCoreModule.forRoot({name: '', api: '', app: '', media: ''})
+                KuiCoreModule.forRoot({ name: '', api: '', app: '', media: '', ontologyIRI: '' })
             ],
             providers: [
                 AuthGuard,
