@@ -1,5 +1,4 @@
 <div class="resource-view">
-
     <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
 
     <div *ngIf="!loading && sequence.resources.length > 0">
@@ -7,7 +6,7 @@
         <div class="resource" *ngFor="let resource of sequence.resources; let last = last">
 
             <!-- 0) Title first? -->
-            <mat-list>
+            <!--             <mat-list>
 
                 <h3 class="mat-subheader">
                     {{sequence.ontologyInformation.getLabelForResourceClass(resource.type)}}
@@ -17,17 +16,17 @@
                     <h2 class="mat-headline">{{resource.label}}</h2>
                 </mat-list-item>
 
-            </mat-list>
+            </mat-list> -->
 
             <!-- 1) show fileRepresentation first-->
-            <div *ngIf="resource?.fileRepresentationsToDisplay">
-                <!-- show file representation -->
-                <div *ngIf="resource.fileRepresentationsToDisplay?.stillImage && resource.fileRepresentationsToDisplay?.stillImage.length > 0"
-                     class="media">
-                    <kui-still-image class="osd-viewer" [images]="resource.fileRepresentationsToDisplay.stillImage">
-                    </kui-still-image>
-                </div>
-                <!--
+
+            <!-- show file representation -->
+            <div *ngIf="resource.fileRepresentationsToDisplay?.stillImage && resource.fileRepresentationsToDisplay?.stillImage.length > 0"
+                 class="media">
+                <kui-still-image class="osd-viewer" [images]="resource.fileRepresentationsToDisplay.stillImage">
+                </kui-still-image>
+            </div>
+            <!--
                 <div [ngSwitch]="resource.fileRepresentationsToDisplay[0].type" class="media">
                     <div *ngSwitchCase="KnoraConstants.StillImageFileValue">
                         <!-- TODO: fix: this shows only the first image, not all stillImages from fileRepresentationsToDisplay --
@@ -46,7 +45,7 @@
                 </div>
                 -->
 
-            </div>
+
 
             <!--
             <div *ngFor="let prop of resource.properties | kuiKey">
@@ -81,14 +80,22 @@
                     </div>
                 </div>
             </div>
-        -->
+            -->
             <!-- 2) show properties, annotations (list of regions, sequences etc.), incomming resources (links, files) -->
-            <div class="data">
-                <kui-properties-view [properties]="resource.properties" [guiOrder]="guiOrder"
-                                     [ontologyInfo]="sequence.ontologyInformation"
-                                     [incomingLinks]="resource.incomingLinks">
-                </kui-properties-view>
-            </div>
+            <mat-tab-group class="full-width data">
+                <!-- first tab for the main resource e.g. book -->
+                <mat-tab [label]="sequence.ontologyInformation.getLabelForResourceClass(resource.type)">
+                    <kui-properties-view [properties]="resource.properties" [guiOrder]="guiOrder"
+                                         [ontologyInfo]="sequence.ontologyInformation"
+                                         [incomingLinks]="resource.incomingLinks">
+                    </kui-properties-view>
+                </mat-tab>
+                <!-- TODO: second tab for a "part-of"-resource e.g. book page -->
+                <!-- TODO: third tab for a "region"-resource -->
+            </mat-tab-group>
+
+
+
 
             <!-- in case of more than one resource -->
             <mat-divider *ngIf="!last"></mat-divider>

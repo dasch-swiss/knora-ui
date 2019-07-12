@@ -290,6 +290,14 @@ export class ResourceViewComponent implements OnInit, OnChanges {
         );
     }
 
+    openLink(id: string) {
+
+        this.loading = true;
+        // this.routeChanged.emit(id);
+        this._router.navigate(['/resource/' + encodeURIComponent(id)]);
+
+    }
+
 
 
 
