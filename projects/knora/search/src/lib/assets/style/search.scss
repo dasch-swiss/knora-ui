@@ -207,18 +207,6 @@ $gc-small: $full-input-width - $gc-large - 4;
     }
   }
 
-  .kui-fulltext-search {
-    width: calc(#{$search-width-small-device} - 160px);
-    &.input-field {
-      input {
-        width: calc(#{$search-width-small-device} - 160px - 80px);
-      }
-    }
-    &.with-project-filter {
-      width: 360px;
-    }
-  }
-
   .kui-fulltext-search,
   .kui-menu.extended-search {
     width: calc(#{$search-width-small-device} - 160px);
