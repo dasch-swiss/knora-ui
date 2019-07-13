@@ -51,7 +51,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     ngOnChanges() {
         this.getResource(this.iri);
 
-        console.log(this.kuiStillImage.currentImageIndex);
+        // console.log(this.kuiStillImage.k;
     }
 
     /**

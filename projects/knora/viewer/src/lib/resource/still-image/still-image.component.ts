@@ -170,7 +170,6 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         if (changes['images']) {
             this.openImages();
             this.renderRegions();
-            // this.currentImageIndex.emit(this.viewer.page());
             this.unhighlightAllRegions();
             if (this.activateRegion !== undefined) {
                 this.highlightRegion(this.activateRegion);
@@ -180,6 +179,11 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             if (this.activateRegion !== undefined) {
                 this.highlightRegion(this.activateRegion);
             }
+        }
+
+        if (this.viewer) {
+            // console.log(this.viewer);
+            //            this.currentImageIndex.emit(this.viewer.currentPage());
         }
     }
 
