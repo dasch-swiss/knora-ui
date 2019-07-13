@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiServiceError, GuiOrder, IncomingService, KnoraConstants, OntologyInformation, ReadResourcesSequence, ResourceService, ResourcesSequence } from '@knora/core';
+import { ApiServiceError, GuiOrder, IncomingService, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, ResourceService, ResourcesSequence } from '@knora/core';
+import { StillImageComponent } from '../../resource';
 
 // import { Region, StillImageRepresentation } from '../../resource';
 
@@ -19,6 +20,8 @@ export class ResourceViewComponent implements OnInit, OnChanges {
      */
     @Input() iri?: string;
 
+    @ViewChild('kuiStillImage') kuiStillImage: StillImageComponent;
+
     sequence: ResourcesSequence;
 
     ontologyInfo: OntologyInformation;
@@ -29,6 +32,9 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
     // does the resource has a file representation (media file)?
     fileRepresentation: boolean;
+
+    // current resource in case of compound object
+    currentResource: ReadResource;
 
     constructor (protected _route: ActivatedRoute,
         protected _router: Router,
@@ -44,6 +50,8 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
     ngOnChanges() {
         this.getResource(this.iri);
+
+        console.log(this.kuiStillImage.currentImageIndex);
     }
 
     /**
@@ -69,7 +77,8 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
                 this.guiOrder = result.ontologyInformation.getResourceClasses()[this.sequence.resources[0].type].guiOrder;
 
-                this.loading = false;
+
+
 
                 // collect all filerepresentations to display including annotations
                 // --> for the first resource only...
@@ -90,7 +99,9 @@ export class ResourceViewComponent implements OnInit, OnChanges {
                 // wait until the resource is ready
                 setTimeout(() => {
                     // console.log(this.sequence);
-
+                    this.currentResource = this.sequence.resources[0].incomingFileRepresentations[0];
+                    console.log('currentResource', this.sequence.resources[0].incomingFileRepresentations[0]);
+                    this.loading = false;
                 }, 1000);
             },
             (error: ApiServiceError) => {
@@ -296,6 +307,12 @@ export class ResourceViewComponent implements OnInit, OnChanges {
         // this.routeChanged.emit(id);
         this._router.navigate(['/resource/' + encodeURIComponent(id)]);
 
+    }
+
+    refreshProperties(index: number) {
+        console.log('from still-image-component: ', index);
+        this.currentResource = this.sequence.resources[0].incomingFileRepresentations[index];
+        console.log(this.currentResource);
     }
 
 

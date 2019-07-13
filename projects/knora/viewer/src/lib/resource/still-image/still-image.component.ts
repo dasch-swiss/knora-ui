@@ -20,7 +20,7 @@ export class ImageRegion {
      *
      * @param regionResource a resource of type Region
      */
-    constructor(readonly regionResource: ReadResource) {
+    constructor (readonly regionResource: ReadResource) {
 
     }
 
@@ -44,7 +44,7 @@ export class StillImageRepresentation {
      * @param stillImageFileValue a [[ReadStillImageFileValue]] representing an image.
      * @param regions the regions belonging to the image.
      */
-    constructor(readonly stillImageFileValue: ReadStillImageFileValue, readonly regions: Region[]) {
+    constructor (readonly stillImageFileValue: ReadStillImageFileValue, readonly regions: Region[]) {
 
     }
 
@@ -60,7 +60,7 @@ export class GeometryForRegion {
      * @param geometry the geometrical information.
      * @param region the region the geometry belongs to.
      */
-    constructor(readonly geometry: RegionGeometry, readonly region: ReadResource) {
+    constructor (readonly geometry: RegionGeometry, readonly region: ReadResource) {
     }
 
 }
@@ -90,6 +90,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
     @Input() imageCaption?: string;
     @Input() activateRegion: string; // highlight a region
 
+    @Output() currentImageIndex: EventEmitter<number> = new EventEmitter<number>();
     @Output() regionHovered = new EventEmitter<string>();
 
     private viewer;
@@ -158,17 +159,18 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         return tileSources;
     }
 
-    constructor(private elementRef: ElementRef) {
+    constructor (private elementRef: ElementRef) {
     }
 
     ngOnChanges(changes: { [key: string]: SimpleChange }) {
         if (changes['images'] && changes['images'].isFirstChange()) {
             this.setupViewer();
+            // this.currentImageIri.emit(this.images[this.viewer.currentPage()].stillImageFileValue.id);
         }
         if (changes['images']) {
             this.openImages();
             this.renderRegions();
-
+            // this.currentImageIndex.emit(this.viewer.page());
             this.unhighlightAllRegions();
             if (this.activateRegion !== undefined) {
                 this.highlightRegion(this.activateRegion);
@@ -265,7 +267,6 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             fullPageButton: 'KUI_OSD_FULL_PAGE',
             rotateLeftButton: 'KUI_OSD_ROTATE_LEFT',        // doesn't work yet
             rotateRightButton: 'KUI_OSD_ROTATE_RIGHT'       // doesn't work yet
-
         };
         this.viewer = new OpenSeadragon.Viewer(osdOptions);
         this.viewer.addHandler('full-screen', function (args) {
@@ -278,6 +279,26 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         this.viewer.addHandler('resize', function (args) {
             args.eventSource.svgOverlay().resize();
         });
+
+        const fileValues: ReadStillImageFileValue[] = this.images.map(
+            (img) => {
+                return img.stillImageFileValue;
+            });
+
+        this.viewer.addHandler('page', function (event) {
+            console.log('event on page', event);
+            console.log('Now on page', event.page);
+            const index: number = event.page;
+            console.log('= id', fileValues[index].id);
+            const id = fileValues[index].id;
+
+            // return id;
+
+        });
+        //
+
+        // this.currentImageIri.emit(this.viewer.getCurrentImage());
+
 
     }
 
@@ -300,6 +321,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
         this.removeOverlays();
         this.viewer.open(tileSources);
+
     }
 
     /**
@@ -525,5 +547,9 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
             }
         }
         return pointsString;
+    }
+
+    getCurrentImage() {
+
     }
 }

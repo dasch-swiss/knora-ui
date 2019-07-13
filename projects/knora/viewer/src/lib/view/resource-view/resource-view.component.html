@@ -23,7 +23,9 @@
             <!-- show file representation -->
             <div *ngIf="resource.fileRepresentationsToDisplay?.stillImage && resource.fileRepresentationsToDisplay?.stillImage.length > 0"
                  class="media">
-                <kui-still-image class="osd-viewer" [images]="resource.fileRepresentationsToDisplay.stillImage">
+                <kui-still-image #kuiStillImage class="osd-viewer"
+                                 [images]="resource.fileRepresentationsToDisplay.stillImage"
+                                 (currentImageIndex)="refreshProperties($event)">
                 </kui-still-image>
             </div>
             <!--
@@ -82,7 +84,7 @@
             </div>
             -->
             <!-- 2) show properties, annotations (list of regions, sequences etc.), incomming resources (links, files) -->
-            <mat-tab-group class="full-width data">
+            <mat-tab-group animationDuration="0ms" class="full-width data">
                 <!-- first tab for the main resource e.g. book -->
                 <mat-tab [label]="sequence.ontologyInformation.getLabelForResourceClass(resource.type)">
                     <kui-properties-view [properties]="resource.properties" [guiOrder]="guiOrder"
@@ -91,6 +93,21 @@
                     </kui-properties-view>
                 </mat-tab>
                 <!-- TODO: second tab for a "part-of"-resource e.g. book page -->
+
+                <mat-tab *ngIf="resource.incomingFileRepresentations.length > 0 && currentResource"
+                         [label]="sequence.ontologyInformation.getLabelForResourceClass(currentResource.type)">
+                    <kui-properties-view [properties]="currentResource?.properties"
+                                         [guiOrder]="sequence.ontologyInformation.getResourceClasses()[currentResource.type].guiOrder"
+                                         [ontologyInfo]="sequence.ontologyInformation">
+                    </kui-properties-view>
+                    <!--
+                    <kui-properties-view [properties]="resource.incomingFileRepresentations[0].resource.properties"
+                                         [guiOrder]="sequence.ontologyInformation.getResourceClasses()[resource.incomingFileRepresentations[0].type].guiOrder"
+                                         [ontologyInfo]="sequence.ontologyInformation"
+                                         [incomingLinks]="resource.incomingFileRepresentations[0].incomingLinks">
+                    </kui-properties-view>
+                -->
+                </mat-tab>
                 <!-- TODO: third tab for a "region"-resource -->
             </mat-tab-group>
 

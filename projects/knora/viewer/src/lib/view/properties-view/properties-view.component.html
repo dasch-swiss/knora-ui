@@ -55,9 +55,10 @@
 </div>
 <div class="incoming">
 
-    <!-- annotations -->
+    <!-- annotations are resources like region, sequence etc. -->
+    <!-- TODO: we can't display incoming annotations as expected
     <div class="annotations">
-        <!-- *ngIf="annotations?.length > 0"> -->
+        <!-- *ngIf="annotations?.length > 0"> --
         <h3 class="label mat-subheading-1">
             Annotations
         </h3>
@@ -67,10 +68,10 @@
             </mat-list-item>
         </mat-list>
     </div>
+    -->
 
     <!-- incoming links -->
-    <div class="links">
-        <!-- *ngIf="incomingLinks?.length > 0"> -->
+    <div class="links" *ngIf="incomingLinks?.length > 0">
         <h3 class="label mat-subheading-1">
             Links
         </h3>

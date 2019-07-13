@@ -24,7 +24,7 @@
 
       .property-label,
       .property-value {
-        padding: 6px;
+        padding: 2px;
         overflow-wrap: break-word;
       }
 
@@ -37,7 +37,7 @@
       }
 
       .property-value {
-        padding-top: 10px;
+        padding-top: 5px;
         grid-column: 2 / span 3;
       }
     }
@@ -49,7 +49,7 @@
     display: grid;
     gap: 16px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(2, minmax(auto, 240px));
+    grid-template-rows: repeat(6, minmax(60px, auto));
 
     .annotations,
     .links {
@@ -83,4 +83,28 @@
 
 .label {
   color: rgba(0, 0, 0, 0.54);
+}
+
+@media screen and (max-width: 768px) {
+  .properties,
+  .incoming {
+    grid-column: 1 / span 6 !important;
+    gap: 0 !important;
+
+    .property {
+      gap: 0 !important;
+    }
+
+    .annotations,
+    .links,
+    .property-label,
+    .property-value {
+      grid-column: 1 / span 4 !important;
+    }
+  }
+
+  h3.label {
+    text-align: left !important;
+    margin: 16px 0 0 !important;
+  }
 }
