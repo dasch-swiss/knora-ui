@@ -182,7 +182,7 @@ $gc-small: $full-input-width - $gc-large - 4;
 }
 
 @media screen and (max-width: 1024px) {
-  .fulltext-search {
+  .kui-fulltext-search {
     width: $search-width-small-device;
 
     &.input-field {
@@ -192,24 +192,27 @@ $gc-small: $full-input-width - $gc-large - 4;
     }
   }
 
-  .fulltext-search,
+  .kui-fulltext-search,
   .kui-menu.extended-search {
     width: $search-width-small-device;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .fulltext-search {
-    width: calc(#{$search-width-small-device} - 160px);
-    &.input-field {
-      input {
-        width: calc(#{$search-width-small-device} - 160px - 80px);
-      }
+  .kui-fulltext-search-panel {
+    width: $search-width-small-device;
+
+    &.with-project-filter {
+      width: calc(#{$search-width-small-device} + 160px);
     }
   }
 
-  .fulltext-search,
+  .kui-fulltext-search,
   .kui-menu.extended-search {
-    width: calc(#{$search-width-small-device} - 80px);
+    width: calc(#{$search-width-small-device} - 160px);
+
+    &.with-project-filter {
+      width: 360px !important;
+    }
   }
 }
