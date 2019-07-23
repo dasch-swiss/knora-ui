@@ -1,3 +1,5 @@
+@import "../assets/style/responsive";
+
 //
 // disable browser's input type appearance
 //
@@ -31,10 +33,13 @@ $search-width: 480px;
 // $search-height: $search-width;
 
 // width on smaller devices
-$search-width-small-device: 360px;
+$search-width-small-device: 320px;
 
 // width of project filter
 $project-filter-width: 160px;
+
+// width of project filter on smaller devices
+$project-filter-width-small-device: 130px;
 
 // general border color
 $border-color: #ebebeb;
@@ -182,5 +187,123 @@ $border-radius: 4px;
 
   .mat-menu-item {
     text-transform: capitalize;
+  }
+}
+
+// tablet and desktop devices: greater than phone
+@media (min-width: map-get($grid-breakpoints, phone)) {
+  .kui-project-filter-mobile, .kui-fulltext-search-mobile {
+    display: none;
+    
+    &.with-project-filter {
+      display: none;
+    }
+  }
+}
+
+// mobile device: phone
+@media (max-width: map-get($grid-breakpoints, phone)) {
+  .kui-project-filter {
+    display: none;
+  }
+
+  .kui-fulltext-search {
+    display: none;
+
+    &.with-project-filter {
+      display: none !important;
+    }
+  }
+
+  .kui-fulltext-search-panel {
+    height: 100vh !important;
+    background-color: lightgray;
+    position: relative;
+    width: 100% !important;
+    z-index: 100;
+    display: block;
+
+    &.with-project-filter {
+      width: 100% !important;
+    }
+
+    .kui-project-filter-mobile {
+      height: 54px;
+      margin: 0 2% 5% 2%;
+      padding-top: 3%;
+      .kui-project-filter-button-mobile {
+        width: calc(100% - 16px);
+        margin: 8px;
+        height: 100%;
+        cursor: pointer;
+      }
+      .kui-project-filter-menu-mobile {
+        background-color: plum;
+        width: calc(100% - 16px) !important;
+        margin: 0 8px 0 8px;
+        height: 100% !important;
+      }
+    }
+
+    .kui-fulltext-search-mobile {
+        display: flex;
+        height: 64px;
+        margin-top: 5%;
+        margin-right: 2%;
+        margin-left: 2%;
+        .kui-fulltext-search-field-mobile {
+            width: 80%;
+            margin-right: 2px;
+            
+            .kui-fulltext-search-input-mobile {
+            width: 76%;
+            height: 64px;
+            border-style: none;
+            font-size: 14pt;
+            position: absolute;
+            padding-left: 12px;
+            border-radius: 5px;
+
+            &:active,
+            &:focus {
+                outline: none;
+            }
+            }
+        }
+      .kui-fulltext-search-button-mobile {
+        background-color: #ffffff;
+        width: 20%;
+        height: 64px;
+        margin-left: 2px;
+        border-radius: 5px;
+      }
+
+      .suffix {
+        border-top-left-radius: 0;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+        border-bottom-left-radius: 0;
+        margin: 1px 0 1px -3px;
+      }
+
+      .prefix,
+      .suffix {
+        border-style: none;
+        color: rgba($dark, 0.4);
+        cursor: pointer;
+        height: 100%;
+        outline: none;
+        position: relative;
+        width: 20%;
+
+        &.disabled {
+          cursor: auto;
+        }
+
+        &:active {
+          color: rgb(81, 81, 81);
+        }
+      }
+    }
   }
 }

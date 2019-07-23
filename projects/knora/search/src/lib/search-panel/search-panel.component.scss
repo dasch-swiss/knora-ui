@@ -1,3 +1,5 @@
+@import "../assets/style/responsive";
+
 .advanced-btn {
   margin-left: 10px;
 }
@@ -11,4 +13,13 @@
 // position of the elements inside the extended box
 .extended-search-box {
   margin: 12px;
+}
+
+
+// mobile device: phone
+@media (max-width: map-get($grid-breakpoints, phone)) {
+    .kui-fulltext-search {
+      height: 100%;
+      width: 100% !important;
+    }
 }
