@@ -36,6 +36,9 @@ $search-width-small-device: 360px;
 // width of project filter
 $project-filter-width: 160px;
 
+// width of project filter
+$project-filter-width-small-device: 120px;
+
 // general border color
 $border-color: #ebebeb;
 
@@ -215,4 +218,82 @@ $gc-small: $full-input-width - $gc-large - 4;
       width: 360px !important;
     }
   }
+}
+
+@media screen and (max-width: 576px) { 
+
+  .kui-search-menu-mobile {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    background-color: $bright;
+    border-radius: $border-radius;
+    overflow-y: auto;
+    width: calc(#{$search-width-small-device} - 32px);
+    min-height: 320px;
+    // height: 100%;
+    margin-top: 6px; // -40px
+    padding: 16px;
+    z-index: -1;
+    position: relative;
+  
+    &.with-project-filter {
+      width: calc(#{$search-width-small-device} + #{$project-filter-width-small-device} - 32px);
+    }
+  
+    .kui-previous-search-list-mobile {
+      .mat-list-item {
+        .kui-previous-search-item-mobile {
+          cursor: pointer;
+          padding: 12px !important;
+        }
+  
+        &:hover {
+          background-color: $grey;
+  
+          .mat-icon {
+            display: inline-block;
+          }
+        }
+  
+        .mat-icon {
+          /* display: none; */
+          color: red;
+        }
+  
+        .kui-previous-search-item-mobile {
+          display: inherit;
+  
+          .kui-project-filter-label-mobile {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: $project-filter-width-small-device;
+  
+            &.not-empty {
+              &::before {
+                content: "[";
+              }
+              &::after {
+                content: "]";
+              }
+            }
+          }
+  
+          .kui-previous-search-query-mobile {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  
+    .kui-menu-action-mobile {
+      position: absolute;
+      bottom: 0;
+      width: calc(100% - 32px);
+  
+      .center {
+        display: block;
+        margin: 12px auto;
+      }
+    }
+  }
+
 }
