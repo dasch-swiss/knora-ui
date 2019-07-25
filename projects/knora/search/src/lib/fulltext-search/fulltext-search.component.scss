@@ -273,7 +273,7 @@ $border-radius: 4px;
             width: 72%;
             height: 64px;
             border-style: solid;
-            border-width: 0.6px;
+            border-width: 0.6px; 
             border-color: $grey;
             font-size: 14pt;
             position: absolute;
@@ -290,6 +290,7 @@ $border-radius: 4px;
         background-color: #ffffff;
         width: 20%;
         height: 64px;
+        padding: 0;
         margin-left: 2px;
         border-radius: 5px;
         border-style: solid;
@@ -327,22 +328,28 @@ $border-radius: 4px;
   }
 
   ::ng-deep .cdk-overlay-pane {
-      margin-top: 36% !important;
+      /* margin-top: 20% !important; */
       position: initial !important;
-      margin-bottom: 0 !important;
+      margin-bottom: 2% !important;
       height: inherit !important;
 
     .mat-menu-panel {
       min-width: calc(100% - 32px);
       max-width: calc(100% - 32px);
-      margin: 0 16px;
+      margin: 20% 16px 1px 16px;
+      box-shadow: none;
     }
     
     .kui-search-menu-mobile {
       height: 45% !important;
       min-height: 360px;
       padding: 8px;
-      margin: 0 8px 0 8px;
+      margin: 50% 8px 0 8px;
+      box-shadow: none !important;
+
+      &.with-project-filter {
+        margin-top: 56%;
+      }
 
       .kui-menu-content-mobile {
         display: block;
