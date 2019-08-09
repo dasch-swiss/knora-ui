@@ -180,7 +180,7 @@ export class OntologyService extends ApiService {
 
     }
 
-    createProperty(data: NewProperty): Observable<ApiServiceResult> {
+    createProperty(data: NewProperty[]): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/properties';
 
         // TODO: add the following values to parameter
@@ -188,21 +188,28 @@ export class OntologyService extends ApiService {
         let onto_name: string;
         let last_onto_date: string;
 
+        const graph = [];
+
+        for (const prop of data) {
+            const prop_obj = {
+                '@id': onto_name + ':' + prop.name,
+                '@type': 'owl:ObjectProperty',
+                'rdfs:label': prop.labels,
+                'rdfs:comment': prop.comments,
+                'rdfs:subPropertyOf': prop.subPropertyOf,
+                'salsah-gui:guiElement': {
+                    '@id': prop.guiElement
+                }
+            };
+            graph.push(prop_obj);
+        }
+
         const property = {
             '@id': onto_iri,
             '@type': 'owl:Ontology',
             'knora-api:lastModificationDate': last_onto_date,
             '@graph': [
-                {
-                    '@id': onto_name + ':' + data.name,
-                    '@type': 'owl:ObjectProperty',
-                    'rdfs:label': data.labels,
-                    'rdfs:comment': data.comments,
-                    'rdfs:subPropertyOf': data.subPropertyOf,
-                    'salsah-gui:guiElement': {
-                        '@id': data.guiElement
-                    }
-                }
+                graph
             ],
             '@context': {
                 'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
