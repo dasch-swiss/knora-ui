@@ -1,4 +1,5 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
+import { StringLiteral } from '../../shared/strings';
 
 @JsonObject('ListNode')
 export class ListNode {
@@ -8,8 +9,8 @@ export class ListNode {
     @JsonProperty('name', String, true)
     public name: string = undefined;
 
-    @JsonProperty('label', String, true)
-    public label: string = undefined;
+    @JsonProperty('labels', [StringLiteral], true)
+    public labels: StringLiteral[] = undefined;
 
     @JsonProperty('children', [ListNode], true)
     public children: ListNode[] = undefined;
