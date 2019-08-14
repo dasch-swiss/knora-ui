@@ -1,8 +1,8 @@
 import { ConnectionPositionPair, Overlay, OverlayConfig, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiServiceError, Project, ProjectsService, KnoraConstants } from '@knora/core';
+import { ApiServiceError, Project, ProjectsService, KnoraConstants, StringLiteral } from '@knora/core';
 import { MatMenuTrigger } from '@angular/material';
 
 export interface PrevSearchItem {
@@ -41,6 +41,9 @@ export class FulltextSearchComponent implements OnInit {
      * filtered by one project, you can define it with project iri.
      */
     @Input() filterbyproject?: string;
+
+    @Input() show: boolean;
+    @Output() showState = new EventEmitter();
 
     @ViewChild('fulltextSearchPanel') searchPanel: ElementRef;
     @ViewChild('fulltextSearchInput') searchInput: ElementRef;
@@ -230,20 +233,28 @@ export class FulltextSearchComponent implements OnInit {
                 );
             }
         }
-        this.resetSearch();
-        this.overlayRef.detach();
+        this.resetSearch(); console.log('reset search - do search');
+        this.overlayRef.detach(); console.log('detach works on search');
+
+        this.show = false;
+        this.showState.emit(this.show);
+        console.log("show state is " + this.show);
+        /* this.overlayRef.detachBackdrop(); console.log('detach backdrop works on search');
+        this.overlayRef.dispose(); console.log('dipose works on search'); */
     }
 
     resetSearch(): void {
         this.searchPanelFocus = false;
         this.searchInput.nativeElement.blur();
         this.overlayRef.detach();
+        console.log('reset search');
     }
 
     setFocus(): void {
         this.prevSearch = JSON.parse(localStorage.getItem('prevSearch'));
         this.searchPanelFocus = true;
         this.openPanelWithBackdrop();
+        console.log('set focus');
     }
 
     doPrevSearch(prevSearch: PrevSearchItem): void {
@@ -280,6 +291,7 @@ export class FulltextSearchComponent implements OnInit {
         this.selectProject.closeMenu();
         this.searchInput.nativeElement.focus();
         this.setFocus();
+        console.log('change focus');
     }
 
 

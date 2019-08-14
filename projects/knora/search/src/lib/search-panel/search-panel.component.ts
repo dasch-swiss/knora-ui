@@ -1,6 +1,6 @@
 import { ConnectionPositionPair, Overlay, OverlayConfig, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { Component, ElementRef, Input, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, Input, TemplateRef, ViewChild, ViewContainerRef, EventEmitter, Output } from '@angular/core';
 
 /**
  * The search-panel contains the kui-fulltext-search and the kui-extended-search components.
@@ -47,7 +47,7 @@ export class SearchPanelComponent {
     // show advanced or expert search
     showAdvanced: boolean;
 
-    constructor (private _overlay: Overlay,
+    constructor(private _overlay: Overlay,
         private _viewContainerRef: ViewContainerRef, ) { }
 
     openPanelWithBackdrop(type: string) {

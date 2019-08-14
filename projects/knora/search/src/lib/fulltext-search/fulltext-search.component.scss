@@ -47,6 +47,11 @@ $border-color: #ebebeb;
 // general border radius
 $border-radius: 4px;
 
+
+//
+// general css (applied on desktop/tablet versions)
+//
+
 .center {
   text-align: center;
 }
@@ -186,7 +191,7 @@ $border-radius: 4px;
   }
 }
 
-// tablet and desktop devices: greater than phone
+// tablet and desktop devices: hide phone-version classes
 @media (min-width: map-get($grid-breakpoints, phone)) {
   .kui-project-filter-mobile {
     display: none;
@@ -202,8 +207,13 @@ $border-radius: 4px;
   }
 }
 
+
+//
 // mobile device: phone
+//
+
 @media (max-width: map-get($grid-breakpoints, phone)) {
+
   .kui-project-filter {
     display: none;
   }
@@ -216,6 +226,9 @@ $border-radius: 4px;
   }
   .kui-search-menu {
     display: none;
+    &.with-project-filter {
+      display: none !important;
+    }
   }
 
   .kui-fulltext-search-panel {
@@ -254,6 +267,14 @@ $border-radius: 4px;
       }
 
     }
+
+    /* .kui-project-filter-select-mobile {
+      width: calc(100% - 50px);
+      margin: 25px 16px 5px 16px;
+      background-color: rgba(241, 241, 241, 0.8);
+      border-radius: 3px;
+      padding: 8px;
+    } */
 
     .kui-fulltext-search-mobile {
         display: flex;
@@ -324,14 +345,8 @@ $border-radius: 4px;
   }
 
   ::ng-deep .cdk-overlay-pane {
-      position: initial !important;
-      margin-bottom: 2% !important;
-      height: inherit !important;
 
     .mat-menu-panel {
-      min-width: calc(100% - 32px);
-      max-width: calc(100% - 32px);
-      margin: 20% 16px 1px 16px;
       box-shadow: none;
     }
     
@@ -339,12 +354,8 @@ $border-radius: 4px;
       height: 45% !important;
       min-height: 360px;
       padding: 8px;
-      margin: 50% 8px 0 8px;
+      margin: 380px 8px 0 8px;
       box-shadow: none !important;
-
-      &.with-project-filter {
-        margin-top: 56%;
-      }
 
       .kui-menu-content-mobile {
         display: block;
@@ -360,5 +371,13 @@ $border-radius: 4px;
         }
       }
     }
+
+    .mat-select-panel-wrap {
+      margin-top: 20%;
+      .mat-select-panel {
+        max-height: 100% !important;
+      }
+    }
+
   }
 }

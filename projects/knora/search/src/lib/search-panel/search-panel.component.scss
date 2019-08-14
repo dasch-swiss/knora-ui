@@ -15,11 +15,10 @@
   margin: 12px;
 }
 
-
 // mobile device: phone
 @media (max-width: map-get($grid-breakpoints, phone)) {
-    .kui-fulltext-search {
-      height: 100%;
-      width: 100% !important;
-    }
+  .kui-fulltext-search {
+    height: 100%;
+    width: 100% !important;
+  }
 }

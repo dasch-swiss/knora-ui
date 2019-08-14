@@ -230,7 +230,7 @@ $gc-small: $full-input-width - $gc-large - 4;
     width: calc(#{$search-width-small-device} - 32px);
     min-height: 320px;
     // height: 100%;
-    margin-top: 6px; // -40px
+    /* margin-top: 6px; */ // -40px
     padding: 16px;
     z-index: -1;
     position: relative;
