@@ -202,9 +202,6 @@ $border-radius: 4px;
       display: none;
     }
   }
-  .kui-search-menu-mobile {
-    display: none;
-  }
 }
 
 
@@ -217,6 +214,7 @@ $border-radius: 4px;
   .kui-project-filter {
     display: none;
   }
+
   .kui-fulltext-search {
     display: none;
 
@@ -224,6 +222,7 @@ $border-radius: 4px;
       display: none !important;
     }
   }
+
   .kui-search-menu {
     display: none;
     &.with-project-filter {
@@ -303,6 +302,7 @@ $border-radius: 4px;
             }
             }
         }
+
       .kui-fulltext-search-button-mobile {
         background-color: #ffffff;
         width: 20%;
@@ -350,28 +350,6 @@ $border-radius: 4px;
       box-shadow: none;
     }
     
-    .kui-search-menu-mobile {
-      height: 45% !important;
-      min-height: 360px;
-      padding: 8px;
-      margin: 380px 8px 0 8px;
-      box-shadow: none !important;
-
-      .kui-menu-content-mobile {
-        display: block;
-        
-        .mat-list {
-          padding-bottom: 8px;
-
-          button.mat-icon-button {
-            mat-icon.mat-list-close-icon-mobile {
-              color: black !important;
-            }
-          }
-        }
-      }
-    }
-
     .mat-select-panel-wrap {
       margin-top: 20%;
       .mat-select-panel {
