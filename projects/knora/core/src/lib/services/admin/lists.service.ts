@@ -1,21 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { catchError, map } from 'rxjs/operators';
-
-import {
-    ApiServiceResult,
-    List,
-    ListCreatePayload,
-    ListInfo,
-    ListInfoResponse,
-    ListInfoUpdatePayload,
-    ListNodeInfo,
-    ListNodeInfoResponse,
-    ListResponse,
-    ListsResponse
-} from '../../declarations';
-
+import { ApiServiceResult, List, ListCreatePayload, ListInfo, ListInfoResponse, ListInfoUpdatePayload, ListNode, ListResponse, ListsResponse } from '../../declarations';
+import { ListNodeResponse } from '../../declarations/api/admin/lists/list-node.response';
 import { ApiService } from '../api.service';
 
 /**
@@ -28,7 +15,6 @@ export class ListsService extends ApiService {
 
     private path: string = '/admin/lists';
 
-
     // ------------------------------------------------------------------------
     // GET
     // ------------------------------------------------------------------------
@@ -39,7 +25,7 @@ export class ListsService extends ApiService {
      * @param {string} [projectIri]
      * @returns Observable<ListNodeInfo[]>
      */
-    getLists(projectIri?: string): Observable<ListNodeInfo[]> {
+    getLists(projectIri?: string): Observable<ListNode[]> {
         let newPath = this.path;
         if (projectIri) {
             newPath += '?projectIri=' + encodeURIComponent(projectIri);
@@ -70,8 +56,7 @@ export class ListsService extends ApiService {
      * @returns Observable<ListInfo>
      */
     getListInfo(listIri: string): Observable<ListInfo> {
-        this.path += '/infos/' + encodeURIComponent(listIri);
-        return this.httpGet(this.path).pipe(
+        return this.httpGet(this.path + '/infos/' + encodeURIComponent(listIri)).pipe(
             map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),
             catchError(this.handleJsonError)
         );
@@ -83,10 +68,9 @@ export class ListsService extends ApiService {
      * @param {string} nodeIri
      * @returns Observable<ListNodeInfo>
      */
-    getListNodeInfo(nodeIri: string): Observable<ListNodeInfo> {
-        this.path += '/nodes/' + encodeURIComponent(nodeIri);
-        return this.httpGet(this.path).pipe(
-            map((result: ApiServiceResult) => result.getBody(ListNodeInfoResponse).nodeinfo),
+    getListNodeInfo(nodeIri: string): Observable<ListNode> {
+        return this.httpGet(this.path + '/nodes/' + encodeURIComponent(nodeIri)).pipe(
+            map((result: ApiServiceResult) => result.getBody(ListNodeResponse).nodeinfo),
             catchError(this.handleJsonError)
         );
     }
@@ -121,8 +105,7 @@ export class ListsService extends ApiService {
      * @returns Observable<ListInfo>
      */
     updateListInfo(payload: ListInfoUpdatePayload): Observable<ListInfo> {
-        this.path += '/infos/' + encodeURIComponent(payload.listIri);
-        return this.httpPut(this.path, payload).pipe(
+        return this.httpPut(this.path + '/infos/' + encodeURIComponent(payload.listIri), payload).pipe(
             map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),
             catchError(this.handleJsonError)
         );
