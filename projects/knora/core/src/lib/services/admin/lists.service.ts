@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ApiServiceResult, List, ListCreatePayload, ListInfo, ListInfoResponse, ListInfoUpdatePayload, ListNode, ListResponse, ListsResponse } from '../../declarations';
+import { ListNodeUpdatePayload } from '../../declarations/api/admin/lists/list-node-update-payload';
 import { ListNodeResponse } from '../../declarations/api/admin/lists/list-node.response';
 import { ApiService } from '../api.service';
 
@@ -93,6 +94,19 @@ export class ListsService extends ApiService {
         );
     }
 
+    /**
+     * Create new list node.
+     *
+     * @param {ListNodeUpdatePayload} payload
+     * @returns Observable<ListNode>
+     */
+    createListItem(listIri: string, payload: ListNodeUpdatePayload): Observable<ListNode> {
+        return this.httpPost(this.path + '/' + encodeURIComponent(listIri), payload).pipe(
+            map((result: ApiServiceResult) => result.getBody(ListNodeResponse).nodeinfo),
+            catchError(this.handleJsonError)
+        );
+    }
+
 
     // ------------------------------------------------------------------------
     // PUT
@@ -109,6 +123,5 @@ export class ListsService extends ApiService {
             map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),
             catchError(this.handleJsonError)
         );
-
     }
 }

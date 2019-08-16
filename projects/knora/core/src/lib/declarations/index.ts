@@ -37,6 +37,7 @@ export * from './api/admin/lists/list-info-response';
 export * from './api/admin/lists/list-node';
 export * from './api/admin/lists/list-node-info';
 export * from './api/admin/lists/list-node-info-response';
+export * from './api/admin/lists/list-node-update-payload';
 export * from './api/admin/lists/list-response';
 export * from './api/admin/lists/lists-response';
 export * from './api/admin/lists/list-create-payload';
