@@ -1,8 +1,8 @@
 import { ConnectionPositionPair, Overlay, OverlayConfig, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiServiceError, Project, ProjectsService, KnoraConstants } from '@knora/core';
+import { ApiServiceError, Project, ProjectsService, KnoraConstants, StringLiteral } from '@knora/core';
 import { MatMenuTrigger } from '@angular/material';
 
 export interface PrevSearchItem {
@@ -42,6 +42,9 @@ export class FulltextSearchComponent implements OnInit {
      */
     @Input() filterbyproject?: string;
 
+    @Input() show: boolean;
+    @Output() showState = new EventEmitter();
+
     @ViewChild('fulltextSearchPanel') searchPanel: ElementRef;
     @ViewChild('fulltextSearchInput') searchInput: ElementRef;
     @ViewChild('fulltextSearchMenu') searchMenu: TemplateRef<any>;
@@ -78,7 +81,7 @@ export class FulltextSearchComponent implements OnInit {
         KnoraConstants.DefaultSharedOntologyIRI
     ];
 
-    constructor (
+    constructor(
         private _overlay: Overlay,
         private _router: Router,
         private _viewContainerRef: ViewContainerRef,
@@ -232,6 +235,9 @@ export class FulltextSearchComponent implements OnInit {
         }
         this.resetSearch();
         this.overlayRef.detach();
+
+        this.show = false;
+        this.showState.emit(this.show);
     }
 
     resetSearch(): void {
