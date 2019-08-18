@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { ApiServiceResult, List, ListCreatePayload, ListInfo, ListInfoResponse, ListInfoUpdatePayload, ListNode, ListResponse, ListsResponse } from '../../declarations';
-import { ListNodeUpdatePayload } from '../../declarations/api/admin/lists/list-node-update-payload';
-import { ListNodeResponse } from '../../declarations/api/admin/lists/list-node.response';
+import { ApiServiceResult, List, ListCreatePayload, ListInfo, ListInfoResponse, ListInfoUpdatePayload, ListNode, ListNodeResponse, ListNodeUpdatePayload, ListResponse, ListsResponse } from '../../declarations';
 import { ApiService } from '../api.service';
 
 /**
