@@ -4,7 +4,7 @@ import { KuiCoreModule } from '@knora/core';
 
 import { SessionService } from './session.service';
 
-describe('SessionService', () => {
+xdescribe('SessionService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [

@@ -5,7 +5,7 @@ import { KuiCoreModule } from '@knora/core';
 
 import { AuthGuard } from './auth.guard';
 
-describe('AuthGuard', () => {
+xdescribe('AuthGuard', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
