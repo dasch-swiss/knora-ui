@@ -16,7 +16,7 @@ describe('OntologyService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({name: '', api: 'http://0.0.0.0:3333', app: '', media: ''})
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
             ],
             providers: [
                 ApiService,

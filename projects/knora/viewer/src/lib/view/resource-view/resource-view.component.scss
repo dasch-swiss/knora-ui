@@ -1,4 +1,5 @@
 @import '../../assets/style/viewer';
+@import '../../assets/style/responsive';
 
 $width: 720px;
 
@@ -69,4 +70,16 @@ $width: 720px;
 
 .app-link:hover {
   background-color: #F1F1F1;
+}
+
+
+// mobile device: phone
+@media (max-width: map-get($grid-breakpoints, phone)) { 
+  .resource-view {
+    .resource {
+      .media {
+        width: auto;
+      }
+    }
+  }  
 }

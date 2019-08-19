@@ -18,7 +18,7 @@ describe('UsersService', () => {
             // Import the HttpClient mocking services
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
             ],
             // Provide the service-under-test and its dependencies
             providers: [

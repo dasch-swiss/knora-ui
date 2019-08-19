@@ -12,8 +12,8 @@ describe('AuthenticationService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
+                HttpClientModule,
+                KuiCoreModule.forRoot({ name: '', api: '', app: '', media: '', ontologyIRI: '' })
             ],
             providers: [
                 AuthenticationService
