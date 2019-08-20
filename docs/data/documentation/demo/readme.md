@@ -80,12 +80,12 @@ For other platforms, please go to the yarn website.
 
 #### Node
 
-Install [Node](https://nodejs.org/en/download/) in version >=4 &lt;=9. We recommend to use version 8.9.0. The easiest way to install node
+Install [Node](https://nodejs.org/en/download/) in version 10.9.0 or later. The easiest way to install node
 in the correct version is to use ['n'](https://github.com/tj/n):
 
 ```bash
 $ yarn global add n
-$ n v8.9.0
+$ n v10.9.0
 ```
 
 ### First steps
@@ -249,8 +249,16 @@ Be sure everything is merged, before creating new release.
 1. Update the documentation by running the following script from root folder: `./update_docs.sh`
 1. Commit and push all changes and make a new pull request: Release X.Y.Z
 1. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
-1. Add description to the release by using the following template
+1. Make release notes with [gren](https://github.com/github-tools/github-release-notes)
 
+```shell
+# Navigate to the knora-ui directory
+cd ~/Path/to/repo
+# Run the task
+gren release
+```
+
+<!--
 ```markdown
 Version: x.y.z
 
@@ -266,6 +274,7 @@ Bug fixes:
 
 Comments: blabla
 ```
+-->
 
 ### Publish new version on NPM
 

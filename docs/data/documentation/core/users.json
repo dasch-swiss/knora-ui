@@ -109,8 +109,12 @@
     "ignore": false,
     "line": 37,
     "codeStart": 45,
-    "code": "private getUser(identifier: string, identifierType: String): Observable<User> {\n    const path = '/admin/users/' + identifierType + '/' + encodeURIComponent(identifier);\n    return this.httpGet(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
-    "ctx": false
+    "code": "getUser(identifier: string, identifierType: String): Observable<User> {\n    const path = '/admin/users/' + identifierType + '/' + encodeURIComponent(identifier);\n    return this.httpGet(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getUser",
+      "string": "getUser()"
+    }
   },
   {
     "tags": [

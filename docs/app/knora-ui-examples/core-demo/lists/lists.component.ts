@@ -1,14 +1,14 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
-import { ApiServiceError, List, ListNodeInfo, ListsService } from '@knora/core';
+import { ApiServiceError, ListNode, ListsService } from '@knora/core';
 import { AppDemo } from '../../../app.config';
 import { Example } from '../../../app.interfaces';
 
-class ListNode {
+/* class ListNode {
     label: string;
     children: ListNode[];
     type: any;
-}
+} */
 
 @Component({
     selector: 'app-lists',
@@ -21,7 +21,7 @@ export class ListsComponent implements OnInit {
 
     projectIri: string = 'http://rdfh.ch/projects/00FF';
 
-    projectLists: ListNodeInfo[];
+    projectLists: ListNode[];
 
     treeControl: FlatTreeControl<ListNode>;
 
@@ -58,7 +58,7 @@ ngOnInit() {
         }
     };
 
-    constructor(public listsService: ListsService) {
+    constructor (public listsService: ListsService) {
     }
 
     ngOnInit() {
@@ -70,7 +70,7 @@ ngOnInit() {
     getAllLists() {
         this.listsService.getLists(this.projectIri)
             .subscribe(
-                (result: ListNodeInfo[]) => {
+                (result: ListNode[]) => {
                     this.projectLists = result;
                 },
                 (error: ApiServiceError) => {
