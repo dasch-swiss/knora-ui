@@ -24,7 +24,7 @@ export class SessionService {
      */
     readonly MAX_SESSION_TIME: number = 86400000; // 1d = 24 * 60 * 60 * 1000
 
-    constructor(
+    constructor (
         private _http: HttpClient,
         @Inject(KuiCoreConfigToken) public config,
         private _users: UsersService) {
@@ -39,6 +39,10 @@ export class SessionService {
      */
     setSession(jwt: string, username: string) {
 
+        // username can be either name or email address, so what do we have?
+        const identifierType: string = ((username.indexOf('@') > -1) ? 'email' : 'username');
+
+        /*
         this.session = {
             id: this.setTimestamp(),
             user: {
@@ -51,9 +55,10 @@ export class SessionService {
         };
         // store in the localStorage
         localStorage.setItem('session', JSON.stringify(this.session));
+        */
 
         // get user information
-        this._users.getUserByUsername(username).subscribe(
+        this._users.getUser(username, identifierType).subscribe(
             (result: User) => {
                 let sysAdmin: boolean = false;
                 const projectAdmin: string[] = [];

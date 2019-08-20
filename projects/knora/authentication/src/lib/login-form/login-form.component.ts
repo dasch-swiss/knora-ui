@@ -74,11 +74,11 @@ export class LoginFormComponent implements OnInit {
     };
 
 
-    constructor(private _auth: AuthenticationService,
-                private _session: SessionService,
-                private _fb: FormBuilder,
-                private _route: ActivatedRoute,
-                private _router: Router) {
+    constructor (private _auth: AuthenticationService,
+        private _session: SessionService,
+        private _fb: FormBuilder,
+        private _route: ActivatedRoute,
+        private _router: Router) {
     }
 
 
@@ -189,7 +189,7 @@ export class LoginFormComponent implements OnInit {
                         this.loginErrorPw = false;
                         this.loginErrorServer = false;
                     }
-                    this.errorMessage = <any> error;
+                    this.errorMessage = <any>error;
                     this.loading = false;
                 }
             );
