@@ -31,28 +31,29 @@ export class ListsComponent implements OnInit {
         name: 'getAllLists',
         code: {
             html: `
-<div *ngFor="let item of projectLists">
-    <p>{{item.labels[0].value}}</p>
-    <p *ngIf="item.comments.length > 0">{{item.comments[0].value}}</p>
-</div>`,
+<ul>
+    <li *ngFor="let item of projectLists">
+        <strong>{{item.labels[0].value}}</strong><br>
+        <span *ngIf="item.comments.length > 0">{{item.comments[0].value}}</span>
+    </li>
+</ul>`,
             ts: `
 projectIri: string;
 
-projectLists: ListNodeInfo[];
+projectLists: ListNode[];
 
 constructor(public _listsService: ListsService) {}
 
 ngOnInit() {
     this._listsService.getLists(this.projectIri)
         .subscribe(
-            (result: ListNodeInfo[]) => {
+            (result: ListNode[]) => {
                 this.projectLists = result;
             },
             (error: ApiServiceError) => {
                 console.error(error);
             }
         );
-
 }`,
             scss: ``
         }
