@@ -246,13 +246,13 @@ Be sure everything is merged, before creating new release.
 1. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json and README files
 1. Update the version number (X.Y.Z) in the main package.json
 1. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts` and the README files of each module
-1. Update the documentation by running the following script from root folder: `./update_docs.sh`
+1. Update the documentation by running the following command: `yarn build-docs`
 1. Commit and push all changes and make a new pull request: Release X.Y.Z
 1. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
 1. Make release notes with [gren](https://github.com/github-tools/github-release-notes)
 
 ```shell
-# Navigate to the knora-ui directory
+# Navigate to the knora-ui root directory
 cd ~/Path/to/repo
 # Run the task
 gren release
@@ -279,5 +279,5 @@ Comments: blabla
 ### Publish new version on NPM
 
 1. Checkout **Master** branch
-1. Build all modules with `build-lib-prod`
+1. Build all modules with `yarn build-lib-prod`
 1. Publish them from each module folder with `npm publish`
