@@ -252,9 +252,9 @@ Be sure everything is merged, before creating new release.
 1. Make release notes with [gren](https://github.com/github-tools/github-release-notes)
 
 ```shell
-# Navigate to your project directory
+# Navigate to the knora-ui directory
 cd ~/Path/to/repo
-# Run the task (see below)
+# Run the task
 gren release
 ```
 
