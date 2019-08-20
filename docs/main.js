@@ -1251,6 +1251,9 @@ var SessionService = /** @class */ /*@__PURE__*/ (function () {
      */
     SessionService.prototype.setSession = function (jwt, username) {
         var _this = this;
+        // username can be either name or email address, so what do we have?
+        var identifierType = ((username.indexOf('@') > -1) ? 'email' : 'username');
+        /*
         this.session = {
             id: this.setTimestamp(),
             user: {
@@ -1263,8 +1266,9 @@ var SessionService = /** @class */ /*@__PURE__*/ (function () {
         };
         // store in the localStorage
         localStorage.setItem('session', JSON.stringify(this.session));
+        */
         // get user information
-        this._users.getUserByUsername(username).subscribe(function (result) {
+        this._users.getUser(username, identifierType).subscribe(function (result) {
             var e_1, _a;
             var sysAdmin = false;
             var projectAdmin = [];
@@ -1423,7 +1427,13 @@ var AuthenticationService = /** @class */ /*@__PURE__*/ (function () {
     AuthenticationService.prototype.login = function (username, password) {
         // console.log('AuthenticationService - login - api: ', this.config.api);
         var _this = this;
-        return this.http.post(this.config.api + '/v2/authentication', { username: username, password: password }, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (response) {
+        var params = { username: username, password: password };
+        // username can be either name or email address, so what do we have?
+        if (username.indexOf('@') > -1) {
+            // username is email address
+            params = { email: username, password: password };
+        }
+        return this.http.post(this.config.api + '/v2/authentication', params, { observe: 'response' }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (response) {
             return response;
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["catchError"])(function (error) {
             return _this.handleRequestError(error);
@@ -4763,7 +4773,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Returns a list of all lists.
      *
      * @param {string} [projectIri]
-     * @returns Observable<ListNodeInfo[]>
+     * @returns Observable<ListNode[]>
      */
     ListsService.prototype.getLists = function (projectIri) {
         var newPath = this.path;
@@ -4794,7 +4804,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Return a list node info object.
      *
      * @param {string} nodeIri
-     * @returns Observable<ListNodeInfo>
+     * @returns Observable<ListNode>
      */
     ListsService.prototype.getListNodeInfo = function (nodeIri) {
         return this.httpGet(this.path + '/nodes/' + encodeURIComponent(nodeIri)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (result) { return result.getBody(ListNodeResponse).nodeinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["catchError"])(this.handleJsonError));
@@ -4814,6 +4824,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Create new list node.
      *
+     * @param {string} listIri
      * @param {ListNodeUpdatePayload} payload
      * @returns Observable<ListNode>
      */
@@ -15277,7 +15288,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Returns a list of all lists.
      *
      * @param {string} [projectIri]
-     * @returns Observable<ListNodeInfo[]>
+     * @returns Observable<ListNode[]>
      */
     ListsService.prototype.getLists = function (projectIri) {
         var newPath = this.path;
@@ -15308,7 +15319,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
      * Return a list node info object.
      *
      * @param {string} nodeIri
-     * @returns Observable<ListNodeInfo>
+     * @returns Observable<ListNode>
      */
     ListsService.prototype.getListNodeInfo = function (nodeIri) {
         return this.httpGet(this.path + '/nodes/' + encodeURIComponent(nodeIri)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (result) { return result.getBody(_declarations__WEBPACK_IMPORTED_MODULE_2__["ListNodeResponse"]).nodeinfo; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(this.handleJsonError));
@@ -15328,6 +15339,7 @@ var ListsService = /** @class */ /*@__PURE__*/ (function (_super) {
     /**
      * Create new list node.
      *
+     * @param {string} listIri
      * @param {ListNodeUpdatePayload} payload
      * @returns Observable<ListNode>
      */
@@ -22398,8 +22410,8 @@ var ListsComponent = /** @class */ /*@__PURE__*/ (function () {
             subtitle: 'returns a list of all lists',
             name: 'getAllLists',
             code: {
-                html: "\n<div *ngFor=\"let item of projectLists\">\n    <p>{{item.labels[0].value}}</p>\n    <p *ngIf=\"item.comments.length > 0\">{{item.comments[0].value}}</p>\n</div>",
-                ts: "\nprojectIri: string;\n\nprojectLists: ListNodeInfo[];\n\nconstructor(public _listsService: ListsService) {}\n\nngOnInit() {\n    this._listsService.getLists(this.projectIri)\n        .subscribe(\n            (result: ListNodeInfo[]) => {\n                this.projectLists = result;\n            },\n            (error: ApiServiceError) => {\n                console.error(error);\n            }\n        );\n\n}",
+                html: "\n<ul>\n    <li *ngFor=\"let item of projectLists\">\n        <strong>{{item.labels[0].value}}</strong><br>\n        <span *ngIf=\"item.comments.length > 0\">{{item.comments[0].value}}</span>\n    </li>\n</ul>",
+                ts: "\nprojectIri: string;\n\nprojectLists: ListNode[];\n\nconstructor(public _listsService: ListsService) {}\n\nngOnInit() {\n    this._listsService.getLists(this.projectIri)\n        .subscribe(\n            (result: ListNode[]) => {\n                this.projectLists = result;\n            },\n            (error: ApiServiceError) => {\n                console.error(error);\n            }\n        );\n}",
                 scss: ""
             }
         };
