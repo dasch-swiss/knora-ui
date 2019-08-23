@@ -1,3 +1,5 @@
+@import "../../assets/style/responsive";
+
 $accent: rgba(255, 196, 0, 1);
 $primary: rgba(0, 105, 92, 1);
 $warn: rgb(244, 67, 54);
@@ -80,4 +82,19 @@ $warn: rgb(244, 67, 54);
     text-align: center;
   }
 
+}
+
+
+// mobile device: phone
+@media (max-width: map-get($grid-breakpoints, phone)) { 
+
+  .kui-panel {
+    white-space: normal;
+  }
+
+  .kui-short-message {
+    .kui-short-message-text {
+      text-align: left;
+    }
+  }
 }

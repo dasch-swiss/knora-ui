@@ -42,7 +42,7 @@ export class UsersService extends ApiService {
      * @param  {String} identifierType
      * @returns Observable<User>
      */
-    private getUser(identifier: string, identifierType: String): Observable<User> {
+    getUser(identifier: string, identifierType: String): Observable<User> {
         const path = '/admin/users/' + identifierType + '/' + encodeURIComponent(identifier);
         return this.httpGet(path).pipe(
             map((result: ApiServiceResult) => result.getBody(UserResponse).user),

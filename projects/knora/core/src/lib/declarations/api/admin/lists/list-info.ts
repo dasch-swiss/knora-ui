@@ -7,8 +7,14 @@ export class ListInfo {
     @JsonProperty('id', String, false)
     public id: string = undefined;
 
-    @JsonProperty('projectIri', String, false)
+    @JsonProperty('name', String, true)
+    public name: string = undefined;
+
+    @JsonProperty('projectIri', String, true)
     public projectIri: string = undefined;
+
+    @JsonProperty('isRootNode', Boolean, true)
+    public isRootNode: boolean = undefined;
 
     @JsonProperty('labels', [StringLiteral], true)
     public labels: StringLiteral[] = undefined;
