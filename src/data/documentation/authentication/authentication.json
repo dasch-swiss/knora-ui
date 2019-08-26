@@ -163,7 +163,7 @@
     "ignore": false,
     "line": 49,
     "codeStart": 57,
-    "code": "login(username: string, password: string): Observable<any> {\n\n    // console.log('AuthenticationService - login - api: ', this.config.api);\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        { username: username, password: password },\n        { observe: 'response' }).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}",
+    "code": "login(username: string, password: string): Observable<any> {\n\n    // console.log('AuthenticationService - login - api: ', this.config.api);\n\n    let params: any = { username: username, password: password };\n\n    // username can be either name or email address, so what do we have?\n    if (username.indexOf('@') > -1) {\n        // username is email address\n        params = { email: username, password: password };\n    }\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        params,\n        { observe: 'response' }).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}",
     "ctx": {
       "type": "method",
       "name": "login",
@@ -196,8 +196,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 76,
-    "codeStart": 81,
+    "line": 83,
+    "codeStart": 88,
     "code": "logout() {\n    // destroy the session\n    localStorage.removeItem('session');\n}",
     "ctx": {
       "type": "method",
@@ -248,8 +248,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 87,
-    "codeStart": 94,
+    "line": 94,
+    "codeStart": 101,
     "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    const serviceError = new ApiServiceError();\n    serviceError.header = { 'server': error.headers.get('Server') };\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}\n}",
     "ctx": false
   }
