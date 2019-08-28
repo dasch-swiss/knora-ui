@@ -2,7 +2,8 @@ import { Component, Directive, Host, Inject, Input, OnDestroy, OnInit } from '@a
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { KnoraConstants, PropertyValue, Value, ValueLiteral } from '@knora/core';
 import { GregorianCalendarDate, JDNConvertibleCalendar, JDNPeriod } from 'jdnconvertiblecalendar';
-import { DateAdapter, MAT_DATE_LOCALE, MatCalendar, MatDatepickerContent } from '@angular/material';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatCalendar, MatDatepickerContent } from '@angular/material/datepicker';
 import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateadapter';
 
 /** Custom header component containing a calendar format switcher */

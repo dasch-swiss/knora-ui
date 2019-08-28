@@ -5,7 +5,11 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { KuiCoreConfig, KuiCoreConfigToken, ListCacheService, Property } from '@knora/core';
-import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ListDisplayComponent } from './list-display/list-display.component';
@@ -96,7 +100,7 @@ describe('ListValueComponent', () => {
 
     it('should get the selected list node', () => {
 
-        testHostComponent.listValue.form.setValue({'listValue': 'http://rdfh.ch/lists/0001/treeList/01'});
+        testHostComponent.listValue.form.setValue({ 'listValue': 'http://rdfh.ch/lists/0001/treeList/01' });
 
         const expectedListNode = new IRI('http://rdfh.ch/lists/0001/treeList/01');
 
@@ -120,7 +124,7 @@ class TestHostComponent implements OnInit {
     form;
     property: Property;
 
-    @ViewChild('listVal') listValue: ListValueComponent;
+    @ViewChild('listVal', { static: false }) listValue: ListValueComponent;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }

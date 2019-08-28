@@ -124,7 +124,7 @@ describe('LinkValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('linkVal') linkValueComponent: LinkValueComponent;
+    @ViewChild('linkVal', { static: false }) linkValueComponent: LinkValueComponent;
 
     linkValue;
     ontoInfo;

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BooleanValueComponent } from './boolean-value.component';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadBooleanValue } from '@knora/core';
-import { MatCheckbox, MatCheckboxModule } from '@angular/material';
+import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 import { By } from '@angular/platform-browser';
 
 describe('BooleanValueComponent', () => {
@@ -83,7 +83,7 @@ describe('BooleanValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('boolVal') booleanValueComponent: BooleanValueComponent;
+    @ViewChild('boolVal', { static: false }) booleanValueComponent: BooleanValueComponent;
 
     boolValue;
 

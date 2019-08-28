@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -74,7 +77,7 @@ describe('UriValueComponent', () => {
 
         matInput.nativeElement.value = 'http://www.knra.org';
 
-        matInput.triggerEventHandler('input', {target: matInput.nativeElement});
+        matInput.triggerEventHandler('input', { target: matInput.nativeElement });
 
         testHostFixture.detectChanges();
 
@@ -95,7 +98,7 @@ class TestHostComponent implements OnInit {
 
     form;
 
-    @ViewChild('uriVal') uriValue: UriValueComponent;
+    @ViewChild('uriVal', { static: false }) uriValue: UriValueComponent;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }

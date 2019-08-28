@@ -32,7 +32,7 @@ describe('ListValueComponent', () => {
                 RouterTestingModule.withRoutes([]),
             ],
             providers: [
-                {provide: ListCacheService, useValue: spyListCacheService},
+                { provide: ListCacheService, useValue: spyListCacheService },
                 {
                     provide: ActivatedRoute,
                     useValue: {
@@ -118,7 +118,7 @@ describe('ListValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('listVal') listValueComponent: ListValueComponent;
+    @ViewChild('listVal', { static: false }) listValueComponent: ListValueComponent;
 
     listValue;
 

@@ -1,15 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-    MatAutocompleteModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-    MatMenuModule
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 import { SpecifyPropertyValueComponent } from './specify-property-value.component';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
@@ -176,9 +174,9 @@ class TestHostComponent implements OnInit {
 
     activeProperty: Property;
 
-    @ViewChild('propValue') specifyPropValueComp: SpecifyPropertyValueComponent;
+    @ViewChild('propValue', { static: false }) specifyPropValueComp: SpecifyPropertyValueComponent;
 
-    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     ngOnInit() {

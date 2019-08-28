@@ -13,11 +13,11 @@
     "dhlab basel"
   ],
   "peerDependencies": {
-    "@angular/common": "^7.2.7",
-    "@angular/core": "^7.2.7",
-    "@angular/animations": "^7.2.7",
-    "@angular/cdk": "^7.3.3",
-    "@angular/material": "^7.3.3",
+    "@angular/common": "^8.0.3",
+    "@angular/core": "^8.0.3",
+    "@angular/animations": "^8.0.3",
+    "@angular/cdk": "^8.0.1",
+    "@angular/material": "^8.0.1",
     "@knora/action": "8.2.0",
     "@knora/core": "8.2.0",
     "moment": "^2.22.2"

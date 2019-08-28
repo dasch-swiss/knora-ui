@@ -9,7 +9,8 @@ import {
     StillImageRepresentation
 } from '@knora/core';
 import { StillImageComponent } from './still-image.component';
-import { MatIconModule, MatToolbarModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 // Attention: make sure OpenSeadragon and svg-overlay have to be loaded
 // projects/knora/viewer/karma.conf.js -> 'files' needs to contain the js
@@ -48,7 +49,6 @@ describe('StillImageOSDViewerComponent', () => {
     it('should have initialized viewer after resources change', () => {
         host.resourcesHost = images;
         fixture.detectChanges();
-
         expect(component['viewer']).toBeTruthy();
     });
 
@@ -154,7 +154,7 @@ class TestHostComponent {
     activeRegion: string;
     inputActivateRegion: string;
 
-    @ViewChild(StillImageComponent) osdViewerComp: StillImageComponent;
+    @ViewChild(StillImageComponent, { static: true }) osdViewerComp: StillImageComponent;
 
     regionActive(regionIri: string) {
         this.activeRegion = regionIri;

@@ -240,7 +240,7 @@ describe('DateValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('dateVal') dateValueComponent: DateValueComponent;
+    @ViewChild('dateVal', { static: false }) dateValueComponent: DateValueComponent;
 
     dateValue;
     calendar = true;

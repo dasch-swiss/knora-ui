@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SortButtonComponent } from './sort-button.component';
-import { MatIconModule, MatMenuModule, } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Component, DebugElement, OnInit, ViewChild, } from '@angular/core';
@@ -115,7 +116,7 @@ describe('SortButtonComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('sortButton') sortButtonComponent: SortButtonComponent;
+    @ViewChild('sortButton', { static: false }) sortButtonComponent: SortButtonComponent;
 
     sortProps: any = [{
         key: 'prename',

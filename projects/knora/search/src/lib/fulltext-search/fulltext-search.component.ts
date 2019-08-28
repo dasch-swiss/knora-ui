@@ -41,15 +41,14 @@ export class FulltextSearchComponent implements OnInit {
      * filtered by one project, you can define it with project iri.
      */
     @Input() filterbyproject?: string;
-
     @Input() show: boolean;
     @Output() showState = new EventEmitter();
 
-    @ViewChild('fulltextSearchPanel') searchPanel: ElementRef;
-    @ViewChild('fulltextSearchInput') searchInput: ElementRef;
-    @ViewChild('fulltextSearchMenu') searchMenu: TemplateRef<any>;
+    @ViewChild('fulltextSearchPanel', { static: false }) searchPanel: ElementRef;
+    @ViewChild('fulltextSearchInput', { static: false }) searchInput: ElementRef;
+    @ViewChild('fulltextSearchMenu', { static: false }) searchMenu: TemplateRef<any>;
 
-    @ViewChild('btnToSelectProject') selectProject: MatMenuTrigger;
+    @ViewChild('btnToSelectProject', { static: false }) selectProject: MatMenuTrigger;
 
     // search query
     searchQuery: string;

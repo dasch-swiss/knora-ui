@@ -80,7 +80,7 @@ describe('TextfileValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-  @ViewChild('textfileVal') textfileValueComponent: TextfileValueComponent;
+  @ViewChild('textfileVal', { static: false }) textfileValueComponent: TextfileValueComponent;
 
   textfileValue;
 
