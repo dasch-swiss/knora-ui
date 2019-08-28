@@ -37,7 +37,7 @@ This module has the following package dependencies, which you also have to insta
 -   jdnconvertiblecalendar@0.0.2
 -   jdnconvertiblecalendardateadapter@0.0.7
 
-### Required version of Knora: 8.0.0
+### Required version of Knora: 8.1.0
 
 ## Setup
 

@@ -13,7 +13,7 @@ But you can use only @knora/core which contains almost all services for the Knor
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora v8.0.0](https://github.com/dhlab-basel/Knora/releases/tag/v8.0.0).
+This version of Knora-ui requires [Knora v8.1.0](https://github.com/dhlab-basel/Knora/releases/tag/v8.1.0).
 
 ## Already published modules
 
@@ -237,7 +237,7 @@ $ yalc remove --all
 ## Publish new version
 Be sure everything is merged, before creating new release.
 
-### Required version of Knora: 8.0.0
+### Required version of Knora: 8.1.0
 
 ### Update the documentation and the version number
 
