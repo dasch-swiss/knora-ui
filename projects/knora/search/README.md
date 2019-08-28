@@ -28,11 +28,11 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 This module has the following package dependencies, which you also have to install.
 
-- @angular/common@7.2.7
-- @angular/core@7.2.7
-- @knora/action@8.2.0
-- @knora/core@8.2.0
-- @knora/viewer@8.2.0
+- @angular/common@8.0.3
+- @angular/core@8.0.3
+- @knora/action@9.0.0
+- @knora/core@9.0.0
+- @knora/viewer@9.0.0
 - jdnconvertiblecalendardateadapter@0.0.7
 
 ### Required version of Knora: 8.0.0
