@@ -7,13 +7,13 @@
 
 This is the demo and developing environment for Knora ui modules.
 
-The modules helps to create a graphical user interface, a web application to use [Knora](https://www.knora.org) in a quick and simple way. The modules are written in typescript to use them with [Angular](https://angular.io) (version 7). We decided to style the components and directives with [material design](https://material.angular.io).
+The modules helps to create a graphical user interface, a web application to use [Knora](https://www.knora.org) in a quick and simple way. The modules are written in typescript to use them with [Angular](https://angular.io) (version 8). We decided to style the components and directives with [material design](https://material.angular.io).
 
 But you can use only @knora/core which contains almost all services for the Knora web API. Knora is a software framework for storing, sharing, and working with primary sources and data in the humanities.
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora v8.0.0](https://github.com/dhlab-basel/Knora/releases/tag/v8.0.0).
+This version of Knora-ui requires [Knora v8.1.0](https://github.com/dhlab-basel/Knora/releases/tag/v8.1.0).
 
 ## Already published modules
 
@@ -66,7 +66,7 @@ The action module contains special buttons (e.g. to sort a list), pipes and dire
 
 ### Prerequisites
 
-We develop the Knora-ui modules with Angular 6, especially with Angular-cli, which requires the following tools:
+We develop the Knora-ui modules with Angular 8, especially with Angular-cli, which requires the following tools:
 
 #### Yarn
 
@@ -237,7 +237,7 @@ $ yalc remove --all
 ## Publish new version
 Be sure everything is merged, before creating new release.
 
-### Required version of Knora: 8.0.0
+### Required version of Knora: 8.1.0
 
 ### Update the documentation and the version number
 
