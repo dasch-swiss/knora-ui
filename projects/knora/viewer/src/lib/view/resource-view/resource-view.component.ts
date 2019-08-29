@@ -20,7 +20,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
      */
     @Input() iri?: string;
 
-    @ViewChild('kuiStillImage') kuiStillImage: StillImageComponent;
+    @ViewChild('kuiStillImage', { static: false }) kuiStillImage: StillImageComponent;
 
     sequence: ResourcesSequence;
 
