@@ -6,7 +6,7 @@
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
       "@knora/core": "@knora/core",
-      "tsMd5": "ts-md5",
+      "ts-md5": "ts-md5",
       "jdnconvertiblecalendardateadapter": "jdnconvertiblecalendardateadapter"
     }
   }
