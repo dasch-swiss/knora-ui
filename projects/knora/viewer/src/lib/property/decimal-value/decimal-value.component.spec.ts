@@ -69,7 +69,7 @@ describe('DecimalValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('decimalVal') decimalValueComponent: DecimalValueComponent;
+    @ViewChild('decimalVal', { static: false }) decimalValueComponent: DecimalValueComponent;
 
     decimalValue;
 

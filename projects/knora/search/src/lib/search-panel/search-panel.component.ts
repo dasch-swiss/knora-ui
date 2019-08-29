@@ -36,10 +36,10 @@ export class SearchPanelComponent {
      */
     @Input() expert?: boolean = false;
 
-    @ViewChild('fullSearchPanel') searchPanel: ElementRef;
+    @ViewChild('fullSearchPanel', { static: false }) searchPanel: ElementRef;
 
-    @ViewChild('searchMenu') searchMenu: TemplateRef<any>;
-    //    @ViewChild('expertSearchMenu') expertMenu: TemplateRef<any>;
+    @ViewChild('searchMenu', { static: false }) searchMenu: TemplateRef<any>;
+    //    @ViewChild('expertSearchMenu', {static:false}) expertMenu: TemplateRef<any>;
 
     // overlay reference
     overlayRef: OverlayRef;

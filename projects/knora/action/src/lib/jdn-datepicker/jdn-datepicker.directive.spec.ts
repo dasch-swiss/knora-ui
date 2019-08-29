@@ -2,13 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import {
-    DateAdapter,
-    MAT_DATE_LOCALE,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule
-} from '@angular/material';
+import { DateAdapter, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { JdnDatepickerDirective } from './jdn-datepicker.directive';
 import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateadapter';

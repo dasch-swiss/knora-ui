@@ -68,7 +68,7 @@ describe('TextValueAsXmlComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('xmlVal') xmlValueComponent: TextValueAsXmlComponent;
+    @ViewChild('xmlVal', { static: false }) xmlValueComponent: TextValueAsXmlComponent;
 
     xmlValue;
 

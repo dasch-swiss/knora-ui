@@ -73,7 +73,7 @@ describe('IntervalValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('intervalVal') intervalValueComponent: IntervalValueComponent;
+    @ViewChild('intervalVal', { static: false }) intervalValueComponent: IntervalValueComponent;
 
     intervalValue;
 

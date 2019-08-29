@@ -4,7 +4,8 @@ import { Component, DebugElement, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { existingNamesValidator } from '../existing-name/existing-name.directive';
 import { By } from '@angular/platform-browser';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ExistingNameDirective', () => {

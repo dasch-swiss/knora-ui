@@ -50,7 +50,7 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
     }
 
     // reference to child component: combination of comparison operator and value for chosen property
-    @ViewChild('specifyPropertyValue') specifyPropertyValue: SpecifyPropertyValueComponent;
+    @ViewChild('specifyPropertyValue', { static: false }) specifyPropertyValue: SpecifyPropertyValueComponent;
 
     // properties that can be selected from
     private _properties: Properties;
@@ -66,7 +66,7 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
     // unique name for this property to be used in the parent FormGroup
     propIndex: string;
 
-    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
 
     }
 

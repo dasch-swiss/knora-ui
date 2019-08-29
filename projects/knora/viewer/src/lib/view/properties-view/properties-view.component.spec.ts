@@ -1,10 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PropertiesViewComponent } from './properties-view.component';
 import { MatCardModule, MatListModule, MatTabsModule, MatCheckboxModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { KuiCoreModule } from '@knora/core';
-
 import { BooleanValueComponent } from '../../property/boolean-value/boolean-value.component';
 import { ColorValueComponent } from '../../property/color-value/color-value.component';
 import { DateValueComponent } from '../../property/date-value/date-value.component';

@@ -113,7 +113,7 @@ describe('TextValueAsHtmlComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('htmlVal') htmlValueComponent: TextValueAsHtmlComponent;
+    @ViewChild('htmlVal', { static: false }) htmlValueComponent: TextValueAsHtmlComponent;
 
     htmlValue;
     ontoInfo;

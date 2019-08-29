@@ -72,7 +72,7 @@ describe('GeometryValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('geometryVal') geometryValueComponent: GeometryValueComponent;
+    @ViewChild('geometryVal', { static: false }) geometryValueComponent: GeometryValueComponent;
 
     geometryValue;
 

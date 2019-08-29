@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateadapter';
-import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { JDNConvertibleCalendar } from 'jdnconvertiblecalendar';
 
 /**
