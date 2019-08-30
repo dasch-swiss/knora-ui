@@ -16,10 +16,10 @@ module.exports = {
     },
     "groupBy": {
         "Breaking changes": ["breaking"],
-        "Enhancements:": ["enhancement", "feat"],
-        "Bug Fixes:": ["fix", "bug", "invalid", "warnging"],
-        "Documentation:": ["docs", "documentation", "manual"],
-        "Styling:": ["styling", "style"],
+        "Enhancements": ["enhancement", "feat"],
+        "Bug Fixes": ["fix", "bug", "invalid", "warnging"],
+        "Documentation": ["docs", "documentation", "manual"],
+        "Styling": ["styling", "style"],
         "Other": ["chore", "refactor"]
     }
 };
