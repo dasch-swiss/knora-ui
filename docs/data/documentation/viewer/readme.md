@@ -39,7 +39,7 @@ This module has the following package dependencies, which you also have to insta
 -   @knora/action@9.0.0
 -   @knora/core@9.0.0
 
-### Required version of Knora: 8.1.0
+### Required version of Knora: 9.0.0
 
 ## Setup
 
