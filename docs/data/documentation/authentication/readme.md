@@ -37,7 +37,7 @@ This module has the following package dependencies, which you also have to insta
 -   @knora/core@9.0.0
 -   moment@2.22.2
 
-### Required version of Knora: 8.1.0
+### Required version of Knora: 9.0.0
 
 ## Setup
 

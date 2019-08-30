@@ -8360,7 +8360,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/dhlab/code/Knora-ui/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js");
+module.exports = __webpack_require__(/*! /Users/ak/Code/knora-ui/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js");
 
 
 /***/ })
