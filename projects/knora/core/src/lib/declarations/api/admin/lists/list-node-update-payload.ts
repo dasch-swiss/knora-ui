@@ -12,7 +12,7 @@ export interface ListNodeUpdatePayload {
     // not sure if it's required
     name: string;
 
-    // can be an empty array
+    // at least one label needs to be supplied
     labels: StringLiteral[];
 
     // can be an empty array
