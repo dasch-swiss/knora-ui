@@ -18,7 +18,7 @@ import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateada
     styleUrls: ['./header-calendar.component.scss']
 })
 export class HeaderComponent<D> implements OnInit {
-    constructor(@Host() private _calendar: MatCalendar<JDNConvertibleCalendar>,
+    constructor (@Host() private _calendar: MatCalendar<JDNConvertibleCalendar>,
         private _dateAdapter: DateAdapter<JDNConvertibleCalendar>,
         private _datepickerContent: MatDatepickerContent<JDNConvertibleCalendar>,
         @Inject(FormBuilder) private fb: FormBuilder) {
