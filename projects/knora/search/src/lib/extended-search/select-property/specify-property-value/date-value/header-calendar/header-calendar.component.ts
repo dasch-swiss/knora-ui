@@ -27,7 +27,7 @@ export class HeaderComponent<D> implements OnInit {
     form: FormGroup;
 
     // a list of supported calendar formats (Gregorian and Julian)
-    supportedCalendarFormats = JDNConvertibleCalendar.supportedCalendars;
+    supportedCalendarFormats = ['Gregorian', 'Julian'];
 
     // the currently active calendar format
     activeFormat;
