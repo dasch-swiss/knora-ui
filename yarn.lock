@@ -4304,15 +4304,15 @@ jasminewd2@^2.1.0:
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
   integrity sha1-43zwsX8ZnM4jvqcbIDk5Uka07E4=
 
-jdnconvertiblecalendar@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/jdnconvertiblecalendar/-/jdnconvertiblecalendar-0.0.3.tgz#a4e6106340b27bc06bf08cd00912960c666693cc"
-  integrity sha512-AxqmzIkHLE/iEZuej5S9zTqXOAvtHJIk6iMPM3tLBha9UBclxXqXGeqJtclMflVHuvpzm06e0zJ2YVCSA8vtQg==
+jdnconvertiblecalendar@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/jdnconvertiblecalendar/-/jdnconvertiblecalendar-0.0.5.tgz#84179c03922ff730fbae2b07b89b2aa9b84e5bf6"
+  integrity sha512-/yBqMepJNHxy+yS4Llt0KQPsHGkMi1FVwcE77cpiJZh2RwoNyGBXOwFz4Am5FNZYBF3oiL39FMzHRwwf6yl6xg==
 
-jdnconvertiblecalendardateadapter@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/jdnconvertiblecalendardateadapter/-/jdnconvertiblecalendardateadapter-0.0.9.tgz#b02f044139b28cfa0e631f779caa270a91e67ddf"
-  integrity sha512-LnAlZ6pE9lOa5eSWydpLAeBJ297z2HaWIp2GB5AQgackPkl/LNdP/zBpa5rvUOywpuuuKFfocLwIL1UVMn8xtA==
+jdnconvertiblecalendardateadapter@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/jdnconvertiblecalendardateadapter/-/jdnconvertiblecalendardateadapter-0.0.10.tgz#bd007c2f1e5e67d99a93e067d11d12afb84e980b"
+  integrity sha512-qqbWdSe5owgGtRu24QV64IvR4zeE0icnVnRF9eC1Gz+L6wPmOpjPfUfkj+Hs/z14KK0/ADTl7HcslYbO0N2vtw==
   dependencies:
     tslib "^1.9.0"
 

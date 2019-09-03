@@ -18,7 +18,7 @@ import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateada
     styleUrls: ['./header-calendar.component.scss']
 })
 export class HeaderComponent<D> implements OnInit {
-    constructor (@Host() private _calendar: MatCalendar<JDNConvertibleCalendar>,
+    constructor(@Host() private _calendar: MatCalendar<JDNConvertibleCalendar>,
         private _dateAdapter: DateAdapter<JDNConvertibleCalendar>,
         private _datepickerContent: MatDatepickerContent<JDNConvertibleCalendar>,
         @Inject(FormBuilder) private fb: FormBuilder) {
@@ -36,7 +36,7 @@ export class HeaderComponent<D> implements OnInit {
 
         // get the currently active calendar format from the date adapter
         if (this._dateAdapter instanceof JDNConvertibleCalendarDateAdapter) {
-            this.activeFormat = this._dateAdapter.activeCalendarFormat;
+            this.activeFormat = this._dateAdapter.activeCalendar;
         } else {
             console.log('date adapter is expected to be an instance of JDNConvertibleCalendarDateAdapter');
         }
@@ -64,7 +64,7 @@ export class HeaderComponent<D> implements OnInit {
         if (this._dateAdapter instanceof JDNConvertibleCalendarDateAdapter) {
 
             // convert the date into the target calendar format
-            const convertedDate = this._dateAdapter.convertCalendarFormat(this._calendar.activeDate, calendar);
+            const convertedDate = this._dateAdapter.convertCalendar(this._calendar.activeDate, calendar);
 
             // set the new date
             this._calendar.activeDate = convertedDate;
