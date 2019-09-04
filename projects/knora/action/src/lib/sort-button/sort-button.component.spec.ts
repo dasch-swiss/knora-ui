@@ -74,14 +74,14 @@ describe('SortButtonComponent', () => {
         const matMenuEl = spanEl.query(By.css('mat-menu'));
 
         const sortSelectionEl = matMenuEl.references.sortSelection;
-
+        console.log('sort selection: ', sortSelectionEl.items._results[2]._elementRef.nativeElement.innerText);
         // expect that items's names of the sort list are 'Prename', 'Last name' and 'Creator'
-        expect(sortSelectionEl._items[0]._elementRef.nativeElement.innerText).toEqual('Prename');
-        expect(sortSelectionEl._items[1]._elementRef.nativeElement.innerText).toEqual('Last name');
-        expect(sortSelectionEl._items[2]._elementRef.nativeElement.innerText).toEqual('Creator');
+        expect(sortSelectionEl.items._results[0]._elementRef.nativeElement.innerText).toEqual('Prename');
+        expect(sortSelectionEl.items._results[1]._elementRef.nativeElement.innerText).toEqual('Last name');
+        expect(sortSelectionEl.items._results[2]._elementRef.nativeElement.innerText).toEqual('Creator');
 
         // sort by 'lastname' through a click event
-        const item2 = sortSelectionEl._items[1]._elementRef.nativeElement;
+        const item2 = sortSelectionEl.items._results[1]._elementRef.nativeElement;
         item2.click();
         testHostFixture.detectChanges();
 
