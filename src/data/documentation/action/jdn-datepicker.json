@@ -13,7 +13,7 @@
     "ignore": false,
     "line": 6,
     "codeStart": 9,
-    "code": "@Directive({\n    selector: 'kuiJdnDatepicker',\n    providers: [\n        { provide: DateAdapter, useClass: JDNConvertibleCalendarDateAdapter, deps: [MAT_DATE_LOCALE] }\n    ]\n})\nexport class JdnDatepickerDirective {\n    constructor(private adapter: DateAdapter<JDNConvertibleCalendar>) { }\n}",
+    "code": "@Directive({\n    selector: 'kuiJdnDatepicker',\n    providers: [{ provide: DateAdapter, useClass: JDNConvertibleCalendarDateAdapter, deps: [MAT_DATE_LOCALE] }]\n})\nexport class JdnDatepickerDirective {\n    constructor (private adapter: DateAdapter<JDNConvertibleCalendar>) { }\n}",
     "ctx": false
   }
 ]
