@@ -1,5 +1,5 @@
 module.exports = {
-    "dataSource": "prs",
+    "dataSource": "milestones",
     "prefix": "",
     "changelogFilename": "CHANGELOG.md",
     "ignoreIssuesWith": [
@@ -15,11 +15,11 @@ module.exports = {
         "issue": "- [{{text}}]({{url}}) {{name}}"
     },
     "groupBy": {
-        "Breaking changes": ["breaking"],
-        "Enhancements": ["enhancement", "feat"],
-        "Bug Fixes": ["fix", "bug", "invalid", "warnging"],
-        "Documentation": ["docs", "documentation", "manual"],
-        "Styling": ["styling", "style"],
-        "Other": ["chore", "refactor"]
+        "Breaking changes:": ["breaking/api", "breaking"],
+        "Enhancements:": ["enhancement"],
+        "Bug Fixes:": ["bug"],
+        "Documentation:": ["documentation"],
+        "Styling:": ["styling"],
+        "Other:": ["chore", "refactor"]
     }
 };
