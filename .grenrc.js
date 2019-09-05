@@ -15,7 +15,7 @@ module.exports = {
         "issue": "- [{{text}}]({{url}}) {{name}}"
     },
     "groupBy": {
-        "Breaking changes:": ["breaking/api"],
+        "Breaking changes:": ["breaking/api", "breaking"],
         "Enhancements:": ["enhancement"],
         "Bug Fixes:": ["bug"],
         "Documentation:": ["documentation"],
