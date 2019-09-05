@@ -14,6 +14,8 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonToggleModule, MatFormFieldModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,16 +33,20 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { ProgressIndicatorComponent } from './progress-indicator/progress-indicator.component';
 import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
 import { SortButtonComponent } from './sort-button/sort-button.component';
+import { StringLiteralInputComponent } from './string-literal-input/string-literal-input.component';
 
 @NgModule({
     imports: [
         CommonModule,
         BrowserAnimationsModule,
         MatButtonModule,
+        MatButtonToggleModule,
         MatCardModule,
+        MatFormFieldModule,
         MatIconModule,
         MatListModule,
-        MatMenuModule
+        MatMenuModule,
+        ReactiveFormsModule
     ],
     declarations: [
         ProgressIndicatorComponent,
@@ -53,7 +59,8 @@ import { SortButtonComponent } from './sort-button/sort-button.component';
         GndDirective,
         ResourceDialogComponent,
         JdnDatepickerDirective,
-        MessageComponent
+        MessageComponent,
+        StringLiteralInputComponent
     ],
     exports: [
         ProgressIndicatorComponent,
