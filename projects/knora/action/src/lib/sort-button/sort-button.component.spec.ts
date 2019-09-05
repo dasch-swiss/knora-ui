@@ -74,7 +74,7 @@ describe('SortButtonComponent', () => {
         const matMenuEl = spanEl.query(By.css('mat-menu'));
 
         const sortSelectionEl = matMenuEl.references.sortSelection;
-        console.log('sort selection: ', sortSelectionEl.items._results[2]._elementRef.nativeElement.innerText);
+
         // expect that items's names of the sort list are 'Prename', 'Last name' and 'Creator'
         expect(sortSelectionEl.items._results[0]._elementRef.nativeElement.innerText).toEqual('Prename');
         expect(sortSelectionEl.items._results[1]._elementRef.nativeElement.innerText).toEqual('Last name');
