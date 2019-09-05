@@ -31,10 +31,10 @@ This module has the following package dependencies, which you also have to insta
 -   @angular/common@8.0.3
 -   @angular/core@8.0.3
 -   @angular/animations@8.0.3
--   @angular/cdk@8.0.1
--   @angular/material@8.0.1
--   @knora/action@9.0.0
--   @knora/core@9.0.0
+-   @angular/cdk@8.1.4
+-   @angular/material@8.1.4
+-   @knora/action@9.1.0
+-   @knora/core@9.1.0
 -   moment@2.22.2
 
 ### Required version of Knora: 9.0.0
