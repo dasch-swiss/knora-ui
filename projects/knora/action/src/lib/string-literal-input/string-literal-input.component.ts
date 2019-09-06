@@ -14,39 +14,51 @@ export class StringLiteralInputComponent implements OnInit {
     languages: string[] = ['de', 'fr', 'it', 'en'];
 
     /**
-     * placeholder label
+     * Optional placeholder for the input field e.g. Label
+     *
+     * @param  {string} [placeholder='Label']
      */
     @Input() placeholder?: string = 'Label';
 
     /**
-     * predefined (selected) language
+     * Optional predefined (selected) language: en, de, it, fr, etc.
+     *
+     * @param  {string} language
      */
     @Input() language?: string;
 
     /**
-     * form field input type: textarea? set to true for textarea
+     * Optional form field input type: textarea? set to true for textarea
+     * otherwise it's a simple (short) input field
+     *
+     * @param  {boolean} [textarea=false]
      */
-    // @Input() type?: string = 'textarea';
     @Input() textarea?: boolean = false;
 
     /**
-     * form field value of type StringLiteral[]
+     * Optional form field value of type StringLiteral[]
+     *
+     * @param {StringLiteral[]} value
      */
     @Input() value?: StringLiteral[] = [];
 
     /**
-     * disable the input field
+     * Optional disable the input field in case of no right to edit the field/value
+     *
+     * @param {boolean}: [disabled=false]
      */
     @Input() disabled?: boolean = false;
 
     /**
-     * returns an array of StringLiteral
+     * Returns (output) an array of StringLiteral when the focus on the field is lost
+     *
+     * @emits {StringLiteral[]} dataChanged
      */
     @Output() dataChanged: EventEmitter<StringLiteral[]> = new EventEmitter<StringLiteral[]>();
 
     @ViewChild('textInput', { static: false }) textInput: ElementRef;
 
-    @ViewChild('btnToSelectLanguage', { static: true }) btnToSelectLanguage: MatMenuTrigger;
+    @ViewChild('btnToSelectLanguage', { static: false }) btnToSelectLanguage: MatMenuTrigger;
 
     form: FormGroup;
 
@@ -74,27 +86,6 @@ export class StringLiteralInputComponent implements OnInit {
     }
 
     ngOnInit() {
-
-
-        let gaga = [
-            // this.value = [
-            {
-                'language': 'en',
-                'value': ''
-            },
-            {
-                'language': 'de',
-                'value': 'Konsole'
-            },
-            {
-                'language': 'fr',
-                'value': 'Console'
-            },
-            {
-                'language': 'it',
-                'value': ''
-            }
-        ];
 
         // reset stringLiterals if they have empty values
         this.resetValues();
@@ -132,8 +123,6 @@ export class StringLiteralInputComponent implements OnInit {
 
     }
 
-
-
     toggleAll() {
         // TODO: open/show all languages with their values
     }
@@ -155,7 +144,7 @@ export class StringLiteralInputComponent implements OnInit {
 
     switchFocus() {
         // close the menu
-        if (!this.textarea && this.btnToSelectLanguage.menuOpen) {
+        if (!this.textarea && this.btnToSelectLanguage && this.btnToSelectLanguage.menuOpen) {
             this.btnToSelectLanguage.closeMenu();
         }
 
@@ -176,19 +165,18 @@ export class StringLiteralInputComponent implements OnInit {
         const index = this.value.findIndex(i => i.language === lang);
 
         if (index > -1 && this.value[index].value.length > 0) {
-            // update the form field for this language
-            // this.updateFormField(this.value[index].value);
+            // value is not empty and exists in list of stringLiterals
+            // console.log('update existing value for ' + lang + ' on position ' + index);
+            this.value[index].value = value;
         }
 
-        // console.log('update value for ' + lang + ' (' + value + ') on position ' + index + ' in ' + JSON.stringify(this.value));
         if ((!value || value.length === 0) && index > -1) {
             // value is empty: delete stringLiteral item for this language
-            // console.error('delete empty value for ' + lang + ' on position ' + index);
+            // console.log('delete empty value for ' + lang + ' on position ' + index);
             this.value.splice(index, 1);
         }
 
         if (index < 0 && value) {
-            // TODO: value should be '' if empty
             // value doesn't exist in stringLiterals: add one
             // console.log('add new value (' + value + ') for ' + lang);
             this.value.push({
@@ -197,69 +185,6 @@ export class StringLiteralInputComponent implements OnInit {
             });
         }
 
-        /*
-        if (value && index > 0) {
-            console.log('update value');
-            this.value[index].value = value;
-        } else if (value && index < 0) {
-            console.log('add stringLiteral');
-            this.value.push({
-                language: lang,
-                value: value
-
-            });
-        } else {
-            console.log('delete stringLiteral');
-            this.value.splice(index, 1);
-        }
-        */
-    }
-
-    updateValuesDepr(lang: string) {
-        // get value from stringLiterals
-        const value: string = this.getValueFromStringLiteral(lang);
-
-        // does a value for this language exist?
-        if (value) {
-            this.form.controls['text'].setValue(value);
-        } else {
-            if (this.value.findIndex(i => i.language === lang) < 0) {
-                this.value.push(
-                    {
-                        language: lang,
-                        value: ''
-                    }
-                );
-            } else {
-                // console.log('no value for this language');
-            }
-            // reset form field
-            this.form.controls['text'].reset();
-        }
-    }
-
-    initValues(stringLiterals: StringLiteral[]): StringLiteral[] {
-        const length: number = stringLiterals.length;
-        if (length > 0) {
-            let index = length - 1;
-            while (index >= 0) {
-                // remove items with empty value
-                if (!stringLiterals[index].value.length) {
-                    stringLiterals.splice(index, 1);
-                }
-                index--;
-            }
-
-            // does an item for selected lanuage exists
-            if (stringLiterals.findIndex(i => i.language === this.language) === -1) {
-                this.language = stringLiterals[0].language;
-            }
-
-        } else {
-            stringLiterals = [];
-        }
-
-        return stringLiterals;
     }
 
     resetValues() {
@@ -286,7 +211,6 @@ export class StringLiteralInputComponent implements OnInit {
     }
 
     getValueFromStringLiteral(lang: string): string {
-
         // console.log('existing value in', this.value);
         // get index for this language
         const index = this.value.findIndex(i => i.language === lang);
