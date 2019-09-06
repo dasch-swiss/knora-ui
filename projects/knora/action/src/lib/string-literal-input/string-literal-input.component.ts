@@ -50,7 +50,7 @@ export class StringLiteralInputComponent implements OnInit {
     @Input() disabled?: boolean = false;
 
     /**
-     * Returns (output) an array of StringLiteral when the focus on the field is lost
+     * Returns (output) an array of StringLiteral when the focus is not anymore on the input field.
      *
      * @emits {StringLiteral[]} dataChanged
      */
