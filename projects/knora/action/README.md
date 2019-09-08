@@ -61,6 +61,17 @@ export class AppModule {
 }
 ```
 
+Some components need a global styling in the app to override some material styling rules. Please update your `angular.json` file as follow:
+
+```json
+...
+    "styles": [
+        "src/styles.scss",
+        "node_modules/@knora/action/assets/style/action.scss" // <- add this line
+    ],
+...
+```
+
 ## Components, Directives and Pipes
 
 This module contains various components like a progress indicator, sort button and sort-by pipe, but also helper for images (in the admin interface) and existing names.
