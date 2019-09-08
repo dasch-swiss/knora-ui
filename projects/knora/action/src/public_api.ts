@@ -5,6 +5,7 @@
 export * from './lib/progress-indicator/progress-indicator.component';
 export * from './lib/sort-button/sort-button.component';
 export * from './lib/message/message.component';
+export * from './lib/string-literal-input/string-literal-input.component';
 /* export * from './lib/resource-dialog/resource-dialog.component'; */
 
 export * from './lib/admin-image/admin-image.directive';
