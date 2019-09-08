@@ -8,8 +8,7 @@ module.exports = {
         "invalid",
         "help wanted",
         "question",
-        "testing",
-        "test"
+        "testing"
     ],
     "template": {
         "issue": "- [{{text}}]({{url}}) {{name}}"
