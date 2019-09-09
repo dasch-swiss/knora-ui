@@ -17,14 +17,12 @@ export interface SortProp {
 export class SortButtonComponent implements OnInit {
 
     /**
-     * @ignore {string} sortKeyChange
-     * @emits TODO: this would be the correct syntax for Output eventEmitter
+     * @emits {string} sortKeyChange
      *
      * EventEmitter when a user selected a sort property;
      * This is the selected key
      */
     @Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();
-
 
     menuXPos: string = 'after';
 
@@ -60,7 +58,7 @@ export class SortButtonComponent implements OnInit {
         this.activeKey = sortKey;
     }
 
-    constructor() {
+    constructor () {
     }
 
     ngOnInit() {

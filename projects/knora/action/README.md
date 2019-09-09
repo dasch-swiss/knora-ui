@@ -28,16 +28,16 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 This module has the following package dependencies, which you also have to install.
 
--   @angular/common@7.2.7
--   @angular/core@7.2.7
--   @angular/animations@7.2.7
--   @angular/cdk@7.3.3
--   @angular/material@7.3.3
+-   @angular/common@8.0.3
+-   @angular/core@8.0.3
+-   @angular/animations@8.0.3
+-   @angular/cdk@8.1.4
+-   @angular/material@8.1.4
 -   ts-md5@1.2.4
--   jdnconvertiblecalendar@0.0.2
--   jdnconvertiblecalendardateadapter@0.0.7
+-   jdnconvertiblecalendar@0.0.5
+-   jdnconvertiblecalendardateadapter@0.0.10
 
-### Required version of Knora: 8.0.0
+### Required version of Knora: 9.0.0
 
 ## Setup
 
@@ -59,6 +59,17 @@ import { KuiActionModule } from '@knora/action';
 })
 export class AppModule {
 }
+```
+
+Some components need a global styling in the app to override some material styling rules. Please update your `angular.json` file as follow:
+
+```json
+...
+    "styles": [
+        "src/styles.scss",
+        "node_modules/@knora/action/assets/style/action.scss" // <- add this line
+    ],
+...
 ```
 
 ## Components, Directives and Pipes

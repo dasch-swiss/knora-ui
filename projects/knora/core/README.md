@@ -28,13 +28,13 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 This module has the following package dependencies, which you also have to install.
 
--   @angular/common@7.2.7
--   @angular/core@7.2.7
+-   @angular/common@8.0.3
+-   @angular/core@8.0.3
 -   json2typescript@1.0.6
 -   jsonld@1.1.0
 -   semver@^6.1.1
 
-### Required version of Knora: 8.0.0
+### Required version of Knora: 9.0.0
 
 ## Setup
 

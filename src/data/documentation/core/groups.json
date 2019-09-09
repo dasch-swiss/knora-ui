@@ -90,7 +90,7 @@
     "ignore": false,
     "line": 29,
     "codeStart": 35,
-    "code": "getGroupByIri(iri: string): Observable<Group> {\n    this.path += '/' + encodeURIComponent(iri);\n\n    return this.httpGet(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}\n\n}",
+    "code": "getGroupByIri(iri: string): Observable<Group> {\n    this.path += '/' + encodeURIComponent(iri);\n\n    return this.httpGet(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}\n\n// get group members needs the following api path:\n// /admin/groups/<groupIri>/members\n\n}",
     "ctx": {
       "type": "method",
       "name": "getGroupByIri",

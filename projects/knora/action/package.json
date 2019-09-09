@@ -1,6 +1,6 @@
 {
   "name": "@knora/action",
-  "version": "8.2.0",
+  "version": "9.1.0",
   "description": "Knora ui module: action",
   "repository": {
     "type": "git",
@@ -16,10 +16,10 @@
     "@angular/common": "^8.0.3",
     "@angular/core": "^8.0.3",
     "@angular/animations": "^8.0.3",
-    "@angular/cdk": "^8.0.1",
-    "@angular/material": "^8.0.1",
+    "@angular/cdk": "^8.1.4",
+    "@angular/material": "^8.1.4",
     "ts-md5": "^1.2.4",
-    "jdnconvertiblecalendar": "^0.0.3",
-    "jdnconvertiblecalendardateadapter": "^0.0.9"
+    "jdnconvertiblecalendar": "^0.0.5",
+    "jdnconvertiblecalendardateadapter": "^0.0.10"
   }
 }
