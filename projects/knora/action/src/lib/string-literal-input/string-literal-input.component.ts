@@ -2,7 +2,6 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material';
 import { StringLiteral } from '@knora/core/public_api';
-import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
     selector: 'kui-string-literal-input',
@@ -57,6 +56,8 @@ export class StringLiteralInputComponent implements OnInit {
      */
     @Output() dataChanged: EventEmitter<StringLiteral[]> = new EventEmitter<StringLiteral[]>();
 
+    @Output() touched: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     @ViewChild('textInput', { static: false }) textInput: ElementRef;
 
     @ViewChild('btnToSelectLanguage', { static: false }) btnToSelectLanguage: MatMenuTrigger;
@@ -103,7 +104,7 @@ export class StringLiteralInputComponent implements OnInit {
                     disabled: this.disabled
                 },
                 {
-                    updateOn: 'blur'
+                    // updateOn: 'blur'
                 }
             )
         });
@@ -122,10 +123,24 @@ export class StringLiteralInputComponent implements OnInit {
             return;
         }
 
+        const form = this.form;
+        const control = form.get('text');
+        this.touched.emit(control && control.dirty);
+        if (control && control.dirty) {
+            console.warn('control dirty');
+
+        }
+
         this.updateStringLiterals(this.language, this.form.controls['text'].value);
 
         this.dataChanged.emit(this.value);
 
+    }
+
+    onFocus(state: boolean) {
+        console.log('touched string literal input', state);
+        console.log('send data to parent', this.value);
+        this.touched.emit(state);
     }
 
     toggleAll() {
@@ -184,10 +199,11 @@ export class StringLiteralInputComponent implements OnInit {
         if (index < 0 && value) {
             // value doesn't exist in stringLiterals: add one
             // console.log('add new value (' + value + ') for ' + lang);
-            this.value.push({
+            const newValue: StringLiteral = {
                 language: lang,
                 value: value
-            });
+            };
+            this.value.push(newValue);
         }
 
     }
