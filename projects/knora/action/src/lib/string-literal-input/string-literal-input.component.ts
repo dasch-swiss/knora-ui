@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material';
 import { StringLiteral } from '@knora/core/public_api';
+import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
     selector: 'kui-string-literal-input',
@@ -86,6 +87,10 @@ export class StringLiteralInputComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        // if (this.placeholder.length > 0) {
+        //     this.placeholder += ' (' + this.language + ')';
+        // }
 
         // reset stringLiterals if they have empty values
         this.resetValues();
