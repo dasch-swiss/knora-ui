@@ -126,10 +126,10 @@ export class StringLiteralInputComponent implements OnInit {
         const form = this.form;
         const control = form.get('text');
         this.touched.emit(control && control.dirty);
-        if (control && control.dirty) {
-            console.warn('control dirty');
+        // if (control && control.dirty) {
+        // console.warn('control dirty');
 
-        }
+        // }
 
         this.updateStringLiterals(this.language, this.form.controls['text'].value);
 
