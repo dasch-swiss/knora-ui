@@ -25,7 +25,8 @@
         </mat-menu>
 
         <!-- input field-->
-        <input matInput [placeholder]="placeholder" [formControl]="form.controls['text']" #textInput>
+        <input matInput [placeholder]="placeholder" [formControl]="form.controls['text']" #textInput
+               (keyup.enter)="enter.emit(true)">
     </mat-form-field>
 
     <!-- input element type is textarea -->

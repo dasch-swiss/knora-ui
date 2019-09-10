@@ -58,6 +58,11 @@ export class StringLiteralInputComponent implements OnInit {
 
     @Output() touched: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+    /**
+     * Returns true when a user press ENTER. This can be used to submit data in the parent component.
+     */
+    @Output() enter: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     @ViewChild('textInput', { static: false }) textInput: ElementRef;
 
     @ViewChild('btnToSelectLanguage', { static: false }) btnToSelectLanguage: MatMenuTrigger;
@@ -126,6 +131,7 @@ export class StringLiteralInputComponent implements OnInit {
         const form = this.form;
         const control = form.get('text');
         this.touched.emit(control && control.dirty);
+
         // if (control && control.dirty) {
         // console.warn('control dirty');
 
