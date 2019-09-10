@@ -206,8 +206,8 @@ export class StringLiteralInputComponent implements OnInit {
             // value doesn't exist in stringLiterals: add one
             // console.log('add new value (' + value + ') for ' + lang);
             const newValue: StringLiteral = {
-                language: lang,
-                value: value
+                value: value,
+                language: lang
             };
             this.value.push(newValue);
         }
