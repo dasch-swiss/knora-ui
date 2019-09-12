@@ -1,7 +1,10 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatCardModule, MatIconModule, MatListModule, MatTabsModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ConvertJSONLD, CountQueryResult, ExtendedSearchParams, KuiCoreConfig, KuiCoreConfigToken, OntologyInformation, Properties, ResourceClasses, SearchParamsService, SearchService } from '@knora/core';

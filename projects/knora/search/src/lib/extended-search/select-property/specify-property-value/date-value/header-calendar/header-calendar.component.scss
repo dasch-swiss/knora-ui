@@ -1,4 +1,6 @@
-.mat-select.kui-calendar-header {
-  margin: 12px !important;
-  width: calc(100% - 24px) !important;
+:host {
+  .mat-select.kui-calendar-header {
+    margin: 16px 16px 0 16px !important;
+    width: calc(100% - 32px) !important;
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ListNodeV2 } from '@knora/core';
-import { MatMenuTrigger } from '@angular/material';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
     selector: 'list-display',
@@ -13,9 +13,9 @@ export class ListDisplayComponent implements OnInit {
 
     @Output() selectedNode: EventEmitter<ListNodeV2> = new EventEmitter<ListNodeV2>();
 
-    @ViewChild('childMenu') public childMenu: MatMenuTrigger;
+    @ViewChild('childMenu', { static: true }) public childMenu: MatMenuTrigger;
 
-    constructor () {
+    constructor() {
     }
 
     ngOnInit() {

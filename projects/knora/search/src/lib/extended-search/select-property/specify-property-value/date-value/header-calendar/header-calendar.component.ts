@@ -2,7 +2,8 @@ import { Component, Directive, Host, Inject, Input, OnDestroy, OnInit } from '@a
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { KnoraConstants, PropertyValue, Value, ValueLiteral } from '@knora/core';
 import { GregorianCalendarDate, JDNConvertibleCalendar, JDNPeriod } from 'jdnconvertiblecalendar';
-import { DateAdapter, MAT_DATE_LOCALE, MatCalendar, MatDatepickerContent } from '@angular/material';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatCalendar, MatDatepickerContent } from '@angular/material/datepicker';
 import { JDNConvertibleCalendarDateAdapter } from 'jdnconvertiblecalendardateadapter';
 
 /** Custom header component containing a calendar format switcher */
@@ -26,7 +27,7 @@ export class HeaderComponent<D> implements OnInit {
     form: FormGroup;
 
     // a list of supported calendar formats (Gregorian and Julian)
-    supportedCalendarFormats = JDNConvertibleCalendar.supportedCalendars;
+    supportedCalendarFormats = ['Gregorian', 'Julian'];
 
     // the currently active calendar format
     activeFormat;
@@ -35,7 +36,7 @@ export class HeaderComponent<D> implements OnInit {
 
         // get the currently active calendar format from the date adapter
         if (this._dateAdapter instanceof JDNConvertibleCalendarDateAdapter) {
-            this.activeFormat = this._dateAdapter.activeCalendarFormat;
+            this.activeFormat = this._dateAdapter.activeCalendar;
         } else {
             console.log('date adapter is expected to be an instance of JDNConvertibleCalendarDateAdapter');
         }
@@ -63,7 +64,7 @@ export class HeaderComponent<D> implements OnInit {
         if (this._dateAdapter instanceof JDNConvertibleCalendarDateAdapter) {
 
             // convert the date into the target calendar format
-            const convertedDate = this._dateAdapter.convertCalendarFormat(this._calendar.activeDate, calendar);
+            const convertedDate = this._dateAdapter.convertCalendar(this._calendar.activeDate, calendar);
 
             // set the new date
             this._calendar.activeDate = convertedDate;

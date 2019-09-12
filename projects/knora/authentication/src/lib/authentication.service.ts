@@ -58,9 +58,17 @@ export class AuthenticationService {
 
         // console.log('AuthenticationService - login - api: ', this.config.api);
 
+        let params: any = { username: username, password: password };
+
+        // username can be either name or email address, so what do we have?
+        if (username.indexOf('@') > -1) {
+            // username is email address
+            params = { email: username, password: password };
+        }
+
         return this.http.post(
             this.config.api + '/v2/authentication',
-            { username: username, password: password },
+            params,
             { observe: 'response' }).pipe(
                 map((response: HttpResponse<any>): any => {
                     return response;
@@ -71,7 +79,6 @@ export class AuthenticationService {
                 })
             );
     }
-
 
     /**
      * logout the user by destroying the session

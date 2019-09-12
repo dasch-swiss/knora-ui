@@ -70,7 +70,7 @@ describe('IntegerValueComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('integerVal') integerValueComponent: IntegerValueComponent;
+    @ViewChild('integerVal', { static: false }) integerValueComponent: IntegerValueComponent;
 
     integerValue;
 

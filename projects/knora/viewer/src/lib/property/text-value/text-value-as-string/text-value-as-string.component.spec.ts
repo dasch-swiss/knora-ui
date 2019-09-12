@@ -94,7 +94,7 @@ describe('TextValueAsStringComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('stringVal') stringValueComponent: TextValueAsStringComponent;
+    @ViewChild('stringVal', { static: false }) stringValueComponent: TextValueAsStringComponent;
 
     stringValue;
 

@@ -3,7 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BooleanValueComponent } from './boolean-value.component';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule, MatFormFieldModule, MatIconModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
@@ -106,7 +108,7 @@ class TestHostComponent implements OnInit {
 
     form;
 
-    @ViewChild('boolVal') booleanValue: BooleanValueComponent;
+    @ViewChild('boolVal', { static: false }) booleanValue: BooleanValueComponent;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }

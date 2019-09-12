@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SortButtonComponent } from './sort-button.component';
-import { MatIconModule, MatMenuModule, } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Component, DebugElement, OnInit, ViewChild, } from '@angular/core';
@@ -75,12 +76,12 @@ describe('SortButtonComponent', () => {
         const sortSelectionEl = matMenuEl.references.sortSelection;
 
         // expect that items's names of the sort list are 'Prename', 'Last name' and 'Creator'
-        expect(sortSelectionEl._items[0]._elementRef.nativeElement.innerText).toEqual('Prename');
-        expect(sortSelectionEl._items[1]._elementRef.nativeElement.innerText).toEqual('Last name');
-        expect(sortSelectionEl._items[2]._elementRef.nativeElement.innerText).toEqual('Creator');
+        expect(sortSelectionEl.items._results[0]._elementRef.nativeElement.innerText).toEqual('Prename');
+        expect(sortSelectionEl.items._results[1]._elementRef.nativeElement.innerText).toEqual('Last name');
+        expect(sortSelectionEl.items._results[2]._elementRef.nativeElement.innerText).toEqual('Creator');
 
         // sort by 'lastname' through a click event
-        const item2 = sortSelectionEl._items[1]._elementRef.nativeElement;
+        const item2 = sortSelectionEl.items._results[1]._elementRef.nativeElement;
         item2.click();
         testHostFixture.detectChanges();
 
@@ -115,7 +116,7 @@ describe('SortButtonComponent', () => {
 })
 class TestHostComponent implements OnInit {
 
-    @ViewChild('sortButton') sortButtonComponent: SortButtonComponent;
+    @ViewChild('sortButton', { static: false }) sortButtonComponent: SortButtonComponent;
 
     sortProps: any = [{
         key: 'prename',

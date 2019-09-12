@@ -2,7 +2,7 @@ import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IRI, KnoraConstants, ListNodeV2, Property, PropertyValue, Value } from '@knora/core';
 import { ListCacheService } from '@knora/core';
-import { MatMenuTrigger } from '@angular/material';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -29,9 +29,9 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     selectedNode: ListNodeV2;
 
-    @ViewChild(MatMenuTrigger) menuTrigger: MatMenuTrigger;
+    @ViewChild(MatMenuTrigger, { static: false }) menuTrigger: MatMenuTrigger;
 
-    constructor (@Inject(FormBuilder) private fb: FormBuilder, private _listCacheService: ListCacheService) {
+    constructor(@Inject(FormBuilder) private fb: FormBuilder, private _listCacheService: ListCacheService) {
     }
 
     private getRootNodeIri(): string {

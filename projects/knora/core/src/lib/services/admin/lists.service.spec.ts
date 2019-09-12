@@ -1,12 +1,12 @@
-import { async, inject, TestBed } from '@angular/core/testing';
-import { ListsService } from './lists.service';
 import { HttpClient } from '@angular/common/http';
-import { KuiCoreModule } from '../../core.module';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ApiService } from '../api.service';
-import { ApiServiceError, ApiServiceResult, List, ListNodeInfo } from '../../declarations';
-import { incunabulaProjectIri, listsResponseJson, yesNoMaybeListResponseJson } from '../../test-data/admin/shared-test-data';
+import { async, inject, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
+import { KuiCoreModule } from '../../core.module';
+import { ApiServiceError, ApiServiceResult, List, ListNode } from '../../declarations';
+import { incunabulaProjectIri, listsResponseJson, yesNoMaybeListResponseJson } from '../../test-data/admin/shared-test-data';
+import { ApiService } from '../api.service';
+import { ListsService } from './lists.service';
 
 describe('ListsService', () => {
     let httpClient: HttpClient;
@@ -17,7 +17,7 @@ describe('ListsService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '' })
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
             ],
             providers: [
                 ApiService,
@@ -56,7 +56,7 @@ describe('ListsService', () => {
 
             expect(listsService).toBeDefined();
 
-            const allLists: Observable<ListNodeInfo[]> = listsService.getLists(incunabulaProjectIri);
+            const allLists: Observable<ListNode[]> = listsService.getLists(incunabulaProjectIri);
 
             const lists = { 'lists': [{ 'id': 'http: //rdfh.ch/lists/FFFF/ynm01', 'labels': [{ 'value': 'Die Ja,  Nein,  Vielleicht Liste', 'language': 'de' }, { 'value': 'The Yes,  No,  Maybe List', 'language': 'en' }], 'projectIri': 'http: //www.knora.org/ontology/knora-base#SystemProject', 'isRootNode': true, 'comments': [{ 'value': 'Diese Liste kann von allen Projekten verwendet werden.', 'language': 'de' }, { 'value': 'This list can be used by all projects.', 'language': 'en' }] }] };
 

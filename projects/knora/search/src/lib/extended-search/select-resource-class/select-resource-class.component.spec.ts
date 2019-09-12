@@ -1,13 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-    MatAutocompleteModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatSelectModule
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { Cardinality, CardinalityOccurrence, KuiCoreConfig, KuiCoreConfigToken, ResourceClass, GuiOrder } from '@knora/core';
 
 import { SelectResourceClassComponent } from './select-resource-class.component';
@@ -191,7 +189,7 @@ class TestHostComponent implements OnInit {
 
     selectedResClass: string;
 
-    @ViewChild('resClass') selectResClassesComp: SelectResourceClassComponent;
+    @ViewChild('resClass', { static: false }) selectResClassesComp: SelectResourceClassComponent;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }

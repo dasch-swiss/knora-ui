@@ -1,8 +1,8 @@
 import { ConnectionPositionPair, Overlay, OverlayConfig, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiServiceError, Project, ProjectsService } from '@knora/core';
+import { ApiServiceError, Project, ProjectsService, KnoraConstants, StringLiteral } from '@knora/core';
 import { MatMenuTrigger } from '@angular/material';
 
 export interface PrevSearchItem {
@@ -41,12 +41,14 @@ export class FulltextSearchComponent implements OnInit {
      * filtered by one project, you can define it with project iri.
      */
     @Input() filterbyproject?: string;
+    @Input() show: boolean;
+    @Output() showState = new EventEmitter();
 
-    @ViewChild('fulltextSearchPanel') searchPanel: ElementRef;
-    @ViewChild('fulltextSearchInput') searchInput: ElementRef;
-    @ViewChild('fulltextSearchMenu') searchMenu: TemplateRef<any>;
+    @ViewChild('fulltextSearchPanel', { static: false }) searchPanel: ElementRef;
+    @ViewChild('fulltextSearchInput', { static: false }) searchInput: ElementRef;
+    @ViewChild('fulltextSearchMenu', { static: false }) searchMenu: TemplateRef<any>;
 
-    @ViewChild('btnToSelectProject') selectProject: MatMenuTrigger;
+    @ViewChild('btnToSelectProject', { static: false }) selectProject: MatMenuTrigger;
 
     // search query
     searchQuery: string;
@@ -72,7 +74,13 @@ export class FulltextSearchComponent implements OnInit {
     // overlay reference
     overlayRef: OverlayRef;
 
-    constructor (
+    // do not show the following projects: default system projects from knora
+    doNotDisplay: string[] = [
+        KnoraConstants.SystemProjectIRI,
+        KnoraConstants.DefaultSharedOntologyIRI
+    ];
+
+    constructor(
         private _overlay: Overlay,
         private _router: Router,
         private _viewContainerRef: ViewContainerRef,
@@ -226,6 +234,9 @@ export class FulltextSearchComponent implements OnInit {
         }
         this.resetSearch();
         this.overlayRef.detach();
+
+        this.show = false;
+        this.showState.emit(this.show);
     }
 
     resetSearch(): void {
@@ -275,4 +286,6 @@ export class FulltextSearchComponent implements OnInit {
         this.searchInput.nativeElement.focus();
         this.setFocus();
     }
+
+
 }

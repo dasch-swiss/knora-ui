@@ -7,13 +7,13 @@
 
 This is the demo and developing environment for Knora ui modules.
 
-The modules helps to create a graphical user interface, a web application to use [Knora](https://www.knora.org) in a quick and simple way. The modules are written in typescript to use them with [Angular](https://angular.io) (version 7). We decided to style the components and directives with [material design](https://material.angular.io).
+The modules helps to create a graphical user interface, a web application to use [Knora](https://www.knora.org) in a quick and simple way. The modules are written in typescript to use them with [Angular](https://angular.io) (version 8). We decided to style the components and directives with [material design](https://material.angular.io).
 
 But you can use only @knora/core which contains almost all services for the Knora web API. Knora is a software framework for storing, sharing, and working with primary sources and data in the humanities.
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora v8.0.0](https://github.com/dhlab-basel/Knora/releases/tag/v8.0.0).
+This version of Knora-ui requires [Knora v9.0.0](https://github.com/dhlab-basel/Knora/releases/tag/v9.0.0).
 
 ## Already published modules
 
@@ -66,7 +66,7 @@ The action module contains special buttons (e.g. to sort a list), pipes and dire
 
 ### Prerequisites
 
-We develop the Knora-ui modules with Angular 6, especially with Angular-cli, which requires the following tools:
+We develop the Knora-ui modules with Angular 8, especially with Angular-cli, which requires the following tools:
 
 #### Yarn
 
@@ -80,12 +80,12 @@ For other platforms, please go to the yarn website.
 
 #### Node
 
-Install [Node](https://nodejs.org/en/download/) in version >=4 &lt;=9. We recommend to use version 8.9.0. The easiest way to install node
+Install [Node](https://nodejs.org/en/download/) in version 10.9.0 or later. The easiest way to install node
 in the correct version is to use ['n'](https://github.com/tj/n):
 
 ```bash
 $ yarn global add n
-$ n v8.9.0
+$ n v10.9.0
 ```
 
 ### First steps
@@ -237,7 +237,7 @@ $ yalc remove --all
 ## Publish new version
 Be sure everything is merged, before creating new release.
 
-### Required version of Knora: 8.0.0
+### Required version of Knora: 9.0.0
 
 ### Update the documentation and the version number
 
@@ -246,11 +246,19 @@ Be sure everything is merged, before creating new release.
 1. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json and README files
 1. Update the version number (X.Y.Z) in the main package.json
 1. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts` and the README files of each module
-1. Update the documentation by running the following script from root folder: `./update_docs.sh`
+1. Update the documentation by running the following command: `yarn build-docs`
 1. Commit and push all changes and make a new pull request: Release X.Y.Z
 1. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
-1. Add description to the release by using the following template
+1. Make release notes with [gren](https://github.com/github-tools/github-release-notes)
 
+```shell
+# Navigate to the knora-ui root directory
+cd ~/Path/to/repo
+# Run the task
+gren release
+```
+
+<!--
 ```markdown
 Version: x.y.z
 
@@ -266,9 +274,10 @@ Bug fixes:
 
 Comments: blabla
 ```
+-->
 
 ### Publish new version on NPM
 
 1. Checkout **Master** branch
-1. Build all modules with `build-lib-prod`
+1. Build all modules with `yarn build-lib-prod`
 1. Publish them from each module folder with `npm publish`

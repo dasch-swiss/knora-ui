@@ -14,30 +14,40 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatIconModule, MatMenuModule, MatCardModule, MatListModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonToggleModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminImageDirective } from './admin-image/admin-image.directive';
+import { ExistingNameDirective } from './existing-name/existing-name.directive';
 import { GndDirective } from './gnd/gnd.directive';
 import { JdnDatepickerDirective } from './jdn-datepicker/jdn-datepicker.directive';
-import { ExistingNameDirective } from './existing-name/existing-name.directive';
+import { MessageComponent } from './message/message.component';
 import { KeyPipe } from './pipes/key.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
-
 import { ProgressIndicatorComponent } from './progress-indicator/progress-indicator.component';
 import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
 import { SortButtonComponent } from './sort-button/sort-button.component';
-import { MessageComponent } from './message/message.component';
+import { StringLiteralInputComponent } from './string-literal-input/string-literal-input.component';
 
 @NgModule({
     imports: [
         CommonModule,
         BrowserAnimationsModule,
         MatButtonModule,
+        MatButtonToggleModule,
         MatCardModule,
+        MatFormFieldModule,
         MatIconModule,
+        MatInputModule,
         MatListModule,
-        MatMenuModule
+        MatMenuModule,
+        ReactiveFormsModule
     ],
     declarations: [
         ProgressIndicatorComponent,
@@ -50,7 +60,8 @@ import { MessageComponent } from './message/message.component';
         GndDirective,
         ResourceDialogComponent,
         JdnDatepickerDirective,
-        MessageComponent
+        MessageComponent,
+        StringLiteralInputComponent
     ],
     exports: [
         ProgressIndicatorComponent,
@@ -62,7 +73,8 @@ import { MessageComponent } from './message/message.component';
         KeyPipe,
         GndDirective,
         JdnDatepickerDirective,
-        MessageComponent
+        MessageComponent,
+        StringLiteralInputComponent
     ]
 })
 /**

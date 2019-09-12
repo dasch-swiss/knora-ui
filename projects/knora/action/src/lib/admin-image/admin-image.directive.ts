@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnChanges, Renderer2 } from '@angular/core';
 
-import { Md5 } from 'ts-md5/dist/md5';
+import { Md5 } from 'ts-md5';
 import { AdminImageConfig } from './admin-image.config';
 
 
@@ -68,7 +68,7 @@ export class AdminImageDirective implements OnChanges {
                 if (this.image === null || this.image === undefined) {
                     this.source = AdminImageConfig.defaultUser;
                 } else {
-                    this.source = 'http://www.gravatar.com/avatar/' + Md5.hashStr(this.image) + '?d=mp&s=256';
+                    this.source = location.protocol + '//www.gravatar.com/avatar/' + Md5.hashStr(this.image) + '?d=mp&s=256';
                 }
 
                 break;

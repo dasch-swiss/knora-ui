@@ -41,4 +41,7 @@ export class GroupsService extends ApiService {
         );
     }
 
+    // get group members needs the following api path:
+    // /admin/groups/<groupIri>/members
+
 }

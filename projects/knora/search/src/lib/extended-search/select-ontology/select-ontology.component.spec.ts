@@ -1,12 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-    MatAutocompleteModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatSelectModule
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SelectOntologyComponent } from './select-ontology.component';
@@ -160,7 +158,7 @@ class TestHostComponent implements OnInit {
 
     selectedOnto: string;
 
-    @ViewChild('ontosComp') selectOntosComp: SelectOntologyComponent;
+    @ViewChild('ontosComp', { static: false }) selectOntosComp: SelectOntologyComponent;
 
     private ontoMeta = [
         new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),

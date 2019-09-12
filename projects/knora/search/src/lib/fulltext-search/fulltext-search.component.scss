@@ -1,3 +1,5 @@
+@import "../assets/style/responsive";
+
 //
 // disable browser's input type appearance
 //
@@ -31,16 +33,24 @@ $search-width: 480px;
 // $search-height: $search-width;
 
 // width on smaller devices
-$search-width-small-device: 360px;
+$search-width-small-device: 320px;
 
 // width of project filter
 $project-filter-width: 160px;
+
+// width of project filter on smaller devices
+$project-filter-width-small-device: 130px;
 
 // general border color
 $border-color: #ebebeb;
 
 // general border radius
 $border-radius: 4px;
+
+
+//
+// general css (applied on desktop/tablet versions)
+//
 
 .center {
   text-align: center;
@@ -55,8 +65,6 @@ $border-radius: 4px;
   z-index: 100;
   background-color: $bright;
 
-  // border: 1px solid red;
-
   &.active {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   }
@@ -65,18 +73,16 @@ $border-radius: 4px;
     width: calc(#{$search-width} + #{$project-filter-width});
   }
 
-  .kui-project-filter {
-    .kui-project-filter-button {
-      font-size: inherit;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: $project-filter-width;
-      border-top-left-radius: $border-radius;
-      border-top-right-radius: 0;
-      border-bottom-left-radius: $border-radius;
-      border-bottom-right-radius: 0;
-      margin: 1px;
-    }
+  .kui-project-filter-button {
+    font-size: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: $project-filter-width;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: 0;
+    margin: 1px;
   }
 
   .kui-fulltext-search {
@@ -102,7 +108,6 @@ $border-radius: 4px;
         border-style: none;
         font-size: 14pt;
         height: 38px;
-        //margin: 1px;
         position: absolute;
         padding-left: 12px;
         width: calc(100% - 40px);
@@ -138,7 +143,6 @@ $border-radius: 4px;
     }
     .prefix,
     .suffix {
-      // background-color: #ffffff;
       border-style: none;
       color: rgba($dark, 0.4);
       cursor: pointer;
@@ -155,5 +159,203 @@ $border-radius: 4px;
         color: rgb(81, 81, 81);
       }
     }
+  }
+}
+
+.kui-search-menu {
+  height: 100%;
+
+  .kui-menu-content {
+    display: block;
+
+    .mat-list {
+      padding-bottom: 8px;
+
+      .kui-previous-search-query {
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &.fix-width {
+          width: calc(100% - #{$project-filter-width});
+        }
+      }
+    }
+  }
+}
+
+.kui-project-filter-menu {
+  width: $project-filter-width;
+
+  .mat-menu-item {
+    text-transform: capitalize;
+  }
+}
+
+// tablet and desktop devices: hide phone-version classes
+@media (min-width: map-get($grid-breakpoints, phone)) {
+  .kui-project-filter-mobile {
+    display: none;
+  }
+  .kui-fulltext-search-mobile {
+    display: none;
+    &.with-project-filter {
+      display: none;
+    }
+  }
+}
+
+
+//
+// mobile device: phone
+//
+
+@media (max-width: map-get($grid-breakpoints, phone)) {
+
+  .kui-project-filter {
+    display: none;
+  }
+
+  .kui-fulltext-search {
+    display: none;
+
+    &.with-project-filter {
+      display: none !important;
+    }
+  }
+
+  .kui-search-menu {
+    display: none;
+    &.with-project-filter {
+      display: none !important;
+    }
+  }
+
+  .kui-fulltext-search-panel {
+    height: 100vh !important;
+    background-color: rgba(220, 218, 218, 0.9);
+    position: relative;
+    width: 100% !important;
+    z-index: 100;
+    display: block;
+    border-radius: 0;
+
+    &.with-project-filter {
+      width: 100% !important;
+    }
+
+    .kui-project-filter-mobile {
+      height: 54px;
+      margin: 0 2% 5% 2%;
+      padding-top: 3%;
+      
+      &.mat-stroked-button {
+        padding: 0;
+      }
+
+      .kui-project-filter-button-mobile {
+        width: calc(100% - 16px);
+        margin: 8px;
+        height: 100%;
+        background-color: $grey;
+        cursor: pointer;
+      }
+      .kui-project-filter-menu-mobile {
+        width: calc(100% - 16px) !important;
+        margin: 0 8px 0 8px;
+        height: 100% !important;
+      }
+
+    }
+
+    /* .kui-project-filter-select-mobile {
+      width: calc(100% - 50px);
+      margin: 25px 16px 5px 16px;
+      background-color: rgba(241, 241, 241, 0.8);
+      border-radius: 3px;
+      padding: 8px;
+    } */
+
+    .kui-fulltext-search-mobile {
+        display: flex;
+        height: 64px;
+        margin-top: 5%;
+        margin-right: 4%;
+        margin-left: 4%;
+        .kui-fulltext-search-field-mobile {
+            width: 80%;
+            margin-right: 2px;
+            
+            .kui-fulltext-search-input-mobile {
+            width: 72%;
+            height: 64px;
+            border-style: solid;
+            border-width: 0.6px; 
+            border-color: $grey;
+            font-size: 14pt;
+            position: absolute;
+            padding-left: 12px;
+            border-radius: 5px;
+
+            &:active,
+            &:focus {
+                outline: none;
+            }
+            }
+        }
+
+      .kui-fulltext-search-button-mobile {
+        background-color: #ffffff;
+        width: 20%;
+        height: 64px;
+        padding: 0;
+        margin-left: 2px;
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 0.8px;
+        border-color: $grey;
+      }
+
+      .suffix {
+        border-top-left-radius: 0;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+        border-bottom-left-radius: 0;
+        margin: 1px 0 1px -3px;
+      }
+
+      .prefix,
+      .suffix {
+        border-style: none;
+        color: rgba($dark, 0.4);
+        cursor: pointer;
+        height: 100%;
+        outline: none;
+        position: relative;
+        width: 20%;
+
+        &.disabled {
+          cursor: auto;
+        }
+
+        &:active {
+          color: rgb(81, 81, 81);
+        }
+      }
+    }
+  }
+
+  ::ng-deep .cdk-overlay-pane {
+
+    .mat-menu-panel {
+      box-shadow: none;
+    }
+    
+    .mat-select-panel-wrap {
+      margin-top: 20%;
+      .mat-select-panel {
+        max-height: 100% !important;
+      }
+    }
+
   }
 }
