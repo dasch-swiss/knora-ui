@@ -26,7 +26,7 @@
 
         <!-- input field-->
         <input matInput [placeholder]="placeholder" [formControl]="form.controls['text']" #textInput
-               (keyup.enter)="enter.emit(true)">
+               [readonly]="readonly" (keyup.enter)="enter.emit(true)">
     </mat-form-field>
 
     <!-- input element type is textarea -->
@@ -40,7 +40,8 @@
         </mat-button-toggle-group>
         <mat-form-field class="string-literal-textarea">
             <!-- textarea -->
-            <textarea matInput [placeholder]="placeholder" [formControl]="form.controls['text']" #textInput></textarea>
+            <textarea matInput [placeholder]="placeholder" [formControl]="form.controls['text']" #textInput
+                      [readonly]="readonly"></textarea>
         </mat-form-field>
     </div>
 
