@@ -34,6 +34,7 @@ import { ProgressIndicatorComponent } from './progress-indicator/progress-indica
 import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
 import { SortButtonComponent } from './sort-button/sort-button.component';
 import { StringLiteralInputComponent } from './string-literal-input/string-literal-input.component';
+import { StringifyStringLiteralPipe } from './pipes/stringify-string-literal.pipe';
 
 @NgModule({
     imports: [
@@ -61,7 +62,8 @@ import { StringLiteralInputComponent } from './string-literal-input/string-liter
         ResourceDialogComponent,
         JdnDatepickerDirective,
         MessageComponent,
-        StringLiteralInputComponent
+        StringLiteralInputComponent,
+        StringifyStringLiteralPipe
     ],
     exports: [
         ProgressIndicatorComponent,
@@ -74,7 +76,8 @@ import { StringLiteralInputComponent } from './string-literal-input/string-liter
         GndDirective,
         JdnDatepickerDirective,
         MessageComponent,
-        StringLiteralInputComponent
+        StringLiteralInputComponent,
+        StringifyStringLiteralPipe
     ]
 })
 /**
