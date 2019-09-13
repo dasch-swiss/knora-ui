@@ -30,6 +30,7 @@ import { MessageComponent } from './message/message.component';
 import { KeyPipe } from './pipes/key.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 import { ProgressIndicatorComponent } from './progress-indicator/progress-indicator.component';
 import { ResourceDialogComponent } from './resource-dialog/resource-dialog.component';
 import { SortButtonComponent } from './sort-button/sort-button.component';
@@ -61,7 +62,8 @@ import { StringLiteralInputComponent } from './string-literal-input/string-liter
         ResourceDialogComponent,
         JdnDatepickerDirective,
         MessageComponent,
-        StringLiteralInputComponent
+        StringLiteralInputComponent,
+        TruncatePipe
     ],
     exports: [
         ProgressIndicatorComponent,
@@ -74,7 +76,8 @@ import { StringLiteralInputComponent } from './string-literal-input/string-liter
         GndDirective,
         JdnDatepickerDirective,
         MessageComponent,
-        StringLiteralInputComponent
+        StringLiteralInputComponent,
+        TruncatePipe
     ]
 })
 /**
