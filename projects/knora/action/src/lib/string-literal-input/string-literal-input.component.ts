@@ -50,11 +50,32 @@ export class StringLiteralInputComponent implements OnInit {
     @Input() disabled?: boolean = false;
 
     /**
-     * Returns (output) an array of StringLiteral when the focus is not anymore on the input field.
+     * The readonly attribute specifies whether the control may be modified by the user.
+     *
+     * @param {boolean}: [readonly=false]
+     */
+    @Input() readonly?: boolean = false;
+
+    /**
+     * Returns (output) an array of StringLiteral on any change on the input field.
      *
      * @emits {StringLiteral[]} dataChanged
      */
     @Output() dataChanged: EventEmitter<StringLiteral[]> = new EventEmitter<StringLiteral[]>();
+
+    /**
+     * Returns (output) true when the field was touched. This can be used to validate data, e.g. in case a value is required
+     *
+     * @emits {boolean} touched
+     */
+    @Output() touched: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    /**
+     * Returns true when a user press ENTER. This can be used to submit data in the parent component.
+     *
+     * * @emits {boolean} enter
+     */
+    @Output() enter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     @ViewChild('textInput', { static: false }) textInput: ElementRef;
 
@@ -87,6 +108,10 @@ export class StringLiteralInputComponent implements OnInit {
 
     ngOnInit() {
 
+        // if (this.placeholder.length > 0) {
+        //     this.placeholder += ' (' + this.language + ')';
+        // }
+
         // reset stringLiterals if they have empty values
         this.resetValues();
 
@@ -98,7 +123,7 @@ export class StringLiteralInputComponent implements OnInit {
                     disabled: this.disabled
                 },
                 {
-                    updateOn: 'blur'
+                    // updateOn: 'blur'
                 }
             )
         });
@@ -112,10 +137,24 @@ export class StringLiteralInputComponent implements OnInit {
 
     }
 
+    /**
+     * @ignore
+     *
+     * emit data to parent on any change on the input field
+     */
     onValueChanged() {
         if (!this.form) {
             return;
         }
+
+        const form = this.form;
+        const control = form.get('text');
+        this.touched.emit(control && control.dirty);
+
+        // if (control && control.dirty) {
+        // console.warn('control dirty');
+
+        // }
 
         this.updateStringLiterals(this.language, this.form.controls['text'].value);
 
@@ -127,6 +166,11 @@ export class StringLiteralInputComponent implements OnInit {
         // TODO: open/show all languages with their values
     }
 
+    /**
+     * @ignore
+     *
+     * Set the language after selecting; This updates the array of StringLiterals: adds item with the selected language if it doesn't exist
+     */
     setLanguage(lang: string) {
 
         if (this.language === lang) {
@@ -142,6 +186,11 @@ export class StringLiteralInputComponent implements OnInit {
         }
     }
 
+    /**
+     * @ignore
+     *
+     * Switch focus to input field after selecting a language
+     */
     switchFocus() {
         // close the menu
         if (!this.textarea && this.btnToSelectLanguage && this.btnToSelectLanguage.menuOpen) {
@@ -154,6 +203,11 @@ export class StringLiteralInputComponent implements OnInit {
         }
     }
 
+    /**
+     * @ignore
+     *
+     * Set the value in the input field
+     */
     updateFormField(value: string) {
         if (!value) {
             value = '';
@@ -161,6 +215,11 @@ export class StringLiteralInputComponent implements OnInit {
         this.form.controls['text'].setValue(value);
     }
 
+    /**
+     * @ignore
+     *
+     * Update the array of StringLiterals depending on value / empty value add or remove item from array.
+     */
     updateStringLiterals(lang: string, value?: string) {
         const index = this.value.findIndex(i => i.language === lang);
 
@@ -179,14 +238,20 @@ export class StringLiteralInputComponent implements OnInit {
         if (index < 0 && value) {
             // value doesn't exist in stringLiterals: add one
             // console.log('add new value (' + value + ') for ' + lang);
-            this.value.push({
-                language: lang,
-                value: value
-            });
+            const newValue: StringLiteral = {
+                value: value,
+                language: lang
+            };
+            this.value.push(newValue);
         }
 
     }
 
+    /**
+     * @ignore
+     *
+     * In case of strange array of StringLiterals, this method will reset to a API-conform array. This means an array without empty values.
+     */
     resetValues() {
         const length: number = this.value.length;
 
@@ -210,6 +275,11 @@ export class StringLiteralInputComponent implements OnInit {
         }
     }
 
+    /**
+     * @ignore
+     *
+     * Get the value from array of StringLiterals for the selected language
+     */
     getValueFromStringLiteral(lang: string): string {
         // console.log('existing value in', this.value);
         // get index for this language
