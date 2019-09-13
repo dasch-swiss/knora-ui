@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { StringLiteral } from '@knora/core';
 
 @Pipe({
-    name: 'stringifyStringLiteral'
+    name: 'kuiStringifyStringLiteral'
 })
 export class StringifyStringLiteralPipe implements PipeTransform {
 
