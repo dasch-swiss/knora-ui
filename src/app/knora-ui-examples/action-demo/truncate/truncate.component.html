@@ -1,0 +1,18 @@
+<!-- Documentation from JSDocs -->
+<app-documentation-viewer [module]="module"></app-documentation-viewer>
+
+<!-- Examples with demo -->
+<h3>Example</h3>
+
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="keyPipe"></app-example-viewer>
+
+    <div class="demo">
+        <ul>
+            <li *ngFor="let item of array | kuiKey">
+                {{item.key}}: {{item.value}}
+            </li>
+        </ul>
+    </div>
+</mat-card>
