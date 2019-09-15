@@ -2,14 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { StringLiteral } from '@knora/core';
 
 /**
- * This pipe stringifies an array of StringLiterals.
- * With the parameter 'all' it concats all values and
- * appends the corresponing language in brackets.
+ * This pipe stringifies an array of StringLiterals. With the parameter 'all' it concats all values and appends the corresponing language in brackets.
  *
- * Otherwise it displays the value corresponding to the default
- * language which comes from user profile (if a user is logged-in)
- * or from browser. With the predefined language it checks,
- * if a value exists for it, otherwise it shows the first value from the array
+ * Otherwise it displays the value corresponding to the default language which comes from user profile (if a user is logged-in) or from browser. With the predefined language it checks, if a value exists for it, otherwise it shows the first value from the array
  */
 @Pipe({
     name: 'kuiStringifyStringLiteral'

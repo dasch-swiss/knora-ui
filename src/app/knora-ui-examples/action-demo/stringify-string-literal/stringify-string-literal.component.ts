@@ -4,11 +4,11 @@ import { Example } from 'src/app/app.interfaces';
 import { StringLiteral } from '@knora/core';
 
 @Component({
-    selector: 'app-string-literal',
-    templateUrl: './string-literal.component.html',
-    styleUrls: ['./string-literal.component.scss']
+    selector: 'app-stringify-string-literal',
+    templateUrl: './stringify-string-literal.component.html',
+    styleUrls: ['./stringify-string-literal.component.scss']
 })
-export class StringLiteralComponent implements OnInit {
+export class StringifyStringLiteralComponent implements OnInit {
 
     module = AppDemo.actionModule;
 

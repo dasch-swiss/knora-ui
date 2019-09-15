@@ -69,9 +69,9 @@ export class AppDemo {
                 stackblitz: false
             },
             {
-                name: 'string-literal',
-                label: 'StringLiteral',
-                type: 'Component',
+                name: 'stringify-string-literal',
+                label: 'StringifyStringLiteral',
+                type: 'Pipe',
                 stackblitz: false
             }
         ]

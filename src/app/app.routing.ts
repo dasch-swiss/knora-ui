@@ -49,7 +49,7 @@ import { TreeComponent } from './material/tree/tree.component';
 // /modules demo
 import { ModuleIndexComponent } from './partials/module-index/module-index.component';
 import { TruncateComponent } from './knora-ui-examples/action-demo/truncate/truncate.component';
-import { StringLiteralComponent } from './knora-ui-examples/action-demo/string-literal/string-literal.component';
+import { StringifyStringLiteralComponent } from './knora-ui-examples/action-demo/stringify-string-literal/stringify-string-literal.component';
 
 const appRoutes: Routes = [
     {
@@ -113,8 +113,8 @@ const appRoutes: Routes = [
                         component: TruncateComponent
                     },
                     {
-                        path: 'string-literal',
-                        component: StringLiteralComponent
+                        path: 'stringify-string-literal',
+                        component: StringifyStringLiteralComponent
                     }
                 ]
             },

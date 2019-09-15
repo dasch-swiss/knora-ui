@@ -1088,6 +1088,25 @@ var SortByPipe = /** @class */ /*@__PURE__*/ (function () {
     };
     return SortByPipe;
 }());
+/**
+ * This pipe can be used to shorten long text by a defined length.
+ *
+ * In markup:
+ *
+ * {{ str | kuiTruncate:[20] }}
+ *
+ * or
+ *
+ * {{ str | kuiTruncate:[20, '...'] }}
+ *
+ *
+ * The first parameter defines the lenght where to truncate the string.
+ * Second optional parameter defines the characters to append to the shortened string. Default is '...'.
+ *
+ * The advantage of this pipe over the default Angular slice pipe is the simplicity of adding additional characters at the end of the shortened string.
+ * The same construct with slice looks as follow `{{ (str.length>24)? (str | slice:0:24)+'...':(str) }}`.
+ *
+ */
 var TruncatePipe = /** @class */ /*@__PURE__*/ (function () {
     function TruncatePipe() {
     }
@@ -1148,35 +1167,70 @@ var ResourceDialogComponent = /** @class */ /*@__PURE__*/ (function () {
     };
     return ResourceDialogComponent;
 }());
+/**
+ * This pipe stringifies an array of StringLiterals.
+ * With the parameter 'all' it concats all values and
+ * appends the corresponing language in brackets.
+ *
+ * Otherwise it displays the value corresponding to the default
+ * language which comes from user profile (if a user is logged-in)
+ * or from browser. With the predefined language it checks,
+ * if a value exists for it, otherwise it shows the first value from the array
+ */
 var StringifyStringLiteralPipe = /** @class */ /*@__PURE__*/ (function () {
     function StringifyStringLiteralPipe() {
     }
-    StringifyStringLiteralPipe.prototype.transform = function (value) {
+    StringifyStringLiteralPipe.prototype.transform = function (value, args) {
         var e_1, _a;
         var stringified = '';
-        var i = 0;
-        try {
-            for (var value_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(value), value_1_1 = value_1.next(); !value_1_1.done; value_1_1 = value_1.next()) {
-                var sl = value_1_1.value;
-                var delimiter = (i > 0 ? ' / ' : '');
-                stringified += delimiter + sl.value + ' (' + sl.language + ')';
-                i++;
-            }
-        }
-        catch (e_1_1) {
-            e_1 = { error: e_1_1 };
-        }
-        finally {
+        var language;
+        if (args === 'all') {
+            // show all values
+            var i = 0;
             try {
-                if (value_1_1 && !value_1_1.done && (_a = value_1.return))
-                    _a.call(value_1);
+                for (var value_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(value), value_1_1 = value_1.next(); !value_1_1.done; value_1_1 = value_1.next()) {
+                    var sl = value_1_1.value;
+                    var delimiter = (i > 0 ? ' / ' : '');
+                    stringified += delimiter + sl.value + ' (' + sl.language + ')';
+                    i++;
+                }
+            }
+            catch (e_1_1) {
+                e_1 = { error: e_1_1 };
             }
             finally {
-                if (e_1)
-                    throw e_1.error;
+                try {
+                    if (value_1_1 && !value_1_1.done && (_a = value_1.return))
+                        _a.call(value_1);
+                }
+                finally {
+                    if (e_1)
+                        throw e_1.error;
+                }
+            }
+            return stringified;
+        }
+        else {
+            // show only one value, depending on default language
+            // the language is defined in user profile if a user is logged-in
+            // otherwise it takes the language from browser
+            if (localStorage.getItem('session') !== null) {
+                // get language from the logged-in user profile data
+                language = JSON.parse(localStorage.getItem('session')).user.lang;
+            }
+            else {
+                // get default language from browser
+                language = navigator.language.substr(0, 2);
+            }
+            // does the defined language exists and does it have a value?
+            var index = value.findIndex(function (i) { return i.language === language; });
+            if (value[index] && value[index].value.length > 0) {
+                return value[index].value;
+            }
+            else {
+                return value[0].value;
             }
         }
-        return stringified;
     };
     return StringifyStringLiteralPipe;
 }());
@@ -19760,9 +19814,9 @@ var AppDemo = /** @class */ /*@__PURE__*/ (function () {
                 stackblitz: false
             },
             {
-                name: 'string-literal',
-                label: 'StringLiteral',
-                type: 'Component',
+                name: 'stringify-string-literal',
+                label: 'StringifyStringLiteral',
+                type: 'Pipe',
                 stackblitz: false
             }
         ]
@@ -21979,7 +22033,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StringLiteralComponentNgFactory", function() { return StringLiteralComponentNgFactory; });
 /* harmony import */ var _string_literal_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./string-literal.component.scss.shim.ngstyle */ "./src/app/knora-ui-examples/action-demo/string-literal/string-literal.component.scss.shim.ngstyle.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _string_literal_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./string-literal.component */ "./src/app/knora-ui-examples/action-demo/string-literal/string-literal.component.ts");
+/* harmony import */ var _knora_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @knora/action */ "./dist/@knora/action/fesm5/knora-action.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component.ngfactory */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../partials/documentation-viewer/documentation-viewer.component */ "./src/app/partials/documentation-viewer/documentation-viewer.component.ts");
+/* harmony import */ var _partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../partials/services/jsdoc.service */ "./src/app/partials/services/jsdoc.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../node_modules/@angular/material/card/typings/index.ngfactory */ "./node_modules/@angular/material/card/typings/index.ngfactory.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component.ngfactory */ "./src/app/partials/example-viewer/example-viewer.component.ngfactory.js");
+/* harmony import */ var _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../partials/example-viewer/example-viewer.component */ "./src/app/partials/example-viewer/example-viewer.component.ts");
+/* harmony import */ var _string_literal_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./string-literal.component */ "./src/app/knora-ui-examples/action-demo/string-literal/string-literal.component.ts");
 /**
  * @fileoverview This file was generated by the Angular template compiler. Do not edit.
  *
@@ -21989,12 +22053,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
 var styles_StringLiteralComponent = [_string_literal_component_scss_shim_ngstyle__WEBPACK_IMPORTED_MODULE_0__["styles"]];
 var RenderType_StringLiteralComponent = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵcrt"]({ encapsulation: 0, styles: styles_StringLiteralComponent, data: {} });
 
-function View_StringLiteralComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["string-literal works!"]))], null, null); }
-function View_StringLiteralComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-string-literal", [], null, null, null, View_StringLiteralComponent_0, RenderType_StringLiteralComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _string_literal_component__WEBPACK_IMPORTED_MODULE_2__["StringLiteralComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
-var StringLiteralComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-string-literal", _string_literal_component__WEBPACK_IMPORTED_MODULE_2__["StringLiteralComponent"], View_StringLiteralComponent_Host_0, {}, {}, []);
+function View_StringLiteralComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](0, _knora_action__WEBPACK_IMPORTED_MODULE_2__["StringifyStringLiteralPipe"], []), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "app-documentation-viewer", [], null, null, null, _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["View_DocumentationViewerComponent_0"], _partials_documentation_viewer_documentation_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_3__["RenderType_DocumentationViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](2, 114688, null, 0, _partials_documentation_viewer_documentation_viewer_component__WEBPACK_IMPORTED_MODULE_4__["DocumentationViewerComponent"], [_partials_services_jsdoc_service__WEBPACK_IMPORTED_MODULE_5__["JsdocService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]], { module: [0, "module"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Example"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 16, "mat-card", [["class", "example-viewer mat-card"]], [[2, "_mat-animation-noopable", null]], null, null, _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["View_MatCard_0"], _node_modules_angular_material_card_typings_index_ngfactory__WEBPACK_IMPORTED_MODULE_7__["RenderType_MatCard"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 49152, null, 0, _angular_material_card__WEBPACK_IMPORTED_MODULE_8__["MatCard"], [[2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["ANIMATION_MODULE_TYPE"]]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, 0, 1, "app-example-viewer", [], null, null, null, _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_10__["View_ExampleViewerComponent_0"], _partials_example_viewer_example_viewer_component_ngfactory__WEBPACK_IMPORTED_MODULE_10__["RenderType_ExampleViewerComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 114688, null, 0, _partials_example_viewer_example_viewer_component__WEBPACK_IMPORTED_MODULE_11__["ExampleViewerComponent"], [], { example: [0, "example"] }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](9, 0, null, 0, 12, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](10, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Show all values"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](12, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](13, null, ["", ""])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](14, 2), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](16, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](17, 0, null, null, 1, "strong", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, ["Show only one value"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](19, 0, null, null, 2, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](20, null, ["", ""])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵppd"](21, 1)], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.module; _ck(_v, 2, 0, currVal_0); var currVal_2 = _co.stringifyPipe; _ck(_v, 8, 0, currVal_2); }, function (_ck, _v) { var _co = _v.component; var currVal_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 6)._animationMode === "NoopAnimations"); _ck(_v, 5, 0, currVal_1); var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 13, 0, _ck(_v, 14, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), _co.labels, "all")); _ck(_v, 13, 0, currVal_3); var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 20, 0, _ck(_v, 21, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 0), _co.labels)); _ck(_v, 20, 0, currVal_4); }); }
+function View_StringLiteralComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-string-literal", [], null, null, null, View_StringLiteralComponent_0, RenderType_StringLiteralComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _string_literal_component__WEBPACK_IMPORTED_MODULE_12__["StringLiteralComponent"], [], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var StringLiteralComponentNgFactory = /*@__PURE__*/ /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-string-literal", _string_literal_component__WEBPACK_IMPORTED_MODULE_12__["StringLiteralComponent"], View_StringLiteralComponent_Host_0, {}, {}, []);
 
 
 
@@ -22034,8 +22108,40 @@ var styles = ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uI
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StringLiteralComponent", function() { return StringLiteralComponent; });
+/* harmony import */ var src_app_app_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/app.config */ "./src/app/app.config.ts");
+
 var StringLiteralComponent = /** @class */ /*@__PURE__*/ (function () {
     function StringLiteralComponent() {
+        this.module = src_app_app_config__WEBPACK_IMPORTED_MODULE_0__["AppDemo"].actionModule;
+        this.labels = [
+            {
+                value: 'Welt',
+                language: 'de'
+            },
+            {
+                value: 'World',
+                language: 'en'
+            },
+            {
+                value: 'Monde',
+                language: 'fr'
+            },
+            {
+                value: 'Mondo',
+                language: 'it'
+            },
+        ];
+        // demo configuration incl. code to display
+        this.stringifyPipe = {
+            title: 'StringifyStringLiteral Pipe',
+            subtitle: '',
+            name: 'stringifyPipe',
+            code: {
+                html: "\n<strong>Show all values</strong>\n<p>{{labels | kuiStringifyStringLiteral:'all'}}</p>\n\n<strong>Show only one value</strong>\n<p>{{labels | kuiStringifyStringLiteral}}</p>\n",
+                ts: "\nlabels: StringLiteral[] = '" + JSON.stringify(this.labels) + "';\n",
+                scss: ''
+            }
+        };
     }
     StringLiteralComponent.prototype.ngOnInit = function () {
     };
