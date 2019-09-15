@@ -1111,6 +1111,9 @@ var TruncatePipe = /** @class */ /*@__PURE__*/ (function () {
     function TruncatePipe() {
     }
     TruncatePipe.prototype.transform = function (value, args) {
+        if (!value || value.length === 0) {
+            return;
+        }
         var limit = args.length > 0 ? parseInt(args[0], 10) : 20;
         var trail = args.length > 1 ? args[1] : '...';
         return value.length > limit ? value.substring(0, limit) + trail : value;
@@ -1168,14 +1171,9 @@ var ResourceDialogComponent = /** @class */ /*@__PURE__*/ (function () {
     return ResourceDialogComponent;
 }());
 /**
- * This pipe stringifies an array of StringLiterals.
- * With the parameter 'all' it concats all values and
- * appends the corresponing language in brackets.
+ * This pipe stringifies an array of StringLiterals. With the parameter 'all' it concats all values and appends the corresponing language in brackets.
  *
- * Otherwise it displays the value corresponding to the default
- * language which comes from user profile (if a user is logged-in)
- * or from browser. With the predefined language it checks,
- * if a value exists for it, otherwise it shows the first value from the array
+ * Otherwise it displays the value corresponding to the default language which comes from user profile (if a user is logged-in) or from browser. With the predefined language it checks, if a value exists for it, otherwise it shows the first value from the array
  */
 var StringifyStringLiteralPipe = /** @class */ /*@__PURE__*/ (function () {
     function StringifyStringLiteralPipe() {
@@ -1184,6 +1182,9 @@ var StringifyStringLiteralPipe = /** @class */ /*@__PURE__*/ (function () {
         var e_1, _a;
         var stringified = '';
         var language;
+        if (!value || !value.length) {
+            return;
+        }
         if (args === 'all') {
             // show all values
             var i = 0;

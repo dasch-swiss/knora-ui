@@ -13,7 +13,7 @@
     "ignore": false,
     "line": 3,
     "codeStart": 22,
-    "code": "@Pipe({\n    name: 'kuiTruncate'\n})\nexport class TruncatePipe implements PipeTransform {\n\n    transform(value: string, args: string[]): string {\n        const limit = args.length > 0 ? parseInt(args[0], 10) : 20;\n        const trail = args.length > 1 ? args[1] : '...';\n        return value.length > limit ? value.substring(0, limit) + trail : value;\n    }\n\n}",
+    "code": "@Pipe({\n    name: 'kuiTruncate'\n})\nexport class TruncatePipe implements PipeTransform {\n\n\n\n    transform(value: string, args: string[]): string {\n\n        if (!value || value.length === 0) {\n            return;\n        }\n\n        const limit = args.length > 0 ? parseInt(args[0], 10) : 20;\n        const trail = args.length > 1 ? args[1] : '...';\n        return value.length > limit ? value.substring(0, limit) + trail : value;\n    }\n\n}",
     "ctx": false
   }
 ]
