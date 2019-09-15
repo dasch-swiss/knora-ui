@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Pipe, PipeTransform } from '@angular/core';\nimport { StringLiteral } from '@knora/core';\n\n@Pipe({\n    name: 'kuiStringifyStringLiteral'\n})\nexport class StringifyStringLiteralPipe implements PipeTransform {\n\n    transform(value: StringLiteral[]): string {\n        let stringified: string = '';\n\n        let i = 0;\n        for (const sl of value) {\n            const delimiter = (i > 0 ? ' / ' : '');\n            stringified += delimiter + sl.value + ' (' + sl.language + ')';\n\n            i++;\n        }\n        return stringified;\n    }\n\n}",
+    "ctx": false
+  }
+]

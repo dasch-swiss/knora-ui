@@ -255,7 +255,7 @@ Be sure everything is merged, before creating new release.
 # Navigate to the knora-ui root directory
 cd ~/Path/to/repo
 # Run the task
-gren release
+gren release --override --milestone-match="xxxx-xx"
 ```
 
 <!--

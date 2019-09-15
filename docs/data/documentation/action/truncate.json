@@ -1,0 +1,19 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>This pipe can be used to shorten long text by a defined length.</p>\n<p>In markup:</p>\n<p>{{ str | kuiTruncate:[20] }}</p>\n<p>or</p>\n<p>{{ str | kuiTruncate:[20, '...'] }}</p>\n<p>The first parameter defines the lenght where to truncate the string.<br />\nSecond optional parameter defines the characters to append to the shortened string. Default is '...'.</p>\n<p>The advantage of this pipe over the default Angular slice pipe is the simplicity of adding additional characters at the end of the shortened string.<br />\nThe same construct with slice looks as follow <code>{{ (str.length&gt;24)? (str | slice:0:24)+'...':(str) }}</code>.</p>",
+      "summary": "<p>This pipe can be used to shorten long text by a defined length.</p>",
+      "body": "<p>In markup:</p>\n<p>{{ str | kuiTruncate:[20] }}</p>\n<p>or</p>\n<p>{{ str | kuiTruncate:[20, '...'] }}</p>\n<p>The first parameter defines the lenght where to truncate the string.<br />\nSecond optional parameter defines the characters to append to the shortened string. Default is '...'.</p>\n<p>The advantage of this pipe over the default Angular slice pipe is the simplicity of adding additional characters at the end of the shortened string.<br />\nThe same construct with slice looks as follow <code>{{ (str.length&gt;24)? (str | slice:0:24)+'...':(str) }}</code>.</p>"
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 3,
+    "codeStart": 22,
+    "code": "@Pipe({\n    name: 'kuiTruncate'\n})\nexport class TruncatePipe implements PipeTransform {\n\n    transform(value: string, args: string[]): string {\n        const limit = args.length > 0 ? parseInt(args[0], 10) : 20;\n        const trail = args.length > 1 ? args[1] : '...';\n        return value.length > limit ? value.substring(0, limit) + trail : value;\n    }\n\n}",
+    "ctx": false
+  }
+]
