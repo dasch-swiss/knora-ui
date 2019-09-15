@@ -8,6 +8,8 @@ import { Pipe, PipeTransform } from '@angular/core';
  * When the value is an object with name and label, you get them with:
  * {{item.value.name}} and {{item.value.label}}
  *
+ * The advantage of this pipe over the default Angular slice pipe is the simplicity of adding additional characters at the end of the shortened string.
+ * The same construct with slice looks as follow `{{ (str.length>24)? (str | slice:0:24)+'...':(str) }}`.
  */
 @Pipe({
     name: 'kuiKey'
@@ -18,7 +20,7 @@ export class KeyPipe implements PipeTransform {
         const keys = [];
         for (const key in value) {
             if (value.hasOwnProperty(key)) {
-                keys.push({key: key, value: value[key]});
+                keys.push({ key: key, value: value[key] });
             }
         }
         return keys;
