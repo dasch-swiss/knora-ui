@@ -6,13 +6,13 @@
 
 <mat-card class="example-viewer">
 
-    <app-example-viewer [example]="keyPipe"></app-example-viewer>
+    <app-example-viewer [example]="truncatePipe"></app-example-viewer>
 
     <div class="demo">
-        <ul>
-            <li *ngFor="let item of array | kuiKey">
-                {{item.key}}: {{item.value}}
-            </li>
-        </ul>
+        Shorten long text by the following length:
+        <mat-slider [min]="1" [max]="longText.length + 1" [thumbLabel]="true" (input)="truncateStringBy($event)"
+                    [value]="length">
+        </mat-slider>
+        <p>{{longText | kuiTruncate:[length]}}</p>
     </div>
 </mat-card>
