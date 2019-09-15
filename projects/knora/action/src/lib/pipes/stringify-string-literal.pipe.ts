@@ -16,6 +16,10 @@ export class StringifyStringLiteralPipe implements PipeTransform {
 
         let language: string;
 
+        if (!value || !value.length) {
+            return;
+        }
+
         if (args === 'all') {
             // show all values
             let i = 0;
