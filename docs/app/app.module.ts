@@ -68,7 +68,7 @@ import { ExtendedSearchComponent } from './knora-ui-examples/search-demo/extende
 import { MessageComponent } from './knora-ui-examples/action-demo/message/message.component';
 import { SearchResultsComponent } from './knora-ui-examples/viewer-demo/search-results/search-results.component';
 import { TruncateComponent } from './knora-ui-examples/action-demo/truncate/truncate.component';
-import { StringLiteralComponent } from './knora-ui-examples/action-demo/string-literal/string-literal.component';
+import { StringifyStringLiteralComponent } from './knora-ui-examples/action-demo/stringify-string-literal/stringify-string-literal.component';
 
 
 export function initializeApp(appInitService: AppInitService) {
@@ -125,7 +125,7 @@ export function initializeApp(appInitService: AppInitService) {
         MessageComponent,
         SearchResultsComponent,
         TruncateComponent,
-        StringLiteralComponent
+        StringifyStringLiteralComponent
     ],
     entryComponents: [
         // LoginFormComponent
