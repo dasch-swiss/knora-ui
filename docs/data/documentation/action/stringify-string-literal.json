@@ -2,9 +2,9 @@
   {
     "tags": [],
     "description": {
-      "full": "<p>This pipe stringifies an array of StringLiterals. With the parameter 'all' it concats all values and appends the corresponing language in brackets.</p>\n<p>Otherwise it displays the value corresponding to the default language which comes from user profile (if a user is logged-in) or from browser. With the predefined language it checks, if a value exists for it, otherwise it shows the first value from the array</p>",
-      "summary": "<p>This pipe stringifies an array of StringLiterals. With the parameter 'all' it concats all values and appends the corresponing language in brackets.</p>",
-      "body": "<p>Otherwise it displays the value corresponding to the default language which comes from user profile (if a user is logged-in) or from browser. With the predefined language it checks, if a value exists for it, otherwise it shows the first value from the array</p>"
+      "full": "<p>This pipe stringifies an array of StringLiterals. With the parameter 'all', the pipe concats all values and appends the corresponding language in brackets.</p>\n<p>Otherwise the pipe displays the value corresponding to the default language which comes from the user profile (if a user is logged-in) or from the browser. With the predefined language the pipe checks, if a value exists in the array, otherwise it shows the first value.</p>",
+      "summary": "<p>This pipe stringifies an array of StringLiterals. With the parameter 'all', the pipe concats all values and appends the corresponding language in brackets.</p>",
+      "body": "<p>Otherwise the pipe displays the value corresponding to the default language which comes from the user profile (if a user is logged-in) or from the browser. With the predefined language the pipe checks, if a value exists in the array, otherwise it shows the first value.</p>"
     },
     "isPrivate": false,
     "isConstructor": false,
