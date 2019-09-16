@@ -61,6 +61,18 @@ export class AppDemo {
                 label: 'Key',
                 type: 'Pipe',
                 stackblitz: true
+            },
+            {
+                name: 'truncate',
+                label: 'Truncate',
+                type: 'Pipe',
+                stackblitz: false
+            },
+            {
+                name: 'stringify-string-literal',
+                label: 'StringifyStringLiteral',
+                type: 'Pipe',
+                stackblitz: false
             }
         ]
     };

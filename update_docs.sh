@@ -69,7 +69,11 @@ jsdoc2json ()
     done
 }
 
+if ! git diff-index --quiet HEAD --; then
 
+        die "Uncommited changes. Please commit your changes before running this script again."
+
+fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 1) create data documentation structure and copy all README files
@@ -132,7 +136,16 @@ jsdoc2json "${special[@]}"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # 3) build the ng-app and update the files in docs/ folder
 #
+
+
+
 git rm -r docs/*
-ng build --prod=false --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
+ng build --prod --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
 cp docs/index.html docs/404.html
-git add docs/*
+
+
+if git diff-index --quiet HEAD --; then
+    echo "You have to commit the changes in the documentation."
+    git status
+    git add docs/*
+fi
