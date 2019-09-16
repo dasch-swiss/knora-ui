@@ -144,12 +144,8 @@ ng build --prod --base-href /Knora-ui/ --build-optimizer --aot --output-path doc
 cp docs/index.html docs/404.html
 
 
-if [git diff-index --quiet HEAD --] ; then
-
+if git diff-index --quiet HEAD --; then
     echo "You have to commit the changes in the documentation."
-
     git status
-
+    git add docs/*
 fi
-
-git add docs/*
