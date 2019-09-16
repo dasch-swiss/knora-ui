@@ -1,5 +1,22 @@
 [
   {
+    "tags": [],
+    "description": {
+      "full": "<p>TODO: add documentation</p>",
+      "summary": "<p>TODO: add documentation</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 6,
+    "codeStart": 9,
+    "code": "@Component({\n    selector: 'kui-string-literal-input',\n    templateUrl: './string-literal-input.component.html',\n    styleUrls: ['./string-literal-input.component.scss']\n})\nexport class StringLiteralInputComponent implements OnInit {\n\n\n    languages: string[] = ['de', 'fr', 'it', 'en'];",
+    "ctx": false
+  },
+  {
     "tags": [
       {
         "type": "param",
@@ -27,8 +44,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 16,
-    "codeStart": 21,
+    "line": 19,
+    "codeStart": 24,
     "code": "@Input() placeholder?: string = 'Label';",
     "ctx": false
   },
@@ -60,8 +77,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 23,
-    "codeStart": 28,
+    "line": 26,
+    "codeStart": 31,
     "code": "@Input() language?: string;",
     "ctx": false
   },
@@ -93,8 +110,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 30,
-    "codeStart": 36,
+    "line": 33,
+    "codeStart": 39,
     "code": "@Input() textarea?: boolean = false;",
     "ctx": false
   },
@@ -126,8 +143,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 38,
-    "codeStart": 43,
+    "line": 41,
+    "codeStart": 46,
     "code": "@Input() value?: StringLiteral[] = [];",
     "ctx": false
   },
@@ -156,8 +173,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 45,
-    "codeStart": 50,
+    "line": 48,
+    "codeStart": 53,
     "code": "@Input() disabled?: boolean = false;",
     "ctx": false
   },
@@ -186,8 +203,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 52,
-    "codeStart": 57,
+    "line": 55,
+    "codeStart": 60,
     "code": "@Input() readonly?: boolean = false;",
     "ctx": false
   },
@@ -209,8 +226,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 59,
-    "codeStart": 64,
+    "line": 62,
+    "codeStart": 67,
     "code": "@Output() dataChanged: EventEmitter<StringLiteral[]> = new EventEmitter<StringLiteral[]>();",
     "ctx": false
   },
@@ -232,8 +249,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 66,
-    "codeStart": 71,
+    "line": 69,
+    "codeStart": 74,
     "code": "@Output() touched: EventEmitter<boolean> = new EventEmitter<boolean>();",
     "ctx": false
   },
@@ -249,8 +266,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 73,
-    "codeStart": 78,
+    "line": 76,
+    "codeStart": 81,
     "code": "@Output() enter: EventEmitter<boolean> = new EventEmitter<boolean>();\n\n@ViewChild('textInput', { static: false }) textInput: ElementRef;\n\n@ViewChild('btnToSelectLanguage', { static: false }) btnToSelectLanguage: MatMenuTrigger;\n\nform: FormGroup;\n\nconstructor (\n    private _fb: FormBuilder\n) {\n\n    // set selected language, if it's not defined yet\n    if (!this.language) {\n        if (localStorage.getItem('session') !== null) {\n            // get language from the logged-in user profile data\n            this.language = JSON.parse(localStorage.getItem('session')).user.lang;\n        } else {\n            // get default language from browser\n            this.language = navigator.language.substr(0, 2);\n        }\n    }\n\n    // does the defined language exists in our supported languages list?\n    if (this.languages.indexOf(this.language) === -1) {\n        // if not, select the first language from our list of supported languages\n        this.language = this.languages[0];\n    }\n\n}\n\nngOnInit() {\n\n    // if (this.placeholder.length > 0) {\n    //     this.placeholder += ' (' + this.language + ')';\n    // }\n\n    // reset stringLiterals if they have empty values\n    this.resetValues();\n\n    // build the form\n    this.form = this._fb.group({\n        text: new FormControl(\n            {\n                value: '',\n                disabled: this.disabled\n            },\n            {\n                // updateOn: 'blur'\n            }\n        )\n    });\n    // update values on form change\n    this.form.valueChanges.subscribe(data => this.onValueChanged());\n\n    // get value from stringLiterals\n    const val = this.getValueFromStringLiteral(this.language);\n    this.updateFormField(val);\n\n\n}",
     "ctx": false
   },
@@ -272,8 +289,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 140,
-    "codeStart": 145,
+    "line": 143,
+    "codeStart": 148,
     "code": "onValueChanged() {\n    if (!this.form) {\n        return;\n    }\n\n    const form = this.form;\n    const control = form.get('text');\n    this.touched.emit(control && control.dirty);\n\n    // if (control && control.dirty) {\n    // console.warn('control dirty');\n\n    // }\n\n    this.updateStringLiterals(this.language, this.form.controls['text'].value);\n\n    this.dataChanged.emit(this.value);\n\n}\n\ntoggleAll() {\n    // TODO: open/show all languages with their values\n}",
     "ctx": {
       "type": "method",
@@ -299,8 +316,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 169,
-    "codeStart": 174,
+    "line": 172,
+    "codeStart": 177,
     "code": "setLanguage(lang: string) {\n\n    if (this.language === lang) {\n        // console.warn('DO NOTHING! this language was already selected');\n    } else {\n        // clean stringLIteral value for previous language, if text field is empty\n        this.updateStringLiterals(this.language, this.form.controls['text'].value);\n\n        this.language = lang;\n        // update form field value / reset in case of no value\n        const val = this.getValueFromStringLiteral(lang);\n        this.updateFormField(val);\n    }\n}",
     "ctx": {
       "type": "method",
@@ -326,8 +343,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 189,
-    "codeStart": 194,
+    "line": 192,
+    "codeStart": 197,
     "code": "switchFocus() {\n    // close the menu\n    if (!this.textarea && this.btnToSelectLanguage && this.btnToSelectLanguage.menuOpen) {\n        this.btnToSelectLanguage.closeMenu();\n    }\n\n    if (!this.disabled) {\n        this.form.controls['text'].enable();\n        this.textInput.nativeElement.focus();\n    }\n}",
     "ctx": {
       "type": "method",
@@ -353,8 +370,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 206,
-    "codeStart": 211,
+    "line": 209,
+    "codeStart": 214,
     "code": "updateFormField(value: string) {\n    if (!value) {\n        value = '';\n    }\n    this.form.controls['text'].setValue(value);\n}",
     "ctx": {
       "type": "method",
@@ -380,8 +397,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 218,
-    "codeStart": 223,
+    "line": 221,
+    "codeStart": 226,
     "code": "updateStringLiterals(lang: string, value?: string) {\n    const index = this.value.findIndex(i => i.language === lang);\n\n    if (index > -1 && this.value[index].value.length > 0) {\n        // value is not empty and exists in list of stringLiterals\n        // console.log('update existing value for ' + lang + ' on position ' + index);\n        this.value[index].value = value;\n    }\n\n    if ((!value || value.length === 0) && index > -1) {\n        // value is empty: delete stringLiteral item for this language\n        // console.log('delete empty value for ' + lang + ' on position ' + index);\n        this.value.splice(index, 1);\n    }\n\n    if (index < 0 && value) {\n        // value doesn't exist in stringLiterals: add one\n        // console.log('add new value (' + value + ') for ' + lang);\n        const newValue: StringLiteral = {\n            value: value,\n            language: lang\n        };\n        this.value.push(newValue);\n    }\n\n}",
     "ctx": {
       "type": "method",
@@ -407,8 +424,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 250,
-    "codeStart": 255,
+    "line": 253,
+    "codeStart": 258,
     "code": "resetValues() {\n    const length: number = this.value.length;\n\n    if (length > 0) {\n        let index = length - 1;\n        while (index >= 0) {\n            // remove items with empty value\n            if (!this.value[index].value.length) {\n                this.value.splice(index, 1);\n            }\n            index--;\n        }\n\n        // does an item for selected lanuage exists\n        if (this.value.findIndex(i => i.language === this.language) === -1) {\n            this.language = this.value[0].language;\n        }\n\n    } else {\n        this.value = [];\n    }\n}",
     "ctx": {
       "type": "method",
@@ -434,8 +451,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 278,
-    "codeStart": 283,
+    "line": 281,
+    "codeStart": 286,
     "code": "getValueFromStringLiteral(lang: string): string {\n    // console.log('existing value in', this.value);\n    // get index for this language\n    const index = this.value.findIndex(i => i.language === lang);\n\n    if (this.value[index] && this.value[index].value.length > 0) {\n        return this.value[index].value;\n    } else {\n        return undefined;\n    }\n\n}\n\n}",
     "ctx": {
       "type": "method",

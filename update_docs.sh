@@ -142,12 +142,14 @@ jsdoc2json "${special[@]}"
 git rm -r docs/*
 ng build --prod --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
 cp docs/index.html docs/404.html
-git add docs/*
 
-if git diff-index --quiet HEAD --; then
+
+if [git diff-index --quiet HEAD --] ; then
 
     echo "You have to commit the changes in the documentation."
 
     git status
 
 fi
+
+git add docs/*
