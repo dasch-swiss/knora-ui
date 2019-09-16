@@ -3,6 +3,9 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material';
 import { StringLiteral } from '@knora/core';
 
+/**
+ * TODO: add documentation
+ */
 @Component({
     selector: 'kui-string-literal-input',
     templateUrl: './string-literal-input.component.html',
