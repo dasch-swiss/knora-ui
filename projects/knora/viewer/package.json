@@ -1,6 +1,6 @@
 {
   "name": "@knora/viewer",
-  "version": "9.1.0",
+  "version": "9.2.0",
   "description": "Knora ui module: viewer",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "@angular/cdk": "^8.1.4",
     "@angular/material": "^8.1.4",
     "@angular/flex-layout": "^8.0.0-beta.27",
-    "@knora/action": "9.1.0",
-    "@knora/core": "9.1.0"
+    "@knora/action": "9.2.0",
+    "@knora/core": "9.2.0"
   }
 }
