@@ -5,26 +5,24 @@ import { Pipe, PipeTransform } from '@angular/core';
  *
  * In markup:
  *
- * {{ str | kuiTruncate:[20] }}
+ * {{ str | kuiTruncate:[24] }}
  *
  * or
  *
- * {{ str | kuiTruncate:[20, '...'] }}
+ * {{ str | kuiTruncate:[24, '...'] }}
  *
  *
- * The first parameter defines the lenght where to truncate the string.
+ * The first parameter defines the length where to truncate the string.
  * Second optional parameter defines the characters to append to the shortened string. Default is '...'.
  *
  * The advantage of this pipe over the default Angular slice pipe is the simplicity of adding additional characters at the end of the shortened string.
- * The same construct with slice looks as follow `{{ (str.length>24)? (str | slice:0:24)+'...':(str) }}`.
+ * The same construct with Angular slice pipe looks as follow: `{{ (str.length>24)? (str | slice:0:24)+'...':(str) }}`.
  *
  */
 @Pipe({
     name: 'kuiTruncate'
 })
 export class TruncatePipe implements PipeTransform {
-
-
 
     transform(value: string, args: string[]): string {
 
