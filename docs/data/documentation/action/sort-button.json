@@ -19,14 +19,9 @@
   {
     "tags": [
       {
-        "type": "ignore",
-        "string": "{string} sortKeyChange",
-        "html": "<p>{string} sortKeyChange</p>"
-      },
-      {
         "type": "emits",
-        "string": "TODO: this would be the correct syntax for Output eventEmitter \nEventEmitter when a user selected a sort property;\nThis is the selected key",
-        "html": "<p>TODO: this would be the correct syntax for Output eventEmitter<br />\nEventEmitter when a user selected a sort property;<br />\nThis is the selected key</p>"
+        "string": "{string} sortKeyChange \nEventEmitter when a user selected a sort property;\nThis is the selected key",
+        "html": "<p>{string} sortKeyChange<br />\nEventEmitter when a user selected a sort property;<br />\nThis is the selected key</p>"
       }
     ],
     "description": {
@@ -40,8 +35,8 @@
     "isEvent": false,
     "ignore": false,
     "line": 19,
-    "codeStart": 26,
-    "code": "@Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();\n\n\nmenuXPos: string = 'after';\n\nactiveKey: string;",
+    "codeStart": 25,
+    "code": "@Output() sortKeyChange: EventEmitter<string> = new EventEmitter<string>();\n\nmenuXPos: string = 'after';\n\nactiveKey: string;",
     "ctx": false
   },
   {
@@ -71,8 +66,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 33,
-    "codeStart": 38,
+    "line": 31,
+    "codeStart": 36,
     "code": "@Input() sortProps: SortProp[];",
     "ctx": false
   },
@@ -103,8 +98,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 40,
-    "codeStart": 44,
+    "line": 38,
+    "codeStart": 42,
     "code": "@Input() position?: string = 'left';",
     "ctx": false
   },
@@ -135,8 +130,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 47,
-    "codeStart": 53,
+    "line": 45,
+    "codeStart": 51,
     "code": "@Input() icon?: string = 'sort';",
     "ctx": false
   },
@@ -167,9 +162,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 55,
-    "codeStart": 59,
-    "code": "@Input() sortKey(sortKey: string) {\n    this.activeKey = sortKey;\n}\n\nconstructor() {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
+    "line": 53,
+    "codeStart": 57,
+    "code": "@Input() sortKey(sortKey: string) {\n    this.activeKey = sortKey;\n}\n\nconstructor () {\n}\n\nngOnInit() {\n    if (this.position === 'right') {\n        this.menuXPos = 'before';\n    }\n\n}",
     "ctx": false
   },
   {
@@ -205,8 +200,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 73,
-    "codeStart": 78,
+    "line": 71,
+    "codeStart": 76,
     "code": "sortBy(key: string) {\n    this.sortKeyChange.emit(key);\n}\n\n}",
     "ctx": {
       "type": "method",

@@ -18,7 +18,7 @@ export class KeyPipe implements PipeTransform {
         const keys = [];
         for (const key in value) {
             if (value.hasOwnProperty(key)) {
-                keys.push({key: key, value: value[key]});
+                keys.push({ key: key, value: value[key] });
             }
         }
         return keys;

@@ -13,7 +13,7 @@
     "ignore": false,
     "line": 3,
     "codeStart": 12,
-    "code": "@Pipe({\n    name: 'kuiKey'\n})\nexport class KeyPipe implements PipeTransform {\n\n    transform(value: any, args?: any): any {\n        const keys = [];\n        for (const key in value) {\n            if (value.hasOwnProperty(key)) {\n                keys.push({key: key, value: value[key]});\n            }\n        }\n        return keys;\n    }\n}",
+    "code": "@Pipe({\n    name: 'kuiKey'\n})\nexport class KeyPipe implements PipeTransform {\n\n    transform(value: any, args?: any): any {\n        const keys = [];\n        for (const key in value) {\n            if (value.hasOwnProperty(key)) {\n                keys.push({ key: key, value: value[key] });\n            }\n        }\n        return keys;\n    }\n}",
     "ctx": false
   }
 ]

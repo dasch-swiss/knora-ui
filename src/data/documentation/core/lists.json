@@ -360,7 +360,7 @@
     "ignore": false,
     "line": 114,
     "codeStart": 120,
-    "code": "updateListInfo(payload: ListInfoUpdatePayload): Observable<ListInfo> {\n    return this.httpPut(this.path + '/infos/' + encodeURIComponent(payload.listIri), payload).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),\n        catchError(this.handleJsonError)\n    );\n}\n}",
+    "code": "updateListInfo(payload: ListInfoUpdatePayload): Observable<ListInfo> {\n    return this.httpPut(this.path + '/infos/' + encodeURIComponent(payload.listIri), payload).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),\n        catchError(this.handleJsonError)\n    );\n}\n\n// updateListItem(payload: )\n}",
     "ctx": {
       "type": "method",
       "name": "updateListInfo",
