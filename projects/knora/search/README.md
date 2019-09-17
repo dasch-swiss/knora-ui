@@ -28,14 +28,14 @@ You can use either the npm or yarn command-line tool to install packages. Use wh
 
 This module has the following package dependencies, which you also have to install.
 
-- @angular/common@7.2.7
-- @angular/core@7.2.7
-- @knora/action@8.2.0
-- @knora/core@8.2.0
-- @knora/viewer@8.2.0
+- @angular/common@8.0.3
+- @angular/core@8.0.3
+- @knora/action@9.1.0
+- @knora/core@9.1.0
+- @knora/viewer@9.1.0
 - jdnconvertiblecalendardateadapter@0.0.7
 
-### Required version of Knora: 8.0.0
+### Required version of Knora: 9.0.0
 
 ## Components
 
@@ -77,6 +77,16 @@ We suggest to define a route for the search-results in the app.routing
 
 ### Extended / advanced search
 Generic search filter tool to limit search results to ontology and resource class and / or properties. [Read more](modules/search/extended-search)
+
+If you want to use this search, you have to add the following css style to you main app stylesheet to style the date picker properly.
+
+```css
+.mat-datepicker-content {
+  .mat-calendar {
+    height: auto !important;
+  }
+}
+```
 
 <!-- ### Expert search -->
 
@@ -123,3 +133,5 @@ import { KuiSearchModule } from '@knora/search';
 export class AppModule {
 }
 ```
+
+

@@ -8,10 +8,8 @@ import { JDNConvertibleCalendar } from 'jdnconvertiblecalendar';
 */
 @Directive({
     selector: 'kuiJdnDatepicker',
-    providers: [
-        { provide: DateAdapter, useClass: JDNConvertibleCalendarDateAdapter, deps: [MAT_DATE_LOCALE] }
-    ]
+    providers: [{ provide: DateAdapter, useClass: JDNConvertibleCalendarDateAdapter, deps: [MAT_DATE_LOCALE] }]
 })
 export class JdnDatepickerDirective {
-    constructor(private adapter: DateAdapter<JDNConvertibleCalendar>) { }
+    constructor (private adapter: DateAdapter<JDNConvertibleCalendar>) { }
 }
