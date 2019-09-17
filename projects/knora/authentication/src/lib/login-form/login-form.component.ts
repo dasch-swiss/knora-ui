@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceError, ApiServiceResult } from '@knora/core';
@@ -24,6 +24,8 @@ export class LoginFormComponent implements OnInit {
      * it will be used in the progress-indicator
      */
     @Input() color?: string;
+
+    @Output() status: EventEmitter<any> = new EventEmitter<any>();
 
     returnUrl: string;
 
