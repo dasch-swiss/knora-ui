@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiServiceError, KuiCoreConfigToken } from '@knora/core';
+import { ApiServiceError, KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { SessionService } from './session/session.service';
@@ -15,7 +15,7 @@ export class AuthenticationService {
 
     constructor (public http: HttpClient,
         private _session: SessionService,
-        @Inject(KuiCoreConfigToken) public config) {
+        @Inject(KuiCoreConfigToken) public config: KuiCoreConfig) {
 
         // console.log('AuthenticationService constructor: config', config);
     }
@@ -66,28 +66,34 @@ export class AuthenticationService {
             params = { email: username, password: password };
         }
 
-        return this.http.post(
-            this.config.api + '/v2/authentication',
-            params,
-            { observe: 'response' }).pipe(
-                map((response: HttpResponse<any>): any => {
-                    return response;
-                }),
-                catchError((error: HttpErrorResponse) => {
+        return this.http.post(this.config.api + '/v2/authentication', params, { observe: 'response' }).pipe(
+            map((response: HttpResponse<any>): any => {
+                return response;
+            }),
+            catchError((error: HttpErrorResponse) => {
 
-                    return this.handleRequestError(error);
-                })
-            );
+                return this.handleRequestError(error);
+            })
+        );
     }
 
     /**
      * logout the user by destroying the session
      *
-     * @param
      */
-    logout() {
-        // destroy the session
-        localStorage.removeItem('session');
+    logout(): Observable<any> {
+
+        return this.http.delete(this.config.api + '/v2/authentication').pipe(
+            map((response: HttpResponse<any>): any => {
+                this._session.destroySession();
+                return response;
+            }),
+            catchError((error: HttpErrorResponse) => {
+
+                return this.handleRequestError(error);
+            })
+        );
+
     }
 
 

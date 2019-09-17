@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ApiServiceError, KnoraConstants, KuiCoreConfigToken, User, UsersService } from '@knora/core';
-import { Session } from '../declarations';
-
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Session } from '../declarations';
 
 const moment = momentImported;
-
 
 @Injectable({
     providedIn: 'root'

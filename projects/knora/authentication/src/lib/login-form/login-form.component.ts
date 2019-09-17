@@ -150,54 +150,53 @@ export class LoginFormComponent implements OnInit {
         const username = this.frm.get('username').value;
         const password = this.frm.get('password').value;
 
-        this._auth.login(username, password)
-            .subscribe(
-                (response: ApiServiceResult) => {
+        this._auth.login(username, password).subscribe(
+            (response: ApiServiceResult) => {
 
-                    // we have a token; set the session now
-                    this._session.setSession(response.body.token, username);
+                // we have a token; set the session now
+                this._session.setSession(response.body.token, username);
 
-                    setTimeout(() => {
-                        // get return url from route parameters or default to '/'
-                        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+                setTimeout(() => {
+                    // get return url from route parameters or default to '/'
+                    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
 
 
-                        // go back to the previous route or to the route defined in the @Input if navigate exists
-                        if (!this.navigate) {
-                            this._router.navigate([this.returnUrl]);
-                        } else {
-                            this._router.navigate([this.navigate]);
-                        }
-
-                        this.loading = false;
-                    }, 2000);
-                },
-                (error: ApiServiceError) => {
-                    // error handling
-                    if (error.status === 0) {
-                        this.loginErrorUser = false;
-                        this.loginErrorPw = false;
-                        this.loginErrorServer = true;
+                    // go back to the previous route or to the route defined in the @Input if navigate exists
+                    if (!this.navigate) {
+                        this._router.navigate([this.returnUrl]);
+                    } else {
+                        this._router.navigate([this.navigate]);
                     }
-                    if (error.status === 401) {
-                        this.loginErrorUser = false;
-                        this.loginErrorPw = true;
-                        this.loginErrorServer = false;
-                    }
-                    if (error.status === 404) {
-                        this.loginErrorUser = true;
-                        this.loginErrorPw = false;
-                        this.loginErrorServer = false;
-                    }
-                    this.errorMessage = <any>error;
+
                     this.loading = false;
+                }, 2000);
+            },
+            (error: ApiServiceError) => {
+                // error handling
+                if (error.status === 0) {
+                    this.loginErrorUser = false;
+                    this.loginErrorPw = false;
+                    this.loginErrorServer = true;
                 }
-            );
+                if (error.status === 401) {
+                    this.loginErrorUser = false;
+                    this.loginErrorPw = true;
+                    this.loginErrorServer = false;
+                }
+                if (error.status === 404) {
+                    this.loginErrorUser = true;
+                    this.loginErrorPw = false;
+                    this.loginErrorServer = false;
+                }
+                this.errorMessage = <any>error;
+                this.loading = false;
+            }
+        );
 
     }
 
     logout() {
-        this._auth.logout();
+        this._session.destroySession();
         location.reload(true);
     }
 
