@@ -1,5 +1,6 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { KuiMessageData } from '@knora/action';
 import { ApiServiceError, GuiOrder, IncomingService, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, ResourceService, ResourcesSequence } from '@knora/core';
 import { StillImageComponent } from '../../resource';
 
@@ -27,7 +28,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     ontologyInfo: OntologyInformation;
     guiOrder: GuiOrder[];
     loading: boolean;
-    error: any;
+    error: KuiMessageData;
     KnoraConstants = KnoraConstants;
 
     // does the resource has a file representation (media file)?
@@ -66,19 +67,14 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
                 console.log('getResource result', result);
 
-
                 // result with resources only and WITHOUT incoming stuff
                 this.sequence = result;
-
 
                 // this.ontologyInfo = result.ontologyInformation;
 
                 // const resType = this.sequence.resources[0].type;
 
                 this.guiOrder = result.ontologyInformation.getResourceClasses()[this.sequence.resources[0].type].guiOrder;
-
-
-
 
                 // collect all filerepresentations to display including annotations
                 // --> for the first resource only...
@@ -106,6 +102,14 @@ export class ResourceViewComponent implements OnInit, OnChanges {
             },
             (error: ApiServiceError) => {
                 console.error(error);
+                this.error = {
+                    status: error.status,
+                    statusMsg: error.statusText,
+                    statusText: 'One or more requested resources were not found (maybe you do not have permission to see them, or they are marked as deleted).',
+                    url: error.url
+                };
+
+                this.loading = false;
             }
         );
     }
