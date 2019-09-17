@@ -3,6 +3,8 @@ import { ReadResource } from '../resources/read-resource';
 import { KnoraConstants } from '../../knora-constants';
 
 /**
+ * @deprecated Use **Region** instead
+ *
  * Represents a region.
  * Contains a reference to the resource representing the region and its geometries.
  */

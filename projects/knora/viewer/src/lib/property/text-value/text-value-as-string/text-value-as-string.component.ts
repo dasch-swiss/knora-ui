@@ -8,18 +8,33 @@ import { ReadTextValueAsString } from '@knora/core';
 })
 export class TextValueAsStringComponent {
 
+    regexUrl: RegExp = /(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/;
+
     @Input()
     set valueObject(value: ReadTextValueAsString) {
-        this._textStringValueObj = value;
+        // console.log(value);
+
+        const str: string = value.str;
+
+        if (this.regexUrl.exec(str)) {
+            const url: string = this.regexUrl.exec(str)[0];
+            const newStr = str.replace(this.regexUrl, '<a class="kui-link" href="' + url + '">' + url + '</a>');
+            value.str = newStr;
+            this._textStringValueObj = value;
+        } else {
+            this._textStringValueObj = value;
+        }
     }
 
     get valueObject() {
+
+
         return this._textStringValueObj;
     }
 
     private _textStringValueObj: ReadTextValueAsString;
 
-    constructor() {
+    constructor () {
     }
 
 }

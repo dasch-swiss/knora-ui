@@ -59,7 +59,7 @@ export abstract class ReadTextValue implements ReadPropertyItem {
  */
 export class ReadTextValueAsString extends ReadTextValue {
 
-    constructor(readonly id: string, readonly propIri, readonly str: string) {
+    constructor (readonly id: string, readonly propIri: string, public str: string) {
         super();
     }
 
@@ -84,7 +84,7 @@ export class ReferredResourcesByStandoffLink {
  */
 export class ReadTextValueAsHtml extends ReadTextValue {
 
-    constructor(readonly id: string, readonly propIri, readonly html: string, readonly referredResources: ReferredResourcesByStandoffLink) {
+    constructor (readonly id: string, readonly propIri: string, readonly html: string, readonly referredResources: ReferredResourcesByStandoffLink) {
         super();
     }
 
@@ -124,7 +124,7 @@ export class ReadTextValueAsHtml extends ReadTextValue {
  */
 export class ReadTextValueAsXml extends ReadTextValue {
 
-    constructor(readonly id: string, readonly propIri, readonly xml: string, readonly mappingIri: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly xml: string, readonly mappingIri: string) {
         super();
     }
 
@@ -144,9 +144,9 @@ export class ReadTextValueAsXml extends ReadTextValue {
  */
 export class ReadDateValue implements ReadPropertyItem {
 
-    constructor(
+    constructor (
         readonly id: string,
-        readonly propIri,
+        readonly propIri: string,
         readonly calendar: string,
         readonly startYear: number,
         readonly endYear: number,
@@ -187,7 +187,7 @@ export class ReadDateValue implements ReadPropertyItem {
  */
 export class ReadLinkValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly referredResourceIri: string, readonly referredResource?: ReadResource) {
+    constructor (readonly id: string, readonly propIri: string, readonly referredResourceIri: string, readonly referredResource?: ReadResource) {
 
     }
 
@@ -222,7 +222,7 @@ export class ReadLinkValue implements ReadPropertyItem {
  */
 export class ReadIntegerValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly integer: number) {
+    constructor (readonly id: string, readonly propIri: string, readonly integer: number) {
 
     }
 
@@ -243,7 +243,7 @@ export class ReadIntegerValue implements ReadPropertyItem {
  */
 export class ReadDecimalValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly decimal: number) {
+    constructor (readonly id: string, readonly propIri: string, readonly decimal: number) {
 
     }
 
@@ -258,19 +258,39 @@ export class ReadDecimalValue implements ReadPropertyItem {
     }
 }
 
+
+/**
+ * Abstract class for file representations like stillImage, movingImage, audio etc.
+ */
+export abstract class FileValue implements ReadPropertyItem {
+
+    abstract id: string;
+
+    readonly type: string;
+
+    abstract propIri: string;
+
+    // abstract typeSpecificProps: any;
+
+    abstract getClassName(): string;
+
+    abstract getContent(): string;
+}
+
 /**
  * Represents a still image value object.
  */
-export class ReadStillImageFileValue implements ReadPropertyItem {
+export class ReadStillImageFileValue extends FileValue {
 
-    constructor(
+    constructor (
         readonly id: string,
-        readonly propIri,
+        readonly propIri: string,
         readonly imageFilename: string,
         readonly imageServerIIIFBaseURL: string,
         readonly imagePath: string,
         readonly dimX: number,
         readonly dimY: number) {
+        super();
 
         // if the image is a jpeg, it is a preview image
         this.isPreview = imageFilename.endsWith('.jpg');
@@ -307,20 +327,18 @@ export class ReadStillImageFileValue implements ReadPropertyItem {
 /**
  * Represents a moving image value object.
  */
-export class ReadMovingImageFileValue implements ReadPropertyItem {
+export class ReadMovingImageFileValue extends FileValue {
 
-    constructor(
+    constructor (
         readonly id: string,
-        readonly propIri,
+        readonly propIri: string,
         readonly filename: string,
-        readonly mediaServerIIIFBaseURL: string,
         readonly path: string,
         readonly dimX: number,
         readonly dimY: number,
         readonly duration: number,
-        readonly fps?: number,
-        readonly aspectRatio?: string) {
-
+        readonly fps?: number) {
+        super();
     }
 
     readonly type = KnoraConstants.MovingImageFileValue;
@@ -328,24 +346,87 @@ export class ReadMovingImageFileValue implements ReadPropertyItem {
     // preview doesn't include the video file itself
     readonly isPreview: boolean;
 
-    /*
-    makeIIIFUrl(reduceFactor: number): string {
-
-        if (this.isPreview) {
-            return this.path;
-        } else {
-            let percentage = Math.floor(100 / reduceFactor);
-
-            percentage = (percentage > 0 && percentage <= 100) ? percentage : 50;
-
-            return this.mediaServerIIIFBaseURL + '/' + this.filename + '/full/pct:' + percentage.toString() + '/0/default.jpg';
-        }
-
-    }
-    */
-
     getClassName(): string {
         return KnoraConstants.ReadMovingImageFileValue;
+    }
+
+    getContent() {
+        return this.path;
+    }
+}
+
+/**
+ * Represents an audio value object.
+ */
+export class ReadAudioFileValue extends FileValue {
+
+    constructor (
+        readonly id: string,
+        readonly propIri: string,
+        readonly filename: string,
+        readonly path: string,
+        readonly duration: number) {
+        super();
+    }
+
+    readonly type = KnoraConstants.AudioFileValue;
+
+    getClassName(): string {
+        return KnoraConstants.ReadAudioFileValue;
+    }
+
+    getContent() {
+        return this.path;
+    }
+}
+
+/**
+ * Represents a DDD value object.
+ */
+export class ReadDDDFileValue extends FileValue {
+
+    constructor (
+        readonly id: string,
+        readonly propIri: string,
+        readonly filename: string,
+        readonly path: string) {
+        super();
+    }
+
+    readonly type = KnoraConstants.DDDFileValue;
+
+    // preview doesn't include the DDD file itself
+    readonly isPreview: boolean;
+
+    getClassName(): string {
+        return KnoraConstants.ReadDDDFileValue;
+    }
+
+    getContent() {
+        return this.path;
+    }
+}
+
+/**
+ * Represents a Document value object.
+ */
+export class ReadDocumentFileValue extends FileValue {
+
+    constructor (
+        readonly id: string,
+        readonly propIri: string,
+        readonly filename: string,
+        readonly path: string) {
+        super();
+    }
+
+    readonly type = KnoraConstants.DocumentFileValue;
+
+    // preview doesn't include the DDD file itself
+    readonly isPreview: boolean;
+
+    getClassName(): string {
+        return KnoraConstants.ReadDocumentFileValue;
     }
 
     getContent() {
@@ -358,7 +439,7 @@ export class ReadMovingImageFileValue implements ReadPropertyItem {
  */
 export class ReadTextFileValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri, readonly textFilename: string, readonly textFileURL: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly textFilename: string, readonly textFileURL: string) {
 
     }
 
@@ -379,8 +460,8 @@ export class ReadTextFileValue implements ReadPropertyItem {
  */
 export class ReadColorValue implements ReadPropertyItem {
 
-    constructor(readonly id: string,
-        readonly propIri,
+    constructor (readonly id: string,
+        readonly propIri: string,
         readonly colorHex: string) {
     }
 
@@ -399,7 +480,7 @@ export class ReadColorValue implements ReadPropertyItem {
  * Represents a point in a 2D-coordinate system (for geometry values).
  */
 export class Point2D {
-    constructor(public x: number, public y: number) {
+    constructor (public x: number, public y: number) {
     }
 }
 
@@ -407,7 +488,7 @@ export class Point2D {
  * Represents a geometry value parsed from JSON.
  */
 export class RegionGeometry {
-    constructor(public status: string,
+    constructor (public status: string,
         public lineColor: string,
         public lineWidth: number,
         public points: Point2D[],
@@ -422,7 +503,7 @@ export class RegionGeometry {
  */
 export class ReadGeomValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly geometryString: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly geometryString: string) {
 
         const geometryJSON = JSON.parse(geometryString);
 
@@ -465,7 +546,7 @@ export class ReadGeomValue implements ReadPropertyItem {
  */
 export class ReadUriValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly uri: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly uri: string) {
 
     }
 
@@ -486,7 +567,7 @@ export class ReadUriValue implements ReadPropertyItem {
  */
 export class ReadBooleanValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly bool: boolean) {
+    constructor (readonly id: string, readonly propIri: string, readonly bool: boolean) {
 
     }
 
@@ -507,7 +588,7 @@ export class ReadBooleanValue implements ReadPropertyItem {
  */
 export class ReadIntervalValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly intervalStart: number, readonly intervalEnd: number) {
+    constructor (readonly id: string, readonly propIri: string, readonly intervalStart: number, readonly intervalEnd: number) {
 
     }
 
@@ -528,7 +609,7 @@ export class ReadIntervalValue implements ReadPropertyItem {
  */
 export class ReadListValue implements ReadPropertyItem {
 
-    constructor(readonly id: string, readonly propIri: string, readonly listNodeIri: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly listNodeIri: string) {
 
     }
 

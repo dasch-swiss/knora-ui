@@ -28,7 +28,7 @@ describe('TextValueAsXmlComponent', () => {
     });
 
     it('should contain xml', () => {
-        expect(testHostComponent.xmlValueComponent.valueObject.xml).toEqual('<?xml version="1.0" encoding="UTF-8"?> <text>Ich liebe die <a href="http://rdfh.ch/0001/a-thing" class="salsah-link">Dinge</a>, sie sind alles für mich.</text>');
+        expect(testHostComponent.xmlValueComponent.valueObject.xml).toEqual('<?xml version="1.0" encoding="UTF-8"?> <text>Ich liebe die <a href="http://rdfh.ch/0001/a-thing" class="kui-link">Dinge</a>, sie sind alles für mich.</text>');
 
         const hostCompDe = testHostFixture.debugElement;
 
@@ -38,11 +38,11 @@ describe('TextValueAsXmlComponent', () => {
 
         const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('<?xml version="1.0" encoding="UTF-8"?> <text>Ich liebe die <a href="http://rdfh.ch/0001/a-thing" class="salsah-link">Dinge</a>, sie sind alles für mich.</text>');
+        expect(spanNativeElement.innerText).toEqual('<?xml version="1.0" encoding="UTF-8"?> <text>Ich liebe die <a href="http://rdfh.ch/0001/a-thing" class="kui-link">Dinge</a>, sie sind alles für mich.</text>');
     });
 
     it('should contain a new xml', () => {
-        testHostComponent.xmlValue = new ReadTextValueAsXml('id', 'propIri', '<?xml version="1.0" encoding="UTF-8"?> <text>I like this <a href="http://rdfh.ch/0001/a-thing" class="salsah-link">thing</a>, everything belongs to my grandma.</text>', 'http://rdfh.ch/0801/-dfgoij98duger8zt4');
+        testHostComponent.xmlValue = new ReadTextValueAsXml('id', 'propIri', '<?xml version="1.0" encoding="UTF-8"?> <text>I like this <a href="http://rdfh.ch/0001/a-thing" class="kui-link">thing</a>, everything belongs to my grandma.</text>', 'http://rdfh.ch/0801/-dfgoij98duger8zt4');
 
         testHostFixture.detectChanges();
 
@@ -54,7 +54,7 @@ describe('TextValueAsXmlComponent', () => {
 
         const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
 
-        expect(spanNativeElement.innerText).toEqual('<?xml version="1.0" encoding="UTF-8"?> <text>I like this <a href="http://rdfh.ch/0001/a-thing" class="salsah-link">thing</a>, everything belongs to my grandma.</text>');
+        expect(spanNativeElement.innerText).toEqual('<?xml version="1.0" encoding="UTF-8"?> <text>I like this <a href="http://rdfh.ch/0001/a-thing" class="kui-link">thing</a>, everything belongs to my grandma.</text>');
     });
 });
 
@@ -72,10 +72,10 @@ class TestHostComponent implements OnInit {
 
     xmlValue;
 
-    constructor() {
+    constructor () {
     }
 
     ngOnInit() {
-        this.xmlValue = new ReadTextValueAsXml('id', 'propIri', '<?xml version="1.0" encoding="UTF-8"?> <text>Ich liebe die <a href="http://rdfh.ch/0001/a-thing" class="salsah-link">Dinge</a>, sie sind alles für mich.</text>', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
+        this.xmlValue = new ReadTextValueAsXml('id', 'propIri', '<?xml version="1.0" encoding="UTF-8"?> <text>Ich liebe die <a href="http://rdfh.ch/0001/a-thing" class="kui-link">Dinge</a>, sie sind alles für mich.</text>', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
     }
 }

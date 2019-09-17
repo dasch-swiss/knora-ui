@@ -1,3 +1,84 @@
-<p>
-    properties-view works!
-</p>
+<!-- properties -->
+<div class="properties">
+    <div *ngFor="let prop of guiOrder; let last = last">
+        <div *ngIf="properties[prop?.property]" class="property">
+            <div class="property-label">
+                <!-- label of the property -->
+                <h3 class="label mat-subheading-1">
+                    {{ontologyInfo.getLabelForProperty(prop?.property)}}
+                </h3>
+            </div>
+            <div class="property-value">
+
+                <!-- the value(s) of the property -->
+                <div class="property-value-item" *ngFor="let val of properties[prop?.property]; let lastItem = last">
+                    <span [ngSwitch]="val.getClassName()" [class.list]="properties[prop?.property].length > 1"
+                          [class.lastItem]="lastItem">
+                        <kui-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString"
+                                                  [valueObject]="val">
+                        </kui-text-value-as-string>
+                        <kui-text-value-as-xml *ngSwitchCase="KnoraConstants.ReadTextValueAsXml" [valueObject]="val">
+                        </kui-text-value-as-xml>
+                        <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val"
+                                        [calendar]="true" [era]="true">
+                        </kui-date-value>
+                        <kui-link-value class="app-link" *ngSwitchCase="KnoraConstants.ReadLinkValue"
+                                        [valueObject]="val" [ontologyInfo]="ontologyInfo"
+                                        (referredResourceClicked)="openLink(val.referredResourceIri)">
+                        </kui-link-value>
+                        <kui-integer-value *ngSwitchCase="KnoraConstants.ReadIntegerValue" [valueObject]="val">
+                        </kui-integer-value>
+                        <kui-decimal-value *ngSwitchCase="KnoraConstants.ReadDecimalValue" [valueObject]="val">
+                        </kui-decimal-value>
+                        <kui-geometry-value *ngSwitchCase="KnoraConstants.ReadGeomValue" [valueObject]="val">
+                        </kui-geometry-value>
+                        <kui-color-value *ngSwitchCase="KnoraConstants.ReadColorValue" [valueObject]="val">
+                        </kui-color-value>
+                        <kui-uri-value *ngSwitchCase="KnoraConstants.ReadUriValue" [valueObject]="val">
+                        </kui-uri-value>
+                        <kui-boolean-value *ngSwitchCase="KnoraConstants.ReadBooleanValue" [valueObject]="val">
+                        </kui-boolean-value>
+                        <kui-interval-value *ngSwitchCase="KnoraConstants.ReadIntervalValue" [valueObject]="val">
+                        </kui-interval-value>
+                        <kui-list-value *ngSwitchCase="KnoraConstants.ReadListValue" [valueObject]="val">
+                        </kui-list-value>
+                        <kui-textfile-value *ngSwitchCase="KnoraConstants.TextFileValue" [valueObject]="val">
+                        </kui-textfile-value>
+                        <span *ngSwitchDefault>Not supported {{val.getClassName()}}</span>
+                        <br>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="incoming">
+
+    <!-- annotations are resources like region, sequence etc. -->
+    <!-- TODO: we can't display incoming annotations as expected
+    <div class="annotations">
+        <!-- *ngIf="annotations?.length > 0"> --
+        <h3 class="label mat-subheading-1">
+            Annotations
+        </h3>
+        <mat-list *ngFor="let annotation of annotations">
+            <mat-list-item class="kui-link" (click)="openLink(annotation.id)">
+                <span>{{annotation.label}}</span>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    -->
+
+    <!-- incoming links -->
+    <div class="links" *ngIf="incomingLinks?.length > 0">
+        <h3 class="label mat-subheading-1">
+            Links
+        </h3>
+        <ul>
+            <li *ngFor="let incoming of incomingLinks" class="kui-link" (click)="openLink(incoming.id)">
+                {{incoming.label}}
+            </li>
+        </ul>
+    </div>
+</div>

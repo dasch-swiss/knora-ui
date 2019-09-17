@@ -1,28 +1,4 @@
-import {
-    CountQueryResult,
-    KnoraConstants,
-    ReadBooleanValue,
-    ReadColorValue,
-    ReadDateValue,
-    ReadDecimalValue,
-    ReadGeomValue,
-    ReadIntegerValue,
-    ReadIntervalValue,
-    ReadLinkValue,
-    ReadListValue,
-    ReadProperties,
-    ReadPropertyItem,
-    ReadResource,
-    ReadResourcesSequence,
-    ReadStillImageFileValue,
-    ReadTextFileValue,
-    ReadTextValueAsHtml,
-    ReadTextValueAsString,
-    ReadTextValueAsXml,
-    ReadUriValue,
-    ReferredResourcesByStandoffLink,
-    Utils
-} from '../../declarations';
+import { CountQueryResult, KnoraConstants, ReadAudioFileValue, ReadBooleanValue, ReadColorValue, ReadDateValue, ReadDDDFileValue, ReadDecimalValue, ReadDocumentFileValue, ReadGeomValue, ReadIntegerValue, ReadIntervalValue, ReadLinkValue, ReadListValue, ReadMovingImageFileValue, ReadProperties, ReadPropertyItem, ReadResource, ReadResourcesSequence, ReadStillImageFileValue, ReadTextFileValue, ReadTextValueAsHtml, ReadTextValueAsString, ReadTextValueAsXml, ReadUriValue, ReferredResourcesByStandoffLink, Resource, Utils, ResourcesSequence } from '../../declarations';
 
 /**
  * Contains methods to convert JSON-LD representing resources and properties to classes.
@@ -55,6 +31,8 @@ export module ConvertJSONLD {
 
 
     /**
+     * @deprecated Use **constructResource** instead
+     *
      * Constructs a [[ReadResource]] from JSON-LD.
      * Expects JSON-LD with all Iris fully expanded.
      *
@@ -73,6 +51,22 @@ export module ConvertJSONLD {
             [], // to be updated once another request has been made
             [], // to be updated once another request has been made
             [], // to be updated once another request has been made
+            properties
+        );
+    }
+
+    function constructResource(resourceJSONLD: object): Resource {
+
+        const properties: ReadProperties = constructReadProperties(resourceJSONLD);
+
+        return new Resource(
+            resourceJSONLD['@id'],
+            resourceJSONLD['@type'],
+            resourceJSONLD[KnoraConstants.RdfsLabel],
+            [], // incomingAnnotations; to be updated once another request has been made
+            [], // incomingFileRepresentations, to be updated once another request has been made
+            [], // incomingLinks; to be updated once another request has been made
+            {}, // fileRepresentationsToDisplay; to be updated once another request has been made
             properties
         );
     }
@@ -196,7 +190,7 @@ export module ConvertJSONLD {
 
                 break;
 
-            // TODO: handle movingImageFileValue and the others here...
+
             case KnoraConstants.StillImageFileValue:
 
                 const stillImageFileValue: ReadStillImageFileValue = new ReadStillImageFileValue(
@@ -210,6 +204,63 @@ export module ConvertJSONLD {
                 );
 
                 valueSpecificProp = stillImageFileValue;
+
+                break;
+
+            case KnoraConstants.MovingImageFileValue:
+
+                const movingImageFileValue: ReadMovingImageFileValue = new ReadMovingImageFileValue(
+                    propValue['@id'],
+                    propIri,
+                    propValue[KnoraConstants.fileValueHasFilename],
+                    propValue[KnoraConstants.fileValueAsUrl]['@value'],
+                    propValue[KnoraConstants.movingImageFileValueHasDimX],
+                    propValue[KnoraConstants.movingImageFileValueHasDimY],
+                    propValue[KnoraConstants.movingImageFileValueHasDuration],
+                    propValue[KnoraConstants.movingImageFileValueHasFps]
+                );
+
+                valueSpecificProp = movingImageFileValue;
+
+                break;
+
+            case KnoraConstants.AudioFileValue:
+
+                const audioFileValue: ReadAudioFileValue = new ReadAudioFileValue(
+                    propValue['@id'],
+                    propIri,
+                    propValue[KnoraConstants.fileValueHasFilename],
+                    propValue[KnoraConstants.fileValueAsUrl]['@value'],
+                    propValue[KnoraConstants.audioFileValueHasDuration]
+                );
+
+                valueSpecificProp = audioFileValue;
+
+                break;
+
+            case KnoraConstants.DDDFileValue:
+
+                const dddFileValue: ReadDDDFileValue = new ReadDDDFileValue(
+                    propValue['@id'],
+                    propIri,
+                    propValue[KnoraConstants.fileValueHasFilename],
+                    propValue[KnoraConstants.fileValueAsUrl]['@value']
+                );
+
+                valueSpecificProp = dddFileValue;
+
+                break;
+
+            case KnoraConstants.DocumentFileValue:
+
+                const documentFileValue: ReadDocumentFileValue = new ReadDocumentFileValue(
+                    propValue['@id'],
+                    propIri,
+                    propValue[KnoraConstants.fileValueHasFilename],
+                    propValue[KnoraConstants.fileValueAsUrl]['@value']
+                );
+
+                valueSpecificProp = documentFileValue;
 
                 break;
 
@@ -436,6 +487,44 @@ export module ConvertJSONLD {
         }
 
         return new ReadResourcesSequence(resources, numberOfResources);
+
+    }
+
+    export function createResourcesSequenceFromJsonLD(resourcesResponseJSONLD: object): ResourcesSequence {
+
+        const resources: Array<Resource> = [];
+        let numberOfResources: number;
+        const resourcesGraph = resourcesResponseJSONLD['@graph'];
+
+        // either an array of resources or just one resource is given
+        if (resourcesGraph !== undefined) {
+            // an array of resources
+            numberOfResources = resourcesGraph.length;
+
+            for (const resourceJSONLD of resourcesGraph) {
+
+                const resource: Resource = constructResource(resourceJSONLD);
+
+                // add the resource to the resources array
+                resources.push(resource);
+            }
+        } else {
+            if (Object.keys(resourcesResponseJSONLD).length === 0) {
+                // empty answer, no resources given
+                numberOfResources = 0;
+            } else {
+
+                // only one resource
+                numberOfResources = 1;
+
+                const resource: Resource = constructResource(resourcesResponseJSONLD);
+
+                // add the resource to the resources array
+                resources.push(resource);
+            }
+        }
+
+        return new ResourcesSequence(resources, numberOfResources);
 
     }
 

@@ -22,26 +22,34 @@
             <mat-toolbar-row>
                 <!-- home button -->
                 <span>
-                <button mat-icon-button id="KUI_OSD_HOME"><mat-icon>home</mat-icon></button>
-            </span>
+                    <button mat-icon-button id="KUI_OSD_HOME">
+                        <mat-icon>home</mat-icon>
+                    </button>
+                </span>
                 <!-- zoom buttons -->
                 <span class="fill-remaining-space"></span>
                 <span>
-                <button mat-icon-button id="KUI_OSD_ZOOM_IN"><mat-icon>add</mat-icon></button>
-                <button mat-icon-button id="KUI_OSD_ZOOM_OUT"><mat-icon>remove</mat-icon></button>
-            </span>
+                    <button mat-icon-button id="KUI_OSD_ZOOM_IN">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button mat-icon-button id="KUI_OSD_ZOOM_OUT">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                </span>
                 <!-- window button -->
                 <span class="fill-remaining-space"></span>
                 <span>
-                <button mat-icon-button id="KUI_OSD_FULL_PAGE"><mat-icon>fullscreen</mat-icon></button>
-            </span>
+                    <button mat-icon-button id="KUI_OSD_FULL_PAGE">
+                        <mat-icon>fullscreen</mat-icon>
+                    </button>
+                </span>
             </mat-toolbar-row>
         </mat-toolbar>
 
     </div>
 
-    <div class="navigation right">
-        <button mat-button class="full-size" id="KUI_OSD_NEXT_PAGE">
+    <div class="navigation">
+        <button mat-button class="full-size" id="KUI_OSD_NEXT_PAGE" (click)="getCurrentImage()">
             <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
     </div>
@@ -59,6 +67,3 @@
         <span *ngIf="images.length > 1" (click)="gotoRight()">&gt;&gt;</span>
     </div>
 -->
-
-
-

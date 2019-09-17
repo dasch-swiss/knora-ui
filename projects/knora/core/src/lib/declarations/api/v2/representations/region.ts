@@ -6,13 +6,13 @@ import { KnoraConstants } from '../../knora-constants';
  * Contains a reference to the resource representing the region and its geometries.
  */
 
-export class MovingImageSequence {
+export class Region {
 
     /**
      *
      * @param {ReadResource} regionResource a resource of type Region
      */
-    constructor(readonly regionResource: ReadResource) {
+    constructor (readonly regionResource: ReadResource) {
 
     }
 
