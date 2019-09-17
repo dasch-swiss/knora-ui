@@ -110,7 +110,8 @@
         "index-signature": "nospace",
         "parameter": "nospace",
         "property-declaration": "nospace",
-        "variable-declaration": "nospace"
+        "variable-declaration": "nospace",
+        "no-use-before-declare": "nospace"
       }
     ],
     "unified-signatures": true,
@@ -126,7 +127,8 @@
       "check-type",
       "check-typecast",
       "check-type-operator",
-      "check-preblock"
+      "check-preblock",
+      "check-space"
     ],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
