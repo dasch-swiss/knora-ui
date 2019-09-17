@@ -27,6 +27,7 @@ export * from './api/admin/authentication/authentication-response';
 export * from './api/admin/groups/group';
 export * from './api/admin/groups/group-response';
 export * from './api/admin/groups/groups-response';
+export * from './api/admin/groups/group-members-response';
 
 /**
  * Interface for lists

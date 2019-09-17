@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { ApiServiceResult, Group, GroupResponse, GroupsResponse } from '../../declarations/';
+import { ApiServiceResult, Group, GroupMembersResponse, GroupResponse, GroupsResponse, User } from '../../declarations/';
 import { ApiService } from '../api.service';
 
 /**
@@ -13,6 +13,10 @@ import { ApiService } from '../api.service';
 export class GroupsService extends ApiService {
 
     private path: string = '/admin/groups';
+
+    // ------------------------------------------------------------------------
+    // GET
+    // ------------------------------------------------------------------------
 
     /**
      * Return a list of all groups.
@@ -33,15 +37,90 @@ export class GroupsService extends ApiService {
      * @returns Observable<Group>
      */
     getGroupByIri(iri: string): Observable<Group> {
-        this.path += '/' + encodeURIComponent(iri);
-
-        return this.httpGet(this.path).pipe(
+        return this.httpGet(this.path + '/' + encodeURIComponent(iri)).pipe(
             map((result: ApiServiceResult) => result.getBody(GroupResponse).group),
             catchError(this.handleJsonError)
         );
     }
 
-    // get group members needs the following api path:
-    // /admin/groups/<groupIri>/members
+    /**
+     * Return a list of all group members. 
+     * 
+     * @param {string} iri
+     * @returns Observable<User[]>
+     */
+    getAllGroupMembers(iri: string): Observable<User[]> {
+        const url = this.path + '/' + encodeURIComponent(iri) + '/members';
+
+        return this.getGroupMembers(url);
+    }
+
+    /**
+     * @private
+     * Helper method combining group member retrieval.
+     *
+     * @param {string} url
+     * @returns Observable<User[]>
+     */
+    private getGroupMembers(url: string): Observable<User[]> {
+        return this.httpGet(url).pipe(
+            map((result: ApiServiceResult) => result.getBody(GroupMembersResponse).members),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // POST
+    // ------------------------------------------------------------------------
+
+    /**
+     * Create new group.
+     * 
+     * @param {Group} groupInfo
+     * @returns Observable<Group>
+     */
+    createGroup(groupInfo: Group): Observable<Group> {
+        return this.httpPost(this.path, groupInfo).pipe(
+            map((result: ApiServiceResult) => result.getBody(GroupResponse).group),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    // ------------------------------------------------------------------------
+    // PUT
+    // ------------------------------------------------------------------------
+
+    /**
+     * Edit a group.
+     * 
+     * @param {Group} groupInfo
+     * @returns Observable<Group>
+     */
+    updateGroup(groupInfo: Group): Observable<Group> {
+        return this.httpPut(this.path + '/' + encodeURIComponent(groupInfo.id), groupInfo).pipe(
+            map((result: ApiServiceResult) => result.getBody(GroupResponse).group),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    // NOT IMPLEMENTED - PUT: /admin/groups/<groupIri>/status : update group’s status
+
+
+    // ------------------------------------------------------------------------
+    // DELETE
+    // ------------------------------------------------------------------------
+
+    /**
+     * Delete a group (set status to false).
+     * 
+     * @param {string} iri
+     * @returns Observable<Group>
+     */
+    deleteGroup(iri: string): Observable<Group> {
+        return this.httpDelete(this.path + '/' + encodeURIComponent(iri)).pipe(
+            map((result: ApiServiceResult) => result.getBody(GroupResponse).group),
+            catchError(this.handleJsonError)
+        );
+    }
 
 }
