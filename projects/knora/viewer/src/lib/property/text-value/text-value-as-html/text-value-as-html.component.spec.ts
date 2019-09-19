@@ -53,7 +53,7 @@ describe('TextValueAsHtmlComponent', () => {
         expect(spanNativeElement.innerText).toEqual('<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="kui-link">link</a></p>');
     });
 
-    it('should display the referred resources by standoff link', () => {
+    xit('should display the referred resources by standoff link', () => {
 
         const resClassesForOnto: ResourceClassIrisForOntology = {
             'http://0.0.0.0:3333/ontology/0803/incunabula/v2': [
