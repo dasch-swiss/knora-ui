@@ -28,8 +28,11 @@ $width: 280px;
   width: $width;
 }
 
-// mat-card-content
+.submit-button,
+.logout-button {
+  height: 48px;
+}
 
-.sign-up {
-  margin-top: 24px;
+.center {
+  text-align: center;
 }

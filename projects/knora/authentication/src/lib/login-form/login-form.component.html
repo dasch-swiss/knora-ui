@@ -12,9 +12,6 @@
             <input matInput autofocus [placeholder]="formLabel.name" autocomplete="username" formControlName="username"
                    #username cdkFocusInitial>
 
-            <!-- <mat-hint *ngIf="formErrors.username">
-                {{ formErrors.username }}
-            </mat-hint> -->
         </mat-form-field>
 
         <!-- Password -->
@@ -25,13 +22,11 @@
             <input matInput type="password" [placeholder]="formLabel.pw" autocomplete="current-password"
                    formControlName="password">
 
-            <!-- <mat-hint *ngIf="formErrors.password" class="login-error">{{formLabel.error.failed}}</mat-hint> -->
         </mat-form-field>
 
         <br>
-        <!-- Button: Login -->
 
-        <!-- <div class="button-row full-width"> -->
+        <!-- Button: Login -->
         <button mat-raised-button type="submit" [disabled]="!form.valid" class="full-width submit-button"
                 [class.mat-primary]="!errorMessage" [class.mat-warn]="errorMessage">
             <kui-progress-indicator [color]="'white'" [status]="0" *ngIf="loading" class="login-progress">
@@ -39,8 +34,6 @@
             <mat-icon *ngIf="errorMessage && !loading">close</mat-icon>
             {{errorMessage ? formLabel.retry : formLabel.submit}}
         </button>
-        <!-- <kui-progress-indicator *ngIf="loading" [color]="color"></kui-progress-indicator> -->
-        <!-- </div> -->
 
         <br><br>
 
@@ -53,17 +46,14 @@
 
 
 <!-- a user is already logged in; show who it is and a logout button -->
-
 <div class="logout-container" *ngIf="loggedInUser">
     <p>A user is already logged in:</p>
-    <p>{{loggedInUser}}</p>
+    <p>Username: <strong>{{loggedInUser}}</strong></p>
     <br>
-    <p>If it's not you, please logout!</p>
-    <div class="button-row full-width">
-        <button mat-raised-button (click)="logout()" class="full-width mat-warn">
-            <kui-progress-indicator [color]="'white'" [status]="0" *ngIf="loading" class="login-progress">
-            </kui-progress-indicator>
-            {{formLabel.logout}}
-        </button>
-    </div>
+    <p>Please log out if it's not you.</p>
+    <button mat-raised-button (click)="logout()" class="full-width mat-warn logout-button">
+        <kui-progress-indicator [color]="'white'" [status]="0" *ngIf="loading" class="login-progress">
+        </kui-progress-indicator>
+        {{formLabel.logout}}
+    </button>
 </div>

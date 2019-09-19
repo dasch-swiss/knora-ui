@@ -40,21 +40,6 @@ export class SessionService {
         // username can be either name or email address, so what do we have?
         const identifierType: string = ((username.indexOf('@') > -1) ? 'email' : 'username');
 
-        /*
-        this.session = {
-            id: this.setTimestamp(),
-            user: {
-                name: username,
-                jwt: jwt,
-                lang: 'en',
-                sysAdmin: false,
-                projectAdmin: []
-            }
-        };
-        // store in the localStorage
-        localStorage.setItem('session', JSON.stringify(this.session));
-        */
-
         // get user information
         this._users.getUser(username, identifierType).subscribe(
             (result: User) => {
@@ -125,7 +110,6 @@ export class SessionService {
                     // update the session.id
                     this.session.id = tsNow;
 
-                    // localStorage.removeItem('session');
                     localStorage.setItem('session', JSON.stringify(this.session));
                     return true;
 
@@ -143,11 +127,9 @@ export class SessionService {
         return false;
     }
 
-
     private authenticate(): Observable<boolean> {
         return this._http.get(this.config.api + '/v2/authentication').pipe(
             map((result: any) => {
-
                 // console.log('AuthenticationService - authenticate - result: ', result);
                 // return true || false
                 return result.status === 200;
@@ -158,6 +140,5 @@ export class SessionService {
     destroySession() {
         localStorage.removeItem('session');
     }
-
 
 }

@@ -86,9 +86,7 @@ export class LoginFormComponent implements OnInit {
 
     constructor (private _auth: AuthenticationService,
         private _session: SessionService,
-        private _fb: FormBuilder,
-        private _route: ActivatedRoute,
-        private _router: Router) {
+        private _fb: FormBuilder) {
     }
 
 
@@ -108,7 +106,7 @@ export class LoginFormComponent implements OnInit {
             password: ['', Validators.required]
         });
 
-        this.form.valueChanges.subscribe(data => this.onValueChanged());
+        // this.form.valueChanges.subscribe(data => this.onValueChanged());
     }
 
     /**
@@ -137,18 +135,10 @@ export class LoginFormComponent implements OnInit {
 
     login() {
 
+        this.loading = true;
+
         // reset the error messages
         this.errorMessage = undefined;
-
-        // make sure form values are valid
-        if (this.form.invalid) {
-            this.loginErrorPw = true;
-            this.loginErrorUser = true;
-            return;
-        }
-
-        // Reset status
-        this.loading = true;
 
         // Grab values from form
         const username = this.form.get('username').value;
@@ -164,7 +154,7 @@ export class LoginFormComponent implements OnInit {
                 setTimeout(() => {
                     this.status.emit(true);
                     this.loading = false;
-                }, 1500);
+                }, 1800);
 
             },
             (error: ApiServiceError) => {
@@ -184,10 +174,8 @@ export class LoginFormComponent implements OnInit {
 
         this._auth.logout().subscribe(
             (result: LogoutResponse) => {
-                this.status.emit(true);
+                this.status.emit(result.status === 0);
                 this.loading = false;
-                setTimeout(() => {
-                }, 1500);
             },
             (error: ApiServiceError) => {
                 console.error(error);
