@@ -20,6 +20,7 @@ export * from './api/shared/date';
  */
 export * from './api/admin/authentication/authentication-request-payload';
 export * from './api/admin/authentication/authentication-response';
+export * from './api/admin/authentication/logout-response';
 
 /**
  * Interfaces for groups
