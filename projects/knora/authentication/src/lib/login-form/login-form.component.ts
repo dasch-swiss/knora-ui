@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceError, LogoutResponse } from '@knora/core';
 import { AuthenticationService } from '../authentication.service';
 import { SessionService } from '../session/session.service';
@@ -106,31 +105,6 @@ export class LoginFormComponent implements OnInit {
             password: ['', Validators.required]
         });
 
-        // this.form.valueChanges.subscribe(data => this.onValueChanged());
-    }
-
-    /**
-     * @ignore
-     *
-     * check for errors while using the form
-     */
-    onValueChanged() {
-        if (!this.form) {
-            return;
-        }
-
-        const form = this.form;
-
-        Object.keys(this.formErrors).map(field => {
-            this.formErrors[field] = '';
-            const control = form.get(field);
-            if (control && control.dirty && !control.valid) {
-                const messages = this.validationMessages[field];
-                Object.keys(control.errors).map(key => {
-                    this.formErrors[field] += messages[key] + ' ';
-                });
-            }
-        });
     }
 
     login() {

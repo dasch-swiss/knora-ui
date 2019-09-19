@@ -1,22 +1,23 @@
-import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { inject, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { KuiCoreModule } from '@knora/core';
-
 import { AuthGuard } from './auth.guard';
 
+
 xdescribe('AuthGuard', () => {
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientModule,
                 RouterTestingModule,
+                HttpClientTestingModule,
                 KuiCoreModule.forRoot({ name: '', api: '', app: '', media: '', ontologyIRI: '' })
             ],
             providers: [
-                AuthGuard,
-                HttpClient,
-                HttpHandler
+                AuthGuard
             ]
         });
     });

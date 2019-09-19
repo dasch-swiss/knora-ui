@@ -1,10 +1,11 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { KuiCoreModule } from '@knora/core';
-
 import { AuthenticationService } from './authentication.service';
+import { SessionService } from './session/session.service';
 
-xdescribe('AuthenticationService', () => {
+
+describe('AuthenticationService', () => {
 
     let authService: AuthenticationService;
     let httpTestingController: HttpTestingController;
@@ -16,7 +17,8 @@ xdescribe('AuthenticationService', () => {
                 KuiCoreModule.forRoot({ name: '', api: '', app: '', media: '', ontologyIRI: '' })
             ],
             providers: [
-                AuthenticationService
+                AuthenticationService,
+                SessionService
             ],
         });
 
