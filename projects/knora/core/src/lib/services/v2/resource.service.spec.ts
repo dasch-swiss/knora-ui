@@ -1,18 +1,20 @@
-import { async, TestBed, } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ApiService } from '../api.service';
-import { ResourceService } from './resource.service';
-import { ApiServiceResult, ReadResourcesSequence } from '../../declarations';
-import { KuiCoreModule } from '../../core.module';
-import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
+import { async, TestBed } from '@angular/core/testing';
+import { ResourcesSequence } from '@knora/core/public_api';
 import { of } from 'rxjs';
+import { KuiCoreModule } from '../../core.module';
+import { ReadResourcesSequence } from '../../declarations';
+import { ApiService } from '../api.service';
+import { IncomingService } from './incoming.service';
+import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
+import { ResourceService } from './resource.service';
 
 describe('ResourceService', () => {
     let httpTestingController: HttpTestingController;
     let ontoCacheSpy: jasmine.SpyObj<OntologyCacheService>;
 
     let resourceService: ResourceService;
-    let expectedResource;
+    let expectedResource: ResourcesSequence;
 
     beforeEach(() => {
         const spyOntoCache = jasmine.createSpyObj('OntologyCacheService', ['getResourceClassDefinitions']);
@@ -25,6 +27,8 @@ describe('ResourceService', () => {
             providers: [
                 ApiService,
                 ResourceService,
+                IncomingService,
+                OntologyCacheService,
                 { provide: OntologyCacheService, useValue: spyOntoCache }
             ]
         });
@@ -58,8 +62,20 @@ describe('ResourceService', () => {
         expectedResource = require('../../test-data/resources/Testthing.json');
 
         resourceService.getResource('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw').subscribe(
-            (res: ApiServiceResult) => {
-                expect(res.body).toEqual(expectedResource);
+            (res: any) => {
+                // expect(res).toEqual(expectedResource);
+                expect(res.numberOfResources).toEqual(1);
+                expect(res.resources[0].id).toEqual('http://rdfh.ch/0001/H6gBWUuJSuuO-CilHV8kQw');
+                expect(res.resources[0].type).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#Thing');
+
+
+                expect(Object.keys(res.resources[0].properties).length).toEqual(12);
+
+                const propertiesThing: Properties = require('../../test-data/ontologyinformation/thing-properties.json');
+                expect(res.ontologyInformation.getProperties()).toEqual(propertiesThing);
+
+                const resourceClassesThing: ResourceClasses = require('../../test-data/ontologyinformation/thing-resource-classes.json');
+                expect(res.ontologyInformation.getResourceClasses()).toEqual(resourceClassesThing);
             }
         );
 

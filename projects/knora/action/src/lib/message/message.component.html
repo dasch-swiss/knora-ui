@@ -2,7 +2,7 @@
 
     <mat-card-subtitle class="message-subtitle">
         <span class="left">{{message?.type | uppercase }} {{message?.status}} | {{message?.statusMsg}}</span>
-        <mat-icon class="right">{{message?.type}}</mat-icon>
+        <!-- <mat-icon class="right">{{message?.type}}</mat-icon> -->
     </mat-card-subtitle>
 
     <mat-card-title class="message-title" [innerHtml]="message?.statusText"></mat-card-title>
@@ -30,16 +30,17 @@
 
 </mat-card>
 
-<mat-card *ngIf="short && !disable" class="fix-width kui-short-message" [ngClass]="'kui-' + message?.type">
+<mat-card *ngIf="short && !disable" class="fix-width kui-short-message" [ngClass]="'kui-' + message?.type"
+          (click)="closeMessage()">
 
     <div class="kui-panel">
         <span class="kui-short-message-text">
             {{message?.statusText}}
         </span>
         <span class="fill-remaining-space"></span>
-        <button mat-icon-button (click)="closeMessage()">
+        <!--         <button mat-icon-button (click)="closeMessage()">
             <mat-icon>close</mat-icon>
-        </button>
+        </button> -->
     </div>
 
 </mat-card>

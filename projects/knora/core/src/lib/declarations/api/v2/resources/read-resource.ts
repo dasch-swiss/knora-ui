@@ -1,6 +1,12 @@
-import { ReadProperties, StillImageRepresentation } from '../../../';
+import { ReadProperties } from '../properties/read-properties';
+import { AudioRepresentation } from '../representations/audio-representation';
+import { FileRepresentation } from '../representations/fileRepresentation';
+import { MovingImageRepresentation } from '../representations/moving-image-representation';
+import { StillImageRepresentation } from '../representations/still-image-representation';
 
 /**
+ * @deprecated Use **Resource** instead
+ *
  * Represents a resource and its properties.
  */
 export class ReadResource {
@@ -16,7 +22,7 @@ export class ReadResource {
      * @param {StillImageRepresentation[]} stillImageRepresentationsToDisplay  still image representations to be displayed for this resource, if any (possibly to be queried by additional requests).
      * @param {ReadProperties} properties the resources's properties.
      */
-    constructor(
+    constructor (
         public readonly id: string,
         public readonly type: string,
         public readonly label: string,
@@ -35,17 +41,45 @@ export class ReadResource {
 
 /**
  * This is a temporary class, to test a new resource setup.
- * When it works, we will merge it with the ReadResource object
+ * When it works, we will replace the ReadResource object
  */
 export class Resource {
-    constructor(
+    constructor (
         public readonly id: string,
         public readonly type: string,
         public readonly label: string,
-        public incomingAnnotations: Array<Resource>,
-        public incomingFileRepresentations: Array<Resource>,
-        public incomingLinks: Array<ReadResource>,
-        public fileRepresentationsToDisplay: Array<ReadResource>,
+        public incomingAnnotations: Array<Resource>,    // = incomingRegions in ReadResource
+        public incomingFileRepresentations: Array<ReadResource>,    // = incomingStillImageRepresentations in ReadResource
+        public incomingLinks: Array<Resource>,
+        public fileRepresentationsToDisplay: FileRepresentation,  // = stillImageRepresentationsToDisplay in ReadResource
         public readonly properties?: ReadProperties) {
     }
 }
+
+/*
+fileRepresentationsToDisplay ==> what is the main media file to display?
+
+in case of
+
+property.hasStillImageFile
+property.hasMovingImageFile
+property.hasAudioFile
+property.hasTextFile
+property.hasDocumentFile
+property.hasDDDImageFile
+
+show this media file.
+
+Otherwise:
+
+resource.incomingStillImageRepresentations?
+resource.incomingMovingImageRepresentations?
+resource.incomingAudioRepresentations?
+resource.incomingTextRepresentations?
+resource.incomingDocumentRepresentations?
+resource.incomingDDDImageRepresentations?
+
+A resource can have more than one incomingRepresentation
+
+
+*/
