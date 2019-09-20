@@ -180,8 +180,6 @@ export class MessageComponent implements OnInit {
                         : this.footnote.text + ' ' + this.footnote.team.knora;
                 this.showLinks = !this.medium;
 
-
-                console.log('error 404', tmpMsg);
                 break;
             case s >= 500 && s < 600:
                 // the message is a server side (api) error
