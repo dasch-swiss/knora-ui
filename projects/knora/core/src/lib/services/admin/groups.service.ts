@@ -50,20 +50,7 @@ export class GroupsService extends ApiService {
      * @returns Observable<User[]>
      */
     getAllGroupMembers(iri: string): Observable<User[]> {
-        const url = this.path + '/' + encodeURIComponent(iri) + '/members';
-
-        return this.getGroupMembers(url);
-    }
-
-    /**
-     * @private
-     * Helper method combining group member retrieval.
-     *
-     * @param {string} url
-     * @returns Observable<User[]>
-     */
-    private getGroupMembers(url: string): Observable<User[]> {
-        return this.httpGet(url).pipe(
+        return this.httpGet(this.path + '/' + encodeURIComponent(iri) + '/members').pipe(
             map((result: ApiServiceResult) => result.getBody(GroupMembersResponse).members),
             catchError(this.handleJsonError)
         );
