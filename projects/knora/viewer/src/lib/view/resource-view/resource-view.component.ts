@@ -62,10 +62,11 @@ export class ResourceViewComponent implements OnInit, OnChanges {
      */
     getResource(id: string) {
         this.loading = true;
+        this.error = undefined;
         this._resourceService.getResource(decodeURIComponent(id)).subscribe(
             (result: ResourcesSequence) => {
 
-                console.log('getResource result', result);
+                // console.log('getResource result', result);
 
                 // result with resources only and WITHOUT incoming stuff
                 this.sequence = result;
@@ -96,16 +97,19 @@ export class ResourceViewComponent implements OnInit, OnChanges {
                 setTimeout(() => {
                     // console.log(this.sequence);
                     this.currentResource = this.sequence.resources[0].incomingFileRepresentations[0];
-                    console.log('currentResource', this.sequence.resources[0].incomingFileRepresentations[0]);
+                    // console.log('currentResource', this.sequence.resources[0].incomingFileRepresentations[0]);
                     this.loading = false;
                 }, 1000);
             },
             (error: ApiServiceError) => {
-                console.error(error);
+                // console.error(error);
+
+                const statusText: string = (error.status === 404 ? 'One or more requested resources were not found (maybe you do not have permission to see them, or they are marked as deleted).' : undefined);
+
                 this.error = {
                     status: error.status,
                     statusMsg: error.statusText,
-                    statusText: 'One or more requested resources were not found (maybe you do not have permission to see them, or they are marked as deleted).',
+                    statusText: statusText,
                     url: error.url
                 };
 
@@ -314,9 +318,9 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     }
 
     refreshProperties(index: number) {
-        console.log('from still-image-component: ', index);
+        // console.log('from still-image-component: ', index);
         this.currentResource = this.sequence.resources[0].incomingFileRepresentations[index];
-        console.log(this.currentResource);
+        // console.log(this.currentResource);
     }
 
 

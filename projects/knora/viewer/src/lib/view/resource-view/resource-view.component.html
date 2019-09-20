@@ -1,5 +1,5 @@
 <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
-<div class="resource-view" *ngIf="!error;else errorMsg">
+<div class="resource-view" *ngIf="!error">
 
     <div *ngIf="!loading && sequence?.resources.length > 0">
 
@@ -121,8 +121,7 @@
     </div>
 </div>
 
-<ng-template #errorMsg>
-    <div class="content large middle">
-        <kui-message *ngIf="error" [message]="error" [medium]="true"></kui-message>
-    </div>
-</ng-template>
+<!-- in case of an error show the following message -->
+<div class="resource-view error content large middle" *ngIf="error">
+    <kui-message *ngIf="error" [message]="error" [medium]="true"></kui-message>
+</div>

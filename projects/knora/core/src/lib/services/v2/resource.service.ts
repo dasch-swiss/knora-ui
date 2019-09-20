@@ -107,7 +107,7 @@ export class ResourceService extends ApiService {
                             this._incomingService.getStillImageRepresentationsForCompoundResource(res0.id, 0).subscribe(
                                 (incomingFiles: ReadResourcesSequence) => {
 
-                                    console.log('incomingFiles', incomingFiles);
+                                    // console.log('incomingFiles', incomingFiles);
 
                                     if (incomingFiles.resources.length > 0) {
                                         // update ontology information
@@ -207,7 +207,7 @@ export class ResourceService extends ApiService {
                                 // add ontology information to ReadResourceSequence
                                 resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);
 
-                                console.log('resSeq -- resourceServie', resSeq);
+                                // console.log('resSeq -- resourceServie', resSeq);
 
                                 return resSeq;
                             }
