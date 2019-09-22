@@ -13,7 +13,7 @@
     "ignore": false,
     "line": 8,
     "codeStart": 11,
-    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class AuthenticationService {\n\n    constructor (public http: HttpClient,\n        private _session: SessionService,\n        @Inject(KuiCoreConfigToken) public config) {\n\n        // console.log('AuthenticationService constructor: config', config);\n    }",
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class AuthenticationService extends ApiService {\n\n    path: string = '/v2/authentication';\n\n    constructor (private _session: SessionService,\n        public http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config) {\n        super(http, config);\n    }",
     "ctx": false
   },
   {
@@ -40,8 +40,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 23,
-    "codeStart": 29,
+    "line": 24,
+    "codeStart": 30,
     "code": "session(): boolean {\n    return this._session.validateSession();\n}",
     "ctx": {
       "type": "method",
@@ -99,8 +99,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 33,
-    "codeStart": 40,
+    "line": 34,
+    "codeStart": 41,
     "code": "updateSession(jwt: string, username: string): boolean {\n    if (jwt && username) {\n        this._session.setSession(jwt, username);\n        return true;\n    } else {\n        return false;\n    }\n}",
     "ctx": {
       "type": "method",
@@ -112,9 +112,9 @@
     "tags": [
       {
         "type": "param",
-        "string": "{string} identifier email or username",
+        "string": "{string} identifier can be email address or username",
         "name": "identifier",
-        "description": "<p>email or username</p>",
+        "description": "<p>can be email address or username</p>",
         "types": [
           "string"
         ],
@@ -141,19 +141,19 @@
       },
       {
         "type": "returns",
-        "string": "Observable<any>",
+        "string": "Observable<string> Returns JWT",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "description": "<p>Observable<any></p>"
+        "description": "<p>Observable<string> Returns JWT</p>"
       }
     ],
     "description": {
-      "full": "<p>login process;<br />\nit's used by the login component</p>",
-      "summary": "<p>login process;<br />\nit's used by the login component</p>",
+      "full": "<p>Login request</p>",
+      "summary": "<p>Login request</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -161,9 +161,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 49,
+    "line": 50,
     "codeStart": 57,
-    "code": "login(username: string, password: string): Observable<any> {\n\n    // console.log('AuthenticationService - login - api: ', this.config.api);\n\n    let params: any = { username: username, password: password };\n\n    // username can be either name or email address, so what do we have?\n    if (username.indexOf('@') > -1) {\n        // username is email address\n        params = { email: username, password: password };\n    }\n\n    return this.http.post(\n        this.config.api + '/v2/authentication',\n        params,\n        { observe: 'response' }).pipe(\n            map((response: HttpResponse<any>): any => {\n                return response;\n            }),\n            catchError((error: HttpErrorResponse) => {\n\n                return this.handleRequestError(error);\n            })\n        );\n}",
+    "code": "login(identifier: string, password: string): Observable<string> {\n    let params: AuthenticationRequestByUsernamePayload | AuthenticationRequestByEmailPayload;\n\n    // username can be either name or email address, so what do we have?\n    if (identifier.indexOf('@') > -1) {\n        // username is email address\n        params = { email: identifier, password: password };\n    } else {\n        params = { username: identifier, password: password };\n    }\n\n    return this.httpPost(this.path, params).pipe(\n        map((result: ApiServiceResult) => result.getBody(AuthenticationResponse).token),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
       "name": "login",
@@ -173,22 +173,20 @@
   {
     "tags": [
       {
-        "type": "param",
-        "string": "",
-        "name": "",
-        "description": "",
+        "type": "returns",
+        "string": "Observable<LogoutResponse>",
         "types": [],
         "typesDescription": "",
         "variable": false,
         "nonNullable": false,
         "nullable": false,
         "optional": false,
-        "html": ""
+        "description": "<p>Observable<LogoutResponse></p>"
       }
     ],
     "description": {
-      "full": "<p>logout the user by destroying the session</p>",
-      "summary": "<p>logout the user by destroying the session</p>",
+      "full": "<p>Logout from app (by destroying the session) and knora</p>",
+      "summary": "<p>Logout from app (by destroying the session) and knora</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -196,61 +194,13 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 83,
-    "codeStart": 88,
-    "code": "logout() {\n    // destroy the session\n    localStorage.removeItem('session');\n}",
+    "line": 74,
+    "codeStart": 79,
+    "code": "logout(): Observable<LogoutResponse> {\n    this._session.destroySession();\n    return this.httpDelete(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(LogoutResponse)),\n        catchError(this.handleJsonError)\n    );\n}\n}",
     "ctx": {
       "type": "method",
       "name": "logout",
       "string": "logout()"
     }
-  },
-  {
-    "tags": [
-      {
-        "type": "ignore",
-        "string": "handle request error in case of server error",
-        "html": "<p>handle request error in case of server error</p>"
-      },
-      {
-        "type": "param",
-        "string": "error",
-        "name": "error",
-        "description": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
-        "optional": false,
-        "html": "<p>error</p>"
-      },
-      {
-        "type": "returns",
-        "string": "",
-        "types": [],
-        "typesDescription": "",
-        "variable": false,
-        "nonNullable": false,
-        "nullable": false,
-        "optional": false,
-        "description": "",
-        "html": ""
-      }
-    ],
-    "description": {
-      "full": "",
-      "summary": "",
-      "body": ""
-    },
-    "isPrivate": false,
-    "isConstructor": false,
-    "isClass": false,
-    "isEvent": false,
-    "ignore": false,
-    "line": 94,
-    "codeStart": 101,
-    "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    const serviceError = new ApiServiceError();\n    serviceError.header = { 'server': error.headers.get('Server') };\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}\n}",
-    "ctx": false
   }
 ]
