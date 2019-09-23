@@ -44,6 +44,8 @@ jobs:
       - run: yarn ng build @knora/search
       - run: yarn ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
       - run: yarn ng build @knora/viewer
+      - run: yarn ng t --project @knora/authentication --watch=false --browsers=ChromeHeadless
+      - run: yarn ng build @knora/authentication
 
       # Run e2e tests!
       # - run: xvfb-run -a yarn ci:e2e

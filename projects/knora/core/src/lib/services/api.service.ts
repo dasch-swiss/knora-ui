@@ -74,6 +74,8 @@ export abstract class ApiService {
     protected processJSONLD(resourceResponse: ApiServiceResult): Observable<object> {
 
         const resPromises = jsonld.promises;
+
+
         // compact JSON-LD using an empty context: expands all Iris
         const resPromise = resPromises.compact(resourceResponse.body, {});
 

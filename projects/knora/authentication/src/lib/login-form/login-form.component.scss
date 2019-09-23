@@ -6,46 +6,33 @@ $width: 280px;
   width: 100%;
 }
 
-.mat-hint,
-.mat-form-field,
-.button-row {
-  margin-top: 24px;
-}
-
-.mat-hint {
-  background: rgba($warn, 0.39);
-  display: block;
-  margin-left: -16px;
-  padding: 16px;
+.login-form-title {
   text-align: center;
-  width: $width;
 }
 
-.login-form, .logout-form {
+.login-error {
+  color: $warn;
+  text-align: center;
+}
+
+.login-progress {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.login-container,
+.logout-container {
   margin-left: auto;
   margin-right: auto;
   position: relative;
   width: $width;
-
-  .login-form-header {
-    margin-bottom: 24px;
-  }
-
-  .login-field {
-
-    .mat-icon {
-      font-size: 20px;
-      margin-right: 12px;
-    }
-  }
-
-  .button-row {
-    margin-top: 48px;
-  }
 }
 
-// mat-card-content
+.submit-button,
+.logout-button {
+  height: 48px;
+}
 
-.sign-up {
-  margin-top: 24px;
+.center {
+  text-align: center;
 }

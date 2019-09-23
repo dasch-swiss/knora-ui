@@ -160,7 +160,7 @@ class TestHostComponent implements OnInit {
     }
     ];
 
-    constructor() {
+    constructor () {
     }
 
     ngOnInit() { }

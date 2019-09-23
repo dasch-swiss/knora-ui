@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ApiServiceError, ApiServiceResult } from '@knora/core';
+import { ApiServiceError, LogoutResponse } from '@knora/core';
 import { AuthenticationService } from '../authentication.service';
 import { SessionService } from '../session/session.service';
 
@@ -13,6 +12,7 @@ import { SessionService } from '../session/session.service';
 export class LoginFormComponent implements OnInit {
 
     /**
+     * @deprecated This will be removed in the next major release; this should be handled by the app itself with the new Output parameter called 'status'
      * @param {string} [navigate]
      * navigate to the defined url after successful login
      */
@@ -21,9 +21,16 @@ export class LoginFormComponent implements OnInit {
     /**
      * @param {string} [color]
      * set your theme color here,
-     * it will be used in the progress-indicator
+     * it will be used in the progress-indicator and login button
      */
     @Input() color?: string;
+
+    /**
+     * @param  {EventEmitter<boolean>} status
+     *
+     * Emits true when the login process was successful and false in case of error on login or false after logout process
+     */
+    @Output() status: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     returnUrl: string;
 
@@ -31,7 +38,7 @@ export class LoginFormComponent implements OnInit {
     loggedInUser: string;
 
     // form
-    frm: FormGroup;
+    form: FormGroup;
 
     loading = false;
 
@@ -44,11 +51,13 @@ export class LoginFormComponent implements OnInit {
     loginErrorServer = false;
 
     // labels for the login form
-    login = {
-        title: 'Login',
+    formLabel = {
+        title: 'Login here',
         name: 'Username',
         pw: 'Password',
-        button: 'Login',
+        submit: 'Login',
+        retry: 'Retry',
+        logout: 'LOGOUT',
         remember: 'Remember me',
         forgot_pw: 'Forgot password?',
         error: {
@@ -76,9 +85,7 @@ export class LoginFormComponent implements OnInit {
 
     constructor (private _auth: AuthenticationService,
         private _session: SessionService,
-        private _fb: FormBuilder,
-        private _route: ActivatedRoute,
-        private _router: Router) {
+        private _fb: FormBuilder) {
     }
 
 
@@ -93,112 +100,63 @@ export class LoginFormComponent implements OnInit {
     }
 
     buildForm(): void {
-        this.frm = this._fb.group({
+        this.form = this._fb.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
         });
 
-        this.frm.valueChanges
-            .subscribe(data => this.onValueChanged(data));
     }
 
-    /**
-     * @ignore
-     *
-     * check for errors while using the form
-     * @param data
-     */
-    onValueChanged(data?: any) {
+    login() {
 
-        if (!this.frm) {
-            return;
-        }
-
-        const form = this.frm;
-
-        Object.keys(this.formErrors).map(field => {
-            this.formErrors[field] = '';
-            const control = form.get(field);
-            if (control && control.dirty && !control.valid) {
-                const messages = this.validationMessages[field];
-                Object.keys(control.errors).map(key => {
-                    this.formErrors[field] += messages[key] + ' ';
-                });
-            }
-        });
-    }
-
-    doLogin() {
+        this.loading = true;
 
         // reset the error messages
         this.errorMessage = undefined;
-        this.loginErrorUser = false;
-        this.loginErrorPw = false;
-        this.loginErrorServer = false;
-
-        // make sure form values are valid
-        if (this.frm.invalid) {
-            this.loginErrorPw = true;
-            this.loginErrorUser = true;
-            return;
-        }
-
-        // Reset status
-        this.loading = true;
 
         // Grab values from form
-        const username = this.frm.get('username').value;
-        const password = this.frm.get('password').value;
+        const username = this.form.get('username').value;
+        const password = this.form.get('password').value;
 
-        this._auth.login(username, password)
-            .subscribe(
-                (response: ApiServiceResult) => {
+        this._auth.login(username, password).subscribe(
+            (response: string) => {
 
-                    // we have a token; set the session now
-                    this._session.setSession(response.body.token, username);
+                this._auth.updateSession(response, username);
 
-                    setTimeout(() => {
-                        // get return url from route parameters or default to '/'
-                        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
-
-
-                        // go back to the previous route or to the route defined in the @Input if navigate exists
-                        if (!this.navigate) {
-                            this._router.navigate([this.returnUrl]);
-                        } else {
-                            this._router.navigate([this.navigate]);
-                        }
-
-                        this.loading = false;
-                    }, 2000);
-                },
-                (error: ApiServiceError) => {
-                    // error handling
-                    if (error.status === 0) {
-                        this.loginErrorUser = false;
-                        this.loginErrorPw = false;
-                        this.loginErrorServer = true;
-                    }
-                    if (error.status === 401) {
-                        this.loginErrorUser = false;
-                        this.loginErrorPw = true;
-                        this.loginErrorServer = false;
-                    }
-                    if (error.status === 404) {
-                        this.loginErrorUser = true;
-                        this.loginErrorPw = false;
-                        this.loginErrorServer = false;
-                    }
-                    this.errorMessage = <any>error;
+                // successfull login: send status true to parent after a short timeout,
+                // because of the localStorage session setup which needs some time
+                setTimeout(() => {
+                    this.status.emit(true);
                     this.loading = false;
-                }
-            );
+                }, 1800);
+
+            },
+            (error: ApiServiceError) => {
+                // error handling
+                this.loginErrorUser = (error.status === 404);
+                this.loginErrorPw = (error.status === 401);
+                this.loginErrorServer = (error.status === 0);
+
+                this.errorMessage = <any>error;
+                this.loading = false;
+            }
+        );
 
     }
 
     logout() {
-        this._auth.logout();
-        location.reload(true);
+
+        this._auth.logout().subscribe(
+            (result: LogoutResponse) => {
+                this.status.emit(result.status === 0);
+                this.loading = false;
+            },
+            (error: ApiServiceError) => {
+                console.error(error);
+                this.loading = false;
+            }
+        );
+
     }
 
 }

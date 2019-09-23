@@ -20,6 +20,7 @@ export * from './api/shared/date';
  */
 export * from './api/admin/authentication/authentication-request-payload';
 export * from './api/admin/authentication/authentication-response';
+export * from './api/admin/authentication/logout-response';
 
 /**
  * Interfaces for groups
@@ -97,8 +98,12 @@ export * from './api/v2/count-query/count-query-result';
 /**
  * Interfaces for resources
  */
-export * from './api/v2/still-image/still-image-representation';
-export * from './api/v2/still-image/image-region';
+export * from './api/v2/representations/audio-representation';
+export * from './api/v2/representations/fileRepresentation';
+export * from './api/v2/representations/moving-image-representation';
+export * from './api/v2/representations/still-image-representation';
+export * from './api/v2/representations/region';
+export * from './api/v2/representations/sequence';
 
 /**
  * Interfaces for ontologies
