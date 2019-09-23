@@ -5,6 +5,7 @@ import {
     ReadColorValue,
     ReadDateValue,
     ReadDecimalValue,
+    ReadGeomValue,
     ReadIntegerValue,
     ReadIntervalValue,
     ReadLinkValue,
@@ -16,7 +17,6 @@ import {
     ReadTextValueAsXml,
     ReadUriValue
 } from '@knora/core';
-import { ReadGeomValue } from 'projects/knora/core/src/public_api';
 import { AppDemo } from '../../../app.config';
 
 @Component({
