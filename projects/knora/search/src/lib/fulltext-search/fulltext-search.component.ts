@@ -1,9 +1,9 @@
 import { ConnectionPositionPair, Overlay, OverlayConfig, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
-import { ApiServiceError, Project, ProjectsService, KnoraConstants, StringLiteral } from '@knora/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material';
+import { Router } from '@angular/router';
+import { ApiServiceError, KnoraConstants, Project, ProjectsService } from '@knora/core';
 
 export interface PrevSearchItem {
     projectIri?: string;
@@ -17,7 +17,7 @@ export interface PrevSearchItem {
 @Component({
     selector: 'kui-fulltext-search',
     templateUrl: './fulltext-search.component.html',
-    styleUrls: ['./fulltext-search.component.scss', '../assets/style/search.scss']
+    styleUrls: ['./fulltext-search.component.scss']
 })
 export class FulltextSearchComponent implements OnInit {
 
@@ -80,7 +80,7 @@ export class FulltextSearchComponent implements OnInit {
         KnoraConstants.DefaultSharedOntologyIRI
     ];
 
-    constructor(
+    constructor (
         private _overlay: Overlay,
         private _router: Router,
         private _viewContainerRef: ViewContainerRef,

@@ -8,7 +8,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'decimal-value',
     templateUrl: './decimal-value.component.html',
-    styleUrls: ['./decimal-value.component.scss', '../../../../assets/style/search.scss']
+    styleUrls: ['./decimal-value.component.scss']
 })
 export class DecimalValueComponent implements OnInit, OnDestroy, PropertyValue {
 

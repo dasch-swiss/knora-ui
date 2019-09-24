@@ -8,7 +8,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'integer-value',
     templateUrl: './integer-value.component.html',
-    styleUrls: ['./integer-value.component.scss', '../../../../assets/style/search.scss']
+    styleUrls: ['./integer-value.component.scss']
 })
 export class IntegerValueComponent implements OnInit, OnDestroy, PropertyValue {
 

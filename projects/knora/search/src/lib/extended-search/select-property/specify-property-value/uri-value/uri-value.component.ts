@@ -9,7 +9,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'uri-value',
     templateUrl: './uri-value.component.html',
-    styleUrls: ['./uri-value.component.scss', '../../../../assets/style/search.scss']
+    styleUrls: ['./uri-value.component.scss']
 })
 export class UriValueComponent implements OnInit, OnDestroy, PropertyValue {
 

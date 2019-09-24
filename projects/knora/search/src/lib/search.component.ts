@@ -33,7 +33,7 @@ import {
 })
 
 /**
- * @deprecated
+ * @deprecated You should use searchPanel instead
  * Contains methods to realise, reset new or previous simple searches.
  */
 export class SearchComponent implements OnInit {
