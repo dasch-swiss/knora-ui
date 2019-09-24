@@ -11,8 +11,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 20,
-    "codeStart": 25,
+    "line": 18,
+    "codeStart": 23,
     "code": "readonly MAX_SESSION_TIME: number = 86400000; // 1d = 24 * 60 * 60 * 1000\n\nconstructor (\n    private _http: HttpClient,\n    @Inject(KuiCoreConfigToken) public config,\n    private _users: UsersService) {\n}",
     "ctx": false
   },
@@ -55,30 +55,13 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 33,
-    "codeStart": 40,
-    "code": "setSession(jwt: string, username: string) {\n\n    // username can be either name or email address, so what do we have?\n    const identifierType: string = ((username.indexOf('@') > -1) ? 'email' : 'username');",
+    "line": 31,
+    "codeStart": 38,
+    "code": "setSession(jwt: string, username: string) {\n\n    // username can be either name or email address, so what do we have?\n    const identifierType: string = ((username.indexOf('@') > -1) ? 'email' : 'username');\n\n    // get user information\n    this._users.getUser(username, identifierType).subscribe(\n        (result: User) => {\n            let sysAdmin: boolean = false;\n            const projectAdmin: string[] = [];\n\n            const groupsPerProjectKeys: string[] = Object.keys(result.permissions.groupsPerProject);\n\n            for (const key of groupsPerProjectKeys) {\n                if (key === KnoraConstants.SystemProjectIRI) {\n                    sysAdmin = result.permissions.groupsPerProject[key].indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;\n                }\n\n                if (result.permissions.groupsPerProject[key].indexOf(KnoraConstants.ProjectAdminGroupIRI) > -1) {\n                    projectAdmin.push(key);\n                }\n            }\n\n            // define a session id, which is the timestamp of login\n            this.session = {\n                id: this.setTimestamp(),\n                user: {\n                    name: result.username,\n                    jwt: jwt,\n                    lang: result.lang,\n                    sysAdmin: sysAdmin,\n                    projectAdmin: projectAdmin\n                }\n            };\n            // store in the localStorage\n            localStorage.setItem('session', JSON.stringify(this.session));\n\n        },\n        (error: ApiServiceError) => {\n            console.error(error);\n        }\n    );\n}\n\nprivate setTimestamp() {\n    return (moment().add(0, 'second')).valueOf();\n}\n\ngetSession() {\n\n}\n\nupdateSession() {\n\n}\n\nvalidateSession() {\n    // mix of checks with session.validation and this.authenticate\n    this.session = JSON.parse(localStorage.getItem('session'));\n\n    const tsNow: number = this.setTimestamp();\n\n    if (this.session) {\n        // the session exists\n        // check if the session is still valid:\n        // if session.id + MAX_SESSION_TIME > now: _session.validateSession()\n        if (this.session.id + this.MAX_SESSION_TIME < tsNow) {\n            // the internal session has expired\n            // check if the api v2/authentication is still valid\n\n            if (this.authenticate()) {\n                // the api authentication is valid;\n                // update the session.id\n                this.session.id = tsNow;\n\n                localStorage.setItem('session', JSON.stringify(this.session));\n                return true;\n\n            } else {\n                // console.error('session.service -- validateSession -- authenticate: the session expired on API side');\n                // a user is not authenticated anymore!\n                this.destroySession();\n                return false;\n            }\n\n        } else {\n            return true;\n        }\n    }\n    return false;\n}\n\nprivate authenticate(): Observable<boolean> {\n    return this._http.get(this.config.api + '/v2/authentication').pipe(\n        map((result: any) => {\n            // console.log('AuthenticationService - authenticate - result: ', result);\n            // return true || false\n            return result.status === 200;\n        })\n    );\n}\n\ndestroySession() {\n    localStorage.removeItem('session');\n}\n\n}",
     "ctx": {
       "type": "method",
       "name": "setSession",
       "string": "setSession()"
     }
-  },
-  {
-    "tags": [],
-    "description": {
-      "full": "<p>this.session = {<br />\nid: this.setTimestamp(),<br />\nuser: {<br />\nname: username,<br />\njwt: jwt,<br />\nlang: 'en',<br />\nsysAdmin: false,<br />\nprojectAdmin: []<br />\n}<br />\n};<br />\n// store in the localStorage<br />\nlocalStorage.setItem('session', JSON.stringify(this.session));</p>",
-      "summary": "<p>this.session = {<br />\nid: this.setTimestamp(),<br />\nuser: {<br />\nname: username,<br />\njwt: jwt,<br />\nlang: 'en',<br />\nsysAdmin: false,<br />\nprojectAdmin: []<br />\n}<br />\n};<br />\n// store in the localStorage<br />\nlocalStorage.setItem('session', JSON.stringify(this.session));</p>",
-      "body": ""
-    },
-    "isPrivate": false,
-    "isConstructor": false,
-    "isClass": false,
-    "isEvent": false,
-    "ignore": false,
-    "line": 45,
-    "codeStart": 60,
-    "code": "// get user information\nthis._users.getUser(username, identifierType).subscribe(\n    (result: User) => {\n        let sysAdmin: boolean = false;\n        const projectAdmin: string[] = [];\n\n        const groupsPerProjectKeys: string[] = Object.keys(result.permissions.groupsPerProject);\n\n        for (const key of groupsPerProjectKeys) {\n            if (key === KnoraConstants.SystemProjectIRI) {\n                sysAdmin = result.permissions.groupsPerProject[key].indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;\n            }\n\n            if (result.permissions.groupsPerProject[key].indexOf(KnoraConstants.ProjectAdminGroupIRI) > -1) {\n                projectAdmin.push(key);\n            }\n        }\n\n        // define a session id, which is the timestamp of login\n        this.session = {\n            id: this.setTimestamp(),\n            user: {\n                name: result.username,\n                jwt: jwt,\n                lang: result.lang,\n                sysAdmin: sysAdmin,\n                projectAdmin: projectAdmin\n            }\n        };\n        // store in the localStorage\n        localStorage.setItem('session', JSON.stringify(this.session));\n\n    },\n    (error: ApiServiceError) => {\n        console.error(error);\n    }\n);\n    }\n\n    private setTimestamp() {\nreturn (moment().add(0, 'second')).valueOf();\n    }\n\n    getSession() {\n\n    }\n\n    updateSession() {\n\n    }\n\n    validateSession() {\n// mix of checks with session.validation and this.authenticate\nthis.session = JSON.parse(localStorage.getItem('session'));\n\nconst tsNow: number = this.setTimestamp();\n\nif (this.session) {\n    // the session exists\n    // check if the session is still valid:\n    // if session.id + MAX_SESSION_TIME > now: _session.validateSession()\n    if (this.session.id + this.MAX_SESSION_TIME < tsNow) {\n        // the internal session has expired\n        // check if the api v2/authentication is still valid\n\n        if (this.authenticate()) {\n            // the api authentication is valid;\n            // update the session.id\n            this.session.id = tsNow;\n\n            // localStorage.removeItem('session');\n            localStorage.setItem('session', JSON.stringify(this.session));\n            return true;\n\n        } else {\n            // console.error('session.service -- validateSession -- authenticate: the session expired on API side');\n            // a user is not authenticated anymore!\n            this.destroySession();\n            return false;\n        }\n\n    } else {\n        return true;\n    }\n}\nreturn false;\n    }\n\n\n    private authenticate(): Observable<boolean> {\nreturn this._http.get(this.config.api + '/v2/authentication').pipe(\n    map((result: any) => {\n\n        // console.log('AuthenticationService - authenticate - result: ', result);\n        // return true || false\n        return result.status === 200;\n    })\n);\n    }\n\n    destroySession() {\nlocalStorage.removeItem('session');\n    }\n\n\n}",
-    "ctx": false
   }
 ]
