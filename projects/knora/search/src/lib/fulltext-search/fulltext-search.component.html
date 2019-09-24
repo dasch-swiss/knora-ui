@@ -6,7 +6,7 @@
     <div class="kui-project-filter" *ngIf="projectfilter">
         <button mat-button class="kui-project-filter-button" [matMenuTriggerFor]="selectProject"
                 #btnToSelectProject="matMenuTrigger" isIconButton>
-            <p class="mat-caption placeholder">Filter by</p>
+            <p class="mat-caption placeholder">Filter by project</p>
             <p class="label">{{projectLabel}}</p>
             <mat-icon class="icon" matSuffix>keyboard_arrow_down</mat-icon>
         </button>
@@ -39,7 +39,7 @@
     <div class="kui-project-filter-mobile" *ngIf="projectfilter">
         <button mat-stroked-button class="kui-project-filter-button kui-project-filter-button-mobile"
                 [matMenuTriggerFor]="selectProject" #btnToSelectProject="matMenuTrigger" isIconButton>
-            <p class="mat-caption placeholder">Filter by</p>
+            <p class="mat-caption placeholder">Filter by project</p>
             <p class="label">{{projectLabel}}</p>
             <mat-icon class="icon" matSuffix>keyboard_arrow_down</mat-icon>
         </button>
