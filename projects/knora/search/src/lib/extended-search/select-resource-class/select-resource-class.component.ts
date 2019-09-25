@@ -8,7 +8,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'kui-select-resource-class',
     templateUrl: './select-resource-class.component.html',
-    styleUrls: ['./select-resource-class.component.scss', '../../assets/style/search.scss']
+    styleUrls: ['./select-resource-class.component.scss']
 })
 export class SelectResourceClassComponent implements OnInit, OnChanges {
 
@@ -37,7 +37,7 @@ export class SelectResourceClassComponent implements OnInit, OnChanges {
 
     form: FormGroup;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     /**

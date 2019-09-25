@@ -25,7 +25,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'kui-specify-property-value',
     templateUrl: './specify-property-value.component.html',
-    styleUrls: ['./specify-property-value.component.scss', '../../../assets/style/search.scss']
+    styleUrls: ['./specify-property-value.component.scss']
 })
 export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
 
@@ -62,7 +62,7 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
     // the type of the property
     propertyValueType;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     /**

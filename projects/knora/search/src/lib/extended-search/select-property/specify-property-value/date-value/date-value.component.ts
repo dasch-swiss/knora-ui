@@ -11,7 +11,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'date-value',
     templateUrl: './date-value.component.html',
-    styleUrls: ['./date-value.component.scss', '../../../../assets/style/search.scss']
+    styleUrls: ['./date-value.component.scss']
 })
 export class DateValueComponent implements OnInit, OnDestroy, PropertyValue {
 

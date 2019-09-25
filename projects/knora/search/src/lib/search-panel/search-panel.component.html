@@ -1,14 +1,17 @@
 <div class="kui-search-panel" #fullSearchPanel cdkOverlayOrigin>
 
     <!-- DESKTOP VERSION -->
-    <kui-fulltext-search class="kui-fulltext-search" [route]="route" [projectfilter]="projectfilter" [filterbyproject]="filterbyproject">
+    <kui-fulltext-search class="kui-fulltext-search" [route]="route" [projectfilter]="projectfilter"
+                         [filterbyproject]="filterbyproject">
     </kui-fulltext-search>
 
     <!-- advanced search button: if advanced === true -->
-    <button mat-button *ngIf="advanced && !expert" color="primary" (click)="openPanelWithBackdrop('advanced')">advanced</button>
+    <button mat-button *ngIf="advanced && !expert" color="primary"
+            (click)="openPanelWithBackdrop('advanced')">advanced</button>
 
     <!-- expert search button: if expert === true -->
-    <button mat-button *ngIf="!advanced && expert" color="primary" (click)="openPanelWithBackdrop('expert')">expert</button>
+    <button mat-button *ngIf="!advanced && expert" color="primary"
+            (click)="openPanelWithBackdrop('expert')">expert</button>
 
     <!-- button to select advanced or expert search: if advanced AND expert === true; open menu to select -->
     <button mat-button *ngIf="advanced && expert" [matMenuTriggerFor]="selectSearch">

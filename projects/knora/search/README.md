@@ -134,4 +134,15 @@ export class AppModule {
 }
 ```
 
+The search components need a global styling in the app to override some material styling rules. Please update your `angular.json` file as follow:
+
+```json
+...
+    "styles": [
+        "src/styles.scss",
+        "node_modules/@knora/search/assets/style/search.scss" // <- add this line
+    ],
+...
+```
+
 

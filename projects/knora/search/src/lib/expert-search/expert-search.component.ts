@@ -6,7 +6,7 @@ import { ExtendedSearchParams, KuiCoreConfigToken, SearchParamsService, SearchSe
 @Component({
     selector: 'kui-expert-search',
     templateUrl: './expert-search.component.html',
-    styleUrls: ['./expert-search.component.scss', '../assets/style/search.scss']
+    styleUrls: ['./expert-search.component.scss']
 })
 export class ExpertSearchComponent implements OnInit {
 
@@ -28,7 +28,7 @@ export class ExpertSearchComponent implements OnInit {
 
     expertSearchForm: FormGroup;
 
-    constructor(
+    constructor (
         private fb: FormBuilder,
         private _route: ActivatedRoute,
         private _router: Router,

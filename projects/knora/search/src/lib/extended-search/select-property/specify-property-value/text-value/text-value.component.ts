@@ -9,7 +9,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'text-value',
     templateUrl: './text-value.component.html',
-    styleUrls: ['./text-value.component.scss', '../../../../assets/style/search.scss']
+    styleUrls: ['./text-value.component.scss']
 })
 export class TextValueComponent implements OnInit, OnDestroy, PropertyValue {
 
