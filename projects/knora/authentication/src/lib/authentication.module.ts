@@ -35,7 +35,7 @@ import { WithCredentialsInterceptor } from './interceptors/with-credentials.inte
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: WithCredentialsInterceptor, multi: true}
+        { provide: HTTP_INTERCEPTORS, useClass: WithCredentialsInterceptor, multi: true }
     ]
 })
 export class KuiAuthenticationModule {

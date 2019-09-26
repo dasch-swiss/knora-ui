@@ -32,7 +32,7 @@ export class AuthenticationService extends ApiService {
     }
 
     /**
-     * update the session storage
+     * @deprecated update the session storage
      * @param jwt
      * @param username
      *
