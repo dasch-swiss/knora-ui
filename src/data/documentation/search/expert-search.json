@@ -90,7 +90,7 @@
     "ignore": false,
     "line": 24,
     "codeStart": 27,
-    "code": "@Output() toggleExpertSearchForm = new EventEmitter<boolean>();\n\nexpertSearchForm: FormGroup;\n\nconstructor(\n    private fb: FormBuilder,\n    private _route: ActivatedRoute,\n    private _router: Router,\n    private _searchService: SearchService,\n    private _searchParamsService: SearchParamsService,\n    @Inject(KuiCoreConfigToken) public config\n) { }\n\nngOnInit() {\n    this.initForm();\n}",
+    "code": "@Output() toggleExpertSearchForm = new EventEmitter<boolean>();\n\nexpertSearchForm: FormGroup;\n\nconstructor (\n    private fb: FormBuilder,\n    private _route: ActivatedRoute,\n    private _router: Router,\n    private _searchService: SearchService,\n    private _searchParamsService: SearchParamsService,\n    @Inject(KuiCoreConfigToken) public config\n) { }\n\nngOnInit() {\n    this.initForm();\n}",
     "ctx": false
   },
   {

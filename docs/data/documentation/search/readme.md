@@ -30,9 +30,9 @@ This module has the following package dependencies, which you also have to insta
 
 - @angular/common@8.0.3
 - @angular/core@8.0.3
-- @knora/action@9.3.0
-- @knora/core@9.3.0
-- @knora/viewer@9.3.0
+- @knora/action@9.4.0
+- @knora/core@9.4.0
+- @knora/viewer@9.4.0
 - jdnconvertiblecalendardateadapter@0.0.7
 
 ### Required version of Knora: 9.0.0
@@ -132,6 +132,17 @@ import { KuiSearchModule } from '@knora/search';
 })
 export class AppModule {
 }
+```
+
+The search components need a global styling in the app to override some material styling rules. Please update your `angular.json` file as follow:
+
+```json
+...
+    "styles": [
+        "src/styles.scss",
+        "node_modules/@knora/search/assets/style/search.scss" // <- add this line
+    ],
+...
 ```
 
 
