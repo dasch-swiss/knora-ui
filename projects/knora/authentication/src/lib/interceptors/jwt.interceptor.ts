@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SessionService } from '../session/session.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class JwtInterceptor implements HttpInterceptor {
 
     constructor(private _session: SessionService) {
@@ -15,6 +17,7 @@ export class JwtInterceptor implements HttpInterceptor {
         if (this._session.validateSession()) {
             // the session is valid (and up to date)
             const jwt = JSON.parse(localStorage.getItem('session')).user.jwt;
+
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${jwt}`

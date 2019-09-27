@@ -121,14 +121,14 @@ export class LoginFormComponent implements OnInit {
         this._auth.login(username, password).subscribe(
             (response: string) => {
 
-                this._auth.updateSession(response, username);
+                this._session.setSession(response, username);
 
                 // successfull login: send status true to parent after a short timeout,
                 // because of the localStorage session setup which needs some time
                 setTimeout(() => {
                     this.status.emit(true);
                     this.loading = false;
-                }, 1800);
+                }, 2200);
 
             },
             (error: ApiServiceError) => {
