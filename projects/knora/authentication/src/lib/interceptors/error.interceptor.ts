@@ -5,7 +5,9 @@ import { catchError } from 'rxjs/operators';
 
 // import { AuthenticationService } from './authentication.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ErrorInterceptor implements HttpInterceptor {
     /*
     constructor(private _authService: AuthenticationService) {
@@ -18,10 +20,10 @@ export class ErrorInterceptor implements HttpInterceptor {
 
             if (err.status === 401) {
                 // auto logout if 401 response returned from api
-//                this._authService.logout();
-                    // the following location.reload is used for the auth.guard in app routing
+                //                this._authService.logout();
+                // the following location.reload is used for the auth.guard in app routing
                 // to go to the login page
-//                location.reload(true);
+                //                location.reload(true);
             }
 
 
