@@ -53,7 +53,7 @@ mkdir src/config
 touch src/config/config.dev.json
 touch src/config/config.prod.json
 
-ng g s app-init.service.ts
+ng g s app-init
 ```
 
 The `config.dev.json` should look as follow:
