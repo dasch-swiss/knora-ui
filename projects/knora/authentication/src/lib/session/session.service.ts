@@ -37,6 +37,20 @@ export class SessionService {
      */
     setSession(jwt: string, username: string) {
 
+        // define a session id, which is the timestamp of login
+        this.session = {
+            id: this.setTimestamp(),
+            user: {
+                name: '',
+                jwt: jwt,
+                lang: '',
+                sysAdmin: false,
+                projectAdmin: []
+            }
+        };
+        // store in the localStorage
+        localStorage.setItem('session', JSON.stringify(this.session));
+
         // username can be either name or email address, so what do we have?
         const identifierType: string = ((username.indexOf('@') > -1) ? 'email' : 'username');
 
@@ -58,7 +72,8 @@ export class SessionService {
                     }
                 }
 
-                // define a session id, which is the timestamp of login
+
+                // replace existing session in localstorage
                 this.session = {
                     id: this.setTimestamp(),
                     user: {
@@ -69,7 +84,7 @@ export class SessionService {
                         projectAdmin: projectAdmin
                     }
                 };
-                // store in the localStorage
+                // update localStorage
                 localStorage.setItem('session', JSON.stringify(this.session));
 
             },
@@ -81,14 +96,6 @@ export class SessionService {
 
     private setTimestamp() {
         return (moment().add(0, 'second')).valueOf();
-    }
-
-    getSession() {
-
-    }
-
-    updateSession() {
-
     }
 
     validateSession() {
