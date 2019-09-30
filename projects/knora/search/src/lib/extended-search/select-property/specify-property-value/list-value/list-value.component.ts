@@ -10,7 +10,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'list-value',
     templateUrl: './list-value.component.html',
-    styleUrls: ['./list-value.component.scss', '../../../../assets/style/search.scss']
+    styleUrls: ['./list-value.component.scss']
 })
 export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
@@ -31,7 +31,7 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     @ViewChild(MatMenuTrigger, { static: false }) menuTrigger: MatMenuTrigger;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder, private _listCacheService: ListCacheService) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder, private _listCacheService: ListCacheService) {
     }
 
     private getRootNodeIri(): string {

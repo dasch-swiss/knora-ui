@@ -22,7 +22,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'link-value',
     templateUrl: './link-value.component.html',
-    styleUrls: ['./link-value.component.scss', '../../../../assets/style/search.scss']
+    styleUrls: ['./link-value.component.scss']
 })
 export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
 

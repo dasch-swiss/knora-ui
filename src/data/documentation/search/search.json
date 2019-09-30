@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "Contains methods to realise, reset new or previous simple searches.",
-        "html": "<p>Contains methods to realise, reset new or previous simple searches.</p>"
+        "string": "You should use searchPanel instead Contains methods to realise, reset new or previous simple searches.",
+        "html": "<p>You should use searchPanel instead Contains methods to realise, reset new or previous simple searches.</p>"
       }
     ],
     "description": {

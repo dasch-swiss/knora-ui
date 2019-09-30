@@ -8,7 +8,7 @@ import { Component, ElementRef, Input, TemplateRef, ViewChild, ViewContainerRef,
 @Component({
     selector: 'kui-search-panel',
     templateUrl: './search-panel.component.html',
-    styleUrls: ['./search-panel.component.scss', '../assets/style/search.scss']
+    styleUrls: ['./search-panel.component.scss']
 })
 export class SearchPanelComponent {
     /**
@@ -47,7 +47,7 @@ export class SearchPanelComponent {
     // show advanced or expert search
     showAdvanced: boolean;
 
-    constructor(private _overlay: Overlay,
+    constructor (private _overlay: Overlay,
         private _viewContainerRef: ViewContainerRef, ) { }
 
     openPanelWithBackdrop(type: string) {

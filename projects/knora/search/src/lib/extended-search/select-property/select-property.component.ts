@@ -19,7 +19,7 @@ const resolvedPromise = Promise.resolve(null);
 @Component({
     selector: 'kui-select-property',
     templateUrl: './select-property.component.html',
-    styleUrls: ['./select-property.component.scss', '../../assets/style/search.scss']
+    styleUrls: ['./select-property.component.scss']
 })
 export class SelectPropertyComponent implements OnInit, OnDestroy {
 
@@ -66,7 +66,7 @@ export class SelectPropertyComponent implements OnInit, OnDestroy {
     // unique name for this property to be used in the parent FormGroup
     propIndex: string;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
 
     }
 

@@ -20,7 +20,7 @@ import { SelectResourceClassComponent } from './select-resource-class/select-res
 @Component({
     selector: 'kui-extended-search',
     templateUrl: './extended-search.component.html',
-    styleUrls: ['./extended-search.component.scss', '../assets/style/search.scss']
+    styleUrls: ['./extended-search.component.scss']
 })
 export class ExtendedSearchComponent implements OnInit {
 
@@ -71,7 +71,7 @@ export class ExtendedSearchComponent implements OnInit {
     // form validation status
     formValid = false;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder,
+    constructor (@Inject(FormBuilder) private fb: FormBuilder,
         private _route: ActivatedRoute,
         private _router: Router,
         private _cacheService: OntologyCacheService,

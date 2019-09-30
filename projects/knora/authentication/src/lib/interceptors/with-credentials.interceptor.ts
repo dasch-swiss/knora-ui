@@ -3,10 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SessionService } from '../session/session.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class WithCredentialsInterceptor implements HttpInterceptor {
 
-    constructor(private _session: SessionService) {
+    constructor (private _session: SessionService) {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

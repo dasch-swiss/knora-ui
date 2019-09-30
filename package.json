@@ -1,6 +1,6 @@
 {
   "name": "knora-ui",
-  "version": "9.3.0",
+  "version": "9.4.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dhlab-basel/Knora-ui.git"
@@ -21,15 +21,17 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-docs": "./update_docs.sh",
-    "build-lib": "rm -rf dist/'@knora'/ && ng build @knora/core && ng build @knora/action && cp -r projects/knora/action/src/assets/style dist/@knora/action/assets/ && ng build @knora/authentication && ng build @knora/viewer && ng build @knora/search",
-    "build-lib-prod": "rm -rf dist/'@knora'/ && ng build @knora/core --prod && ng build @knora/action --prod && cp -r projects/knora/action/src/assets/style dist/@knora/action/assets/ && ng build @knora/authentication --prod && ng build @knora/viewer --prod && ng build @knora/search --prod",
+    "build-lib": "rm -rf dist/'@knora'/ && ng build @knora/core && ng build @knora/action && cp -r projects/knora/action/src/assets/style dist/@knora/action/assets && ng build @knora/authentication && ng build @knora/viewer && ng build @knora/search && cp -r projects/knora/search/src/assets dist/@knora/search/",
+    "build-lib-prod": "rm -rf dist/'@knora'/ && ng build @knora/core --prod && ng build @knora/action --prod && cp -r projects/knora/action/src/assets/style dist/@knora/action/assets && ng build @knora/authentication --prod && ng build @knora/viewer --prod && ng build @knora/search --prod && cp -r projects/knora/search/src/assets dist/@knora/search/",
     "yalc-publish": "yalc publish dist/@knora/action && yalc publish dist/@knora/authentication && yalc publish dist/@knora/core && yalc publish dist/@knora/search && yalc publish dist/@knora/viewer",
     "update-lib": "yarn install --prod=false && yarn build-lib",
+    "update-lib-prod": "yarn install --prod=false && yarn build-lib-prod",
     "build-and-publish": "yarn update-lib && yarn yalc-publish",
-    "build-yalc-action": "ng build @knora/action && cp -r projects/knora/action/src/assets/style dist/@knora/action/assets/ && yalc publish dist/@knora/action",
+    "build-and-publish-prod": "yarn update-lib-prod && yarn yalc-publish",
+    "build-yalc-action": "ng build @knora/action && cp -r projects/knora/action/src/assets/style dist/@knora/action/assets && yalc publish dist/@knora/action",
     "build-yalc-authentication": "ng build @knora/authentication && yalc publish dist/@knora/authentication",
     "build-yalc-core": "ng build @knora/core && yalc publish dist/@knora/core",
-    "build-yalc-search": "ng build @knora/search && yalc publish dist/@knora/search",
+    "build-yalc-search": "ng build @knora/search && cp -r projects/knora/search/src/assets dist/@knora/search/ && yalc publish dist/@knora/search",
     "build-yalc-viewer": "ng build @knora/viewer && yalc publish dist/@knora/viewer"
   },
   "private": true,

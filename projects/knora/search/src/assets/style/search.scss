@@ -217,3 +217,23 @@ $gc-small: $full-input-width - $gc-large - 4;
     }
   }
 }
+
+.kui-project-filter-menu {
+  width: $project-filter-width;
+
+  .mat-menu-item {
+    text-transform: capitalize;
+  }
+}
+
+.kui-project-filter-menu-mobile {
+  width: calc(100vw - 32px);
+
+  .mat-menu-item {
+    text-transform: capitalize;
+  }
+}
+
+.mat-menu-panel {
+  max-width: 100% !important;
+}
