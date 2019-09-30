@@ -1,11 +1,13 @@
 {
   "name": "@knora/action",
-  "version": "9.4.0",
+  "version": "9.4.1",
   "description": "Knora ui module: action",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dhlab-basel/Knora-ui.git"
+    "url": "https://github.com/dasch-swiss/knora-ui.git"
   },
+  "homepage": "https://dasch-swiss.github.io/knora-ui",
+  "license": "MIT",
   "keywords": [
     "angular",
     "knora",

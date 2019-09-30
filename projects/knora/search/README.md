@@ -2,7 +2,7 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/search.svg)](https://www.npmjs.com/package/@knora/search)
 
-This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [Data and Service Center for Humanities DaSCH](http://dasch.swiss).
+This module is part of [Knora-ui](https://github.com/dasch-swiss/knora-ui) modules, developed by the team at the [Data and Service Center for Humanities DaSCH](http://dasch.swiss).
 
 Search module allows to make simple searches or extended searches in Knora. In extended search, resource class and its properties related to one specific ontology are selected to create your query.
 
@@ -30,9 +30,9 @@ This module has the following package dependencies, which you also have to insta
 
 - @angular/common@8.0.3
 - @angular/core@8.0.3
-- @knora/action@9.4.0
-- @knora/core@9.4.0
-- @knora/viewer@9.4.0
+- @knora/action@9.4.1
+- @knora/core@9.4.1
+- @knora/viewer@9.4.1
 - jdnconvertiblecalendardateadapter@0.0.7
 
 ### Required version of Knora: 9.0.0

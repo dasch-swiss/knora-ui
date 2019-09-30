@@ -65,7 +65,7 @@ imgDaschProject: string = 'http://dasch.swiss/content/images/2017/11/DaSCH_Logo_
     imgDefaultUser: string = 'root@example.com';
     imgSalsahUser: string = 'salsah@milchkannen.ch';
 
-    constructor() {
+    constructor () {
     }
 
     ngOnInit() {
