@@ -1,8 +1,6 @@
 # Knora-ui modules
 
-<!--
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c9f3050a573f4198bc4129d618 d40d6e)](https://www.codacy.com/app/dasch-swiss/knora-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dasch-swiss/knora-ui&amp;utm_campaign=Badge_Grade)
--->
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c9f3050a573f4198bc4129d618d40d6e)](https://www.codacy.com/manual/dasch-swiss/Knora-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_contentdasch-swiss/knora-ui&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.com/dasch-swiss/knora-ui.svg?branch=master)](https://travis-ci.com/dasch-swiss/knora-ui)
 [![CircleCI](https://circleci.com/gh/dasch-swiss/knora-ui.svg?style=svg)](https://circleci.com/gh/dasch-swiss/knora-ui)
 
@@ -124,7 +122,7 @@ Before using the module inside of the app, you have to rebuild after the changes
 
 Run the app with `ng s`. The demo app runs on <http://localhost:4200> and we use it for documentation on [Knora-ui Github page](https://dasch-swiss.github.io/knora-ui).
 
-There's a test environment for the modules on <https://github.com/dasch-swiss/knora-ui-playground> with yalc
+There's a test environment for the modules on <https://github.com/dhlab-basel/knora-ui-playground> with yalc
 
 * * *
 
