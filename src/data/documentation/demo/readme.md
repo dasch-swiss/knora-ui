@@ -1,8 +1,10 @@
 # Knora-ui modules
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c9f3050a573f4198bc4129d618d40d6e)](https://www.codacy.com/app/dhlab-basel/Knora-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dhlab-basel/Knora-ui&amp;utm_campaign=Badge_Grade)
-[![Build Status](https://travis-ci.com/dhlab-basel/Knora-ui.svg?branch=master)](https://travis-ci.com/dhlab-basel/Knora-ui)
-[![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master)
+<!--
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c9f3050a573f4198bc4129d618 d40d6e)](https://www.codacy.com/app/dasch-swiss/knora-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dasch-swiss/knora-ui&amp;utm_campaign=Badge_Grade)
+-->
+[![Build Status](https://travis-ci.com/dasch-swiss/knora-ui.svg?branch=master)](https://travis-ci.com/dasch-swiss/knora-ui)
+[![CircleCI](https://circleci.com/gh/dasch-swiss/knora-ui.svg?style=svg)](https://circleci.com/gh/dasch-swiss/knora-ui)
 
 
 This is the demo and developing environment for Knora ui modules.
@@ -22,7 +24,7 @@ This version of Knora-ui requires [Knora v9.0.0](https://github.com/dhlab-basel/
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg)](https://www.npmjs.com/package/@knora/core)
 
 The core module contains every service to use Knora's RESTful webapi.
-[read more...](https://dhlab-basel.github.io/Knora-ui/modules/core)
+[read more...](https://dasch-swiss.github.io/knora-ui/modules/core)
 
 * * *
 
@@ -31,7 +33,7 @@ The core module contains every service to use Knora's RESTful webapi.
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg)](https://www.npmjs.com/package/@knora/authentication)
 
 The authentication module contains the login form (for standalone usage) or a complete login- / logout-button environment incl. the login form.
-[read more...](https://dhlab-basel.github.io/Knora-ui/modules/authentication)
+[read more...](https://dasch-swiss.github.io/knora-ui/modules/authentication)
 
 * * *
 
@@ -40,7 +42,7 @@ The authentication module contains the login form (for standalone usage) or a co
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/search.svg)](https://www.npmjs.com/package/@knora/search)
 
 Search module allows to make simple searches or extended searches in Knora. In extended search, resource class and its properties related to one specific ontology are selected to create your query.
-[read more...](https://dhlab-basel.github.io/Knora-ui/modules/search)
+[read more...](https://dasch-swiss.github.io/knora-ui/modules/search)
 
 * * *
 
@@ -49,7 +51,7 @@ Search module allows to make simple searches or extended searches in Knora. In e
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg)](https://www.npmjs.com/package/@knora/viewer)
 
 The viewer module contains object components to show the resource class representations from Knora, the gui-elements for the property values and different kind of view frameworks.
-[read more...](https://dhlab-basel.github.io/Knora-ui/modules/viewer)
+[read more...](https://dasch-swiss.github.io/knora-ui/modules/viewer)
 
 * * *
 
@@ -58,7 +60,7 @@ The viewer module contains object components to show the resource class represen
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)](https://www.npmjs.com/package/@knora/action)
 
 The action module contains special buttons (e.g. to sort a list), pipes and directives.
-[read more...](https://dhlab-basel.github.io/Knora-ui/modules/action)
+[read more...](https://dasch-swiss.github.io/knora-ui/modules/action)
 
 * * *
 
@@ -120,9 +122,9 @@ Before using the module inside of the app, you have to rebuild after the changes
 
 ### Run the demo app
 
-Run the app with `ng s`. The demo app runs on <http://localhost:4200> and we use it for documentation on [Knora-ui Github page](https://dhlab-basel.github.io/Knora-ui).
+Run the app with `ng s`. The demo app runs on <http://localhost:4200> and we use it for documentation on [Knora-ui Github page](https://dasch-swiss.github.io/knora-ui).
 
-There's a test environment for the modules on <https://github.com/dhlab-basel/knora-ui-playground> with yalc
+There's a test environment for the modules on <https://github.com/dasch-swiss/knora-ui-playground> with yalc
 
 * * *
 
