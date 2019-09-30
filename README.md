@@ -124,7 +124,7 @@ Before using the module inside of the app, you have to rebuild after the changes
 
 Run the app with `ng s`. The demo app runs on <http://localhost:4200> and we use it for documentation on [Knora-ui Github page](https://dasch-swiss.github.io/knora-ui).
 
-There's a test environment for the modules on <https://github.com/dasch-swiss/knora-ui-playground> with yalc
+There's a test environment for the modules on <https://github.com/dhlab-basel/knora-ui-playground> with yalc
 
 * * *
 
