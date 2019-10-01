@@ -1,6 +1,6 @@
 /**
  * This module is part of the Knora-ui modules:
- * https://github.com/dhlab-basel/Knora-ui
+ * https://github.com/dasch-swiss/knora-ui
  *
  * @copyright 2018
  * Digital Humanities Lab, University of Basel;

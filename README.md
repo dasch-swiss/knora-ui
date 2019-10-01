@@ -1,8 +1,8 @@
 # Knora-ui modules
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c9f3050a573f4198bc4129d618d40d6e)](https://www.codacy.com/app/dhlab-basel/Knora-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dhlab-basel/Knora-ui&amp;utm_campaign=Badge_Grade)
-[![Build Status](https://travis-ci.com/dhlab-basel/Knora-ui.svg?branch=master)](https://travis-ci.com/dhlab-basel/Knora-ui)
-[![CircleCI](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master.svg?style=svg)](https://circleci.com/gh/dhlab-basel/Knora-ui/tree/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c9f3050a573f4198bc4129d618d40d6e)](https://www.codacy.com/manual/dasch-swiss/Knora-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_contentdasch-swiss/knora-ui&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.com/dasch-swiss/knora-ui.svg?branch=master)](https://travis-ci.com/dasch-swiss/knora-ui)
+[![CircleCI](https://circleci.com/gh/dasch-swiss/knora-ui.svg?style=svg)](https://circleci.com/gh/dasch-swiss/knora-ui)
 
 
 This is the demo and developing environment for Knora ui modules.

@@ -52,6 +52,11 @@
   {
     "tags": [
       {
+        "type": "deprecated",
+        "string": "update the session storage",
+        "html": "<p>update the session storage</p>"
+      },
+      {
         "type": "param",
         "string": "jwt",
         "name": "jwt",
@@ -90,8 +95,8 @@
       }
     ],
     "description": {
-      "full": "<p>update the session storage</p>",
-      "summary": "<p>update the session storage</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,

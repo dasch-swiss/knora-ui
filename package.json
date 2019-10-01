@@ -1,11 +1,11 @@
 {
   "name": "knora-ui",
-  "version": "9.4.0",
+  "version": "9.4.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dhlab-basel/Knora-ui.git"
+    "url": "https://github.com/dasch-swiss/knora-ui.git"
   },
-  "homepage": "https://dhlab-basel.github.io/Knora-ui",
+  "homepage": "https://dasch-swiss.github.io/knora-ui",
   "license": "MIT",
   "keywords": [
     "angular",

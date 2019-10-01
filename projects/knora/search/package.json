@@ -1,12 +1,12 @@
 {
   "name": "@knora/search",
-  "version": "9.4.0",
+  "version": "9.4.1",
   "description": "Knora ui module: search",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dhlab-basel/Knora-ui.git"
+    "url": "https://github.com/dasch-swiss/knora-ui.git"
   },
-  "homepage": "https://dhlab-basel.github.io/Knora-ui",
+  "homepage": "https://dasch-swiss.github.io/knora-ui",
   "license": "MIT",
   "keywords": [
     "angular",
@@ -17,9 +17,9 @@
   "peerDependencies": {
     "@angular/common": "^8.0.3",
     "@angular/core": "^8.0.3",
-    "@knora/action": "9.4.0",
-    "@knora/core": "9.4.0",
-    "@knora/viewer": "9.4.0",
+    "@knora/action": "9.4.1",
+    "@knora/core": "9.4.1",
+    "@knora/viewer": "9.4.1",
     "jdnconvertiblecalendardateadapter": "^0.0.10"
   }
 }

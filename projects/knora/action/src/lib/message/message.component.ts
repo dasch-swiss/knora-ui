@@ -94,10 +94,8 @@ export class MessageComponent implements OnInit {
     footnote: any = {
         text: 'If you think it\'s a mistake, please',
         team: {
-            knora:
-                '<a href=\'https://github.com/dhlab-basel/knora\' target=\'_blank\'> inform the Knora team </a>',
-            salsah:
-                '<a href=\'https://github.com/dhlab-basel/salsah\' target=\'_blank\'> inform the Salsah developers </a>'
+            dasch:
+                '<a href=\'https://discuss.dasch.swiss\' target=\'_blank\'> inform the DaSCH developer team.</a>'
         }
     };
 
@@ -177,7 +175,7 @@ export class MessageComponent implements OnInit {
                 tmpMsg.footnote =
                     msg.footnote !== undefined
                         ? msg.footnote
-                        : this.footnote.text + ' ' + this.footnote.team.knora;
+                        : this.footnote.text + ' ' + this.footnote.team.dasch;
                 this.showLinks = !this.medium;
 
                 break;
@@ -194,7 +192,7 @@ export class MessageComponent implements OnInit {
                         ? msg.statusText
                         : this.statusMsg[s].description;
                 tmpMsg.footnote =
-                    this.footnote.text + ' ' + this.footnote.team.knora;
+                    this.footnote.text + ' ' + this.footnote.team.dasch;
                 this.showLinks = false;
                 break;
             default:
