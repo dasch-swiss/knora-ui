@@ -2,7 +2,7 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg)](https://www.npmjs.com/package/@knora/viewer)
 
-This module is part of [Knora-ui](https://github.com/dhlab-basel/Knora-ui) modules, developed by the team at the [Data and Service Center for Humanities DaSCH](http://dasch.swiss).
+This module is part of [Knora-ui](https://github.com/dasch-swiss/knora-ui) modules, developed by the team at the [Data and Service Center for Humanities DaSCH](http://dasch.swiss).
 
 The viewer module contains object components to show the resource class representations from Knora, the gui-elements for the property values and different kind of view frameworks.
 
@@ -36,8 +36,8 @@ This module has the following package dependencies, which you also have to insta
 -   @angular/cdk@8.1.4
 -   @angular/material@8.1.4
 -   @angular/flex-layout@8.0.0-beta.27
--   @knora/action@9.4.0
--   @knora/core@9.4.0
+-   @knora/action@9.4.1
+-   @knora/core@9.4.1
 
 ### Required version of Knora: 9.0.0
 

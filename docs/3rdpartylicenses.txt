@@ -163,8 +163,10 @@ MIT
 MIT
 
 @knora/action
+MIT
 
 @knora/authentication
+MIT
 
 @knora/core
 MIT
@@ -173,6 +175,7 @@ MIT
 MIT
 
 @knora/viewer
+MIT
 
 core-js
 MIT
