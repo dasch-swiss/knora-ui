@@ -32,7 +32,8 @@
     "build-yalc-authentication": "ng build @knora/authentication && yalc publish dist/@knora/authentication",
     "build-yalc-core": "ng build @knora/core && yalc publish dist/@knora/core",
     "build-yalc-search": "ng build @knora/search && cp -r projects/knora/search/src/assets dist/@knora/search/ && yalc publish dist/@knora/search",
-    "build-yalc-viewer": "ng build @knora/viewer && yalc publish dist/@knora/viewer"
+    "build-yalc-viewer": "ng build @knora/viewer && yalc publish dist/@knora/viewer",
+    "playground": "angular-playground"
   },
   "private": true,
   "dependencies": {
@@ -96,6 +97,7 @@
     "tsickle": "^0.34.3",
     "tslib": "^1.10.0",
     "tslint": "~5.9.1",
-    "typescript": "3.4.5"
+    "typescript": "3.4.5",
+    "angular-playground": "^6.0.2"
   }
 }

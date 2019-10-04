@@ -1,0 +1,12 @@
+{
+  "sourceRoots": [
+    "./projects/knora/action/src",
+    "./projects/knora/authentication/src",
+    "./projects/knora/core/src",
+    "./projects/knora/search/src",
+    "./projects/knora/viewer/src"
+    ],
+  "angularCli": {
+    "appName": "playground"
+  }
+}

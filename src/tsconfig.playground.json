@@ -1,0 +1,36 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "module": "es2015",
+    "types": [],
+    "baseUrl": "../",
+    "paths": {
+      "@knora/action": [
+        "dist/@knora/action"
+      ],
+      "@knora/authentication": [
+        "dist/@knora/authentication"
+      ],
+      "@knora/core": [
+        "dist/@knora/core"
+      ],
+      "@knora/search": [
+        "dist/@knora/search"
+      ],
+      "@knora/viewer": [
+        "dist/@knora/viewer"
+      ]
+    }
+  },
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.component.html",
+    "**/*.component.scss",
+    "./projects/knora/action/src/**/*.spec.ts",
+    "./projects/knora/authentication/src/**/*.spec.ts",
+    "./projects/knora/core/src/**/*.spec.ts",
+    "./projects/knora/search/src/**/*.spec.ts",
+    "./projects/knora/viewer/src/**/*.spec.ts"
+  ]
+}
