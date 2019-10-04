@@ -140,7 +140,7 @@ jsdoc2json "${special[@]}"
 
 
 git rm -r docs/*
-ng build --prod --base-href /Knora-ui/ --build-optimizer --aot --output-path docs
+ng build --prod --base-href /knora-ui/ --build-optimizer --aot --output-path docs
 cp docs/index.html docs/404.html
 git add docs/*
 
