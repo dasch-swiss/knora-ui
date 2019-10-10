@@ -63,11 +63,11 @@ export class GroupsService extends ApiService {
     /**
      * Create new group.
      * 
-     * @param {Group} groupInfo
+     * @param {Group} group
      * @returns Observable<Group>
      */
-    createGroup(groupInfo: Group): Observable<Group> {
-        return this.httpPost(this.path, groupInfo).pipe(
+    createGroup(group: Group): Observable<Group> {
+        return this.httpPost(this.path, group).pipe(
             map((result: ApiServiceResult) => result.getBody(GroupResponse).group),
             catchError(this.handleJsonError)
         );
