@@ -85,7 +85,7 @@
     "karma": "~4.0.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-cli": "~1.0.1",
-    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-html-detailed-reporter": "^1.1.38",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
