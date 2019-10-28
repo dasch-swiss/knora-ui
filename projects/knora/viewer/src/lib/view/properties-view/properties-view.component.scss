@@ -1,6 +1,6 @@
 @import "../../assets/style/viewer";
 
-.container {
+:host {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   //  grid-template-rows: repeat(2, auto);
