@@ -410,9 +410,12 @@ export class ResourceService extends ApiService {
      * Knora does not normally delete resources; instead, it marks them as deleted, which means that they do not appear in normal query results.
      *
      * @param {string} iri Iri of the resource
-     * @param  {string} [comment] Specifies a comment to be attached to the resource, explaining why it has been marked as deleted.
+     * @param  {string} [comment] Specifies a comment to be attached to the resource, explaining why it has been marked as deleted. Will be ignored if param erase is true.
+     * @param {boolean} [erase] Delete completely from triplestore. Default false.
      */
-    deleteResource(iri: string, comment: string = '') {
+    deleteResource(iri: string, comment: string = '', erase: boolean = false) {
+        const path: string = (erase ? '/v2/resources/erase' : '/v2/resources/delete');
+
         // get resource first to have the knora-api:lastModificationDate
         this.getResourceAsJsonLd(iri).subscribe(
             (result: any) => {
@@ -427,14 +430,15 @@ export class ResourceService extends ApiService {
                     requestBody['knora-api:lastModificationDate'] = result['knora-api:lastModificationDate'];
                 }
 
-                if (comment.length > 0) {
+                if (comment.length > 0 && !erase) {
                     requestBody['knora-api:deleteComment'] = comment;
                 }
 
                 // send the request body to the delete route
-                this.httpPost('/v2/resources/delete', requestBody).subscribe(
+                this.httpPost(path, requestBody).subscribe(
                     (resp: any) => {
-                        console.log(resp);
+                        // TODO: return something here
+                        // console.log(resp);
                     },
                     (err: any) => {
                         console.error(err);
@@ -475,7 +479,8 @@ export class ResourceService extends ApiService {
                 // send the request body to the delete route
                 this.httpPost('/v2/resources/erase', requestBody).subscribe(
                     (resp: any) => {
-                        console.log(resp);
+                        // TODO: return something here
+                        // console.log(resp);
                     },
                     (err: any) => {
                         console.error(err);
