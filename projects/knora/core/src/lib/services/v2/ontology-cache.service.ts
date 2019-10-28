@@ -14,7 +14,7 @@ const jsonld = require('jsonld');
  */
 class OntologyCacheError extends Error {
 
-    constructor(readonly message: string) {
+    constructor (readonly message: string) {
         super(message);
     }
 }
@@ -31,7 +31,7 @@ export class OntologyMetadata {
      * @param {string} id Iri identifying the ontology.
      * @param {string} label a label describing the ontology.
      */
-    constructor(readonly id: string,
+    constructor (readonly id: string,
         readonly label: string) {
 
     }
@@ -59,7 +59,7 @@ export class Cardinality {
      * @param {number} value numerical value of given occurrence.
      * @param {string} property the property the given occurrence applies to.
      */
-    constructor(readonly occurrence: CardinalityOccurrence,
+    constructor (readonly occurrence: CardinalityOccurrence,
         readonly value: number,
         readonly property: string) {
     }
@@ -72,7 +72,7 @@ export class GuiOrder {
      * @param  {number} value
      * @param  {string} property
      */
-    constructor(readonly value: number,
+    constructor (readonly value: number,
         readonly property: string
     ) {
 
@@ -92,7 +92,7 @@ export class ResourceClass {
      * @param {Cardinality[]} cardinalities the resource class's properties.
      * @param {GuiOrder[]} guiOrder the resource class's gui-order properties.
      */
-    constructor(readonly id: string,
+    constructor (readonly id: string,
         readonly icon: string,
         readonly comment: string,
         readonly label: string,
@@ -127,15 +127,15 @@ export class Property {
      * @param {boolean} isLinkValueProperty indicates whether the given property refers to a link value.
      * @param {string} guiAttribute the gui attribute assigned to this property, if any.
      */
-    constructor(readonly id: string,
-                readonly objectType: string,
-                readonly comment: string,
-                readonly label: string,
-                readonly subPropertyOf: Array<string>,
-                readonly isEditable: Boolean,
-                readonly isLinkProperty: Boolean,
-                readonly isLinkValueProperty: Boolean,
-                readonly guiAttribute: string[]) {
+    constructor (readonly id: string,
+        readonly objectType: string,
+        readonly comment: string,
+        readonly label: string,
+        readonly subPropertyOf: Array<string>,
+        readonly isEditable: Boolean,
+        readonly isLinkProperty: Boolean,
+        readonly isLinkValueProperty: Boolean,
+        readonly guiAttribute: string[]) {
     }
 }
 
@@ -186,7 +186,7 @@ class OntologyCache {
      */
     properties: Properties;
 
-    constructor() {
+    constructor () {
         this.ontologies = [];
 
         this.resourceClassIrisForOntology = new ResourceClassIrisForOntology();
@@ -209,7 +209,7 @@ export class OntologyInformation {
      * @param {ResourceClasses} resourceClasses resource class definitions.
      * @param {Properties} properties property definitions.
      */
-    constructor(
+    constructor (
         private resourceClassesForOntology: ResourceClassIrisForOntology,
         private resourceClasses: ResourceClasses,
         private properties: Properties) {
@@ -443,7 +443,7 @@ export class OntologyCacheService {
      */
     private cacheOntology: OntologyCache = new OntologyCache();
 
-    constructor(private _ontologyService: OntologyService) {
+    constructor (private _ontologyService: OntologyService) {
     }
 
     /**
@@ -451,7 +451,7 @@ export class OntologyCacheService {
      *
      * @returns Observable<object> - metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
      */
-    private getOntologiesMetadataFromKnora(): Observable<object> {
+    private getOntologiesMetadataFromKnora(): Observable<any> {
 
         return this._ontologyService.getOntologiesMetadata().pipe(
             mergeMap(
@@ -477,7 +477,7 @@ export class OntologyCacheService {
      * @param {string} ontologyIri the Iri of the requested ontology.
      * @returns Observable<object> - metadata for all entity definitions for ontology from Knora.
      */
-    private getAllEntityDefinitionsForOntologyFromKnora(ontologyIri: string): Observable<object> {
+    private getAllEntityDefinitionsForOntologyFromKnora(ontologyIri: string): Observable<any> {
 
         return this._ontologyService.getAllEntityDefinitionsForOntologies(ontologyIri).pipe(
             mergeMap(
