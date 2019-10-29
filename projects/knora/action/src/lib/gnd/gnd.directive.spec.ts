@@ -55,7 +55,7 @@ class MockElementRef implements ElementRef {
 }
 
 
-describe('GndDirective', () => {
+xdescribe('GndDirective', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
