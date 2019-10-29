@@ -183,10 +183,11 @@ describe('ExistingNameDirective', () => {
         expect(component.dataMock).toEqual(existingNamesList);
         expect(component.form.valid).toBeFalsy();
 
+        let i: number = 1;
         for (const user of existingNamesList) {
-            existingNames.push(
-                new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)')
-            );
+            existingNames[i] = new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)');
+
+            i++;
         }
 
         expect(component.existingNames).toEqual(existingNames);
