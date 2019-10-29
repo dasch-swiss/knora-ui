@@ -201,7 +201,7 @@ describe('SearchResultsComponent', () => {
         });
     });
 
-    describe('fulltext search without a project', () => {
+    xdescribe('fulltext search without a project', () => {
         beforeEach(() => {
             mode = 'fulltext';
             fixture = TestBed.createComponent(SearchResultsComponent);
