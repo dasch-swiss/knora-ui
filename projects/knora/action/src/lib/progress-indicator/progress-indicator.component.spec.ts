@@ -4,6 +4,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { By } from '@angular/platform-browser';
 import { ProgressIndicatorComponent } from './progress-indicator.component';
 
+
+/**
+ * Test host component to simulate parent component with a progress bar.
+ */
+@Component({
+    template: `
+        <kui-progress-indicator #progressIndicator [status]="status" [color]="color"></kui-progress-indicator>`
+})
+class TestHostComponent implements OnInit {
+
+    @ViewChild('progressIndicator', { static: false }) progressIndicatorComponent: ProgressIndicatorComponent;
+
+    status = 0;
+    color: string = 'red';
+
+    constructor () {
+    }
+
+    ngOnInit() { }
+}
+
 describe('ProgressIndicatorComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
@@ -140,23 +161,3 @@ describe('ProgressIndicatorComponent', () => {
     });
 
 });
-
-/**
- * Test host component to simulate parent component with a progress bar.
- */
-@Component({
-    template: `
-        <kui-progress-indicator #progressIndicator [status]="status" [color]="color"></kui-progress-indicator>`
-})
-class TestHostComponent implements OnInit {
-
-    @ViewChild('progressIndicator', { static: false }) progressIndicatorComponent: ProgressIndicatorComponent;
-
-    status = 0;
-    color: string = 'red';
-
-    constructor () {
-    }
-
-    ngOnInit() { }
-}

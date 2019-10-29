@@ -7,6 +7,100 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { existingNamesValidator } from '../existing-name/existing-name.directive';
 import { ExistingNameDirective } from './existing-name.directive';
 
+@Component({
+    template: `
+    <div>
+        <form [formGroup]="form">
+            <mat-form-field>
+                <input matInput [formControl]="form.controls['name']" [placeholder]="'Name (should be unique)'">
+                <mat-hint *ngIf="formErrors.name">
+                    {{formErrors.name}}
+                </mat-hint>
+            </mat-form-field>
+
+            <button [disabled]="!form.valid">
+                Submit
+            </button>
+        </form>
+    </div>
+
+    <ul>
+        <li *ngFor="let n of dataMock">{{n}}</li>
+    </ul>
+    `
+})
+class TestHostComponent implements OnInit {
+
+    dataMock: string[] = [
+        'Ben', 'Tobias', 'André', 'Flavie', 'Ivan', 'Lucas'
+    ];
+
+    existingNames: [RegExp] = [
+        new RegExp('user')
+    ];
+
+    form: FormGroup;
+
+    formErrors = {
+        'name': ''
+    };
+
+    validationMessages = {
+        'name': {
+            'required': 'A name is required',
+            'existingName': 'This name exists already.'
+        }
+    };
+
+    constructor (private _formBuilder: FormBuilder) {
+    }
+
+    ngOnInit() {
+        // create a list of names, which already exists
+        for (const user of this.dataMock) {
+            this.existingNames.push(
+                new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)')
+            );
+        }
+
+        // build form
+        this.form = this._formBuilder.group({
+            'name': new FormControl({
+                value: '', disabled: false
+            }, [
+                Validators.required,
+                existingNamesValidator(this.existingNames)
+            ])
+        });
+
+        // detect changes in the form
+        this.form.valueChanges.subscribe(
+            data => this.onValueChanged(data)
+        );
+
+        this.onValueChanged();
+    }
+
+    onValueChanged(data?: any) {
+
+        if (!this.form) {
+            return;
+        }
+
+        // check if the form is valid
+        Object.keys(this.formErrors).map(field => {
+            this.formErrors[field] = '';
+            const control = this.form.get(field);
+            if (control && control.dirty && !control.valid) {
+                const messages = this.validationMessages[field];
+                Object.keys(control.errors).map(key => {
+                    this.formErrors[field] += messages[key] + ' ';
+                });
+            }
+        });
+    }
+}
+
 describe('ExistingNameDirective', () => {
 
     let component: TestHostComponent;
@@ -116,97 +210,3 @@ describe('ExistingNameDirective', () => {
     });
 
 });
-
-@Component({
-    template: `
-    <div>
-        <form [formGroup]="form">
-            <mat-form-field>
-                <input matInput [formControl]="form.controls['name']" [placeholder]="'Name (should be unique)'">
-                <mat-hint *ngIf="formErrors.name">
-                    {{formErrors.name}}
-                </mat-hint>
-            </mat-form-field>
-
-            <button [disabled]="!form.valid">
-                Submit
-            </button>
-        </form>
-    </div>
-
-    <ul>
-        <li *ngFor="let n of dataMock">{{n}}</li>
-    </ul>
-    `
-})
-class TestHostComponent implements OnInit {
-
-    dataMock: string[] = [
-        'Ben', 'Tobias', 'André', 'Flavie', 'Ivan', 'Lucas'
-    ];
-
-    existingNames: [RegExp] = [
-        new RegExp('user')
-    ];
-
-    form: FormGroup;
-
-    formErrors = {
-        'name': ''
-    };
-
-    validationMessages = {
-        'name': {
-            'required': 'A name is required',
-            'existingName': 'This name exists already.'
-        }
-    };
-
-    constructor (private _formBuilder: FormBuilder) {
-    }
-
-    ngOnInit() {
-        // create a list of names, which already exists
-        for (const user of this.dataMock) {
-            this.existingNames.push(
-                new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)')
-            );
-        }
-
-        // build form
-        this.form = this._formBuilder.group({
-            'name': new FormControl({
-                value: '', disabled: false
-            }, [
-                Validators.required,
-                existingNamesValidator(this.existingNames)
-            ])
-        });
-
-        // detect changes in the form
-        this.form.valueChanges.subscribe(
-            data => this.onValueChanged(data)
-        );
-
-        this.onValueChanged();
-    }
-
-    onValueChanged(data?: any) {
-
-        if (!this.form) {
-            return;
-        }
-
-        // check if the form is valid
-        Object.keys(this.formErrors).map(field => {
-            this.formErrors[field] = '';
-            const control = this.form.get(field);
-            if (control && control.dirty && !control.valid) {
-                const messages = this.validationMessages[field];
-                Object.keys(control.errors).map(key => {
-                    this.formErrors[field] += messages[key] + ' ';
-                });
-            }
-        });
-    }
-}
