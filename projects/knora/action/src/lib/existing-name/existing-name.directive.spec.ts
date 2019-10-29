@@ -57,10 +57,11 @@ class TestHostComponent implements OnInit {
 
     ngOnInit() {
         // create a list of names, which already exists
+        let i: number = 1;
         for (const user of this.dataMock) {
-            this.existingNames.push(
-                new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)')
-            );
+            this.existingNames[i] = new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)');
+
+            i++;
         }
 
         // build form
@@ -146,10 +147,11 @@ describe('ExistingNameDirective', () => {
         expect(component.dataMock).toEqual(existingNamesList);
         expect(component.form.valid).toBeFalsy();
 
+        let i: number = 1;
         for (const user of existingNamesList) {
-            existingNames.push(
-                new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)')
-            );
+            existingNames[i] = new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)');
+
+            i++;
         }
 
         expect(component.existingNames).toEqual(existingNames);
