@@ -36,7 +36,7 @@ class MockSearchParamsService {
 
 }
 
-describe('SearchResultsComponent', () => {
+xdescribe('SearchResultsComponent', () => {
     let component: SearchResultsComponent;
     let fixture: ComponentFixture<SearchResultsComponent>;
 
@@ -201,7 +201,7 @@ describe('SearchResultsComponent', () => {
         });
     });
 
-    xdescribe('fulltext search without a project', () => {
+    describe('fulltext search without a project', () => {
         beforeEach(() => {
             mode = 'fulltext';
             fixture = TestBed.createComponent(SearchResultsComponent);
