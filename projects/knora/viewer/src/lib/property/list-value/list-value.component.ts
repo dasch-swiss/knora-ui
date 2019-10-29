@@ -1,6 +1,5 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { ReadListValue } from '@knora/core';
-import { ListCacheService, ListNodeV2 } from '@knora/core';
+import { Component, Input, OnChanges } from '@angular/core';
+import { ListCacheService, ListNodeV2, ReadListValue } from '@knora/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -23,7 +22,7 @@ export class ListValueComponent implements OnChanges {
 
     node: Observable<ListNodeV2>;
 
-    constructor(private _listCacheService: ListCacheService) {
+    constructor (private _listCacheService: ListCacheService) {
     }
 
     ngOnChanges() {

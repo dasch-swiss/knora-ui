@@ -1,122 +1,11 @@
-import { ExistingNameDirective } from './existing-name.directive';
+import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { existingNamesValidator } from '../existing-name/existing-name.directive';
-import { By } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-describe('ExistingNameDirective', () => {
-
-    let component: TestHostComponent;
-    let fixture: ComponentFixture<TestHostComponent>;
-    const existingNamesList: string[] = [
-        'Ben', 'Tobias', 'André', 'Flavie', 'Ivan', 'Lucas'
-    ];
-    const existingNames: [RegExp] = [
-        new RegExp('user')
-    ];
-
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                ReactiveFormsModule, FormsModule,
-                MatFormFieldModule, MatInputModule, BrowserAnimationsModule
-            ],
-            declarations: [
-                ExistingNameDirective,
-                TestHostComponent
-            ]
-        });
-
-        fixture = TestBed.createComponent(TestHostComponent);
-        component = fixture.componentInstance;
-        component.ngOnInit();
-    });
-
-    it('should create an instance', () => {
-        expect(component).toBeTruthy();
-    });
-
-    it('form invalid when empty', () => {
-        expect(component.form.valid).toBeFalsy();
-    });
-
-    it('name input field validity', () => {
-        const name = component.form.controls['name'];
-        expect(name.valid).toBeFalsy();
-    });
-
-    it('should recognize the new name "Benjamin" and valid the form', () => {
-        expect(component.dataMock).toEqual(existingNamesList);
-        expect(component.form.valid).toBeFalsy();
-
-        for (const user of existingNamesList) {
-            existingNames.push(
-                new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)')
-            );
-        }
-
-        expect(component.existingNames).toEqual(existingNames);
-
-        fixture.detectChanges();
-
-        let errors = {};
-        const name = component.form.controls['name'];
-        expect(name.valid).toBeFalsy();
-
-        // Name field is required
-        errors = name.errors || {};
-        expect(errors['required']).toBeTruthy();
-        expect(existingNamesValidator(existingNames));
-
-        // Set a new name
-        name.setValue('Benjamin');
-        fixture.detectChanges();
-
-        errors = name.errors || {};
-        expect(component.form.valid).toBeTruthy();
-        expect(errors['required']).toBeFalsy();
-        expect(existingNamesValidator(existingNames)).toBeTruthy();
-        expect(component.form.controls.name.errors).toBe(null);
-    });
-
-    it('should recognize the existing name "Ben" and invalid the form', () => {
-        fixture.detectChanges();
-        expect(component.dataMock).toEqual(existingNamesList);
-        expect(component.form.valid).toBeFalsy();
-
-        for (const user of existingNamesList) {
-            existingNames.push(
-                new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)')
-            );
-        }
-
-        expect(component.existingNames).toEqual(existingNames);
-
-        let errors = {};
-        const name = component.form.controls['name'];
-        expect(name.valid).toBeFalsy();
-
-        // Name field is required
-        errors = name.errors || {};
-        expect(errors['required']).toBeTruthy();
-        expect(existingNamesValidator(existingNames));
-
-        // Set an existing name
-        name.setValue('Ben');
-        fixture.detectChanges();
-
-        errors = name.errors || {};
-        expect(component.form.valid).toBeFalsy();
-        expect(errors['required']).toBeFalsy();
-        expect(existingNamesValidator(existingNames)).toBeTruthy();
-        expect(component.form.controls.name.errors.existingName.name).toBe('ben');
-    });
-
-});
+import { existingNamesValidator } from '../existing-name/existing-name.directive';
+import { ExistingNameDirective } from './existing-name.directive';
 
 @Component({
     template: `
@@ -163,15 +52,16 @@ class TestHostComponent implements OnInit {
         }
     };
 
-    constructor(private _formBuilder: FormBuilder) {
+    constructor (private _formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
         // create a list of names, which already exists
+        let i: number = 1;
         for (const user of this.dataMock) {
-            this.existingNames.push(
-                new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)')
-            );
+            this.existingNames[i] = new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)');
+
+            i++;
         }
 
         // build form
@@ -179,9 +69,9 @@ class TestHostComponent implements OnInit {
             'name': new FormControl({
                 value: '', disabled: false
             }, [
-                    Validators.required,
-                    existingNamesValidator(this.existingNames)
-                ])
+                Validators.required,
+                existingNamesValidator(this.existingNames)
+            ])
         });
 
         // detect changes in the form
@@ -211,3 +101,115 @@ class TestHostComponent implements OnInit {
         });
     }
 }
+
+describe('ExistingNameDirective', () => {
+
+    let component: TestHostComponent;
+    let fixture: ComponentFixture<TestHostComponent>;
+    const existingNamesList: string[] = [
+        'Ben', 'Tobias', 'André', 'Flavie', 'Ivan', 'Lucas'
+    ];
+    const existingNames: [RegExp] = [
+        new RegExp('user')
+    ];
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                ReactiveFormsModule, FormsModule,
+                MatFormFieldModule, MatInputModule, BrowserAnimationsModule
+            ],
+            declarations: [
+                ExistingNameDirective,
+                TestHostComponent
+            ]
+        });
+
+        fixture = TestBed.createComponent(TestHostComponent);
+        component = fixture.componentInstance;
+        component.ngOnInit();
+    });
+
+    it('should create an instance', () => {
+        expect(component).toBeTruthy();
+    });
+
+    it('form invalid when empty', () => {
+        expect(component.form.valid).toBeFalsy();
+    });
+
+    it('name input field validity', () => {
+        const name = component.form.controls['name'];
+        expect(name.valid).toBeFalsy();
+    });
+
+    it('should recognize the new name "Benjamin" and valid the form', () => {
+        expect(component.dataMock).toEqual(existingNamesList);
+        expect(component.form.valid).toBeFalsy();
+
+        let i: number = 1;
+        for (const user of existingNamesList) {
+            existingNames[i] = new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)');
+
+            i++;
+        }
+
+        expect(component.existingNames).toEqual(existingNames);
+
+        fixture.detectChanges();
+
+        let errors = {};
+        const name = component.form.controls['name'];
+        expect(name.valid).toBeFalsy();
+
+        // Name field is required
+        errors = name.errors || {};
+        expect(errors['required']).toBeTruthy();
+        expect(existingNamesValidator(existingNames));
+
+        // Set a new name
+        name.setValue('Benjamin');
+        fixture.detectChanges();
+
+        errors = name.errors || {};
+        expect(component.form.valid).toBeTruthy();
+        expect(errors['required']).toBeFalsy();
+        expect(existingNamesValidator(existingNames)).toBeTruthy();
+        expect(component.form.controls.name.errors).toBe(null);
+    });
+
+    it('should recognize the existing name "Ben" and invalid the form', () => {
+        fixture.detectChanges();
+        expect(component.dataMock).toEqual(existingNamesList);
+        expect(component.form.valid).toBeFalsy();
+
+        let i: number = 1;
+        for (const user of existingNamesList) {
+            existingNames[i] = new RegExp('(?:^|\W)' + user.toLowerCase() + '(?:$|\W)');
+
+            i++;
+        }
+
+        expect(component.existingNames).toEqual(existingNames);
+
+        let errors = {};
+        const name = component.form.controls['name'];
+        expect(name.valid).toBeFalsy();
+
+        // Name field is required
+        errors = name.errors || {};
+        expect(errors['required']).toBeTruthy();
+        expect(existingNamesValidator(existingNames));
+
+        // Set an existing name
+        name.setValue('Ben');
+        fixture.detectChanges();
+
+        errors = name.errors || {};
+        expect(component.form.valid).toBeFalsy();
+        expect(errors['required']).toBeFalsy();
+        expect(existingNamesValidator(existingNames)).toBeTruthy();
+        expect(component.form.controls.name.errors.existingName.name).toBe('ben');
+    });
+
+});

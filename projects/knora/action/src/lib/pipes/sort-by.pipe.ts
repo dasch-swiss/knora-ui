@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SortByPipe implements PipeTransform {
 
     /**
-     * TODO: add description
+     * compares value by value and brings it to alphabetical order
      */
     transform(array: Array<any>, args: string): Array<any> {
         if (array !== undefined) {
@@ -24,9 +24,6 @@ export class SortByPipe implements PipeTransform {
                 }
             });
         }
-
         return array;
     }
-
 }
-

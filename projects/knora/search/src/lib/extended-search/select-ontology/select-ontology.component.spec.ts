@@ -1,20 +1,19 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { SelectOntologyComponent } from './select-ontology.component';
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { KuiCoreConfig, KuiCoreConfigToken, OntologyMetadata } from '@knora/core';
-import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { By } from '@angular/platform-browser';
+import { SelectOntologyComponent } from './select-ontology.component';
 
 describe('SelectOntologyComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -172,7 +171,7 @@ class TestHostComponent implements OnInit {
         new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
     ];
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     ontoSelected(ontoIri) {
