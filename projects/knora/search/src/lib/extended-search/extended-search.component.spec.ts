@@ -1,51 +1,36 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { JdnDatepickerDirective } from '@knora/action';
+import { Cardinality, CardinalityOccurrence, GuiOrder, KuiCoreConfig, KuiCoreConfigToken, OntologyCacheService, OntologyInformation, OntologyMetadata, Property, ResourceClass, ResourceClasses, ResourceClassIrisForOntology } from '@knora/core';
+import { of } from 'rxjs';
 import { ExtendedSearchComponent } from './extended-search.component';
 import { SelectOntologyComponent } from './select-ontology/select-ontology.component';
-import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './select-property/select-property.component';
-import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
 import { BooleanValueComponent } from './select-property/specify-property-value/boolean-value/boolean-value.component';
 import { DateValueComponent } from './select-property/specify-property-value/date-value/date-value.component';
 import { DecimalValueComponent } from './select-property/specify-property-value/decimal-value/decimal-value.component';
 import { IntegerValueComponent } from './select-property/specify-property-value/integer-value/integer-value.component';
 import { LinkValueComponent } from './select-property/specify-property-value/link-value/link-value.component';
+import { ListDisplayComponent } from './select-property/specify-property-value/list-value/list-display/list-display.component';
+import { ListValueComponent } from './select-property/specify-property-value/list-value/list-value.component';
+import { SpecifyPropertyValueComponent } from './select-property/specify-property-value/specify-property-value.component';
 import { TextValueComponent } from './select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './select-property/specify-property-value/uri-value/uri-value.component';
-import { JdnDatepickerDirective } from '@knora/action';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-
-import { of } from 'rxjs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-    Cardinality,
-    CardinalityOccurrence,
-    GuiOrder,
-    KuiCoreConfig,
-    KuiCoreConfigToken,
-    OntologyCacheService,
-    OntologyInformation,
-    OntologyMetadata,
-    Property,
-    ResourceClass,
-    ResourceClasses,
-    ResourceClassIrisForOntology,
-} from '@knora/core';
-import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { ListValueComponent } from './select-property/specify-property-value/list-value/list-value.component';
-import { ListDisplayComponent } from './select-property/specify-property-value/list-value/list-display/list-display.component';
-import { MatMenuModule } from '@angular/material/menu';
+import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
 
 describe('ExtendedSearchComponent', () => {
 
