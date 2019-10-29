@@ -1,4 +1,6 @@
+import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -6,35 +8,23 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { SelectPropertyComponent } from './select-property.component';
-import { SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
-import { ActivatedRoute } from '@angular/router';
-import {
-    Cardinality,
-    CardinalityOccurrence,
-    KuiCoreConfig,
-    KuiCoreConfigToken,
-    Properties,
-    Property,
-    ResourceClass,
-    GuiOrder
-} from '@knora/core';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-import { IntegerValueComponent } from './specify-property-value/integer-value/integer-value.component';
-import { LinkValueComponent } from './specify-property-value/link-value/link-value.component';
+import { JdnDatepickerDirective } from '@knora/action';
+import { Cardinality, CardinalityOccurrence, GuiOrder, KuiCoreConfig, KuiCoreConfigToken, Properties, Property, ResourceClass } from '@knora/core';
+import { SelectPropertyComponent } from './select-property.component';
 import { BooleanValueComponent } from './specify-property-value/boolean-value/boolean-value.component';
 import { DateValueComponent } from './specify-property-value/date-value/date-value.component';
-import { TextValueComponent } from './specify-property-value/text-value/text-value.component';
-import { JdnDatepickerDirective } from '@knora/action';
 import { DecimalValueComponent } from './specify-property-value/decimal-value/decimal-value.component';
-import { UriValueComponent } from './specify-property-value/uri-value/uri-value.component';
-import { By } from '@angular/platform-browser';
-import { ListValueComponent } from './specify-property-value/list-value/list-value.component';
+import { IntegerValueComponent } from './specify-property-value/integer-value/integer-value.component';
+import { LinkValueComponent } from './specify-property-value/link-value/link-value.component';
 import { ListDisplayComponent } from './specify-property-value/list-value/list-display/list-display.component';
+import { ListValueComponent } from './specify-property-value/list-value/list-value.component';
+import { SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
+import { TextValueComponent } from './specify-property-value/text-value/text-value.component';
+import { UriValueComponent } from './specify-property-value/uri-value/uri-value.component';
 
 describe('SelectPropertyComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -276,7 +266,7 @@ class TestHostComponent implements OnInit {
 
     @ViewChild('props', { static: false }) selectPropertyComp: SelectPropertyComponent;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     ngOnInit() {

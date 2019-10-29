@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, Input, OnChanges } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges } from '@angular/core';
 import { KnoraConstants } from '@knora/core';
 
 /**
@@ -23,7 +23,7 @@ export class GndDirective implements OnChanges {
     // the GND identifier to be rendered
     private _gnd: string;
 
-    constructor(private el: ElementRef) {
+    constructor (private el: ElementRef) {
 
     }
 
