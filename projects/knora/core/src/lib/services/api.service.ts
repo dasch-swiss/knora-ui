@@ -71,7 +71,7 @@ export abstract class ApiService {
      *
      * @param {ApiServiceResult} resourceResponse
      */
-    protected processJSONLD(resourceResponse: ApiServiceResult): Observable<object> {
+    protected processJSONLD(resourceResponse: ApiServiceResult): Observable<any> {
 
         const resPromises = jsonld.promises;
 
