@@ -1,3 +1,5 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -6,15 +8,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { Cardinality, CardinalityOccurrence, KuiCoreConfig, KuiCoreConfigToken, ResourceClass, GuiOrder } from '@knora/core';
-
-import { SelectResourceClassComponent } from './select-resource-class.component';
-import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Cardinality, CardinalityOccurrence, GuiOrder, KuiCoreConfig, KuiCoreConfigToken, ResourceClass } from '@knora/core';
+import { SelectResourceClassComponent } from './select-resource-class.component';
 
 describe('SelectResourceClassComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -191,7 +190,7 @@ class TestHostComponent implements OnInit {
 
     @ViewChild('resClass', { static: false }) selectResClassesComp: SelectResourceClassComponent;
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     getPropertiesForResourceClass(resClassIri) {

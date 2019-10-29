@@ -1,8 +1,6 @@
 import { Directive, ElementRef, Input, OnChanges, Renderer2 } from '@angular/core';
-
 import { Md5 } from 'ts-md5';
 import { AdminImageConfig } from './admin-image.config';
-
 
 /**
  * You can use the admin image module for user avatar together with gravatar.com and for project logos.
