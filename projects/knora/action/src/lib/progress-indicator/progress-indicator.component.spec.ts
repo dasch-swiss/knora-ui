@@ -1,8 +1,8 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProgressIndicatorComponent } from './progress-indicator.component';
 import { MatIconModule } from '@angular/material/icon';
-import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { ProgressIndicatorComponent } from './progress-indicator.component';
 
 describe('ProgressIndicatorComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -155,7 +155,7 @@ class TestHostComponent implements OnInit {
     status = 0;
     color: string = 'red';
 
-    constructor() {
+    constructor () {
     }
 
     ngOnInit() { }

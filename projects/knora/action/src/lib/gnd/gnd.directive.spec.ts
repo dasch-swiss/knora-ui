@@ -1,7 +1,59 @@
-import { GndDirective } from './gnd.directive';
 import { Component, DebugElement, ElementRef, OnInit } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { GndDirective } from './gnd.directive';
+
+/**
+ * Test component for a GND/IAF identifier.
+ */
+@Component({
+    template: `<span [kuiGnd]="'(DE-588)118696149'"></span>`
+})
+class TestGnd1Component { }
+
+/**
+ * Test component for a VIAF identifier.
+ */
+@Component({
+    template: `<span [kuiGnd]="'(VIAF)22936072'"></span>`
+})
+class TestGnd2Component { }
+
+/**
+ * Test component for normal text.
+ */
+@Component({
+    template: `<span [kuiGnd]="'normal text'"></span>`
+})
+class TestGnd3Component { }
+
+/**
+ * Test component for long normal text.
+ */
+@Component({
+    template: `<span [kuiGnd]="'normal text that is quite long an will not even be looked at because it cannot possibly be a GND/IAF or VIAF identifier'"></span>`
+})
+class TestGnd4Component { }
+
+/**
+ * Test component with an updated text.
+ */
+@Component({
+    template: `<span [kuiGnd]="gndValue"></span>`
+})
+class TestGnd5Component implements OnInit {
+
+    gndValue;
+
+    ngOnInit() {
+        this.gndValue = 'initial text';
+    }
+}
+
+class MockElementRef implements ElementRef {
+    nativeElement = {};
+}
+
 
 describe('GndDirective', () => {
 
@@ -87,56 +139,6 @@ describe('GndDirective', () => {
 });
 
 
-class MockElementRef implements ElementRef {
-    nativeElement = {};
-}
 
-/**
- * Test component for a GND/IAF identifier.
- */
-@Component({
-    template: `<span [kuiGnd]="'(DE-588)118696149'"></span>`
-})
-class TestGnd1Component { }
-
-/**
- * Test component for a VIAF identifier.
- */
-@Component({
-    template: `<span [kuiGnd]="'(VIAF)22936072'"></span>`
-})
-class TestGnd2Component { }
-
-/**
- * Test component for normal text.
- */
-@Component({
-    template: `<span [kuiGnd]="'normal text'"></span>`
-})
-class TestGnd3Component { }
-
-/**
- * Test component for long normal text.
- */
-@Component({
-    template: `<span [kuiGnd]="'normal text that is quite long an will not even be looked at because it cannot possibly be a GND/IAF or VIAF identifier'"></span>`
-})
-class TestGnd4Component { }
-
-/**
- * Test component with an updated text.
- */
-@Component({
-    template: `<span [kuiGnd]="gndValue"></span>`
-})
-class TestGnd5Component implements OnInit {
-
-    gndValue;
-
-    ngOnInit() {
-        this.gndValue = 'initial text';
-    }
-
-}
 
 

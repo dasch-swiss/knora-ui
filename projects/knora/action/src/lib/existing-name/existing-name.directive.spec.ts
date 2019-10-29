@@ -1,12 +1,11 @@
-import { ExistingNameDirective } from './existing-name.directive';
+import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { existingNamesValidator } from '../existing-name/existing-name.directive';
-import { By } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { existingNamesValidator } from '../existing-name/existing-name.directive';
+import { ExistingNameDirective } from './existing-name.directive';
 
 describe('ExistingNameDirective', () => {
 
@@ -163,7 +162,7 @@ class TestHostComponent implements OnInit {
         }
     };
 
-    constructor(private _formBuilder: FormBuilder) {
+    constructor (private _formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
@@ -179,9 +178,9 @@ class TestHostComponent implements OnInit {
             'name': new FormControl({
                 value: '', disabled: false
             }, [
-                    Validators.required,
-                    existingNamesValidator(this.existingNames)
-                ])
+                Validators.required,
+                existingNamesValidator(this.existingNames)
+            ])
         });
 
         // detect changes in the form
