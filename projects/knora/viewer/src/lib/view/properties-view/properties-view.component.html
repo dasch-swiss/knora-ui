@@ -1,18 +1,19 @@
 <!-- properties -->
 <div class="properties">
-    <div *ngFor="let prop of guiOrder; let last = last">
-        <div *ngIf="properties[prop?.property]" class="property">
+    <!-- let prop of guiOrder (was previous; has to be reset again) -->
+    <div *ngFor="let prop of propArray | kuiKey; let last = last">
+        <div *ngIf="properties[prop?.val.property]" class="property">
             <div class="property-label">
                 <!-- label of the property -->
                 <h3 class="label mat-subheading-1">
-                    {{ontologyInfo.getLabelForProperty(prop?.property)}}
+                    {{entityInfo.properties[prop.property].label}}
                 </h3>
             </div>
             <div class="property-value">
 
                 <!-- the value(s) of the property -->
-                <div class="property-value-item" *ngFor="let val of properties[prop?.property]; let lastItem = last">
-                    <span [ngSwitch]="val.getClassName()" [class.list]="properties[prop?.property].length > 1"
+                <div class="property-value-item" *ngFor="let val of properties[prop.val.property]; let lastItem = last">
+                    <span [ngSwitch]="val.getClassName()" [class.list]="properties[prop.val.property].length > 1"
                           [class.lastItem]="lastItem">
                         <kui-text-value-as-string *ngSwitchCase="KnoraConstants.ReadTextValueAsString"
                                                   [valueObject]="val">
@@ -22,8 +23,9 @@
                         <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val"
                                         [calendar]="true" [era]="true">
                         </kui-date-value>
+                        <!-- [ontologyInfo]="ontologyInfo" -->
                         <kui-link-value class="app-link" *ngSwitchCase="KnoraConstants.ReadLinkValue"
-                                        [valueObject]="val" [ontologyInfo]="ontologyInfo"
+                                        [valueObject]="val"
                                         (referredResourceClicked)="openLink(val.referredResourceIri)">
                         </kui-link-value>
                         <kui-integer-value *ngSwitchCase="KnoraConstants.ReadIntegerValue" [valueObject]="val">
