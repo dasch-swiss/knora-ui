@@ -10,6 +10,7 @@ import { IncomingService } from './incoming.service';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
 
 /**
+ * @deprecated Use the new knora-api-js-lib instead
  * Requests representation of resources from Knora.
  */
 @Injectable({
@@ -17,7 +18,7 @@ import { OntologyCacheService, OntologyInformation } from './ontology-cache.serv
 })
 export class ResourceService extends ApiService {
 
-    constructor (public http: HttpClient,
+    constructor(public http: HttpClient,
         @Inject(KuiCoreConfigToken) public config,
         private _incomingService: IncomingService,
         private _ontologyCacheService: OntologyCacheService) {

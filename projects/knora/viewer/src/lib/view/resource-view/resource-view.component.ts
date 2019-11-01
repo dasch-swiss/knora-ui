@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { KuiMessageData } from '@knora/action';
-import { ApiServiceError, GuiOrder, IncomingService, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, ResourceService, ResourcesSequence } from '@knora/core';
+import { GuiOrder, IncomingService, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, ResourcesSequence } from '@knora/core';
 import { StillImageComponent } from '../../resource';
 
 // import { Region, StillImageRepresentation } from '../../resource';
@@ -37,9 +37,8 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     // current resource in case of compound object
     currentResource: ReadResource;
 
-    constructor (protected _route: ActivatedRoute,
+    constructor(protected _route: ActivatedRoute,
         protected _router: Router,
-        protected _resourceService: ResourceService,
         protected _incomingService: IncomingService
     ) {
 
@@ -63,6 +62,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     getResource(id: string) {
         this.loading = true;
         this.error = undefined;
+        /* TODO: replace with knora-api-js-lib
         this._resourceService.getResource(decodeURIComponent(id)).subscribe(
             (result: ResourcesSequence) => {
 
@@ -116,6 +116,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
                 this.loading = false;
             }
         );
+        */
     }
 
 

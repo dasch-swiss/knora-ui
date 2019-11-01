@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChange, ViewChild } from '@angular/core';
-import { IncomingService, KnoraConstants, OntologyCacheService, OntologyInformation, ReadResource, ResourceService } from '@knora/core';
+import { IncomingService, KnoraConstants, OntologyCacheService, OntologyInformation, ReadResource } from '@knora/core';
 import { StillImageComponent } from '@knora/viewer';
 import { AppDemo } from '../../../app.config';
 import { Example } from '../../../app.interfaces';
@@ -80,7 +80,7 @@ getResource(iri: string): void {
         }
     };
 
-    constructor (private _resourceService: ResourceService,
+    constructor(
         private _cacheService: OntologyCacheService,
         private _incomingService: IncomingService,
     ) {

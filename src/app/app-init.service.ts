@@ -1,31 +1,17 @@
 import { Injectable } from '@angular/core';
-import { KuiCoreConfig } from '@knora/core';
-
-
-export interface IAppConfig {
-
-    env: {
-        name: string;
-    };
-    ontologyIRI: string;
-    apiURL: string;
-    externalApiURL: string;
-    iiifURL: string;
-    appURL: string;
-    appName: string;
-    localData: string;
-    pagingLimit: number;
-    startComponent: string;
-}
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { KnoraUiConfig } from '@knora/core';
 
 @Injectable()
 export class AppInitService {
 
-    static settings: IAppConfig;
-    static coreConfig: KuiCoreConfig;
+    static knoraApiConnection: KnoraApiConnection;
 
-    constructor() {
-    }
+    static knoraUiConfig: KnoraUiConfig;
+
+    // appConfig: KnoraUiConfig;
+
+    constructor() { }
 
     Init() {
 
@@ -33,17 +19,17 @@ export class AppInitService {
             // console.log('AppInitService.init() called');
             // do your initialisation stuff here
 
-            const data = <IAppConfig>window['tempConfigStorage'];
-            // console.log('AppInitService: json', data);
-            AppInitService.settings = data;
+            const data = window['tempConfigStorage'] as KnoraUiConfig;
 
-            AppInitService.coreConfig = <KuiCoreConfig>{
-                name: AppInitService.settings.appName,
-                api: AppInitService.settings.apiURL,
-                media: AppInitService.settings.iiifURL,
-                app: AppInitService.settings.appURL,
-                ontologyIRI: AppInitService.settings.ontologyIRI
-            };
+            AppInitService.knoraUiConfig = data;
+
+            const config: KnoraApiConfig = new KnoraApiConfig(
+                AppInitService.knoraUiConfig.api.protocol,
+                AppInitService.knoraUiConfig.api.host,
+                AppInitService.knoraUiConfig.api.port
+            );
+
+            AppInitService.knoraApiConnection = new KnoraApiConnection(config);
 
             // console.log('AppInitService: finished');
 

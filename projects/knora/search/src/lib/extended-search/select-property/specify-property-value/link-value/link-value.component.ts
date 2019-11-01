@@ -9,7 +9,6 @@ import {
     PropertyValue,
     ReadResource,
     ReadResourcesSequence,
-    SearchService,
     Value
 } from '@knora/core';
 
@@ -46,7 +45,7 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
         return this._restrictToResourceClass;
     }
 
-    constructor (@Inject(FormBuilder) private fb: FormBuilder, private _searchService: SearchService, private _cacheService: OntologyCacheService) {
+    constructor(@Inject(FormBuilder) private fb: FormBuilder, private _cacheService: OntologyCacheService) {
 
     }
 
@@ -74,6 +73,7 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
         // at least 3 characters are required
         if (searchTerm.length >= 3) {
 
+            /* TODO: replace with knora-api-js-lib
             this._searchService.searchByLabelReadResourceSequence(searchTerm, 0, { limitToResourceClass: this._restrictToResourceClass }).subscribe(
                 (result: ReadResourcesSequence) => {
                     this.resources = result.resources;
@@ -81,6 +81,7 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
                     console.log('JSONLD of full resource request could not be expanded:' + err);
                 }
             );
+            */
         } else {
             // clear selection
             this.resources = undefined;

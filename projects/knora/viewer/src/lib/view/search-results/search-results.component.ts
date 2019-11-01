@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiServiceError, CountQueryResult, ExtendedSearchParams, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, SearchParamsService, SearchService } from '@knora/core';
+import { ApiServiceError, CountQueryResult, ExtendedSearchParams, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, SearchParamsService } from '@knora/core';
 
 /**
  * The search-results gets the search mode and parameters from routes or inputs,
@@ -52,9 +52,9 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     errorMessage: ApiServiceError = new ApiServiceError();
     pagingLimit: number = 25;
 
-    constructor (
+    constructor(
         private _route: ActivatedRoute,
-        private _searchService: SearchService,
+        // private _searchService: SearchService,
         private _searchParamsService: SearchParamsService,
         private _router: Router
     ) {
@@ -152,6 +152,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
 
                 if (this.offset === 0) {
                     // perform count query
+                    /* TODO: replace with knora-api-js-lib
                     this._searchService
                         .doFullTextSearchCountQueryCountQueryResult(
                             this.searchQuery,
@@ -163,9 +164,11 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                                 this.errorMessage = <ApiServiceError>error;
                             }
                         );
+                        */
                 }
 
                 // perform full text search
+                /* TODO: replace with knora-api-js-lib
                 this._searchService
                     .doFullTextSearchReadResourceSequence(
                         this.searchQuery,
@@ -180,12 +183,14 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                             console.log('message', this.errorMessage);
                         }
                     );
+                    */
             }
 
             // EXTENDED SEARCH
         } else if (this.searchMode === 'extended') {
             // perform count query
             if (this.offset === 0) {
+                /* TODO: replace with knora-api-js-lib
                 this._searchService
                     .doExtendedSearchCountQueryCountQueryResult(
                         this.gravSearchQuery
@@ -196,7 +201,9 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                             this.errorMessage = <ApiServiceError>error;
                         }
                     );
+                    */
             }
+            /* TODO: replace with knora-api-js-lib
             this._searchService
                 .doExtendedSearchReadResourceSequence(this.gravSearchQuery)
                 .subscribe(
@@ -205,6 +212,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                         this.errorMessage = <ApiServiceError>error;
                     }
                 );
+                */
         } else {
             this.errorMessage = new ApiServiceError();
             this.errorMessage.errorInfo = `search mode invalid: ${

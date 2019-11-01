@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
 import { KuiAuthenticationModule } from '@knora/authentication';
-import { KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
+import { KuiCoreConfigToken, KuiCoreModule, KnoraUiConfigToken, KnoraApiConnectionToken } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
 
@@ -151,7 +151,13 @@ export function initializeApp(appInitService: AppInitService) {
             provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true
         },
         {
-            provide: KuiCoreConfigToken, useFactory: () => AppInitService.coreConfig
+            provide: KnoraUiConfigToken, useFactory: () => AppInitService.knoraUiConfig
+        },
+        {
+            provide: KnoraApiConnectionToken, useFactory: () => AppInitService.knoraApiConnection
+        },
+        {
+            provide: KuiCoreConfigToken, useFactory: () => AppInitService.knoraUiConfig // TODO: remove when it's replaced everywhere
         },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,

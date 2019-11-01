@@ -36,18 +36,19 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^8.2.7",
-    "@angular/cdk": "^8.2.0",
-    "@angular/common": "~8.2.7",
-    "@angular/compiler": "~8.2.7",
-    "@angular/core": "^8.2.7",
+    "@angular/animations": "^8.2.9",
+    "@angular/cdk": "^8.2.3",
+    "@angular/common": "~8.2.9",
+    "@angular/compiler": "~8.2.9",
+    "@angular/core": "^8.2.9",
     "@angular/flex-layout": "^8.0.0-beta.27",
-    "@angular/forms": "~8.2.7",
-    "@angular/material": "^8.2.0",
-    "@angular/platform-browser": "~8.2.7",
-    "@angular/platform-browser-dynamic": "~8.2.7",
-    "@angular/router": "~8.2.7",
+    "@angular/forms": "~8.2.9",
+    "@angular/material": "^8.2.3",
+    "@angular/platform-browser": "~8.2.9",
+    "@angular/platform-browser-dynamic": "~8.2.9",
+    "@angular/router": "~8.2.9",
     "@auth0/angular-jwt": "^2.0.0",
+    "@knora/api": "file:.yalc/@knora/api",
     "angular-split": "^3.0.2",
     "core-js": "^2.5.4",
     "global": "^4.3.2",
@@ -69,10 +70,10 @@
     "zone.js": "0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.800.6",
-    "@angular-devkit/build-ng-packagr": "~0.800.6",
-    "@angular/cli": "^8.3.5",
-    "@angular/compiler-cli": "^8.2.7",
+    "@angular-devkit/build-angular": "~0.803.7",
+    "@angular-devkit/build-ng-packagr": "~0.803.14",
+    "@angular/cli": "^8.3.7",
+    "@angular/compiler-cli": "^8.2.9",
     "@angular/language-service": "^8.2.12",
     "@types/jasmine": "~3.4.4",
     "@types/jasminewd2": "~2.0.3",
@@ -97,6 +98,6 @@
     "tsickle": "^0.36.0",
     "tslib": "^1.10.0",
     "tslint": "~5.20.0",
-    "typescript": "3.5.3"
+    "typescript": "3.4.5"
   }
 }
