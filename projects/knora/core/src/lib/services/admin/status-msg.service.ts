@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { KnoraApiConnectionToken } from '../../core.module';
+import { KuiConfigToken } from '../../core.module';
 
 
 @Injectable({
@@ -12,7 +12,7 @@ import { KnoraApiConnectionToken } from '../../core.module';
 export class StatusMsgService {
 
     constructor(private _http: HttpClient,
-        @Inject(KnoraApiConnectionToken) public config) {
+        @Inject(KuiConfigToken) public config) {
     }
 
     /**

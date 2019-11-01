@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-import { KuiCoreConfigToken } from '../../core.module';
+import { KuiConfigToken } from '../../core.module';
 import { ApiServiceError, ApiServiceResult, KnoraConstants, ReadResourcesSequence, ReadStillImageFileValue, Region, ResourcesSequence, StillImageRepresentation } from '../../declarations';
 import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
@@ -19,7 +19,7 @@ import { OntologyCacheService, OntologyInformation } from './ontology-cache.serv
 export class ResourceService extends ApiService {
 
     constructor(public http: HttpClient,
-        @Inject(KuiCoreConfigToken) public config,
+        @Inject(KuiConfigToken) public config,
         private _incomingService: IncomingService,
         private _ontologyCacheService: OntologyCacheService) {
         super(http, config);

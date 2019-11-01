@@ -6,11 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterTestingModule } from '@angular/router/testing';
 import { KuiActionModule } from '@knora/action';
-import { KuiCoreConfig, KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
+import { KuiConfigToken, KuiCoreConfig, KuiCoreModule } from '@knora/core';
+
 import { AuthenticationService } from '../authentication.service';
 import { SessionService } from '../session/session.service';
-import { LoginFormComponent } from './login-form.component';
 
+import { LoginFormComponent } from './login-form.component';
 
 describe('LoginFormComponent', () => {
     let component: LoginFormComponent;
@@ -35,7 +36,7 @@ describe('LoginFormComponent', () => {
                 AuthenticationService,
                 SessionService,
                 {
-                    provide: KuiCoreConfigToken,
+                    provide: KuiConfigToken,
                     useValue: KuiCoreConfig
                 }
             ]

@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiService, ApiServiceResult, AuthenticationRequestByEmailPayload, AuthenticationRequestByUsernamePayload, AuthenticationResponse, KuiCoreConfigToken, LogoutResponse } from '@knora/core';
+import { ApiService, ApiServiceResult, AuthenticationRequestByEmailPayload, AuthenticationRequestByUsernamePayload, AuthenticationResponse, KuiConfigToken, LogoutResponse } from '@knora/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+
 import { SessionService } from './session/session.service';
+
 
 /**
  * Authentication service includes the login, logout method and a session method to check if a user is logged in or not.
@@ -15,9 +17,9 @@ export class AuthenticationService extends ApiService {
 
     path: string = '/v2/authentication';
 
-    constructor (private _session: SessionService,
+    constructor(private _session: SessionService,
         public http: HttpClient,
-        @Inject(KuiCoreConfigToken) public config) {
+        @Inject(KuiConfigToken) public config) {
         super(http, config);
     }
 

@@ -1,4 +1,4 @@
-export interface KnoraUiConfig {
+export interface KuiConfig {
     api: {
         protocol: any;
         host: string;

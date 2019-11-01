@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ExtendedSearchParams, KuiCoreConfigToken, SearchParamsService } from '@knora/core';
+import { ExtendedSearchParams, KuiConfigToken, SearchParamsService } from '@knora/core';
 
 @Component({
     selector: 'kui-expert-search',
@@ -34,7 +34,7 @@ export class ExpertSearchComponent implements OnInit {
         private _router: Router,
         // private _searchService: SearchService,
         private _searchParamsService: SearchParamsService,
-        @Inject(KuiCoreConfigToken) public config
+        @Inject(KuiConfigToken) public config
     ) { }
 
     ngOnInit() {

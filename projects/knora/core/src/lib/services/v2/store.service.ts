@@ -1,9 +1,10 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { KuiCoreConfig, RdfDataObject, ResetTriplestoreContentResponse } from '../../declarations';
-import { KuiCoreConfigToken } from '../../core.module';
+import { map } from 'rxjs/operators';
+
+import { KuiConfigToken } from '../../core.module';
+import { RdfDataObject, ResetTriplestoreContentResponse } from '../../declarations';
 
 /**
  * * @deprecated Use the new knora-api-js-lib instead
@@ -13,7 +14,7 @@ import { KuiCoreConfigToken } from '../../core.module';
 })
 export class StoreService {
 
-    constructor(private http: HttpClient, @Inject(KuiCoreConfigToken) public config) { }
+    constructor(private http: HttpClient, @Inject(KuiConfigToken) public config) { }
 
     /**
        * Resets the content of the triplestore.

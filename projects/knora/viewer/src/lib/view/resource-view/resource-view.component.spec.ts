@@ -1,23 +1,27 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { GndDirective, KeyPipe } from '@knora/action';
-import {
-    IncomingService,
-    KnoraConstants,
-    KuiCoreConfig,
-    KuiCoreConfigToken,
-    OntologyCacheService,
-    OntologyInformation,
-    OntologyService,
-    ResourceService
-} from '@knora/core';
-import { ResourceViewComponent } from './resource-view.component';
+import { IncomingService, KuiConfigToken, KuiCoreConfig, OntologyCacheService, OntologyService } from '@knora/core';
 
+import { BooleanValueComponent } from '../../property/boolean-value/boolean-value.component';
+import { ColorValueComponent } from '../../property/color-value/color-value.component';
+import { DateValueComponent } from '../../property/date-value/date-value.component';
+import { DecimalValueComponent } from '../../property/decimal-value/decimal-value.component';
+import { GeometryValueComponent } from '../../property/geometry-value/geometry-value.component';
+import { IntegerValueComponent } from '../../property/integer-value/integer-value.component';
+import { IntervalValueComponent } from '../../property/interval-value/interval-value.component';
+import { LinkValueComponent } from '../../property/link-value/link-value.component';
+import { ListValueComponent } from '../../property/list-value/list-value.component';
+import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
+import { TextValueAsStringComponent } from '../../property/text-value/text-value-as-string/text-value-as-string.component';
+import { TextValueAsXmlComponent } from '../../property/text-value/text-value-as-xml/text-value-as-xml.component';
+import { TextfileValueComponent } from '../../property/textfile-value/textfile-value.component';
+import { UriValueComponent } from '../../property/uri-value/uri-value.component';
 import { AnnotationComponent } from '../../resource/annotation/annotation.component';
 import { AudioComponent } from '../../resource/audio/audio.component';
 import { CollectionComponent } from '../../resource/collection/collection.component';
@@ -30,20 +34,7 @@ import { RegionComponent } from '../../resource/region/region.component';
 import { StillImageComponent } from '../../resource/still-image/still-image.component';
 import { TextComponent } from '../../resource/text/text.component';
 
-import { BooleanValueComponent } from '../../property/boolean-value/boolean-value.component';
-import { ColorValueComponent } from '../../property/color-value/color-value.component';
-import { DateValueComponent } from '../../property/date-value/date-value.component';
-import { DecimalValueComponent } from '../../property/decimal-value/decimal-value.component';
-import { GeometryValueComponent } from '../../property/geometry-value/geometry-value.component';
-import { IntegerValueComponent } from '../../property/integer-value/integer-value.component';
-import { IntervalValueComponent } from '../../property/interval-value/interval-value.component';
-import { LinkValueComponent } from '../../property/link-value/link-value.component';
-import { ListValueComponent } from '../../property/list-value/list-value.component';
-import { TextValueAsStringComponent } from '../../property/text-value/text-value-as-string/text-value-as-string.component';
-import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
-import { TextValueAsXmlComponent } from '../../property/text-value/text-value-as-xml/text-value-as-xml.component';
-import { TextfileValueComponent } from '../../property/textfile-value/textfile-value.component';
-import { UriValueComponent } from '../../property/uri-value/uri-value.component';
+import { ResourceViewComponent } from './resource-view.component';
 
 xdescribe('ResourceViewComponent', () => {
     let component: ResourceViewComponent;
@@ -93,9 +84,8 @@ xdescribe('ResourceViewComponent', () => {
                 IncomingService,
                 OntologyCacheService,
                 OntologyService,
-                ResourceService,
                 {
-                    provide: KuiCoreConfigToken,
+                    provide: KuiConfigToken,
                     useValue: KuiCoreConfig
                 },
             ]

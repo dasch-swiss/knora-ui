@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiServiceError, KnoraConstants, KuiCoreConfigToken, User, UsersService } from '@knora/core';
+import { ApiServiceError, KnoraConstants, KuiConfigToken, User, UsersService } from '@knora/core';
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -22,9 +22,9 @@ export class SessionService {
      */
     readonly MAX_SESSION_TIME: number = 86400000; // 1d = 24 * 60 * 60 * 1000
 
-    constructor (
+    constructor(
         private _http: HttpClient,
-        @Inject(KuiCoreConfigToken) public config,
+        @Inject(KuiConfigToken) public config,
         private _users: UsersService) {
     }
 
