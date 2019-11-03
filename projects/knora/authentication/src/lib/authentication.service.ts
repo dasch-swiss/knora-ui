@@ -17,13 +17,16 @@ export class AuthenticationService extends ApiService {
 
     path: string = '/v2/authentication';
 
-    constructor(private _session: SessionService,
+    constructor(
+        private _session: SessionService,
         public http: HttpClient,
         @Inject(KuiConfigToken) public config) {
         super(http, config);
     }
 
     /**
+     * @deprecated Use session service validateSession instead
+     *
      * validate if a user is logged in or not
      * returns true if the session is active
      *
@@ -34,7 +37,9 @@ export class AuthenticationService extends ApiService {
     }
 
     /**
-     * @deprecated update the session storage
+     * @deprecated
+     *
+     * update the session storage
      * @param jwt
      * @param username
      *
@@ -50,6 +55,7 @@ export class AuthenticationService extends ApiService {
     }
 
     /**
+     * @deprecated Use login from @knora/api instead
      * Login request
      *
      * @param  {string} identifier can be email address or username
@@ -74,6 +80,7 @@ export class AuthenticationService extends ApiService {
     }
 
     /**
+     * @deprecated Use logout from @knora/api instead
      * Logout from app (by destroying the session) and knora
      *
      * @returns Observable<LogoutResponse>

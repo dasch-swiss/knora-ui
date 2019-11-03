@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiServiceError, KnoraConstants, KuiConfigToken, User, UsersService } from '@knora/core';
+import { ApiServiceError, KnoraConstants, KuiConfigToken, User, UsersService, KnoraApiConnectionToken } from '@knora/core';
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Session } from '../declarations';
+import { KnoraApiConnection, ApiResponseData, ApiResponseError, UserResponse } from '@knora/api';
 
 const moment = momentImported;
 
@@ -23,8 +24,9 @@ export class SessionService {
     readonly MAX_SESSION_TIME: number = 86400000; // 1d = 24 * 60 * 60 * 1000
 
     constructor(
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
         private _http: HttpClient,
-        @Inject(KuiConfigToken) public config,
+        @Inject(KuiConfigToken) public kuiConfig,
         private _users: UsersService) {
     }
 
@@ -55,6 +57,48 @@ export class SessionService {
         const identifierType: string = ((username.indexOf('@') > -1) ? 'email' : 'username');
 
         // get user information
+        this.knoraApiConnection.admin.usersEndpoint.getUserByUsername(username).subscribe(
+            (response: ApiResponseData<UserResponse>) => {
+                let sysAdmin: boolean = false;
+                const projectAdmin: string[] = [];
+
+                // BUG: Property 'permissions' does not exist on type 'ReadUser'. Issue #90 in knora-api-js-lib
+                // TODO: uncomment after bug is fixed
+                /*
+                const groupsPerProjectKeys: string[] = Object.keys(response.body.user.permissions.groupsPerProject);
+
+                for (const key of groupsPerProjectKeys) {
+                    if (key === KnoraConstants.SystemProjectIRI) {
+                        sysAdmin = result.permissions.groupsPerProject[key].indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
+                    }
+
+                    if (result.permissions.groupsPerProject[key].indexOf(KnoraConstants.ProjectAdminGroupIRI) > -1) {
+                        projectAdmin.push(key);
+                    }
+                }
+                */
+
+
+                // replace existing session in localstorage
+                this.session = {
+                    id: this.setTimestamp(),
+                    user: {
+                        name: response.body.user.username,
+                        jwt: jwt,
+                        lang: response.body.user.lang,
+                        sysAdmin: sysAdmin,
+                        projectAdmin: projectAdmin
+                    }
+                };
+                // update localStorage
+                localStorage.setItem('session', JSON.stringify(this.session));
+            },
+            (error: ApiResponseError) => {
+                console.error(error);
+            }
+        );
+
+        /*
         this._users.getUser(username, identifierType).subscribe(
             (result: User) => {
                 let sysAdmin: boolean = false;
@@ -92,6 +136,7 @@ export class SessionService {
                 console.error(error);
             }
         );
+        */
     }
 
     private setTimestamp() {
@@ -135,7 +180,12 @@ export class SessionService {
     }
 
     private authenticate(): Observable<boolean> {
-        return this._http.get(this.config.api + '/v2/authentication').pipe(
+
+        // TODO: still old method because of missing one in knora-api-js-lib
+        const apiUrl: string = (this.kuiConfig.api.protocol + '://' + this.kuiConfig.api.host) +
+            (this.kuiConfig.api.port !== null ? ':' + this.kuiConfig.api.port : '') +
+            (this.kuiConfig.api.path ? '/' + this.kuiConfig.api.path : '');
+        return this._http.get(apiUrl + '/v2/authentication').pipe(
             map((result: any) => {
                 // console.log('AuthenticationService - authenticate - result: ', result);
                 // return true || false

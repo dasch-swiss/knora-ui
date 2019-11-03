@@ -133,6 +133,7 @@ export class LoginFormComponent implements OnInit {
             },
             (error: ApiResponseError) => {
                 console.error(error);
+                // TODO: update error handling similar to the old method (see commented code below)
             }
         );
 
