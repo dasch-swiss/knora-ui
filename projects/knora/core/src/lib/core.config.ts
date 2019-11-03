@@ -3,6 +3,7 @@ export interface KuiConfig {
         protocol: any;
         host: string;
         port: number;
+        path?: string;
     };
     app: {
         name: string;
