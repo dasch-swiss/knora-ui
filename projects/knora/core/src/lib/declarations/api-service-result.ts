@@ -2,6 +2,7 @@
 import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
 
 /**
+ * @deprecated Use ApiResponseData from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
  * Result class used as API url response in ApiService
  */
 export class ApiServiceResult {
