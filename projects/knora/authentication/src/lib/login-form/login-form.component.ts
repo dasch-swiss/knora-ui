@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiServiceError, LogoutResponse } from '@knora/core';
+import { ApiResponseData, ApiResponseError, KnoraApiConnection, LoginResponse, LogoutResponse } from '@knora/api';
+import { KnoraApiConnectionToken } from '@knora/core';
 import { AuthenticationService } from '../authentication.service';
 import { SessionService } from '../session/session.service';
 
@@ -83,7 +84,9 @@ export class LoginFormComponent implements OnInit {
     };
 
 
-    constructor (private _auth: AuthenticationService,
+    constructor(
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
+        private _auth: AuthenticationService,
         private _session: SessionService,
         private _fb: FormBuilder) {
     }
@@ -118,6 +121,22 @@ export class LoginFormComponent implements OnInit {
         const username = this.form.get('username').value;
         const password = this.form.get('password').value;
 
+        this.knoraApiConnection.v2.auth.login(username, password).subscribe(
+            (response: ApiResponseData<LoginResponse>) => {
+
+                this._session.setSession(response.body.token, username);
+
+                setTimeout(() => {
+                    this.status.emit(true);
+                    this.loading = false;
+                }, 2200);
+            },
+            (error: ApiResponseError) => {
+                console.error(error);
+            }
+        );
+
+        /*
         this._auth.login(username, password).subscribe(
             (response: string) => {
 
@@ -141,17 +160,18 @@ export class LoginFormComponent implements OnInit {
                 this.loading = false;
             }
         );
+        */
 
     }
 
     logout() {
 
-        this._auth.logout().subscribe(
-            (result: LogoutResponse) => {
-                this.status.emit(result.status === 0);
+        this.knoraApiConnection.v2.auth.logout().subscribe(
+            (response: ApiResponseData<LogoutResponse>) => {
+                this.status.emit(response.body.status === 0);
                 this.loading = false;
             },
-            (error: ApiServiceError) => {
+            (error: ApiResponseError) => {
                 console.error(error);
                 this.loading = false;
             }
