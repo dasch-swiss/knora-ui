@@ -5,6 +5,7 @@
   "lib": {
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
+      "@knora/api": "@knora/api",
       "@knora/action": "@knora/action",
       "@knora/core": "@knora/core",
       "@knora/viewer": "@knora/viewer",

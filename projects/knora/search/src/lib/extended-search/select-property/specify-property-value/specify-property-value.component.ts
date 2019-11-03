@@ -1,22 +1,6 @@
-import { Component, Inject, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-    ComparisonOperator,
-    ComparisonOperatorAndValue,
-    Equals,
-    Exists,
-    GreaterThan,
-    GreaterThanEquals,
-    KnoraConstants,
-    LessThan,
-    LessThanEquals,
-    Like,
-    Match,
-    NotEquals,
-    Property,
-    PropertyValue,
-    Value
-} from '@knora/core';
+import { ComparisonOperator, ComparisonOperatorAndValue, Equals, Exists, GreaterThan, GreaterThanEquals, KnoraConstants, LessThan, LessThanEquals, Like, Match, NotEquals, Property, PropertyValue, Value } from '@knora/core';
 
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
@@ -27,7 +11,7 @@ const resolvedPromise = Promise.resolve(null);
     templateUrl: './specify-property-value.component.html',
     styleUrls: ['./specify-property-value.component.scss']
 })
-export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
+export class SpecifyPropertyValueComponent implements OnChanges {
 
     KnoraConstants = KnoraConstants;
 
@@ -62,7 +46,7 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
     // the type of the property
     propertyValueType;
 
-    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }
 
     /**
@@ -116,9 +100,6 @@ export class SpecifyPropertyValueComponent implements OnInit, OnChanges {
 
         }
 
-    }
-
-    ngOnInit() {
     }
 
     ngOnChanges() {

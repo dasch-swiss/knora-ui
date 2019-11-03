@@ -9,10 +9,12 @@ import {
     Properties,
     PropertyWithValue,
     ReadResourcesSequence,
-    ResourceClass
+    ResourceClass,
+    KnoraApiConnectionToken
 } from '@knora/core';
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
+import { KnoraApiConnection } from '@knora/api';
 
 /**
  * The extended search allows you to filter by project, by source type (resource class), or by the metadata (properties) of source types. Each filter can be standalone or combined. The metadata field can be precisely filtered with criteria such as "contains", "like", "equals to", "exists" or in case of a date value with "before" or "after". In addition, for a metadata field that is connected to another source type, it's possible to filter by this second source type. If you are looking for the source type "Photograph" with the metadata field "Photographer", which is connected to source type "Person", you can search for photograph(s) taken by person(s) who is born before February 1970. The result of this request will be an intersection of the two source types.
@@ -71,7 +73,9 @@ export class ExtendedSearchComponent implements OnInit {
     // form validation status
     formValid = false;
 
-    constructor (@Inject(FormBuilder) private fb: FormBuilder,
+    constructor(
+        @Inject(FormBuilder) private fb: FormBuilder,
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
         private _route: ActivatedRoute,
         private _router: Router,
         private _cacheService: OntologyCacheService,

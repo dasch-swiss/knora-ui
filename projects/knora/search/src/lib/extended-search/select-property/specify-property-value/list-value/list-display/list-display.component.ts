@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ListNodeV2 } from '@knora/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { ListNodeV2 } from '@knora/core';
 
 @Component({
     selector: 'list-display',
     templateUrl: './list-display.component.html',
     styleUrls: ['./list-display.component.scss']
 })
-export class ListDisplayComponent implements OnInit {
+export class ListDisplayComponent {
 
     @Input() children: ListNodeV2[];
 
@@ -16,10 +16,6 @@ export class ListDisplayComponent implements OnInit {
     @ViewChild('childMenu', { static: true }) public childMenu: MatMenuTrigger;
 
     constructor() {
-    }
-
-    ngOnInit() {
-        // console.log(this.children)
     }
 
     setValue(item: ListNodeV2) {
