@@ -19,7 +19,7 @@ class TestHostComponent implements OnInit {
     status = 0;
     color: string = 'red';
 
-    constructor () {
+    constructor() {
     }
 
     ngOnInit() { }
@@ -96,7 +96,6 @@ describe('ProgressIndicatorComponent', () => {
         testHostFixture.detectChanges();
 
         // expect the spinner to be blue
-        expect(spinnerEl.styles).toEqual({ 'border-top-color': 'blue', 'border-left-color': 'blue' });
         expect(spinnerEl.styles).toEqual({ 'border-top-color': 'blue', 'border-left-color': 'blue' });
     });
 
