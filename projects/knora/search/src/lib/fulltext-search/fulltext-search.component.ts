@@ -3,11 +3,8 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material';
 import { Router } from '@angular/router';
+import { ApiResponseData, ApiResponseError, KnoraApiConnection, ProjectResponse, ProjectsResponse, ReadProject } from '@knora/api';
 import { KnoraApiConnectionToken, KnoraConstants } from '@knora/core';
-import { ReadProject } from '@knora/api/src/models/admin/read-project';
-import { ApiResponseData, ApiResponseError, KnoraApiConnection } from '@knora/api';
-import { ProjectsResponse } from '@knora/api/src/models/admin/projects-response';
-import { ProjectResponse } from '@knora/api/src/models/admin/project-response';
 
 export interface PrevSearchItem {
     projectIri?: string;
