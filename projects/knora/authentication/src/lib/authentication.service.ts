@@ -8,6 +8,8 @@ import { SessionService } from './session/session.service';
 
 
 /**
+ * @deprecated This service is obsolete since we use @knora/api (dasch-swiss/knora-api-js-lib)
+ *
  * Authentication service includes the login, logout method and a session method to check if a user is logged in or not.
  */
 @Injectable({
@@ -37,7 +39,7 @@ export class AuthenticationService extends ApiService {
     }
 
     /**
-     * @deprecated
+     * @deprecated Use the session service instead
      *
      * update the session storage
      * @param jwt

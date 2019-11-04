@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiServiceError, KnoraConstants, KuiConfigToken, User, UsersService, KnoraApiConnectionToken } from '@knora/core';
+import { ApiResponseData, ApiResponseError, KnoraApiConnection, UserResponse } from '@knora/api';
+import { KnoraApiConnectionToken, KuiConfigToken } from '@knora/core';
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { Session } from '../declarations';
-import { KnoraApiConnection, ApiResponseData, ApiResponseError, UserResponse } from '@knora/api';
 
 const moment = momentImported;
 
@@ -25,10 +26,9 @@ export class SessionService {
 
     constructor(
         @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
-        private _http: HttpClient,
         @Inject(KuiConfigToken) public kuiConfig,
-        private _users: UsersService) {
-    }
+        private _http: HttpClient
+    ) { }
 
     /**
      * set the session by using the json web token (jwt) and the user object;

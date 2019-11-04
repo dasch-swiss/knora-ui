@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiResponseData, ApiResponseError, KnoraApiConnection, LoginResponse, LogoutResponse } from '@knora/api';
 import { KnoraApiConnectionToken } from '@knora/core';
-import { AuthenticationService } from '../authentication.service';
+
 import { SessionService } from '../session/session.service';
 
 @Component({
@@ -86,7 +86,6 @@ export class LoginFormComponent implements OnInit {
 
     constructor(
         @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
-        private _auth: AuthenticationService,
         private _session: SessionService,
         private _fb: FormBuilder) {
     }
