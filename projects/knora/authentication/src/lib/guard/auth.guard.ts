@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { SessionService } from '../session/session.service';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { SessionService } from '../session/session.service';
 export class AuthGuard implements CanActivate {
 
     constructor(private _session: SessionService,
-                private _router: Router) {
+        private _router: Router) {
 
     }
 
@@ -18,7 +19,7 @@ export class AuthGuard implements CanActivate {
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
         if (!this._session.validateSession()) {
-            this._router.navigate(['login'], {queryParams: {returnUrl: state.url}});
+            this._router.navigate(['login'], { queryParams: { returnUrl: state.url } });
             return false;
         }
 

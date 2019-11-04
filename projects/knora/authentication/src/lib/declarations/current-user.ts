@@ -1,39 +1,19 @@
-import { JsonObject, JsonProperty } from 'json2typescript';
-
 /**
  * currently logged-in user
  */
-@JsonObject
-export class CurrentUser {
+export interface CurrentUser {
+    // username
+    name: string;
 
-    /**
-     * username
-     */
-    @JsonProperty('name', String)
-    public name: string = undefined;
+    // json web token
+    jwt: string;
 
-    /**
-     * json web token
-     */
-    @JsonProperty('jwt', String, true)
-    public jwt: string = undefined;
+    // default language for ui
+    lang: string;
 
-    /**
-     * language for the user interface
-     */
-    @JsonProperty('lang', String, true)
-    public lang: string = undefined;
+    // is system admin?
+    sysAdmin: boolean;
 
-    /**
-     * is system administrator?
-     */
-    @JsonProperty('sysAdmin', Boolean)
-    public sysAdmin: boolean = undefined;
-
-    /**
-     * list of project shortcodes, where the user is project admin
-     */
-    @JsonProperty('projectAdmin', [String], true)
-    public projectAdmin: string[] = undefined;
-
+    // list of project shortcodes where the user is project admin
+    projectAdmin: string[];
 }
