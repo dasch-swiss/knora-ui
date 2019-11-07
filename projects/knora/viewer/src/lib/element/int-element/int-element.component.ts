@@ -1,5 +1,5 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
 import { BaseElementComponent } from '../base-element/base-element.component';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
@@ -15,10 +15,20 @@ export class IntElementComponent extends BaseElementComponent<number> implements
     // only allow for integer values (no fractions)
     validators = [Validators.required, Validators.pattern(/^-?\d+$/)];
 
+    form: FormGroup;
+
     ngOnInit() {
 
         this.form = this.fb.group({
             integer: [this._eleVal, Validators.compose(this.validators)]
+        });
+
+        this.form.valueChanges.subscribe((data) => {
+
+            if (data.integer !== undefined) {
+                const num: number = Number(data.integer);
+                this.eleVal = num;
+            }
         });
 
         // add to form group

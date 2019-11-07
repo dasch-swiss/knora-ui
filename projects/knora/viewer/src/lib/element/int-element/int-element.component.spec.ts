@@ -9,14 +9,13 @@ import { MatInputModule } from '@angular/material/input';
 import { By } from '@angular/platform-browser';
 
 describe('IntElementComponent', () => {
-    let testHostComponent: TestHostViewerComponent;
-    let testHostFixture: ComponentFixture<TestHostViewerComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
                 IntElementComponent,
-                TestHostViewerComponent
+                TestHostViewerComponent,
+                TestHostEditComponent
             ],
             imports: [
                 FormsModule,
@@ -29,57 +28,128 @@ describe('IntElementComponent', () => {
             .compileComponents();
     }));
 
-    beforeEach(() => {
-        testHostFixture = TestBed.createComponent(TestHostViewerComponent);
-        testHostComponent = testHostFixture.componentInstance;
-        testHostFixture.detectChanges();
+    describe('View mode', () => {
 
-        expect(testHostComponent).toBeTruthy();
+        let testHostComponent: TestHostViewerComponent;
+        let testHostFixture: ComponentFixture<TestHostViewerComponent>;
+
+        beforeEach(() => {
+            testHostFixture = TestBed.createComponent(TestHostViewerComponent);
+            testHostComponent = testHostFixture.componentInstance;
+            testHostFixture.detectChanges();
+
+            expect(testHostComponent).toBeTruthy();
+        });
+
+        it('should create', () => {
+            // access the test host component's child
+            expect(testHostComponent.intComp).toBeTruthy();
+        });
+
+        it('should set the correct value from the host viewer component', () => {
+            expect(testHostComponent.intComp.eleVal).toEqual(10);
+
+            const hostCompDe = testHostFixture.debugElement;
+
+            const integerVal = hostCompDe.query(By.directive(IntElementComponent));
+
+            const inputDebugElement: DebugElement = integerVal.query(By.css('input'));
+
+            const inputNativeElement = inputDebugElement.nativeElement;
+
+            expect(inputNativeElement.value).toEqual('10');
+
+            expect(inputNativeElement.readOnly).toEqual(true);
+
+            expect(testHostComponent.intComp.form.valid).toBeTruthy();
+        });
+
     });
 
-    it('should create', () => {
-        // access the test host component's child
-        expect(testHostComponent.intComp).toBeTruthy();
-    });
+    describe('Edit mode', () => {
 
-    it('should set the correct value from the host viewer component', () => {
-        expect(testHostComponent.intComp.eleVal).toEqual(10);
+        let testHostComponent: TestHostEditComponent;
+        let testHostFixture: ComponentFixture<TestHostEditComponent>;
 
-        const hostCompDe = testHostFixture.debugElement;
+        beforeEach(() => {
+            testHostFixture = TestBed.createComponent(TestHostEditComponent);
+            testHostComponent = testHostFixture.componentInstance;
+            testHostFixture.detectChanges();
 
-        const integerVal = hostCompDe.query(By.directive(IntElementComponent));
+            expect(testHostComponent).toBeTruthy();
+        });
 
-        const inputDebugElement: DebugElement = integerVal.query(By.css('input'));
+        it('should create', () => {
+            // access the test host component's child
+            expect(testHostComponent.intComp).toBeTruthy();
+        });
 
-        const inputNativeElement = inputDebugElement.nativeElement;
+        it('should set the correct value from the host edit component', () => {
+            expect(testHostComponent.intComp.eleVal).toEqual(10);
 
-        expect(inputNativeElement.value).toEqual('10');
+            const hostCompDe = testHostFixture.debugElement;
 
-        expect(inputNativeElement.readOnly).toEqual(true);
+            const integerVal = hostCompDe.query(By.directive(IntElementComponent));
 
-        expect(testHostComponent.intComp.form.valid).toBeTruthy();
-    });
+            const inputDebugElement: DebugElement = integerVal.query(By.css('input'));
 
-    it('should detect an invalid value from the host viewer component', () => {
-        testHostComponent.value = 1.5;
+            const inputNativeElement = inputDebugElement.nativeElement;
 
-        testHostFixture.detectChanges();
+            expect(inputNativeElement.value).toEqual('10');
 
-        expect(testHostComponent.intComp.eleVal).toEqual(1.5);
+            expect(inputNativeElement.readOnly).toEqual(false);
 
-        const hostCompDe = testHostFixture.debugElement;
+            expect(testHostComponent.intComp.form.valid).toBeTruthy();
+        });
 
-        const integerVal = hostCompDe.query(By.directive(IntElementComponent));
+        it('should accept a valid value entered by the user', () => {
 
-        const inputDebugElement: DebugElement = integerVal.query(By.css('input'));
+            const hostCompDe = testHostFixture.debugElement;
 
-        const inputNativeElement = inputDebugElement.nativeElement;
+            const integerVal = hostCompDe.query(By.directive(IntElementComponent));
 
-        expect(inputNativeElement.value).toEqual('1.5');
+            const inputDebugElement: DebugElement = integerVal.query(By.css('input'));
 
-        expect(inputNativeElement.readOnly).toEqual(true);
+            const inputNativeElement = inputDebugElement.nativeElement;
 
-        expect(testHostComponent.intComp.form.valid).toBeFalsy();
+            expect(inputNativeElement.readOnly).toEqual(false);
+
+            inputNativeElement.value = '15';
+
+            inputNativeElement.dispatchEvent(new Event('input'));
+
+            testHostFixture.detectChanges();
+
+            expect(testHostComponent.intComp.eleVal).toEqual(15);
+
+            expect(testHostComponent.intComp.form.valid).toBeTruthy();
+
+        });
+
+        it('should reject an invalid value entered by the user', () => {
+
+            const hostCompDe = testHostFixture.debugElement;
+
+            const integerVal = hostCompDe.query(By.directive(IntElementComponent));
+
+            const inputDebugElement: DebugElement = integerVal.query(By.css('input'));
+
+            const inputNativeElement = inputDebugElement.nativeElement;
+
+            expect(inputNativeElement.readOnly).toEqual(false);
+
+            inputNativeElement.value = '1.5';
+
+            inputNativeElement.dispatchEvent(new Event('input'));
+
+            testHostFixture.detectChanges();
+
+            expect(testHostComponent.intComp.eleVal).toEqual(null);
+
+            expect(testHostComponent.intComp.form.valid).toBeFalsy();
+
+        });
+
     });
 
 });
@@ -93,6 +163,31 @@ describe('IntElementComponent', () => {
         <kui-int-element #intVal [eleVal]="value" [formGroup]="form" [readonlyValue]="true"></kui-int-element>`
 })
 class TestHostViewerComponent implements OnInit {
+
+    form;
+
+    value: number;
+
+    @ViewChild('intVal', {static: false}) intComp: IntElementComponent;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+        this.value = 10;
+    }
+}
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    selector: `host-component`,
+    template: `
+        <kui-int-element #intVal [eleVal]="value" [formGroup]="form" [readonlyValue]="false"></kui-int-element>`
+})
+class TestHostEditComponent implements OnInit {
 
     form;
 
