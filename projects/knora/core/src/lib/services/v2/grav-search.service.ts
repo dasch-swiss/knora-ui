@@ -4,6 +4,8 @@ import { KnoraConstants, KnoraSchema } from '../../declarations';
 import { PropertyWithValue } from '../../declarations/api/operators';
 
 /**
+ * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Create GravSearch queries from provided parameters.
  */
 @Injectable({

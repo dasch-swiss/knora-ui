@@ -10,11 +10,13 @@ declare let require: any; // http://stackoverflow.com/questions/34730010/angular
 const jsonld = require('jsonld');
 
 /**
+ * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Represents an error occurred in OntologyCacheService.
  */
 class OntologyCacheError extends Error {
 
-    constructor (readonly message: string) {
+    constructor(readonly message: string) {
         super(message);
     }
 }
@@ -31,7 +33,7 @@ export class OntologyMetadata {
      * @param {string} id Iri identifying the ontology.
      * @param {string} label a label describing the ontology.
      */
-    constructor (readonly id: string,
+    constructor(readonly id: string,
         readonly label: string) {
 
     }
@@ -59,7 +61,7 @@ export class Cardinality {
      * @param {number} value numerical value of given occurrence.
      * @param {string} property the property the given occurrence applies to.
      */
-    constructor (readonly occurrence: CardinalityOccurrence,
+    constructor(readonly occurrence: CardinalityOccurrence,
         readonly value: number,
         readonly property: string) {
     }
@@ -72,7 +74,7 @@ export class GuiOrder {
      * @param  {number} value
      * @param  {string} property
      */
-    constructor (readonly value: number,
+    constructor(readonly value: number,
         readonly property: string
     ) {
 
@@ -92,7 +94,7 @@ export class ResourceClass {
      * @param {Cardinality[]} cardinalities the resource class's properties.
      * @param {GuiOrder[]} guiOrder the resource class's gui-order properties.
      */
-    constructor (readonly id: string,
+    constructor(readonly id: string,
         readonly icon: string,
         readonly comment: string,
         readonly label: string,
@@ -127,7 +129,7 @@ export class Property {
      * @param {boolean} isLinkValueProperty indicates whether the given property refers to a link value.
      * @param {string} guiAttribute the gui attribute assigned to this property, if any.
      */
-    constructor (readonly id: string,
+    constructor(readonly id: string,
         readonly objectType: string,
         readonly comment: string,
         readonly label: string,
@@ -186,7 +188,7 @@ class OntologyCache {
      */
     properties: Properties;
 
-    constructor () {
+    constructor() {
         this.ontologies = [];
 
         this.resourceClassIrisForOntology = new ResourceClassIrisForOntology();
@@ -209,7 +211,7 @@ export class OntologyInformation {
      * @param {ResourceClasses} resourceClasses resource class definitions.
      * @param {Properties} properties property definitions.
      */
-    constructor (
+    constructor(
         private resourceClassesForOntology: ResourceClassIrisForOntology,
         private resourceClasses: ResourceClasses,
         private properties: Properties) {
@@ -443,7 +445,7 @@ export class OntologyCacheService {
      */
     private cacheOntology: OntologyCache = new OntologyCache();
 
-    constructor (private _ontologyService: OntologyService) {
+    constructor(private _ontologyService: OntologyService) {
     }
 
     /**

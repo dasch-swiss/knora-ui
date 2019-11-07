@@ -9,6 +9,8 @@ import { NewResourceClass } from '../../declarations/api/v2/ontology/new-resourc
 import { NewProperty } from '../../declarations/api/v2/ontology/new-property';
 
 /**
+ * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Requests ontology information from Knora.
  */
 @Injectable({

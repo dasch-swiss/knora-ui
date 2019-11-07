@@ -12,7 +12,8 @@ import { IncomingService } from './incoming.service';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
 
 /**
- * @deprecated Use the new knora-api-js-lib instead
+ * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Requests representation of resources from Knora.
  */
 @Injectable({

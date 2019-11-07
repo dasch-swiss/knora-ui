@@ -5,17 +5,17 @@ import { HttpClient } from '@angular/common/http';
 import { KuiCoreModule } from '../../core.module';
 
 describe('ResourceTypesService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
-      ],
-      providers: [ResourceTypesService]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                HttpClientTestingModule,
+                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
+            ],
+            providers: [ResourceTypesService]
+        });
     });
-  });
 
-  it('should be created', inject([ResourceTypesService], (service: ResourceTypesService) => {
-    expect(service).toBeTruthy();
-  }));
+    it('should be created', inject([ResourceTypesService], (service: ResourceTypesService) => {
+        expect(service).toBeTruthy();
+    }));
 });

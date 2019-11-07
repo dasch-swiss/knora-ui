@@ -1,17 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ApiServiceResult, Group, GroupsResponse, User, UserResponse, UsersResponse } from '../../declarations/';
 import { ApiService } from '../api.service';
-import {
-    ApiServiceResult,
-    Group,
-    GroupsResponse,
-    User,
-    UserResponse,
-    UsersResponse
-} from '../../declarations/';
 
 /**
+ * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * This service uses the Knora admin API and handles all user data.
  */
 @Injectable({

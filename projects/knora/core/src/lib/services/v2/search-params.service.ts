@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 
 
 /**
+ * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Represents the parameters of an extended search.
  */
 export class ExtendedSearchParams {
