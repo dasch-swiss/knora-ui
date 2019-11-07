@@ -1,14 +1,14 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { from } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
+
+import { KnoraApiConnectionToken } from '../core.module';
 import { ApiServiceError } from '../declarations/api-service-error';
 import { ApiServiceResult } from '../declarations/api-service-result';
-import { from } from 'rxjs';
-import { KnoraApiConnectionToken } from '../core.module';
 import { KnoraConstants } from '../declarations/api/knora-constants';
-
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -27,14 +27,14 @@ export abstract class ApiService {
 
     knoraApiUrl: string;
 
-    protected constructor(public http: HttpClient,
+    protected constructor(
+        public http: HttpClient,
         @Inject(KnoraApiConnectionToken) public knoraApiConnection) {
 
         // console.log('ApiService constructor: config', config);
         this.knoraApiUrl = (this.knoraApiConnection.protocol + '://' + this.knoraApiConnection.host) +
             (this.knoraApiConnection.port !== null ? ':' + this.knoraApiConnection.port : '') +
-            this.knoraApiConnection.path;
-
+            (this.knoraApiConnection.path ? '/' + this.knoraApiConnection.path : '');
     }
 
     /**

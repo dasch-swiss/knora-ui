@@ -49,7 +49,7 @@ export class AuthenticationService extends ApiService {
      */
     updateSession(jwt: string, username: string): boolean {
         if (jwt && username) {
-            this._session.setSession(jwt, username);
+            this._session.setSession(jwt, username, 'username');
             return true;
         } else {
             return false;

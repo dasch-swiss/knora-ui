@@ -117,13 +117,15 @@ export class LoginFormComponent implements OnInit {
         this.errorMessage = undefined;
 
         // Grab values from form
-        const username = this.form.get('username').value;
+        const identifier = this.form.get('username').value;
         const password = this.form.get('password').value;
 
-        this.knoraApiConnection.v2.auth.login(username, password).subscribe(
+        const identifierType: 'iri' | 'email' | 'username' = (identifier.indexOf('@') > -1 ? 'email' : 'username');
+
+        this.knoraApiConnection.v2.auth.login(identifierType, identifier, password).subscribe(
             (response: ApiResponseData<LoginResponse>) => {
 
-                this._session.setSession(response.body.token, username);
+                this._session.setSession(response.body.token, identifier, identifierType);
 
                 setTimeout(() => {
                     this.status.emit(true);

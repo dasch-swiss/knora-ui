@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
+
 import { KuiConfigToken } from '../../core.module';
 import { ApiServiceError, ApiServiceResult, KnoraConstants, ReadResourcesSequence, ReadStillImageFileValue, Region, ResourcesSequence, StillImageRepresentation } from '../../declarations';
 import { ApiService } from '../api.service';
+
 import { ConvertJSONLD } from './convert-jsonld';
 import { IncomingService } from './incoming.service';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
@@ -393,6 +395,7 @@ export class ResourceService extends ApiService {
      *
      * @param  {string} iri
      */
+    /*
     getResourceAsJsonLd(iri: string): Observable<any> {
 
         return this.httpGet('/v2/resources/' + encodeURIComponent(iri)).pipe(
@@ -401,6 +404,7 @@ export class ResourceService extends ApiService {
         );
 
     }
+    */
 
     // TODO: post, put, delete
 
@@ -414,6 +418,7 @@ export class ResourceService extends ApiService {
      * @param  {string} [comment] Specifies a comment to be attached to the resource, explaining why it has been marked as deleted. Will be ignored if param erase is true.
      * @param {boolean} [erase] Delete completely from triplestore. Default false.
      */
+    /*
     deleteResource(iri: string, comment: string = '', erase: boolean = false) {
         const path: string = (erase ? '/v2/resources/erase' : '/v2/resources/delete');
 
@@ -452,7 +457,7 @@ export class ResourceService extends ApiService {
             }
         );
 
-    }
+    } */
 
     // TODO: combine the erase method with the delete method
     /**
@@ -461,39 +466,39 @@ export class ResourceService extends ApiService {
      * @param {string} iri Iri of the resource
      * @param {string} type Resource class
      */
+    /*
+        eraseResource(iri: string) {
+            // get resource first to have the knora-api:lastModificationDate
+            this.getResourceAsJsonLd(iri).subscribe(
+                (result: any) => {
+                    const requestBody: any = {
+                        '@id': iri,
+                        '@type': result['@type'],
+                        '@context': result['@context']
+                    };
 
-    eraseResource(iri: string) {
-        // get resource first to have the knora-api:lastModificationDate
-        this.getResourceAsJsonLd(iri).subscribe(
-            (result: any) => {
-                const requestBody: any = {
-                    '@id': iri,
-                    '@type': result['@type'],
-                    '@context': result['@context']
-                };
-
-                // the resource exists; get the info needed in the request body
-                if (result['knora-api:lastModificationDate']) {
-                    requestBody['knora-api:lastModificationDate'] = result['knora-api:lastModificationDate'];
-                }
-
-                // send the request body to the delete route
-                this.httpPost('/v2/resources/erase', requestBody).subscribe(
-                    (resp: any) => {
-                        // TODO: return something here
-                        // console.log(resp);
-                    },
-                    (err: any) => {
-                        console.error(err);
+                    // the resource exists; get the info needed in the request body
+                    if (result['knora-api:lastModificationDate']) {
+                        requestBody['knora-api:lastModificationDate'] = result['knora-api:lastModificationDate'];
                     }
-                );
 
-            },
-            (error: ApiServiceError) => {
-                console.error('failed to get resource', error);
-            }
-        );
+                    // send the request body to the delete route
+                    this.httpPost('/v2/resources/erase', requestBody).subscribe(
+                        (resp: any) => {
+                            // TODO: return something here
+                            // console.log(resp);
+                        },
+                        (err: any) => {
+                            console.error(err);
+                        }
+                    );
 
-    }
+                },
+                (error: ApiServiceError) => {
+                    console.error('failed to get resource', error);
+                }
+            );
+
+        } */
 
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ApiResponseData, ApiResponseError, KnoraApiConnection, UserResponse } from '@knora/api';
-import { KnoraApiConnectionToken, KuiConfigToken } from '@knora/core';
+import { CoreService, KnoraApiConnectionToken, KnoraConstants } from '@knora/core';
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -26,7 +26,7 @@ export class SessionService {
 
     constructor(
         @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
-        @Inject(KuiConfigToken) public kuiConfig,
+        private _coreService: CoreService,
         private _http: HttpClient
     ) { }
 
@@ -37,7 +37,7 @@ export class SessionService {
      * @param jwt
      * @param username
      */
-    setSession(jwt: string, username: string) {
+    setSession(jwt: string, identifier: string, identifierType: 'email' | 'username') {
 
         // define a session id, which is the timestamp of login
         this.session = {
@@ -54,29 +54,31 @@ export class SessionService {
         localStorage.setItem('session', JSON.stringify(this.session));
 
         // username can be either name or email address, so what do we have?
-        const identifierType: string = ((username.indexOf('@') > -1) ? 'email' : 'username');
+        // const identifierType: string = ((username.indexOf('@') > -1) ? 'email' : 'username');
+
+
 
         // get user information
-        this.knoraApiConnection.admin.usersEndpoint.getUserByUsername(username).subscribe(
+        this.knoraApiConnection.admin.usersEndpoint.getUser(identifierType, identifier).subscribe(
             (response: ApiResponseData<UserResponse>) => {
                 let sysAdmin: boolean = false;
                 const projectAdmin: string[] = [];
 
                 // BUG: Property 'permissions' does not exist on type 'ReadUser'. Issue #90 in knora-api-js-lib
                 // TODO: uncomment after bug is fixed
-                /*
+
                 const groupsPerProjectKeys: string[] = Object.keys(response.body.user.permissions.groupsPerProject);
 
                 for (const key of groupsPerProjectKeys) {
                     if (key === KnoraConstants.SystemProjectIRI) {
-                        sysAdmin = result.permissions.groupsPerProject[key].indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
+                        sysAdmin = response.body.user.permissions.groupsPerProject[key].indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
                     }
 
-                    if (result.permissions.groupsPerProject[key].indexOf(KnoraConstants.ProjectAdminGroupIRI) > -1) {
+                    if (response.body.user.permissions.groupsPerProject[key].indexOf(KnoraConstants.ProjectAdminGroupIRI) > -1) {
                         projectAdmin.push(key);
                     }
                 }
-                */
+
 
 
                 // replace existing session in localstorage
@@ -182,9 +184,7 @@ export class SessionService {
     private authenticate(): Observable<boolean> {
 
         // TODO: still old method because of missing one in knora-api-js-lib
-        const apiUrl: string = (this.kuiConfig.api.protocol + '://' + this.kuiConfig.api.host) +
-            (this.kuiConfig.api.port !== null ? ':' + this.kuiConfig.api.port : '') +
-            (this.kuiConfig.api.path ? '/' + this.kuiConfig.api.path : '');
+        const apiUrl: string = this._coreService.getKnoraApiURL();
         return this._http.get(apiUrl + '/v2/authentication').pipe(
             map((result: any) => {
                 // console.log('AuthenticationService - authenticate - result: ', result);

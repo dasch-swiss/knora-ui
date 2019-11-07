@@ -1,10 +1,7 @@
+import { KnoraApiConfig } from '@knora/api';
+
 export interface KuiConfig {
-    api: {
-        protocol: any;
-        host: string;
-        port: number;
-        path?: string;
-    };
+    knora: KnoraApiConfig;
     app: {
         name: string;
         url: string;
