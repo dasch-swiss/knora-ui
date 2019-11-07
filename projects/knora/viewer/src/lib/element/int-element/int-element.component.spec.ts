@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IntElementComponent } from './int-element.component';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
@@ -164,7 +164,7 @@ describe('IntElementComponent', () => {
 })
 class TestHostViewerComponent implements OnInit {
 
-    form;
+    form: FormGroup;
 
     value: number;
 
@@ -189,7 +189,7 @@ class TestHostViewerComponent implements OnInit {
 })
 class TestHostEditComponent implements OnInit {
 
-    form;
+    form: FormGroup;
 
     value: number;
 
