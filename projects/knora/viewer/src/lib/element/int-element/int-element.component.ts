@@ -1,32 +1,49 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { BaseElementComponent } from '../base-element/base-element.component';
+
+// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
+const resolvedPromise = Promise.resolve(null);
+
 @Component({
-  selector: 'kui-int-element',
-  templateUrl: './int-element.component.html',
-  styleUrls: ['./int-element.component.scss']
+    selector: 'kui-int-element',
+    templateUrl: './int-element.component.html',
+    styleUrls: ['./int-element.component.scss']
 })
-export class IntElementComponent implements OnInit {
+export class IntElementComponent extends BaseElementComponent<number> implements OnInit, OnChanges, OnDestroy {
 
-    @Input() formGroup: FormGroup;
-
-    @Input() set intVal(value: number) {
-        this._intVal = value || null;
-    }
-
-    @Input() readonlyValue = false;
-
-    _intVal: number;
-
-    form: FormGroup;
-
-    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
-
-    }
+    // only allow for integer values (no fractions)
+    validators = [Validators.required, Validators.pattern(/^-?\d+$/)];
 
     ngOnInit() {
 
         this.form = this.fb.group({
-            integer: [this._intVal, Validators.compose([Validators.required, Validators.pattern(/^-?\d+$/)])] // only allow for integer values (no fractions)
+            integer: [this._eleVal, Validators.compose(this.validators)]
+        });
+
+        // add to form group
+        resolvedPromise.then(() => {
+            // add form to the parent form group
+            this.formGroup.addControl('propValue', this.form);
+        });
+
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+
+        if (this.form !== undefined && changes['eleVal'] !== undefined) {
+            this.form.setValue({
+                integer: this.eleVal
+            });
+        }
+    }
+
+
+    ngOnDestroy() {
+
+        // remove form from the parent form group
+        resolvedPromise.then(() => {
+            this.formGroup.removeControl('propValue');
         });
 
     }

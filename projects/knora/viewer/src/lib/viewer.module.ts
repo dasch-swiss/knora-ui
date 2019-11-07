@@ -60,6 +60,7 @@ import { ResourceViewComponent } from './view/resource-view/resource-view.compon
 import { TableViewComponent } from './view/table-view/table-view.component';
 import { SearchResultsComponent } from './view/search-results/search-results.component';
 import { IntElementComponent } from './element/int-element/int-element.component';
+import { BaseElementComponent } from './element/base-element/base-element.component';
 
 
 
@@ -123,7 +124,8 @@ import { IntElementComponent } from './element/int-element/int-element.component
         GraphViewComponent,
         PropertiesViewComponent,
         SearchResultsComponent,
-        IntElementComponent
+        IntElementComponent,
+        BaseElementComponent
     ],
     exports: [
 
