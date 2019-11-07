@@ -59,6 +59,7 @@ import { PropertiesViewComponent } from './view/properties-view/properties-view.
 import { ResourceViewComponent } from './view/resource-view/resource-view.component';
 import { TableViewComponent } from './view/table-view/table-view.component';
 import { SearchResultsComponent } from './view/search-results/search-results.component';
+import { IntElementComponent } from './element/int-element/int-element.component';
 
 
 
@@ -121,7 +122,8 @@ import { SearchResultsComponent } from './view/search-results/search-results.com
         CompareViewComponent,
         GraphViewComponent,
         PropertiesViewComponent,
-        SearchResultsComponent
+        SearchResultsComponent,
+        IntElementComponent
     ],
     exports: [
 
