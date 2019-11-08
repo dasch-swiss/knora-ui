@@ -10,7 +10,7 @@ declare let require: any; // http://stackoverflow.com/questions/34730010/angular
 const jsonld = require('jsonld');
 
 /**
- * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  *
  * Represents an error occurred in OntologyCacheService.
  */

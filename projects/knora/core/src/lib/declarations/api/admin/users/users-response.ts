@@ -2,7 +2,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { User } from './user';
 
 /**
- * @deprecated Use UsersResponse from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated Use UsersResponse from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  */
 @JsonObject('UsersResponse')
 export class UsersResponse {

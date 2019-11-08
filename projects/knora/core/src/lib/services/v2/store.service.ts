@@ -7,7 +7,7 @@ import { KuiConfigToken } from '../../core.module';
 import { RdfDataObject, ResetTriplestoreContentResponse } from '../../declarations';
 
 /**
- * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  */
 @Injectable({
     providedIn: 'root'

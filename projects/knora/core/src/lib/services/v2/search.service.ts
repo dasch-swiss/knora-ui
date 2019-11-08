@@ -25,7 +25,7 @@ export interface SearchByLabelParams {
 }
 
 /**
- * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  *
  * Performs searches (fulltext or extended) and search count queries into Knora.
  */

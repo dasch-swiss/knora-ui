@@ -4,7 +4,7 @@ import { map, mergeMap } from 'rxjs/operators';
 import { ListService } from './list.service';
 
 /**
- * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  *
  * Represents a list node v2.
  */

@@ -5,7 +5,7 @@ import { ApiServiceResult, Group, GroupsResponse, User, UserResponse, UsersRespo
 import { ApiService } from '../api.service';
 
 /**
- * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  *
  * This service uses the Knora admin API and handles all user data.
  */

@@ -2,7 +2,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { Project } from '../projects/project';
 
 /**
- * @deprecated Use new model from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  */
 @JsonObject('Group')
 export class Group {

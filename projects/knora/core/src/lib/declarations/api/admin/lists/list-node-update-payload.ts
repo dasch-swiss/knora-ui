@@ -1,7 +1,7 @@
 import { StringLiteral } from '../../../';
 
 /**
- * @deprecated Use new model from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  */
 export interface ListNodeUpdatePayload {
 

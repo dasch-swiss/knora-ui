@@ -3,7 +3,7 @@ import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
 
 /**
- * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  *
  */
 @Injectable({
