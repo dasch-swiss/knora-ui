@@ -5,6 +5,8 @@ import { ApiServiceResult, Group, GroupMembersResponse, GroupResponse, GroupsRes
 import { ApiService } from '../api.service';
 
 /**
+ * @deprecated Use new service from @knora/api (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Request information about group from Knora.
  */
 @Injectable({
@@ -44,8 +46,8 @@ export class GroupsService extends ApiService {
     }
 
     /**
-     * Return a list of all group members. 
-     * 
+     * Return a list of all group members.
+     *
      * @param {string} iri
      * @returns Observable<User[]>
      */
@@ -62,7 +64,7 @@ export class GroupsService extends ApiService {
 
     /**
      * Create new group.
-     * 
+     *
      * @param {Group} group
      * @returns Observable<Group>
      */
@@ -79,7 +81,7 @@ export class GroupsService extends ApiService {
 
     /**
      * Edit a group.
-     * 
+     *
      * @param {Group} groupInfo
      * @returns Observable<Group>
      */
@@ -99,7 +101,7 @@ export class GroupsService extends ApiService {
 
     /**
      * Delete a group (set status to false).
-     * 
+     *
      * @param {string} iri
      * @returns Observable<Group>
      */
