@@ -7,11 +7,6 @@ export const KnoraApiConnectionToken = new InjectionToken<KnoraApiConnection>('K
 
 export const KuiConfigToken = new InjectionToken<KuiConfig>('Main configuration for knora-ui modules');
 
-/** @deprecated use KuiConfigToken instead
- *
- */
-export const KuiCoreConfigToken = new InjectionToken<KuiConfig>('Main configuration for knora-ui modules');
-
 @NgModule({
     imports: [],
     declarations: [],

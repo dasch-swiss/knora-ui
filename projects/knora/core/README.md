@@ -33,20 +33,21 @@ This module has the following package dependencies, which you also have to insta
 -   json2typescript@1.0.6
 -   jsonld@1.1.0
 -   semver@^6.1.1
+-   @knora/api (not yet published)
 
-### Required version of Knora: 9.0.0
+### Required version of Knora: 10.0.0
 
 ## Setup
 
 On version 6 of Angular CLI they removed the shim for global and other node built-ins as mentioned in [#9827 (comment)](https://github.com/angular/angular-cli/issues/9827#issuecomment-369578814). Because of the jsonld package, we have to manually shimming it inside of the **polyfills.ts** file of the app:
 
-```javascript
+```typescript
 // Add global to window, assigning the value of window itself.
 
  (window as any).global = window;
 ```
 
-For the environment configuration like URL to the Knora API, to Sipi a.s.o. we have to create the following configuration files and serverices:
+For the environment configuration (Knora API url etc. settings), we have to create the following configuration files and serverice:
 
 ```shell
 mkdir src/config
@@ -60,17 +61,24 @@ The `config.dev.json` should look as follow:
 
 ```json
 {
-  "env": {
-    "name": "dev"
-  },
-  "apiURL": "http://0.0.0.0:3333",
-  "iiifURL": "http://0.0.0.0:1024",
-  "appURL": "http://localhost:4200",
-  "appName": "Name of the app"
+    "knora": {
+        "apiProtocol": "http",
+        "apiHost": "0.0.0.0",
+        "apiPort": 3333,
+        "apiPath": "",
+        "jsonWebToken": "",
+        "logErrors": true
+
+    },
+    "app": {
+        "name": "Knora-APP",
+        "url": "localhost:4200"
+    }
 }
+
 ```
 
-The `config.prod.json` looks similar, the env.name is "prod" and the urls have to be defined. The config files have to been integrated in `angular.json` in each "assets"-section:
+The `config.prod.json` looks similar probably the knora.logErrors are set to false. The config files have to been integrated in `angular.json` in each "assets"-section:
 
 ```json
 "assets": [
@@ -80,9 +88,9 @@ The `config.prod.json` looks similar, the env.name is "prod" and the urls have t
 ]
 ```
 
-It's possible to have different configuration files. The depending on the environment definition in `src/environments/`. The name defined in environment is used to take the correct `config.xyz.json` file.
+It's possible to have different configuration files, depending on the environment definition in `src/environments/`. The name defined in environment is used to take the correct `config.xyz.json` file.
 
-environment.ts
+E.g. the environment.ts needs the name definition for develeop mode:
 
 ```typescript
 export const environment = {
@@ -95,52 +103,34 @@ To load the correct configuration you have to write an `app-init.service.ts`:
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { KuiCoreConfig } from '@knora/core';
-
-
-export interface IAppConfig {
-
-    env: {
-        name: string;
-    };
-    ontologyIRI: string;
-    apiURL: string;
-    externalApiURL: string;
-    iiifURL: string;
-    appURL: string;
-    appName: string;
-    localData: string;
-    pagingLimit: number;
-    startComponent: string;
-}
+import { KuiConfig } from '@knora/core';
+import { KnoraApiConnection, KnoraApiConfig } from '@knora/api';
 
 @Injectable()
 export class AppInitService {
 
-    static settings: IAppConfig;
-    static coreConfig: KuiCoreConfig;
+    static knoraApiConnection: KnoraApiConnection;
 
-    constructor() {
-    }
+    static kuiConfig: KuiConfig;
+
+    constructor() { }
 
     Init() {
 
         return new Promise<void>((resolve, reject) => {
-            // console.log('AppInitService.init() called');
-            // do your initialisation stuff here
 
-            const data = <IAppConfig> window['tempConfigStorage'];
-            // console.log('AppInitService: json', data);
-            AppInitService.settings = data;
+            // init knora-ui configuration
+            AppInitService.kuiConfig = window['tempConfigStorage'] as KuiConfig;
 
-            AppInitService.coreConfig = <KuiCoreConfig> {
-                name: AppInitService.settings.appName,
-                api: AppInitService.settings.apiURL,
-                media: AppInitService.settings.iiifURL,
-                app: AppInitService.settings.appURL
-            };
+            // init knora-api configuration
+            const knoraApiConfig: KnoraApiConfig = new KnoraApiConfig(
+                AppInitService.kuiConfig.knora.apiProtocol,
+                AppInitService.kuiConfig.knora.apiHost,
+                AppInitService.kuiConfig.knora.apiPort
+            );
 
-            // console.log('AppInitService: finished');
+            // set knora-api connection configuration
+            AppInitService.knoraApiConnection = new KnoraApiConnection(knoraApiConfig);
 
             resolve();
         });
@@ -151,7 +141,7 @@ export class AppInitService {
 This service will be loaded in `src/app/app.module.ts`:
 
 ```typescript
-import {KuiCoreModule} from '@knora/core';
+import { KnoraApiConnectionToken, KuiConfigToken, KuiCoreModule } from '@knora/core';
 import { AppInitService } from './app-init.service';
 
 export function initializeApp(appInitService: AppInitService) {
@@ -174,10 +164,13 @@ export function initializeApp(appInitService: AppInitService) {
             useFactory: initializeApp,
             deps: [AppInitService],
             multi: true
+        }, {
+            provide: KuiConfigToken,
+            useFactory: () => AppInitService.kuiConfig
         },
         {
-            provide: KuiCoreConfigToken,
-            useFactory: () => AppInitService.coreConfig
+            provide: KnoraApiConnectionToken,
+            useFactory: () => AppInitService.knoraApiConnection
         }
     ],
     bootstrap: [AppComponent]
@@ -207,16 +200,13 @@ function bootstrapFailed(result) {
 fetch(`config/config.${environment.name}.json`)
     .then(response => response.json())
     .then(config => {
-        if (!config || !config['appName']) {
+        if (!config || !config['knora']) {
             bootstrapFailed(config);
             return;
         }
 
-        // Store the response somewhere that your ConfigService can read it.
+        // store the response somewhere that the AppInitService can read it.
         window['tempConfigStorage'] = config;
-
-        // console.log('config', config);
-
 
         platformBrowserDynamic()
             .bootstrapModule(AppModule)
@@ -225,90 +215,45 @@ fetch(`config/config.${environment.name}.json`)
     .catch(bootstrapFailed);
 ```
 
-<!--
-and set the api server of your environment first. In our apps we define it in the environment files. This helps to define more than one environment for various usages of the Angular app.
-
-For local usage (developer mode) define your environment.ts as follow:
-
-```javascript
-export const environment = {
-  production: false,
-  name: 'Salsah',
-  api: 'http://localhost:3333',
-  app: 'http://localhost:4200',
-  media: 'http://localhost:1024'
-};
-```
-
--   name: Name of the app. We're using it as a title in the authentication module
--   api: set the url of the [Knora](https://www.knora.org) webapi server
--   app: on which url is this app running?
--   media: url of a specific media server. In our case it's [sipi](http://www.sipi.io)
-
-Send this configuration to the `@knora/core` module in your app.module.ts
-
-```javascript
-import { environment } from '../environments/environment';
-import { HttpClientModule } from '@angular/common/http';
-
-@NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        KuiCoreModule.forRoot({
-            name: environment.name,
-            api: environment.api,
-            media: environment.media,
-            app: environment.app
-        }),
-        HttpClientModule
-    ],
-    providers: [ ],
-    bootstrap: [AppComponent]
-})
-export class AppModule {
-}
-```
--->
-
 ## Usage
 
-The `@knora/core` has different services, which follows the route definiton of [knora webapi](https://docs.knora.org)
+The `@knora/core` is a configuration handler for `@knora/api` which has all the services to make Knora-api requests.
 
-Each of the services has the [json2typescript](https://www.npmjs.com/package/json2typescript) mapper implemented.
-`json2typescript` is a small package containing a helper class that maps JSON objects to an instance of a TypeScript class.
+The following project-component example shows how to implement the two modules to get all projects form Knora.
 
-That means that you have to import the service and the type classes into your component.
+```typescript
+import { Component, Inject, OnInit } from '@angular/core';
+import { ApiResponseData, ApiResponseError, KnoraApiConnection, ProjectsResponse, ReadProject } from '@knora/api';
+import { KnoraApiConnectionToken } from '@knora/core';
 
-For example:
+@Component({
+    selector: 'app-projects',
+    template: `<ul><li *ngFor="let p of projects">{{p.longname}} (<strong>{{p.shortname}}</strong> | {{p.shortcode}})</li></ul>`
+})
+export class ProjectsComponent implements OnInit {
+    projects: ReadProject[];
 
-To get project information you have to import at least three elements from `@knora/core`
+    constructor(
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection
+    ) { }
 
-`import {ApiServiceError, Project, ProjectsService, User} from '@knora/core';`
+    ngOnInit() {
+        this.getProjects();
+    }
 
-and use it as follow:
-
-```javascript
-project: Project;
-
-// ...
-
-this.projectsService.getProjectByIri(iri)
-    .subscribe(
-        (result: Project) => {
-            this.project = result;
-        },
-        (error: ApiServiceError) => {
-            console.error(error);
-        }
-    );
+    getProjects() {
+        this.knoraApiConnection.admin.projectsEndpoint.getProjects().subscribe(
+            (response: ApiResponseData<ProjectsResponse>) => {
+                this.projects = response.body.projects;
+            },
+            (error: ApiResponseError) => {
+                console.error(error);
+            }
+        );
+    }
+}
 ```
-
 <!--
-### Error handling
--->
 
 ## Special usage of Knora API v2
 
@@ -322,7 +267,7 @@ For data representing resources, a `ReadResourcesSequence` has to be constructed
 Given a full resource request or a list of search results, the module `ConvertJSONLD` converts them from JSON-LD to an instance of `ReadResourcesSequence`.
 Before passing the JSON-LD data to `ConvertJSONLD`, the prefixes have to be expanded using the JSON-LD processor.
 
-```javascript
+```typescript
 declare let require: any;
 let jsonld = require('jsonld');
 
@@ -354,7 +299,7 @@ For the different value types, an implementation of `ReadPropertyItem` is provid
 When processing the representation of resources, entity Iris are collected and retrieved from Knora via the service `OntologyCacheService`.
 After expanding the Iris as shown above, the resources entity Iris can be collected and the definitions requested:
 
-```javascript
+```typescript
 // get resource class Iris from response
 let resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(compacted);
 
@@ -372,3 +317,4 @@ this._cacheService.getResourceClassDefinitions(resourceClassIris).subscribe(
 An instance of `OntologyInformation` contains the resource class definitions and the properties the resource classes have cardinalities for.
 To facilitate this process and minimize the number of requests to be sent to Knora, the `OntologyCacheService` gets whole ontologies from Knora each time it encounters an unknown entity and caches them.
 Once stored in  the cache, the `OntologyCacheService` can serve the information without doing an additional request to Knora.
+ -->
