@@ -194,6 +194,22 @@ export class SessionService {
         );
     }
 
+    /**
+     * update the session storage
+     * @param jwt
+     * @param username
+     *
+     * @returns boolean
+     */
+    updateSession(jwt: string, username: string): boolean {
+        if (jwt && username) {
+            this.setSession(jwt, username, 'username');
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     destroySession() {
         localStorage.removeItem('session');
     }
