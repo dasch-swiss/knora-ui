@@ -1,4 +1,4 @@
-export * from './core.config';
+export * from './core.config.depr';
 export * from './api-service-result';
 export * from './api-service-error';
 export * from './utils';

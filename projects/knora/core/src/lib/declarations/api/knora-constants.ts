@@ -1,7 +1,7 @@
 export class KnoraConstants {
 
     // The following version of Knora is needed to work properly with this module
-    public static KnoraVersion: string = '9.0.0';
+    public static KnoraVersion: string = '10.0.0';
 
     public static KnoraApi: string = 'http://api.knora.org/ontology/knora-api';
     public static PathSeparator: string = '#';
@@ -18,6 +18,12 @@ export class KnoraConstants {
 
     public static KnoraApiV2WithValueObjectPath: string = KnoraConstants.KnoraApi + '/v2' + KnoraConstants.PathSeparator;
     public static KnoraApiV2SimplePath: string = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
+
+    // iri base url in Knora
+    public static iriBase: string = 'http://rdfh.ch/';
+    public static iriProjectsBase: string = KnoraConstants.iriBase + 'projects/';
+    public static iriUsersBase: string = KnoraConstants.iriBase + 'users/';
+    public static iriListsBase: string = KnoraConstants.iriBase + 'lists/';
 
     public static SalsahGuiOntology: string = 'http://api.knora.org/ontology/salsah-gui/v2';
 

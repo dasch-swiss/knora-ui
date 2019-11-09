@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiResponseData, ApiResponseError, KnoraApiConnection, UserResponse } from '@knora/api';
-import { CoreService, KnoraApiConnectionToken, KnoraConstants } from '@knora/core';
+import { ApiResponseData, ApiResponseError, KnoraApiConfig, KnoraApiConnection, UserResponse } from '@knora/api';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KnoraConstants } from '@knora/core';
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -26,7 +26,7 @@ export class SessionService {
 
     constructor(
         @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
-        private _coreService: CoreService,
+        @Inject(KnoraApiConfigToken) private knoraApiConfig: KnoraApiConfig,
         private _http: HttpClient
     ) { }
 
@@ -184,8 +184,7 @@ export class SessionService {
     private authenticate(): Observable<boolean> {
 
         // TODO: still old method because of missing one in knora-api-js-lib
-        const apiUrl: string = this._coreService.getKnoraApiURL();
-        return this._http.get(apiUrl + '/v2/authentication').pipe(
+        return this._http.get(this.knoraApiConfig.apiUrl + '/v2/authentication').pipe(
             map((result: any) => {
                 // console.log('AuthenticationService - authenticate - result: ', result);
                 // return true || false

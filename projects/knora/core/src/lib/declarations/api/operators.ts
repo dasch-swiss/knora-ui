@@ -1,6 +1,6 @@
-import { KnoraConstants, KnoraSchema } from './knora-constants';
 import { GravsearchGenerationService, Property } from '../../services';
 
+import { KnoraConstants, KnoraSchema } from './knora-constants';
 
 /**
  * An abstract interface representing a comparison operator.

@@ -1,9 +1,14 @@
 import { KnoraApiConfig } from '@knora/api';
 
-export interface KuiConfig {
-    knora: KnoraApiConfig;
-    app: {
-        name: string;
-        url: string;
-    };
+export interface AppConfig {
+    name: string;
+    url: string;
+}
+
+export class KuiConfig {
+
+    constructor(
+        public knora: KnoraApiConfig,
+        public app: AppConfig
+    ) { }
 }

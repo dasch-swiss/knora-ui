@@ -111,6 +111,8 @@ export class AppInitService {
 
     static knoraApiConnection: KnoraApiConnection;
 
+    static knoraApiConfig: KnoraApiConfig;
+
     static kuiConfig: KuiConfig;
 
     constructor() { }
@@ -123,14 +125,14 @@ export class AppInitService {
             AppInitService.kuiConfig = window['tempConfigStorage'] as KuiConfig;
 
             // init knora-api configuration
-            const knoraApiConfig: KnoraApiConfig = new KnoraApiConfig(
+            AppInitService.knoraApiConfig = new KnoraApiConfig(
                 AppInitService.kuiConfig.knora.apiProtocol,
                 AppInitService.kuiConfig.knora.apiHost,
                 AppInitService.kuiConfig.knora.apiPort
             );
 
             // set knora-api connection configuration
-            AppInitService.knoraApiConnection = new KnoraApiConnection(knoraApiConfig);
+            AppInitService.knoraApiConnection = new KnoraApiConnection(AppInitService.knoraApiConfig);
 
             resolve();
         });
@@ -164,9 +166,14 @@ export function initializeApp(appInitService: AppInitService) {
             useFactory: initializeApp,
             deps: [AppInitService],
             multi: true
-        }, {
+        },
+        {
             provide: KuiConfigToken,
             useFactory: () => AppInitService.kuiConfig
+        },
+        {
+            provide: KnoraApiConfigToken,
+            useFactory: () => AppInitService.knoraApiConfig
         },
         {
             provide: KnoraApiConnectionToken,
