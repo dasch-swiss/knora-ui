@@ -1,12 +1,14 @@
-import { HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 
+import { KnoraApiConfigToken } from '../../core.module';
 import { ApiServiceResult, CountQueryResult, ReadResourcesSequence, ResourcesSequence } from '../../declarations';
 import { ApiService } from '../api.service';
 
 import { ConvertJSONLD } from './convert-jsonld';
+import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
 
 export interface FulltextSearchParams {
 
@@ -33,6 +35,12 @@ export interface SearchByLabelParams {
     providedIn: 'root',
 })
 export class SearchService extends ApiService {
+
+    constructor(public http: HttpClient,
+        @Inject(KnoraApiConfigToken) public config,
+        private _ontologyCacheService: OntologyCacheService) {
+        super(http, config);
+    }
 
     /**
      * Assign fulltext search params to http params.
@@ -98,7 +106,7 @@ export class SearchService extends ApiService {
      * @param {Object} resourceResponse
      * @returns {Observable<ReadResourcesSequence>}
      */
-    /*
+
     private convertJSONLDToReadResourceSequence: (resourceResponse: Object) => Observable<ReadResourcesSequence> = (resourceResponse: Object) => {
         // convert JSON-LD into a ReadResourceSequence
         const resSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(resourceResponse);
@@ -117,14 +125,12 @@ export class SearchService extends ApiService {
             )
         );
     }
-    */
 
     /**
      * Converts a JSON-LD object to a `ResourcesSequence`
      *
      * @param  {Object} resourceResponse
      */
-    /*
     private convertJSONLDToResourcesSequence: (resourceResponse: Object) => Observable<ResourcesSequence> = (resourceResponse: Object) => {
         // convert JSON-LD into a ResourcesSequence
         const resSeq: ResourcesSequence = ConvertJSONLD.createResourcesSequenceFromJsonLD(resourceResponse);
@@ -143,7 +149,6 @@ export class SearchService extends ApiService {
             )
         );
     }
-    */
 
     /**
      * Performs a fulltext search.

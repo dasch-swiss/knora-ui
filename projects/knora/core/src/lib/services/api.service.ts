@@ -1,11 +1,13 @@
 import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { KnoraApiConfig } from '@knora/api';
+import { KuiConfigToken } from '@knora/core/public_api';
 import { from } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
 
+import { KuiConfig } from '../core.config';
 import { KnoraApiConfigToken } from '../core.module';
 import { ApiServiceError } from '../declarations/api-service-error';
 import { ApiServiceResult } from '../declarations/api-service-result';
@@ -30,7 +32,7 @@ export abstract class ApiService {
 
     protected constructor(
         public http: HttpClient,
-        @Inject(KnoraApiConfigToken) private knoraApiConfig: KnoraApiConfig,
+        @Inject(KnoraApiConfigToken) private knoraApiConfig: KnoraApiConfig
     ) { }
 
     /**

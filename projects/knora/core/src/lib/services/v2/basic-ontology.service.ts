@@ -1,5 +1,6 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { ApiService } from '../api.service';
 
 /**
@@ -20,7 +21,7 @@ export class BasicOntologyService extends ApiService {
     //     return this.httpGet(url + '/data/base-data/basic-ontology.json', {withCredentials: false});
     // }
     getBasicOntology(): Observable<any> {
-        const url = this.config.app;
+        const url = this.kuiConfig.app.url;
         return this.httpGet(url + '/data/base-data/basic-ontology.json');
         // return this.httpGet(url + '/data/base-data/basic-ontology.json', {withCredentials: false});
     }
