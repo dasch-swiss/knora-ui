@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Inject, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 
 /**

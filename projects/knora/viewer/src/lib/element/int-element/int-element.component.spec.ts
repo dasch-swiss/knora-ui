@@ -64,6 +64,24 @@ describe('IntElementComponent', () => {
             expect(testHostComponent.intComp.form.valid).toBeTruthy();
         });
 
+        it('should switch from view to edit mode', () => {
+
+            testHostComponent.readonly = false;
+
+            testHostFixture.detectChanges();
+
+            const hostCompDe = testHostFixture.debugElement;
+
+            const integerVal = hostCompDe.query(By.directive(IntElementComponent));
+
+            const inputDebugElement: DebugElement = integerVal.query(By.css('input'));
+
+            const inputNativeElement = inputDebugElement.nativeElement;
+
+            expect(inputNativeElement.readOnly).toEqual(false);
+
+        });
+
     });
 
     describe('Edit mode', () => {
@@ -160,13 +178,15 @@ describe('IntElementComponent', () => {
 @Component({
     selector: `host-component`,
     template: `
-        <kui-int-element #intVal [eleVal]="value" [formGroup]="form" [readonlyValue]="true"></kui-int-element>`
+        <kui-int-element #intVal [eleVal]="value" [formGroup]="form" [readonlyValue]="readonly"></kui-int-element>`
 })
 class TestHostViewerComponent implements OnInit {
 
     form: FormGroup;
 
     value: number;
+
+    readonly = true;
 
     @ViewChild('intVal', {static: false}) intComp: IntElementComponent;
 
