@@ -4,9 +4,6 @@ import { FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 /**
  * Abstract component that is the base for all GUI element components.
  */
-@Component({
-    template: ``
-})
 export abstract class BaseElementComponent<T> {
 
     constructor(@Inject(FormBuilder) protected fb: FormBuilder) {
