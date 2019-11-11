@@ -19,6 +19,10 @@ import { TextfileValueComponent } from '../../property/textfile-value/textfile-v
 import { UriValueComponent } from '../../property/uri-value/uri-value.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IntElementComponent } from '../../element/int-element/int-element.component';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 describe('PropertiesViewComponent', () => {
     let component: PropertiesViewComponent;
@@ -34,7 +38,10 @@ describe('PropertiesViewComponent', () => {
                 MatCardModule,
                 MatListModule,
                 MatTabsModule,
-                RouterTestingModule
+                RouterTestingModule,
+                MatInputModule,
+                ReactiveFormsModule,
+                MatFormFieldModule
             ],
             declarations: [
                 PropertiesViewComponent,
@@ -44,6 +51,7 @@ describe('PropertiesViewComponent', () => {
                 DecimalValueComponent,
                 GeometryValueComponent,
                 IntegerValueComponent,
+                IntElementComponent,
                 IntervalValueComponent,
                 LinkValueComponent,
                 ListValueComponent,

@@ -4,6 +4,11 @@ import { IntegerValueComponent } from './integer-value.component';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadIntegerValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
+import { IntElementComponent } from '../../element/int-element/int-element.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
 
 describe('IntegerValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -12,8 +17,12 @@ describe('IntegerValueComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [],
-            declarations: [IntegerValueComponent, TestHostComponent]
+            imports: [FormsModule,
+                ReactiveFormsModule,
+                MatFormFieldModule,
+                BrowserAnimationsModule,
+                MatInputModule],
+            declarations: [IntegerValueComponent, TestHostComponent, IntElementComponent]
         })
             .compileComponents();
     }));
@@ -33,15 +42,7 @@ describe('IntegerValueComponent', () => {
     it('should be equal to the integer value 2018', () => {
         expect(testHostComponent.integerValueComponent.valueObject.integer).toEqual(2018);
 
-        const hostCompDe = testHostFixture.debugElement;
-
-        const integerVal = hostCompDe.query(By.directive(IntegerValueComponent));
-
-        const spanDebugElement: DebugElement = integerVal.query(By.css('span'));
-
-        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
-
-        expect(spanNativeElement.innerText).toEqual('2018');
+        expect(testHostComponent.integerValueComponent.integerValueElement.eleVal).toEqual(2018);
     });
 
     it('should be equal to the integer value 2019', () => {
@@ -49,15 +50,7 @@ describe('IntegerValueComponent', () => {
 
         testHostFixture.detectChanges();
 
-        const hostCompDe = testHostFixture.debugElement;
-
-        const integerVal = hostCompDe.query(By.directive(IntegerValueComponent));
-
-        const spanDebugElement: DebugElement = integerVal.query(By.css('span'));
-
-        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
-
-        expect(spanNativeElement.innerText).toEqual('2019');
+        expect(testHostComponent.integerValueComponent.integerValueElement.eleVal).toEqual(2019);
     });
 });
 
