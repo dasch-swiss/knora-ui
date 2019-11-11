@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { BaseElementComponent } from '../base-element/base-element.component';
+import { Subscription } from 'rxjs';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -17,13 +18,15 @@ export class IntElementComponent extends BaseElementComponent<number> implements
 
     form: FormGroup;
 
+    valueChangesSubscription: Subscription;
+
     ngOnInit() {
 
         this.form = this.fb.group({
             integer: [this._eleVal, Validators.compose(this.validators)]
         });
 
-        this.form.valueChanges.subscribe((data) => {
+        this.valueChangesSubscription = this.form.valueChanges.subscribe((data) => {
 
             if (data.integer !== undefined) {
                 const num: number = Number(data.integer);
@@ -53,6 +56,7 @@ export class IntElementComponent extends BaseElementComponent<number> implements
 
         // remove form from the parent form group
         resolvedPromise.then(() => {
+            if (this.valueChangesSubscription !== undefined) this.valueChangesSubscription.unsubscribe();
             this.formGroup.removeControl('propValue');
         });
 
