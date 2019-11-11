@@ -1,7 +1,6 @@
 import { Component, Inject, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiResponseError, CountQueryResponse, KnoraApiConnection, ReadResource } from '@knora/api';
-import { IResourceClassAndPropertyDefinitions } from '@knora/api/src/cache/OntologyCache';
+import { ApiResponseError, CountQueryResponse, IResourceClassAndPropertyDefinitions, KnoraApiConnection, ReadResource } from '@knora/api';
 import { ExtendedSearchParams, KnoraApiConnectionToken, KnoraConstants, SearchParamsService } from '@knora/core';
 
 /**

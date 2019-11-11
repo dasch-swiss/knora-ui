@@ -799,17 +799,12 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.11.2.tgz#8644bc25b19475779a7b7c1fc104bc0a794f4465"
 
 "@knora/api@file:.yalc/@knora/api":
-  version "1.0.0-63c6c029"
+  version "1.0.0-be042713"
   dependencies:
     "@types/jsonld" "^1.5.0"
     json2typescript "^1.2.3"
     jsonld "^1.8.0"
     rxjs "^6.5.3"
-
-"@knora/core@file:.yalc/@knora/core":
-  version "9.4.1-85d295ff"
-  dependencies:
-    tslib "^1.9.0"
 
 "@ngtools/webpack@8.3.17":
   version "8.3.17"
@@ -4457,7 +4452,7 @@ jsonfile@^4.0.0:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-jsonld@^1.8.0:
+jsonld@^1.0.2, jsonld@^1.8.0:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/jsonld/-/jsonld-1.8.1.tgz#55ea541b22b8af5a5d6a5e32328e3f2678148882"
   dependencies:
@@ -6596,7 +6591,7 @@ rxjs@6.4.0:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^6.0.0, rxjs@^6.4.0, rxjs@^6.5.3:
+rxjs@^6.0.0, rxjs@^6.4.0, rxjs@^6.5.2, rxjs@^6.5.3:
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.3.tgz#510e26317f4db91a7eb1de77d9dd9ba0a4899a3a"
   dependencies:

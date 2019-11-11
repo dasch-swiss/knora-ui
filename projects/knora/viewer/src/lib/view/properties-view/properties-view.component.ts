@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ReadValue } from '@knora/api';
-import { IResourceClassAndPropertyDefinitions } from '@knora/api/src/cache/OntologyCache';
+import { IResourceClassAndPropertyDefinitions, ReadValue } from '@knora/api';
 import { GuiOrder, KnoraConstants, ReadResource } from '@knora/core';
 
 /**
