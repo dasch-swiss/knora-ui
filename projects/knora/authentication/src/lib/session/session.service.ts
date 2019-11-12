@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiResponseData, ApiResponseError, KnoraApiConfig, KnoraApiConnection, UserResponse, CredentialsReponse } from '@knora/api';
+import { ApiResponseData, ApiResponseError, CredentialsResponse, KnoraApiConfig, KnoraApiConnection, UserResponse } from '@knora/api';
 import { KnoraApiConfigToken, KnoraApiConnectionToken, KnoraConstants } from '@knora/core';
 import * as momentImported from 'moment';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Session } from '../declarations';
 
@@ -161,7 +159,7 @@ export class SessionService {
                 // the internal session has expired
                 // check if the api credentails are still valid
                 this.knoraApiConnection.v2.auth.checkCredentials().subscribe(
-                    (response: ApiResponseData<CredentialsReponse>) => {
+                    (response: ApiResponseData<CredentialsResponse>) => {
                         // refresh the jwt in @knora/api
                         this.knoraApiConnection.v2.jsonWebToken = this.session.user.jwt;
 
