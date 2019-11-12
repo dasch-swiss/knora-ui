@@ -151,7 +151,8 @@ export class SessionService {
 
         if (this.session) {
             // the session exists; update the knora-api-connection jwt
-            this.knoraApiConnection.v2.jsonWebToken = this.session.user.jwt;
+            this.knoraApiConfig.jsonWebToken = this.session.user.jwt;
+            this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);
 
             // check if the session is still valid:
             // if session.id + MAX_SESSION_TIME < now: _session.validateSession()
@@ -161,7 +162,9 @@ export class SessionService {
                 this.knoraApiConnection.v2.auth.checkCredentials().subscribe(
                     (response: ApiResponseData<CredentialsResponse>) => {
                         // refresh the jwt in @knora/api
-                        this.knoraApiConnection.v2.jsonWebToken = this.session.user.jwt;
+                        // this.knoraApiConnection.v2.jsonWebToken =
+                        this.knoraApiConfig.jsonWebToken = this.session.user.jwt;
+                        this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);
 
                         // the api authentication is valid;
                         // update the session.id
@@ -177,7 +180,9 @@ export class SessionService {
                         console.error('checkCredentials error', error);
 
                         this.destroySession();
-                        this.knoraApiConnection.v2.jsonWebToken = '';
+                        this.knoraApiConfig.jsonWebToken = '';
+                        this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);
+                        //                        this.knoraApiConnection.v2.jsonWebToken = '';
                         return false;
                     }
                 );
