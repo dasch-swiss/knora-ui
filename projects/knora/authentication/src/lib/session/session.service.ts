@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiResponseData, ApiResponseError, KnoraApiConfig, KnoraApiConnection, UserResponse } from '@knora/api';
+import { ApiResponseData, ApiResponseError, KnoraApiConfig, KnoraApiConnection, UserResponse, CredentialsReponse } from '@knora/api';
 import { KnoraApiConfigToken, KnoraApiConnectionToken, KnoraConstants } from '@knora/core';
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
@@ -145,53 +145,68 @@ export class SessionService {
         return (moment().add(0, 'second')).valueOf();
     }
 
-    validateSession() {
+    validateSession(): boolean {
         // mix of checks with session.validation and this.authenticate
         this.session = JSON.parse(localStorage.getItem('session'));
 
         const tsNow: number = this.setTimestamp();
 
         if (this.session) {
-            // the session exists
+            // the session exists; update the knora-api-connection jwt
+            this.knoraApiConnection.v2.jsonWebToken = this.session.user.jwt;
+
             // check if the session is still valid:
-            // if session.id + MAX_SESSION_TIME > now: _session.validateSession()
+            // if session.id + MAX_SESSION_TIME < now: _session.validateSession()
             if (this.session.id + this.MAX_SESSION_TIME < tsNow) {
                 // the internal session has expired
-                // check if the api v2/authentication is still valid
+                // check if the api credentails are still valid
+                this.knoraApiConnection.v2.auth.checkCredentials().subscribe(
+                    (response: ApiResponseData<CredentialsReponse>) => {
+                        // refresh the jwt in @knora/api
+                        this.knoraApiConnection.v2.jsonWebToken = this.session.user.jwt;
 
-                if (this.authenticate()) {
-                    // the api authentication is valid;
-                    // update the session.id
-                    this.session.id = tsNow;
+                        // the api authentication is valid;
+                        // update the session.id
+                        this.session.id = tsNow;
 
-                    localStorage.setItem('session', JSON.stringify(this.session));
-                    return true;
+                        localStorage.setItem('session', JSON.stringify(this.session));
 
-                } else {
-                    // console.error('session.service -- validateSession -- authenticate: the session expired on API side');
-                    // a user is not authenticated anymore!
-                    this.destroySession();
-                    return false;
-                }
+                        return true;
+                    },
+                    (error: ApiResponseError) => {
+                        // console.error('session.service -- validateSession -- authenticate: the session expired on API side');
+                        // a user is not authenticated anymore!
+                        console.error('checkCredentials error', error);
+
+                        this.destroySession();
+                        this.knoraApiConnection.v2.jsonWebToken = '';
+                        return false;
+                    }
+                );
 
             } else {
+                // refresh the jwt in @knora/api
+                this.knoraApiConnection.v2.jsonWebToken = this.session.user.jwt;
                 return true;
             }
+        } else {
+            return false;
         }
-        return false;
     }
 
-    private authenticate(): Observable<boolean> {
+    // private authenticate(): boolean {
 
-        // TODO: still old method because of missing one in knora-api-js-lib
-        return this._http.get(this.knoraApiConfig.apiUrl + '/v2/authentication').pipe(
-            map((result: any) => {
-                // console.log('AuthenticationService - authenticate - result: ', result);
-                // return true || false
-                return result.status === 200;
-            })
-        );
-    }
+
+
+    // TODO: still old method because of missing one in knora-api-js-lib
+    // return this._http.get(this.knoraApiConfig.apiUrl + '/v2/authentication').pipe(
+    //     map((result: any) => {
+    //         // console.log('AuthenticationService - authenticate - result: ', result);
+    //         // return true || false
+    //         return result.status === 200;
+    //     })
+    // );
+    // }
 
     /**
      * update the session storage
