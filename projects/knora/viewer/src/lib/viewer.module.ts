@@ -161,7 +161,8 @@ import { IntElementComponent } from './element/int-element/int-element.component
         CompareViewComponent,
         GraphViewComponent,
         PropertiesViewComponent,
-        SearchResultsComponent
+        SearchResultsComponent,
+        IntElementComponent
     ]
 })
 export class KuiViewerModule {
