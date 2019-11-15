@@ -27,7 +27,7 @@ usage ()
 inPath='./projects/knora'
 outPath='./src/data/documentation'
 
-modules=('action' 'authentication' 'core' 'search' 'viewer')
+modules=('action' 'core' 'search' 'viewer')
 
 jsdoc2json ()
 {
