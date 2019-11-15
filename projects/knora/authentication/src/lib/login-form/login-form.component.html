@@ -1,4 +1,4 @@
-<div class="login-container" *ngIf="!loggedInUser">
+<div class="login-container" *ngIf="!session">
 
     <h2 class="login-form-title mat-title">{{formLabel.title}}</h2>
 
@@ -46,9 +46,9 @@
 
 
 <!-- a user is already logged in; show who it is and a logout button -->
-<div class="logout-container" *ngIf="loggedInUser">
+<div class="logout-container" *ngIf="session">
     <p>A user is already logged in:</p>
-    <p>Username: <strong>{{loggedInUser}}</strong></p>
+    <p>Username: <strong>{{session.user.name}}</strong></p>
     <br>
     <p>Please log out if it's not you.</p>
     <button mat-raised-button (click)="logout()" class="full-width mat-warn logout-button">

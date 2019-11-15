@@ -1,19 +1,45 @@
-import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ApiResponseData, ApiResponseError, CredentialsResponse, KnoraApiConfig, KnoraApiConnection, UserResponse } from '@knora/api';
 import { KnoraApiConfigToken, KnoraApiConnectionToken, KnoraConstants } from '@knora/core';
 import * as momentImported from 'moment';
+import { Subject } from 'rxjs';
 
-import { Session } from '../declarations';
+/**
+ * Currently logged-in user information
+ */
+export interface CurrentUser {
+    // username
+    name: string;
+
+    // json web token
+    jwt: string;
+
+    // default language for ui
+    lang: string;
+
+    // is system admin?
+    sysAdmin: boolean;
+
+    // list of project shortcodes where the user is project admin
+    projectAdmin: string[];
+}
+
+/**
+ * Session with id (= login timestamp) and inforamtion about logged-in user
+ */
+export interface Session {
+    id: number;
+    user: CurrentUser;
+}
 
 const moment = momentImported;
-
+/**
+ * TODO: move this service to @knora/core
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class SessionService {
-
-    public session: Session;
 
     /**
      * max session time in milliseconds
@@ -21,11 +47,11 @@ export class SessionService {
      *
      */
     readonly MAX_SESSION_TIME: number = 86400000; // 1d = 24 * 60 * 60 * 1000
+    // readonly MAX_SESSION_TIME: number = 30000; // for test only: 30 seconds
 
     constructor(
         @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
-        @Inject(KnoraApiConfigToken) private knoraApiConfig: KnoraApiConfig,
-        private _http: HttpClient
+        @Inject(KnoraApiConfigToken) private knoraApiConfig: KnoraApiConfig
     ) { }
 
     /**
@@ -37,24 +63,23 @@ export class SessionService {
      */
     setSession(jwt: string, identifier: string, identifierType: 'email' | 'username') {
 
-        // define a session id, which is the timestamp of login
-        this.session = {
-            id: this.setTimestamp(),
-            user: {
-                name: '',
-                jwt: jwt,
-                lang: '',
-                sysAdmin: false,
-                projectAdmin: []
-            }
-        };
-        // store in the localStorage
-        localStorage.setItem('session', JSON.stringify(this.session));
+        let session: Session;
 
-        // username can be either name or email address, so what do we have?
-        // const identifierType: string = ((username.indexOf('@') > -1) ? 'email' : 'username');
+        this.updateKnoraApiConnection(jwt);
 
-
+        // // define a session id, which is the timestamp of login
+        // this.session = {
+        //     id: this.setTimestamp(),
+        //     user: {
+        //         name: '',
+        //         jwt: jwt,
+        //         lang: '',
+        //         sysAdmin: false,
+        //         projectAdmin: []
+        //     }
+        // };
+        // // store in the localStorage
+        // localStorage.setItem('session', JSON.stringify(this.session));
 
         // get user information
         this.knoraApiConnection.admin.usersEndpoint.getUser(identifierType, identifier).subscribe(
@@ -62,9 +87,7 @@ export class SessionService {
                 let sysAdmin: boolean = false;
                 const projectAdmin: string[] = [];
 
-                // BUG: Property 'permissions' does not exist on type 'ReadUser'. Issue #90 in knora-api-js-lib
-                // TODO: uncomment after bug is fixed
-
+                // get permission inforamation: a) is user sysadmin? b) get list of project iris where user is project admin
                 const groupsPerProjectKeys: string[] = Object.keys(response.body.user.permissions.groupsPerProject);
 
                 for (const key of groupsPerProjectKeys) {
@@ -77,10 +100,8 @@ export class SessionService {
                     }
                 }
 
-
-
-                // replace existing session in localstorage
-                this.session = {
+                // store session information in browser's localstorage
+                session = {
                     id: this.setTimestamp(),
                     user: {
                         name: response.body.user.username,
@@ -91,110 +112,130 @@ export class SessionService {
                     }
                 };
                 // update localStorage
-                localStorage.setItem('session', JSON.stringify(this.session));
+                localStorage.setItem('session', JSON.stringify(session));
             },
             (error: ApiResponseError) => {
+                localStorage.removeItem('session');
                 console.error(error);
             }
         );
 
-        /*
-        this._users.getUser(username, identifierType).subscribe(
-            (result: User) => {
-                let sysAdmin: boolean = false;
-                const projectAdmin: string[] = [];
-
-                const groupsPerProjectKeys: string[] = Object.keys(result.permissions.groupsPerProject);
-
-                for (const key of groupsPerProjectKeys) {
-                    if (key === KnoraConstants.SystemProjectIRI) {
-                        sysAdmin = result.permissions.groupsPerProject[key].indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
-                    }
-
-                    if (result.permissions.groupsPerProject[key].indexOf(KnoraConstants.ProjectAdminGroupIRI) > -1) {
-                        projectAdmin.push(key);
-                    }
-                }
-
-
-                // replace existing session in localstorage
-                this.session = {
-                    id: this.setTimestamp(),
-                    user: {
-                        name: result.username,
-                        jwt: jwt,
-                        lang: result.lang,
-                        sysAdmin: sysAdmin,
-                        projectAdmin: projectAdmin
-                    }
-                };
-                // update localStorage
-                localStorage.setItem('session', JSON.stringify(this.session));
-
-            },
-            (error: ApiServiceError) => {
-                console.error(error);
-            }
-        );
-        */
     }
 
-    private setTimestamp() {
+    private setTimestamp(): number {
         return (moment().add(0, 'second')).valueOf();
     }
 
+
+    /**
+     * Validate the session.
+     *
+     * @returns boolean
+     */
+    validateSessionDepr() {
+        const session = JSON.parse(localStorage.getItem('session'));
+
+        if (!session) {
+            return false;
+        } else {
+            // this.validateSessionAndCheckCredentials(session).subscribe(
+            //     (response: boolean) => {
+            //         return response;
+            //     }
+            // );
+        }
+
+    }
+
+    /**
+     * Validate intern session and check knora api credentials if necessary.
+     * If a json web token exists, it doesn't mean, that the knora api credentials are still valid.
+     *
+     * @returns Observable<boolean>
+     */
     validateSession(): boolean {
         // mix of checks with session.validation and this.authenticate
-        this.session = JSON.parse(localStorage.getItem('session'));
+        const session = JSON.parse(localStorage.getItem('session'));
 
         const tsNow: number = this.setTimestamp();
 
-        if (this.session) {
-            // the session exists; update the knora-api-connection jwt
-            this.knoraApiConfig.jsonWebToken = this.session.user.jwt;
-            this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);
+        const subject = new Subject<boolean>();
+
+        if (session) {
+
+            this.updateKnoraApiConnection(session.user.jwt);
+            // this.knoraApiConfig.jsonWebToken = session.user.jwt;
+            // this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);
 
             // check if the session is still valid:
             // if session.id + MAX_SESSION_TIME < now: _session.validateSession()
-            if (this.session.id + this.MAX_SESSION_TIME < tsNow) {
-                // the internal session has expired
+            if (session.id + this.MAX_SESSION_TIME <= tsNow) {
+                // the internal (knora-ui) session has expired
                 // check if the api credentails are still valid
+
+                // console.error('session is not valid; check knora api credentials');
+
                 this.knoraApiConnection.v2.auth.checkCredentials().subscribe(
                     (response: ApiResponseData<CredentialsResponse>) => {
+                        // the knora api credentials are still valid
+                        // console.log('knora api credentials', response);
+
                         // refresh the jwt in @knora/api
-                        // this.knoraApiConnection.v2.jsonWebToken =
-                        this.knoraApiConfig.jsonWebToken = this.session.user.jwt;
-                        this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);
+                        this.updateKnoraApiConnection(session.user.jwt);
+                        // this.knoraApiConfig.jsonWebToken = session.user.jwt;
+                        // this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);
 
                         // the api authentication is valid;
                         // update the session.id
-                        this.session.id = tsNow;
+                        session.id = tsNow;
 
-                        localStorage.setItem('session', JSON.stringify(this.session));
+                        localStorage.setItem('session', JSON.stringify(session));
 
+                        // console.log('knora api credentials are valid; return', true);
                         return true;
+                        // subject.next(true);
                     },
                     (error: ApiResponseError) => {
                         // console.error('session.service -- validateSession -- authenticate: the session expired on API side');
                         // a user is not authenticated anymore!
-                        console.error('checkCredentials error', error);
+
+                        console.error('knora api credentials issue', error);
 
                         this.destroySession();
-                        this.knoraApiConfig.jsonWebToken = '';
-                        this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);
-                        //                        this.knoraApiConnection.v2.jsonWebToken = '';
+
+                        // console.warn('knora api credentials are not valid; return', false);
                         return false;
+                        // subject.next(false);
                     }
                 );
 
             } else {
-                // refresh the jwt in @knora/api
-                this.knoraApiConnection.v2.jsonWebToken = this.session.user.jwt;
+                // the internal (knora-ui) session is still valid
+                // refresh the jwt in @knora/api and update the knora-api-connection
+
+                // console.log('session is valid; return', true);
                 return true;
+                // subject.next(true);
             }
         } else {
+            this.updateKnoraApiConnection();
+            // this.knoraApiConfig.jsonWebToken = '';
+            // this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);
+
+            // console.warn('session is not valid; return', false);
             return false;
+            // subject.next(false);
         }
+
+        // console.log('observable subject:', subject);
+
+        // return subject.asObservable();
+
+    }
+
+    updateKnoraApiConnection(jwt?: string) {
+        this.knoraApiConfig.jsonWebToken = (jwt ? jwt : '');
+        this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);
     }
 
     // private authenticate(): boolean {

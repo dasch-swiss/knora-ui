@@ -1,4 +1,5 @@
 /**
+ * TODO: move into session.service
  * currently logged-in user
  */
 export interface CurrentUser {

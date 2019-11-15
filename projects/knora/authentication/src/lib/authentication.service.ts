@@ -34,8 +34,13 @@ export class AuthenticationService extends ApiService {
      *
      * @returns boolean
      */
-    session(): boolean {
-        return this._session.validateSession();
+    session() {
+
+        // this._session.validateSession().subscribe(
+        //     (response: boolean) => {
+        //         return response;
+        //     }
+        // );
     }
 
     /**

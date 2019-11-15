@@ -4,6 +4,7 @@ import { ApiResponseData, ApiResponseError, KnoraApiConnection, LoginResponse, L
 import { KnoraApiConnectionToken } from '@knora/core';
 
 import { SessionService } from '../session/session.service';
+import { Session } from '../declarations';
 
 @Component({
     selector: 'kui-login-form',
@@ -36,7 +37,7 @@ export class LoginFormComponent implements OnInit {
     returnUrl: string;
 
     // is there already a valid session?
-    loggedInUser: string;
+    session: Session;
 
     // form
     form: FormGroup;
@@ -88,14 +89,20 @@ export class LoginFormComponent implements OnInit {
         @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
         private _session: SessionService,
         private _fb: FormBuilder) {
+
+        // this.session = JSON.parse(localStorage.getItem('session'));
+
+        // // check if a user is already logged in; otherwise build the form
+        // if (this.session === null) {
+        //     this.buildForm();
+        // }
     }
 
 
     ngOnInit() {
 
-        // check if a user is already logged in
         if (this._session.validateSession()) {
-            this.loggedInUser = JSON.parse(localStorage.getItem('session')).user.name;
+            this.session = JSON.parse(localStorage.getItem('session'));
         } else {
             this.buildForm();
         }
@@ -171,6 +178,7 @@ export class LoginFormComponent implements OnInit {
         this.knoraApiConnection.v2.auth.logout().subscribe(
             (response: ApiResponseData<LogoutResponse>) => {
                 this.status.emit(response.body.status === 0);
+                this._session.destroySession();
                 this.loading = false;
             },
             (error: ApiResponseError) => {
