@@ -14,11 +14,6 @@ export class MainIntroComponent implements OnInit {
             description: 'The core module contains every service to use Knora\'s RESTful webapi /v2 and /admin. Therefore a JsonLD converter and an ontology cache service.'
         },
         {
-            name: 'authentication',
-            title: 'Login, Logout, Session',
-            description: 'The authentication module contains the login form, a logout button and it offers a session service, but also an authentication guard.'
-        },
-        {
             name: 'search',
             title: 'Complete search panel',
             description: 'Search module allows to make fulltext or extended searches in Knora. Filter by resource class and its properties related to an ontology.'

@@ -7,24 +7,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
-import { KuiAuthenticationModule } from '@knora/authentication';
 import { KnoraApiConnectionToken, KuiConfigToken, KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
-
 import { MarkdownModule } from 'ngx-markdown';
-// set up the environment configuration
 
 import { AppComponent } from './app.component';
-
 import { AppRouting } from './app.routing';
 import { ActionDemoComponent } from './knora-ui-examples/action-demo/action-demo.component';
 import { AdminImageComponent } from './knora-ui-examples/action-demo/admin-image/admin-image.component';
 // examples: demo components
 import { ProgressIndicatorComponent } from './knora-ui-examples/action-demo/progress-indicator/progress-indicator.component';
 import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button/sort-button.component';
-import { AuthComponent } from './knora-ui-examples/authentication-demo/auth/auth.component';
-import { LoginComponent } from './knora-ui-examples/authentication-demo/login/login.component';
+import { LoginComponent } from './knora-ui-examples/action-demo/login/login.component';
 import { CoreDemoComponent } from './knora-ui-examples/core-demo/core-demo.component';
 import { GroupsComponent } from './knora-ui-examples/core-demo/groups/groups.component';
 import { ListsComponent } from './knora-ui-examples/core-demo/lists/lists.component';
@@ -58,7 +53,6 @@ import { ConvertJsonLdComponent } from './knora-ui-examples/core-demo/convert-js
 import { OntologyCacheComponent } from './knora-ui-examples/core-demo/ontology-cache/ontology-cache.component';
 import { OntologyComponent } from './knora-ui-examples/core-demo/ontology/ontology.component';
 import { DocumentationViewerComponent } from './partials/documentation-viewer/documentation-viewer.component';
-import { AuthenticationDemoComponent } from './knora-ui-examples/authentication-demo/authentication-demo.component';
 import { SearchPanelComponent } from './knora-ui-examples/search-demo/search-panel/search-panel.component';
 import { TrimBracketsPipe } from './partials/pipes/trim-brackets.pipe';
 
@@ -105,7 +99,6 @@ export function initializeApp(appInitService: AppInitService) {
         ViewerDemoComponent,
         PropertiesComponent,
         ViewsComponent,
-        AuthComponent,
         ExistingNameComponent,
         KeyComponent,
         ResourcesComponent,
@@ -117,7 +110,6 @@ export function initializeApp(appInitService: AppInitService) {
         OntologyCacheComponent,
         OntologyComponent,
         DocumentationViewerComponent,
-        AuthenticationDemoComponent,
         SearchPanelComponent,
         TrimBracketsPipe,
         FulltextSearchComponent,
@@ -136,7 +128,6 @@ export function initializeApp(appInitService: AppInitService) {
         AppRouting,
         FlexLayoutModule,
         KuiCoreModule,
-        KuiAuthenticationModule,
         KuiActionModule,
         KuiSearchModule,
         KuiViewerModule,
