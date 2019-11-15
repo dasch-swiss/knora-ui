@@ -13,31 +13,28 @@ But you can use only @knora/core which contains almost all services for the Knor
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora v9.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v9.0.0).
+This version of Knora-ui requires [Knora version ^9.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v9.0.0).
 
 ## Already published modules
 
 ### @knora/core
 
-[![npm (scoped)](https://img.shields.io/npm/v/@knora/core.svg)](https://www.npmjs.com/package/@knora/core)
+[![npm](https://img.shields.io/npm/v/@knora/core.svg)](https://www.npmjs.com/package/@knora/core)
+![](https://img.shields.io/npm/dt/@knora/core.svg?style=flat)
+![](https://img.shields.io/bundlephobia/minzip/@knora/core.svg?style=flat)
+![](https://img.shields.io/npm/l/@knora/core.svg?style=flat)
 
 The core module contains every service to use Knora's RESTful webapi.
 [read more...](https://dasch-swiss.github.io/knora-ui/modules/core)
 
 * * *
 
-### @knora/authentication
-
-[![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg)](https://www.npmjs.com/package/@knora/authentication)
-
-The authentication module contains the login form (for standalone usage) or a complete login- / logout-button environment incl. the login form.
-[read more...](https://dasch-swiss.github.io/knora-ui/modules/authentication)
-
-* * *
-
 ### @knora/search
 
-[![npm (scoped)](https://img.shields.io/npm/v/@knora/search.svg)](https://www.npmjs.com/package/@knora/search)
+[![npm](https://img.shields.io/npm/v/@knora/search.svg)](https://www.npmjs.com/package/@knora/search)
+![](https://img.shields.io/npm/dt/@knora/search.svg?style=flat)
+![](https://img.shields.io/bundlephobia/minzip/@knora/search.svg?style=flat)
+![](https://img.shields.io/npm/l/@knora/search.svg?style=flat)
 
 Search module allows to make simple searches or extended searches in Knora. In extended search, resource class and its properties related to one specific ontology are selected to create your query.
 [read more...](https://dasch-swiss.github.io/knora-ui/modules/search)
@@ -46,7 +43,10 @@ Search module allows to make simple searches or extended searches in Knora. In e
 
 ### @knora/viewer
 
-[![npm (scoped)](https://img.shields.io/npm/v/@knora/viewer.svg)](https://www.npmjs.com/package/@knora/viewer)
+[![npm](https://img.shields.io/npm/v/@knora/viewer.svg)](https://www.npmjs.com/package/@knora/viewer)
+![](https://img.shields.io/npm/dt/@knora/viewer.svg?style=flat)
+![](https://img.shields.io/bundlephobia/minzip/@knora/viewer.svg?style=flat)
+![](https://img.shields.io/npm/l/@knora/viewer.svg?style=flat)
 
 The viewer module contains object components to show the resource class representations from Knora, the gui-elements for the property values and different kind of view frameworks.
 [read more...](https://dasch-swiss.github.io/knora-ui/modules/viewer)
@@ -55,7 +55,10 @@ The viewer module contains object components to show the resource class represen
 
 ### @knora/action
 
-[![npm (scoped)](https://img.shields.io/npm/v/@knora/action.svg)](https://www.npmjs.com/package/@knora/action)
+[![npm](https://img.shields.io/npm/v/@knora/action.svg)](https://www.npmjs.com/package/@knora/action)
+![](https://img.shields.io/npm/dt/@knora/action.svg?style=flat)
+![](https://img.shields.io/bundlephobia/minzip/@knora/action.svg?style=flat)
+![](https://img.shields.io/npm/l/@knora/action.svg?style=flat)
 
 The action module contains special buttons (e.g. to sort a list), pipes and directives.
 [read more...](https://dasch-swiss.github.io/knora-ui/modules/action)

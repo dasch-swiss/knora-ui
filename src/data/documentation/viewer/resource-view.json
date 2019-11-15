@@ -26,9 +26,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 19,
-    "codeStart": 22,
-    "code": "@Input() iri?: string;\n\n@ViewChild('kuiStillImage', { static: false }) kuiStillImage: StillImageComponent;\n\nsequence: ResourcesSequence;\n\nontologyInfo: OntologyInformation;\nguiOrder: GuiOrder[];\nloading: boolean;\nerror: KuiMessageData;\nKnoraConstants = KnoraConstants;\n\n// does the resource has a file representation (media file)?\nfileRepresentation: boolean;\n\n// current resource in case of compound object\ncurrentResource: ReadResource;\n\nconstructor (protected _route: ActivatedRoute,\n    protected _router: Router,\n    protected _resourceService: ResourceService,\n    protected _incomingService: IncomingService\n) {\n\n}\n\nngOnInit() {\n    // this.getResource(this.iri);\n}\n\nngOnChanges() {\n    this.getResource(this.iri);\n\n    // console.log(this.kuiStillImage.k;\n}",
+    "line": 23,
+    "codeStart": 26,
+    "code": "@Input() iri?: string;\n\n@ViewChild('kuiStillImage', { static: false }) kuiStillImage: StillImageComponent;\n\nresource: ReadResource;\n\nsequence: ResourcesSequence;\n\nontologyInfo: OntologyInformation;\nguiOrder: GuiOrder[];\nloading: boolean;\nerror: KuiMessageData;\nKnoraConstants = KnoraConstants;\n\n// does the resource has a file representation (media file)?\nfileRepresentation: boolean;\n\n// current resource in case of compound object\ncurrentResource: ReadResource;\n\nconstructor(\n    @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,\n    protected _route: ActivatedRoute,\n    protected _router: Router,\n    protected _incomingService: IncomingService\n) {\n\n}\n\nngOnInit() {\n    // this.getResource(this.iri);\n}\n\nngOnChanges() {\n    this.getResource(this.iri);\n\n    // console.log(this.kuiStillImage.k;\n}",
     "ctx": false
   },
   {
@@ -58,14 +58,31 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 58,
-    "codeStart": 63,
-    "code": "getResource(id: string) {\n    this.loading = true;\n    this.error = undefined;\n    this._resourceService.getResource(decodeURIComponent(id)).subscribe(\n        (result: ResourcesSequence) => {\n\n            // console.log('getResource result', result);\n\n            // result with resources only and WITHOUT incoming stuff\n            this.sequence = result;\n\n            // this.ontologyInfo = result.ontologyInformation;\n\n            // const resType = this.sequence.resources[0].type;\n\n            this.guiOrder = result.ontologyInformation.getResourceClasses()[this.sequence.resources[0].type].guiOrder;\n\n            // collect all filerepresentations to display including annotations\n            // --> for the first resource only...\n            // this.sequence.resources[0].fileRepresentationsToDisplay = this.collectFileRepresentationsAndFileAnnotations(this.sequence.resources[0]);\n\n            // collect images and regions\n            // --> for the first resource only...\n            // this.collectImagesAndRegionsForResource(this.sequence.resources[0]);\n\n            // get incoming resources\n            //                this.requestIncomingResources();\n\n\n            // this.fileRepresentation = this.sequence.resources[0].properties.indexOf(KnoraConstants.hasStillImageFileValue) > -1;\n\n            // console.log('fileRepresentation', this.sequence.resources[0].stillImageRepresentationsToDisplay[0].stillImageFileValue);\n\n            // wait until the resource is ready\n            setTimeout(() => {\n                // console.log(this.sequence);\n                this.currentResource = this.sequence.resources[0].incomingFileRepresentations[0];\n                // console.log('currentResource', this.sequence.resources[0].incomingFileRepresentations[0]);\n                this.loading = false;\n            }, 1000);\n        },\n        (error: ApiServiceError) => {\n            // console.error(error);\n\n            const statusText: string = (error.status === 404 ? 'One or more requested resources were not found (maybe you do not have permission to see them, or they are marked as deleted).' : undefined);\n\n            this.error = {\n                status: error.status,\n                statusMsg: error.statusText,\n                statusText: statusText,\n                url: error.url\n            };\n\n            this.loading = false;\n        }\n    );\n}",
+    "line": 65,
+    "codeStart": 70,
+    "code": "getResource(id: string) {\n    this.loading = true;\n    this.error = undefined;\n\n    this.knoraApiConnection.v2.res.getResource(id).subscribe(\n        (result: ReadResource) => {\n            console.log(result);\n            this.resource = result;\n            this.loading = false;\n        },\n        (error: ApiResponseError) => {\n            console.error(error);\n        }\n    );",
     "ctx": {
       "type": "method",
       "name": "getResource",
       "string": "getResource()"
     }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>TODO: replace with knora-api-js-lib<br />\nthis._resourceService.getResource(decodeURIComponent(id)).subscribe(<br />\n(result: ResourcesSequence) =&gt; {</p>\n<pre><code>            // console.log('getResource result', result);\n\n            // result with resources only and WITHOUT incoming stuff\n            this.sequence = result;\n\n            // this.ontologyInfo = result.ontologyInformation;\n\n            // const resType = this.sequence.resources[0].type;\n\n            this.guiOrder = result.ontologyInformation.getResourceClasses()[this.sequence.resources[0].type].guiOrder;\n\n            // collect all filerepresentations to display including annotations\n            // --&gt; for the first resource only...\n            // this.sequence.resources[0].fileRepresentationsToDisplay = this.collectFileRepresentationsAndFileAnnotations(this.sequence.resources[0]);\n\n            // collect images and regions\n            // --&gt; for the first resource only...\n            // this.collectImagesAndRegionsForResource(this.sequence.resources[0]);\n\n            // get incoming resources\n            //                this.requestIncomingResources();\n\n\n            // this.fileRepresentation = this.sequence.resources[0].properties.indexOf(KnoraConstants.hasStillImageFileValue) &gt; -1;\n\n            // console.log('fileRepresentation', this.sequence.resources[0].stillImageRepresentationsToDisplay[0].stillImageFileValue);\n\n            // wait until the resource is ready\n            setTimeout(() =&gt; {\n                // console.log(this.sequence);\n                this.currentResource = this.sequence.resources[0].incomingFileRepresentations[0];\n                // console.log('currentResource', this.sequence.resources[0].incomingFileRepresentations[0]);\n                this.loading = false;\n            }, 1000);\n        },\n        (error: ApiServiceError) =&gt; {\n            // console.error(error);\n\n            const statusText: string = (error.status === 404 ? 'One or more requested resources were not found (maybe you do not have permission to see them, or they are marked as deleted).' : undefined);\n\n            this.error = {\n                status: error.status,\n                statusMsg: error.statusText,\n                statusText: statusText,\n                url: error.url\n            };\n\n            this.loading = false;\n        }\n    );</code></pre>",
+      "summary": "<p>TODO: replace with knora-api-js-lib<br />\nthis._resourceService.getResource(decodeURIComponent(id)).subscribe(<br />\n(result: ResourcesSequence) =&gt; {</p>",
+      "body": "<pre><code>            // console.log('getResource result', result);\n\n            // result with resources only and WITHOUT incoming stuff\n            this.sequence = result;\n\n            // this.ontologyInfo = result.ontologyInformation;\n\n            // const resType = this.sequence.resources[0].type;\n\n            this.guiOrder = result.ontologyInformation.getResourceClasses()[this.sequence.resources[0].type].guiOrder;\n\n            // collect all filerepresentations to display including annotations\n            // --&gt; for the first resource only...\n            // this.sequence.resources[0].fileRepresentationsToDisplay = this.collectFileRepresentationsAndFileAnnotations(this.sequence.resources[0]);\n\n            // collect images and regions\n            // --&gt; for the first resource only...\n            // this.collectImagesAndRegionsForResource(this.sequence.resources[0]);\n\n            // get incoming resources\n            //                this.requestIncomingResources();\n\n\n            // this.fileRepresentation = this.sequence.resources[0].properties.indexOf(KnoraConstants.hasStillImageFileValue) &gt; -1;\n\n            // console.log('fileRepresentation', this.sequence.resources[0].stillImageRepresentationsToDisplay[0].stillImageFileValue);\n\n            // wait until the resource is ready\n            setTimeout(() =&gt; {\n                // console.log(this.sequence);\n                this.currentResource = this.sequence.resources[0].incomingFileRepresentations[0];\n                // console.log('currentResource', this.sequence.resources[0].incomingFileRepresentations[0]);\n                this.loading = false;\n            }, 1000);\n        },\n        (error: ApiServiceError) =&gt; {\n            // console.error(error);\n\n            const statusText: string = (error.status === 404 ? 'One or more requested resources were not found (maybe you do not have permission to see them, or they are marked as deleted).' : undefined);\n\n            this.error = {\n                status: error.status,\n                statusMsg: error.statusText,\n                statusText: statusText,\n                url: error.url\n            };\n\n            this.loading = false;\n        }\n    );</code></pre>"
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 86,
+    "codeStart": 141,
+    "code": "}",
+    "ctx": false
   },
   {
     "tags": [
@@ -93,8 +110,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 122,
-    "codeStart": 127
+    "line": 144,
+    "codeStart": 149
   },
   {
     "tags": [],
@@ -108,8 +125,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 127,
-    "codeStart": 210
+    "line": 149,
+    "codeStart": 232
   },
   {
     "tags": [],
@@ -123,8 +140,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 211,
-    "codeStart": 214,
+    "line": 233,
+    "codeStart": 236,
     "code": "requestIncomingResources(): void {\n\n    // make sure that this.sequence has been initialized correctly\n    if (this.sequence === undefined) {\n        return;\n    }\n\n    // request incoming regions\n    if (this.sequence.resources[0].properties[KnoraConstants.hasStillImageFileValue]) {\n        // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)\n        // the resource is a StillImageRepresentation, check if there are regions pointing to it\n\n        // this.getIncomingRegions(0);\n\n    } else {\n        // this resource is not a StillImageRepresentation\n        // check if there are StillImageRepresentations pointing to this resource\n\n        // this gets the first page of incoming StillImageRepresentations\n        // more pages may be requested by [[this.viewer]].\n        // TODO: for now, we begin with offset 0. This may have to be changed later (beginning somewhere in a collection)\n        // this.getIncomingStillImageRepresentations(0);\n    }\n\n    // check for incoming links for the current resource\n    this.getIncomingLinks(0);\n\n\n}",
     "ctx": {
       "type": "method",
@@ -170,8 +187,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 244,
-    "codeStart": 280
+    "line": 266,
+    "codeStart": 302
   },
   {
     "tags": [
@@ -212,9 +229,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 280,
-    "codeStart": 286,
-    "code": "getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {\n\n    this.loading = true;\n\n    this._incomingService.getIncomingLinksForResource(this.sequence.resources[0].id, offset).subscribe(\n        (incomingResources: ReadResourcesSequence) => {\n            // update ontology information\n            this.ontologyInfo.updateOntologyInformation(incomingResources.ontologyInformation);\n\n            // Append elements incomingResources to this.sequence.incomingLinks\n            Array.prototype.push.apply(this.sequence.resources[0].incomingLinks, incomingResources.resources);\n\n            // if callback is given, execute function with the amount of incoming resources as the parameter\n            if (callback !== undefined) {\n                callback(incomingResources.resources.length);\n            }\n\n            this.loading = false;\n        },\n        (error: any) => {\n            console.error(error);\n            this.loading = false;\n        }\n    );\n}\n\nopenLink(id: string) {\n\n    this.loading = true;\n    // this.routeChanged.emit(id);\n    this._router.navigate(['/resource/' + encodeURIComponent(id)]);\n\n}\n\nrefreshProperties(index: number) {\n    // console.log('from still-image-component: ', index);\n    this.currentResource = this.sequence.resources[0].incomingFileRepresentations[index];\n    // console.log(this.currentResource);\n}\n\n\n\n\n\n}",
+    "line": 302,
+    "codeStart": 308,
+    "code": "getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {\n\n    this.loading = true;\n\n    this._incomingService.getIncomingLinksForResource(this.sequence.resources[0].id, offset).subscribe(\n        (incomingResources: ReadResourcesSequence) => {\n            // update ontology information\n            this.ontologyInfo.updateOntologyInformation(incomingResources.ontologyInformation);\n\n            // Append elements incomingResources to this.sequence.incomingLinks\n            Array.prototype.push.apply(this.sequence.resources[0].incomingLinks, incomingResources.resources);\n\n            // if callback is given, execute function with the amount of incoming resources as the parameter\n            if (callback !== undefined) {\n                callback(incomingResources.resources.length);\n            }\n\n            this.loading = false;\n        },\n        (error: any) => {\n            console.error(error);\n            this.loading = false;\n        }\n    );\n}\n\nopenLink(id: string) {\n\n    this.loading = true;\n    // this.routeChanged.emit(id);\n    this._router.navigate(['/resource/' + encodeURIComponent(id)]);\n\n}\n\nrefreshProperties(index: number) {\n    // console.log('from still-image-component: ', index);\n\n    // TODO: commented for knora-api-js-lib:\n    // this.currentResource = this.sequence.resources[0].incomingFileRepresentations[index];\n\n}\n\n\n\n\n\n}",
     "ctx": {
       "type": "method",
       "name": "getIncomingLinks",

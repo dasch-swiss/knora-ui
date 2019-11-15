@@ -11,9 +11,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 5,
-    "codeStart": 9,
-    "code": "@Component({\n    selector: 'kui-properties-view',\n    templateUrl: './properties-view.component.html',\n    styleUrls: ['./properties-view.component.scss']\n})\nexport class PropertiesViewComponent {\n\n    loading: boolean = false;\n\n    KnoraConstants = KnoraConstants;\n\n    @Input() guiOrder: GuiOrder;\n    @Input() properties: ReadProperties;\n    @Input() annotations: ReadResource[];\n    @Input() incomingLinks: ReadResource[];\n\n    @Input() ontologyInfo: OntologyInformation;\n\n    // @Output() routeChanged: EventEmitter<string> = new EventEmitter<string>();\n\n    constructor (protected _router: Router) { }",
+    "line": 6,
+    "codeStart": 10,
+    "code": "@Component({\n    selector: 'kui-properties-view',\n    templateUrl: './properties-view.component.html',\n    styleUrls: ['./properties-view.component.scss']\n})\nexport class PropertiesViewComponent implements OnInit {\n\n    loading: boolean = false;\n\n    KnoraConstants = KnoraConstants;\n\n    @Input() guiOrder?: GuiOrder;\n\n    @Input() entityInfo: IResourceClassAndPropertyDefinitions;\n    @Input() properties: {\n        [index: string]: ReadValue[];\n    };\n\n    @Input() annotations?: ReadResource[];\n    @Input() incomingLinks?: ReadResource[];\n\n    propArray: any = [];\n\n    // @Output() routeChanged: EventEmitter<string> = new EventEmitter<string>();\n\n    constructor(protected _router: Router) {\n\n    }\n\n    ngOnInit() {\n        // HACK (until gui order is ready): convert properties object into array\n        if (this.properties) {\n            this.propArray = Object.keys(this.properties).map(function (index) {\n                const prop = this.properties[index];\n                return prop;\n            });\n            console.log(this.propArray);\n        }\n    }",
     "ctx": false
   },
   {
@@ -43,8 +43,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 31,
-    "codeStart": 36,
+    "line": 49,
+    "codeStart": 54,
     "code": "openLink(id: string) {\n\n    this.loading = true;\n    // this.routeChanged.emit(id);\n    this._router.navigate(['/resource/' + encodeURIComponent(id)]);\n\n}\n\n}",
     "ctx": {
       "type": "method",

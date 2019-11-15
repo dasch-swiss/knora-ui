@@ -11,8 +11,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 5,
-    "codeStart": 10,
+    "line": 6,
+    "codeStart": 11,
     "code": "@Component({\n    selector: 'kui-search-results',\n    templateUrl: './search-results.component.html',\n    styleUrls: ['./search-results.component.scss']\n})\nexport class SearchResultsComponent implements OnInit, OnChanges {",
     "ctx": false
   },
@@ -43,8 +43,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 16,
-    "codeStart": 21,
+    "line": 17,
+    "codeStart": 22,
     "code": "@Input() complexView?: boolean = false;",
     "ctx": false
   },
@@ -75,8 +75,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 23,
-    "codeStart": 27,
+    "line": 24,
+    "codeStart": 28,
     "code": "@Input() searchQuery?: string;",
     "ctx": false
   },
@@ -107,8 +107,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 29,
-    "codeStart": 33,
+    "line": 30,
+    "codeStart": 34,
     "code": "@Input() searchMode?: string;",
     "ctx": false
   },
@@ -139,9 +139,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 35,
-    "codeStart": 39,
-    "code": "@Input() projectIri?: string;\n\nKnoraConstants = KnoraConstants;\noffset: number = 0;\nmaxOffset: number = 0;\ngravSearchQuery: string;\ngravsearchGenerator: ExtendedSearchParams;\nresult: ReadResource[] = [];\nontologyInfo: OntologyInformation;\nnumberOfAllResults: number;\n// rerender: boolean = false;\nbadRequest: boolean = false;\nloading = true;\nerrorMessage: ApiServiceError = new ApiServiceError();\npagingLimit: number = 25;\n\nconstructor (\n    private _route: ActivatedRoute,\n    private _searchService: SearchService,\n    private _searchParamsService: SearchParamsService,\n    private _router: Router\n) {\n\n}\n\nngOnInit() {\n\n}\n\nngOnChanges() {\n    this._route.paramMap.subscribe(\n        (params: Params) => {\n            // get the search mode\n            if (!this.searchMode) {\n                this.searchMode = params.get('mode');\n            }\n\n            // get the project iri\n            if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {\n                this.projectIri = decodeURIComponent(params.get('project'));\n            }\n\n            // init offset  and result\n            this.offset = 0;\n            this.result = [];\n\n            // get query params depending on the search mode\n            if (this.searchMode === 'fulltext') {\n                this.searchQuery = params.get('q');\n                this.badRequest = this.searchQuery.length < 3;\n            } else if (this.searchMode === 'extended') {\n                this.gravsearchGenerator = this._searchParamsService.getSearchParams();\n                if (!this.searchQuery) {\n                    this.generateGravsearchQuery();\n                } else {\n                    this.gravSearchQuery = this.searchQuery;\n                }\n            }\n\n            // get results\n            // this.rerender = true;\n            this.getResult();\n        }\n    );\n}",
+    "line": 36,
+    "codeStart": 40,
+    "code": "@Input() projectIri?: string;\n\nKnoraConstants = KnoraConstants;\noffset: number = 0;\nmaxOffset: number = 0;\ngravSearchQuery: string;\ngravsearchGenerator: ExtendedSearchParams;\nresult: ReadResource[] = [];\nontologyInfo: IResourceClassAndPropertyDefinitions;\nnumberOfAllResults: number;\n// rerender: boolean = false;\nbadRequest: boolean = false;\nloading = true;\nerrorMessage: ApiResponseError;\npagingLimit: number = 25;\n\nconstructor(\n    @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,\n    private _route: ActivatedRoute,\n    // private _searchService: SearchService,\n    private _searchParamsService: SearchParamsService,\n    private _router: Router\n) {\n\n}\n\nngOnInit() {\n\n}\n\nngOnChanges() {\n    this._route.paramMap.subscribe(\n        (params: Params) => {\n            // get the search mode\n            if (!this.searchMode) {\n                this.searchMode = params.get('mode');\n            }\n\n            // get the project iri\n            if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {\n                this.projectIri = decodeURIComponent(params.get('project'));\n            }\n\n            // init offset  and result\n            this.offset = 0;\n            this.result = [];\n\n            // get query params depending on the search mode\n            if (this.searchMode === 'fulltext') {\n                this.searchQuery = params.get('q');\n                this.badRequest = this.searchQuery.length < 3;\n            } else if (this.searchMode === 'extended') {\n                this.gravsearchGenerator = this._searchParamsService.getSearchParams();\n                if (!this.searchQuery) {\n                    this.generateGravsearchQuery();\n                } else {\n                    this.gravSearchQuery = this.searchQuery;\n                }\n            }\n\n            // get results\n            // this.rerender = true;\n            this.getResult();\n        }\n    );\n}",
     "ctx": false
   },
   {
@@ -162,8 +162,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 106,
-    "codeStart": 110,
+    "line": 108,
+    "codeStart": 112,
     "code": "private generateGravsearchQuery() {\n    const gravsearch:\n        | string\n        | boolean = this.gravsearchGenerator.generateGravsearch(\n            this.offset\n        );\n    if (gravsearch === false) {\n        // no valid search params (application has been reloaded)\n        // go to root\n        this._router.navigate([''], { relativeTo: this._route });\n        return;\n    } else {\n        this.gravSearchQuery = <string>gravsearch;\n    }\n}",
     "ctx": false
   },
@@ -185,9 +185,49 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 126,
-    "codeStart": 130,
-    "code": "private getResult() {\n    this.loading = true;\n\n    // reset the error message\n    this.errorMessage = undefined;\n\n    // FULLTEXT SEARCH\n    if (this.searchMode === 'fulltext') {\n        // this.rerender = true;\n        if (this.badRequest) {\n            this.errorMessage = new ApiServiceError();\n            this.errorMessage.errorInfo =\n                'A search value is expected to have at least length of 3 characters.';\n            this.loading = false;\n            // this.rerender = false;\n        } else {\n\n            let searchParams;\n\n            if (this.projectIri !== undefined) {\n                searchParams = { limitToProject: this.projectIri };\n            }\n\n            if (this.offset === 0) {\n                // perform count query\n                this._searchService\n                    .doFullTextSearchCountQueryCountQueryResult(\n                        this.searchQuery,\n                        searchParams\n                    )\n                    .subscribe(\n                        this.showNumberOfAllResults,\n                        (error: ApiServiceError) => {\n                            this.errorMessage = <ApiServiceError>error;\n                        }\n                    );\n            }\n\n            // perform full text search\n            this._searchService\n                .doFullTextSearchReadResourceSequence(\n                    this.searchQuery,\n                    this.offset,\n                    searchParams\n                )\n                .subscribe(\n                    this.processSearchResults, // function pointer\n                    (error: ApiServiceError) => {\n                        this.errorMessage = <ApiServiceError>error;\n                        console.log('error', error);\n                        console.log('message', this.errorMessage);\n                    }\n                );\n        }\n\n        // EXTENDED SEARCH\n    } else if (this.searchMode === 'extended') {\n        // perform count query\n        if (this.offset === 0) {\n            this._searchService\n                .doExtendedSearchCountQueryCountQueryResult(\n                    this.gravSearchQuery\n                )\n                .subscribe(\n                    this.showNumberOfAllResults,\n                    (error: ApiServiceError) => {\n                        this.errorMessage = <ApiServiceError>error;\n                    }\n                );\n        }\n        this._searchService\n            .doExtendedSearchReadResourceSequence(this.gravSearchQuery)\n            .subscribe(\n                this.processSearchResults, // function pointer\n                (error: ApiServiceError) => {\n                    this.errorMessage = <ApiServiceError>error;\n                }\n            );\n    } else {\n        this.errorMessage = new ApiServiceError();\n        this.errorMessage.errorInfo = `search mode invalid: ${\n            this.searchMode\n            }`;\n    }\n}",
+    "line": 128,
+    "codeStart": 132,
+    "code": "private getResult() {\n    this.loading = true;\n\n    // reset the error message\n    this.errorMessage = undefined;\n\n    // FULLTEXT SEARCH\n    if (this.searchMode === 'fulltext') {\n        // this.rerender = true;\n        if (this.badRequest) {\n            this.errorMessage = undefined;\n            // TODO: fix that!",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>this.errorMessage.error.toString errorInfo =<br />\n'A search value is expected to have at least length of 3 characters.';</p>",
+      "summary": "<p>this.errorMessage.error.toString errorInfo =<br />\n'A search value is expected to have at least length of 3 characters.';</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 144,
+    "codeStart": 148,
+    "code": "this.loading = false;\n// this.rerender = false;\n            } else {\n\nlet searchParams;\n\nif (this.projectIri !== undefined) {\n    searchParams = { limitToProject: this.projectIri };\n}\n\nif (this.offset === 0) {\n    // perform count query\n    this.knoraApiConnection.v2.search.doFulltextSearchCountQuery(this.searchQuery, searchParams).subscribe(\n        this.showNumberOfAllResults,\n        (error: ApiResponseError) => {\n            this.errorMessage = error;\n        }\n    );\n}\n\n// perform full text search\nthis.knoraApiConnection.v2.search.doFulltextSearch(this.searchQuery, this.offset, searchParams).subscribe(\n    this.processSearchResults, // function pointer\n    (error: ApiResponseError) => {\n        this.errorMessage = error;\n        console.log('error', error);\n        console.log('message', this.errorMessage);\n    }\n);\n            }\n\n            // EXTENDED SEARCH\n        } else if (this.searchMode === 'extended') {\n            // perform count query\n            if (this.offset === 0) {\nthis.knoraApiConnection.v2.search.doExtendedSearchCountQuery(this.gravSearchQuery).subscribe(\n    this.showNumberOfAllResults,\n    (error: ApiResponseError) => {\n        this.errorMessage = error;\n    }\n);\n            }\n            this.knoraApiConnection.v2.search.doExtendedSearch(this.gravSearchQuery).subscribe(\nthis.processSearchResults, // function pointer\n(error: ApiResponseError) => {\n    this.errorMessage = error;\n}\n            );\n        } else {\n            // TODO: fix this",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "loading",
+      "value": "false",
+      "string": "this.loading"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>this.errorMessage = new ApiResponseError();<br />\nthis.errorMessage.errorInfo = <code>search mode invalid: ${ this.searchMode }</code>;</p>",
+      "summary": "<p>this.errorMessage = new ApiResponseError();<br />\nthis.errorMessage.errorInfo = <code>search mode invalid: ${ this.searchMode }</code>;</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 198,
+    "codeStart": 204,
+    "code": "}\n    }",
     "ctx": false
   },
   {
@@ -222,9 +262,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 216,
-    "codeStart": 224,
-    "code": "private processSearchResults = (searchResult: ReadResourcesSequence) => {\n    // assign ontology information to a variable so it can be used in the component's template\n    if (this.ontologyInfo === undefined) {\n        // init ontology information\n        this.ontologyInfo = searchResult.ontologyInformation;\n    } else {\n        // update ontology information\n        this.ontologyInfo.updateOntologyInformation(\n            searchResult.ontologyInformation\n        );\n    }\n    // append results to search results\n    this.result = this.result.concat(searchResult.resources);\n    // console.log('search results', this.result);\n\n    this.loading = false;\n    // this.rerender = false;\n}",
+    "line": 207,
+    "codeStart": 215,
+    "code": "private processSearchResults = (searchResult: ReadResource[]) => {\n    console.log(searchResult);\n    // assign ontology information to a variable so it can be used in the component's template\n    if (this.ontologyInfo === undefined) {\n        // init ontology information\n        // TODO: how do we get ontologyInfo from knora-api-js-lib ReadResource[]\n        this.ontologyInfo = searchResult[0].entityInfo;\n    } else {\n        // update ontology information\n        // TODO: fix this\n        // this.ontologyInfo. .updateOntologyInformation(searchResult[0].entityInfo);\n    }\n    // append results to search results\n    this.result = this.result.concat(searchResult);\n    // console.log('search results', this.result);\n\n    this.loading = false;\n    // this.rerender = false;\n}",
     "ctx": false
   },
   {
@@ -259,9 +299,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 243,
-    "codeStart": 249,
-    "code": "private showNumberOfAllResults = (countQueryResult: CountQueryResult) => {\n    this.numberOfAllResults = countQueryResult.numberOfResults;\n\n    if (this.numberOfAllResults > 0) {\n        // offset is 0-based\n        // if numberOfAllResults equals the pagingLimit, the max. offset is 0\n        this.maxOffset = Math.floor(\n            (this.numberOfAllResults - 1) / this.pagingLimit\n        );\n    } else {\n        this.maxOffset = 0;\n    }\n}",
+    "line": 235,
+    "codeStart": 241,
+    "code": "private showNumberOfAllResults = (countQueryResult: CountQueryResponse) => {\n    this.numberOfAllResults = countQueryResult.numberOfResults;\n\n    if (this.numberOfAllResults > 0) {\n        // offset is 0-based\n        // if numberOfAllResults equals the pagingLimit, the max. offset is 0\n        this.maxOffset = Math.floor(\n            (this.numberOfAllResults - 1) / this.pagingLimit\n        );\n    } else {\n        this.maxOffset = 0;\n    }\n}",
     "ctx": false
   },
   {
@@ -308,8 +348,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 263,
-    "codeStart": 271,
+    "line": 255,
+    "codeStart": 263,
     "code": "loadMore(offset: number): void {\n    // update the page offset when the end of scroll is reached to get the next page of search results\n    if (this.offset < this.maxOffset) {\n        this.offset++;\n    } else {\n        return;\n    }\n\n    if (this.searchMode === 'extended') {\n        this.generateGravsearchQuery();\n    }\n\n    this.getResult();\n}\n}",
     "ctx": {
       "type": "method",
