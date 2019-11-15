@@ -22,10 +22,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AdminImageDirective } from './admin-image/admin-image.directive';
 import { ExistingNameDirective } from './existing-name/existing-name.directive';
 import { GndDirective } from './gnd/gnd.directive';
 import { JdnDatepickerDirective } from './jdn-datepicker/jdn-datepicker.directive';
+import { LoginFormComponent } from './login-form/login-form.component';
 import { MessageComponent } from './message/message.component';
 import { KeyPipe } from './pipes/key.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
@@ -65,7 +67,8 @@ import { StringLiteralInputComponent } from './string-literal-input/string-liter
         MessageComponent,
         StringLiteralInputComponent,
         StringifyStringLiteralPipe,
-        TruncatePipe
+        TruncatePipe,
+        LoginFormComponent
 
     ],
     exports: [
@@ -81,7 +84,9 @@ import { StringLiteralInputComponent } from './string-literal-input/string-liter
         MessageComponent,
         StringLiteralInputComponent,
         StringifyStringLiteralPipe,
-        TruncatePipe
+        TruncatePipe,
+        LoginFormComponent
+
 
     ]
 })

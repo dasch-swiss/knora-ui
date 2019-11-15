@@ -5,9 +5,11 @@
   "lib": {
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
+      "@knora/api": "@knora/api",
       "@knora/core": "@knora/core",
       "ts-md5": "ts-md5",
-      "jdnconvertiblecalendardateadapter": "jdnconvertiblecalendardateadapter"
+      "jdnconvertiblecalendardateadapter": "jdnconvertiblecalendardateadapter",
+      "moment": "moment"
     }
   }
 }
