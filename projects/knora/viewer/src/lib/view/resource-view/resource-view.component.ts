@@ -1,8 +1,12 @@
-import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { KuiMessageData } from '@knora/action';
-import { ApiServiceError, GuiOrder, IncomingService, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, ResourceService, ResourcesSequence } from '@knora/core';
+import { ApiResponseError, KnoraApiConnection, ReadResource } from '@knora/api';
+import { GuiOrder, IncomingService, KnoraApiConnectionToken, KnoraConstants, OntologyInformation, ReadResourcesSequence, ResourcesSequence } from '@knora/core';
+
 import { StillImageComponent } from '../../resource';
+
+
 
 // import { Region, StillImageRepresentation } from '../../resource';
 
@@ -23,6 +27,8 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
     @ViewChild('kuiStillImage', { static: false }) kuiStillImage: StillImageComponent;
 
+    resource: ReadResource;
+
     sequence: ResourcesSequence;
 
     ontologyInfo: OntologyInformation;
@@ -37,9 +43,10 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     // current resource in case of compound object
     currentResource: ReadResource;
 
-    constructor (protected _route: ActivatedRoute,
+    constructor(
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
+        protected _route: ActivatedRoute,
         protected _router: Router,
-        protected _resourceService: ResourceService,
         protected _incomingService: IncomingService
     ) {
 
@@ -63,6 +70,20 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     getResource(id: string) {
         this.loading = true;
         this.error = undefined;
+
+        this.knoraApiConnection.v2.res.getResource(id).subscribe(
+            (result: ReadResource) => {
+                console.log(result);
+                this.resource = result;
+                this.loading = false;
+            },
+            (error: ApiResponseError) => {
+                console.error(error);
+            }
+        );
+
+
+        /* TODO: replace with knora-api-js-lib
         this._resourceService.getResource(decodeURIComponent(id)).subscribe(
             (result: ResourcesSequence) => {
 
@@ -116,6 +137,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
                 this.loading = false;
             }
         );
+        */
     }
 
 
@@ -319,8 +341,10 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
     refreshProperties(index: number) {
         // console.log('from still-image-component: ', index);
-        this.currentResource = this.sequence.resources[0].incomingFileRepresentations[index];
-        // console.log(this.currentResource);
+
+        // TODO: commented for knora-api-js-lib:
+        // this.currentResource = this.sequence.resources[0].incomingFileRepresentations[index];
+
     }
 
 

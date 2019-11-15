@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiServiceError, LogoutResponse } from '@knora/core';
-import { AuthenticationService } from '../authentication.service';
+import { ApiResponseData, ApiResponseError, KnoraApiConnection, LoginResponse, LogoutResponse } from '@knora/api';
+import { KnoraApiConnectionToken } from '@knora/core';
+
 import { SessionService } from '../session/session.service';
+import { Session } from '../declarations';
 
 @Component({
     selector: 'kui-login-form',
@@ -35,7 +37,7 @@ export class LoginFormComponent implements OnInit {
     returnUrl: string;
 
     // is there already a valid session?
-    loggedInUser: string;
+    session: Session;
 
     // form
     form: FormGroup;
@@ -83,17 +85,24 @@ export class LoginFormComponent implements OnInit {
     };
 
 
-    constructor (private _auth: AuthenticationService,
+    constructor(
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
         private _session: SessionService,
         private _fb: FormBuilder) {
+
+        // this.session = JSON.parse(localStorage.getItem('session'));
+
+        // // check if a user is already logged in; otherwise build the form
+        // if (this.session === null) {
+        //     this.buildForm();
+        // }
     }
 
 
     ngOnInit() {
 
-        // check if a user is already logged in
         if (this._session.validateSession()) {
-            this.loggedInUser = JSON.parse(localStorage.getItem('session')).user.name;
+            this.session = JSON.parse(localStorage.getItem('session'));
         } else {
             this.buildForm();
         }
@@ -115,9 +124,28 @@ export class LoginFormComponent implements OnInit {
         this.errorMessage = undefined;
 
         // Grab values from form
-        const username = this.form.get('username').value;
+        const identifier = this.form.get('username').value;
         const password = this.form.get('password').value;
 
+        const identifierType: 'iri' | 'email' | 'username' = (identifier.indexOf('@') > -1 ? 'email' : 'username');
+
+        this.knoraApiConnection.v2.auth.login(identifierType, identifier, password).subscribe(
+            (response: ApiResponseData<LoginResponse>) => {
+
+                this._session.setSession(response.body.token, identifier, identifierType);
+
+                setTimeout(() => {
+                    this.status.emit(true);
+                    this.loading = false;
+                }, 2200);
+            },
+            (error: ApiResponseError) => {
+                console.error(error);
+                // TODO: update error handling similar to the old method (see commented code below)
+            }
+        );
+
+        /*
         this._auth.login(username, password).subscribe(
             (response: string) => {
 
@@ -141,17 +169,19 @@ export class LoginFormComponent implements OnInit {
                 this.loading = false;
             }
         );
+        */
 
     }
 
     logout() {
 
-        this._auth.logout().subscribe(
-            (result: LogoutResponse) => {
-                this.status.emit(result.status === 0);
+        this.knoraApiConnection.v2.auth.logout().subscribe(
+            (response: ApiResponseData<LogoutResponse>) => {
+                this.status.emit(response.body.status === 0);
+                this._session.destroySession();
                 this.loading = false;
             },
-            (error: ApiServiceError) => {
+            (error: ApiResponseError) => {
                 console.error(error);
                 this.loading = false;
             }

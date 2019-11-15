@@ -1,6 +1,8 @@
 import { CountQueryResult, KnoraConstants, ReadAudioFileValue, ReadBooleanValue, ReadColorValue, ReadDateValue, ReadDDDFileValue, ReadDecimalValue, ReadDocumentFileValue, ReadGeomValue, ReadIntegerValue, ReadIntervalValue, ReadLinkValue, ReadListValue, ReadMovingImageFileValue, ReadProperties, ReadPropertyItem, ReadResource, ReadResourcesSequence, ReadStillImageFileValue, ReadTextFileValue, ReadTextValueAsHtml, ReadTextValueAsString, ReadTextValueAsXml, ReadUriValue, ReferredResourcesByStandoffLink, Resource, Utils, ResourcesSequence } from '../../declarations';
 
 /**
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Contains methods to convert JSON-LD representing resources and properties to classes.
  * These methods works only for instances of resources and properties, not for ontologies (data model).
  */

@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiServiceError, CountQueryResult, ExtendedSearchParams, KnoraConstants, OntologyInformation, ReadResource, ReadResourcesSequence, SearchParamsService, SearchService } from '@knora/core';
+import { ApiResponseError, CountQueryResponse, IResourceClassAndPropertyDefinitions, KnoraApiConnection, ReadResource } from '@knora/api';
+import { ExtendedSearchParams, KnoraApiConnectionToken, KnoraConstants, SearchParamsService } from '@knora/core';
 
 /**
  * The search-results gets the search mode and parameters from routes or inputs,
@@ -44,17 +45,18 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     gravSearchQuery: string;
     gravsearchGenerator: ExtendedSearchParams;
     result: ReadResource[] = [];
-    ontologyInfo: OntologyInformation;
+    ontologyInfo: IResourceClassAndPropertyDefinitions;
     numberOfAllResults: number;
     // rerender: boolean = false;
     badRequest: boolean = false;
     loading = true;
-    errorMessage: ApiServiceError = new ApiServiceError();
+    errorMessage: ApiResponseError;
     pagingLimit: number = 25;
 
-    constructor (
+    constructor(
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
         private _route: ActivatedRoute,
-        private _searchService: SearchService,
+        // private _searchService: SearchService,
         private _searchParamsService: SearchParamsService,
         private _router: Router
     ) {
@@ -137,9 +139,12 @@ export class SearchResultsComponent implements OnInit, OnChanges {
         if (this.searchMode === 'fulltext') {
             // this.rerender = true;
             if (this.badRequest) {
-                this.errorMessage = new ApiServiceError();
-                this.errorMessage.errorInfo =
+                this.errorMessage = undefined;
+                // TODO: fix that!
+                /*
+                this.errorMessage.error.toString errorInfo =
                     'A search value is expected to have at least length of 3 characters.';
+                    */
                 this.loading = false;
                 // this.rerender = false;
             } else {
@@ -152,64 +157,50 @@ export class SearchResultsComponent implements OnInit, OnChanges {
 
                 if (this.offset === 0) {
                     // perform count query
-                    this._searchService
-                        .doFullTextSearchCountQueryCountQueryResult(
-                            this.searchQuery,
-                            searchParams
-                        )
-                        .subscribe(
-                            this.showNumberOfAllResults,
-                            (error: ApiServiceError) => {
-                                this.errorMessage = <ApiServiceError>error;
-                            }
-                        );
+                    this.knoraApiConnection.v2.search.doFulltextSearchCountQuery(this.searchQuery, searchParams).subscribe(
+                        this.showNumberOfAllResults,
+                        (error: ApiResponseError) => {
+                            this.errorMessage = error;
+                        }
+                    );
                 }
 
                 // perform full text search
-                this._searchService
-                    .doFullTextSearchReadResourceSequence(
-                        this.searchQuery,
-                        this.offset,
-                        searchParams
-                    )
-                    .subscribe(
-                        this.processSearchResults, // function pointer
-                        (error: ApiServiceError) => {
-                            this.errorMessage = <ApiServiceError>error;
-                            console.log('error', error);
-                            console.log('message', this.errorMessage);
-                        }
-                    );
+                this.knoraApiConnection.v2.search.doFulltextSearch(this.searchQuery, this.offset, searchParams).subscribe(
+                    this.processSearchResults, // function pointer
+                    (error: ApiResponseError) => {
+                        this.errorMessage = error;
+                        console.log('error', error);
+                        console.log('message', this.errorMessage);
+                    }
+                );
             }
 
             // EXTENDED SEARCH
         } else if (this.searchMode === 'extended') {
             // perform count query
             if (this.offset === 0) {
-                this._searchService
-                    .doExtendedSearchCountQueryCountQueryResult(
-                        this.gravSearchQuery
-                    )
-                    .subscribe(
-                        this.showNumberOfAllResults,
-                        (error: ApiServiceError) => {
-                            this.errorMessage = <ApiServiceError>error;
-                        }
-                    );
-            }
-            this._searchService
-                .doExtendedSearchReadResourceSequence(this.gravSearchQuery)
-                .subscribe(
-                    this.processSearchResults, // function pointer
-                    (error: ApiServiceError) => {
-                        this.errorMessage = <ApiServiceError>error;
+                this.knoraApiConnection.v2.search.doExtendedSearchCountQuery(this.gravSearchQuery).subscribe(
+                    this.showNumberOfAllResults,
+                    (error: ApiResponseError) => {
+                        this.errorMessage = error;
                     }
                 );
+            }
+            this.knoraApiConnection.v2.search.doExtendedSearch(this.gravSearchQuery).subscribe(
+                this.processSearchResults, // function pointer
+                (error: ApiResponseError) => {
+                    this.errorMessage = error;
+                }
+            );
         } else {
-            this.errorMessage = new ApiServiceError();
+            // TODO: fix this
+            /*
+            this.errorMessage = new ApiResponseError();
             this.errorMessage.errorInfo = `search mode invalid: ${
                 this.searchMode
                 }`;
+                */
         }
     }
 
@@ -221,19 +212,20 @@ export class SearchResultsComponent implements OnInit, OnChanges {
      *
      * @param {ReadResourcesSequence} searchResult the answer to a search request.
      */
-    private processSearchResults = (searchResult: ReadResourcesSequence) => {
+    private processSearchResults = (searchResult: ReadResource[]) => {
+        console.log(searchResult);
         // assign ontology information to a variable so it can be used in the component's template
         if (this.ontologyInfo === undefined) {
             // init ontology information
-            this.ontologyInfo = searchResult.ontologyInformation;
+            // TODO: how do we get ontologyInfo from knora-api-js-lib ReadResource[]
+            this.ontologyInfo = searchResult[0].entityInfo;
         } else {
             // update ontology information
-            this.ontologyInfo.updateOntologyInformation(
-                searchResult.ontologyInformation
-            );
+            // TODO: fix this
+            // this.ontologyInfo. .updateOntologyInformation(searchResult[0].entityInfo);
         }
         // append results to search results
-        this.result = this.result.concat(searchResult.resources);
+        this.result = this.result.concat(searchResult);
         // console.log('search results', this.result);
 
         this.loading = false;
@@ -246,7 +238,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
      *
      * @param {ApiServiceResult} countQueryResult the response to a count query.
      */
-    private showNumberOfAllResults = (countQueryResult: CountQueryResult) => {
+    private showNumberOfAllResults = (countQueryResult: CountQueryResponse) => {
         this.numberOfAllResults = countQueryResult.numberOfResults;
 
         if (this.numberOfAllResults > 0) {

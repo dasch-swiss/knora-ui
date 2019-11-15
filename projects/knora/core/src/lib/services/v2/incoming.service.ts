@@ -4,6 +4,8 @@ import { SearchService } from './search.service';
 import { ReadResourcesSequence, ResourcesSequence } from '../../declarations';
 
 /**
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Requests incoming information (regions, links, stillImageRepresentations) from Knora.
  */
 @Injectable({

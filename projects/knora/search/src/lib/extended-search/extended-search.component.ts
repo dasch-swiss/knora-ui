@@ -1,16 +1,9 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {
-    GravsearchGenerationService,
-    OntologyCacheService,
-    OntologyInformation,
-    OntologyMetadata,
-    Properties,
-    PropertyWithValue,
-    ReadResourcesSequence,
-    ResourceClass
-} from '@knora/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { KnoraApiConnection, OntologiesMetadata, OntologyMetadata } from '@knora/api';
+import { GravsearchGenerationService, KnoraApiConnectionToken, OntologyCacheService, OntologyInformation, Properties, PropertyWithValue, ReadResourcesSequence, ResourceClass } from '@knora/core';
+
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
 
@@ -40,7 +33,7 @@ export class ExtendedSearchComponent implements OnInit {
     @Output() gravsearch = new EventEmitter<string>();
 
     // all available ontologies
-    ontologies: Array<OntologyMetadata> = [];
+    ontologies: OntologyMetadata[] = [];
 
     // ontology chosen by the user
     activeOntology: string;
@@ -71,7 +64,9 @@ export class ExtendedSearchComponent implements OnInit {
     // form validation status
     formValid = false;
 
-    constructor (@Inject(FormBuilder) private fb: FormBuilder,
+    constructor(
+        @Inject(FormBuilder) private fb: FormBuilder,
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
         private _route: ActivatedRoute,
         private _router: Router,
         private _cacheService: OntologyCacheService,
@@ -117,9 +112,10 @@ export class ExtendedSearchComponent implements OnInit {
      * @returns void
      */
     initializeOntologies(): void {
-        this._cacheService.getOntologiesMetadata().subscribe(
-            (ontologies: Array<OntologyMetadata>) => {
-                this.ontologies = ontologies;
+
+        this.knoraApiConnection.v2.onto.getOntologiesMetadata().subscribe(
+            (response: OntologiesMetadata) => {
+                this.ontologies = response.ontologies;
             });
     }
 

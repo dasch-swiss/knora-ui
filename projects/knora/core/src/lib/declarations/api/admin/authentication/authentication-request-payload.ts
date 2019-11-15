@@ -1,3 +1,6 @@
+/**
+ * @deprecated Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ */
 export interface AuthenticationRequestPayload {
 
     identifier: string;
@@ -5,6 +8,9 @@ export interface AuthenticationRequestPayload {
     password: string;
 }
 
+/**
+ * @deprecated Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ */
 export interface AuthenticationRequestByEmailPayload {
 
     email: string;
@@ -12,6 +18,9 @@ export interface AuthenticationRequestByEmailPayload {
     password: string;
 }
 
+/**
+ * @deprecated Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ */
 export interface AuthenticationRequestByUsernamePayload {
 
     username: string;

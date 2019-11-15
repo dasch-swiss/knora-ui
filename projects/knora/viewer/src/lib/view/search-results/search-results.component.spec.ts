@@ -22,7 +22,7 @@ class MockSearchParamsService {
 
     private _currentSearchParams: BehaviorSubject<any>;
 
-    constructor () {
+    constructor() {
         this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => 'testquery' + offset));
     }
 

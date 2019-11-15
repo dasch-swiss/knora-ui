@@ -7,6 +7,8 @@ import { ApiServiceResult, Project, ProjectMembersResponse, ProjectResponse, Pro
 import { ApiService } from '../api.service';
 
 /**
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Request information about projects from Knora.
  */
 @Injectable({
@@ -85,7 +87,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<User[]>
      */
     getProjectMembersByIri(iri: string): Observable<User[]> {
-        const url = '/admin/projects/iri/' + encodeURIComponent(iri) + '/members' ;
+        const url = '/admin/projects/iri/' + encodeURIComponent(iri) + '/members';
         return this.getProjectMembers(url);
     }
 
@@ -97,7 +99,7 @@ export class ProjectsService extends ApiService {
      * @returns Observable<User[]>
      */
     getProjectMembersByShortname(shortname: string): Observable<User[]> {
-        const url = '/admin/projects/shortname/' + shortname + '/members' ;
+        const url = '/admin/projects/shortname/' + shortname + '/members';
         return this.getProjectMembers(url);
     }
 
@@ -120,7 +122,7 @@ export class ProjectsService extends ApiService {
      * @param {string} url
      * @returns Observable<User[]>
      */
-     private getProjectMembers(url: string): Observable<User[]> {
+    private getProjectMembers(url: string): Observable<User[]> {
         return this.httpGet(url).pipe(
             map((result: ApiServiceResult) => result.getBody(ProjectMembersResponse).members),
             catchError(this.handleJsonError)

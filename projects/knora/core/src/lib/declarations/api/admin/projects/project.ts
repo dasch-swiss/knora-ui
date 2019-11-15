@@ -1,7 +1,9 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { StringLiteral } from '../../shared/strings';
 
-
+/**
+ * @deprecated Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ */
 @JsonObject('Project')
 export class Project {
 

@@ -1,6 +1,9 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { User } from './user';
 
+/**
+ * @deprecated Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ */
 @JsonObject('UsersList')
 export class UsersList {
 
@@ -9,6 +12,9 @@ export class UsersList {
 
 }
 
+/**
+ * @deprecated Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ */
 @JsonObject('NewUserData')
 export class NewUserData {
 
@@ -25,6 +31,9 @@ export class NewUserData {
     public user_profile: User = undefined;
 }
 
+/**
+ * @deprecated Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ */
 @JsonObject('NewUsersList')
 export class NewUsersList {
     @JsonProperty('users', [NewUserData])

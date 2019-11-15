@@ -1,11 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ApiService, ApiServiceResult, AuthenticationRequestByEmailPayload, AuthenticationRequestByUsernamePayload, AuthenticationResponse, KuiCoreConfigToken, LogoutResponse } from '@knora/core';
+import { ApiService, ApiServiceResult, AuthenticationRequestByEmailPayload, AuthenticationRequestByUsernamePayload, AuthenticationResponse, KuiConfigToken, LogoutResponse } from '@knora/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+
 import { SessionService } from './session/session.service';
 
+
 /**
+ * @deprecated This service is obsolete since we use @knora/api (dasch-swiss/knora-api-js-lib)
+ *
  * Authentication service includes the login, logout method and a session method to check if a user is logged in or not.
  */
 @Injectable({
@@ -15,24 +19,34 @@ export class AuthenticationService extends ApiService {
 
     path: string = '/v2/authentication';
 
-    constructor (private _session: SessionService,
+    constructor(
+        private _session: SessionService,
         public http: HttpClient,
-        @Inject(KuiCoreConfigToken) public config) {
+        @Inject(KuiConfigToken) public config) {
         super(http, config);
     }
 
     /**
+     * @deprecated Use session service validateSession instead
+     *
      * validate if a user is logged in or not
      * returns true if the session is active
      *
      * @returns boolean
      */
-    session(): boolean {
-        return this._session.validateSession();
+    session() {
+
+        // this._session.validateSession().subscribe(
+        //     (response: boolean) => {
+        //         return response;
+        //     }
+        // );
     }
 
     /**
-     * @deprecated update the session storage
+     * @deprecated Use the session service instead
+     *
+     * update the session storage
      * @param jwt
      * @param username
      *
@@ -40,7 +54,7 @@ export class AuthenticationService extends ApiService {
      */
     updateSession(jwt: string, username: string): boolean {
         if (jwt && username) {
-            this._session.setSession(jwt, username);
+            this._session.setSession(jwt, username, 'username');
             return true;
         } else {
             return false;
@@ -48,6 +62,7 @@ export class AuthenticationService extends ApiService {
     }
 
     /**
+     * @deprecated Use login from @knora/api instead
      * Login request
      *
      * @param  {string} identifier can be email address or username
@@ -72,6 +87,7 @@ export class AuthenticationService extends ApiService {
     }
 
     /**
+     * @deprecated Use logout from @knora/api instead
      * Logout from app (by destroying the session) and knora
      *
      * @returns Observable<LogoutResponse>

@@ -1,14 +1,14 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 // import the knora-ui modules
 import { KuiActionModule } from '@knora/action';
 import { KuiAuthenticationModule } from '@knora/authentication';
-import { KuiCoreConfigToken, KuiCoreModule } from '@knora/core';
+import { KnoraApiConnectionToken, KuiConfigToken, KuiCoreModule } from '@knora/core';
 import { KuiSearchModule } from '@knora/search';
 import { KuiViewerModule } from '@knora/viewer';
 
@@ -151,7 +151,10 @@ export function initializeApp(appInitService: AppInitService) {
             provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true
         },
         {
-            provide: KuiCoreConfigToken, useFactory: () => AppInitService.coreConfig
+            provide: KuiConfigToken, useFactory: () => AppInitService.kuiConfig
+        },
+        {
+            provide: KnoraApiConnectionToken, useFactory: () => AppInitService.knoraApiConnection
         },
         {
             provide: MAT_DIALOG_DEFAULT_OPTIONS,

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListValueComponent } from './list-value.component';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
-import { KuiCoreConfig, KuiCoreConfigToken, ListCacheService, ReadListValue } from '@knora/core';
+import { KuiCoreConfig, KuiConfigToken, ListCacheService, ReadListValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -40,7 +40,7 @@ describe('ListValueComponent', () => {
                     },
                 },
                 {
-                    provide: KuiCoreConfigToken,
+                    provide: KuiConfigToken,
                     useValue: KuiCoreConfig
                 },
             ]

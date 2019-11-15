@@ -1,51 +1,34 @@
 import { Injectable } from '@angular/core';
-import { KuiCoreConfig } from '@knora/core';
-
-
-export interface IAppConfig {
-
-    env: {
-        name: string;
-    };
-    ontologyIRI: string;
-    apiURL: string;
-    externalApiURL: string;
-    iiifURL: string;
-    appURL: string;
-    appName: string;
-    localData: string;
-    pagingLimit: number;
-    startComponent: string;
-}
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { KuiConfig } from '@knora/core';
 
 @Injectable()
 export class AppInitService {
 
-    static settings: IAppConfig;
-    static coreConfig: KuiCoreConfig;
+    static knoraApiConnection: KnoraApiConnection;
 
-    constructor() {
-    }
+    static knoraApiConfig: KnoraApiConfig;
+
+    static kuiConfig: KuiConfig;
+
+    constructor() { }
 
     Init() {
 
         return new Promise<void>((resolve, reject) => {
-            // console.log('AppInitService.init() called');
-            // do your initialisation stuff here
 
-            const data = <IAppConfig>window['tempConfigStorage'];
-            // console.log('AppInitService: json', data);
-            AppInitService.settings = data;
+            // init knora-ui configuration
+            AppInitService.kuiConfig = window['tempConfigStorage'] as KuiConfig;
 
-            AppInitService.coreConfig = <KuiCoreConfig>{
-                name: AppInitService.settings.appName,
-                api: AppInitService.settings.apiURL,
-                media: AppInitService.settings.iiifURL,
-                app: AppInitService.settings.appURL,
-                ontologyIRI: AppInitService.settings.ontologyIRI
-            };
+            // init knora-api configuration
+            AppInitService.knoraApiConfig = new KnoraApiConfig(
+                AppInitService.kuiConfig.knora.apiProtocol,
+                AppInitService.kuiConfig.knora.apiHost,
+                AppInitService.kuiConfig.knora.apiPort
+            );
 
-            // console.log('AppInitService: finished');
+            // set knora-api connection configuration
+            AppInitService.knoraApiConnection = new KnoraApiConnection(AppInitService.knoraApiConfig);
 
             resolve();
         });

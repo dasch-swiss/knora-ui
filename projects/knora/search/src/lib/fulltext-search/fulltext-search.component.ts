@@ -1,9 +1,10 @@
 import { ConnectionPositionPair, Overlay, OverlayConfig, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material';
 import { Router } from '@angular/router';
-import { ApiServiceError, KnoraConstants, Project, ProjectsService } from '@knora/core';
+import { ApiResponseData, ApiResponseError, KnoraApiConnection, ProjectResponse, ProjectsResponse, ReadProject } from '@knora/api';
+import { KnoraApiConnectionToken, KnoraConstants } from '@knora/core';
 
 export interface PrevSearchItem {
     projectIri?: string;
@@ -12,7 +13,7 @@ export interface PrevSearchItem {
 }
 
 /**
- * @deprecated
+ *
  */
 @Component({
     selector: 'kui-fulltext-search',
@@ -57,10 +58,10 @@ export class FulltextSearchComponent implements OnInit {
     prevSearch: PrevSearchItem[] = JSON.parse(localStorage.getItem('prevSearch'));
 
     // list of projects, in case of filterproject is true
-    projects: Project[];
+    projects: ReadProject[];
 
     // selected project, in case of filterbyproject and/or projectfilter is true
-    project: Project;
+    project: ReadProject;
     defaultProjectLabel: string = 'All projects';
     projectLabel: string = this.defaultProjectLabel;
     projectIri: string;
@@ -80,11 +81,11 @@ export class FulltextSearchComponent implements OnInit {
         KnoraConstants.DefaultSharedOntologyIRI
     ];
 
-    constructor (
+    constructor(
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
         private _overlay: Overlay,
         private _router: Router,
-        private _viewContainerRef: ViewContainerRef,
-        private _projectsService: ProjectsService
+        private _viewContainerRef: ViewContainerRef
     ) { }
 
     ngOnInit() {
@@ -135,9 +136,9 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     getAllProjects(): void {
-        this._projectsService.getAllProjects().subscribe(
-            (projects: Project[]) => {
-                this.projects = projects;
+        this.knoraApiConnection.admin.projectsEndpoint.getProjects().subscribe(
+            (response: ApiResponseData<ProjectsResponse>) => {
+                this.projects = response.body.projects;
                 // this.loadSystem = false;
                 if (localStorage.getItem('currentProject') !== null) {
                     this.project = JSON.parse(
@@ -145,7 +146,7 @@ export class FulltextSearchComponent implements OnInit {
                     );
                 }
             },
-            (error: ApiServiceError) => {
+            (error: ApiResponseError) => {
                 console.error(error);
                 this.error = error;
             }
@@ -153,18 +154,18 @@ export class FulltextSearchComponent implements OnInit {
     }
 
     getProject(id: string): void {
-        this._projectsService.getProjectByIri(id).subscribe(
-            (project: Project) => {
-                this.setProject(project);
+        this.knoraApiConnection.admin.projectsEndpoint.getProjectByIri(id).subscribe(
+            (project: ApiResponseData<ProjectResponse>) => {
+                this.setProject(project.body.project);
             },
-            (error: ApiServiceError) => {
+            (error: ApiResponseError) => {
                 console.error(error);
             }
         );
     }
 
     // set current project and switch focus to input field
-    setProject(project?: Project): void {
+    setProject(project?: ReadProject): void {
         if (!project) {
             // set default project: all
             this.projectLabel = this.defaultProjectLabel;

@@ -1,20 +1,18 @@
-import { Inject, Injectable } from '@angular/core';
-import { ApiService } from '../api.service';
-import { HttpClient } from '@angular/common/http';
-import { ApiServiceError, ApiServiceResult } from '../../declarations';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
-import { KuiCoreConfigToken } from '../../core.module';
+import { mergeMap } from 'rxjs/operators';
 
+import { ApiServiceError, ApiServiceResult } from '../../declarations';
+import { ApiService } from '../api.service';
+
+/**
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class ListService extends ApiService {
 
-    constructor(public http: HttpClient,
-                @Inject(KuiCoreConfigToken) public config) {
-        super(http, config);
-    }
 
     /**
      * Gets a hierarchical list from Knora.

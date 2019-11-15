@@ -2,9 +2,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-import { KuiCoreConfigToken } from '../../core.module';
+
+import { KnoraApiConfigToken } from '../../core.module';
 import { ApiServiceResult, CountQueryResult, ReadResourcesSequence, ResourcesSequence } from '../../declarations';
 import { ApiService } from '../api.service';
+
 import { ConvertJSONLD } from './convert-jsonld';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
 
@@ -25,6 +27,8 @@ export interface SearchByLabelParams {
 }
 
 /**
+ * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Performs searches (fulltext or extended) and search count queries into Knora.
  */
 @Injectable({
@@ -32,8 +36,8 @@ export interface SearchByLabelParams {
 })
 export class SearchService extends ApiService {
 
-    constructor (public http: HttpClient,
-        @Inject(KuiCoreConfigToken) public config,
+    constructor(public http: HttpClient,
+        @Inject(KnoraApiConfigToken) public config,
         private _ontologyCacheService: OntologyCacheService) {
         super(http, config);
     }
@@ -102,6 +106,7 @@ export class SearchService extends ApiService {
      * @param {Object} resourceResponse
      * @returns {Observable<ReadResourcesSequence>}
      */
+
     private convertJSONLDToReadResourceSequence: (resourceResponse: Object) => Observable<ReadResourcesSequence> = (resourceResponse: Object) => {
         // convert JSON-LD into a ReadResourceSequence
         const resSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(resourceResponse);
@@ -120,6 +125,7 @@ export class SearchService extends ApiService {
             )
         );
     }
+
     /**
      * Converts a JSON-LD object to a `ResourcesSequence`
      *
@@ -197,10 +203,6 @@ export class SearchService extends ApiService {
             mergeMap(
                 // this would return an Observable of a PromiseObservable -> combine them into one Observable
                 this.processJSONLD
-            ),
-            mergeMap(
-                // return Observable of ReadResourcesSequence
-                this.convertJSONLDToReadResourceSequence
             )
         );
     }
@@ -295,9 +297,6 @@ export class SearchService extends ApiService {
         return res.pipe(
             mergeMap(
                 this.processJSONLD
-            ),
-            mergeMap(
-                this.convertJSONLDToReadResourceSequence
             )
         );
     }
@@ -318,9 +317,6 @@ export class SearchService extends ApiService {
         return res.pipe(
             mergeMap(
                 this.processJSONLD
-            ),
-            mergeMap(
-                this.convertJSONLDToResourcesSequence
             )
         );
     }
@@ -422,9 +418,6 @@ export class SearchService extends ApiService {
         return res.pipe(
             mergeMap(
                 this.processJSONLD
-            ),
-            mergeMap(
-                this.convertJSONLDToReadResourceSequence
             )
         );
     }

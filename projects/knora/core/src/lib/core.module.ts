@@ -1,33 +1,31 @@
 import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
-import { KuiCoreConfig } from './declarations';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
 
-export const KuiCoreConfigToken = new InjectionToken<KuiCoreConfig>('KuiCoreConfigToken (knora.core.config)');
+import { KuiConfig } from './core.config';
+
+// config for knora-api-js-lib (@knora/api)
+export const KnoraApiConfigToken = new InjectionToken<KnoraApiConfig>('Knora api configuration');
+
+// connection config for knora-api-js-lib (@knora/api)
+export const KnoraApiConnectionToken = new InjectionToken<KnoraApiConnection>('Knora api connection configuration');
+
+// config for knora-ui (@knora/action, @knora/search, @knora/viewer, @knora/authentication)
+export const KuiConfigToken = new InjectionToken<KuiConfig>('Main configuration for knora-ui modules');
 
 @NgModule({
-    imports: [
-        CommonModule,
-        HttpClientModule
-    ],
+    imports: [],
     declarations: [],
-    exports: [
-        HttpClientModule
-    ]
+    exports: []
 })
 export class KuiCoreModule {
-    /**
-     *
-     * @param {KuiCoreConfig} config
-     * @returns {ModuleWithProviders}
-     */
-    static forRoot(config: KuiCoreConfig): ModuleWithProviders {
+
+    static forRoot(kuiConfig: KuiConfig): ModuleWithProviders {
         // get the app environment configuration here
         // console.log('KuiCoreModule - forRoot - config: ', config);
         return {
             ngModule: KuiCoreModule,
             providers: [
-                {provide: KuiCoreConfigToken, useValue: config}
+                { provide: KuiConfigToken, useValue: kuiConfig }
             ]
         };
     }

@@ -1,9 +1,9 @@
 <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
 <div class="resource-view" *ngIf="!error">
 
-    <div *ngIf="!loading && sequence?.resources.length > 0">
+    <div *ngIf="!loading && resource">
 
-        <div class="resource" *ngFor="let resource of sequence.resources; let last = last">
+        <div class="resource">
 
             <!-- 0) Title first? -->
             <!--             <mat-list>
@@ -21,12 +21,12 @@
             <!-- 1) show fileRepresentation first-->
 
             <!-- show file representation -->
-            <div *ngIf="resource.fileRepresentationsToDisplay?.stillImage && resource.fileRepresentationsToDisplay?.stillImage.length > 0"
+            <!-- <div *ngIf="resource.fileRepresentationsToDisplay?.stillImage && resource.fileRepresentationsToDisplay?.stillImage.length > 0"
                  class="media">
                 <kui-still-image #kuiStillImage class="osd-viewer"
                                  [images]="resource.fileRepresentationsToDisplay.stillImage">
                 </kui-still-image>
-            </div>
+            </div> -->
             <!--
                 <div [ngSwitch]="resource.fileRepresentationsToDisplay[0].type" class="media">
                     <div *ngSwitchCase="KnoraConstants.StillImageFileValue">
@@ -85,14 +85,17 @@
             <!-- 2) show properties, annotations (list of regions, sequences etc.), incomming resources (links, files) -->
             <mat-tab-group animationDuration="0ms" class="full-width data">
                 <!-- first tab for the main resource e.g. book -->
-                <mat-tab [label]="sequence.ontologyInformation.getLabelForResourceClass(resource.type)">
-                    <kui-properties-view [properties]="resource.properties" [guiOrder]="guiOrder"
-                                         [ontologyInfo]="sequence.ontologyInformation"
-                                         [incomingLinks]="resource.incomingLinks">
+                <mat-tab [label]="resource.entityInfo?.classes[resource.type].label">
+                    <!-- TODO: [guiOrder]="guiOrder" /  [ontologyInfo]="resource.entityInfo" is missing? couldn't find yet -->
+                    <kui-properties-view [properties]="resource?.properties" [entityInfo]="resource?.entityInfo"
+                                         [incomingLinks]="resource?.incomingReferences">
                     </kui-properties-view>
                 </mat-tab>
                 <!-- TODO: second tab for a "part-of"-resource e.g. book page -->
 
+                <!-- TODO: incoming file representations are missing; or could not find it yet -->
+
+                <!--
                 <mat-tab *ngIf="resource.incomingFileRepresentations.length > 0 && currentResource"
                          [label]="sequence.ontologyInformation.getLabelForResourceClass(currentResource.type)">
                     <kui-properties-view [properties]="currentResource?.properties"
@@ -106,7 +109,8 @@
                                          [incomingLinks]="resource.incomingFileRepresentations[0].incomingLinks">
                     </kui-properties-view>
                 -->
-                </mat-tab>
+                <!-- </mat-tab> -->
+                -->
                 <!-- TODO: third tab for a "region"-resource -->
             </mat-tab-group>
 
@@ -114,7 +118,7 @@
 
 
             <!-- in case of more than one resource -->
-            <mat-divider *ngIf="!last"></mat-divider>
+            <!-- <mat-divider *ngIf="!last"></mat-divider> -->
 
         </div>
 

@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { By } from '@angular/platform-browser';
-import { ProgressIndicatorComponent } from './progress-indicator.component';
 
+import { ProgressIndicatorComponent } from './progress-indicator.component';
 
 /**
  * Test host component to simulate parent component with a progress bar.
@@ -19,7 +19,7 @@ class TestHostComponent implements OnInit {
     status = 0;
     color: string = 'red';
 
-    constructor () {
+    constructor() {
     }
 
     ngOnInit() { }
@@ -96,7 +96,6 @@ describe('ProgressIndicatorComponent', () => {
         testHostFixture.detectChanges();
 
         // expect the spinner to be blue
-        expect(spinnerEl.styles).toEqual({ 'border-top-color': 'blue', 'border-left-color': 'blue' });
         expect(spinnerEl.styles).toEqual({ 'border-top-color': 'blue', 'border-left-color': 'blue' });
     });
 

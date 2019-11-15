@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
     animate,
@@ -10,8 +10,8 @@ import {
 
 @Component({
     selector: 'kui-search',
-    templateUrl: './search.component.html',
-    styleUrls: ['./search.component.scss'],
+    templateUrl: './search.component.depr.html',
+    styleUrls: ['./search.component.depr.scss'],
     animations: [
         trigger('simpleSearchMenu',
             [
@@ -36,7 +36,7 @@ import {
  * @deprecated You should use searchPanel instead
  * Contains methods to realise, reset new or previous simple searches.
  */
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
     @Input() route: string = '/search';
 
@@ -53,13 +53,10 @@ export class SearchComponent implements OnInit {
 
     showSimpleSearch: boolean = true;
 
-    constructor (private _route: ActivatedRoute,
+    constructor(private _route: ActivatedRoute,
         private _router: Router,
         private _eleRef: ElementRef) {
 
-    }
-
-    ngOnInit() {
     }
 
     /**
