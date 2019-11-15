@@ -106,9 +106,11 @@ export class LoginFormComponent implements OnInit {
     }
 
     /**
+     * @ignore
+     *
      * Login and set session
      */
-    login() {
+    private login() {
 
         this.loading = true;
 
@@ -146,10 +148,12 @@ export class LoginFormComponent implements OnInit {
     }
 
     /**
+     * @ignore
+     *
      * Logout and destroy session
      *
      */
-    logout() {
+    private logout() {
         this.loading = true;
 
         this.knoraApiConnection.v2.auth.logout().subscribe(
