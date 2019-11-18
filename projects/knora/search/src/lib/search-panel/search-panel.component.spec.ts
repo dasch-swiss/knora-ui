@@ -33,6 +33,7 @@ import { UriValueComponent } from '../extended-search/select-property/specify-pr
 import { SelectResourceClassComponent } from '../extended-search/select-resource-class/select-resource-class.component';
 import { FulltextSearchComponent } from '../fulltext-search/fulltext-search.component';
 import { SearchPanelComponent } from './search-panel.component';
+import { IntElementComponent } from '@knora/viewer';
 
 
 describe('SearchPanelComponent', () => {
@@ -58,7 +59,7 @@ describe('SearchPanelComponent', () => {
                 RouterTestingModule,
                 BrowserAnimationsModule,
                 HttpClientTestingModule,
-                HttpClientModule,
+                HttpClientModule
             ],
             declarations: [
                 SearchPanelComponent,
@@ -77,7 +78,8 @@ describe('SearchPanelComponent', () => {
                 TextValueComponent,
                 UriValueComponent,
                 ListValueComponent,
-                ListDisplayComponent
+                ListDisplayComponent,
+                IntElementComponent
             ],
             providers: [
                 {
