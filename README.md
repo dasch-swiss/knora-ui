@@ -128,7 +128,7 @@ There's a test environment for the modules on <https://github.com/dhlab-basel/kn
 
 ### Knora-UI coding rules
 
-In general, please follow the style guide of angular &rarr; https://angular.io/guide/styleguide.
+In general, please follow the style guide of angular &rarr; <https://angular.io/guide/styleguide>.
 
 #### Naming
 
