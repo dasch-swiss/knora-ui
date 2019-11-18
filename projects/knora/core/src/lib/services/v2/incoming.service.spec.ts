@@ -2,37 +2,31 @@ import { TestBed } from '@angular/core/testing';
 import { KuiCoreModule } from '../../core.module';
 
 import { IncomingService } from './incoming.service';
-import { SearchService } from './search.service';
 
 describe('IncomingService', () => {
 
     let incomingService: IncomingService;
-    let serviceSpy: jasmine.SpyObj<SearchService>;
 
     beforeEach(() => {
-        const spy = jasmine.createSpyObj('SearchService', ['doExtendedSearchReadResourceSequence']);
 
         TestBed.configureTestingModule({
             imports: [
                 KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
             ],
             providers: [
-                IncomingService,
-                { provide: SearchService, useValue: spy }
+                IncomingService
             ]
         });
 
         incomingService = TestBed.get(IncomingService);
-        serviceSpy = TestBed.get(SearchService);
-        serviceSpy.doExtendedSearchReadResourceSequence.and.stub();
+        spyOn(incomingService, 'doExtendedSearchReadResourceSequence').and.stub();
     });
 
-    xit('should be created', () => {
-        console.log(incomingService);
+    it('should be created', () => {
         expect(incomingService).toBeTruthy();
     });
 
-    xit('should get incoming regions ', () => {
+    it('should get incoming regions ', () => {
 
         const expectedQuery = `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
@@ -73,11 +67,11 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
 
         incomingService.getIncomingRegions('http://rdfh.ch/0801/letter', 0);
 
-        expect(serviceSpy).toHaveBeenCalledWith(expectedQuery);
+        expect(incomingService.doExtendedSearchReadResourceSequence).toHaveBeenCalledWith(expectedQuery);
 
     });
 
-    xit('should get incoming StillImageRepresentations ', () => {
+    it('should get incoming StillImageRepresentations ', () => {
 
         const expectedQuery = `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
@@ -114,11 +108,11 @@ OFFSET 1
 
         incomingService.getStillImageRepresentationsForCompoundResource('http://rdfh.ch/0801/letter', 1);
 
-        expect(serviceSpy).toHaveBeenCalledWith(expectedQuery);
+        expect(incomingService.doExtendedSearchReadResourceSequence).toHaveBeenCalledWith(expectedQuery);
 
     });
 
-    xit('should get incoming Links', () => {
+    it('should get incoming Links', () => {
 
         const expectedQuery = `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
@@ -154,7 +148,7 @@ FILTER NOT EXISTS {
 
         incomingService.getIncomingLinksForResource('http://rdfh.ch/0801/letter', 0);
 
-        expect(serviceSpy).toHaveBeenCalledWith(expectedQuery);
+        expect(incomingService.doExtendedSearchReadResourceSequence).toHaveBeenCalledWith(expectedQuery);
 
     });
 
