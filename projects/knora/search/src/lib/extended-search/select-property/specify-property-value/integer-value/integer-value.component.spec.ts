@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
+import { IntElementComponent } from '@knora/viewer';
 
 describe('IntegerValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -21,7 +22,8 @@ describe('IntegerValueComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 IntegerValueComponent,
-                TestHostComponent
+                TestHostComponent,
+                IntElementComponent
             ],
             imports: [
                 FormsModule,
@@ -63,17 +65,17 @@ describe('IntegerValueComponent', () => {
         expect(testHostComponent.integerValue).toBeTruthy();
     });
 
-    it('should get a integer literal of 1.1', () => {
+    it('should get a integer literal of 1', () => {
         // access the test host component's child
         expect(testHostComponent.integerValue).toBeTruthy();
 
         const hostCompDe = testHostFixture.debugElement;
 
-        const intLiteralVal = new ValueLiteral('1', 'http://www.w3.org/2001/XMLSchema#integer');
+        const expectedIntLiteralVal = new ValueLiteral('1', 'http://www.w3.org/2001/XMLSchema#integer');
 
-        const decVal = hostCompDe.query(By.directive(IntegerValueComponent));
+        const intVal = hostCompDe.query(By.directive(IntegerValueComponent));
 
-        const matInput = decVal.query(By.css('input'));
+        const matInput = intVal.query(By.css('input'));
 
         matInput.nativeElement.value = '1';
 
@@ -81,7 +83,7 @@ describe('IntegerValueComponent', () => {
 
         testHostFixture.detectChanges();
 
-        expect(testHostComponent.integerValue.getValue()).toEqual(intLiteralVal);
+        expect(testHostComponent.integerValue.getValue()).toEqual(expectedIntLiteralVal);
 
     });
 
