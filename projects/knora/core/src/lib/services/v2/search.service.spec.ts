@@ -11,7 +11,7 @@ import { ApiService } from '../api.service';
 import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
 import { FulltextSearchParams, SearchByLabelParams, SearchService } from './search.service';
 
-describe('SearchService', () => {
+xdescribe('SearchService', () => {
     let httpTestingController: HttpTestingController;
     let spyOntoCache;
 
