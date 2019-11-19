@@ -25,7 +25,7 @@ addons:
 
 # install: export CXX="g++-4.9"
 
-install:
+before_script:
   - yarn global add @angular/cli
   - yarn global add yalc
   - cd ~ && git clone -b master https://github.com/dasch-swiss/knora-api-js-lib.git && cd knora-api-js-lib && npm install && npm run yalc-publish
