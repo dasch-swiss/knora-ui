@@ -25,6 +25,7 @@ jobs:
               && yarn --version \
               && git --version
 
+      - run: yalc add @knora/api
       - run: yarn install
 
       - save_cache:
