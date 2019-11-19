@@ -1,20 +1,15 @@
-import { async, inject, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
-
-import { KuiCoreModule } from '../../core.module';
-import { ApiService } from '../api.service';
-import {
-    Cardinality, CardinalityOccurrence,
-    OntologyCacheService,
-    OntologyInformation, OntologyMetadata, Properties, Property, ResourceClass, ResourceClasses,
-    ResourceClassIrisForOntology,
-    GuiOrder
-} from './ontology-cache.service';
-import { OntologyService } from './ontology.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { inject, TestBed } from '@angular/core/testing';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
 import { Observable, of } from 'rxjs';
-import { ApiServiceError, ApiServiceResult } from '../../declarations';
 
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '../../core.module';
+import { ApiServiceError, ApiServiceResult } from '../../declarations';
+import { ApiService } from '../api.service';
+
+import { Cardinality, CardinalityOccurrence, GuiOrder, OntologyCacheService, OntologyInformation, OntologyMetadata, Properties, Property, ResourceClass, ResourceClasses, ResourceClassIrisForOntology } from './ontology-cache.service';
+import { OntologyService } from './ontology.service';
 
 describe('OntologyCacheService', () => {
     let httpClient: HttpClient;
@@ -25,12 +20,34 @@ describe('OntologyCacheService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 ApiService,
                 OntologyCacheService,
                 OntologyService,
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
+                }
             ]
         });
 

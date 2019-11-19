@@ -1,9 +1,11 @@
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '../../core.module';
+import { ApiService } from '../api.service';
 
 import { ListService } from './list.service';
-import { KuiCoreModule } from '../../core.module';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ApiService } from '../api.service';
 
 describe('ListService', () => {
     let httpTestingController: HttpTestingController;
@@ -14,11 +16,33 @@ describe('ListService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 ApiService,
-                ListService
+                ListService,
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
+                }
             ]
         })
             .compileComponents();

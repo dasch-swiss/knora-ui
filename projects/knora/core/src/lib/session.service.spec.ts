@@ -6,7 +6,7 @@ import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
 import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from './core.module';
 import { SessionService } from './session.service';
 
-fdescribe('SessionService', () => {
+describe('SessionService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
     let sessionService: SessionService;

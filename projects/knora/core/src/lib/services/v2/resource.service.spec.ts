@@ -1,10 +1,13 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { async, TestBed } from '@angular/core/testing';
-import { ResourcesSequence } from '@knora/core/public_api';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, ResourcesSequence } from '@knora/core/public_api';
 import { of } from 'rxjs';
+
 import { KuiCoreModule } from '../../core.module';
 import { ReadResourcesSequence } from '../../declarations';
 import { ApiService } from '../api.service';
+
 import { IncomingService } from './incoming.service';
 import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
 import { ResourceService } from './resource.service';
@@ -22,14 +25,36 @@ describe('ResourceService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 ApiService,
                 ResourceService,
                 IncomingService,
                 OntologyCacheService,
-                { provide: OntologyCacheService, useValue: spyOntoCache }
+                { provide: OntologyCacheService, useValue: spyOntoCache },
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
+                }
             ]
         });
 

@@ -1,13 +1,15 @@
-import { async, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
-import { FulltextSearchParams, SearchByLabelParams, SearchService } from './search.service';
-import { KuiCoreModule } from '../../core.module';
-import { ApiService } from '../api.service';
-import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
-import { of } from 'rxjs';
-import { CountQueryResult } from '../../declarations';
 import { HttpParams } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { async, TestBed } from '@angular/core/testing';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { of } from 'rxjs';
+
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '../../core.module';
+import { CountQueryResult } from '../../declarations';
+import { ApiService } from '../api.service';
+
+import { OntologyCacheService, OntologyInformation, Properties, ResourceClasses } from './ontology-cache.service';
+import { FulltextSearchParams, SearchByLabelParams, SearchService } from './search.service';
 
 describe('SearchService', () => {
     let httpTestingController: HttpTestingController;
@@ -21,12 +23,34 @@ describe('SearchService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 ApiService,
                 SearchService,
-                { provide: OntologyCacheService, useValue: spyOntoCache }
+                { provide: OntologyCacheService, useValue: spyOntoCache },
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
+                }
             ]
         });
 
