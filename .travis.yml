@@ -23,6 +23,9 @@ env:
   global:
     - CXX=g++-4.9
 
+before_install:
+  -
+
 install: export CXX="g++-4.9"
 
 before_script:
@@ -30,6 +33,7 @@ before_script:
   - yarn global add yalc
   - cd ~ && git clone -b master https://github.com/dasch-swiss/knora-api-js-lib.git && cd knora-api-js-lib && npm install && npm run yalc-publish
   - cd $TRAVIS_BUILD_DIR
+  - yalc add @knora/api
   - yarn install
 
 script:
