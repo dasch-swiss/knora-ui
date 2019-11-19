@@ -1,0 +1,276 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Currently logged-in user information</p>",
+      "summary": "<p>Currently logged-in user information</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 8,
+    "codeStart": 11,
+    "code": "export interface CurrentUser {\n    // username\n    name: string;\n\n    // json web token\n    jwt: string;\n\n    // default language for ui\n    lang: string;\n\n    // is system admin?\n    sysAdmin: boolean;\n\n    // list of project shortcodes where the user is project admin\n    projectAdmin: string[];\n}",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Session with id (= login timestamp) and inforamtion about logged-in user</p>",
+      "summary": "<p>Session with id (= login timestamp) and inforamtion about logged-in user</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 28,
+    "codeStart": 31,
+    "code": "export interface Session {\n    id: number;\n    user: CurrentUser;\n}\n\nconst moment = momentImported;\n\n@Injectable({\n    providedIn: 'root'\n})\nexport class SessionService {",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>max session time in milliseconds<br />\ndefault value (24h): 86400000</p>",
+      "summary": "<p>max session time in milliseconds<br />\ndefault value (24h): 86400000</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 43,
+    "codeStart": 48,
+    "code": "readonly MAX_SESSION_TIME: number = 86400000; // 1d = 24 * 60 * 60 * 1000\n\n\nconstructor(\n    @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,\n    @Inject(KnoraApiConfigToken) private knoraApiConfig: KnoraApiConfig\n) { }",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "jwt",
+        "name": "jwt",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>jwt</p>"
+      },
+      {
+        "type": "param",
+        "string": "username",
+        "name": "username",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>username</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>set the session by using the json web token (jwt) and the user object;<br />\nit will be used in the login process</p>",
+      "summary": "<p>set the session by using the json web token (jwt) and the user object;<br />\nit will be used in the login process</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 58,
+    "codeStart": 65,
+    "code": "setSession(jwt: string, identifier: string, identifierType: 'email' | 'username') {\n\n    let session: Session;\n\n    this.updateKnoraApiConnection(jwt);\n\n    // get user information\n    this.knoraApiConnection.admin.usersEndpoint.getUser(identifierType, identifier).subscribe(\n        (response: ApiResponseData<UserResponse>) => {\n            let sysAdmin: boolean = false;\n            const projectAdmin: string[] = [];\n\n            // get permission inforamation: a) is user sysadmin? b) get list of project iris where user is project admin\n            const groupsPerProjectKeys: string[] = Object.keys(response.body.user.permissions.groupsPerProject);\n\n            for (const key of groupsPerProjectKeys) {\n                if (key === KnoraConstants.SystemProjectIRI) {\n                    sysAdmin = response.body.user.permissions.groupsPerProject[key].indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;\n                }\n\n                if (response.body.user.permissions.groupsPerProject[key].indexOf(KnoraConstants.ProjectAdminGroupIRI) > -1) {\n                    projectAdmin.push(key);\n                }\n            }\n\n            // store session information in browser's localstorage\n            session = {\n                id: this.setTimestamp(),\n                user: {\n                    name: response.body.user.username,\n                    jwt: jwt,\n                    lang: response.body.user.lang,\n                    sysAdmin: sysAdmin,\n                    projectAdmin: projectAdmin\n                }\n            };\n            // update localStorage\n            localStorage.setItem('session', JSON.stringify(session));\n        },\n        (error: ApiResponseError) => {\n            localStorage.removeItem('session');\n            console.error(error);\n        }\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "setSession",
+      "string": "setSession()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "boolean",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>boolean</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Validate intern session and check knora api credentials if necessary.<br />\nIf a json web token exists, it doesn't mean, that the knora api credentials are still valid.</p>",
+      "summary": "<p>Validate intern session and check knora api credentials if necessary.<br />\nIf a json web token exists, it doesn't mean, that the knora api credentials are still valid.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 111,
+    "codeStart": 117,
+    "code": "validateSession(): boolean {\n    // mix of checks with session.validation and this.authenticate\n    const session = JSON.parse(localStorage.getItem('session'));\n\n    const tsNow: number = this.setTimestamp();\n\n    if (session) {\n\n        this.updateKnoraApiConnection(session.user.jwt);\n\n        // check if the session is still valid:\n        if (session.id + this.MAX_SESSION_TIME <= tsNow) {\n            // the internal (knora-ui) session has expired\n            // check if the api credentails are still valid\n\n            // console.error('session is not valid; check knora api credentials');\n\n            this.knoraApiConnection.v2.auth.checkCredentials().subscribe(\n                (response: ApiResponseData<CredentialsResponse>) => {\n                    // the knora api credentials are still valid\n                    // console.log('knora api credentials', response);\n\n                    // refresh the jwt in @knora/api\n                    this.updateKnoraApiConnection(session.user.jwt);\n\n                    // update the session.id\n                    session.id = tsNow;\n\n                    localStorage.setItem('session', JSON.stringify(session));\n\n                    // console.log('knora api credentials are valid; return', true);\n                    return true;\n                },\n                (error: ApiResponseError) => {\n                    // a user is not authenticated anymore!\n                    // console.error('session.service -- validateSession -- authenticate: the session expired on API side');\n\n                    this.destroySession();\n\n                    // console.warn('knora api credentials are not valid; return', false);\n                    return false;\n                }\n            );\n\n        } else {\n            // the internal (knora-ui) session is still valid\n\n            // console.log('session is valid; return', true);\n            return true;\n        }\n    } else {\n        // no session found; update knora api connection with empty jwt\n        this.updateKnoraApiConnection();\n\n        // console.warn('session is not valid; return', false);\n        return false;\n    }\n}",
+    "ctx": {
+      "type": "method",
+      "name": "validateSession",
+      "string": "validateSession()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "jwt",
+        "name": "jwt",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>jwt</p>"
+      },
+      {
+        "type": "param",
+        "string": "username",
+        "name": "username",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>username</p>"
+      },
+      {
+        "type": "returns",
+        "string": "boolean",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>boolean</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>update the session storage</p>",
+      "summary": "<p>update the session storage</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 176,
+    "codeStart": 183,
+    "code": "updateSession(jwt: string, username: string): boolean {\n    if (jwt && username) {\n        this.setSession(jwt, username, 'username');\n        return true;\n    } else {\n        return false;\n    }\n}",
+    "ctx": {
+      "type": "method",
+      "name": "updateSession",
+      "string": "updateSession()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Destroy session by removing the session from local storage</p>",
+      "summary": "<p>Destroy session by removing the session from local storage</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 192,
+    "codeStart": 196,
+    "code": "destroySession() {\n    localStorage.removeItem('session');\n}",
+    "ctx": {
+      "type": "method",
+      "name": "destroySession",
+      "string": "destroySession()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} jwt?",
+        "name": "jwt?",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} jwt?</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Update the knora-api-config and knora-api-connection of @knora/api</p>",
+      "summary": "<p>Update the knora-api-config and knora-api-connection of @knora/api</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 200,
+    "codeStart": 205,
+    "code": "private updateKnoraApiConnection(jwt?: string) {\n    this.knoraApiConfig.jsonWebToken = (jwt ? jwt : '');\n    this.knoraApiConnection = new KnoraApiConnection(this.knoraApiConfig);\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "number",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>number</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Convert a timestamp in a number</p>",
+      "summary": "<p>Convert a timestamp in a number</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 210,
+    "codeStart": 214,
+    "code": "private setTimestamp(): number {\n    return (moment().add(0, 'second')).valueOf();\n}\n\n\n}",
+    "ctx": false
+  }
+]

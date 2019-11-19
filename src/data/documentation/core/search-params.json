@@ -1,9 +1,15 @@
 [
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead \nRepresents the parameters of an extended search.",
+        "html": "<p>Use new service from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead<br />\nRepresents the parameters of an extended search.</p>"
+      }
+    ],
     "description": {
-      "full": "<p>Represents the parameters of an extended search.</p>",
-      "summary": "<p>Represents the parameters of an extended search.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -12,7 +18,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 5,
-    "codeStart": 8,
+    "codeStart": 10,
     "code": "export class ExtendedSearchParams {",
     "ctx": {
       "type": "class",
@@ -48,8 +54,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10,
-    "codeStart": 18,
+    "line": 12,
+    "codeStart": 20,
     "code": "constructor(public generateGravsearch: (offset: number) => string | boolean) {\n\n}\n\n}\n\n@Injectable({\nprovidedIn: 'root'\n})",
     "ctx": {
       "type": "constructor",
@@ -71,8 +77,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 27,
-    "codeStart": 30,
+    "line": 29,
+    "codeStart": 32,
     "code": "export class SearchParamsService {\n\n    private _currentSearchParams;\n\n    constructor() {\n        // init with a dummy function that returns false\n        // if the application is reloaded, this will be returned\n        this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => false));\n    }",
     "ctx": {
       "type": "class",
@@ -122,8 +128,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 40,
-    "codeStart": 46,
+    "line": 42,
+    "codeStart": 48,
     "code": "changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {\n    this._currentSearchParams.next(searchParams);\n}",
     "ctx": {
       "type": "method",
@@ -157,8 +163,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 50,
-    "codeStart": 55,
+    "line": 52,
+    "codeStart": 57,
     "code": "getSearchParams(): ExtendedSearchParams {\n    return this._currentSearchParams.getValue();\n}\n\n}",
     "ctx": {
       "type": "method",

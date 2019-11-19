@@ -1,8 +1,0 @@
-{
-  "exclude": [
-    "src/test.ts",
-    "**/*.spec.ts",
-    "**/*.component.html",
-    "**/*.component.scss"
-  ]
-}

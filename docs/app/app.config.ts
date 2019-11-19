@@ -27,6 +27,12 @@ export class AppDemo {
         label: 'Action module',
         children: [
             {
+                name: 'login-form',
+                label: 'LoginForm',
+                type: 'Component',
+                stackblitz: false
+            },
+            {
                 name: 'sort-button',
                 label: 'SortButton',
                 type: 'Component',
@@ -129,24 +135,24 @@ export class AppDemo {
         ]
     };
 
-    public static authenticationModule: DemoModule = {
-        name: 'authentication',
-        published: true,
-        label: 'Authentication module',
-        children: [
-            {
-                name: 'login-form',
-                label: 'LoginForm',
-                type: 'Component',
-                stackblitz: false
-            },
-            {
-                name: 'authentication',
-                label: 'AuthenticationService',
-                stackblitz: false
-            }
-        ]
-    };
+    // public static authenticationModule: DemoModule = {
+    //     name: 'authentication',
+    //     published: true,
+    //     label: 'Authentication module',
+    //     children: [
+    //         {
+    //             name: 'login-form',
+    //             label: 'LoginForm',
+    //             type: 'Component',
+    //             stackblitz: false
+    //         },
+    //         {
+    //             name: 'authentication',
+    //             label: 'AuthenticationService',
+    //             stackblitz: false
+    //         }
+    //     ]
+    // };
 
     public static searchModule: DemoModule = {
         name: 'search',
@@ -208,7 +214,6 @@ export class AppDemo {
      */
     public static examples: DemoModule[] = [
         AppDemo.coreModule,
-        AppDemo.authenticationModule,
         AppDemo.searchModule,
         AppDemo.viewerModule,
         AppDemo.actionModule

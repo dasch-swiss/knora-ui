@@ -1,9 +1,15 @@
 [
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead \nRequests incoming information (regions, links, stillImageRepresentations) from Knora.",
+        "html": "<p>Use new service from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead<br />\nRequests incoming information (regions, links, stillImageRepresentations) from Knora.</p>"
+      }
+    ],
     "description": {
-      "full": "<p>Requests incoming information (regions, links, stillImageRepresentations) from Knora.</p>",
-      "summary": "<p>Requests incoming information (regions, links, stillImageRepresentations) from Knora.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -12,7 +18,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 6,
-    "codeStart": 9,
+    "codeStart": 11,
     "code": "@Injectable({\n    providedIn: 'root',\n})\nexport class IncomingService extends SearchService {\n\n    // ------------------------------------------------------------------------\n    // ------------------------------------------------------------------------\n    // (incoming) annotations like region and sequences\n    // ------------------------------------------------------------------------",
     "ctx": false
   },
@@ -71,8 +77,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 19,
-    "codeStart": 26,
+    "line": 21,
+    "codeStart": 28,
     "code": "getIncomingRegions(resourceIRI: string, offset: number): Observable<ReadResourcesSequence> {\n    const sparqlQueryStr = `\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?region knora-api:isMainResource true .\n\n?region knora-api:hasGeometry ?geom .\n\n?region knora-api:hasComment ?comment .\n\n?region knora-api:hasColor ?color .\n} WHERE {\n?region a knora-api:Region .\n?region a knora-api:Resource .\n\n?region knora-api:isRegionOf <${resourceIRI}> .\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\n\n<${resourceIRI}> a knora-api:Resource .\n\n?region knora-api:hasGeometry ?geom .\nknora-api:hasGeometry knora-api:objectType knora-api:Geom .\n\n?geom a knora-api:Geom .\n\n?region knora-api:hasComment ?comment .\nknora-api:hasComment knora-api:objectType xsd:string .\n\n?comment a xsd:string .\n\n?region knora-api:hasColor ?color .\nknora-api:hasColor knora-api:objectType knora-api:Color .\n\n?color a knora-api:Color .\n} OFFSET ${offset}\n`;\n    // console.log('sparqlQueryStr ', sparqlQueryStr);\n    return this.doExtendedSearchReadResourceSequence(sparqlQueryStr);\n}\n\n// ------------------------------------------------------------------------\n// ------------------------------------------------------------------------\n// (incoming) file representations e.g. incomingStillImages in case of book\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -135,8 +141,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 72,
-    "codeStart": 80,
+    "line": 74,
+    "codeStart": 82,
     "code": "getStillImageRepresentationsForCompoundResource(resourceIri: string, offset: number): Observable<ReadResourcesSequence> {\n    const sparqlQueryStr = `\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?page knora-api:isMainResource true .\n\n?page knora-api:seqnum ?seqnum .\n\n?page knora-api:hasStillImageFile ?file .\n} WHERE {\n\n?page a knora-api:StillImageRepresentation .\n?page a knora-api:Resource .\n\n?page knora-api:isPartOf <${resourceIri}> .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\n<${resourceIri}> a knora-api:Resource .\n\n?page knora-api:seqnum ?seqnum .\nknora-api:seqnum knora-api:objectType xsd:integer .\n\n?seqnum a xsd:integer .\n\n?page knora-api:hasStillImageFile ?file .\nknora-api:hasStillImageFile knora-api:objectType knora-api:File .\n\n?file a knora-api:File .\n\n} ORDER BY ?seqnum\nOFFSET ${offset}\n`;\n\n    return this.doExtendedSearchReadResourceSequence(sparqlQueryStr);\n\n}\n\n// ------------------------------------------------------------------------\n// ------------------------------------------------------------------------\n// incoming links\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -204,8 +210,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 123,
-    "codeStart": 132,
+    "line": 125,
+    "codeStart": 134,
     "code": "getIncomingLinksForResource(resourceIri: string, offset: number): Observable<ReadResourcesSequence> {\n    const sparqlQueryStr = `\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?incomingRes knora-api:isMainResource true .\n\n?incomingRes ?incomingProp <${resourceIri}> .\n\n} WHERE {\n\n?incomingRes a knora-api:Resource .\n\n?incomingRes ?incomingProp <${resourceIri}> .\n\n<${resourceIri}> a knora-api:Resource .\n\n?incomingProp knora-api:objectType knora-api:Resource .\n\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isRegionOf <${resourceIri}> .\n}\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isPartOf <${resourceIri}> .\n}\n\n} OFFSET ${offset}\n`;\n\n    return this.doExtendedSearchReadResourceSequence(sparqlQueryStr);\n}",
     "ctx": {
       "type": "method",
@@ -268,8 +274,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 170,
-    "codeStart": 177,
+    "line": 172,
+    "codeStart": 179,
     "code": "getIncomingLinks(resourceIri: string, offset: number): Observable<ResourcesSequence> {\n    const sparqlQueryStr = `\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\n\nCONSTRUCT {\n?incomingRes knora-api:isMainResource true .\n\n?incomingRes ?incomingProp <${resourceIri}> .\n\n} WHERE {\n\n?incomingRes a knora-api:Resource .\n\n?incomingRes ?incomingProp <${resourceIri}> .\n\n<${resourceIri}> a knora-api:Resource .\n\n?incomingProp knora-api:objectType knora-api:Resource .\n\nknora-api:isRegionOf knora-api:objectType knora-api:Resource .\nknora-api:isPartOf knora-api:objectType knora-api:Resource .\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isRegionOf <${resourceIri}> .\n}\n\nFILTER NOT EXISTS {\n ?incomingRes  knora-api:isPartOf <${resourceIri}> .\n}\n\n} OFFSET ${offset}\n`;\n\n    return this.doExtendedSearchResourcesSequence(sparqlQueryStr);\n}\n\n}",
     "ctx": {
       "type": "method",

@@ -29,18 +29,6 @@ The core module contains every service to use Knora's RESTful webapi.
 
 * * *
 
-### @knora/authentication
-
-[![npm](https://img.shields.io/npm/v/@knora/authentication.svg)](https://www.npmjs.com/package/@knora/authentication)
-![](https://img.shields.io/npm/dt/@knora/authentication.svg?style=flat)
-![](https://img.shields.io/bundlephobia/minzip/@knora/authentication.svg?style=flat)
-![](https://img.shields.io/npm/l/@knora/authentication.svg?style=flat)
-
-The authentication module contains the login form (for standalone usage) or a complete login- / logout-button environment incl. the login form.
-[read more...](https://dasch-swiss.github.io/knora-ui/modules/authentication)
-
-* * *
-
 ### @knora/search
 
 [![npm](https://img.shields.io/npm/v/@knora/search.svg)](https://www.npmjs.com/package/@knora/search)
