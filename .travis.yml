@@ -33,7 +33,11 @@ before_script:
   - yarn install
 
 script:
-  - yarn build-lib
+  - ng build @knora/core
+  - ng build @knora/action
+  - ng build @knora/viewer
+  - ng build @knora/search
+  - ng build @knora/authentication
   - ng t --project @knora/action --watch=false --browsers=ChromeHeadless
 
 #  - ng t --project @knora/core --watch=false --browsers=ChromeHeadless
