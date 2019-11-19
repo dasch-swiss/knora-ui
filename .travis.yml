@@ -13,20 +13,17 @@ cache:
 
 addons:
   chrome: stable
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.9
+#   apt:
+#     sources:
+#       - ubuntu-toolchain-r-test
+#     packages:
+#       - g++-4.9
 
-env:
-  global:
-    - CXX=g++-4.9
+# env:
+#   global:
+#     - CXX=g++-4.9
 
-before_install:
-  -
-
-install: export CXX="g++-4.9"
+# install: export CXX="g++-4.9"
 
 before_script:
   - yarn global add @angular/cli
@@ -41,7 +38,6 @@ script:
   - ng build @knora/action
   - ng build @knora/viewer
   - ng build @knora/search
-  - ng build @knora/authentication
   - ng t --project @knora/action --watch=false --browsers=ChromeHeadless
 
 #  - ng t --project @knora/core --watch=false --browsers=ChromeHeadless
