@@ -13,17 +13,17 @@ cache:
 
 addons:
   chrome: stable
-#   apt:
-#     sources:
-#       - ubuntu-toolchain-r-test
-#     packages:
-#       - g++-4.9
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.9
 
-# env:
-#   global:
-#     - CXX=g++-4.9
+env:
+  global:
+    - CXX=g++-4.9
 
-# install: export CXX="g++-4.9"
+install: export CXX="g++-4.9"
 
 before_script:
   - yarn global add @angular/cli
