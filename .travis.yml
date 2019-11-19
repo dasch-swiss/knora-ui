@@ -1,4 +1,4 @@
-dist: trusty
+dist: xenial
 sudo: required
 
 language: node_js
@@ -26,7 +26,11 @@ env:
 install: export CXX="g++-4.9"
 
 before_script:
-  - yarn global add @angular/cli
+  - yarn global add @angular/cli
+  - yarn global add yalc
+  - cd ~ && git clone -b master https://github.com/dasch-swiss/knora-api-js-lib.git && cd knora-api-js-lib && npm install && npm run yalc-publish
+  - cd $TRAVIS_BUILD_DIR
+  - yalc add @knora/api
   - yarn install
 
 script:
@@ -34,9 +38,8 @@ script:
   - ng build @knora/action
   - ng build @knora/viewer
   - ng build @knora/search
-  - ng build @knora/authentication
-  - ng t --project @knora/core --watch=false --browsers=ChromeHeadless
   - ng t --project @knora/action --watch=false --browsers=ChromeHeadless
-  - ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
-  - ng t --project @knora/search --watch=false --browsers=ChromeHeadless
-  - ng t --project @knora/authentication --watch=false --browsers=ChromeHeadless
+
+#  - ng t --project @knora/core --watch=false --browsers=ChromeHeadless
+#  - ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
+#  - ng t --project @knora/search --watch=false --browsers=ChromeHeadless

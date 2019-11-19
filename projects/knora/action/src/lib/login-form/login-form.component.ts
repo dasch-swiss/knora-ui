@@ -110,7 +110,7 @@ export class LoginFormComponent implements OnInit {
      *
      * Login and set session
      */
-    private login() {
+    login() {
 
         this.loading = true;
 
@@ -153,7 +153,7 @@ export class LoginFormComponent implements OnInit {
      * Logout and destroy session
      *
      */
-    private logout() {
+    logout() {
         this.loading = true;
 
         this.knoraApiConnection.v2.auth.logout().subscribe(
