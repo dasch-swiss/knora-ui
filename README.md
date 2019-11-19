@@ -7,7 +7,7 @@
 
 This is the demo and developing environment for Knora ui modules.
 
-The modules helps to create a graphical user interface, a web application to use [Knora](https://www.knora.org) in a quick and simple way. The modules are written in typescript to use them with [Angular](https://angular.io) (version 8). We decided to style the components and directives with [material design](https://material.angular.io).
+The modules helps to create a graphical user interface, a web application to use [Knora](https://www.knora.org) in a quick and simple way. The modules are written in Typescript to use them with [Angular](https://angular.io) (version 8). We decided to style the components and directives with [material design](https://material.angular.io).
 
 But you can use only @knora/core which contains almost all services for the Knora web API. Knora is a software framework for storing, sharing, and working with primary sources and data in the humanities.
 
@@ -15,7 +15,7 @@ Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/
 
 This version of Knora-ui requires [Knora version ^9.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v9.0.0).
 
-## Already published modules
+## Published modules on NPM
 
 ### @knora/core
 
@@ -26,7 +26,7 @@ The core module contains every service to use Knora's RESTful webapi.
 
 * * *
 
-### @knora/authentication
+### @knora/authentication (deprecated)
 
 [![npm (scoped)](https://img.shields.io/npm/v/@knora/authentication.svg)](https://www.npmjs.com/package/@knora/authentication)
 
@@ -126,73 +126,34 @@ There's a test environment for the modules on <https://github.com/dhlab-basel/kn
 
 * * *
 
-<!--
-## Unit Testing Services
+### Knora-UI coding rules
 
-Testing services with HttpClient and HttpTestingController
+In general, please follow the style guide of angular &rarr; <https://angular.io/guide/styleguide>.
 
-* Then a test expects that certain requests have or have not been made, performs assertions against those requests, and finally provide responses by "flushing" each expected request.
-https://angular.io/guide/http#testing-http-requests
-* See https://stackblitz.com/edit/angular-uy5cdl?file=src%2Fapp%2Fheroes%2Fheroes.service.spec.ts for a working example.
+#### Naming
 
- ```TypeScript
- getAllHeroes (): Observable<any[]> {
-    const observables = [];
+- Component selector: Use the prefix **kui** for any classes (e.g. kui-sort-button)
+- Pipe: (Shortname)Pipe
+- Directive: (Shortname)Directive
+- Component: (Shortname)Component
+- Service: (Shortname)Service
 
-    for (let i = 0; i <= 2; i++) {
-      observables.push(
-        this.http.get<Hero[]>(this.heroesUrl)
-        .pipe(
-          catchError(this.handleError('getAllHeroes', []))
-      )
-      );
-    }
+Shortname = explicit name with short length
 
-    return forkJoin(observables);
+#### Annotate each methods in the file component.ts
 
-  }
-  ```
+- JSdoc annotation block
 
-* Several http requests are created and pushed on an array, then they are passed to forkJoin and returned. With forkJoin, we get one Observable that we can subscribe to (executed once all Observables have been completed). Then we get the results of all Observables from within the subscription to the Observable returned by forkJoin.
+#### Components
 
-```TypeScript
- it('should get all heroes', () => {
+- Private variable must start with “_” + lowercase first letter (e.g. private _myVariable)
+- Injection in the constructor must start with “_” + lowercase first letter (e.g. _resourceService)
+- A method name must start with a lowercase letter, no specific character (e.g. getOneResource())
 
-      let res = heroService.getAllHeroes();
+- @Input(), @Output(), @ViewChild must be declared at the top of the class, before the declaration of any other variables
+- Specific methods must be declared after lifecycle hook methods (ngOnInit, etc. > getOneResource())
 
-      res.subscribe(
-        (obs) => {
-
-          console.log("test")
-
-          expect(obs[0]).toEqual(expectedHeroes, 'should return expected heroes');
-          expect(obs[1]).toEqual(expectedHeroes, 'should return expected heroes');
-          expect(obs[2]).toEqual(expectedHeroes, 'should return expected heroes');
-        }, fail
-      );
-
-      // HeroService should have made three requests to GET heroes from expected URL
-      const req = httpTestingController.match(
-        (request) => {
-          return request.url === heroService.heroesUrl && request.method === 'GET'
-        }
-      );
-
-      // Respond with the mock heroes
-      expect(req.length).toEqual(3);
-
-      req[0].flush(expectedHeroes)
-      req[1].flush(expectedHeroes)
-      req[2].flush(expectedHeroes)
-
-    });
-```
-
-* The clue is that for each http request made, a response has to be "flushed". Otherwise the subscription to the Observable returned by forkJoin is never executed:
-If an inner observable does not complete forkJoin will never emit a value!
-https://www.learnrxjs.io/operators/combination/forkjoin.html
-
-> This is why the subscription never worked, because we did not flush all necessary responses. -->
+* * *
 
 ### YALC
 
@@ -232,9 +193,11 @@ To remove from the project and restore `package.json` run:
 $ yalc remove --all
 ```
 
+<!-- The following paragraph is only reserved for the DaSCH developer team
+
 * * *
 
-## Publish new version
+## Publish new version on NPM
 Be sure everything is merged, before creating new release.
 
 ### Required version of Knora: 9.0.0
@@ -258,7 +221,6 @@ cd ~/Path/to/repo
 gren release --override --milestone-match="xxxx-xx"
 ```
 
-<!--
 ```markdown
 Version: x.y.z
 
@@ -274,10 +236,9 @@ Bug fixes:
 
 Comments: blabla
 ```
--->
 
 ### Publish new version on NPM
 
 1. Checkout **Master** branch
 1. Build all modules with `yarn build-lib-prod`
-1. Publish them from each module folder with `npm publish`
+1. Publish them from each module folder with `npm publish` -->
