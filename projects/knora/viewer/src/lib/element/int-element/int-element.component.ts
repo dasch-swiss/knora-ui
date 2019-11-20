@@ -3,9 +3,6 @@ import { FormGroup, Validators } from '@angular/forms';
 import { BaseElementComponent } from '../base-element/base-element.component';
 import { Subscription } from 'rxjs';
 
-// https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
-const resolvedPromise = Promise.resolve(null);
-
 @Component({
     selector: 'kui-int-element',
     templateUrl: './int-element.component.html',
@@ -16,50 +13,17 @@ export class IntElementComponent extends BaseElementComponent<number> implements
     // only allow for integer values (no fractions)
     validators = [Validators.required, Validators.pattern(/^-?\d+$/)];
 
-    form: FormGroup;
-
-    valueChangesSubscription: Subscription;
-
     ngOnInit() {
-
-        this.form = this.fb.group({
-            integer: [this._eleVal, Validators.compose(this.validators)]
-        });
-
-        this.valueChangesSubscription = this.form.valueChanges.subscribe((data) => {
-
-            if (data.integer !== undefined) {
-                const num: number = Number(data.integer);
-                this.eleVal = num;
-            }
-        });
-
-        // add to form group
-        resolvedPromise.then(() => {
-            // add form to the parent form group
-            this.formGroup.addControl('propValue', this.form);
-        });
-
+        this.initialize();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-
-        if (this.form !== undefined && changes['eleVal'] !== undefined) {
-            this.form.setValue({
-                integer: this.eleVal
-            });
-        }
+        this.change(changes);
     }
 
 
     ngOnDestroy() {
-
-        // remove form from the parent form group
-        resolvedPromise.then(() => {
-            if (this.valueChangesSubscription !== undefined) this.valueChangesSubscription.unsubscribe();
-            this.formGroup.removeControl('propValue');
-        });
-
+        this.destroy();
     }
 
 }
