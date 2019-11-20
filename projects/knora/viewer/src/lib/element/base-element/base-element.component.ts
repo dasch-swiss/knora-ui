@@ -42,6 +42,8 @@ export abstract class BaseElementComponent<T> {
 
     protected valueChangesSubscription: Subscription;
 
+    abstract placeholder: string;
+
     protected initialize() {
 
         this.form = this.fb.group({

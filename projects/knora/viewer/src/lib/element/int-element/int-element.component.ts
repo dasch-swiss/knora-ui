@@ -1,7 +1,6 @@
 import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { BaseElementComponent } from '../base-element/base-element.component';
-import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'kui-int-element',
@@ -13,6 +12,8 @@ export class IntElementComponent extends BaseElementComponent<number> implements
     // only allow for integer values (no fractions)
     validators = [Validators.required, Validators.pattern(/^-?\d+$/)];
 
+    placeholder = 'Integer value';
+
     ngOnInit() {
         this.initialize();
     }
@@ -20,7 +21,6 @@ export class IntElementComponent extends BaseElementComponent<number> implements
     ngOnChanges(changes: SimpleChanges): void {
         this.change(changes);
     }
-
 
     ngOnDestroy() {
         this.destroy();
