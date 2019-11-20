@@ -1,9 +1,11 @@
 import { TestBed } from '@angular/core/testing';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { of } from 'rxjs';
+
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '../../core.module';
 
 import { ListCacheService, ListNodeV2 } from './list-cache.service';
-import { KuiCoreModule } from '../../core.module';
 import { ListService } from './list.service';
-import { of } from 'rxjs';
 
 describe('ListCacheService', () => {
 
@@ -17,11 +19,33 @@ describe('ListCacheService', () => {
 
         TestBed.configureTestingModule({
             imports: [
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 ListCacheService,
-                { provide: ListService, useValue: spyListService }
+                { provide: ListService, useValue: spyListService },
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
+                }
             ]
         })
             .compileComponents();

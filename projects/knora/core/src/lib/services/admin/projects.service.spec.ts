@@ -1,20 +1,17 @@
-import { async, inject, TestBed } from '@angular/core/testing';
-import { ProjectsService } from './projects.service';
-import { ApiServiceError, ApiServiceResult, Project, ProjectResponse, ProjectsResponse } from '../../declarations/';
-import {
-    anythingProjectResponseJson,
-    imagesProjectResponseJson,
-    incunabulaProject,
-    incunabulaProjectResponseJson,
-    projectsResponseJson,
-    projectsTestData
-} from '../../test-data/admin/shared-test-data';
-import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
-import { ApiService } from '../api.service';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
-import { KuiCoreModule } from '../../core.module';
+import { async, inject, TestBed } from '@angular/core/testing';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
+import { Observable, of } from 'rxjs';
+
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '../../core.module';
+import { ApiServiceError, ApiServiceResult, Project, ProjectResponse, ProjectsResponse } from '../../declarations/';
+import { anythingProjectResponseJson, imagesProjectResponseJson, incunabulaProjectResponseJson, projectsResponseJson } from '../../test-data/admin/shared-test-data';
+import { ApiService } from '../api.service';
+
+import { ProjectsService } from './projects.service';
+
 
 
 describe('ProjectsService', () => {
@@ -26,11 +23,33 @@ describe('ProjectsService', () => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 ApiService,
-                ProjectsService
+                ProjectsService,
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
+                }
             ]
         });
 

@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { KuiCoreModule } from '../../core.module';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '../../core.module';
 
 import { IncomingService } from './incoming.service';
 import { SearchService } from './search.service';
@@ -14,11 +16,33 @@ describe('IncomingService', () => {
 
         TestBed.configureTestingModule({
             imports: [
-                KuiCoreModule.forRoot({ name: '', api: 'http://0.0.0.0:3333', app: '', media: '', ontologyIRI: '' })
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 IncomingService,
-                { provide: SearchService, useValue: spy }
+                { provide: SearchService, useValue: spy },
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
+                }
             ]
         });
 
