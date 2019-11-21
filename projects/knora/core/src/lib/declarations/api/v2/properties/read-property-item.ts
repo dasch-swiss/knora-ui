@@ -59,7 +59,7 @@ export abstract class ReadTextValue implements ReadPropertyItem {
  */
 export class ReadTextValueAsString extends ReadTextValue {
 
-    constructor (readonly id: string, readonly propIri: string, public str: string) {
+    constructor (readonly id: string, readonly propIri: string, readonly str: string) {
         super();
     }
 
