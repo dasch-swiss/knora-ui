@@ -19,8 +19,14 @@ import { SelectOntologyComponent } from './extended-search/select-ontology/selec
 import { SelectResourceClassComponent } from './extended-search/select-resource-class/select-resource-class.component';
 import { SelectPropertyComponent } from './extended-search/select-property/select-property.component';
 import { SpecifyPropertyValueComponent } from './extended-search/select-property/specify-property-value/specify-property-value.component';
-import { JdnDatepickerDirective, ReversePipe } from '@knora/action';
-import { KuiCoreConfig, KuiCoreConfigToken, OntologyCacheService, OntologyMetadata, OntologyService } from '@knora/core';
+import { KuiActionModule, ReversePipe } from '@knora/action';
+import {
+    KuiCoreConfig,
+    KuiCoreConfigToken,
+    OntologyCacheService,
+    OntologyMetadata,
+    OntologyService
+} from '@knora/core';
 import { BooleanValueComponent } from './extended-search/select-property/specify-property-value/boolean-value/boolean-value.component';
 import { DateValueComponent } from './extended-search/select-property/specify-property-value/date-value/date-value.component';
 import { DecimalValueComponent } from './extended-search/select-property/specify-property-value/decimal-value/decimal-value.component';
@@ -31,7 +37,7 @@ import { UriValueComponent } from './extended-search/select-property/specify-pro
 import { of } from 'rxjs';
 import { ListValueComponent } from './extended-search/select-property/specify-property-value/list-value/list-value.component';
 import { ListDisplayComponent } from './extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
-import { IntElementComponent, StringElementComponent } from '@knora/viewer';
+import { KuiViewerModule } from '@knora/viewer';
 
 describe('SearchComponent', () => {
     let component: SearchComponent;
@@ -46,7 +52,6 @@ describe('SearchComponent', () => {
                 SelectResourceClassComponent,
                 SelectPropertyComponent,
                 SpecifyPropertyValueComponent,
-                ReversePipe,
                 BooleanValueComponent,
                 DateValueComponent,
                 DecimalValueComponent,
@@ -54,11 +59,8 @@ describe('SearchComponent', () => {
                 LinkValueComponent,
                 TextValueComponent,
                 UriValueComponent,
-                JdnDatepickerDirective,
                 ListValueComponent,
-                ListDisplayComponent,
-                IntElementComponent,
-                StringElementComponent
+                ListDisplayComponent
             ],
             imports: [
                 BrowserAnimationsModule,
@@ -74,7 +76,9 @@ describe('SearchComponent', () => {
                 ReactiveFormsModule,
                 RouterTestingModule,
                 MatDatepickerModule,
-                MatAutocompleteModule
+                MatAutocompleteModule,
+                KuiViewerModule,
+                KuiActionModule
             ],
             providers: [
                 HttpClient,

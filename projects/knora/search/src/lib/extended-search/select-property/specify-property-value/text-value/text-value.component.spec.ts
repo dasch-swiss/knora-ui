@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { KuiViewerModule, StringElementComponent } from '@knora/viewer';
+import { KuiViewerModule } from '@knora/viewer';
 
 describe('TextValueComponent', () => {
     let testHostComponent: TestHostComponent;

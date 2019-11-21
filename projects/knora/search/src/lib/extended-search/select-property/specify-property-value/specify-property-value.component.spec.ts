@@ -19,14 +19,14 @@ import { IntegerValueComponent } from './integer-value/integer-value.component';
 import { LinkValueComponent } from './link-value/link-value.component';
 import { TextValueComponent } from './text-value/text-value.component';
 import { UriValueComponent } from './uri-value/uri-value.component';
-import { JdnDatepickerDirective } from '@knora/action';
+import { KuiActionModule } from '@knora/action';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { ListValueComponent } from './list-value/list-value.component';
 import { ListDisplayComponent } from './list-value/list-display/list-display.component';
-import { IntElementComponent, StringElementComponent } from '@knora/viewer';
+import { KuiViewerModule } from '@knora/viewer';
 
 describe('SpecifyPropertyValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -45,14 +45,13 @@ describe('SpecifyPropertyValueComponent', () => {
                 LinkValueComponent,
                 TextValueComponent,
                 UriValueComponent,
-                JdnDatepickerDirective,
                 TestHostComponent,
                 ListValueComponent,
-                ListDisplayComponent,
-                IntElementComponent,
-                StringElementComponent
+                ListDisplayComponent
             ],
             imports: [
+                KuiActionModule,
+                KuiViewerModule,
                 FormsModule,
                 ReactiveFormsModule,
                 MatFormFieldModule,
@@ -177,7 +176,7 @@ class TestHostComponent implements OnInit {
 
     activeProperty: Property;
 
-    @ViewChild('propValue', { static: false }) specifyPropValueComp: SpecifyPropertyValueComponent;
+    @ViewChild('propValue', {static: false}) specifyPropValueComp: SpecifyPropertyValueComponent;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }
