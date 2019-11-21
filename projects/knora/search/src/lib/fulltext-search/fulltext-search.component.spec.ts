@@ -11,7 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { KuiActionModule } from '@knora/action';
-import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '@knora/core';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
 import { FulltextSearchComponent } from './fulltext-search.component';
 
 describe('FulltextSearchComponent', () => {
@@ -31,20 +33,39 @@ describe('FulltextSearchComponent', () => {
                 MatTooltipModule,
                 FormsModule,
                 RouterTestingModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             declarations: [FulltextSearchComponent],
             providers: [
-                {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
-                },
                 HttpClient,
                 {
                     provide: ActivatedRoute,
                     useValue: {
                         params: null
                     }
+                },
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
                 }
             ]
         }).compileComponents();
