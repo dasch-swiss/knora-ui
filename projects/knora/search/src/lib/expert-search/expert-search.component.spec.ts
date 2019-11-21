@@ -9,8 +9,11 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '@knora/core';
+
 import { ExpertSearchComponent } from './expert-search.component';
+
 
 describe('ExpertSearchComponent', () => {
   let component: ExpertSearchComponent;
@@ -26,7 +29,22 @@ describe('ExpertSearchComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         RouterTestingModule,
-        HttpClientModule
+        HttpClientModule,
+        KuiCoreModule.forRoot({
+          knora: {
+            apiProtocol: 'http',
+            apiHost: '0.0.0.0',
+            apiPort: 3333,
+            apiUrl: '',
+            apiPath: '',
+            jsonWebToken: '',
+            logErrors: true
+          },
+          app: {
+            name: 'Knora-UI-APP',
+            url: 'localhost:4200'
+          }
+        })
       ],
       declarations: [ExpertSearchComponent],
       providers: [
@@ -39,8 +57,12 @@ describe('ExpertSearchComponent', () => {
           }
         },
         {
-          provide: KuiCoreConfigToken,
-          useValue: KuiCoreConfig
+          provide: KnoraApiConfigToken,
+          useValue: KnoraApiConfig
+        },
+        {
+          provide: KnoraApiConnectionToken,
+          useValue: KnoraApiConnection
         }
       ]
     })
