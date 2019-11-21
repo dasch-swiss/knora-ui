@@ -61,6 +61,7 @@ import { TableViewComponent } from './view/table-view/table-view.component';
 import { SearchResultsComponent } from './view/search-results/search-results.component';
 import { IntElementComponent } from './element/int-element/int-element.component';
 import { TextElementComponent } from './element/string-element/text-element.component';
+import { UriElementComponent } from './element/uri-element/uri-element.component';
 
 
 
@@ -125,7 +126,8 @@ import { TextElementComponent } from './element/string-element/text-element.comp
         PropertiesViewComponent,
         SearchResultsComponent,
         IntElementComponent,
-        TextElementComponent
+        TextElementComponent,
+        UriElementComponent
     ],
     exports: [
 
