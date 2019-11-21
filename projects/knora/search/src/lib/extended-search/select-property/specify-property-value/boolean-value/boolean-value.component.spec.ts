@@ -1,6 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { BooleanValueComponent } from './boolean-value.component';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -9,8 +7,34 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule, ValueLiteral } from '@knora/core';
 import { By } from '@angular/platform-browser';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
+import { BooleanValueComponent } from './boolean-value.component';
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    selector: `kui-host-component`,
+    template: `
+        <boolean-value #boolVal [formGroup]="form"></boolean-value>`
+})
+class TestHostComponent implements OnInit {
+
+    form;
+
+    @ViewChild('boolVal', { static: false }) booleanValue: BooleanValueComponent;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+
+    }
+}
 
 describe('BooleanValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -29,7 +53,22 @@ describe('BooleanValueComponent', () => {
                 MatIconModule,
                 MatCheckboxModule,
                 BrowserAnimationsModule,
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 {
@@ -39,8 +78,12 @@ describe('BooleanValueComponent', () => {
                     },
                 },
                 {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
                 },
                 FormBuilder
             ]
@@ -95,26 +138,3 @@ describe('BooleanValueComponent', () => {
 
     });
 });
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    selector: `host-component`,
-    template: `
-        <boolean-value #boolVal [formGroup]="form"></boolean-value>`
-})
-class TestHostComponent implements OnInit {
-
-    form;
-
-    @ViewChild('boolVal', { static: false }) booleanValue: BooleanValueComponent;
-
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
-    }
-
-    ngOnInit() {
-        this.form = this.fb.group({});
-
-    }
-}

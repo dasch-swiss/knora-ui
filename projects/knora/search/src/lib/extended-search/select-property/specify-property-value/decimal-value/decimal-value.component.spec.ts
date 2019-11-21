@@ -1,6 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DecimalValueComponent } from './decimal-value.component';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -9,9 +7,35 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule, ValueLiteral } from '@knora/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
+import { DecimalValueComponent } from './decimal-value.component';
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    selector: `kui-host-component`,
+    template: `
+        <decimal-value #decimalVal [formGroup]="form"></decimal-value>`
+})
+class TestHostComponent implements OnInit {
+
+    form;
+
+    @ViewChild('decimalVal', { static: false }) decimalValue: DecimalValueComponent;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+
+    }
+}
 
 describe('DecimalValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -31,7 +55,22 @@ describe('DecimalValueComponent', () => {
                 MatCheckboxModule,
                 BrowserAnimationsModule,
                 MatInputModule,
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 {
@@ -41,8 +80,12 @@ describe('DecimalValueComponent', () => {
                     },
                 },
                 {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
                 },
                 FormBuilder
             ]
@@ -85,26 +128,3 @@ describe('DecimalValueComponent', () => {
 
     });
 });
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    selector: `host-component`,
-    template: `
-        <decimal-value #decimalVal [formGroup]="form"></decimal-value>`
-})
-class TestHostComponent implements OnInit {
-
-    form;
-
-    @ViewChild('decimalVal', { static: false }) decimalValue: DecimalValueComponent;
-
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
-    }
-
-    ngOnInit() {
-        this.form = this.fb.group({});
-
-    }
-}

@@ -1,6 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DateValueComponent } from './date-value.component';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -11,10 +9,36 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule, ValueLiteral } from '@knora/core';
 import { JdnDatepickerDirective } from '@knora/action';
 import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalendardateadapter';
 import { GregorianCalendarDate, JDNPeriod } from 'jdnconvertiblecalendar';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
+import { DateValueComponent } from './date-value.component';
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    selector: `kui-host-component`,
+    template: `
+        <date-value #dateVal [formGroup]="form"></date-value>`
+})
+class TestHostComponent implements OnInit {
+
+    form;
+
+    @ViewChild('dateVal', { static: false }) dateValue: DateValueComponent;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+
+    }
+}
 
 describe('DateValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -37,7 +61,22 @@ describe('DateValueComponent', () => {
                 MatDatepickerModule,
                 MatJDNConvertibleCalendarDateAdapterModule,
                 MatInputModule,
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 {
@@ -47,8 +86,12 @@ describe('DateValueComponent', () => {
                     },
                 },
                 {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
                 },
                 FormBuilder
             ]
@@ -82,25 +125,3 @@ describe('DateValueComponent', () => {
     });
 });
 
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    selector: `host-component`,
-    template: `
-        <date-value #dateVal [formGroup]="form"></date-value>`
-})
-class TestHostComponent implements OnInit {
-
-    form;
-
-    @ViewChild('dateVal', { static: false }) dateValue: DateValueComponent;
-
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
-    }
-
-    ngOnInit() {
-        this.form = this.fb.group({});
-
-    }
-}

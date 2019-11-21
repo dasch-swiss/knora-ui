@@ -1,7 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { HeaderComponent } from './header-calendar.component';
-import { Component, Inject, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCalendar, MatDatepickerContent, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,11 +10,42 @@ import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalend
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '@knora/core';
 import { JdnDatepickerDirective } from '@knora/action';
 import { JDNConvertibleCalendar } from 'jdnconvertiblecalendar';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { By } from '@angular/platform-browser';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
+import { HeaderComponent } from './header-calendar.component';
+
+class MockElementRef implements ElementRef {
+    nativeElement = {};
+}
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    selector: `kui-host-component`,
+    template: `
+        <mat-calendar #cal [headerComponent]="headerComponent"></mat-calendar>`
+})
+class TestHostComponent implements OnInit {
+
+    form;
+
+    headerComponent = HeaderComponent;
+
+    @ViewChild('cal', { static: false }) calendar: MatCalendar<JDNConvertibleCalendar>;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+    }
+}
 
 describe('HeaderComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -39,7 +68,22 @@ describe('HeaderComponent', () => {
                 MatDatepickerModule,
                 MatJDNConvertibleCalendarDateAdapterModule,
                 MatInputModule,
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 {
@@ -49,8 +93,12 @@ describe('HeaderComponent', () => {
                     },
                 },
                 {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
                 },
                 { provide: ElementRef, useClass: MockElementRef },
                 { provide: MatDatepickerContent, useClass: MatDatepickerContent }
@@ -130,31 +178,3 @@ describe('HeaderComponent', () => {
 
 
 });
-
-class MockElementRef implements ElementRef {
-    nativeElement = {};
-}
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    selector: `host-component`,
-    template: `
-        <mat-calendar #cal [headerComponent]="headerComponent"></mat-calendar>`
-})
-class TestHostComponent implements OnInit {
-
-    form;
-
-    headerComponent = HeaderComponent;
-
-    @ViewChild('cal', { static: false }) calendar: MatCalendar<JDNConvertibleCalendar>;
-
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
-    }
-
-    ngOnInit() {
-        this.form = this.fb.group({});
-    }
-}

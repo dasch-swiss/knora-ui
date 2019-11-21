@@ -1,10 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ListValueComponent } from './list-value.component';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { KuiCoreConfig, KuiCoreConfigToken, ListCacheService, Property } from '@knora/core';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule, ListCacheService, Property } from '@knora/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,10 +10,48 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ListDisplayComponent } from './list-display/list-display.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { IRI, ListNodeV2 } from '@knora/core';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
+import { ListValueComponent } from './list-value.component';
+import { ListDisplayComponent } from './list-display/list-display.component';
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    selector: `kui-host-component`,
+    template: `
+        <list-value #listVal [formGroup]="form" [property]="property"></list-value>`
+})
+class TestHostComponent implements OnInit {
+
+    form;
+    property: Property;
+
+    @ViewChild('listVal', { static: false }) listValue: ListValueComponent;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+
+        this.property = new Property(
+            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasListItem',
+            'http://api.knora.org/ontology/knora-api/v2#ListValue',
+            undefined,
+            'Text',
+            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+            true,
+            false,
+            false,
+            ['hlist=<http://rdfh.ch/lists/0001/treeList>']
+        );
+    }
+}
 
 describe('ListValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -43,7 +79,22 @@ describe('ListValueComponent', () => {
                 BrowserAnimationsModule,
                 MatInputModule,
                 MatMenuModule,
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             providers: [
                 { provide: ListCacheService, useValue: spyListCacheService },
@@ -54,8 +105,12 @@ describe('ListValueComponent', () => {
                     },
                 },
                 {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
                 },
                 FormBuilder
             ]
@@ -110,38 +165,3 @@ describe('ListValueComponent', () => {
 
     });
 });
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    selector: `host-component`,
-    template: `
-        <list-value #listVal [formGroup]="form" [property]="property"></list-value>`
-})
-class TestHostComponent implements OnInit {
-
-    form;
-    property: Property;
-
-    @ViewChild('listVal', { static: false }) listValue: ListValueComponent;
-
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
-    }
-
-    ngOnInit() {
-        this.form = this.fb.group({});
-
-        this.property = new Property(
-            'http://0.0.0.0:3333/ontology/0001/anything/v2#hasListItem',
-            'http://api.knora.org/ontology/knora-api/v2#ListValue',
-            undefined,
-            'Text',
-            ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
-            true,
-            false,
-            false,
-            ['hlist=<http://rdfh.ch/lists/0001/treeList>']
-        );
-    }
-}
