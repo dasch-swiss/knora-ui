@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
-import { IntElementComponent } from '@knora/viewer';
+import { IntElementComponent, KuiViewerModule } from '@knora/viewer';
 
 describe('IntegerValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -22,10 +22,10 @@ describe('IntegerValueComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 IntegerValueComponent,
-                TestHostComponent,
-                IntElementComponent
+                TestHostComponent
             ],
             imports: [
+                KuiViewerModule,
                 FormsModule,
                 ReactiveFormsModule,
                 MatFormFieldModule,

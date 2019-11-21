@@ -12,7 +12,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
-import { JdnDatepickerDirective } from '@knora/action';
+import { KuiActionModule } from '@knora/action';
 import { MatJDNConvertibleCalendarDateAdapterModule } from 'jdnconvertiblecalendardateadapter';
 import { GregorianCalendarDate, JDNPeriod } from 'jdnconvertiblecalendar';
 
@@ -24,10 +24,10 @@ describe('DateValueComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 DateValueComponent,
-                TestHostComponent,
-                JdnDatepickerDirective
+                TestHostComponent
             ],
             imports: [
+                KuiActionModule,
                 FormsModule,
                 ReactiveFormsModule,
                 MatFormFieldModule,

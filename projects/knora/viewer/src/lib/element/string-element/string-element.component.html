@@ -1,4 +1,9 @@
-<mat-form-field class="large-field">
+<mat-form-field *ngIf="htmlElement == 'input'; else elseBlock" class="large-field">
     <input matInput [formControl]="form.controls['elementValue']" placeholder="{{placeholder}}" type="text" [readonly]="readonlyValue">
 </mat-form-field>
+<ng-template #elseBlock>
+    <mat-form-field class="large-field">
+        <textarea matInput [formControl]="form.controls['elementValue']" placeholder="{{placeholder}}" [readonly]="readonlyValue"></textarea>
+    </mat-form-field>
+</ng-template>
 

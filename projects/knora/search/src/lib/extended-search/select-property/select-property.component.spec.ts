@@ -12,8 +12,17 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { JdnDatepickerDirective } from '@knora/action';
-import { Cardinality, CardinalityOccurrence, GuiOrder, KuiCoreConfig, KuiCoreConfigToken, Properties, Property, ResourceClass } from '@knora/core';
+import { KuiActionModule } from '@knora/action';
+import {
+    Cardinality,
+    CardinalityOccurrence,
+    GuiOrder,
+    KuiCoreConfig,
+    KuiCoreConfigToken,
+    Properties,
+    Property,
+    ResourceClass
+} from '@knora/core';
 import { SelectPropertyComponent } from './select-property.component';
 import { BooleanValueComponent } from './specify-property-value/boolean-value/boolean-value.component';
 import { DateValueComponent } from './specify-property-value/date-value/date-value.component';
@@ -25,7 +34,7 @@ import { ListValueComponent } from './specify-property-value/list-value/list-val
 import { SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
 import { TextValueComponent } from './specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './specify-property-value/uri-value/uri-value.component';
-import { IntElementComponent, StringElementComponent } from '@knora/viewer';
+import { KuiViewerModule } from '@knora/viewer';
 
 describe('SelectPropertyComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -43,12 +52,9 @@ describe('SelectPropertyComponent', () => {
                 LinkValueComponent,
                 TextValueComponent,
                 UriValueComponent,
-                JdnDatepickerDirective,
                 TestHostComponent,
                 ListValueComponent,
-                ListDisplayComponent,
-                IntElementComponent,
-                StringElementComponent
+                ListDisplayComponent
             ],
             imports: [
                 FormsModule,
@@ -61,6 +67,8 @@ describe('SelectPropertyComponent', () => {
                 MatDatepickerModule,
                 MatAutocompleteModule,
                 BrowserAnimationsModule,
+                KuiActionModule,
+                KuiViewerModule,
                 RouterTestingModule.withRoutes([])
             ],
             providers: [

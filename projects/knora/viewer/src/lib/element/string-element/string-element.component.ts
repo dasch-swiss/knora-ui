@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { BaseElementComponent } from '../base-element/base-element.component';
 import { Validators } from '@angular/forms';
 
@@ -8,6 +8,8 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./string-element.component.scss']
 })
 export class StringElementComponent extends BaseElementComponent<string> implements OnInit, OnChanges, OnDestroy {
+
+    @Input() htmlElement: 'input' | 'textarea' = 'input';
 
     validators = [Validators.required];
 

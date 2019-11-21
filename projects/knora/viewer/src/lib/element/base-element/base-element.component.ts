@@ -29,7 +29,7 @@ export abstract class BaseElementComponent<T> {
 
     @Input() readonlyValue = false;
 
-    @Input() index: number;
+    @Input() index?: number;
 
     protected controlName: string;
 
