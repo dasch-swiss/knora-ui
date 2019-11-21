@@ -12,6 +12,7 @@ import { By } from '@angular/platform-browser';
 import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { UriValueComponent } from './uri-value.component';
+import { KuiViewerModule } from '@knora/viewer';
 
 describe('UriValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -31,6 +32,7 @@ describe('UriValueComponent', () => {
                 MatCheckboxModule,
                 BrowserAnimationsModule,
                 MatInputModule,
+                KuiViewerModule,
                 RouterTestingModule.withRoutes([])
             ],
             providers: [

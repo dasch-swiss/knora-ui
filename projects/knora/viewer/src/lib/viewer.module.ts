@@ -130,7 +130,6 @@ import { UriElementComponent } from './element/uri-element/uri-element.component
         UriElementComponent
     ],
     exports: [
-
         AnnotationComponent,
         AudioComponent,
         CollectionComponent,
@@ -167,7 +166,8 @@ import { UriElementComponent } from './element/uri-element/uri-element.component
         PropertiesViewComponent,
         SearchResultsComponent,
         IntElementComponent,
-        TextElementComponent
+        TextElementComponent,
+        UriElementComponent
     ]
 })
 export class KuiViewerModule {
