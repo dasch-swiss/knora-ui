@@ -15,7 +15,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { KuiActionModule } from '@knora/action';
-import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '@knora/core';
+
 import { ExpertSearchComponent } from '../expert-search/expert-search.component';
 import { ExtendedSearchComponent } from '../extended-search/extended-search.component';
 import { SelectOntologyComponent } from '../extended-search/select-ontology/select-ontology.component';
@@ -32,8 +34,8 @@ import { TextValueComponent } from '../extended-search/select-property/specify-p
 import { UriValueComponent } from '../extended-search/select-property/specify-property-value/uri-value/uri-value.component';
 import { SelectResourceClassComponent } from '../extended-search/select-resource-class/select-resource-class.component';
 import { FulltextSearchComponent } from '../fulltext-search/fulltext-search.component';
-import { SearchPanelComponent } from './search-panel.component';
 
+import { SearchPanelComponent } from './search-panel.component';
 
 describe('SearchPanelComponent', () => {
     let component: SearchPanelComponent;
@@ -59,6 +61,21 @@ describe('SearchPanelComponent', () => {
                 BrowserAnimationsModule,
                 HttpClientTestingModule,
                 HttpClientModule,
+                KuiCoreModule.forRoot({
+                    knora: {
+                        apiProtocol: 'http',
+                        apiHost: '0.0.0.0',
+                        apiPort: 3333,
+                        apiUrl: '',
+                        apiPath: '',
+                        jsonWebToken: '',
+                        logErrors: true
+                    },
+                    app: {
+                        name: 'Knora-UI-APP',
+                        url: 'localhost:4200'
+                    }
+                })
             ],
             declarations: [
                 SearchPanelComponent,
@@ -80,16 +97,20 @@ describe('SearchPanelComponent', () => {
                 ListDisplayComponent
             ],
             providers: [
-                {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
-                },
                 HttpClient,
                 {
                     provide: ActivatedRoute,
                     useValue: {
                         params: null
                     }
+                },
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: KnoraApiConfig
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: KnoraApiConnection
                 }
             ]
         })
