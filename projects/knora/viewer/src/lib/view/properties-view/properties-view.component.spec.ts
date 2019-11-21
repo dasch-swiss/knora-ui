@@ -23,6 +23,7 @@ import { IntElementComponent } from '../../element/int-element/int-element.compo
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { StringElementComponent } from '../../element';
 
 describe('PropertiesViewComponent', () => {
     let component: PropertiesViewComponent;
@@ -59,7 +60,8 @@ describe('PropertiesViewComponent', () => {
                 TextValueAsHtmlComponent,
                 TextValueAsXmlComponent,
                 TextfileValueComponent,
-                UriValueComponent
+                UriValueComponent,
+                StringElementComponent
             ]
         })
             .compileComponents();

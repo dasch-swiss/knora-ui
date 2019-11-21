@@ -4,6 +4,11 @@ import { ReadTextValueAsString } from '@knora/core';
 import { GndDirective } from '@knora/action';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { StringElementComponent } from '../../../element';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
 
 describe('TextValueAsStringComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -11,10 +16,16 @@ describe('TextValueAsStringComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [FormsModule,
+                ReactiveFormsModule,
+                MatFormFieldModule,
+                BrowserAnimationsModule,
+                MatInputModule],
             declarations: [
                 TextValueAsStringComponent,
                 GndDirective,
-                TestHostComponent
+                TestHostComponent,
+                StringElementComponent
             ]
         })
             .compileComponents();
@@ -35,15 +46,7 @@ describe('TextValueAsStringComponent', () => {
     it('should contain the string "Number theory"', () => {
         expect(testHostComponent.stringValueComponent.valueObject.str).toEqual('Number theory');
 
-        const hostCompDe = testHostFixture.debugElement;
-
-        const stringVal = hostCompDe.query(By.directive(TextValueAsStringComponent));
-
-        const spanDebugElement: DebugElement = stringVal.query(By.css('span'));
-
-        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
-
-        expect(spanNativeElement.innerText).toEqual('Number theory');
+        expect(testHostComponent.stringValueComponent.stringValueElement.eleVal).toEqual('Number theory');
     });
 
     it('should contain the string "Natural Science"', () => {
@@ -51,15 +54,7 @@ describe('TextValueAsStringComponent', () => {
 
         testHostFixture.detectChanges();
 
-        const hostCompDe = testHostFixture.debugElement;
-
-        const stringVal = hostCompDe.query(By.directive(TextValueAsStringComponent));
-
-        const spanDebugElement: DebugElement = stringVal.query(By.css('span'));
-
-        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
-
-        expect(spanNativeElement.innerText).toEqual('Natural Science');
+        expect(testHostComponent.stringValueComponent.stringValueElement.eleVal).toEqual('Natural Science');
     });
 
     it('should handle special characters in HTML correctly', () => {
@@ -68,17 +63,7 @@ describe('TextValueAsStringComponent', () => {
 
         testHostFixture.detectChanges();
 
-        const hostCompDe = testHostFixture.debugElement;
-
-        const stringVal = hostCompDe.query(By.directive(TextValueAsStringComponent));
-
-        const spanDebugElement: DebugElement = stringVal.query(By.css('span'));
-
-        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
-
-        expect(spanNativeElement.innerText).toEqual('<>&\'"');
-
-        expect(spanNativeElement.innerHTML).toEqual('&lt;&gt;&amp;\'"');
+        expect(testHostComponent.stringValueComponent.stringValueElement.eleVal).toEqual('<>&\'"');
 
     });
 
