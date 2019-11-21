@@ -4,7 +4,7 @@ import { ReadTextValueAsString } from '@knora/core';
 import { GndDirective } from '@knora/action';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { StringElementComponent } from '../../../element';
+import { TextElementComponent } from '../../../element';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +25,7 @@ describe('TextValueAsStringComponent', () => {
                 TextValueAsStringComponent,
                 GndDirective,
                 TestHostComponent,
-                StringElementComponent
+                TextElementComponent
             ]
         })
             .compileComponents();

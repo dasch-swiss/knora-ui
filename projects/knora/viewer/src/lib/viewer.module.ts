@@ -60,7 +60,7 @@ import { ResourceViewComponent } from './view/resource-view/resource-view.compon
 import { TableViewComponent } from './view/table-view/table-view.component';
 import { SearchResultsComponent } from './view/search-results/search-results.component';
 import { IntElementComponent } from './element/int-element/int-element.component';
-import { StringElementComponent } from './element/string-element/string-element.component';
+import { TextElementComponent } from './element/string-element/text-element.component';
 
 
 
@@ -125,7 +125,7 @@ import { StringElementComponent } from './element/string-element/string-element.
         PropertiesViewComponent,
         SearchResultsComponent,
         IntElementComponent,
-        StringElementComponent
+        TextElementComponent
     ],
     exports: [
 
@@ -165,7 +165,7 @@ import { StringElementComponent } from './element/string-element/string-element.
         PropertiesViewComponent,
         SearchResultsComponent,
         IntElementComponent,
-        StringElementComponent
+        TextElementComponent
     ]
 })
 export class KuiViewerModule {

@@ -3,11 +3,11 @@ import { BaseElementComponent } from '../base-element/base-element.component';
 import { Validators } from '@angular/forms';
 
 @Component({
-  selector: 'kui-string-element',
-  templateUrl: './string-element.component.html',
-  styleUrls: ['./string-element.component.scss']
+  selector: 'kui-text-element',
+  templateUrl: './text-element.component.html',
+  styleUrls: ['./text-element.component.scss']
 })
-export class StringElementComponent extends BaseElementComponent<string> implements OnInit, OnChanges, OnDestroy {
+export class TextElementComponent extends BaseElementComponent<string> implements OnInit, OnChanges, OnDestroy {
 
     @Input() htmlElement: 'input' | 'textarea' = 'input';
 

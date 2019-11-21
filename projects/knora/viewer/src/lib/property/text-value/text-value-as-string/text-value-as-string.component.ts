@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { ReadTextValueAsString } from '@knora/core';
-import { StringElementComponent } from '../../../element';
+import { TextElementComponent } from '../../../element';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class TextValueAsStringComponent implements OnInit {
 
-    @ViewChild('textVal', {static: false}) stringValueElement: StringElementComponent;
+    @ViewChild('textVal', {static: false}) stringValueElement: TextElementComponent;
 
     @Input()
     set valueObject(value: ReadTextValueAsString) {

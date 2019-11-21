@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StringElementComponent } from './string-element.component';
+import { TextElementComponent } from './text-element.component';
 import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
@@ -12,7 +12,7 @@ describe('StringElementComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
-                StringElementComponent,
+                TextElementComponent,
                 TestHostViewerComponent
             ],
             imports: [
@@ -49,7 +49,7 @@ describe('StringElementComponent', () => {
 
             const hostCompDe = testHostFixture.debugElement;
 
-            const integerVal = hostCompDe.query(By.directive(StringElementComponent));
+            const integerVal = hostCompDe.query(By.directive(TextElementComponent));
 
             const inputDebugElement: DebugElement = integerVal.query(By.css('input'));
 
@@ -71,7 +71,7 @@ describe('StringElementComponent', () => {
 @Component({
     selector: `host-component`,
     template: `
-        <kui-string-element #strVal [eleVal]="value" [formGroup]="form" [readonlyValue]="readonly"></kui-string-element>`
+        <kui-text-element #strVal [eleVal]="value" [formGroup]="form" [readonlyValue]="readonly"></kui-text-element>`
 })
 class TestHostViewerComponent implements OnInit {
 
@@ -81,7 +81,7 @@ class TestHostViewerComponent implements OnInit {
 
     readonly = true;
 
-    @ViewChild('strVal', {static: false}) strComp: StringElementComponent;
+    @ViewChild('strVal', {static: false}) strComp: TextElementComponent;
 
     constructor(@Inject(FormBuilder) private fb: FormBuilder) {
     }

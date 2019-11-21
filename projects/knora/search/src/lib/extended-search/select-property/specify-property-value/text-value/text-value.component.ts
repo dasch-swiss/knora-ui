@@ -2,7 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 
 import { FormGroup } from '@angular/forms';
 import { KnoraConstants, PropertyValue, Value, ValueLiteral } from '@knora/core';
-import { StringElementComponent } from '@knora/viewer';
+import { TextElementComponent } from '@knora/viewer';
 
 @Component({
     selector: 'text-value',
@@ -11,7 +11,7 @@ import { StringElementComponent } from '@knora/viewer';
 })
 export class TextValueComponent implements PropertyValue {
 
-    @ViewChild('stringVal', {static: false}) stringValueElement: StringElementComponent;
+    @ViewChild('stringVal', {static: false}) stringValueElement: TextElementComponent;
 
     // parent FormGroup
     @Input() formGroup: FormGroup;
