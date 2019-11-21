@@ -14,8 +14,21 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { JdnDatepickerDirective, KuiActionModule } from '@knora/action';
-import { Cardinality, CardinalityOccurrence, GuiOrder, KuiCoreConfig, KuiCoreConfigToken, OntologyCacheService, OntologyInformation, OntologyMetadata, Property, ResourceClass, ResourceClasses, ResourceClassIrisForOntology } from '@knora/core';
+import { KuiActionModule } from '@knora/action';
+import {
+    Cardinality,
+    CardinalityOccurrence,
+    GuiOrder,
+    KuiCoreConfig,
+    KuiCoreConfigToken,
+    OntologyCacheService,
+    OntologyInformation,
+    OntologyMetadata,
+    Property,
+    ResourceClass,
+    ResourceClasses,
+    ResourceClassIrisForOntology
+} from '@knora/core';
 import { of } from 'rxjs';
 import { ExtendedSearchComponent } from './extended-search.component';
 import { SelectOntologyComponent } from './select-ontology/select-ontology.component';
@@ -31,7 +44,7 @@ import { SpecifyPropertyValueComponent } from './select-property/specify-propert
 import { TextValueComponent } from './select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './select-property/specify-property-value/uri-value/uri-value.component';
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
-import { IntElementComponent, KuiViewerModule, StringElementComponent } from '@knora/viewer';
+import { KuiViewerModule } from '@knora/viewer';
 
 describe('ExtendedSearchComponent', () => {
 
