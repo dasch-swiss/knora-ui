@@ -33,7 +33,7 @@ import { UriValueComponent } from '../extended-search/select-property/specify-pr
 import { SelectResourceClassComponent } from '../extended-search/select-resource-class/select-resource-class.component';
 import { FulltextSearchComponent } from '../fulltext-search/fulltext-search.component';
 import { SearchPanelComponent } from './search-panel.component';
-import { IntElementComponent } from '@knora/viewer';
+import { IntElementComponent, StringElementComponent } from '@knora/viewer';
 
 
 describe('SearchPanelComponent', () => {
@@ -79,7 +79,8 @@ describe('SearchPanelComponent', () => {
                 UriValueComponent,
                 ListValueComponent,
                 ListDisplayComponent,
-                IntElementComponent
+                IntElementComponent,
+                StringElementComponent
             ],
             providers: [
                 {

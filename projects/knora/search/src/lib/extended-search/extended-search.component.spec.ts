@@ -31,7 +31,7 @@ import { SpecifyPropertyValueComponent } from './select-property/specify-propert
 import { TextValueComponent } from './select-property/specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './select-property/specify-property-value/uri-value/uri-value.component';
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
-import { IntElementComponent } from '@knora/viewer';
+import { IntElementComponent, StringElementComponent } from '@knora/viewer';
 
 describe('ExtendedSearchComponent', () => {
 
@@ -56,7 +56,8 @@ describe('ExtendedSearchComponent', () => {
                 JdnDatepickerDirective,
                 ListValueComponent,
                 ListDisplayComponent,
-                IntElementComponent
+                IntElementComponent,
+                StringElementComponent
             ],
             imports: [
                 HttpClientTestingModule,

@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { StringElementComponent } from '@knora/viewer';
 
 describe('TextValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -21,7 +22,8 @@ describe('TextValueComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 TextValueComponent,
-                TestHostComponent
+                TestHostComponent,
+                StringElementComponent
             ],
             imports: [
                 FormsModule,

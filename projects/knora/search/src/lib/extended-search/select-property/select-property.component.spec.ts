@@ -25,7 +25,7 @@ import { ListValueComponent } from './specify-property-value/list-value/list-val
 import { SpecifyPropertyValueComponent } from './specify-property-value/specify-property-value.component';
 import { TextValueComponent } from './specify-property-value/text-value/text-value.component';
 import { UriValueComponent } from './specify-property-value/uri-value/uri-value.component';
-import { IntElementComponent } from '@knora/viewer';
+import { IntElementComponent, StringElementComponent } from '@knora/viewer';
 
 describe('SelectPropertyComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -47,7 +47,8 @@ describe('SelectPropertyComponent', () => {
                 TestHostComponent,
                 ListValueComponent,
                 ListDisplayComponent,
-                IntElementComponent
+                IntElementComponent,
+                StringElementComponent
             ],
             imports: [
                 FormsModule,

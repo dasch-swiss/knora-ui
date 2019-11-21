@@ -26,7 +26,7 @@ import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { ListValueComponent } from './list-value/list-value.component';
 import { ListDisplayComponent } from './list-value/list-display/list-display.component';
-import { IntElementComponent } from '@knora/viewer';
+import { IntElementComponent, StringElementComponent } from '@knora/viewer';
 
 describe('SpecifyPropertyValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -49,7 +49,8 @@ describe('SpecifyPropertyValueComponent', () => {
                 TestHostComponent,
                 ListValueComponent,
                 ListDisplayComponent,
-                IntElementComponent
+                IntElementComponent,
+                StringElementComponent
             ],
             imports: [
                 FormsModule,

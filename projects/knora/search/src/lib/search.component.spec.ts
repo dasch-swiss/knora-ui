@@ -31,7 +31,7 @@ import { UriValueComponent } from './extended-search/select-property/specify-pro
 import { of } from 'rxjs';
 import { ListValueComponent } from './extended-search/select-property/specify-property-value/list-value/list-value.component';
 import { ListDisplayComponent } from './extended-search/select-property/specify-property-value/list-value/list-display/list-display.component';
-import { IntElementComponent } from '@knora/viewer';
+import { IntElementComponent, StringElementComponent } from '@knora/viewer';
 
 describe('SearchComponent', () => {
     let component: SearchComponent;
@@ -57,7 +57,8 @@ describe('SearchComponent', () => {
                 JdnDatepickerDirective,
                 ListValueComponent,
                 ListDisplayComponent,
-                IntElementComponent
+                IntElementComponent,
+                StringElementComponent
             ],
             imports: [
                 BrowserAnimationsModule,
