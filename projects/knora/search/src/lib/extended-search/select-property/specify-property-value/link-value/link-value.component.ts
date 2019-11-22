@@ -85,7 +85,6 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
             */
             this.knoraApiConnection.v2.search.doSearchByLabel(searchTerm, 0, { limitToResourceClass: this._restrictToResourceClass }).subscribe(
                 (response: ReadResource[]) => {
-                    console.log(response);
                     this.resources = response;
                 });
         } else {
