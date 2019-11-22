@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IRI, KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule, SearchService } from '@knora/core';
+import { IRI, KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '@knora/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
@@ -112,7 +112,7 @@ describe('LinkValueComponent', () => {
     it('should search for resources by their label', inject([KnoraApiConnectionToken], (knoraApiConnection) => {
 
         spyOn(knoraApiConnection.v2.search, 'doSearchByLabel').and.callFake(
-            (searchTerm) => {
+            () => {
                 const res = new ReadResource();
                 res.id = 'http://rdfh.ch/00505cf0a803';
                 res.label = 'leo';
@@ -135,6 +135,6 @@ describe('LinkValueComponent', () => {
 
         testHostFixture.detectChanges();
 
-        expect(testHostComponent.linkValue.getValue()).toEqual(new IRI('http://rdfh.ch/0802/VKPSBh1IRw2lLhc2r6uCfQ'));
+        expect(testHostComponent.linkValue.getValue()).toEqual(new IRI('http://rdfh.ch/00505cf0a803'));
     });
 });
