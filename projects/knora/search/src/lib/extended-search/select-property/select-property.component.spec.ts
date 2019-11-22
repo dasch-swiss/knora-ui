@@ -198,6 +198,8 @@ describe('SelectPropertyComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
 
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -227,21 +229,7 @@ describe('SelectPropertyComponent', () => {
                 MatAutocompleteModule,
                 BrowserAnimationsModule,
                 RouterTestingModule.withRoutes([]),
-                KuiCoreModule.forRoot({
-                    knora: {
-                        apiProtocol: 'http',
-                        apiHost: '0.0.0.0',
-                        apiPort: 3333,
-                        apiUrl: '',
-                        apiPath: '',
-                        jsonWebToken: '',
-                        logErrors: true
-                    },
-                    app: {
-                        name: 'Knora-UI-APP',
-                        url: 'localhost:4200'
-                    }
-                })
+                KuiCoreModule
             ],
             providers: [
                 {
@@ -252,11 +240,11 @@ describe('SelectPropertyComponent', () => {
                 },
                 {
                     provide: KnoraApiConfigToken,
-                    useValue: KnoraApiConfig
+                    useValue: config
                 },
                 {
                     provide: KnoraApiConnectionToken,
-                    useValue: KnoraApiConnection
+                    useValue: new KnoraApiConnection(config)
                 },
                 FormBuilder
             ]

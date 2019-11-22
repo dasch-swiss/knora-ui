@@ -19,6 +19,8 @@ describe('ExpertSearchComponent', () => {
   let component: ExpertSearchComponent;
   let fixture: ComponentFixture<ExpertSearchComponent>;
 
+  const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -30,21 +32,7 @@ describe('ExpertSearchComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         HttpClientModule,
-        KuiCoreModule.forRoot({
-          knora: {
-            apiProtocol: 'http',
-            apiHost: '0.0.0.0',
-            apiPort: 3333,
-            apiUrl: '',
-            apiPath: '',
-            jsonWebToken: '',
-            logErrors: true
-          },
-          app: {
-            name: 'Knora-UI-APP',
-            url: 'localhost:4200'
-          }
-        })
+        KuiCoreModule
       ],
       declarations: [ExpertSearchComponent],
       providers: [
@@ -58,11 +46,11 @@ describe('ExpertSearchComponent', () => {
         },
         {
           provide: KnoraApiConfigToken,
-          useValue: KnoraApiConfig
+          useValue: config
         },
         {
           provide: KnoraApiConnectionToken,
-          useValue: KnoraApiConnection
+          useValue: new KnoraApiConnection(config)
         }
       ]
     })

@@ -59,6 +59,8 @@ describe('ListValueComponent', () => {
 
     let spyListCacheService;
 
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
+
     beforeEach(async(() => {
 
         spyListCacheService = jasmine.createSpyObj('ListCacheService', ['getList']);
@@ -80,21 +82,7 @@ describe('ListValueComponent', () => {
                 MatInputModule,
                 MatMenuModule,
                 RouterTestingModule.withRoutes([]),
-                KuiCoreModule.forRoot({
-                    knora: {
-                        apiProtocol: 'http',
-                        apiHost: '0.0.0.0',
-                        apiPort: 3333,
-                        apiUrl: '',
-                        apiPath: '',
-                        jsonWebToken: '',
-                        logErrors: true
-                    },
-                    app: {
-                        name: 'Knora-UI-APP',
-                        url: 'localhost:4200'
-                    }
-                })
+                KuiCoreModule
             ],
             providers: [
                 { provide: ListCacheService, useValue: spyListCacheService },
@@ -106,11 +94,11 @@ describe('ListValueComponent', () => {
                 },
                 {
                     provide: KnoraApiConfigToken,
-                    useValue: KnoraApiConfig
+                    useValue: config
                 },
                 {
                     provide: KnoraApiConnectionToken,
-                    useValue: KnoraApiConnection
+                    useValue: new KnoraApiConnection(config)
                 },
                 FormBuilder
             ]

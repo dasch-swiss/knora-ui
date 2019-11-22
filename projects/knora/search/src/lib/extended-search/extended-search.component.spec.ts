@@ -15,8 +15,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { JdnDatepickerDirective } from '@knora/action';
-import { Cardinality, CardinalityOccurrence, GuiOrder, KuiCoreConfig, KuiCoreConfigToken, OntologyCacheService, OntologyInformation, OntologyMetadata, Property, ResourceClass, ResourceClasses, ResourceClassIrisForOntology } from '@knora/core';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { Cardinality, CardinalityOccurrence, GuiOrder, KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule, OntologyCacheService, OntologyInformation, OntologyMetadata, Property, ResourceClass, ResourceClasses, ResourceClassIrisForOntology } from '@knora/core';
 import { of } from 'rxjs';
+
 import { ExtendedSearchComponent } from './extended-search.component';
 import { SelectOntologyComponent } from './select-ontology/select-ontology.component';
 import { SelectPropertyComponent } from './select-property/select-property.component';
@@ -36,6 +38,8 @@ describe('ExtendedSearchComponent', () => {
 
     let componentInstance: ExtendedSearchComponent;
     let fixture: ComponentFixture<ExtendedSearchComponent>;
+
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -69,7 +73,8 @@ describe('ExtendedSearchComponent', () => {
                 MatDatepickerModule,
                 MatAutocompleteModule,
                 BrowserAnimationsModule,
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                KuiCoreModule
             ],
             providers: [
                 {
@@ -79,8 +84,12 @@ describe('ExtendedSearchComponent', () => {
                     }
                 },
                 {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
+                    provide: KnoraApiConfigToken,
+                    useValue: config
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: new KnoraApiConnection(config)
                 },
                 FormBuilder,
                 OntologyCacheService,
@@ -119,6 +128,8 @@ describe('ExtendedSearchComponent', () => {
     });
 
     describe('Component init state', () => {
+
+        // TODO: replace OntologyMetadata with the equivalent definition from @knora/api and fix the tests
 
         it('should correctly initialized the ontologies\' metadata', async(() => {
 
