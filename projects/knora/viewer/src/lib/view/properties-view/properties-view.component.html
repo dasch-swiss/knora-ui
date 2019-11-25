@@ -1,5 +1,7 @@
+<!-- header with project / ontology / resource class info / ark url -->
+
 <!-- properties -->
-<div class="properties">
+<div class="properties" *ngIf="!loading">
     <!-- let prop of guiOrder (was previous; has to be reset again) -->
     <div *ngFor="let prop of propArray | kuiKey; let last = last">
         <div *ngIf="properties[prop?.val.property]" class="property">

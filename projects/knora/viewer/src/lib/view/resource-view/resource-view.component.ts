@@ -73,12 +73,15 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
         this.knoraApiConnection.v2.res.getResource(id).subscribe(
             (result: ReadResource) => {
-                console.log(result);
                 this.resource = result;
-                this.loading = false;
+                console.log(result);
+                setTimeout(() => {
+                    this.loading = false;
+                });
             },
             (error: ApiResponseError) => {
                 console.error(error);
+                this.loading = false;
             }
         );
 
