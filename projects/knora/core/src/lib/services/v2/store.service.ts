@@ -1,11 +1,15 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { KuiCoreConfig, RdfDataObject, ResetTriplestoreContentResponse } from '../../declarations';
+import { map } from 'rxjs/operators';
+
+import { RdfDataObject, ResetTriplestoreContentResponse } from '../../declarations';
 import { KuiCoreConfigToken } from '../../core.module';
 
-
+/**
+ * @deprecated since v9.5.0
+ * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -14,11 +18,12 @@ export class StoreService {
   constructor(private http: HttpClient, @Inject(KuiCoreConfigToken) public config) { }
 
   /**
-     * Resets the content of the triplestore.
-     *
-     * @param rdfDataObjects
-     * @returns Observable<string>
-     */
+    * @deprecated since v9.5.0
+    * Resets the content of the triplestore.
+    *
+    * @param rdfDataObjects
+    * @returns Observable<string>
+    */
   resetTriplestoreContent(rdfDataObjects: RdfDataObject[]): Observable<string> {
 
     return this.http.post<ResetTriplestoreContentResponse>(this.config.api + '/admin/store/ResetTriplestoreContent', rdfDataObjects)

@@ -1,7 +1,8 @@
 import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
-import { KuiCoreConfig } from './declarations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+
+import { KuiCoreConfig } from './declarations';
 
 export const KuiCoreConfigToken = new InjectionToken<KuiCoreConfig>('KuiCoreConfigToken (knora.core.config)');
 
@@ -23,11 +24,10 @@ export class KuiCoreModule {
      */
     static forRoot(config: KuiCoreConfig): ModuleWithProviders {
         // get the app environment configuration here
-        // console.log('KuiCoreModule - forRoot - config: ', config);
         return {
             ngModule: KuiCoreModule,
             providers: [
-                {provide: KuiCoreConfigToken, useValue: config}
+                { provide: KuiCoreConfigToken, useValue: config }
             ]
         };
     }

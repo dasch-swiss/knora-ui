@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+
 import { ApiServiceResult, Group, GroupMembersResponse, GroupResponse, GroupsResponse, User } from '../../declarations/';
 import { ApiService } from '../api.service';
 
 /**
- * Request information about group from Knora.
+ * @deprecated since v9.5.0
+ * Use the class GroupsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.
  */
 @Injectable({
     providedIn: 'root'
@@ -19,6 +21,7 @@ export class GroupsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v9.5.0
      * Return a list of all groups.
      *
      * @returns Observable<Group[]>
@@ -31,6 +34,7 @@ export class GroupsService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Return a group object (filter by IRI).
      *
      * @param {string} iri
@@ -44,6 +48,7 @@ export class GroupsService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Return a list of all group members. 
      * 
      * @param {string} iri
@@ -61,8 +66,9 @@ export class GroupsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v9.5.0
      * Create new group.
-     * 
+     *
      * @param {Group} group
      * @returns Observable<Group>
      */
@@ -78,8 +84,9 @@ export class GroupsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v9.5.0
      * Edit a group.
-     * 
+     *
      * @param {Group} groupInfo
      * @returns Observable<Group>
      */
@@ -98,8 +105,9 @@ export class GroupsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v9.5.0
      * Delete a group (set status to false).
-     * 
+     *
      * @param {string} iri
      * @returns Observable<Group>
      */
