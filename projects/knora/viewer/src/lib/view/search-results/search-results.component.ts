@@ -158,7 +158,10 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                 if (this.offset === 0) {
                     // perform count query
                     this.knoraApiConnection.v2.search.doFulltextSearchCountQuery(this.searchQuery, searchParams).subscribe(
-                        this.showNumberOfAllResults,
+                        (response: CountQueryResponse) => {
+                            console.log(response);
+                            this.showNumberOfAllResults(response);
+                        },
                         (error: ApiResponseError) => {
                             this.errorMessage = error;
                         }
@@ -167,11 +170,17 @@ export class SearchResultsComponent implements OnInit, OnChanges {
 
                 // perform full text search
                 this.knoraApiConnection.v2.search.doFulltextSearch(this.searchQuery, this.offset, searchParams).subscribe(
-                    this.processSearchResults, // function pointer
+                    (response: ReadResource[]) => {
+                        // this.processSearchResults(response);
+                        console.log(response);
+                        this.result = response;
+                        this.loading = false;
+                    },
                     (error: ApiResponseError) => {
                         this.errorMessage = error;
                         console.log('error', error);
                         console.log('message', this.errorMessage);
+                        this.loading = false;
                     }
                 );
             }
@@ -181,16 +190,23 @@ export class SearchResultsComponent implements OnInit, OnChanges {
             // perform count query
             if (this.offset === 0) {
                 this.knoraApiConnection.v2.search.doExtendedSearchCountQuery(this.gravSearchQuery).subscribe(
-                    this.showNumberOfAllResults,
+                    (response: CountQueryResponse) => {
+                        this.showNumberOfAllResults(response);
+                    },
                     (error: ApiResponseError) => {
                         this.errorMessage = error;
                     }
                 );
             }
             this.knoraApiConnection.v2.search.doExtendedSearch(this.gravSearchQuery).subscribe(
-                this.processSearchResults, // function pointer
+                (response: ReadResource[]) => {
+                    // this.processSearchResults(response);
+                    this.result = response;
+                    this.loading = false;
+                },
                 (error: ApiResponseError) => {
                     this.errorMessage = error;
+                    this.loading = false;
                 }
             );
         } else {
@@ -212,7 +228,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
      *
      * @param {ReadResourcesSequence} searchResult the answer to a search request.
      */
-    private processSearchResults = (searchResult: ReadResource[]) => {
+    private processSearchResults(searchResult: ReadResource[]) {
         console.log(searchResult);
         // assign ontology information to a variable so it can be used in the component's template
         if (this.ontologyInfo === undefined) {
@@ -238,7 +254,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
      *
      * @param {ApiServiceResult} countQueryResult the response to a count query.
      */
-    private showNumberOfAllResults = (countQueryResult: CountQueryResponse) => {
+    private showNumberOfAllResults(countQueryResult: CountQueryResponse) {
         this.numberOfAllResults = countQueryResult.numberOfResults;
 
         if (this.numberOfAllResults > 0) {

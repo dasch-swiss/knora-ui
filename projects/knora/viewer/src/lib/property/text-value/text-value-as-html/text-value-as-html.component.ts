@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { KnoraConstants, OntologyInformation, ReadTextValueAsHtml } from '@knora/core';
+import { KnoraConstants, OntologyInformation } from '@knora/core';
+import { ReadTextValueAsHtml } from '@knora/api';
 
 @Component({
     selector: 'kui-text-value-as-html',
