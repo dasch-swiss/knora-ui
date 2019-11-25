@@ -1,6 +1,10 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
 
 /**
+ * @deprecated since v9.5.0
+ * This class has been moved to session.service in knora/core.
+ * Update your import path.
+ *
  * currently logged-in user
  */
 @JsonObject

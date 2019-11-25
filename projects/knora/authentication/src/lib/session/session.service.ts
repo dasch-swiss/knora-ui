@@ -4,10 +4,15 @@ import { ApiServiceError, KnoraConstants, KuiCoreConfigToken, User, UsersService
 import * as momentImported from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { Session } from '../declarations';
 
 const moment = momentImported;
 
+/**
+ * @deprecated since v9.5.0
+ * This service has been moved to knora/core. Update your import path.
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -22,13 +27,14 @@ export class SessionService {
      */
     readonly MAX_SESSION_TIME: number = 86400000; // 1d = 24 * 60 * 60 * 1000
 
-    constructor (
+    constructor(
         private _http: HttpClient,
         @Inject(KuiCoreConfigToken) public config,
         private _users: UsersService) {
     }
 
     /**
+     * @deprecated since v9.5.0
      * set the session by using the json web token (jwt) and the user object;
      * it will be used in the login process
      *
@@ -94,10 +100,16 @@ export class SessionService {
         );
     }
 
+    /**
+     * @deprecated since v9.5.0
+     */
     private setTimestamp() {
         return (moment().add(0, 'second')).valueOf();
     }
 
+    /**
+     * @deprecated since v9.5.0
+     */
     validateSession() {
         // mix of checks with session.validation and this.authenticate
         this.session = JSON.parse(localStorage.getItem('session'));
@@ -134,6 +146,9 @@ export class SessionService {
         return false;
     }
 
+    /**
+     * @deprecated since v9.5.0
+     */
     private authenticate(): Observable<boolean> {
         return this._http.get(this.config.api + '/v2/authentication').pipe(
             map((result: any) => {
@@ -144,6 +159,9 @@ export class SessionService {
         );
     }
 
+    /**
+     * @deprecated since v9.5.0
+     */
     destroySession() {
         localStorage.removeItem('session');
     }
