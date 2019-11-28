@@ -4,6 +4,11 @@ import { UriValueComponent } from './uri-value.component';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { ReadUriValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { UriElementComponent } from '../../element/uri-element/uri-element.component';
 
 describe('UriValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -11,8 +16,12 @@ describe('UriValueComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [],
-            declarations: [UriValueComponent, TestHostComponent]
+            imports: [FormsModule,
+                ReactiveFormsModule,
+                MatFormFieldModule,
+                BrowserAnimationsModule,
+                MatInputModule],
+            declarations: [UriValueComponent, TestHostComponent, UriElementComponent]
         })
             .compileComponents();
     }));
@@ -32,19 +41,8 @@ describe('UriValueComponent', () => {
     it('should be equal to the uri value http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg', () => {
         expect(testHostComponent.uriValueComponent.valueObject.uri).toEqual('http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
 
-        const hostCompDe = testHostFixture.debugElement;
+        expect(testHostComponent.uriValueComponent.uriValueElement.eleVal).toEqual('http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
 
-        const uriVal = hostCompDe.query(By.directive(UriValueComponent));
-
-        const spanDebugElement: DebugElement = uriVal.query(By.css('a'));
-
-        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
-
-        const hrefAttribute = spanNativeElement.getAttribute('href');
-
-        expect(spanNativeElement.innerText).toEqual('http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
-
-        expect(hrefAttribute).toEqual('http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
     });
 
     // the new uri has been made up!!
@@ -53,19 +51,8 @@ describe('UriValueComponent', () => {
 
         testHostFixture.detectChanges();
 
-        const hostCompDe = testHostFixture.debugElement;
+        expect(testHostComponent.uriValueComponent.uriValueElement.eleVal).toEqual('http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
 
-        const uriVal = hostCompDe.query(By.directive(UriValueComponent));
-
-        const spanDebugElement: DebugElement = uriVal.query(By.css('a'));
-
-        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
-
-        const hrefAttribute = spanNativeElement.getAttribute('href');
-
-        expect(spanNativeElement.innerText).toEqual('http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
-
-        expect(hrefAttribute).toEqual('http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
     });
     // the new uri with label has been made up!!
     it('should be equal to the label value MyLabel', () => {
@@ -73,19 +60,9 @@ describe('UriValueComponent', () => {
         testHostComponent.label = 'MyLabel';
         testHostFixture.detectChanges();
 
-        const hostCompDe = testHostFixture.debugElement;
+        expect(testHostComponent.uriValueComponent.uriValueElement.eleVal).toEqual('http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
 
-        const uriVal = hostCompDe.query(By.directive(UriValueComponent));
-
-        const spanDebugElement: DebugElement = uriVal.query(By.css('a'));
-
-        const spanNativeElement: HTMLElement = spanDebugElement.nativeElement;
-
-        const hrefAttribute = spanNativeElement.getAttribute('href');
-
-        expect(spanNativeElement.innerText).toEqual('MyLabel');
-
-        expect(hrefAttribute).toEqual('http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
+        expect(testHostComponent.uriValueComponent.uriValueElement.label).toEqual('MyLabel');
     });
 });
 

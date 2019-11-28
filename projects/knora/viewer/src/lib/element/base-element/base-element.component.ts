@@ -18,10 +18,14 @@ export abstract class BaseElementComponent<T> {
     }
 
     get eleVal(): T | null {
-        if (this.form.valid) {
-            return this._eleVal;
+        if (this.form !== undefined) {
+            if (this.form.valid) {
+                return this._eleVal;
+            } else {
+                return null;
+            }
         } else {
-            return null;
+            return this._eleVal;
         }
     }
 

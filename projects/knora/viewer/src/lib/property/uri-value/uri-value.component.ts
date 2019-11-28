@@ -1,12 +1,16 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ReadUriValue } from '@knora/core';
+import { UriElementComponent } from '../../element';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
     selector: '   kui-uri-value',
     templateUrl: './uri-value.component.html',
     styleUrls: ['./uri-value.component.scss']
 })
-export class UriValueComponent implements OnChanges {
+export class UriValueComponent implements OnInit {
+
+    @ViewChild('uriVal', {static: false}) uriValueElement: UriElementComponent;
 
     @Input()
     set valueObject(value: ReadUriValue) {
@@ -18,15 +22,14 @@ export class UriValueComponent implements OnChanges {
     }
     @Input() label?: string;
     private __uriValueObj: ReadUriValue;
-    public displayString: string;
-    constructor () { }
 
-    ngOnChanges() {
-        if (this.label === undefined) {
-            this.displayString = this.__uriValueObj.uri;
-        } else {
-            this.displayString = this.label;
-        }
+    form: FormGroup;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ngOnInit(): void {
+        this.form = this.fb.group({});
     }
 
 }

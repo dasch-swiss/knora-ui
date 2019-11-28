@@ -1,3 +1,6 @@
-<mat-form-field class="large-field">
+<mat-form-field *ngIf="!readonlyValue; else elseBlock" class="large-field">
     <input matInput [formControl]="form.controls['elementValue']" placeholder="{{placeholder}}" type="url" [readonly]="readonlyValue">
 </mat-form-field>
+<ng-template #elseBlock>
+    <a href="{{eleVal}}" target="_blank" class="kui-link">{{displayString}}</a>
+</ng-template>
