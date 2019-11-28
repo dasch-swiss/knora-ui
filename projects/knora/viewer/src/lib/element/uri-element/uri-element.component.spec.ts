@@ -13,7 +13,7 @@ describe('UriElementComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [UriElementComponent, TestHostViewerComponent],
+            declarations: [UriElementComponent, TestHostViewerComponent, TestHostEditComponent],
             imports: [
                 FormsModule,
                 ReactiveFormsModule,
@@ -83,6 +83,44 @@ describe('UriElementComponent', () => {
 
     });
 
+    describe('Edit mode', () => {
+
+        let testHostComponent: TestHostEditComponent;
+        let testHostFixture: ComponentFixture<TestHostEditComponent>;
+
+        beforeEach(() => {
+            testHostFixture = TestBed.createComponent(TestHostEditComponent);
+            testHostComponent = testHostFixture.componentInstance;
+            testHostFixture.detectChanges();
+
+            expect(testHostComponent).toBeTruthy();
+        });
+
+        it('should create', () => {
+            // access the test host component's child
+            expect(testHostComponent.uriComp).toBeTruthy();
+        });
+
+        it('should set the correct value from the host edit component', () => {
+            expect(testHostComponent.uriComp.eleVal).toEqual('https://knora.org');
+
+            const hostCompDe = testHostFixture.debugElement;
+
+            const integerVal = hostCompDe.query(By.directive(UriElementComponent));
+
+            const inputDebugElement: DebugElement = integerVal.query(By.css('input'));
+
+            const inputNativeElement = inputDebugElement.nativeElement;
+
+            expect(inputNativeElement.value).toEqual('https://knora.org');
+
+            expect(inputNativeElement.readOnly).toEqual(false);
+
+            expect(testHostComponent.uriComp.form.valid).toBeTruthy();
+        });
+
+    });
+
 });
 
 /**
@@ -103,6 +141,35 @@ class TestHostViewerComponent implements OnInit {
     label?: string;
 
     readonly = true;
+
+    @ViewChild('uriVal', {static: false}) uriComp: UriElementComponent;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+        this.value = 'https://knora.org';
+    }
+}
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    selector: `host-component`,
+    template: `
+        <kui-uri-element #uriVal [eleVal]="value" [formGroup]="form" [readonlyValue]="false"></kui-uri-element>`
+})
+class TestHostEditComponent implements OnInit {
+
+    form: FormGroup;
+
+    value: string;
+
+    label?: string;
+
+    readonly = false;
 
     @ViewChild('uriVal', {static: false}) uriComp: UriElementComponent;
 
