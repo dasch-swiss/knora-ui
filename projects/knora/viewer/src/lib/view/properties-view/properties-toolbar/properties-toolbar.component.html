@@ -1,1 +1,31 @@
-This resource belongs to {{project.shortname}}
+<div class="toolbar" *ngIf="project">
+    <!-- project info -->
+    <h3 class="label mat-subheading-1">This source belongs to
+        <a [href]="'/project/' + project.shortcode">
+            {{project.shortname}}
+            <mat-icon inline>open_in_new</mat-icon>
+        </a>
+    </h3>
+    <!-- open_in_new icon -->
+    <span class="fill-remaining-space"></span>
+
+    <!-- tools: share, add to favorites, edit, delete etc. -->
+    <span>
+        <button mat-button>
+            <mat-icon>star_border</mat-icon>
+        </button>
+
+        <button mat-button>
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-button>
+            <mat-icon>delete</mat-icon>
+        </button>
+
+        <button mat-button>
+            <mat-icon>share</mat-icon>
+        </button>
+    </span>
+
+</div>

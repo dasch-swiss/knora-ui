@@ -25,6 +25,11 @@ export class ResourceViewComponent implements OnInit, OnChanges {
      */
     @Input() iri?: string;
 
+    /**
+     * @param  {boolean} [toolbar] Show toolbar on top of properties if true.
+     */
+    @Input() toolbar?: boolean = false;
+
     @ViewChild('kuiStillImage', { static: false }) kuiStillImage: StillImageComponent;
 
     resource: ReadResource;

@@ -27,12 +27,14 @@ export class PropertiesViewComponent implements OnInit {
 
     propArray: TempProp[] = [];
 
+    // TODO: make a list of file value iri definitions, to filter in list of properties
+    HasFileRepresentation: string[] = [
+        Constants.KnoraApiV2 + Constants.Delimiter + 'hasStillImageFileValue'
+    ];
+
     // @Input() guiOrder?: GuiOrder;
 
     @Input() resource: ReadResource;
-
-
-
 
     // @Input() classType: string;
 

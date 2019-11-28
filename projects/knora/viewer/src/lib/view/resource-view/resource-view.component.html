@@ -10,9 +10,11 @@
             <mat-tab-group animationDuration="0ms" class="full-width data">
                 <!-- first tab for the main resource e.g. book -->
                 <mat-tab [label]="resource.entityInfo?.classes[resource.type].label">
+                    <!-- header with project / ontology / resource class info / ark url -->
+                    <kui-properties-toolbar *ngIf="toolbar" [projectiri]="resource.attachedToProject">
+                    </kui-properties-toolbar>
 
-                    <kui-properties-view [resource]="resource">
-                    </kui-properties-view>
+                    <kui-properties-view [resource]="resource"></kui-properties-view>
 
 
                     <!-- TODO: [guiOrder]="guiOrder" /  [ontologyInfo]="resource.entityInfo" is missing? couldn't find yet -->

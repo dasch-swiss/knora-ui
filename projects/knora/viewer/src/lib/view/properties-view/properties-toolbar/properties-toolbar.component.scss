@@ -1,0 +1,15 @@
+.toolbar {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0 16px;
+  width: 100%;
+  background: whitesmoke;
+  color: rgba(0, 0, 0, 0.87);
+
+  .label {
+    margin: 0 !important;
+  }
+}

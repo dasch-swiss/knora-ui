@@ -1,12 +1,10 @@
-<!-- header with project / ontology / resource class info / ark url -->
-<kui-properties-toolbar [projectiri]="resource.attachedToProject"></kui-properties-toolbar>
 <!-- properties -->
 <div class="properties" *ngIf="loading">
     <!-- let prop of guiOrder (was previous; has to be reset again) -->
     <div *ngFor="let prop of propArray; let last = last">
         <!-- TODO: add switch to show all properties or to hide empty properties -->
         <!-- *ngIf="prop.values" -->
-        <div class="property">
+        <div class="property" *ngIf="!HasFileRepresentation.includes(prop.guiDef.propertyIndex)">
             <div class="property-label">
                 <!-- label of the property -->
                 <h3 class="label mat-subheading-1">
@@ -17,21 +15,23 @@
 
                 <!-- the value(s) of the property -->
                 <div class="property-value-item" *ngFor="let val of prop.values; let lastItem = last">
+
+                    <span [class.list]="prop.values.length > 1" [class.lastItem]="lastItem">{{val.strval}}</span>
+
+                    <!-- TODO: reactivate switch by value type -->
+                    <!--
                     <span [ngSwitch]="val.type" [class.list]="prop.values.length > 1" [class.lastItem]="lastItem">
                         <kui-text-value-as-string *ngSwitchCase="KnoraConstants.TextValue" [valueObject]="val">
                         </kui-text-value-as-string>
                         <kui-text-value-as-xml *ngSwitchCase="KnoraConstants.TextValueAsXml" [valueObject]="val">
                         </kui-text-value-as-xml>
-                        <!--
                         <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val"
                                         [calendar]="true" [era]="true">
                         </kui-date-value>
-                    -->
-                        <!-- [ontologyInfo]="ontologyInfo" -->
-                        <!-- <kui-link-value class="app-link" *ngSwitchCase="KnoraConstants.ReadLinkValue"
+                        <kui-link-value class="app-link" *ngSwitchCase="KnoraConstants.ReadLinkValue"
                                         [valueObject]="val"
                                         (referredResourceClicked)="openLink(val.referredResourceIri)">
-                        </kui-link-value> -->
+                        </kui-link-value>
                         <kui-integer-value *ngSwitchCase="KnoraConstants.IntValue" [valueObject]="val">
                         </kui-integer-value>
                         <kui-decimal-value *ngSwitchCase="KnoraConstants.DecimalValue" [valueObject]="val">
@@ -46,13 +46,14 @@
                         </kui-boolean-value>
                         <kui-interval-value *ngSwitchCase="KnoraConstants.IntervalValue" [valueObject]="val">
                         </kui-interval-value>
-                        <!-- <kui-list-value *ngSwitchCase="KnoraConstants.ReadListValue" [valueObject]="val">
-                        </kui-list-value> -->
+                        <kui-list-value *ngSwitchCase="KnoraConstants.ReadListValue" [valueObject]="val">
+                        </kui-list-value>
                         <kui-textfile-value *ngSwitchCase="KnoraConstants.FileValueHasFilename" [valueObject]="val">
                         </kui-textfile-value>
                         <span *ngSwitchDefault>Not supported {{val.type}}</span>
                         <br>
                     </span>
+                    -->
                 </div>
             </div>
         </div>
