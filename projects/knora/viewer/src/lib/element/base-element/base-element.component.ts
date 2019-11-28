@@ -18,7 +18,7 @@ export abstract class BaseElementComponent<T> {
     }
 
     get eleVal(): T | null {
-        if (this.form !== undefined) {
+        if (!this.readonlyValue && this.form !== undefined) {
             if (this.form.valid) {
                 return this._eleVal;
             } else {

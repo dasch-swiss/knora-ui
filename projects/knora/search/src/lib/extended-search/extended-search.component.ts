@@ -188,7 +188,7 @@ export class ExtendedSearchComponent implements OnInit {
      * Validates form and returns its status (boolean).
      */
     private validateForm() {
-        console.log(this.form);
+
         // check that either a resource class is selected or at least one property is specified
         return this.form.valid &&
             (this.propertyComponents.length > 0 || (this.resourceClassComponent !== undefined && this.resourceClassComponent.getResourceClassSelected() !== false));
@@ -229,16 +229,15 @@ export class ExtendedSearchComponent implements OnInit {
         );
 
         const gravsearch = this._gravSearchService.createGravsearchQuery(properties, resClass, 0);
-        console.log(gravsearch);
 
         if (this.route) {
-            //this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });
+            this._router.navigate([this.route + '/extended/', gravsearch], { relativeTo: this._route });
         } else {
-            //this.gravsearch.emit(gravsearch);
+            this.gravsearch.emit(gravsearch);
         }
 
         // toggle extended search form
-        //this.toggleExtendedSearchForm.emit(true);
+        this.toggleExtendedSearchForm.emit(true);
 
     }
 
