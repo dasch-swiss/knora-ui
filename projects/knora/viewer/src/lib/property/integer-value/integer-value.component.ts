@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ReadIntegerValue } from '@knora/core';
+import { ReadIntValue } from '@knora/api';
 
 @Component({
     selector: 'kui-integer-value',
@@ -9,7 +9,7 @@ import { ReadIntegerValue } from '@knora/core';
 export class IntegerValueComponent {
 
     @Input()
-    set valueObject(value: ReadIntegerValue) {
+    set valueObject(value: ReadIntValue) {
         this._integerValueObj = value;
     }
 
@@ -17,7 +17,7 @@ export class IntegerValueComponent {
         return this._integerValueObj;
     }
 
-    private _integerValueObj: ReadIntegerValue;
+    private _integerValueObj: ReadIntValue;
 
     constructor() {
     }

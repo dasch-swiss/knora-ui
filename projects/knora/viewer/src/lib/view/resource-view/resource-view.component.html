@@ -11,8 +11,7 @@
                 <!-- first tab for the main resource e.g. book -->
                 <mat-tab [label]="resource.entityInfo?.classes[resource.type].label">
 
-                    <kui-properties-view [properties]="resource?.properties" [entityInfo]="resource?.entityInfo"
-                                         [classType]="resource.type">
+                    <kui-properties-view [resource]="resource">
                     </kui-properties-view>
 
 

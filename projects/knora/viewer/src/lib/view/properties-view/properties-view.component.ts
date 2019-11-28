@@ -1,7 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IResourceClassAndPropertyDefinitions, ReadResource, ReadValue, ClassDefinition, IHasProperty } from '@knora/api';
-import { GuiOrder, KnoraConstants } from '@knora/core';
+import { Constants, IHasProperty, IResourceClassAndPropertyDefinitions, ReadResource, ReadValue, ResourcePropertyDefinition } from '@knora/api';
+// import { KnoraConstants } from '@knora/core';
+import { PropertyDefinition } from '@knora/api/src/models/v2/ontologies/property-definition';
+
+export interface TempProp {
+    guiDef: IHasProperty;
+    propDef: PropertyDefinition;
+    values: ReadValue[];
+}
 
 /**
  * Shows all metadata (properties) in the resource viewer
@@ -16,30 +23,39 @@ export class PropertiesViewComponent implements OnInit {
 
     loading: boolean = true;
 
-    KnoraConstants = KnoraConstants;
+    KnoraConstants = Constants;
+
+    propArray: TempProp[] = [];
 
     // @Input() guiOrder?: GuiOrder;
 
-    @Input() classType: string;
+    @Input() resource: ReadResource;
 
-    @Input() entityInfo: IResourceClassAndPropertyDefinitions;
 
-    @Input() properties: {
-        [index: string]: ReadValue[];
-    };
+
+
+    // @Input() classType: string;
+
+    // @Input() entityInfo: IResourceClassAndPropertyDefinitions;
+
+    // @Input() properties: {
+    //     [index: string]: ReadValue[];
+    // };
 
     @Input() annotations?: ReadResource[];
     @Input() incomingLinks?: ReadResource[];
 
-    propArray: any[] = [];
-
     // @Output() routeChanged: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor(protected _router: Router) {
+    constructor(
+
+        protected _router: Router) {
 
     }
 
     ngOnInit() {
+
+
         // HACK (until gui order is ready): convert properties object into array
 
 
@@ -47,25 +63,44 @@ export class PropertiesViewComponent implements OnInit {
 
         // this.propArray = Object.keys(this.properties);
 
-        const hasProps: IHasProperty[] = this.entityInfo.classes[this.classType].propertiesList;
+        const hasProps: IHasProperty[] = this.resource.entityInfo.classes[this.resource.type].propertiesList;
 
-        // console.log('hasProps', hasProps);
+        console.log('hasProps', hasProps);
 
-        this.propArray = Object.keys(this.properties).map(function (index) {
-            console.log('index', index);
+        // this.propArray = Object.keys(this.properties).map(function (index) {
+        //     console.log('index', index);
 
-            const hasProp = hasProps.find(i => i.propertyIndex === index);
+        //     const hasProp = hasProps.find(i => i.propertyIndex === index);
 
 
 
-            // console.log(this.entityInfo.classes[this.classType].propertiesList.find((item: IHasProperty) => item.propertyIndex === index));
-            return hasProp;
-        });
 
-        console.log(this.propArray);
 
-        for (const pid of Object.keys(this.properties)) {
-            // console.log('pid', pid);
+
+
+        //     // console.log(this.entityInfo.classes[this.classType].propertiesList.find((item: IHasProperty) => item.propertyIndex === index));
+        //     return hasProp;
+        // });
+
+        // console.log(this.propArray);
+
+        let i = 0;
+        for (const hasProp of hasProps) {
+
+
+            const index = hasProp.propertyIndex;
+
+            if (this.resource.entityInfo.properties[index] && this.resource.entityInfo.properties[index] instanceof ResourcePropertyDefinition) {
+                const tempProp: TempProp = {
+                    guiDef: hasProp,
+                    propDef: this.resource.entityInfo.properties[index],
+                    values: this.resource.properties[index]
+                };
+
+                this.propArray.push(tempProp);
+            }
+
+
 
             // console.log(Object.values());
 
@@ -75,7 +110,10 @@ export class PropertiesViewComponent implements OnInit {
 
             //     console.log(prop);
             //     //this.entityInfo.classes[0].propertiesList[prop]);
+            i++;
         }
+
+        console.log(this.propArray);
 
 
         // console.log(this.entityInfo.classes[this.classType].propertiesList);
