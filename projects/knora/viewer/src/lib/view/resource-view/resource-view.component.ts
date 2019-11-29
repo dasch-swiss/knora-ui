@@ -1,13 +1,21 @@
 import { Component, Inject, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { KuiMessageData } from '@knora/action';
-import { ApiResponseError, KnoraApiConnection, ReadResource } from '@knora/api';
-import { GuiOrder, IncomingService, KnoraApiConnectionToken, KnoraConstants, OntologyInformation, ReadResourcesSequence, ResourcesSequence } from '@knora/core';
+import { ApiResponseError, Constants, KnoraApiConnection, ReadResource } from '@knora/api';
+import { GuiOrder, KnoraApiConnectionToken, OntologyInformation, ResourcesSequence } from '@knora/core';
 
 import { StillImageComponent } from '../../resource';
 
-
-
+// list of file value iris; TODO: not yet well done. It should be defined in global knora constants in knora-api-js-lib
+export class FileRepresentation {
+    static list: string[] = [
+        Constants.KnoraApiV2 + Constants.Delimiter + 'hasAudioFileValue',
+        Constants.KnoraApiV2 + Constants.Delimiter + 'hasDDDFileValue',
+        Constants.KnoraApiV2 + Constants.Delimiter + 'hasMovingImageFileValue',
+        Constants.KnoraApiV2 + Constants.Delimiter + 'hasStillImageFileValue',
+        Constants.KnoraApiV2 + Constants.Delimiter + 'hasTextFileValue'
+    ];
+}
 // import { Region, StillImageRepresentation } from '../../resource';
 
 declare let require: any;
@@ -30,9 +38,16 @@ export class ResourceViewComponent implements OnInit, OnChanges {
      */
     @Input() toolbar?: boolean = false;
 
+
+    // if resource hasFileRepresentation: this would the iri
+    hasFileRepresentation: string;
+
+    // TODO: needs probably general fileRepresentation container to watch
     @ViewChild('kuiStillImage', { static: false }) kuiStillImage: StillImageComponent;
 
     resource: ReadResource;
+
+    showAllProps: boolean = false;
 
     sequence: ResourcesSequence;
 
@@ -40,7 +55,6 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     guiOrder: GuiOrder[];
     loading: boolean;
     error: KuiMessageData;
-    KnoraConstants = KnoraConstants;
 
     // does the resource has a file representation (media file)?
     fileRepresentation: boolean;
@@ -51,8 +65,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     constructor(
         @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
         protected _route: ActivatedRoute,
-        protected _router: Router,
-        protected _incomingService: IncomingService
+        protected _router: Router
     ) {
 
     }
@@ -77,12 +90,18 @@ export class ResourceViewComponent implements OnInit, OnChanges {
         this.error = undefined;
 
         this.knoraApiConnection.v2.res.getResource(id).subscribe(
-            (result: ReadResource) => {
-                this.resource = result;
-                console.log(result);
-                setTimeout(() => {
-                    this.loading = false;
-                });
+            (response: ReadResource) => {
+                this.resource = response;
+                console.log(response);
+
+                // TODO: set properties in correct gui order to send to properties view
+
+                // TODO: get info about file representation to load corresponding media view
+
+
+                this.loading = false;
+                // setTimeout(() => {
+                // });
             },
             (error: ApiResponseError) => {
                 console.error(error);
@@ -90,254 +109,40 @@ export class ResourceViewComponent implements OnInit, OnChanges {
             }
         );
 
-
-        /* TODO: replace with knora-api-js-lib
-        this._resourceService.getResource(decodeURIComponent(id)).subscribe(
-            (result: ResourcesSequence) => {
-
-                // console.log('getResource result', result);
-
-                // result with resources only and WITHOUT incoming stuff
-                this.sequence = result;
-
-                // this.ontologyInfo = result.ontologyInformation;
-
-                // const resType = this.sequence.resources[0].type;
-
-                this.guiOrder = result.ontologyInformation.getResourceClasses()[this.sequence.resources[0].type].guiOrder;
-
-                // collect all filerepresentations to display including annotations
-                // --> for the first resource only...
-                // this.sequence.resources[0].fileRepresentationsToDisplay = this.collectFileRepresentationsAndFileAnnotations(this.sequence.resources[0]);
-
-                // collect images and regions
-                // --> for the first resource only...
-                // this.collectImagesAndRegionsForResource(this.sequence.resources[0]);
-
-                // get incoming resources
-                //                this.requestIncomingResources();
-
-
-                // this.fileRepresentation = this.sequence.resources[0].properties.indexOf(KnoraConstants.hasStillImageFileValue) > -1;
-
-                // console.log('fileRepresentation', this.sequence.resources[0].stillImageRepresentationsToDisplay[0].stillImageFileValue);
-
-                // wait until the resource is ready
-                setTimeout(() => {
-                    // console.log(this.sequence);
-                    this.currentResource = this.sequence.resources[0].incomingFileRepresentations[0];
-                    // console.log('currentResource', this.sequence.resources[0].incomingFileRepresentations[0]);
-                    this.loading = false;
-                }, 1000);
-            },
-            (error: ApiServiceError) => {
-                // console.error(error);
-
-                const statusText: string = (error.status === 404 ? 'One or more requested resources were not found (maybe you do not have permission to see them, or they are marked as deleted).' : undefined);
-
-                this.error = {
-                    status: error.status,
-                    statusMsg: error.statusText,
-                    statusText: statusText,
-                    url: error.url
-                };
-
-                this.loading = false;
-            }
-        );
-        */
     }
 
 
-    /**
-     * Collect all file representations (stillImage, movingImage, audio etc.) and annotations (region, sequence etc.)
-     *
-     * @param resource
-     */
-    /*
-    collectFileRepresentationsAndFileAnnotations(resource: Resource): FileRepresentation[] {
-        const fileRepresentations: FileRepresentation[] = [];
-
-        if (resource.properties[KnoraConstants.hasStillImageFileValue] !== undefined) {
-            const fileValues: ReadStillImageFileValue[] = resource.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
-        }
-
-        return fileRepresentations;
-    }
-
-    /*
-
-        collectImagesAndRegionsForResource(resource: Resource): void {
-
-            const imgRepresentations: StillImageRepresentation[] = [];
-
-            if (resource.properties[KnoraConstants.hasStillImageFileValue] !== undefined) {
-                // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
-                // resource has StillImageFileValues that are directly attached to it (properties)
-
-                const fileValues: ReadStillImageFileValue[] = resource.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
-                const imagesToDisplay: ReadStillImageFileValue[] = fileValues.filter((image) => {
-                    return !image.isPreview;
-                });
-
-
-                for (const img of imagesToDisplay) {
-
-                    const regions: ImageRegion[] = [];
-                    for (const incomingRegion of resource.incomingAnnotations) {
-
-                        const region = new ImageRegion(incomingRegion);
-
-                        regions.push(region);
-
-                    }
-
-                    const stillImage = new StillImageRepresentation(img, regions);
-                    imgRepresentations.push(stillImage);
-
-                }
-
-
-            } else if (resource.incomingStillImageRepresentations.length > 0) {
-                // there are StillImageRepresentations pointing to this resource (incoming)
-
-                const readStillImageFileValues: ReadStillImageFileValue[] = resource.incomingStillImageRepresentations.map(
-                    (stillImageRes: ReadResource) => {
-                        const fileValues = stillImageRes.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];
-                        // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
-                        const imagesToDisplay = fileValues.filter((image) => {
-                            return !image.isPreview;
-
-                        });
-
-                        return imagesToDisplay;
-                    }
-                ).reduce(function (prev, curr) {
-                    // transform ReadStillImageFileValue[][] to ReadStillImageFileValue[]
-                    return prev.concat(curr);
-                });
-
-                for (const img of readStillImageFileValues) {
-
-                    const regions: ImageRegion[] = [];
-                    for (const incomingRegion of resource.incomingRegions) {
-
-                        const region = new ImageRegion(incomingRegion);
-                        regions.push(region);
-
-                    }
-
-                    const stillImage = new StillImageRepresentation(img, regions);
-                    imgRepresentations.push(stillImage);
-                }
-
-            }
-
-            resource.stillImageRepresentationsToDisplay = imgRepresentations;
-
-        }
-        */
-
-    /**
-     * Get incoming resources: incoming links, incoming regions, incoming still image representations.
-     */
-    requestIncomingResources(): void {
-
-        // make sure that this.sequence has been initialized correctly
-        if (this.sequence === undefined) {
-            return;
-        }
-
-        // request incoming regions
-        if (this.sequence.resources[0].properties[KnoraConstants.hasStillImageFileValue]) {
-            // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)
-            // the resource is a StillImageRepresentation, check if there are regions pointing to it
-
-            // this.getIncomingRegions(0);
-
-        } else {
-            // this resource is not a StillImageRepresentation
-            // check if there are StillImageRepresentations pointing to this resource
-
-            // this gets the first page of incoming StillImageRepresentations
-            // more pages may be requested by [[this.viewer]].
-            // TODO: for now, we begin with offset 0. This may have to be changed later (beginning somewhere in a collection)
-            // this.getIncomingStillImageRepresentations(0);
-        }
-
-        // check for incoming links for the current resource
-        this.getIncomingLinks(0);
-
-
-    }
-
-    /**
-     * Get incoming regions for the resource.
-     *
-     * @param offset
-     * @param callback
-     *
-    getIncomingRegions(offset: number, callback?: (numberOfResources: number) => void): void {
-        this._incomingService.getIncomingRegions(this.sequence.resources[0].id, offset).subscribe(
-            (regions: ReadResourcesSequence) => {
-                // update ontology information
-                this.ontologyInfo.updateOntologyInformation(regions.ontologyInformation);
-
-                // Append elements of regions.resources to resource.incoming
-                Array.prototype.push.apply(this.sequence.resources[0].incomingRegions, regions.resources);
-
-                // prepare regions to be displayed
-                this.collectImagesAndRegionsForResource(this.sequence.resources[0]);
-
-                // TODO: implement osdViewer
-                /* if (this.osdViewer) {
-                  this.osdViewer.updateRegions();
-                } *
-
-                // if callback is given, execute function with the amount of new images as the parameter
-                if (callback !== undefined) {
-                    callback(regions.resources.length);
-                }
-            },
-            (error: any) => {
-                console.error(error);
-                this.loading = false;
-            }
-        );
-    }
-
-    */
     /**
      * Get incoming links for a resource.
      *
      * @param offset
      * @param callback
      */
-    getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {
+    // getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {
 
-        this.loading = true;
+    //     this.loading = true;
 
-        this._incomingService.getIncomingLinksForResource(this.sequence.resources[0].id, offset).subscribe(
-            (incomingResources: ReadResourcesSequence) => {
-                // update ontology information
-                this.ontologyInfo.updateOntologyInformation(incomingResources.ontologyInformation);
+    //     this._incomingService.getIncomingLinksForResource(this.sequence.resources[0].id, offset).subscribe(
+    //         (incomingResources: ReadResourcesSequence) => {
+    //             // update ontology information
+    //             this.ontologyInfo.updateOntologyInformation(incomingResources.ontologyInformation);
 
-                // Append elements incomingResources to this.sequence.incomingLinks
-                Array.prototype.push.apply(this.sequence.resources[0].incomingLinks, incomingResources.resources);
+    //             // Append elements incomingResources to this.sequence.incomingLinks
+    //             Array.prototype.push.apply(this.sequence.resources[0].incomingLinks, incomingResources.resources);
 
-                // if callback is given, execute function with the amount of incoming resources as the parameter
-                if (callback !== undefined) {
-                    callback(incomingResources.resources.length);
-                }
+    //             // if callback is given, execute function with the amount of incoming resources as the parameter
+    //             if (callback !== undefined) {
+    //                 callback(incomingResources.resources.length);
+    //             }
 
-                this.loading = false;
-            },
-            (error: any) => {
-                console.error(error);
-                this.loading = false;
-            }
-        );
-    }
+    //             this.loading = false;
+    //         },
+    //         (error: any) => {
+    //             console.error(error);
+    //             this.loading = false;
+    //         }
+    //     );
+    // }
 
     openLink(id: string) {
 
@@ -356,6 +161,9 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     }
 
 
+    toggleProps(show: boolean) {
+        this.showAllProps = !this.showAllProps;
+    }
 
 
 

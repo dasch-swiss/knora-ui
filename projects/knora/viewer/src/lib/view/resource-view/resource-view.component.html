@@ -4,17 +4,46 @@
     <div *ngIf="!loading && resource">
 
         <div class="resource">
-            <!-- media -->
+            <!-- media: show file representation -->
+            <!-- <div *ngIf="HasFileRepresentation">
+                <div [ngSwitch]="resource.fileRepresentationsToDisplay[0].type" class="media"></div>
+            </div> -->
+            <!-- <div *ngIf="resource.fileRepresentationsToDisplay?.stillImage && resource.fileRepresentationsToDisplay?.stillImage.length > 0"
+                 class="media">
+                <kui-still-image #kuiStillImage class="osd-viewer"
+                                 [images]="resource.fileRepresentationsToDisplay.stillImage">
+                </kui-still-image>
+            </div> -->
+            <!--
+                <div [ngSwitch]="resource.fileRepresentationsToDisplay[0].type" class="media">
+                    <div *ngSwitchCase="KnoraConstants.StillImageFileValue">
+                        <!-- TODO: fix: this shows only the first image, not all stillImages from fileRepresentationsToDisplay --
+
+                        <!-- [imageCaption]="sequence.ontologyInformation.getLabelForProperty(prop.key)" --
+                    </div>
+
+
+                    <div *ngSwitchCase="KnoraConstants.hasMovingImageFileValue" class="media">
+                        <kui-moving-image></kui-moving-image>
+                    </div>
+
+                    <div *ngSwitchDefault>
+                        <p>This media type {{resource.fileRepresentationsToDisplay[0].type}} is not yet implemented</p>
+                    </div>
+                </div>
+                -->
 
             <!-- tabs with header and properties -->
             <mat-tab-group animationDuration="0ms" class="full-width data">
                 <!-- first tab for the main resource e.g. book -->
                 <mat-tab [label]="resource.entityInfo?.classes[resource.type].label">
                     <!-- header with project / ontology / resource class info / ark url -->
-                    <kui-properties-toolbar *ngIf="toolbar" [projectiri]="resource.attachedToProject">
+                    <!-- TODO: move to the properties view -->
+                    <kui-properties-toolbar *ngIf="toolbar" [projectiri]="resource.attachedToProject"
+                                            [showAllProps]="showAllProps" (toggleProps)="toggleProps($event)">
                     </kui-properties-toolbar>
 
-                    <kui-properties-view [resource]="resource"></kui-properties-view>
+                    <kui-properties-view [resource]="resource" [showAll]="showAllProps"></kui-properties-view>
 
 
                     <!-- TODO: [guiOrder]="guiOrder" /  [ontologyInfo]="resource.entityInfo" is missing? couldn't find yet -->
@@ -44,7 +73,7 @@
                                              [guiOrder]="sequence.ontologyInformation.getResourceClasses()[currentResource.type].guiOrder"
                                              [ontologyInfo]="sequence.ontologyInformation">
                         </kui-properties-view>
-                        <!--
+
                         <kui-properties-view [properties]="resource.incomingFileRepresentations[0].resource.properties"
                                              [guiOrder]="sequence.ontologyInformation.getResourceClasses()[resource.incomingFileRepresentations[0].type].guiOrder"
                                              [ontologyInfo]="sequence.ontologyInformation"
@@ -52,7 +81,7 @@
                         </kui-properties-view>
                     -->
                 <!-- </mat-tab> -->
-                -->
+
                 <!-- TODO: third tab for a "region"-resource -->
             </mat-tab-group>
 

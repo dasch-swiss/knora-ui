@@ -1,10 +1,11 @@
 <!-- properties -->
-<div class="properties" *ngIf="loading">
+<div class="properties" *ngIf="!loading">
     <!-- let prop of guiOrder (was previous; has to be reset again) -->
     <div *ngFor="let prop of propArray; let last = last">
         <!-- TODO: add switch to show all properties or to hide empty properties -->
         <!-- *ngIf="prop.values" -->
-        <div class="property" *ngIf="!HasFileRepresentation.includes(prop.guiDef.propertyIndex)">
+        <!-- show property; anyway in case of showAll === true or if prop.values is not undefined -->
+        <div class="property" *ngIf="showAll || prop.values">
             <div class="property-label">
                 <!-- label of the property -->
                 <h3 class="label mat-subheading-1">
@@ -16,9 +17,9 @@
                 <!-- the value(s) of the property -->
                 <div class="property-value-item" *ngFor="let val of prop.values; let lastItem = last">
 
-                    <span [class.list]="prop.values.length > 1" [class.lastItem]="lastItem">{{val.strval}}</span>
-
-                    <!-- TODO: reactivate switch by value type -->
+                    <span *ngIf="prop.values" [class.list]="prop.values.length > 1"
+                          [class.lastItem]="lastItem">{{val.strval}}</span>
+                    <!-- TODO: reactivate switch by value type as soon the new viewer elements are ready -->
                     <!--
                     <span [ngSwitch]="val.type" [class.list]="prop.values.length > 1" [class.lastItem]="lastItem">
                         <kui-text-value-as-string *ngSwitchCase="KnoraConstants.TextValue" [valueObject]="val">
@@ -60,6 +61,9 @@
     </div>
 
 </div>
+
+<!-- TODO / QUESTION: What happens to incoming links and annotations? -->
+
 <div class="incoming">
 
     <!-- annotations are resources like region, sequence etc. -->
@@ -78,7 +82,7 @@
     -->
 
     <!-- incoming links -->
-    <div class="links" *ngIf="incomingLinks?.length > 0">
+    <!-- <div class="links" *ngIf="incomingLinks?.length > 0">
         <h3 class="label mat-subheading-1">
             Links
         </h3>
@@ -87,5 +91,5 @@
                 {{incoming.label}}
             </li>
         </ul>
-    </div>
+    </div> -->
 </div>

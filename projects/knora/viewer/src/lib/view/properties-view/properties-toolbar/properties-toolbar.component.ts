@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { ApiResponseData, ApiResponseError, KnoraApiConnection, ProjectResponse, ReadProject } from '@knora/api';
 import { KnoraApiConnectionToken } from '@knora/core';
 
@@ -12,6 +12,10 @@ export class PropertiesToolbarComponent implements OnInit {
     @Input() projectiri: string;
     @Input() ontologyiri: string;
     @Input() arkurl: string;
+
+    @Input() showAllProps: boolean;
+
+    @Output() toggleProps: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     project: ReadProject;
 
