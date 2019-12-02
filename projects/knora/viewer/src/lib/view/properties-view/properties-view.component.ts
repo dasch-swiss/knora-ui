@@ -1,15 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IHasProperty, ReadResource, ReadValue, ResourcePropertyDefinition } from '@knora/api';
-import { PropertyDefinition } from '@knora/api/src/models/v2/ontologies/property-definition';
+import { ReadResource } from '@knora/api';
 
-import { FileRepresentation } from '..';
-
-export interface TempProperty {
-    guiDef: IHasProperty;
-    propDef: PropertyDefinition;
-    values: ReadValue[];
-}
+import { TempProperty } from '..';
 
 /**
  * Shows all metadata (properties) in the resource viewer
@@ -23,11 +16,11 @@ export interface TempProperty {
 export class PropertiesViewComponent implements OnInit {
 
     /**
-     * Resource object
+     * Array of property object with ontology class prop def, list of properties and corresponding values
      *
-     * @param  {ReadResource} resource
+     * @param  {TempProperty} propArray
      */
-    @Input() resource: ReadResource;
+    @Input() propArray: TempProperty;
 
     /**
      * Show all properties, even they don't have a value.
@@ -43,50 +36,13 @@ export class PropertiesViewComponent implements OnInit {
      */
     @Input() toolbar?: boolean = false;
 
-    loading: boolean = true;
-
-    FileRepresentation = FileRepresentation;
-
-    propArray: TempProperty[] = [];
+    loading: boolean = false;
 
     constructor(
         protected _router: Router) {
     }
 
     ngOnInit() {
-        this.loading = true;
-
-        // get list of all properties
-        const hasProps: IHasProperty[] = this.resource.entityInfo.classes[this.resource.type].propertiesList;
-
-        let i = 0;
-        for (const hasProp of hasProps) {
-
-            const index = hasProp.propertyIndex;
-
-            // filter all properties by type ResourcePropertyDefinition and exclude hasFileRepresentations
-            if (this.resource.entityInfo.properties[index] &&
-                this.resource.entityInfo.properties[index] instanceof ResourcePropertyDefinition &&
-                !this.FileRepresentation.list.includes(index)) {
-
-                const tempProp: TempProperty = {
-                    guiDef: hasProp,
-                    propDef: this.resource.entityInfo.properties[index],
-                    values: this.resource.properties[index]
-                };
-
-                this.propArray.push(tempProp);
-            }
-
-            i++;
-        }
-
-        // sort properties by guiOrder
-        this.propArray.sort((a, b) => (a.guiDef.guiOrder > b.guiDef.guiOrder) ? 1 : -1);
-
-        console.log(this.propArray);
-
-        this.loading = false;
 
     }
 
@@ -103,9 +59,5 @@ export class PropertiesViewComponent implements OnInit {
 
     }
 
-
-    toggleProps(show: boolean) {
-        this.allProps = !this.allProps;
-    }
 
 }

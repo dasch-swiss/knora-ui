@@ -1,10 +1,18 @@
 import { Component, Inject, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { KuiMessageData } from '@knora/action';
-import { ApiResponseError, Constants, KnoraApiConnection, ReadResource } from '@knora/api';
+import { ApiResponseError, Constants, IHasProperty, KnoraApiConnection, ReadResource, ReadStillImageFileValue, ResourcePropertyDefinition, ReadValue } from '@knora/api';
+import { PropertyDefinition } from '@knora/api/src/models/v2/ontologies/property-definition';
 import { GuiOrder, KnoraApiConnectionToken, OntologyInformation, ResourcesSequence } from '@knora/core';
 
 import { StillImageComponent } from '../../resource';
+
+// object of property information from ontology class, properties and property values
+export interface TempProperty {
+    guiDef: IHasProperty;
+    propDef: PropertyDefinition;
+    values: ReadValue[];
+}
 
 // list of file value iris; TODO: not yet well done. It should be defined in global knora constants in knora-api-js-lib
 export class FileRepresentation {
@@ -50,25 +58,25 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     @Input() toolbar?: boolean = false;
 
 
-    // if resource hasFileRepresentation: this would the iri
-    hasFileRepresentation: string;
-
     // TODO: needs probably general fileRepresentation container to watch on
     @ViewChild('kuiStillImage', { static: false }) kuiStillImage: StillImageComponent;
 
+    loading: boolean;
+
     resource: ReadResource;
 
-
-    sequence: ResourcesSequence;
-
-    ontologyInfo: OntologyInformation;
-    guiOrder: GuiOrder[];
-    loading: boolean;
-    error: KuiMessageData;
+    propArray: TempProperty[] = [];
 
     // does the resource has a file representation (media file)?
-    fileRepresentation: boolean;
+    fileRepresentation: ReadValue[]; // TODO: expand with following types: | ReadMovingImageFileValue | ReadAudioFileValue | ReadDocumentFileValue | ReadTextFileValue;
 
+    Constants = Constants;
+
+    // TODO: clean up following unused variables
+    ontologyInfo: OntologyInformation;
+    sequence: ResourcesSequence;
+    guiOrder: GuiOrder[];
+    error: KuiMessageData;
     // current resource in case of compound object
     currentResource: ReadResource;
 
@@ -104,9 +112,44 @@ export class ResourceViewComponent implements OnInit, OnChanges {
                 this.resource = response;
                 console.log(response);
 
-                // TODO: set properties in correct gui order to send to properties view
+                // get list of all properties
+                const hasProps: IHasProperty[] = this.resource.entityInfo.classes[this.resource.type].propertiesList;
+
+                let i = 0;
+                for (const hasProp of hasProps) {
+
+                    const index = hasProp.propertyIndex;
+
+
+
+                    if (FileRepresentation.list.includes(index)) {
+                        // property value is of type hasFileRepresentations
+                        this.fileRepresentation = this.resource.properties[index];
+                    } else {
+                        // filter all properties by type ResourcePropertyDefinition
+                        if (this.resource.entityInfo.properties[index] &&
+                            this.resource.entityInfo.properties[index] instanceof ResourcePropertyDefinition) {
+
+                            const tempProp: TempProperty = {
+                                guiDef: hasProp,
+                                propDef: this.resource.entityInfo.properties[index],
+                                values: this.resource.properties[index]
+                            };
+
+                            this.propArray.push(tempProp);
+                        }
+                    }
+
+                    i++;
+                }
+
+                // sort properties by guiOrder
+                this.propArray.sort((a, b) => (a.guiDef.guiOrder > b.guiDef.guiOrder) ? 1 : -1);
+
+                console.log(this.propArray);
 
                 // TODO: get info about file representation to load corresponding media view
+
 
 
                 this.loading = false;
@@ -168,5 +211,10 @@ export class ResourceViewComponent implements OnInit, OnChanges {
         // TODO: commented for knora-api-js-lib:
         // this.currentResource = this.sequence.resources[0].incomingFileRepresentations[index];
 
+    }
+
+
+    toggleProps(show: boolean) {
+        this.allProps = !this.allProps;
     }
 }

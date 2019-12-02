@@ -1,15 +1,10 @@
-<kui-properties-toolbar *ngIf="toolbar" [projectiri]="resource.attachedToProject" [allProps]="allProps"
-                        (toggleProps)="toggleProps($event)">
-</kui-properties-toolbar>
 <!-- properties -->
 <div class="properties-container">
     <div class="properties" *ngIf="!loading">
 
         <!-- list of properties -->
         <div *ngFor="let prop of propArray; let last = last">
-            <!-- TODO: add switch to show all properties or to hide empty properties -->
-            <!-- *ngIf="prop.values" -->
-            <!-- show property; anyway in case of showAll === true or if prop.values is not undefined -->
+            <!-- show property; all in case of showAll === true or only the ones with prop.values -->
             <div class="property" *ngIf="allProps || prop.values">
                 <div class="property-label">
                     <!-- label of the property -->
@@ -27,40 +22,40 @@
 
                         <!-- TODO: reactivate switch by value type as soon the new viewer elements are ready -->
                         <!--
-                    <span [ngSwitch]="val.type" [class.list]="prop.values.length > 1" [class.lastItem]="lastItem">
-                        <kui-text-value-as-string *ngSwitchCase="KnoraConstants.TextValue" [valueObject]="val">
-                        </kui-text-value-as-string>
-                        <kui-text-value-as-xml *ngSwitchCase="KnoraConstants.TextValueAsXml" [valueObject]="val">
-                        </kui-text-value-as-xml>
-                        <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val"
-                                        [calendar]="true" [era]="true">
-                        </kui-date-value>
-                        <kui-link-value class="app-link" *ngSwitchCase="KnoraConstants.ReadLinkValue"
-                                        [valueObject]="val"
-                                        (referredResourceClicked)="openLink(val.referredResourceIri)">
-                        </kui-link-value>
-                        <kui-integer-value *ngSwitchCase="KnoraConstants.IntValue" [valueObject]="val">
-                        </kui-integer-value>
-                        <kui-decimal-value *ngSwitchCase="KnoraConstants.DecimalValue" [valueObject]="val">
-                        </kui-decimal-value>
-                        <kui-geometry-value *ngSwitchCase="KnoraConstants.GeomValue" [valueObject]="val">
-                        </kui-geometry-value>
-                        <kui-color-value *ngSwitchCase="KnoraConstants.ColorValue" [valueObject]="val">
-                        </kui-color-value>
-                        <kui-uri-value *ngSwitchCase="KnoraConstants.UriValue" [valueObject]="val">
-                        </kui-uri-value>
-                        <kui-boolean-value *ngSwitchCase="KnoraConstants.BooleanValue" [valueObject]="val">
-                        </kui-boolean-value>
-                        <kui-interval-value *ngSwitchCase="KnoraConstants.IntervalValue" [valueObject]="val">
-                        </kui-interval-value>
-                        <kui-list-value *ngSwitchCase="KnoraConstants.ReadListValue" [valueObject]="val">
-                        </kui-list-value>
-                        <kui-textfile-value *ngSwitchCase="KnoraConstants.FileValueHasFilename" [valueObject]="val">
-                        </kui-textfile-value>
-                        <span *ngSwitchDefault>Not supported {{val.type}}</span>
-                        <br>
-                    </span>
-                    -->
+                        <span [ngSwitch]="val.type" [class.list]="prop.values.length > 1" [class.lastItem]="lastItem">
+                            <kui-text-value-as-string *ngSwitchCase="KnoraConstants.TextValue" [valueObject]="val">
+                            </kui-text-value-as-string>
+                            <kui-text-value-as-xml *ngSwitchCase="KnoraConstants.TextValueAsXml" [valueObject]="val">
+                            </kui-text-value-as-xml>
+                            <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val"
+                                            [calendar]="true" [era]="true">
+                            </kui-date-value>
+                            <kui-link-value class="app-link" *ngSwitchCase="KnoraConstants.ReadLinkValue"
+                                            [valueObject]="val"
+                                            (referredResourceClicked)="openLink(val.referredResourceIri)">
+                            </kui-link-value>
+                            <kui-integer-value *ngSwitchCase="KnoraConstants.IntValue" [valueObject]="val">
+                            </kui-integer-value>
+                            <kui-decimal-value *ngSwitchCase="KnoraConstants.DecimalValue" [valueObject]="val">
+                            </kui-decimal-value>
+                            <kui-geometry-value *ngSwitchCase="KnoraConstants.GeomValue" [valueObject]="val">
+                            </kui-geometry-value>
+                            <kui-color-value *ngSwitchCase="KnoraConstants.ColorValue" [valueObject]="val">
+                            </kui-color-value>
+                            <kui-uri-value *ngSwitchCase="KnoraConstants.UriValue" [valueObject]="val">
+                            </kui-uri-value>
+                            <kui-boolean-value *ngSwitchCase="KnoraConstants.BooleanValue" [valueObject]="val">
+                            </kui-boolean-value>
+                            <kui-interval-value *ngSwitchCase="KnoraConstants.IntervalValue" [valueObject]="val">
+                            </kui-interval-value>
+                            <kui-list-value *ngSwitchCase="KnoraConstants.ReadListValue" [valueObject]="val">
+                            </kui-list-value>
+                            <kui-textfile-value *ngSwitchCase="KnoraConstants.FileValueHasFilename" [valueObject]="val">
+                            </kui-textfile-value>
+                            <span *ngSwitchDefault>Not supported {{val.type}}</span>
+                            <br>
+                        </span>
+                        -->
                     </div>
                 </div>
             </div>
