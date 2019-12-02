@@ -5,7 +5,7 @@ import { PropertyDefinition } from '@knora/api/src/models/v2/ontologies/property
 
 import { FileRepresentation } from '..';
 
-export interface TempProperties {
+export interface TempProperty {
     guiDef: IHasProperty;
     propDef: PropertyDefinition;
     values: ReadValue[];
@@ -47,7 +47,7 @@ export class PropertiesViewComponent implements OnInit {
 
     FileRepresentation = FileRepresentation;
 
-    propArray: TempProperties[] = [];
+    propArray: TempProperty[] = [];
 
     constructor(
         protected _router: Router) {
@@ -69,7 +69,7 @@ export class PropertiesViewComponent implements OnInit {
                 this.resource.entityInfo.properties[index] instanceof ResourcePropertyDefinition &&
                 !this.FileRepresentation.list.includes(index)) {
 
-                const tempProp: TempProperties = {
+                const tempProp: TempProperty = {
                     guiDef: hasProp,
                     propDef: this.resource.entityInfo.properties[index],
                     values: this.resource.properties[index]

@@ -24,6 +24,7 @@
 
                         <span *ngIf="prop.values" [class.list]="prop.values.length > 1"
                               [class.lastItem]="lastItem">{{val.strval}}</span>
+
                         <!-- TODO: reactivate switch by value type as soon the new viewer elements are ready -->
                         <!--
                     <span [ngSwitch]="val.type" [class.list]="prop.values.length > 1" [class.lastItem]="lastItem">
