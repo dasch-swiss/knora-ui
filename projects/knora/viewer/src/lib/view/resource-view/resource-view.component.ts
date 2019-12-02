@@ -65,6 +65,9 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
     resource: ReadResource;
 
+    // current resource displayed in case of compound object
+    activeResource: ReadResource;
+
     propArray: TempProperty[] = [];
 
     // does the resource has a file representation (media file)?
@@ -77,8 +80,6 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     sequence: ResourcesSequence;
     guiOrder: GuiOrder[];
     error: KuiMessageData;
-    // current resource in case of compound object
-    currentResource: ReadResource;
 
     constructor(
         @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
