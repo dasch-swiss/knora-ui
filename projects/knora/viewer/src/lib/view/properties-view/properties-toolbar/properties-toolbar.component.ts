@@ -13,7 +13,7 @@ export class PropertiesToolbarComponent implements OnInit {
     @Input() ontologyiri: string;
     @Input() arkurl: string;
 
-    @Input() showAllProps: boolean;
+    @Input() allProps: boolean;
 
     @Output() toggleProps: EventEmitter<boolean> = new EventEmitter<boolean>();
 

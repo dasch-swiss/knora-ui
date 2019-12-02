@@ -38,12 +38,9 @@
                 <!-- first tab for the main resource e.g. book -->
                 <mat-tab [label]="resource.entityInfo?.classes[resource.type].label">
                     <!-- header with project / ontology / resource class info / ark url -->
-                    <!-- TODO: move to the properties view -->
-                    <kui-properties-toolbar *ngIf="toolbar" [projectiri]="resource.attachedToProject"
-                                            [showAllProps]="showAllProps" (toggleProps)="toggleProps($event)">
-                    </kui-properties-toolbar>
 
-                    <kui-properties-view [resource]="resource" [showAll]="showAllProps"></kui-properties-view>
+                    <kui-properties-view [resource]="resource" [toolbar]="toolbar" [allProps]="allProps">
+                    </kui-properties-view>
 
 
                     <!-- TODO: [guiOrder]="guiOrder" /  [ontologyInfo]="resource.entityInfo" is missing? couldn't find yet -->

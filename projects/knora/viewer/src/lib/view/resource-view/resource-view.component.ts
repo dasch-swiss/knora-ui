@@ -29,12 +29,23 @@ const jsonld = require('jsonld');
 export class ResourceViewComponent implements OnInit, OnChanges {
 
     /**
+     * Resource iri
+     *
      * @param {string} [iri] Resource iri
      */
     @Input() iri?: string;
 
     /**
-     * @param  {boolean} [toolbar] Show toolbar on top of properties if true.
+     * Show all properties, even they don't have a value.
+     *
+     * @param  {boolean} [allProps]
+     */
+    @Input() allProps?: boolean = false;
+
+    /**
+     * Show toolbar with project info and some action tools on top of properties if true.
+     *
+     * @param  {boolean} [toolbar]
      */
     @Input() toolbar?: boolean = false;
 
@@ -42,12 +53,11 @@ export class ResourceViewComponent implements OnInit, OnChanges {
     // if resource hasFileRepresentation: this would the iri
     hasFileRepresentation: string;
 
-    // TODO: needs probably general fileRepresentation container to watch
+    // TODO: needs probably general fileRepresentation container to watch on
     @ViewChild('kuiStillImage', { static: false }) kuiStillImage: StillImageComponent;
 
     resource: ReadResource;
 
-    showAllProps: boolean = false;
 
     sequence: ResourcesSequence;
 
@@ -159,12 +169,4 @@ export class ResourceViewComponent implements OnInit, OnChanges {
         // this.currentResource = this.sequence.resources[0].incomingFileRepresentations[index];
 
     }
-
-
-    toggleProps(show: boolean) {
-        this.showAllProps = !this.showAllProps;
-    }
-
-
-
 }

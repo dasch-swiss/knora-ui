@@ -22,9 +22,26 @@ export interface TempProperties {
 })
 export class PropertiesViewComponent implements OnInit {
 
+    /**
+     * Resource object
+     *
+     * @param  {ReadResource} resource
+     */
     @Input() resource: ReadResource;
 
-    @Input() showAll?: boolean = false;
+    /**
+     * Show all properties, even they don't have a value.
+     *
+     * @param  {boolean=false} [allProps]
+     */
+    @Input() allProps?: boolean = false;
+
+    /**
+     * Show toolbar with project info and some action tools
+     *
+     * @param  {boolean=false} [toolbar]
+     */
+    @Input() toolbar?: boolean = false;
 
     loading: boolean = true;
 
@@ -84,6 +101,11 @@ export class PropertiesViewComponent implements OnInit {
         // this.routeChanged.emit(id);
         this._router.navigate(['/resource/' + encodeURIComponent(id)]);
 
+    }
+
+
+    toggleProps(show: boolean) {
+        this.allProps = !this.allProps;
     }
 
 }

@@ -1,26 +1,31 @@
+<kui-properties-toolbar *ngIf="toolbar" [projectiri]="resource.attachedToProject" [allProps]="allProps"
+                        (toggleProps)="toggleProps($event)">
+</kui-properties-toolbar>
 <!-- properties -->
-<div class="properties" *ngIf="!loading">
-    <!-- let prop of guiOrder (was previous; has to be reset again) -->
-    <div *ngFor="let prop of propArray; let last = last">
-        <!-- TODO: add switch to show all properties or to hide empty properties -->
-        <!-- *ngIf="prop.values" -->
-        <!-- show property; anyway in case of showAll === true or if prop.values is not undefined -->
-        <div class="property" *ngIf="showAll || prop.values">
-            <div class="property-label">
-                <!-- label of the property -->
-                <h3 class="label mat-subheading-1">
-                    {{prop.propDef.label}}
-                </h3>
-            </div>
-            <div class="property-value">
+<div class="properties-container">
+    <div class="properties" *ngIf="!loading">
 
-                <!-- the value(s) of the property -->
-                <div class="property-value-item" *ngFor="let val of prop.values; let lastItem = last">
+        <!-- list of properties -->
+        <div *ngFor="let prop of propArray; let last = last">
+            <!-- TODO: add switch to show all properties or to hide empty properties -->
+            <!-- *ngIf="prop.values" -->
+            <!-- show property; anyway in case of showAll === true or if prop.values is not undefined -->
+            <div class="property" *ngIf="allProps || prop.values">
+                <div class="property-label">
+                    <!-- label of the property -->
+                    <h3 class="label mat-subheading-1">
+                        {{prop.propDef.label}}
+                    </h3>
+                </div>
+                <div class="property-value">
 
-                    <span *ngIf="prop.values" [class.list]="prop.values.length > 1"
-                          [class.lastItem]="lastItem">{{val.strval}}</span>
-                    <!-- TODO: reactivate switch by value type as soon the new viewer elements are ready -->
-                    <!--
+                    <!-- the value(s) of the property -->
+                    <div class="property-value-item" *ngFor="let val of prop.values; let lastItem = last">
+
+                        <span *ngIf="prop.values" [class.list]="prop.values.length > 1"
+                              [class.lastItem]="lastItem">{{val.strval}}</span>
+                        <!-- TODO: reactivate switch by value type as soon the new viewer elements are ready -->
+                        <!--
                     <span [ngSwitch]="val.type" [class.list]="prop.values.length > 1" [class.lastItem]="lastItem">
                         <kui-text-value-as-string *ngSwitchCase="KnoraConstants.TextValue" [valueObject]="val">
                         </kui-text-value-as-string>
@@ -55,41 +60,41 @@
                         <br>
                     </span>
                     -->
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        <!-- TODO / QUESTION: What happend to incoming links and annotations? -->
+        <div class="incoming">
+
+            <!-- annotations are resources like region, sequence etc. -->
+            <!-- TODO: we can't display incoming annotations as expected
+            <div class="annotations">
+                <!-- *ngIf="annotations?.length > 0"> --
+                <h3 class="label mat-subheading-1">
+                    Annotations
+                </h3>
+                <mat-list *ngFor="let annotation of annotations">
+                    <mat-list-item class="kui-link" (click)="openLink(annotation.id)">
+                        <span>{{annotation.label}}</span>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+            -->
+
+            <!-- incoming links -->
+            <!-- <div class="links" *ngIf="incomingLinks?.length > 0">
+                <h3 class="label mat-subheading-1">
+                    Links
+                </h3>
+                <ul>
+                    <li *ngFor="let incoming of incomingLinks" class="kui-link" (click)="openLink(incoming.id)">
+                        {{incoming.label}}
+                    </li>
+                </ul>
+            </div> -->
+        </div>
     </div>
-
-</div>
-
-<!-- TODO / QUESTION: What happens to incoming links and annotations? -->
-
-<div class="incoming">
-
-    <!-- annotations are resources like region, sequence etc. -->
-    <!-- TODO: we can't display incoming annotations as expected
-    <div class="annotations">
-        <!-- *ngIf="annotations?.length > 0"> --
-        <h3 class="label mat-subheading-1">
-            Annotations
-        </h3>
-        <mat-list *ngFor="let annotation of annotations">
-            <mat-list-item class="kui-link" (click)="openLink(annotation.id)">
-                <span>{{annotation.label}}</span>
-            </mat-list-item>
-        </mat-list>
-    </div>
-    -->
-
-    <!-- incoming links -->
-    <!-- <div class="links" *ngIf="incomingLinks?.length > 0">
-        <h3 class="label mat-subheading-1">
-            Links
-        </h3>
-        <ul>
-            <li *ngFor="let incoming of incomingLinks" class="kui-link" (click)="openLink(incoming.id)">
-                {{incoming.label}}
-            </li>
-        </ul>
-    </div> -->
 </div>
