@@ -1,17 +1,23 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { ApiService } from '../api.service';
 
+/**
+* @deprecated since v9.5.0
+* Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
+*/
 @Injectable({
   providedIn: 'root'
 })
 export class BasicOntologyService extends ApiService {
 
   /**
-     * returns our list of a basic ontology
-     *
-     * @returns {Observable<any>}
-     */
+    * @deprecated since v9.5.0
+    * returns our list of a basic ontology
+    *
+    * @returns {Observable<any>}
+    */
   // getBasicOntology(): Observable<any> {
   //     let url = environment.url;
   //     return this.httpGet(url + '/data/base-data/basic-ontology.json', {withCredentials: false});

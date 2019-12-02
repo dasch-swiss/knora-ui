@@ -1,26 +1,30 @@
 import { Injectable } from '@angular/core';
+import { forkJoin, from, Observable, of } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
+
 import { ApiServiceResult } from '../../declarations/api-service-result';
 import { KnoraConstants } from '../../declarations/api/knora-constants';
 import { Utils } from '../../declarations/utils';
+
 import { OntologyService } from './ontology.service';
-import { forkJoin, from, Observable, of } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
 
 /**
+ * @deprecated since v9.5.0
  * Represents an error occurred in OntologyCacheService.
  */
 class OntologyCacheError extends Error {
 
-    constructor (readonly message: string) {
+    constructor(readonly message: string) {
         super(message);
     }
 }
 
 
 /**
+ * @deprecated since v9.5.0
  * Represents an ontology's metadata.
  */
 export class OntologyMetadata {
@@ -31,7 +35,7 @@ export class OntologyMetadata {
      * @param {string} id Iri identifying the ontology.
      * @param {string} label a label describing the ontology.
      */
-    constructor (readonly id: string,
+    constructor(readonly id: string,
         readonly label: string) {
 
     }
@@ -40,6 +44,7 @@ export class OntologyMetadata {
 
 
 /**
+ * @deprecated since v9.5.0
  * Occurrence of a property for a resource class (its cardinality).
  */
 export enum CardinalityOccurrence {
@@ -50,6 +55,7 @@ export enum CardinalityOccurrence {
 
 
 /**
+ * @deprecated since v9.5.0
  * Cardinality of a property for the given resource class.
  */
 export class Cardinality {
@@ -59,12 +65,13 @@ export class Cardinality {
      * @param {number} value numerical value of given occurrence.
      * @param {string} property the property the given occurrence applies to.
      */
-    constructor (readonly occurrence: CardinalityOccurrence,
+    constructor(readonly occurrence: CardinalityOccurrence,
         readonly value: number,
         readonly property: string) {
     }
 }
 /**
+ * @deprecated since v9.5.0
  * Property gui order
  */
 export class GuiOrder {
@@ -72,7 +79,7 @@ export class GuiOrder {
      * @param  {number} value
      * @param  {string} property
      */
-    constructor (readonly value: number,
+    constructor(readonly value: number,
         readonly property: string
     ) {
 
@@ -80,6 +87,7 @@ export class GuiOrder {
 }
 
 /**
+ * @deprecated since v9.5.0
  * A resource class definition.
  */
 export class ResourceClass {
@@ -92,7 +100,7 @@ export class ResourceClass {
      * @param {Cardinality[]} cardinalities the resource class's properties.
      * @param {GuiOrder[]} guiOrder the resource class's gui-order properties.
      */
-    constructor (readonly id: string,
+    constructor(readonly id: string,
         readonly icon: string,
         readonly comment: string,
         readonly label: string,
@@ -104,6 +112,7 @@ export class ResourceClass {
 
 
 /**
+ * @deprecated since v9.5.0
  * A map of resource class Iris to resource class definitions.
  */
 export class ResourceClasses {
@@ -112,6 +121,7 @@ export class ResourceClasses {
 
 
 /**
+ * @deprecated since v9.5.0
  * A property definition.
  */
 export class Property {
@@ -127,7 +137,7 @@ export class Property {
      * @param {boolean} isLinkValueProperty indicates whether the given property refers to a link value.
      * @param {string} guiAttribute the gui attribute assigned to this property, if any.
      */
-    constructor (readonly id: string,
+    constructor(readonly id: string,
         readonly objectType: string,
         readonly comment: string,
         readonly label: string,
@@ -141,6 +151,7 @@ export class Property {
 
 
 /**
+ * @deprecated since v9.5.0
  * A map of property Iris to property definitions.
  */
 export class Properties {
@@ -149,6 +160,7 @@ export class Properties {
 
 
 /**
+ * @deprecated since v9.5.0
  * Groups resource classes by the ontology they are defined in.
  *
  * A map of ontology Iris to an array of resource class Iris.
@@ -159,6 +171,7 @@ export class ResourceClassIrisForOntology {
 
 
 /**
+ * @deprecated since v9.5.0
  * Represents cached ontology information (only used by this service internally).
  * This cache is updated whenever new definitions are requested from Knora.
  *
@@ -186,7 +199,7 @@ class OntologyCache {
      */
     properties: Properties;
 
-    constructor () {
+    constructor() {
         this.ontologies = [];
 
         this.resourceClassIrisForOntology = new ResourceClassIrisForOntology();
@@ -198,6 +211,7 @@ class OntologyCache {
 }
 
 /**
+ * @deprecated since v9.5.0
  * Represents ontology information requested from this service.
  *
  * For every request, an instance of this class is returned containing the requested information.
@@ -209,7 +223,7 @@ export class OntologyInformation {
      * @param {ResourceClasses} resourceClasses resource class definitions.
      * @param {Properties} properties property definitions.
      */
-    constructor (
+    constructor(
         private resourceClassesForOntology: ResourceClassIrisForOntology,
         private resourceClasses: ResourceClasses,
         private properties: Properties) {
@@ -243,6 +257,7 @@ export class OntologyInformation {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Merge the given [[OntologyInformation]] into the current instance,
      * updating the existing information.
      * This is necessary when a service like the search fetches new results
@@ -284,6 +299,7 @@ export class OntologyInformation {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns resource class definitions for ontologies.
      *
      * @returns ResourceClassIrisForOntology - all resource class definitions grouped by ontologies.
@@ -293,6 +309,7 @@ export class OntologyInformation {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns all resource classes as an object.
      *
      * @returns ResourceClasses - all resource class definitions as an object.
@@ -302,6 +319,7 @@ export class OntologyInformation {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns all resource classes as an array.
      *
      * @param {boolean} sortAsc sort resource classes by label in ascending order by default
@@ -330,6 +348,7 @@ export class OntologyInformation {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns a resource class's label.
      *
      * @param {string} resClass resource class to query for.
@@ -352,6 +371,7 @@ export class OntologyInformation {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns all properties as an object.
      *
      * @returns Properties - all properties as an object.
@@ -361,6 +381,7 @@ export class OntologyInformation {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns all properties as an array.
      *
      * @param {boolean} sortAsc sort properties by label in ascending order by default
@@ -389,6 +410,7 @@ export class OntologyInformation {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns a property's label.
      *
      * @param {string} property to query for.
@@ -414,6 +436,9 @@ export class OntologyInformation {
 
 
 /**
+ * @deprecated since v9.5.0
+ * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
+ *
  * Requests ontology information from Knora and caches it.
  * Other components or services obtain ontology information through this service.
  */
@@ -443,10 +468,11 @@ export class OntologyCacheService {
      */
     private cacheOntology: OntologyCache = new OntologyCache();
 
-    constructor (private _ontologyService: OntologyService) {
+    constructor(private _ontologyService: OntologyService) {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Requests the metadata of all ontologies from Knora.
      *
      * @returns Observable<object> - metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
@@ -472,6 +498,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Requests all entity definitions (resource classes and properties) for the given ontology from Knora.
      *
      * @param {string} ontologyIri the Iri of the requested ontology.
@@ -498,6 +525,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Writes all the ontologies' metadata returned by Knora to the cache.
      *
      * @param {object[]} ontologies metadata of all existing ontologies as JSON-LD.
@@ -513,6 +541,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns all ontologies' metadata from the cache and returns them.
      *
      * @returns Array<OntologyMetadata> - metadata of all existing ontologies.
@@ -524,6 +553,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns resource class Iris from the ontology response.
      * `knora-api:Resource` will be excluded.
      *
@@ -549,6 +579,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Converts a Knora response for all entity definitions for the requested ontology
      * into an internal representation and caches it.
      *
@@ -589,6 +620,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns definitions for the requested ontologies from the cache.
      *
      * @param {string[]} ontologyIris the ontologies for which definitions should be returned.
@@ -628,6 +660,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Converts a Knora ontology response into an internal representation and caches it.
      *
      * @param {object[]} resourceClassDefinitions the resource class definitions returned by Knora.
@@ -716,6 +749,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Gets information about resource classes from the cache.
      * The answer includes the property definitions referred to by the cardinalities of the given resource classes.
      *
@@ -753,6 +787,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Converts a Knora response for ontology information about properties
      * into an internal representation and cache it.
      *
@@ -822,6 +857,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns property definitions from the cache.
      *
      * @param {string[]} propertyIris the property definitions to be returned.
@@ -851,6 +887,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns metadata about all ontologies.
      *
      * @returns Observable<Array<OntologyMetadata>> - metadata about all ontologies.
@@ -879,6 +916,7 @@ export class OntologyCacheService {
 
 
     /**
+     * @deprecated since v9.5.0
      * Requests the requested ontologies from Knora, adding them to the cache.
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be requested.
@@ -911,6 +949,7 @@ export class OntologyCacheService {
 
 
     /**
+     * @deprecated since v9.5.0
      * Returns the entity definitions for the requested ontologies.
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be queried.
@@ -943,6 +982,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns the definitions for the given resource class Iris.
      * If the definitions are not already in the cache, the will be retrieved from Knora and cached.
      *
@@ -987,6 +1027,7 @@ export class OntologyCacheService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Get definitions for the given property Iris.
      * If the definitions are not already in the cache, the will be retrieved from Knora and cached.
      *

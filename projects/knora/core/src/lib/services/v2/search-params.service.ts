@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 
 /**
+ * @deprecated since v9.5.0
  * Represents the parameters of an extended search.
  */
 export class ExtendedSearchParams {
@@ -21,6 +22,10 @@ export class ExtendedSearchParams {
 
 }
 
+/**
+ * @deprecated since v9.5.0
+ * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -38,6 +43,7 @@ export class SearchParamsService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Updates the parameters of an extended search.
      *
      * @param {ExtendedSearchParams} searchParams
@@ -48,6 +54,7 @@ export class SearchParamsService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Gets the search params of an extended search.
      *
      * @returns ExtendedSearchParams - search parameters

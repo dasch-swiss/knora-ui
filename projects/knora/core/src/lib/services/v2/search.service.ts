@@ -8,6 +8,9 @@ import { ApiService } from '../api.service';
 import { ConvertJSONLD } from './convert-jsonld';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
 
+/**
+ * @deprecated since v9.5.0
+ */
 export interface FulltextSearchParams {
 
     limitToResourceClass?: string;
@@ -17,6 +20,9 @@ export interface FulltextSearchParams {
     limitToStandoffClass?: string;
 }
 
+/**
+ * @deprecated since v9.5.0
+ */
 export interface SearchByLabelParams {
 
     limitToResourceClass?: string;
@@ -25,6 +31,9 @@ export interface SearchByLabelParams {
 }
 
 /**
+ * @deprecated since v9.5.0 - all the following functions are now deprecated
+ * Use the class SearchEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.
+ *
  * Performs searches (fulltext or extended) and search count queries into Knora.
  */
 @Injectable({
@@ -32,13 +41,14 @@ export interface SearchByLabelParams {
 })
 export class SearchService extends ApiService {
 
-    constructor (public http: HttpClient,
+    constructor(public http: HttpClient,
         @Inject(KuiCoreConfigToken) public config,
         private _ontologyCacheService: OntologyCacheService) {
         super(http, config);
     }
 
     /**
+     * @deprecated since v9.5.0
      * Assign fulltext search params to http params.
      *
      * @param {FulltextSearchParams} params
@@ -68,6 +78,7 @@ export class SearchService extends ApiService {
 
     }
     /**
+     * @deprecated since v9.5.0
      * Assign search by label search params to http params.
      *
      * @param {SearchByLabelParams} params
@@ -121,6 +132,7 @@ export class SearchService extends ApiService {
         );
     }
     /**
+     * @deprecated since v9.5.0
      * Converts a JSON-LD object to a `ResourcesSequence`
      *
      * @param  {Object} resourceResponse
@@ -145,8 +157,8 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated use of `doFullTextSearchReadResourceSequence` recommended
      * Performs a fulltext search.
-     * TODO: mark as deprecated, use of `doFullTextSearchReadResourceSequence` recommended
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset the offset to be used (for paging, first offset is 0).
@@ -171,6 +183,7 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Performs a fulltext search and turns the result into a `ReadResourceSequence`.
      *
      * @param {string} searchTerm the term to search for.
@@ -206,8 +219,8 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated use of `doFullTextSearchCountQueryCountQueryResult` recommended
      * Performs a fulltext search count query.
-     * TODO: mark as deprecated, use of `doFullTextSearchCountQueryCountQueryResult` recommended
      *
      * @param searchTerm the term to search for.
      * @param {FulltextSearchParams} params restrictions, if any.
@@ -229,6 +242,7 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Performs a fulltext search count query and turns the result into a `CountQueryResult`.
      *
      * @param {string} searchTerm the term to search for.
@@ -262,8 +276,8 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated use of `doExtendedSearchReadResourceSequence` recommended
      * Performs an extended search.
-     * TODO: mark as deprecated, use of `doExtendedSearchReadResourceSequence` recommended
      *
      * @param gravsearchQuery the Sparql query string to be sent to Knora.
      * @returns Observable<ApiServiceResult>
@@ -302,6 +316,7 @@ export class SearchService extends ApiService {
         );
     }
     /**
+     * @deprecated since v9.5.0
      * Performs an extended search and turns the result into a `ResourcesSequence`.
      *
      * @param  {string} gravsearchQuery
@@ -326,8 +341,8 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated use of `doExtendedSearchReadResourceSequence` recommended
      * Performs an extended search count query.
-     * TODO: mark as deprecated, use of `doExtendedSearchReadResourceSequence` recommended
      *
      * @param {string} gravsearchQuery the Sparql query string to be sent to Knora.
      * @returns Observable<ApiServiceResult>
@@ -342,6 +357,7 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Performs an extended search count query and turns the result into a `CountQueryResult`.
      *
      * @param gravsearchQuery the Sparql query string to be sent to Knora.
@@ -368,8 +384,8 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated use of `searchByLabelReadResourceSequence` recommended
      * Perform a search by a resource's rdfs:label.
-     * TODO: mark as deprecated, use of `searchByLabelReadResourceSequence` recommended
      *
      * @param {string} searchTerm the term to search for.
      * @param {number} offset offset to use.
@@ -396,6 +412,7 @@ export class SearchService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Perform a search by a resource's rdfs:label and turns the results in a `ReadResourceSequence`.
      *
      * @param {string} searchTerm the term to search for.

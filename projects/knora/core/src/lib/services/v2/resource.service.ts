@@ -2,14 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
+
 import { KuiCoreConfigToken } from '../../core.module';
 import { ApiServiceError, ApiServiceResult, KnoraConstants, ReadResourcesSequence, ReadStillImageFileValue, Region, ResourcesSequence, StillImageRepresentation } from '../../declarations';
 import { ApiService } from '../api.service';
+
 import { ConvertJSONLD } from './convert-jsonld';
 import { IncomingService } from './incoming.service';
 import { OntologyCacheService, OntologyInformation } from './ontology-cache.service';
 
 /**
+ * @deprecated since v9.5.0
+ * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
+ *
  * Requests representation of resources from Knora.
  */
 @Injectable({
@@ -17,7 +22,7 @@ import { OntologyCacheService, OntologyInformation } from './ontology-cache.serv
 })
 export class ResourceService extends ApiService {
 
-    constructor (public http: HttpClient,
+    constructor(public http: HttpClient,
         @Inject(KuiCoreConfigToken) public config,
         private _incomingService: IncomingService,
         private _ontologyCacheService: OntologyCacheService) {
@@ -25,6 +30,7 @@ export class ResourceService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Given the Iri, requests the representation of a resource.
      *
      * @param {string} iri Iri of the resource (not yet URL encoded).
@@ -87,16 +93,16 @@ export class ResourceService extends ApiService {
 
                             break;
                         case propKeys.includes(KnoraConstants.hasMovingImageFileValue):
-                            //                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasMovingImageFileValue];
+                            // res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasMovingImageFileValue];
                             break;
                         case propKeys.includes(KnoraConstants.hasAudioFileValue):
-                            //                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasAudioFileValue];
+                            // res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasAudioFileValue];
                             break;
                         case propKeys.includes(KnoraConstants.hasDocumentFileValue):
-                            //                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDocumentFileValue];
+                            // res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDocumentFileValue];
                             break;
                         case propKeys.includes(KnoraConstants.hasDDDFileValue):
-                            //                            res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDDDFileValue];
+                            // res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDDDFileValue];
                             break;
 
                         // TODO: TextFileValue
@@ -169,21 +175,7 @@ export class ResourceService extends ApiService {
                                     console.error(error);
                                 }
                             );
-
-                        // do the same for all other incoming file representations
-                        // TODO: get incoming movingImage files
-
-                        // TODO: get incoming audio files
-
-                        // TODO: get incoming document files
-
-                        // TODO: get incoming text files
-
-                        // TODO: get ddd images files
                     }
-
-
-                    // resource.properties[KnoraConstants.hasStillImageFileValue]
 
 
                     // get incoming links
@@ -218,66 +210,14 @@ export class ResourceService extends ApiService {
             )
         );
 
-        // let resSeq: Observable<ResourcesSequence>;
-
-        /*
-        this.getResourcesSequence(iri).subscribe(
-            (sequence: ResourcesSequence) => {
-
-                // resSeq = sequence;
-
-                /* pipe(
-                    map((result: ApiServiceResult) => result.getBody(GroupsResponse).groups),
-                    catchError(this.handleJsonError)
-                );
-
-                resSeq.pipe(
-                    map((seq: ResourcesSequence) => sequence),
-                    catchError(this.handleJsonError)
-                ); *
-
-                // get incoming links
-                this._incomingService.getIncomingLinks(sequence.resources[0].id, 0).subscribe(
-                    (incomingResources: ResourcesSequence) => {
-                        // update ontology information
-                        sequence.ontologyInformation.updateOntologyInformation(incomingResources.ontologyInformation);
-
-                        // Append elements incomingResources to this.sequence.incomingLinks
-                        Array.prototype.push.apply(sequence.resources[0].incomingLinks, incomingResources.resources);
-
-                        // if callback is given, execute function with the amount of incoming resources as the parameter
-                        /* TODO: what is callback? Find a solution
-                        if (callback !== undefined) {
-                            callback(incomingResources.resources.length);
-                        }
-                        *
-
-                    },
-                    (error: any) => {
-                        console.error(error);
-                    }
-                );
-
-                // get incoming annotations
-
-                // get incoming filerepresentations
-
-
-
-            },
-            (error: ApiServiceError) => {
-                console.error(error);
-                return error;
-            }
-        );
-
-
-        return resSeq;
-        */
-
-
     }
 
+    /**
+     * @deprecated since v9.5.0
+     *
+     * @param iri
+     * @returns Observable<ResourcesSequence | ApiServiceError>
+     */
     private getResourcesSequence(iri: string): Observable<ResourcesSequence | ApiServiceError> {
         const res: Observable<ApiServiceResult | ApiServiceError> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));
 
@@ -312,7 +252,12 @@ export class ResourceService extends ApiService {
         );
     }
 
-
+    /**
+     * @deprecated since v9.5.0
+     *
+     * @param sequence
+     * @returns void
+     */
     requestIncomingResources(sequence: ResourcesSequence): void {
 
         // make sure that this.sequence has been initialized correctly
@@ -386,7 +331,9 @@ export class ResourceService extends ApiService {
             )
         );
     }
+
     /**
+     * @deprecated since v9.5.0
      * Get a resource by IRI and return the json-ld result;
      * it will be used for the request body object in delete and erase resource
      *
@@ -401,10 +348,8 @@ export class ResourceService extends ApiService {
 
     }
 
-    // TODO: post, put, delete
-
-
     /**
+     * @deprecated since v9.5.0
      * Delete resource
      *
      * Knora does not normally delete resources; instead, it marks them as deleted, which means that they do not appear in normal query results.
@@ -453,8 +398,8 @@ export class ResourceService extends ApiService {
 
     }
 
-    // TODO: combine the erase method with the delete method
     /**
+     * @deprecated since v9.5.0
      * Erase resource (from triplestore)
      *
      * @param {string} iri Iri of the resource
