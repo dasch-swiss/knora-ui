@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 /**
- * @deprecated since v9.5.0 - Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated since v9.5.0
+ *
+ * Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  */
 @Injectable({
     providedIn: 'root'

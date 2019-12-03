@@ -6,6 +6,7 @@ import { SessionService } from '../session/session.service';
 
 /**
  * @deprecated since v9.5.0
+ *
  * Import and configure your guards directly inside your web app.
  */
 @Injectable({

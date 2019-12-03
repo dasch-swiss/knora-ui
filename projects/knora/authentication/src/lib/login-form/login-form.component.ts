@@ -7,6 +7,7 @@ import { SessionService } from '../session/session.service';
 
 /**
  * @deprecated since v9.5.0
+ *
  * This component has been moved to knora/action. Update your import path.
  */
 @Component({
@@ -17,7 +18,10 @@ import { SessionService } from '../session/session.service';
 export class LoginFormComponent implements OnInit {
 
     /**
-     * @deprecated This will be removed in the next major release; this should be handled by the app itself with the new Output parameter called 'status'
+     * @deprecated
+     *
+     * This will be removed in the next major release; this should be handled by the app itself with the new Output parameter called 'status'
+     *
      * @param {string} [navigate]
      * navigate to the defined url after successful login
      */

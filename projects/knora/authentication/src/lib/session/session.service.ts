@@ -11,7 +11,8 @@ const moment = momentImported;
 
 /**
  * @deprecated since v9.5.0
- * This service has been moved to knora/core. Update your import path.
+ *
+ * This service has been moved to `@knora/core`. Update your import path.
  */
 @Injectable({
     providedIn: 'root'
@@ -35,6 +36,7 @@ export class SessionService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * set the session by using the json web token (jwt) and the user object;
      * it will be used in the login process
      *
