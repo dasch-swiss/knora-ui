@@ -33,8 +33,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Converts a JSON-LD represention of a ListNodeV2 to  a `ListNodeV2`.\nRecursively converts child nodes.",
-        "html": "<p>since v9.5.0 Converts a JSON-LD represention of a ListNodeV2 to  a <code>ListNodeV2</code>.<br />\nRecursively converts child nodes.</p>"
+        "string": "since v9.5.0 \nConverts a JSON-LD represention of a ListNodeV2 to  a `ListNodeV2`.\nRecursively converts child nodes.",
+        "html": "<p>since v9.5.0<br />\nConverts a JSON-LD represention of a ListNodeV2 to  a <code>ListNodeV2</code>.<br />\nRecursively converts child nodes.</p>"
       },
       {
         "type": "param",
@@ -76,7 +76,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 61,
-    "codeStart": 69,
+    "codeStart": 70,
     "code": "private convertJSONLDToListNode: (listJSONLD: object) => ListNodeV2 = (listJSONLD: object) => {\n\n    const listNodeIri = listJSONLD['@id'];\n\n    const hasRootNode = this.hasRootNode(listJSONLD);\n\n    const listNode = new ListNodeV2(\n        listNodeIri,\n        listJSONLD['http://www.w3.org/2000/01/rdf-schema#label'],\n        listJSONLD['http://api.knora.org/ontology/knora-api/v2#listNodePosition'],\n        hasRootNode\n    );\n\n    // check if there are child nodes\n    if (listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode'] !== undefined) {\n\n        if (Array.isArray(listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode'])) {\n            // array of child nodes\n            for (const subListNode of listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode']) {\n                listNode.children.push(this.convertJSONLDToListNode(subListNode));\n            }\n        } else {\n            // single child node\n            listNode.children.push(this.convertJSONLDToListNode(listJSONLD['http://api.knora.org/ontology/knora-api/v2#hasSubListNode']));\n        }\n\n    }\n\n    this.listNodeIriToListNodeV2[listNodeIri] = listNode;\n\n    return listNode;\n}",
     "ctx": false
   },
@@ -84,8 +84,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Gets a list from the cache or requests it from Knora and caches it.",
-        "html": "<p>since v9.5.0 Gets a list from the cache or requests it from Knora and caches it.</p>"
+        "string": "since v9.5.0 \nGets a list from the cache or requests it from Knora and caches it.",
+        "html": "<p>since v9.5.0<br />\nGets a list from the cache or requests it from Knora and caches it.</p>"
       },
       {
         "type": "param",
@@ -126,8 +126,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 102,
-    "codeStart": 109,
+    "line": 103,
+    "codeStart": 111,
     "code": "getList(rootNodeIri: string): Observable<ListNodeV2> {\n\n    // check if list is already in cache\n    if (this.listCache[rootNodeIri] !== undefined) {\n\n        // return list from cache\n        return of(this.listCache[rootNodeIri]);\n\n    } else {\n        // get list from Knora and cache it\n\n        const listJSONLD = this._listService.getList(rootNodeIri);\n\n        const listV2: Observable<ListNodeV2> = listJSONLD.pipe(\n            map(\n                this.convertJSONLDToListNode\n            )\n        );\n\n        return listV2.pipe(\n            map(\n                (list: ListNodeV2) => {\n                    // write list to cache and return it\n                    this.listCache[rootNodeIri] = list;\n                    return list;\n                }\n            )\n        );\n    }\n}",
     "ctx": {
       "type": "method",
@@ -139,8 +139,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Gets a list node from the cache or requests the whole list from Knora and caches it.",
-        "html": "<p>since v9.5.0 Gets a list node from the cache or requests the whole list from Knora and caches it.</p>"
+        "string": "since v9.5.0 \nGets a list node from the cache or requests the whole list from Knora and caches it.",
+        "html": "<p>since v9.5.0<br />\nGets a list node from the cache or requests the whole list from Knora and caches it.</p>"
       },
       {
         "type": "param",
@@ -181,8 +181,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 140,
-    "codeStart": 147,
+    "line": 142,
+    "codeStart": 150,
     "code": "getListNode(listNodeIri: string): Observable<ListNodeV2> {\n\n    // check if list node is already in cache\n    if (this.listNodeIriToListNodeV2[listNodeIri] !== undefined) {\n\n        // list node is already cached\n        return of(this.listNodeIriToListNodeV2[listNodeIri]);\n\n    } else {\n\n        const listNode = this._listService.getListNode(listNodeIri);\n\n        return listNode.pipe(\n            mergeMap(\n                (listNodeJSONLD: object) => {\n                    const hasRootNode = this.hasRootNode(listNodeJSONLD);\n\n                    if (hasRootNode !== undefined) {\n                        // get the whole list\n                        return this.getList(hasRootNode).pipe(\n                            map(\n                                (completeList: ListNodeV2) => {\n                                    // get list node from cache\n                                    return this.listNodeIriToListNodeV2[listNodeIri];\n                                })\n                        );\n                    } else {\n                        // this is the root node, get the whole list\n                        return this.getList(listNodeIri).pipe(\n                            map(\n                                (completeList: ListNodeV2) => {\n                                    // get list node from cache\n                                    return this.listNodeIriToListNodeV2[listNodeIri];\n                                })\n                        );\n                    }\n                }\n            )\n        );\n    }\n}\n}",
     "ctx": {
       "type": "method",

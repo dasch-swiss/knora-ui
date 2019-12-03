@@ -79,8 +79,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Return a list object.",
-        "html": "<p>since v9.5.0 Return a list object.</p>"
+        "string": "since v9.5.0 \nReturn a list object.",
+        "html": "<p>since v9.5.0<br />\nReturn a list object.</p>"
       },
       {
         "type": "param",
@@ -120,7 +120,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 43,
-    "codeStart": 50,
+    "codeStart": 51,
     "code": "getList(listIri: string): Observable<List> {\n    return this.httpGet(this.path + '/' + encodeURIComponent(listIri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListResponse).list),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -132,8 +132,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Return a list info object.",
-        "html": "<p>since v9.5.0 Return a list info object.</p>"
+        "string": "since v9.5.0 \nReturn a list info object.",
+        "html": "<p>since v9.5.0<br />\nReturn a list info object.</p>"
       },
       {
         "type": "param",
@@ -172,8 +172,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 57,
-    "codeStart": 64,
+    "line": 58,
+    "codeStart": 66,
     "code": "getListInfo(listIri: string): Observable<ListInfo> {\n    return this.httpGet(this.path + '/infos/' + encodeURIComponent(listIri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -185,8 +185,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Return a list node info object.",
-        "html": "<p>since v9.5.0 Return a list node info object.</p>"
+        "string": "since v9.5.0 \nReturn a list node info object.",
+        "html": "<p>since v9.5.0<br />\nReturn a list node info object.</p>"
       },
       {
         "type": "param",
@@ -225,8 +225,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 71,
-    "codeStart": 78,
+    "line": 73,
+    "codeStart": 81,
     "code": "getListNodeInfo(nodeIri: string): Observable<ListNode> {\n    return this.httpGet(this.path + '/nodes/' + encodeURIComponent(nodeIri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListNodeResponse).nodeinfo),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -238,8 +238,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Create new list.",
-        "html": "<p>since v9.5.0 Create new list.</p>"
+        "string": "since v9.5.0 \nCreate new list.",
+        "html": "<p>since v9.5.0<br />\nCreate new list.</p>"
       },
       {
         "type": "param",
@@ -269,8 +269,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>v9.5.0</p>",
+      "summary": "<p>v9.5.0</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -278,8 +278,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 90,
-    "codeStart": 97,
+    "line": 93,
+    "codeStart": 102,
     "code": "createList(payload: ListCreatePayload): Observable<List> {\n    return this.httpPost(this.path, payload).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListResponse).list),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -291,8 +291,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Create new list node.",
-        "html": "<p>since v9.5.0 Create new list node.</p>"
+        "string": "since v9.5.0 \nCreate new list node.",
+        "html": "<p>since v9.5.0<br />\nCreate new list node.</p>"
       },
       {
         "type": "param",
@@ -337,8 +337,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>v9.5.0</p>",
+      "summary": "<p>v9.5.0</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -346,8 +346,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 104,
-    "codeStart": 112,
+    "line": 109,
+    "codeStart": 119,
     "code": "createListItem(listIri: string, payload: ListNodeUpdatePayload): Observable<ListNode> {\n    return this.httpPost(this.path + '/' + encodeURIComponent(listIri), payload).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListNodeResponse).nodeinfo),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// PUT\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -359,8 +359,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Edit list data.",
-        "html": "<p>since v9.5.0 Edit list data.</p>"
+        "string": "since v9.5.0 \nEdit list data.",
+        "html": "<p>since v9.5.0<br />\nEdit list data.</p>"
       },
       {
         "type": "param",
@@ -390,8 +390,8 @@
       }
     ],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>v9.5.0</p>",
+      "summary": "<p>v9.5.0</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -399,8 +399,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 124,
-    "codeStart": 131,
+    "line": 131,
+    "codeStart": 140,
     "code": "updateListInfo(payload: ListInfoUpdatePayload): Observable<ListInfo> {\n    return this.httpPut(this.path + '/infos/' + encodeURIComponent(payload.listIri), payload).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),\n        catchError(this.handleJsonError)\n    );\n}\n\n// updateListItem(payload: )\n}",
     "ctx": {
       "type": "method",

@@ -26,8 +26,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 GET",
-        "html": "<p>since v9.5.0 GET</p>"
+        "string": "since v9.5.0 \nGET",
+        "html": "<p>since v9.5.0<br />\nGET</p>"
       },
       {
         "type": "param",
@@ -80,7 +80,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 38,
-    "codeStart": 46,
+    "codeStart": 47,
     "code": "httpGet(path: string, params?: HttpParams): Observable<any> {\n\n    this.loading = true;\n\n    return this.http.get(this.config.api + path, { observe: 'response', params: params }).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            const result = new ApiServiceResult();\n            result.header = { 'server': response.headers.get('Server') };\n            this.compareVersion(response.headers.get('Server'));\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n\n            return result;\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            return this.handleRequestError(error);\n        })\n    );\n\n}",
     "ctx": {
       "type": "method",
@@ -92,8 +92,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Processes JSON-LD returned by Knora.\nExpands Iris and creates an empty context object.",
-        "html": "<p>since v9.5.0 Processes JSON-LD returned by Knora.<br />\nExpands Iris and creates an empty context object.</p>"
+        "string": "since v9.5.0 \nProcesses JSON-LD returned by Knora.\nExpands Iris and creates an empty context object.",
+        "html": "<p>since v9.5.0<br />\nProcesses JSON-LD returned by Knora.<br />\nExpands Iris and creates an empty context object.</p>"
       },
       {
         "type": "param",
@@ -121,8 +121,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 73,
-    "codeStart": 80,
+    "line": 74,
+    "codeStart": 82,
     "code": "protected processJSONLD(resourceResponse: ApiServiceResult): Observable<any> {\n\n    const resPromises = jsonld.promises;\n\n\n    // compact JSON-LD using an empty context: expands all Iris\n    const resPromise = resPromises.compact(resourceResponse.body, {});\n\n    // convert promise to Observable and return it\n    // https://www.learnrxjs.io/operators/creation/frompromise.html\n    return from(resPromise);\n\n}",
     "ctx": false
   },
@@ -130,8 +130,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 POST",
-        "html": "<p>since v9.5.0 POST</p>"
+        "string": "since v9.5.0 \nPOST",
+        "html": "<p>since v9.5.0<br />\nPOST</p>"
       },
       {
         "type": "param",
@@ -185,8 +185,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 94,
-    "codeStart": 102,
+    "line": 96,
+    "codeStart": 105,
     "code": "httpPost(path: string, body?: any): Observable<any> {\n\n    this.loading = true;\n\n    // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication\n\n    return this.http.post(this.config.api + path, body, { observe: 'response' }).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            const result = new ApiServiceResult();\n            result.header = { 'server': response.headers.get('Server') };\n            this.compareVersion(result.header.server);\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n            return result;\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            // console.error(error);\n\n            return this.handleRequestError(error);\n        })\n    );\n\n}",
     "ctx": {
       "type": "method",
@@ -198,8 +198,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 PUT",
-        "html": "<p>since v9.5.0 PUT</p>"
+        "string": "since v9.5.0 \nPUT",
+        "html": "<p>since v9.5.0<br />\nPUT</p>"
       },
       {
         "type": "param",
@@ -253,8 +253,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 132,
-    "codeStart": 140,
+    "line": 135,
+    "codeStart": 144,
     "code": "httpPut(path: string, body?: any): Observable<any> {\n\n    this.loading = true;\n\n    // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication\n\n    return this.http.put(this.config.api + path, body, { observe: 'response' }).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            // console.log(response);\n\n            const result = new ApiServiceResult();\n            result.header = { 'server': response.headers.get('Server') };\n            this.compareVersion(result.header.server);\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n            return result;\n\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            // console.error(error);\n\n            return this.handleRequestError(error);\n        })\n    );\n}",
     "ctx": {
       "type": "method",
@@ -266,8 +266,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 DELETE",
-        "html": "<p>since v9.5.0 DELETE</p>"
+        "string": "since v9.5.0 \nDELETE",
+        "html": "<p>since v9.5.0<br />\nDELETE</p>"
       },
       {
         "type": "param",
@@ -306,8 +306,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 172,
-    "codeStart": 179,
+    "line": 176,
+    "codeStart": 184,
     "code": "httpDelete(path: string): Observable<any> {\n\n    this.loading = true;\n\n    // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication\n\n    return this.http.delete(this.config.api + path, { observe: 'response' }).pipe(\n        map((response: HttpResponse<any>): ApiServiceResult => {\n            this.loading = false;\n\n            // console.log(response);\n\n            const result = new ApiServiceResult();\n            result.header = { 'server': response.headers.get('Server') };\n            this.compareVersion(result.header.server);\n            result.status = response.status;\n            result.statusText = response.statusText;\n            result.url = path;\n            result.body = response.body;\n            return result;\n\n        }),\n        catchError((error: HttpErrorResponse) => {\n            this.loading = false;\n\n            // console.error(error);\n\n            return this.handleRequestError(error);\n        })\n    );\n}",
     "ctx": {
       "type": "method",
@@ -319,8 +319,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 handle request error in case of server error",
-        "html": "<p>since v9.5.0 handle request error in case of server error</p>"
+        "string": "since v9.5.0 \nhandle request error in case of server error",
+        "html": "<p>since v9.5.0<br />\nhandle request error in case of server error</p>"
       },
       {
         "type": "param",
@@ -359,8 +359,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 212,
-    "codeStart": 219,
+    "line": 217,
+    "codeStart": 225,
     "code": "protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {\n    // console.error(error);\n    const serviceError = new ApiServiceError();\n    serviceError.header = { 'server': error.headers.get('Server') };\n    serviceError.status = error.status;\n    serviceError.statusText = error.statusText;\n    serviceError.errorInfo = error.message;\n    serviceError.url = error.url;\n    return throwError(serviceError);\n}",
     "ctx": false
   },
@@ -368,8 +368,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 handle json error in case of type error in json response (json2typescript)",
-        "html": "<p>since v9.5.0 handle json error in case of type error in json response (json2typescript)</p>"
+        "string": "since v9.5.0 \nhandle json error in case of type error in json response (json2typescript)",
+        "html": "<p>since v9.5.0<br />\nhandle json error in case of type error in json response (json2typescript)</p>"
       },
       {
         "type": "param",
@@ -408,8 +408,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 230,
-    "codeStart": 237,
+    "line": 236,
+    "codeStart": 244,
     "code": "protected handleJsonError(error: any): Observable<ApiServiceError> {\n\n    if (error instanceof ApiServiceError) return throwError(error);\n\n    const serviceError = new ApiServiceError();\n    serviceError.header = { 'server': error.headers.get('Server') };\n    serviceError.status = -1;\n    serviceError.statusText = 'Invalid JSON';\n    serviceError.errorInfo = error;\n    serviceError.url = '';\n    return throwError(serviceError);\n\n}",
     "ctx": false
   },
@@ -455,8 +455,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 251,
-    "codeStart": 257,
+    "line": 258,
+    "codeStart": 264,
     "code": "protected compareVersion(server: string): void {\n\n    // expected knora api version\n    const expected: string = KnoraConstants.KnoraVersion;\n\n    // existing knora api version\n    if (server) {\n        const versions: string[] = server.split(' ');\n        const existing: string = versions[0].split('/')[1];\n\n        // compare the two versions: expected vs existing\n        if (semver.diff(existing, expected) === 'major') {\n            console.warn('The version of the @knora/core module works with Knora v' + expected + ', but you are using it with Knora v' + existing);\n        }\n    } else {\n        // console.warn('No server information from headers response');\n    }\n\n}\n}",
     "ctx": false
   }

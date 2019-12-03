@@ -64,8 +64,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Requests the metadata about all existing ontologies from Knora's ontologies route.",
-        "html": "<p>since v9.5.0 Requests the metadata about all existing ontologies from Knora's ontologies route.</p>"
+        "string": "since v9.5.0 \nRequests the metadata about all existing ontologies from Knora's ontologies route.",
+        "html": "<p>since v9.5.0<br />\nRequests the metadata about all existing ontologies from Knora's ontologies route.</p>"
       },
       {
         "type": "returns",
@@ -90,7 +90,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 39,
-    "codeStart": 45,
+    "codeStart": 46,
     "code": "getAllOntologies(): Observable<ApiServiceResult> {\n    return this.httpGet('/v2/ontologies/metadata');\n}",
     "ctx": {
       "type": "method",
@@ -102,8 +102,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Requests the ontologies of a specific project",
-        "html": "<p>since v9.5.0 Requests the ontologies of a specific project</p>"
+        "string": "since v9.5.0 \nRequests the ontologies of a specific project",
+        "html": "<p>since v9.5.0<br />\nRequests the ontologies of a specific project</p>"
       },
       {
         "type": "param",
@@ -140,8 +140,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 49,
-    "codeStart": 56,
+    "line": 50,
+    "codeStart": 58,
     "code": "getProjectOntologies(projectIri: string): Observable<ApiServiceResult> {\n    return this.httpGet('/v2/ontologies/metadata/' + encodeURIComponent(projectIri));\n}\n\n\n// ------------------------------------------------------------------------\n// GET ontology\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -153,8 +153,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Requests all entity definitions for the given ontologies from Knora's ontologies route.",
-        "html": "<p>since v9.5.0 Requests all entity definitions for the given ontologies from Knora's ontologies route.</p>"
+        "string": "since v9.5.0 \nRequests all entity definitions for the given ontologies from Knora's ontologies route.",
+        "html": "<p>since v9.5.0<br />\nRequests all entity definitions for the given ontologies from Knora's ontologies route.</p>"
       },
       {
         "type": "param",
@@ -192,8 +192,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 65,
-    "codeStart": 72,
+    "line": 67,
+    "codeStart": 75,
     "code": "getAllEntityDefinitionsForOntologies(ontologyIri: string): Observable<ApiServiceResult> {\n    return this.httpGet('/v2/ontologies/allentities/' + encodeURIComponent(ontologyIri));\n}",
     "ctx": {
       "type": "method",
@@ -205,8 +205,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Requests information about the given resource classes from Knora's ontologies route.",
-        "html": "<p>since v9.5.0 Requests information about the given resource classes from Knora's ontologies route.</p>"
+        "string": "since v9.5.0 \nRequests information about the given resource classes from Knora's ontologies route.",
+        "html": "<p>since v9.5.0<br />\nRequests information about the given resource classes from Knora's ontologies route.</p>"
       },
       {
         "type": "param",
@@ -244,8 +244,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 76,
-    "codeStart": 83,
+    "line": 79,
+    "codeStart": 87,
     "code": "getResourceClasses(resourceClassIris: Array<string>): Observable<ApiServiceResult> {\n\n    if (resourceClassIris.length === 0) {\n        // no resource class Iris are given to query for, return a failed Observer\n        return Observable.create(observer => observer.error('No resource class Iris given for call of OntologyService.getResourceClasses'));\n    }\n\n    let resClassUriEnc = '';\n\n    resourceClassIris.forEach(function (resClassIri) {\n        resClassUriEnc = resClassUriEnc + '/' + encodeURIComponent(resClassIri.toString());\n    });\n\n    return this.httpGet('/v2/ontologies/classes' + resClassUriEnc);\n}",
     "ctx": {
       "type": "method",
@@ -257,8 +257,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Requests properties from Knora's ontologies route.",
-        "html": "<p>since v9.5.0 Requests properties from Knora's ontologies route.</p>"
+        "string": "since v9.5.0 \nRequests properties from Knora's ontologies route.",
+        "html": "<p>since v9.5.0<br />\nRequests properties from Knora's ontologies route.</p>"
       },
       {
         "type": "param",
@@ -296,8 +296,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 99,
-    "codeStart": 106,
+    "line": 103,
+    "codeStart": 111,
     "code": "getProperties(propertyIris: string[]): Observable<ApiServiceResult> {\n\n    if (propertyIris.length === 0) {\n        // no resource class Iris are given to query for, return a failed Observer\n        return Observable.create(observer => observer.error('No property Iris given for call of OntologyService.getProperties'));\n    }\n\n    let propertiesUriEnc = '';\n\n    propertyIris.forEach(function (resClassIri) {\n        propertiesUriEnc = propertiesUriEnc + '/' + encodeURIComponent(resClassIri.toString());\n    });\n\n    return this.httpGet('/v2/ontologies/properties' + propertiesUriEnc);\n\n}\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -309,8 +309,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Create new ontology.",
-        "html": "<p>since v9.5.0 Create new ontology.</p>"
+        "string": "since v9.5.0 \nCreate new ontology.",
+        "html": "<p>since v9.5.0<br />\nCreate new ontology.</p>"
       },
       {
         "type": "param",
@@ -348,8 +348,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 127,
-    "codeStart": 134,
+    "line": 132,
+    "codeStart": 140,
     "code": "createOntology(data: NewOntology): Observable<ApiServiceResult> {\n    const path = '/v2/ontologies';\n\n    const ontology = {\n        'knora-api:ontologyName': data.name,\n        'knora-api:attachedToProject': {\n            '@id': data.projectIri,\n        },\n        'rdfs:label': data.label,\n        '@context': {\n            'rdfs': KnoraConstants.RdfsSchema,\n            'knora-api': KnoraConstants.KnoraApiV2WithValueObjectPath\n        }\n    };\n\n    return this.httpPost(path, ontology).pipe(\n        map((result: ApiServiceResult) => result.body),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -399,8 +399,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 155,
-    "codeStart": 161,
+    "line": 161,
+    "codeStart": 167,
     "code": "createResourceClass(data: NewResourceClass): Observable<ApiServiceResult> {\n    const path = '/v2/ontologies/classes';\n\n    // TODO: add the following values to parameter\n    let onto_iri: string;\n    let onto_name: string;\n    let last_onto_date: string;\n\n    const resourceClass = {\n        '@id': onto_iri,\n        '@type': 'owl:Ontology',\n        'knora-api:lastModificationDate': last_onto_date,\n        '@graph': [{\n            '@id': onto_name + ':' + data.name,\n            '@type': 'owl:Class',\n            'rdfs:label': data.labels,\n            'rdfs:comment': data.comments,\n            'rdfs:subClassOf': {\n                '@id': data.subClassOf\n            }\n        }],\n        '@context': {\n            'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',\n            'knora-api': 'http://api.knora.org/ontology/knora-api/v2#',\n            'owl': 'http://www.w3.org/2002/07/owl#',\n            'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',\n            'xsd': 'http://www.w3.org/2001/XMLSchema#',\n            onto_name: onto_iri + '#'\n        }\n\n    };\n\n    return this.httpPost(path, resourceClass).pipe(\n        map((result: ApiServiceResult) => result.body),\n        catchError(this.handleJsonError)\n    );\n\n}",
     "ctx": {
       "type": "method",
@@ -450,8 +450,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 200,
-    "codeStart": 206,
+    "line": 206,
+    "codeStart": 212,
     "code": "createProperty(data: NewProperty[]): Observable<ApiServiceResult> {\n    const path = '/v2/ontologies/properties';\n\n    // TODO: add the following values to parameter\n    let onto_iri: string;\n    let onto_name: string;\n    let last_onto_date: string;\n\n    const graph = [];\n\n    for (const prop of data) {\n        const prop_obj = {\n            '@id': onto_name + ':' + prop.name,\n            '@type': 'owl:ObjectProperty',\n            'rdfs:label': prop.labels,\n            'rdfs:comment': prop.comments,\n            'rdfs:subPropertyOf': prop.subPropertyOf,\n            'salsah-gui:guiElement': {\n                '@id': prop.guiElement\n            }\n        };\n        graph.push(prop_obj);\n    }\n\n    const property = {\n        '@id': onto_iri,\n        '@type': 'owl:Ontology',\n        'knora-api:lastModificationDate': last_onto_date,\n        '@graph': [\n            graph\n        ],\n        '@context': {\n            'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',\n            'knora-api': 'http://api.knora.org/ontology/knora-api/v2#',\n            'salsah-gui': 'http://api.knora.org/ontology/salsah-gui/v2#',\n            'owl': 'http://www.w3.org/2002/07/owl#',\n            'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',\n            'xsd': 'http://www.w3.org/2001/XMLSchema#',\n            onto_name: onto_iri + '#'\n        }\n    };\n\n\n    return this.httpPost(path, property).pipe(\n        map((result: ApiServiceResult) => result.body),\n        catchError(this.handleJsonError)\n    );\n\n}",
     "ctx": {
       "type": "method",
@@ -501,8 +501,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 256,
-    "codeStart": 262,
+    "line": 262,
+    "codeStart": 268,
     "code": "setCardinality(data: any): Observable<ApiServiceResult> {\n    const path = '/v2/ontologies/cardinalities';\n\n    // TODO: add the following values to parameter\n    let class_iri: string;\n    let prop_iri: string;\n\n    let onto_iri: string;\n    let onto_name: string;\n    let last_onto_date: string;\n\n    // TODO: find a way with typescript for the following python construct",
     "ctx": {
       "type": "method",
@@ -522,8 +522,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 274,
-    "codeStart": 285,
+    "line": 280,
+    "codeStart": 291,
     "code": "const cardinality = {\n    '@id': onto_iri,\n    '@type': 'owl:Ontology',\n    'knora-api:lastModificationDate': last_onto_date,\n    '@graph': [{\n        '@id': class_iri,\n        '@type': 'owl:Class',\n        'rdfs:subClassOf': {\n            '@type': 'owl:Restriction',\n            // occurrence[0]: occurrence[1],\n            'owl:onProperty': {\n                '@id': prop_iri\n            }\n        }\n    }],\n    '@context': {\n        'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',\n        'knora-api': 'http://api.knora.org/ontology/knora-api/v2#',\n        'owl': 'http://www.w3.org/2002/07/owl#',\n        'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',\n        'xsd': 'http://www.w3.org/2001/XMLSchema#',\n        onto_name: onto_iri + '#'\n    }\n};\n\nreturn this.httpPost(path, cardinality).pipe(\n    map((result: ApiServiceResult) => result.body),\n    catchError(this.handleJsonError)\n);\n    }\n\n}",
     "ctx": {
       "type": "declaration",

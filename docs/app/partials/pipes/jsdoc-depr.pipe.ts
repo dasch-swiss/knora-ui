@@ -33,6 +33,8 @@ export class JsdocDeprPipe implements PipeTransform {
                 this.description += '<a href="https://github.com/' + descArray[1] + '">' + descArray[1] + '</a>';
                 console.log('description with link', this.description);
             }
+        } else {
+            this.description = '';
         }
 
         const newStr: string = '<p class="warn"><strong>Deprecated </strong>' + array[0] + '</p>' + this.description;

@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Use the class UsersEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.\n\nThis service uses the Knora admin API and handles all user data.",
-        "html": "<p>since v9.5.0 Use the class UsersEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>\n<p>This service uses the Knora admin API and handles all user data.</p>"
+        "string": "since v9.5.0 \nUse the class UsersEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.\n\nThis service uses the Knora admin API and handles all user data.",
+        "html": "<p>since v9.5.0<br />\nUse the class UsersEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>\n<p>This service uses the Knora admin API and handles all user data.</p>"
       }
     ],
     "description": {
@@ -18,7 +18,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 15,
-    "codeStart": 21,
+    "codeStart": 22,
     "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class UsersService extends ApiService {\n    // ------------------------------------------------------------------------\n    // GET\n    // ------------------------------------------------------------------------",
     "ctx": false
   },
@@ -26,8 +26,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Returns a list of all users.",
-        "html": "<p>since v9.5.0 Returns a list of all users.</p>"
+        "string": "since v9.5.0 \nReturns a list of all users.",
+        "html": "<p>since v9.5.0<br />\nReturns a list of all users.</p>"
       },
       {
         "type": "returns",
@@ -51,8 +51,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 29,
-    "codeStart": 35,
+    "line": 30,
+    "codeStart": 37,
     "code": "getAllUsers(): Observable<User[]> {\n    return this.httpGet('/admin/users').pipe(\n        map((result: ApiServiceResult) => result.getBody(UsersResponse).users),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -64,8 +64,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Get user by username, email or by iri.",
-        "html": "<p>since v9.5.0 Get user by username, email or by iri.</p>"
+        "string": "since v9.5.0 \nGet user by username, email or by iri.",
+        "html": "<p>since v9.5.0<br />\nGet user by username, email or by iri.</p>"
       },
       {
         "type": "ignore",
@@ -123,8 +123,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 42,
-    "codeStart": 51,
+    "line": 44,
+    "codeStart": 54,
     "code": "getUser(identifier: string, identifierType: String): Observable<User> {\n    const path = '/admin/users/' + identifierType + '/' + encodeURIComponent(identifier);\n    return this.httpGet(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -136,8 +136,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Get user by IRI",
-        "html": "<p>since v9.5.0 Get user by IRI</p>"
+        "string": "since v9.5.0 \nGet user by IRI",
+        "html": "<p>since v9.5.0<br />\nGet user by IRI</p>"
       },
       {
         "type": "param",
@@ -176,8 +176,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 59,
-    "codeStart": 66,
+    "line": 62,
+    "codeStart": 70,
     "code": "getUserByIri(iri: string): Observable<User> {\n    return this.getUser(iri, 'iri');\n}",
     "ctx": {
       "type": "method",
@@ -189,8 +189,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Get user by email",
-        "html": "<p>since v9.5.0 Get user by email</p>"
+        "string": "since v9.5.0 \nGet user by email",
+        "html": "<p>since v9.5.0<br />\nGet user by email</p>"
       },
       {
         "type": "param",
@@ -229,8 +229,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 70,
-    "codeStart": 77,
+    "line": 74,
+    "codeStart": 82,
     "code": "getUserByEmail(email: string): Observable<User> {\n    return this.getUser(email, 'email');\n}",
     "ctx": {
       "type": "method",
@@ -242,8 +242,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Get user by username.",
-        "html": "<p>since v9.5.0 Get user by username.</p>"
+        "string": "since v9.5.0 \nGet user by username.",
+        "html": "<p>since v9.5.0<br />\nGet user by username.</p>"
       },
       {
         "type": "param",
@@ -282,8 +282,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 81,
-    "codeStart": 88,
+    "line": 86,
+    "codeStart": 94,
     "code": "getUserByUsername(username: string): Observable<User> {\n    return this.getUser(username, 'username');\n}",
     "ctx": {
       "type": "method",
@@ -295,8 +295,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Get all groups, where the user is member of",
-        "html": "<p>since v9.5.0 Get all groups, where the user is member of</p>"
+        "string": "since v9.5.0 \nGet all groups, where the user is member of",
+        "html": "<p>since v9.5.0<br />\nGet all groups, where the user is member of</p>"
       },
       {
         "type": "param",
@@ -335,8 +335,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 92,
-    "codeStart": 99,
+    "line": 98,
+    "codeStart": 106,
     "code": "getUsersGroupMemberships(userIri: string): Observable<Group[]> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships';\n    return this.httpGet(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupsResponse).groups),\n        catchError(this.handleJsonError)\n    );\n\n}\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -348,8 +348,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Create new user.",
-        "html": "<p>since v9.5.0 Create new user.</p>"
+        "string": "since v9.5.0 \nCreate new user.",
+        "html": "<p>since v9.5.0<br />\nCreate new user.</p>"
       },
       {
         "type": "param",
@@ -388,8 +388,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 112,
-    "codeStart": 119,
+    "line": 119,
+    "codeStart": 127,
     "code": "createUser(data: any): Observable<User> {\n    const path = '/admin/users';\n    return this.httpPost(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -401,8 +401,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Add user to a project.",
-        "html": "<p>since v9.5.0 Add user to a project.</p>"
+        "string": "since v9.5.0 \nAdd user to a project.",
+        "html": "<p>since v9.5.0<br />\nAdd user to a project.</p>"
       },
       {
         "type": "param",
@@ -456,8 +456,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 127,
-    "codeStart": 135,
+    "line": 135,
+    "codeStart": 144,
     "code": "addUserToProject(userIri: string, projectIri: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-memberships/' + encodeURIComponent(projectIri);\n    return this.httpPost(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -469,8 +469,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Remove user from project.",
-        "html": "<p>since v9.5.0 Remove user from project.</p>"
+        "string": "since v9.5.0 \nRemove user from project.",
+        "html": "<p>since v9.5.0<br />\nRemove user from project.</p>"
       },
       {
         "type": "param",
@@ -524,8 +524,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 143,
-    "codeStart": 151,
+    "line": 152,
+    "codeStart": 161,
     "code": "removeUserFromProject(userIri: string, projectIri: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-memberships/' + encodeURIComponent(projectIri);\n    return this.httpDelete(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -537,8 +537,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Add user to the admin group of a project.",
-        "html": "<p>since v9.5.0 Add user to the admin group of a project.</p>"
+        "string": "since v9.5.0 \nAdd user to the admin group of a project.",
+        "html": "<p>since v9.5.0<br />\nAdd user to the admin group of a project.</p>"
       },
       {
         "type": "param",
@@ -592,8 +592,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 159,
-    "codeStart": 167,
+    "line": 169,
+    "codeStart": 178,
     "code": "addUserToProjectAdmin(userIri: string, projectIri: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-admin-memberships/' + encodeURIComponent(projectIri);\n    return this.httpPost(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -605,8 +605,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Delete user from the admin group of a project.",
-        "html": "<p>since v9.5.0 Delete user from the admin group of a project.</p>"
+        "string": "since v9.5.0 \nDelete user from the admin group of a project.",
+        "html": "<p>since v9.5.0<br />\nDelete user from the admin group of a project.</p>"
       },
       {
         "type": "param",
@@ -660,8 +660,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 175,
-    "codeStart": 183,
+    "line": 186,
+    "codeStart": 195,
     "code": "removeUserFromProjectAdmin(userIri: string, projectIri: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/project-admin-memberships/' + encodeURIComponent(projectIri);\n    return this.httpDelete(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -673,8 +673,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Add user to project specific group",
-        "html": "<p>since v9.5.0 Add user to project specific group</p>"
+        "string": "since v9.5.0 \nAdd user to project specific group",
+        "html": "<p>since v9.5.0<br />\nAdd user to project specific group</p>"
       },
       {
         "type": "param",
@@ -728,8 +728,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 191,
-    "codeStart": 199,
+    "line": 203,
+    "codeStart": 212,
     "code": "addUserToGroup(userIri: string, groupIri: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships/' + encodeURIComponent(groupIri);\n    return this.httpPost(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n\n}",
     "ctx": {
       "type": "method",
@@ -741,8 +741,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 remove user from project specific group",
-        "html": "<p>since v9.5.0 remove user from project specific group</p>"
+        "string": "since v9.5.0 \nremove user from project specific group",
+        "html": "<p>since v9.5.0<br />\nremove user from project specific group</p>"
       },
       {
         "type": "param",
@@ -796,8 +796,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 208,
-    "codeStart": 216,
+    "line": 221,
+    "codeStart": 230,
     "code": "removeUserFromGroup(userIri: string, groupIri: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/group-memberships/' + encodeURIComponent(groupIri);\n    return this.httpDelete(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n\n}\n\n\n// ------------------------------------------------------------------------\n// PUT\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -809,8 +809,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Add user to the admin system.",
-        "html": "<p>since v9.5.0 Add user to the admin system.</p>"
+        "string": "since v9.5.0 \nAdd user to the admin system.",
+        "html": "<p>since v9.5.0<br />\nAdd user to the admin system.</p>"
       },
       {
         "type": "param",
@@ -849,8 +849,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 231,
-    "codeStart": 238,
+    "line": 245,
+    "codeStart": 253,
     "code": "addUserToSystemAdmin(userIri: string): Observable<User> {\n    const data = {\n        'systemAdmin': true\n    };\n\n    return this.updateUserSystemAdmin(userIri, data);\n\n}",
     "ctx": {
       "type": "method",
@@ -862,8 +862,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Remove user from the admin system.",
-        "html": "<p>since v9.5.0 Remove user from the admin system.</p>"
+        "string": "since v9.5.0 \nRemove user from the admin system.",
+        "html": "<p>since v9.5.0<br />\nRemove user from the admin system.</p>"
       },
       {
         "type": "param",
@@ -902,8 +902,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 247,
-    "codeStart": 253,
+    "line": 262,
+    "codeStart": 269,
     "code": "removeUserFromSystemAdmin(userIri: string): Observable<User> {\n    const data = {\n        'systemAdmin': false\n    };\n\n    return this.updateUserSystemAdmin(userIri, data);\n}",
     "ctx": {
       "type": "method",
@@ -915,8 +915,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Update user system admin membership",
-        "html": "<p>since v9.5.0 Update user system admin membership</p>"
+        "string": "since v9.5.0 \nUpdate user system admin membership",
+        "html": "<p>since v9.5.0<br />\nUpdate user system admin membership</p>"
       },
       {
         "type": "ignore",
@@ -975,8 +975,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 261,
-    "codeStart": 271,
+    "line": 277,
+    "codeStart": 288,
     "code": "private updateUserSystemAdmin(userIri: string, data: any): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/SystemAdmin';\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": false
   },
@@ -984,8 +984,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Activate user.",
-        "html": "<p>since v9.5.0 Activate user.</p>"
+        "string": "since v9.5.0 \nActivate user.",
+        "html": "<p>since v9.5.0<br />\nActivate user.</p>"
       },
       {
         "type": "param",
@@ -1024,8 +1024,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 280,
-    "codeStart": 287,
+    "line": 297,
+    "codeStart": 305,
     "code": "activateUser(userIri: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Status';\n\n    const data: any = {\n        status: true\n    };\n\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -1037,8 +1037,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Update own password.",
-        "html": "<p>since v9.5.0 Update own password.</p>"
+        "string": "since v9.5.0 \nUpdate own password.",
+        "html": "<p>since v9.5.0<br />\nUpdate own password.</p>"
       },
       {
         "type": "param",
@@ -1107,8 +1107,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 301,
-    "codeStart": 310,
+    "line": 319,
+    "codeStart": 329,
     "code": "updateOwnPassword(userIri: string, oldPassword: string, newPassword: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Password';\n\n    const data = {\n        newPassword: newPassword,\n        requesterPassword: oldPassword\n    };\n\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -1120,8 +1120,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Update password of another user (not own).",
-        "html": "<p>since v9.5.0 Update password of another user (not own).</p>"
+        "string": "since v9.5.0 \nUpdate password of another user (not own).",
+        "html": "<p>since v9.5.0<br />\nUpdate password of another user (not own).</p>"
       },
       {
         "type": "param",
@@ -1190,8 +1190,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 324,
-    "codeStart": 333,
+    "line": 343,
+    "codeStart": 353,
     "code": "updateUsersPassword(userIri: string, requesterPassword: string, newPassword: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Password';\n\n    const data = {\n        newPassword: newPassword,\n        requesterPassword: requesterPassword\n    };\n\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -1203,8 +1203,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Update basic user information: given name, family name",
-        "html": "<p>since v9.5.0 Update basic user information: given name, family name</p>"
+        "string": "since v9.5.0 \nUpdate basic user information: given name, family name",
+        "html": "<p>since v9.5.0<br />\nUpdate basic user information: given name, family name</p>"
       },
       {
         "type": "param",
@@ -1254,8 +1254,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 347,
-    "codeStart": 354,
+    "line": 367,
+    "codeStart": 375,
     "code": "updateBasicUserInformation(userIri: string, data: any): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/BasicUserInformation';\n\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// DELETE\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -1267,8 +1267,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Delete / deactivate user.",
-        "html": "<p>since v9.5.0 Delete / deactivate user.</p>"
+        "string": "since v9.5.0 \nDelete / deactivate user.",
+        "html": "<p>since v9.5.0<br />\nDelete / deactivate user.</p>"
       },
       {
         "type": "param",
@@ -1307,8 +1307,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 368,
-    "codeStart": 375,
+    "line": 389,
+    "codeStart": 397,
     "code": "deleteUser(userIri: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri);\n    return this.httpDelete(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n\n}\n\n\n}",
     "ctx": {
       "type": "method",

@@ -116,8 +116,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Updates the parameters of an extended search.",
-        "html": "<p>since v9.5.0 Updates the parameters of an extended search.</p>"
+        "string": "since v9.5.0 \nUpdates the parameters of an extended search.",
+        "html": "<p>since v9.5.0<br />\nUpdates the parameters of an extended search.</p>"
       },
       {
         "type": "param",
@@ -157,7 +157,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 45,
-    "codeStart": 52,
+    "codeStart": 53,
     "code": "changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {\n    this._currentSearchParams.next(searchParams);\n}",
     "ctx": {
       "type": "method",
@@ -171,8 +171,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Gets the search params of an extended search.",
-        "html": "<p>since v9.5.0 Gets the search params of an extended search.</p>"
+        "string": "since v9.5.0 \nGets the search params of an extended search.",
+        "html": "<p>since v9.5.0<br />\nGets the search params of an extended search.</p>"
       },
       {
         "type": "returns",
@@ -196,8 +196,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 56,
-    "codeStart": 62,
+    "line": 57,
+    "codeStart": 64,
     "code": "getSearchParams(): ExtendedSearchParams {\n    return this._currentSearchParams.getValue();\n}\n\n}",
     "ctx": {
       "type": "method",

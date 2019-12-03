@@ -72,8 +72,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Assign fulltext search params to http params.",
-        "html": "<p>since v9.5.0 Assign fulltext search params to http params.</p>"
+        "string": "since v9.5.0 \nAssign fulltext search params to http params.",
+        "html": "<p>since v9.5.0<br />\nAssign fulltext search params to http params.</p>"
       },
       {
         "type": "param",
@@ -131,7 +131,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 51,
-    "codeStart": 59,
+    "codeStart": 60,
     "code": "private processFulltextSearchParams(params: FulltextSearchParams, httpParams: HttpParams): HttpParams {\n\n    // avoid reassignment to method param\n    let searchParams = httpParams;\n\n    // HttpParams is immutable, `set` returns a new instance\n\n    if (params.limitToProject !== undefined) {\n        searchParams = searchParams.set('limitToProject', params.limitToProject);\n    }\n\n    if (params.limitToResourceClass !== undefined) {\n        searchParams = searchParams.set('limitToResourceClass', params.limitToResourceClass);\n    }\n\n    if (params.limitToStandoffClass !== undefined) {\n        searchParams = searchParams.set('limitToStandoffClass', params.limitToStandoffClass);\n    }\n\n    return searchParams;\n\n}",
     "ctx": false
   },
@@ -139,8 +139,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Assign search by label search params to http params.",
-        "html": "<p>since v9.5.0 Assign search by label search params to http params.</p>"
+        "string": "since v9.5.0 \nAssign search by label search params to http params.",
+        "html": "<p>since v9.5.0<br />\nAssign search by label search params to http params.</p>"
       },
       {
         "type": "param",
@@ -197,8 +197,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 81,
-    "codeStart": 89,
+    "line": 82,
+    "codeStart": 91,
     "code": "private processSearchByLabelParams(params: SearchByLabelParams, httpParams: HttpParams): HttpParams {\n\n    // avoid reassignment to method param\n    let searchParams = httpParams;\n\n    // HttpParams is immutable, `set` returns a new instance\n\n    if (params.limitToResourceClass !== undefined) {\n        searchParams = searchParams.set('limitToResourceClass', params.limitToResourceClass);\n    }\n\n    if (params.limitToProject !== undefined) {\n        searchParams = searchParams.set('limitToProject', params.limitToProject);\n    }\n\n    return searchParams;\n\n}",
     "ctx": false
   },
@@ -249,8 +249,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 108,
-    "codeStart": 117,
+    "line": 110,
+    "codeStart": 119,
     "code": "private convertJSONLDToReadResourceSequence: (resourceResponse: Object) => Observable<ReadResourcesSequence> = (resourceResponse: Object) => {\n    // convert JSON-LD into a ReadResourceSequence\n    const resSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(resourceResponse);\n\n    // collect resource class Iris\n    const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);\n\n    // request information about resource classes\n    return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(\n        map(\n            (ontoInfo: OntologyInformation) => {\n                // add ontology information to ReadResourceSequence\n                resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);\n                return resSeq;\n            }\n        )\n    );\n}",
     "ctx": false
   },
@@ -258,8 +258,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Converts a JSON-LD object to a `ResourcesSequence`",
-        "html": "<p>since v9.5.0 Converts a JSON-LD object to a <code>ResourcesSequence</code></p>"
+        "string": "since v9.5.0 \nConverts a JSON-LD object to a `ResourcesSequence`",
+        "html": "<p>since v9.5.0<br />\nConverts a JSON-LD object to a <code>ResourcesSequence</code></p>"
       },
       {
         "type": "param",
@@ -287,8 +287,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 135,
-    "codeStart": 141,
+    "line": 137,
+    "codeStart": 144,
     "code": "private convertJSONLDToResourcesSequence: (resourceResponse: Object) => Observable<ResourcesSequence> = (resourceResponse: Object) => {\n    // convert JSON-LD into a ResourcesSequence\n    const resSeq: ResourcesSequence = ConvertJSONLD.createResourcesSequenceFromJsonLD(resourceResponse);\n\n    // collect resource class Iris\n    const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);\n\n    // request information about resource classes\n    return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(\n        map(\n            (ontoInfo: OntologyInformation) => {\n                // add ontology information to ResourcesSequence\n                resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);\n                return resSeq;\n            }\n        )\n    );\n}",
     "ctx": false
   },
@@ -363,8 +363,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 160,
-    "codeStart": 169,
+    "line": 163,
+    "codeStart": 172,
     "code": "doFulltextSearch(searchTerm: string, offset: number = 0, params?: FulltextSearchParams): Observable<ApiServiceResult> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));\n    }\n\n    let httpParams = new HttpParams();\n\n    httpParams = httpParams.set('offset', offset.toString());\n\n    if (params !== undefined) {\n        httpParams = this.processFulltextSearchParams(params, httpParams);\n    }\n\n    return this.httpGet('/v2/search/' + encodeURIComponent(searchTerm), httpParams);\n}",
     "ctx": {
       "type": "method",
@@ -376,8 +376,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Performs a fulltext search and turns the result into a `ReadResourceSequence`.",
-        "html": "<p>since v9.5.0 Performs a fulltext search and turns the result into a <code>ReadResourceSequence</code>.</p>"
+        "string": "since v9.5.0 \nPerforms a fulltext search and turns the result into a `ReadResourceSequence`.",
+        "html": "<p>since v9.5.0<br />\nPerforms a fulltext search and turns the result into a <code>ReadResourceSequence</code>.</p>"
       },
       {
         "type": "param",
@@ -443,8 +443,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 186,
-    "codeStart": 195,
+    "line": 189,
+    "codeStart": 199,
     "code": "doFullTextSearchReadResourceSequence(searchTerm: string, offset: number = 0, params?: FulltextSearchParams): Observable<ReadResourcesSequence> {\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));\n    }\n\n    let httpParams = new HttpParams();\n\n    httpParams = httpParams.set('offset', offset.toString());\n\n    if (params !== undefined) {\n        httpParams = this.processFulltextSearchParams(params, httpParams);\n    }\n\n    const res: Observable<any> = this.httpGet('/v2/search/' + encodeURIComponent(searchTerm), httpParams);\n\n    return res.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        ),\n        mergeMap(\n            // return Observable of ReadResourcesSequence\n            this.convertJSONLDToReadResourceSequence\n        )\n    );\n}",
     "ctx": {
       "type": "method",
@@ -507,8 +507,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 222,
-    "codeStart": 230,
+    "line": 226,
+    "codeStart": 234,
     "code": "doFulltextSearchCountQuery(searchTerm: string, params?: FulltextSearchParams): Observable<ApiServiceResult> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));\n    }\n\n    let httpParams = new HttpParams();\n\n    if (params !== undefined) {\n        httpParams = this.processFulltextSearchParams(params, httpParams);\n    }\n\n    return this.httpGet('/v2/search/count/' + encodeURIComponent(searchTerm), httpParams);\n}",
     "ctx": {
       "type": "method",
@@ -520,8 +520,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Performs a fulltext search count query and turns the result into a `CountQueryResult`.",
-        "html": "<p>since v9.5.0 Performs a fulltext search count query and turns the result into a <code>CountQueryResult</code>.</p>"
+        "string": "since v9.5.0 \nPerforms a fulltext search count query and turns the result into a `CountQueryResult`.",
+        "html": "<p>since v9.5.0<br />\nPerforms a fulltext search count query and turns the result into a <code>CountQueryResult</code>.</p>"
       },
       {
         "type": "param",
@@ -573,8 +573,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 245,
-    "codeStart": 253,
+    "line": 249,
+    "codeStart": 258,
     "code": "doFullTextSearchCountQueryCountQueryResult(searchTerm: string, params?: FulltextSearchParams): Observable<CountQueryResult> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearchCountQuery'));\n    }\n\n    let httpParams = new HttpParams();\n\n    if (params !== undefined) {\n        httpParams = this.processFulltextSearchParams(params, httpParams);\n    }\n\n    const res = this.httpGet('/v2/search/count/' + encodeURIComponent(searchTerm), httpParams);\n\n    return res.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        ),\n        map(\n            // convert to a `CountQueryResult`\n            ConvertJSONLD.createCountQueryResult\n        )\n    );\n}",
     "ctx": {
       "type": "method",
@@ -623,8 +623,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 279,
-    "codeStart": 286,
+    "line": 284,
+    "codeStart": 291,
     "code": "doExtendedSearch(gravsearchQuery: string): Observable<ApiServiceResult> {\n\n    if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));\n    }\n\n    return this.httpPost('/v2/searchextended', gravsearchQuery);\n}",
     "ctx": {
       "type": "method",
@@ -673,8 +673,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 295,
-    "codeStart": 302,
+    "line": 300,
+    "codeStart": 307,
     "code": "doExtendedSearchReadResourceSequence(gravsearchQuery: string): Observable<ReadResourcesSequence> {\n\n    if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));\n    }\n\n    const res = this.httpPost('/v2/searchextended', gravsearchQuery);\n\n    return res.pipe(\n        mergeMap(\n            this.processJSONLD\n        ),\n        mergeMap(\n            this.convertJSONLDToReadResourceSequence\n        )\n    );\n}",
     "ctx": {
       "type": "method",
@@ -686,8 +686,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Performs an extended search and turns the result into a `ResourcesSequence`.",
-        "html": "<p>since v9.5.0 Performs an extended search and turns the result into a <code>ResourcesSequence</code>.</p>"
+        "string": "since v9.5.0 \nPerforms an extended search and turns the result into a `ResourcesSequence`.",
+        "html": "<p>since v9.5.0<br />\nPerforms an extended search and turns the result into a <code>ResourcesSequence</code>.</p>"
       },
       {
         "type": "param",
@@ -726,8 +726,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 319,
-    "codeStart": 326,
+    "line": 324,
+    "codeStart": 332,
     "code": "doExtendedSearchResourcesSequence(gravsearchQuery: string): Observable<ResourcesSequence> {\n\n    if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearch'));\n    }\n\n    const res = this.httpPost('/v2/searchextended', gravsearchQuery);\n\n    return res.pipe(\n        mergeMap(\n            this.processJSONLD\n        ),\n        mergeMap(\n            this.convertJSONLDToResourcesSequence\n        )\n    );\n}",
     "ctx": {
       "type": "method",
@@ -778,8 +778,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 344,
-    "codeStart": 351,
+    "line": 350,
+    "codeStart": 357,
     "code": "doExtendedSearchCountQuery(gravsearchQuery: string): Observable<ApiServiceResult> {\n\n    if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));\n    }\n\n    return this.httpPost('/v2/searchextended/count', gravsearchQuery);\n}",
     "ctx": {
       "type": "method",
@@ -791,8 +791,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Performs an extended search count query and turns the result into a `CountQueryResult`.",
-        "html": "<p>since v9.5.0 Performs an extended search count query and turns the result into a <code>CountQueryResult</code>.</p>"
+        "string": "since v9.5.0 \nPerforms an extended search count query and turns the result into a `CountQueryResult`.",
+        "html": "<p>since v9.5.0<br />\nPerforms an extended search count query and turns the result into a <code>CountQueryResult</code>.</p>"
       },
       {
         "type": "param",
@@ -828,8 +828,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 360,
-    "codeStart": 367,
+    "line": 366,
+    "codeStart": 374,
     "code": "doExtendedSearchCountQueryCountQueryResult(gravsearchQuery: string): Observable<CountQueryResult> {\n\n    if (gravsearchQuery === undefined || gravsearchQuery.length === 0) {\n        return Observable.create(observer => observer.error('No Sparql string given for call of SearchService.doExtendedSearchCountQuery'));\n    }\n\n    const res = this.httpPost('/v2/searchextended/count', gravsearchQuery);\n\n    return res.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        ),\n        map(\n            // convert to a `CountQueryResult`\n            ConvertJSONLD.createCountQueryResult\n        )\n    );\n}",
     "ctx": {
       "type": "method",
@@ -908,8 +908,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 387,
-    "codeStart": 396,
+    "line": 394,
+    "codeStart": 403,
     "code": "searchByLabel(searchTerm: string, offset: number = 0, params?: SearchByLabelParams): Observable<ApiServiceResult> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));\n    }\n\n    let httpParams: HttpParams = new HttpParams();\n\n    httpParams = httpParams.set('offset', offset.toString());\n\n    if (params !== undefined) {\n        httpParams = this.processSearchByLabelParams(params, httpParams);\n    }\n\n    // httpGet() expects only one argument, not 2\n    return this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);\n\n}",
     "ctx": {
       "type": "method",
@@ -921,8 +921,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Perform a search by a resource's rdfs:label and turns the results in a `ReadResourceSequence`.",
-        "html": "<p>since v9.5.0 Perform a search by a resource's rdfs:label and turns the results in a <code>ReadResourceSequence</code>.</p>"
+        "string": "since v9.5.0 \nPerform a search by a resource's rdfs:label and turns the results in a `ReadResourceSequence`.",
+        "html": "<p>since v9.5.0<br />\nPerform a search by a resource's rdfs:label and turns the results in a <code>ReadResourceSequence</code>.</p>"
       },
       {
         "type": "param",
@@ -988,8 +988,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 415,
-    "codeStart": 424,
+    "line": 422,
+    "codeStart": 432,
     "code": "searchByLabelReadResourceSequence(searchTerm: string, offset: number = 0, params?: SearchByLabelParams): Observable<ReadResourcesSequence> {\n\n    if (searchTerm === undefined || searchTerm.length === 0) {\n        return Observable.create(observer => observer.error('No search term given for call of SearchService.doFulltextSearch'));\n    }\n\n    let httpParams: HttpParams = new HttpParams();\n\n    httpParams = httpParams.set('offset', offset.toString());\n\n    if (params !== undefined) {\n        httpParams = this.processSearchByLabelParams(params, httpParams);\n    }\n\n    const res = this.httpGet('/v2/searchbylabel/' + encodeURIComponent(searchTerm), httpParams);\n\n    return res.pipe(\n        mergeMap(\n            this.processJSONLD\n        ),\n        mergeMap(\n            this.convertJSONLDToReadResourceSequence\n        )\n    );\n}\n}",
     "ctx": {
       "type": "method",
