@@ -88,6 +88,11 @@ iframe {
   vertical-align: baseline;
 }
 
+.warn {
+  background-color: rgba($accent, 0.25); // rgba(255, 196, 0, 0.25);
+  padding: 6px;
+}
+
 // example to change kui-progress-indicator color
 /*
 .kui-progress-indicator {
