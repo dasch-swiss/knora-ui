@@ -1,6 +1,6 @@
 {
   "name": "@knora/authentication",
-  "version": "9.4.2",
+  "version": "9.5.0",
   "description": "Knora ui module: authentication",
   "repository": {
     "type": "git",
@@ -20,8 +20,8 @@
     "@angular/animations": "^8.0.3",
     "@angular/cdk": "^8.1.4",
     "@angular/material": "^8.1.4",
-    "@knora/action": "9.4.2",
-    "@knora/core": "9.4.2",
+    "@knora/action": "9.5.0",
+    "@knora/core": "9.5.0",
     "moment": "^2.22.2"
   }
 }

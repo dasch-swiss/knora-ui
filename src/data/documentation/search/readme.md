@@ -30,9 +30,9 @@ This module has the following package dependencies, which you also have to insta
 
 - @angular/common@8.0.3
 - @angular/core@8.0.3
-- @knora/action@9.4.2
-- @knora/core@9.4.2
-- @knora/viewer@9.4.2
+- @knora/action@9.5.0
+- @knora/core@9.5.0
+- @knora/viewer@9.5.0
 - jdnconvertiblecalendardateadapter@0.0.7
 
 ### Required version of Knora: 9.0.0
