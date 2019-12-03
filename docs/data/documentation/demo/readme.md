@@ -200,7 +200,7 @@ $ yalc remove --all
 ## Publish new version on NPM
 Be sure everything is merged, before creating new release.
 
-### Required version of Knora: 9.0.0
+### Required version of Knora: 10.0.0
 
 ### Update the documentation and the version number
 
