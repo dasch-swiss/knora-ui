@@ -11,31 +11,24 @@ export class JsdocDeprPipe implements PipeTransform {
     constructor(private _sanitizer: DomSanitizer) {
     }
 
+
+
     transform(str: string): SafeHtml {
         const array = str.split('\n');
 
-        this.description = array[1];
+        this.description = array[0];
 
         if (this.description) {
             const descArray = this.description.split('github:');
 
             this.description = descArray[0];
 
-            const npmArray = this.description.split('`');
-
-            console.log(npmArray);
-
-            if (npmArray[1]) {
-                this.description = npmArray[0] + '<code>' + npmArray[1] + '</code>' + npmArray[2];
-            }
-
             if (descArray[1]) {
-                this.description += '<a href="https://github.com/' + descArray[1] + '">' + descArray[1] + '</a>';
-                console.log('description with link', this.description);
+                this.description += ' <a href="https://github.com/' + descArray[1] + '">' + descArray[1] + '</a>';
             }
         }
 
-        const newStr: string = '<p class="warn"><strong>Deprecated </strong>' + array[0] + '</p>' + this.description;
+        let newStr: string = '<strong>Deprecated </strong>' + array[0] + '<br>' + this.description;
 
         return this._sanitizer.bypassSecurityTrustHtml(newStr);
     }
