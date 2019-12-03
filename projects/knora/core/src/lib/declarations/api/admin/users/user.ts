@@ -5,7 +5,9 @@ import { PermissionData } from '../permissions/permission-data';
 import { Project } from '../projects/project';
 
 /**
- * @deprecated since v9.5.0 - Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated since v9.5.0
+ *
+ * Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  */
 @JsonObject('User')
 export class User {

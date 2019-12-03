@@ -1,7 +1,9 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
 
 /**
- * @deprecated since v9.5.0 - Use KuiCore instead
+ * @deprecated since v9.5.0
+ *
+ * Use KuiCore instead
  *
  * Knora-ui core configuration with the server definitions of:
  *  - api: URL of data service e.g. knora: http://localhost:3333

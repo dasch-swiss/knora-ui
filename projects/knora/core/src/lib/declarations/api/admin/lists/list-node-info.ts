@@ -3,7 +3,9 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { StringLiteral } from '../../shared/strings';
 
 /**
- * @deprecated since v9.5.0 - You should use ListNode instead
+ * @deprecated since v9.5.0
+ *
+ * You should use ListNode instead
  */
 @JsonObject('ListNodeInfo')
 export class ListNodeInfo {

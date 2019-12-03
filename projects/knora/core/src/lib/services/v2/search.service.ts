@@ -31,7 +31,8 @@ export interface SearchByLabelParams {
 }
 
 /**
- * @deprecated since v9.5.0 - all the following functions are now deprecated
+ * @deprecated since v9.5.0
+ *
  * Use the class SearchEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.
  *
  * Performs searches (fulltext or extended) and search count queries into Knora.
