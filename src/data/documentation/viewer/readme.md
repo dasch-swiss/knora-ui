@@ -36,8 +36,8 @@ This module has the following package dependencies, which you also have to insta
 -   @angular/cdk@8.1.4
 -   @angular/material@8.1.4
 -   @angular/flex-layout@8.0.0-beta.27
--   @knora/action@9.4.1
--   @knora/core@9.4.1
+-   @knora/action@9.4.2
+-   @knora/core@9.4.2
 
 ### Required version of Knora: 9.0.0
 
