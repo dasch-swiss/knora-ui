@@ -111,7 +111,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
         this.knoraApiConnection.v2.res.getResource(id).subscribe(
             (response: ReadResource) => {
                 this.resource = response;
-                console.log(response);
+                // console.log(response);
 
                 // get list of all properties
                 const hasProps: IHasProperty[] = this.resource.entityInfo.classes[this.resource.type].propertiesList;
@@ -147,7 +147,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
                 // sort properties by guiOrder
                 this.propArray.sort((a, b) => (a.guiDef.guiOrder > b.guiDef.guiOrder) ? 1 : -1);
 
-                console.log(this.propArray);
+                // console.log(this.propArray);
 
                 // TODO: get info about file representation to load corresponding media view
 

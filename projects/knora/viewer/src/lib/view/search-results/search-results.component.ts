@@ -159,7 +159,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                     // perform count query
                     this.knoraApiConnection.v2.search.doFulltextSearchCountQuery(this.searchQuery, searchParams).subscribe(
                         (response: CountQueryResponse) => {
-                            console.log(response);
+                            // console.log(response);
                             this.showNumberOfAllResults(response);
                         },
                         (error: ApiResponseError) => {
@@ -172,14 +172,13 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                 this.knoraApiConnection.v2.search.doFulltextSearch(this.searchQuery, this.offset, searchParams).subscribe(
                     (response: ReadResource[]) => {
                         // this.processSearchResults(response);
-                        console.log(response);
+                        // console.log(response);
                         this.result = response;
                         this.loading = false;
                     },
                     (error: ApiResponseError) => {
                         this.errorMessage = error;
-                        console.log('error', error);
-                        console.log('message', this.errorMessage);
+                        console.error(error);
                         this.loading = false;
                     }
                 );
@@ -229,7 +228,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
      * @param {ReadResourcesSequence} searchResult the answer to a search request.
      */
     private processSearchResults(searchResult: ReadResource[]) {
-        console.log(searchResult);
+        // console.log(searchResult);
         // assign ontology information to a variable so it can be used in the component's template
         if (this.ontologyInfo === undefined) {
             // init ontology information
