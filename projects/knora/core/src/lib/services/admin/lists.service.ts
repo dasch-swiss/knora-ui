@@ -22,6 +22,7 @@ export class ListsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns a list of all lists.
      *
      * @param {string} [projectIri]
