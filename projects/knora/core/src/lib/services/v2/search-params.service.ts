@@ -44,6 +44,7 @@ export class SearchParamsService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Updates the parameters of an extended search.
      *
      * @param {ExtendedSearchParams} searchParams
@@ -55,6 +56,7 @@ export class SearchParamsService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Gets the search params of an extended search.
      *
      * @returns ExtendedSearchParams - search parameters

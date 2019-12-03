@@ -60,6 +60,7 @@ export class ListCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Converts a JSON-LD represention of a ListNodeV2 to  a `ListNodeV2`.
      * Recursively converts child nodes.
      *
@@ -101,6 +102,7 @@ export class ListCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Gets a list from the cache or requests it from Knora and caches it.
      *
      * @param {string} rootNodeIri the Iri of the list's root node.
@@ -139,6 +141,7 @@ export class ListCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Gets a list node from the cache or requests the whole list from Knora and caches it.
      *
      * @param {string} listNodeIri the Iri of the list node.

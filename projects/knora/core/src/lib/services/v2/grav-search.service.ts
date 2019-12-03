@@ -56,6 +56,7 @@ export class GravsearchGenerationService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Generates a Gravsearch query from the provided arguments.
      *
      * @param {PropertyWithValue[]} properties the properties specified by the user.

@@ -258,6 +258,7 @@ export class OntologyInformation {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Merge the given [[OntologyInformation]] into the current instance,
      * updating the existing information.
      * This is necessary when a service like the search fetches new results
@@ -300,6 +301,7 @@ export class OntologyInformation {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns resource class definitions for ontologies.
      *
      * @returns ResourceClassIrisForOntology - all resource class definitions grouped by ontologies.
@@ -310,6 +312,7 @@ export class OntologyInformation {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns all resource classes as an object.
      *
      * @returns ResourceClasses - all resource class definitions as an object.
@@ -320,6 +323,7 @@ export class OntologyInformation {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns all resource classes as an array.
      *
      * @param {boolean} sortAsc sort resource classes by label in ascending order by default
@@ -349,6 +353,7 @@ export class OntologyInformation {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns a resource class's label.
      *
      * @param {string} resClass resource class to query for.
@@ -372,6 +377,7 @@ export class OntologyInformation {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns all properties as an object.
      *
      * @returns Properties - all properties as an object.
@@ -382,6 +388,7 @@ export class OntologyInformation {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns all properties as an array.
      *
      * @param {boolean} sortAsc sort properties by label in ascending order by default
@@ -411,6 +418,7 @@ export class OntologyInformation {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns a property's label.
      *
      * @param {string} property to query for.
@@ -473,6 +481,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Requests the metadata of all ontologies from Knora.
      *
      * @returns Observable<object> - metadata for all ontologies as JSON-LD (no prefixes, all Iris fully expanded).
@@ -499,6 +508,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Requests all entity definitions (resource classes and properties) for the given ontology from Knora.
      *
      * @param {string} ontologyIri the Iri of the requested ontology.
@@ -526,6 +536,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Writes all the ontologies' metadata returned by Knora to the cache.
      *
      * @param {object[]} ontologies metadata of all existing ontologies as JSON-LD.
@@ -542,6 +553,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns all ontologies' metadata from the cache and returns them.
      *
      * @returns Array<OntologyMetadata> - metadata of all existing ontologies.
@@ -554,6 +566,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns resource class Iris from the ontology response.
      * `knora-api:Resource` will be excluded.
      *
@@ -580,6 +593,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Converts a Knora response for all entity definitions for the requested ontology
      * into an internal representation and caches it.
      *
@@ -621,6 +635,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns definitions for the requested ontologies from the cache.
      *
      * @param {string[]} ontologyIris the ontologies for which definitions should be returned.
@@ -661,6 +676,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Converts a Knora ontology response into an internal representation and caches it.
      *
      * @param {object[]} resourceClassDefinitions the resource class definitions returned by Knora.
@@ -750,6 +766,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Gets information about resource classes from the cache.
      * The answer includes the property definitions referred to by the cardinalities of the given resource classes.
      *
@@ -788,6 +805,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Converts a Knora response for ontology information about properties
      * into an internal representation and cache it.
      *
@@ -858,6 +876,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns property definitions from the cache.
      *
      * @param {string[]} propertyIris the property definitions to be returned.
@@ -888,6 +907,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns metadata about all ontologies.
      *
      * @returns Observable<Array<OntologyMetadata>> - metadata about all ontologies.
@@ -917,6 +937,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Requests the requested ontologies from Knora, adding them to the cache.
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be requested.
@@ -950,6 +971,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns the entity definitions for the requested ontologies.
      *
      * @param {string[]} ontologyIris Iris of the ontologies to be queried.
@@ -983,6 +1005,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns the definitions for the given resource class Iris.
      * If the definitions are not already in the cache, the will be retrieved from Knora and cached.
      *
@@ -1028,6 +1051,7 @@ export class OntologyCacheService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Get definitions for the given property Iris.
      * If the definitions are not already in the cache, the will be retrieved from Knora and cached.
      *

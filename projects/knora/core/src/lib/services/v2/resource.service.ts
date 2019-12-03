@@ -31,6 +31,7 @@ export class ResourceService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Given the Iri, requests the representation of a resource.
      *
      * @param {string} iri Iri of the resource (not yet URL encoded).
@@ -334,6 +335,7 @@ export class ResourceService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Get a resource by IRI and return the json-ld result;
      * it will be used for the request body object in delete and erase resource
      *
@@ -350,6 +352,7 @@ export class ResourceService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Delete resource
      *
      * Knora does not normally delete resources; instead, it marks them as deleted, which means that they do not appear in normal query results.
@@ -400,6 +403,7 @@ export class ResourceService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Erase resource (from triplestore)
      *
      * @param {string} iri Iri of the resource
