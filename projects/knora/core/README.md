@@ -34,7 +34,7 @@ This module has the following package dependencies, which you also have to insta
 -   jsonld@1.1.0
 -   semver@^6.1.1
 
-### Required version of Knora: 9.0.0
+### Required version of Knora: 10.0.0
 
 ## Setup
 
