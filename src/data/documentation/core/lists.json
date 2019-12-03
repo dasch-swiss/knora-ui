@@ -26,8 +26,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Returns a list of all lists.",
-        "html": "<p>since v9.5.0 Returns a list of all lists.</p>"
+        "string": "since v9.5.0 \nReturns a list of all lists.",
+        "html": "<p>since v9.5.0<br />\nReturns a list of all lists.</p>"
       },
       {
         "type": "param",
@@ -67,7 +67,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 23,
-    "codeStart": 30,
+    "codeStart": 31,
     "code": "getLists(projectIri?: string): Observable<ListNode[]> {\n    let newPath = this.path;\n    if (projectIri) {\n        newPath += '?projectIri=' + encodeURIComponent(projectIri);\n    }\n    return this.httpGet(newPath).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListsResponse).lists),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -119,8 +119,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 41,
-    "codeStart": 48,
+    "line": 42,
+    "codeStart": 49,
     "code": "getList(listIri: string): Observable<List> {\n    return this.httpGet(this.path + '/' + encodeURIComponent(listIri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListResponse).list),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -172,8 +172,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 55,
-    "codeStart": 62,
+    "line": 56,
+    "codeStart": 63,
     "code": "getListInfo(listIri: string): Observable<ListInfo> {\n    return this.httpGet(this.path + '/infos/' + encodeURIComponent(listIri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -225,8 +225,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 69,
-    "codeStart": 76,
+    "line": 70,
+    "codeStart": 77,
     "code": "getListNodeInfo(nodeIri: string): Observable<ListNode> {\n    return this.httpGet(this.path + '/nodes/' + encodeURIComponent(nodeIri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListNodeResponse).nodeinfo),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -278,8 +278,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 88,
-    "codeStart": 95,
+    "line": 89,
+    "codeStart": 96,
     "code": "createList(payload: ListCreatePayload): Observable<List> {\n    return this.httpPost(this.path, payload).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListResponse).list),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -346,8 +346,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 102,
-    "codeStart": 110,
+    "line": 103,
+    "codeStart": 111,
     "code": "createListItem(listIri: string, payload: ListNodeUpdatePayload): Observable<ListNode> {\n    return this.httpPost(this.path + '/' + encodeURIComponent(listIri), payload).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListNodeResponse).nodeinfo),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// PUT\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -399,8 +399,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 122,
-    "codeStart": 129,
+    "line": 123,
+    "codeStart": 130,
     "code": "updateListInfo(payload: ListInfoUpdatePayload): Observable<ListInfo> {\n    return this.httpPut(this.path + '/infos/' + encodeURIComponent(payload.listIri), payload).pipe(\n        map((result: ApiServiceResult) => result.getBody(ListInfoResponse).listinfo),\n        catchError(this.handleJsonError)\n    );\n}\n\n// updateListItem(payload: )\n}",
     "ctx": {
       "type": "method",

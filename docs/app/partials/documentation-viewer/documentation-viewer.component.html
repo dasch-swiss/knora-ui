@@ -1,4 +1,3 @@
-
 <!-- header with title and module info -->
 <app-module-header [module]="module" [demo]="currentComponent"></app-module-header>
 
@@ -34,13 +33,20 @@
 
                 <div [ngSwitch]="tag.type">
 
+                    <!-- deprecated -->
+                    <div *ngSwitchCase="'deprecated'">
+                        <p>Deprecated <span [innerHtml]="tag.html | sanitizeHtml"></span></p>
+                    </div>
+                    <br>
+
                     <!-- example code -->
                     <pre *ngSwitchCase="'example'" class="line-numbers">
                         <code>{{tag.string}}</code>
                     </pre>
 
                     <!-- returns -->
-                    <div *ngSwitchCase="'returns'"> <!-- TODO: include also 'return' something like:  || 'return' -->
+                    <div *ngSwitchCase="'returns'">
+                        <!-- TODO: include also 'return' something like:  || 'return' -->
                         <p><strong>Returns</strong></p>
                         <table>
                             <tr>
@@ -68,7 +74,7 @@
                                 <td class="border-right fix-width">
                                     <p><span *ngFor="let type of tag.types; let last = last">
                                             {{type}}<span *ngIf="!last">, </span>
-                                    </span></p>
+                                        </span></p>
                                 </td>
                                 <td>
                                     <div [innerHtml]="tag.description"></div>
@@ -77,7 +83,7 @@
                         </table>
                     </div>
 
-                    <!-- type -->
+                    <!-- emits -->
                     <div *ngSwitchCase="'emits'" [innerHtml]="tag.html | sanitizeHtml"></div>
 
                     <!-- type -->
