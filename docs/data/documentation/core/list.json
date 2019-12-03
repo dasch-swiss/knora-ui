@@ -1,0 +1,236 @@
+[
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Use the class ListsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.",
+        "html": "<p>since v9.5.0 Use the class ListsEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 10,
+    "codeStart": 14,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ListService extends ApiService {\n\n    constructor(public http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config) {\n        super(http, config);\n    }",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Gets a hierarchical list from Knora.",
+        "html": "<p>since v9.5.0 Gets a hierarchical list from Knora.</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} rootNodeIri the Iri of the list's root node.",
+        "name": "rootNodeIri",
+        "description": "<p>the Iri of the list's root node.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "return",
+        "string": "{Observable<ApiServiceResult | ApiServiceError>}",
+        "types": [
+          "Observable.<ApiServiceResult|ApiServiceError>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>|<a href=\"ApiServiceError.html\">ApiServiceError</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable&lt;ApiServiceResult | ApiServiceError&gt;}</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 24,
+    "codeStart": 31,
+    "code": "private getListFromKnora(rootNodeIri: string): Observable<ApiServiceResult | ApiServiceError> {\n    return this.httpGet('/v2/lists/' + encodeURIComponent(rootNodeIri));\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Returns a list as expanded JSON-LD.",
+        "html": "<p>since v9.5.0 Returns a list as expanded JSON-LD.</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} rootNodeIri the root node of the list.",
+        "name": "rootNodeIri",
+        "description": "<p>the root node of the list.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "return",
+        "string": "{Observable<object>} the expanded JSON-LD.",
+        "types": [
+          "Observable.<object>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<code>object</code>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "<p>the expanded JSON-LD.</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 35,
+    "codeStart": 42,
+    "code": "getList(rootNodeIri: string): Observable<object> {\n    const listJSONLD = this.getListFromKnora(rootNodeIri);\n\n    return listJSONLD.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        )\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getList",
+      "string": "getList()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Gets a list node from Knora.",
+        "html": "<p>since v9.5.0 Gets a list node from Knora.</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} listNodeIri the Iri of the list node.",
+        "name": "listNodeIri",
+        "description": "<p>the Iri of the list node.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "return",
+        "string": "{Observable<ApiServiceResult | ApiServiceError>}",
+        "types": [
+          "Observable.<ApiServiceResult|ApiServiceError>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"ApiServiceResult.html\">ApiServiceResult</a>|<a href=\"ApiServiceError.html\">ApiServiceError</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable&lt;ApiServiceResult | ApiServiceError&gt;}</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 53,
+    "codeStart": 60,
+    "code": "private getListNodeFromKnora(listNodeIri: string): Observable<ApiServiceResult | ApiServiceError> {\n    return this.httpGet('/v2/node/' + encodeURIComponent(listNodeIri));\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Returns a list node as expanded JSON-LD.",
+        "html": "<p>since v9.5.0 Returns a list node as expanded JSON-LD.</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} listNodeIri the Iri of the list node.",
+        "name": "listNodeIri",
+        "description": "<p>the Iri of the list node.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "return",
+        "string": "{Observable<object>}",
+        "types": [
+          "Observable.<object>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<code>object</code>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<object>}</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 64,
+    "codeStart": 71,
+    "code": "getListNode(listNodeIri: string): Observable<object> {\n\n    const listNodeJSONLD = this.getListNodeFromKnora(listNodeIri);\n\n    return listNodeJSONLD.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        )\n    );\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getListNode",
+      "string": "getListNode()"
+    }
+  }
+]

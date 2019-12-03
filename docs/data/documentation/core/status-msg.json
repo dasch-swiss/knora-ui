@@ -1,0 +1,52 @@
+[
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
+        "html": "<p>since v9.5.0 Request information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 9,
+    "codeStart": 13,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class StatusMsgService {\n\n    constructor(private _http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config) {\n    }",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 this method get the status messages from the statusMsg.json file\nwhich are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes\nand here: http://www.w3schools.com/tags/ref_httpmessages.asp",
+        "html": "<p>since v9.5.0 this method get the status messages from the statusMsg.json file<br />\nwhich are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes<br />\nand here: http://www.w3schools.com/tags/ref_httpmessages.asp</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 22,
+    "codeStart": 29,
+    "code": "getStatusMsg(): Observable<any> {\n\n    return this._http.get(this.config.app + '/assets/i18n/statusMsg.json')\n        .pipe(map(\n            (res: any) => {\n                return res;\n            },\n            err => {\n                console.error(err);\n            }\n        )\n        );\n\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getStatusMsg",
+      "string": "getStatusMsg()"
+    }
+  }
+]

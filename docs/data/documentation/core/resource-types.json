@@ -1,0 +1,129 @@
+[
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
+        "html": "<p>since v9.5.0 Request information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 6,
+    "codeStart": 10,
+    "code": "@Injectable({\n  providedIn: 'root'\n})\nexport class ResourceTypesService extends ApiService {",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Get all resource types defined by the vocabulary.",
+        "html": "<p>since v9.5.0 Get all resource types defined by the vocabulary.</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} iri Vocabulary iri",
+        "name": "iri",
+        "description": "<p>Vocabulary iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<any>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<any></p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 15,
+    "codeStart": 22,
+    "code": "getResourceTypesByVoc(iri: string): Observable<any> {\n  return this.httpGet('/v1/resourcetypes?vocabulary=' + encodeURIComponent(iri));\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getResourceTypesByVoc",
+      "string": "getResourceTypesByVoc()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Get a specific resource type.",
+        "html": "<p>since v9.5.0 Get a specific resource type.</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} iri resource type iri",
+        "name": "iri",
+        "description": "<p>resource type iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "returns",
+        "string": "Observable<any>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<any></p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 26,
+    "codeStart": 33,
+    "code": "getResourceType(iri: string): Observable<any> {\n  return this.httpGet('/v1/resourcetypes/' + encodeURIComponent(iri));\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getResourceType",
+      "string": "getResourceType()"
+    }
+  }
+]

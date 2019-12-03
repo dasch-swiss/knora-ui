@@ -1,0 +1,62 @@
+[
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
+        "html": "<p>since v9.5.0 Request information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 6,
+    "codeStart": 10,
+    "code": "@Injectable({\n  providedIn: 'root'\n})\nexport class BasicOntologyService extends ApiService {",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 returns our list of a basic ontology",
+        "html": "<p>since v9.5.0 returns our list of a basic ontology</p>"
+      },
+      {
+        "type": "returns",
+        "string": "{Observable<any>}",
+        "types": [
+          "Observable.<any>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"any.html\">any</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<any>}</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 15,
+    "codeStart": 21,
+    "code": "// getBasicOntology(): Observable<any> {\n//     let url = environment.url;\n//     return this.httpGet(url + '/data/base-data/basic-ontology.json', {withCredentials: false});\n// }\ngetBasicOntology(): Observable<any> {\n  const url = this.config.app;\n  return this.httpGet(url + '/data/base-data/basic-ontology.json');\n  // return this.httpGet(url + '/data/base-data/basic-ontology.json', {withCredentials: false});\n}\n\n}",
+    "ctx": false
+  }
+]

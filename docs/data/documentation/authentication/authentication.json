@@ -1,0 +1,232 @@
+[
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 The module knora/authentication has been removed and replaced by knora/action, knora/core and knora-api-js-lib.\nUse the class AuthenticationEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.\n\nAuthentication service includes the login, logout method and a session method to check if a user is logged in or not.",
+        "html": "<p>since v9.5.0 The module knora/authentication has been removed and replaced by knora/action, knora/core and knora-api-js-lib.<br />\nUse the class AuthenticationEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>\n<p>Authentication service includes the login, logout method and a session method to check if a user is logged in or not.</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 9,
+    "codeStart": 16,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class AuthenticationService extends ApiService {\n\n    path: string = '/v2/authentication';\n\n    constructor(private _session: SessionService,\n        public http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config) {\n        super(http, config);\n    }",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 validate if a user is logged in or not\nreturns true if the session is active",
+        "html": "<p>since v9.5.0 validate if a user is logged in or not<br />\nreturns true if the session is active</p>"
+      },
+      {
+        "type": "returns",
+        "string": "boolean",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>boolean</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 29,
+    "codeStart": 36,
+    "code": "session(): boolean {\n    return this._session.validateSession();\n}",
+    "ctx": {
+      "type": "method",
+      "name": "session",
+      "string": "session()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "update the session storage",
+        "html": "<p>update the session storage</p>"
+      },
+      {
+        "type": "param",
+        "string": "jwt",
+        "name": "jwt",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>jwt</p>"
+      },
+      {
+        "type": "param",
+        "string": "username",
+        "name": "username",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>username</p>"
+      },
+      {
+        "type": "returns",
+        "string": "boolean",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>boolean</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 40,
+    "codeStart": 47,
+    "code": "updateSession(jwt: string, username: string): boolean {\n    if (jwt && username) {\n        this._session.setSession(jwt, username);\n        return true;\n    } else {\n        return false;\n    }\n}",
+    "ctx": {
+      "type": "method",
+      "name": "updateSession",
+      "string": "updateSession()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Login request",
+        "html": "<p>since v9.5.0 Login request</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} identifier can be email address or username",
+        "name": "identifier",
+        "description": "<p>can be email address or username</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "param",
+        "string": "{string} password",
+        "name": "password",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} password</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable<string> Returns JWT",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<string> Returns JWT</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 56,
+    "codeStart": 64,
+    "code": "login(identifier: string, password: string): Observable<string> {\n    let params: AuthenticationRequestByUsernamePayload | AuthenticationRequestByEmailPayload;\n\n    // username can be either name or email address, so what do we have?\n    if (identifier.indexOf('@') > -1) {\n        // username is email address\n        params = { email: identifier, password: password };\n    } else {\n        params = { username: identifier, password: password };\n    }\n\n    return this.httpPost(this.path, params).pipe(\n        map((result: ApiServiceResult) => result.getBody(AuthenticationResponse).token),\n        catchError(this.handleJsonError)\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "login",
+      "string": "login()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Logout from app (by destroying the session) and knora",
+        "html": "<p>since v9.5.0 Logout from app (by destroying the session) and knora</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable<LogoutResponse>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<LogoutResponse></p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 81,
+    "codeStart": 87,
+    "code": "logout(): Observable<LogoutResponse> {\n    this._session.destroySession();\n    return this.httpDelete(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(LogoutResponse)),\n        catchError(this.handleJsonError)\n    );\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "logout",
+      "string": "logout()"
+    }
+  }
+]

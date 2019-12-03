@@ -1,0 +1,210 @@
+[
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Represents the parameters of an extended search.",
+        "html": "<p>since v9.5.0 Represents the parameters of an extended search.</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 5,
+    "codeStart": 9,
+    "code": "export class ExtendedSearchParams {",
+    "ctx": {
+      "type": "class",
+      "constructor": "ExtendedSearchParams",
+      "cons": "ExtendedSearchParams",
+      "name": "ExtendedSearchParams",
+      "extends": "",
+      "string": "new ExtendedSearchParams()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "generateGravsearch a function that generates a Gravsearch query.\n\n                          The function takes the offset\n                          as a parameter and returns a Gravsearch query string.\n                          Returns false if not set correctly (init state).",
+        "name": "generateGravsearch",
+        "description": "<p>a function that generates a Gravsearch query.<br />\nThe function takes the offset<br />\nas a parameter and returns a Gravsearch query string.<br />\nReturns false if not set correctly (init state).</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 11,
+    "codeStart": 19,
+    "code": "constructor(public generateGravsearch: (offset: number) => string | boolean) {\n\n}\n\n}",
+    "ctx": {
+      "type": "constructor",
+      "constructor": "ExtendedSearchParams",
+      "cons": "ExtendedSearchParams",
+      "name": "constructor",
+      "string": "ExtendedSearchParams.prototype.constructor()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
+        "html": "<p>since v9.5.0 Request information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 25,
+    "codeStart": 29,
+    "code": "@Injectable({\n    providedIn: 'root'\n})",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Temporarily stores the parameters of an extended search.</p>",
+      "summary": "<p>Temporarily stores the parameters of an extended search.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 32,
+    "codeStart": 35,
+    "code": "export class SearchParamsService {\n\n    private _currentSearchParams;\n\n    constructor() {\n        // init with a dummy function that returns false\n        // if the application is reloaded, this will be returned\n        this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => false));\n    }",
+    "ctx": {
+      "type": "class",
+      "constructor": "SearchParamsService",
+      "cons": "SearchParamsService",
+      "name": "SearchParamsService",
+      "extends": "",
+      "string": "new SearchParamsService()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Updates the parameters of an extended search.",
+        "html": "<p>since v9.5.0 Updates the parameters of an extended search.</p>"
+      },
+      {
+        "type": "param",
+        "string": "{ExtendedSearchParams} searchParams",
+        "name": "searchParams",
+        "description": "",
+        "types": [
+          "ExtendedSearchParams"
+        ],
+        "typesDescription": "<a href=\"ExtendedSearchParams.html\">ExtendedSearchParams</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{ExtendedSearchParams} searchParams</p>"
+      },
+      {
+        "type": "returns",
+        "string": "void",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 45,
+    "codeStart": 52,
+    "code": "changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {\n    this._currentSearchParams.next(searchParams);\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "SearchParamsService",
+      "cons": "SearchParamsService",
+      "name": "changeSearchParamsMsg",
+      "string": "SearchParamsService.prototype.changeSearchParamsMsg()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Gets the search params of an extended search.",
+        "html": "<p>since v9.5.0 Gets the search params of an extended search.</p>"
+      },
+      {
+        "type": "returns",
+        "string": "ExtendedSearchParams - search parameters",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>ExtendedSearchParams - search parameters</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 56,
+    "codeStart": 62,
+    "code": "getSearchParams(): ExtendedSearchParams {\n    return this._currentSearchParams.getValue();\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "SearchParamsService",
+      "cons": "SearchParamsService",
+      "name": "getSearchParams",
+      "string": "SearchParamsService.prototype.getSearchParams()"
+    }
+  }
+]

@@ -1,0 +1,79 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="landing-page">
+
+    <section class="introduction">
+        <div class="content-header">
+            <h1 class="mat-headline">Knora ui modules</h1>
+            <h2 class="mat-title">User Interface Modules for Knora</h2>
+        </div>
+
+        <div class="content-text">
+            <p>This is the documentation page for Knora ui modules, which are published on <a
+                href="https://www.npmjs.com/~knora">npmJS</a>.
+            </p>
+
+            <p>The modules helps to create a graphical user interface, a web application to use <a
+                href="https://www.knora.org">Knora</a> in a quick and
+                simple way. The modules are written in typescript to use them with <a
+                    href="https://angular.io">Angular</a> (version 8).
+                We decided to style the components and directives with <a href="https://material.angular.io">material
+                    design</a>.</p>
+
+            <p>But you can use only <a href="modules/core">@knora/core</a> which contains almost all services for the
+                Knora web API.
+                Knora is a software framework for storing, sharing, and working with primary sources and data in the
+                humanities.</p>
+        </div>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <section class="features">
+
+        <div class="content-header">
+            <h2 class="mat-title">Already published modules</h2>
+        </div>
+
+        <div class="content-grid">
+
+            <div class="center" fxFlex
+                 fxLayout="row wrap"
+                 [fxLayout.sm]="'column'" [fxLayout.xs]="'column'">
+                <mat-card class="module-card" *ngFor="let m of modules" fxFlex="30">
+                    <mat-card-header>
+                        <mat-card-subtitle>@knora/{{m.name}}</mat-card-subtitle>
+                        <mat-card-title class="mat-subheading-1">{{m.title}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>
+                            {{m.description}}
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button [routerLink]="'modules/' + m.name">Read more</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <section class="footer">
+        <p>Knora and the Knora ui modules is <a href="http://www.gnu.org/philosophy/free-sw.en.html">free software</a>,
+            released under the <a href="http://www.gnu.org/licenses/agpl-3.0.en.html">GNU Affero General Public
+                License</a>.
+        </p>
+
+        <p>It is developed by the design team of the <a href="http://dasch.swiss">Data and Service Center for the
+            Humanities DaSCH</a> at the <a
+            href="http://unibas.ch">University of Basel</a>.
+        </p>
+
+    </section>
+
+
+</div>

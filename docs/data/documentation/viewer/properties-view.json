@@ -1,0 +1,55 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Shows all metadata (properties) in the resource viewer</p>",
+      "summary": "<p>Shows all metadata (properties) in the resource viewer</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 5,
+    "codeStart": 9,
+    "code": "@Component({\n    selector: 'kui-properties-view',\n    templateUrl: './properties-view.component.html',\n    styleUrls: ['./properties-view.component.scss']\n})\nexport class PropertiesViewComponent {\n\n    loading: boolean = false;\n\n    KnoraConstants = KnoraConstants;\n\n    @Input() guiOrder: GuiOrder;\n    @Input() properties: ReadProperties;\n    @Input() annotations: ReadResource[];\n    @Input() incomingLinks: ReadResource[];\n\n    @Input() ontologyInfo: OntologyInformation;\n\n    // @Output() routeChanged: EventEmitter<string> = new EventEmitter<string>();\n\n    constructor (protected _router: Router) { }",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} id Incoming resource iri",
+        "name": "id",
+        "description": "<p>Incoming resource iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "<p>Navigate to the incoming resource view.</p>",
+      "summary": "<p>Navigate to the incoming resource view.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 31,
+    "codeStart": 36,
+    "code": "openLink(id: string) {\n\n    this.loading = true;\n    // this.routeChanged.emit(id);\n    this._router.navigate(['/resource/' + encodeURIComponent(id)]);\n\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "openLink",
+      "string": "openLink()"
+    }
+  }
+]
