@@ -1,9 +1,15 @@
 [
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 The module knora/authentication has been removed and replaced by knora/action, knora/core and knora-api-js-lib.\nUse the class AuthenticationEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.\n\nAuthentication service includes the login, logout method and a session method to check if a user is logged in or not.",
+        "html": "<p>since v9.5.0 The module knora/authentication has been removed and replaced by knora/action, knora/core and knora-api-js-lib.<br />\nUse the class AuthenticationEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>\n<p>Authentication service includes the login, logout method and a session method to check if a user is logged in or not.</p>"
+      }
+    ],
     "description": {
-      "full": "<p>Authentication service includes the login, logout method and a session method to check if a user is logged in or not.</p>",
-      "summary": "<p>Authentication service includes the login, logout method and a session method to check if a user is logged in or not.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -11,13 +17,18 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8,
-    "codeStart": 11,
-    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class AuthenticationService extends ApiService {\n\n    path: string = '/v2/authentication';\n\n    constructor (private _session: SessionService,\n        public http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config) {\n        super(http, config);\n    }",
+    "line": 9,
+    "codeStart": 16,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class AuthenticationService extends ApiService {\n\n    path: string = '/v2/authentication';\n\n    constructor(private _session: SessionService,\n        public http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config) {\n        super(http, config);\n    }",
     "ctx": false
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 validate if a user is logged in or not\nreturns true if the session is active",
+        "html": "<p>since v9.5.0 validate if a user is logged in or not<br />\nreturns true if the session is active</p>"
+      },
       {
         "type": "returns",
         "string": "boolean",
@@ -31,8 +42,8 @@
       }
     ],
     "description": {
-      "full": "<p>validate if a user is logged in or not<br />\nreturns true if the session is active</p>",
-      "summary": "<p>validate if a user is logged in or not<br />\nreturns true if the session is active</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -40,8 +51,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 24,
-    "codeStart": 30,
+    "line": 29,
+    "codeStart": 36,
     "code": "session(): boolean {\n    return this._session.validateSession();\n}",
     "ctx": {
       "type": "method",
@@ -104,8 +115,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 34,
-    "codeStart": 41,
+    "line": 40,
+    "codeStart": 47,
     "code": "updateSession(jwt: string, username: string): boolean {\n    if (jwt && username) {\n        this._session.setSession(jwt, username);\n        return true;\n    } else {\n        return false;\n    }\n}",
     "ctx": {
       "type": "method",
@@ -115,6 +126,11 @@
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Login request",
+        "html": "<p>since v9.5.0 Login request</p>"
+      },
       {
         "type": "param",
         "string": "{string} identifier can be email address or username",
@@ -157,8 +173,8 @@
       }
     ],
     "description": {
-      "full": "<p>Login request</p>",
-      "summary": "<p>Login request</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -166,8 +182,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 50,
-    "codeStart": 57,
+    "line": 56,
+    "codeStart": 64,
     "code": "login(identifier: string, password: string): Observable<string> {\n    let params: AuthenticationRequestByUsernamePayload | AuthenticationRequestByEmailPayload;\n\n    // username can be either name or email address, so what do we have?\n    if (identifier.indexOf('@') > -1) {\n        // username is email address\n        params = { email: identifier, password: password };\n    } else {\n        params = { username: identifier, password: password };\n    }\n\n    return this.httpPost(this.path, params).pipe(\n        map((result: ApiServiceResult) => result.getBody(AuthenticationResponse).token),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -177,6 +193,11 @@
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Logout from app (by destroying the session) and knora",
+        "html": "<p>since v9.5.0 Logout from app (by destroying the session) and knora</p>"
+      },
       {
         "type": "returns",
         "string": "Observable<LogoutResponse>",
@@ -190,8 +211,8 @@
       }
     ],
     "description": {
-      "full": "<p>Logout from app (by destroying the session) and knora</p>",
-      "summary": "<p>Logout from app (by destroying the session) and knora</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -199,8 +220,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 74,
-    "codeStart": 79,
+    "line": 81,
+    "codeStart": 87,
     "code": "logout(): Observable<LogoutResponse> {\n    this._session.destroySession();\n    return this.httpDelete(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(LogoutResponse)),\n        catchError(this.handleJsonError)\n    );\n}\n}",
     "ctx": {
       "type": "method",

@@ -1,9 +1,15 @@
 [
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Use the class ProjectsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.",
+        "html": "<p>since v9.5.0 Use the class ProjectsEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>"
+      }
+    ],
     "description": {
-      "full": "<p>Request information about projects from Knora.</p>",
-      "summary": "<p>Request information about projects from Knora.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -11,13 +17,18 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9,
+    "line": 8,
     "codeStart": 12,
     "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ProjectsService extends ApiService {\n\n    // ------------------------------------------------------------------------\n    // GET\n    // ------------------------------------------------------------------------",
     "ctx": false
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Returns a list of all projects.",
+        "html": "<p>since v9.5.0 Returns a list of all projects.</p>"
+      },
       {
         "type": "returns",
         "string": "Observable<Project[]>",
@@ -31,8 +42,8 @@
       }
     ],
     "description": {
-      "full": "<p>Returns a list of all projects.</p>",
-      "summary": "<p>Returns a list of all projects.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -41,7 +52,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 21,
-    "codeStart": 26,
+    "codeStart": 27,
     "code": "getAllProjects(): Observable<Project[]> {\n    return this.httpGet('/admin/projects').pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectsResponse).projects),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -51,6 +62,11 @@
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Returns a project object.",
+        "html": "<p>since v9.5.0 Returns a project object.</p>"
+      },
       {
         "type": "param",
         "string": "{string} iri identifier of the project",
@@ -78,8 +94,8 @@
       }
     ],
     "description": {
-      "full": "<p>Returns a project object.</p>",
-      "summary": "<p>Returns a project object.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -87,8 +103,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 33,
-    "codeStart": 39,
+    "line": 34,
+    "codeStart": 41,
     "code": "getProjectByIri(iri: string): Observable<Project> {\n    const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);\n    return this.getProject(url);\n}",
     "ctx": {
       "type": "method",
@@ -98,6 +114,11 @@
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Returns a project object.",
+        "html": "<p>since v9.5.0 Returns a project object.</p>"
+      },
       {
         "type": "param",
         "string": "{string} shortname short name that is used to identify the project",
@@ -125,8 +146,8 @@
       }
     ],
     "description": {
-      "full": "<p>Returns a project object.</p>",
-      "summary": "<p>Returns a project object.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -134,8 +155,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 44,
-    "codeStart": 50,
+    "line": 46,
+    "codeStart": 53,
     "code": "getProjectByShortname(shortname: string): Observable<Project> {\n    const url = '/admin/projects/shortname/' + shortname;\n    return this.getProject(url);\n}",
     "ctx": {
       "type": "method",
@@ -145,6 +166,11 @@
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Returns a project object.",
+        "html": "<p>since v9.5.0 Returns a project object.</p>"
+      },
       {
         "type": "param",
         "string": "{string} shortcode hexadecimal code that uniquely identifies the project",
@@ -172,8 +198,8 @@
       }
     ],
     "description": {
-      "full": "<p>Returns a project object.</p>",
-      "summary": "<p>Returns a project object.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -181,8 +207,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 55,
-    "codeStart": 61,
+    "line": 58,
+    "codeStart": 65,
     "code": "getProjectByShortcode(shortcode: string): Observable<Project> {\n    const url = '/admin/projects/shortcode/' + shortcode;\n    return this.getProject(url);\n}",
     "ctx": {
       "type": "method",
@@ -192,6 +218,11 @@
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0",
+        "html": "<p>since v9.5.0</p>"
+      },
       {
         "type": "private",
         "string": "\nHelper method combining project retrieval.",
@@ -235,13 +266,18 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 66,
-    "codeStart": 73,
+    "line": 70,
+    "codeStart": 78,
     "code": "protected getProject(url: string): Observable<Project> {\n    return this.httpGet(url).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": false
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Returns all project members.\nProject identifier is project id (iri).",
+        "html": "<p>since v9.5.0 Returns all project members.<br />\nProject identifier is project id (iri).</p>"
+      },
       {
         "type": "param",
         "string": "{string} iri identifier of the project",
@@ -269,8 +305,8 @@
       }
     ],
     "description": {
-      "full": "<p>Returns all project members.<br />\nProject identifier is project id (iri).</p>",
-      "summary": "<p>Returns all project members.<br />\nProject identifier is project id (iri).</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -278,9 +314,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 80,
-    "codeStart": 87,
-    "code": "getProjectMembersByIri(iri: string): Observable<User[]> {\n    const url = '/admin/projects/iri/' + encodeURIComponent(iri) + '/members' ;\n    return this.getProjectMembers(url);\n}",
+    "line": 85,
+    "codeStart": 93,
+    "code": "getProjectMembersByIri(iri: string): Observable<User[]> {\n    const url = '/admin/projects/iri/' + encodeURIComponent(iri) + '/members';\n    return this.getProjectMembers(url);\n}",
     "ctx": {
       "type": "method",
       "name": "getProjectMembersByIri",
@@ -289,6 +325,11 @@
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Returns all project members.\nProject identifier is shortname.",
+        "html": "<p>since v9.5.0 Returns all project members.<br />\nProject identifier is shortname.</p>"
+      },
       {
         "type": "param",
         "string": "{string} shortname short name that is used to identify the project",
@@ -316,8 +357,8 @@
       }
     ],
     "description": {
-      "full": "<p>Returns all project members.<br />\nProject identifier is shortname.</p>",
-      "summary": "<p>Returns all project members.<br />\nProject identifier is shortname.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -325,9 +366,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 92,
-    "codeStart": 99,
-    "code": "getProjectMembersByShortname(shortname: string): Observable<User[]> {\n    const url = '/admin/projects/shortname/' + shortname + '/members' ;\n    return this.getProjectMembers(url);\n}",
+    "line": 98,
+    "codeStart": 106,
+    "code": "getProjectMembersByShortname(shortname: string): Observable<User[]> {\n    const url = '/admin/projects/shortname/' + shortname + '/members';\n    return this.getProjectMembers(url);\n}",
     "ctx": {
       "type": "method",
       "name": "getProjectMembersByShortname",
@@ -336,6 +377,11 @@
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Returns all project members.\nProject identifier is shortcode.",
+        "html": "<p>since v9.5.0 Returns all project members.<br />\nProject identifier is shortcode.</p>"
+      },
       {
         "type": "param",
         "string": "{string} shortcode hexadecimal code that uniquely identifies the project",
@@ -363,8 +409,8 @@
       }
     ],
     "description": {
-      "full": "<p>Returns all project members.<br />\nProject identifier is shortcode.</p>",
-      "summary": "<p>Returns all project members.<br />\nProject identifier is shortcode.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -372,8 +418,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 104,
-    "codeStart": 111,
+    "line": 111,
+    "codeStart": 119,
     "code": "getProjectMembersByShortcode(shortcode: string): Observable<User[]> {\n    const url = '/admin/projects/shortcode/' + shortcode + '/members';\n    return this.getProjectMembers(url);\n}",
     "ctx": {
       "type": "method",
@@ -383,6 +429,11 @@
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0",
+        "html": "<p>since v9.5.0</p>"
+      },
       {
         "type": "private",
         "string": "\nHelper method combining project member retrieval.",
@@ -426,13 +477,18 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 116,
-    "codeStart": 123,
-    "code": "private getProjectMembers(url: string): Observable<User[]> {\n   return this.httpGet(url).pipe(\n       map((result: ApiServiceResult) => result.getBody(ProjectMembersResponse).members),\n       catchError(this.handleJsonError)\n   );\n    }\n\n\n    // ------------------------------------------------------------------------\n    // POST\n    // ------------------------------------------------------------------------",
+    "line": 124,
+    "codeStart": 132,
+    "code": "private getProjectMembers(url: string): Observable<User[]> {\n    return this.httpGet(url).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectMembersResponse).members),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
     "ctx": false
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 Create new project.",
+        "html": "<p>since v9.5.0 Create new project.</p>"
+      },
       {
         "type": "param",
         "string": "{any} data",
@@ -461,8 +517,8 @@
       }
     ],
     "description": {
-      "full": "<p>Create new project.</p>",
-      "summary": "<p>Create new project.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -470,8 +526,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 135,
-    "codeStart": 141,
+    "line": 144,
+    "codeStart": 151,
     "code": "createProject(data: any): Observable<Project> {\n    const url: string = '/admin/projects';\n    return this.httpPost(url, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}\n\n// ------------------------------------------------------------------------\n// PUT\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -482,6 +538,11 @@
   {
     "tags": [
       {
+        "type": "deprecated",
+        "string": "since v9.5.0 Edit project data.",
+        "html": "<p>since v9.5.0 Edit project data.</p>"
+      },
+      {
         "type": "param",
         "string": "{string} iri identifier of the project",
         "name": "iri",
@@ -523,8 +584,8 @@
       }
     ],
     "description": {
-      "full": "<p>Edit project data.</p>",
-      "summary": "<p>Edit project data.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -532,8 +593,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 153,
-    "codeStart": 160,
+    "line": 163,
+    "codeStart": 171,
     "code": "updateProject(iri: string, data: any): Observable<Project> {\n    const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);\n\n    return this.httpPut(url, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -544,6 +605,11 @@
   {
     "tags": [
       {
+        "type": "deprecated",
+        "string": "since v9.5.0 Activate project (if it was deleted).",
+        "html": "<p>since v9.5.0 Activate project (if it was deleted).</p>"
+      },
+      {
         "type": "param",
         "string": "{string} iri identifier of the project",
         "name": "iri",
@@ -570,8 +636,8 @@
       }
     ],
     "description": {
-      "full": "<p>Activate project (if it was deleted).</p>",
-      "summary": "<p>Activate project (if it was deleted).</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -579,8 +645,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 170,
-    "codeStart": 176,
+    "line": 181,
+    "codeStart": 188,
     "code": "activateProject(iri: string): Observable<Project> {\n    const data: any = {\n        status: true\n    };\n\n    const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);\n\n    return this.httpPut(url, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// DELETE\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -591,6 +657,11 @@
   {
     "tags": [
       {
+        "type": "deprecated",
+        "string": "since v9.5.0 Delete (set inactive) project.",
+        "html": "<p>since v9.5.0 Delete (set inactive) project.</p>"
+      },
+      {
         "type": "param",
         "string": "{string} iri identifier of the project",
         "name": "iri",
@@ -617,8 +688,8 @@
       }
     ],
     "description": {
-      "full": "<p>Delete (set inactive) project.</p>",
-      "summary": "<p>Delete (set inactive) project.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -626,8 +697,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 194,
-    "codeStart": 200,
+    "line": 206,
+    "codeStart": 213,
     "code": "deleteProject(iri: string): Observable<Project> {\n    const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);\n\n    return this.httpDelete(url).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}\n\n}",
     "ctx": {
       "type": "method",
