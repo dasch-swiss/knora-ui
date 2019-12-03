@@ -22,6 +22,7 @@ export class GroupsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Return a list of all groups.
      *
      * @returns Observable<Group[]>
@@ -35,6 +36,7 @@ export class GroupsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Return a group object (filter by IRI).
      *
      * @param {string} iri
@@ -49,8 +51,9 @@ export class GroupsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
-     * Return a list of all group members. 
-     * 
+     *
+     * Return a list of all group members.
+     *
      * @param {string} iri
      * @returns Observable<User[]>
      */
@@ -67,6 +70,7 @@ export class GroupsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Create new group.
      *
      * @param {Group} group
@@ -85,6 +89,7 @@ export class GroupsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Edit a group.
      *
      * @param {Group} groupInfo
@@ -106,6 +111,7 @@ export class GroupsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Delete a group (set status to false).
      *
      * @param {string} iri
