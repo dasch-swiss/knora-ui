@@ -1,5 +1,5 @@
-@import '../../assets/style/viewer';
-@import '../../assets/style/responsive';
+@import "../../assets/style/viewer";
+@import "../../assets/style/responsive";
 
 $width: 960px;
 
@@ -8,34 +8,25 @@ $width: 960px;
   margin: 0 auto;
   //   position: fixed;
 
-  .resource {
-    .media {
-      width: 800px;
-      height: 500px;
-      display: block;
-      margin: 0 auto;
-      // height: calc(#{$width} / (4 / 3));
-    }
+  .media {
+    height: 500px;
+    display: block;
+    margin: 0 auto;
+    // height: calc(#{$width} / (4 / 3));
+  }
 
-    .data {
-      //   grid-area: main;
-      min-height: 700px;
-      padding: 24px 36px;
+  .data {
+    //   grid-area: main;
+    min-height: 700px;
+    padding: 24px 0;
+  }
 
-      .headline {
-      }
+  .links {
+    //   grid-area: right;
+    //      grid-column: span 2;
+  }
 
-      .properties {
-      }
-    }
-
-    .links {
-      //   grid-area: right;
-      //      grid-column: span 2;
-    }
-
-    .footer {
-    }
+  .footer {
   }
 }
 
@@ -78,12 +69,12 @@ $width: 960px;
 */
 
 // mobile device: phone
-@media (max-width: map-get($grid-breakpoints, phone)) { 
+@media (max-width: map-get($grid-breakpoints, phone)) {
   .resource-view {
     .resource {
       .media {
         width: auto;
       }
     }
-  }  
+  }
 }

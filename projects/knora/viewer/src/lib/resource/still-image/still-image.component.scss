@@ -1,5 +1,5 @@
 // sizes
-$max-width: 800px;
+$max-width: 960px;
 $nav-width: 36px;
 
 $osd-width: calc(100% - (2 * #{$nav-width}));
@@ -60,26 +60,26 @@ $bright: #ccc;
   }
 }
 
-
 /*
  Overlay styling
  */
 
- ::ng-deep .roi-svgoverlay {
+::ng-deep .roi-svgoverlay {
   filter: alpha(opacity=40);
   opacity: 0.4;
   fill: transparent;
-  stroke: #00695C;
+  stroke: #00695c;
   stroke-width: 2px;
   vector-effect: non-scaling-stroke;
 }
 
-::ng-deep .roi-svgoverlay:hover, .roi-svgoverlay:focus {
+::ng-deep .roi-svgoverlay:hover,
+.roi-svgoverlay:focus {
   filter: alpha(opacity=100);
-  opacity: 1.0;
+  opacity: 1;
 }
 
 ::ng-deep .roi-svgoverlay.active {
   filter: alpha(opacity=100);
-  opacity: 1.0;
+  opacity: 1;
 }

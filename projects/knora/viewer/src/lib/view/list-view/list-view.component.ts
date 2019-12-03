@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { KnoraConstants, OntologyInformation } from '@knora/core';
 import { Router } from '@angular/router';
+import { IResourceClassAndPropertyDefinitions, ReadResource } from '@knora/api';
 
 @Component({
     selector: 'kui-list-view',
@@ -12,12 +13,12 @@ export class ListViewComponent {
     /**
      * @param  {any} result Search result received from SearchResultsComponent
      */
-    @Input() result: any;
+    @Input() result: ReadResource[];
 
     /**
-     * @param  {OntologyInformation} ontologyInfo Ontology information received from SearchResultsComponent
+     * @param  {IResourceClassAndPropertyDefinitions} ontologyInfo Ontology information received from SearchResultsComponent
      */
-    @Input() ontologyInfo: OntologyInformation;
+    @Input() ontologyInfo: IResourceClassAndPropertyDefinitions;
 
     // @Input() isLoading: boolean;
 
@@ -25,7 +26,9 @@ export class ListViewComponent {
 
     constructor(
         private _router: Router
-    ) { }
+    ) {
+
+    }
 
     /**
      * Navigate to the resource viewer when clicking on one resource of the search result list

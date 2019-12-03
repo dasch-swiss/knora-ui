@@ -4,33 +4,19 @@
     <mat-list class="list-view lv-items" *ngFor="let res of result; let i = index; let last = last;">
         <mat-list-item class="link" (click)="openResource(res.id)">
             <mat-icon matListIcon>image_search</mat-icon>
-            <p matLine class="lv-res-label">{{ontologyInfo?.getLabelForResourceClass(res.type)}}</p>
+            <p matLine class="lv-res-label">{{res.entityInfo.classes[res.type].label}}</p>
             <h3 matLine class="lv-label">{{res.label}}</h3>
 
             <div matLine *ngFor="let prop of res.properties | kuiKey">
 
                 <div matLine *ngFor="let val of prop.value | kuiKey">
 
-                    <div [ngSwitch]="val.value.getClassName()">
-                        <span *ngIf="ontologyInfo?.getLabelForProperty(prop.key) !== 'Text'" class="lv-prop-label">
-                            {{ontologyInfo?.getLabelForProperty(prop.key)}}:&nbsp;
-                        </span>
+                    <span class="lv-prop-label">
+                        {{res.entityInfo.properties[val.value.property].label}}:&nbsp;
+                    </span>
 
-                        <div class="lv-html-text">
-
-                            <div *ngSwitchCase="KnoraConstants.ReadTextValueAsHtml">
-                                <kui-text-value-as-html [valueObject]="val.value" [ontologyInfo]="ontologyInfo" [bindEvents]="false"></kui-text-value-as-html>
-                            </div>
-
-                            <kui-date-value *ngSwitchCase="KnoraConstants.ReadDateValue" [valueObject]="val.value" [calendar]="true" [era]="true"></kui-date-value>
-
-                            <span *ngSwitchDefault="">{{val.value.getContent()}}</span>
-
-                            <!-- slice the end of long texts -->
-                            <p class="lv-read-more"></p>
-
-                        </div>
-
+                    <div class="lv-html-text">
+                        {{val.value.strval | kuiTruncate:['256', '...']}}
                     </div>
 
                 </div>

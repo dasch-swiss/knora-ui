@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChange } from '@angular/core';
-import { KnoraConstants, Point2D, ReadGeomValue, ReadResource, ReadStillImageFileValue, Region, RegionGeometry } from '@knora/core';
+import { KnoraConstants, Point2D, ReadGeomValue, ReadResource, Region, RegionGeometry } from '@knora/core';
+import { ReadStillImageFileValue } from '@knora/api';
 
 
 // This component needs the openseadragon library itself, as well as the openseadragon plugin openseadragon-svg-overlay
@@ -20,7 +21,7 @@ export class ImageRegion {
      *
      * @param regionResource a resource of type Region
      */
-    constructor (readonly regionResource: ReadResource) {
+    constructor(readonly regionResource: ReadResource) {
 
     }
 
@@ -44,7 +45,7 @@ export class StillImageRepresentation {
      * @param stillImageFileValue a [[ReadStillImageFileValue]] representing an image.
      * @param regions the regions belonging to the image.
      */
-    constructor (readonly stillImageFileValue: ReadStillImageFileValue, readonly regions: Region[]) {
+    constructor(readonly stillImageFileValue: ReadStillImageFileValue, readonly regions: Region[]) {
 
     }
 
@@ -60,7 +61,7 @@ export class GeometryForRegion {
      * @param geometry the geometrical information.
      * @param region the region the geometry belongs to.
      */
-    constructor (readonly geometry: RegionGeometry, readonly region: ReadResource) {
+    constructor(readonly geometry: RegionGeometry, readonly region: ReadResource) {
     }
 
 }
@@ -86,7 +87,7 @@ interface PolygonsForRegion {
 })
 export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
 
-    @Input() images: StillImageRepresentation[];
+    @Input() images: ReadStillImageFileValue[];
     @Input() imageCaption?: string;
     @Input() activateRegion: string; // highlight a region
 
@@ -128,7 +129,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         const tileSources = [];
 
         for (const image of imagesToDisplay) {
-            const sipiBasePath = image.imageServerIIIFBaseURL + '/' + image.imageFilename;
+            const sipiBasePath = image.iiifBaseUrl + '/' + image.filename;
             const width = image.dimX;
             const height = image.dimY;
 
@@ -159,7 +160,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         return tileSources;
     }
 
-    constructor (private elementRef: ElementRef) {
+    constructor(private elementRef: ElementRef) {
     }
 
     ngOnChanges(changes: { [key: string]: SimpleChange }) {
@@ -285,8 +286,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         });
 
         const fileValues: ReadStillImageFileValue[] = this.images.map(
-            (img) => {
-                return img.stillImageFileValue;
+            (img: ReadStillImageFileValue) => {
+                return img;
             });
 
         this.viewer.addHandler('page', function (event) {
@@ -316,8 +317,8 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         // see also: https://openseadragon.github.io/examples/viewport-coordinates/
 
         const fileValues: ReadStillImageFileValue[] = this.images.map(
-            (img) => {
-                return img.stillImageFileValue;
+            (img: ReadStillImageFileValue) => {
+                return img;
             });
 
         // display only the defined range of this.images
@@ -359,10 +360,11 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
         let imageXOffset = 0; // see documentation in this.openImages() for the usage of imageXOffset
 
         for (const image of this.images) {
-            const aspectRatio = (image.stillImageFileValue.dimY / image.stillImageFileValue.dimX);
+            const aspectRatio = (image.dimY / image.dimX);
 
             // collect all geometries belonging to this page
             const geometries: GeometryForRegion[] = [];
+            /* TODO: knora-api-js-lib integration needs another region handling?
             image.regions.map((reg) => {
 
                 this.regions[reg.regionResource.id] = [];
@@ -405,6 +407,7 @@ export class StillImageComponent implements OnInit, OnChanges, OnDestroy {
                 this.createSVGOverlay(geom.region.id, geometry, aspectRatio, imageXOffset, geom.region.label);
 
             }
+            */
 
             imageXOffset++;
         }
