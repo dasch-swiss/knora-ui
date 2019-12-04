@@ -9,6 +9,7 @@ import { KuiCoreConfigToken } from '../../core.module';
 
 /**
  * @deprecated since v9.5.0
+ *
  * Use the class ListsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.
  */
 @Injectable({

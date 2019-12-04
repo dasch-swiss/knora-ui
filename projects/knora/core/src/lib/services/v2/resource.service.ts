@@ -13,6 +13,7 @@ import { OntologyCacheService, OntologyInformation } from './ontology-cache.serv
 
 /**
  * @deprecated since v9.5.0
+ *
  * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
  *
  * Requests representation of resources from Knora.

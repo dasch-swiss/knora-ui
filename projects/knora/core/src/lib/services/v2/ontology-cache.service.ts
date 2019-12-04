@@ -13,6 +13,7 @@ const jsonld = require('jsonld');
 
 /**
  * @deprecated since v9.5.0
+ *
  * Represents an error occurred in OntologyCacheService.
  */
 class OntologyCacheError extends Error {
@@ -25,6 +26,7 @@ class OntologyCacheError extends Error {
 
 /**
  * @deprecated since v9.5.0
+ *
  * Represents an ontology's metadata.
  */
 export class OntologyMetadata {
@@ -45,6 +47,7 @@ export class OntologyMetadata {
 
 /**
  * @deprecated since v9.5.0
+ *
  * Occurrence of a property for a resource class (its cardinality).
  */
 export enum CardinalityOccurrence {
@@ -56,6 +59,7 @@ export enum CardinalityOccurrence {
 
 /**
  * @deprecated since v9.5.0
+ *
  * Cardinality of a property for the given resource class.
  */
 export class Cardinality {
@@ -72,6 +76,7 @@ export class Cardinality {
 }
 /**
  * @deprecated since v9.5.0
+ *
  * Property gui order
  */
 export class GuiOrder {
@@ -88,6 +93,7 @@ export class GuiOrder {
 
 /**
  * @deprecated since v9.5.0
+ *
  * A resource class definition.
  */
 export class ResourceClass {
@@ -113,6 +119,7 @@ export class ResourceClass {
 
 /**
  * @deprecated since v9.5.0
+ *
  * A map of resource class Iris to resource class definitions.
  */
 export class ResourceClasses {
@@ -122,6 +129,7 @@ export class ResourceClasses {
 
 /**
  * @deprecated since v9.5.0
+ *
  * A property definition.
  */
 export class Property {
@@ -152,6 +160,7 @@ export class Property {
 
 /**
  * @deprecated since v9.5.0
+ *
  * A map of property Iris to property definitions.
  */
 export class Properties {
@@ -161,6 +170,7 @@ export class Properties {
 
 /**
  * @deprecated since v9.5.0
+ *
  * Groups resource classes by the ontology they are defined in.
  *
  * A map of ontology Iris to an array of resource class Iris.
@@ -172,6 +182,7 @@ export class ResourceClassIrisForOntology {
 
 /**
  * @deprecated since v9.5.0
+ *
  * Represents cached ontology information (only used by this service internally).
  * This cache is updated whenever new definitions are requested from Knora.
  *
@@ -212,6 +223,7 @@ class OntologyCache {
 
 /**
  * @deprecated since v9.5.0
+ *
  * Represents ontology information requested from this service.
  *
  * For every request, an instance of this class is returned containing the requested information.
@@ -445,6 +457,7 @@ export class OntologyInformation {
 
 /**
  * @deprecated since v9.5.0
+ *
  * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
  *
  * Requests ontology information from Knora and caches it.
