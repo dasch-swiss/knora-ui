@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+
 import { ApiService } from '../api.service';
 import {
     ApiServiceResult,
@@ -12,6 +13,9 @@ import {
 } from '../../declarations/';
 
 /**
+ * @deprecated since v9.5.0
+ * Use the class UsersEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.
+ *
  * This service uses the Knora admin API and handles all user data.
  */
 @Injectable({
@@ -23,6 +27,7 @@ export class UsersService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v9.5.0
      * Returns a list of all users.
      *
      * @returns Observable<User[]>
@@ -35,6 +40,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Get user by username, email or by iri.
      * @ignore
      *
@@ -51,6 +57,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Get user by IRI
      *
      * @param  {string} iri
@@ -61,6 +68,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Get user by email
      *
      * @param  {string} email
@@ -71,6 +79,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Get user by username.
      *
      * @param  {string} username
@@ -81,6 +90,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Get all groups, where the user is member of
      *
      * @param  {string} userIri
@@ -100,6 +110,7 @@ export class UsersService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v9.5.0
      * Create new user.
      *
      * @param {any} data
@@ -114,6 +125,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Add user to a project.
      *
      * @param {string} userIri
@@ -129,6 +141,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Remove user from project.
      *
      * @param {string} userIri
@@ -144,6 +157,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Add user to the admin group of a project.
      *
      * @param {string} userIri
@@ -159,6 +173,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Delete user from the admin group of a project.
      *
      * @param {string} userIri
@@ -174,6 +189,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Add user to project specific group
      *
      * @param {string} userIri
@@ -190,6 +206,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * remove user from project specific group
      *
      * @param {string} userIri
@@ -212,6 +229,7 @@ export class UsersService extends ApiService {
 
 
     /**
+     * @deprecated since v9.5.0
      * Add user to the admin system.
      *
      * @param {string} userIri
@@ -227,6 +245,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Remove user from the admin system.
      * @param {string} userIri
      * @returns Observable<User>
@@ -240,6 +259,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Update user system admin membership
      * @ignore
      *
@@ -258,6 +278,7 @@ export class UsersService extends ApiService {
 
 
     /**
+     * @deprecated since v9.5.0
      * Activate user.
      *
      * @param {string} userIri
@@ -278,6 +299,7 @@ export class UsersService extends ApiService {
 
 
     /**
+     * @deprecated since v9.5.0
      * Update own password.
      *
      * @param {string} userIri
@@ -300,6 +322,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Update password of another user (not own).
      *
      * @param {string} userIri
@@ -322,6 +345,7 @@ export class UsersService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Update basic user information: given name, family name
      * @param userIri
      * @param data
@@ -342,6 +366,7 @@ export class UsersService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v9.5.0
      * Delete / deactivate user.
      *
      * @param {string} userIri

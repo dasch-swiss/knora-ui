@@ -1,22 +1,28 @@
 import { Inject, Injectable } from '@angular/core';
-import { ApiService } from '../api.service';
 import { HttpClient } from '@angular/common/http';
-import { ApiServiceError, ApiServiceResult } from '../../declarations';
 import { Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
+
+import { ApiService } from '../api.service';
+import { ApiServiceError, ApiServiceResult } from '../../declarations';
 import { KuiCoreConfigToken } from '../../core.module';
 
+/**
+ * @deprecated since v9.5.0
+ * Use the class ListsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class ListService extends ApiService {
 
     constructor(public http: HttpClient,
-                @Inject(KuiCoreConfigToken) public config) {
+        @Inject(KuiCoreConfigToken) public config) {
         super(http, config);
     }
 
     /**
+     * @deprecated since v9.5.0
      * Gets a hierarchical list from Knora.
      *
      * @param {string} rootNodeIri the Iri of the list's root node.
@@ -27,6 +33,7 @@ export class ListService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns a list as expanded JSON-LD.
      *
      * @param {string} rootNodeIri the root node of the list.
@@ -44,6 +51,7 @@ export class ListService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Gets a list node from Knora.
      *
      * @param {string} listNodeIri the Iri of the list node.
@@ -54,6 +62,7 @@ export class ListService extends ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Returns a list node as expanded JSON-LD.
      *
      * @param {string} listNodeIri the Iri of the list node.

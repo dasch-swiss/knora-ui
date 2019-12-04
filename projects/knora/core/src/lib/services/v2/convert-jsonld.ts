@@ -1,12 +1,15 @@
 import { CountQueryResult, KnoraConstants, ReadAudioFileValue, ReadBooleanValue, ReadColorValue, ReadDateValue, ReadDDDFileValue, ReadDecimalValue, ReadDocumentFileValue, ReadGeomValue, ReadIntegerValue, ReadIntervalValue, ReadLinkValue, ReadListValue, ReadMovingImageFileValue, ReadProperties, ReadPropertyItem, ReadResource, ReadResourcesSequence, ReadStillImageFileValue, ReadTextFileValue, ReadTextValueAsHtml, ReadTextValueAsString, ReadTextValueAsXml, ReadUriValue, ReferredResourcesByStandoffLink, Resource, Utils, ResourcesSequence } from '../../declarations';
 
 /**
+ * @deprecated since v9.5.0
+ *
  * Contains methods to convert JSON-LD representing resources and properties to classes.
  * These methods works only for instances of resources and properties, not for ontologies (data model).
  */
 export module ConvertJSONLD {
 
     /**
+     * @deprecated since v9.5.0
      * Function to be passed to a filter used on an array of property names
      * sorting out all non value property names.
      *
@@ -31,7 +34,7 @@ export module ConvertJSONLD {
 
 
     /**
-     * @deprecated Use **constructResource** instead
+     * @deprecated Use the function **constructResource** instead - see below
      *
      * Constructs a [[ReadResource]] from JSON-LD.
      * Expects JSON-LD with all Iris fully expanded.
@@ -55,6 +58,9 @@ export module ConvertJSONLD {
         );
     }
 
+    /**
+     * @deprecated since v9.5.0
+     */
     function constructResource(resourceJSONLD: object): Resource {
 
         const properties: ReadProperties = constructReadProperties(resourceJSONLD);
@@ -72,6 +78,7 @@ export module ConvertJSONLD {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Constructs a [[ReadPropertyItem]] from JSON-LD,
      * taking into account the property's value type.
      * Expects JSON-LD with all Iris fully expanded.
@@ -367,6 +374,7 @@ export module ConvertJSONLD {
 
 
     /**
+     * @deprecated since v9.5.0
      * Construct a [[ReadProperties]] from JSON-LD.
      * Expects JSON-LD with all Iris fully expanded.
      *
@@ -446,6 +454,7 @@ export module ConvertJSONLD {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Turns an API response in JSON-LD representing a sequence of resources into a [[ReadResourcesSequence]].
      * Expects JSON-LD with all Iris fully expanded.
      *
@@ -490,6 +499,11 @@ export module ConvertJSONLD {
 
     }
 
+    /**
+     * @deprecated since v9.5.0
+     * @param resourcesResponseJSONLD
+     * @returns ResourcesSequence
+     */
     export function createResourcesSequenceFromJsonLD(resourcesResponseJSONLD: object): ResourcesSequence {
 
         const resources: Array<Resource> = [];
@@ -529,6 +543,7 @@ export module ConvertJSONLD {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Collects all the types (classes) of referred resources from a given resource (from its linking properties).
      * Expects JSON-LD with all Iris fully expanded.
      *
@@ -589,6 +604,7 @@ export module ConvertJSONLD {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Gets the resource types (classes) from a JSON-LD representing a sequence of resources.
      * Expects JSON-LD with all Iris fully expanded.
      *
@@ -636,6 +652,7 @@ export module ConvertJSONLD {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Turns a JSON-LD response to a count query into a `CountQueryResult`.
      * Expects JSON-LD with all Iris fully expanded.
      *

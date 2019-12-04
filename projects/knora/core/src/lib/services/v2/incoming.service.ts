@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SearchService } from './search.service';
+
 import { ReadResourcesSequence, ResourcesSequence } from '../../declarations';
 
+import { SearchService } from './search.service';
+
 /**
+ * @deprecated since v9.5.0
+ * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
+ *
  * Requests incoming information (regions, links, stillImageRepresentations) from Knora.
  */
 @Injectable({
@@ -17,6 +22,7 @@ export class IncomingService extends SearchService {
     // ------------------------------------------------------------------------
 
     /**
+    * @deprecated since v9.5.0
     * Returns all incoming regions for a particular resource.
     *
     * @param {string} resourceIRI the Iri of the resource whose Incoming regions should be returned.
@@ -70,6 +76,7 @@ knora-api:hasColor knora-api:objectType knora-api:Color .
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v9.5.0
      * Returns all the StillImageRepresentations for the given resource, if any.
      * StillImageRepresentations link to the given resource via knora-base:isPartOf.
      *
@@ -168,6 +175,7 @@ FILTER NOT EXISTS {
 
 
     /**
+     * @deprecated since v9.5.0
      * Returns all incoming links for the given resource Iri.
      *
      * @param {string} resourceIri the Iri of the resource whose incoming links should be returned.

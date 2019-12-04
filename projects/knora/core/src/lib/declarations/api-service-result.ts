@@ -2,6 +2,9 @@
 import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
 
 /**
+ * @deprecated since v9.5.0
+ * Use ApiResponseData from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.
+ *
  * Result class used as API url response in ApiService
  */
 export class ApiServiceResult {
@@ -34,12 +37,13 @@ export class ApiServiceResult {
     body: any;
 
     /**
+     * @deprecated since v9.5.0
      * Gets the result body as instance of classObject.
+     *
      * @param classObject
      * @returns {any}
      * @throws
      */
-
     getBody(classObject?: { new(): any }): any {
         // console.log(this.body);
         return ApiServiceResult.jsonConvert.deserialize(this.body, classObject);

@@ -1,4 +1,5 @@
 /**
+ * @deprecated since v9.5.0 - Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  * Precision for DateSalsah.
  */
 export enum Precision {
@@ -8,6 +9,8 @@ export enum Precision {
 }
 
 /**
+ * @deprecated since v9.5.0 - Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ * 
  * Represents a Salsah date object with a precision information.
  */
 export class DateSalsah {
@@ -37,6 +40,8 @@ export class DateSalsah {
     }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * Returns a string representation of the date without the calendar.
      *
      * @returns {string}
@@ -72,6 +77,8 @@ export class DateSalsah {
     }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * Returns a string representation of the date (with calendar).
      *
      * @returns {string}
@@ -84,6 +91,8 @@ export class DateSalsah {
 }
 
 /**
+ * @deprecated since v9.5.0 - Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ *
  * Represents a period (with start date and end date).
  */
 export class DateRangeSalsah {
@@ -95,6 +104,8 @@ export class DateRangeSalsah {
     }
 
     /**
+     * @deprecated since v9.5.0
+     * 
      * Returns a string representation of the date range (with preceding calendar).
      *
      * @returns {string}

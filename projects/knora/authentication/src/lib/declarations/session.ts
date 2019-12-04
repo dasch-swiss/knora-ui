@@ -1,20 +1,10 @@
-import { JsonObject, JsonProperty } from 'json2typescript';
 import { CurrentUser } from './current-user';
 
-/*
-
-@JsonObject
-export class Session {
-
-    @JsonProperty('id', Number)
-    public id: number = undefined;
-
-    @JsonProperty('user', CurrentUser)
-    public user: CurrentUser = undefined;
-
-}
-*/
-
+/**
+ * @deprecated since v9.5.0
+ * This class has been moved to session.service in knora/core.
+ * Update your import path.
+ */
 export interface Session {
     id: number;
     user: CurrentUser;

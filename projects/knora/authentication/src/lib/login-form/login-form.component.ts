@@ -1,9 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiServiceError, LogoutResponse } from '@knora/core';
+
 import { AuthenticationService } from '../authentication.service';
 import { SessionService } from '../session/session.service';
 
+/**
+ * @deprecated since v9.5.0
+ * This component has been moved to knora/action. Update your import path.
+ */
 @Component({
     selector: 'kui-login-form',
     templateUrl: './login-form.component.html',
@@ -83,7 +88,7 @@ export class LoginFormComponent implements OnInit {
     };
 
 
-    constructor (private _auth: AuthenticationService,
+    constructor(private _auth: AuthenticationService,
         private _session: SessionService,
         private _fb: FormBuilder) {
     }
@@ -99,6 +104,9 @@ export class LoginFormComponent implements OnInit {
         }
     }
 
+    /**
+     * @deprecated since v9.5.0
+     */
     buildForm(): void {
         this.form = this._fb.group({
             username: ['', Validators.required],
@@ -107,6 +115,9 @@ export class LoginFormComponent implements OnInit {
 
     }
 
+    /**
+     * @deprecated since v9.5.0
+     */
     login() {
 
         this.loading = true;
@@ -144,6 +155,9 @@ export class LoginFormComponent implements OnInit {
 
     }
 
+    /**
+     * @deprecated since v9.5.0
+     */
     logout() {
 
         this._auth.logout().subscribe(

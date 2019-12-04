@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ExtendedSearchParams, SearchParamsService } from './search-params.service';
+
 import { KnoraConstants, KnoraSchema } from '../../declarations';
 import { PropertyWithValue } from '../../declarations/api/operators';
 
+import { ExtendedSearchParams, SearchParamsService } from './search-params.service';
+
 /**
+ * @deprecated since v9.5.0
+ * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
+ *
  * Create GravSearch queries from provided parameters.
  */
 @Injectable({
@@ -50,6 +55,7 @@ export class GravsearchGenerationService {
     constructor(private _searchParamsService: SearchParamsService) { }
 
     /**
+     * @deprecated since v9.5.0
      * Generates a Gravsearch query from the provided arguments.
      *
      * @param {PropertyWithValue[]} properties the properties specified by the user.

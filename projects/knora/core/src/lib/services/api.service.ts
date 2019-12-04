@@ -3,18 +3,22 @@ import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angula
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
+import { from } from 'rxjs';
+
 import { ApiServiceError } from '../declarations/api-service-error';
 import { ApiServiceResult } from '../declarations/api-service-result';
-import { from } from 'rxjs';
 import { KuiCoreConfigToken } from '../core.module';
 import { KnoraConstants } from '../declarations/api/knora-constants';
-
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
 
 const semver = require('semver');
 
+/**
+ * @deprecated since v9.5.0
+ * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
+ */
 @Injectable({
     providedIn: 'root',
 })
@@ -25,13 +29,14 @@ export abstract class ApiService {
     // for progress loader element
     loading = false;
 
-    protected constructor (public http: HttpClient,
+    protected constructor(public http: HttpClient,
         @Inject(KuiCoreConfigToken) public config) {
 
         // console.log('ApiService constructor: config', config);
     }
 
     /**
+     * @deprecated since v9.5.0
      * GET
      *
      * @param {string} path the URL for the GET request.
@@ -66,6 +71,7 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * Processes JSON-LD returned by Knora.
      * Expands Iris and creates an empty context object.
      *
@@ -86,6 +92,7 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * POST
      *
      * @param {string} path
@@ -123,6 +130,7 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * PUT
      *
      * @param {string} path
@@ -162,6 +170,7 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * DELETE
      *
      * @param {string} path
@@ -201,6 +210,7 @@ export abstract class ApiService {
 
 
     /**
+     * @deprecated since v9.5.0
      * handle request error in case of server error
      *
      * @param {HttpErrorResponse} error
@@ -218,6 +228,7 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
      * handle json error in case of type error in json response (json2typescript)
      *
      * @param {any} error
@@ -237,6 +248,12 @@ export abstract class ApiService {
 
     }
 
+    /**
+     * @deprecated since v9.5.0
+     *
+     * @param server
+     * @returns void
+     */
     protected compareVersion(server: string): void {
 
         // expected knora api version
