@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
-        "html": "<p>since v9.5.0 Request information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
+        "string": "since v9.5.0 \nRequest information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
+        "html": "<p>since v9.5.0<br />\nRequest information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
       }
     ],
     "description": {
@@ -18,8 +18,8 @@
     "isEvent": false,
     "ignore": false,
     "line": 4,
-    "codeStart": 8,
-    "code": "@Injectable({\n  providedIn: 'root'\n})\nexport class LanguageService {\n\n  private subject = new Subject<any>();",
+    "codeStart": 9,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class LanguageService {\n\n    private subject = new Subject<any>();",
     "ctx": false
   },
   {
@@ -53,9 +53,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 15,
-    "codeStart": 19,
-    "code": "setLanguage(lang: string) {\n  this.subject.next({ var: lang });\n}",
+    "line": 16,
+    "codeStart": 20,
+    "code": "setLanguage(lang: string) {\n    this.subject.next({ var: lang });\n}",
     "ctx": {
       "type": "method",
       "name": "setLanguage",
@@ -80,9 +80,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 23,
-    "codeStart": 26,
-    "code": "getLanguage(): Observable<any> {\n  return this.subject.asObservable();\n}\n\n}",
+    "line": 24,
+    "codeStart": 27,
+    "code": "getLanguage(): Observable<any> {\n    return this.subject.asObservable();\n}\n\n}",
     "ctx": {
       "type": "method",
       "name": "getLanguage",

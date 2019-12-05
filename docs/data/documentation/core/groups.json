@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Use the class GroupsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.",
-        "html": "<p>since v9.5.0 Use the class GroupsEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>"
+        "string": "since v9.5.0 \nUse the class GroupsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.",
+        "html": "<p>since v9.5.0<br />\nUse the class GroupsEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>"
       }
     ],
     "description": {
@@ -18,7 +18,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 8,
-    "codeStart": 12,
+    "codeStart": 13,
     "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class GroupsService extends ApiService {\n\n    private path: string = '/admin/groups';\n\n    // ------------------------------------------------------------------------\n    // GET\n    // ------------------------------------------------------------------------",
     "ctx": false
   },
@@ -51,8 +51,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 23,
-    "codeStart": 30,
+    "line": 24,
+    "codeStart": 31,
     "code": "getAllGroups(): Observable<Group[]> {\n    return this.httpGet(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupsResponse).groups),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -104,8 +104,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 37,
-    "codeStart": 45,
+    "line": 38,
+    "codeStart": 46,
     "code": "getGroupByIri(iri: string): Observable<Group> {\n    return this.httpGet(this.path + '/' + encodeURIComponent(iri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -157,8 +157,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 52,
-    "codeStart": 60,
+    "line": 53,
+    "codeStart": 61,
     "code": "getAllGroupMembers(iri: string): Observable<User[]> {\n    return this.httpGet(this.path + '/' + encodeURIComponent(iri) + '/members').pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupMembersResponse).members),\n        catchError(this.handleJsonError)\n    );\n}\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -210,8 +210,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 71,
-    "codeStart": 79,
+    "line": 72,
+    "codeStart": 80,
     "code": "createGroup(group: Group): Observable<Group> {\n    return this.httpPost(this.path, group).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}\n\n// ------------------------------------------------------------------------\n// PUT\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -263,8 +263,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 90,
-    "codeStart": 98,
+    "line": 91,
+    "codeStart": 99,
     "code": "updateGroup(groupInfo: Group): Observable<Group> {\n    return this.httpPut(this.path + '/' + encodeURIComponent(groupInfo.id), groupInfo).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}\n\n// NOT IMPLEMENTED - PUT: /admin/groups/<groupIri>/status : update group’s status\n\n\n// ------------------------------------------------------------------------\n// DELETE\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -316,8 +316,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 112,
-    "codeStart": 120,
+    "line": 113,
+    "codeStart": 121,
     "code": "deleteGroup(iri: string): Observable<Group> {\n    return this.httpDelete(this.path + '/' + encodeURIComponent(iri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}\n\n}",
     "ctx": {
       "type": "method",

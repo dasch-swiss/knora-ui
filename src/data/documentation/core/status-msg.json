@@ -1,12 +1,6 @@
 [
   {
-    "tags": [
-      {
-        "type": "deprecated",
-        "string": "since v9.5.0 Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
-        "html": "<p>since v9.5.0 Request information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
-      }
-    ],
+    "tags": [],
     "description": {
       "full": "",
       "summary": "",
@@ -17,22 +11,16 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9,
+    "line": 10,
     "codeStart": 13,
     "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class StatusMsgService {\n\n    constructor(private _http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config) {\n    }",
     "ctx": false
   },
   {
-    "tags": [
-      {
-        "type": "deprecated",
-        "string": "since v9.5.0 this method get the status messages from the statusMsg.json file\nwhich are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes\nand here: http://www.w3schools.com/tags/ref_httpmessages.asp",
-        "html": "<p>since v9.5.0 this method get the status messages from the statusMsg.json file<br />\nwhich are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes<br />\nand here: http://www.w3schools.com/tags/ref_httpmessages.asp</p>"
-      }
-    ],
+    "tags": [],
     "description": {
-      "full": "",
-      "summary": "",
+      "full": "<p>this method get the status messages from the statusMsg.json file<br />\nwhich are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes<br />\nand here: http://www.w3schools.com/tags/ref_httpmessages.asp</p>",
+      "summary": "<p>this method get the status messages from the statusMsg.json file<br />\nwhich are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes<br />\nand here: http://www.w3schools.com/tags/ref_httpmessages.asp</p>",
       "body": ""
     },
     "isPrivate": false,
@@ -41,7 +29,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 22,
-    "codeStart": 29,
+    "codeStart": 28,
     "code": "getStatusMsg(): Observable<any> {\n\n    return this._http.get(this.config.app + '/assets/i18n/statusMsg.json')\n        .pipe(map(\n            (res: any) => {\n                return res;\n            },\n            err => {\n                console.error(err);\n            }\n        )\n        );\n\n}\n}",
     "ctx": {
       "type": "method",

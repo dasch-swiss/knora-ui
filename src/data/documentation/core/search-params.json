@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Represents the parameters of an extended search.",
-        "html": "<p>since v9.5.0 Represents the parameters of an extended search.</p>"
+        "string": "since v9.5.0 \nRepresents the parameters of an extended search.",
+        "html": "<p>since v9.5.0<br />\nRepresents the parameters of an extended search.</p>"
       }
     ],
     "description": {
@@ -18,7 +18,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 5,
-    "codeStart": 9,
+    "codeStart": 10,
     "code": "export class ExtendedSearchParams {",
     "ctx": {
       "type": "class",
@@ -54,8 +54,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 11,
-    "codeStart": 19,
+    "line": 12,
+    "codeStart": 20,
     "code": "constructor(public generateGravsearch: (offset: number) => string | boolean) {\n\n}\n\n}",
     "ctx": {
       "type": "constructor",
@@ -69,8 +69,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
-        "html": "<p>since v9.5.0 Request information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
+        "string": "since v9.5.0 \nRequest information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
+        "html": "<p>since v9.5.0<br />\nRequest information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
       }
     ],
     "description": {
@@ -83,8 +83,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 25,
-    "codeStart": 29,
+    "line": 26,
+    "codeStart": 31,
     "code": "@Injectable({\n    providedIn: 'root'\n})",
     "ctx": false
   },
@@ -100,8 +100,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 32,
-    "codeStart": 35,
+    "line": 34,
+    "codeStart": 37,
     "code": "export class SearchParamsService {\n\n    private _currentSearchParams;\n\n    constructor() {\n        // init with a dummy function that returns false\n        // if the application is reloaded, this will be returned\n        this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => false));\n    }",
     "ctx": {
       "type": "class",
@@ -156,8 +156,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 45,
-    "codeStart": 53,
+    "line": 47,
+    "codeStart": 55,
     "code": "changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {\n    this._currentSearchParams.next(searchParams);\n}",
     "ctx": {
       "type": "method",
@@ -196,8 +196,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 57,
-    "codeStart": 64,
+    "line": 59,
+    "codeStart": 66,
     "code": "getSearchParams(): ExtendedSearchParams {\n    return this._currentSearchParams.getValue();\n}\n\n}",
     "ctx": {
       "type": "method",

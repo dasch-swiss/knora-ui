@@ -8,31 +8,43 @@ export class JsdocDeprPipe implements PipeTransform {
 
     description: string;
 
+    ghLink: string = 'dasch-swiss/knora-api-js-lib';
+
     constructor(private _sanitizer: DomSanitizer) {
     }
 
     transform(str: string): SafeHtml {
         const array = str.split('\n');
 
+        const brReg: RegExp = new RegExp('\n', 'gi');
+        str.replace(brReg, '<br>');
+
         this.description = array[1];
 
         if (this.description) {
-            const descArray = this.description.split('github:');
 
-            this.description = descArray[0];
+            const regexp: RegExp = new RegExp('github:' + this.ghLink, 'gi');
+
+            this.description.replace(regexp, '<a href="https://github.com/"' + this.ghLink + '>' + this.ghLink + '</a>');
+
+            console.log(this.description);
+
+            // const descArray = this.description.split('github:');
+
+            // this.description = descArray[0];
 
             const npmArray = this.description.split('`');
 
-            console.log(npmArray);
+            // console.log(npmArray);
 
             if (npmArray[1]) {
                 this.description = npmArray[0] + '<code>' + npmArray[1] + '</code>' + npmArray[2];
             }
 
-            if (descArray[1]) {
-                this.description += '<a href="https://github.com/' + descArray[1] + '">' + descArray[1] + '</a>';
-                console.log('description with link', this.description);
-            }
+            // if (descArray[1]) {
+            //     this.description += '<a href="https://github.com/' + descArray[1] + '">' + descArray[1] + '</a>';
+            //     console.log('description with link', this.description);
+            // }
         } else {
             this.description = '';
         }

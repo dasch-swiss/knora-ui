@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).\n\nRequests representation of resources from Knora.",
-        "html": "<p>since v9.5.0 Request information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>\n<p>Requests representation of resources from Knora.</p>"
+        "string": "since v9.5.0 \nRequest information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).\n\nRequests representation of resources from Knora.",
+        "html": "<p>since v9.5.0<br />\nRequest information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>\n<p>Requests representation of resources from Knora.</p>"
       }
     ],
     "description": {
@@ -18,7 +18,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 14,
-    "codeStart": 20,
+    "codeStart": 21,
     "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ResourceService extends ApiService {\n\n    constructor(public http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config,\n        private _incomingService: IncomingService,\n        private _ontologyCacheService: OntologyCacheService) {\n        super(http, config);\n    }",
     "ctx": false
   },
@@ -65,8 +65,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 32,
-    "codeStart": 40,
+    "line": 33,
+    "codeStart": 41,
     "code": "// this should return a resource object with incoming links, annotations, file representations\n// it includes a property: FileRepresentation to display with the parameters for the media type viewer\ngetResource(iri: string): Observable<ResourcesSequence | ApiServiceError> {\n\n    const res: Observable<ApiServiceResult | ApiServiceError> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));\n\n    return res.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        ),\n        mergeMap(\n            // return Observable of ReadResourcesSequence\n            (resourceResponse: object) => {\n                // convert JSON-LD into a ReadResourceSequence\n                const resSeq: ResourcesSequence = ConvertJSONLD.createResourcesSequenceFromJsonLD(resourceResponse);\n\n                // collect resource class Iris\n                const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);\n\n                const res0 = resSeq.resources[0];\n\n                // set file representation to display\n\n                const propKeys: string[] = Object.keys(res0.properties);\n                switch (true) {\n                    case propKeys.includes(KnoraConstants.hasStillImageFileValue):\n                        // res.fileRepresentationsToDisplay[0] = res.properties[KnoraConstants.hasStillImageFileValue];\n\n                        const imgRepresentations: StillImageRepresentation[] = [];\n\n                        const fileValues: ReadStillImageFileValue[] = res0.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];\n                        const imagesToDisplay: ReadStillImageFileValue[] = fileValues.filter((image) => {\n                            return !image.isPreview;\n                        });\n\n                        for (const img of imagesToDisplay) {\n\n                            const regions: Region[] = [];\n                            for (const incomingRegion of res0.incomingAnnotations) {\n\n                                // TODO: change return type in Region from ReadResource into Resource\n                                // const region = new Region(incomingRegion);\n\n                                // regions.push(region);\n\n                            }\n\n                            const stillImage = new StillImageRepresentation(img, regions);\n                            imgRepresentations.push(stillImage);\n\n                        }\n\n                        res0.fileRepresentationsToDisplay.stillImage = imgRepresentations;\n\n                        break;\n                    case propKeys.includes(KnoraConstants.hasMovingImageFileValue):\n                        // res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasMovingImageFileValue];\n                        break;\n                    case propKeys.includes(KnoraConstants.hasAudioFileValue):\n                        // res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasAudioFileValue];\n                        break;\n                    case propKeys.includes(KnoraConstants.hasDocumentFileValue):\n                        // res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDocumentFileValue];\n                        break;\n                    case propKeys.includes(KnoraConstants.hasDDDFileValue):\n                        // res0.fileRepresentationsToDisplay = res0.properties[KnoraConstants.hasDDDFileValue];\n                        break;\n\n                    // TODO: TextFileValue\n\n                    default:\n                        // look for incoming fileRepresentation to display\n                        // get incoming stillImage files\n                        this._incomingService.getStillImageRepresentationsForCompoundResource(res0.id, 0).subscribe(\n                            (incomingFiles: ReadResourcesSequence) => {\n\n                                // console.log('incomingFiles', incomingFiles);\n\n                                if (incomingFiles.resources.length > 0) {\n                                    // update ontology information\n                                    resSeq.ontologyInformation.updateOntologyInformation(incomingFiles.ontologyInformation);\n\n\n                                    // set current offset\n                                    // this.incomingStillImageRepresentationCurrentOffset = offset;\n\n                                    // TODO: implement prepending of StillImageRepresentations when moving to the left (getting previous pages)\n                                    // TODO: append existing images to response and then assign response to `this.resource.incomingStillImageRepresentations`\n                                    // TODO: maybe we have to support non consecutive arrays (sparse arrays)\n\n                                    // append incomingImageRepresentations.resources to this.resource.incomingStillImageRepresentations\n\n                                    Array.prototype.push.apply(res0.incomingFileRepresentations, incomingFiles.resources);\n                                    // Array.prototype.push.apply(resSeq.resources[0].incomingFileRepresentations, incomingImageRepresentations.resources);\n\n                                    const incomingImgRepresentations: StillImageRepresentation[] = [];\n\n                                    for (const inRes of incomingFiles.resources) {\n\n\n\n                                        const incomingFileValues: ReadStillImageFileValue[] = inRes.properties[KnoraConstants.hasStillImageFileValue] as ReadStillImageFileValue[];\n                                        const incomingImagesToDisplay: ReadStillImageFileValue[] = incomingFileValues.filter((image) => {\n                                            return !image.isPreview;\n                                        });\n\n                                        for (const img of incomingImagesToDisplay) {\n\n                                            const regions: Region[] = [];",
     "ctx": false
   },
@@ -82,8 +82,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 150,
-    "codeStart": 161,
+    "line": 151,
+    "codeStart": 162,
     "code": "const stillImage = new StillImageRepresentation(img, regions);\nincomingImgRepresentations.push(stillImage);\n\n                                            }\n\n                                            res0.fileRepresentationsToDisplay.stillImage = incomingImgRepresentations;\n\n                                        }\n\n\n                                        // prepare attached image files to be displayed\n                                        // BeolResource.collectImagesAndRegionsForResource(this.resource);\n                                    }\n                                },\n                                (error: any) => {\n                                    console.error(error);\n                                }\n                            );\n                    }\n\n\n                    // get incoming links\n                    this._incomingService.getIncomingLinks(resSeq.resources[0].id, 0).subscribe(\n                        (incomingRes: ResourcesSequence) => {\n                            // update ontology information\n                            resSeq.ontologyInformation.updateOntologyInformation(incomingRes.ontologyInformation);\n\n                            // Append elements incomingResources to this.sequence.incomingLinks\n                            Array.prototype.push.apply(resSeq.resources[0].incomingLinks, incomingRes.resources);\n                        }\n                    );\n\n                    // get incoming annotations\n\n\n                    // request information about resource classes\n                    return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(\n                        map(\n                            (ontoInfo: OntologyInformation) => {\n                                // add ontology information to ReadResourceSequence\n                                resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);\n\n                                // console.log('resSeq -- resourceServie', resSeq);\n\n                                return resSeq;\n                            }\n                        )\n                    );\n                }\n\n            )\n        );\n\n    }",
     "ctx": {
       "type": "declaration",
@@ -134,8 +134,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 216,
-    "codeStart": 222,
+    "line": 217,
+    "codeStart": 223,
     "code": "private getResourcesSequence(iri: string): Observable<ResourcesSequence | ApiServiceError> {\n    const res: Observable<ApiServiceResult | ApiServiceError> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));\n\n    return res.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        ),\n        mergeMap(\n            // return Observable of ReadResourcesSequence\n            (resourceResponse: object) => {\n                // convert JSON-LD into a ReadResourceSequence\n                const resSeq: ResourcesSequence = ConvertJSONLD.createResourcesSequenceFromJsonLD(resourceResponse);\n\n                // collect resource class Iris\n                const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);\n\n\n\n                // request information about resource classes\n                return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(\n                    map(\n                        (ontoInfo: OntologyInformation) => {\n                            // add ontology information to ReadResourceSequence\n                            resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);\n                            return resSeq;\n                        }\n                    )\n                );\n            }\n        )\n    );\n}",
     "ctx": false
   },
@@ -181,8 +181,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 256,
-    "codeStart": 262,
+    "line": 257,
+    "codeStart": 263,
     "code": "requestIncomingResources(sequence: ResourcesSequence): void {\n\n    // make sure that this.sequence has been initialized correctly\n    if (sequence === undefined) {\n        return;\n    }\n\n    // request incoming sequences in case of movingImage and audio\n\n    // request incoming regions in case of stillImage and dddImage\n    if (sequence.resources[0].properties[KnoraConstants.hasStillImageFileValue]) {\n        // TODO: check if resources is a StillImageRepresentation using the ontology responder (support for subclass relations required)\n        // the resource is a StillImageRepresentation, check if there are regions pointing to it\n\n        // this.getIncomingRegions(0);\n\n    } else {\n        // this resource is not a StillImageRepresentation\n        // check if there are StillImageRepresentations pointing to this resource\n\n        // this gets the first page of incoming StillImageRepresentations\n        // more pages may be requested by [[this.viewer]].\n        // TODO: for now, we begin with offset 0. This may have to be changed later (beginning somewhere in a collection)\n        // this.getIncomingStillImageRepresentations(0);\n    }\n\n    // check for incoming links for the current resource\n    // this.getIncomingLinks(0);\n\n\n}",
     "ctx": {
       "type": "method",
@@ -236,8 +236,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 294,
-    "codeStart": 302,
+    "line": 295,
+    "codeStart": 303,
     "code": "getReadResource(iri: string): Observable<ReadResourcesSequence | ApiServiceError> {\n    const res: Observable<ApiServiceResult | ApiServiceError> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));\n\n    // TODO: handle case of an ApiServiceError\n\n    return res.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        ),\n        mergeMap(\n            // return Observable of ReadResourcesSequence\n            (resourceResponse: object) => {\n                // convert JSON-LD into a ReadResourceSequence\n                const resSeq: ReadResourcesSequence = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(resourceResponse);\n\n                // collect resource class Iris\n                const resourceClassIris: string[] = ConvertJSONLD.getResourceClassesFromJsonLD(resourceResponse);\n\n                // request information about resource classes\n                return this._ontologyCacheService.getResourceClassDefinitions(resourceClassIris).pipe(\n                    map(\n                        (ontoInfo: OntologyInformation) => {\n                            // add ontology information to ReadResourceSequence\n                            resSeq.ontologyInformation.updateOntologyInformation(ontoInfo);\n                            return resSeq;\n                        }\n                    )\n                );\n            }\n        )\n    );\n}",
     "ctx": {
       "type": "method",
@@ -278,8 +278,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 336,
-    "codeStart": 344,
+    "line": 337,
+    "codeStart": 345,
     "code": "getResourceAsJsonLd(iri: string): Observable<any> {\n\n    return this.httpGet('/v2/resources/' + encodeURIComponent(iri)).pipe(\n        map((result: ApiServiceResult) => result.body),\n        catchError(this.handleJsonError)\n    );\n\n}",
     "ctx": {
       "type": "method",
@@ -347,8 +347,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 353,
-    "codeStart": 364,
+    "line": 354,
+    "codeStart": 365,
     "code": "deleteResource(iri: string, comment: string = '', erase: boolean = false) {\n    const path: string = (erase ? '/v2/resources/erase' : '/v2/resources/delete');\n\n    // get resource first to have the knora-api:lastModificationDate\n    this.getResourceAsJsonLd(iri).subscribe(\n        (result: any) => {\n            const requestBody: any = {\n                '@id': iri,\n                '@type': result['@type'],\n                '@context': result['@context']\n            };\n\n            // the resource exists; get the info needed in the request body\n            if (result['knora-api:lastModificationDate']) {\n                requestBody['knora-api:lastModificationDate'] = result['knora-api:lastModificationDate'];\n            }\n\n            if (comment.length > 0 && !erase) {\n                requestBody['knora-api:deleteComment'] = comment;\n            }\n\n            // send the request body to the delete route\n            this.httpPost(path, requestBody).subscribe(\n                (resp: any) => {\n                    // TODO: return something here\n                    // console.log(resp);\n                },\n                (err: any) => {\n                    console.error(err);\n                }\n            );\n\n        },\n        (error: ApiServiceError) => {\n            console.error('failed to get resource', error);\n        }\n    );\n\n}",
     "ctx": {
       "type": "method",
@@ -402,8 +402,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 404,
-    "codeStart": 413,
+    "line": 405,
+    "codeStart": 414,
     "code": "eraseResource(iri: string) {\n    // get resource first to have the knora-api:lastModificationDate\n    this.getResourceAsJsonLd(iri).subscribe(\n        (result: any) => {\n            const requestBody: any = {\n                '@id': iri,\n                '@type': result['@type'],\n                '@context': result['@context']\n            };\n\n            // the resource exists; get the info needed in the request body\n            if (result['knora-api:lastModificationDate']) {\n                requestBody['knora-api:lastModificationDate'] = result['knora-api:lastModificationDate'];\n            }\n\n            // send the request body to the delete route\n            this.httpPost('/v2/resources/erase', requestBody).subscribe(\n                (resp: any) => {\n                    // TODO: return something here\n                    // console.log(resp);\n                },\n                (err: any) => {\n                    console.error(err);\n                }\n            );\n\n        },\n        (error: ApiServiceError) => {\n            console.error('failed to get resource', error);\n        }\n    );\n\n}\n\n}",
     "ctx": {
       "type": "method",

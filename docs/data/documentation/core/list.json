@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Use the class ListsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.",
-        "html": "<p>since v9.5.0 Use the class ListsEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>"
+        "string": "since v9.5.0 \nUse the class ListsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.",
+        "html": "<p>since v9.5.0<br />\nUse the class ListsEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>"
       }
     ],
     "description": {
@@ -18,7 +18,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 10,
-    "codeStart": 14,
+    "codeStart": 15,
     "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ListService extends ApiService {\n\n    constructor(public http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config) {\n        super(http, config);\n    }",
     "ctx": false
   },
@@ -68,8 +68,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 24,
-    "codeStart": 32,
+    "line": 25,
+    "codeStart": 33,
     "code": "private getListFromKnora(rootNodeIri: string): Observable<ApiServiceResult | ApiServiceError> {\n    return this.httpGet('/v2/lists/' + encodeURIComponent(rootNodeIri));\n}",
     "ctx": false
   },
@@ -118,8 +118,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 36,
-    "codeStart": 44,
+    "line": 37,
+    "codeStart": 45,
     "code": "getList(rootNodeIri: string): Observable<object> {\n    const listJSONLD = this.getListFromKnora(rootNodeIri);\n\n    return listJSONLD.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        )\n    );\n}",
     "ctx": {
       "type": "method",
@@ -173,8 +173,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 55,
-    "codeStart": 63,
+    "line": 56,
+    "codeStart": 64,
     "code": "private getListNodeFromKnora(listNodeIri: string): Observable<ApiServiceResult | ApiServiceError> {\n    return this.httpGet('/v2/node/' + encodeURIComponent(listNodeIri));\n}",
     "ctx": false
   },
@@ -224,8 +224,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 67,
-    "codeStart": 75,
+    "line": 68,
+    "codeStart": 76,
     "code": "getListNode(listNodeIri: string): Observable<object> {\n\n    const listNodeJSONLD = this.getListNodeFromKnora(listNodeIri);\n\n    return listNodeJSONLD.pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            this.processJSONLD\n        )\n    );\n}\n}",
     "ctx": {
       "type": "method",

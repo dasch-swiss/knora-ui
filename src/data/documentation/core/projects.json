@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Use the class ProjectsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.",
-        "html": "<p>since v9.5.0 Use the class ProjectsEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>"
+        "string": "since v9.5.0 \nUse the class ProjectsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.",
+        "html": "<p>since v9.5.0<br />\nUse the class ProjectsEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>"
       }
     ],
     "description": {
@@ -18,7 +18,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 8,
-    "codeStart": 12,
+    "codeStart": 13,
     "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class ProjectsService extends ApiService {\n\n    // ------------------------------------------------------------------------\n    // GET\n    // ------------------------------------------------------------------------",
     "ctx": false
   },
@@ -51,8 +51,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 21,
-    "codeStart": 28,
+    "line": 22,
+    "codeStart": 29,
     "code": "getAllProjects(): Observable<Project[]> {\n    return this.httpGet('/admin/projects').pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectsResponse).projects),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -103,8 +103,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 35,
-    "codeStart": 43,
+    "line": 36,
+    "codeStart": 44,
     "code": "getProjectByIri(iri: string): Observable<Project> {\n    const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);\n    return this.getProject(url);\n}",
     "ctx": {
       "type": "method",
@@ -155,8 +155,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 48,
-    "codeStart": 56,
+    "line": 49,
+    "codeStart": 57,
     "code": "getProjectByShortname(shortname: string): Observable<Project> {\n    const url = '/admin/projects/shortname/' + shortname;\n    return this.getProject(url);\n}",
     "ctx": {
       "type": "method",
@@ -207,8 +207,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 61,
-    "codeStart": 69,
+    "line": 62,
+    "codeStart": 70,
     "code": "getProjectByShortcode(shortcode: string): Observable<Project> {\n    const url = '/admin/projects/shortcode/' + shortcode;\n    return this.getProject(url);\n}",
     "ctx": {
       "type": "method",
@@ -266,8 +266,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 74,
-    "codeStart": 83,
+    "line": 75,
+    "codeStart": 84,
     "code": "protected getProject(url: string): Observable<Project> {\n    return this.httpGet(url).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": false
   },
@@ -314,8 +314,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 90,
-    "codeStart": 99,
+    "line": 91,
+    "codeStart": 100,
     "code": "getProjectMembersByIri(iri: string): Observable<User[]> {\n    const url = '/admin/projects/iri/' + encodeURIComponent(iri) + '/members';\n    return this.getProjectMembers(url);\n}",
     "ctx": {
       "type": "method",
@@ -366,8 +366,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 104,
-    "codeStart": 113,
+    "line": 105,
+    "codeStart": 114,
     "code": "getProjectMembersByShortname(shortname: string): Observable<User[]> {\n    const url = '/admin/projects/shortname/' + shortname + '/members';\n    return this.getProjectMembers(url);\n}",
     "ctx": {
       "type": "method",
@@ -418,8 +418,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 118,
-    "codeStart": 127,
+    "line": 119,
+    "codeStart": 128,
     "code": "getProjectMembersByShortcode(shortcode: string): Observable<User[]> {\n    const url = '/admin/projects/shortcode/' + shortcode + '/members';\n    return this.getProjectMembers(url);\n}",
     "ctx": {
       "type": "method",
@@ -477,8 +477,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 132,
-    "codeStart": 141,
+    "line": 133,
+    "codeStart": 142,
     "code": "private getProjectMembers(url: string): Observable<User[]> {\n    return this.httpGet(url).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectMembersResponse).members),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
     "ctx": false
   },
@@ -526,8 +526,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 153,
-    "codeStart": 161,
+    "line": 154,
+    "codeStart": 162,
     "code": "createProject(data: any): Observable<Project> {\n    const url: string = '/admin/projects';\n    return this.httpPost(url, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}\n\n// ------------------------------------------------------------------------\n// PUT\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -593,8 +593,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 173,
-    "codeStart": 182,
+    "line": 174,
+    "codeStart": 183,
     "code": "updateProject(iri: string, data: any): Observable<Project> {\n    const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);\n\n    return this.httpPut(url, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -645,8 +645,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 192,
-    "codeStart": 200,
+    "line": 193,
+    "codeStart": 201,
     "code": "activateProject(iri: string): Observable<Project> {\n    const data: any = {\n        status: true\n    };\n\n    const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);\n\n    return this.httpPut(url, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// DELETE\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -697,8 +697,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 218,
-    "codeStart": 226,
+    "line": 219,
+    "codeStart": 227,
     "code": "deleteProject(iri: string): Observable<Project> {\n    const url: string = '/admin/projects/iri/' + encodeURIComponent(iri);\n\n    return this.httpDelete(url).pipe(\n        map((result: ApiServiceResult) => result.getBody(ProjectResponse).project),\n        catchError(this.handleJsonError)\n    );\n}\n\n}",
     "ctx": {
       "type": "method",

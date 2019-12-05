@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "since v9.5.0 Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
-        "html": "<p>since v9.5.0 Request information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
+        "string": "since v9.5.0 \nRequest information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).",
+        "html": "<p>since v9.5.0<br />\nRequest information about the future of this service on the repository <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib).</p>"
       }
     ],
     "description": {
@@ -18,8 +18,8 @@
     "isEvent": false,
     "ignore": false,
     "line": 9,
-    "codeStart": 13,
-    "code": "@Injectable({\n  providedIn: 'root'\n})\nexport class StoreService {\n\n  constructor(private http: HttpClient, @Inject(KuiCoreConfigToken) public config) { }",
+    "codeStart": 14,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class StoreService {\n\n    constructor(private http: HttpClient, @Inject(KuiCoreConfigToken) public config) { }",
     "ctx": false
   },
   {
@@ -64,9 +64,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 20,
-    "codeStart": 27,
-    "code": "resetTriplestoreContent(rdfDataObjects: RdfDataObject[]): Observable<string> {\n\n  return this.http.post<ResetTriplestoreContentResponse>(this.config.api + '/admin/store/ResetTriplestoreContent', rdfDataObjects)\n    .pipe(\n      map(\n        (data) => {\n          const result: ResetTriplestoreContentResponse = data;\n          // console.log('StoreService - resetTriplestoreContent: ', result);\n          return result.message;\n        },\n        (error: HttpErrorResponse) => {\n          if (error.error instanceof Error) {\n            console.log('StoreService - resetTriplestoreContent - Client-side error occurred.', error);\n          } else {\n            console.log('StoreService - resetTriplestoreContent - Server-side error occurred.', error);\n          }\n          throw error;\n        }\n      ));\n\n}\n}",
+    "line": 21,
+    "codeStart": 28,
+    "code": "resetTriplestoreContent(rdfDataObjects: RdfDataObject[]): Observable<string> {\n\n    return this.http.post<ResetTriplestoreContentResponse>(this.config.api + '/admin/store/ResetTriplestoreContent', rdfDataObjects)\n        .pipe(\n            map(\n                (data) => {\n                    const result: ResetTriplestoreContentResponse = data;\n                    // console.log('StoreService - resetTriplestoreContent: ', result);\n                    return result.message;\n                },\n                (error: HttpErrorResponse) => {\n                    if (error.error instanceof Error) {\n                        console.log('StoreService - resetTriplestoreContent - Client-side error occurred.', error);\n                    } else {\n                        console.log('StoreService - resetTriplestoreContent - Server-side error occurred.', error);\n                    }\n                    throw error;\n                }\n            ));\n\n}\n}",
     "ctx": {
       "type": "method",
       "name": "resetTriplestoreContent",
