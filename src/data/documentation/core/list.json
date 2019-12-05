@@ -25,9 +25,10 @@
   {
     "tags": [
       {
-        "type": "deprecated",
-        "string": "since v9.5.0 \nGets a hierarchical list from Knora.",
-        "html": "<p>since v9.5.0<br />\nGets a hierarchical list from Knora.</p>"
+        "type": "private",
+        "string": "since v9.5.0\n\nGets a hierarchical list from Knora.",
+        "visibility": "private",
+        "html": "<p>since v9.5.0</p>\n<p>Gets a hierarchical list from Knora.</p>"
       },
       {
         "type": "param",
@@ -63,7 +64,7 @@
       "summary": "",
       "body": ""
     },
-    "isPrivate": false,
+    "isPrivate": true,
     "isConstructor": false,
     "isClass": false,
     "isEvent": false,
@@ -130,9 +131,10 @@
   {
     "tags": [
       {
-        "type": "deprecated",
-        "string": "since v9.5.0 \nGets a list node from Knora.",
-        "html": "<p>since v9.5.0<br />\nGets a list node from Knora.</p>"
+        "type": "private",
+        "string": "since v9.5.0\n\nGets a list node from Knora.",
+        "visibility": "private",
+        "html": "<p>since v9.5.0</p>\n<p>Gets a list node from Knora.</p>"
       },
       {
         "type": "param",
@@ -168,7 +170,7 @@
       "summary": "",
       "body": ""
     },
-    "isPrivate": false,
+    "isPrivate": true,
     "isConstructor": false,
     "isClass": false,
     "isEvent": false,

@@ -914,14 +914,10 @@
   {
     "tags": [
       {
-        "type": "deprecated",
-        "string": "since v9.5.0 \nUpdate user system admin membership",
-        "html": "<p>since v9.5.0<br />\nUpdate user system admin membership</p>"
-      },
-      {
-        "type": "ignore",
-        "string": "",
-        "html": ""
+        "type": "private",
+        "string": "\n\nUpdate user system admin membership",
+        "visibility": "private",
+        "html": "<p>Update user system admin membership</p>"
       },
       {
         "type": "param",
@@ -970,13 +966,13 @@
       "summary": "",
       "body": ""
     },
-    "isPrivate": false,
+    "isPrivate": true,
     "isConstructor": false,
     "isClass": false,
     "isEvent": false,
     "ignore": false,
     "line": 277,
-    "codeStart": 288,
+    "codeStart": 287,
     "code": "private updateUserSystemAdmin(userIri: string, data: any): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/SystemAdmin';\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": false
   },
@@ -1024,8 +1020,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 297,
-    "codeStart": 305,
+    "line": 296,
+    "codeStart": 304,
     "code": "activateUser(userIri: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Status';\n\n    const data: any = {\n        status: true\n    };\n\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -1107,8 +1103,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 319,
-    "codeStart": 329,
+    "line": 318,
+    "codeStart": 328,
     "code": "updateOwnPassword(userIri: string, oldPassword: string, newPassword: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Password';\n\n    const data = {\n        newPassword: newPassword,\n        requesterPassword: oldPassword\n    };\n\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -1190,8 +1186,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 343,
-    "codeStart": 353,
+    "line": 342,
+    "codeStart": 352,
     "code": "updateUsersPassword(userIri: string, requesterPassword: string, newPassword: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/Password';\n\n    const data = {\n        newPassword: newPassword,\n        requesterPassword: requesterPassword\n    };\n\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -1254,8 +1250,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 367,
-    "codeStart": 375,
+    "line": 366,
+    "codeStart": 374,
     "code": "updateBasicUserInformation(userIri: string, data: any): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri) + '/BasicUserInformation';\n\n    return this.httpPut(path, data).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n}\n\n\n// ------------------------------------------------------------------------\n// DELETE\n// ------------------------------------------------------------------------",
     "ctx": {
       "type": "method",
@@ -1307,8 +1303,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 389,
-    "codeStart": 397,
+    "line": 388,
+    "codeStart": 396,
     "code": "deleteUser(userIri: string): Observable<User> {\n    const path = '/admin/users/iri/' + encodeURIComponent(userIri);\n    return this.httpDelete(path).pipe(\n        map((result: ApiServiceResult) => result.getBody(UserResponse).user),\n        catchError(this.handleJsonError)\n    );\n\n}\n\n\n}",
     "ctx": {
       "type": "method",

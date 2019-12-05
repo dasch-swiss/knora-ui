@@ -32,9 +32,10 @@
   {
     "tags": [
       {
-        "type": "deprecated",
-        "string": "since v9.5.0 \nConverts a JSON-LD represention of a ListNodeV2 to  a `ListNodeV2`.\nRecursively converts child nodes.",
-        "html": "<p>since v9.5.0<br />\nConverts a JSON-LD represention of a ListNodeV2 to  a <code>ListNodeV2</code>.<br />\nRecursively converts child nodes.</p>"
+        "type": "private",
+        "string": "\n\nConverts a JSON-LD represention of a ListNodeV2 to  a `ListNodeV2`.\nRecursively converts child nodes.",
+        "visibility": "private",
+        "html": "<p>Converts a JSON-LD represention of a ListNodeV2 to  a <code>ListNodeV2</code>.<br />\nRecursively converts child nodes.</p>"
       },
       {
         "type": "param",
@@ -70,7 +71,7 @@
       "summary": "",
       "body": ""
     },
-    "isPrivate": false,
+    "isPrivate": true,
     "isConstructor": false,
     "isClass": false,
     "isEvent": false,

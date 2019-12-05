@@ -71,9 +71,10 @@
   {
     "tags": [
       {
-        "type": "deprecated",
-        "string": "since v9.5.0 \nAssign fulltext search params to http params.",
-        "html": "<p>since v9.5.0<br />\nAssign fulltext search params to http params.</p>"
+        "type": "private",
+        "string": "\n\nAssign fulltext search params to http params.",
+        "visibility": "private",
+        "html": "<p>Assign fulltext search params to http params.</p>"
       },
       {
         "type": "param",
@@ -125,7 +126,7 @@
       "summary": "",
       "body": ""
     },
-    "isPrivate": false,
+    "isPrivate": true,
     "isConstructor": false,
     "isClass": false,
     "isEvent": false,
@@ -138,9 +139,10 @@
   {
     "tags": [
       {
-        "type": "deprecated",
-        "string": "since v9.5.0 \nAssign search by label search params to http params.",
-        "html": "<p>since v9.5.0<br />\nAssign search by label search params to http params.</p>"
+        "type": "private",
+        "string": "\n\nAssign search by label search params to http params.",
+        "visibility": "private",
+        "html": "<p>Assign search by label search params to http params.</p>"
       },
       {
         "type": "param",
@@ -192,7 +194,7 @@
       "summary": "",
       "body": ""
     },
-    "isPrivate": false,
+    "isPrivate": true,
     "isConstructor": false,
     "isClass": false,
     "isEvent": false,
@@ -205,8 +207,9 @@
   {
     "tags": [
       {
-        "type": "deprecated",
-        "string": "\nConverts a JSON-LD object to a `ReadResorceSequence`.\nTo be passed as a function pointer (arrow notation required).",
+        "type": "private",
+        "string": "\n\nConverts a JSON-LD object to a `ReadResorceSequence`.\nTo be passed as a function pointer (arrow notation required).",
+        "visibility": "private",
         "html": "<p>Converts a JSON-LD object to a <code>ReadResorceSequence</code>.<br />\nTo be passed as a function pointer (arrow notation required).</p>"
       },
       {
@@ -244,7 +247,7 @@
       "summary": "",
       "body": ""
     },
-    "isPrivate": false,
+    "isPrivate": true,
     "isConstructor": false,
     "isClass": false,
     "isEvent": false,
@@ -257,9 +260,10 @@
   {
     "tags": [
       {
-        "type": "deprecated",
-        "string": "since v9.5.0 \nConverts a JSON-LD object to a `ResourcesSequence`",
-        "html": "<p>since v9.5.0<br />\nConverts a JSON-LD object to a <code>ResourcesSequence</code></p>"
+        "type": "private",
+        "string": "\n\nConverts a JSON-LD object to a `ResourcesSequence`",
+        "visibility": "private",
+        "html": "<p>Converts a JSON-LD object to a <code>ResourcesSequence</code></p>"
       },
       {
         "type": "param",
@@ -282,7 +286,7 @@
       "summary": "",
       "body": ""
     },
-    "isPrivate": false,
+    "isPrivate": true,
     "isConstructor": false,
     "isClass": false,
     "isEvent": false,

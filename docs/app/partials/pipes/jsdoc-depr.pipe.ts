@@ -8,48 +8,35 @@ export class JsdocDeprPipe implements PipeTransform {
 
     description: string;
 
-    ghLink: string = 'dasch-swiss/knora-api-js-lib';
+    line1: string;
+    line2: string;
+
 
     constructor(private _sanitizer: DomSanitizer) {
     }
 
     transform(str: string): SafeHtml {
+
         const array = str.split('\n');
 
-        const brReg: RegExp = new RegExp('\n', 'gi');
-        str.replace(brReg, '<br>');
+        this.line1 = (array[0] ? array[0] : str);
 
-        this.description = array[1];
+        this.description = (array[1] ? array[1] : '');
 
-        if (this.description) {
 
-            const regexp: RegExp = new RegExp('github:' + this.ghLink, 'gi');
+        const ghLink = 'dasch-swiss/knora-api-js-lib';
+        const ghReg: RegExp = new RegExp('github:' + ghLink, 'i');
+        const tmpLine2 = this.description.replace(ghReg, '<a href="https://github.com/' + ghLink + '">' + ghLink + '</a>');
 
-            this.description.replace(regexp, '<a href="https://github.com/"' + this.ghLink + '>' + this.ghLink + '</a>');
+        const code = '@knora/api';
+        const codeReg: RegExp = new RegExp('`' + code + '`', 'gi');
+        this.line2 = tmpLine2.replace(codeReg, '<code>' + code + '</code>');
 
-            console.log(this.description);
 
-            // const descArray = this.description.split('github:');
 
-            // this.description = descArray[0];
 
-            const npmArray = this.description.split('`');
 
-            // console.log(npmArray);
-
-            if (npmArray[1]) {
-                this.description = npmArray[0] + '<code>' + npmArray[1] + '</code>' + npmArray[2];
-            }
-
-            // if (descArray[1]) {
-            //     this.description += '<a href="https://github.com/' + descArray[1] + '">' + descArray[1] + '</a>';
-            //     console.log('description with link', this.description);
-            // }
-        } else {
-            this.description = '';
-        }
-
-        const newStr: string = '<p class="warn"><strong>Deprecated </strong>' + array[0] + '</p>' + this.description;
+        const newStr: string = '<p class="warn"><strong>Deprecated </strong>' + this.line1 + '</p>' + this.line2;
 
         return this._sanitizer.bypassSecurityTrustHtml(newStr);
     }
