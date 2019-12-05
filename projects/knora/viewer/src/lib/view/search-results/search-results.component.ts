@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiResponseError, CountQueryResponse, IResourceClassAndPropertyDefinitions, KnoraApiConnection, ReadResource } from '@knora/api';
 import { ExtendedSearchParams, KnoraApiConnectionToken, KnoraConstants, SearchParamsService } from '@knora/core';
+import { PageEvent } from '@angular/material';
 
 /**
  * The search-results gets the search mode and parameters from routes or inputs,
@@ -38,6 +39,9 @@ export class SearchResultsComponent implements OnInit, OnChanges {
      * @param  {string} [projectIri] Project Iri. To filter the results by project.
      */
     @Input() projectIri?: string;
+
+    // MatPaginator Output
+    pageEvent: PageEvent;
 
     KnoraConstants = KnoraConstants;
     offset: number = 0;
@@ -80,9 +84,18 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                     this.projectIri = decodeURIComponent(params.get('project'));
                 }
 
+                if (!this.pageEvent) {
+
+                    this.offset = 0;
+                } else {
+                    this.offset = this.pageEvent.pageIndex;
+                }
+
                 // init offset  and result
-                this.offset = 0;
-                this.result = [];
+                if (this.offset === 0) {
+                    //                    this.offset = 0;
+                    this.result = [];
+                }
 
                 // get query params depending on the search mode
                 if (this.searchMode === 'fulltext') {
@@ -157,9 +170,8 @@ export class SearchResultsComponent implements OnInit, OnChanges {
 
                 if (this.offset === 0) {
                     // perform count query
-                    this.knoraApiConnection.v2.search.doFulltextSearchCountQuery(this.searchQuery, searchParams).subscribe(
+                    this.knoraApiConnection.v2.search.doFulltextSearchCountQuery(this.searchQuery, this.offset, searchParams).subscribe(
                         (response: CountQueryResponse) => {
-                            // console.log(response);
                             this.showNumberOfAllResults(response);
                         },
                         (error: ApiResponseError) => {
@@ -172,7 +184,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                 this.knoraApiConnection.v2.search.doFulltextSearch(this.searchQuery, this.offset, searchParams).subscribe(
                     (response: ReadResource[]) => {
                         // this.processSearchResults(response);
-                        // console.log(response);
+                        console.log('', response);
                         this.result = response;
                         this.loading = false;
                     },
@@ -275,13 +287,21 @@ export class SearchResultsComponent implements OnInit, OnChanges {
      * @param {number} offset
      * @returns void
      */
-    loadMore(offset: number): void {
+    loadMore(page: PageEvent): void {
+        console.log('this offset?', this.offset);
+        console.log('page output?', page.pageIndex);
+
+        this.pageEvent = page;
+        this.offset = page.pageIndex;
+
+        // this.offset = page.pageIndex;
         // update the page offset when the end of scroll is reached to get the next page of search results
-        if (this.offset < this.maxOffset) {
-            this.offset++;
-        } else {
-            return;
-        }
+        // if (this.offset < this.maxOffset) {
+        //     this.offset++;
+        // } else {
+        //     return;
+        // }
+        // console.log('this offset++?', this.offset);
 
         if (this.searchMode === 'extended') {
             this.generateGravsearchQuery();

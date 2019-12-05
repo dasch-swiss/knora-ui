@@ -4,7 +4,7 @@
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="grid">
 
         <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="33.3" fxFlex.lg="25" fxFlex.xl="20" *ngFor="let res of result"
-             class="gv-preview">
+            class="gv-preview">
             <mat-card class="link" (click)="openResource(res.id)">
 
                 <mat-card-subtitle>{{res.entityInfo.classes[res.type].label}}</mat-card-subtitle>
@@ -18,7 +18,7 @@
                         </span>
 
                         <div class="lv-html-text">
-                            {{val.value.strval | kuiTruncate:['256', '...']}}
+                            {{val.value.strval | kuiTruncate:['200', '...']}}
                         </div>
                     </div>
                 </mat-card-content>
