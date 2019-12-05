@@ -131,8 +131,6 @@ export class ProjectsService extends ApiService {
     }
 
     /**
-     * @deprecated since v9.5.0
-     *
      * @private
      * Helper method combining project member retrieval.
      *

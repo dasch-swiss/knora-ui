@@ -38,9 +38,9 @@ export class ResourceService extends ApiService {
      * @param {string} iri Iri of the resource (not yet URL encoded).
      * @returns Observable<ApiServiceResult>
      */
-    // this should return a resource object with incoming links, annotations, file representations
-    // it includes a property: FileRepresentation to display with the parameters for the media type viewer
     getResource(iri: string): Observable<ResourcesSequence | ApiServiceError> {
+        // this should return a resource object with incoming links, annotations, file representations
+        // it includes a property: FileRepresentation to display with the parameters for the media type viewer
 
         const res: Observable<ApiServiceResult | ApiServiceError> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));
 
@@ -206,7 +206,7 @@ export class ResourceService extends ApiService {
                                 return resSeq;
                             }
                         )
-                    );
+                    )
                 }
 
             )
@@ -215,7 +215,7 @@ export class ResourceService extends ApiService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * @param iri
      * @returns Observable<ResourcesSequence | ApiServiceError>

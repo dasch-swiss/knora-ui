@@ -49,7 +49,7 @@ export class SearchService extends ApiService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Assign fulltext search params to http params.
      *
@@ -80,7 +80,7 @@ export class SearchService extends ApiService {
 
     }
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Assign search by label search params to http params.
      *
@@ -108,7 +108,7 @@ export class SearchService extends ApiService {
     }
 
     /**
-     * @deprecated
+     * @private
      *
      * Converts a JSON-LD object to a `ReadResorceSequence`.
      * To be passed as a function pointer (arrow notation required).
@@ -135,7 +135,7 @@ export class SearchService extends ApiService {
         );
     }
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Converts a JSON-LD object to a `ResourcesSequence`
      *

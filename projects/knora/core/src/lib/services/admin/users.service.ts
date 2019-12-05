@@ -275,10 +275,9 @@ export class UsersService extends ApiService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Update user system admin membership
-     * @ignore
      *
      * @param {string} userIri
      * @param {any} data

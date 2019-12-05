@@ -469,22 +469,30 @@ export class OntologyInformation {
 export class OntologyCacheService {
 
     /**
+     * @private
+     *
      * Ontologies ingored by this service.
      * @param {string[]} excludedOntologies
      */
     private excludedOntologies: Array<string> = [KnoraConstants.SalsahGuiOntology, KnoraConstants.StandoffOntology];
 
-    /**
+    /*
+     * @private
+     *
      * @param {string[]} excludedProperties properties that Knora is not responsible for and that have to be ignored because they cannot be resolved at the moment.
      */
     private excludedProperties: Array<string> = [KnoraConstants.RdfsLabel];
 
     /**
+     * @private
+     *
      * @param {string[]} nonResourceClasses class definitions that are not be treated as Knora resource classes
      */
     private nonResourceClasses: Array<string> = [KnoraConstants.ForbiddenResource, KnoraConstants.XMLToStandoffMapping, KnoraConstants.ListNode];
 
     /**
+     * @private
+     *
      * @param {OntologyCache} cacheOntology central instance that caches all definitions
      */
     private cacheOntology: OntologyCache = new OntologyCache();
@@ -493,7 +501,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Requests the metadata of all ontologies from Knora.
      *
@@ -520,7 +528,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Requests all entity definitions (resource classes and properties) for the given ontology from Knora.
      *
@@ -548,7 +556,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Writes all the ontologies' metadata returned by Knora to the cache.
      *
@@ -565,7 +573,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Returns all ontologies' metadata from the cache and returns them.
      *
@@ -578,7 +586,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Returns resource class Iris from the ontology response.
      * `knora-api:Resource` will be excluded.
@@ -605,7 +613,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Converts a Knora response for all entity definitions for the requested ontology
      * into an internal representation and caches it.
@@ -647,7 +655,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Returns definitions for the requested ontologies from the cache.
      *
@@ -688,7 +696,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Converts a Knora ontology response into an internal representation and caches it.
      *
@@ -778,7 +786,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Gets information about resource classes from the cache.
      * The answer includes the property definitions referred to by the cardinalities of the given resource classes.
@@ -817,7 +825,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Converts a Knora response for ontology information about properties
      * into an internal representation and cache it.
@@ -888,7 +896,7 @@ export class OntologyCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Returns property definitions from the cache.
      *
@@ -949,7 +957,7 @@ export class OntologyCacheService {
 
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Requests the requested ontologies from Knora, adding them to the cache.
      *

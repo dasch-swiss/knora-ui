@@ -60,7 +60,7 @@ export class ListCacheService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * Converts a JSON-LD represention of a ListNodeV2 to  a `ListNodeV2`.
      * Recursively converts child nodes.

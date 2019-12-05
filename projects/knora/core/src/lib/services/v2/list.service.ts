@@ -23,7 +23,7 @@ export class ListService extends ApiService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private since v9.5.0
      *
      * Gets a hierarchical list from Knora.
      *
@@ -54,7 +54,7 @@ export class ListService extends ApiService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private since v9.5.0
      *
      * Gets a list node from Knora.
      *
