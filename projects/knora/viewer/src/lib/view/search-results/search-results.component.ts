@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiResponseError, CountQueryResponse, IResourceClassAndPropertyDefinitions, KnoraApiConnection, ReadResource } from '@knora/api';
-import { ExtendedSearchParams, KnoraApiConnectionToken, KnoraConstants, SearchParamsService } from '@knora/core';
+import { ExtendedSearchParams, KnoraApiConnectionToken, KnoraConstants, SearchParamsService, AutocompleteItem } from '@knora/core';
 import { PageEvent } from '@angular/material';
 
 /**
@@ -16,36 +16,39 @@ import { PageEvent } from '@angular/material';
 })
 export class SearchResultsComponent implements OnInit, OnChanges {
     /**
-     *
-     * @param  {boolean} [complexView] If true it shows 2 ways to display the search results: list or grid.
+     * @param  {boolean} [complexView] If true it shows 3 ways to display the search results: list or grid or table
      *
      */
     @Input() complexView?: boolean = false;
 
     /**
-     *
+     * @param  {'list'|'grid'|'table'} [viewAs] Show result as list, grid or tabel. Default value is list
+     */
+    @Input() viewAs?: 'list' | 'grid' | 'table' = 'list';
+
+    /**
      * @param  {string} [searchQuery] Search parameters. It can be a gravsearch query (extended mode) or string (fulltext mode).
      */
     @Input() searchQuery?: string;
 
     /**
-     *
      * @param  {string} [searchMode] Search mode: Extended or fulltext.
      */
     @Input() searchMode?: string;
 
     /**
-     *
      * @param  {string} [projectIri] Project Iri. To filter the results by project.
      */
     @Input() projectIri?: string;
+
 
     // MatPaginator Output
     pageEvent: PageEvent;
 
     KnoraConstants = KnoraConstants;
-    offset: number = 0;
-    maxOffset: number = 0;
+    // offset: number = 0;
+
+    //    maxOffset: number = 0;
     gravSearchQuery: string;
     gravsearchGenerator: ExtendedSearchParams;
     result: ReadResource[] = [];
@@ -69,6 +72,9 @@ export class SearchResultsComponent implements OnInit, OnChanges {
 
     ngOnInit() {
 
+        // page offset is 0
+
+
     }
 
     ngOnChanges() {
@@ -84,17 +90,9 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                     this.projectIri = decodeURIComponent(params.get('project'));
                 }
 
-                if (!this.pageEvent) {
-
-                    this.offset = 0;
-                } else {
-                    this.offset = this.pageEvent.pageIndex;
-                }
-
-                // init offset  and result
-                if (this.offset === 0) {
-                    //                    this.offset = 0;
-                    this.result = [];
+                // init pageIndex and results
+                if (!this.pageEvent && this.searchQuery !== params.get('q') || this.searchQuery !== this.gravSearchQuery) {
+                    this.resetPage();
                 }
 
                 // get query params depending on the search mode
@@ -117,17 +115,21 @@ export class SearchResultsComponent implements OnInit, OnChanges {
         );
     }
 
+    resetPage() {
+        this.pageEvent = new PageEvent();
+        this.pageEvent.pageIndex = 0;
+        this.result = [];
+    }
+
 
     /**
      * Generates the Gravsearch query for the current offset.
      * @ignore
      */
     private generateGravsearchQuery() {
-        const gravsearch:
-            | string
-            | boolean = this.gravsearchGenerator.generateGravsearch(
-                this.offset
-            );
+        const gravsearch: string | boolean = this.gravsearchGenerator.generateGravsearch(
+            this.pageEvent.pageIndex
+        );
         if (gravsearch === false) {
             // no valid search params (application has been reloaded)
             // go to root
@@ -168,11 +170,11 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                     searchParams = { limitToProject: this.projectIri };
                 }
 
-                if (this.offset === 0) {
+                if (this.pageEvent.pageIndex === 0) {
                     // perform count query
-                    this.knoraApiConnection.v2.search.doFulltextSearchCountQuery(this.searchQuery, this.offset, searchParams).subscribe(
+                    this.knoraApiConnection.v2.search.doFulltextSearchCountQuery(this.searchQuery, this.pageEvent.pageIndex, searchParams).subscribe(
                         (response: CountQueryResponse) => {
-                            this.showNumberOfAllResults(response);
+                            this.numberOfAllResults = response.numberOfResults;
                         },
                         (error: ApiResponseError) => {
                             this.errorMessage = error;
@@ -181,10 +183,10 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                 }
 
                 // perform full text search
-                this.knoraApiConnection.v2.search.doFulltextSearch(this.searchQuery, this.offset, searchParams).subscribe(
+                this.knoraApiConnection.v2.search.doFulltextSearch(this.searchQuery, this.pageEvent.pageIndex, searchParams).subscribe(
                     (response: ReadResource[]) => {
                         // this.processSearchResults(response);
-                        console.log('', response);
+                        // console.log('', response);
                         this.result = response;
                         this.loading = false;
                     },
@@ -199,10 +201,10 @@ export class SearchResultsComponent implements OnInit, OnChanges {
             // EXTENDED SEARCH
         } else if (this.searchMode === 'extended') {
             // perform count query
-            if (this.offset === 0) {
+            if (this.pageEvent.pageIndex === 0) {
                 this.knoraApiConnection.v2.search.doExtendedSearchCountQuery(this.gravSearchQuery).subscribe(
                     (response: CountQueryResponse) => {
-                        this.showNumberOfAllResults(response);
+                        this.numberOfAllResults = response.numberOfResults;
                     },
                     (error: ApiResponseError) => {
                         this.errorMessage = error;
@@ -232,7 +234,6 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     }
 
     /**
-     *
      * Converts search results from JSON-LD to a [[ReadResourcesSequence]] and requests information about ontology entities.
      * This function is passed to `subscribe` as a pointer (instead of redundantly defining the same lambda function).
      * @ignore
@@ -260,26 +261,6 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     }
 
     /**
-     * Shows total number of results returned by a count query.
-     * @ignore
-     *
-     * @param {ApiServiceResult} countQueryResult the response to a count query.
-     */
-    private showNumberOfAllResults(countQueryResult: CountQueryResponse) {
-        this.numberOfAllResults = countQueryResult.numberOfResults;
-
-        if (this.numberOfAllResults > 0) {
-            // offset is 0-based
-            // if numberOfAllResults equals the pagingLimit, the max. offset is 0
-            this.maxOffset = Math.floor(
-                (this.numberOfAllResults - 1) / this.pagingLimit
-            );
-        } else {
-            this.maxOffset = 0;
-        }
-    }
-
-    /**
      * Loads the next page of results.
      * The results will be appended to the existing ones.
      * @ignore
@@ -288,20 +269,8 @@ export class SearchResultsComponent implements OnInit, OnChanges {
      * @returns void
      */
     loadMore(page: PageEvent): void {
-        console.log('this offset?', this.offset);
-        console.log('page output?', page.pageIndex);
 
         this.pageEvent = page;
-        this.offset = page.pageIndex;
-
-        // this.offset = page.pageIndex;
-        // update the page offset when the end of scroll is reached to get the next page of search results
-        // if (this.offset < this.maxOffset) {
-        //     this.offset++;
-        // } else {
-        //     return;
-        // }
-        // console.log('this offset++?', this.offset);
 
         if (this.searchMode === 'extended') {
             this.generateGravsearchQuery();

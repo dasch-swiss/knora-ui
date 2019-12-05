@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -76,6 +77,7 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         MatInputModule,
         MatIconModule,
         MatListModule,
+        MatMenuModule,
         MatNativeDateModule,
         MatPaginatorModule,
         MatSlideToggleModule,
