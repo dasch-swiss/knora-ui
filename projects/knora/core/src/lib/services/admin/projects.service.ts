@@ -7,6 +7,7 @@ import { ApiService } from '../api.service';
 
 /**
  * @deprecated since v9.5.0
+ *
  * Use the class ProjectsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.
  */
 @Injectable({
@@ -20,6 +21,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns a list of all projects.
      *
      * @returns Observable<Project[]>
@@ -33,6 +35,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns a project object.
      *
      * @param {string} iri identifier of the project
@@ -45,6 +48,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns a project object.
      *
      * @param {string} shortname short name that is used to identify the project
@@ -57,6 +61,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns a project object.
      *
      * @param {string} shortcode hexadecimal code that uniquely identifies the project
@@ -69,6 +74,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * @private
      * Helper method combining project retrieval.
      *
@@ -84,6 +90,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns all project members.
      * Project identifier is project id (iri).
      *
@@ -97,6 +104,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns all project members.
      * Project identifier is shortname.
      *
@@ -110,6 +118,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns all project members.
      * Project identifier is shortcode.
      *
@@ -122,7 +131,6 @@ export class ProjectsService extends ApiService {
     }
 
     /**
-     * @deprecated since v9.5.0
      * @private
      * Helper method combining project member retrieval.
      *
@@ -143,6 +151,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Create new project.
      *
      * @param {any} data
@@ -162,6 +171,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Edit project data.
      *
      * @param {string} iri identifier of the project
@@ -180,6 +190,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Activate project (if it was deleted).
      *
      * @param {string} iri identifier of the project
@@ -205,6 +216,7 @@ export class ProjectsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Delete (set inactive) project.
      *
      * @param {string} iri identifier of the project

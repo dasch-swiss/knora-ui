@@ -1,5 +1,7 @@
 /**
- * @deprecated since v9.5.0 - Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated since v9.5.0
+ *
+ * Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  */
 export interface AuthenticationRequestPayload {
 
@@ -9,7 +11,9 @@ export interface AuthenticationRequestPayload {
 }
 
 /**
- * @deprecated since v9.5.0 - Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated since v9.5.0
+ *
+ * Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  */
 export interface AuthenticationRequestByEmailPayload {
 
@@ -19,7 +23,9 @@ export interface AuthenticationRequestByEmailPayload {
 }
 
 /**
- * @deprecated since v9.5.0 - Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated since v9.5.0
+ *
+ * Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  */
 export interface AuthenticationRequestByUsernamePayload {
 

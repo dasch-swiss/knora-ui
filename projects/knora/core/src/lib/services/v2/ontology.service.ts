@@ -11,6 +11,7 @@ import { NewProperty } from '../../declarations/api/v2/ontology/new-property';
 
 /**
  * @deprecated since v9.5.0
+ *
  * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
  *
  * Requests ontology information from Knora.
@@ -38,6 +39,7 @@ export class OntologyService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Requests the metadata about all existing ontologies from Knora's ontologies route.
      *
      * @returns Observable<ApiServiceResult> - the metadata of all ontologies.
@@ -48,6 +50,7 @@ export class OntologyService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Requests the ontologies of a specific project
      *
      * @param projectIri
@@ -64,6 +67,7 @@ export class OntologyService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Requests all entity definitions for the given ontologies from Knora's ontologies route.
      *
      * @param {string} ontologyIri the Iris of the named graphs whose resource classes are to be returned.
@@ -75,6 +79,7 @@ export class OntologyService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Requests information about the given resource classes from Knora's ontologies route.
      *
      * @param {string[]} resourceClassIris the Iris of the resource classes to be queried.
@@ -98,6 +103,7 @@ export class OntologyService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Requests properties from Knora's ontologies route.
      *
      * @param {string[]} propertyIris the Iris of the properties to be queried.
@@ -126,6 +132,7 @@ export class OntologyService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Create new ontology.
      *
      * @param {NewOntology} data Data contains: projectIri, name, label

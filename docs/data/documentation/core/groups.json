@@ -1,9 +1,15 @@
 [
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 \nUse the class GroupsEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.",
+        "html": "<p>since v9.5.0<br />\nUse the class GroupsEndpoint from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead.</p>"
+      }
+    ],
     "description": {
-      "full": "<p>Request information about group from Knora.</p>",
-      "summary": "<p>Request information about group from Knora.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -11,13 +17,18 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 7,
-    "codeStart": 10,
-    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class GroupsService extends ApiService {\n\n    private path: string = '/admin/groups';",
+    "line": 8,
+    "codeStart": 13,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class GroupsService extends ApiService {\n\n    private path: string = '/admin/groups';\n\n    // ------------------------------------------------------------------------\n    // GET\n    // ------------------------------------------------------------------------",
     "ctx": false
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 \nReturn a list of all groups.",
+        "html": "<p>since v9.5.0<br />\nReturn a list of all groups.</p>"
+      },
       {
         "type": "returns",
         "string": "Observable<Group[]>",
@@ -31,8 +42,8 @@
       }
     ],
     "description": {
-      "full": "<p>Return a list of all groups.</p>",
-      "summary": "<p>Return a list of all groups.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -40,8 +51,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 17,
-    "codeStart": 22,
+    "line": 24,
+    "codeStart": 31,
     "code": "getAllGroups(): Observable<Group[]> {\n    return this.httpGet(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupsResponse).groups),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
@@ -51,6 +62,11 @@
   },
   {
     "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 \nReturn a group object (filter by IRI).",
+        "html": "<p>since v9.5.0<br />\nReturn a group object (filter by IRI).</p>"
+      },
       {
         "type": "param",
         "string": "{string} iri",
@@ -79,8 +95,8 @@
       }
     ],
     "description": {
-      "full": "<p>Return a group object (filter by IRI).</p>",
-      "summary": "<p>Return a group object (filter by IRI).</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -88,13 +104,225 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 29,
-    "codeStart": 35,
-    "code": "getGroupByIri(iri: string): Observable<Group> {\n    this.path += '/' + encodeURIComponent(iri);\n\n    return this.httpGet(this.path).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}\n\n// get group members needs the following api path:\n// /admin/groups/<groupIri>/members\n\n}",
+    "line": 38,
+    "codeStart": 46,
+    "code": "getGroupByIri(iri: string): Observable<Group> {\n    return this.httpGet(this.path + '/' + encodeURIComponent(iri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}",
     "ctx": {
       "type": "method",
       "name": "getGroupByIri",
       "string": "getGroupByIri()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 \nReturn a list of all group members.",
+        "html": "<p>since v9.5.0<br />\nReturn a list of all group members.</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} iri",
+        "name": "iri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} iri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable<User[]>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable&lt;User[]&gt;</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 53,
+    "codeStart": 61,
+    "code": "getAllGroupMembers(iri: string): Observable<User[]> {\n    return this.httpGet(this.path + '/' + encodeURIComponent(iri) + '/members').pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupMembersResponse).members),\n        catchError(this.handleJsonError)\n    );\n}\n\n// ------------------------------------------------------------------------\n// POST\n// ------------------------------------------------------------------------",
+    "ctx": {
+      "type": "method",
+      "name": "getAllGroupMembers",
+      "string": "getAllGroupMembers()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 \nCreate new group.",
+        "html": "<p>since v9.5.0<br />\nCreate new group.</p>"
+      },
+      {
+        "type": "param",
+        "string": "{Group} group",
+        "name": "group",
+        "description": "",
+        "types": [
+          "Group"
+        ],
+        "typesDescription": "<a href=\"Group.html\">Group</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{Group} group</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable<Group>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<Group></p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 72,
+    "codeStart": 80,
+    "code": "createGroup(group: Group): Observable<Group> {\n    return this.httpPost(this.path, group).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}\n\n// ------------------------------------------------------------------------\n// PUT\n// ------------------------------------------------------------------------",
+    "ctx": {
+      "type": "method",
+      "name": "createGroup",
+      "string": "createGroup()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 \nEdit a group.",
+        "html": "<p>since v9.5.0<br />\nEdit a group.</p>"
+      },
+      {
+        "type": "param",
+        "string": "{Group} groupInfo",
+        "name": "groupInfo",
+        "description": "",
+        "types": [
+          "Group"
+        ],
+        "typesDescription": "<a href=\"Group.html\">Group</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{Group} groupInfo</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable<Group>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<Group></p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 91,
+    "codeStart": 99,
+    "code": "updateGroup(groupInfo: Group): Observable<Group> {\n    return this.httpPut(this.path + '/' + encodeURIComponent(groupInfo.id), groupInfo).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}\n\n// NOT IMPLEMENTED - PUT: /admin/groups/<groupIri>/status : update group’s status\n\n\n// ------------------------------------------------------------------------\n// DELETE\n// ------------------------------------------------------------------------",
+    "ctx": {
+      "type": "method",
+      "name": "updateGroup",
+      "string": "updateGroup()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v9.5.0 \nDelete a group (set status to false).",
+        "html": "<p>since v9.5.0<br />\nDelete a group (set status to false).</p>"
+      },
+      {
+        "type": "param",
+        "string": "{string} iri",
+        "name": "iri",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} iri</p>"
+      },
+      {
+        "type": "returns",
+        "string": "Observable<Group>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>Observable<Group></p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 113,
+    "codeStart": 121,
+    "code": "deleteGroup(iri: string): Observable<Group> {\n    return this.httpDelete(this.path + '/' + encodeURIComponent(iri)).pipe(\n        map((result: ApiServiceResult) => result.getBody(GroupResponse).group),\n        catchError(this.handleJsonError)\n    );\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "deleteGroup",
+      "string": "deleteGroup()"
     }
   }
 ]

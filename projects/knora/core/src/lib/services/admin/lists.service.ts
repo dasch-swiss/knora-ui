@@ -7,6 +7,7 @@ import { ApiService } from '../api.service';
 
 /**
  * @deprecated since v9.5.0
+ *
  * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
  */
 @Injectable({
@@ -22,6 +23,7 @@ export class ListsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Returns a list of all lists.
      *
      * @param {string} [projectIri]
@@ -40,6 +42,7 @@ export class ListsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Return a list object.
      *
      * @param {string} listIri
@@ -54,6 +57,7 @@ export class ListsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Return a list info object.
      *
      * @param {string} listIri
@@ -68,6 +72,7 @@ export class ListsService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Return a list node info object.
      *
      * @param {string} nodeIri
@@ -85,8 +90,10 @@ export class ListsService extends ApiService {
     // POST
     // ------------------------------------------------------------------------
 
-    /**
+    /**v9.5.0
+     *
      * @deprecated since v9.5.0
+     *
      * Create new list.
      *
      * @param {ListCreatePayload} payload
@@ -99,8 +106,10 @@ export class ListsService extends ApiService {
         );
     }
 
-    /**
+    /**v9.5.0
+     *
      * @deprecated since v9.5.0
+     *
      * Create new list node.
      *
      * @param {string} listIri
@@ -119,8 +128,10 @@ export class ListsService extends ApiService {
     // PUT
     // ------------------------------------------------------------------------
 
-    /**
+    /**v9.5.0
+     *
      * @deprecated since v9.5.0
+     *
      * Edit list data.
      *
      * @param {ListInfoUpdatePayload} payload

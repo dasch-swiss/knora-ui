@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { KuiCoreConfig } from '../../declarations';
 import { KuiCoreConfigToken } from '../../core.module';
 
+// TODO: this has to be kept. It's part of the message component in @knora/action
+
 /**
- * @deprecated since v9.5.0
- * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
+ *
  */
 @Injectable({
     providedIn: 'root'
@@ -20,7 +20,6 @@ export class StatusMsgService {
     }
 
     /**
-     * @deprecated since v9.5.0
     * this method get the status messages from the statusMsg.json file
     * which are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
     * and here: http://www.w3schools.com/tags/ref_httpmessages.asp

@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 import { SessionService } from '../session/session.service';
 
 /**
- * @deprecated since v9.5.0 - Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated since v9.5.0
+ *
+ * Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
  */
 @Injectable({
     providedIn: 'root'

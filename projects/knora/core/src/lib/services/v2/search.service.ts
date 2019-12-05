@@ -31,7 +31,8 @@ export interface SearchByLabelParams {
 }
 
 /**
- * @deprecated since v9.5.0 - all the following functions are now deprecated
+ * @deprecated since v9.5.0
+ *
  * Use the class SearchEndpoint from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead.
  *
  * Performs searches (fulltext or extended) and search count queries into Knora.
@@ -48,7 +49,8 @@ export class SearchService extends ApiService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
+     *
      * Assign fulltext search params to http params.
      *
      * @param {FulltextSearchParams} params
@@ -78,7 +80,8 @@ export class SearchService extends ApiService {
 
     }
     /**
-     * @deprecated since v9.5.0
+     * @private
+     *
      * Assign search by label search params to http params.
      *
      * @param {SearchByLabelParams} params
@@ -105,7 +108,7 @@ export class SearchService extends ApiService {
     }
 
     /**
-     * @deprecated
+     * @private
      *
      * Converts a JSON-LD object to a `ReadResorceSequence`.
      * To be passed as a function pointer (arrow notation required).
@@ -132,7 +135,8 @@ export class SearchService extends ApiService {
         );
     }
     /**
-     * @deprecated since v9.5.0
+     * @private
+     *
      * Converts a JSON-LD object to a `ResourcesSequence`
      *
      * @param  {Object} resourceResponse
@@ -184,6 +188,7 @@ export class SearchService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Performs a fulltext search and turns the result into a `ReadResourceSequence`.
      *
      * @param {string} searchTerm the term to search for.
@@ -243,6 +248,7 @@ export class SearchService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Performs a fulltext search count query and turns the result into a `CountQueryResult`.
      *
      * @param {string} searchTerm the term to search for.
@@ -317,6 +323,7 @@ export class SearchService extends ApiService {
     }
     /**
      * @deprecated since v9.5.0
+     *
      * Performs an extended search and turns the result into a `ResourcesSequence`.
      *
      * @param  {string} gravsearchQuery
@@ -358,6 +365,7 @@ export class SearchService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Performs an extended search count query and turns the result into a `CountQueryResult`.
      *
      * @param gravsearchQuery the Sparql query string to be sent to Knora.
@@ -413,6 +421,7 @@ export class SearchService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Perform a search by a resource's rdfs:label and turns the results in a `ReadResourceSequence`.
      *
      * @param {string} searchTerm the term to search for.

@@ -2,6 +2,23 @@
   {
     "tags": [],
     "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 10,
+    "codeStart": 13,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class StatusMsgService {\n\n    constructor(private _http: HttpClient,\n        @Inject(KuiCoreConfigToken) public config) {\n    }",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
       "full": "<p>this method get the status messages from the statusMsg.json file<br />\nwhich are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes<br />\nand here: http://www.w3schools.com/tags/ref_httpmessages.asp</p>",
       "summary": "<p>this method get the status messages from the statusMsg.json file<br />\nwhich are defined here: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes<br />\nand here: http://www.w3schools.com/tags/ref_httpmessages.asp</p>",
       "body": ""
@@ -11,9 +28,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 18,
-    "codeStart": 24,
-    "code": "getStatusMsg(): Observable<any> {\n\n  return this._http.get(this.config.app + '/assets/i18n/statusMsg.json')\n    .pipe(map(\n      (res: any) => {\n        return res;\n      },\n      err => {\n        console.error(err);\n      }\n    )\n    );\n\n}\n}",
+    "line": 22,
+    "codeStart": 28,
+    "code": "getStatusMsg(): Observable<any> {\n\n    return this._http.get(this.config.app + '/assets/i18n/statusMsg.json')\n        .pipe(map(\n            (res: any) => {\n                return res;\n            },\n            err => {\n                console.error(err);\n            }\n        )\n        );\n\n}\n}",
     "ctx": {
       "type": "method",
       "name": "getStatusMsg",

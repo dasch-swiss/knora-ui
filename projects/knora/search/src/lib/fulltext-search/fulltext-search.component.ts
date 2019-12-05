@@ -13,6 +13,8 @@ export interface PrevSearchItem {
 
 /**
  * @deprecated
+ *
+ * You should use searchPanel instead
  */
 @Component({
     selector: 'kui-fulltext-search',
@@ -80,7 +82,7 @@ export class FulltextSearchComponent implements OnInit {
         KnoraConstants.DefaultSharedOntologyIRI
     ];
 
-    constructor (
+    constructor(
         private _overlay: Overlay,
         private _router: Router,
         private _viewContainerRef: ViewContainerRef,

@@ -13,6 +13,7 @@ import { OntologyCacheService, OntologyInformation } from './ontology-cache.serv
 
 /**
  * @deprecated since v9.5.0
+ *
  * Request information about the future of this service on the repository `@knora/api` (github:dasch-swiss/knora-api-js-lib).
  *
  * Requests representation of resources from Knora.
@@ -31,14 +32,15 @@ export class ResourceService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Given the Iri, requests the representation of a resource.
      *
      * @param {string} iri Iri of the resource (not yet URL encoded).
      * @returns Observable<ApiServiceResult>
      */
-    // this should return a resource object with incoming links, annotations, file representations
-    // it includes a property: FileRepresentation to display with the parameters for the media type viewer
     getResource(iri: string): Observable<ResourcesSequence | ApiServiceError> {
+        // this should return a resource object with incoming links, annotations, file representations
+        // it includes a property: FileRepresentation to display with the parameters for the media type viewer
 
         const res: Observable<ApiServiceResult | ApiServiceError> = this.httpGet('/v2/resources/' + encodeURIComponent(iri));
 
@@ -204,7 +206,7 @@ export class ResourceService extends ApiService {
                                 return resSeq;
                             }
                         )
-                    );
+                    )
                 }
 
             )
@@ -213,7 +215,7 @@ export class ResourceService extends ApiService {
     }
 
     /**
-     * @deprecated since v9.5.0
+     * @private
      *
      * @param iri
      * @returns Observable<ResourcesSequence | ApiServiceError>
@@ -334,6 +336,7 @@ export class ResourceService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Get a resource by IRI and return the json-ld result;
      * it will be used for the request body object in delete and erase resource
      *
@@ -350,6 +353,7 @@ export class ResourceService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Delete resource
      *
      * Knora does not normally delete resources; instead, it marks them as deleted, which means that they do not appear in normal query results.
@@ -400,6 +404,7 @@ export class ResourceService extends ApiService {
 
     /**
      * @deprecated since v9.5.0
+     *
      * Erase resource (from triplestore)
      *
      * @param {string} iri Iri of the resource
