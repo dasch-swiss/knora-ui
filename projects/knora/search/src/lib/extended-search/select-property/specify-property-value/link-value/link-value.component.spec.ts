@@ -24,9 +24,10 @@ const jsonld = require('jsonld');
  */
 @Component({
     selector: `kui-host-component`,
-    template: `
-        <link-value #linkVal [formGroup]="form"
-                    [restrictResourceClass]="'http://0.0.0.0:3333/ontology/0801/beol/v2#person'"></link-value>`
+    template: `<link-value #linkVal 
+                    [formGroup]="form"
+                    [restrictResourceClass]="'http://0.0.0.0:3333/ontology/0801/beol/v2#person'">
+               </link-value>`
 })
 class TestHostComponent implements OnInit {
 
@@ -131,7 +132,10 @@ describe('LinkValueComponent', () => {
 
     it('should return a selected resource', () => {
 
-        testHostComponent.linkValue.form.setValue({ 'resource': new ReadResource() });
+        const res = new ReadResource();
+        res.id = 'http://rdfh.ch/00505cf0a803';
+
+        testHostComponent.linkValue.form.setValue({ 'resource': res });
 
         testHostFixture.detectChanges();
 
