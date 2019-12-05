@@ -9,17 +9,24 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
-import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '@knora/core';
+import { KnoraApiConfig } from '@knora/api';
+import { KuiConfig, KuiConfigToken, KuiCoreModule } from '@knora/core';
 
 import { ExpertSearchComponent } from './expert-search.component';
 
+export class AppConfig {
+  name: string;
+  url: string;
+
+  constructor(name: string, url: string) { }
+}
 
 describe('ExpertSearchComponent', () => {
   let component: ExpertSearchComponent;
   let fixture: ComponentFixture<ExpertSearchComponent>;
 
   const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
+  const appConfig = new AppConfig('knora app', '0.0.0.0');
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -45,12 +52,8 @@ describe('ExpertSearchComponent', () => {
           }
         },
         {
-          provide: KnoraApiConfigToken,
-          useValue: config
-        },
-        {
-          provide: KnoraApiConnectionToken,
-          useValue: new KnoraApiConnection(config)
+          provide: KuiConfigToken,
+          useValue: new KuiConfig(config, appConfig)
         }
       ]
     })
@@ -67,7 +70,7 @@ describe('ExpertSearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('should reset the form', () => {
+  it('should reset the form', () => {
     const ele: DebugElement = fixture.debugElement;
 
     const resetBtn = ele.query(By.css('button'));
