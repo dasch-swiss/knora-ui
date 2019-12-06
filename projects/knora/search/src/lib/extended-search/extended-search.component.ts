@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { KnoraApiConnection, OntologiesMetadata, OntologyMetadata } from '@knora/api';
+import { KnoraApiConnection, OntologiesMetadata, OntologyMetadata, ApiResponseError } from '@knora/api';
 import { GravsearchGenerationService, KnoraApiConnectionToken, OntologyCacheService, OntologyInformation, Properties, PropertyWithValue, ReadResourcesSequence, ResourceClass } from '@knora/core';
 
 import { SelectPropertyComponent } from './select-property/select-property.component';
@@ -116,6 +116,9 @@ export class ExtendedSearchComponent implements OnInit {
         this.knoraApiConnection.v2.onto.getOntologiesMetadata().subscribe(
             (response: OntologiesMetadata) => {
                 this.ontologies = response.ontologies;
+            },
+            (error: ApiResponseError) => {
+                console.error(error);
             });
     }
 

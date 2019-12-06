@@ -11,12 +11,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { KuiActionModule } from '@knora/action';
-import { KuiCoreConfig, KuiCoreConfigToken } from '@knora/core';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '@knora/core';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
 import { FulltextSearchComponent } from './fulltext-search.component';
 
 describe('FulltextSearchComponent', () => {
     let component: FulltextSearchComponent;
     let fixture: ComponentFixture<FulltextSearchComponent>;
+
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -31,20 +35,25 @@ describe('FulltextSearchComponent', () => {
                 MatTooltipModule,
                 FormsModule,
                 RouterTestingModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                KuiCoreModule
             ],
             declarations: [FulltextSearchComponent],
             providers: [
-                {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
-                },
                 HttpClient,
                 {
                     provide: ActivatedRoute,
                     useValue: {
                         params: null
                     }
+                },
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: config
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: new KnoraApiConnection(config)
                 }
             ]
         }).compileComponents();

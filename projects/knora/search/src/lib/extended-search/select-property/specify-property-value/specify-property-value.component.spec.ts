@@ -8,10 +8,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
+import { Equals, Exists, KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule, Like, Match, NotEquals, Property } from '@knora/core';
+import { JdnDatepickerDirective } from '@knora/action';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
 
 import { SpecifyPropertyValueComponent } from './specify-property-value.component';
-import { Component, DebugElement, Inject, OnInit, ViewChild } from '@angular/core';
-import { Equals, Exists, KuiCoreConfig, KuiCoreConfigToken, Like, Match, NotEquals, Property } from '@knora/core';
 import { BooleanValueComponent } from './boolean-value/boolean-value.component';
 import { DateValueComponent } from './date-value/date-value.component';
 import { DecimalValueComponent } from './decimal-value/decimal-value.component';
@@ -19,17 +25,54 @@ import { IntegerValueComponent } from './integer-value/integer-value.component';
 import { LinkValueComponent } from './link-value/link-value.component';
 import { TextValueComponent } from './text-value/text-value.component';
 import { UriValueComponent } from './uri-value/uri-value.component';
-import { JdnDatepickerDirective } from '@knora/action';
-import { RouterTestingModule } from '@angular/router/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ActivatedRoute } from '@angular/router';
-import { By } from '@angular/platform-browser';
 import { ListValueComponent } from './list-value/list-value.component';
 import { ListDisplayComponent } from './list-value/list-display/list-display.component';
+
+// mock of a text property
+const textProperty = new Property(
+    'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText',
+    'http://api.knora.org/ontology/knora-api/v2#TextValue',
+    undefined,
+    'Text',
+    ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
+    true,
+    false,
+    false,
+    []
+);
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    selector: `kui-host-component`,
+    template: `
+        <kui-specify-property-value #propValue [formGroup]="form"
+                                    [property]="activeProperty"></kui-specify-property-value>`
+})
+class TestHostComponent implements OnInit {
+
+    form;
+
+    activeProperty: Property;
+
+    @ViewChild('propValue', { static: false }) specifyPropValueComp: SpecifyPropertyValueComponent;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+
+        this.activeProperty = textProperty;
+    }
+}
 
 describe('SpecifyPropertyValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
+
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -61,7 +104,8 @@ describe('SpecifyPropertyValueComponent', () => {
                 MatDatepickerModule,
                 MatAutocompleteModule,
                 BrowserAnimationsModule,
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                KuiCoreModule
             ],
             providers: [
                 {
@@ -71,8 +115,12 @@ describe('SpecifyPropertyValueComponent', () => {
                     },
                 },
                 {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
+                    provide: KnoraApiConfigToken,
+                    useValue: config
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: new KnoraApiConnection(config)
                 },
                 FormBuilder
             ]
@@ -158,42 +206,3 @@ describe('SpecifyPropertyValueComponent', () => {
     });
 
 });
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    selector: `host-component`,
-    template: `
-        <kui-specify-property-value #propValue [formGroup]="form"
-                                    [property]="activeProperty"></kui-specify-property-value>`
-})
-class TestHostComponent implements OnInit {
-
-    form;
-
-    activeProperty: Property;
-
-    @ViewChild('propValue', { static: false }) specifyPropValueComp: SpecifyPropertyValueComponent;
-
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
-    }
-
-    ngOnInit() {
-        this.form = this.fb.group({});
-
-        this.activeProperty = textProperty;
-    }
-}
-
-const textProperty = new Property(
-    'http://0.0.0.0:3333/ontology/0001/anything/v2#hasText',
-    'http://api.knora.org/ontology/knora-api/v2#TextValue',
-    undefined,
-    'Text',
-    ['http://api.knora.org/ontology/knora-api/v2#hasValue'],
-    true,
-    false,
-    false,
-    []
-);

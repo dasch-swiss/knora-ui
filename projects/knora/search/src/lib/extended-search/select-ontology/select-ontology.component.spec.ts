@@ -12,12 +12,65 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { KuiCoreConfig, KuiCoreConfigToken, OntologyMetadata } from '@knora/core';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule, OntologyMetadata } from '@knora/core';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
 import { SelectOntologyComponent } from './select-ontology.component';
 
+/**
+ * Test host component to simulate `ExtendedSearchComponent`.
+ * Warning: Must be declared before used in tests.
+ */
+@Component({
+    selector: `kui-host-component`,
+    template: `
+        <kui-select-ontology #ontosComp [formGroup]="form" [ontologies]="ontos"
+                             (ontologySelected)="ontoSelected($event)"></kui-select-ontology>`
+})
+class TestHostComponent implements OnInit {
+
+    form;
+
+    ontos: Array<OntologyMetadata> = [];
+
+    selectedOnto: string;
+
+    @ViewChild('ontosComp', { static: false }) selectOntosComp: SelectOntologyComponent;
+
+    private ontoMeta = [
+        new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),
+        new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/something/v2', 'The something ontology'),
+        new OntologyMetadata('http://0.0.0.0:3333/ontology/00FF/images/v2', 'The images demo ontology'),
+        new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/beol/v2', 'The BEOL ontology'),
+        new OntologyMetadata('http://0.0.0.0:3333/ontology/0802/biblio/v2', 'The Biblio ontology'),
+        new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
+        new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
+        new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
+        new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
+    ];
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ontoSelected(ontoIri) {
+        this.selectedOnto = ontoIri;
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+
+        this.ontos = this.ontoMeta;
+
+    }
+
+}
+
 describe('SelectOntologyComponent', () => {
+
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
+
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -36,7 +89,8 @@ describe('SelectOntologyComponent', () => {
                 MatDatepickerModule,
                 MatAutocompleteModule,
                 BrowserAnimationsModule,
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                KuiCoreModule
             ],
             providers: [
                 {
@@ -46,8 +100,12 @@ describe('SelectOntologyComponent', () => {
                     },
                 },
                 {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
+                    provide: KnoraApiConfigToken,
+                    useValue: config
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: new KnoraApiConnection(config)
                 },
                 FormBuilder
             ]
@@ -139,50 +197,3 @@ describe('SelectOntologyComponent', () => {
     });
 
 });
-
-/**
- * Test host component to simulate `ExtendedSearchComponent`.
- */
-@Component({
-    selector: `host-component`,
-    template: `
-        <kui-select-ontology #ontosComp [formGroup]="form" [ontologies]="ontos"
-                             (ontologySelected)="ontoSelected($event)"></kui-select-ontology>`
-})
-class TestHostComponent implements OnInit {
-
-    form;
-
-    ontos: Array<OntologyMetadata> = [];
-
-    selectedOnto: string;
-
-    @ViewChild('ontosComp', { static: false }) selectOntosComp: SelectOntologyComponent;
-
-    private ontoMeta = [
-        new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/anything/v2', 'The anything ontology'),
-        new OntologyMetadata('http://0.0.0.0:3333/ontology/0001/something/v2', 'The something ontology'),
-        new OntologyMetadata('http://0.0.0.0:3333/ontology/00FF/images/v2', 'The images demo ontology'),
-        new OntologyMetadata('http://0.0.0.0:3333/ontology/0801/beol/v2', 'The BEOL ontology'),
-        new OntologyMetadata('http://0.0.0.0:3333/ontology/0802/biblio/v2', 'The Biblio ontology'),
-        new OntologyMetadata('http://0.0.0.0:3333/ontology/0803/incunabula/v2', 'The incunabula ontology'),
-        new OntologyMetadata('http://0.0.0.0:3333/ontology/0804/dokubib/v2', 'The dokubib ontology'),
-        new OntologyMetadata('http://0.0.0.0:3333/ontology/08AE/webern/v2', 'The Anton Webern project ontology'),
-        new OntologyMetadata('http://api.knora.org/ontology/knora-api/v2', 'The knora-api ontology in the complex schema')
-    ];
-
-    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
-    }
-
-    ontoSelected(ontoIri) {
-        this.selectedOnto = ontoIri;
-    }
-
-    ngOnInit() {
-        this.form = this.fb.group({});
-
-        this.ontos = this.ontoMeta;
-
-    }
-
-}
