@@ -175,7 +175,7 @@ describe('ExtendedSearchComponent', () => {
         it('should check that the submit button is disabled after init', () => {
 
             const ele: DebugElement = fixture.debugElement;
-            const submitDe = ele.query(By.css('button[type="submit"]'));
+            const submitDe = ele.query(By.css('button.extended-search-button'));
 
             const submit = submitDe.nativeElement;
 
