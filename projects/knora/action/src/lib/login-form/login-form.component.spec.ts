@@ -11,11 +11,19 @@ import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiConfig, KuiConfigToken
 
 import { LoginFormComponent } from './login-form.component';
 
+export class AppConfig {
+    name: string;
+    url: string;
+
+    constructor(name: string, url: string) { }
+}
+
 describe('LoginFormComponent', () => {
     let component: LoginFormComponent;
     let fixture: ComponentFixture<LoginFormComponent>;
 
     const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
+    const appConfig = new AppConfig('knora app', '0.0.0.0:4200');
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -36,7 +44,7 @@ describe('LoginFormComponent', () => {
                 SessionService,
                 {
                     provide: KuiConfigToken,
-                    useValue: KuiConfig
+                    useValue: new KuiConfig(config, appConfig)
                 },
                 {
                     provide: KnoraApiConfigToken,

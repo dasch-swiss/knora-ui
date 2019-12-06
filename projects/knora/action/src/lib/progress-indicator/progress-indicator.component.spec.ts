@@ -9,8 +9,7 @@ import { ProgressIndicatorComponent } from './progress-indicator.component';
  * Test host component to simulate parent component with a progress bar.
  */
 @Component({
-    template: `
-        <kui-progress-indicator #progressIndicator [status]="status" [color]="color"></kui-progress-indicator>`
+    template: `<kui-progress-indicator #progressIndicator [status]="status" [color]="color"></kui-progress-indicator>`
 })
 class TestHostComponent implements OnInit {
 
