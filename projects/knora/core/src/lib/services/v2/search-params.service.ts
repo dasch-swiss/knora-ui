@@ -13,9 +13,9 @@ export class ExtendedSearchParams {
      *
      * @param generateGravsearch a function that generates a Gravsearch query.
      *
-     *                           The function takes the offset
-     *                           as a parameter and returns a Gravsearch query string.
-     *                           Returns false if not set correctly (init state).
+     * The function takes the offset
+     * as a parameter and returns a Gravsearch query string.
+     * Returns false if not set correctly (init state).
      */
     constructor(public generateGravsearch: (offset: number) => string | boolean) {
 

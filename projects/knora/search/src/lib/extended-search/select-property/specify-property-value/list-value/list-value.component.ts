@@ -1,8 +1,8 @@
 import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IRI, KnoraConstants, ListNodeV2, Property, PropertyValue, Value } from '@knora/core';
-import { ListCacheService } from '@knora/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { ApiResponseError, KnoraApiConnection, ListNode } from '@knora/api';
+import { IRI, KnoraApiConnectionToken, KnoraConstants, Property, PropertyValue, Value } from '@knora/core';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -23,15 +23,18 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     @Input() property?: Property;
 
-    listRootNode: ListNodeV2;
+    listRootNode: ListNode;
 
     // activeNode;
 
-    selectedNode: ListNodeV2;
+    selectedNode: ListNode;
 
     @ViewChild(MatMenuTrigger, { static: false }) menuTrigger: MatMenuTrigger;
 
-    constructor (@Inject(FormBuilder) private fb: FormBuilder, private _listCacheService: ListCacheService) {
+    constructor (
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
+        @Inject(FormBuilder) private fb: FormBuilder
+        ) {
     }
 
     private getRootNodeIri(): string {
@@ -58,11 +61,20 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
         const rootNodeIri = this.getRootNodeIri();
 
-        this._listCacheService.getList(rootNodeIri).subscribe(
-            (list: ListNodeV2) => {
-                this.listRootNode = list;
+        this.knoraApiConnection.v2.listNodeCache.getNode(rootNodeIri).subscribe(
+            (response: ListNode) => {
+                this.listRootNode = response;
+            },
+            (error: ApiResponseError) => {
+                console.error(error);
             }
         );
+
+        // this._listCacheService.getList(rootNodeIri).subscribe(
+        //     (list: ListNodeV2) => {
+        //         this.listRootNode = list;
+        //     }
+        // );
 
     }
 
@@ -79,7 +91,7 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
         return new IRI(this.form.value.listValue);
     }
 
-    getSelectedNode(item: ListNodeV2) {
+    getSelectedNode(item: ListNode) {
         this.menuTrigger.closeMenu();
         this.selectedNode = item;
 

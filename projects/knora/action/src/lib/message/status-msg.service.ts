@@ -2,9 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { KuiConfigToken } from '../../core.module';
-
+import { KuiConfigToken } from '@knora/core';
 
 @Injectable({
     providedIn: 'root'
