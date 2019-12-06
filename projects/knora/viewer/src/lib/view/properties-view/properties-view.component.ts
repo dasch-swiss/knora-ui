@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IResourceClassAndPropertyDefinitions, ReadValue } from '@knora/api';
-import { GuiOrder, KnoraConstants, ReadResource } from '@knora/core';
+import { ReadResource } from '@knora/api';
+
+import { TempProperty } from '..';
 
 /**
  * Shows all metadata (properties) in the resource viewer
@@ -14,38 +15,37 @@ import { GuiOrder, KnoraConstants, ReadResource } from '@knora/core';
 })
 export class PropertiesViewComponent implements OnInit {
 
+    /**
+     * Array of property object with ontology class prop def, list of properties and corresponding values
+     *
+     * @param  {TempProperty} propArray
+     */
+    @Input() propArray: TempProperty;
+
+    /**
+     * Show all properties, even they don't have a value.
+     *
+     * @param  {boolean=false} [allProps]
+     */
+    @Input() allProps?: boolean = false;
+
+    /**
+     * Show toolbar with project info and some action tools
+     *
+     * @param  {boolean=false} [toolbar]
+     */
+    @Input() toolbar?: boolean = false;
+
     loading: boolean = false;
 
-    KnoraConstants = KnoraConstants;
-
-    @Input() guiOrder?: GuiOrder;
-
-    @Input() entityInfo: IResourceClassAndPropertyDefinitions;
-    @Input() properties: {
-        [index: string]: ReadValue[];
-    };
-
-    @Input() annotations?: ReadResource[];
-    @Input() incomingLinks?: ReadResource[];
-
-    propArray: any = [];
-
-    // @Output() routeChanged: EventEmitter<string> = new EventEmitter<string>();
-
-    constructor(protected _router: Router) {
-
+    constructor(
+        protected _router: Router) {
     }
 
     ngOnInit() {
-        // HACK (until gui order is ready): convert properties object into array
-        if (this.properties) {
-            this.propArray = Object.keys(this.properties).map(function (index) {
-                const prop = this.properties[index];
-                return prop;
-            });
-            console.log(this.propArray);
-        }
+
     }
+
     /**
      * Navigate to the incoming resource view.
      *
@@ -58,5 +58,6 @@ export class PropertiesViewComponent implements OnInit {
         this._router.navigate(['/resource/' + encodeURIComponent(id)]);
 
     }
+
 
 }

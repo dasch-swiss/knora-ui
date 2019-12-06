@@ -5,11 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
  *
  * In markup:
  *
- * {{ str | kuiTruncate:[24] }}
+ * {{ str | kuiTruncate:['24'] }}
  *
  * or
  *
- * {{ str | kuiTruncate:[24, '...'] }}
+ * {{ str | kuiTruncate:['24', '...'] }}
  *
  *
  * The first parameter defines the length where to truncate the string.

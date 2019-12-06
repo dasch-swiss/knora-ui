@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ReadTextValueAsString } from '@knora/core';
+import { ReadTextValueAsString } from '@knora/api';
 
 @Component({
     selector: 'kui-text-value-as-string',
@@ -14,12 +14,12 @@ export class TextValueAsStringComponent {
     set valueObject(value: ReadTextValueAsString) {
         // console.log(value);
 
-        const str: string = value.str;
+        const str: string = value.strval;
 
         if (this.regexUrl.exec(str)) {
             const url: string = this.regexUrl.exec(str)[0];
             const newStr = str.replace(this.regexUrl, '<a class="kui-link" href="' + url + '">' + url + '</a>');
-            value.str = newStr;
+            value.strval = newStr;
             this._textStringValueObj = value;
         } else {
             this._textStringValueObj = value;
@@ -34,7 +34,7 @@ export class TextValueAsStringComponent {
 
     private _textStringValueObj: ReadTextValueAsString;
 
-    constructor () {
+    constructor() {
     }
 
 }

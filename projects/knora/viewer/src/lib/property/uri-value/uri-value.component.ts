@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { ReadUriValue } from '@knora/core';
+import { ReadUriValue } from '@knora/api';
 
 @Component({
     selector: '   kui-uri-value',
@@ -19,7 +19,7 @@ export class UriValueComponent implements OnChanges {
     @Input() label?: string;
     private __uriValueObj: ReadUriValue;
     public displayString: string;
-    constructor () { }
+    constructor() { }
 
     ngOnChanges() {
         if (this.label === undefined) {

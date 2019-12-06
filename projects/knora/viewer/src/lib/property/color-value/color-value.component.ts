@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ReadColorValue } from '@knora/core';
+import { ReadColorValue } from '@knora/api';
 
 @Component({
     selector: 'kui-color-value',
