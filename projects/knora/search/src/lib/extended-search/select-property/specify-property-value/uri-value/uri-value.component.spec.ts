@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,13 +9,39 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
-import { KuiCoreConfig, KuiCoreConfigToken, ValueLiteral } from '@knora/core';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule, ValueLiteral } from '@knora/core';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
 import { UriValueComponent } from './uri-value.component';
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    selector: `kui-host-component`,
+    template: `
+        <uri-value #uriVal [formGroup]="form"></uri-value>`
+})
+class TestHostComponent implements OnInit {
+
+    form;
+
+    @ViewChild('uriVal', { static: false }) uriValue: UriValueComponent;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+
+    }
+}
 
 describe('UriValueComponent', () => {
     let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
+
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -31,7 +57,8 @@ describe('UriValueComponent', () => {
                 MatCheckboxModule,
                 BrowserAnimationsModule,
                 MatInputModule,
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                KuiCoreModule
             ],
             providers: [
                 {
@@ -41,8 +68,12 @@ describe('UriValueComponent', () => {
                     },
                 },
                 {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
+                    provide: KnoraApiConfigToken,
+                    useValue: config
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: new KnoraApiConnection(config)
                 },
                 FormBuilder
             ]
@@ -85,26 +116,3 @@ describe('UriValueComponent', () => {
 
     });
 });
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    selector: `host-component`,
-    template: `
-        <uri-value #uriVal [formGroup]="form"></uri-value>`
-})
-class TestHostComponent implements OnInit {
-
-    form;
-
-    @ViewChild('uriVal', { static: false }) uriValue: UriValueComponent;
-
-    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
-    }
-
-    ngOnInit() {
-        this.form = this.fb.group({});
-
-    }
-}

@@ -1,16 +1,14 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {
-    ApiServiceResult,
-    ConvertJSONLD,
     IRI,
+    KnoraApiConnectionToken,
     KnoraConstants,
     OntologyCacheService,
     PropertyValue,
-    ReadResource,
-    ReadResourcesSequence,
     Value
 } from '@knora/core';
+import { KnoraApiConnection, ReadResource } from '@knora/api';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -45,7 +43,10 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
         return this._restrictToResourceClass;
     }
 
-    constructor(@Inject(FormBuilder) private fb: FormBuilder, private _cacheService: OntologyCacheService) {
+    constructor(
+        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
+        @Inject(FormBuilder) private fb: FormBuilder,
+        private _cacheService: OntologyCacheService) {
 
     }
 
@@ -82,6 +83,10 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
                 }
             );
             */
+            this.knoraApiConnection.v2.search.doSearchByLabel(searchTerm, 0, { limitToResourceClass: this._restrictToResourceClass }).subscribe(
+                (response: ReadResource[]) => {
+                    this.resources = response;
+                });
         } else {
             // clear selection
             this.resources = undefined;

@@ -12,198 +12,10 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Cardinality, CardinalityOccurrence, GuiOrder, KuiCoreConfig, KuiCoreConfigToken, ResourceClass } from '@knora/core';
+import { Cardinality, CardinalityOccurrence, GuiOrder, KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule, ResourceClass } from '@knora/core';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+
 import { SelectResourceClassComponent } from './select-resource-class.component';
-
-describe('SelectResourceClassComponent', () => {
-    let testHostComponent: TestHostComponent;
-    let testHostFixture: ComponentFixture<TestHostComponent>;
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [
-                SelectResourceClassComponent,
-                TestHostComponent
-            ],
-            imports: [
-                HttpClientTestingModule,
-                FormsModule,
-                ReactiveFormsModule,
-                MatFormFieldModule,
-                MatSelectModule,
-                MatIconModule,
-                MatCheckboxModule,
-                MatDatepickerModule,
-                MatAutocompleteModule,
-                BrowserAnimationsModule,
-                RouterTestingModule.withRoutes([])
-            ],
-            providers: [
-                {
-                    provide: ActivatedRoute,
-                    useValue: {
-                        params: null
-                    },
-                },
-                {
-                    provide: KuiCoreConfigToken,
-                    useValue: KuiCoreConfig
-                },
-                FormBuilder
-            ]
-        })
-            .compileComponents();
-    }));
-
-    beforeEach(() => {
-        testHostFixture = TestBed.createComponent(TestHostComponent);
-        testHostComponent = testHostFixture.componentInstance;
-        testHostFixture.detectChanges();
-
-        expect(testHostComponent).toBeTruthy();
-
-    });
-
-    it('should create', () => {
-        // access the test host component's child
-        expect(testHostComponent.selectResClassesComp).toBeTruthy();
-    });
-
-    it('should initialize the ontologies', () => {
-        // access the test host component's child
-        expect(testHostComponent.selectResClassesComp).toBeTruthy();
-
-        const selectResClassCompInstance = testHostComponent.selectResClassesComp;
-
-        expect(selectResClassCompInstance.resourceClasses).toEqual(initResClasses);
-
-    });
-
-    it('should create the selection for the resource classes', () => {
-
-        // access the test host component's child
-        expect(testHostComponent.selectResClassesComp).toBeTruthy();
-
-        const hostCompDe = testHostFixture.debugElement;
-
-        const selResClasses = hostCompDe.query(By.directive(SelectResourceClassComponent));
-
-        const matSelect = selResClasses.query(By.css('mat-select'));
-
-        matSelect.nativeElement.click();
-
-        testHostFixture.detectChanges();
-
-        const options: DebugElement[] = matSelect.queryAll(By.css('mat-option'));
-
-        // make sure that there are two mat-option (one for no selection)
-        expect(options.length).toEqual(2);
-    });
-
-    it('should select a resource class', () => {
-
-        // access the test host component's child
-        expect(testHostComponent.selectResClassesComp).toBeTruthy();
-
-        const hostCompDe = testHostFixture.debugElement;
-
-        const selResClasses = hostCompDe.query(By.directive(SelectResourceClassComponent));
-
-        const matSelect = selResClasses.query(By.css('mat-select'));
-
-        matSelect.nativeElement.click();
-
-        testHostFixture.detectChanges();
-
-        const options: DebugElement[] = matSelect.queryAll(By.css('mat-option'));
-
-        matSelect.nativeElement.click();
-
-        testHostFixture.detectChanges();
-
-        (options[1].nativeElement as HTMLElement).click();
-
-        testHostFixture.detectChanges();
-
-        // make sure that the selected resource class's Iri was correctly emitted to the parent component
-        expect(testHostComponent.selectedResClass).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing');
-    });
-
-    it('should select option "no selection"', () => {
-
-        // access the test host component's child
-        expect(testHostComponent.selectResClassesComp).toBeTruthy();
-
-        const hostCompDe = testHostFixture.debugElement;
-
-        const selResClasses = hostCompDe.query(By.directive(SelectResourceClassComponent));
-
-        const matSelect = selResClasses.query(By.css('mat-select'));
-
-        matSelect.nativeElement.click();
-
-        testHostFixture.detectChanges();
-
-        const options: DebugElement[] = matSelect.queryAll(By.css('mat-option'));
-
-        matSelect.nativeElement.click();
-
-        testHostFixture.detectChanges();
-
-        (options[0].nativeElement as HTMLElement).click();
-
-        testHostFixture.detectChanges();
-
-        // make sure that the "no selection" was correctly emitted to the parent component
-        expect(testHostComponent.selectedResClass).toEqual(null);
-    });
-
-    it('should update the resource classes through the input', () => {
-
-        testHostComponent.resClasses = updatedResClasses;
-
-        testHostFixture.detectChanges();
-
-        expect(testHostComponent.selectResClassesComp.resourceClasses).toEqual(updatedResClasses);
-
-    });
-
-
-});
-
-/**
- * Test host component to simulate `ExtendedSearchComponent`.
- */
-@Component({
-    selector: `host-component`,
-    template: `
-        <kui-select-resource-class #resClass [formGroup]="form" [resourceClasses]="resClasses"
-                                   (resourceClassSelectedEvent)="getPropertiesForResourceClass($event)"></kui-select-resource-class>`
-})
-class TestHostComponent implements OnInit {
-
-    form;
-
-    resClasses: Array<ResourceClass> = [];
-
-    selectedResClass: string;
-
-    @ViewChild('resClass', { static: false }) selectResClassesComp: SelectResourceClassComponent;
-
-    constructor (@Inject(FormBuilder) private fb: FormBuilder) {
-    }
-
-    getPropertiesForResourceClass(resClassIri) {
-        this.selectedResClass = resClassIri;
-    }
-
-    ngOnInit() {
-        this.form = this.fb.group({});
-
-        this.resClasses = initResClasses;
-    }
-
-}
 
 // resource classes passed to `SelectResourceClass` from parent component
 const initResClasses = [
@@ -339,3 +151,200 @@ const updatedResClasses = [
         ]
     )
 ];
+
+/**
+ * Test host component to simulate `ExtendedSearchComponent`.
+ */
+@Component({
+    selector: `kui-host-component`,
+    template: `
+        <kui-select-resource-class #resClass [formGroup]="form" [resourceClasses]="resClasses"
+                                   (resourceClassSelectedEvent)="getPropertiesForResourceClass($event)"></kui-select-resource-class>`
+})
+class TestHostComponent implements OnInit {
+
+    form;
+
+    resClasses: Array<ResourceClass> = [];
+
+    selectedResClass: string;
+
+    @ViewChild('resClass', { static: false }) selectResClassesComp: SelectResourceClassComponent;
+
+    constructor(@Inject(FormBuilder) private fb: FormBuilder) {
+    }
+
+    getPropertiesForResourceClass(resClassIri) {
+        this.selectedResClass = resClassIri;
+    }
+
+    ngOnInit() {
+        this.form = this.fb.group({});
+
+        this.resClasses = initResClasses;
+    }
+
+}
+
+describe('SelectResourceClassComponent', () => {
+    let testHostComponent: TestHostComponent;
+    let testHostFixture: ComponentFixture<TestHostComponent>;
+
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
+
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                SelectResourceClassComponent,
+                TestHostComponent
+            ],
+            imports: [
+                HttpClientTestingModule,
+                FormsModule,
+                ReactiveFormsModule,
+                MatFormFieldModule,
+                MatSelectModule,
+                MatIconModule,
+                MatCheckboxModule,
+                MatDatepickerModule,
+                MatAutocompleteModule,
+                BrowserAnimationsModule,
+                RouterTestingModule.withRoutes([]),
+                KuiCoreModule
+            ],
+            providers: [
+                {
+                    provide: ActivatedRoute,
+                    useValue: {
+                        params: null
+                    },
+                },
+                {
+                    provide: KnoraApiConfigToken,
+                    useValue: config
+                },
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: new KnoraApiConnection(config)
+                },
+                FormBuilder
+            ]
+        })
+            .compileComponents();
+    }));
+
+    beforeEach(() => {
+        testHostFixture = TestBed.createComponent(TestHostComponent);
+        testHostComponent = testHostFixture.componentInstance;
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent).toBeTruthy();
+
+    });
+
+    it('should create', () => {
+        // access the test host component's child
+        expect(testHostComponent.selectResClassesComp).toBeTruthy();
+    });
+
+    it('should initialize the ontologies', () => {
+        // access the test host component's child
+        expect(testHostComponent.selectResClassesComp).toBeTruthy();
+
+        const selectResClassCompInstance = testHostComponent.selectResClassesComp;
+
+        expect(selectResClassCompInstance.resourceClasses).toEqual(initResClasses);
+
+    });
+
+    it('should create the selection for the resource classes', () => {
+
+        // access the test host component's child
+        expect(testHostComponent.selectResClassesComp).toBeTruthy();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const selResClasses = hostCompDe.query(By.directive(SelectResourceClassComponent));
+
+        const matSelect = selResClasses.query(By.css('mat-select'));
+
+        matSelect.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        const options: DebugElement[] = matSelect.queryAll(By.css('mat-option'));
+
+        // make sure that there are two mat-option (one for no selection)
+        expect(options.length).toEqual(2);
+    });
+
+    it('should select a resource class', () => {
+
+        // access the test host component's child
+        expect(testHostComponent.selectResClassesComp).toBeTruthy();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const selResClasses = hostCompDe.query(By.directive(SelectResourceClassComponent));
+
+        const matSelect = selResClasses.query(By.css('mat-select'));
+
+        matSelect.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        const options: DebugElement[] = matSelect.queryAll(By.css('mat-option'));
+
+        matSelect.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        (options[1].nativeElement as HTMLElement).click();
+
+        testHostFixture.detectChanges();
+
+        // make sure that the selected resource class's Iri was correctly emitted to the parent component
+        expect(testHostComponent.selectedResClass).toEqual('http://0.0.0.0:3333/ontology/0001/anything/v2#BlueThing');
+    });
+
+    it('should select option "no selection"', () => {
+
+        // access the test host component's child
+        expect(testHostComponent.selectResClassesComp).toBeTruthy();
+
+        const hostCompDe = testHostFixture.debugElement;
+
+        const selResClasses = hostCompDe.query(By.directive(SelectResourceClassComponent));
+
+        const matSelect = selResClasses.query(By.css('mat-select'));
+
+        matSelect.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        const options: DebugElement[] = matSelect.queryAll(By.css('mat-option'));
+
+        matSelect.nativeElement.click();
+
+        testHostFixture.detectChanges();
+
+        (options[0].nativeElement as HTMLElement).click();
+
+        testHostFixture.detectChanges();
+
+        // make sure that the "no selection" was correctly emitted to the parent component
+        expect(testHostComponent.selectedResClass).toEqual(null);
+    });
+
+    it('should update the resource classes through the input', () => {
+
+        testHostComponent.resClasses = updatedResClasses;
+
+        testHostFixture.detectChanges();
+
+        expect(testHostComponent.selectResClassesComp.resourceClasses).toEqual(updatedResClasses);
+
+    });
+
+
+});
