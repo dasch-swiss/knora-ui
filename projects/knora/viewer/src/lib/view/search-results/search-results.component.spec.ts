@@ -7,15 +7,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ConvertJSONLD, CountQueryResult, ExtendedSearchParams, KuiCoreConfig, KuiCoreConfigToken, OntologyInformation, Properties, ResourceClasses, SearchParamsService, SearchService } from '@knora/core';
+import { ConvertJSONLD, CountQueryResult, ExtendedSearchParams, KnoraApiConfigToken, KuiCoreModule, OntologyInformation, Properties, ResourceClasses, SearchParamsService, SearchService } from '@knora/core';
 import { KuiActionModule } from 'projects/knora/action/src/public_api';
 import { BehaviorSubject, of } from 'rxjs';
+import { KnoraApiConfig } from '@knora/api';
+
 import { DateValueComponent } from '../../property/date-value/date-value.component';
 import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
 import { GraphViewComponent } from '../graph-view/graph-view.component';
 import { GridViewComponent } from '../grid-view/grid-view.component';
 import { ListViewComponent } from '../list-view/list-view.component';
 import { TableViewComponent } from '../table-view/table-view.component';
+
 import { SearchResultsComponent } from './search-results.component';
 
 class MockSearchParamsService {
@@ -36,6 +39,8 @@ class MockSearchParamsService {
 
 }
 
+// TODO: the tests have been temporarily excluded because it requires new test data and methods from @knora/api lib
+
 xdescribe('SearchResultsComponent', () => {
     let component: SearchResultsComponent;
     let fixture: ComponentFixture<SearchResultsComponent>;
@@ -46,6 +51,8 @@ xdescribe('SearchResultsComponent', () => {
 
     let mockSearchParamService;
     let searchServiceSpy: jasmine.SpyObj<SearchService>; // see https://angular.io/guide/testing#angular-testbed
+
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
 
     beforeEach(async(() => {
         mockSearchParamService = new MockSearchParamsService();
@@ -65,7 +72,8 @@ xdescribe('SearchResultsComponent', () => {
                 MatTabsModule,
                 HttpClientModule,
                 HttpClientTestingModule,
-                RouterTestingModule
+                RouterTestingModule,
+                KuiCoreModule
             ],
             declarations: [
                 DateValueComponent,
@@ -97,7 +105,7 @@ xdescribe('SearchResultsComponent', () => {
                         })
                     }
                 },
-                { provide: KuiCoreConfigToken, useValue: KuiCoreConfig },
+                { provide: KnoraApiConfigToken, useValue: config },
                 { provide: SearchParamsService, useValue: mockSearchParamService },
                 { provide: SearchService, useValue: spySearchService },
                 HttpClient
@@ -166,7 +174,7 @@ xdescribe('SearchResultsComponent', () => {
 
     }));
 
-    describe('extended search', () => {
+    xdescribe('extended search', () => {
         beforeEach(() => {
             mode = 'extended';
             fixture = TestBed.createComponent(SearchResultsComponent);
@@ -174,11 +182,11 @@ xdescribe('SearchResultsComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should create', () => {
+        xit('should create', () => {
             expect(component).toBeTruthy();
         });
 
-        it('should perform a count query', () => {
+        xit('should perform a count query', () => {
 
             component.ngOnChanges();
 
@@ -189,7 +197,7 @@ xdescribe('SearchResultsComponent', () => {
             expect(component.numberOfAllResults).toEqual(1);
         });
 
-        it('should perform a gravsearch query', () => {
+        xit('should perform a gravsearch query', () => {
 
             component.ngOnChanges();
 
@@ -201,7 +209,7 @@ xdescribe('SearchResultsComponent', () => {
         });
     });
 
-    describe('fulltext search without a project', () => {
+    xdescribe('fulltext search without a project', () => {
         beforeEach(() => {
             mode = 'fulltext';
             fixture = TestBed.createComponent(SearchResultsComponent);
@@ -209,11 +217,11 @@ xdescribe('SearchResultsComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should create', () => {
+        xit('should create', () => {
             expect(component).toBeTruthy();
         });
 
-        it('should perform a count query', () => {
+        xit('should perform a count query', () => {
 
             component.ngOnChanges();
 
@@ -224,7 +232,7 @@ xdescribe('SearchResultsComponent', () => {
             expect(component.numberOfAllResults).toEqual(1);
         });
 
-        it('should perform a fulltext query', () => {
+        xit('should perform a fulltext query', () => {
 
             component.ngOnChanges();
 
@@ -236,7 +244,7 @@ xdescribe('SearchResultsComponent', () => {
         });
     });
 
-    describe('fulltext search with a project', () => {
+    xdescribe('fulltext search with a project', () => {
         beforeEach(() => {
             mode = 'fulltext';
             project = 'http://rdfh.ch/projects/0001';
@@ -245,11 +253,11 @@ xdescribe('SearchResultsComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should create', () => {
+        xit('should create', () => {
             expect(component).toBeTruthy();
         });
 
-        it('should perform a count query', () => {
+        xit('should perform a count query', () => {
 
             component.ngOnChanges();
 
@@ -260,7 +268,7 @@ xdescribe('SearchResultsComponent', () => {
             expect(component.numberOfAllResults).toEqual(1);
         });
 
-        it('should perform a fulltext query', () => {
+        xit('should perform a fulltext query', () => {
 
             component.ngOnChanges();
 
