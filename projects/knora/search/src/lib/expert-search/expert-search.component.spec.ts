@@ -26,7 +26,7 @@ describe('ExpertSearchComponent', () => {
   let fixture: ComponentFixture<ExpertSearchComponent>;
 
   const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
-  const appConfig = new AppConfig('knora app', '0.0.0.0');
+  const appConfig = new AppConfig('knora app', '0.0.0.0:4200');
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
