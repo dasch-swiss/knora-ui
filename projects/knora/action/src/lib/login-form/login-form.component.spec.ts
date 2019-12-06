@@ -15,6 +15,8 @@ describe('LoginFormComponent', () => {
     let component: LoginFormComponent;
     let fixture: ComponentFixture<LoginFormComponent>;
 
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
@@ -38,11 +40,11 @@ describe('LoginFormComponent', () => {
                 },
                 {
                     provide: KnoraApiConfigToken,
-                    useValue: KnoraApiConfig
+                    useValue: config
                 },
                 {
                     provide: KnoraApiConnectionToken,
-                    useValue: KnoraApiConnection
+                    useValue: new KnoraApiConnection(config)
                 }
             ]
         })
