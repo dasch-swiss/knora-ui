@@ -1,10 +1,38 @@
+.search-results-header,
+.search-results-footer {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0 16px;
+  height: 58px;
+  width: 100%;
+  z-index: 1;
+  background: white;
+}
+
+.search-results-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  position: sticky !important;
+  top: 64px;
+
+  .switch-view-label {
+    margin-right: 16px;
+  }
+}
+
+button.active {
+  background-color: #e0e0e0;
+}
+
 .load-panel {
-    width: 100%;
-    .center {
-      display: block;
-      line-height: 24px;
-      margin: 12px auto;
-    }
+  width: 100%;
+  .center {
+    display: block;
+    line-height: 24px;
+    margin: 12px auto;
+  }
 }
 
 .tab-icon {

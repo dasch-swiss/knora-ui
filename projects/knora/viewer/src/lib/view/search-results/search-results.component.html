@@ -1,80 +1,53 @@
-<kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
+<!-- header / toolbar to select view and pagination -->
+<div class="search-results-header">
+    <span class="switch-view" *ngIf="complexView">
+        <span class="switch-view-label">Show as</span>
+        <button mat-button (click)="viewAs = 'list'" [class.active]="viewAs === 'list'">
+            <mat-icon>view_list</mat-icon> List
+        </button>
+        <button mat-button (click)="viewAs = 'grid'" [class.active]="viewAs === 'grid'">
+            <mat-icon>view_module</mat-icon> Grid
+        </button>
+        <!-- TODO: add button to show as table, if possible (filter by same resource class) -->
+    </span>
+    <span class="fill-remaining-space"></span>
+    <span class="page-navigation">
+        <mat-paginator [length]="numberOfAllResults" [pageSize]="25" [hidePageSize]="true"
+            [pageIndex]="pageEvent.pageIndex" (page)="loadMore($event)">
+        </mat-paginator>
+    </span>
+</div>
 
-<div *ngIf="!loading && !badRequest">
+<!-- container with search results -->
+<div class="search-results-container">
+    <kui-progress-indicator *ngIf="loading"></kui-progress-indicator>
 
-    <div *ngIf="numberOfAllResults !== 0 && result; else noResult">
-
-        <mat-tab-group animationDuration="0ms" [selectedIndex]="1">
-            <mat-tab disabled>
-                <ng-template mat-tab-label>
-                    <!-- <mat-icon class="tab-icon">hashtag</mat-icon> -->
-                    <h4 class="search-results-title">Results: {{numberOfAllResults}}</h4>
-                </ng-template>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="tab-icon">view_list</mat-icon>
-                    List
-                </ng-template>
-                <kui-list-view [result]="result"></kui-list-view>
-            </mat-tab>
-
-            <!-- in caase of complexView: show tab to switch to grid view -->
-            <mat-tab *ngIf="complexView">
-                <ng-template mat-tab-label>
-                    <mat-icon class="tab-icon">view_module</mat-icon>
-                    Grid
-                </ng-template>
-                <kui-grid-view [result]="result"></kui-grid-view>
-            </mat-tab>
-            <!-- not yet implemented! --
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="tab-icon">table_chart</mat-icon>
-                    Table
-                </ng-template>
-                <kui-table-view [result]="result" [ontologyInfo]="ontologyInfo">
-                </kui-table-view>
-            </mat-tab>
-            -->
-
-            <!-- the following tab we don't need anymore? The GravSearch view will be part of the export menu --
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-icon class="tab-icon">code</mat-icon>
-                    Gravsearch
-                </ng-template>
-                <kui-gravsearch-view></kui-gravsearch-view>
-            </mat-tab>
-            -->
-
-        </mat-tab-group>
-        <!-- <div>
-            <p>List view n°2</p>
-            <kui-list-view [result]="result" [ontologyInfo]="ontologyInfo" *ngIf="!complexView"></kui-list-view>
-        </div> -->
-
-        <div class="load-panel" *ngIf="result.length > 0">
-            <button mat-flat-button color="primary" class="link center" (click)="loadMore(offset)"
-                    *ngIf="offset < maxOffset">Load more
-                <mat-icon>keyboard_arrow_down</mat-icon>
-            </button>
+    <div class="search-results" *ngIf="!loading && numberOfAllResults > 0 && result">
+        <div [ngSwitch]="viewAs">
+            <kui-list-view *ngSwitchCase="'list'" [result]="result"></kui-list-view>
+            <kui-grid-view *ngSwitchCase="'grid'" [result]="result"></kui-grid-view>
+            <!-- TODO: implement table view -->
+            <!-- <kui-table-view *ngSwitchCase="'table'" [result]="result"></kui-table-view> -->
         </div>
 
     </div>
 
     <!-- In case of 0 result -->
-    <ng-template #noResult>
-        <kui-message [message]="{status: 404, statusMsg: 'No results', statusText: 'Sorry, but we couldn\'t find any results matching your search'}"
-                     [medium]="true"></kui-message>
-        <!-- <p><strong>No result</strong></p> -->
-    </ng-template>
+    <div class="search-results zero" *ngIf="!loading && numberOfAllResults === 0">
+        <kui-message
+            [message]="{status: 404, statusMsg: 'No results', statusText: 'Sorry, but we couldn\'t find any results matching your search'}"
+            [medium]="true">
+        </kui-message>
+    </div>
 
 </div>
 
-<!-- Error message -->
-<!-- TODO: fix error handling -->
-<!--
-<kui-message *ngIf="errorMessage" [message]="{status: 400, statusText: errorMessage.errorInfo}" [medium]="true">
-</kui-message>
- -->
+<!-- footer with pagination -->
+<div class="search-results-footer" *ngIf="numberOfAllResults > 25 && !loading">
+    <span class="fill-remaining-space"></span>
+    <span class="page-navigation">
+        <mat-paginator [length]="numberOfAllResults" [pageSize]="25" [hidePageSize]="true"
+            [pageIndex]="pageEvent.pageIndex" (page)="loadMore($event)">
+        </mat-paginator>
+    </span>
+</div>

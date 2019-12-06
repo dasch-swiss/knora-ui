@@ -1,26 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-// import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { KuiActionModule } from '@knora/action';
 import { KuiCoreModule } from '@knora/core';
 
@@ -55,13 +53,11 @@ import { CompareViewComponent } from './view/compare-view/compare-view.component
 import { GraphViewComponent } from './view/graph-view/graph-view.component';
 import { GridViewComponent } from './view/grid-view/grid-view.component';
 import { ListViewComponent } from './view/list-view/list-view.component';
+import { PropertiesToolbarComponent } from './view/properties-view/properties-toolbar/properties-toolbar.component';
 import { PropertiesViewComponent } from './view/properties-view/properties-view.component';
 import { ResourceViewComponent } from './view/resource-view/resource-view.component';
-import { TableViewComponent } from './view/table-view/table-view.component';
 import { SearchResultsComponent } from './view/search-results/search-results.component';
-import { PropertiesToolbarComponent } from './view/properties-view/properties-toolbar/properties-toolbar.component';
-
-
+import { TableViewComponent } from './view/table-view/table-view.component';
 
 @NgModule({
     imports: [
@@ -70,7 +66,6 @@ import { PropertiesToolbarComponent } from './view/properties-view/properties-to
         KuiActionModule,
         MatAutocompleteModule,
         MatButtonModule,
-        MatButtonToggleModule,
         MatCardModule,
         MatCheckboxModule,
         MatDatepickerModule,
@@ -79,7 +74,9 @@ import { PropertiesToolbarComponent } from './view/properties-view/properties-to
         MatInputModule,
         MatIconModule,
         MatListModule,
+        MatMenuModule,
         MatNativeDateModule,
+        MatPaginatorModule,
         MatSlideToggleModule,
         MatTabsModule,
         MatToolbarModule,
@@ -126,7 +123,6 @@ import { PropertiesToolbarComponent } from './view/properties-view/properties-to
         PropertiesToolbarComponent
     ],
     exports: [
-
         AnnotationComponent,
         AudioComponent,
         CollectionComponent,
