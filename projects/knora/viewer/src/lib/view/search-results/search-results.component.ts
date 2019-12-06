@@ -48,6 +48,8 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     KnoraConstants = KnoraConstants;
     // offset: number = 0;
 
+    initSearch: boolean;
+
     //    maxOffset: number = 0;
     gravSearchQuery: string;
     gravsearchGenerator: ExtendedSearchParams;
@@ -90,8 +92,11 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                     this.projectIri = decodeURIComponent(params.get('project'));
                 }
 
+                // new search query or old one?
+                this.initSearch = (this.searchQuery !== params.get('q') || this.searchQuery !== this.gravSearchQuery);
+
                 // init pageIndex and results
-                if (!this.pageEvent && this.searchQuery !== params.get('q') || this.searchQuery !== this.gravSearchQuery) {
+                if (!this.pageEvent || this.initSearch) {
                     this.resetPage();
                 }
 
