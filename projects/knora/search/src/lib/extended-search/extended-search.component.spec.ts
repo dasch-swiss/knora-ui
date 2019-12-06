@@ -410,7 +410,7 @@ describe('ExtendedSearchComponent', () => {
 
         });
 
-        it('should add a property', () => {
+        xit('should add a property', () => {
 
             const ele: DebugElement = fixture.debugElement;
             const addProp: HTMLElement = ele.query(By.css('.property-button.add-property-button')).nativeElement;
@@ -423,7 +423,7 @@ describe('ExtendedSearchComponent', () => {
 
         });
 
-        it('should remove a property', () => {
+        xit('should remove a property', () => {
 
             const ele: DebugElement = fixture.debugElement;
             const addProp: HTMLElement = ele.query(By.css('.property-button.add-property-button')).nativeElement;
