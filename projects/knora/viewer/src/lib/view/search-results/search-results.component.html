@@ -2,10 +2,10 @@
 <div class="search-results-header">
     <span class="select-view" *ngIf="complexView">
         Show as
-        <button mat-button (click)="viewAs = 'list'">
+        <button mat-button (click)="viewAs = 'list'" [disabled]="viewAs === 'list'">
             <mat-icon>view_list</mat-icon> List
         </button>
-        <button mat-button (click)="viewAs = 'grid'">
+        <button mat-button (click)="viewAs = 'grid'" [disabled]="viewAs === 'grid'">
             <mat-icon>view_module</mat-icon> Grid
         </button>
         <!-- TODO: add button to show as table, if possible (filter by same resource class) -->
