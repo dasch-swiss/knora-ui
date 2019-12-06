@@ -13,7 +13,7 @@ But you can use only @knora/core which contains almost all services for the Knor
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora version ^9.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v9.0.0).
+This version of Knora-ui requires [Knora version ^10.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v10.0.0).
 
 ## Already published modules
 
@@ -123,7 +123,7 @@ Before using the module inside of the app, you have to rebuild after the changes
 
 ### Run the demo app
 
-Run the app with `ng s`. The demo app runs on <http://localhost:4200> and we use it for documentation on [Knora-ui Github page](https://dasch-swiss.github.io/knora-ui).
+Run the app with `ng s`. The demo app runs on <http://0.0.0.0:4200> and we use it for documentation on [Knora-ui Github page](https://dasch-swiss.github.io/knora-ui).
 
 There's a test environment for the modules on <https://github.com/dhlab-basel/knora-ui-playground> with yalc
 
