@@ -1,11 +1,11 @@
 <!-- header / toolbar to select view and pagination -->
 <div class="search-results-header">
-    <span class="select-view" *ngIf="complexView">
-        Show as
-        <button mat-button (click)="viewAs = 'list'" [disabled]="viewAs === 'list'">
+    <span class="switch-view" *ngIf="complexView">
+        <span class="switch-view-label">Show as</span>
+        <button mat-button (click)="viewAs = 'list'" [class.active]="viewAs === 'list'">
             <mat-icon>view_list</mat-icon> List
         </button>
-        <button mat-button (click)="viewAs = 'grid'" [disabled]="viewAs === 'grid'">
+        <button mat-button (click)="viewAs = 'grid'" [class.active]="viewAs === 'grid'">
             <mat-icon>view_module</mat-icon> Grid
         </button>
         <!-- TODO: add button to show as table, if possible (filter by same resource class) -->

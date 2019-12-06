@@ -16,6 +16,14 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   position: sticky !important;
   top: 64px;
+
+  .switch-view-label {
+    margin-right: 16px;
+  }
+}
+
+button.active {
+  background-color: #e0e0e0;
 }
 
 .load-panel {
