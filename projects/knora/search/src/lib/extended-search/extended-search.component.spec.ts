@@ -404,21 +404,16 @@ describe('ExtendedSearchComponent', () => {
         it('should be able to add a property', () => {
 
             const ele: DebugElement = fixture.debugElement;
-            const addPropDe = ele.query(By.css('.add-property-button'));
+            const addPropDe = ele.query(By.css('.property-button.add-property-button')).nativeElement;
 
-            const addProp = addPropDe.nativeElement;
-
-            expect(addProp.disabled).toBeFalsy();
-
+            expect(addPropDe.disabled).toBeFalsy();
 
         });
 
         it('should add a property', () => {
 
             const ele: DebugElement = fixture.debugElement;
-            const addPropDe = ele.query(By.css('.add-property-button'));
-
-            const addProp: HTMLElement = addPropDe.nativeElement;
+            const addProp: HTMLElement = ele.query(By.css('.property-button.add-property-button')).nativeElement;
 
             addProp.click();
 
@@ -431,9 +426,7 @@ describe('ExtendedSearchComponent', () => {
         it('should remove a property', () => {
 
             const ele: DebugElement = fixture.debugElement;
-            const addPropDe = ele.query(By.css('.add-property-button'));
-
-            const addProp: HTMLElement = addPropDe.nativeElement;
+            const addProp: HTMLElement = ele.query(By.css('.property-button.add-property-button')).nativeElement;
 
             addProp.click();
 
@@ -441,9 +434,7 @@ describe('ExtendedSearchComponent', () => {
 
             expect(componentInstance.activeProperties.length).toEqual(1);
 
-            const rmPropDe = ele.query(By.css('.remove-property-button'));
-
-            const rmProp = rmPropDe.nativeElement;
+            const rmProp = ele.query(By.css('.property-button.remove-property-button')).nativeElement;
 
             expect(rmProp.disabled).toBeFalsy();
 
