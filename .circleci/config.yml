@@ -49,7 +49,7 @@ jobs:
       - run: yarn ng t --project @knora/core --watch=false --browsers=ChromeHeadless
       - run: yarn ng t --project @knora/action --watch=false --browsers=ChromeHeadless
       - run: yarn ng t --project @knora/search --watch=false --browsers=ChromeHeadless
-#      - run: yarn ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
+      - run: yarn ng t --project @knora/viewer --watch=false --browsers=ChromeHeadless
 
       # Run e2e tests!
       # - run: xvfb-run -a yarn ci:e2e
