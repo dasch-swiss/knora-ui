@@ -1,8 +1,6 @@
-export * from './core.config.depr';
 export * from './api-service-result';
 export * from './api-service-error';
 export * from './utils';
-
 
 /**
  * Interfaces for constants and operators

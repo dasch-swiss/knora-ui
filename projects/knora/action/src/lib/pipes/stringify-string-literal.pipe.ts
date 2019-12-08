@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { StringLiteral } from '@knora/core';
+import { StringLiteral } from '@knora/api';
 
 /**
  * This pipe stringifies an array of StringLiterals. With the parameter 'all', the pipe concats all values and appends the corresponding language in brackets.

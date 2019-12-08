@@ -1,4 +1,4 @@
-import { StringLiteral } from '../../../';
+import { StringLiteral } from '@knora/api';
 
 /**
  * @deprecated Use new model from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
