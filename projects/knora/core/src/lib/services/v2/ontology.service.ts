@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+
 import { KnoraConstants } from '../../declarations/api/knora-constants';
 import { ApiServiceResult } from '../../declarations/api-service-result';
 import { NewOntology } from '../../declarations/api/v2/ontology/new-ontology';
 import { ApiService } from '../api.service';
 import { NewResourceClass } from '../../declarations/api/v2/ontology/new-resource-class';
 import { NewProperty } from '../../declarations/api/v2/ontology/new-property';
+import { Constants } from '@knora/api';
 
 /**
  * @deprecated since v10.0.0
@@ -134,7 +136,7 @@ export class OntologyService extends ApiService {
             },
             'rdfs:label': data.label,
             '@context': {
-                'rdfs': KnoraConstants.RdfsSchema,
+                'rdfs': Constants.Rdfs,
                 'knora-api': KnoraConstants.KnoraApiV2WithValueObjectPath
             }
         };

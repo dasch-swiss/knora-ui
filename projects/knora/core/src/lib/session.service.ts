@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { ApiResponseData, ApiResponseError, CredentialsResponse, KnoraApiConfig, KnoraApiConnection, UserResponse } from '@knora/api';
+import { ApiResponseData, ApiResponseError, CredentialsResponse, KnoraApiConfig, KnoraApiConnection, UserResponse, Constants } from '@knora/api';
 import * as momentImported from 'moment';
 
 import { KnoraApiConfigToken, KnoraApiConnectionToken } from './core.module';
@@ -78,11 +78,11 @@ export class SessionService {
                 const groupsPerProjectKeys: string[] = Object.keys(response.body.user.permissions.groupsPerProject);
 
                 for (const key of groupsPerProjectKeys) {
-                    if (key === KnoraConstants.SystemProjectIRI) {
-                        sysAdmin = response.body.user.permissions.groupsPerProject[key].indexOf(KnoraConstants.SystemAdminGroupIRI) > -1;
+                    if (key === Constants.SystemProjectIRI) {
+                        sysAdmin = response.body.user.permissions.groupsPerProject[key].indexOf(Constants.SystemAdminGroupIRI) > -1;
                     }
 
-                    if (response.body.user.permissions.groupsPerProject[key].indexOf(KnoraConstants.ProjectAdminGroupIRI) > -1) {
+                    if (response.body.user.permissions.groupsPerProject[key].indexOf(Constants.ProjectAdminGroupIRI) > -1) {
                         projectAdmin.push(key);
                     }
                 }

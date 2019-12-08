@@ -251,7 +251,11 @@ export abstract class ApiService {
         return throwError(serviceError);
 
     }
-
+    /**
+     * @deprecated since v9.5.0
+     *
+     * @param  {string} server
+     */
     protected compareVersion(server: string): void {
 
         // expected knora api version

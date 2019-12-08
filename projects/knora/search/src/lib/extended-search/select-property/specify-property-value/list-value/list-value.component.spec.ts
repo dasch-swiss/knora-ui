@@ -21,8 +21,7 @@ import { ListValueComponent } from './list-value.component';
  */
 @Component({
     selector: `kui-host-component`,
-    template: `
-        <list-value #listVal [formGroup]="form" [property]="property"></list-value>`
+    template: `<list-value #listVal [formGroup]="form" [property]="property"></list-value>`
 })
 class TestHostComponent implements OnInit {
 
