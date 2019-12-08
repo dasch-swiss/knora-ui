@@ -1,8 +1,11 @@
 import { DateRangeSalsah, DateSalsah, Precision } from './date';
+/**
+ * @deprecated DataSalsah is deprecated since v10.0.0; It's replaced by KnoraDate from knora-api-js-lib
+ */
+/*
+xdescribe('DateSalsah', () => {
 
-describe('DateSalsah', () => {
-
-    it('should create a DateSalsah with day precision', () => {
+    xit('should create a DateSalsah with day precision', () => {
         const date = new DateSalsah('Gregorian', 'CE', 2018, 11, 14);
 
         expect(date).toBeTruthy();
@@ -18,7 +21,7 @@ describe('DateSalsah', () => {
         expect(date.getDateAsStringWithoutCalendar()).toEqual('(CE) 2018-11-14');
     });
 
-    it('should create a DateSalsah with month precision', () => {
+    xit('should create a DateSalsah with month precision', () => {
         const date = new DateSalsah('Gregorian', 'CE', 2018, 11);
 
         expect(date).toBeTruthy();
@@ -32,7 +35,7 @@ describe('DateSalsah', () => {
         expect(date.getDateAsStringWithoutCalendar()).toEqual('(CE) 2018-11');
     });
 
-    it('should create a DateSalsah with year precision', () => {
+    xit('should create a DateSalsah with year precision', () => {
         const date = new DateSalsah('Gregorian', 'CE', 2018);
 
         expect(date).toBeTruthy();
@@ -45,7 +48,7 @@ describe('DateSalsah', () => {
         expect(date.getDateAsStringWithoutCalendar()).toEqual('(CE) 2018');
     });
 
-    it('should create a DateRangeSalsah ', () => {
+    xit('should create a DateRangeSalsah ', () => {
         const date1 = new DateSalsah('Gregorian', 'CE', 2018, 11, 14);
         const date2 = new DateSalsah('Gregorian', 'CE', 2018, 11, 15);
 
@@ -60,3 +63,4 @@ describe('DateSalsah', () => {
     });
 
 });
+*/

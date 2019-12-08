@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OntologyInformation } from '@knora/core';
-import { ReadLinkValue } from '@knora/core/lib/declarations/api/v2/properties/read-property-item';
+import { ReadLinkValue } from '@knora/core';
 
 @Component({
     selector: 'kui-link-value',

@@ -1,7 +1,7 @@
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ReadGeomValue } from '@knora/core/lib/declarations/api/v2/properties/read-property-item';
+import { ReadGeomValue } from '@knora/core';
 
 import { GeometryValueComponent } from './geometry-value.component';
 

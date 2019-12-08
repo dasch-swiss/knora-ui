@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ExtendedSearchParams, SearchParamsService } from './search-params.service';
+import { Constants } from '@knora/api';
+
 import { KnoraConstants, KnoraSchema } from '../../declarations';
 import { PropertyWithValue } from '../../declarations/api/operators';
-import { Constants } from '@knora/api';
+
+import { ExtendedSearchParams, SearchParamsService } from './search-params.service';
 
 /**
  * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead

@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnIni
 import { ReadGeomValue, ReadResource, ReadStillImageFileValue } from '@knora/api';
 import { Point2D, RegionGeometry } from '@knora/api/src/models/v2/resources/values/read/read-geom-value';
 import { KnoraConstants } from '@knora/core';
-import { Region } from '@knora/core/lib/declarations/api/v2/representations/region';
+import { Region } from '@knora/core';
 // import { KnoraConstants, Point2D, Region, RegionGeometry } from '@knora/core';
 
 // This component needs the openseadragon library itself, as well as the openseadragon plugin openseadragon-svg-overlay
