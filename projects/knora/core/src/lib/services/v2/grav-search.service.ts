@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Constants } from '@knora/api';
 
-import { KnoraConstants, KnoraSchema } from '../../declarations';
+import { KnoraConstants, KnoraSchema } from '../../declarations/api/knora-constants';
 import { PropertyWithValue } from '../../declarations/api/operators';
 
 import { ExtendedSearchParams, SearchParamsService } from './search-params.service';
