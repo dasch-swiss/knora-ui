@@ -21,6 +21,10 @@ export class ListsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v10.0.0
+     *
+     * Will be replaced by `@knora/api` (github:knora-api-js-lib)
+     *
      * Returns a list of all lists.
      *
      * @param {string} [projectIri]
@@ -38,6 +42,10 @@ export class ListsService extends ApiService {
     }
 
     /**
+     * @deprecated since v10.0.0
+     *
+     * Will be replaced by `@knora/api` (github:knora-api-js-lib)
+     *
      * Return a list object.
      *
      * @param {string} listIri
@@ -51,6 +59,10 @@ export class ListsService extends ApiService {
     }
 
     /**
+     * @deprecated since v10.0.0
+     *
+     * Will be replaced by `@knora/api` (github:knora-api-js-lib)
+     *
      * Return a list info object.
      *
      * @param {string} listIri
@@ -64,6 +76,10 @@ export class ListsService extends ApiService {
     }
 
     /**
+     * @deprecated since v10.0.0
+     *
+     * Will be replaced by `@knora/api` (github:knora-api-js-lib)
+     *
      * Return a list node info object.
      *
      * @param {string} nodeIri
@@ -82,6 +98,10 @@ export class ListsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v10.0.0
+     *
+     * Will be replaced by `@knora/api` (github:knora-api-js-lib)
+     *
      * Create new list.
      *
      * @param {ListCreatePayload} payload
@@ -95,6 +115,10 @@ export class ListsService extends ApiService {
     }
 
     /**
+     * @deprecated since v10.0.0
+     *
+     * Will be replaced by `@knora/api` (github:knora-api-js-lib)
+     *
      * Create new list node.
      *
      * @param {string} listIri
@@ -114,6 +138,10 @@ export class ListsService extends ApiService {
     // ------------------------------------------------------------------------
 
     /**
+     * @deprecated since v10.0.0
+     *
+     * Will be replaced by `@knora/api` (github:knora-api-js-lib)
+     *
      * Edit list data.
      *
      * @param {ListInfoUpdatePayload} payload

@@ -35,6 +35,8 @@ export abstract class ApiService {
     ) { }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * GET
      *
      * @param {string} path the URL for the GET request.
@@ -71,6 +73,8 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * Processes JSON-LD returned by Knora.
      * Expands Iris and creates an empty context object.
      *
@@ -91,6 +95,8 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * POST
      *
      * @param {string} path
@@ -128,6 +134,8 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * PUT
      *
      * @param {string} path
@@ -167,6 +175,8 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * DELETE
      *
      * @param {string} path
@@ -259,8 +269,8 @@ export abstract class ApiService {
         } else {
             // console.warn('No server information from headers response');
         }
-
     }
+
     /**
      * Set headers to authorise http requests
      *

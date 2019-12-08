@@ -52,6 +52,10 @@ export class GravsearchGenerationService {
     constructor(private _searchParamsService: SearchParamsService) { }
 
     /**
+     * @deprecated since v10.0.0
+     *
+     * Will be replaced by `@knora/api` (github:knora-api-js-lib)
+     *
      * Generates a Gravsearch query from the provided arguments.
      *
      * @param {PropertyWithValue[]} properties the properties specified by the user.
