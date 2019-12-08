@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { KnoraApiConfig } from '@knora/api';
-import { from } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { KnoraApiConfigToken } from '../core.module';
 import { ApiServiceError } from '../declarations/api-service-error';
 import { ApiServiceResult } from '../declarations/api-service-result';
 import { KnoraConstants } from '../declarations/api/knora-constants';
+import { CurrentUser, Session } from '../session.service';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -44,7 +45,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        return this.http.get(this.knoraApiConfig.apiUrl + path, { observe: 'response', params: params }).pipe(
+        const headers = this.setHeaders();
+
+        return this.http.get(this.knoraApiConfig.apiUrl + path, { headers: headers, observe: 'response', params: params }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -98,9 +101,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
+        const headers = this.setHeaders();
 
-        return this.http.post(this.knoraApiConfig.apiUrl + path, body, { observe: 'response' }).pipe(
+        return this.http.post(this.knoraApiConfig.apiUrl + path, body, { headers: headers, observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -135,9 +138,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
+        const headers = this.setHeaders();
 
-        return this.http.put(this.knoraApiConfig.apiUrl + path, body, { observe: 'response' }).pipe(
+        return this.http.put(this.knoraApiConfig.apiUrl + path, body, { headers: headers, observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -173,9 +176,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
+        const headers = this.setHeaders();
 
-        return this.http.delete(this.knoraApiConfig.apiUrl + path, { observe: 'response' }).pipe(
+        return this.http.delete(this.knoraApiConfig.apiUrl + path, { headers: headers, observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -257,5 +260,26 @@ export abstract class ApiService {
             // console.warn('No server information from headers response');
         }
 
+    }
+    /**
+     * Set headers to authorise http requests
+     *
+     * This method was replaced by interceptor. But since the implementation
+     * of new knora-api-js-lib services the interceptor is redundant.
+     * As long we not all services are replaced by knora-api-js-lib
+     * we have to use this setHeaders "hack" for the two services left.
+     *
+     * @returns HttpHeaders
+     */
+    protected setHeaders(): HttpHeaders {
+        const session: Session = JSON.parse(localStorage.getItem('session'));
+
+        if (session && session !== null) {
+            return new HttpHeaders({
+                'Authorization': `Bearer ${session.user.jwt}`
+            });
+        } else {
+            return new HttpHeaders();
+        }
     }
 }
