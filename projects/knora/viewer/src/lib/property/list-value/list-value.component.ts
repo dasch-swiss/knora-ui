@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnChanges } from '@angular/core';
-import { KnoraApiConnection, ListNode } from '@knora/api';
-import { KnoraApiConnectionToken, ReadListValue } from '@knora/core';
+import { KnoraApiConnection, ListNode, ReadListValue } from '@knora/api';
+import { KnoraApiConnectionToken } from '@knora/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -30,7 +30,7 @@ export class ListValueComponent implements OnChanges {
 
     ngOnChanges() {
         // given the node's Iri, ask the list cache service
-        this.node = this.knoraApiConnection.v2.listNodeCache.getNode(this._listValueObj.listNodeIri);
+        this.node = this.knoraApiConnection.v2.listNodeCache.getNode(this._listValueObj.listNode);
 
     }
 

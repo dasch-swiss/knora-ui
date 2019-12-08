@@ -1,8 +1,9 @@
-import { Component, Host, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { Constants } from '@knora/api';
 import { KnoraConstants, PropertyValue, Value, ValueLiteral } from '@knora/core';
-import { GregorianCalendarDate, JDNConvertibleCalendar, JDNPeriod } from 'jdnconvertiblecalendar';
+import { JDNConvertibleCalendar } from 'jdnconvertiblecalendar';
+
 import { HeaderComponent } from './header-calendar/header-calendar.component';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
@@ -18,7 +19,7 @@ export class DateValueComponent implements OnInit, OnDestroy, PropertyValue {
     // parent FormGroup
     @Input() formGroup: FormGroup;
 
-    type = KnoraConstants.DateValue;
+    type = Constants.DateValue;
 
     form: FormGroup;
 

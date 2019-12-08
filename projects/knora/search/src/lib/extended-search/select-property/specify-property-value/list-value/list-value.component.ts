@@ -1,8 +1,8 @@
 import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { ApiResponseError, KnoraApiConnection, ListNode } from '@knora/api';
-import { IRI, KnoraApiConnectionToken, KnoraConstants, Property, PropertyValue, Value } from '@knora/core';
+import { ApiResponseError, Constants, KnoraApiConnection, ListNode } from '@knora/api';
+import { IRI, KnoraApiConnectionToken, Property, PropertyValue, Value } from '@knora/core';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -17,7 +17,7 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
     // parent FormGroup
     @Input() formGroup?: FormGroup;
 
-    type = KnoraConstants.ListValue;
+    type = Constants.ListValue;
 
     form: FormGroup;
 
