@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { KnoraApiConfig } from '@knora/api';
-import { from, Subscription } from 'rxjs';
+import { from } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { KnoraApiConfigToken } from '../core.module';
 import { ApiServiceError } from '../declarations/api-service-error';
 import { ApiServiceResult } from '../declarations/api-service-result';
 import { KnoraConstants } from '../declarations/api/knora-constants';
-import { CurrentUser, Session } from '../session.service';
+import { Session } from '../session.service';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
