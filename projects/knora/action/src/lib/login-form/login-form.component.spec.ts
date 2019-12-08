@@ -62,7 +62,6 @@ describe('LoginFormComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(LoginFormComponent);
         component = fixture.componentInstance;
-
         fixture.detectChanges();
         component.form = new FormGroup({});
     });
