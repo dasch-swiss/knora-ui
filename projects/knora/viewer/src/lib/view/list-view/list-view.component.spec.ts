@@ -1,12 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { KeyPipe, ProgressIndicatorComponent, TruncatePipe } from '@knora/action';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { ListViewComponent } from './list-view.component';
-import { KeyPipe, ProgressIndicatorComponent } from '@knora/action';
 import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
 import { DateValueComponent } from '../../property/date-value/date-value.component';
-import { RouterTestingModule } from '@angular/router/testing';
+
+import { ListViewComponent } from './list-view.component';
 
 describe('ListViewComponent', () => {
   let component: ListViewComponent;
@@ -23,6 +24,7 @@ describe('ListViewComponent', () => {
         ListViewComponent,
         ProgressIndicatorComponent,
         KeyPipe,
+        TruncatePipe,
         TextValueAsHtmlComponent,
         DateValueComponent
       ]
