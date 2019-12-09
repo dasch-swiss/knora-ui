@@ -1,16 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { KnoraApiConnectionToken } from '@knora/core';
 
 import { PropertiesToolbarComponent } from './properties-toolbar.component';
 
-describe('PropertiesToolbarComponent', () => {
+fdescribe('PropertiesToolbarComponent', () => {
   let component: PropertiesToolbarComponent;
   let fixture: ComponentFixture<PropertiesToolbarComponent>;
 
+  const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PropertiesToolbarComponent ]
+      imports: [MatIconModule],
+      declarations: [PropertiesToolbarComponent],
+      providers: [
+        {
+          provide: KnoraApiConnectionToken,
+          useValue: new KnoraApiConnection(config)
+        }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
