@@ -9,8 +9,7 @@ import { IntegerValueComponent } from './integer-value.component';
  * Test host component to simulate parent component.
  */
 @Component({
-    template: `
-        <kui-integer-value #integerVal [valueObject]="integerValue"></kui-integer-value>`
+    template: `<kui-integer-value #integerVal [valueObject]="integerValue"></kui-integer-value>`
 })
 class TestHostComponent implements OnInit {
 

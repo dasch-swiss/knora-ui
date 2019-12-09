@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ExternalResValueComponent } from './external-res-value.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+
+import { ExternalResValueComponent } from './external-res-value.component';
 
 describe('ExternalResValueComponent', () => {
     let component: ExternalResValueComponent;

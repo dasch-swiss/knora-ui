@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { GeonameValueComponent } from './geoname-value.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+
+import { GeonameValueComponent } from './geoname-value.component';
 
 describe('GeonameValueComponent', () => {
     let component: GeonameValueComponent;

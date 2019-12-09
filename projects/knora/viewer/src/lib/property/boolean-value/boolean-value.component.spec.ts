@@ -56,7 +56,7 @@ describe('BooleanValueComponent', () => {
         expect(testHostComponent.booleanValueComponent).toBeTruthy();
     });
 
-    xit('should be read-only in template', () => {
+    it('should be read-only in template', () => {
         const hostCompDe = testHostFixture.debugElement;
 
         const matCheckBoxDebugElement: DebugElement = hostCompDe.query(By.directive(MatCheckbox));
