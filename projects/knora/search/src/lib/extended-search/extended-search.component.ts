@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { KnoraApiConnection, OntologiesMetadata, OntologyMetadata, ApiResponseError } from '@knora/api';
-import { GravsearchGenerationService, KnoraApiConnectionToken, OntologyCacheService, OntologyInformation, Properties, PropertyWithValue, ReadResourcesSequence, ResourceClass } from '@knora/core';
+import { ApiResponseError, KnoraApiConnection, OntologiesMetadata, OntologyMetadata, ReadResource } from '@knora/api';
+import { GravsearchGenerationService, KnoraApiConnectionToken, OntologyCacheService, OntologyInformation, Properties, PropertyWithValue, ResourceClass } from '@knora/core';
 
 import { SelectPropertyComponent } from './select-property/select-property.component';
 import { SelectResourceClassComponent } from './select-resource-class/select-resource-class.component';
@@ -50,7 +50,7 @@ export class ExtendedSearchComponent implements OnInit {
     // properties for the selected ontology or selected resource class
     properties: Properties;
 
-    result: ReadResourcesSequence = new ReadResourcesSequence([], 0);
+    result: ReadResource[] = [new ReadResource()];
 
     // reference to the component that controls the resource class selection
     @ViewChild('resourceClass', { static: false }) resourceClassComponent: SelectResourceClassComponent;

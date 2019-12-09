@@ -1,14 +1,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-    IRI,
-    KnoraApiConnectionToken,
-    KnoraConstants,
-    OntologyCacheService,
-    PropertyValue,
-    Value
-} from '@knora/core';
-import { KnoraApiConnection, ReadResource } from '@knora/api';
+import { Constants, KnoraApiConnection, ReadResource } from '@knora/api';
+import { IRI, KnoraApiConnectionToken, OntologyCacheService, PropertyValue, Value } from '@knora/core';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -26,7 +19,7 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
     // parent FormGroup
     @Input() formGroup: FormGroup;
 
-    type = KnoraConstants.LinkValue;
+    type = Constants.LinkValue;
 
     form: FormGroup;
 

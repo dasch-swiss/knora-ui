@@ -14,12 +14,12 @@ export class TextValueAsStringComponent {
     set valueObject(value: ReadTextValueAsString) {
         // console.log(value);
 
-        const str: string = value.strval;
+        const str: string = value.text;
 
         if (this.regexUrl.exec(str)) {
             const url: string = this.regexUrl.exec(str)[0];
             const newStr = str.replace(this.regexUrl, '<a class="kui-link" href="' + url + '">' + url + '</a>');
-            value.strval = newStr;
+            value.text = newStr;
             this._textStringValueObj = value;
         } else {
             this._textStringValueObj = value;

@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { KnoraConstants, PropertyValue, Value, ValueLiteral } from '@knora/core';
+import { Constants } from '@knora/api';
+import { PropertyValue, Value, ValueLiteral } from '@knora/core';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -15,7 +16,7 @@ export class DecimalValueComponent implements OnInit, OnDestroy, PropertyValue {
     // parent FormGroup
     @Input() formGroup: FormGroup;
 
-    type = KnoraConstants.DecimalValue;
+    type = Constants.DecimalValue;
 
     form: FormGroup;
 
@@ -46,6 +47,6 @@ export class DecimalValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     getValue(): Value {
 
-        return new ValueLiteral(String(this.form.value.decimalValue), KnoraConstants.xsdDecimal);
+        return new ValueLiteral(String(this.form.value.decimalValue), Constants.XsdDecimal);
     }
 }

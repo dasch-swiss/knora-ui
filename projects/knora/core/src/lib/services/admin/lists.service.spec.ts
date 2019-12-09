@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { async, inject, TestBed } from '@angular/core/testing';
-import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { KnoraApiConfig, KnoraApiConnection, ListNode } from '@knora/api';
 import { Observable, of } from 'rxjs';
 
 import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '../../core.module';
-import { ApiServiceError, ApiServiceResult, List, ListNode } from '../../declarations';
+import { ApiServiceError, ApiServiceResult, List } from '../../declarations';
 import { incunabulaProjectIri, listsResponseJson, yesNoMaybeListResponseJson } from '../../test-data/admin/shared-test-data';
 import { ApiService } from '../api.service';
 

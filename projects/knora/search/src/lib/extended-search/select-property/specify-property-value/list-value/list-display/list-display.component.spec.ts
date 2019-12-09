@@ -1,11 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
-import { ListNodeV2 } from '@knora/core';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ListDisplayComponent } from './list-display.component';
+
+export class ListNodeV2 {
+
+    readonly children: ListNodeV2[];
+
+    readonly isRootNode: boolean;
+
+    constructor(readonly id: string, readonly label: string, readonly position?: number, readonly hasRootNode?: string) {
+
+        // if hasRootNode is not given, this node is the root node.
+        this.isRootNode = (hasRootNode === undefined);
+
+        this.children = [];
+    }
+}
 
 /**
  * Test host component to simulate parent component.

@@ -1,4 +1,5 @@
-import { GravsearchGenerationService, Property } from '../../services';
+import { GravsearchGenerationService } from '../../services/v2/grav-search.service';
+import { Property } from '../../services/v2/ontology-cache.service';
 
 import { KnoraConstants, KnoraSchema } from './knora-constants';
 

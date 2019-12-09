@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Constants } from '@knora/api';
 import { ComparisonOperator, ComparisonOperatorAndValue, Equals, Exists, GreaterThan, GreaterThanEquals, KnoraConstants, LessThan, LessThanEquals, Like, Match, NotEquals, Property, PropertyValue, Value } from '@knora/core';
 
 
@@ -13,6 +14,7 @@ const resolvedPromise = Promise.resolve(null);
 })
 export class SpecifyPropertyValueComponent implements OnChanges {
 
+    Constants = Constants;
     KnoraConstants = KnoraConstants;
 
     // parent FormGroup
@@ -63,35 +65,35 @@ export class SpecifyPropertyValueComponent implements OnChanges {
 
         switch (this.propertyValueType) {
 
-            case KnoraConstants.TextValue:
+            case Constants.TextValue:
                 this.comparisonOperators = [new Like(), new Match(), new Equals(), new NotEquals(), new Exists()];
                 break;
 
-            case KnoraConstants.BooleanValue:
+            case Constants.BooleanValue:
             case KnoraConstants.Resource:
-            case KnoraConstants.UriValue:
+            case Constants.UriValue:
                 this.comparisonOperators = [new Equals(), new NotEquals(), new Exists()];
                 break;
 
-            case KnoraConstants.IntValue:
-            case KnoraConstants.DecimalValue:
-            case KnoraConstants.DateValue:
+            case Constants.IntValue:
+            case Constants.DecimalValue:
+            case Constants.DateValue:
                 this.comparisonOperators = [new Equals(), new NotEquals(), new LessThan(), new LessThanEquals(), new GreaterThan(), new GreaterThanEquals(), new Exists()];
                 break;
 
-            case KnoraConstants.ListValue:
+            case Constants.ListValue:
                 this.comparisonOperators = [new Equals(), new NotEquals(), new Exists()];
                 break;
 
-            case KnoraConstants.GeomValue:
-            case KnoraConstants.FileValue:
-            case KnoraConstants.AudioFileValue:
-            case KnoraConstants.StillImageFileValue:
-            case KnoraConstants.DDDFileValue:
-            case KnoraConstants.MovingImageFileValue:
-            case KnoraConstants.TextFileValue:
-            case KnoraConstants.ColorValue:
-            case KnoraConstants.IntervalValue:
+            case Constants.GeomValue:
+            case Constants.FileValue:
+            case Constants.AudioFileValue:
+            case Constants.StillImageFileValue:
+            case Constants.DDDFileValue:
+            case Constants.MovingImageFileValue:
+            case Constants.TextFileValue:
+            case Constants.ColorValue:
+            case Constants.IntervalValue:
                 this.comparisonOperators = [new Exists()];
                 break;
 

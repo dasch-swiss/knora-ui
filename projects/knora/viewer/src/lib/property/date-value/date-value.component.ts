@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DateRangeSalsah, DateSalsah, Precision, ReadDateValue } from '@knora/core';
+import { KnoraDate, KnoraPeriod, Precision, ReadDateValue } from '@knora/api/src/models/v2/resources/values/read/read-date-value';
 
 @Component({
     selector: 'kui-date-value',
@@ -30,8 +30,8 @@ export class DateValueComponent {
     set valueObject(value: ReadDateValue) {
         this._dateValueObj = value;
 
-        const dateOrRange: DateSalsah | DateRangeSalsah = this.valueObject.getDateSalsah();
-        if (dateOrRange instanceof DateRangeSalsah) {
+        const dateOrRange: KnoraDate | KnoraPeriod = this.valueObject.date;
+        if (dateOrRange instanceof KnoraPeriod) {
             // period (start and end dates)
             this.period = true;
             this.dates = [this.getJSDate(dateOrRange.start), this.getJSDate(dateOrRange.end)];
@@ -56,13 +56,13 @@ export class DateValueComponent {
     constructor() { }
 
     /**
-     * Converts a `DateSalsah` to a JS Date, providing necessary formatting information.
+     * Converts a `KnoraDate` to a JS Date, providing necessary formatting information.
      * JULIAN and GREGORIAN calendar are the only available for the moment.
      *
      * @param date the date to be converted.
      * @return DateFormatter.
      */
-    getJSDate(date: DateSalsah): DateFormatter {
+    getJSDate(date: KnoraDate): DateFormatter {
 
         if (date.precision === Precision.yearPrecision) {
             return {

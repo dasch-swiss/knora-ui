@@ -1,4 +1,5 @@
-import { ReadGeomValue, ReadResource } from '../../../';
+import { ReadGeomValue, ReadResource } from '@knora/api';
+
 import { KnoraConstants } from '../../knora-constants';
 
 /**

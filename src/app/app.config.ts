@@ -87,52 +87,7 @@ export class AppDemo {
         name: 'core',
         published: true,
         label: 'Core module',
-        children: [
-            {
-                name: 'users',
-                label: 'UsersService'
-            },
-            {
-                name: 'projects',
-                label: 'ProjectsService'
-            },
-            {
-                name: 'groups',
-                label: 'GroupsService'
-            },
-            {
-                name: 'lists',
-                label: 'ListsService'
-            },
-            {
-                name: 'resource',
-                label: 'ResourceService'
-            },
-            {
-                name: 'search',
-                label: 'SearchService'
-            },
-            {
-                name: 'ontology-cache',
-                label: 'OntologyCacheService'
-            },
-            {
-                name: 'ontology',
-                label: 'OntologyService'
-            },
-            {
-                name: 'incoming',
-                label: 'IncomingService'
-            },
-            {
-                name: 'grav-search',
-                label: 'GravSearchService'
-            },
-            {
-                name: 'convert-jsonld',
-                label: 'ConvertJsonLD'
-            }
-        ]
+        children: []
     };
 
     // public static authenticationModule: DemoModule = {

@@ -5,12 +5,15 @@ import { Utils } from '../../declarations/utils';
 import { OntologyService } from './ontology.service';
 import { forkJoin, from, Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
+import { Constants } from '@knora/api';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
 
 /**
- * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated since v10.0.0
+ *
+ * Will be replaced by `@knora/api` (github:knora-api-js-lib)
  *
  * Represents an error occurred in OntologyCacheService.
  */
@@ -23,6 +26,7 @@ class OntologyCacheError extends Error {
 
 
 /**
+ *
  * Represents an ontology's metadata.
  */
 export class OntologyMetadata {
@@ -428,12 +432,12 @@ export class OntologyCacheService {
      * Ontologies ingored by this service.
      * @param {string[]} excludedOntologies
      */
-    private excludedOntologies: Array<string> = [KnoraConstants.SalsahGuiOntology, KnoraConstants.StandoffOntology];
+    private excludedOntologies: Array<string> = [Constants.SalsahGui, KnoraConstants.StandoffOntology];
 
     /**
      * @param {string[]} excludedProperties properties that Knora is not responsible for and that have to be ignored because they cannot be resolved at the moment.
      */
-    private excludedProperties: Array<string> = [KnoraConstants.RdfsLabel];
+    private excludedProperties: Array<string> = [Constants.Label];
 
     /**
      * @param {string[]} nonResourceClasses class definitions that are not be treated as Knora resource classes
@@ -509,7 +513,7 @@ export class OntologyCacheService {
 
         this.cacheOntology.ontologies = ontologies.map(
             ontology => {
-                return new OntologyMetadata(ontology['@id'], ontology[KnoraConstants.RdfsLabel]);
+                return new OntologyMetadata(ontology['@id'], ontology[Constants.Label]);
             }
         );
     }
@@ -541,7 +545,7 @@ export class OntologyCacheService {
             // check that class name is not listed as a non resource class and that the isResourceClass flag is present and set to true
             if (
                 classIri !== KnoraConstants.Resource && this.nonResourceClasses.indexOf(classIri)
-                === -1 && (classDef[KnoraConstants.IsResourceClass] !== undefined && classDef[KnoraConstants.IsResourceClass] === true)) {
+                === -1 && (classDef[Constants.IsResourceClass] !== undefined && classDef[Constants.IsResourceClass] === true)) {
                 // it is not a value class, but a resource class definition
                 resourceClassIris.push(classIri);
             }
@@ -568,16 +572,16 @@ export class OntologyCacheService {
         const classDefs = graph.filter(
             (entity: Object) => {
                 const entityType = entity['@type'];
-                return entityType === KnoraConstants.OwlClass;
+                return entityType === Constants.Class;
             });
 
         // get all property definitions
         const propertyDefs = graph.filter(
             (entity: Object) => {
                 const entityType = entity['@type'];
-                return entityType === KnoraConstants.OwlObjectProperty ||
-                    entityType === KnoraConstants.OwlDatatypeProperty ||
-                    entityType === KnoraConstants.OwlAnnotationProperty ||
+                return entityType === Constants.ObjectProperty ||
+                    entityType === Constants.DataTypeProperty ||
+                    entityType === Constants.Owl + Constants.Delimiter + 'AnnotationProperty' ||
                     entityType === KnoraConstants.RdfProperty;
             });
 
@@ -647,15 +651,15 @@ export class OntologyCacheService {
             const cardinalities: Cardinality[] = [];
             const guiOrder: GuiOrder[] = [];
 
-            if (resClass[KnoraConstants.RdfsSubclassOf] !== undefined) {
+            if (resClass[Constants.SubClassOf] !== undefined) {
 
                 let subclassOfCollection;
 
                 // check if it is a single object or a collection
-                if (!Array.isArray(resClass[KnoraConstants.RdfsSubclassOf])) {
-                    subclassOfCollection = [resClass[KnoraConstants.RdfsSubclassOf]];
+                if (!Array.isArray(resClass[Constants.SubClassOf])) {
+                    subclassOfCollection = [resClass[Constants.SubClassOf]];
                 } else {
-                    subclassOfCollection = resClass[KnoraConstants.RdfsSubclassOf];
+                    subclassOfCollection = resClass[Constants.SubClassOf];
                 }
 
 
@@ -666,20 +670,20 @@ export class OntologyCacheService {
 
 
                     // make sure it is a cardinality (it could also be an Iri of a superclass)
-                    if (curCard instanceof Object && curCard['@type'] !== undefined && curCard['@type'] === KnoraConstants.OwlRestriction) {
+                    if (curCard instanceof Object && curCard['@type'] !== undefined && curCard['@type'] === Constants.Restriction) {
 
                         let newCard;
 
                         // get occurrence
-                        if (curCard[KnoraConstants.OwlMinCardinality] !== undefined) {
-                            newCard = new Cardinality(CardinalityOccurrence.minCard, curCard[KnoraConstants.OwlMinCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
-                        } else if (curCard[KnoraConstants.OwlCardinality] !== undefined) {
-                            newCard = new Cardinality(CardinalityOccurrence.card, curCard[KnoraConstants.OwlCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
-                        } else if (curCard[KnoraConstants.OwlMaxCardinality] !== undefined) {
-                            newCard = new Cardinality(CardinalityOccurrence.maxCard, curCard[KnoraConstants.OwlMaxCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);
+                        if (curCard[Constants.MinCardinality] !== undefined) {
+                            newCard = new Cardinality(CardinalityOccurrence.minCard, curCard[Constants.MinCardinality], curCard[Constants.OnProperty]['@id']);
+                        } else if (curCard[Constants.Cardinality] !== undefined) {
+                            newCard = new Cardinality(CardinalityOccurrence.card, curCard[Constants.Cardinality], curCard[Constants.OnProperty]['@id']);
+                        } else if (curCard[Constants.MaxCardinality] !== undefined) {
+                            newCard = new Cardinality(CardinalityOccurrence.maxCard, curCard[Constants.MaxCardinality], curCard[Constants.OnProperty]['@id']);
                         } else {
                             // no known occurrence found
-                            throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[KnoraConstants.OwlOnProperty]}`);
+                            throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[Constants.OnProperty]}`);
                         }
 
                         // add cardinality
@@ -687,8 +691,8 @@ export class OntologyCacheService {
 
                         // get gui order
                         let newGuiOrder;
-                        if (curCard[KnoraConstants.SalsahGuiOrder] !== undefined) {
-                            newGuiOrder = new GuiOrder(curCard[KnoraConstants.SalsahGuiOrder], curCard[KnoraConstants.OwlOnProperty]['@id']);
+                        if (curCard[Constants.GuiOrder] !== undefined) {
+                            newGuiOrder = new GuiOrder(curCard[Constants.GuiOrder], curCard[Constants.OnProperty]['@id']);
                             // add gui order
                             guiOrder.push(newGuiOrder);
                         }
@@ -703,8 +707,8 @@ export class OntologyCacheService {
             const resClassObj = new ResourceClass(
                 resClassIri,
                 resClass[KnoraConstants.ResourceIcon],
-                resClass[KnoraConstants.RdfsComment],
-                resClass[KnoraConstants.RdfsLabel],
+                resClass[Constants.Comment],
+                resClass[Constants.Label],
                 cardinalities,
                 guiOrder
             );
@@ -769,40 +773,40 @@ export class OntologyCacheService {
             const propIri = propDef['@id'];
 
             let isEditable = false;
-            if (propDef[KnoraConstants.isEditable] !== undefined && propDef[KnoraConstants.isEditable] === true) {
+            if (propDef[Constants.IsEditable] !== undefined && propDef[Constants.IsEditable] === true) {
                 isEditable = true;
             }
 
             let isLinkProperty = false;
-            if (propDef[KnoraConstants.isLinkProperty] !== undefined && propDef[KnoraConstants.isLinkProperty] === true) {
+            if (propDef[Constants.IsLinkProperty] !== undefined && propDef[Constants.IsLinkProperty] === true) {
                 isLinkProperty = true;
             }
 
             let isLinkValueProperty = false;
-            if (propDef[KnoraConstants.isLinkValueProperty] !== undefined && propDef[KnoraConstants.isLinkValueProperty] === true) {
+            if (propDef[Constants.IsLinkValueProperty] !== undefined && propDef[Constants.IsLinkValueProperty] === true) {
                 isLinkValueProperty = true;
             }
 
             let subPropertyOf = [];
-            if (propDef[KnoraConstants.subPropertyOf] !== undefined && Array.isArray(propDef[KnoraConstants.subPropertyOf])) {
-                subPropertyOf = propDef[KnoraConstants.subPropertyOf].map((superProp: Object) => superProp['@id']);
-            } else if (propDef[KnoraConstants.subPropertyOf] !== undefined) {
-                subPropertyOf.push(propDef[KnoraConstants.subPropertyOf]['@id']);
+            if (propDef[Constants.SubPropertyOf] !== undefined && Array.isArray(propDef[Constants.SubPropertyOf])) {
+                subPropertyOf = propDef[Constants.SubPropertyOf].map((superProp: Object) => superProp['@id']);
+            } else if (propDef[Constants.SubPropertyOf] !== undefined) {
+                subPropertyOf.push(propDef[Constants.SubPropertyOf]['@id']);
             }
 
             let objectType;
-            if (propDef[KnoraConstants.ObjectType] !== undefined) {
-                objectType = propDef[KnoraConstants.ObjectType]['@id'];
+            if (propDef[Constants.ObjectType] !== undefined) {
+                objectType = propDef[Constants.ObjectType]['@id'];
             }
 
             const guiAttribute = [];
-            if (propDef[KnoraConstants.SalsahGuiAttribute] !== undefined) {
-                if (Array.isArray(propDef[KnoraConstants.SalsahGuiAttribute])) {
-                    for (const attr of propDef[KnoraConstants.SalsahGuiAttribute]) {
+            if (propDef[Constants.GuiAttribute] !== undefined) {
+                if (Array.isArray(propDef[Constants.GuiAttribute])) {
+                    for (const attr of propDef[Constants.GuiAttribute]) {
                         guiAttribute.push(attr);
                     }
                 } else {
-                    guiAttribute.push(propDef[KnoraConstants.SalsahGuiAttribute]);
+                    guiAttribute.push(propDef[Constants.GuiAttribute]);
                 }
             }
 
@@ -810,8 +814,8 @@ export class OntologyCacheService {
             this.cacheOntology.properties[propIri] = new Property(
                 propIri,
                 objectType,
-                propDef[KnoraConstants.RdfsComment],
-                propDef[KnoraConstants.RdfsLabel],
+                propDef[Constants.Comment],
+                propDef[Constants.Label],
                 subPropertyOf,
                 isEditable,
                 isLinkProperty,

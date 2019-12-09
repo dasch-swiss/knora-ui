@@ -1,9 +1,9 @@
+import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { ReadGeomValue } from '@knora/core';
 
 import { GeometryValueComponent } from './geometry-value.component';
-import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
-import { ReadGeomValue } from '@knora/core';
-import { By } from '@angular/platform-browser';
 
 describe('GeometryValueComponent', () => {
     let testHostComponent: TestHostComponent;

@@ -1,5 +1,4 @@
-import { ReadIntervalValue, ReadResource } from '../../../';
-import { KnoraConstants } from '../../knora-constants';
+import { Constants, ReadIntervalValue, ReadResource } from '@knora/api';
 
 /**
  * Represents a sequence in time-base media.
@@ -22,6 +21,6 @@ export class Sequence {
      * @returns {ReadIntervalValue[]}
      */
     getIntervals() {
-        return this.sequenceResource.properties[KnoraConstants.intervalValueHasStart] as ReadIntervalValue[];
+        return this.sequenceResource.properties[Constants.IntervalValueHasStart] as ReadIntervalValue[];
     }
 }
