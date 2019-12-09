@@ -1,9 +1,41 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { LinkValueComponent } from './link-value.component';
-import { OntologyInformation, ReadLinkValue, ReadResource, ResourceClass, ResourceClasses, ResourceClassIrisForOntology } from '@knora/core';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { ReadLinkValue, ReadResource } from '@knora/api';
+
+import { LinkValueComponent } from './link-value.component';
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    template: `
+        <kui-link-value #linkVal [valueObject]="linkValue" (referredResourceClicked)="refResClicked($event)"></kui-link-value>`
+})
+class TestHostComponent implements OnInit {
+
+    @ViewChild('linkVal', { static: false }) linkValueComponent: LinkValueComponent;
+
+    linkValue: ReadLinkValue;
+
+    readResource = new ReadResource();
+    refResClickedIri: string;
+
+    constructor() {
+    }
+
+    refResClicked(linkValue: ReadLinkValue) {
+        this.refResClickedIri = linkValue.linkedResourceIri;
+    }
+
+    ngOnInit() {
+        this.linkValue = new ReadLinkValue();
+        this.linkValue.linkedResourceIri = 'http://rdfh.ch/test';
+
+        this.readResource.id = 'http://rdfh.ch/test';
+        this.readResource.label = 'test book label';
+    }
+}
 
 describe('LinkValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -32,7 +64,7 @@ describe('LinkValueComponent', () => {
     });
 
     it('should display the referred resource\'s Iri', () => {
-        expect(testHostComponent.linkValueComponent.valueObject.referredResourceIri).toEqual('http://rdfh.ch/test');
+        expect(testHostComponent.linkValueComponent.valueObject.linkedResourceIri).toEqual('http://rdfh.ch/test');
 
         const hostCompDe = testHostFixture.debugElement;
 
@@ -55,41 +87,13 @@ describe('LinkValueComponent', () => {
 
     it('should display the referred resource\'s label', () => {
 
-        const referredResource = new ReadResource(
-            'http://rdfh.ch/test',
-            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
-            'test book label',
-            [],
-            [],
-            [],
-            [],
-            {}
-        );
+        const referredResource = new ReadResource();
+        referredResource.id = 'http://rdfh.ch/test2';
+        referredResource.label = 'test book label';
 
-        const resClassesForOnto: ResourceClassIrisForOntology = {
-            'http://0.0.0.0:3333/ontology/0803/incunabula/v2': [
-                'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book'
-            ]
-        };
-
-        const resClasses: ResourceClasses = {
-            'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book':
-                new ResourceClass(
-                    'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book',
-                    'book.png',
-                    'A book.',
-                    'book',
-                    [],
-                    []
-                )
-        };
-
-        const ontoInfo = new OntologyInformation(resClassesForOnto, resClasses, {});
-
-        const linkValue = new ReadLinkValue('id', 'propIri', 'http://rdfh.ch/test', referredResource);
-
-        testHostComponent.ontoInfo = ontoInfo;
-        testHostComponent.linkValue = linkValue;
+        testHostComponent.linkValue = new ReadLinkValue();
+        testHostComponent.linkValue.linkedResourceIri = 'http://rdfh.ch/test2';
+        testHostComponent.linkValue.linkedResource = referredResource;
 
         testHostFixture.detectChanges();
 
@@ -109,36 +113,8 @@ describe('LinkValueComponent', () => {
 
         testHostFixture.detectChanges();
 
-        expect(testHostComponent.refResClickedIri).toEqual('http://rdfh.ch/test');
+        expect(testHostComponent.refResClickedIri).toEqual('http://rdfh.ch/test2');
 
     });
 
 });
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    template: `
-        <kui-link-value #linkVal [valueObject]="linkValue" [ontologyInfo]="ontoInfo" (referredResourceClicked)="refResClicked($event)"></kui-link-value>`
-})
-class TestHostComponent implements OnInit {
-
-    @ViewChild('linkVal', { static: false }) linkValueComponent: LinkValueComponent;
-
-    linkValue;
-    ontoInfo;
-
-    refResClickedIri: string;
-
-    constructor () {
-    }
-
-    refResClicked(linkValue: ReadLinkValue) {
-        this.refResClickedIri = linkValue.referredResourceIri;
-    }
-
-    ngOnInit() {
-        this.linkValue = new ReadLinkValue('id', 'propIri', 'http://rdfh.ch/test');
-    }
-}
