@@ -26,7 +26,6 @@ import { BooleanValueComponent } from './property/boolean-value/boolean-value.co
 import { ColorValueComponent } from './property/color-value/color-value.component';
 import { DateValueComponent } from './property/date-value/date-value.component';
 import { DecimalValueComponent } from './property/decimal-value/decimal-value.component';
-import { ExternalResValueComponent } from './property/external-res-value/external-res-value.component';
 import { GeometryValueComponent } from './property/geometry-value/geometry-value.component';
 import { GeonameValueComponent } from './property/geoname-value/geoname-value.component';
 import { IntegerValueComponent } from './property/integer-value/integer-value.component';
@@ -111,7 +110,6 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         IntervalValueComponent,
         ListValueComponent,
         LinkValueComponent,
-        ExternalResValueComponent,
         ListViewComponent,
         GridViewComponent,
         TableViewComponent,
@@ -149,7 +147,6 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         IntervalValueComponent,
         ListValueComponent,
         LinkValueComponent,
-        ExternalResValueComponent,
         ListViewComponent,
         GridViewComponent,
         TableViewComponent,

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { KnoraDate, KnoraPeriod, Precision, ReadDateValue } from '@knora/api/src/models/v2/resources/values/read/read-date-value';
+import { KnoraDate, KnoraPeriod, Precision, ReadDateValue } from '@knora/api';
 
 @Component({
     selector: 'kui-date-value',

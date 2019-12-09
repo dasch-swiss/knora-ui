@@ -2,7 +2,6 @@ export * from './boolean-value/boolean-value.component';
 export * from './color-value/color-value.component';
 export * from './date-value/date-value.component';
 export * from './decimal-value/decimal-value.component';
-export * from './external-res-value/external-res-value.component';
 export * from './geometry-value/geometry-value.component';
 export * from './geoname-value/geoname-value.component';
 export * from './integer-value/integer-value.component';

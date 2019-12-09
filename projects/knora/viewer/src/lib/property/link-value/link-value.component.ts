@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { OntologyInformation } from '@knora/core';
-import { ReadLinkValue } from '@knora/core';
+import { ReadLinkValue } from '@knora/api';
 
 @Component({
     selector: 'kui-link-value',
@@ -10,22 +9,13 @@ import { ReadLinkValue } from '@knora/core';
 export class LinkValueComponent {
 
     @Input()
-    set ontologyInfo(value: OntologyInformation) {
-        this._ontoInfo = value;
-    }
-
-    get ontologyInfo() {
-        return this._ontoInfo;
-    }
-
-    @Input()
     set valueObject(value: ReadLinkValue) {
         this._linkValueObj = value;
 
-        if (this.valueObject.referredResource !== undefined) {
-            this.referredResource = this.valueObject.referredResource.label;
+        if (this.valueObject.linkedResource !== undefined) {
+            this.referredResource = this.valueObject.linkedResource.label;
         } else {
-            this.referredResource = this.valueObject.referredResourceIri;
+            this.referredResource = this.valueObject.linkedResourceIri;
         }
     }
 
@@ -37,7 +27,6 @@ export class LinkValueComponent {
     referredResourceClicked: EventEmitter<ReadLinkValue> = new EventEmitter();
 
     private _linkValueObj: ReadLinkValue;
-    private _ontoInfo: OntologyInformation;
     referredResource: string;
 
     constructor() { }
