@@ -61,7 +61,7 @@ describe('BooleanValueComponent', () => {
 
         const matCheckBoxDebugElement: DebugElement = hostCompDe.query(By.directive(MatCheckbox));
 
-        expect(matCheckBoxDebugElement.componentInstance.disabled).toBe(true);
+        expect(matCheckBoxDebugElement.attributes.readonly).toBe('true');
     });
 
     it('should contain a boolean value that is true', () => {
