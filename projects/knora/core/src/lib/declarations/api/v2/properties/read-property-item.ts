@@ -1,7 +1,8 @@
-import { ReadResource } from '../resources/read-resource';
+import { Constants } from '@knora/api';
+
 import { OntologyInformation } from '../../../../services';
-import { KnoraConstants } from '../../knora-constants';
 import { DateRangeSalsah, DateSalsah } from '../../shared/date';
+import { ReadResource } from '../resources/read-resource';
 
 /**
  * An abstract interface representing any value object.
@@ -45,7 +46,7 @@ export abstract class ReadTextValue implements ReadPropertyItem {
 
     abstract id: string;
 
-    readonly type: string = KnoraConstants.TextValue;
+    readonly type: string = Constants.TextValue;
 
     abstract propIri: string;
 
@@ -64,7 +65,7 @@ export class ReadTextValueAsString extends ReadTextValue {
     }
 
     getClassName(): string {
-        return KnoraConstants.ReadTextValueAsString;
+        return 'ReadTextValueAsString';
     }
 
     getContent() {
@@ -110,7 +111,7 @@ export class ReadTextValueAsHtml extends ReadTextValue {
 
 
     getClassName(): string {
-        return KnoraConstants.ReadTextValueAsHtml;
+        return 'ReadTextValueAsHtml';
     }
 
     getContent() {
@@ -129,7 +130,7 @@ export class ReadTextValueAsXml extends ReadTextValue {
     }
 
     getClassName(): string {
-        return KnoraConstants.ReadTextValueAsXml;
+        return 'ReadTextValueAsXml';
     }
 
     getContent() {
@@ -158,7 +159,7 @@ export class ReadDateValue implements ReadPropertyItem {
         readonly endDay?: number) {
     }
 
-    readonly type = KnoraConstants.DateValue;
+    readonly type = Constants.DateValue;
 
     private separator = '/';
 
@@ -174,7 +175,7 @@ export class ReadDateValue implements ReadPropertyItem {
     }
 
     getClassName(): string {
-        return KnoraConstants.ReadDateValue;
+        return 'ReadDateValue';
     }
 
     getContent() {
@@ -191,7 +192,7 @@ export class ReadLinkValue implements ReadPropertyItem {
 
     }
 
-    readonly type = KnoraConstants.LinkValue;
+    readonly type = Constants.LinkValue;
 
     getReferredResourceInfo(ontologyInfo: OntologyInformation) {
         if (this.referredResource !== undefined) {
@@ -205,7 +206,7 @@ export class ReadLinkValue implements ReadPropertyItem {
     }
 
     getClassName(): string {
-        return KnoraConstants.ReadLinkValue;
+        return 'ReadLinkValue';
     }
 
     getContent() {
@@ -226,10 +227,10 @@ export class ReadIntegerValue implements ReadPropertyItem {
 
     }
 
-    readonly type = KnoraConstants.IntValue;
+    readonly type = Constants.IntValue;
 
     getClassName(): string {
-        return KnoraConstants.ReadIntegerValue;
+        return 'ReadIntValue';
     }
 
     getContent() {
@@ -247,10 +248,10 @@ export class ReadDecimalValue implements ReadPropertyItem {
 
     }
 
-    readonly type = KnoraConstants.DecimalValue;
+    readonly type = Constants.DecimalValue;
 
     getClassName(): string {
-        return KnoraConstants.ReadDecimalValue;
+        return 'ReadDecimalValue';
     }
 
     getContent() {
@@ -297,7 +298,7 @@ export class ReadStillImageFileValue extends FileValue {
 
     }
 
-    readonly type = KnoraConstants.StillImageFileValue;
+    readonly type = Constants.StillImageFileValue;
 
     readonly isPreview: boolean;
 
@@ -316,7 +317,7 @@ export class ReadStillImageFileValue extends FileValue {
     }
 
     getClassName(): string {
-        return KnoraConstants.ReadStillImageFileValue;
+        return 'ReadStillImageFileValue';
     }
 
     getContent() {
@@ -341,13 +342,13 @@ export class ReadMovingImageFileValue extends FileValue {
         super();
     }
 
-    readonly type = KnoraConstants.MovingImageFileValue;
+    readonly type = Constants.MovingImageFileValue;
 
     // preview doesn't include the video file itself
     readonly isPreview: boolean;
 
     getClassName(): string {
-        return KnoraConstants.ReadMovingImageFileValue;
+        return 'ReadMovingImageFileValue';
     }
 
     getContent() {
@@ -369,10 +370,10 @@ export class ReadAudioFileValue extends FileValue {
         super();
     }
 
-    readonly type = KnoraConstants.AudioFileValue;
+    readonly type = Constants.AudioFileValue;
 
     getClassName(): string {
-        return KnoraConstants.ReadAudioFileValue;
+        return 'ReadAudioFileValue';
     }
 
     getContent() {
@@ -393,13 +394,13 @@ export class ReadDDDFileValue extends FileValue {
         super();
     }
 
-    readonly type = KnoraConstants.DDDFileValue;
+    readonly type = Constants.DDDFileValue;
 
     // preview doesn't include the DDD file itself
     readonly isPreview: boolean;
 
     getClassName(): string {
-        return KnoraConstants.ReadDDDFileValue;
+        return 'ReadDDDFileValue';
     }
 
     getContent() {
@@ -420,13 +421,13 @@ export class ReadDocumentFileValue extends FileValue {
         super();
     }
 
-    readonly type = KnoraConstants.DocumentFileValue;
+    readonly type = Constants.DocumentFileValue;
 
     // preview doesn't include the DDD file itself
     readonly isPreview: boolean;
 
     getClassName(): string {
-        return KnoraConstants.ReadDocumentFileValue;
+        return 'ReadDocumentFileValue';
     }
 
     getContent() {
@@ -443,10 +444,10 @@ export class ReadTextFileValue implements ReadPropertyItem {
 
     }
 
-    readonly type = KnoraConstants.TextFileValue;
+    readonly type = Constants.TextFileValue;
 
     getClassName(): string {
-        return KnoraConstants.ReadTextFileValue;
+        return 'ReadTextFileValue';
     }
 
     getContent() {
@@ -465,10 +466,10 @@ export class ReadColorValue implements ReadPropertyItem {
         readonly colorHex: string) {
     }
 
-    readonly type = KnoraConstants.ColorValue;
+    readonly type = Constants.ColorValue;
 
     getClassName(): string {
-        return KnoraConstants.ReadColorValue;
+        return 'ReadColorValue';
     }
 
     getContent() {
@@ -530,10 +531,10 @@ export class ReadGeomValue implements ReadPropertyItem {
 
     readonly geometry: RegionGeometry;
 
-    readonly type = KnoraConstants.GeomValue;
+    readonly type = Constants.GeomValue;
 
     getClassName(): string {
-        return KnoraConstants.ReadGeomValue;
+        return 'ReadGeomValue';
     }
 
     getContent() {
@@ -550,10 +551,10 @@ export class ReadUriValue implements ReadPropertyItem {
 
     }
 
-    readonly type = KnoraConstants.UriValue;
+    readonly type = Constants.UriValue;
 
     getClassName(): string {
-        return KnoraConstants.ReadUriValue;
+        return 'ReadUriValue';
     }
 
     getContent() {
@@ -571,10 +572,10 @@ export class ReadBooleanValue implements ReadPropertyItem {
 
     }
 
-    readonly type = KnoraConstants.BooleanValue;
+    readonly type = Constants.BooleanValue;
 
     getClassName(): string {
-        return KnoraConstants.ReadBooleanValue;
+        return 'ReadBooleanValue';
     }
 
     getContent() {
@@ -592,10 +593,10 @@ export class ReadIntervalValue implements ReadPropertyItem {
 
     }
 
-    readonly type = KnoraConstants.IntervalValue;
+    readonly type = Constants.IntervalValue;
 
     getClassName(): string {
-        return KnoraConstants.ReadIntervalValue;
+        return 'ReadIntervalValue';
     }
 
     getContent() {
@@ -613,10 +614,10 @@ export class ReadListValue implements ReadPropertyItem {
 
     }
 
-    readonly type = KnoraConstants.ListValue;
+    readonly type = Constants.ListValue;
 
     getClassName(): string {
-        return KnoraConstants.ReadListValue;
+        return 'ReadListValue';
     }
 
     getContent() {

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ReadTextValueAsXml } from '@knora/core';
+import { ReadTextValueAsXml } from '@knora/api';
 
 @Component({
     selector: 'kui-text-value-as-xml',

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { MatButtonModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,6 +21,8 @@ export class AppConfig {
 describe('LoginFormComponent', () => {
     let component: LoginFormComponent;
     let fixture: ComponentFixture<LoginFormComponent>;
+
+    const formBuilder: FormBuilder = new FormBuilder();
 
     const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
     const appConfig = new AppConfig('knora app', '0.0.0.0:4200');
@@ -53,6 +55,10 @@ describe('LoginFormComponent', () => {
                 {
                     provide: KnoraApiConnectionToken,
                     useValue: new KnoraApiConnection(config)
+                },
+                {
+                    provide: FormBuilder,
+                    useValue: formBuilder
                 }
             ]
         })
@@ -62,6 +68,10 @@ describe('LoginFormComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(LoginFormComponent);
         component = fixture.componentInstance;
+        component.form = formBuilder.group({
+            username: null,
+            password: null
+        });
         fixture.detectChanges();
     });
 

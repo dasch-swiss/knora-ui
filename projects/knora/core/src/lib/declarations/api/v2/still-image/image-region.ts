@@ -1,6 +1,6 @@
+import { KnoraConstants } from '../../knora-constants';
 import { ReadGeomValue } from '../properties/read-property-item';
 import { ReadResource } from '../resources/read-resource';
-import { KnoraConstants } from '../../knora-constants';
 
 /**
  * @deprecated Use **Region** instead

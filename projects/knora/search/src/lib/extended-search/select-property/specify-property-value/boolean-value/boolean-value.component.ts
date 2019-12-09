@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Constants } from '@knora/api';
 import { KnoraConstants, PropertyValue, Value, ValueLiteral } from '@knora/core';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
@@ -16,7 +17,7 @@ export class BooleanValueComponent implements OnInit, OnDestroy, PropertyValue {
     // parent FormGroup
     @Input() formGroup: FormGroup;
 
-    type = KnoraConstants.BooleanValue;
+    type = Constants.BooleanValue;
 
     form: FormGroup;
 
@@ -47,6 +48,6 @@ export class BooleanValueComponent implements OnInit, OnDestroy, PropertyValue {
     }
 
     getValue(): Value {
-        return new ValueLiteral(String(this.form.value.booleanValue), KnoraConstants.xsdBoolean);
+        return new ValueLiteral(String(this.form.value.booleanValue), KnoraConstants.XsdBoolean);
     }
 }

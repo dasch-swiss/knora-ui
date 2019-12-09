@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material';
-import { StringLiteral } from '@knora/core';
+import { StringLiteral } from '@knora/api';
 
 @Component({
     selector: 'kui-string-literal-input',

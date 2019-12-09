@@ -1,9 +1,9 @@
 import { Component, Inject, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { KuiMessageData } from '@knora/action';
-import { ApiResponseError, Constants, IHasProperty, KnoraApiConnection, ReadResource, ReadStillImageFileValue, ResourcePropertyDefinition, ReadValue } from '@knora/api';
+import { ApiResponseError, Constants, IHasProperty, KnoraApiConnection, ReadResource, ReadValue, ResourcePropertyDefinition } from '@knora/api';
 import { PropertyDefinition } from '@knora/api/src/models/v2/ontologies/property-definition';
-import { GuiOrder, KnoraApiConnectionToken, OntologyInformation, ResourcesSequence } from '@knora/core';
+import { GuiOrder, KnoraApiConnectionToken, OntologyInformation } from '@knora/core';
 
 import { StillImageComponent } from '../../resource';
 
@@ -77,7 +77,7 @@ export class ResourceViewComponent implements OnInit, OnChanges {
 
     // TODO: clean up following unused variables
     ontologyInfo: OntologyInformation;
-    sequence: ResourcesSequence;
+    sequence: ReadResource[];
     guiOrder: GuiOrder[];
     error: KuiMessageData;
 

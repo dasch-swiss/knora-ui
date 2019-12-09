@@ -14,18 +14,7 @@ import { SortButtonComponent } from './knora-ui-examples/action-demo/sort-button
 import { StringifyStringLiteralComponent } from './knora-ui-examples/action-demo/stringify-string-literal/stringify-string-literal.component';
 import { TruncateComponent } from './knora-ui-examples/action-demo/truncate/truncate.component';
 import { LoginComponent } from './knora-ui-examples/action-demo/login/login.component';
-import { ConvertJsonLdComponent } from './knora-ui-examples/core-demo/convert-json-ld/convert-json-ld.component';
 import { CoreDemoComponent } from './knora-ui-examples/core-demo/core-demo.component';
-import { GravsearchComponent } from './knora-ui-examples/core-demo/gravsearch/gravsearch.component';
-import { GroupsComponent } from './knora-ui-examples/core-demo/groups/groups.component';
-import { IncomingComponent } from './knora-ui-examples/core-demo/incoming/incoming.component';
-import { ListsComponent } from './knora-ui-examples/core-demo/lists/lists.component';
-import { OntologyCacheComponent } from './knora-ui-examples/core-demo/ontology-cache/ontology-cache.component';
-import { OntologyComponent } from './knora-ui-examples/core-demo/ontology/ontology.component';
-import { ProjectsComponent } from './knora-ui-examples/core-demo/projects/projects.component';
-import { ResourceComponent } from './knora-ui-examples/core-demo/resource/resource.component';
-import { SearchComponent } from './knora-ui-examples/core-demo/search/search.component';
-import { UsersComponent } from './knora-ui-examples/core-demo/users/users.component';
 import { ExtendedSearchComponent } from './knora-ui-examples/search-demo/extended-search/extended-search.component';
 import { FulltextSearchComponent } from './knora-ui-examples/search-demo/fulltext-search/fulltext-search.component';
 import { SearchDemoComponent } from './knora-ui-examples/search-demo/search-demo.component';
@@ -194,52 +183,7 @@ const appRoutes: Routes = [
                         path: 'readme',
                         component: DemoIntroComponent,
                         data: { module: 'core' }
-                    },
-                    {
-                        path: 'projects',
-                        component: ProjectsComponent
-                    },
-                    {
-                        path: 'users',
-                        component: UsersComponent
-                    },
-                    {
-                        path: 'groups',
-                        component: GroupsComponent
-                    },
-                    {
-                        path: 'lists',
-                        component: ListsComponent
-                    },
-                    {
-                        path: 'resource',
-                        component: ResourceComponent
-                    },
-                    {
-                        path: 'search',
-                        component: SearchComponent
-                    },
-                    {
-                        path: 'ontology-cache',
-                        component: OntologyCacheComponent
-                    },
-                    {
-                        path: 'ontology',
-                        component: OntologyComponent
-                    },
-                    {
-                        path: 'incoming',
-                        component: IncomingComponent
-                    },
-                    {
-                        path: 'grav-search',
-                        component: GravsearchComponent
-                    },
-                    {
-                        path: 'convert-jsonld',
-                        component: ConvertJsonLdComponent
                     }
-
                 ]
             }
         ]

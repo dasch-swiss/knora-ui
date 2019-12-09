@@ -1,4 +1,4 @@
-import { StringLiteral } from '../../..';
+import { StringLiteral } from '@knora/api';
 
 export interface NewProperty {
 

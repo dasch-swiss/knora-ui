@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { KnoraConstants, PropertyValue, Utils, Value, ValueLiteral } from '@knora/core';
+import { Constants } from '@knora/api';
+import { PropertyValue, Utils, Value, ValueLiteral } from '@knora/core';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -16,7 +16,7 @@ export class UriValueComponent implements OnInit, OnDestroy, PropertyValue {
     // parent FormGroup
     @Input() formGroup: FormGroup;
 
-    type = KnoraConstants.UriValue;
+    type = Constants.UriValue;
 
     form: FormGroup;
 
@@ -48,7 +48,7 @@ export class UriValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     getValue(): Value {
 
-        return new ValueLiteral(String(this.form.value.uriValue), KnoraConstants.xsdUri);
+        return new ValueLiteral(String(this.form.value.uriValue), Constants.XsdAnyUri);
     }
 
 }

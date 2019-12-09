@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ExtendedSearchParams, SearchParamsService } from './search-params.service';
-import { KnoraConstants, KnoraSchema } from '../../declarations';
+import { Constants } from '@knora/api';
+
+import { KnoraConstants, KnoraSchema } from '../../declarations/api/knora-constants';
 import { PropertyWithValue } from '../../declarations/api/operators';
+
+import { ExtendedSearchParams, SearchParamsService } from './search-params.service';
 
 /**
  * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
@@ -20,16 +23,16 @@ export class GravsearchGenerationService {
      * Use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.
      */
     public static typeConversionComplexToSimple = {
-        'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.xsdInteger,
-        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': KnoraConstants.xsdDecimal,
-        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.xsdBoolean,
-        'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.xsdString,
+        'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.XsdInteger,
+        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': Constants.XsdDecimal,
+        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.XsdBoolean,
+        'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.XsdString,
         'http://api.knora.org/ontology/knora-api/v2#DateValue': KnoraConstants.dateSimple,
         'http://api.knora.org/ontology/knora-api/v2#IntervalValue': KnoraConstants.intervalSimple,
         'http://api.knora.org/ontology/knora-api/v2#GeomValue': KnoraConstants.geomSimple,
         'http://api.knora.org/ontology/knora-api/v2#ColorValue': KnoraConstants.colorSimple,
         'http://api.knora.org/ontology/knora-api/v2#GeonameValue': KnoraConstants.geonameSimple,
-        'http://api.knora.org/ontology/knora-api/v2#UriValue': KnoraConstants.xsdUri,
+        'http://api.knora.org/ontology/knora-api/v2#UriValue': Constants.XsdAnyUri,
         'http://api.knora.org/ontology/knora-api/v2#StillImageFileValue': KnoraConstants.fileSimple,
         'http://api.knora.org/ontology/knora-api/v2#FileValue': KnoraConstants.fileSimple,
         'http://api.knora.org/ontology/knora-api/v2#MovingImageFileValue': KnoraConstants.fileSimple,
@@ -41,17 +44,21 @@ export class GravsearchGenerationService {
     };
 
     public static complexTypeToProp = {
-        'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.integerValueAsInteger,
-        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': KnoraConstants.decimalValueAsDecimal,
-        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.booleanValueAsBoolean,
-        'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.valueAsString,
-        'http://api.knora.org/ontology/knora-api/v2#UriValue': KnoraConstants.uriValueAsUri,
-        'http://api.knora.org/ontology/knora-api/v2#ListValue': KnoraConstants.listValueAsListNode
+        'http://api.knora.org/ontology/knora-api/v2#IntValue': Constants.IntValueAsInt,
+        'http://api.knora.org/ontology/knora-api/v2#DecimalValue': Constants.DecimalValueAsDecimal,
+        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': Constants.BooleanValueAsBoolean,
+        'http://api.knora.org/ontology/knora-api/v2#TextValue': Constants.ValueAsString,
+        'http://api.knora.org/ontology/knora-api/v2#UriValue': Constants.UriValueAsUri,
+        'http://api.knora.org/ontology/knora-api/v2#ListValue': Constants.ListValueAsListNode
     };
 
     constructor(private _searchParamsService: SearchParamsService) { }
 
     /**
+     * @deprecated since v10.0.0
+     *
+     * Will be replaced by `@knora/api` (github:knora-api-js-lib)
+     *
      * Generates a Gravsearch query from the provided arguments.
      *
      * @param {PropertyWithValue[]} properties the properties specified by the user.
@@ -127,11 +134,11 @@ ${statement}
                         // generate statement to value literal
                         restriction = `${propValue} <${GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType]}> ${propValueLiteral}` + '\n';
                         // use contains function for MATCH
-                        restriction += `FILTER <${KnoraConstants.matchFunction}>(${propValueLiteral}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
-                    } else if (propWithVal.property.objectType === KnoraConstants.DateValue) {
+                        restriction += `FILTER <${KnoraConstants.MatchFunction}>(${propValueLiteral}, ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
+                    } else if (propWithVal.property.objectType === Constants.DateValue) {
                         // handle date property
                         restriction = `FILTER(knora-api:toSimpleDate(${propValue}) ${propWithVal.valueLiteral.comparisonOperator.type} ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)})`;
-                    } else if (propWithVal.property.objectType === KnoraConstants.ListValue) {
+                    } else if (propWithVal.property.objectType === Constants.ListValue) {
                         // handle list node
                         restriction = `${propValue} <${GravsearchGenerationService.complexTypeToProp[propWithVal.property.objectType]}> ${propWithVal.valueLiteral.value.toSparql(KnoraSchema.complex)}` + '\n';
                         // check for comparison operator "not equals"

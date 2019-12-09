@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { KnoraApiConfig } from '@knora/api';
 import { from } from 'rxjs';
@@ -10,6 +10,7 @@ import { KnoraApiConfigToken } from '../core.module';
 import { ApiServiceError } from '../declarations/api-service-error';
 import { ApiServiceResult } from '../declarations/api-service-result';
 import { KnoraConstants } from '../declarations/api/knora-constants';
+import { Session } from '../session.service';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -34,6 +35,8 @@ export abstract class ApiService {
     ) { }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * GET
      *
      * @param {string} path the URL for the GET request.
@@ -44,7 +47,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        return this.http.get(this.knoraApiConfig.apiUrl + path, { observe: 'response', params: params }).pipe(
+        const headers = this.setHeaders();
+
+        return this.http.get(this.knoraApiConfig.apiUrl + path, { headers: headers, observe: 'response', params: params }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -68,6 +73,8 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * Processes JSON-LD returned by Knora.
      * Expands Iris and creates an empty context object.
      *
@@ -88,6 +95,8 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * POST
      *
      * @param {string} path
@@ -98,9 +107,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
+        const headers = this.setHeaders();
 
-        return this.http.post(this.knoraApiConfig.apiUrl + path, body, { observe: 'response' }).pipe(
+        return this.http.post(this.knoraApiConfig.apiUrl + path, body, { headers: headers, observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -125,6 +134,8 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * PUT
      *
      * @param {string} path
@@ -135,9 +146,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
+        const headers = this.setHeaders();
 
-        return this.http.put(this.knoraApiConfig.apiUrl + path, body, { observe: 'response' }).pipe(
+        return this.http.put(this.knoraApiConfig.apiUrl + path, body, { headers: headers, observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -164,6 +175,8 @@ export abstract class ApiService {
     }
 
     /**
+     * @deprecated since v9.5.0
+     *
      * DELETE
      *
      * @param {string} path
@@ -173,9 +186,9 @@ export abstract class ApiService {
 
         this.loading = true;
 
-        // const headers = this.setHeaders(); --> this is now done by the interceptor from @knora/authentication
+        const headers = this.setHeaders();
 
-        return this.http.delete(this.knoraApiConfig.apiUrl + path, { observe: 'response' }).pipe(
+        return this.http.delete(this.knoraApiConfig.apiUrl + path, { headers: headers, observe: 'response' }).pipe(
             map((response: HttpResponse<any>): ApiServiceResult => {
                 this.loading = false;
 
@@ -238,7 +251,11 @@ export abstract class ApiService {
         return throwError(serviceError);
 
     }
-
+    /**
+     * @deprecated since v9.5.0
+     *
+     * @param  {string} server
+     */
     protected compareVersion(server: string): void {
 
         // expected knora api version
@@ -256,6 +273,27 @@ export abstract class ApiService {
         } else {
             // console.warn('No server information from headers response');
         }
+    }
 
+    /**
+     * Set headers to authorise http requests
+     *
+     * This method was replaced by interceptor. But since the implementation
+     * of new knora-api-js-lib services the interceptor is redundant.
+     * As long we not all services are replaced by knora-api-js-lib
+     * we have to use this setHeaders "hack" for the two services left.
+     *
+     * @returns HttpHeaders
+     */
+    protected setHeaders(): HttpHeaders {
+        const session: Session = JSON.parse(localStorage.getItem('session'));
+
+        if (session && session !== null) {
+            return new HttpHeaders({
+                'Authorization': `Bearer ${session.user.jwt}`
+            });
+        } else {
+            return new HttpHeaders();
+        }
     }
 }

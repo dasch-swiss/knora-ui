@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
-
-import { MessageComponent } from './message.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { StatusMsg } from '../../assets/i18n/statusMsg';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
+
+import { MessageComponent } from './message.component';
+
 
 describe('MessageComponent', () => {
     let component: MessageComponent;

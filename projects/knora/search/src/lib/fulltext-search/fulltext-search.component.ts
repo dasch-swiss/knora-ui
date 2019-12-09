@@ -3,8 +3,8 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material';
 import { Router } from '@angular/router';
-import { ApiResponseData, ApiResponseError, KnoraApiConnection, ProjectResponse, ProjectsResponse, ReadProject } from '@knora/api';
-import { KnoraApiConnectionToken, KnoraConstants } from '@knora/core';
+import { ApiResponseData, ApiResponseError, Constants, KnoraApiConnection, ProjectResponse, ProjectsResponse, ReadProject } from '@knora/api';
+import { KnoraApiConnectionToken } from '@knora/core';
 
 export interface PrevSearchItem {
     projectIri?: string;
@@ -77,8 +77,8 @@ export class FulltextSearchComponent implements OnInit {
 
     // do not show the following projects: default system projects from knora
     doNotDisplay: string[] = [
-        KnoraConstants.SystemProjectIRI,
-        KnoraConstants.DefaultSharedOntologyIRI
+        Constants.SystemProjectIRI,
+        Constants.DefaultSharedOntologyIRI
     ];
 
     constructor(

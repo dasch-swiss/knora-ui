@@ -63,7 +63,7 @@ export class TextValueAsHtmlComponent {
     @HostListener('click', ['$event.target'])
     onClick(targetElement) {
         if (this._bindEvents && targetElement.nodeName.toLowerCase() === 'a'
-            && targetElement.className.toLowerCase().indexOf(KnoraConstants.SalsahLink) >= 0
+            && targetElement.className.toLowerCase().indexOf('salsah-link') >= 0
             && targetElement.href !== undefined) {
             this.refResClicked(targetElement.href);
             // prevent propagation

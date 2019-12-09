@@ -7,15 +7,15 @@
 <!-- select apt component for value specification using a switch case statement-->
 <span *ngIf="comparisonOperatorSelected !== undefined && comparisonOperatorSelected !== null && comparisonOperatorSelected.getClassName() != 'Exists'"
       [ngSwitch]="propertyValueType">
-  <boolean-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.BooleanValue"></boolean-value>
-  <date-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.DateValue"></date-value>
-  <decimal-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.DecimalValue"></decimal-value>
-  <integer-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.IntValue"></integer-value>
+  <boolean-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.BooleanValue"></boolean-value>
+  <date-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.DateValue"></date-value>
+  <decimal-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.DecimalValue"></decimal-value>
+  <integer-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.IntValue"></integer-value>
   <link-value #propertyValue [formGroup]="form" [restrictResourceClass]="property.objectType"
               *ngSwitchCase="KnoraConstants.Resource"></link-value>
-  <text-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.TextValue"></text-value>
-  <uri-value #propertyValue [formGroup]="form" *ngSwitchCase="KnoraConstants.UriValue"></uri-value>
-  <list-value #propertyValue [formGroup]="form" [property]="property" *ngSwitchCase="KnoraConstants.ListValue">
+  <text-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.TextValue"></text-value>
+  <uri-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.UriValue"></uri-value>
+  <list-value #propertyValue [formGroup]="form" [property]="property" *ngSwitchCase="Constants.ListValue">
   </list-value>
 
   <!-- TODO: Resource: handle linking properties with target class restriction: access property member to get objectClass via property() getter method -->

@@ -1,5 +1,12 @@
 import { Directive, ElementRef, Input, OnChanges } from '@angular/core';
-import { KnoraConstants } from '@knora/core';
+
+export class GNDConstants {
+    public static GNDPrefix: string = '(DE-588)';
+    public static GNDResolver: string = 'http://d-nb.info/gnd/';
+
+    public static VIAFPrefix: string = '(VIAF)';
+    public static VIAFResolver: string = 'https://viaf.org/viaf/';
+}
 
 /**
  * This directive renders a GND/IAF or a VIAF identifier as a link to the respective resolver.
@@ -30,12 +37,12 @@ export class GndDirective implements OnChanges {
     ngOnChanges() {
         if (this._gnd.length < 30) {
 
-            if (this._gnd.indexOf(KnoraConstants.GNDPrefix) === 0) {
+            if (this._gnd.indexOf(GNDConstants.GNDPrefix) === 0) {
                 // GND/IAF identifier
-                this.el.nativeElement.innerHTML = `<a href="${KnoraConstants.GNDResolver + this._gnd.replace(KnoraConstants.GNDPrefix, '')}" target="_blank">${this._gnd}</a>`;
-            } else if (this._gnd.indexOf(KnoraConstants.VIAFPrefix) === 0) {
+                this.el.nativeElement.innerHTML = `<a href="${GNDConstants.GNDResolver + this._gnd.replace(GNDConstants.GNDPrefix, '')}" target="_blank">${this._gnd}</a>`;
+            } else if (this._gnd.indexOf(GNDConstants.VIAFPrefix) === 0) {
                 // VIAF identifier
-                this.el.nativeElement.innerHTML = `<a href="${KnoraConstants.VIAFResolver + this._gnd.replace(KnoraConstants.VIAFPrefix, '')}" target="_blank">${this._gnd}</a>`;
+                this.el.nativeElement.innerHTML = `<a href="${GNDConstants.VIAFResolver + this._gnd.replace(GNDConstants.VIAFPrefix, '')}" target="_blank">${this._gnd}</a>`;
             } else {
                 // no identifier, leave unchanged
                 this.el.nativeElement.innerHTML = this._gnd;

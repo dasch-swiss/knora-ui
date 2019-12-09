@@ -3,7 +3,9 @@ import { BehaviorSubject } from 'rxjs';
 
 
 /**
- * @deprecated Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead
+ * @deprecated since v10.0.0
+ *
+ * Will be replaced by `@knora/api` (github:knora-api-js-lib)
  *
  * Represents the parameters of an extended search.
  */
@@ -13,9 +15,9 @@ export class ExtendedSearchParams {
      *
      * @param generateGravsearch a function that generates a Gravsearch query.
      *
-     *                           The function takes the offset
-     *                           as a parameter and returns a Gravsearch query string.
-     *                           Returns false if not set correctly (init state).
+     * The function takes the offset
+     * as a parameter and returns a Gravsearch query string.
+     * Returns false if not set correctly (init state).
      */
     constructor(public generateGravsearch: (offset: number) => string | boolean) {
 
@@ -27,6 +29,9 @@ export class ExtendedSearchParams {
     providedIn: 'root'
 })
 /**
+ * @deprecated since v10.0.0
+ *
+ * Will be replaced by `@knora/api` (github:knora-api-js-lib)
  * Temporarily stores the parameters of an extended search.
  */
 export class SearchParamsService {
