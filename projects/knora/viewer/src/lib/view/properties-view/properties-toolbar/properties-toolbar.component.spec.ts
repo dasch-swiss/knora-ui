@@ -5,7 +5,7 @@ import { KnoraApiConnectionToken } from '@knora/core';
 
 import { PropertiesToolbarComponent } from './properties-toolbar.component';
 
-fdescribe('PropertiesToolbarComponent', () => {
+describe('PropertiesToolbarComponent', () => {
   let component: PropertiesToolbarComponent;
   let fixture: ComponentFixture<PropertiesToolbarComponent>;
 
