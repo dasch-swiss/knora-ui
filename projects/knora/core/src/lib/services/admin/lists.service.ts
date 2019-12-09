@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { ListNode } from '@knora/api';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { ApiServiceResult, List, ListCreatePayload, ListInfo, ListInfoResponse, ListInfoUpdatePayload, ListNode, ListNodeResponse, ListNodeUpdatePayload, ListResponse, ListsResponse } from '../../declarations';
+
+import { ApiServiceResult, List, ListCreatePayload, ListInfo, ListInfoResponse, ListInfoUpdatePayload, ListNodeResponse, ListNodeUpdatePayload, ListResponse, ListsResponse } from '../../declarations';
 import { ApiService } from '../api.service';
 
 /**
