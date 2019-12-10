@@ -4,8 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { KeyPipe, ProgressIndicatorComponent, TruncatePipe } from '@knora/action';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
-import { DateValueComponent } from '../../property/date-value/date-value.component';
+import { TextValueAsHtmlComponent } from '../../../property/text-value/text-value-as-html/text-value-as-html.component';
+import { DateValueComponent } from '../../../property/date-value/date-value.component';
 
 import { GridViewComponent } from './grid-view.component';
 
