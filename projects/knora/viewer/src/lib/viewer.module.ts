@@ -37,17 +37,8 @@ import { TextValueAsStringComponent } from './property/text-value/text-value-as-
 import { TextValueAsXmlComponent } from './property/text-value/text-value-as-xml/text-value-as-xml.component';
 import { TextfileValueComponent } from './property/textfile-value/textfile-value.component';
 import { UriValueComponent } from './property/uri-value/uri-value.component';
-import { AnnotationComponent } from './resource/annotation/annotation.component';
-import { AudioComponent } from './resource/audio/audio.component';
-import { CollectionComponent } from './resource/collection/collection.component';
-import { DddComponent } from './resource/ddd/ddd.component';
-import { DocumentComponent } from './resource/document/document.component';
-import { LinkObjComponent } from './resource/link-obj/link-obj.component';
 import { MovingImageComponent } from './resource/moving-image/moving-image.component';
-import { ObjectComponent } from './resource/object/object.component';
-import { RegionComponent } from './resource/region/region.component';
 import { StillImageComponent } from './resource/still-image/still-image.component';
-import { TextComponent } from './resource/text/text.component';
 import { CompareViewComponent } from './view/compare-view/compare-view.component';
 import { GraphViewComponent } from './view/graph-view/graph-view.component';
 import { GridViewComponent } from './view/grid-view/grid-view.component';
@@ -84,17 +75,8 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         FlexLayoutModule
     ],
     declarations: [
-        AnnotationComponent,
-        AudioComponent,
-        CollectionComponent,
-        DddComponent,
-        DocumentComponent,
-        LinkObjComponent,
         MovingImageComponent,
-        ObjectComponent,
-        RegionComponent,
         StillImageComponent,
-        TextComponent,
         TextValueAsHtmlComponent,
         TextValueAsStringComponent,
         TextValueAsXmlComponent,
@@ -121,17 +103,8 @@ import { TableViewComponent } from './view/table-view/table-view.component';
         PropertiesToolbarComponent
     ],
     exports: [
-        AnnotationComponent,
-        AudioComponent,
-        CollectionComponent,
-        DddComponent,
-        DocumentComponent,
-        LinkObjComponent,
         MovingImageComponent,
-        ObjectComponent,
-        RegionComponent,
         StillImageComponent,
-        TextComponent,
         TextValueAsHtmlComponent,
         TextValueAsStringComponent,
         TextValueAsXmlComponent,
