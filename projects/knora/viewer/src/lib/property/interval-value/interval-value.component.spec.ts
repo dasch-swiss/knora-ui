@@ -1,9 +1,31 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
+import { ReadIntervalValue } from '@knora/api';
+import { By } from '@angular/platform-browser';
 
 import { IntervalValueComponent } from './interval-value.component';
-import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
-import { ReadIntervalValue } from '@knora/core';
-import { By } from '@angular/platform-browser';
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    template: `<kui-interval-value #intervalVal [valueObject]="intervalValue"></kui-interval-value>`
+})
+class TestHostComponent implements OnInit {
+
+    @ViewChild('intervalVal', { static: false }) intervalValueComponent: IntervalValueComponent;
+
+    intervalValue;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.intervalValue = new ReadIntervalValue();
+        this.intervalValue.start = 1638;
+        this.intervalValue.end = 1715;
+    }
+}
 
 describe('IntervalValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -30,8 +52,8 @@ describe('IntervalValueComponent', () => {
     });
 
     it('should be equal to the interval value 1638 - 1715', () => {
-        expect(testHostComponent.intervalValueComponent.valueObject.intervalStart).toEqual(1638);
-        expect(testHostComponent.intervalValueComponent.valueObject.intervalEnd).toEqual(1715);
+        expect(testHostComponent.intervalValueComponent.valueObject.start).toEqual(1638);
+        expect(testHostComponent.intervalValueComponent.valueObject.end).toEqual(1715);
 
         const hostCompDe = testHostFixture.debugElement;
 
@@ -45,7 +67,9 @@ describe('IntervalValueComponent', () => {
     });
 
     it('should be equal to the interval value 1977 - 1983', () => {
-        testHostComponent.intervalValue = new ReadIntervalValue('id', 'propIri', 1977, 1983);
+        testHostComponent.intervalValue = new ReadIntervalValue();
+        testHostComponent.intervalValue.start = 1977;
+        testHostComponent.intervalValue.end = 1983;
 
         testHostFixture.detectChanges();
 
@@ -61,26 +85,3 @@ describe('IntervalValueComponent', () => {
     });
 
 });
-
-
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    template: `
-        <kui-interval-value #intervalVal [valueObject]="intervalValue"></kui-interval-value>`
-})
-class TestHostComponent implements OnInit {
-
-    @ViewChild('intervalVal', { static: false }) intervalValueComponent: IntervalValueComponent;
-
-    intervalValue;
-
-    constructor() {
-    }
-
-    ngOnInit() {
-        this.intervalValue = new ReadIntervalValue('id', 'propIri', 1638, 1715);
-    }
-}

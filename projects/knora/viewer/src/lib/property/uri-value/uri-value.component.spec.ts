@@ -1,9 +1,32 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
+import { ReadUriValue } from '@knora/api';
+import { By } from '@angular/platform-browser';
 
 import { UriValueComponent } from './uri-value.component';
-import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
-import { ReadUriValue } from '@knora/core';
-import { By } from '@angular/platform-browser';
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    template: `<kui-uri-value #uriVal [valueObject]="uriValue" [label]="label"></kui-uri-value>`
+})
+class TestHostComponent implements OnInit {
+
+    @ViewChild('uriVal', { static: false }) uriValueComponent: UriValueComponent;
+
+    uriValue;
+    label;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.uriValue = new ReadUriValue();
+        this.uriValue.uri = 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg';
+
+    }
+}
 
 describe('UriValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -49,7 +72,8 @@ describe('UriValueComponent', () => {
 
     // the new uri has been made up!!
     it('should be equal to the uri value http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g', () => {
-        testHostComponent.uriValue = new ReadUriValue('id', 'propIri', 'http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
+        testHostComponent.uriValue = new ReadUriValue();
+        testHostComponent.uriValue.uri = 'http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g';
 
         testHostFixture.detectChanges();
 
@@ -69,7 +93,8 @@ describe('UriValueComponent', () => {
     });
     // the new uri with label has been made up!!
     it('should be equal to the label value MyLabel', () => {
-        testHostComponent.uriValue = new ReadUriValue('id', 'propIri', 'http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
+        testHostComponent.uriValue = new ReadUriValue();
+        testHostComponent.uriValue.uri = 'http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g';
         testHostComponent.label = 'MyLabel';
         testHostFixture.detectChanges();
 
@@ -88,26 +113,3 @@ describe('UriValueComponent', () => {
         expect(hrefAttribute).toEqual('http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
     });
 });
-
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    template: `
-        <kui-uri-value #uriVal [valueObject]="uriValue" [label]="label"></kui-uri-value>`
-})
-class TestHostComponent implements OnInit {
-
-    @ViewChild('uriVal', { static: false }) uriValueComponent: UriValueComponent;
-
-    uriValue;
-    label;
-
-    constructor() {
-    }
-
-    ngOnInit() {
-        this.uriValue = new ReadUriValue('id', 'propIri', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
-    }
-}

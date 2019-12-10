@@ -1,9 +1,31 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
+import { ReadDecimalValue } from '@knora/api';
+import { By } from '@angular/platform-browser';
 
 import { DecimalValueComponent } from './decimal-value.component';
-import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
-import { ReadDecimalValue } from '@knora/core';
-import { By } from '@angular/platform-browser';
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    template: `
+        <kui-decimal-value #decimalVal [valueObject]="decimalValue"></kui-decimal-value>`
+})
+class TestHostComponent implements OnInit {
+
+    @ViewChild('decimalVal', { static: false }) decimalValueComponent: DecimalValueComponent;
+
+    decimalValue;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.decimalValue = new ReadDecimalValue();
+        this.decimalValue.decimal = 1234;
+    }
+}
 
 describe('DecimalValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -44,7 +66,8 @@ describe('DecimalValueComponent', () => {
     });
 
     it('should contain the decimal value 56.78', () => {
-        testHostComponent.decimalValue = new ReadDecimalValue('id', 'propIri', 56.78);
+        testHostComponent.decimalValue = new ReadDecimalValue();
+        testHostComponent.decimalValue.decimal = 56.78;
 
         testHostFixture.detectChanges();
 
@@ -59,24 +82,3 @@ describe('DecimalValueComponent', () => {
         expect(spanNativeElement.innerText).toEqual('56.78');
     });
 });
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    template: `
-        <kui-decimal-value #decimalVal [valueObject]="decimalValue"></kui-decimal-value>`
-})
-class TestHostComponent implements OnInit {
-
-    @ViewChild('decimalVal', { static: false }) decimalValueComponent: DecimalValueComponent;
-
-    decimalValue;
-
-    constructor() {
-    }
-
-    ngOnInit() {
-        this.decimalValue = new ReadDecimalValue('id', 'propIri', 1234);
-    }
-}

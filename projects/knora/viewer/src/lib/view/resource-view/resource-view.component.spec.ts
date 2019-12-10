@@ -1,93 +1,62 @@
 import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatTabsModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { GndDirective, KeyPipe } from '@knora/action';
-import { IncomingService, KuiConfigToken, KuiCoreConfig, OntologyCacheService, OntologyService } from '@knora/core';
+import { GndDirective, KeyPipe, MessageComponent, ProgressIndicatorComponent } from '@knora/action';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { KnoraApiConnectionToken } from '@knora/core';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { BooleanValueComponent } from '../../property/boolean-value/boolean-value.component';
-import { ColorValueComponent } from '../../property/color-value/color-value.component';
-import { DateValueComponent } from '../../property/date-value/date-value.component';
-import { DecimalValueComponent } from '../../property/decimal-value/decimal-value.component';
-import { GeometryValueComponent } from '../../property/geometry-value/geometry-value.component';
-import { IntegerValueComponent } from '../../property/integer-value/integer-value.component';
-import { IntervalValueComponent } from '../../property/interval-value/interval-value.component';
-import { LinkValueComponent } from '../../property/link-value/link-value.component';
-import { ListValueComponent } from '../../property/list-value/list-value.component';
-import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
-import { TextValueAsStringComponent } from '../../property/text-value/text-value-as-string/text-value-as-string.component';
-import { TextValueAsXmlComponent } from '../../property/text-value/text-value-as-xml/text-value-as-xml.component';
-import { TextfileValueComponent } from '../../property/textfile-value/textfile-value.component';
-import { UriValueComponent } from '../../property/uri-value/uri-value.component';
-import { AnnotationComponent } from '../../resource/annotation/annotation.component';
-import { AudioComponent } from '../../resource/audio/audio.component';
-import { CollectionComponent } from '../../resource/collection/collection.component';
-import { DddComponent } from '../../resource/ddd/ddd.component';
-import { DocumentComponent } from '../../resource/document/document.component';
-import { LinkObjComponent } from '../../resource/link-obj/link-obj.component';
-import { MovingImageComponent } from '../../resource/moving-image/moving-image.component';
-import { ObjectComponent } from '../../resource/object/object.component';
-import { RegionComponent } from '../../resource/region/region.component';
 import { StillImageComponent } from '../../resource/still-image/still-image.component';
-import { TextComponent } from '../../resource/text/text.component';
+import { PropertiesToolbarComponent } from '../properties-view/properties-toolbar/properties-toolbar.component';
+import { PropertiesViewComponent } from '../properties-view/properties-view.component';
 
 import { ResourceViewComponent } from './resource-view.component';
 
-xdescribe('ResourceViewComponent', () => {
+describe('ResourceViewComponent', () => {
     let component: ResourceViewComponent;
     let fixture: ComponentFixture<ResourceViewComponent>;
+
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
                 HttpClientModule,
+                RouterTestingModule.withRoutes([]),
                 MatCardModule,
                 MatListModule,
                 MatIconModule,
                 MatToolbarModule,
-                MatCheckboxModule
+                MatCheckboxModule,
+                MatTabsModule
             ],
             declarations: [
                 ResourceViewComponent,
-                AnnotationComponent,
-                AudioComponent,
-                CollectionComponent,
-                DddComponent,
-                DocumentComponent,
-                LinkObjComponent,
-                MovingImageComponent,
-                ObjectComponent,
-                RegionComponent,
+                PropertiesViewComponent,
                 StillImageComponent,
-                TextComponent,
                 KeyPipe,
                 GndDirective,
-                BooleanValueComponent,
-                ColorValueComponent,
-                DateValueComponent,
-                DecimalValueComponent,
-                GeometryValueComponent,
-                IntegerValueComponent,
-                IntervalValueComponent,
-                LinkValueComponent,
-                ListValueComponent,
-                TextValueAsStringComponent,
-                TextValueAsHtmlComponent,
-                TextValueAsXmlComponent,
-                TextfileValueComponent,
-                UriValueComponent
+                ProgressIndicatorComponent,
+                MessageComponent,
+                PropertiesToolbarComponent
             ],
             providers: [
-                IncomingService,
-                OntologyCacheService,
-                OntologyService,
                 {
-                    provide: KuiConfigToken,
-                    useValue: KuiCoreConfig
+                    provide: KnoraApiConnectionToken,
+                    useValue: new KnoraApiConnection(config)
                 },
+                {
+                    provide: ActivatedRoute,
+                    useValue: {
+                        params: null
+                    },
+                }
             ]
         })
             .compileComponents();
@@ -100,8 +69,6 @@ xdescribe('ResourceViewComponent', () => {
     });
 
     it('should create', () => {
-        // TODO: mock this.getResource(this.iri); -> this._resourceService.getResource(iri)
-
         expect(component).toBeTruthy();
     });
 });

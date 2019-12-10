@@ -1,6 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { ReadFileValue } from '@knora/api';
 
+// TEMP CLASS DEFINITION BECAUSE MISSING IN KNORA/API LIB
+// TODO: this class must be replaced with the new definition from the lib
+export class ReadTextFileValue extends ReadFileValue { }
+
 @Component({
     selector: 'kui-textfile-value',
     templateUrl: './textfile-value.component.html',
@@ -9,7 +13,7 @@ import { ReadFileValue } from '@knora/api';
 export class TextfileValueComponent {
 
     @Input()
-    set valueObject(value: ReadFileValue) {
+    set valueObject(value: ReadTextFileValue) {
         this._textfileValueObj = value;
     }
 
@@ -17,7 +21,7 @@ export class TextfileValueComponent {
         return this._textfileValueObj;
     }
 
-    private _textfileValueObj: ReadFileValue;
+    private _textfileValueObj: ReadTextFileValue;
 
     constructor() { }
 

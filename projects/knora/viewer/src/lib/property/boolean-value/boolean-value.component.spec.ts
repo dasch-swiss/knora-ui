@@ -1,10 +1,31 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { BooleanValueComponent } from './boolean-value.component';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
-import { ReadBooleanValue } from '@knora/core';
+import { ReadBooleanValue } from '@knora/api';
 import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 import { By } from '@angular/platform-browser';
+
+import { BooleanValueComponent } from './boolean-value.component';
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    template: `<kui-boolean-value #boolVal [valueObject]="boolValue"></kui-boolean-value>`
+})
+class TestHostComponent implements OnInit {
+
+    @ViewChild('boolVal', { static: false }) booleanValueComponent: BooleanValueComponent;
+
+    boolValue;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.boolValue = new ReadBooleanValue();
+        this.boolValue.bool = true;
+    }
+}
 
 describe('BooleanValueComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -40,7 +61,7 @@ describe('BooleanValueComponent', () => {
 
         const matCheckBoxDebugElement: DebugElement = hostCompDe.query(By.directive(MatCheckbox));
 
-        expect(matCheckBoxDebugElement.componentInstance.disabled).toBe(true);
+        expect(matCheckBoxDebugElement.attributes.readonly).toBe('true');
     });
 
     it('should contain a boolean value that is true', () => {
@@ -57,7 +78,8 @@ describe('BooleanValueComponent', () => {
 
     it('should contain a boolean value that is false', () => {
 
-        testHostComponent.boolValue = new ReadBooleanValue('id', 'propIri', false);
+        testHostComponent.boolValue = new ReadBooleanValue();
+        testHostComponent.boolValue.bool = false;
 
         testHostFixture.detectChanges();
 
@@ -73,24 +95,3 @@ describe('BooleanValueComponent', () => {
     });
 
 });
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    template: `
-        <kui-boolean-value #boolVal [valueObject]="boolValue"></kui-boolean-value>`
-})
-class TestHostComponent implements OnInit {
-
-    @ViewChild('boolVal', { static: false }) booleanValueComponent: BooleanValueComponent;
-
-    boolValue;
-
-    constructor() {
-    }
-
-    ngOnInit() {
-        this.boolValue = new ReadBooleanValue('id', 'propIri', true);
-    }
-}

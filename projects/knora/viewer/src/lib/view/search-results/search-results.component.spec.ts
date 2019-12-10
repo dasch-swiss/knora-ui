@@ -7,18 +7,25 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ConvertJSONLD, CountQueryResult, ExtendedSearchParams, KuiCoreConfig, KuiCoreConfigToken, OntologyInformation, Properties, ResourceClasses, SearchParamsService, SearchService } from '@knora/core';
+import { CountQueryResult, ExtendedSearchParams, KnoraApiConfigToken, KuiCoreModule, OntologyInformation, Properties, ResourceClasses, SearchParamsService, KnoraApiConnectionToken } from '@knora/core';
 import { KuiActionModule } from 'projects/knora/action/src/public_api';
 import { BehaviorSubject, of } from 'rxjs';
+import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
+import { MatPaginatorModule } from '@angular/material';
+
 import { DateValueComponent } from '../../property/date-value/date-value.component';
 import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
 import { GraphViewComponent } from '../graph-view/graph-view.component';
 import { GridViewComponent } from '../grid-view/grid-view.component';
 import { ListViewComponent } from '../list-view/list-view.component';
 import { TableViewComponent } from '../table-view/table-view.component';
+
 import { SearchResultsComponent } from './search-results.component';
 
-class MockSearchParamsService {
+// OUTDATED CLASS
+// TODO: will be removed because the logic has been moved to the knora/api lib
+
+/* class MockSearchParamsService {
 
     private _currentSearchParams: BehaviorSubject<any>;
 
@@ -33,10 +40,11 @@ class MockSearchParamsService {
     getSearchParams(): ExtendedSearchParams {
         return this._currentSearchParams.getValue();
     }
+} */
 
-}
+// TODO: the tests have been temporarily excluded because it requires new test data from the MockFactory and classes from @knora/api lib
 
-xdescribe('SearchResultsComponent', () => {
+describe('SearchResultsComponent', () => {
     let component: SearchResultsComponent;
     let fixture: ComponentFixture<SearchResultsComponent>;
 
@@ -44,11 +52,13 @@ xdescribe('SearchResultsComponent', () => {
     let project; // project iri
     const q = 'test'; // query terms
 
-    let mockSearchParamService;
-    let searchServiceSpy: jasmine.SpyObj<SearchService>; // see https://angular.io/guide/testing#angular-testbed
+    // let mockSearchParamService;
+    // let searchServiceSpy: jasmine.SpyObj<SearchService>; // see https://angular.io/guide/testing#angular-testbed
+
+    const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
 
     beforeEach(async(() => {
-        mockSearchParamService = new MockSearchParamsService();
+        // mockSearchParamService = new MockSearchParamsService();
         const spySearchService =
             jasmine.createSpyObj('SearchService',
                 ['doExtendedSearchCountQueryCountQueryResult',
@@ -62,10 +72,12 @@ xdescribe('SearchResultsComponent', () => {
                 MatCardModule,
                 MatIconModule,
                 MatListModule,
+                MatPaginatorModule,
                 MatTabsModule,
                 HttpClientModule,
                 HttpClientTestingModule,
-                RouterTestingModule
+                RouterTestingModule,
+                KuiCoreModule
             ],
             declarations: [
                 DateValueComponent,
@@ -97,18 +109,19 @@ xdescribe('SearchResultsComponent', () => {
                         })
                     }
                 },
-                { provide: KuiCoreConfigToken, useValue: KuiCoreConfig },
-                { provide: SearchParamsService, useValue: mockSearchParamService },
-                { provide: SearchService, useValue: spySearchService },
-                HttpClient
+                {
+                    provide: KnoraApiConnectionToken,
+                    useValue: new KnoraApiConnection(config)
+                }
+                // HttpClient
             ]
         }).compileComponents();
 
-        searchServiceSpy = TestBed.get(SearchService);
+        // searchServiceSpy = TestBed.get(SearchService);
 
         // Extended search mock
 
-        searchServiceSpy.doExtendedSearchCountQueryCountQueryResult.and.callFake((gravsearch: string) => {
+        /* searchServiceSpy.doExtendedSearchCountQueryCountQueryResult.and.callFake((gravsearch: string) => {
 
             const countQueryRes = new CountQueryResult(1);
 
@@ -121,7 +134,7 @@ xdescribe('SearchResultsComponent', () => {
 
             const things = require('../../../../../core/src/lib/test-data/resources/Testthing-expanded.json'); // mock response
 
-            const thingsSeq = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(things);
+            // const thingsSeq = ConvertJSONLD.createReadResourcesSequenceFromJsonLD(things);
 
             const resClasses: ResourceClasses = require('../../../../../core/src/lib/test-data/ontologyinformation/thing-resource-classes.json');
             const properties: Properties = require('../../../../../core/src/lib/test-data/ontologyinformation/thing-properties.json');
@@ -133,11 +146,11 @@ xdescribe('SearchResultsComponent', () => {
             return of(
                 thingsSeq
             );
-        });
+        }); */
 
         // Fulltext search mock
 
-        searchServiceSpy.doFullTextSearchCountQueryCountQueryResult.and.callFake((searchTerm: string) => {
+        /* searchServiceSpy.doFullTextSearchCountQueryCountQueryResult.and.callFake((searchTerm: string) => {
 
             const countQueryRes = new CountQueryResult(1);
 
@@ -162,9 +175,11 @@ xdescribe('SearchResultsComponent', () => {
             return of(
                 thingsSeq
             );
-        });
+        }); */
 
     }));
+
+    // TODO: the tests have been temporarily excluded because it requires new test data from the MockFactory and classes from @knora/api lib
 
     describe('extended search', () => {
         beforeEach(() => {
@@ -174,7 +189,7 @@ xdescribe('SearchResultsComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should create', () => {
+        /* it('should create', () => {
             expect(component).toBeTruthy();
         });
 
@@ -198,7 +213,7 @@ xdescribe('SearchResultsComponent', () => {
             expect(searchServiceSpy.doExtendedSearchReadResourceSequence).toHaveBeenCalledWith('testquery0');
 
             expect(component.result.length).toEqual(1);
-        });
+        }); */
     });
 
     describe('fulltext search without a project', () => {
@@ -209,7 +224,7 @@ xdescribe('SearchResultsComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should create', () => {
+        /* it('should create', () => {
             expect(component).toBeTruthy();
         });
 
@@ -233,7 +248,7 @@ xdescribe('SearchResultsComponent', () => {
             expect(searchServiceSpy.doFullTextSearchReadResourceSequence).toHaveBeenCalledWith('test', 0, undefined);
 
             expect(component.result.length).toEqual(1);
-        });
+        }); */
     });
 
     describe('fulltext search with a project', () => {
@@ -245,7 +260,7 @@ xdescribe('SearchResultsComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should create', () => {
+        /* it('should create', () => {
             expect(component).toBeTruthy();
         });
 
@@ -269,6 +284,6 @@ xdescribe('SearchResultsComponent', () => {
             expect(searchServiceSpy.doFullTextSearchReadResourceSequence).toHaveBeenCalledWith('test', 0, { limitToProject: 'http://rdfh.ch/projects/0001' });
 
             expect(component.result.length).toEqual(1);
-        });
+        }); */
     });
 });
