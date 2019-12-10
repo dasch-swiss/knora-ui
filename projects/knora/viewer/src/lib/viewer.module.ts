@@ -41,13 +41,13 @@ import { MovingImageComponent } from './representation/moving-image/moving-image
 import { StillImageComponent } from './representation/still-image/still-image.component';
 import { CompareViewComponent } from './view/compare-view/compare-view.component';
 import { GraphViewComponent } from './view/graph-view/graph-view.component';
-import { GridViewComponent } from './view/grid-view/grid-view.component';
-import { ListViewComponent } from './view/list-view/list-view.component';
+import { GridViewComponent } from './view/list/grid-view/grid-view.component';
+import { ListViewComponent } from './view/list/list-view/list-view.component';
 import { PropertiesToolbarComponent } from './view/properties-view/properties-toolbar/properties-toolbar.component';
 import { PropertiesViewComponent } from './view/properties-view/properties-view.component';
 import { ResourceViewComponent } from './view/resource-view/resource-view.component';
 import { SearchResultsComponent } from './view/search-results/search-results.component';
-import { TableViewComponent } from './view/table-view/table-view.component';
+import { TableViewComponent } from './view/list/table-view/table-view.component';
 
 @NgModule({
     imports: [
