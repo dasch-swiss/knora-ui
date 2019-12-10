@@ -78,7 +78,6 @@ describe('TextValueAsStringComponent', () => {
         const hostCompDe = testHostFixture.debugElement;
 
         const stringVal = hostCompDe.query(By.directive(TextValueAsStringComponent));
-        console.log('stringVal', stringVal);
 
         const spanDebugElement: DebugElement = stringVal.query(By.css('span'));
 
