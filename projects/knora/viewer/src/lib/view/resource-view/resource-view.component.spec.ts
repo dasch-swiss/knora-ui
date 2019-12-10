@@ -12,7 +12,7 @@ import { KnoraApiConnectionToken } from '@knora/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { StillImageComponent } from '../../resource/still-image/still-image.component';
+import { StillImageComponent } from '../../representation/still-image/still-image.component';
 import { PropertiesToolbarComponent } from '../properties-view/properties-toolbar/properties-toolbar.component';
 import { PropertiesViewComponent } from '../properties-view/properties-view.component';
 

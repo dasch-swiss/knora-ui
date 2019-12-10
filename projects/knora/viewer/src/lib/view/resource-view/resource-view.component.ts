@@ -5,7 +5,7 @@ import { ApiResponseError, Constants, IHasProperty, KnoraApiConnection, ReadReso
 import { PropertyDefinition } from '@knora/api/src/models/v2/ontologies/property-definition';
 import { GuiOrder, KnoraApiConnectionToken, OntologyInformation } from '@knora/core';
 
-import { StillImageComponent } from '../../resource';
+import { StillImageComponent } from '../../representation';
 
 // object of property information from ontology class, properties and property values
 export interface TempProperty {

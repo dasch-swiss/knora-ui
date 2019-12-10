@@ -37,8 +37,8 @@ import { TextValueAsStringComponent } from './property/text-value/text-value-as-
 import { TextValueAsXmlComponent } from './property/text-value/text-value-as-xml/text-value-as-xml.component';
 import { TextfileValueComponent } from './property/textfile-value/textfile-value.component';
 import { UriValueComponent } from './property/uri-value/uri-value.component';
-import { MovingImageComponent } from './resource/moving-image/moving-image.component';
-import { StillImageComponent } from './resource/still-image/still-image.component';
+import { MovingImageComponent } from './representation/moving-image/moving-image.component';
+import { StillImageComponent } from './representation/still-image/still-image.component';
 import { CompareViewComponent } from './view/compare-view/compare-view.component';
 import { GraphViewComponent } from './view/graph-view/graph-view.component';
 import { GridViewComponent } from './view/grid-view/grid-view.component';
