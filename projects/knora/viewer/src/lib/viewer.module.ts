@@ -39,8 +39,6 @@ import { TextfileValueComponent } from './property/textfile-value/textfile-value
 import { UriValueComponent } from './property/uri-value/uri-value.component';
 import { MovingImageComponent } from './representation/moving-image/moving-image.component';
 import { StillImageComponent } from './representation/still-image/still-image.component';
-import { CompareViewComponent } from './view/compare-view/compare-view.component';
-import { GraphViewComponent } from './view/graph-view/graph-view.component';
 import { GridViewComponent } from './view/list/grid-view/grid-view.component';
 import { ListViewComponent } from './view/list/list-view/list-view.component';
 import { PropertiesToolbarComponent } from './view/properties-view/properties-toolbar/properties-toolbar.component';
@@ -96,8 +94,6 @@ import { TableViewComponent } from './view/list/table-view/table-view.component'
         GridViewComponent,
         TableViewComponent,
         ResourceViewComponent,
-        CompareViewComponent,
-        GraphViewComponent,
         PropertiesViewComponent,
         SearchResultsComponent,
         PropertiesToolbarComponent
@@ -124,8 +120,6 @@ import { TableViewComponent } from './view/list/table-view/table-view.component'
         GridViewComponent,
         TableViewComponent,
         ResourceViewComponent,
-        CompareViewComponent,
-        GraphViewComponent,
         PropertiesViewComponent,
         SearchResultsComponent
     ]
