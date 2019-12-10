@@ -1,9 +1,33 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TextfileValueComponent } from './textfile-value.component';
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
-import { ReadTextFileValue } from '@knora/core';
 import { By } from '@angular/platform-browser';
+
+import { ReadTextFileValue, TextfileValueComponent } from './textfile-value.component';
+
+
+// !!! TODO: Replace the temp class ReadTextFileValue defines in textfile-value by the one from knora/api
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+  template: `
+      <kui-textfile-value #textfileVal [valueObject]="textfileValue"></kui-textfile-value>`
+})
+class TestHostComponent implements OnInit {
+
+  @ViewChild('textfileVal', { static: false }) textfileValueComponent: TextfileValueComponent;
+
+  textfileValue: ReadTextFileValue;
+
+  constructor() { }
+
+  ngOnInit() {
+    this.textfileValue = new ReadTextFileValue('id', 'propIri', 'TextFileName', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
+    this.textfileValue.filename = 'TextFileName';
+    this.textfileValue.fileUrl = 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg';
+  }
+}
 
 describe('TextfileValueComponent', () => {
   let testHostComponent: TestHostComponent;
@@ -29,8 +53,8 @@ describe('TextfileValueComponent', () => {
   });
 
   it('should contain the filename "TextFileName" and the urlname "http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg"', () => {
-    expect(testHostComponent.textfileValueComponent.valueObject.textFilename).toEqual('TextFileName');
-    expect(testHostComponent.textfileValueComponent.valueObject.textFileURL).toEqual('http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
+    expect(testHostComponent.textfileValueComponent.valueObject.filename).toEqual('TextFileName');
+    expect(testHostComponent.textfileValueComponent.valueObject.fileUrl).toEqual('http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
 
     const hostCompDe = testHostFixture.debugElement;
 
@@ -49,7 +73,9 @@ describe('TextfileValueComponent', () => {
   });
 
   it('should contain the filename "PDF_23984ujfosij" and the url "http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g"', () => {
-    testHostComponent.textfileValue = new ReadTextFileValue('id', 'propIri', 'PDF_23984ujfosij', 'http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g');
+    testHostComponent.textfileValue = new ReadTextFileValue();
+    testHostComponent.textfileValue.filename = 'PDF_23984ujfosij';
+    testHostComponent.textfileValue.fileUrl = 'http://rdfh.ch/0801/-kjdnfg98dfgihu9erg9g';
 
     testHostFixture.detectChanges();
 
@@ -69,25 +95,3 @@ describe('TextfileValueComponent', () => {
   });
 
 });
-
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-  template: `
-      <kui-textfile-value #textfileVal [valueObject]="textfileValue"></kui-textfile-value>`
-})
-class TestHostComponent implements OnInit {
-
-  @ViewChild('textfileVal', { static: false }) textfileValueComponent: TextfileValueComponent;
-
-  textfileValue;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-    this.textfileValue = new ReadTextFileValue('id', 'propIri', 'TextFileName', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
-  }
-}
