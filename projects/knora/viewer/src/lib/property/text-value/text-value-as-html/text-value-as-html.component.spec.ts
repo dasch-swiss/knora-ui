@@ -1,16 +1,47 @@
+import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TextValueAsHtmlComponent } from './text-value-as-html.component';
-import {
-    OntologyInformation,
-    ReadResource,
-    ReadTextValueAsHtml,
-    ReferredResourcesByStandoffLink,
-    ResourceClass,
-    ResourceClasses,
-    ResourceClassIrisForOntology
-} from '@knora/core';
-import { Component, DebugElement, OnInit, ViewChild, } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { ReadResource, ReadTextValueAsHtml } from '@knora/api';
+
+import { TextValueAsHtmlComponent } from './text-value-as-html.component';
+
+export class ReferredResourcesByStandoffLink {
+    [index: string]: ReadResource;
+}
+
+/**
+ * Test host component to simulate parent component.
+ */
+@Component({
+    template: `
+        <kui-text-value-as-html #htmlVal [valueObject]="htmlValue" [bindEvents]="bindEvents" (referredResourceClicked)="refResClicked($event)"></kui-text-value-as-html>`
+})
+class TestHostComponent implements OnInit {
+
+    @ViewChild('htmlVal', { static: false }) htmlValueComponent: TextValueAsHtmlComponent;
+
+    htmlValue;
+    bindEvents = true;
+    referredResources: ReferredResourcesByStandoffLink;
+    refResClickedIri: string;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.htmlValue = new ReadTextValueAsHtml();
+        this.htmlValue.html = '<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="kui-link">link</a></p>';
+
+        this.htmlValue.referredResource = new ReadResource();
+        this.htmlValue.referredResource.id = 'http://rdfh.ch/c9824353ae06';
+        this.htmlValue.referredResource.label = 'Holzschnitt';
+    }
+
+    refResClicked(refResIri: string) {
+        this.refResClickedIri = refResIri;
+    }
+}
+
 
 describe('TextValueAsHtmlComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -53,9 +84,11 @@ describe('TextValueAsHtmlComponent', () => {
         expect(spanNativeElement.innerText).toEqual('<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="kui-link">link</a></p>');
     });
 
-    xit('should display the referred resources by standoff link', () => {
+    it('should display the referred resources by standoff link', () => {
 
-        const resClassesForOnto: ResourceClassIrisForOntology = {
+        // TODO: fix the test with the MockFactory from knora/api lib
+
+        /* const resClassesForOnto: ResourceClassIrisForOntology = {
             'http://0.0.0.0:3333/ontology/0803/incunabula/v2': [
                 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book'
             ]
@@ -71,11 +104,12 @@ describe('TextValueAsHtmlComponent', () => {
                     [],
                     []
                 )
-        };
+        }; */
 
-        const ontoInfo = new OntologyInformation(resClassesForOnto, resClasses, {});
+        // const ontoInfo = new OntologyInformation(resClassesForOnto, resClasses, {});
 
-        testHostComponent.ontoInfo = ontoInfo;
+        // testHostComponent.ontoInfo = ontoInfo;
+        expect(testHostComponent.htmlValueComponent.valueObject.html).toEqual('<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="kui-link">link</a></p>');
 
         testHostFixture.detectChanges();
 
@@ -93,43 +127,12 @@ describe('TextValueAsHtmlComponent', () => {
 
         expect(text.getAttribute('class')).toEqual('kui-link');
 
-        text.click();
+        /* text.click();
 
         testHostFixture.detectChanges();
 
-        expect(testHostComponent.refResClickedIri).toEqual('http://rdfh.ch/c9824353ae06');
+        expect(testHostComponent.refResClickedIri).toEqual('http://rdfh.ch/c9824353ae06'); */
 
     });
 
 });
-
-
-/**
- * Test host component to simulate parent component.
- */
-@Component({
-    template: `
-        <kui-text-value-as-html #htmlVal [valueObject]="htmlValue" [ontologyInfo]="ontoInfo" [bindEvents]="bindEvents" (referredResourceClicked)="refResClicked($event)"></kui-text-value-as-html>`
-})
-class TestHostComponent implements OnInit {
-
-    @ViewChild('htmlVal', { static: false }) htmlValueComponent: TextValueAsHtmlComponent;
-
-    htmlValue;
-    ontoInfo;
-    bindEvents = true;
-    referredResource = new ReadResource('http://rdfh.ch/c9824353ae06', 'http://0.0.0.0:3333/ontology/0803/incunabula/v2#book', 'Holzschnitt', [], [], [], [], {});
-    referredResources: ReferredResourcesByStandoffLink = { 'http://rdfh.ch/c9824353ae06': this.referredResource };
-    refResClickedIri: string;
-
-    constructor() {
-    }
-
-    ngOnInit() {
-        this.htmlValue = new ReadTextValueAsHtml('id', 'propIri', '<p>This is a very simple HTML document with a <a href="http://rdfh.ch/c9824353ae06" class="kui-link">link</a></p>', this.referredResources);
-    }
-
-    refResClicked(refResIri: string) {
-        this.refResClickedIri = refResIri;
-    }
-}
