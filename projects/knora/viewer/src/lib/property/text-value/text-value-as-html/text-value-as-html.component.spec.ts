@@ -122,7 +122,7 @@ class TestHostComponent implements OnInit {
     referredResources: ReferredResourcesByStandoffLink = { 'http://rdfh.ch/c9824353ae06': this.referredResource };
     refResClickedIri: string;
 
-    constructor () {
+    constructor() {
     }
 
     ngOnInit() {

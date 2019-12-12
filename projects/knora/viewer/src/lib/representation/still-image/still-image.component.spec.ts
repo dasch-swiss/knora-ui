@@ -1,18 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ViewChild } from '@angular/core';
-import { StillImageRepresentation } from '@knora/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ReadStillImageFileValue } from '@knora/api';
 
-import { StillImageComponent } from './still-image.component';
+import { StillImageComponent, StillImageRepresentation } from './still-image.component';
 
 // Attention: make sure OpenSeadragon and svg-overlay have to be loaded
 // projects/knora/viewer/karma.conf.js -> 'files' needs to contain the js
 
 // define and create host component:
 @Component({
-  template: `
+    template: `
         <kui-still-image [images]="resourcesHost"
                          [imageCaption]="caption"
                          (regionHovered)="regionActive($event)"
@@ -20,141 +19,141 @@ import { StillImageComponent } from './still-image.component';
         </kui-still-image>`
 })
 class TestHostComponent {
-  resourcesHost: StillImageRepresentation[] = [];
-  caption = 'test';
-  activeRegion: string;
-  inputActivateRegion: string;
+    resourcesHost: StillImageRepresentation[] = [];
+    caption = 'test';
+    activeRegion: string;
+    inputActivateRegion: string;
 
-  @ViewChild(StillImageComponent, { static: true }) osdViewerComp: StillImageComponent;
+    @ViewChild(StillImageComponent, { static: true }) osdViewerComp: StillImageComponent;
 
-  regionActive(regionIri: string) {
-    this.activeRegion = regionIri;
-  }
+    regionActive(regionIri: string) {
+        this.activeRegion = regionIri;
+    }
 }
 
 // TODO: use MockFactory from knora/api to get test data + update the imports to get the class from knora/api lib
 
 describe('StillImageOSDViewerComponent', () => {
-  let component: StillImageComponent;
-  let host: TestHostComponent;
-  let fixture: ComponentFixture<TestHostComponent>;
+    let component: StillImageComponent;
+    let host: TestHostComponent;
+    let fixture: ComponentFixture<TestHostComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [StillImageComponent, TestHostComponent],
-      imports: [
-        MatIconModule,
-        MatToolbarModule
-      ]
-    })
-      .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [StillImageComponent, TestHostComponent],
+            imports: [
+                MatIconModule,
+                MatToolbarModule
+            ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TestHostComponent);
-    host = fixture.componentInstance;
-    component = fixture.componentInstance.osdViewerComp;
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(TestHostComponent);
+        host = fixture.componentInstance;
+        component = fixture.componentInstance.osdViewerComp;
+    });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(component).toBeTruthy();
+    });
 
-  // atm StillImageOSDViewerComponent has not many public methods or members.
-  // to be able to still test state of StillImageOSDViewerComponent we use the following technique for the first couple of tests:
-  // test private methods, members with: component["method"](param), or compomnent["member"]
-  // this prevents TS compiler from restricting access, while still checking type safety.
+    // atm StillImageOSDViewerComponent has not many public methods or members.
+    // to be able to still test state of StillImageOSDViewerComponent we use the following technique for the first couple of tests:
+    // test private methods, members with: component["method"](param), or compomnent["member"]
+    // this prevents TS compiler from restricting access, while still checking type safety.
 
-  /* it('should have initialized viewer after resources change', () => {
-    host.resourcesHost = images;
-    fixture.detectChanges();
-    expect(component['viewer']).toBeTruthy();
-  }); */
-
-  /* it('should have OpenSeadragon.Viewer.isVisible() == true after resources change', () => {
+    /* it('should have initialized viewer after resources change', () => {
       host.resourcesHost = images;
       fixture.detectChanges();
-      expect(component['viewer'].isVisible()).toBeTruthy();
-  });
+      expect(component['viewer']).toBeTruthy();
+    }); */
 
-  it('should have 1 image loaded after resources change with 1 full size image and 1 (ignored) preview image', () => {
-      host.resourcesHost = images;
-      fixture.detectChanges();
-      component['viewer'].addHandler('open', function (args) {
-          expect(component['viewer'].world.getItemCount()).toEqual(1);
-      });
-      component['viewer'].addHandler('open-failed', function (args) {
-          expect(component['viewer'].world.getItemCount()).toEqual(0);
-      });
-  });
-
-  it('should have 5 test regions loaded (rect, circle, poylgon, circle_from_multiregion, rect_from_multiregion)', () => {
-      host.resourcesHost = images;
-      fixture.detectChanges();
-      const overlay = component['viewer'].svgOverlay();
-      expect(overlay.node().childElementCount).toEqual(5);
-  });
-
-  it('should emit the region\'s Iri when a region is hovered', () => {
-      host.resourcesHost = images;
-      fixture.detectChanges();
-
-      const overlay = component['viewer'].svgOverlay();
-
-      // first region -> polygon element (second element in <g> element)
-      const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
-
-      const event = new MouseEvent('click', {
-          bubbles: true,
-          cancelable: true,
-          view: window
-      });
-
-      regionSvgEle.dispatchEvent(event);
-
-      fixture.detectChanges();
-
-      expect(host.activeRegion).toEqual('http://rdfh.ch/b6b64a62b006');
-
-  });
-
-  it('should highlight a region', () => {
-      host.resourcesHost = images;
-      fixture.detectChanges();
-
-      component['highlightRegion']('http://rdfh.ch/b6b64a62b006');
-      fixture.detectChanges();
-
-      const overlay = component['viewer'].svgOverlay();
-
-      // first region -> polygon element (second element in <g> element)
-      const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
-
-      let attr = regionSvgEle.getAttribute('class');
-      expect(attr).toEqual('roi-svgoverlay active');
-
-      component['unhighlightAllRegions']();
-      fixture.detectChanges();
-
-      attr = regionSvgEle.getAttribute('class');
-      expect(attr).toEqual('roi-svgoverlay');
-
-  });
-
-  it('should highlight a region using the input "activateRegion"', () => {
-      host.resourcesHost = images;
-      host.inputActivateRegion = 'http://rdfh.ch/b6b64a62b006';
-      fixture.detectChanges();
-
-      const overlay = component['viewer'].svgOverlay();
-
-      // first region -> polygon element (second element in <g> element)
-      const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
-
-      const attr = regionSvgEle.getAttribute('class');
-      expect(attr).toEqual('roi-svgoverlay active');
-  });
-*/
+    /* it('should have OpenSeadragon.Viewer.isVisible() == true after resources change', () => {
+        host.resourcesHost = images;
+        fixture.detectChanges();
+        expect(component['viewer'].isVisible()).toBeTruthy();
+    });
+  
+    it('should have 1 image loaded after resources change with 1 full size image and 1 (ignored) preview image', () => {
+        host.resourcesHost = images;
+        fixture.detectChanges();
+        component['viewer'].addHandler('open', function (args) {
+            expect(component['viewer'].world.getItemCount()).toEqual(1);
+        });
+        component['viewer'].addHandler('open-failed', function (args) {
+            expect(component['viewer'].world.getItemCount()).toEqual(0);
+        });
+    });
+  
+    it('should have 5 test regions loaded (rect, circle, poylgon, circle_from_multiregion, rect_from_multiregion)', () => {
+        host.resourcesHost = images;
+        fixture.detectChanges();
+        const overlay = component['viewer'].svgOverlay();
+        expect(overlay.node().childElementCount).toEqual(5);
+    });
+  
+    it('should emit the region\'s Iri when a region is hovered', () => {
+        host.resourcesHost = images;
+        fixture.detectChanges();
+  
+        const overlay = component['viewer'].svgOverlay();
+  
+        // first region -> polygon element (second element in <g> element)
+        const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
+  
+        const event = new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            view: window
+        });
+  
+        regionSvgEle.dispatchEvent(event);
+  
+        fixture.detectChanges();
+  
+        expect(host.activeRegion).toEqual('http://rdfh.ch/b6b64a62b006');
+  
+    });
+  
+    it('should highlight a region', () => {
+        host.resourcesHost = images;
+        fixture.detectChanges();
+  
+        component['highlightRegion']('http://rdfh.ch/b6b64a62b006');
+        fixture.detectChanges();
+  
+        const overlay = component['viewer'].svgOverlay();
+  
+        // first region -> polygon element (second element in <g> element)
+        const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
+  
+        let attr = regionSvgEle.getAttribute('class');
+        expect(attr).toEqual('roi-svgoverlay active');
+  
+        component['unhighlightAllRegions']();
+        fixture.detectChanges();
+  
+        attr = regionSvgEle.getAttribute('class');
+        expect(attr).toEqual('roi-svgoverlay');
+  
+    });
+  
+    it('should highlight a region using the input "activateRegion"', () => {
+        host.resourcesHost = images;
+        host.inputActivateRegion = 'http://rdfh.ch/b6b64a62b006';
+        fixture.detectChanges();
+  
+        const overlay = component['viewer'].svgOverlay();
+  
+        // first region -> polygon element (second element in <g> element)
+        const regionSvgEle: HTMLElement = overlay.node().childNodes[0].childNodes[1];
+  
+        const attr = regionSvgEle.getAttribute('class');
+        expect(attr).toEqual('roi-svgoverlay active');
+    });
+  */
 });
 
 // TODO: use MockFactory from knora/api lib to get test data and adapt the tests
