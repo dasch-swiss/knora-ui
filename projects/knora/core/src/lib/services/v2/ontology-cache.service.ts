@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ApiServiceResult } from '../../declarations/api-service-result';
-import { KnoraConstants } from '../../declarations/api/knora-constants';
-import { Utils } from '../../declarations/utils';
-import { OntologyService } from './ontology.service';
+import { Constants } from '@knora/api';
 import { forkJoin, from, Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-import { Constants } from '@knora/api';
+
+import { ApiServiceResult } from '../../declarations/api-service-result';
+import { Utils } from '../../declarations/utils';
+
+import { OntologyService } from './ontology.service';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
 const jsonld = require('jsonld');
@@ -432,7 +433,7 @@ export class OntologyCacheService {
      * Ontologies ingored by this service.
      * @param {string[]} excludedOntologies
      */
-    private excludedOntologies: Array<string> = [Constants.SalsahGui, KnoraConstants.StandoffOntology];
+    private excludedOntologies: Array<string> = [Constants.SalsahGui, Constants.StandoffOntology];
 
     /**
      * @param {string[]} excludedProperties properties that Knora is not responsible for and that have to be ignored because they cannot be resolved at the moment.
@@ -442,7 +443,7 @@ export class OntologyCacheService {
     /**
      * @param {string[]} nonResourceClasses class definitions that are not be treated as Knora resource classes
      */
-    private nonResourceClasses: Array<string> = [KnoraConstants.ForbiddenResource, KnoraConstants.XMLToStandoffMapping, KnoraConstants.ListNode];
+    private nonResourceClasses: Array<string> = [Constants.ForbiddenResource, Constants.XMLToStandoffMapping, Constants.ListNode];
 
     /**
      * @param {OntologyCache} cacheOntology central instance that caches all definitions
@@ -544,7 +545,7 @@ export class OntologyCacheService {
 
             // check that class name is not listed as a non resource class and that the isResourceClass flag is present and set to true
             if (
-                classIri !== KnoraConstants.Resource && this.nonResourceClasses.indexOf(classIri)
+                classIri !== Constants.Resource && this.nonResourceClasses.indexOf(classIri)
                 === -1 && (classDef[Constants.IsResourceClass] !== undefined && classDef[Constants.IsResourceClass] === true)) {
                 // it is not a value class, but a resource class definition
                 resourceClassIris.push(classIri);
@@ -582,7 +583,7 @@ export class OntologyCacheService {
                 return entityType === Constants.ObjectProperty ||
                     entityType === Constants.DataTypeProperty ||
                     entityType === Constants.Owl + Constants.Delimiter + 'AnnotationProperty' ||
-                    entityType === KnoraConstants.RdfProperty;
+                    entityType === Constants.RdfProperty;
             });
 
 
@@ -706,7 +707,7 @@ export class OntologyCacheService {
 
             const resClassObj = new ResourceClass(
                 resClassIri,
-                resClass[KnoraConstants.ResourceIcon],
+                resClass[Constants.ResourceIcon],
                 resClass[Constants.Comment],
                 resClass[Constants.Label],
                 cardinalities,

@@ -1,9 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChange } from '@angular/core';
-import { ReadGeomValue, ReadResource, ReadStillImageFileValue } from '@knora/api';
-import { Point2D, RegionGeometry } from '@knora/api/src/models/v2/resources/values/read/read-geom-value';
-import { KnoraConstants } from '@knora/core';
+import { Constants, Point2D, ReadGeomValue, ReadResource, ReadStillImageFileValue, RegionGeometry } from '@knora/api';
 import { Region } from '@knora/core';
-// import { KnoraConstants, Point2D, Region, RegionGeometry } from '@knora/core';
 
 // This component needs the openseadragon library itself, as well as the openseadragon plugin openseadragon-svg-overlay
 // Both libraries are installed via package.json, and loaded globally via the script tag in .angular-cli.json
@@ -33,7 +30,7 @@ export class ImageRegion {
      * @returns
      */
     getGeometries() {
-        return this.regionResource.properties[KnoraConstants.hasGeometry] as ReadGeomValue[];
+        return this.regionResource.properties[Constants.HasGeometry] as ReadGeomValue[];
     }
 }
 

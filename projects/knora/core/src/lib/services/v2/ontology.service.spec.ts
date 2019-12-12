@@ -172,7 +172,7 @@ xdescribe('OntologyService', () => {
             'rdfs:label': newOntologyPostData.label,
             '@context': {
                 'rdfs': Constants.Rdfs,
-                'knora-api': KnoraConstants.KnoraApiV2WithValueObjectPath
+                'knora-api': Constants.KnoraApiV2 + Constants.Delimiter
             }
         };
 

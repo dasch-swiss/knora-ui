@@ -6,15 +6,6 @@ export class KnoraConstants {
     public static KnoraApi: string = 'http://api.knora.org/ontology/knora-api';
     public static PathSeparator: string = '#';
 
-    // various IRIs
-    public static KnoraApiV2WithValueObjectPath: string = KnoraConstants.KnoraApi + '/v2' + KnoraConstants.PathSeparator;
-    public static StandoffOntology: string = 'http://api.knora.org/ontology/standoff/v2';
-    public static ForbiddenResource: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ForbiddenResource';
-    public static XMLToStandoffMapping: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'XMLToStandoffMapping';
-    public static ListNode: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'ListNode';
-    public static Resource: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'Resource';
-    public static ResourceIcon: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'resourceIcon';
-
     // Simple
     public static KnoraApiV2SimplePath: string = KnoraConstants.KnoraApi + '/simple/v2' + KnoraConstants.PathSeparator;
     public static resourceSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Resource';
@@ -25,18 +16,6 @@ export class KnoraConstants {
     public static geonameSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'Geoname';
     public static fileSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'File';
     public static listNodeSimple: string = KnoraConstants.KnoraApiV2SimplePath + 'ListNode';
-
-    // has
-    public static hasGeometry: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'hasGeometry';
-
-    // RDF
-    public static RdfProperty: string = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property';
-
-    // XSD
-    public static Xsd: string = 'http://www.w3.org/2001/XMLSchema#';
-    public static XsdString: string = KnoraConstants.Xsd + 'string';
-    public static XsdBoolean: string = KnoraConstants.Xsd + 'boolean';
-    public static XsdInteger: string = KnoraConstants.Xsd + 'integer';
 
     // comparison operators --> TODO: should be moved to search-module!?
     public static EqualsComparisonOperator: string = '=';
@@ -66,7 +45,7 @@ export class KnoraConstants {
     public static MatchComparisonOperator: string = 'contains';
     public static MatchComparisonLabel: string = 'matches';
 
-    public static MatchFunction: string = KnoraConstants.KnoraApiV2WithValueObjectPath + 'match';
+    public static MatchFunction: string = KnoraConstants.KnoraApi + '/v2' + KnoraConstants.PathSeparator + 'match';
 
 }
 
