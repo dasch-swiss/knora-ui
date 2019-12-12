@@ -3,7 +3,7 @@
  */
 
 // resource viewer
-export * from './lib/resource/';
+export * from './lib/representation/';
 
 // property (gui) element
 export * from './lib/property/';

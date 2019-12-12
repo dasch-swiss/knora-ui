@@ -15,10 +15,9 @@ import { MatPaginatorModule } from '@angular/material';
 
 import { DateValueComponent } from '../../property/date-value/date-value.component';
 import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';
-import { GraphViewComponent } from '../graph-view/graph-view.component';
-import { GridViewComponent } from '../grid-view/grid-view.component';
-import { ListViewComponent } from '../list-view/list-view.component';
-import { TableViewComponent } from '../table-view/table-view.component';
+import { GridViewComponent } from '../list/grid-view/grid-view.component';
+import { ListViewComponent } from '../list/list-view/list-view.component';
+import { TableViewComponent } from '../list/table-view/table-view.component';
 
 import { SearchResultsComponent } from './search-results.component';
 
@@ -85,8 +84,7 @@ describe('SearchResultsComponent', () => {
                 SearchResultsComponent,
                 TextValueAsHtmlComponent,
                 GridViewComponent,
-                TableViewComponent,
-                GraphViewComponent
+                TableViewComponent
             ],
             providers: [
                 {
