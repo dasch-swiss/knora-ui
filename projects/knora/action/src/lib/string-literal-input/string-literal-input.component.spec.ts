@@ -38,7 +38,7 @@ describe('StringLiteralInputComponent', () => {
         fixture = TestBed.createComponent(StringLiteralInputComponent);
         component = fixture.componentInstance;
         component.form = formBuilder.group({
-            text: null
+            text: ['']
         });
         fixture.detectChanges();
     });

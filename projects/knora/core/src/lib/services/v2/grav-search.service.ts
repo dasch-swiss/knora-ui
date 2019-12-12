@@ -23,16 +23,16 @@ export class GravsearchGenerationService {
      * Use computed property name: http://www.ecma-international.org/ecma-262/6.0/#sec-object-initializer.
      */
     public static typeConversionComplexToSimple = {
-        'http://api.knora.org/ontology/knora-api/v2#IntValue': KnoraConstants.XsdInteger,
+        'http://api.knora.org/ontology/knora-api/v2#IntValue': Constants.XsdInteger,
         'http://api.knora.org/ontology/knora-api/v2#DecimalValue': Constants.XsdDecimal,
-        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': KnoraConstants.XsdBoolean,
-        'http://api.knora.org/ontology/knora-api/v2#TextValue': KnoraConstants.XsdString,
+        'http://api.knora.org/ontology/knora-api/v2#BooleanValue': Constants.XsdBoolean,
+        'http://api.knora.org/ontology/knora-api/v2#TextValue': Constants.XsdString,
+        'http://api.knora.org/ontology/knora-api/v2#UriValue': Constants.XsdAnyUri,
         'http://api.knora.org/ontology/knora-api/v2#DateValue': KnoraConstants.dateSimple,
         'http://api.knora.org/ontology/knora-api/v2#IntervalValue': KnoraConstants.intervalSimple,
         'http://api.knora.org/ontology/knora-api/v2#GeomValue': KnoraConstants.geomSimple,
         'http://api.knora.org/ontology/knora-api/v2#ColorValue': KnoraConstants.colorSimple,
         'http://api.knora.org/ontology/knora-api/v2#GeonameValue': KnoraConstants.geonameSimple,
-        'http://api.knora.org/ontology/knora-api/v2#UriValue': Constants.XsdAnyUri,
         'http://api.knora.org/ontology/knora-api/v2#StillImageFileValue': KnoraConstants.fileSimple,
         'http://api.knora.org/ontology/knora-api/v2#FileValue': KnoraConstants.fileSimple,
         'http://api.knora.org/ontology/knora-api/v2#MovingImageFileValue': KnoraConstants.fileSimple,

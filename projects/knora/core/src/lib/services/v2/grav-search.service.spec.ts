@@ -1,20 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
+import { ComparisonOperatorAndValue, Equals, GreaterThan, GreaterThanEquals, IRI, LessThan, LessThanEquals, Like, Match, NotEquals, PropertyWithValue, ValueLiteral } from '../../declarations/api/operators';
+
 import { GravsearchGenerationService } from './grav-search.service';
-import { SearchParamsService } from './search-params.service';
 import { Property } from './ontology-cache.service';
-import {
-    ComparisonOperatorAndValue,
-    Equals, GreaterThan,
-    GreaterThanEquals,
-    IRI,
-    LessThan,
-    LessThanEquals,
-    Like,
-    Match, NotEquals,
-    PropertyWithValue,
-    ValueLiteral
-} from '../../declarations/api/operators';
+import { SearchParamsService } from './search-params.service';
 
 describe('GravsearchGenerationService', () => {
     let gravSearchGenerationServ: GravsearchGenerationService;

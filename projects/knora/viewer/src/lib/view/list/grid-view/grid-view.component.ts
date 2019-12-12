@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { KnoraConstants, OntologyInformation } from '@knora/core';
+import { OntologyInformation } from '@knora/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,9 +19,6 @@ export class GridViewComponent implements OnInit {
      */
     @Input() ontologyInfo: OntologyInformation;
 
-    // @Input() isLoading: boolean;
-
-    KnoraConstants = KnoraConstants;
 
     constructor(
         private _router: Router

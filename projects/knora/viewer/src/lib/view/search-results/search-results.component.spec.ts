@@ -1,17 +1,17 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatPaginatorModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CountQueryResult, ExtendedSearchParams, KnoraApiConfigToken, KuiCoreModule, OntologyInformation, Properties, ResourceClasses, SearchParamsService, KnoraApiConnectionToken } from '@knora/core';
-import { KuiActionModule } from 'projects/knora/action/src/public_api';
-import { BehaviorSubject, of } from 'rxjs';
 import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
-import { MatPaginatorModule } from '@angular/material';
+import { KnoraApiConnectionToken, KuiCoreModule } from '@knora/core';
+import { KuiActionModule } from 'projects/knora/action/src/public_api';
+import { of } from 'rxjs';
 
 import { DateValueComponent } from '../../property/date-value/date-value.component';
 import { TextValueAsHtmlComponent } from '../../property/text-value/text-value-as-html/text-value-as-html.component';

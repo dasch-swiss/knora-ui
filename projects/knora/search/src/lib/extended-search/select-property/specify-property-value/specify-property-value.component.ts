@@ -1,8 +1,7 @@
 import { Component, Inject, Input, OnChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Constants } from '@knora/api';
-import { ComparisonOperator, ComparisonOperatorAndValue, Equals, Exists, GreaterThan, GreaterThanEquals, KnoraConstants, LessThan, LessThanEquals, Like, Match, NotEquals, Property, PropertyValue, Value } from '@knora/core';
-
+import { ComparisonOperator, ComparisonOperatorAndValue, Equals, Exists, GreaterThan, GreaterThanEquals, LessThan, LessThanEquals, Like, Match, NotEquals, Property, PropertyValue, Value } from '@knora/core';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
 const resolvedPromise = Promise.resolve(null);
@@ -15,7 +14,6 @@ const resolvedPromise = Promise.resolve(null);
 export class SpecifyPropertyValueComponent implements OnChanges {
 
     Constants = Constants;
-    KnoraConstants = KnoraConstants;
 
     // parent FormGroup
     @Input() formGroup: FormGroup;
@@ -58,7 +56,7 @@ export class SpecifyPropertyValueComponent implements OnChanges {
 
         // depending on object class, set comparison operators and value entry field
         if (this._property.isLinkProperty) {
-            this.propertyValueType = KnoraConstants.Resource;
+            this.propertyValueType = Constants.Resource;
         } else {
             this.propertyValueType = this._property.objectType;
         }
@@ -70,7 +68,7 @@ export class SpecifyPropertyValueComponent implements OnChanges {
                 break;
 
             case Constants.BooleanValue:
-            case KnoraConstants.Resource:
+            case Constants.Resource:
             case Constants.UriValue:
                 this.comparisonOperators = [new Equals(), new NotEquals(), new Exists()];
                 break;

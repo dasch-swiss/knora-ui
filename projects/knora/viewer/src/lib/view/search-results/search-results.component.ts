@@ -1,8 +1,8 @@
 import { Component, Inject, Input, OnChanges, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiResponseError, CountQueryResponse, IResourceClassAndPropertyDefinitions, KnoraApiConnection, ReadResource } from '@knora/api';
-import { ExtendedSearchParams, KnoraApiConnectionToken, KnoraConstants, SearchParamsService, AutocompleteItem } from '@knora/core';
-import { PageEvent } from '@angular/material';
+import { ExtendedSearchParams, KnoraApiConnectionToken, SearchParamsService } from '@knora/core';
 
 /**
  * The search-results gets the search mode and parameters from routes or inputs,
@@ -45,7 +45,6 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     // MatPaginator Output
     pageEvent: PageEvent;
 
-    KnoraConstants = KnoraConstants;
     // offset: number = 0;
 
     initSearch: boolean;

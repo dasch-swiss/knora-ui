@@ -1,6 +1,4 @@
-import { ReadGeomValue, ReadResource } from '@knora/api';
-
-import { KnoraConstants } from '../../knora-constants';
+import { Constants, ReadGeomValue, ReadResource } from '@knora/api';
 
 /**
  * Represents a region.
@@ -13,7 +11,7 @@ export class Region {
      *
      * @param {ReadResource} regionResource a resource of type Region
      */
-    constructor (readonly regionResource: ReadResource) {
+    constructor(readonly regionResource: ReadResource) {
 
     }
 
@@ -23,6 +21,6 @@ export class Region {
      * @returns {ReadGeomValue[]}
      */
     getGeometries() {
-        return this.regionResource.properties[KnoraConstants.hasGeometry] as ReadGeomValue[];
+        return this.regionResource.properties[Constants.HasGeometry] as ReadGeomValue[];
     }
 }

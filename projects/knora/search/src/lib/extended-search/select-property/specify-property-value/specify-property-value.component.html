@@ -1,23 +1,24 @@
 <mat-form-field class="search-operator-field small-field" *ngIf="comparisonOperators?.length > 0">
-  <mat-select placeholder="Comparison Operator" [formControl]="form.controls['comparisonOperator']">
-    <mat-option *ngFor="let compOp of comparisonOperators" [value]="compOp">{{ compOp.label }}</mat-option>
-  </mat-select>
+    <mat-select placeholder="Comparison Operator" [formControl]="form.controls['comparisonOperator']">
+        <mat-option *ngFor="let compOp of comparisonOperators" [value]="compOp">{{ compOp.label }}</mat-option>
+    </mat-select>
 </mat-form-field>
 
 <!-- select apt component for value specification using a switch case statement-->
-<span *ngIf="comparisonOperatorSelected !== undefined && comparisonOperatorSelected !== null && comparisonOperatorSelected.getClassName() != 'Exists'"
-      [ngSwitch]="propertyValueType">
-  <boolean-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.BooleanValue"></boolean-value>
-  <date-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.DateValue"></date-value>
-  <decimal-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.DecimalValue"></decimal-value>
-  <integer-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.IntValue"></integer-value>
-  <link-value #propertyValue [formGroup]="form" [restrictResourceClass]="property.objectType"
-              *ngSwitchCase="KnoraConstants.Resource"></link-value>
-  <text-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.TextValue"></text-value>
-  <uri-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.UriValue"></uri-value>
-  <list-value #propertyValue [formGroup]="form" [property]="property" *ngSwitchCase="Constants.ListValue">
-  </list-value>
+<span
+    *ngIf="comparisonOperatorSelected !== undefined && comparisonOperatorSelected !== null && comparisonOperatorSelected.getClassName() != 'Exists'"
+    [ngSwitch]="propertyValueType">
+    <boolean-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.BooleanValue"></boolean-value>
+    <date-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.DateValue"></date-value>
+    <decimal-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.DecimalValue"></decimal-value>
+    <integer-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.IntValue"></integer-value>
+    <link-value #propertyValue [formGroup]="form" [restrictResourceClass]="property.objectType"
+        *ngSwitchCase="Constants.Resource"></link-value>
+    <text-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.TextValue"></text-value>
+    <uri-value #propertyValue [formGroup]="form" *ngSwitchCase="Constants.UriValue"></uri-value>
+    <list-value #propertyValue [formGroup]="form" [property]="property" *ngSwitchCase="Constants.ListValue">
+    </list-value>
 
-  <!-- TODO: Resource: handle linking properties with target class restriction: access property member to get objectClass via property() getter method -->
-  <span *ngSwitchDefault="">Not supported {{propertyValueType}}</span>
+    <!-- TODO: Resource: handle linking properties with target class restriction: access property member to get objectClass via property() getter method -->
+    <span *ngSwitchDefault="">Not supported {{propertyValueType}}</span>
 </span>
