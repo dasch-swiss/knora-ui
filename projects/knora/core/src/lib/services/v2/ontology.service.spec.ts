@@ -2,11 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { async, TestBed } from '@angular/core/testing';
 import { Constants, KnoraApiConfig, KnoraApiConnection } from '@knora/api';
-
 import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiCoreModule } from '../../core.module';
-import { ApiServiceResult, KnoraConstants, NewOntology } from '../../declarations';
+import { ApiServiceResult } from '../../declarations';
+import { NewOntology } from '../../declarations/api/v2/ontology/new-ontology';
 import { ApiService } from '../api.service';
-
 import { OntologyService } from './ontology.service';
 
 xdescribe('OntologyService', () => {

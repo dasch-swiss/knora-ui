@@ -60,7 +60,7 @@ export class GeometryForRegion {
      * @param geometry the geometrical information.
      * @param region the region the geometry belongs to.
      */
-    constructor(readonly geometry: RegionGeometry, readonly region: ReadResource) {
+    constructor(readonly geometry: RegionGeometry, readonly region: Region) {
     }
 
 }
