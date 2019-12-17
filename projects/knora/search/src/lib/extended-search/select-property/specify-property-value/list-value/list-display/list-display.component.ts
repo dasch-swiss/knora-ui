@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { ListNode } from '@knora/api';
+import { ListNodeV2 } from '@knora/api';
 
 @Component({
     selector: 'list-display',
@@ -9,16 +9,16 @@ import { ListNode } from '@knora/api';
 })
 export class ListDisplayComponent {
 
-    @Input() children: ListNode[];
+    @Input() children: ListNodeV2[];
 
-    @Output() selectedNode: EventEmitter<ListNode> = new EventEmitter<ListNode>();
+    @Output() selectedNode: EventEmitter<ListNodeV2> = new EventEmitter<ListNodeV2>();
 
     @ViewChild('childMenu', { static: true }) public childMenu: MatMenuTrigger;
 
     constructor() {
     }
 
-    setValue(item: ListNode) {
+    setValue(item: ListNodeV2) {
         this.selectedNode.emit(item);
     }
 

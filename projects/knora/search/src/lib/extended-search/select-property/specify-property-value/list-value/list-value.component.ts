@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { ApiResponseError, Constants, KnoraApiConnection, ListNode } from '@knora/api';
+import { ApiResponseError, Constants, KnoraApiConnection, ListNodeV2 } from '@knora/api';
 import { IRI, KnoraApiConnectionToken, Property, PropertyValue, Value } from '@knora/core';
 
 // https://stackoverflow.com/questions/45661010/dynamic-nested-reactive-form-expressionchangedafterithasbeencheckederror
@@ -23,18 +23,18 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
 
     @Input() property?: Property;
 
-    listRootNode: ListNode;
+    listRootNode: ListNodeV2;
 
     // activeNode;
 
-    selectedNode: ListNode;
+    selectedNode: ListNodeV2;
 
     @ViewChild(MatMenuTrigger, { static: false }) menuTrigger: MatMenuTrigger;
 
-    constructor (
+    constructor(
         @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,
         @Inject(FormBuilder) private fb: FormBuilder
-        ) {
+    ) {
     }
 
     private getRootNodeIri(): string {
@@ -62,7 +62,7 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
         const rootNodeIri = this.getRootNodeIri();
 
         this.knoraApiConnection.v2.listNodeCache.getNode(rootNodeIri).subscribe(
-            (response: ListNode) => {
+            (response: ListNodeV2) => {
                 this.listRootNode = response;
             },
             (error: ApiResponseError) => {
@@ -91,7 +91,7 @@ export class ListValueComponent implements OnInit, OnDestroy, PropertyValue {
         return new IRI(this.form.value.listValue);
     }
 
-    getSelectedNode(item: ListNode) {
+    getSelectedNode(item: ListNodeV2) {
         this.menuTrigger.closeMenu();
         this.selectedNode = item;
 
