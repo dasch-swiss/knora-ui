@@ -4,11 +4,6 @@
 export * from './api.service';
 
 /**
- * specific services for knora admin api
- */
-export * from './admin/lists.service';
-
-/**
  * specific services for knora v2 api
  */
 export * from './v2/ontology.service';
