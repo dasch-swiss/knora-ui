@@ -1,22 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import {
-    ReadBooleanValue,
-    ReadColorValue,
-    ReadDateValue,
-    ReadDecimalValue,
-    ReadGeomValue,
-    ReadIntegerValue,
-    ReadIntervalValue,
-    ReadLinkValue,
-    ReadListValue,
-    ReadResource,
-    ReadTextFileValue,
-    ReadTextValueAsHtml,
-    ReadTextValueAsString,
-    ReadTextValueAsXml,
-    ReadUriValue
-} from '@knora/core';
+import { ReadBooleanValue, ReadColorValue, ReadDateValue, ReadDecimalValue, ReadGeomValue, ReadIntervalValue, ReadLinkValue, ReadListValue, ReadResource, ReadTextValueAsHtml, ReadTextValueAsString, ReadTextValueAsXml, ReadUriValue } from '@knora/api';
+import { ReadTextFileValue } from '@knora/viewer/public_api';
+
 import { AppDemo } from '../../../app.config';
 
 @Component({
@@ -52,7 +37,7 @@ export class PropertiesComponent implements OnInit {
     textFile = new ReadTextFileValue('id', 'propIri', 'Text File Name', 'Text File URL');
     uri = new ReadUriValue('id', 'propIri', 'http://rdfh.ch/0801/-w3yv1iZT22qEe6GM4S4Hg');
 
-    constructor () {
+    constructor() {
     }
 
     ngOnInit() {
