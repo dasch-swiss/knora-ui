@@ -7,10 +7,6 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - run: sudo npm install yalc -g
-      - run: cd ~/repo
-      - checkout
-
 
       # Download and cache dependencies
       - restore_cache:

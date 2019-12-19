@@ -27,7 +27,6 @@ install: export CXX="g++-4.9"
 
 before_script:
   - yarn global add @angular/cli
-  - yarn global add yalc
   - cd $TRAVIS_BUILD_DIR
   - yarn install
 
