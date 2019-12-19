@@ -25,14 +25,14 @@ export class PropertiesViewComponent implements OnInit {
     /**
      * Show all properties, even they don't have a value.
      *
-     * @param  {boolean=false} [allProps]
+     * @param  {boolean} [allProps]
      */
     @Input() allProps?: boolean = false;
 
     /**
      * Show toolbar with project info and some action tools
      *
-     * @param  {boolean=false} [toolbar]
+     * @param  {boolean} [toolbar]
      */
     @Input() toolbar?: boolean = false;
 
