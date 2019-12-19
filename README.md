@@ -13,9 +13,9 @@ But you can use only @knora/core which contains almost all services for the Knor
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora version ^10.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v10.0.0).
+This version of Knora-ui requires [Knora-api version ^11.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v11.0.0).
 
-## Already published modules
+## Published modules
 
 ### @knora/core
 
@@ -223,7 +223,6 @@ Use them in your application:
 
 ```bash
 $ yalc add @knora/action
-$ yalc add @knora/authentication
 $ yalc add @knora/core
 $ yalc add @knora/search
 $ yalc add @knora/viewer
@@ -235,12 +234,12 @@ To remove from the project and restore `package.json` run:
 $ yalc remove --all
 ```
 
-* * *
+<!-- For DaSCH developers 
 
 ## Publish new version
 Be sure everything is merged, before creating new release.
 
-### Required version of Knora: 9.0.0
+### Required version of Knora: 11.0.0
 
 ### Update the documentation and the version number
 
@@ -260,7 +259,7 @@ cd ~/Path/to/repo
 # Run the task
 gren release --override --milestone-match="xxxx-xx"
 ```
-
+ -->
 <!--
 ```markdown
 Version: x.y.z
@@ -279,8 +278,11 @@ Comments: blabla
 ```
 -->
 
+<!-- For DaSCH developers:
+
 ### Publish new version on NPM
 
 1. Checkout **Master** branch
 1. Build all modules with `yarn build-lib-prod`
-1. Publish them from each module folder with `npm publish`
+1. Publish them from each module folder with `npm publish` 
+-->
