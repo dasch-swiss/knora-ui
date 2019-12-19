@@ -9,7 +9,7 @@ export const KnoraApiConfigToken = new InjectionToken<KnoraApiConfig>('Knora api
 // connection config for knora-api-js-lib (@knora/api)
 export const KnoraApiConnectionToken = new InjectionToken<KnoraApiConnection>('Knora api connection configuration');
 
-// config for knora-ui (@knora/action, @knora/search, @knora/viewer, @knora/authentication)
+// config for knora-ui (@knora/action, @knora/search, @knora/viewer)
 export const KuiConfigToken = new InjectionToken<KuiConfig>('Main configuration for knora-ui modules');
 
 @NgModule({
