@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead \nRepresents an error occurred in OntologyCacheService.",
-        "html": "<p>Use new service from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead<br />\nRepresents an error occurred in OntologyCacheService.</p>"
+        "string": "since v10.0.0 \nWill be replaced by `@knora/api` (github:knora-api-js-lib)\n\nRepresents an error occurred in OntologyCacheService.",
+        "html": "<p>since v10.0.0<br />\nWill be replaced by <code>@knora/api</code> (github:knora-api-js-lib)</p>\n<p>Represents an error occurred in OntologyCacheService.</p>"
       }
     ],
     "description": {
@@ -17,8 +17,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 12,
-    "codeStart": 17,
+    "line": 14,
+    "codeStart": 21,
     "code": "class OntologyCacheError extends Error {\n\n    constructor(readonly message: string) {\n        super(message);\n    }\n}",
     "ctx": {
       "type": "class",
@@ -41,8 +41,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 25,
-    "codeStart": 28,
+    "line": 29,
+    "codeStart": 33,
     "code": "export class OntologyMetadata {",
     "ctx": {
       "type": "class",
@@ -99,8 +99,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 30,
-    "codeStart": 36,
+    "line": 35,
+    "codeStart": 41,
     "code": "constructor(readonly id: string,\n    readonly label: string) {\n\n}\n\n}",
     "ctx": {
       "type": "constructor",
@@ -122,8 +122,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 44,
-    "codeStart": 47,
+    "line": 49,
+    "codeStart": 52,
     "code": "export enum CardinalityOccurrence {\n    minCard = 0,\n    card = 1,\n    maxCard = 2\n}",
     "ctx": false
   },
@@ -139,8 +139,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 54,
-    "codeStart": 57,
+    "line": 59,
+    "codeStart": 62,
     "code": "export class Cardinality {",
     "ctx": {
       "type": "class",
@@ -206,8 +206,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 59,
-    "codeStart": 64,
+    "line": 64,
+    "codeStart": 69,
     "code": "constructor(readonly occurrence: CardinalityOccurrence,\n    readonly value: number,\n    readonly property: string) {\n}\n}",
     "ctx": {
       "type": "constructor",
@@ -229,8 +229,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 69,
-    "codeStart": 72,
+    "line": 74,
+    "codeStart": 77,
     "code": "export class GuiOrder {",
     "ctx": {
       "type": "class",
@@ -284,8 +284,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 73,
-    "codeStart": 77,
+    "line": 78,
+    "codeStart": 82,
     "code": "constructor(readonly value: number,\n    readonly property: string\n) {\n\n}\n}",
     "ctx": {
       "type": "constructor",
@@ -307,8 +307,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 84,
-    "codeStart": 87,
+    "line": 89,
+    "codeStart": 92,
     "code": "export class ResourceClass {",
     "ctx": {
       "type": "class",
@@ -416,8 +416,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 89,
-    "codeStart": 97,
+    "line": 94,
+    "codeStart": 102,
     "code": "constructor(readonly id: string,\n    readonly icon: string,\n    readonly comment: string,\n    readonly label: string,\n    readonly cardinalities: Array<Cardinality>,\n    readonly guiOrder: Array<GuiOrder>) {\n\n}\n}",
     "ctx": {
       "type": "constructor",
@@ -439,8 +439,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 108,
-    "codeStart": 111,
+    "line": 113,
+    "codeStart": 116,
     "code": "export class ResourceClasses {\n    [index: string]: ResourceClass;\n}",
     "ctx": {
       "type": "class",
@@ -463,8 +463,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 116,
-    "codeStart": 119,
+    "line": 121,
+    "codeStart": 124,
     "code": "export class Property {",
     "ctx": {
       "type": "class",
@@ -614,8 +614,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 121,
-    "codeStart": 132,
+    "line": 126,
+    "codeStart": 137,
     "code": "constructor(readonly id: string,\n    readonly objectType: string,\n    readonly comment: string,\n    readonly label: string,\n    readonly subPropertyOf: Array<string>,\n    readonly isEditable: Boolean,\n    readonly isLinkProperty: Boolean,\n    readonly isLinkValueProperty: Boolean,\n    readonly guiAttribute: string[]) {\n}\n}",
     "ctx": {
       "type": "constructor",
@@ -637,8 +637,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 145,
-    "codeStart": 148,
+    "line": 150,
+    "codeStart": 153,
     "code": "export class Properties {\n    [index: string]: Property;\n}",
     "ctx": {
       "type": "class",
@@ -661,8 +661,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 153,
-    "codeStart": 158,
+    "line": 158,
+    "codeStart": 163,
     "code": "export class ResourceClassIrisForOntology {\n    [index: string]: Array<string>;\n}",
     "ctx": {
       "type": "class",
@@ -685,8 +685,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 163,
-    "codeStart": 169,
+    "line": 168,
+    "codeStart": 174,
     "code": "class OntologyCache {",
     "ctx": {
       "type": "class",
@@ -724,8 +724,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 171,
-    "codeStart": 174,
+    "line": 176,
+    "codeStart": 179,
     "code": "ontologies: Array<OntologyMetadata>;",
     "ctx": {
       "type": "property",
@@ -763,8 +763,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 176,
-    "codeStart": 179,
+    "line": 181,
+    "codeStart": 184,
     "code": "resourceClassIrisForOntology: ResourceClassIrisForOntology;",
     "ctx": {
       "type": "property",
@@ -802,8 +802,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 181,
-    "codeStart": 184,
+    "line": 186,
+    "codeStart": 189,
     "code": "resourceClasses: ResourceClasses;",
     "ctx": {
       "type": "property",
@@ -841,8 +841,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 186,
-    "codeStart": 189,
+    "line": 191,
+    "codeStart": 194,
     "code": "properties: Properties;\n\nconstructor() {\n    this.ontologies = [];\n\n    this.resourceClassIrisForOntology = new ResourceClassIrisForOntology();\n\n    this.resourceClasses = new ResourceClasses();\n\n    this.properties = new Properties();\n}\n}",
     "ctx": {
       "type": "property",
@@ -865,8 +865,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 202,
-    "codeStart": 207,
+    "line": 207,
+    "codeStart": 212,
     "code": "export class OntologyInformation {",
     "ctx": {
       "type": "class",
@@ -932,8 +932,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 209,
-    "codeStart": 214,
+    "line": 214,
+    "codeStart": 219,
     "code": "constructor(\n    private resourceClassesForOntology: ResourceClassIrisForOntology,\n    private resourceClasses: ResourceClasses,\n    private properties: Properties) {\n}",
     "ctx": {
       "type": "constructor",
@@ -991,8 +991,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 220,
-    "codeStart": 227,
+    "line": 225,
+    "codeStart": 232,
     "code": "static sortFunc(a: ResourceClass | Property, b: ResourceClass | Property) {\n    // dealing with 'undefined' labels\n    if (a.label === undefined) {\n        return 1;\n    } else if (b.label === undefined) {\n        return -1;\n    }\n\n    const labelA = a.label.toLowerCase();\n    const labelB = b.label.toLowerCase();\n\n    if (labelA < labelB) {\n        return -1;\n    } else if (labelA > labelB) {\n        return 1;\n    } else {\n        return 0;\n    }\n}",
     "ctx": {
       "type": "method",
@@ -1040,8 +1040,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 247,
-    "codeStart": 257,
+    "line": 252,
+    "codeStart": 262,
     "code": "updateOntologyInformation(ontologyInfo: OntologyInformation): void {\n\n    // get new resourceClassIrisForOntology\n    const newResourceClassesForOntology: ResourceClassIrisForOntology = ontologyInfo.getResourceClassForOntology();\n\n    // update new resourceClassIrisForOntology\n    // tslint:disable-next-line:forin\n    for (const newResClassForOntology in newResourceClassesForOntology) {\n        this.resourceClassesForOntology[newResClassForOntology] = newResourceClassesForOntology[newResClassForOntology];\n    }\n\n    // get new resource class definitions\n    const newResourceClasses = ontologyInfo.getResourceClasses();\n\n    // update resourceClasses\n    // tslint:disable-next-line:forin\n    for (const newResClass in newResourceClasses) {\n        this.resourceClasses[newResClass] = newResourceClasses[newResClass];\n    }\n\n    // get new property definitions\n    const newProperties = ontologyInfo.getProperties();\n\n    // update properties\n    // tslint:disable-next-line:forin\n    for (const newProp in newProperties) {\n        this.properties[newProp] = newProperties[newProp];\n    }\n\n}",
     "ctx": {
       "type": "method",
@@ -1075,8 +1075,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 288,
-    "codeStart": 293,
+    "line": 293,
+    "codeStart": 298,
     "code": "getResourceClassForOntology(): ResourceClassIrisForOntology {\n    return this.resourceClassesForOntology;\n}",
     "ctx": {
       "type": "method",
@@ -1110,8 +1110,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 297,
-    "codeStart": 302,
+    "line": 302,
+    "codeStart": 307,
     "code": "getResourceClasses(): ResourceClasses {\n    return this.resourceClasses;\n}",
     "ctx": {
       "type": "method",
@@ -1159,8 +1159,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 306,
-    "codeStart": 312,
+    "line": 311,
+    "codeStart": 317,
     "code": "getResourceClassesAsArray(sortAsc: boolean = true): Array<ResourceClass> {\n\n    const resClasses: Array<ResourceClass> = [];\n\n    // tslint:disable-next-line:forin\n    for (const resClassIri in this.resourceClasses) {\n        const resClass: ResourceClass = this.resourceClasses[resClassIri];\n        resClasses.push(resClass);\n    }\n\n    // resourceClasses order by label in ascending order\n    resClasses.sort(OntologyInformation.sortFunc);\n\n    // resourceClasses order by label in descending order\n    if (!sortAsc) {\n        resClasses.reverse();\n    }\n\n    return resClasses;\n\n}",
     "ctx": {
       "type": "method",
@@ -1208,8 +1208,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 334,
-    "codeStart": 340,
+    "line": 339,
+    "codeStart": 345,
     "code": "getLabelForResourceClass(resClass: string): string {\n\n    if (resClass !== undefined) {\n\n        const resClassDef: ResourceClass = this.resourceClasses[resClass];\n\n        if (resClassDef !== undefined && resClassDef.label !== undefined) {\n            return resClassDef.label;\n        } else {\n            console.log(`cannot get label for ${resClass}`);\n        }\n    } else {\n        console.log('call of OntologyInformation.getLabelForResourceClass without argument resClass');\n    }\n}",
     "ctx": {
       "type": "method",
@@ -1243,8 +1243,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 356,
-    "codeStart": 361,
+    "line": 361,
+    "codeStart": 366,
     "code": "getProperties(): Properties {\n    return this.properties;\n}",
     "ctx": {
       "type": "method",
@@ -1292,8 +1292,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 365,
-    "codeStart": 371,
+    "line": 370,
+    "codeStart": 376,
     "code": "getPropertiesAsArray(sortAsc: boolean = true): Array<Property> {\n\n    const properties: Array<Property> = [];\n\n    // tslint:disable-next-line:forin\n    for (const propIri in this.properties) {\n        const prop: Property = this.properties[propIri];\n        properties.push(prop);\n    }\n\n    // properties order by label in ascending order\n    properties.sort(OntologyInformation.sortFunc);\n\n    // properties order by label in descending order\n    if (!sortAsc) {\n        properties.reverse();\n    }\n\n    return properties;\n\n}",
     "ctx": {
       "type": "method",
@@ -1341,8 +1341,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 393,
-    "codeStart": 399,
+    "line": 398,
+    "codeStart": 404,
     "code": "getLabelForProperty(property: string): string {\n\n    if (property !== undefined) {\n\n        const propDef: Property = this.properties[property];\n\n        if (propDef !== undefined && propDef.label !== undefined) {\n            return propDef.label;\n        } else {\n            console.log(`cannot get label for ${property}`);\n        }\n    } else {\n        console.log('call of OntologyInformation.getLabelForProperty without argument property');\n    }\n}\n\n}",
     "ctx": {
       "type": "method",
@@ -1364,8 +1364,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 418,
-    "codeStart": 422,
+    "line": 423,
+    "codeStart": 427,
     "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class OntologyCacheService {",
     "ctx": false
   },
@@ -1397,9 +1397,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 427,
-    "codeStart": 431,
-    "code": "private excludedOntologies: Array<string> = [KnoraConstants.SalsahGuiOntology, KnoraConstants.StandoffOntology];",
+    "line": 432,
+    "codeStart": 436,
+    "code": "private excludedOntologies: Array<string> = [Constants.SalsahGui, Constants.StandoffOntology];",
     "ctx": false
   },
   {
@@ -1429,9 +1429,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 433,
-    "codeStart": 436,
-    "code": "private excludedProperties: Array<string> = [KnoraConstants.RdfsLabel];",
+    "line": 438,
+    "codeStart": 441,
+    "code": "private excludedProperties: Array<string> = [Constants.Label];",
     "ctx": false
   },
   {
@@ -1461,9 +1461,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 438,
-    "codeStart": 441,
-    "code": "private nonResourceClasses: Array<string> = [KnoraConstants.ForbiddenResource, KnoraConstants.XMLToStandoffMapping, KnoraConstants.ListNode];",
+    "line": 443,
+    "codeStart": 446,
+    "code": "private nonResourceClasses: Array<string> = [Constants.ForbiddenResource, Constants.XMLToStandoffMapping, Constants.ListNode];",
     "ctx": false
   },
   {
@@ -1493,8 +1493,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 443,
-    "codeStart": 446,
+    "line": 448,
+    "codeStart": 451,
     "code": "private cacheOntology: OntologyCache = new OntologyCache();\n\nconstructor(private _ontologyService: OntologyService) {\n}",
     "ctx": false
   },
@@ -1522,8 +1522,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 451,
-    "codeStart": 456,
+    "line": 456,
+    "codeStart": 461,
     "code": "private getOntologiesMetadataFromKnora(): Observable<any> {\n\n    return this._ontologyService.getOntologiesMetadata().pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            // http://reactivex.io/documentation/operators/flatmap.html\n            // http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap\n            (ontRes: ApiServiceResult) => {\n                const ontPromises = jsonld.promises;\n                // compact JSON-LD using an empty context: expands all Iris\n                const ontPromise = ontPromises.compact(ontRes.body, {});\n\n                // convert promise to Observable and return it\n                // https://www.learnrxjs.io/operators/creation/frompromise.html\n                return from(ontPromise);\n            }\n        )\n    );\n}",
     "ctx": false
   },
@@ -1565,8 +1565,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 476,
-    "codeStart": 482,
+    "line": 481,
+    "codeStart": 487,
     "code": "private getAllEntityDefinitionsForOntologyFromKnora(ontologyIri: string): Observable<any> {\n\n    return this._ontologyService.getAllEntityDefinitionsForOntologies(ontologyIri).pipe(\n        mergeMap(\n            // this would return an Observable of a PromiseObservable -> combine them into one Observable\n            // http://reactivex.io/documentation/operators/flatmap.html\n            // http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap\n            (ontRes: ApiServiceResult) => {\n                const ontPromises = jsonld.promises;\n                // compact JSON-LD using an empty context: expands all Iris\n                const ontPromise = ontPromises.compact(ontRes.body, {});\n\n                // convert promise to Observable and return it\n                // https://www.learnrxjs.io/operators/creation/frompromise.html\n                return from(ontPromise);\n            }\n        )\n    );\n}",
     "ctx": false
   },
@@ -1608,9 +1608,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 502,
-    "codeStart": 508,
-    "code": "private convertAndWriteOntologiesMetadataToCache(ontologies: object[]) {\n\n    this.cacheOntology.ontologies = ontologies.map(\n        ontology => {\n            return new OntologyMetadata(ontology['@id'], ontology[KnoraConstants.RdfsLabel]);\n        }\n    );\n}",
+    "line": 507,
+    "codeStart": 513,
+    "code": "private convertAndWriteOntologiesMetadataToCache(ontologies: object[]) {\n\n    this.cacheOntology.ontologies = ontologies.map(\n        ontology => {\n            return new OntologyMetadata(ontology['@id'], ontology[Constants.Label]);\n        }\n    );\n}",
     "ctx": false
   },
   {
@@ -1637,8 +1637,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 517,
-    "codeStart": 522,
+    "line": 522,
+    "codeStart": 527,
     "code": "private getAllOntologiesMetadataFromCache(): Array<OntologyMetadata> {\n\n    return this.cacheOntology.ontologies;\n\n}",
     "ctx": false
   },
@@ -1680,9 +1680,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 528,
-    "codeStart": 535,
-    "code": "private getResourceClassIrisFromOntologyResponse(classDefinitions: Array<object>): string[] {\n    const resourceClassIris: string[] = [];\n\n    for (const classDef of classDefinitions) {\n        const classIri = classDef['@id'];\n\n        // check that class name is not listed as a non resource class and that the isResourceClass flag is present and set to true\n        if (\n            classIri !== KnoraConstants.Resource && this.nonResourceClasses.indexOf(classIri)\n            === -1 && (classDef[KnoraConstants.IsResourceClass] !== undefined && classDef[KnoraConstants.IsResourceClass] === true)) {\n            // it is not a value class, but a resource class definition\n            resourceClassIris.push(classIri);\n        }\n    }\n\n    return resourceClassIris;\n}",
+    "line": 533,
+    "codeStart": 540,
+    "code": "private getResourceClassIrisFromOntologyResponse(classDefinitions: Array<object>): string[] {\n    const resourceClassIris: string[] = [];\n\n    for (const classDef of classDefinitions) {\n        const classIri = classDef['@id'];\n\n        // check that class name is not listed as a non resource class and that the isResourceClass flag is present and set to true\n        if (\n            classIri !== Constants.Resource && this.nonResourceClasses.indexOf(classIri)\n            === -1 && (classDef[Constants.IsResourceClass] !== undefined && classDef[Constants.IsResourceClass] === true)) {\n            // it is not a value class, but a resource class definition\n            resourceClassIris.push(classIri);\n        }\n    }\n\n    return resourceClassIris;\n}",
     "ctx": false
   },
   {
@@ -1723,9 +1723,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 553,
-    "codeStart": 563,
-    "code": "private convertAndWriteAllEntityDefinitionsForOntologyToCache(ontology: object): void {\n\n    const graph = ontology['@graph'];\n\n    // get all class definitions\n    const classDefs = graph.filter(\n        (entity: Object) => {\n            const entityType = entity['@type'];\n            return entityType === KnoraConstants.OwlClass;\n        });\n\n    // get all property definitions\n    const propertyDefs = graph.filter(\n        (entity: Object) => {\n            const entityType = entity['@type'];\n            return entityType === KnoraConstants.OwlObjectProperty ||\n                entityType === KnoraConstants.OwlDatatypeProperty ||\n                entityType === KnoraConstants.OwlAnnotationProperty ||\n                entityType === KnoraConstants.RdfProperty;\n        });\n\n\n    // cache all resource class Iris belonging to the current ontology\n    this.cacheOntology.resourceClassIrisForOntology[ontology['@id']] = this.getResourceClassIrisFromOntologyResponse(classDefs);\n\n    // write class and property defintions to cache\n    this.convertAndWriteEntityDefinitionsToCache(classDefs, propertyDefs);\n\n}",
+    "line": 558,
+    "codeStart": 568,
+    "code": "private convertAndWriteAllEntityDefinitionsForOntologyToCache(ontology: object): void {\n\n    const graph = ontology['@graph'];\n\n    // get all class definitions\n    const classDefs = graph.filter(\n        (entity: Object) => {\n            const entityType = entity['@type'];\n            return entityType === Constants.Class;\n        });\n\n    // get all property definitions\n    const propertyDefs = graph.filter(\n        (entity: Object) => {\n            const entityType = entity['@type'];\n            return entityType === Constants.ObjectProperty ||\n                entityType === Constants.DataTypeProperty ||\n                entityType === Constants.Owl + Constants.Delimiter + 'AnnotationProperty' ||\n                entityType === Constants.RdfProperty;\n        });\n\n\n    // cache all resource class Iris belonging to the current ontology\n    this.cacheOntology.resourceClassIrisForOntology[ontology['@id']] = this.getResourceClassIrisFromOntologyResponse(classDefs);\n\n    // write class and property defintions to cache\n    this.convertAndWriteEntityDefinitionsToCache(classDefs, propertyDefs);\n\n}",
     "ctx": false
   },
   {
@@ -1766,8 +1766,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 593,
-    "codeStart": 599,
+    "line": 598,
+    "codeStart": 604,
     "code": "private getOntologyInformationFromCache(ontologyIris: string[]): Observable<OntologyInformation> {\n\n    const resourceClassesForOntology = new ResourceClassIrisForOntology();\n\n    // collect resource class Iris for all requested named graphs\n    let allResourceClassIris = [];\n\n    for (const ontologyIri of ontologyIris) {\n\n        if (this.cacheOntology.resourceClassIrisForOntology[ontologyIri] === undefined) {\n            throw new OntologyCacheError(`getResourceClassesForOntologiesFromCache: ontology not found in cache: ${ontologyIri}`);\n        }\n\n        // add information for the given ontology\n        resourceClassesForOntology[ontologyIri] = this.cacheOntology.resourceClassIrisForOntology[ontologyIri];\n\n        // add all resource class Iris of this ontology\n        allResourceClassIris = allResourceClassIris.concat(this.cacheOntology.resourceClassIrisForOntology[ontologyIri]);\n    }\n\n    // get resource class definitions for all requested ontologies\n    return this.getResourceClassDefinitions(allResourceClassIris).pipe(\n        map(\n            resClassDefs => {\n                return new OntologyInformation(\n                    resourceClassesForOntology, resClassDefs.getResourceClasses(), resClassDefs.getProperties()\n                );\n            }\n        )\n    );\n\n}",
     "ctx": false
   },
@@ -1823,9 +1823,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 632,
-    "codeStart": 639,
-    "code": "private convertAndWriteEntityDefinitionsToCache(resourceClassDefinitions: Array<object>, propertyClassDefinitions: Array<object>): void {\n\n    // convert and cache each given resource class definition\n    for (const resClass of resourceClassDefinitions) {\n\n        const resClassIri = resClass['@id'];\n\n        // represents all cardinalities of this resource class\n        const cardinalities: Cardinality[] = [];\n        const guiOrder: GuiOrder[] = [];\n\n        if (resClass[KnoraConstants.RdfsSubclassOf] !== undefined) {\n\n            let subclassOfCollection;\n\n            // check if it is a single object or a collection\n            if (!Array.isArray(resClass[KnoraConstants.RdfsSubclassOf])) {\n                subclassOfCollection = [resClass[KnoraConstants.RdfsSubclassOf]];\n            } else {\n                subclassOfCollection = resClass[KnoraConstants.RdfsSubclassOf];\n            }\n\n\n\n            // get cardinalities for the properties of a resource class\n            for (const curCard of subclassOfCollection) {\n\n\n\n                // make sure it is a cardinality (it could also be an Iri of a superclass)\n                if (curCard instanceof Object && curCard['@type'] !== undefined && curCard['@type'] === KnoraConstants.OwlRestriction) {\n\n                    let newCard;\n\n                    // get occurrence\n                    if (curCard[KnoraConstants.OwlMinCardinality] !== undefined) {\n                        newCard = new Cardinality(CardinalityOccurrence.minCard, curCard[KnoraConstants.OwlMinCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);\n                    } else if (curCard[KnoraConstants.OwlCardinality] !== undefined) {\n                        newCard = new Cardinality(CardinalityOccurrence.card, curCard[KnoraConstants.OwlCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);\n                    } else if (curCard[KnoraConstants.OwlMaxCardinality] !== undefined) {\n                        newCard = new Cardinality(CardinalityOccurrence.maxCard, curCard[KnoraConstants.OwlMaxCardinality], curCard[KnoraConstants.OwlOnProperty]['@id']);\n                    } else {\n                        // no known occurrence found\n                        throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[KnoraConstants.OwlOnProperty]}`);\n                    }\n\n                    // add cardinality\n                    cardinalities.push(newCard);\n\n                    // get gui order\n                    let newGuiOrder;\n                    if (curCard[KnoraConstants.SalsahGuiOrder] !== undefined) {\n                        newGuiOrder = new GuiOrder(curCard[KnoraConstants.SalsahGuiOrder], curCard[KnoraConstants.OwlOnProperty]['@id']);\n                        // add gui order\n                        guiOrder.push(newGuiOrder);\n                    }\n\n\n\n                }\n\n            }\n        }\n\n        const resClassObj = new ResourceClass(\n            resClassIri,\n            resClass[KnoraConstants.ResourceIcon],\n            resClass[KnoraConstants.RdfsComment],\n            resClass[KnoraConstants.RdfsLabel],\n            cardinalities,\n            guiOrder\n        );\n\n        // write this resource class definition to the cache object\n        this.cacheOntology.resourceClasses[resClassIri] = resClassObj;\n    }\n\n    // cache the property definitions\n    this.convertAndWriteKnoraPropertyDefinitionsToOntologyCache(propertyClassDefinitions);\n}",
+    "line": 637,
+    "codeStart": 644,
+    "code": "private convertAndWriteEntityDefinitionsToCache(resourceClassDefinitions: Array<object>, propertyClassDefinitions: Array<object>): void {\n\n    // convert and cache each given resource class definition\n    for (const resClass of resourceClassDefinitions) {\n\n        const resClassIri = resClass['@id'];\n\n        // represents all cardinalities of this resource class\n        const cardinalities: Cardinality[] = [];\n        const guiOrder: GuiOrder[] = [];\n\n        if (resClass[Constants.SubClassOf] !== undefined) {\n\n            let subclassOfCollection;\n\n            // check if it is a single object or a collection\n            if (!Array.isArray(resClass[Constants.SubClassOf])) {\n                subclassOfCollection = [resClass[Constants.SubClassOf]];\n            } else {\n                subclassOfCollection = resClass[Constants.SubClassOf];\n            }\n\n\n\n            // get cardinalities for the properties of a resource class\n            for (const curCard of subclassOfCollection) {\n\n\n\n                // make sure it is a cardinality (it could also be an Iri of a superclass)\n                if (curCard instanceof Object && curCard['@type'] !== undefined && curCard['@type'] === Constants.Restriction) {\n\n                    let newCard;\n\n                    // get occurrence\n                    if (curCard[Constants.MinCardinality] !== undefined) {\n                        newCard = new Cardinality(CardinalityOccurrence.minCard, curCard[Constants.MinCardinality], curCard[Constants.OnProperty]['@id']);\n                    } else if (curCard[Constants.Cardinality] !== undefined) {\n                        newCard = new Cardinality(CardinalityOccurrence.card, curCard[Constants.Cardinality], curCard[Constants.OnProperty]['@id']);\n                    } else if (curCard[Constants.MaxCardinality] !== undefined) {\n                        newCard = new Cardinality(CardinalityOccurrence.maxCard, curCard[Constants.MaxCardinality], curCard[Constants.OnProperty]['@id']);\n                    } else {\n                        // no known occurrence found\n                        throw new TypeError(`cardinality type invalid for ${resClass['@id']} ${curCard[Constants.OnProperty]}`);\n                    }\n\n                    // add cardinality\n                    cardinalities.push(newCard);\n\n                    // get gui order\n                    let newGuiOrder;\n                    if (curCard[Constants.GuiOrder] !== undefined) {\n                        newGuiOrder = new GuiOrder(curCard[Constants.GuiOrder], curCard[Constants.OnProperty]['@id']);\n                        // add gui order\n                        guiOrder.push(newGuiOrder);\n                    }\n\n\n\n                }\n\n            }\n        }\n\n        const resClassObj = new ResourceClass(\n            resClassIri,\n            resClass[Constants.ResourceIcon],\n            resClass[Constants.Comment],\n            resClass[Constants.Label],\n            cardinalities,\n            guiOrder\n        );\n\n        // write this resource class definition to the cache object\n        this.cacheOntology.resourceClasses[resClassIri] = resClassObj;\n    }\n\n    // cache the property definitions\n    this.convertAndWriteKnoraPropertyDefinitionsToOntologyCache(propertyClassDefinitions);\n}",
     "ctx": false
   },
   {
@@ -1866,8 +1866,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 720,
-    "codeStart": 727,
+    "line": 725,
+    "codeStart": 732,
     "code": "private getResourceClassDefinitionsFromCache(resClassIris: string[]): Observable<OntologyInformation> {\n    // collect the definitions for each resource class from the cache\n\n    const resClassDefs = new ResourceClasses();\n\n    // collect the properties from the cardinalities of the given resource classes\n    const propertyIris = [];\n\n    resClassIris.forEach(\n        resClassIri => {\n            resClassDefs[resClassIri] = this.cacheOntology.resourceClasses[resClassIri];\n\n            this.cacheOntology.resourceClasses[resClassIri].cardinalities.forEach(\n                card => {\n                    // get property definition for each cardinality\n                    propertyIris.push(card.property);\n                }\n            );\n        });\n\n    return this.getPropertyDefinitions(propertyIris).pipe(\n        map(\n            propDefs => {\n                return new OntologyInformation(new ResourceClassIrisForOntology(), resClassDefs, propDefs.getProperties());\n            }\n        )\n    );\n\n}",
     "ctx": false
   },
@@ -1909,9 +1909,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 757,
-    "codeStart": 764,
-    "code": "private convertAndWriteKnoraPropertyDefinitionsToOntologyCache(propertyDefinitionsFromKnora: Array<object>): void {\n\n    // convert and cache each given property definition\n    for (const propDef of propertyDefinitionsFromKnora) {\n\n        const propIri = propDef['@id'];\n\n        let isEditable = false;\n        if (propDef[KnoraConstants.isEditable] !== undefined && propDef[KnoraConstants.isEditable] === true) {\n            isEditable = true;\n        }\n\n        let isLinkProperty = false;\n        if (propDef[KnoraConstants.isLinkProperty] !== undefined && propDef[KnoraConstants.isLinkProperty] === true) {\n            isLinkProperty = true;\n        }\n\n        let isLinkValueProperty = false;\n        if (propDef[KnoraConstants.isLinkValueProperty] !== undefined && propDef[KnoraConstants.isLinkValueProperty] === true) {\n            isLinkValueProperty = true;\n        }\n\n        let subPropertyOf = [];\n        if (propDef[KnoraConstants.subPropertyOf] !== undefined && Array.isArray(propDef[KnoraConstants.subPropertyOf])) {\n            subPropertyOf = propDef[KnoraConstants.subPropertyOf].map((superProp: Object) => superProp['@id']);\n        } else if (propDef[KnoraConstants.subPropertyOf] !== undefined) {\n            subPropertyOf.push(propDef[KnoraConstants.subPropertyOf]['@id']);\n        }\n\n        let objectType;\n        if (propDef[KnoraConstants.ObjectType] !== undefined) {\n            objectType = propDef[KnoraConstants.ObjectType]['@id'];\n        }\n\n        const guiAttribute = [];\n        if (propDef[KnoraConstants.SalsahGuiAttribute] !== undefined) {\n            if (Array.isArray(propDef[KnoraConstants.SalsahGuiAttribute])) {\n                for (const attr of propDef[KnoraConstants.SalsahGuiAttribute]) {\n                    guiAttribute.push(attr);\n                }\n            } else {\n                guiAttribute.push(propDef[KnoraConstants.SalsahGuiAttribute]);\n            }\n        }\n\n        // cache property definition\n        this.cacheOntology.properties[propIri] = new Property(\n            propIri,\n            objectType,\n            propDef[KnoraConstants.RdfsComment],\n            propDef[KnoraConstants.RdfsLabel],\n            subPropertyOf,\n            isEditable,\n            isLinkProperty,\n            isLinkValueProperty,\n            guiAttribute\n        );\n\n    }\n\n}",
+    "line": 762,
+    "codeStart": 769,
+    "code": "private convertAndWriteKnoraPropertyDefinitionsToOntologyCache(propertyDefinitionsFromKnora: Array<object>): void {\n\n    // convert and cache each given property definition\n    for (const propDef of propertyDefinitionsFromKnora) {\n\n        const propIri = propDef['@id'];\n\n        let isEditable = false;\n        if (propDef[Constants.IsEditable] !== undefined && propDef[Constants.IsEditable] === true) {\n            isEditable = true;\n        }\n\n        let isLinkProperty = false;\n        if (propDef[Constants.IsLinkProperty] !== undefined && propDef[Constants.IsLinkProperty] === true) {\n            isLinkProperty = true;\n        }\n\n        let isLinkValueProperty = false;\n        if (propDef[Constants.IsLinkValueProperty] !== undefined && propDef[Constants.IsLinkValueProperty] === true) {\n            isLinkValueProperty = true;\n        }\n\n        let subPropertyOf = [];\n        if (propDef[Constants.SubPropertyOf] !== undefined && Array.isArray(propDef[Constants.SubPropertyOf])) {\n            subPropertyOf = propDef[Constants.SubPropertyOf].map((superProp: Object) => superProp['@id']);\n        } else if (propDef[Constants.SubPropertyOf] !== undefined) {\n            subPropertyOf.push(propDef[Constants.SubPropertyOf]['@id']);\n        }\n\n        let objectType;\n        if (propDef[Constants.ObjectType] !== undefined) {\n            objectType = propDef[Constants.ObjectType]['@id'];\n        }\n\n        const guiAttribute = [];\n        if (propDef[Constants.GuiAttribute] !== undefined) {\n            if (Array.isArray(propDef[Constants.GuiAttribute])) {\n                for (const attr of propDef[Constants.GuiAttribute]) {\n                    guiAttribute.push(attr);\n                }\n            } else {\n                guiAttribute.push(propDef[Constants.GuiAttribute]);\n            }\n        }\n\n        // cache property definition\n        this.cacheOntology.properties[propIri] = new Property(\n            propIri,\n            objectType,\n            propDef[Constants.Comment],\n            propDef[Constants.Label],\n            subPropertyOf,\n            isEditable,\n            isLinkProperty,\n            isLinkValueProperty,\n            guiAttribute\n        );\n\n    }\n\n}",
     "ctx": false
   },
   {
@@ -1952,8 +1952,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 826,
-    "codeStart": 832,
+    "line": 831,
+    "codeStart": 837,
     "code": "private getPropertyDefinitionsFromCache(propertyIris: string[]): OntologyInformation {\n\n    const propertyDefs = new Properties();\n\n    propertyIris.forEach(\n        propIri => {\n            // ignore non Knora props: if propIri is contained in excludedProperties, skip this propIri\n            if (this.excludedProperties.indexOf(propIri) > -1) {\n                return;\n            }\n\n            if (this.cacheOntology.properties[propIri] === undefined) {\n                throw new OntologyCacheError(`getPropertyDefinitionsFromCache: property not found in cache: ${propIri}`);\n            }\n\n            propertyDefs[propIri] = this.cacheOntology.properties[propIri];\n        }\n    );\n\n    return new OntologyInformation(new ResourceClassIrisForOntology(), new ResourceClasses(), propertyDefs);\n\n}",
     "ctx": false
   },
@@ -1981,8 +1981,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 855,
-    "codeStart": 860,
+    "line": 860,
+    "codeStart": 865,
     "code": "public getOntologiesMetadata(): Observable<Array<OntologyMetadata>> {\n\n    if (this.cacheOntology.ontologies.length === 0) {\n        // nothing in cache yet, get metadata from Knora\n        return this.getOntologiesMetadataFromKnora().pipe(\n            map(\n                metadata => {\n                    this.convertAndWriteOntologiesMetadataToCache(metadata['@graph'].filter((onto) => {\n                        // ignore excluded ontologies\n                        return this.excludedOntologies.indexOf(onto['@id']) === -1;\n                    }));\n                    return this.getAllOntologiesMetadataFromCache();\n                }\n            )\n        );\n    } else {\n        // return metadata from cache\n        return of(this.getAllOntologiesMetadataFromCache());\n    }\n\n}",
     "ctx": false
   },
@@ -2024,8 +2024,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 883,
-    "codeStart": 889,
+    "line": 888,
+    "codeStart": 894,
     "code": "private getAndCacheOntologies(ontologyIris: string[]): Observable<any[]> {\n\n    // array to be populated with Observables\n    const observables = [];\n\n    // do a request for each ontology\n    ontologyIris.forEach(ontologyIri => {\n        // push an Observable onto `observables`\n        observables.push(this.getAllEntityDefinitionsForOntologyFromKnora(ontologyIri).pipe(\n            map(\n                (ontology: object) => {\n                    // write response to cache\n                    this.convertAndWriteAllEntityDefinitionsForOntologyToCache(ontology);\n                }\n            )\n        ));\n    });\n\n    // forkJoin returns an Observable of an array of results\n    // returned by each Observable contained in `observables`\n    // a subscription to the Observable returned by forkJoin is executed\n    // once all Observables have been completed\n    return forkJoin(observables);\n}",
     "ctx": false
   },
@@ -2067,8 +2067,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 915,
-    "codeStart": 921,
+    "line": 920,
+    "codeStart": 926,
     "code": "public getEntityDefinitionsForOntologies(ontologyIris: string[]): Observable<OntologyInformation> {\n\n    const ontologyIrisToQuery = ontologyIris.filter(\n        ontologyIri => {\n            // return the ontology Iris that are not cached yet\n            return this.cacheOntology.resourceClassIrisForOntology[ontologyIri] === undefined;\n        });\n\n    // get ontologies that are mot cached yet\n    if (ontologyIrisToQuery.length > 0) {\n\n        return this.getAndCacheOntologies(ontologyIrisToQuery).pipe(\n            mergeMap(\n                () => {\n                    // executed once all ontologies have been cached\n                    return this.getOntologyInformationFromCache(ontologyIris);\n                }\n            )\n        );\n    } else {\n\n        return this.getOntologyInformationFromCache(ontologyIris);\n    }\n\n}",
     "ctx": false
   },
@@ -2110,8 +2110,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 947,
-    "codeStart": 956,
+    "line": 952,
+    "codeStart": 961,
     "code": "public getResourceClassDefinitions(resourceClassIris: string[]): Observable<OntologyInformation> {\n\n    const resClassIrisToQueryFor: string[] = resourceClassIris.filter(\n        resClassIri => {\n\n            // return the resource class Iris that are not cached yet\n            return this.cacheOntology.resourceClasses[resClassIri] === undefined;\n\n        });\n\n    if (resClassIrisToQueryFor.length > 0) {\n\n        // get a set of ontology Iris that have to be queried to obtain the missing resource classes\n        const ontologyIris: string[] = resClassIrisToQueryFor.map(\n            resClassIri => {\n                return Utils.getOntologyIriFromEntityIri(resClassIri);\n            }\n        ).filter(Utils.filterOutDuplicates);\n\n        // obtain missing resource class information\n        return this.getAndCacheOntologies(ontologyIris).pipe(\n            mergeMap(\n                () => {\n\n                    return this.getResourceClassDefinitionsFromCache(resourceClassIris);\n                }\n            )\n        );\n    } else {\n\n        return this.getResourceClassDefinitionsFromCache(resourceClassIris);\n\n    }\n}",
     "ctx": false
   },
@@ -2153,8 +2153,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 991,
-    "codeStart": 998,
+    "line": 996,
+    "codeStart": 1003,
     "code": "public getPropertyDefinitions(propertyIris: string[]): Observable<OntologyInformation> {\n\n    const propertiesToQuery: string[] = propertyIris.filter(\n        propIri => {\n\n            // ignore non Knora props: if propIri is contained in excludedProperties, skip this propIri\n            if (this.excludedProperties.indexOf(propIri) > -1) {\n                return false;\n            }\n\n            // return the property Iris that are not cached yet\n            return this.cacheOntology.properties[propIri] === undefined;\n        }\n    );\n\n    if (propertiesToQuery.length > 0) {\n\n        // get a set of ontology Iris that have to be queried to obtain the missing properties\n        const ontologyIris: string[] = propertiesToQuery.map(\n            propIri => {\n                return Utils.getOntologyIriFromEntityIri(propIri);\n            }\n        ).filter(Utils.filterOutDuplicates);\n\n        // obtain missing resource class information\n        return this.getAndCacheOntologies(ontologyIris).pipe(\n            map(\n                results => {\n                    if (results) {\n                        return this.getPropertyDefinitionsFromCache(propertyIris);\n                    } else {\n                        throw new Error('Problem with: return this.getPropertyDefinitionsFromCache(propertyIris);');\n                    }\n                }\n            )\n        );\n    } else {\n        return of(this.getPropertyDefinitionsFromCache(propertyIris));\n    }\n}\n\n}",
     "ctx": false
   }

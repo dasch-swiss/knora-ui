@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';\nimport { ApiResponseData, ApiResponseError, KnoraApiConnection, ProjectResponse, ReadProject } from '@knora/api';\nimport { KnoraApiConnectionToken } from '@knora/core';\n\n@Component({\n    selector: 'kui-properties-toolbar',\n    templateUrl: './properties-toolbar.component.html',\n    styleUrls: ['./properties-toolbar.component.scss']\n})\nexport class PropertiesToolbarComponent implements OnInit {\n\n    @Input() projectiri: string;\n    @Input() ontologyiri: string;\n    @Input() arkurl: string;\n\n    @Input() allProps: boolean;\n\n    @Output() toggleProps: EventEmitter<boolean> = new EventEmitter<boolean>();\n\n    project: ReadProject;\n\n    constructor(\n        @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection\n    ) { }\n\n    ngOnInit() {\n        // get project information\n        this.knoraApiConnection.admin.projectsEndpoint.getProjectByIri(this.projectiri).subscribe(\n            (response: ApiResponseData<ProjectResponse>) => {\n                this.project = response.body.project;\n            },\n            (error: ApiResponseError) => {\n                console.error(error);\n            }\n        )\n    }\n\n}",
+    "ctx": false
+  }
+]
