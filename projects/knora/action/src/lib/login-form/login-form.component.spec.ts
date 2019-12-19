@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +10,7 @@ import { KnoraApiConfig, KnoraApiConnection } from '@knora/api';
 import { KnoraApiConfigToken, KnoraApiConnectionToken, KuiConfig, KuiConfigToken, KuiCoreModule, SessionService } from '@knora/core';
 
 import { LoginFormComponent } from './login-form.component';
+
 
 export class AppConfig {
     name: string;
@@ -69,8 +70,8 @@ describe('LoginFormComponent', () => {
         fixture = TestBed.createComponent(LoginFormComponent);
         component = fixture.componentInstance;
         component.form = formBuilder.group({
-            username: null,
-            password: null
+            username: ['', Validators.required],
+            password: ['', Validators.required]
         });
         fixture.detectChanges();
     });
