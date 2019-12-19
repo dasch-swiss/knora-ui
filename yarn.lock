@@ -798,8 +798,10 @@
   version "5.11.2"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.11.2.tgz#8644bc25b19475779a7b7c1fc104bc0a794f4465"
 
-"@knora/api@file:.yalc/@knora/api":
-  version "1.0.0-b2d84e3a"
+"@knora/api@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@knora/api/-/api-0.1.1.tgz#cdf0a3b16e0f063626ff9b70e4de6d9dd501424a"
+  integrity sha512-Ac4/huGuEcvExfu46Gr/83Q5kOet81vFQQJVxZOA4JyhAC8opyGHThmcJrAQaSQW3eDn7lqnRT9+rVDJ3uVk3w==
   dependencies:
     "@types/jsonld" "^1.5.0"
     json2typescript "^1.2.3"
