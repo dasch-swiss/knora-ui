@@ -36,8 +36,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 52,
-    "codeStart": 58,
+    "line": 46,
+    "codeStart": 52,
     "code": "displayResource(resource: ReadResource | null) {\n\n    // null is the initial value (no selection yet)\n    if (resource !== null) {\n        return resource.label;\n    }\n}",
     "ctx": {
       "type": "method",
@@ -71,8 +71,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 66,
-    "codeStart": 71,
+    "line": 60,
+    "codeStart": 65,
     "code": "searchByLabel(searchTerm: string) {\n\n    // at least 3 characters are required\n    if (searchTerm.length >= 3) {",
     "ctx": {
       "type": "method",
@@ -92,9 +92,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 76,
-    "codeStart": 85,
-    "code": "} else {\n    // clear selection\n    this.resources = undefined;\n}\n\n    }",
+    "line": 70,
+    "codeStart": 79,
+    "code": "this.knoraApiConnection.v2.search.doSearchByLabel(searchTerm, 0, { limitToResourceClass: this._restrictToResourceClass }).subscribe(\n    (response: ReadResource[]) => {\n        this.resources = response;\n    });\n        } else {\n// clear selection\nthis.resources = undefined;\n        }\n\n    }",
     "ctx": false
   },
   {
@@ -134,8 +134,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 92,
-    "codeStart": 100,
+    "line": 90,
+    "codeStart": 98,
     "code": "validateResource(c: FormControl) {\n\n    const isValidResource = (c.value instanceof ReadResource);\n\n    if (isValidResource) {\n        return null;\n    } else {\n        return {\n            noResource: {\n                value: c.value\n            }\n        };\n    }\n\n}\n\nngOnInit() {\n    this.form = this.fb.group({\n        resource: [null, Validators.compose([\n            Validators.required,\n            this.validateResource\n        ])]\n    });\n\n    this.form.valueChanges.subscribe((data) => {\n        this.searchByLabel(data.resource);\n    });\n\n    resolvedPromise.then(() => {\n        // add form to the parent form group\n        this.formGroup.addControl('propValue', this.form);\n    });\n}\n\nngOnDestroy() {\n\n    // remove form from the parent form group\n    resolvedPromise.then(() => {\n        this.formGroup.removeControl('propValue');\n    });\n\n}\n\ngetValue(): Value {\n\n    return new IRI(this.form.value.resource.id);\n}\n\n}",
     "ctx": {
       "type": "method",

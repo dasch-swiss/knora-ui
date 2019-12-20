@@ -3,8 +3,8 @@
     "tags": [
       {
         "type": "deprecated",
-        "string": "Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead \nRepresents the parameters of an extended search.",
-        "html": "<p>Use new service from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead<br />\nRepresents the parameters of an extended search.</p>"
+        "string": "since v10.0.0 \nWill be replaced by `@knora/api` (github:knora-api-js-lib)\n\nRepresents the parameters of an extended search.",
+        "html": "<p>since v10.0.0<br />\nWill be replaced by <code>@knora/api</code> (github:knora-api-js-lib)</p>\n<p>Represents the parameters of an extended search.</p>"
       }
     ],
     "description": {
@@ -18,7 +18,7 @@
     "isEvent": false,
     "ignore": false,
     "line": 5,
-    "codeStart": 10,
+    "codeStart": 12,
     "code": "export class ExtendedSearchParams {",
     "ctx": {
       "type": "class",
@@ -33,7 +33,7 @@
     "tags": [
       {
         "type": "param",
-        "string": "generateGravsearch a function that generates a Gravsearch query.\n\n                          The function takes the offset\n                          as a parameter and returns a Gravsearch query string.\n                          Returns false if not set correctly (init state).",
+        "string": "generateGravsearch a function that generates a Gravsearch query.\n\nThe function takes the offset\nas a parameter and returns a Gravsearch query string.\nReturns false if not set correctly (init state).",
         "name": "generateGravsearch",
         "description": "<p>a function that generates a Gravsearch query.<br />\nThe function takes the offset<br />\nas a parameter and returns a Gravsearch query string.<br />\nReturns false if not set correctly (init state).</p>",
         "types": [],
@@ -54,8 +54,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 12,
-    "codeStart": 20,
+    "line": 14,
+    "codeStart": 22,
     "code": "constructor(public generateGravsearch: (offset: number) => string | boolean) {\n\n}\n\n}\n\n@Injectable({\nprovidedIn: 'root'\n})",
     "ctx": {
       "type": "constructor",
@@ -66,10 +66,16 @@
     }
   },
   {
-    "tags": [],
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "since v10.0.0 \nWill be replaced by `@knora/api` (github:knora-api-js-lib)\nTemporarily stores the parameters of an extended search.",
+        "html": "<p>since v10.0.0<br />\nWill be replaced by <code>@knora/api</code> (github:knora-api-js-lib)<br />\nTemporarily stores the parameters of an extended search.</p>"
+      }
+    ],
     "description": {
-      "full": "<p>Temporarily stores the parameters of an extended search.</p>",
-      "summary": "<p>Temporarily stores the parameters of an extended search.</p>",
+      "full": "",
+      "summary": "",
       "body": ""
     },
     "isPrivate": false,
@@ -77,8 +83,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 29,
-    "codeStart": 32,
+    "line": 31,
+    "codeStart": 37,
     "code": "export class SearchParamsService {\n\n    private _currentSearchParams;\n\n    constructor() {\n        // init with a dummy function that returns false\n        // if the application is reloaded, this will be returned\n        this._currentSearchParams = new BehaviorSubject<ExtendedSearchParams>(new ExtendedSearchParams((offset: number) => false));\n    }",
     "ctx": {
       "type": "class",
@@ -128,8 +134,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 42,
-    "codeStart": 48,
+    "line": 47,
+    "codeStart": 53,
     "code": "changeSearchParamsMsg(searchParams: ExtendedSearchParams): void {\n    this._currentSearchParams.next(searchParams);\n}",
     "ctx": {
       "type": "method",
@@ -163,8 +169,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 52,
-    "codeStart": 57,
+    "line": 57,
+    "codeStart": 62,
     "code": "getSearchParams(): ExtendedSearchParams {\n    return this._currentSearchParams.getValue();\n}\n\n}",
     "ctx": {
       "type": "method",

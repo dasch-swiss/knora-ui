@@ -120,8 +120,6 @@ THE SOFTWARE.
 
 @angular/material/checkbox
 
-@angular/material/chips
-
 @angular/material/core
 
 @angular/material/datepicker
@@ -139,6 +137,8 @@ THE SOFTWARE.
 @angular/material/list
 
 @angular/material/menu
+
+@angular/material/paginator
 
 @angular/material/select
 

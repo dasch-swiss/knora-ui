@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppDemo } from 'src/app/app.config';
 import { Example } from 'src/app/app.interfaces';
-import { StringLiteral } from '@knora/core';
+import { StringLiteral } from '@knora/api';
 
 @Component({
     selector: 'app-stringify-string-literal',
@@ -51,7 +51,7 @@ labels: StringLiteral[] = '` + JSON.stringify(this.labels) + `';
         }
     };
 
-    constructor () { }
+    constructor() { }
 
     ngOnInit() {
     }

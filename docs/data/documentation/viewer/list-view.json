@@ -28,20 +28,20 @@
     "ignore": false,
     "line": 12,
     "codeStart": 15,
-    "code": "@Input() result: any;",
+    "code": "@Input() result: ReadResource[];",
     "ctx": false
   },
   {
     "tags": [
       {
         "type": "param",
-        "string": "{OntologyInformation} ontologyInfo Ontology information received from SearchResultsComponent",
+        "string": "{IResourceClassAndPropertyDefinitions} ontologyInfo Ontology information received from SearchResultsComponent",
         "name": "ontologyInfo",
         "description": "<p>Ontology information received from SearchResultsComponent</p>",
         "types": [
-          "OntologyInformation"
+          "IResourceClassAndPropertyDefinitions"
         ],
-        "typesDescription": "<a href=\"OntologyInformation.html\">OntologyInformation</a>",
+        "typesDescription": "<a href=\"IResourceClassAndPropertyDefinitions.html\">IResourceClassAndPropertyDefinitions</a>",
         "optional": false,
         "nullable": false,
         "nonNullable": false,
@@ -60,7 +60,7 @@
     "ignore": false,
     "line": 17,
     "codeStart": 20,
-    "code": "@Input() ontologyInfo: OntologyInformation;\n\n// @Input() isLoading: boolean;\n\nKnoraConstants = KnoraConstants;\n\nconstructor(\n    private _router: Router\n) { }",
+    "code": "@Input() ontologyInfo: IResourceClassAndPropertyDefinitions;\n\n\nconstructor(\n    private _router: Router\n) {\n\n}",
     "ctx": false
   },
   {
@@ -91,8 +91,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 30,
-    "codeStart": 34,
+    "line": 29,
+    "codeStart": 33,
     "code": "openResource(id: string) {\n    const url: string = '/resource/' + encodeURIComponent(id);\n    this._router.navigate([url]);\n}\n\n}",
     "ctx": {
       "type": "method",

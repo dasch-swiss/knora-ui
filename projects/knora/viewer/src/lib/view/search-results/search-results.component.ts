@@ -22,7 +22,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     @Input() complexView?: boolean = false;
 
     /**
-     * @param  {'list'|'grid'|'table'} [viewAs] Show result as list, grid or tabel. Default value is list
+     * @param  [viewAs] Show result as list, grid or tabel. Default value is list
      */
     @Input() viewAs?: 'list' | 'grid' | 'table' = 'list';
 

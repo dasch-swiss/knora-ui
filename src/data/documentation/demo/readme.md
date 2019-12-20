@@ -13,9 +13,9 @@ But you can use only @knora/core which contains almost all services for the Knor
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora version ^9.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v9.0.0).
+This version of Knora-ui requires [Knora-api version ^11.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v11.0.0).
 
-## Already published modules
+## Published modules
 
 ### @knora/core
 
@@ -123,7 +123,7 @@ Before using the module inside of the app, you have to rebuild after the changes
 
 ### Run the demo app
 
-Run the app with `ng s`. The demo app runs on <http://localhost:4200> and we use it for documentation on [Knora-ui Github page](https://dasch-swiss.github.io/knora-ui).
+Run the app with `ng s`. The demo app runs on <http://0.0.0.0:4200> and we use it for documentation on [Knora-ui Github page](https://dasch-swiss.github.io/knora-ui).
 
 There's a test environment for the modules on <https://github.com/dhlab-basel/knora-ui-playground> with yalc
 
@@ -223,7 +223,6 @@ Use them in your application:
 
 ```bash
 $ yalc add @knora/action
-$ yalc add @knora/authentication
 $ yalc add @knora/core
 $ yalc add @knora/search
 $ yalc add @knora/viewer
@@ -235,24 +234,34 @@ To remove from the project and restore `package.json` run:
 $ yalc remove --all
 ```
 
-* * *
+<!-- For DaSCH developers 
 
 ## Publish new version
 Be sure everything is merged, before creating new release.
 
-### Required version of Knora: 9.0.0
+### Required version of Knora: 11.0.0
 
-### Update the documentation and the version number
+### 1. Update the version number
 
 1. Make a new branch called `pre-release/version-X.Y.Z
 1. Update the version number (X.Y.Z) in package.json of each module
 1. Update the version number (X.Y.Z) of all @knora-dependencies in all package.json and README files
 1. Update the version number (X.Y.Z) in the main package.json
+1. Update the required version of knora-api-js-lib
 1. Update the required version of Knora: here in the README, but also in the @knora/core `src/lib/declarations/api/knora-constants.ts` and the README files of each module
+1. Commit and push all changes and make a new pull request: Release version number X.Y.Z
+
+### 2. Update the documentation
+
 1. Update the documentation by running the following command: `yarn build-docs`
-1. Commit and push all changes and make a new pull request: Release X.Y.Z
+1. Commit and push all changes and make a new pull request: Release docs X.Y.Z
+
+### 3. Create the new release with notes
+
 1. After merging the PR, create a new release on GitHub with the version tag X.Y.Z
 1. Make release notes with [gren](https://github.com/github-tools/github-release-notes)
+
+* * * 
 
 ```shell
 # Navigate to the knora-ui root directory
@@ -260,7 +269,7 @@ cd ~/Path/to/repo
 # Run the task
 gren release --override --milestone-match="xxxx-xx"
 ```
-
+ -->
 <!--
 ```markdown
 Version: x.y.z
@@ -279,8 +288,11 @@ Comments: blabla
 ```
 -->
 
+<!-- For DaSCH developers:
+
 ### Publish new version on NPM
 
 1. Checkout **Master** branch
 1. Build all modules with `yarn build-lib-prod`
-1. Publish them from each module folder with `npm publish`
+1. Publish them from each module folder with `npm publish` 
+-->

@@ -118,8 +118,12 @@
     "ignore": false,
     "line": 108,
     "codeStart": 113,
-    "code": "private login() {\n\n    this.loading = true;\n\n    // reset the error messages\n    this.errorMessage = undefined;\n\n    // Grab values from form\n    const identifier = this.form.get('username').value;\n    const password = this.form.get('password').value;\n\n    const identifierType: 'iri' | 'email' | 'username' = (identifier.indexOf('@') > -1 ? 'email' : 'username');\n\n    this.knoraApiConnection.v2.auth.login(identifierType, identifier, password).subscribe(\n        (response: ApiResponseData<LoginResponse>) => {\n\n            this._session.setSession(response.body.token, identifier, identifierType);\n\n            setTimeout(() => {\n                this.status.emit(true);\n                this.loading = false;\n            }, 2200);\n        },\n        (error: ApiResponseError) => {\n            // error handling\n            this.loginErrorUser = (error.status === 404);\n            this.loginErrorPw = (error.status === 401);\n            this.loginErrorServer = (error.status === 0);\n\n            this.errorMessage = error;\n\n            this.loading = false;\n            // TODO: update error handling similar to the old method (see commented code below)\n        }\n    );\n}",
-    "ctx": false
+    "code": "login() {\n\n    this.loading = true;\n\n    // reset the error messages\n    this.errorMessage = undefined;\n\n    // Grab values from form\n    const identifier = this.form.get('username').value;\n    const password = this.form.get('password').value;\n\n    const identifierType: 'iri' | 'email' | 'username' = (identifier.indexOf('@') > -1 ? 'email' : 'username');\n\n    this.knoraApiConnection.v2.auth.login(identifierType, identifier, password).subscribe(\n        (response: ApiResponseData<LoginResponse>) => {\n\n            this._session.setSession(response.body.token, identifier, identifierType);\n\n            setTimeout(() => {\n                this.status.emit(true);\n                this.loading = false;\n            }, 2200);\n        },\n        (error: ApiResponseError) => {\n            // error handling\n            this.loginErrorUser = (error.status === 404);\n            this.loginErrorPw = (error.status === 401);\n            this.loginErrorServer = (error.status === 0);\n\n            this.errorMessage = error;\n\n            this.loading = false;\n            // TODO: update error handling similar to the old method (see commented code below)\n        }\n    );\n}",
+    "ctx": {
+      "type": "method",
+      "name": "login",
+      "string": "login()"
+    }
   },
   {
     "tags": [
@@ -141,7 +145,11 @@
     "ignore": false,
     "line": 150,
     "codeStart": 156,
-    "code": "private logout() {\n    this.loading = true;\n\n    this.knoraApiConnection.v2.auth.logout().subscribe(\n        (response: ApiResponseData<LogoutResponse>) => {\n            this.status.emit(response.body.status === 0);\n            this._session.destroySession();\n            this.loading = false;\n        },\n        (error: ApiResponseError) => {\n            console.error(error);\n            this.loading = false;\n        }\n    );\n\n}\n\n}",
-    "ctx": false
+    "code": "logout() {\n    this.loading = true;\n\n    this.knoraApiConnection.v2.auth.logout().subscribe(\n        (response: ApiResponseData<LogoutResponse>) => {\n            this.status.emit(response.body.status === 0);\n            this._session.destroySession();\n            this.loading = false;\n        },\n        (error: ApiResponseError) => {\n            console.error(error);\n            this.loading = false;\n        }\n    );\n\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "logout",
+      "string": "logout()"
+    }
   }
 ]

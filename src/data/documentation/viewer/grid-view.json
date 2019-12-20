@@ -60,7 +60,7 @@
     "ignore": false,
     "line": 17,
     "codeStart": 20,
-    "code": "@Input() ontologyInfo: OntologyInformation;\n\n// @Input() isLoading: boolean;\n\nKnoraConstants = KnoraConstants;\n\nconstructor(\n  private _router: Router\n) { }\n\nngOnInit() {\n}",
+    "code": "@Input() ontologyInfo: OntologyInformation;\n\n\nconstructor(\n    private _router: Router\n) { }\n\nngOnInit() {\n}",
     "ctx": false
   },
   {
@@ -91,9 +91,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 33,
-    "codeStart": 37,
-    "code": "openResource(id: string) {\n  const url: string = '/resource/' + encodeURIComponent(id);\n  this._router.navigate([url]);\n}\n}",
+    "line": 30,
+    "codeStart": 34,
+    "code": "openResource(id: string) {\n    const url: string = '/resource/' + encodeURIComponent(id);\n    this._router.navigate([url]);\n}\n}",
     "ctx": {
       "type": "method",
       "name": "openResource",

@@ -11,9 +11,108 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 6,
-    "codeStart": 10,
-    "code": "@Component({\n    selector: 'kui-properties-view',\n    templateUrl: './properties-view.component.html',\n    styleUrls: ['./properties-view.component.scss']\n})\nexport class PropertiesViewComponent implements OnInit {\n\n    loading: boolean = false;\n\n    KnoraConstants = KnoraConstants;\n\n    @Input() guiOrder?: GuiOrder;\n\n    @Input() entityInfo: IResourceClassAndPropertyDefinitions;\n    @Input() properties: {\n        [index: string]: ReadValue[];\n    };\n\n    @Input() annotations?: ReadResource[];\n    @Input() incomingLinks?: ReadResource[];\n\n    propArray: any = [];\n\n    // @Output() routeChanged: EventEmitter<string> = new EventEmitter<string>();\n\n    constructor(protected _router: Router) {\n\n    }\n\n    ngOnInit() {\n        // HACK (until gui order is ready): convert properties object into array\n        if (this.properties) {\n            this.propArray = Object.keys(this.properties).map(function (index) {\n                const prop = this.properties[index];\n                return prop;\n            });\n            console.log(this.propArray);\n        }\n    }",
+    "line": 7,
+    "codeStart": 11,
+    "code": "@Component({\n    selector: 'kui-properties-view',\n    templateUrl: './properties-view.component.html',\n    styleUrls: ['./properties-view.component.scss']\n})\nexport class PropertiesViewComponent implements OnInit {",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{TempProperty} propArray",
+        "name": "propArray",
+        "description": "",
+        "types": [
+          "TempProperty"
+        ],
+        "typesDescription": "<a href=\"TempProperty.html\">TempProperty</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{TempProperty} propArray</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Array of property object with ontology class prop def, list of properties and corresponding values</p>",
+      "summary": "<p>Array of property object with ontology class prop def, list of properties and corresponding values</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 18,
+    "codeStart": 23,
+    "code": "@Input() propArray: TempProperty;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{boolean} [allProps]",
+        "name": "[allProps]",
+        "description": "",
+        "types": [
+          "boolean"
+        ],
+        "typesDescription": "<code>boolean</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{boolean} [allProps]</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Show all properties, even they don't have a value.</p>",
+      "summary": "<p>Show all properties, even they don't have a value.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 25,
+    "codeStart": 30,
+    "code": "@Input() allProps?: boolean = false;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{boolean} [toolbar]",
+        "name": "[toolbar]",
+        "description": "",
+        "types": [
+          "boolean"
+        ],
+        "typesDescription": "<code>boolean</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{boolean} [toolbar]</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Show toolbar with project info and some action tools</p>",
+      "summary": "<p>Show toolbar with project info and some action tools</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 32,
+    "codeStart": 37,
+    "code": "@Input() toolbar?: boolean = false;\n\nloading: boolean = false;\n\nconstructor(\n    protected _router: Router) {\n}\n\nngOnInit() {\n\n}",
     "ctx": false
   },
   {
@@ -45,7 +144,7 @@
     "ignore": false,
     "line": 49,
     "codeStart": 54,
-    "code": "openLink(id: string) {\n\n    this.loading = true;\n    // this.routeChanged.emit(id);\n    this._router.navigate(['/resource/' + encodeURIComponent(id)]);\n\n}\n\n}",
+    "code": "openLink(id: string) {\n\n    this.loading = true;\n    // this.routeChanged.emit(id);\n    this._router.navigate(['/resource/' + encodeURIComponent(id)]);\n\n}\n\n\n}",
     "ctx": {
       "type": "method",
       "name": "openLink",

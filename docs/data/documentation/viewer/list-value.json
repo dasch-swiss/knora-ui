@@ -10,7 +10,7 @@
     "isConstructor": false,
     "line": 1,
     "codeStart": null,
-    "code": "import { Component, Input, OnChanges } from '@angular/core';\nimport { ListCacheService, ListNodeV2, ReadListValue } from '@knora/core';\nimport { Observable } from 'rxjs';\n\n@Component({\n    selector: 'kui-list-value',\n    templateUrl: './list-value.component.html',\n    styleUrls: ['./list-value.component.scss']\n})\nexport class ListValueComponent implements OnChanges {\n\n    @Input()\n    set valueObject(value: ReadListValue) {\n        this._listValueObj = value;\n    }\n\n    get valueObject() {\n        return this._listValueObj;\n    }\n\n    private _listValueObj: ReadListValue;\n\n    node: Observable<ListNodeV2>;\n\n    constructor (private _listCacheService: ListCacheService) {\n    }\n\n    ngOnChanges() {\n        // given the node's Iri, ask the list cache service\n        this.node = this._listCacheService.getListNode(this._listValueObj.listNodeIri);\n\n    }\n\n}",
+    "code": "import { Component, Input } from '@angular/core';\nimport { ReadListValue } from '@knora/api';\n\n@Component({\n    selector: 'kui-list-value',\n    templateUrl: './list-value.component.html',\n    styleUrls: ['./list-value.component.scss']\n})\nexport class ListValueComponent {\n\n    @Input()\n    set valueObject(value: ReadListValue) {\n        this._listValueObj = value;\n    }\n\n    get valueObject() {\n        return this._listValueObj;\n    }\n\n    private _listValueObj: ReadListValue;\n\n    constructor() { }\n\n}",
     "ctx": false
   }
 ]
