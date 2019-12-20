@@ -1,0 +1,28 @@
+@import '../../../assets/style/mixins';
+
+.main-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 500;
+
+  @include box-shadow-bottom();
+
+  .main-navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
+  }
+
+  .mat-button {
+//    font-size: large;
+    font-weight: bolder;
+
+    .mat-icon {
+      margin-right: 6px;
+    }
+  }
+
+}

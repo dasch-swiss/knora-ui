@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, EventEmitter, Input, Output } from '@angular/core';\nimport { ReadLinkValue } from '@knora/api';\n\n@Component({\n    selector: 'kui-link-value',\n    templateUrl: './link-value.component.html',\n    styleUrls: ['./link-value.component.scss']\n})\nexport class LinkValueComponent {\n\n    @Input()\n    set valueObject(value: ReadLinkValue) {\n        this._linkValueObj = value;\n\n        if (this.valueObject.linkedResource !== undefined) {\n            this.referredResource = this.valueObject.linkedResource.label;\n        } else {\n            this.referredResource = this.valueObject.linkedResourceIri;\n        }\n    }\n\n    get valueObject() {\n        return this._linkValueObj;\n    }\n\n    @Output()\n    referredResourceClicked: EventEmitter<ReadLinkValue> = new EventEmitter();\n\n    private _linkValueObj: ReadLinkValue;\n    referredResource: string;\n\n    constructor() { }\n\n    refResClicked() {\n        this.referredResourceClicked.emit(this._linkValueObj);\n    }\n}",
+    "ctx": false
+  }
+]

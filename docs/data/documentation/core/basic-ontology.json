@@ -1,0 +1,57 @@
+[
+  {
+    "tags": [
+      {
+        "type": "deprecated",
+        "string": "Use new service from `@knora/api` (github:dasch-swiss/knora-api-js-lib) instead",
+        "html": "<p>Use new service from <code>@knora/api</code> (github:dasch-swiss/knora-api-js-lib) instead</p>"
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 6,
+    "codeStart": 9,
+    "code": "@Injectable({\n    providedIn: 'root'\n})\nexport class BasicOntologyService extends ApiService {",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "returns",
+        "string": "{Observable<any>}",
+        "types": [
+          "Observable.<any>"
+        ],
+        "typesDescription": "<a href=\"Observable.html\">Observable</a>.&lt;<a href=\"any.html\">any</a>&gt;",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "description": "",
+        "html": "<p>{Observable<any>}</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>returns our list of a basic ontology</p>",
+      "summary": "<p>returns our list of a basic ontology</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 14,
+    "codeStart": 19,
+    "code": "// getBasicOntology(): Observable<any> {\n//     let url = environment.url;\n//     return this.httpGet(url + '/data/base-data/basic-ontology.json', {withCredentials: false});\n// }\ngetBasicOntology(): Observable<any> {\n    const url = this.kuiConfig.app.url;\n    return this.httpGet(url + '/data/base-data/basic-ontology.json');\n    // return this.httpGet(url + '/data/base-data/basic-ontology.json', {withCredentials: false});\n}\n\n}",
+    "ctx": false
+  }
+]

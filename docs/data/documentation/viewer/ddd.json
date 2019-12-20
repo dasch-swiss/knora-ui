@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'kui-ddd',\n  templateUrl: './ddd.component.html',\n  styleUrls: ['./ddd.component.scss']\n})\nexport class DddComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}",
+    "ctx": false
+  }
+]

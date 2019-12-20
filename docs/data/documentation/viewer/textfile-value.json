@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, Input } from '@angular/core';\nimport { ReadFileValue } from '@knora/api';\n\n// TEMP CLASS DEFINITION BECAUSE MISSING IN KNORA/API LIB\n// TODO: this class must be replaced with the new definition from the lib\nexport class ReadTextFileValue extends ReadFileValue { }\n\n@Component({\n    selector: 'kui-textfile-value',\n    templateUrl: './textfile-value.component.html',\n    styleUrls: ['./textfile-value.component.scss']\n})\nexport class TextfileValueComponent {\n\n    @Input()\n    set valueObject(value: ReadTextFileValue) {\n        this._textfileValueObj = value;\n    }\n\n    get valueObject() {\n        return this._textfileValueObj;\n    }\n\n    private _textfileValueObj: ReadTextFileValue;\n\n    constructor() { }\n\n}",
+    "ctx": false
+  }
+]

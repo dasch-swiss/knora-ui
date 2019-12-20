@@ -1,0 +1,44 @@
+.landing-page {
+  max-width: 800px;
+  width: 80%;
+  margin: 0 auto;
+
+  section {
+    padding: 48px 0;
+  }
+
+  .introduction {
+
+    .content-header {
+      text-align: center;
+      margin-top: 80px;
+      margin-bottom: 80px;
+    }
+  }
+
+  .features {
+
+    .content-header {
+      text-align: center;
+    }
+
+  }
+
+  .content-text {
+
+  }
+}
+
+.module-card {
+  margin: 10px;
+
+  .mat-card-actions {
+    height: 30px;
+
+    .mat-button {
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+    }
+  }
+}

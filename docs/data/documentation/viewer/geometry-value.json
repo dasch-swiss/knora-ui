@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, Input } from '@angular/core';\nimport { ReadGeomValue } from '@knora/api';\n\n@Component({\n    selector: 'kui-geometry-value',\n    templateUrl: './geometry-value.component.html',\n    styleUrls: ['./geometry-value.component.scss']\n})\nexport class GeometryValueComponent {\n\n    @Input()\n    set valueObject(value: ReadGeomValue) {\n        this._geomValueObj = value;\n    }\n\n    get valueObject() {\n        return this._geomValueObj;\n    }\n\n    private _geomValueObj: ReadGeomValue;\n\n    constructor() { }\n\n}",
+    "ctx": false
+  }
+]

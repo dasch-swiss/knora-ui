@@ -1,0 +1,103 @@
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{any} result Search result received from SearchResultsComponent",
+        "name": "result",
+        "description": "<p>Search result received from SearchResultsComponent</p>",
+        "types": [
+          "any"
+        ],
+        "typesDescription": "<a href=\"any.html\">any</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 12,
+    "codeStart": 15,
+    "code": "@Input() result: ReadResource[];",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{IResourceClassAndPropertyDefinitions} ontologyInfo Ontology information received from SearchResultsComponent",
+        "name": "ontologyInfo",
+        "description": "<p>Ontology information received from SearchResultsComponent</p>",
+        "types": [
+          "IResourceClassAndPropertyDefinitions"
+        ],
+        "typesDescription": "<a href=\"IResourceClassAndPropertyDefinitions.html\">IResourceClassAndPropertyDefinitions</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 17,
+    "codeStart": 20,
+    "code": "@Input() ontologyInfo: IResourceClassAndPropertyDefinitions;\n\n\nconstructor(\n    private _router: Router\n) {\n\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} id",
+        "name": "id",
+        "description": "",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{string} id</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Navigate to the resource viewer when clicking on one resource of the search result list</p>",
+      "summary": "<p>Navigate to the resource viewer when clicking on one resource of the search result list</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 29,
+    "codeStart": 33,
+    "code": "openResource(id: string) {\n    const url: string = '/resource/' + encodeURIComponent(id);\n    this._router.navigate([url]);\n}\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "openResource",
+      "string": "openResource()"
+    }
+  }
+]

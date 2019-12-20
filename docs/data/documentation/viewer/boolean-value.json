@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, Input } from '@angular/core';\nimport { ReadBooleanValue } from '@knora/api';\n\n@Component({\n    selector: 'kui-boolean-value',\n    templateUrl: './boolean-value.component.html',\n    styleUrls: ['./boolean-value.component.scss']\n})\nexport class BooleanValueComponent {\n\n    @Input()\n    set valueObject(value: ReadBooleanValue) {\n        this._booleanValueObj = value;\n    }\n\n    get valueObject() {\n        return this._booleanValueObj;\n    }\n\n    private _booleanValueObj: ReadBooleanValue;\n\n    constructor() { }\n\n}",
+    "ctx": false
+  }
+]

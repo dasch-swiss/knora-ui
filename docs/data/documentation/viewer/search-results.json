@@ -1,0 +1,353 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>The search-results gets the search mode and parameters from routes or inputs,<br />\nand returns the corresponding resources that are displayed in a list or a grid.<br />\nThe results can be filtered by project.</p>",
+      "summary": "<p>The search-results gets the search mode and parameters from routes or inputs,<br />\nand returns the corresponding resources that are displayed in a list or a grid.<br />\nThe results can be filtered by project.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 7,
+    "codeStart": 12,
+    "code": "@Component({\n    selector: 'kui-search-results',\n    templateUrl: './search-results.component.html',\n    styleUrls: ['./search-results.component.scss']\n})\nexport class SearchResultsComponent implements OnInit, OnChanges {",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{boolean} [complexView] If true it shows 3 ways to display the search results: list or grid or table",
+        "name": "[complexView]",
+        "description": "<p>If true it shows 3 ways to display the search results: list or grid or table</p>",
+        "types": [
+          "boolean"
+        ],
+        "typesDescription": "<code>boolean</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 18,
+    "codeStart": 22,
+    "code": "@Input() complexView?: boolean = false;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "[viewAs] Show result as list, grid or tabel. Default value is list",
+        "name": "[viewAs]",
+        "description": "<p>Show result as list, grid or tabel. Default value is list</p>",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 24,
+    "codeStart": 27,
+    "code": "@Input() viewAs?: 'list' | 'grid' | 'table' = 'list';",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} [searchQuery] Search parameters. It can be a gravsearch query (extended mode) or string (fulltext mode).",
+        "name": "[searchQuery]",
+        "description": "<p>Search parameters. It can be a gravsearch query (extended mode) or string (fulltext mode).</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 29,
+    "codeStart": 32,
+    "code": "@Input() searchQuery?: string;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} [searchMode] Search mode: Extended or fulltext.",
+        "name": "[searchMode]",
+        "description": "<p>Search mode: Extended or fulltext.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 34,
+    "codeStart": 37,
+    "code": "@Input() searchMode?: string;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} [projectIri] Project Iri. To filter the results by project.",
+        "name": "[projectIri]",
+        "description": "<p>Project Iri. To filter the results by project.</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 39,
+    "codeStart": 42,
+    "code": "@Input() projectIri?: string;\n\n\n// MatPaginator Output\npageEvent: PageEvent;\n\n// offset: number = 0;\n\ninitSearch: boolean;\n\n//    maxOffset: number = 0;\ngravSearchQuery: string;\ngravsearchGenerator: ExtendedSearchParams;\nresult: ReadResource[] = [];\nontologyInfo: IResourceClassAndPropertyDefinitions;\nnumberOfAllResults: number;\n// rerender: boolean = false;\nbadRequest: boolean = false;\nloading = true;\nerrorMessage: ApiResponseError;\npagingLimit: number = 25;\n\nconstructor(\n    @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,\n    private _route: ActivatedRoute,\n    // private _searchService: SearchService,\n    private _searchParamsService: SearchParamsService,\n    private _router: Router\n) {\n\n}\n\nngOnInit() {\n\n    // page offset is 0\n\n\n}\n\nngOnChanges() {\n    this._route.paramMap.subscribe(\n        (params: Params) => {\n            // get the search mode\n            if (!this.searchMode) {\n                this.searchMode = params.get('mode');\n            }\n\n            // get the project iri\n            if (params.get('project') && (this.projectIri !== decodeURIComponent(params.get('project')))) {\n                this.projectIri = decodeURIComponent(params.get('project'));\n            }\n\n            // new search query or old one?\n            this.initSearch = (this.searchQuery !== params.get('q') || this.searchQuery !== this.gravSearchQuery);\n\n            // init pageIndex and results\n            if (!this.pageEvent || this.initSearch) {\n                this.resetPage();\n            }\n\n            // get query params depending on the search mode\n            if (this.searchMode === 'fulltext') {\n                this.searchQuery = params.get('q');\n                this.badRequest = this.searchQuery.length < 3;\n            } else if (this.searchMode === 'extended') {\n                this.gravsearchGenerator = this._searchParamsService.getSearchParams();\n                if (!this.searchQuery) {\n                    this.generateGravsearchQuery();\n                } else {\n                    this.gravSearchQuery = this.searchQuery;\n                }\n            }\n\n            // get results\n            // this.rerender = true;\n            this.getResult();\n        }\n    );\n}\n\nresetPage() {\n    this.pageEvent = new PageEvent();\n    this.pageEvent.pageIndex = 0;\n    this.result = [];\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Generates the Gravsearch query for the current offset.</p>",
+      "summary": "<p>Generates the Gravsearch query for the current offset.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 129,
+    "codeStart": 133,
+    "code": "private generateGravsearchQuery() {\n    const gravsearch: string | boolean = this.gravsearchGenerator.generateGravsearch(\n        this.pageEvent.pageIndex\n    );\n    if (gravsearch === false) {\n        // no valid search params (application has been reloaded)\n        // go to root\n        this._router.navigate([''], { relativeTo: this._route });\n        return;\n    } else {\n        this.gravSearchQuery = <string>gravsearch;\n    }\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Get search result from Knora - 2 cases: simple search and extended search</p>",
+      "summary": "<p>Get search result from Knora - 2 cases: simple search and extended search</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 147,
+    "codeStart": 151,
+    "code": "private getResult() {\n    this.loading = true;\n\n    // reset the error message\n    this.errorMessage = undefined;\n\n    // FULLTEXT SEARCH\n    if (this.searchMode === 'fulltext') {\n        // this.rerender = true;\n        if (this.badRequest) {\n            this.errorMessage = undefined;\n            // TODO: fix that!",
+    "ctx": false
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>this.errorMessage.error.toString errorInfo =<br />\n'A search value is expected to have at least length of 3 characters.';</p>",
+      "summary": "<p>this.errorMessage.error.toString errorInfo =<br />\n'A search value is expected to have at least length of 3 characters.';</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 163,
+    "codeStart": 167,
+    "code": "this.loading = false;\n// this.rerender = false;\n            } else {\n\nlet searchParams;\n\nif (this.projectIri !== undefined) {\n    searchParams = { limitToProject: this.projectIri };\n}\n\nif (this.pageEvent.pageIndex === 0) {\n    // perform count query\n    this.knoraApiConnection.v2.search.doFulltextSearchCountQuery(this.searchQuery, this.pageEvent.pageIndex, searchParams).subscribe(\n        (response: CountQueryResponse) => {\n            this.numberOfAllResults = response.numberOfResults;\n        },\n        (error: ApiResponseError) => {\n            this.errorMessage = error;\n        }\n    );\n}\n\n// perform full text search\nthis.knoraApiConnection.v2.search.doFulltextSearch(this.searchQuery, this.pageEvent.pageIndex, searchParams).subscribe(\n    (response: ReadResource[]) => {\n        // this.processSearchResults(response);\n        // console.log('', response);\n        this.result = response;\n        this.loading = false;\n    },\n    (error: ApiResponseError) => {\n        this.errorMessage = error;\n        console.error(error);\n        this.loading = false;\n    }\n);\n            }\n\n            // EXTENDED SEARCH\n        } else if (this.searchMode === 'extended') {\n            // perform count query\n            if (this.pageEvent.pageIndex === 0) {\nthis.knoraApiConnection.v2.search.doExtendedSearchCountQuery(this.gravSearchQuery).subscribe(\n    (response: CountQueryResponse) => {\n        this.numberOfAllResults = response.numberOfResults;\n    },\n    (error: ApiResponseError) => {\n        this.errorMessage = error;\n    }\n);\n            }\n            this.knoraApiConnection.v2.search.doExtendedSearch(this.gravSearchQuery).subscribe(\n(response: ReadResource[]) => {\n    // this.processSearchResults(response);\n    this.result = response;\n    this.loading = false;\n},\n(error: ApiResponseError) => {\n    this.errorMessage = error;\n    this.loading = false;\n}\n            );\n        } else {\n            // TODO: fix this",
+    "ctx": {
+      "type": "property",
+      "receiver": "this",
+      "name": "loading",
+      "value": "false",
+      "string": "this.loading"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>this.errorMessage = new ApiResponseError();<br />\nthis.errorMessage.errorInfo = <code>search mode invalid: ${ this.searchMode }</code>;</p>",
+      "summary": "<p>this.errorMessage = new ApiResponseError();<br />\nthis.errorMessage.errorInfo = <code>search mode invalid: ${ this.searchMode }</code>;</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 231,
+    "codeStart": 237,
+    "code": "}\n    }",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      },
+      {
+        "type": "param",
+        "string": "{ReadResourcesSequence} searchResult the answer to a search request.",
+        "name": "searchResult",
+        "description": "<p>the answer to a search request.</p>",
+        "types": [
+          "ReadResourcesSequence"
+        ],
+        "typesDescription": "<a href=\"ReadResourcesSequence.html\">ReadResourcesSequence</a>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "<p>Converts search results from JSON-LD to a [[ReadResourcesSequence]] and requests information about ontology entities.<br />\nThis function is passed to <code>subscribe</code> as a pointer (instead of redundantly defining the same lambda function).</p>",
+      "summary": "<p>Converts search results from JSON-LD to a [[ReadResourcesSequence]] and requests information about ontology entities.<br />\nThis function is passed to <code>subscribe</code> as a pointer (instead of redundantly defining the same lambda function).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 240,
+    "codeStart": 247,
+    "code": "private processSearchResults(searchResult: ReadResource[]) {\n    // console.log(searchResult);\n    // assign ontology information to a variable so it can be used in the component's template\n    if (this.ontologyInfo === undefined) {\n        // init ontology information\n        // TODO: how do we get ontologyInfo from knora-api-js-lib ReadResource[]\n        this.ontologyInfo = searchResult[0].entityInfo;\n    } else {\n        // update ontology information\n        // TODO: fix this\n        // this.ontologyInfo. .updateOntologyInformation(searchResult[0].entityInfo);\n    }\n    // append results to search results\n    this.result = this.result.concat(searchResult);\n    // console.log('search results', this.result);\n\n    this.loading = false;\n    // this.rerender = false;\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "ignore",
+        "string": "",
+        "html": ""
+      },
+      {
+        "type": "param",
+        "string": "{number} offset",
+        "name": "offset",
+        "description": "",
+        "types": [
+          "number"
+        ],
+        "typesDescription": "<code>number</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{number} offset</p>"
+      },
+      {
+        "type": "returns",
+        "string": "void",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "description": "<p>void</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Loads the next page of results.<br />\nThe results will be appended to the existing ones.</p>",
+      "summary": "<p>Loads the next page of results.<br />\nThe results will be appended to the existing ones.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 267,
+    "codeStart": 275,
+    "code": "loadMore(page: PageEvent): void {\n\n    this.pageEvent = page;\n\n    if (this.searchMode === 'extended') {\n        this.generateGravsearchQuery();\n    }\n\n    this.getResult();\n}\n}",
+    "ctx": {
+      "type": "method",
+      "name": "loadMore",
+      "string": "loadMore()"
+    }
+  }
+]

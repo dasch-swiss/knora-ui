@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, Input } from '@angular/core';\nimport { ReadColorValue } from '@knora/api';\n\n@Component({\n    selector: 'kui-color-value',\n    templateUrl: './color-value.component.html',\n    styleUrls: ['./color-value.component.scss']\n})\nexport class ColorValueComponent {\n\n    @Input()\n    set valueObject(value: ReadColorValue) {\n        this._colorValueObj = value;\n    }\n\n    get valueObject() {\n        return this._colorValueObj;\n    }\n\n    private _colorValueObj: ReadColorValue;\n\n    constructor() {\n    }\n\n}",
+    "ctx": false
+  }
+]

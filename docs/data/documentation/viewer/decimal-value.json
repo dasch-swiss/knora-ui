@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, Input } from '@angular/core';\nimport { ReadDecimalValue } from '@knora/api';\n\n@Component({\n    selector: 'kui-decimal-value',\n    templateUrl: './decimal-value.component.html',\n    styleUrls: ['./decimal-value.component.scss']\n})\nexport class DecimalValueComponent {\n\n    @Input()\n    set valueObject(value: ReadDecimalValue) {\n        this._decimalValueObj = value;\n    }\n\n    get valueObject() {\n        return this._decimalValueObj;\n    }\n\n    private _decimalValueObj: ReadDecimalValue;\n\n    constructor() { }\n\n}",
+    "ctx": false
+  }
+]

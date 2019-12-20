@@ -1,0 +1,10 @@
+@import '../../../../assets/style/mixins';
+
+h4 {
+  @include border-top();
+  padding-top: 24px;
+
+  &.first {
+    border: none;
+  }
+}

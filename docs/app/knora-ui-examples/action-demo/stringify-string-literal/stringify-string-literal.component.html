@@ -1,0 +1,20 @@
+<!-- Documentation from JSDocs -->
+<app-documentation-viewer [module]="module"></app-documentation-viewer>
+
+<!-- Examples with demo -->
+<h3>Example</h3>
+
+<mat-card class="example-viewer">
+
+    <app-example-viewer [example]="stringifyPipe"></app-example-viewer>
+
+    <div class="demo">
+        <strong>Show all values</strong>
+        <p>{{labels | kuiStringifyStringLiteral:'all'}}</p>
+
+        <br><br>
+        <strong>Show only one value</strong>
+        <p>{{labels | kuiStringifyStringLiteral}}</p>
+
+    </div>
+</mat-card>

@@ -1,0 +1,180 @@
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} [iri] Resource iri",
+        "name": "[iri]",
+        "description": "<p>Resource iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "<p>Resource iri</p>",
+      "summary": "<p>Resource iri</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 39,
+    "codeStart": 44,
+    "code": "@Input() iri?: string;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{boolean} [allProps]",
+        "name": "[allProps]",
+        "description": "",
+        "types": [
+          "boolean"
+        ],
+        "typesDescription": "<code>boolean</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{boolean} [allProps]</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Show all properties, even they don't have a value.</p>",
+      "summary": "<p>Show all properties, even they don't have a value.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 46,
+    "codeStart": 51,
+    "code": "@Input() allProps?: boolean = false;",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{boolean} [toolbar]",
+        "name": "[toolbar]",
+        "description": "",
+        "types": [
+          "boolean"
+        ],
+        "typesDescription": "<code>boolean</code>",
+        "optional": true,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false,
+        "html": "<p>{boolean} [toolbar]</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Show toolbar with project info and some action tools on top of properties if true.</p>",
+      "summary": "<p>Show toolbar with project info and some action tools on top of properties if true.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 53,
+    "codeStart": 58,
+    "code": "@Input() toolbar?: boolean = false;\n\n\n// TODO: needs probably general fileRepresentation container to watch on\n@ViewChild('kuiStillImage', { static: false }) kuiStillImage: StillImageComponent;\n\nloading: boolean;\n\nresource: ReadResource;\n\n// current resource displayed in case of compound object\nactiveResource: ReadResource;\n\npropArray: TempProperty[] = [];\n\n// does the resource has a file representation (media file)?\nfileRepresentation: ReadValue[]; // TODO: expand with following types: | ReadMovingImageFileValue | ReadAudioFileValue | ReadDocumentFileValue | ReadTextFileValue;\n\nConstants = Constants;\n\n// TODO: clean up following unused variables\nontologyInfo: OntologyInformation;\nsequence: ReadResource[];\nguiOrder: GuiOrder[];\nerror: KuiMessageData;\n\nconstructor(\n    @Inject(KnoraApiConnectionToken) private knoraApiConnection: KnoraApiConnection,\n    protected _route: ActivatedRoute,\n    protected _router: Router\n) {\n\n}\n\nngOnInit() {\n    // this.getResource(this.iri);\n}\n\nngOnChanges() {\n    this.getResource(this.iri);\n\n    // console.log(this.kuiStillImage.k;\n}",
+    "ctx": false
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "{string} id Resource iri",
+        "name": "id",
+        "description": "<p>Resource iri</p>",
+        "types": [
+          "string"
+        ],
+        "typesDescription": "<code>string</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      }
+    ],
+    "description": {
+      "full": "<p>Get a read resource sequence with ontology information and incoming resources.</p>",
+      "summary": "<p>Get a read resource sequence with ontology information and incoming resources.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 102,
+    "codeStart": 107,
+    "code": "getResource(id: string) {\n    this.loading = true;\n    this.error = undefined;\n\n    this.knoraApiConnection.v2.res.getResource(id).subscribe(\n        (response: ReadResource) => {\n            this.resource = response;\n            // console.log(response);\n\n            // get list of all properties\n            const hasProps: IHasProperty[] = this.resource.entityInfo.classes[this.resource.type].propertiesList;\n\n            let i = 0;\n            for (const hasProp of hasProps) {\n\n                const index = hasProp.propertyIndex;\n\n\n\n                if (FileRepresentation.list.includes(index)) {\n                    // property value is of type hasFileRepresentations\n                    this.fileRepresentation = this.resource.properties[index];\n                } else {\n                    // filter all properties by type ResourcePropertyDefinition\n                    if (this.resource.entityInfo.properties[index] &&\n                        this.resource.entityInfo.properties[index] instanceof ResourcePropertyDefinition) {\n\n                        const tempProp: TempProperty = {\n                            guiDef: hasProp,\n                            propDef: this.resource.entityInfo.properties[index],\n                            values: this.resource.properties[index]\n                        };\n\n                        this.propArray.push(tempProp);\n                    }\n                }\n\n                i++;\n            }\n\n            // sort properties by guiOrder\n            this.propArray.sort((a, b) => (a.guiDef.guiOrder > b.guiDef.guiOrder) ? 1 : -1);\n\n            // console.log(this.propArray);\n\n            // TODO: get info about file representation to load corresponding media view\n\n\n\n            this.loading = false;\n            // setTimeout(() => {\n            // });\n        },\n        (error: ApiResponseError) => {\n            console.error(error);\n            this.loading = false;\n        }\n    );\n\n}",
+    "ctx": {
+      "type": "method",
+      "name": "getResource",
+      "string": "getResource()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "string": "offset",
+        "name": "offset",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>offset</p>"
+      },
+      {
+        "type": "param",
+        "string": "callback",
+        "name": "callback",
+        "description": "",
+        "types": [],
+        "typesDescription": "",
+        "variable": false,
+        "nonNullable": false,
+        "nullable": false,
+        "optional": false,
+        "html": "<p>callback</p>"
+      }
+    ],
+    "description": {
+      "full": "<p>Get incoming links for a resource.</p>",
+      "summary": "<p>Get incoming links for a resource.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 169,
+    "codeStart": 175,
+    "code": "// getIncomingLinks(offset: number, callback?: (numberOfResources: number) => void): void {\n\n//     this.loading = true;\n\n//     this._incomingService.getIncomingLinksForResource(this.sequence.resources[0].id, offset).subscribe(\n//         (incomingResources: ReadResourcesSequence) => {\n//             // update ontology information\n//             this.ontologyInfo.updateOntologyInformation(incomingResources.ontologyInformation);\n\n//             // Append elements incomingResources to this.sequence.incomingLinks\n//             Array.prototype.push.apply(this.sequence.resources[0].incomingLinks, incomingResources.resources);\n\n//             // if callback is given, execute function with the amount of incoming resources as the parameter\n//             if (callback !== undefined) {\n//                 callback(incomingResources.resources.length);\n//             }\n\n//             this.loading = false;\n//         },\n//         (error: any) => {\n//             console.error(error);\n//             this.loading = false;\n//         }\n//     );\n// }\n\nopenLink(id: string) {\n\n    this.loading = true;\n    // this.routeChanged.emit(id);\n    this._router.navigate(['/resource/' + encodeURIComponent(id)]);\n\n}\n\nrefreshProperties(index: number) {\n    // console.log('from still-image-component: ', index);\n\n    // TODO: commented for knora-api-js-lib:\n    // this.currentResource = this.sequence.resources[0].incomingFileRepresentations[index];\n\n}\n\n\ntoggleProps(show: boolean) {\n    this.allProps = !this.allProps;\n}\n}",
+    "ctx": false
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "",
+      "summary": "",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "line": 1,
+    "codeStart": null,
+    "code": "import { Component, Input } from '@angular/core';\nimport { ReadTextValueAsXml } from '@knora/api';\n\n@Component({\n    selector: 'kui-text-value-as-xml',\n    templateUrl: './text-value-as-xml.component.html',\n    styleUrls: ['./text-value-as-xml.component.scss']\n})\nexport class TextValueAsXmlComponent {\n\n    @Input()\n    set valueObject(value: ReadTextValueAsXml) {\n        this._xmlValueObj = value;\n    }\n\n    get valueObject() {\n        return this._xmlValueObj;\n    }\n\n    private _xmlValueObj: ReadTextValueAsXml;\n\n    constructor() {\n    }\n\n}",
+    "ctx": false
+  }
+]
