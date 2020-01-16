@@ -146,23 +146,25 @@ export class OntologyService extends ApiService {
         );
     }
 
-    createResourceClass(data: NewResourceClass): Observable<ApiServiceResult> {
+    createResourceClass(ontology: any, data: any): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/classes';
 
-        // TODO: add the following values to parameter
-        let onto_iri: string;
-        let onto_name: string;
-        let last_onto_date: string;
+        // get name from ontology
+        const ontoName = this.getOntologyName(ontology['@id']);
+        // get class name from label
+        const className = this.camelize(data.label);
+
+        const comment = (data.comment ? data.comment : data.label);
 
         const resourceClass = {
-            '@id': onto_iri,
+            '@id': ontology['@id'],
             '@type': 'owl:Ontology',
-            'knora-api:lastModificationDate': last_onto_date,
+            'knora-api:lastModificationDate': ontology['knora-api:lastModificationDate'],
             '@graph': [{
-                '@id': onto_name + ':' + data.name,
+                '@id': ontoName + ':' + className,
                 '@type': 'owl:Class',
-                'rdfs:label': data.labels,
-                'rdfs:comment': data.comments,
+                'rdfs:label': data.label,
+                'rdfs:comment': comment,
                 'rdfs:subClassOf': {
                     '@id': data.subClassOf
                 }
@@ -173,10 +175,12 @@ export class OntologyService extends ApiService {
                 'owl': 'http://www.w3.org/2002/07/owl#',
                 'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
                 'xsd': 'http://www.w3.org/2001/XMLSchema#',
-                onto_name: onto_iri + '#'
+                [ontoName]: ontology['@id'] + '#'
             }
-
         };
+
+        console.log(resourceClass);
+        console.log(JSON.stringify(resourceClass));
 
         return this.httpPost(path, resourceClass).pipe(
             map((result: ApiServiceResult) => result.body),
@@ -185,11 +189,11 @@ export class OntologyService extends ApiService {
 
     }
 
-    createProperty(data: NewProperty[]): Observable<ApiServiceResult> {
+    createProperty(ontologyIri: string, data: NewProperty[]): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/properties';
 
         // TODO: add the following values to parameter
-        let onto_iri: string;
+        let onto_iri: string = ontologyIri;
         let onto_name: string;
         let last_onto_date: string;
 
@@ -212,7 +216,7 @@ export class OntologyService extends ApiService {
         const property = {
             '@id': onto_iri,
             '@type': 'owl:Ontology',
-            'knora-api:lastModificationDate': last_onto_date,
+            // 'knora-api:lastModificationDate': last_onto_date,
             '@graph': [
                 graph
             ],
@@ -247,16 +251,13 @@ export class OntologyService extends ApiService {
         let last_onto_date: string;
 
         // TODO: find a way with typescript for the following python construct
-        /*
-        let switcher = {
-            '1': ('owl:cardinality', 1),
-            '0-1': ('owl:maxCardinality', 1),
-            '0-n': ('owl:minCardinality', 0),
-            '1-n': ('owl:minCardinality', 1)
-        };
 
-        let occurrence: any = switcher.get(data.occurrence);
-        */
+        const occurrences = {
+            '1': ['owl:cardinality', 1],
+            '0-1': ['owl:maxCardinality', 1],
+            '0-n': ['owl:minCardinality', 0],
+            '1-n': ['owl:minCardinality', 1]
+        };
 
         const cardinality = {
             '@id': onto_iri,
@@ -267,7 +268,7 @@ export class OntologyService extends ApiService {
                 '@type': 'owl:Class',
                 'rdfs:subClassOf': {
                     '@type': 'owl:Restriction',
-                    // occurrence[0]: occurrence[1],
+                    [occurrences[data.occurrence][0]]: occurrences[data.occurrence][1],
                     'owl:onProperty': {
                         '@id': prop_iri
                     }
@@ -287,6 +288,34 @@ export class OntologyService extends ApiService {
             map((result: ApiServiceResult) => result.body),
             catchError(this.handleJsonError)
         );
+    }
+
+
+
+    /**
+     * Gets the ontolgoy name from ontology iri
+     *
+     * @param  {string} iri
+     * @returns string
+     */
+    private getOntologyName(iri: string): string {
+
+        const array = iri.split('/');
+
+        const pos = array.length - 2;
+
+        return array[pos].toLowerCase();
+    }
+
+    /**
+     * Convert string into camel case
+     * @param  {string} str
+     * @returns string
+     */
+    private camelize(str: string): string {
+        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+            return index === 0 ? word.toLowerCase() : word.toUpperCase();
+        }).replace(/\s+/g, '');
     }
 
 }
