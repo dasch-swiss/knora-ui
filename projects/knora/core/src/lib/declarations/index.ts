@@ -15,7 +15,8 @@ export * from './utils';
 export * from './api/knora-constants';
 
 /**
- * Interfaces for resources
+ * Interfaces for resources and ontologies
  */
 export * from './api/v2/representations/region';
+export * from './api/v2/ontology/';
 

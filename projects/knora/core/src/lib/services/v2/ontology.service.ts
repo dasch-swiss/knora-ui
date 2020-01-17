@@ -145,15 +145,21 @@ export class OntologyService extends ApiService {
             catchError(this.handleJsonError)
         );
     }
-
-    addResourceClass(ontology: any, data: any): Observable<ApiServiceResult> {
+    /**
+     * Add resource class to ontology
+     *
+     * @param  {json-ld} ontology
+     * @param  {NewResourceClass} data
+     * @returns Observable<ApiServiceResult>
+     */
+    addResourceClass(ontology: any, data: NewResourceClass): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/classes';
 
         // get name from ontology
         const ontoName = this.getOntologyName(ontology['@id']);
         // get class name from label
         const className = this.camelize(data.label);
-
+        // set comment; if empty or undefined use the label
         const comment = (data.comment ? data.comment : data.label);
 
         const resourceClass = {
@@ -179,9 +185,6 @@ export class OntologyService extends ApiService {
             }
         };
 
-        console.log(resourceClass);
-        console.log(JSON.stringify(resourceClass));
-
         return this.httpPost(path, resourceClass).pipe(
             map((result: ApiServiceResult) => result.body),
             catchError(this.handleJsonError)
@@ -189,37 +192,49 @@ export class OntologyService extends ApiService {
 
     }
 
-    addProperty(ontologyIri: string, data: NewProperty[]): Observable<ApiServiceResult> {
+    addProperty(ontology: any, data: NewProperty[]): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/properties';
 
-        // TODO: add the following values to parameter
-        let onto_iri: string = ontologyIri;
-        let onto_name: string;
-        let last_onto_date: string;
+        // get name from ontology
+        const ontoName = this.getOntologyName(ontology['@id']);
 
         const graph = [];
 
         for (const prop of data) {
+            // get class name from label
+            const propName = this.camelize(prop.label);
+            // set comment; if empty or undefined use the label
+            const comment = (prop.comment ? prop.comment : prop.label);
+
             const prop_obj = {
-                '@id': onto_name + ':' + prop.name,
-                '@type': 'owl:ObjectProperty',
-                'rdfs:label': prop.labels,
-                'rdfs:comment': prop.comments,
-                'rdfs:subPropertyOf': prop.subPropertyOf,
-                'salsah-gui:guiElement': {
-                    '@id': prop.guiElement
+                [ontoName + ':' + propName]: {
+                    '@id': ontoName + ':' + propName,
+                    '@type': 'owl:ObjectProperty',
+                    'rdfs:label': prop.label,
+                    'rdfs:comment': comment,
+                    'knora-api:objectType': {
+                        '@id': prop.subPropertyOf
+                    },
+                    'knora-api:subjectType': {
+                        '@id': 'Notizblogg:buch'
+                    },
+
+                    'rdfs:subPropertyOf': {
+                        '@id': 'knora-api:hasValue'
+                    },
+                    'salsah-gui:guiElement': {
+                        '@id': prop.guiElement
+                    }
                 }
             };
             graph.push(prop_obj);
         }
 
         const property = {
-            '@id': onto_iri,
+            '@id': ontology['@id'],
             '@type': 'owl:Ontology',
-            // 'knora-api:lastModificationDate': last_onto_date,
-            '@graph': [
-                graph
-            ],
+            'knora-api:lastModificationDate': ontology['knora-api:lastModificationDate'],
+            '@graph': graph,
             '@context': {
                 'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
                 'knora-api': 'http://api.knora.org/ontology/knora-api/v2#',
@@ -227,10 +242,11 @@ export class OntologyService extends ApiService {
                 'owl': 'http://www.w3.org/2002/07/owl#',
                 'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
                 'xsd': 'http://www.w3.org/2001/XMLSchema#',
-                onto_name: onto_iri + '#'
+                [ontoName]: ontology['@id'] + '#'
             }
         };
 
+        console.log(JSON.stringify(property));
 
         return this.httpPost(path, property).pipe(
             map((result: ApiServiceResult) => result.body),
