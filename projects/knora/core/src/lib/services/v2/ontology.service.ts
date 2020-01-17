@@ -135,7 +135,7 @@ export class OntologyService extends ApiService {
             },
             'rdfs:label': data.label,
             '@context': {
-                'rdfs': Constants.Rdfs,
+                'rdfs': Constants.Rdfs + Constants.Delimiter,
                 'knora-api': Constants.KnoraApiV2 + Constants.Delimiter
             }
         };
