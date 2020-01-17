@@ -146,7 +146,7 @@ export class OntologyService extends ApiService {
         );
     }
 
-    createResourceClass(ontology: any, data: any): Observable<ApiServiceResult> {
+    addResourceClass(ontology: any, data: any): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/classes';
 
         // get name from ontology
@@ -189,7 +189,7 @@ export class OntologyService extends ApiService {
 
     }
 
-    createProperty(ontologyIri: string, data: NewProperty[]): Observable<ApiServiceResult> {
+    addProperty(ontologyIri: string, data: NewProperty[]): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/properties';
 
         // TODO: add the following values to parameter
