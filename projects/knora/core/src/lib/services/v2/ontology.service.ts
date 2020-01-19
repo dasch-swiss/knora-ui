@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Constants } from '@knora/api';
+import { Constants, StringLiteral } from '@knora/api';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -8,6 +8,11 @@ import { NewOntology } from '../../declarations/api/v2/ontology/new-ontology';
 import { NewProperty } from '../../declarations/api/v2/ontology/new-property';
 import { NewResourceClass } from '../../declarations/api/v2/ontology/new-resource-class';
 import { ApiService } from '../api.service';
+
+export interface StringLiteralJsonLd {
+    '@language': string;
+    '@value': string;
+}
 
 /**
  * @deprecated since v10.0.0
@@ -155,12 +160,16 @@ export class OntologyService extends ApiService {
     addResourceClass(ontology: any, data: NewResourceClass): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/classes';
 
+        const labels: StringLiteralJsonLd[] = this.convertStringLiteral2JsonLd(data.labels);
+        console.log(labels);
+        const comments: StringLiteralJsonLd[] = this.convertStringLiteral2JsonLd(data.comments);
+
         // get name from ontology
         const ontoName = this.getOntologyName(ontology['@id']);
         // get class name from label
-        const className = this.camelize(data.label);
+        const className = this.camelize(data.labels[0].value);
         // set comment; if empty or undefined use the label
-        const comment = (data.comment ? data.comment : data.label);
+        // const comment = (data.comment ? data.comment : data.label);
 
         const resourceClass = {
             '@id': ontology['@id'],
@@ -169,8 +178,8 @@ export class OntologyService extends ApiService {
             '@graph': [{
                 '@id': ontoName + ':' + className,
                 '@type': 'owl:Class',
-                'rdfs:label': data.label,
-                'rdfs:comment': comment,
+                'rdfs:label': labels,
+                'rdfs:comment': comments,
                 'rdfs:subClassOf': {
                     '@id': data.subClassOf
                 }
@@ -333,5 +342,42 @@ export class OntologyService extends ApiService {
             return index === 0 ? word.toLowerCase() : word.toUpperCase();
         }).replace(/\s+/g, '');
     }
+    /**
+     * Convert an array of type StringLiteral into array of type StringLiteralJsonLd
+     *
+     * @param  {StringLiteral[]} sl
+     * @returns StringLiteralJsonLd[]
+     */
+    private convertStringLiteral2JsonLd(sl: StringLiteral[]): StringLiteralJsonLd[] {
+        // in: [{'language': 'en', 'value': 'Value in english'}]
 
+        const slJld: StringLiteralJsonLd[] = [];
+
+        for (const obj of sl) {
+            const tmpSlJld: StringLiteralJsonLd = {
+                '@language': obj.language,
+                '@value': obj.value
+            };
+
+            slJld.push(tmpSlJld);
+        }
+
+        // out: [{'@language': 'en', '@value': 'Description'}, {'@language': 'de', '@value': 'Description'}] OR {'@language': 'en', '@value': 'Description'}
+        return slJld;
+
+
+    }
+
+
+    // DELETE
+
+    deleteResourceClass(iri: string, lastModificationDate: string): Observable<ApiServiceResult> {
+        // http path format http://host/v2/ontologies/classes/CLASS_IRI?lastModificationDate=ONTOLOGY_LAST_MODIFICATION_DATE
+        const path = '/v2/ontologies/classes/' + encodeURIComponent(iri) + '?lastModificationDate=' + lastModificationDate;
+
+        return this.httpDelete(path).pipe(
+            map((result: ApiServiceResult) => result.body),
+            catchError(this.handleJsonError)
+        );
+    }
 }

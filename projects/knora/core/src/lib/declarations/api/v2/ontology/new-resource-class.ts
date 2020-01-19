@@ -1,5 +1,7 @@
+import { StringLiteral } from '@knora/api';
+
 export interface NewResourceClass {
-    label: string;
-    comment: string;
+    labels: StringLiteral[];
+    comments: StringLiteral[];
     subClassOf: string;
 }
