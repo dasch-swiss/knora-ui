@@ -1,7 +1,7 @@
 export interface NewProperty {
     label: string;
     comment: string;
-    subPropertyOf: string;
+    subPropOf: string;
     guiElement: string;
     guiOrder: number;
     guiAttributes: string[];

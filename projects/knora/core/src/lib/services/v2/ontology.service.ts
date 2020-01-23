@@ -157,24 +157,63 @@ export class OntologyService extends ApiService {
      * @param  {NewResourceClass} data
      * @returns Observable<ApiServiceResult>
      */
-    addResourceClass(ontology: any, data: NewResourceClass): Observable<ApiServiceResult> {
+    addResourceClass(ontologyIri: string, lastModificationDate: string, data: NewResourceClass): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/classes';
 
+        // convert labels and comments from json to json-ld
         const labels: StringLiteralJsonLd[] = this.convertStringLiteral2JsonLd(data.labels);
-        console.log(labels);
         const comments: StringLiteralJsonLd[] = this.convertStringLiteral2JsonLd(data.comments);
 
         // get name from ontology
-        const ontoName = this.getOntologyName(ontology['@id']);
+        const ontoName = this.getOntologyName(ontologyIri);
         // get class name from label
         const className = this.camelize(data.labels[0].value);
+
         // set comment; if empty or undefined use the label
         // const comment = (data.comment ? data.comment : data.label);
 
+        // GOAL:
+        /*
+        {
+            "@id" : "ONTOLOGY_IRI",
+            "@type" : "owl:Ontology",
+            "knora-api:lastModificationDate" : "ONTOLOGY_LAST_MODIFICATION_DATE",
+            "@graph" : [ {
+                "CLASS_IRI" : {
+                "@id" : "CLASS_IRI",
+                "@type" : "owl:Class",
+                "rdfs:label" : {
+                    "@language" : "LANGUAGE_CODE",
+                    "@value" : "LABEL"
+                },
+                "rdfs:comment" : {
+                    "@language" : "LANGUAGE_CODE",
+                    "@value" : "COMMENT"
+                },
+                "rdfs:subClassOf" : [ {
+                    "@id" : "BASE_CLASS_IRI"
+                }, {
+                    "@type": "owl:Restriction",
+                    "OWL_CARDINALITY_PREDICATE": "OWL_CARDINALITY_VALUE",
+                    "owl:onProperty": {
+                    "@id" : "PROPERTY_IRI"
+                    }
+                } ]
+                }
+            } ],
+            "@context" : {
+                "knora-api" : "http://api.knora.org/ontology/knora-api/v2#",
+                "owl" : "http://www.w3.org/2002/07/owl#",
+                "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+                "xsd" : "http://www.w3.org/2001/XMLSchema#"
+            }
+        }
+        */
+
         const resourceClass = {
-            '@id': ontology['@id'],
+            '@id': ontologyIri,
             '@type': 'owl:Ontology',
-            'knora-api:lastModificationDate': ontology['knora-api:lastModificationDate'],
+            'knora-api:lastModificationDate': lastModificationDate,
             '@graph': [{
                 '@id': ontoName + ':' + className,
                 '@type': 'owl:Class',
@@ -190,7 +229,7 @@ export class OntologyService extends ApiService {
                 'owl': 'http://www.w3.org/2002/07/owl#',
                 'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
                 'xsd': 'http://www.w3.org/2001/XMLSchema#',
-                [ontoName]: ontology['@id'] + '#'
+                [ontoName]: ontologyIri + '#'
             }
         };
 
@@ -201,49 +240,78 @@ export class OntologyService extends ApiService {
 
     }
 
-    addProperty(ontology: any, data: NewProperty[]): Observable<ApiServiceResult> {
+    addProperty(ontologyIri: string, lastModificationDate: string, classIri: string, data: NewProperty): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/properties';
 
+        // convert labels and comments from json to json-ld
+        //        const labels: StringLiteralJsonLd[] = this.convertStringLiteral2JsonLd(data.labels);
+        //        const comments: StringLiteralJsonLd[] = this.convertStringLiteral2JsonLd(data.comments);
+
         // get name from ontology
-        const ontoName = this.getOntologyName(ontology['@id']);
+        const ontoName = this.getOntologyName(ontologyIri);
 
         const graph = [];
 
-        for (const prop of data) {
-            // get class name from label
-            const propName = this.camelize(prop.label);
-            // set comment; if empty or undefined use the label
-            const comment = (prop.comment ? prop.comment : prop.label);
+        // get class name from label
+        const propName = this.camelize(data.label);
+        // set comment; if empty or undefined use the label
+        const comment = (data.comment ? data.comment : data.label);
 
-            const prop_obj = {
-                [ontoName + ':' + propName]: {
-                    '@id': ontoName + ':' + propName,
-                    '@type': 'owl:ObjectProperty',
-                    'rdfs:label': prop.label,
-                    'rdfs:comment': comment,
-                    'knora-api:objectType': {
-                        '@id': prop.subPropertyOf
-                    },
-                    'knora-api:subjectType': {
-                        '@id': 'Notizblogg:buch'
-                    },
+        // for (const prop of data) {
 
-                    'rdfs:subPropertyOf': {
-                        '@id': 'knora-api:hasValue'
-                    },
-                    'salsah-gui:guiElement': {
-                        '@id': prop.guiElement
-                    }
-                }
-            };
-            graph.push(prop_obj);
-        }
+        //     const prop_obj = {
+        //         // [ontoName + ':' + propName]: {
+        //         '@id': ontoName + ':' + propName,
+        //         '@type': 'owl:ObjectProperty',
+        //         'rdfs:label': prop.label,
+        //         'rdfs:comment': comment,
+        //         'knora-api:objectType': {
+        //             '@id': prop.subPropOf
+        //         },
+        //         'knora-api:subjectType': {
+        //             '@id': classIri
+        //         },
+        //         'rdfs:subPropertyOf': {
+        //             '@id': 'knora-api:hasValue'     // can be knora-api:hasValue, knora-api:hasLinkTo, or any of their subproperties, with the exception of file properties
+        //         },
+        //         'salsah-gui:guiElement': {
+        //             '@id': prop.guiElement
+        //         },
+        //         'salsah-gui:guiAttribute': prop.guiAttributes,
+        //         // 'salsah-gui:guiOrder': prop.guiOrder     --> part of owl:Restriction
+        //         // }
+        //     };
+        //     graph.push(prop_obj);
+        // }
 
         const property = {
-            '@id': ontology['@id'],
+            '@id': ontologyIri,
             '@type': 'owl:Ontology',
-            'knora-api:lastModificationDate': ontology['knora-api:lastModificationDate'],
-            '@graph': graph,
+            'knora-api:lastModificationDate': lastModificationDate,
+            '@graph': [
+                {
+                    // [ontoName + ':' + propName]: {
+                    '@id': ontoName + ':' + propName,
+                    '@type': 'owl:ObjectProperty',
+                    'rdfs:label': data.label,
+                    'rdfs:comment': comment,
+                    'knora-api:objectType': {
+                        '@id': data.subPropOf
+                    },
+                    'knora-api:subjectType': {
+                        '@id': classIri
+                    },
+                    'rdfs:subPropertyOf': {
+                        '@id': 'knora-api:hasValue'     // can be knora-api:hasValue, knora-api:hasLinkTo, or any of their subproperties, with the exception of file properties
+                    },
+                    'salsah-gui:guiElement': {
+                        '@id': data.guiElement
+                    },
+                    'salsah-gui:guiAttribute': data.guiAttributes
+                    // 'salsah-gui:guiOrder': prop.guiOrder     --> part of owl:Restriction
+                    // }
+                }
+            ],
             '@context': {
                 'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
                 'knora-api': 'http://api.knora.org/ontology/knora-api/v2#',
@@ -251,7 +319,7 @@ export class OntologyService extends ApiService {
                 'owl': 'http://www.w3.org/2002/07/owl#',
                 'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
                 'xsd': 'http://www.w3.org/2001/XMLSchema#',
-                [ontoName]: ontology['@id'] + '#'
+                [ontoName]: ontologyIri + '#'
             }
         };
 
@@ -284,6 +352,34 @@ export class OntologyService extends ApiService {
             '1-n': ['owl:minCardinality', 1]
         };
 
+        // GOAL:
+        /*
+        {
+            "@id" : "ONTOLOGY_IRI",
+            "@type" : "owl:Ontology",
+            "knora-api:lastModificationDate" : "ONTOLOGY_LAST_MODIFICATION_DATE",
+            "@graph" : [ {
+                "CLASS_IRI" : {
+                "@id" : "CLASS_IRI",
+                "@type" : "owl:Class",
+                "rdfs:subClassOf" : {
+                    "@type": "owl:Restriction",
+                    "OWL_CARDINALITY_PREDICATE": "OWL_CARDINALITY_VALUE",
+                    "owl:onProperty": {
+                    "@id" : "PROPERTY_IRI"
+                    }
+                }
+                }
+            } ],
+            "@context" : {
+                "knora-api" : "http://api.knora.org/ontology/knora-api/v2#",
+                "owl" : "http://www.w3.org/2002/07/owl#",
+                "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+                "xsd" : "http://www.w3.org/2001/XMLSchema#"
+            }
+        }
+        */
+
         const cardinality = {
             '@id': onto_iri,
             '@type': 'owl:Ontology',
@@ -315,7 +411,28 @@ export class OntologyService extends ApiService {
         );
     }
 
+    // DELETE
+    /**
+     * Delete resource class
+     *
+     * @param  {string} iri
+     * @param  {string} lastModificationDate
+     * @returns Observable
+     */
+    deleteResourceClass(iri: string, lastModificationDate: string): Observable<ApiServiceResult> {
+        // http path format http://host/v2/ontologies/classes/CLASS_IRI?lastModificationDate=ONTOLOGY_LAST_MODIFICATION_DATE
+        const path = '/v2/ontologies/classes/' + encodeURIComponent(iri) + '?lastModificationDate=' + lastModificationDate;
 
+        return this.httpDelete(path).pipe(
+            map((result: ApiServiceResult) => result.body),
+            catchError(this.handleJsonError)
+        );
+    }
+
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // Some helper methods
+    // ----------------------------------------------------------------------------
 
     /**
      * Gets the ontolgoy name from ontology iri
@@ -364,20 +481,5 @@ export class OntologyService extends ApiService {
 
         // out: [{'@language': 'en', '@value': 'Description'}, {'@language': 'de', '@value': 'Description'}] OR {'@language': 'en', '@value': 'Description'}
         return slJld;
-
-
-    }
-
-
-    // DELETE
-
-    deleteResourceClass(iri: string, lastModificationDate: string): Observable<ApiServiceResult> {
-        // http path format http://host/v2/ontologies/classes/CLASS_IRI?lastModificationDate=ONTOLOGY_LAST_MODIFICATION_DATE
-        const path = '/v2/ontologies/classes/' + encodeURIComponent(iri) + '?lastModificationDate=' + lastModificationDate;
-
-        return this.httpDelete(path).pipe(
-            map((result: ApiServiceResult) => result.body),
-            catchError(this.handleJsonError)
-        );
     }
 }
