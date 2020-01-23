@@ -10,23 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { KnoraApiConfig } from '@knora/api';
-import { KuiConfig, KuiConfigToken, KuiCoreModule } from '@knora/core';
+import { KnoraApiConfigToken, KuiCoreModule } from '@knora/core';
 
 import { ExpertSearchComponent } from './expert-search.component';
-
-export class AppConfig {
-  name: string;
-  url: string;
-
-  constructor(name: string, url: string) { }
-}
 
 describe('ExpertSearchComponent', () => {
   let component: ExpertSearchComponent;
   let fixture: ComponentFixture<ExpertSearchComponent>;
 
-  const config = new KnoraApiConfig('http', '0.0.0.0', 3333);
-  const appConfig = new AppConfig('knora app', '0.0.0.0:4200');
+  const apiConfig = new KnoraApiConfig('http', '0.0.0.0', 3333);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -52,8 +44,8 @@ describe('ExpertSearchComponent', () => {
           }
         },
         {
-          provide: KuiConfigToken,
-          useValue: new KuiConfig(config, appConfig)
+          provide: KnoraApiConfigToken,
+          useValue: apiConfig
         }
       ]
     })
