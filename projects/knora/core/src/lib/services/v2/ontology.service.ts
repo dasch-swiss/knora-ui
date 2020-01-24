@@ -134,7 +134,7 @@ export class OntologyService extends ApiService {
         const path = '/v2/ontologies';
 
         const ontology = {
-            'knora-api:ontologyName': data.name,
+            'knora-api:ontologyName': data.name.toLowerCase(),
             'knora-api:attachedToProject': {
                 '@id': data.projectIri,
             },
@@ -306,8 +306,8 @@ export class OntologyService extends ApiService {
                     },
                     'salsah-gui:guiElement': {
                         '@id': data.guiElement
-                    },
-                    'salsah-gui:guiAttribute': data.guiAttributes
+                    }
+                    // 'salsah-gui:guiAttribute': data.guiAttributes
                     // 'salsah-gui:guiOrder': prop.guiOrder     --> part of owl:Restriction
                     // }
                 }
@@ -413,6 +413,22 @@ export class OntologyService extends ApiService {
 
     // DELETE
     /**
+     * An ontology can be deleted only if it is not used in data.
+     *
+     * @param  {string} iri
+     * @param  {string} lastModificationDate
+     * @returns Observable
+     */
+    deleteOntology(iri: string, lastModificationDate: string): Observable<ApiServiceResult> {
+        // http delete http://host/v2/ontologies/ONTOLOGY_IRI?lastModificationDate=ONTOLOGY_LAST_MODIFICATION_DATE
+        const path = '/v2/ontologies/' + encodeURIComponent(iri) + '?lastModificationDate=' + encodeURIComponent(lastModificationDate);
+
+        return this.httpDelete(path).pipe(
+            map((result: ApiServiceResult) => result.body),
+            catchError(this.handleJsonError)
+        );
+    }
+    /**
      * Delete resource class
      *
      * @param  {string} iri
@@ -421,7 +437,7 @@ export class OntologyService extends ApiService {
      */
     deleteResourceClass(iri: string, lastModificationDate: string): Observable<ApiServiceResult> {
         // http path format http://host/v2/ontologies/classes/CLASS_IRI?lastModificationDate=ONTOLOGY_LAST_MODIFICATION_DATE
-        const path = '/v2/ontologies/classes/' + encodeURIComponent(iri) + '?lastModificationDate=' + lastModificationDate;
+        const path = '/v2/ontologies/classes/' + encodeURIComponent(iri) + '?lastModificationDate=' + encodeURIComponent(lastModificationDate);
 
         return this.httpDelete(path).pipe(
             map((result: ApiServiceResult) => result.body),

@@ -45,8 +45,6 @@ export abstract class ApiService {
      */
     httpGet(path: string, params?: HttpParams): Observable<any> {
 
-        console.log('knoraApiConfig', this.knoraApiConfig);
-
         this.loading = true;
 
         const headers = this.setHeaders();
