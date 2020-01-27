@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ExtendedSearchParams, KuiConfigToken, SearchParamsService } from '@knora/core';
+import { KnoraApiConfig } from '@knora/api';
+import { ExtendedSearchParams, KnoraApiConfigToken, SearchParamsService } from '@knora/core';
 
 @Component({
     selector: 'kui-expert-search',
@@ -29,12 +30,11 @@ export class ExpertSearchComponent implements OnInit {
     expertSearchForm: FormGroup;
 
     constructor(
+        @Inject(KnoraApiConfigToken) private knoraApiConfig: KnoraApiConfig,
         private fb: FormBuilder,
         private _route: ActivatedRoute,
         private _router: Router,
-        // private _searchService: SearchService,
-        private _searchParamsService: SearchParamsService,
-        @Inject(KuiConfigToken) public config
+        private _searchParamsService: SearchParamsService
     ) { }
 
     ngOnInit() {
@@ -50,7 +50,7 @@ export class ExpertSearchComponent implements OnInit {
             gravquery: [
                 `
 PREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>
-PREFIX incunabula: <${this.config.ontologyIRI}/ontology/0803/incunabula/simple/v2#>
+PREFIX incunabula: <${this.knoraApiConfig.apiUrl}/ontology/0803/incunabula/simple/v2#>
 
 CONSTRUCT {
     ?book knora-api:isMainResource true .
