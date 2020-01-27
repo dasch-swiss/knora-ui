@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Constants, StringLiteral } from '@knora/api';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, last } from 'rxjs/operators';
 
 import { ApiServiceResult } from '../../declarations/api-service-result';
 import { NewOntology } from '../../declarations/api/v2/ontology/new-ontology';
@@ -323,13 +323,101 @@ export class OntologyService extends ApiService {
             }
         };
 
-        console.log(JSON.stringify(property));
+        // console.log(JSON.stringify(property));
 
         return this.httpPost(path, property).pipe(
             map((result: ApiServiceResult) => result.body),
             catchError(this.handleJsonError)
         );
 
+    }
+    /**
+     * set restrictions: Add cardinality and gui order
+     *
+     * @param  {string} ontologyIri
+     * @param  {string} lastModificationDate
+     * @param  {string} classIri
+     * @param  {string} propertyIri
+     * @param  {string} cardinality
+     * @param  {number} guiOrder
+     * @returns Observable
+     */
+    setPropertyRestriction(ontologyIri: string, lastModificationDate: string, classIri: string, propertyIri: string, occurrence: string, guiOrder: number): Observable<ApiServiceResult> {
+        // HTTP POST to http://host/v2/ontologies/cardinalities
+        const path = '/v2/ontologies/cardinalities';
+
+        // get name from ontology
+        const ontoName = this.getOntologyName(ontologyIri);
+
+        const occurrences = {
+            '1': ['owl:cardinality', 1],
+            '0-1': ['owl:maxCardinality', 1],
+            '0-n': ['owl:minCardinality', 0],
+            '1-n': ['owl:minCardinality', 1]
+        };
+
+        const cardinality = {
+            '@id': ontologyIri,
+            '@type': 'owl:Ontology',
+            'knora-api:lastModificationDate': lastModificationDate,
+            '@graph': [{
+                '@id': classIri,
+                '@type': 'owl:Class',
+                'rdfs:subClassOf': {
+                    '@type': 'owl:Restriction',
+                    [occurrences[occurrence][0]]: [occurrences[occurrence][1]],
+                    'owl:onProperty': {
+                        '@id': propertyIri
+                    },
+                    'salsah-gui:guiOrder': guiOrder
+                }
+            }],
+            '@context': {
+                'knora-api': 'http://api.knora.org/ontology/knora-api/v2#',
+                'owl': 'http://www.w3.org/2002/07/owl#',
+                'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
+                'xsd': 'http://www.w3.org/2001/XMLSchema#',
+                'salsah-gui': 'http://api.knora.org/ontology/salsah-gui/v2#',
+                [ontoName]: ontologyIri + '#'
+            }
+        };
+
+        console.log(JSON.stringify(cardinality));
+
+        // GOAL:
+        /*
+        {
+            "@id" : "ONTOLOGY_IRI",
+            "@type" : "owl:Ontology",
+            "knora-api:lastModificationDate" : "ONTOLOGY_LAST_MODIFICATION_DATE",
+            "@graph" : [ {
+                "CLASS_IRI" : {
+                "@id" : "CLASS_IRI",
+                "@type" : "owl:Class",
+                "rdfs:subClassOf" : {
+                    "@type": "owl:Restriction",
+                    "OWL_CARDINALITY_PREDICATE": "OWL_CARDINALITY_VALUE",
+                    "owl:onProperty": {
+                    "@id" : "PROPERTY_IRI"
+                    },
+                    "salsah-gui:guiOrder": "POSITION"       // added by ak
+                }
+                }
+            } ],
+            "@context" : {
+                "knora-api" : "http://api.knora.org/ontology/knora-api/v2#",
+                "owl" : "http://www.w3.org/2002/07/owl#",
+                "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+                "xsd" : "http://www.w3.org/2001/XMLSchema#",
+                "salsah-gui": "http://api.knora.org/ontology/salsah-gui/v2#",   // added by ak
+            }
+        }
+        */
+
+        return this.httpPost(path, cardinality).pipe(
+            map((result: ApiServiceResult) => result.body),
+            catchError(this.handleJsonError)
+        );
     }
 
     setCardinality(data: any): Observable<ApiServiceResult> {
