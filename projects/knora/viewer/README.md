@@ -38,7 +38,7 @@ This module has the following package dependencies, which you also have to insta
 -   @angular/flex-layout@8.0.0-beta.27
 -   @knora/action@10.0.0
 -   @knora/core@10.0.0
--   @knora/api@0.1.1
+-   @knora/api@0.2.0
 
 ### Required version of Knora: 11.0.0
 

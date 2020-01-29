@@ -30,7 +30,7 @@ This module has the following package dependencies, which you also have to insta
 
 - @angular/common@8.0.3
 - @angular/core@8.0.3
-- @knora/api@0.1.1
+- @knora/api@0.2.0
 - @knora/action@10.0.0
 - @knora/core@10.0.0
 - @knora/viewer@10.0.0
