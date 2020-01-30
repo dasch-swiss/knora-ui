@@ -213,7 +213,10 @@ export class OntologyService extends ApiService {
         const resourceClass = {
             '@id': ontologyIri,
             '@type': 'owl:Ontology',
-            'knora-api:lastModificationDate': lastModificationDate,
+            'knora-api:lastModificationDate': {
+                '@type': Constants.dateTimeStamp,
+                '@value': lastModificationDate
+            },
             '@graph': [{
                 '@id': ontoName + ':' + className,
                 '@type': 'owl:Class',
@@ -287,7 +290,10 @@ export class OntologyService extends ApiService {
         const property = {
             '@id': ontologyIri,
             '@type': 'owl:Ontology',
-            'knora-api:lastModificationDate': lastModificationDate,
+            'knora-api:lastModificationDate': {
+                '@type': Constants.dateTimeStamp,
+                '@value': lastModificationDate
+            },
             '@graph': [
                 {
                     // [ontoName + ':' + propName]: {
@@ -359,7 +365,10 @@ export class OntologyService extends ApiService {
         const cardinality = {
             '@id': ontologyIri,
             '@type': 'owl:Ontology',
-            'knora-api:lastModificationDate': lastModificationDate,
+            'knora-api:lastModificationDate': {
+                '@type': Constants.dateTimeStamp,
+                '@value': lastModificationDate
+            },
             '@graph': [{
                 '@id': classIri,
                 '@type': 'owl:Class',
@@ -429,7 +438,7 @@ export class OntologyService extends ApiService {
 
         let onto_iri: string;
         let onto_name: string;
-        let last_onto_date: string;
+        let lastModificationDate: string;
 
         // TODO: find a way with typescript for the following python construct
 
@@ -471,7 +480,10 @@ export class OntologyService extends ApiService {
         const cardinality = {
             '@id': onto_iri,
             '@type': 'owl:Ontology',
-            'knora-api:lastModificationDate': last_onto_date,
+            'knora-api:lastModificationDate': {
+                '@type': Constants.dateTimeStamp,
+                '@value': lastModificationDate
+            },
             '@graph': [{
                 '@id': class_iri,
                 '@type': 'owl:Class',

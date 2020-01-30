@@ -47,7 +47,7 @@
     "@angular/platform-browser-dynamic": "~8.2.9",
     "@angular/router": "~8.2.9",
     "@auth0/angular-jwt": "^2.0.0",
-    "@knora/api": "0.1.1",
+    "@knora/api": "file:.yalc/@knora/api",
     "angular-split": "^3.0.2",
     "core-js": "^2.5.4",
     "global": "^4.3.2",
