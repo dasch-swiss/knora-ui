@@ -20,7 +20,7 @@
     "@knora/action": "10.0.0",
     "@knora/core": "10.0.0",
     "@knora/viewer": "10.0.0",
-    "@knora/api": "0.1.1",
+    "@knora/api": "0.2.0",
     "jdnconvertiblecalendardateadapter": "^0.0.10"
   }
 }
