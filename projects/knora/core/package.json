@@ -1,6 +1,6 @@
 {
   "name": "@knora/core",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "description": "Knora ui module: core",
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
   "peerDependencies": {
     "@angular/common": "^8.0.3",
     "@angular/core": "^8.0.3",
-    "@knora/api": "0.1.1",
+    "@knora/api": "0.2.0",
     "json2typescript": "^1.0.6",
     "jsonld": "^1.1.0",
     "semver": "^6.1.1"
