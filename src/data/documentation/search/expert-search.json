@@ -26,8 +26,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 13,
-    "codeStart": 16,
+    "line": 14,
+    "codeStart": 17,
     "code": "@Input() route?;",
     "ctx": false
   },
@@ -56,8 +56,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 18,
-    "codeStart": 21,
+    "line": 19,
+    "codeStart": 22,
     "code": "@Output() gravsearch = new EventEmitter<string>();",
     "ctx": false
   },
@@ -88,9 +88,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 24,
-    "codeStart": 27,
-    "code": "@Output() toggleExpertSearchForm = new EventEmitter<boolean>();\n\nexpertSearchForm: FormGroup;\n\nconstructor(\n    private fb: FormBuilder,\n    private _route: ActivatedRoute,\n    private _router: Router,\n    // private _searchService: SearchService,\n    private _searchParamsService: SearchParamsService,\n    @Inject(KuiConfigToken) public config\n) { }\n\nngOnInit() {\n    this.initForm();\n}",
+    "line": 25,
+    "codeStart": 28,
+    "code": "@Output() toggleExpertSearchForm = new EventEmitter<boolean>();\n\nexpertSearchForm: FormGroup;\n\nconstructor(\n    @Inject(KnoraApiConfigToken) private knoraApiConfig: KnoraApiConfig,\n    private fb: FormBuilder,\n    private _route: ActivatedRoute,\n    private _router: Router,\n    private _searchParamsService: SearchParamsService\n) { }\n\nngOnInit() {\n    this.initForm();\n}",
     "ctx": false
   },
   {
@@ -113,7 +113,7 @@
     "ignore": false,
     "line": 44,
     "codeStart": 48,
-    "code": "private initForm() {\n    this.expertSearchForm = this.fb.group({\n        gravquery: [\n            `\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\nPREFIX incunabula: <${this.config.ontologyIRI}/ontology/0803/incunabula/simple/v2#>\n\nCONSTRUCT {\n?book knora-api:isMainResource true .\n?book incunabula:title ?title .\n\n} WHERE {\n?book a incunabula:book .\n?book incunabula:title ?title .\n}\n`,\n            Validators.required\n        ]\n    });\n}",
+    "code": "private initForm() {\n    this.expertSearchForm = this.fb.group({\n        gravquery: [\n            `\nPREFIX knora-api: <http://api.knora.org/ontology/knora-api/simple/v2#>\nPREFIX incunabula: <${this.knoraApiConfig.apiUrl}/ontology/0803/incunabula/simple/v2#>\n\nCONSTRUCT {\n?book knora-api:isMainResource true .\n?book incunabula:title ?title .\n\n} WHERE {\n?book a incunabula:book .\n?book incunabula:title ?title .\n}\n`,\n            Validators.required\n        ]\n    });\n}",
     "ctx": false
   },
   {

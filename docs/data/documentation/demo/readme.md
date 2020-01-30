@@ -13,7 +13,7 @@ But you can use only @knora/core which contains almost all services for the Knor
 
 Knora and the Knora ui modules is [free software](http://www.gnu.org/philosophy/free-sw.en.html), released under the [GNU Affero General Public](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
-This version of Knora-ui requires [Knora-api version ^11.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v11.0.0).
+This version of Knora-ui requires [Knora-api version ^12.0.0](https://github.com/dasch-swiss/knora-api/releases/tag/v12.0.0).
 
 ## Published modules
 
