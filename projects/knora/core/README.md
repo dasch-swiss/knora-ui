@@ -33,9 +33,9 @@ This module has the following package dependencies, which you also have to insta
 -   json2typescript@1.0.6
 -   jsonld@1.1.0
 -   semver@^6.1.1
--   @knora/api@0.2.0",
+-   @knora/api@0.2.0
 
-### Required version of Knora: 11.0.0
+### Required version of Knora: 12.0.0
 
 ## Setup
 
