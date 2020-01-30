@@ -33,12 +33,12 @@ This module has the following package dependencies, which you also have to insta
 -   @angular/animations@8.0.3
 -   @angular/cdk@8.1.4
 -   @angular/material@8.1.4
--   @knora/api@0.1.1
+-   @knora/api@0.2.0
 -   ts-md5@1.2.4
 -   jdnconvertiblecalendar@0.0.5
 -   jdnconvertiblecalendardateadapter@0.0.10
 
-### Required version of Knora: 11.0.0
+### Required version of Knora: 12.0.0
 
 ## Setup
 
