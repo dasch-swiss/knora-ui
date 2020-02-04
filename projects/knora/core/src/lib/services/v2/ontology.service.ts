@@ -551,7 +551,7 @@ export class OntologyService extends ApiService {
     // ----------------------------------------------------------------------------
 
     /**
-     * Gets the ontolgoy name from ontology iri
+     * Get the ontolgoy name from ontology iri
      *
      * @param  {string} iri
      * @returns string
