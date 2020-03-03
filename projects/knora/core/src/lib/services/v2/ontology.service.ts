@@ -166,8 +166,9 @@ export class OntologyService extends ApiService {
 
         // get name from ontology
         const ontoName = this.getOntologyName(ontologyIri);
+
         // get class name from label
-        const className = this.camelize(data.labels[0].value);
+        const className = this.camelize(data.name);
 
         // set comment; if empty or undefined use the label
         // const comment = (data.comment ? data.comment : data.label);
