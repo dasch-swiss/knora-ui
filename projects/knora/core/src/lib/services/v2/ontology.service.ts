@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Constants, StringLiteral } from '@knora/api';
 import { Observable } from 'rxjs';
-import { catchError, map, last } from 'rxjs/operators';
-
+import { catchError, map } from 'rxjs/operators';
 import { ApiServiceResult } from '../../declarations/api-service-result';
 import { NewOntology } from '../../declarations/api/v2/ontology/new-ontology';
 import { NewProperty } from '../../declarations/api/v2/ontology/new-property';
@@ -173,44 +172,6 @@ export class OntologyService extends ApiService {
         // set comment; if empty or undefined use the label
         // const comment = (data.comment ? data.comment : data.label);
 
-        // GOAL:
-        /*
-        {
-            "@id" : "ONTOLOGY_IRI",
-            "@type" : "owl:Ontology",
-            "knora-api:lastModificationDate" : "ONTOLOGY_LAST_MODIFICATION_DATE",
-            "@graph" : [ {
-                "CLASS_IRI" : {
-                "@id" : "CLASS_IRI",
-                "@type" : "owl:Class",
-                "rdfs:label" : {
-                    "@language" : "LANGUAGE_CODE",
-                    "@value" : "LABEL"
-                },
-                "rdfs:comment" : {
-                    "@language" : "LANGUAGE_CODE",
-                    "@value" : "COMMENT"
-                },
-                "rdfs:subClassOf" : [ {
-                    "@id" : "BASE_CLASS_IRI"
-                }, {
-                    "@type": "owl:Restriction",
-                    "OWL_CARDINALITY_PREDICATE": "OWL_CARDINALITY_VALUE",
-                    "owl:onProperty": {
-                    "@id" : "PROPERTY_IRI"
-                    }
-                } ]
-                }
-            } ],
-            "@context" : {
-                "knora-api" : "http://api.knora.org/ontology/knora-api/v2#",
-                "owl" : "http://www.w3.org/2002/07/owl#",
-                "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-                "xsd" : "http://www.w3.org/2001/XMLSchema#"
-            }
-        }
-        */
-
         const resourceClass = {
             '@id': ontologyIri,
             '@type': 'owl:Ontology',
@@ -247,46 +208,13 @@ export class OntologyService extends ApiService {
     addProperty(ontologyIri: string, lastModificationDate: string, classIri: string, data: NewProperty): Observable<ApiServiceResult> {
         const path = '/v2/ontologies/properties';
 
-        // convert labels and comments from json to json-ld
-        //        const labels: StringLiteralJsonLd[] = this.convertStringLiteral2JsonLd(data.labels);
-        //        const comments: StringLiteralJsonLd[] = this.convertStringLiteral2JsonLd(data.comments);
-
         // get name from ontology
         const ontoName = this.getOntologyName(ontologyIri);
-
-        const graph = [];
 
         // get class name from label
         const propName = this.camelize(data.label);
         // set comment; if empty or undefined use the label
         const comment = (data.comment ? data.comment : data.label);
-
-        // for (const prop of data) {
-
-        //     const prop_obj = {
-        //         // [ontoName + ':' + propName]: {
-        //         '@id': ontoName + ':' + propName,
-        //         '@type': 'owl:ObjectProperty',
-        //         'rdfs:label': prop.label,
-        //         'rdfs:comment': comment,
-        //         'knora-api:objectType': {
-        //             '@id': prop.subPropOf
-        //         },
-        //         'knora-api:subjectType': {
-        //             '@id': classIri
-        //         },
-        //         'rdfs:subPropertyOf': {
-        //             '@id': 'knora-api:hasValue'     // can be knora-api:hasValue, knora-api:hasLinkTo, or any of their subproperties, with the exception of file properties
-        //         },
-        //         'salsah-gui:guiElement': {
-        //             '@id': prop.guiElement
-        //         },
-        //         'salsah-gui:guiAttribute': prop.guiAttributes,
-        //         // 'salsah-gui:guiOrder': prop.guiOrder     --> part of owl:Restriction
-        //         // }
-        //     };
-        //     graph.push(prop_obj);
-        // }
 
         const property = {
             '@id': ontologyIri,
@@ -329,8 +257,6 @@ export class OntologyService extends ApiService {
                 [ontoName]: ontologyIri + '#'
             }
         };
-
-        // console.log(JSON.stringify(property));
 
         return this.httpPost(path, property).pipe(
             map((result: ApiServiceResult) => result.body),
@@ -392,38 +318,6 @@ export class OntologyService extends ApiService {
             }
         };
 
-        console.log(JSON.stringify(cardinality));
-
-        // GOAL:
-        /*
-        {
-            "@id" : "ONTOLOGY_IRI",
-            "@type" : "owl:Ontology",
-            "knora-api:lastModificationDate" : "ONTOLOGY_LAST_MODIFICATION_DATE",
-            "@graph" : [ {
-                "CLASS_IRI" : {
-                "@id" : "CLASS_IRI",
-                "@type" : "owl:Class",
-                "rdfs:subClassOf" : {
-                    "@type": "owl:Restriction",
-                    "OWL_CARDINALITY_PREDICATE": "OWL_CARDINALITY_VALUE",
-                    "owl:onProperty": {
-                    "@id" : "PROPERTY_IRI"
-                    },
-                    "salsah-gui:guiOrder": "POSITION"       // added by ak
-                }
-                }
-            } ],
-            "@context" : {
-                "knora-api" : "http://api.knora.org/ontology/knora-api/v2#",
-                "owl" : "http://www.w3.org/2002/07/owl#",
-                "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-                "xsd" : "http://www.w3.org/2001/XMLSchema#",
-                "salsah-gui": "http://api.knora.org/ontology/salsah-gui/v2#",   // added by ak
-            }
-        }
-        */
-
         return this.httpPost(path, cardinality).pipe(
             map((result: ApiServiceResult) => result.body),
             catchError(this.handleJsonError)
@@ -438,10 +332,7 @@ export class OntologyService extends ApiService {
         let prop_iri: string;
 
         let onto_iri: string;
-        let onto_name: string;
         let lastModificationDate: string;
-
-        // TODO: find a way with typescript for the following python construct
 
         const occurrences = {
             '1': ['owl:cardinality', 1],
@@ -449,34 +340,6 @@ export class OntologyService extends ApiService {
             '0-n': ['owl:minCardinality', 0],
             '1-n': ['owl:minCardinality', 1]
         };
-
-        // GOAL:
-        /*
-        {
-            "@id" : "ONTOLOGY_IRI",
-            "@type" : "owl:Ontology",
-            "knora-api:lastModificationDate" : "ONTOLOGY_LAST_MODIFICATION_DATE",
-            "@graph" : [ {
-                "CLASS_IRI" : {
-                "@id" : "CLASS_IRI",
-                "@type" : "owl:Class",
-                "rdfs:subClassOf" : {
-                    "@type": "owl:Restriction",
-                    "OWL_CARDINALITY_PREDICATE": "OWL_CARDINALITY_VALUE",
-                    "owl:onProperty": {
-                    "@id" : "PROPERTY_IRI"
-                    }
-                }
-                }
-            } ],
-            "@context" : {
-                "knora-api" : "http://api.knora.org/ontology/knora-api/v2#",
-                "owl" : "http://www.w3.org/2002/07/owl#",
-                "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-                "xsd" : "http://www.w3.org/2001/XMLSchema#"
-            }
-        }
-        */
 
         const cardinality = {
             '@id': onto_iri,
