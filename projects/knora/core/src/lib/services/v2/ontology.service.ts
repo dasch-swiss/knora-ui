@@ -166,12 +166,6 @@ export class OntologyService extends ApiService {
         // get name from ontology
         const ontoName = this.getOntologyName(ontologyIri);
 
-        // get class name from label
-        const className = this.camelize(data.name);
-
-        // set comment; if empty or undefined use the label
-        // const comment = (data.comment ? data.comment : data.label);
-
         const resourceClass = {
             '@id': ontologyIri,
             '@type': 'owl:Ontology',
@@ -180,7 +174,7 @@ export class OntologyService extends ApiService {
                 '@value': lastModificationDate
             },
             '@graph': [{
-                '@id': ontoName + ':' + className,
+                '@id': ontoName + ':' + data.name,
                 '@type': 'owl:Class',
                 'rdfs:label': labels,
                 'rdfs:comment': comments,
@@ -211,8 +205,6 @@ export class OntologyService extends ApiService {
         // get name from ontology
         const ontoName = this.getOntologyName(ontologyIri);
 
-        // get class name from label
-        const propName = this.camelize(data.label);
         // set comment; if empty or undefined use the label
         const comment = (data.comment ? data.comment : data.label);
 
@@ -226,7 +218,7 @@ export class OntologyService extends ApiService {
             '@graph': [
                 {
                     // [ontoName + ':' + propName]: {
-                    '@id': ontoName + ':' + propName,
+                    '@id': ontoName + ':' + data.name,
                     '@type': 'owl:ObjectProperty',
                     'rdfs:label': data.label,
                     'rdfs:comment': comment,

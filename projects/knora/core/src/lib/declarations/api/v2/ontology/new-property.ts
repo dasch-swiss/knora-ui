@@ -1,4 +1,5 @@
 export interface NewProperty {
+    name: string;
     label: string;
     comment: string;
     subPropOf: string;
