@@ -60,7 +60,7 @@
     "ignore": false,
     "line": 17,
     "codeStart": 20,
-    "code": "@Input() ontologyInfo: ResourceClassAndPropertyDefinitions;\n\n\nconstructor(\n    private _router: Router\n) {\n\n}",
+    "code": "@Input() ontologyInfo: IResourceClassAndPropertyDefinitions;\n\n\nconstructor(\n    private _router: Router\n) {\n\n}",
     "ctx": false
   },
   {

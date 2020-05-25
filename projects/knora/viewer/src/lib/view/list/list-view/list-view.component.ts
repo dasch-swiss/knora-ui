@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { ResourceClassAndPropertyDefinitions, ReadResource } from '@knora/api';
+import { IResourceClassAndPropertyDefinitions, ReadResource } from '@knora/api';
 
 @Component({
     selector: 'kui-list-view',
@@ -17,7 +17,7 @@ export class ListViewComponent {
     /**
      * @param  {ResourceClassAndPropertyDefinitions} ontologyInfo Ontology information received from SearchResultsComponent
      */
-    @Input() ontologyInfo: ResourceClassAndPropertyDefinitions;
+    @Input() ontologyInfo: IResourceClassAndPropertyDefinitions;
 
 
     constructor(

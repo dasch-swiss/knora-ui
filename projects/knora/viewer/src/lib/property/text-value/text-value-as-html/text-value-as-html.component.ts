@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { ReadTextValueAsHtml, ResourceClassAndPropertyDefinitions } from '@knora/api';
+import { IResourceClassAndPropertyDefinitions, ReadTextValueAsHtml } from '@knora/api';
 
 @Component({
     selector: 'kui-text-value-as-html',
@@ -12,7 +12,7 @@ export class TextValueAsHtmlComponent {
     referredResourceClicked: EventEmitter<string> = new EventEmitter();
 
     @Input()
-    set ontologyInfo(value: ResourceClassAndPropertyDefinitions) {
+    set ontologyInfo(value: IResourceClassAndPropertyDefinitions) {
         this._ontoInfo = value;
     }
 
@@ -44,7 +44,7 @@ export class TextValueAsHtmlComponent {
 
     html: string;
     private _htmlValueObj: ReadTextValueAsHtml;
-    private _ontoInfo: ResourceClassAndPropertyDefinitions;
+    private _ontoInfo: IResourceClassAndPropertyDefinitions;
     private _bindEvents: Boolean;
 
     constructor(private el: ElementRef) {

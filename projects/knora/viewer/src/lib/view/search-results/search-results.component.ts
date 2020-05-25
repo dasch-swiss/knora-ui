@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnChanges, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiResponseError, CountQueryResponse, ResourceClassAndPropertyDefinitions, KnoraApiConnection, ReadResource, ReadResourceSequence } from '@knora/api';
+import { ApiResponseError, CountQueryResponse, IResourceClassAndPropertyDefinitions, KnoraApiConnection, ReadResource, ReadResourceSequence } from '@knora/api';
 import { ExtendedSearchParams, KnoraApiConnectionToken, SearchParamsService } from '@knora/core';
 
 /**
@@ -53,7 +53,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     gravSearchQuery: string;
     gravsearchGenerator: ExtendedSearchParams;
     result: ReadResource[] = [];
-    ontologyInfo: ResourceClassAndPropertyDefinitions;
+    ontologyInfo: IResourceClassAndPropertyDefinitions;
     numberOfAllResults: number;
     // rerender: boolean = false;
     badRequest: boolean = false;
