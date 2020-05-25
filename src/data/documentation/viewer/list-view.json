@@ -35,13 +35,13 @@
     "tags": [
       {
         "type": "param",
-        "string": "{IResourceClassAndPropertyDefinitions} ontologyInfo Ontology information received from SearchResultsComponent",
+        "string": "{ResourceClassAndPropertyDefinitions} ontologyInfo Ontology information received from SearchResultsComponent",
         "name": "ontologyInfo",
         "description": "<p>Ontology information received from SearchResultsComponent</p>",
         "types": [
-          "IResourceClassAndPropertyDefinitions"
+          "ResourceClassAndPropertyDefinitions"
         ],
-        "typesDescription": "<a href=\"IResourceClassAndPropertyDefinitions.html\">IResourceClassAndPropertyDefinitions</a>",
+        "typesDescription": "<a href=\"ResourceClassAndPropertyDefinitions.html\">ResourceClassAndPropertyDefinitions</a>",
         "optional": false,
         "nullable": false,
         "nonNullable": false,
@@ -60,7 +60,7 @@
     "ignore": false,
     "line": 17,
     "codeStart": 20,
-    "code": "@Input() ontologyInfo: IResourceClassAndPropertyDefinitions;\n\n\nconstructor(\n    private _router: Router\n) {\n\n}",
+    "code": "@Input() ontologyInfo: ResourceClassAndPropertyDefinitions;\n\n\nconstructor(\n    private _router: Router\n) {\n\n}",
     "ctx": false
   },
   {

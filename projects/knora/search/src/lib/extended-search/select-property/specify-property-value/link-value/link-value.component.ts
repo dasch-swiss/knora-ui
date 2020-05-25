@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Constants, KnoraApiConnection, ReadResource } from '@knora/api';
+import { Constants, KnoraApiConnection, ReadResource, ReadResourceSequence } from '@knora/api';
 import { IRI, KnoraApiConnectionToken, OntologyCacheService, PropertyValue, Value } from '@knora/core';
 
 declare let require: any; // http://stackoverflow.com/questions/34730010/angular2-5-minute-install-bug-require-is-not-defined
@@ -77,8 +77,8 @@ export class LinkValueComponent implements OnInit, OnDestroy, PropertyValue {
             );
             */
             this.knoraApiConnection.v2.search.doSearchByLabel(searchTerm, 0, { limitToResourceClass: this._restrictToResourceClass }).subscribe(
-                (response: ReadResource[]) => {
-                    this.resources = response;
+                (response: ReadResourceSequence) => {
+                    this.resources = response.resources;
                 });
         } else {
             // clear selection

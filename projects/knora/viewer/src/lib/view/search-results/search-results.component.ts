@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnChanges, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ApiResponseError, CountQueryResponse, IResourceClassAndPropertyDefinitions, KnoraApiConnection, ReadResource } from '@knora/api';
+import { ApiResponseError, CountQueryResponse, ResourceClassAndPropertyDefinitions, KnoraApiConnection, ReadResource, ReadResourceSequence } from '@knora/api';
 import { ExtendedSearchParams, KnoraApiConnectionToken, SearchParamsService } from '@knora/core';
 
 /**
@@ -53,7 +53,7 @@ export class SearchResultsComponent implements OnInit, OnChanges {
     gravSearchQuery: string;
     gravsearchGenerator: ExtendedSearchParams;
     result: ReadResource[] = [];
-    ontologyInfo: IResourceClassAndPropertyDefinitions;
+    ontologyInfo: ResourceClassAndPropertyDefinitions;
     numberOfAllResults: number;
     // rerender: boolean = false;
     badRequest: boolean = false;
@@ -188,10 +188,10 @@ export class SearchResultsComponent implements OnInit, OnChanges {
 
                 // perform full text search
                 this.knoraApiConnection.v2.search.doFulltextSearch(this.searchQuery, this.pageEvent.pageIndex, searchParams).subscribe(
-                    (response: ReadResource[]) => {
+                    (response: ReadResourceSequence) => {
                         // this.processSearchResults(response);
                         // console.log('', response);
-                        this.result = response;
+                        this.result = response.resources;
                         this.loading = false;
                     },
                     (error: ApiResponseError) => {
@@ -216,9 +216,9 @@ export class SearchResultsComponent implements OnInit, OnChanges {
                 );
             }
             this.knoraApiConnection.v2.search.doExtendedSearch(this.gravSearchQuery).subscribe(
-                (response: ReadResource[]) => {
+                (response: ReadResourceSequence) => {
                     // this.processSearchResults(response);
-                    this.result = response;
+                    this.result = response.resources;
                     this.loading = false;
                 },
                 (error: ApiResponseError) => {
