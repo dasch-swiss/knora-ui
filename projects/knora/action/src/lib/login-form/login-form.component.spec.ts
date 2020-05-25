@@ -69,6 +69,7 @@ describe('LoginFormComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(LoginFormComponent);
         component = fixture.componentInstance;
+        component.form = formBuilder.group({});
         component.form = formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
