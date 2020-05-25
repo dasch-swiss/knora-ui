@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -69,7 +69,8 @@ describe('LoginFormComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(LoginFormComponent);
         component = fixture.componentInstance;
-        component.form = formBuilder.group({});
+
+        component.form = new FormGroup({});
         component.form = formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
