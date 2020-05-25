@@ -13,7 +13,7 @@ export class KeyComponent implements OnInit {
 
     // demo configuration incl. code to display
     keyPipe: Example = {
-        title: 'Key Pipe',
+        title: 'Key Pipe (deprecated)',
         subtitle: '',
         name: 'keyPipe',
         code: {

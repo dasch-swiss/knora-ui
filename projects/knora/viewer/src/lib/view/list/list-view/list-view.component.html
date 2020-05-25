@@ -7,9 +7,9 @@
             <p matLine class="lv-res-label">{{res.entityInfo.classes[res.type].label}}</p>
             <h3 matLine class="lv-label">{{res.label}}</h3>
 
-            <div matLine *ngFor="let prop of res.properties | kuiKey">
+            <div matLine *ngFor="let prop of res.properties | keyvalue">
 
-                <div matLine *ngFor="let val of prop.value | kuiKey">
+                <div matLine *ngFor="let val of prop.value | keyvalue">
 
                     <span class="lv-prop-label">
                         {{res.entityInfo.properties[val.value.property].label}}:&nbsp;

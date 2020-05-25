@@ -11,8 +11,8 @@
                 <mat-card-title>{{res.label}}</mat-card-title>
 
 
-                <mat-card-content *ngFor="let prop of res.properties | kuiKey">
-                    <div *ngFor="let val of prop.value | kuiKey">
+                <mat-card-content *ngFor="let prop of res.properties | keyvalue">
+                    <div *ngFor="let val of prop.value | keyvalue">
                         <span class="lv-prop-label">
                             {{res.entityInfo.properties[val.value.property].label}}:&nbsp;
                         </span>
