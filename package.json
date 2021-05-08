@@ -90,7 +90,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "karma-spec-reporter": "^0.0.32",
-    "ng-packagr": "^5.7.0",
+    "ng-packagr": "^10.1.1",
     "popper.js": "^1.14.7",
     "protractor": "~5.4.0",
     "ts-node": "~8.4.1",
