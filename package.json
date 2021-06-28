@@ -61,7 +61,7 @@
     "ngx-markdown": "^8.2.1",
     "node-sass": "^4.9.3",
     "openseadragon": "^2.4.0",
-    "prismjs": "^1.15.0",
+    "prismjs": "^1.24.0",
     "rxjs": "^6.5.2",
     "semver": "^6.1.1",
     "svg-overlay": "github:openseadragon/svg-overlay",
